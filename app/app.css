@@ -772,10 +772,17 @@ body.sidebar-resizing .sidebar::after {
   margin-top: 2px;
   font-size: 12px;
   line-height: 1.2;
-  color: #5f5f5f;
+  color: #4f4f4f;
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.sidebar-nav li.sidebar-paper-item:hover .dpr-sidebar-link-line,
+.sidebar-nav li.sidebar-paper-item.active .dpr-sidebar-link-line,
+.sidebar-nav li.sidebar-paper-item > a.active .dpr-sidebar-link-line,
+.sidebar-nav li.active > a .dpr-sidebar-link-line {
+  color: #3c3c3c;
 }
 
 .sidebar-nav .dpr-sidebar-score-empty {
