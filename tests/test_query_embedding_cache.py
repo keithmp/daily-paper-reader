@@ -3,6 +3,7 @@ import pathlib
 import sys
 import tempfile
 import unittest
+import json
 
 import numpy as np
 import yaml
@@ -34,26 +35,48 @@ class QueryEmbeddingCacheTest(unittest.TestCase):
         self.assertEqual(h1, h2)
         self.assertNotEqual(h1, h3)
 
-    def test_hydrate_query_embeddings_uses_cache_and_only_encodes_misses(self):
+    def test_hydrate_query_embeddings_uses_per_item_cache_and_only_encodes_misses(self):
         cfg = {
             "subscriptions": {
-                "embedding_cache": {
-                    "version": 1,
-                    "query_vectors": {},
-                }
+                "intent_profiles": [
+                    {
+                        "tag": "SR",
+                        "description": "desc",
+                        "keywords": [
+                            {
+                                "keyword": "cached keyword",
+                                "query": "cached query",
+                                "embedding_cache": {},
+                            }
+                        ],
+                        "intent_queries": [
+                            {
+                                "query": "missing query",
+                            }
+                        ],
+                    }
+                ]
             }
         }
         cached_hash = self.mod.build_query_embedding_hash("BAAI/bge-small-en-v1.5", "cached query")
-        cfg["subscriptions"]["embedding_cache"]["query_vectors"][cached_hash] = {
+        cfg["subscriptions"]["intent_profiles"][0]["keywords"][0]["embedding_cache"] = {
+            "version": 1,
             "hash": cached_hash,
             "model": "BAAI/bge-small-en-v1.5",
             "query_text": "cached query",
             "prefixed_text": "query: cached query",
-            "embedding": [0.1, 0.2, 0.3],
+            "embedding_json": "[0.1,0.2,0.3]",
         }
         queries = [
-            {"query_text": "cached query"},
-            {"query_text": "missing query"},
+            {
+                "query_text": "cached query",
+                "embedding_cache": cfg["subscriptions"]["intent_profiles"][0]["keywords"][0]["embedding_cache"],
+                "cache_ref": {"profile_index": 0, "item_kind": "keywords", "item_index": 0},
+            },
+            {
+                "query_text": "missing query",
+                "cache_ref": {"profile_index": 0, "item_kind": "intent_queries", "item_index": 0},
+            },
         ]
 
         provider_calls = {"count": 0}
@@ -90,24 +113,35 @@ class QueryEmbeddingCacheTest(unittest.TestCase):
                 self.assertEqual(provider_calls["count"], 1)
                 self.assertTrue(isinstance(queries[0]["query_embedding"], np.ndarray))
                 self.assertTrue(isinstance(queries[1]["query_embedding"], np.ndarray))
+                cached_item = cfg["subscriptions"]["intent_profiles"][0]["keywords"][0]["embedding_cache"]
+                missing_item = cfg["subscriptions"]["intent_profiles"][0]["intent_queries"][0]["embedding_cache"]
+                self.assertEqual(cached_item["hash"], cached_hash)
+                self.assertEqual(missing_item["query_text"], "missing query")
                 self.assertEqual(
-                    len(cfg["subscriptions"]["embedding_cache"]["query_vectors"]),
-                    2,
+                    json.loads(missing_item["embedding_json"]),
+                    [0.4, 0.5, 0.6],
                 )
         finally:
             self.mod.encode_queries = original_encode
 
-    def test_save_config_with_embedding_cache_keeps_embedding_on_one_line(self):
+    def test_save_config_with_embedding_cache_keeps_embedding_json_on_one_line(self):
         cfg = {
             "subscriptions": {
-                "embedding_cache": {
-                    "version": 1,
-                    "query_vectors": {
-                        "abc": {
-                            "embedding": [0.1, 0.2, 0.3],
-                        }
-                    },
-                }
+                "intent_profiles": [
+                    {
+                        "tag": "SR",
+                        "description": "desc",
+                        "keywords": [
+                            {
+                                "keyword": "symbolic regression",
+                                "query": "symbolic regression",
+                                "embedding_cache": {
+                                    "embedding_json": "[0.1,0.2,0.3]",
+                                },
+                            }
+                        ],
+                    }
+                ]
             }
         }
         with tempfile.TemporaryDirectory() as tmp:
@@ -115,12 +149,46 @@ class QueryEmbeddingCacheTest(unittest.TestCase):
             ok = self.mod.save_config_with_embedding_cache(cfg, str(path))
             self.assertTrue(ok)
             text = path.read_text(encoding="utf-8")
-            self.assertIn("embedding: [0.1, 0.2, 0.3]", text)
+            self.assertRegex(text, r"embedding_json:\s*['\"]\[0\.1,0\.2,0\.3\]['\"]")
             loaded = yaml.safe_load(text)
             self.assertEqual(
-                loaded["subscriptions"]["embedding_cache"]["query_vectors"]["abc"]["embedding"],
-                [0.1, 0.2, 0.3],
+                loaded["subscriptions"]["intent_profiles"][0]["keywords"][0]["embedding_cache"]["embedding_json"],
+                "[0.1,0.2,0.3]",
             )
+
+    def test_subscription_plan_emb_query_contains_cache_ref(self):
+        from src.subscription_plan import build_pipeline_inputs
+
+        cfg = {
+            "subscriptions": {
+                "intent_profiles": [
+                    {
+                        "tag": "SR",
+                        "description": "desc",
+                        "keywords": [
+                            {
+                                "keyword": "symbolic regression",
+                                "query": "symbolic regression methods",
+                                "embedding_cache": {"embedding_json": "[0.1,0.2,0.3]"},
+                            }
+                        ],
+                        "intent_queries": [
+                            {"query": "equation discovery"},
+                        ],
+                    }
+                ]
+            }
+        }
+        plan = build_pipeline_inputs(cfg)
+        emb_queries = plan["embedding_queries"]
+        self.assertEqual(len(emb_queries), 2)
+        keyword_query = [x for x in emb_queries if x.get("type") == "keyword"][0]
+        self.assertEqual(keyword_query["cache_ref"]["item_kind"], "keywords")
+        self.assertEqual(keyword_query["cache_ref"]["item_index"], 0)
+        self.assertEqual(
+            keyword_query["embedding_cache"]["embedding_json"],
+            "[0.1,0.2,0.3]",
+        )
 
 
 if __name__ == "__main__":

@@ -40,8 +40,8 @@ DATE_RE_RANGE = re.compile(r"^\d{8}-\d{8}$")
 SUPABASE_TIME_FIELDS = ("published",)
 SUPABASE_VECTOR_SHARD_DAYS = 7
 EMBEDDING_CACHE_VERSION = 1
-EMBEDDING_CACHE_KEY = "embedding_cache"
-EMBEDDING_CACHE_QUERY_KEY = "query_vectors"
+EMBEDDING_CACHE_FIELD = "embedding_cache"
+LEGACY_EMBEDDING_CACHE_KEY = "embedding_cache"
 
 def log(message: str) -> None:
   ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
@@ -174,45 +174,15 @@ def build_query_embedding_hash(model_name: str, query_text: str) -> str:
   return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
-def _get_query_embedding_cache(config: Dict[str, Any], *, create: bool) -> Dict[str, Any]:
+def _remove_legacy_embedding_cache(config: Dict[str, Any]) -> None:
   if not isinstance(config, dict):
-    return {}
-  if create:
-    subs = config.setdefault("subscriptions", {})
-    if not isinstance(subs, dict):
-      subs = {}
-      config["subscriptions"] = subs
-    cache_root = subs.get(EMBEDDING_CACHE_KEY)
-    if not isinstance(cache_root, dict):
-      cache_root = {
-        "version": EMBEDDING_CACHE_VERSION,
-        EMBEDDING_CACHE_QUERY_KEY: {},
-      }
-      subs[EMBEDDING_CACHE_KEY] = cache_root
-    if not isinstance(cache_root.get(EMBEDDING_CACHE_QUERY_KEY), dict):
-      cache_root[EMBEDDING_CACHE_QUERY_KEY] = {}
-    if not cache_root.get("version"):
-      cache_root["version"] = EMBEDDING_CACHE_VERSION
-    return cache_root.get(EMBEDDING_CACHE_QUERY_KEY) or {}
-
+    return
   subs = config.get("subscriptions")
   if not isinstance(subs, dict):
-    return {}
-  cache_root = subs.get(EMBEDDING_CACHE_KEY)
-  if not isinstance(cache_root, dict):
-    return {}
-  query_cache = cache_root.get(EMBEDDING_CACHE_QUERY_KEY)
-  return query_cache if isinstance(query_cache, dict) else {}
-
-
-def _round_embedding_values(values: List[float], digits: int = 8) -> List[float]:
-  out: List[float] = []
-  for item in values:
-    try:
-      out.append(round(float(item), digits))
-    except Exception:
-      out.append(0.0)
-  return out
+    return
+  legacy = subs.get(LEGACY_EMBEDDING_CACHE_KEY)
+  if isinstance(legacy, dict) and "query_vectors" in legacy:
+    subs.pop(LEGACY_EMBEDDING_CACHE_KEY, None)
 
 
 def _parse_cached_query_embedding(entry: Dict[str, Any], expected_model: str, expected_text: str) -> Optional[np.ndarray]:
@@ -224,7 +194,18 @@ def _parse_cached_query_embedding(entry: Dict[str, Any], expected_model: str, ex
   stored_text = str(entry.get("prefixed_text") or "").strip()
   if stored_text and stored_text != expected_text:
     return None
-  raw_embedding = entry.get("embedding")
+
+  raw_embedding = entry.get("embedding_json")
+  if isinstance(raw_embedding, str) and raw_embedding.strip():
+    try:
+      loaded = json.loads(raw_embedding)
+      if isinstance(loaded, list):
+        raw_embedding = loaded
+    except Exception:
+      return None
+
+  if not isinstance(raw_embedding, list) or not raw_embedding:
+    raw_embedding = entry.get("embedding")
   if not isinstance(raw_embedding, list) or not raw_embedding:
     return None
   try:
@@ -243,43 +224,73 @@ def save_config_with_embedding_cache(config: Dict[str, Any], path: str = CONFIG_
     log("[WARN] 未安装 PyYAML，跳过 embedding cache 写回 config.yaml。")
     return False
 
-  class FlowStyleList(list):
-    pass
-
-  class EmbeddingCacheDumper(yaml.SafeDumper):
-    pass
-
-  def _represent_flow_list(dumper, data):
-    return dumper.represent_sequence("tag:yaml.org,2002:seq", list(data), flow_style=True)
-
-  EmbeddingCacheDumper.add_representer(FlowStyleList, _represent_flow_list)
-
-  def _convert(value: Any) -> Any:
-    if isinstance(value, dict):
-      out: Dict[str, Any] = {}
-      for key, child in value.items():
-        child_key = str(key or "")
-        if child_key == "embedding" and isinstance(child, list):
-          out[key] = FlowStyleList(child)
-        else:
-          out[key] = _convert(child)
-      return out
-    if isinstance(value, list):
-      return [_convert(item) for item in value]
-    return value
-
-  serializable = _convert(config)
   with open(path, "w", encoding="utf-8") as f:
-    yaml.dump(
-      serializable,
-      f,
-      Dumper=EmbeddingCacheDumper,
-      allow_unicode=True,
-      sort_keys=False,
-      width=10**9,
-      default_flow_style=False,
-    )
+    yaml.safe_dump(config, f, allow_unicode=True, sort_keys=False, width=10**9)
   return True
+
+
+def _build_query_cache_payload(model_name: str, query_text: str, vec: np.ndarray, now_iso: str) -> Dict[str, Any]:
+  cache_hash = build_query_embedding_hash(model_name, query_text)
+  rounded = [float(f"{float(x):.6f}") for x in vec.tolist()]
+  return {
+    "version": EMBEDDING_CACHE_VERSION,
+    "hash": cache_hash,
+    "model": model_name,
+    "query_text": query_text,
+    "prefixed_text": build_prefixed_query_text(query_text),
+    "embedding_json": json.dumps(rounded, ensure_ascii=False, separators=(",", ":")),
+    "updated_at": now_iso,
+  }
+
+
+def _ensure_query_cache_target(config: Dict[str, Any], cache_ref: Dict[str, Any], query: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+  if not isinstance(config, dict) or not isinstance(cache_ref, dict):
+    return None
+  subs = config.get("subscriptions")
+  if not isinstance(subs, dict):
+    return None
+  profiles = subs.get("intent_profiles")
+  if not isinstance(profiles, list):
+    return None
+
+  try:
+    profile_index = int(cache_ref.get("profile_index"))
+    item_index = int(cache_ref.get("item_index"))
+  except Exception:
+    return None
+  item_kind = str(cache_ref.get("item_kind") or "").strip()
+  if item_kind not in {"keywords", "intent_queries"}:
+    return None
+  if profile_index < 0 or profile_index >= len(profiles):
+    return None
+  profile = profiles[profile_index]
+  if not isinstance(profile, dict):
+    return None
+  items = profile.get(item_kind)
+  if not isinstance(items, list):
+    return None
+  if item_index < 0 or item_index >= len(items):
+    return None
+
+  current = items[item_index]
+  if isinstance(current, str):
+    if item_kind == "keywords":
+      items[item_index] = {
+        "keyword": str(current or "").strip(),
+        "query": str(query.get("query_text") or current or "").strip(),
+      }
+    else:
+      items[item_index] = {
+        "query": str(query.get("query_text") or current or "").strip(),
+      }
+    current = items[item_index]
+  if not isinstance(current, dict):
+    return None
+  return current
+
+
+def _cache_entry_matches_query(entry: Dict[str, Any], model_name: str, query_text: str) -> bool:
+  return _parse_cached_query_embedding(entry, expected_model=model_name, expected_text=build_prefixed_query_text(query_text)) is not None
 
 
 def hydrate_query_embeddings_from_config(
@@ -292,11 +303,11 @@ def hydrate_query_embeddings_from_config(
   max_length: int | None,
   config_path: str = CONFIG_FILE,
 ) -> Dict[str, int]:
-  query_cache = _get_query_embedding_cache(config, create=True)
   if not queries:
     return {"hits": 0, "misses": 0, "written": 0}
 
   prepared_vectors: Dict[str, np.ndarray] = {}
+  prepared_payloads: Dict[str, Dict[str, Any]] = {}
   misses_by_hash: Dict[str, str] = {}
   hits = 0
 
@@ -313,13 +324,15 @@ def hydrate_query_embeddings_from_config(
       q["query_embedding"] = prepared_vectors[cache_hash]
       continue
 
+    cached_entry = q.get(EMBEDDING_CACHE_FIELD) if isinstance(q.get(EMBEDDING_CACHE_FIELD), dict) else {}
     cached_vec = _parse_cached_query_embedding(
-      query_cache.get(cache_hash) if isinstance(query_cache, dict) else {},
+      cached_entry,
       expected_model=model_name,
       expected_text=prefixed_text,
     )
     if cached_vec is not None:
       prepared_vectors[cache_hash] = cached_vec
+      prepared_payloads[cache_hash] = dict(cached_entry)
       q["query_embedding"] = cached_vec
       hits += 1
       continue
@@ -343,22 +356,31 @@ def hydrate_query_embeddings_from_config(
       vec = np.asarray(miss_vectors[idx], dtype=np.float32)
       prepared_vectors[cache_hash] = vec
       q_text = misses_by_hash[cache_hash]
-      query_cache[cache_hash] = {
-        "hash": cache_hash,
-        "model": model_name,
-        "query_text": q_text,
-        "prefixed_text": build_prefixed_query_text(q_text),
-        "embedding": _round_embedding_values(vec.tolist()),
-        "updated_at": now_iso,
-      }
-      written += 1
+      prepared_payloads[cache_hash] = _build_query_cache_payload(model_name, q_text, vec, now_iso)
 
-    save_config_with_embedding_cache(config, config_path)
-
+  changed = False
   for q in queries:
     cache_hash = str(q.get("query_embedding_hash") or "").strip()
-    if cache_hash and cache_hash in prepared_vectors:
-      q["query_embedding"] = prepared_vectors[cache_hash]
+    q_text = str(q.get("query_text") or "").strip()
+    if not cache_hash or cache_hash not in prepared_vectors or not q_text:
+      continue
+    payload = prepared_payloads.get(cache_hash) or {}
+    q["query_embedding"] = prepared_vectors[cache_hash]
+    q[EMBEDDING_CACHE_FIELD] = dict(payload) if isinstance(payload, dict) else None
+    current_entry = q.get(EMBEDDING_CACHE_FIELD) if isinstance(q.get(EMBEDDING_CACHE_FIELD), dict) else {}
+    target = _ensure_query_cache_target(config, q.get("cache_ref") or {}, q)
+    if target is None:
+      continue
+    existing_entry = target.get(EMBEDDING_CACHE_FIELD) if isinstance(target.get(EMBEDDING_CACHE_FIELD), dict) else {}
+    if _cache_entry_matches_query(existing_entry, model_name, q_text):
+      continue
+    target[EMBEDDING_CACHE_FIELD] = dict(payload)
+    written += 1
+    changed = True
+
+  if changed:
+    _remove_legacy_embedding_cache(config)
+    save_config_with_embedding_cache(config, config_path)
 
   return {
     "hits": hits,
