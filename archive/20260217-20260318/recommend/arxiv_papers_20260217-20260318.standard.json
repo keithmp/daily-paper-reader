@@ -1,0 +1,1486 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-18T02:25:58.472289+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 1,
+    "deep_divecandidates": 62,
+    "deep_cap": 6,
+    "deep_selected": 29,
+    "quick_candidates": 82,
+    "quick_skim_target": 11,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2602.16724v1",
+      "title": "Tracing protein and proteome history with chronologies and networks: folding recapitulates evolution",
+      "abstract": "Introduction: While the origin and evolution of proteins remain mysterious, advances in evolutionary genomics and systems biology are facilitating the historical exploration of the structure, function and organization of proteins and proteomes. Molecular chronologies are series of time events describing the history of biological systems and subsystems and the rise of biological innovations. Together with time-varying networks, these chronologies provide a window into the past. Areas covered: Here, we review molecular chronologies and networks built with modern methods of phylogeny reconstruction. We discuss how chronologies of structural domain families uncover the explosive emergence of metabolism, the late rise of translation, the co-evolution of ribosomal proteins and rRNA, and the late development of the ribosomal exit tunnel; events that coincided with a tendency to shorten folding time. Evolving networks described the early emergence of domains and a late big bang of domain combinations. Expert opinion: Two processes, folding and recruitment appear central to the evolutionary progression. The former increases protein persistence. The later fosters diversity. Chronologically, protein evolution mirrors folding by combining supersecondary structures into domains, developing translation machinery to facilitate folding speed and stability, and enhancing structural complexity by establishing long-distance interactions in novel structural and architectural designs.",
+      "authors": [
+        "Gustavo Caetano-Anollés",
+        "M. Fayez Aziz",
+        "Fizza Mughal",
+        "Derek Caetano-Anollés"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-02-17T04:33:42+00:00",
+      "link": "https://arxiv.org/pdf/2602.16724v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "modern methods of phylogeny reconstruction and molecular chronologies",
+      "llm_evidence_cn": "现代系统发育重建方法与分子年代学",
+      "llm_evidence": "现代系统发育重建方法与分子年代学",
+      "canonical_evidence": "现代系统发育重建方法与分子年代学",
+      "llm_tldr_en": "Reviews molecular chronologies and networks to trace the evolutionary history of proteins and proteomes.",
+      "llm_tldr_cn": "综述了利用分子年代学和网络追踪蛋白质及蛋白质组演化历史的方法。",
+      "llm_tldr": "综述了利用分子年代学和网络追踪蛋白质及蛋白质组演化历史的方法。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.22281v1",
+      "title": "A kernel for the maximum agreement forest problem on multiple binary phylogenetic trees",
+      "abstract": "The maximum agreement forest (MAF) problem in phylogenetics takes as input a set t >=2 of binary phylogenetic trees T on the same set of taxa X. It asks for a partition X into the smallest number of blocks such that the subtrees induced by these blocks are disjoint and have common topology across all the trees in T. We produce a modified version of the well-known chain reduction rule in order to prove the existence of a kernel of size O( t * r * k ) where k is the natural parameter (the number of blocks) and r=min{max{k,3},t+1}}. We prove this bound for both the unrooted and rooted version of the problem, and demonstrate that the bound r, the length to which common chains are truncated, is tight. Our results constitute the first kernels for MAF in the t > 2 regime.",
+      "authors": [
+        "Steven Kelk",
+        "Ruben Meuwese",
+        "Leo van Iersel"
+      ],
+      "primary_category": "math.CO",
+      "categories": [
+        "math.CO",
+        "q-bio.PE"
+      ],
+      "published": "2026-02-25T11:20:18+00:00",
+      "link": "https://arxiv.org/pdf/2602.22281v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Kernel for maximum agreement forest on phylogenetic trees",
+      "llm_evidence_cn": "系统发育树最大一致森林问题的核算法",
+      "llm_evidence": "系统发育树最大一致森林问题的核算法",
+      "canonical_evidence": "系统发育树最大一致森林问题的核算法",
+      "llm_tldr_en": "Provides a mathematical kernel for the maximum agreement forest problem on multiple binary phylogenetic trees.",
+      "llm_tldr_cn": "为多个二叉系统发育树的最大一致森林问题提供了一种数学核算法。",
+      "llm_tldr": "为多个二叉系统发育树的最大一致森林问题提供了一种数学核算法。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.23624v1",
+      "title": "Sex chromosome stability and turnover across vertebrates: a developmental gene regulatory network perspective",
+      "abstract": "Sex chromosomes have evolved repeatedly across the Tree of Life, yet their evolutionary fates differ strikingly among lineages. In mammals and birds, highly degenerated Y/W chromosomes have remained stable for >100 Myr, whereas in most amphibians, many teleosts, non-avian reptiles and flowering plants, sex chromosomes remain largely homomorphic and undergo frequent turnover. Classical explanations, including the evolutionary trap hypothesis, sexually antagonistic selection, mutation load accumulation, genetic drift and selfish genetic elements, do not fully explain observed patterns. Here we develop a complementary developmental perspective and propose the sex determination developmental gene regulatory network (GRN) lock-in hypothesis. In mammals and birds, sex is determined by an early, initiation by somatic cells, fully penetrant genetic master signal acting within a narrow, thermally buffered embryonic window. This signal operates within highly canalised GRNs, coupled to chromosome-scale dosage compensation, with alternative splicing events playing no causal role in primary sex determination. This configuration makes it difficult for new sex-determining loci to invade without creating deleterious intermediate states. By contrast, many ectothermic vertebrates possess more flexible, integrative threshold GRNs in which genetic, epigenetic, germ-cell and environmental inputs interact over a prolonged sensitive period, with absent or largely gene-by-gene based dosage compensation and environmentally responsive splicing near key regulatory nodes, providing many entry points for new master sex-determining genes to evolve. We outline empirical predictions of this framework and highlight how integrating developmental biology, molecular mechanisms and population genetics can yield testable models for when sex chromosomes become evolutionarily locked-in versus when they turnover repeatedly.",
+      "authors": [
+        "Wen-Juan Ma",
+        "Ricard Fontserè",
+        "Tristan Cornelis",
+        "Paris Veltsos",
+        "Qi Zhou"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "q-bio.MN"
+      ],
+      "published": "2026-02-27T03:00:28+00:00",
+      "link": "https://arxiv.org/pdf/2602.23624v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "molecular mechanisms of sex chromosome evolution and stability",
+      "llm_evidence_cn": "性染色体演化与稳定性的分子机制",
+      "llm_evidence": "性染色体演化与稳定性的分子机制",
+      "canonical_evidence": "性染色体演化与稳定性的分子机制",
+      "llm_tldr_en": "Explores the evolutionary stability and turnover of sex chromosomes through gene regulatory networks.",
+      "llm_tldr_cn": "通过基因调节网络探讨性染色体的演化稳定性与更替机制。",
+      "llm_tldr": "通过基因调节网络探讨性染色体的演化稳定性与更替机制。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.02496v1",
+      "title": "Recombination Rate Modifiers under Stochastic Transmission",
+      "abstract": "The Reduction Principle states that, near a stable equilibrium under fixed viability selection, a selectively neutral modifier allele that reduces recombination rate among selected loci is favored, whereas one that increases recombination rate is eliminated. This result assumes constant transmission parameters across generations, so that invasion is determined by the dominant eigenvalue of a single transmission-selection matrix. Here we analyze a minimal departure from this framework. In a diploid model, two loci experience symmetric multiplicative viability selection and a third, neutral locus modifies their recombination rate. All parameters are fixed except that recombination in modifier heterozygotes varies randomly across generations according to a stochastic process. When the recombination rate in modifier heterozygotes is constant, the Reduction Principle holds exactly: invasion occurs if the rare modifier allele reduces recombination relative to the resident rate. When recombination varies randomly across generations, invasion is governed by the top Lyapunov exponent of a product of random matrices. We show that temporal variation in recombination rate alone, in the absence of fluctuating viability selection, can reverse the direction of selection on the modifier locus predicted by the deterministic model. The mean recombination rate is insufficient to determine invasion of $M_2$; instead, outcomes depend on the full distribution of recombination rates and their ordered accumulation across generations. Parameters that affect only the magnitude of selection under constant transmission - including resident recombination, selection strength, and background linkage - can alter its sign under stochastic transmission. These results demonstrate that temporal variability in transmission constitutes an independent and qualitatively distinct force in the evolution of recombination rates.",
+      "authors": [
+        "Elisa Heinrich-Mora",
+        "Marcus W. Feldman"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-03-03T00:56:15+00:00",
+      "link": "https://arxiv.org/pdf/2603.02496v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Recombination rate modifiers and selection dynamics",
+      "llm_evidence_cn": "重组率修饰因子与选择动力学",
+      "llm_evidence": "重组率修饰因子与选择动力学",
+      "canonical_evidence": "重组率修饰因子与选择动力学",
+      "llm_tldr_en": "Analyzes how stochastic transmission affects the evolution of recombination rate modifiers.",
+      "llm_tldr_cn": "分析了随机传递如何影响重组率修饰因子的演化。",
+      "llm_tldr": "分析了随机传递如何影响重组率修饰因子的演化。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.03521v1",
+      "title": "On estimating the effective sample size of phylogenetic trees in an autocorrelated chain",
+      "abstract": "Estimating the effective sample size (ESS) is fundamental in Bayesian phylogenetic inference to properly account for autocorrelation in MCMC samples. While methods for continuous parameters are well established, the discrete and high-dimensional nature of treespace poses substantial challenges. Here, we compare existing tree ESS estimators with novel approaches that leverage tractable tree distributions, specifically Conditional Clade Distributions (CCDs), as well as a new probabilistic estimator based on clade frequency differences between independent chains. Using simulated chains with known ESS bounds, we assess estimator accuracy and evaluate their stability and robustness on simulated and real datasets. We further examine how multimodality in posterior distributions and poor mixing can substantially affect ESS estimates, highlighting the need for careful interpretation. Our CCD-based estimators perform comparably to existing approaches, with two methods showing lower variance by averaging across multiple estimates. In contrast, the probabilistic estimator and two previously recommended methods incur prohibitive computational costs for long chains. Together, these results provide guidance for reliable and efficient tree ESS estimation in complex phylogenetic analyses.",
+      "authors": [
+        "Jonathan Klawitter",
+        "Lars Berling",
+        "Jordan Douglas",
+        "Dong Xie",
+        "Alexei J. Drummond"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-03-03T21:07:42+00:00",
+      "link": "https://arxiv.org/pdf/2603.03521v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Effective sample size of phylogenetic trees in Bayesian inference",
+      "llm_evidence_cn": "贝叶斯推断中系统发育树的有效样本量",
+      "llm_evidence": "贝叶斯推断中系统发育树的有效样本量",
+      "canonical_evidence": "贝叶斯推断中系统发育树的有效样本量",
+      "llm_tldr_en": "Compares estimators for the effective sample size of phylogenetic trees to improve Bayesian inference.",
+      "llm_tldr_cn": "比较了系统发育树有效样本量的估计方法，以改进贝叶斯推断。",
+      "llm_tldr": "比较了系统发育树有效样本量的估计方法，以改进贝叶斯推断。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.07000v1",
+      "title": "A Class of Unrooted Phylogenetic Networks Inspired by the Properties of Rooted Tree-Child Networks",
+      "abstract": "A directed phylogenetic network is tree-child if every non-leaf vertex has a child that is not a reticulation. As a class of directed phylogenetic networks, tree-child networks are very useful from a computational perspective. For example, several computationally difficult problems in phylogenetics become tractable when restricted to tree-child networks. At the same time, the class itself is rich enough to contain quite complex networks. Furthermore, checking whether a directed network is tree-child can be done in polynomial time. In this paper, we seek a class of undirected phylogenetic networks that is rich and computationally useful in a similar way to the class tree-child directed networks. A natural class to consider for this role is the class of tree-child-orientable networks which contains all those undirected phylogenetic networks whose edges can be oriented to create a tree-child network. However, we show here that recognizing such networks is NP-hard, even for binary networks, and as such this class is inappropriate for this role. Towards finding a class of undirected networks that fills a similar role to directed tree-child networks, we propose new classes called $q$-cuttable networks, for any integer $q\\geq 1$. We show that these classes have many of the desirable properties, similar to tree-child networks in the rooted case, including being recognizable in polynomial time, for all $q\\geq 1$. Towards showing the computational usefulness of the class, we show that the NP-hard problem Tree Containment is polynomial-time solvable when restricted to $q$-cuttable networks with $q\\geq 3$.",
+      "authors": [
+        "Leo van Iersel",
+        "Mark Jones",
+        "Simone Linz",
+        "Norbert Zeh"
+      ],
+      "primary_category": "math.CO",
+      "categories": [
+        "math.CO",
+        "cs.DS",
+        "q-bio.PE"
+      ],
+      "published": "2026-03-07T02:46:33+00:00",
+      "link": "https://arxiv.org/pdf/2603.07000v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "unrooted phylogenetic networks and tree-child properties",
+      "llm_evidence_cn": "无根系统发育网络与树子属性",
+      "llm_evidence": "无根系统发育网络与树子属性",
+      "canonical_evidence": "无根系统发育网络与树子属性",
+      "llm_tldr_en": "Introduces a new class of unrooted phylogenetic networks to improve computational tractability in evolution.",
+      "llm_tldr_cn": "引入一类新的无根系统发育网络，以提高演化计算的可处理性。",
+      "llm_tldr": "引入一类新的无根系统发育网络，以提高演化计算的可处理性。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.16342v1",
+      "title": "Markov processes forced on a subspace by a large drift, with applications to population genetics",
+      "abstract": "Consider a sequence of Markov processes $X^1, X^2,...$ with state space $E$, where $X^N$ has a strong drift to $D \\subseteq E$, such that $Φ(X^N)$ is slow for some appropriate $Φ: E\\to D$. Using the method of martingale problems, we give a limit result, such that $Φ(X^N) \\xRightarrow{N\\to\\infty} Z$ in the space of càdlàg paths, and $X^N \\xRightarrow{N\\to\\infty} X$ in measure. \\\\ We apply the general limit result to models for copy number variation of genetic elements in a diploid Moran model of size $N$. The population by time $t$ is described by $X^N \\in \\mathcal P(\\mathbb N_0)$, where $X^N_k$ is the frequency of individuals with copy number $k$, and $Φ: \\mathcal P(\\mathbb",
+      "authors": [
+        "Samuel Ayomide Adeosun",
+        "Peter Pfaffelhuber"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR"
+      ],
+      "published": "2026-02-18T10:27:09+00:00",
+      "link": "https://arxiv.org/pdf/2602.16342v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "mathematical models for population genetics and genetic variation",
+      "llm_evidence_cn": "群体遗传学与遗传变异的数学模型",
+      "llm_evidence": "群体遗传学与遗传变异的数学模型",
+      "canonical_evidence": "群体遗传学与遗传变异的数学模型",
+      "llm_tldr_en": "Applies Markov process limit results to model copy number variation in diploid Moran models for population genetics.",
+      "llm_tldr_cn": "将马尔可夫过程极限结果应用于群体遗传学中二倍体Moran模型的拷贝数变异建模。",
+      "llm_tldr": "将马尔可夫过程极限结果应用于群体遗传学中二倍体Moran模型的拷贝数变异建模。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.16447v1",
+      "title": "Evolutionary Advantage of Diversity-Generating Retroelements in Switching Environments",
+      "abstract": "Diversity-Generating Retroelements (DGRs) create rapid, targeted variation within specific genomic regions in phages and bacteria. They operate through stochastic retro-transcription of a template region (TR) into a variable region (VR), which typically encodes ligand-binding proteins. Despite their prevalence, the evolutionary conditions that maintain such hypermutating systems remain unclear. Here we introduce a two-timescale framework separating fast VR diversification from slow TR evolution, allowing the dynamics of DGR-controlled loci to be analytically understood from the TR design point of view. We quantity the fitness gain provided by the diversification mechanism of DGR in the presence of environmental switching with respect to standard mutagenesis. Our framework accounts for observed patterns of DGR activity in human-gut \\textit{Bacteroides} and clarifies when constitutive DGR activation is evolutionarily favored.",
+      "authors": [
+        "Léo Régnier",
+        "Paul Rochette",
+        "Raphaël Laurenceau",
+        "David Bikard",
+        "Simona Cocco",
+        "Rémi Monasson"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cond-mat.stat-mech"
+      ],
+      "published": "2026-02-18T13:31:53+00:00",
+      "link": "https://arxiv.org/pdf/2602.16447v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "molecular mechanisms of rapid genomic variation in phages and bacteria",
+      "llm_evidence_cn": "噬菌体和细菌基因组快速变异的分子机制",
+      "llm_evidence": "噬菌体和细菌基因组快速变异的分子机制",
+      "canonical_evidence": "噬菌体和细菌基因组快速变异的分子机制",
+      "llm_tldr_en": "Analyzes the evolutionary advantage and maintenance of hypermutating systems in switching environments.",
+      "llm_tldr_cn": "分析了在切换环境中超突变系统的进化优势和维持机制。",
+      "llm_tldr": "分析了在切换环境中超突变系统的进化优势和维持机制。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.17162v1",
+      "title": "JEPA-DNA: Grounding Genomic Foundation Models through Joint-Embedding Predictive Architectures",
+      "abstract": "Genomic Foundation Models (GFMs) have largely relied on Masked Language Modeling (MLM) or Next Token Prediction (NTP) to learn the language of life. While these paradigms excel at capturing local genomic syntax and fine-grained motif patterns, they often fail to capture the broader functional context, resulting in representations that lack a global biological perspective. We introduce JEPA-DNA, a novel pre-training framework that integrates the Joint-Embedding Predictive Architecture (JEPA) with traditional generative objectives. JEPA-DNA introduces latent grounding by coupling token-level recovery with a predictive objective in the latent space by supervising a CLS token. This forces the model to predict the high-level functional embeddings of masked genomic segments rather than focusing solely on individual nucleotides. JEPA-DNA extends both NTP and MLM paradigms and can be deployed either as a standalone from-scratch objective or as a continual pre-training enhancement for existing GFMs. Our evaluations across a diverse suite of genomic benchmarks demonstrate that JEPA-DNA consistently yields superior performance in supervised and zero-shot tasks compared to generative-only baselines. By providing a more robust and biologically grounded representation, JEPA-DNA offers a scalable path toward foundation models that understand not only the genomic alphabet, but also the underlying functional logic of the sequence.",
+      "authors": [
+        "Ariel Larey",
+        "Elay Dahan",
+        "Amit Bleiweiss",
+        "Raizy Kellerman",
+        "Guy Leib",
+        "Omri Nayshool",
+        "Dan Ofer",
+        "Tal Zinger",
+        "Dan Dominissini",
+        "Gideon Rechavi",
+        "Nicole Bussola",
+        "Simon Lee",
+        "Shane O'Connell",
+        "Dung Hoang",
+        "Marissa Wirth",
+        "Alexander W. Charney",
+        "Nati Daniel",
+        "Yoli Shavit"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "q-bio.GN"
+      ],
+      "published": "2026-02-19T08:20:51+00:00",
+      "link": "https://arxiv.org/pdf/2602.17162v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Genomic Foundation Models using AI architectures",
+      "llm_evidence_cn": "利用AI架构的基因组基础模型",
+      "llm_evidence": "利用AI架构的基因组基础模型",
+      "canonical_evidence": "利用AI架构的基因组基础模型",
+      "llm_tldr_en": "Introduces JEPA-DNA, a genomic foundation model that captures global biological context via latent grounding.",
+      "llm_tldr_cn": "介绍了JEPA-DNA，这是一种通过潜空间对齐捕捉全局生物背景的基因组基础模型。",
+      "llm_tldr": "介绍了JEPA-DNA，这是一种通过潜空间对齐捕捉全局生物背景的基因组基础模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.17739v1",
+      "title": "GeneZip: Region-Aware Compression for Long Context DNA Modeling",
+      "abstract": "Genomic sequences span billions of base pairs (bp), posing a fundamental challenge for genome-scale foundation models. Existing approaches largely sidestep this barrier by either scaling relatively small models to long contexts or relying on heavy multi-GPU parallelism. Here we introduce GeneZip, a DNA compression model that leverages a key biological prior: genomic information is highly imbalanced. Coding regions comprise only a small fraction (about 2 percent) yet are information-dense, whereas most non-coding sequence is comparatively information-sparse. GeneZip couples HNet-style dynamic routing with a region-aware compression-ratio objective, enabling adaptive allocation of representation budget across genomic regions. As a result, GeneZip learns region-aware compression and achieves 137.6x compression with only 0.31 perplexity increase. On downstream long-context benchmarks, GeneZip achieves comparable or better performance on contact map prediction, expression quantitative trait loci prediction, and enhancer-target gene prediction. By reducing effective sequence length, GeneZip unlocks simultaneous scaling of context and capacity: compared to the prior state-of-the-art model JanusDNA, it enables training models 82.6x larger at 1M-bp context, supporting a 636M-parameter GeneZip model at 1M-bp context. All experiments in this paper can be trained on a single A100 80GB GPU.",
+      "authors": [
+        "Jianan Zhao",
+        "Xixian Liu",
+        "Zhihao Zhan",
+        "Xinyu Yuan",
+        "Hongyu Guo",
+        "Jian Tang"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-02-19T09:53:35+00:00",
+      "link": "https://arxiv.org/pdf/2602.17739v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "DNA compression for genomic foundation models",
+      "llm_evidence_cn": "用于基因组基础模型的DNA压缩",
+      "llm_evidence": "用于基因组基础模型的DNA压缩",
+      "canonical_evidence": "用于基因组基础模型的DNA压缩",
+      "llm_tldr_en": "GeneZip uses region-aware compression to handle long-context DNA sequences in AI models.",
+      "llm_tldr_cn": "GeneZip利用区域感知压缩技术处理AI模型中的长上下文DNA序列。",
+      "llm_tldr": "GeneZip利用区域感知压缩技术处理AI模型中的长上下文DNA序列。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.17747v1",
+      "title": "AgriVariant: Variant Effect Prediction using DeepChem-Variant for Precision Breeding in Rice",
+      "abstract": "Predicting functional consequences of genetic variants in crop genes remains a critical bottleneck for precision breeding programs. We present AgriVariant, an end-to-end pipeline for variant-effect prediction in rice (Oryza sativa) that addresses the lack of crop-specific variant-interpretation tools and can be extended to any crop species with available reference genomes and gene annotations. Our approach integrates deep learning-based variant calling (DeepChem-Variant) with custom plant genomics annotation using RAP-DB gene models and database-independent deleteriousness scoring that combines the Grantham distance and the BLOSUM62 substitution matrix. We validate the pipeline through targeted mutations in stress-response genes (OsDREB2a, OsDREB1F, SKC1), demonstrating correct classification of stop-gained, missense, and synonymous variants with appropriate HIGH / MODERATE / LOW impact assignments. An exhaustive mutagenesis study of OsMT-3a analyzed all 1,509 possible single-nucleotide variants in 10 days, identifying 353 high-impact, 447 medium-impact, and 709 low-impact variants - an analysis that would have required 2-4 years using traditional wet-lab approaches. This computational framework enables breeders to prioritize variants for experimental validation across diverse crop species, reducing screening costs and accelerating development of climate-resilient crop varieties.",
+      "authors": [
+        "Ankita Vaishnobi Bisoi",
+        "Bharath Ramsundar"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-02-19T14:03:37+00:00",
+      "link": "https://arxiv.org/pdf/2602.17747v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Deep learning-based variant calling and effect prediction in crop genomics",
+      "llm_evidence_cn": "基于深度学习的作物基因组变异检测与效应预测",
+      "llm_evidence": "基于深度学习的作物基因组变异检测与效应预测",
+      "canonical_evidence": "基于深度学习的作物基因组变异检测与效应预测",
+      "llm_tldr_en": "AgriVariant uses deep learning to predict the functional consequences of genetic variants for precision breeding.",
+      "llm_tldr_cn": "AgriVariant利用深度学习预测基因变异的功能影响，助力精准育种。",
+      "llm_tldr": "AgriVariant利用深度学习预测基因变异的功能影响，助力精准育种。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.18982v1",
+      "title": "Conditionally Site-Independent Neural Evolution of Antibody Sequences",
+      "abstract": "Common deep learning approaches for antibody engineering focus on modeling the marginal distribution of sequences. By treating sequences as independent samples, however, these methods overlook affinity maturation as a rich and largely untapped source of information about the evolutionary process by which antibodies explore the underlying fitness landscape. In contrast, classical phylogenetic models explicitly represent evolutionary dynamics but lack the expressivity to capture complex epistatic interactions. We bridge this gap with CoSiNE, a continuous-time Markov chain parameterized by a deep neural network. Mathematically, we prove that CoSiNE provides a first-order approximation to the intractable sequential point mutation process, capturing epistatic effects with an error bound that is quadratic in branch length. Empirically, CoSiNE outperforms state-of-the-art language models in zero-shot variant effect prediction by explicitly disentangling selection from context-dependent somatic hypermutation. Finally, we introduce Guided Gillespie, a classifier-guided sampling scheme that steers CoSiNE at inference time, enabling efficient optimization of antibody binding affinity toward specific antigens.",
+      "authors": [
+        "Stephen Zhewen Lu",
+        "Aakarsh Vermani",
+        "Kohei Sanno",
+        "Jiarui Lu",
+        "Frederick A Matsen",
+        "Milind Jagota",
+        "Yun S. Song"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.PE"
+      ],
+      "published": "2026-02-21T23:23:30+00:00",
+      "link": "https://arxiv.org/pdf/2602.18982v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "neural evolution of antibody sequences using deep learning and phylogenetic models",
+      "llm_evidence_cn": "利用深度学习和系统发育模型进行抗体序列的神经演化研究",
+      "llm_evidence": "利用深度学习和系统发育模型进行抗体序列的神经演化研究",
+      "canonical_evidence": "利用深度学习和系统发育模型进行抗体序列的神经演化研究",
+      "llm_tldr_en": "Combines deep learning with phylogenetic models to capture epistatic interactions in antibody evolution.",
+      "llm_tldr_cn": "结合深度学习与系统发育模型，捕捉抗体演化过程中的上位性相互作用。",
+      "llm_tldr": "结合深度学习与系统发育模型，捕捉抗体演化过程中的上位性相互作用。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.20825v1",
+      "title": "Asymptotic behavior of some stochastic models in population dynamics: a Hamilton-Jacobi approach",
+      "abstract": "In this paper, we investigate the asymptotic behavior of individual-based models describing the evolution of a population structured by a real trait, subject to selection and mutation. We consider two different sets of assumptions: first, the case of critical or subcritical branching population processes in a regime combining a discretization of the trait space, small mutations, large time and large initial population size, where we are able to characterize using a Hamilton-Jacobi approach, the survival set of the population, and the asymptotic of the logarithmic scaling of subpopulation sizes. Second, we generalize by a direct method the convergence to the classical Hamilton-Jacobi equation obtained in the super-critical branching regime considered in \\cite{CMMT} to a more general trait space and under weaker assumptions. Moreover, we establish that the stochastic and the deterministic dynamics are asymptotically equivalent in large population.",
+      "authors": [
+        "Anouar Jeddi"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR",
+        "math.AP"
+      ],
+      "published": "2026-02-24T12:01:37+00:00",
+      "link": "https://arxiv.org/pdf/2602.20825v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "stochastic models of population dynamics subject to selection and mutation",
+      "llm_evidence_cn": "受选择和突变影响的种群动态随机模型",
+      "llm_evidence": "受选择和突变影响的种群动态随机模型",
+      "canonical_evidence": "受选择和突变影响的种群动态随机模型",
+      "llm_tldr_en": "Analyzes the asymptotic behavior of population models structured by traits under selection and mutation.",
+      "llm_tldr_cn": "分析了在选择和突变压力下，按性状分类的种群模型的渐近行为。",
+      "llm_tldr": "分析了在选择和突变压力下，按性状分类的种群模型的渐近行为。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.20883v1",
+      "title": "Adaptation by Cumulative Selection",
+      "abstract": "Biological systems like long-lived clonal organisms, holobionts and clades challenge traditional evolutionary thinking since they adapt without populations or reproduction. This paper aims to provide an overarching theoretical framework which encompasses standard Darwinian evolution as well as other processes of adaptation. This framework is cumulative selection and I provide a general `recipe' for it to occur. Lewontin's recipe for evolution by natural selection is shown to be a particular example of cumulative selection, but not the only one. Similarly, reproduction, inheritance and populations are just one way to perform cumulative selection. I discuss several other examples of cumulative selection including clonal organisms, dioecious populations, Gaia and neural networks.",
+      "authors": [
+        "Rudy Arthur"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-02-24T13:22:08+00:00",
+      "link": "https://arxiv.org/pdf/2602.20883v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Theoretical framework for cumulative selection and adaptation",
+      "llm_evidence_cn": "累积选择与适应的理论框架",
+      "llm_evidence": "累积选择与适应的理论框架",
+      "canonical_evidence": "累积选择与适应的理论框架",
+      "llm_tldr_en": "Provides a generalized framework for cumulative selection that encompasses Darwinian evolution and other processes.",
+      "llm_tldr_cn": "提供了一个涵盖达尔文演化和其他适应过程的累积选择通用框架。",
+      "llm_tldr": "提供了一个涵盖达尔文演化和其他适应过程的累积选择通用框架。",
+      "llm_tags": [
+        "query:q1"
+      ],
+      "matched_query_tag": "query:q1",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.22289v1",
+      "title": "What Topological and Geometric Structure Do Biological Foundation Models Learn? Evidence from 141 Hypotheses",
+      "abstract": "When biological foundation models such as scGPT and Geneformer process single-cell gene expression, what geometric and topological structure forms in their internal representations? Is that structure biologically meaningful or a training artifact, and how confident should we be in such claims? We address these questions through autonomous large-scale hypothesis screening: an AI-driven executor-brainstormer loop that proposed, tested, and refined 141 geometric and topological hypotheses across 52 iterations, covering persistent homology, manifold distances, cross-model alignment, community structure, and directed topology, all with explicit null controls and disjoint gene-pool splits.   Three principal findings emerge. First, the models learn genuine geometric structure. Gene embedding neighborhoods exhibit non-trivial topology, with persistent homology significant in 11 of 12 transformer layers at p < 0.05 in the weakest domain and 12 of 12 in the other two. A multi-level distance hierarchy shows that manifold-aware metrics outperform Euclidean distance for identifying regulatory gene pairs, and graph community partitions track known transcription factor target relationships. Second, this structure is shared across independently trained models. CCA alignment between scGPT and Geneformer yields canonical correlation of 0.80 and gene retrieval accuracy of 72 percent, yet none of 19 tested methods reliably recover gene-level correspondences. The models agree on the global shape of gene space but not on precise gene placement. Third, the structure is more localized than it first appears. Under stringent null controls applied across all null families, robust signal concentrates in immune tissue, while lung and external lung signals weaken substantially.",
+      "authors": [
+        "Ihor Kendiukhov"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-02-25T14:33:24+00:00",
+      "link": "https://arxiv.org/pdf/2602.22289v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI biological foundation models for gene expression",
+      "llm_evidence_cn": "用于基因表达的AI生物基础模型",
+      "llm_evidence": "用于基因表达的AI生物基础模型",
+      "canonical_evidence": "用于基因表达的AI生物基础模型",
+      "llm_tldr_en": "Analyzes the biological meaningfulness of internal representations in AI foundation models like Geneformer.",
+      "llm_tldr_cn": "分析了Geneformer等AI基础模型内部表示的生物学意义。",
+      "llm_tldr": "分析了Geneformer等AI基础模型内部表示的生物学意义。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.22850v1",
+      "title": "MEDNA-DFM: A Dual-View FiLM-MoE Model for Explainable DNA Methylation Prediction",
+      "abstract": "Accurate computational identification of DNA methylation is essential for understanding epigenetic regulation. Although deep learning excels in this binary classification task, its \"black-box\" nature impedes biological insight. We address this by introducing a high-performance model MEDNA-DFM, alongside mechanism-inspired signal purification algorithms. Our investigation demonstrates that MEDNA-DFM effectively captures conserved methylation patterns, achieving robust distinction across diverse species. Validation on external independent datasets confirms that the model's generalization is driven by conserved intrinsic motifs (e.g., GC content) rather than phylogenetic proximity. Furthermore, applying our developed algorithms extracted motifs with significantly higher reliability than prior studies. Finally, empirical evidence from a Drosophila 6mA case study prompted us to propose a \"sequence-structure synergy\" hypothesis, suggesting that the GAGG core motif and an upstream A-tract element function cooperatively. We further validated this hypothesis via in silico mutagenesis, confirming that the ablation of either or both elements significantly degrades the model's recognition capabilities. This work provides a powerful tool for methylation prediction and demonstrates how explainable deep learning can drive both methodological innovation and the generation of biological hypotheses.",
+      "authors": [
+        "Yi He",
+        "Yina Cao",
+        "Jixiu Zhai",
+        "Di Wang",
+        "Junxiao Kong",
+        "Tianchi Lu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-02-26T10:38:41+00:00",
+      "link": "https://arxiv.org/pdf/2602.22850v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-based DNA methylation prediction across diverse species",
+      "llm_evidence_cn": "基于AI的跨物种DNA甲基化预测",
+      "llm_evidence": "基于AI的跨物种DNA甲基化预测",
+      "canonical_evidence": "基于AI的跨物种DNA甲基化预测",
+      "llm_tldr_en": "Introduces MEDNA-DFM, a deep learning model for explainable DNA methylation prediction across species.",
+      "llm_tldr_cn": "介绍了MEDNA-DFM，一种用于跨物种可解释DNA甲基化预测的深度学习模型。",
+      "llm_tldr": "介绍了MEDNA-DFM，一种用于跨物种可解释DNA甲基化预测的深度学习模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.24095v1",
+      "title": "Tropical $k$-means clustering for phylogenetic trees",
+      "abstract": "The asymmetric tropical distance is a distance measure on the tropical torus $\\mathbb{R}^n/\\mathbb{R}\\mathbf{1}$ and in particular on the Bergman fan $B(K_N) \\subseteq \\mathbb{R}^{\\binom{N}{2}}/\\mathbb{R}\\mathbf{1}$ of the complete graphical matroid. In this paper, we define and analyse a clustering algorithm for equidistant phylogenetic trees based on this distance, using the correspondence between $B(K_N)$ and the space of equidistant trees with $N$ leaves.",
+      "authors": [
+        "Fabian Lenzen",
+        "Lena Weis"
+      ],
+      "primary_category": "math.CO",
+      "categories": [
+        "math.CO"
+      ],
+      "published": "2026-02-27T15:32:51+00:00",
+      "link": "https://arxiv.org/pdf/2602.24095v1",
+      "tags": [
+        "keyword:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "clustering algorithm for equidistant phylogenetic trees",
+      "llm_evidence_cn": "等距系统发育树的聚类算法",
+      "llm_evidence": "等距系统发育树的聚类算法",
+      "canonical_evidence": "等距系统发育树的聚类算法",
+      "llm_tldr_en": "Introduces a tropical k-means clustering algorithm specifically designed for analyzing phylogenetic trees.",
+      "llm_tldr_cn": "引入了一种专门用于分析系统发育树的热带k-means聚类算法。",
+      "llm_tldr": "引入了一种专门用于分析系统发育树的热带k-means聚类算法。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.24106v1",
+      "title": "The interplay of selection and dormancy in a Moran model can lead to coexistence of types",
+      "abstract": "In this paper we propose a Moran model that describes the population dynamics of two types: While the first type has a selective advantage during reproduction, the second type can avoid replacement during reproduction with some positive probability by switching temporarily into a dormant state. We investigate the interplay of both evolutionary strategies by studying the invasion dynamics of the dormant type into the resident (selectively advantageous) population in the large population limit of the system. It turns out that the dormancy trait can not only invade and subsequently fixate under suitable parameter assumptions despite its selective disadvantage (a phenomenon that has already been observed in a related context in Blath and Tóbiás (2020)), but that there is also a novel regime of stable coexistence of both types due to a frequency-dependent balancing effect that did not arise in the previous setup with Lotka--Volterra type symmetric competition. The emergence of a coexistence regime here rests in part on specific properties of the Moran modelling framework, in particular its fixed overall population size that enforces instant re-colonization after death events, as well as on the (positive) mortality and resuscitation rates of the dormant state. We provide heuristic explanations for the observed types of behaviour and the corresponding proofs, which involve comparisons to suitable branching processes, approximations by dynamical systems, and an analysis of asymptotic behaviour of the latter.",
+      "authors": [
+        "Jochen Blath",
+        "Baptiste Le Duigou",
+        "András Tóbiás"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "math.PR"
+      ],
+      "published": "2026-02-27T15:44:44+00:00",
+      "link": "https://arxiv.org/pdf/2602.24106v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Moran model of population dynamics and selection",
+      "llm_evidence_cn": "群体动力学与选择的Moran模型",
+      "llm_evidence": "群体动力学与选择的Moran模型",
+      "canonical_evidence": "群体动力学与选择的Moran模型",
+      "llm_tldr_en": "Explores how selection and dormancy interact to influence type coexistence in evolutionary population models.",
+      "llm_tldr_cn": "探讨了演化群体模型中选择与休眠如何相互作用并影响物种共存。",
+      "llm_tldr": "探讨了演化群体模型中选择与休眠如何相互作用并影响物种共存。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.00744v1",
+      "title": "ResGene-T: A Tensor-Based Residual Network Approach for Genomic Prediction",
+      "abstract": "In this work, we propose a new deep learning model for Genomic Prediction (GP), which involves correlating genotypic data with phenotypic. The genotypes are typically fed as a sequence of characters to the 1D-Convolution Neural Network layer of the underlying deep learning model. Inspired by earlier work that represented genotype as a 2D-image for genotype-phenotype classification, we extend this idea to GP, which is a regression task. We use a ResNet-18 as the underlying architecture, and term this model as ResGene-2D.   Although the 2D-image representation captures biological interactions well, it requires all the layers of the model to do so. This limits training efficiency. Thus, as seen in the earlier work that proposed a 2D-image representation, our ResGene-2D performs almost the same as other models (3% improvement). To overcome this, we propose a novel idea of converting the 2D-image into a 3D/ tensor and feed this to the ResNet-18 architecture, and term this model as ResGene-T.   We evaluate our proposed models on three crop species having ten phenotypic traits and compare it with seven most popular models (two statistical, two machine learning, and three deep learning). ResGene-T performs the best among all these seven methods (gains from 14.51% to 41.51%).",
+      "authors": [
+        "Kuldeep Pathak",
+        "Kapil Ahuja",
+        "Eric de Sturler"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-02-28T17:43:31+00:00",
+      "link": "https://arxiv.org/pdf/2603.00744v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "deep learning for genomic prediction",
+      "llm_evidence_cn": "深度学习用于基因组预测",
+      "llm_evidence": "深度学习用于基因组预测",
+      "canonical_evidence": "深度学习用于基因组预测",
+      "llm_tldr_en": "A tensor-based residual network for correlating genotypic data with phenotypic traits.",
+      "llm_tldr_cn": "一种基于张量的残差网络，用于将基因型数据与表型特征相关联。",
+      "llm_tldr": "一种基于张量的残差网络，用于将基因型数据与表型特征相关联。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.01701v1",
+      "title": "A speciation simulation that partly passes open-endedness tests",
+      "abstract": "One of the main goals of artificial life research is to recreate in artificial systems the trends for ever more complex and novel entities, interactions and processes that we see in Earth's biosphere, that is, to create open-ended systems. In this paper, we test for Tokyo type 1 open-ended evolution (OEE) of the Tree of Life Simulation (ToLSim), an artificial life software created by Lana Sinapayen. To do so, we conducted an experiment to measure evolutionary activity statistics. These require us to define the notion of components. Here, we define components as the agent's genes. The results show that ToLSim is capable of exhibiting unbounded total cumulative evolutionary activity. However, total and median normalized cumulative evolutionary activity appear bounded and new evolutionary activity is persistently null, suggesting that ToLSim is not open-ended. Further studies on ToLSim could repeat this experiment with individuals or even species, rather than genes, to test whether the present results are valid.",
+      "authors": [
+        "Théo de Pinho",
+        "Lana Sinapayen"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cs.MA"
+      ],
+      "published": "2026-03-02T10:27:12+00:00",
+      "link": "https://arxiv.org/pdf/2603.01701v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Speciation simulation and open-ended evolution",
+      "llm_evidence_cn": "物种形成模拟与开放式演化",
+      "llm_evidence": "物种形成模拟与开放式演化",
+      "canonical_evidence": "物种形成模拟与开放式演化",
+      "llm_tldr_en": "Tests evolutionary activity and speciation in an artificial life simulation of the Tree of Life.",
+      "llm_tldr_cn": "在生命之树人工生命模拟中测试演化活动和物种形成。",
+      "llm_tldr": "在生命之树人工生命模拟中测试演化活动和物种形成。",
+      "llm_tags": [
+        "query:q1"
+      ],
+      "matched_query_tag": "query:q1",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.01780v1",
+      "title": "D3LM: A Discrete DNA Diffusion Language Model for Bidirectional DNA Understanding and Generation",
+      "abstract": "Early DNA foundation models adopted BERT-style training, achieving good performance on DNA understanding tasks but lacking generative capabilities. Recent autoregressive models enable DNA generation, but employ left-to-right causal modeling that is suboptimal for DNA where regulatory relationships are inherently bidirectional. We present D3LM (\\textbf{D}iscrete \\textbf{D}NA \\textbf{D}iffusion \\textbf{L}anguage \\textbf{M}odel), which unifies bidirectional representation learning and DNA generation through masked diffusion. D3LM directly adopts the Nucleotide Transformer (NT) v2 architecture but reformulates the training objective as masked diffusion in discrete DNA space, enabling both bidirectional understanding and generation capabilities within a single model. Compared to NT v2 of the same size, D3LM achieves improved performance on understanding tasks. Notably, on regulatory element generation, D3LM achieves an SFID of 10.92, closely approaching real DNA sequences (7.85) and substantially outperforming the previous best result of 29.16 from autoregressive models. Our work suggests diffusion language models as a promising paradigm for unified DNA foundation models. We further present the first systematic study of masked diffusion models in the DNA domain, investigating practical design choices such as tokenization schemes and sampling strategies, thereby providing empirical insights and a solid foundation for future research. D3LM has been released at https://huggingface.co/collections/Hengchang-Liu/d3lm.",
+      "authors": [
+        "Zhao Yang",
+        "Hengchang Liu",
+        "Chuan Cao",
+        "Bing Su"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-02T12:05:21+00:00",
+      "link": "https://arxiv.org/pdf/2603.01780v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "DNA foundation model for understanding and generation",
+      "llm_evidence_cn": "用于理解和生成的DNA基础模型",
+      "llm_evidence": "用于理解和生成的DNA基础模型",
+      "canonical_evidence": "用于理解和生成的DNA基础模型",
+      "llm_tldr_en": "D3LM is a discrete diffusion model for bidirectional DNA sequence understanding and generation.",
+      "llm_tldr_cn": "D3LM是一个用于双向DNA序列理解和生成的离散扩散模型。",
+      "llm_tldr": "D3LM是一个用于双向DNA序列理解和生成的离散扩散模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.01983v1",
+      "title": "Analysis of the steady solutions of the Fisher's infinitesimal model; a Hilbertian approach",
+      "abstract": "We provide an asymptotic analysis of a nonlinear integro-differential equation which describes the evolutionary dynamics of a population which reproduces sexually and which is subject to selection and competition. The sexual reproduction is modeled via a nonlinear integral term, known as the Fisher's 'infinitesimal model'. We consider a small segregational variance regime, where a parameter in the infinitesimal model, which measures the deviation between the trait of the offspring and the mean parental trait, is small with respect to the selection variance. In this regime, we characterize the steady states of the problem and analyze their stability. Our method relies on a spectral analysis involving Hermite polynomials, highlighting the specific structure of the nonlinear reproduction term.",
+      "authors": [
+        "M Hillairet",
+        "S Mirrahimi"
+      ],
+      "primary_category": "math.AP",
+      "categories": [
+        "math.AP"
+      ],
+      "published": "2026-03-02T15:39:11+00:00",
+      "link": "https://arxiv.org/pdf/2603.01983v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "evolutionary dynamics and selection in sexual reproduction",
+      "llm_evidence_cn": "有性生殖中的演化动态与选择",
+      "llm_evidence": "有性生殖中的演化动态与选择",
+      "canonical_evidence": "有性生殖中的演化动态与选择",
+      "llm_tldr_en": "Analyzes the steady states of Fisher's infinitesimal model for population evolutionary dynamics under selection.",
+      "llm_tldr_cn": "分析了选择压力下种群演化动态的费舍尔无穷小模型稳态。",
+      "llm_tldr": "分析了选择压力下种群演化动态的费舍尔无穷小模型稳态。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.03591v1",
+      "title": "Mutation Rate Variation Across Genomic Regions in \\textit{Arabidopsis thaliana}",
+      "abstract": "In population genetics, mutation rate is often treated as a homogeneous parameter across the genome. Empirical evidence, however, shows systematic variation across genomic contexts associated with chromatin organization and epigenomic features. Using gene-level de novo mutation data from Arabidopsis thaliana, we test whether chromatin features predict not only the mean per-base mutation rate but also its variability across genes. To reduce heterogeneity in selective regime, we restrict analysis to essential and lethal loci subject to strong purifying selection. Across complementary multivariable models including heteroskedasticity-robust linear regression, length-weighted regression, and Poisson generalized linear models with exposure offsets, histone marks associated with active transcription (H3K4me1, H3K4me3, H3K36ac) are consistently associated with lower mean mutation rates and substantially reduced between-gene variance. GC content shows little association with the mean once chromatin predictors are controlled but is positively associated with mutation-rate variability. Estimates of skewness and kurtosis reveal no significant higher-order structure attributable to epigenomic predictors. A standardized Tajima's $D$ statistic yields directionally consistent but statistically underpowered associations with both the mean and variance of gene-level mutation rates. These results indicate that mutation rate is systematically structured by chromatin state within functionally constrained genes and suggest that evolutionary processes may act not only on expected mutation rate but also on its variability across loci.",
+      "authors": [
+        "Elisa Heinrich-Mora",
+        "Marcus W. Feldman"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-03-03T23:51:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.03591v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "mutation rate variation and purifying selection in Arabidopsis",
+      "llm_evidence_cn": "拟南芥中的突变率变异与纯化选择",
+      "llm_evidence": "拟南芥中的突变率变异与纯化选择",
+      "canonical_evidence": "拟南芥中的突变率变异与纯化选择",
+      "llm_tldr_en": "Analyzes how chromatin features predict mutation rate variability and genetic variation in Arabidopsis.",
+      "llm_tldr_cn": "分析了拟南芥中染色质特征如何预测突变率变异和遗传变异。",
+      "llm_tldr": "分析了拟南芥中染色质特征如何预测突变率变异和遗传变异。",
+      "llm_tags": [
+        "query:q4"
+      ],
+      "matched_query_tag": "query:q4",
+      "matched_query_text": "molecular evolution and genetic variation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.03909v1",
+      "title": "Ultrabubble enumeration via a lowest common ancestor approach",
+      "abstract": "Pangenomics uses graph-based models to represent and study the genetic variation between individuals of the same species or between different species. In such variation graphs, a path through the graph represents one individual genome. Subgraphs that encode locally distinct paths are therefore genomic regions with distinct genetic variation and detecting such subgraphs is integral for studying genetic variation. Biedged graphs is a type of variation graph that use two types of edges, black and grey, to represent genomic sequences and adjacencies between sequences, respectively. Ultrabubbles in biedged graphs are minimal subgraphs that represent a finite set of sequence variants that all start and end with two distinct sequences; that is, ultrabubbles are acyclic and all paths in an ultrabubble enter and exit through two distinct black edges. Ultrabubbles are therefore a special case of snarls, which are minimal subgraphs that are connected with two black edges to the rest of the graph. Here, we show that any bidirected graph can be transformed to a bipartite biedged graph in which lowest common ancestor queries can determine whether a snarl is an ultrabubble. This leads to an O(Kn) algorithm for finding all ultrabubbles in a set of K snarls, improving on the prior naive approach of O(K(n + m)) in a biedged graph with n nodes and m edges. Accordingly, our benchmark experiments on real and synthetic variation graphs show improved run times on graphs with few cycles and dead end paths, and dense graphs with many edges.",
+      "authors": [
+        "Athanasios E. Zisis",
+        "Pål Sætrom"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-03-04T10:16:15+00:00",
+      "link": "https://arxiv.org/pdf/2603.03909v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "pangenomics and genetic variation between species",
+      "llm_evidence_cn": "泛基因组学与物种间的遗传变异",
+      "llm_evidence": "泛基因组学与物种间的遗传变异",
+      "canonical_evidence": "泛基因组学与物种间的遗传变异",
+      "llm_tldr_en": "Introduces an efficient algorithm for detecting ultrabubbles in pangenomic variation graphs to study genetic diversity.",
+      "llm_tldr_cn": "引入了一种在泛基因组变异图中检测超泡的高效算法，用于研究遗传多样性。",
+      "llm_tldr": "引入了一种在泛基因组变异图中检测超泡的高效算法，用于研究遗传多样性。",
+      "llm_tags": [
+        "query:q4"
+      ],
+      "matched_query_tag": "query:q4",
+      "matched_query_text": "molecular evolution and genetic variation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.06804v1",
+      "title": "Identifying genes associated with phenotypes using machine and deep learning",
+      "abstract": "Identifying disease-associated genes enables the development of precision medicine and the understanding of biological processes. Genome-wide association studies (GWAS), gene expression data, biological pathway analysis, and protein network analysis are among the techniques used to identify causal genes. We propose a machine-learning (ML) and deep-learning (DL) pipeline to identify genes associated with a phenotype. The proposed pipeline consists of two interrelated processes. The first is classifying people into case/control based on the genotype data. The second is calculating feature importance to identify genes associated with a particular phenotype. We considered 30 phenotypes from the openSNP data for analysis, 21 ML algorithms, and 80 DL algorithms and variants. The best-performing ML and DL models, evaluated by the area under the curve (AUC), F1 score, and Matthews correlation coefficient (MCC), were used to identify important single-nucleotide polymorphisms (SNPs), and the identified SNPs were compared with the phenotype-associated SNPs from the GWAS Catalog. The mean per-phenotype gene identification ratio (GIR) was 0.84. These results suggest that SNPs selected by ML/DL algorithms that maximize classification performance can help prioritise phenotype-associated SNPs and genes, potentially supporting downstream studies aimed at understanding disease mechanisms and identifying candidate therapeutic targets.",
+      "authors": [
+        "Muhammad Muneeb",
+        "David B. Ascher",
+        "YooChan Myung"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-03-06T19:13:19+00:00",
+      "link": "https://arxiv.org/pdf/2603.06804v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Machine and deep learning pipeline to identify genes associated with phenotypes",
+      "llm_evidence_cn": "利用机器学习和深度学习识别与表型相关的基因",
+      "llm_evidence": "利用机器学习和深度学习识别与表型相关的基因",
+      "canonical_evidence": "利用机器学习和深度学习识别与表型相关的基因",
+      "llm_tldr_en": "Proposes an ML/DL pipeline to identify disease-associated genes using genotype and phenotype data.",
+      "llm_tldr_cn": "提出了一种机器学习/深度学习流水线，利用基因型和表型数据识别疾病相关基因。",
+      "llm_tldr": "提出了一种机器学习/深度学习流水线，利用基因型和表型数据识别疾病相关基因。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.07137v1",
+      "title": "Preservation Constraints on aDNA Information Generation and the HSF Posterior Sourcing Framework: A First-Principles Critique of Conventional Methods",
+      "abstract": "Fossil DNA preservation varies with depositional environments and diagenesis, producing fragments of heterogeneous origins and degradation states. We use first-principles biomolecular analysis to classify fossil molecular environments into four system types, distinguished by three orthogonal indicators: origin (H/h: host/heterologous), deamination status (D/d), and similarity ratio (S/s). Conventional aDNA pipelines assume a binary mix of endogenous host DNA and modern contaminants, overlooking multisource complexity from multiple species and time-averaged deposits. This leads to bias: authentic signals suppressed during enrichment, alignment, or damage filtering, and exogenous/ancient admixed fragments misassigned as endogenous, particularly in open systems. We introduce the HSF (Host/Species-specific Fragment) posterior traceability framework to address this. It treats fragments as primary units, maximizes source diversity, detects isolated sequences, defers lineage assignment to preserve uncertainty, and applies phylogenetic consistency to discriminate origins. Combined with preservation characterization (e.g., 3D imaging and volumetric openness assessment), it improves authenticity evaluation and reduces misassignment in mixed-signal samples. Case studies identify novel fossil DNA patterns (CRSRR and SRRA) and demonstrate superior performance compared with conventional methods. The HSF framework enhances aDNA reliability, extends molecular archaeology to challenging contexts, and aids genome evolution and lineage reconstruction.",
+      "authors": [
+        "Wan-Qian Zhao",
+        "Shu-Jie Zhang",
+        "Zhan-Yong Guo",
+        "Mei-Jun Li"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM"
+      ],
+      "published": "2026-03-07T10:11:38+00:00",
+      "link": "https://arxiv.org/pdf/2603.07137v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Ancient DNA preservation and genomic sourcing",
+      "llm_evidence_cn": "古DNA保存与基因组溯源",
+      "llm_evidence": "古DNA保存与基因组溯源",
+      "canonical_evidence": "古DNA保存与基因组溯源",
+      "llm_tldr_en": "Critiques conventional ancient DNA pipelines and proposes a new framework for sourcing fossil DNA.",
+      "llm_tldr_cn": "批判传统的古DNA流程，并提出一种新的化石DNA溯源框架。",
+      "llm_tldr": "批判传统的古DNA流程，并提出一种新的化石DNA溯源框架。",
+      "llm_tags": [
+        "query:q9"
+      ],
+      "matched_query_tag": "query:q9",
+      "matched_query_text": "recent advances in genomics and evolutionary biology",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.07472v1",
+      "title": "Contact-Guided 3D Genome Structure Generation of E. coli via Diffusion Transformers",
+      "abstract": "In this study, we present a conditional diffusion-transformer framework for generating ensembles of three-dimensional Escherichia coli genome conformations guided by Hi-C contact maps. Instead of producing a single deterministic structure, we formulate genome reconstruction as a conditional generative modeling problem that samples heterogeneous conformations whose ensemble-averaged contacts are consistent with the input Hi-C data. A synthetic dataset is constructed using coarse-grained molecular dynamics simulations to generate chromatin ensembles and corresponding Hi-C maps under circular topology. Our models operate in a latent diffusion setting with a variational autoencoder that preserves per-bin alignment and supports replication-aware representations. Hi-C information is injected through a transformer-based encoder and cross-attention, enforcing a physically interpretable one-way constraint from Hi-C to structure. The model is trained using a flow-matching objective for stable optimization. On held-out ensembles, generated structures reproduce the input Hi-C distance-decay and structural correlation metrics while maintaining substantial conformational diversity, demonstrating the effectiveness of diffusion-based generative modeling for ensemble-level 3D genome reconstruction.",
+      "authors": [
+        "Mingxin Zhang",
+        "Xiaofeng Dai",
+        "Yu Yao",
+        "Ziqi Yin"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-08T05:19:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.07472v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Diffusion Transformers for 3D genome structure generation",
+      "llm_evidence_cn": "用于3D基因组结构生成的扩散Transformer",
+      "llm_evidence": "用于3D基因组结构生成的扩散Transformer",
+      "canonical_evidence": "用于3D基因组结构生成的扩散Transformer",
+      "llm_tldr_en": "Uses generative AI to reconstruct 3D E. coli genome conformations from Hi-C contact maps.",
+      "llm_tldr_cn": "利用生成式AI根据Hi-C接触图重建大肠杆菌的3D基因组构象。",
+      "llm_tldr": "利用生成式AI根据Hi-C接触图重建大肠杆菌的3D基因组构象。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.10873v1",
+      "title": "SNPgen: Phenotype-Supervised Genotype Representation and Synthetic Data Generation via Latent Diffusion",
+      "abstract": "Polygenic risk scores and other genomic analyses require large individual-level genotype datasets, yet strict data access restrictions impede sharing. Synthetic genotype generation offers a privacy-preserving alternative, but most existing methods operate unconditionally, producing samples without phenotype alignment, or rely on unsupervised compression, creating a gap between statistical fidelity and downstream task utility. We present SNPgen, a two-stage conditional latent diffusion framework for generating phenotype-supervised synthetic genotypes. SNPgen combines GWAS-guided variant selection (1,024-2,048 trait-associated SNPs) with a variational autoencoder for genotype compression and a latent diffusion model conditioned on binary disease labels via classifier-free guidance. Evaluated on 458,724 UK Biobank individuals across four complex diseases (coronary artery disease, breast cancer, type 1 and type 2 diabetes), models trained on synthetic data matched real-data predictive performance in a train-on-synthetic, test-on-real protocol, approaching genome-wide PRS methods that use $2$-$6\\times$ more variants. Privacy analysis confirmed zero identical matches, near-random membership inference (AUC $\\approx 0.50$), preserved linkage disequilibrium structure, and high allele frequency correlation ($r \\geq 0.95$) with source data. A controlled simulation with known causal effects verified faithful recovery of the imposed genetic association structure.",
+      "authors": [
+        "Andrea Lampis",
+        "Michela Carlotta Massi",
+        "Nicola Pirastu",
+        "Francesca Ieva",
+        "Matteo Matteucci",
+        "Emanuele Di Angelantonio"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-11T15:23:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.10873v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-driven synthetic genotype generation and GWAS-guided variant selection",
+      "llm_evidence_cn": "AI驱动的合成基因型生成与GWAS引导的变异选择",
+      "llm_evidence": "AI驱动的合成基因型生成与GWAS引导的变异选择",
+      "canonical_evidence": "AI驱动的合成基因型生成与GWAS引导的变异选择",
+      "llm_tldr_en": "Uses latent diffusion models to generate phenotype-supervised synthetic genotypes for genomic analysis.",
+      "llm_tldr_cn": "利用潜在扩散模型生成受表型监督的合成基因型，用于基因组分析。",
+      "llm_tldr": "利用潜在扩散模型生成受表型监督的合成基因型，用于基因组分析。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.14717v1",
+      "title": "Training-Free Generation of Protein Sequences from Small Family Alignments via Stochastic Attention",
+      "abstract": "Most protein families have fewer than 100 known members, a regime where deep generative models overfit or collapse. We propose stochastic attention (SA), a training-free sampler that treats the modern Hopfield energy over a protein alignment as a Boltzmann distribution and draws samples via Langevin dynamics. The score function is a closed-form softmax attention operation requiring no training, no pretraining data, and no GPU, with cost linear in alignment size. Across eight Pfam families, SA generates sequences with low amino acid compositional divergence, substantial novelty, and structural plausibility confirmed by ESMFold and AlphaFold2. Generated sequences fold more faithfully to canonical family structures than natural members in six of eight families. Against profile HMMs, EvoDiff, and the MSA Transformer, which produce sequences that drift far outside the family, SA maintains 51 to 66 percent identity while remaining novel, in seconds on a laptop. The critical temperature governing generation is predicted from PCA dimensionality alone, enabling fully automatic operation. Controls confirm SA encodes correlated substitution patterns, not just per-position amino acid frequencies.",
+      "authors": [
+        "Jeffrey D. Varner"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-16T01:42:47+00:00",
+      "link": "https://arxiv.org/pdf/2603.14717v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-driven generation of protein sequences from family alignments",
+      "llm_evidence_cn": "AI驱动的从家族比对中生成蛋白质序列",
+      "llm_evidence": "AI驱动的从家族比对中生成蛋白质序列",
+      "canonical_evidence": "AI驱动的从家族比对中生成蛋白质序列",
+      "llm_tldr_en": "Proposes a training-free AI sampler to generate novel protein sequences from small family alignments.",
+      "llm_tldr_cn": "提出一种无需训练的AI采样器，从小型家族比对中生成新型蛋白质序列。",
+      "llm_tldr": "提出一种无需训练的AI采样器，从小型家族比对中生成新型蛋白质序列。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2602.15387v1",
+      "title": "Bayesian Nonparametrics for Gene-Gene and Gene-Environment Interactions in Case-Control Studies: A Synthesis and Extension",
+      "abstract": "Gene-gene and gene-environment interactions are widely believed to play significant roles in explaining the variability of complex traits. While substantial research exists in this area, a comprehensive statistical framework that addresses multiple sources of uncertainty simultaneously remains lacking. In this article, we synthesize and propose extension of a novel class of Bayesian nonparametric approaches that account for interactions among genes, loci, and environmental factors while accommodating uncertainty about population substructure. Our contribution is threefold: (1) We provide a unified exposition of hierarchical Bayesian models driven by Dirichlet processes for genetic interactions, clarifying their conceptual advantages over traditional regression approaches; (2) We shed light on new computational strategies that combine transformation-based MCMC with parallel processing for scalable inference; and (3) We present enhanced hypothesis testing procedures for identifying disease-predisposing loci.Through applications to myocardial infarction data, we demonstrate how these methods offer biological insights not readily obtainable from standard approaches. Our synthesis highlights the advantages of Bayesian nonparametric thinking in genetic epidemiology while providing practical guidance for implementation.",
+      "authors": [
+        "Durba Bhattacharya",
+        "Sourabh Bhattacharya"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.AP"
+      ],
+      "published": "2026-02-17T06:48:31+00:00",
+      "link": "https://arxiv.org/pdf/2602.15387v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "genetic interactions and population substructure",
+      "llm_evidence_cn": "基因相互作用与种群亚结构",
+      "llm_evidence": "基因相互作用与种群亚结构",
+      "canonical_evidence": "基因相互作用与种群亚结构",
+      "llm_tldr_en": "Proposes a Bayesian nonparametric framework for gene-environment interactions while accounting for population structure.",
+      "llm_tldr_cn": "提出了一种贝叶斯非参数框架，用于在考虑种群结构的同时分析基因与环境的相互作用。",
+      "llm_tldr": "提出了一种贝叶斯非参数框架，用于在考虑种群结构的同时分析基因与环境的相互作用。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2602.15957v1",
+      "title": "Evolutionary Systems Thinking -- From Equilibrium Models to Open-Ended Adaptive Dynamics",
+      "abstract": "Complex change is often described as \"evolutionary\" in economics, policy, and technology, yet most system dynamics models remain constrained to fixed state spaces and equilibrium-seeking behavior. This paper argues that evolutionary dynamics should be treated as a core system-thinking problem rather than as a biological metaphor. We introduce Stability-Driven Assembly (SDA) as a minimal, non-equilibrium framework in which stochastic interactions combined with differential persistence generate endogenous selection without genes, replication, or predefined fitness functions. In SDA, longer-lived patterns accumulate in the population, biasing future interactions and creating feedback between population composition and system dynamics. This feedback yields fitness-proportional sampling as an emergent property, realizing a natural genetic algorithm driven solely by stability. Using SDA, we demonstrate why equilibrium-constrained models, even when simulated numerically, cannot exhibit open-ended evolution: evolutionary systems require population-dependent, non-stationary dynamics in which structure and dynamics co-evolve. We conclude by discussing implications for system dynamics, economics, and policy modeling, and outline how agent-based and AI-enabled approaches may support evolutionary models capable of sustained novelty and structural emergence.",
+      "authors": [
+        "Dan Adler"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cs.NE",
+        "econ.TH"
+      ],
+      "published": "2026-02-17T19:17:50+00:00",
+      "link": "https://arxiv.org/pdf/2602.15957v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary dynamics and selection mechanisms in complex systems",
+      "llm_evidence_cn": "复杂系统中的演化动力学与选择机制",
+      "llm_evidence": "复杂系统中的演化动力学与选择机制",
+      "canonical_evidence": "复杂系统中的演化动力学与选择机制",
+      "llm_tldr_en": "Introduces a non-equilibrium framework for endogenous selection and adaptive dynamics in complex systems.",
+      "llm_tldr_cn": "为复杂系统中的内生选择和自适应动力学引入了一个非平衡框架。",
+      "llm_tldr": "为复杂系统中的内生选择和自适应动力学引入了一个非平衡框架。",
+      "llm_tags": [
+        "query:q1"
+      ],
+      "matched_query_tag": "query:q1",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2602.17330v1",
+      "title": "SubQuad: Near-Quadratic-Free Structure Inference with Distribution-Balanced Objectives in Adaptive Receptor framework",
+      "abstract": "Comparative analysis of adaptive immune repertoires at population scale is hampered by two practical bottlenecks: the near-quadratic cost of pairwise affinity evaluations and dataset imbalances that obscure clinically important minority clonotypes. We introduce SubQuad, an end-to-end pipeline that addresses these challenges by combining antigen-aware, near-subquadratic retrieval with GPU-accelerated affinity kernels, learned multimodal fusion, and fairness-constrained clustering. The system employs compact MinHash prefiltering to sharply reduce candidate comparisons, a differentiable gating module that adaptively weights complementary alignment and embedding channels on a per-pair basis, and an automated calibration routine that enforces proportional representation of rare antigen-specific subgroups. On large viral and tumor repertoires SubQuad achieves measured gains in throughput and peak memory usage while preserving or improving recall@k, cluster purity, and subgroup equity. By co-designing indexing, similarity fusion, and equity-aware objectives, SubQuad offers a scalable, bias-aware platform for repertoire mining and downstream translational tasks such as vaccine target prioritization and biomarker discovery.",
+      "authors": [
+        "Rong Fu",
+        "Zijian Zhang",
+        "Wenxin Zhang",
+        "Kun Liu",
+        "Jiekai Wu",
+        "Xianda Li",
+        "Simon Fong"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-02-19T12:51:25+00:00",
+      "link": "https://arxiv.org/pdf/2602.17330v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "comparative analysis of immune repertoires at population scale",
+      "llm_evidence_cn": "人群规模免疫库的比较分析",
+      "llm_evidence": "人群规模免疫库的比较分析",
+      "canonical_evidence": "人群规模免疫库的比较分析",
+      "llm_tldr_en": "Introduces a pipeline for efficient comparative analysis and structure inference of immune repertoires.",
+      "llm_tldr_cn": "引入一种用于免疫库高效比较分析和结构推断的流水线工具。",
+      "llm_tldr": "引入一种用于免疫库高效比较分析和结构推断的流水线工具。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "comparative genomics across species",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.16059v1",
+      "title": "Properties of biodiversity indices that model future extinction risk",
+      "abstract": "The loss of biodiversity due to the likely widespread extinction of species in the near future is a focus of current concern in conservation biology. One approach to measure the impact of this extinction is based on the predicted loss of phylogenetic diversity. These predictions have become a focus of the Zoological Society of London's 'EDGE2' program for quantifying biodiversity loss and involves considering the HED (heightened evolutionary distinctiveness) and HEDGE (heightened evolutionary distinctiveness and globally endangered) indices. Here, we show how to generalise the HED(GE) indices by expanding their application to more general settings (to phylogenetic networks, to feature diversity on discrete traits, and to arbitrary biodiversity measures). We provide a simple and explicit description of the mean and variance of such measures, and illustrate our results by an application to the phylogeny of all 27 extant Crocodilians. We also derive various equalities for feature diversity, and an inequality if species extinction rates are correlated with feature types.",
+      "authors": [
+        "Mike Steel",
+        "Kristina Wicke",
+        "Arne Mooers"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-02-17T22:16:20+00:00",
+      "link": "https://arxiv.org/pdf/2602.16059v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "phylogenetic diversity and evolutionary distinctiveness",
+      "llm_evidence_cn": "系统发育多样性与演化独特性",
+      "llm_evidence": "系统发育多样性与演化独特性",
+      "canonical_evidence": "系统发育多样性与演化独特性",
+      "llm_tldr_en": "Generalizes biodiversity indices like HED and HEDGE for phylogenetic networks and conservation biology.",
+      "llm_tldr_cn": "推广了用于系统发育网络和保护生物学的HED和HEDGE等生物多样性指数。",
+      "llm_tldr": "推广了用于系统发育网络和保护生物学的HED和HEDGE等生物多样性指数。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2602.16282v1",
+      "title": "Neutral species facilitate coexistence among cyclically competing species under birth and death processes",
+      "abstract": "Natural birth and death are fundamental mechanisms of population dynamics in ecosystems and have played pivotal roles in shaping population dynamics. Nevertheless, in studies of cyclic competition systems governed by the rock-paper-scissors (RPS) game, these mechanisms have often been ignored in analyses of biodiversity. On the other hand, given the prevalence and profound impact on biodiversity, understanding how higher-order interactions (HOIs) can affect biodiversity is one of the most challenging issues, and thus HOIs have been continuously studied for their effects on biodiversity in systems of cyclic competing populations, with a focus on neutral species. However, in real ecosystems, species can evolve and die naturally or be preyed upon by predators, whereas previous studies have considered only classic reaction rules among three species with a neutral, nonparticipant species. To identify how neutral species can affect the biodiversity of the RPS system when species' natural birth and death are assumed, we consider a model of neutral species in higher-order interactions within the spatial RPS system, assuming birth-and-death processes. Extensive simulations show that when neutral species interfere positively, they dominate the available space, thereby reducing the proportion of other species. Conversely, when the interference is harmful, the density of competing species increases. In addition, unlike traditional RPS dynamics, biodiversity can be effectively maintained even in high-mobility regimes. Our study reaffirms the critical role of neutral species in preserving biodiversity.",
+      "authors": [
+        "Yikang Lu",
+        "Wenhao She",
+        "Xiaofang Duan",
+        "Junpyo Park"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "physics.soc-ph"
+      ],
+      "published": "2026-02-18T09:06:06+00:00",
+      "link": "https://arxiv.org/pdf/2602.16282v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "population dynamics and species evolution in cyclic competition systems",
+      "llm_evidence_cn": "循环竞争系统中的种群动态与物种演化",
+      "llm_evidence": "循环竞争系统中的种群动态与物种演化",
+      "canonical_evidence": "循环竞争系统中的种群动态与物种演化",
+      "llm_tldr_en": "Explores how birth-death processes and neutral species affect biodiversity and population dynamics in ecosystems.",
+      "llm_tldr_cn": "探讨了出生-死亡过程和中性物种如何影响生态系统中的生物多样性和种群动态。",
+      "llm_tldr": "探讨了出生-死亡过程和中性物种如何影响生态系统中的生物多样性和种群动态。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2602.18885v1",
+      "title": "Learning Adaptive Perturbation-Conditioned Contexts for Robust Transcriptional Response Prediction",
+      "abstract": "Predicting high-dimensional transcriptional responses to genetic perturbations is challenging due to severe experimental noise and sparse gene-level effects. Existing methods often suffer from mean collapse, where high correlation is achieved by predicting global average expression rather than perturbation-specific responses, leading to many false positives and limited biological interpretability. Recent approaches incorporate biological knowledge graphs into perturbation models, but these graphs are typically treated as dense and static, which can propagate noise and obscure true perturbation signals. We propose AdaPert, a perturbation-conditioned framework that addresses mean collapse by explicitly modeling sparsity and biological structure. AdaPert learns perturbation-specific subgraphs from biological knowledge graphs and applies adaptive learning to separate true signals from noise. Across multiple genetic perturbation benchmarks, AdaPert consistently outperforms existing baselines and achieves substantial improvements on DEG-aware evaluation metrics, indicating more accurate recovery of perturbation-specific transcriptional changes.",
+      "authors": [
+        "Yinhua Piao",
+        "Hyomin Kim",
+        "Seonghwan Kim",
+        "Yunhak Oh",
+        "Junhyeok Jeon",
+        "Sang-Yeon Hwang",
+        "Jaechang Lim",
+        "Woo Youn Kim",
+        "Chanyoung Park",
+        "Sungsoo Ahn"
+      ],
+      "primary_category": "cs.CE",
+      "categories": [
+        "cs.CE"
+      ],
+      "published": "2026-02-21T16:15:40+00:00",
+      "link": "https://arxiv.org/pdf/2602.18885v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven transcriptional response prediction to genetic perturbations",
+      "llm_evidence_cn": "AI驱动的遗传扰动转录响应预测",
+      "llm_evidence": "AI驱动的遗传扰动转录响应预测",
+      "canonical_evidence": "AI驱动的遗传扰动转录响应预测",
+      "llm_tldr_en": "Develops a framework to predict transcriptional responses to genetic perturbations using biological knowledge.",
+      "llm_tldr_cn": "开发了一个利用生物学知识预测遗传扰动转录响应的框架。",
+      "llm_tldr": "开发了一个利用生物学知识预测遗传扰动转录响应的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.16504v1",
+      "title": "GRIMM: Genetic stRatification for Inference in Molecular Modeling",
+      "abstract": "The vast majority of biological sequences encode unknown functions and bear little resemblance to experimentally characterized proteins, limiting both our understanding of biology and our ability to harness functional potential for the bioeconomy. Predicting enzyme function from sequence remains a central challenge in computational biology, complicated by low sequence diversity and imbalanced label support in publicly available datasets. Models trained on these data can overestimate performance and fail to generalize. To address this, we introduce GRIMM (Genetic stRatification for Inference in Molecular Modeling), a benchmark for enzyme function prediction that employs genetic stratification: sequences are clustered by similarity and clusters are assigned exclusively to training, validation, or test sets. This ensures that sequences from the same cluster do not appear in multiple partitions. GRIMM produces multiple test sets: a closed-set test with the same label distribution as training (Test-1) and an open-set test containing novel labels (Test-2), serving as a realistic out-of-distribution proxy for discovering novel enzyme functions. While demonstrated on enzymes, this approach is generalizable to any sequence-based classification task where inputs can be clustered by similarity. By formalizing a splitting strategy often used implicitly, GRIMM provides a unified and reproducible framework for closed- and open-set evaluation. The method is lightweight, requiring only sequence clustering and label annotations, and can be adapted to different similarity thresholds, data scales, and biological tasks. GRIMM enables more realistic evaluation of functional prediction models on both familiar and unseen classes and establishes a benchmark that more faithfully assesses model performance and generalizability.",
+      "authors": [
+        "Ashley Babjac",
+        "Adrienne Hoarfrost"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-02-18T14:46:18+00:00",
+      "link": "https://arxiv.org/pdf/2602.16504v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Genetic stratification for enzyme function prediction in computational biology",
+      "llm_evidence_cn": "计算生物学中用于酶功能预测的遗传分层",
+      "llm_evidence": "计算生物学中用于酶功能预测的遗传分层",
+      "canonical_evidence": "计算生物学中用于酶功能预测的遗传分层",
+      "llm_tldr_en": "Introduces a benchmark for enzyme function prediction using genetic similarity clustering to improve AI models.",
+      "llm_tldr_cn": "引入了一个酶功能预测基准，利用遗传相似性聚类来改进AI模型。",
+      "llm_tldr": "引入了一个酶功能预测基准，利用遗传相似性聚类来改进AI模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2602.16643v1",
+      "title": "Factorization Machine with Quadratic-Optimization Annealing for RNA Inverse Folding and Evaluation of Binary-Integer Encoding and Nucleotide Assignment",
+      "abstract": "The RNA inverse folding problem aims to identify nucleotide sequences that preferentially adopt a given target secondary structure. While various heuristic and machine learning-based approaches have been proposed, many require a large number of sequence evaluations, which limits their applicability when experimental validation is costly. We propose a method to solve the problem using a factorization machine with quadratic-optimization annealing (FMQA). FMQA is a discrete black-box optimization method reported to obtain high-quality solutions with a limited number of evaluations. Applying FMQA to the problem requires converting nucleotides into binary variables. However, the influence of integer-to-nucleotide assignments and binary-integer encoding on the performance of FMQA has not been thoroughly investigated, even though such choices determine the structure of the surrogate model and the search landscape, and thus can directly affect solution quality. Therefore, this study aims both to establish a novel FMQA framework for RNA inverse folding and to analyze the effects of these assignments and encoding methods. We evaluated all 24 possible assignments of the four nucleotides to the ordered integers (0-3), in combination with four binary-integer encoding methods. Our results demonstrated that one-hot and domain-wall encodings outperform binary and unary encodings in terms of the normalized ensemble defect value. In domain-wall encoding, nucleotides assigned to the boundary integers (0 and 3) appeared with higher frequency. In the RNA inverse folding problem, assigning guanine and cytosine to these boundary integers promoted their enrichment in stem regions, which led to more thermodynamically stable secondary structures than those obtained with one-hot encoding.",
+      "authors": [
+        "Shuta Kikuchi",
+        "Shu Tanaka"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cond-mat.stat-mech"
+      ],
+      "published": "2026-02-18T17:32:55+00:00",
+      "link": "https://arxiv.org/pdf/2602.16643v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based optimization for RNA sequence folding",
+      "llm_evidence_cn": "基于AI的RNA序列折叠优化",
+      "llm_evidence": "基于AI的RNA序列折叠优化",
+      "canonical_evidence": "基于AI的RNA序列折叠优化",
+      "llm_tldr_en": "Proposes a factorization machine method for RNA inverse folding to identify functional nucleotide sequences.",
+      "llm_tldr_cn": "提出了一种用于RNA逆折叠的因子分解机方法，以识别功能性核苷酸序列。",
+      "llm_tldr": "提出了一种用于RNA逆折叠的因子分解机方法，以识别功能性核苷酸序列。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2602.19906v1",
+      "title": "Collective Variable-Guided Engineering of the Free-Energy Surface of a Small Peptide",
+      "abstract": "Engineering the free-energy surfaces (FES) of proteins and peptides is central to controlling conformational ensembles and their responses to perturbations. However, predicting how chemical modifications such as point mutations reshape the FES and shift conformational equilibria remains challenging, particularly in data-scarce settings. Building on the Collective Variables for Free Energy Surface Tailoring (CV-FEST) framework, we develop a computational approach that leverages short, unbiased molecular dynamics trajectories to guide mutation analysis. Using the ten-residue beta-hairpin CLN025 and a systematic library of its single-point mutants, we apply Harmonic Linear Discriminant Analysis (HLDA) to extract collective variables from the conformational data. We find that the HLDA eigenvector learned solely from short wild-type trajectories provides residue-level insight into the propensity of mutations at specific positions to thermodynamically stabilize or destabilize the folded state. Extending this analysis, we show that shifts in the leading HLDA eigenvalue across mutants, a measure of changes in separability between the conformational ensembles along the HLDA coordinate, correlate strongly with mutation-induced changes in the free-energy difference between states, as reflected in melting temperatures. Benchmarked against Replica Exchange Molecular Dynamics simulations, these findings suggest a promising and computationally affordable route toward guiding the engineering of biomolecular free-energy landscapes.",
+      "authors": [
+        "Muralika Medaparambath",
+        "Alexander Zhilkin",
+        "Dan Mendels"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "physics.chem-ph"
+      ],
+      "published": "2026-02-23T14:45:35+00:00",
+      "link": "https://arxiv.org/pdf/2602.19906v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Predicting how point mutations reshape free-energy surfaces",
+      "llm_evidence_cn": "预测点突变如何重塑自由能表面",
+      "llm_evidence": "预测点突变如何重塑自由能表面",
+      "canonical_evidence": "预测点突变如何重塑自由能表面",
+      "llm_tldr_en": "Develops a computational approach to analyze how mutations shift conformational equilibria in small peptides.",
+      "llm_tldr_cn": "开发了一种计算方法来分析突变如何改变小肽的构象平衡。",
+      "llm_tldr": "开发了一种计算方法来分析突变如何改变小肽的构象平衡。",
+      "llm_tags": [
+        "query:q4"
+      ],
+      "matched_query_tag": "query:q4",
+      "matched_query_text": "molecular evolution and genetic variation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.16696v1",
+      "title": "Parameter-free representations outperform single-cell foundation models on downstream benchmarks",
+      "abstract": "Single-cell RNA sequencing (scRNA-seq) data exhibit strong and reproducible statistical structure. This has motivated the development of large-scale foundation models, such as TranscriptFormer, that use transformer-based architectures to learn a generative model for gene expression by embedding genes into a latent vector space. These embeddings have been used to obtain state-of-the-art (SOTA) performance on downstream tasks such as cell-type classification, disease-state prediction, and cross-species learning. Here, we ask whether similar performance can be achieved without utilizing computationally intensive deep learning-based representations. Using simple, interpretable pipelines that rely on careful normalization and linear methods, we obtain SOTA or near SOTA performance across multiple benchmarks commonly used to evaluate single-cell foundation models, including outperforming foundation models on out-of-distribution tasks involving novel cell types and organisms absent from the training data. Our findings highlight the need for rigorous benchmarking and suggest that the biology of cell identity can be captured by simple linear representations of single cell gene expression data.",
+      "authors": [
+        "Huan Souza",
+        "Pankaj Mehta"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-02-18T18:42:29+00:00",
+      "link": "https://arxiv.org/pdf/2602.16696v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI foundation models for single-cell genomics",
+      "llm_evidence_cn": "单细胞基因组学的AI基础模型",
+      "llm_evidence": "单细胞基因组学的AI基础模型",
+      "canonical_evidence": "单细胞基因组学的AI基础模型",
+      "llm_tldr_en": "Evaluates single-cell foundation models against simpler representations for cross-species learning tasks.",
+      "llm_tldr_cn": "评估了单细胞基础模型在跨物种学习任务中相对于简单表示法的表现。",
+      "llm_tldr": "评估了单细胞基础模型在跨物种学习任务中相对于简单表示法的表现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2602.16728v1",
+      "title": "FUNGAR: a pipeline for detecting antifungal resistance mutations directly from metagenomic short reads",
+      "abstract": "Motivation: Antifungal resistance has become an increasing global concern in both clinical and environmental health. Detecting known resistance mutations directly from sequencing reads, in special metagenomic samples, remains a major challenge. As fungal pathogens are often neglected compared with bacterial pathogens, most available tools are designed for bacterial taxa, whereas tools targeting fungi typically require assembled genomes. In metagenomic datasets, assembly-based strategies may result in substantial information loss due to genome fragmentation, low-abundance species, or incomplete recovery of resistance loci. Results: Here, we present FUNGAR, an open-source pipeline for the rapid identification of antifungal resistance genes and mutations directly from short-read data. FUNGAR employs translated alignments with DIAMOND and curated data from the FungAMR database to detect amino acid substitutions across all six open reading frames. The pipeline produces structured, reproducible reports linking detected variants to their associated antifungal drugs and can be easily customized for new species or databases.",
+      "authors": [
+        "Henrique RM Antoniolli",
+        "Lívia Kmetzsch",
+        "Charley C Staats"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-02-17T17:49:24+00:00",
+      "link": "https://arxiv.org/pdf/2602.16728v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "detecting genetic mutations and resistance loci from metagenomic reads",
+      "llm_evidence_cn": "从宏基因组读取中检测遗传突变和耐药位点",
+      "llm_evidence": "从宏基因组读取中检测遗传突变和耐药位点",
+      "canonical_evidence": "从宏基因组读取中检测遗传突变和耐药位点",
+      "llm_tldr_en": "Presents a pipeline for identifying antifungal resistance mutations directly from metagenomic data.",
+      "llm_tldr_cn": "提出了一种直接从宏基因组数据中鉴定抗真菌耐药突变的流程。",
+      "llm_tldr": "提出了一种直接从宏基因组数据中鉴定抗真菌耐药突变的流程。",
+      "llm_tags": [
+        "query:q4"
+      ],
+      "matched_query_tag": "query:q4",
+      "matched_query_text": "molecular evolution and genetic variation",
+      "matched_requirement_id": "req-4",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

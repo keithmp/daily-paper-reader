@@ -1,0 +1,8078 @@
+Title: 2603.01983v1.pdf
+
+URL Source: https://arxiv.org/pdf/2603.01983v1
+
+Published Time: Tue, 03 Mar 2026 03:49:13 GMT
+
+Number of Pages: 58
+
+Markdown Content:
+> arXiv:2603.01983v1 [math.AP] 2 Mar 2026
+
+# Analysis of the steady solutions of the Fisher’s infinitesimal model; a Hilbertian approach 
+
+# M. Hillairet ∗ S. Mirrahimi †
+
+# March 3, 2026 
+
+Abstract 
+
+We provide an asymptotic analysis of a nonlinear integro-differential equation which describes the evolutionary dynamics of a population which reproduces sexually and which is subject to selection and competition. The sexual reproduction is modeled via a non-linear integral term, known as the Fisher’s ’infinitesimal model’. We consider a small segregational variance regime, where a parameter in the infinitesimal model, which mea-sures the deviation between the trait of the offspring and the mean parental trait, is small with respect to the selection variance. In this regime, we characterize the steady states of the problem and analyze their stability. Our method relies on a spectral analysis involv-ing Hermite polynomials, highlighting the specific structure of the nonlinear reproduction term. 
+
+Keywords : Integro-differential equations, singular limits, steady solutions, quantitative genetics, infinitesimal model. 
+
+2020 M.S.C. : 35B40, 35Q92, 92D15, 47G20. 
+
+# 1 Introduction 
+
+# 1.1 Model and question 
+
+The purpose of this article is to study the steady solutions, and their stability, of the following equation 
+
+{
+
+∂tn(t, x ) = rB α[n]( t, x ) − m(x)n(t, x ) − κρ (t)n(t, x ),n(0 , x ) = n0(x), ρ(t) = ∫ 
+
+> R
+
+n(t, x ), (1) 
+
+> ∗
+
+Institut Montpelli´ erain Alexander Grothendieck, ANGUS, Univ Montpellier, Inria, CNRS, Montpellier, France; E-mail: matthieu.hillairet@umontpellier.fr 
+
+> †
+
+Sepideh Mirrahimi. Univ Toulouse, INSA Toulouse, CNRS, IMT, Toulouse, France. E-mail: 
+
+sepideh.mirrahimi@math.univ-toulouse.fr 
+
+1where ( t, x ) ∈ (0 , ∞) × R and 
+
+Bα[n(t, ·)]( x) = 
+
+∫
+
+> R
+
+∫
+
+> R
+
+Γα
+
+(
+
+x − (y + y′)
+
+2
+
+)
+
+n(t, y ) n(t, y ′)
+
+ρ(t) dydy ′,
+
+Γα(x) = 1
+
+√πα exp 
+
+(
+
+− x2
+
+α2
+
+)
+
+.
+
+This equation describes the evolutionary dynamics of the phenotypic density of a pop-ulation subject to sexual reproduction, selection and competition. The unknown n(t, x )stands for the density of individuals of phenotypic trait x at time t. The function m(x)represents the intrinsic mortality rate of individuals of trait x and the nonlocal term κρ 
+
+corresponds to a mortality rate due to uniform competition between individuals. The parameter r scales reproduction in the population and the operator Bα models the sexual reproduction, assuming that the trait of the offsprings are distributed following a Gaussian profile with variance α > 0 centered around the mean parental traits. This reproduction model, which is known as the infinitesimal model, was introduced by Fisher in [14] and it is widely used in the biological literature [5, 21, 31]. Such a model is valid under the assumption that the trait x is coded by infinitely many alleles with small additive effects (see [1] for a recent justification of such a model). 
+
+# 1.2 Biological motivation 
+
+The infinitesimal model has been widely used in evolutionary biology and in plant and animal breeding since the pioneer work of Fisher [14]. This work reconciled Galton’s ob-servations [16] on the distribution and the inheritance of continuously varying phenotypes, as human’s height, with Mendelian genetics. This model is interested in the traits that are coded by a large number of genes with additive affects [14, 5, 21]. A central limit theorem type result then implies that the trait of offsprings has a normal distribution centered around the mean parental traits. This property which can be referred to as the ”Gaussian descendants” approximation [31], was proved rigorously in [1]. Many works in theoretical biology make however a stronger assumption that not only the offspring’s distribution has a Gaussian profile, but also the population distribution is Gaussian [22, 23, 24, 30]. This can be referred to as the ”Gaussian population” approximation [31]. This approximation also seems to provide robust results, however its framework of validity is not yet com-pletely understood [31]. Our work falls in line with studies that aim both to understand the validity framework of such Gaussian approximations and to improve the accuracy of approximations in theoretical biology (see also [7, 27, 29] for other works in this direction). This article follows our earlier work in [19] where we provided an analysis of the time de-pendent problem (1). The model considered in these articles considers a homogeneous environment with no space or time variation of the environment. We expect however that our methods would facilitate the analysis of more complex models with space or time heterogeneity. 
+
+# 1.3 Expected shape of solutions 
+
+An underlying structure of (1) enables us to simplify the computation of solutions. Indeed, any solution n(t, x ) can be split into a mass ρ(t) ∈ (0 , ∞) and a probability density 
+
+2x 7 → q(t, x ) ∈ (0 , ∞): 
+
+n(t, x ) = ρ(t)q(t, x ).
+
+Standard manipulations show that n is a solution to (1) if and only if ( q, ρ ) solve: 
+
+{
+
+∂tq(t, x ) = r(Tα[q]( t, x ) − q(t, x )) − (m(x) − ∫ 
+
+> R
+
+m(y)q(t, y )dy )q(t, x ),q(0 , x ) = q0(x) := n0(x)/ρ (0) , (2) 
+
+{
+
+∂tρ(t) = ρ(t) (r − ∫ 
+
+> R
+
+m(x)q(t, x )dx ) − κρ (t)2,ρ(0) = ∫ 
+
+> R
+
+n(0 , y )dy, (3) with 
+
+Tα[q(·)]( x) = 
+
+∫
+
+> R
+
+∫
+
+> R
+
+Γα
+
+(
+
+x − (y + y′)
+
+2
+
+)
+
+q(y)q(y′)dydy ′.
+
+We point out that system (2)-(3) is ”triangular” in the sense that the first equation involves the density unknown q only and can thus be solved independently. The mass ρ
+
+is then recovered by integrating the second equation. Elementary properties of the kernel Γα ensure that the property: ∫
+
+> R
+
+q(t, y )dy = 1 is propagated when solving (2). In this paper, we tackle existence/uniqueness properties of steady solutions n to (1) that is, with the same factorization as above: 
+
+{
+
+n(x) = ρ q(x), x ∈ R,
+
+ρ = ( r − ∫ 
+
+> R
+
+m(y)q(y)dy )/κ, (4) where q solves the following equation 
+
+{
+
+0 = r(Tα[q]( x) − q(x)) − (m(x) − ∫ 
+
+> R
+
+m(y)q(y)dy )q(x),
+
+∫ 
+
+> R
+
+q(y)dy = 1 . (5) We also investigate the stability properties of these steady-states within the dynamical system (1). Obviously, the main issue here is to compute and analyze the probability-density part ¯ q in the factorization of n.From the analytical standpoint, our problem is highly nonlinear and requires a subtle understanding of the interactions between the two operators at stake in the right-hand side of (5) : the (normalized) sexual reproduction (or recombination) operator Tα[q] − q and the (normalized) mortality operator ( m − ∫ 
+
+> R
+
+mq )q. Indeed, on the one-hand, it is by now well-documented that probability distributions cancelling the normalized recombination operator are gaussian distribution with variance 2 α (and arbitrary center) (see e.g. [29]). Moreover, considering the problem 
+
+{
+
+∂tq(t, x ) = Tα[q] − q, q(0 , x ) = q0(x), x0 = ∫ 
+
+> R
+
+xq 0(x)dx, 
+
+3one can prove [25], using a contraction property of the Wasserstein distance, that, as 
+
+t → +∞, W2(q(t, x ), Γ√2α(x − x0)) → 0. Let’s consider now the evolution problem with the morality operator 
+
+{
+
+∂tq(t, x ) = − (m(x) − ∫ 
+
+> R
+
+m(y)q(t, y )dy ) q(x),q(0 , x ) = q0(x),
+
+assuming that arg min m = {x1, · · · , x N }, N ≥ 1, arg min m ∩ supp q0 6 = ∅.
+
+Then, one can prove that [20], as t → 0, q(t, x ) → ∑ni=1 αiδ(x − xi), with αi ≥ 0 and 
+
+∑Ni=1 αi = 1, and αi = 0 for all xi 6 ∈ supp q0.To summarize, the reproduction operator will tend to make the solution gaussian around one center and the mortality operator will tend to make the solution to concentrate around its minimum points. What would be the dynamics of the solution when we combine both operators? Let’s assume that the segregational variance α is small and that q0 is initially concentrated around a trait x0 which is in the convexity zone around a local minimum point xm of m. It was proved in [27, 19] that, when xm satisfies an admissibility condition ensuring that m(xm) is not too far from the global minimum value of m, the solution 
+
+q(t, x ) remains concentrated for all times, with an approximately Gaussian distribution centered around an evolving point ¯ x(t). Moreover, the point ¯ x(t) solves an ordinary differential equation indicating that it moves towards xm as t grows. This indicates that, for any admissible local minimum point xm, there should exist a steady solution, with an approximately Gaussian shape, concentrated around xm. We prove indeed this property in this article and show that such steady solutions are stable. Let us now consider the following gedankenexperiment. Let us imagine that m is even and has a local maximum in 0 and two (local) minimas −x1 and x1. For a symmetric initial data, the evolution problem (2) will yield a symmetric solution. If we expect this solution to tend to a steady state for large times, we face a novel difficulty. Indeed, the recombination operator will tend to make the solution gaussian around one center (and thus in 0), while the mortality operator will want to make the solution localized around the two local minima of m (and thus outside 0). It is then interesting to discuss also what happens around local maximums of m. We prove indeed that when the local maximum points of m satisfy an admissibility condition, there also exists a steady solution concentrated around such maximum points. We don’t expect however that these steady states would be stable (they can be reached only for some particular initial data). 
+
+# 1.4 A dimensionless parametrization of the model 
+
+In what remains of this paper, we fix x0 a local extremum for m. As we may expect from the previous discussion, the respective flatness of m around x0 (encoded by the value of 
+
+|m′′ (x0)|) and variance α of the Gaussian kernel involved in the recombination operator will have a decisive impact on the properties of steady-states. To fix ideas, we propose to non-dimensionalize the equations and fix our framework with one well-chosen parameter 
+
+ε encoding the respective amplitude of both quantities. Let q be a solution to (2) and set ˜q(τ, y ) = 
+
+√ r
+
+|m′′ (x0)| q
+
+( τ
+
+r ,
+
+√ r
+
+|m′′ (x0)| y + x0
+
+)
+
+.
+
+4We obtain that ˜ q solves 
+
+∂τ ˜q(τ, y ) = ( Tε[˜ q]( τ, y ) − ˜q(τ, y )) −
+
+(
+
+˜m(y) −
+
+∫
+
+> R
+
+˜m(z)˜ q(τ, z )dz 
+
+)
+
+˜q(τ, y ),
+
+where: 
+
+ε = α
+
+√ |m′′ (x0)|
+
+r ˜m(y) = 1
+
+r m
+
+(√ r
+
+|m′′ (x0)| y + x0
+
+)
+
+− 1
+
+r m(x0).
+
+With this change of unknown, we have shifted the local extremum of ˜ m in x = 0 and made it ˜ m(0) = 0 . Consequently, ˜m is not necessarily nonnegative. We have also normalized the local expansion around 0 since ˜m(y) = ± y2
+
+2 + lot. 
+
+Below, we will consider the natural framework in which ε << 1 that is 
+
+α|m′′ (0) |2 << r, (6) so that m is nearly constant on the support of steady solutions for the recombination operator. This amounts to study system (2) or its stationary version (5) with r = 1 ,α = ε, and |m′′ (0) | = 1 . We will thus analyze this case in the paper, replacing ˜ m by m
+
+in what follows. Other important assumptions for the analysis will be made precise and discussed below. To end this section, we recall that we focus in what follows on the denstiy equation (2) (resp. (5)). But the full problem aslo involves the mass equation (3) (resp. (4)). A possible corresponding non-dimensionalization for ρ could be to write : ˜ρ(τ ) = κ
+
+r ρ
+
+( τ
+
+r
+
+)
+
+.
+
+With this particular choice we transform equation (3) (resp. (4)) into a similar equation with a new parameter ˜r = 1 − m(x0)
+
+r
+
+replacing r, the chosen ˜ m and κ replaced with 1 .
+
+# 1.5 Assumptions and notations 
+
+We will consider two sets of assumptions. The first set of assumptions is weaker and is designed to study solutions which are close to the concentrated steady solutions and allow several local extrema of m. It reads 
+
+m′(0) = 0 , m(0) = 0 < min  
+
+> R
+
+m(x) + 1 , m′′ (0) ∈ {± 1}, (H1) 
+
+|m′′′ 
+
+(x)| ≤ Am(1 + |x|p), ∀ x ∈ R, for some p ∈ N∗ and Am ∈ (0 , ∞). (H2) The second condition in (H1) is an admissibility condition on the extremum point which requires that the value of m at the extremum point xm is not too far from its global 
+
+5minimum value. We prove in Appendix A that if this condition is not satisfied, then there is no concentrated steady solution around such a point. We will use several times that (H2) with the condition on m′′ 
+
+(0) appearing in (H1) entail that 
+
+|m′′ 
+
+(x)| ≤ 2Am(1 + |x|p+1 ), ∀ x ∈ R. (H2’) The second set of assumptions enforces that we have a unique admissible minimizer of 
+
+m and is designed to justify that any steady solution to (5) is concentrated. Under these assumptions we will be able to achieve the uniqueness result in a wider class of solutions. It reads 
+
+m(x) ≥ m(0) = 0, and the value of any extremum point of m is greater than 1 . (H3) Notice that the assumption (H3) implies that for any v ∈ (0 , 1], there exists a+ > 0(possibly equal to + ∞) and a− < 0 (possibly equal to −∞ ) such that 
+
+m(x) > v, for all x ∈ (−∞ , a −) ∪ (a+, +∞) and m(z) ≤ v, for all z ∈ [a−, a +). (H3’) We define then 
+
+x− = inf {x < 0 | ∀ y ∈ (x, 0) , m (y) ≤ 1},x+ = sup {x > 0 | ∀ y ∈ (0 , x ), m (y) ≤ 1},
+
+and we assume also that there exists positive constant cm, C m such that 
+
+
+
+|m′′ (x)| ≤ Cm, ∀ x ∈ R and m′′ (0) = 1 ,m′(x) 6 = 0 , ∀ x ∈ (x−, 0) ∪ (0 , x +),m(x) ≥ cmx2 ∀ x ∈ R.
+
+(H4) Since Gaussian distributions have a central role in our results, we define 
+
+Gε(x) = Γ √2 ε = 1
+
+√2πε exp( − x2
+
+2ε2 ).
+
+An important part of our analysis will involve the probability density G1:
+
+G(x) := G1(x) = 1
+
+√2π exp( −x2/2) .
+
+Let also σk, for all k ≥ 0, be the k-th order moment of G(x), that is 
+
+∫
+
+> R
+
+xkG(x) = σk. (7) Considering qε ∈ L2(R, G ε(x)dx ) we define 
+
+Mε, 0 =
+
+∫
+
+> R
+
+qε(y)dy = 1 , Mε, 1 =
+
+∫
+
+> R
+
+yq ε(y)dy, Mε,k =
+
+∫
+
+> R
+
+(y − Mε, 1)kqε(y)dy. (8) 
+
+61.6 Main results 
+
+We first consider the case where 0 is a global minimum point of m, with no other extremum point satisfying the admissibility condition (H1). We then prove that any steady solution to (5) is necessarily concentrated around the point 0, i.e. it has small central moments. More precisely, we have the following result. 
+
+Theorem 1.1 Assume (H3) and (H4) and fix δ ∈ (0 , 1) . Let ε > 0 and qε ∈ L1(R, (1 + 
+
+x2)dx ) be a steady solution to (5) satisfying: 
+
+∫
+
+> R
+
+m(x)qε(x)dx < 1 − δ. (H5) 
+
+(i) We have qε ∈ L1((1 + x2)ℓdx ) for all ℓ ∈ N and there exists positive constants Ck, for 
+
+k = 1 , 2, ... , which may depend on δ but not on ε such that for ε ≤ ε0 small enough, we have 
+
+Mε, 0 = 1 , |Mε, 1| ≤ C1ε2, |M cε,k − εkσk| ≤ Ckε2+ k. (9) 
+
+(ii) Assume additionally that for some positive constants δ′ and A1 independent of ε,
+
+∫
+
+> R
+
+qε(y)e δ′y2 
+
+> ε2
+
+dy ≤ A1. (H6) 
+
+Then, there exists a constant C, independent of ε, such that for ε small enough, 
+
+∥∥∥∥qε(·) − Gε(·)(1 + Mε, 1
+
+ε2 x)
+
+∥∥∥∥L2(R,G −1 
+
+> ε(x)dx )
+
+≤ Cε 2. (10) We point out that (H5) is not a very restrictive condition. One can indeed verify by evaluating (5) at x = 0 and using the positivity of Tε[q] that 
+
+∫
+
+> R
+
+m(y)qε(y)dy < 1. (11) This assumption is also biologically relevant since it ensures that the population size is positive. The second equality in (4) indeed indicates that this is a necessary assumption for ρ to be positive. A key ingredient in the proof of this theorem is the control of the variance Mε, 2 of the steady distribution. The proof of this property relies strongly on the assumption that 0 is the only admissible extremum point of m satisfying (H1). The control of the other central moments then follows using the equations satisfied by these moments which involve a dissipative term, and using the fact that the terms involving the selection term m(x) have small contributions. The proof of (10) relies on a spectral decomposition of the solution in terms of Hermite polynomials, which yield an orthonormal basis of L2(R, G (x)d x). We then study the general case where m might have several admissible extremum points satisfying (H1). We prove that there exists a unique concentrated steady solution around any admissible extremum point, satisfying a similar property to (10). 
+
+7Theorem 1.2 Assume (H1) -(H2) . Then, there exists a constant C such that for all C ≥
+
+C and for all ε ≤ ε0(C) small enough, there exists a steady solution qε ∈ L2(R, G −1 
+
+> ε
+
+(x)dx )
+
+to (5) which satisfies 
+
+∥∥∥∥qε(·) − Gε(·)(1 + Mε, 1
+
+ε2 y)∥∥∥∥L2(R,G −1 
+
+> ε(x)dx )
+
+≤ Cε 2, |Mε, 1| ≤ Cε 2. (12) 
+
+Moreover, the steady solution satisfying the above conditions is unique. Such a steady solution is positive if 0 is a minimum point of m, or if m is even and 0 is a maximum point of m.
+
+Remark 1.3 Notice that, combining the result above with Theorem 1.1, we obtain that under assumptions (H3) –(H4) , for ε small enough, the steady solution is unique in the set of functions satisfying condition (H6) . Moreover, we will show later in the article that condition (12) implies that, for all k ≥ 2, there exists a constant Ck such that 
+
+|M cε,k − Ckεk| ≤ Ckεk+2 .
+
+Theorem 1.2 implies that, when there exist several admissible extremum points of 
+
+m, then there are several steady solutions to problem (5). One could wonder whether the steady solution is unique when there is only one admissible extremum point. In this respect, Theorem 1.1 implies that any steady solution is concentrated with small central moments. Although these properties significantly narrow the range of potential steady solutions, they are still insufficient to establish a uniqueness result in the most general space, for instance the larger space L1((1 + |m(x)|)dx, R) that guarantees all terms in (5) are well defined. One can also wonder whether there might exist non-concentrated steady solutions to problem (5). Theorem 1.1 implies that this is not the case when 0 is the only admissible extremum point of m. However, we believe that when m has several extremum points there might exist non-concentrated steady solutions. Again, let’s consider a situation where m is even and it has one local maximum at 0 and two minimum points at −x1 and 
+
+x1. We also assume that m(0) = 0 > m (x1)+1 and hence 0 is not an admissible extremum point and there does not exist any concentrated steady solution at 0 (see Appendix A). Therefore there exist only two concentrated steady solutions which are non-symmetric, being concentrated around one of the minimum points, −x1 or x1. We next assume that the initial condition qε, 0 in (5) is even. Since m is even, the problem (5) preserves the symmetry of the solution and hence the solution remains symmetric for all times. If we expect that in long time qε converges to a steady solution, then this steady solution has to be symmetric and hence non-concentrated. We expect however that such a steady solution would be unstable. The proof of this result also relies on a spectral decomposition of the problem using Hermite polynomials and the fact that the terms involving the selection term m have small contributions. This decomposition allows us to reduce considerably the nonlinearity of the problem. We then write the problem as the sum of a linear operator, with bounded inverse, and a nonlinear operator, satisfying a contraction property. This allows us to prove the existence of a steady solution satisfying the properties above. The positivity of such a steady solution then follows from the stability result provided in the next theorem: 
+
+8Theorem 1.4 Assume (H1) -(H2) . Then we have two alternatives: (i) Assume that m′′ 
+
+(0) > 0. Then, for any C and ε ≤ ε0(C) sufficiently small, any q0
+
+satisfying 
+
+∥∥∥∥q0(x) − Gε(x)(1 + M1
+
+ε2 x)∥∥∥∥L2(R,G −1 
+
+> ε(x)dx )
+
+≤ Cε 2, M1 =
+
+∫
+
+xq 0(x)dx, |M1| ≤ Cε 2,
+
+(13) 
+
+yields a unique global solution qε ∈ C([0 , ∞); L2(R; G−1 
+
+> ε
+
+(x)dx )) to (2) which satisfies, for some constants A1 and A2,
+
+‖qε(t, ·) − qε(·)‖L2(R,G −1  
+
+> ε(x)d x)
+
+≤ A1 exp( −ε2A2t) ‖qε, 0(·) − qε(·)‖L2(R,G −1  
+
+> ε(x)d x)
+
+. (14) 
+
+(ii) Assume that m′′ 
+
+(0) < 0 and that m is even. Then, for any C > 0 and ε ≤ ε0(C)
+
+sufficiently small, any even initial data q0 ∈ L2(R; G−1 
+
+> ε
+
+(x)dx) satisfying (13) , yields a unique global solution qε ∈ C([0 , ∞); L2(R; G−1 
+
+> ε
+
+(x)dx )) to (2) which satisfies, for some constants A1 and A2,
+
+‖qε(t, ·) − qε(·)‖L2(R,G −1  
+
+> ε(x)d x)
+
+≤ A1 exp( −A2t) ‖qε, 0(·) − qε(·)‖L2(R,G −1  
+
+> ε(x)d x)
+
+.
+
+Notice that the exponential convergence in case (ii) is faster than case (i). The ε2 in front of A2 appears in (14) because of the coefficient α1 which converges slowly in the general case. If we assume that m is even also in the stable case, with an even initial condition, then the coefficient α1 will remain equal to zero for all times and we will have a similar rate of exponential convergence as in case (ii). We also point out that in Theorem 1.2 we obtain existence of a steady solution whatever the sign of m′′ 
+
+(0), we do not consider necessarily a local minimum. However, since the positivity result relies on the stability result above, we obtain the positivity of the steady solutions which are concentrated around maximum points, only when m is even. Indeed, when m is even we can still show that the steady solution is stable when considering only symmetric initial conditions. Since the operator keeps the positivity of the solution, then starting from positive and symmetric initial conditions, we obtain that the solution converges to a positive steady solution. We believe that when m is not even, there would still exist some positive initial conditions which would yield long time convergence to the steady solution and hence implying its positivity. However, it is harder in the general case to identify the appropriate initial conditions with this property. 
+
+# 1.7 State of the art 
+
+Several works in the mathematical community have already addressed the question of jus-tifying the ”Gaussian population” approximation. Our work is closely related to [7, 27] where a similar model with a similar scaling was studied using a perturbative analysis based on the Hopf-Cole transformation. [7] provided an approximation of locally con-centrated steady states of the problem and [27] provided an asymptotic analysis of the time dependent problem, characterizing solutions, with almost Gaussian shapes, which are concentrated around an evolving dominant trait. Our results go beyond the work in [7] in two ways. Firstly, we introduce a new method based on the analysis of moments following [19] and a new Hermite expansion of the solution. We believe that the methods 
+
+9introduced in [19] and this article will facilitate the analysis of more complex models with spatial or temporal heterogeneity. While [7, 27] provide very interesting results on the ho-mogenous problem and a robust method to understand the behavior of solutions to more complex models with heterogeneity [11, 17], the rigorous application of the perturbative approach to more complex models seems hard, if not out of reach. Secondly, we provide a local stability result for the concentrated steady solutions. Moreover, in a particular framework where we expect to have a unique steady solution, we prove that any steady solution is necessarily concentrated. More precisely, our results above provide the existence of steady solutions close to a Gaussian distribution with a multiplicative correction of type Gε(1 + M1 
+
+> ε2
+
+x) in the space of L2(R, G −1 
+
+> ε
+
+(x)d x). The work in [7] also provides a multiplicative correction from the Gaussian distribution. However, their method relies on a Hopf-Cole transformation. They look for approximations of type e− (x−¯x)2+ε2v(x) 
+
+> 2ε2
+
+, with an unknown v ∈ C3(R) such that (1+ |z|)α|Dkv(z)| ∈ L∞(R), for k = 1 , 2, 3. They obtain then the existence of concentrated steady solutions using a perturbative analysis in this space. Theorem 1.1 implies however that the space of L2(R, G −1 
+
+> ε
+
+(x)d x) is also a natural candidate for the study of the solutions. Working with such a space allows us to reduce the nonlinearity of the problem and leads to a more direct proof. A closely related model with a spatial heterogeneity and with a different scaling was studied in [29] (see also [26, 25]) using the analysis of the moments and a contraction property of the reproduction operator in the Wasserstein distance. The method in [19] extended this method to the analysis of the time-dependent version of the model under consideration in this paper. Yet, the analysis of the solutions in L2(R, G −1 
+
+> ε
+
+(x)d x) in the present article is completely new. Considering a model involving an infinitesimal model and a quadratic selection function but considering discrete time, in [8] the authors proved the uniqueness and the stability of the steady solution. Later in [9], the authors studied again a model with discrete time but with a strongly convex selection function. Using a contraction property of a certain Fisher information, they prove the uniqueness of the steady solution, under a decay assumption on the tails of the solution and they prove the stability of such a steady solution under some condition on the initial condition. Other models involving a sexual reproduction have been studied in [15, 28, 12]. In [28] the authors provided an asymptotic analysis on a model with asymmetric reproduction term, where the trait is mostly inherited from the female. [12] studied a model where the trait is coded by quantitative alleles at two loci in a haploid sexually reproducing population. [15] provided a non-expanding transport distance that allowed them to study a model with sexual reproduction but considering constant birth and death rates. Notice that the infinitesimal model is also related to models within kinetic theory involving a collision operator (see for instance [10] on an alignment model). A specificity of the models in evolutionary biology is that the collision operator is combined with a multiplicative operator which is not very common in the kinetic theory. Hermite polynomials have been introduced in the kinetic theory in [18], leading to various consequences in both numerical and theoretical aspects. They have been for instance used to study the solution of the Boltzmann equation (see e.g. [4, Section 8]). They have also been used to provide numerical schemes for different equations in kinetic 
+
+10 theory (see e.g. [3, 2]). Our work is more related to [13] where a multiplicative operator is also involved in the model. To the best of our knowledge, Hermite polynomials have not been used previously in the study of the infinitesimal model (1). 
+
+# 1.8 Plan of the article 
+
+The outline of the paper is as follows. In the next section, we introduce the Hermite poly-nomials and highlight their relevance for our analysis. We rephrase our existence/stability result ( Theorem 1.2 and Theorem 1.4 ) in this setting (see Theorem 2.2 and Theo-rem 2.3 ) and conclude with some properties of Hermite coefficients of the selection rate 
+
+m. 
+
+We split what remains of the paper in terms of the underlying mathematical appraoch. The Section 3 and the Section 4 contain proofs for Theorem 1.1 combining mainly moments arguments possibly linked with their interpretation in terms of Hermite coeffi-cients. The Hilbert structure of the L2(R, G (x)dx ) space is deeply used in the two last sections that contain proofs for Theorem 2.2 and Theorem 2.3 . We postpone tech-nical remarks to the appendix as well as a complementary computation illustrating the optimality of assumption H1. 
+
+# 2 The Hermite-polynomials framework 
+
+In some parts of the article, it will be more convenient to work with T1 instead of Tε. We will hence use the following change of variables 
+
+Nε(t, x ) = εq ε(t, εx ), N ε(x) = εqε(εx ),
+
+which leads to the following problems written in terms of T1:
+
+{
+
+∂tNε(t, x ) = (T1[Nε]( t, x ) − Nε(t, x )) − (m(εx ) − ∫ 
+
+> R
+
+m(εy )Nε(t, y )dy )Nε(t, x ),Nε(0 , x ) = Nε, 0(x) = εq ε, 0(εx ), ∫ 
+
+> R
+
+Nε(0 , y )dy = 1 . (15) 
+
+{
+
+0 = (T1[N ε]( x) − N ε(x)) − (m(εx ) − ∫ 
+
+> R
+
+m(εy )N ε(y)dy )N ε(x),
+
+∫ 
+
+> R
+
+N ε(y)dy = 1 . (16) The probability density G then plays a crucial role in our analysis since it satisfies 
+
+T1[G] = G and it is centered in the local minimum of m. As a consequence, straight-forward computations entail that: 
+
+T1[∂kx G, ∂ lxG] = 1
+
+2k+l ∂k+lx G
+
+for arbitrary ( k, l ) ∈ N2. This is a first cornerstone that indicate a good way of stating our system is to look for solutions to (15) in the form Nε = hG. Indeed, we recall that the family 
+
+Hk(x) = (−1) k
+
+√k!
+
+∂kx G(x)
+
+G(x) , ∀ k ∈ N
+
+11 yields an orthonormal basis of L2(R, G (x)d x). The above computations indicate a good rephrasing of the bilinear mapping T1 is: ˜T1[Hk, H ℓ] = G−1T1[HkG, H ℓG].
+
+Indeed, we have that: ˜T1[Hk, H ℓ] = 
+
+√(k + l)! 
+
+2k+l
+
+Hk+l
+
+√k!√l! . (17) for arbitrary ( k, ℓ ) ∈ N2. We can then extend the formula by bilinearity and continu-ity (see Appendix C) to define a bilinear continuous mappping ˜T1 : L2(R, G (x)dx )2 →
+
+L2(R, G (x)dx ) with the formula: ˜T1[h1, h 2] = G−1T1[h1G, h 2G] ∀ (h1, h 2) ∈ (L2(R, G (x)dx )) 2.
+
+Let N ε = ∑∞ 
+
+> k=0
+
+αkHkG, with N ε solution of (16). One can notice that, since H0 = 1, 
+
+α0 = ∫ 
+
+> R
+
+N ε(x)dx = 1. Moreover, the problem (16) reads as follows in terms of the Hermite coefficients ( αk)k∈N:
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+αk −
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+= m(ε) 
+
+> k
+
+−
+
+[ √k!
+
+2kk−1∑
+
+> l=1
+
+αlαk−l
+
+√l!( k − l)! +
+
+> ∞
+
+∑
+
+> l=1
+
+αkαlm(ε)
+
+> l
+
+]
+
++ ( H1, m εHk)G α1, (18) for all k ≥ 1, with mε(x) = m(εx ) and m(ε) 
+
+> k
+
+:= ( mε, H k)G.Below, we will use the Hilbert structure of L2(R, G (x)dx ) endowed with the canonical scalar product ( ·, ·)G. We use the identification with ℓ2(N0) via the decomposition on the orthonormal basis ( Hk)k∈N0 . In technical parts, we will have to treat separately indices 
+
+k = 0 and k = 1. Hence, we introduce αk = ( αl)l≥k when k = 1 , 2. Correspondingly, we shall write l ∈ N1 (or l ∈ N) for l ≥ 1, respectively l ∈ N2 for l ≥ 2. We keep the classical 
+
+N0 to include the origin k = 0 .
+
+# 2.1 Hermite-polynomial expansions vs moments analysis. 
+
+In summary, we have three formulations for the analysis of (2) and its stationary variant (5). Firstly, we can work with the unknown qε solution to the nondimensional system. Below, we denote Mε,k the moments and M cε,k the centered moments of qε :
+
+Mε,k =
+
+∫
+
+> R
+
+xkqε(x)dx, M ck =
+
+∫
+
+> R
+
+(x − M1)kqε(x)dx ∀ k ∈ N.
+
+Secondly, we have the rescaled unknown Nε. Its moments are denoted with tildas: 
+
+˜Mε,k =
+
+∫
+
+> R
+
+ykN (x)dx, ˜M cε,k =
+
+∫
+
+> R
+
+(y − ˜Mε, 1)kN (y)dy ∀ k ∈ N.
+
+Notice that the moments of Nε relate to the moments of qε in the following way 
+
+Mε, 1(t) = ε ˜Mε, 1(t), M cε,k (t) = εk ˜M cε,k (t), for all k ∈ N2. (19) 
+
+12 Finally, we have the multiplier pertubation of the Gaussian h of Nε so that Nε = hG. 
+
+This latter unknown belongs to L2(R, G (x)dx ) and will be expanded in terms of Hermite polynomials. The Hermite coefficients ( αk)k∈N0 of the multiplier perturbation h are related to the central moments of its associated solution Nε. Indeed, we recall that H0 = 1, H1 = x and hence 
+
+α0 =
+
+∫
+
+> R
+
+h(x)G(x)d x = ˜M0 = 1 , α1 =
+
+∫
+
+> R
+
+xh (x)G(x)d x = ˜M1.
+
+Higher coefficients measure the distance between Nε to the Gaussian profile in a certain sense given in Lemma 2.1 below. In this statement σk refers to Gaussian moments (7). 
+
+Lemma 2.1 Let h ∈ L2(R, G (x)dx ) and N = hG. We have, with obvious notations to denote moments: 
+
+αk = 1
+
+√k!
+
+( ˜M ck − σk − R(k)), ∀ k ≥ 2,
+
+with 
+
+R(k) = ∑k−1
+
+> l=0
+
+(kl
+
+)˜M k−l 
+
+> 1
+
+(−1) k−l ∑lj=0 l! 
+
+> (l−j)! √j!
+
+αj σl−j
+
++ ∑k−1  
+
+> j=1 k!
+> (k−j)! √j!
+
+αj σk−j .
+
+Proof . Given k ≥ 2, we compute 
+
+˜M ck =
+
+∫
+
+> R
+
+(x − ˜M1)kN (x)dx 
+
+=
+
+> k
+
+∑
+
+> l=0
+
+˜M k−l 
+
+> 1
+
+(−1) k−l
+
+(kl
+
+) ∫ 
+
+> R
+
+xlN (t, x )dx 
+
+=
+
+> k
+
+∑
+
+> l=0
+
+˜M k−l 
+
+> 1
+
+(−1) k−l
+
+(kl
+
+) +∞∑
+
+> j=0
+
+αj
+
+∫
+
+> R
+
+xlHj (x)G(x)dx. 
+
+We next notice that, whatever the value of l, j ,
+
+∫
+
+> R
+
+xlHj (x)G(x)dx =
+
+∫
+
+> R
+
+xl(−1) j
+
+√j! ∂jxG(x)dx 
+
+= 1j≤l
+
+∫
+
+> R
+
+l(l − 1) . . . (l − j + 1) 
+
+√j! xl−j G(x)dx 
+
+= 1j≤l
+
+l!
+
+(l − j)! √j! σl−j .
+
+We deduce that 
+
+˜M ck =
+
+> k
+
+∑
+
+> l=0
+
+˜M k−l 
+
+> 1
+
+(−1) k−l
+
+(kl
+
+) l∑
+
+> j=0
+
+l!
+
+(l − j)! √j! αj σl−j
+
+=σk + √k! αk +
+
+> k−1
+
+∑
+
+> l=0
+
+˜M k−l 
+
+> 1
+
+(−1) k−l
+
+(kl
+
+) l∑
+
+> j=0
+
+l!
+
+(l − j)! √j! αj σl−j
+
++
+
+> k−1
+
+∑
+
+> j=1
+
+k!
+
+(k − j)! √j! αj σk−j .
+
+13 This concludes the proof. 
+
+# 2.2 Rephrasing our main results with Hermite-polynomial expansions. 
+
+In order to obtain our results on the local existence, uniqueness and stability of a steady state, it will be convenient to work with the formulation of the problem given in (15). Such local results will be given working with a certain set, defined as follows, for given 
+
+ε > 0 and C > 0, 
+
+U(ε)(C) := 
+
+{
+
+N =
+
+> ∞
+
+∑
+
+> k=0
+
+αkHkG s.t. α0 = 1 |α1| ≤ Cε ‖α2‖ℓ2(N2) ≤ Cε 2
+
+}
+
+.
+
+This set represents a small neighborhood of G in L2(R, G −1(x)dx ). In particular the gap between the central moments of the elements of U(ε)(C) and the central moments of the Gaussian G is small. One can indeed verify using Lemma 2.1 that for any N ∈ U (ε)(C), the central moments of N satisfy, for some positive constants Ck,
+
+˜M0 = 1 , | ˜M1| ≤ Cε, | ˜M ck − σk| ≤ Ckε2.
+
+Moreover, one can verify that N ε ∈ U(ε)(C), is equivalent with, qε(x) = 1 
+
+> ε
+
+N ε( x 
+
+> ε
+
+) ∈
+
+L2(R, G −1 
+
+> ε
+
+(x)dx ) and 
+
+∥∥∥∥qε(y) − Gε(y)
+
+(
+
+1 + Mε, 1
+
+ε2 y
+
+)∥ ∥∥∥L2(R,G −1 
+
+> ε(x)dx )
+
+≤ Cε 2, Mε, 0 = 1 , |Mε, 1| ≤ Cε 2.
+
+We obtain existence and uniqueness of stationary solutions to (16) in the set U(ε)(C). 
+
+Theorem 2.2 Assume (H1) -(H2) . There exists C > 0 such that, for all C > C and 
+
+0 < ε < ε 0(C) sufficiently small, there is a unique stationary solution Nε to (16) in 
+
+U(ε)(C).
+
+Working in U(ε)(C) does not guarantee that our solution is positive. This latter prop-erty yields from the stability analysis since we recall [19] that positive initial data yield positive solutions to the time-dependent problem. Hence, our second main result concerns the stability of such stationary solutions. In this analysis, we restrict again to solutions in the form hG with h ∈ L2(R, G (x)dx ), or equivalently with N ∈ L2(R, G −1(x)dx ). We prove: 
+
+Theorem 2.3 Assume (H1) -(H2) . Then we have two alternatives: (i) Assume that m′′ 
+
+(0) > 0. Then, for any C > 0 and ε ≤ ε0(C) sufficiently small, any N0 ∈ U (ε)(C) yields a unique global solution Nε = hεG to (15) with hε ∈
+
+C([0 , ∞); L2(R; G(x)dx )) which satisfies, for some constants A1 and A2,
+
+∥∥∥∥
+
+Nε(t, ·) − N ε(·)
+
+G
+
+∥∥∥∥L2(R,G (x)d x)
+
+≤ A1 exp( −A2ε2t)
+
+∥∥∥∥
+
+Nε, 0(·) − N ε(·)
+
+G
+
+∥∥∥∥L2(R,G (x)d x)
+
+.
+
+14 (ii) Assume that m′′ 
+
+(0) < 0 and that m is even. For any C > 0 and ε small, any even initial data N0 ∈ U (ε)(C) yields a unique global solution Nε = hεG to (15) with 
+
+hε ∈ C([0 , ∞); L2(R; G(x)dx )) which satisfies, for some constants A1 and A2,
+
+∥∥∥∥
+
+Nε(t, ·) − N ε(·)
+
+G
+
+∥∥∥∥L2(R,G (x)d x)
+
+≤ A1 exp( −A2t)
+
+∥∥∥∥
+
+Nε, 0(·) − N ε(·)
+
+G
+
+∥∥∥∥L2(R,G (x)d x)
+
+.
+
+Consequently, in these two cases, the steady solution given in Theorem 2.2 is positive. 
+
+We point out again the discrepancy between the rate of convergence we obtain in item (ii) and the convergence rate in item (i). This is again due to the fact that item (i) allows non-zero first coefficient α1 in contrast with item (ii). Notice that Theorems 1.2 and 1.4 then follow from Theorems 2.2 and 2.3. 
+
+# 2.3 Hermite-polynomial expansion of source term m
+
+We note that mε ∈ L2(R, G (x)d x) under the sole condition that it increases polynomially at infinity. This entails that m(ε)0 = ( m(ε) 
+
+> k
+
+)k≥0 ∈ ℓ2(N) whatever ε > 0. The behavior of this sequence when ε → 0 is the content of the following computation: 
+
+Lemma 2.4 There exists a constant Km ∈ (0 , ∞) for which: 
+
+‖mε‖L2(R,G (x)d x) ≤ Kmε2, ∀ ε ∈ (0 , 1) .
+
+in particuliar |m(ε) 
+
+> k
+
+| ≤ Kmε2 for all k ∈ N0. In case k = 1 we have even the better estimate: 
+
+|m(ε)1 | ≤ Kmε3, ∀ ε ∈ (0 , 1) .
+
+Proof . Recalling that m(0) = m′(0) = 0 and (H2’), we have: 
+
+‖mε‖2 
+
+> L2(R,G (x)d x)
+
+=
+
+∫
+
+> R
+
+|mε(x) − mε(0) |2G(x)d x
+
+≤ ε4
+
+∫
+
+> R
+
+x4
+
+[∫ 10
+
+(1 − t)m′′  
+
+> ε
+
+(tεx )d t
+
+]2
+
+G(x)d x
+
+≤ 4ε4A2
+
+> m
+
+∫
+
+> R
+
+x4(1 + |x|p+1 )2G(x)d x
+
+≤ C(p, A m)ε4.
+
+Eventually, we have proven that there exists a constant Km independent of ε for which: 
+
+‖mε‖L2(R,G (x)d x) ≤ Kmε2 , ∀ ε ∈ (0 , 1) . (20) Regarding m(ε)1 we have a little better. Indeed, we recall that we computed H1(x) = x. 
+
+Hence, 
+
+m(ε)1 =
+
+∫
+
+> R
+
+(mε(x) − mε(0)) xG (x)d x. 
+
+15 However, we have m′(0) = 0 so that, using the taylor expansion of m in 0 to order 3 there holds: 
+
+mε(x) = m′′ 
+
+(0) ε2x2
+
+2 + ε3x3
+
+∫ 10
+
+(1 − t)2
+
+2 m(3) (εxt )d t
+
+and 
+
+m(ε)1 = m′′ 
+
+(0) ε2
+
+2
+
+∫
+
+> R
+
+x3G(x)d x + ε3
+
+∫
+
+> R
+
+x4
+
+∫ 10
+
+(1 − t)2
+
+2 m(3) (εxt )d tG (x)d x
+
+By symmetry, the first term on the right-hand side vanishes and we conclude using as-sumption (H2) that: 
+
+|m(ε)1 | ≤ Kmε3, ∀ ε ∈ (0 , 1) . (21) 
+
+Remark. By generalizing the argument, we can prove a similar bound for arbitrary coefficients m(ε) 
+
+> k
+
+provided that the successive derivatives of m enjoy a polynomial growth condition similar to (H2). Indeed, given k ∈ N we use the Taylor expansion of mε in 0 to order k − 1 with integral remainder. We obtain that there exists a polynomial Pk of degree 
+
+≤ k − 1 such that: 
+
+mε(x) = Pk(εx ) + εkxk
+
+∫ 10
+
+(1 − t)k−1
+
+(k − 1)! m(k)(εxt )d t
+
+where the polynomial growth of m(k) entails that: 
+
+∣∣∣∣∫ 10
+
+(1 − t)k−1
+
+(k − 1)! m(k)(εxt )d t
+
+∣∣∣∣ ≤ A(k) 
+
+> m
+
+(1 + |x|)pk .
+
+Since Pk is of degree less than (k − 1) , we have: 
+
+(Pk (εx ), H k)G = 0 
+
+and : 
+
+|m(ε) 
+
+> k
+
+| ≤ A(k) 
+
+> m
+
+εk
+
+∫
+
+> R
+
+(1 + |x|)pk HkG ≤ A(k) 
+
+> m
+
+εk
+
+[∫ 
+
+> R
+
+(1 + |x|)2pG(x)d x
+
+] 1
+
+> 2
+
+.
+
+Eventually, we conclude that there exists a constant C(k) 
+
+> m
+
+independent of ε for which: 
+
+|m(ε) 
+
+> k
+
+| ≤ C(k) 
+
+> m
+
+εk ∀ k ≥ 1 ∀ ε < 1. (22) 
+
+Nevertheless, the constant C(k) 
+
+> m
+
+depends a priori on k and we should enforce a more stringent assumption to get uniform bounds in k (which would be useless below anyway). 
+
+For technical purpose below, we provide here also another estimate related to mε.
+
+Lemma 2.5 Let l ∈ N. There exists Kl such that: 
+
+‖mεHl‖L2(R,G (x)dx) ≤ Klε2, ∀ ε ∈ (0 , 1) .
+
+Proof . Let l ∈ N. Arguing as in the previous proof, we have: 
+
+‖mεHl‖2 
+
+> L2(R,G (x)dx)
+
+=
+
+∫
+
+> R
+
+|m(εx )|2|Hl(x)|2G(x)d x
+
+≤ Kmε4
+
+∫
+
+> R
+
+|x|2(1 + |x|p+1 )2|Hl(x)|2G(x)d x
+
+The last integral is bounded by comparing the decay of Hl and G at infinity. 
+
+16 3 The concentration property of the steady states: the proof of Theorem 1.1-(i) 
+
+We recall that we treat from now on equation (5) with r = 1 and α = ε > 0. Our proof splits in two phases. Firstly, we show that the variance and higher moments of a possible solution have the right scaling. This enables us to prove that Mε, 1 has the right scaling and the expected expansion for Me, 2. With this technical material at-hand, we provide a proof for Theorem 1.1-(i). 
+
+# 3.1 Preliminaries. 
+
+As mentioned in introduction, an important ingredient in the proof of Theorem 1.1-(i) is to show that the phenotypic variance Mε, 2 is small. We prove indeed that: 
+
+Proposition 3.1 Assume (H3) , and let qε ∈ L1(R, (1 + x2l)dx ), for all l ∈ N, be a solution of (5) , with its central moments defined in (8) .(i) We have 
+
+M cε, 2 ≤ ε2. (23) 
+
+(ii) Assume additionally (H5) . Then, for all k ≥ 2, there exists a positive constant Ck,independent of ε, such that 
+
+M |c| 
+
+> ε,k
+
+:= 
+
+∫
+
+> R
+
+|x − Mε, 1|kqε(x)dx ≤ Ckεk. (24) 
+
+Proof . We start with the proof of item (i). This proof relies strongly on Assumption (H3), that implies that 0 is the only admissible extremum point satisfying (H1). We multiply (5) by ( x − Mε, 1) and integrate to obtain 
+
+∫
+
+> R
+
+xm (x)qε(x)dx = Mε, 1
+
+∫
+
+> R
+
+m(x)qε(x)dx. (25) We next multiply (5) by ( x − Mε, 1)2 and integrate to obtain, using the equality above, 
+
+(∫ 
+
+> R
+
+(x − Mε, 1)2Tε[qε]( x) − M cε, 2
+
+)
+
+=
+
+∫
+
+> R
+
+(x − Mε, 1)2m(x)qε(x)dx 
+
+−
+
+(∫ 
+
+m(x)qε(x)dx 
+
+) (∫ 
+
+(x − Mε, 1)2qε(x)dx 
+
+)
+
+=
+
+∫
+
+> R
+
+x2m(x)qε(x)dx −
+
+(∫ 
+
+m(x)qε(x)dx 
+
+) (∫ 
+
+x2qε(x)dx 
+
+)
+
+− 2Mε, 1
+
+∫
+
+xm (x)qε(x)dx + 2 M 2
+
+> ε, 1
+
+∫
+
+m(x)qε(x)dx 
+
+=
+
+∫
+
+> R
+
+x2m(x)qε(x)dx −
+
+(∫ 
+
+> R
+
+m(x)qε(x)dx 
+
+) (∫ 
+
+> R
+
+x2qε(x)dx 
+
+)
+
+.
+
+One can verify that ∫
+
+> R
+
+(x − Mε, 1)2Tε[qε]( x)dx = ε2
+
+2 + M cε, 2
+
+2 ,
+
+17 and hence 
+
+( ε2 
+
+> 2
+
+− M cε, 2
+
+> 2
+
+)
+
+= ∫
+
+> R
+
+(x − Mε, 1)2m(x)qε(x)dx − (∫ m(x)qε(x)dx ) (∫ (x − Mε, 1)2qε(x)dx )
+
+= ∫ 
+
+> R
+
+x2m(x)qε(x)dx − (∫  
+
+> R
+
+m(x)qε(x)dx ) (∫  
+
+> R
+
+x2qε(x)dx ) .
+
+(26) In order to prove (23) it is hence enough to show that the right-hand side is positive, that is: (∫ 
+
+> R
+
+m(x)qε(x)dx 
+
+) (∫ 
+
+> R
+
+x2qε(x)dx 
+
+)
+
+≤
+
+∫
+
+> R
+
+x2m(x)qε(x)dx. 
+
+This is where Assumption (H3) plays an important role. To prove the inequality above, we introduce the following probability density (recall that m ≥ 0 in this section): 
+
+pε(x) = m(x)qε(x)
+
+∫ 
+
+> R
+
+m(y)qε(y)dy , ∀ x ∈ R.
+
+We have, because of (25) regarding the second identity: 
+
+∫
+
+> R
+
+pε(x)dx =
+
+∫
+
+> R
+
+qε(x)dx = 1 ,
+
+∫
+
+> R
+
+xp ε(x)dx =
+
+∫
+
+> R
+
+xqε(x)dx = Mε, 1. (27) We also notice that pε(x)
+
+qε(x) = m(x)
+
+∫ 
+
+> R
+
+m(y)qε(y)dy .
+
+Inequality (11) entails that we can set v := ∫ 
+
+> R
+
+m(y)qε(y)dy ∈ (0 , 1) into (H3’). We obtain that there exist x∗, x ∗ ∈ (0 , +∞] such that 
+
+pε(x) ≤ qε(x), in [ −x∗, x ∗] and qε(x) ≤ pε(x), in ( −∞ , −x∗] ∪ [x∗, +∞). (28) We show that these properties imply that 
+
+∫
+
+> R
+
+x2qε(x)dx ≤
+
+∫
+
+> R
+
+x2pε(x)dx. 
+
+Let’s suppose the contrary. Then, we can assume, without loss of generality up to ex-changing the role of R+ by R− in the following arguments, that 
+
+∫
+
+> R+
+
+x2pε(x)dx < 
+
+∫
+
+> R+
+
+x2qε(x)dx. 
+
+We rewrite this inequality as below 
+
+∫ +∞
+
+> x∗
+
+x2(pε(x) − qε(x))dx < 
+
+∫ x∗
+
+> 0
+
+x2(qε(x) − pε(x))dx. 
+
+Using (28) we obtain that the terms in the integrals above are nonnegative. Let’s suppose that x∗ 6 = + ∞. We deduce that 
+
+x∗
+
+∫ +∞
+
+> x∗
+
+x(pε(x) − qε(x))dx ≤ x∗
+
+∫ x∗
+
+> 0
+
+x(qε(x) − pε(x))dx, 
+
+18 (x∗)2
+
+∫ +∞
+
+> x∗
+
+(pε(x) − qε(x))dx ≤ (x∗)2
+
+∫ x∗
+
+> 0
+
+(qε(x) − pε(x))dx. 
+
+Since x∗ > 0, the two inequalities entail respectively: 
+
+∫
+
+> R+
+
+xp ε(x)dx < 
+
+∫
+
+> R+
+
+xqε(x)dx, 
+
+∫
+
+> R+
+
+pε(x)dx < 
+
+∫
+
+> R+
+
+qε(x)dx. 
+
+Note that these inequalities hold also trivially if x∗ = + ∞. We next use (27) to find that 
+
+∫
+
+> R+
+
+xp ε(−x)dx < 
+
+∫
+
+> R+
+
+xqε(−x)dx, 
+
+∫
+
+> R+
+
+pε(−x)dx > 
+
+∫
+
+> R+
+
+qε(−x)dx. (29) We recall that 
+
+pε(−x) ≤ qε(−x), for all 0 ≤ x ≤ x∗, qε(−x) < p ε(−x), for all x > x ∗.
+
+Note that in view of (29), x∗ may not be equal to + ∞ nor equal to 0. We then obtain that 
+
+∫ x∗
+
+> 0
+
+xp ε(−x)dx +
+
+∫ +∞
+
+> x∗
+
+xp ε(−x)dx < 
+
+∫ x∗
+
+> 0
+
+xqε(−x)dx +
+
+∫ +∞
+
+> x∗
+
+xqε(−x)dx 
+
+that we rewrite as below 
+
+∫ +∞
+
+> x∗
+
+x(pε(−x) − qε(−x))dx < 
+
+∫ x∗
+
+> 0
+
+x(qε(−x) − pε(−x))dx. 
+
+Notice again that similarly to above the terms in the integrals above are nonnegative. We deduce that 
+
+x∗
+
+∫ +∞
+
+> x∗
+
+(pε(−x) − qε(−x))dx < x ∗
+
+∫ x∗
+
+> 0
+
+(qε(−x) − pε(−x))dx. 
+
+We deduce that ∫
+
+> R+
+
+pε(−x)dx < 
+
+∫
+
+> R+
+
+qε(−x)dx. 
+
+This is in contradiction with the second equation in (29). This conclude the proof of (i). We turn now to the proof of (ii). This proof relies on the analysis of the equation on M cε, 2l, which includes a dissipative term. Assumption (H5) and the fact that m is nonnegative, together with a fine analysis of the terms coming from the reproduction term lead to the result. Assumption (H5) implies that there exists l0 > 0 such that 
+
+∫
+
+m(x)qε(x)dx < 1 − 1
+
+22l0+1 − δ
+
+2 .
+
+We first prove that, for all l ≥ max( l0, 2) + 1, 
+
+M cε, 2l ≤ C2lε2l.
+
+19 To this end, we multiply (5) by ( x − Mε, 1)2l and integrate with respect to x to obtain that 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)2lΓε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dz − M cε, 2l
+
+=
+
+∫
+
+> R
+
+(x − Mε, 1)2lm(x)qε(x)dx −
+
+(∫ 
+
+> R
+
+m(x)qε(x)dx 
+
+)
+
+M cε, 2l.
+
+We deduce, using (H3), that 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)2lΓε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dz ≥
+
+(
+
+1 −
+
+∫
+
+> R
+
+m(x)qε(x)dx 
+
+)
+
+M cε, 2l
+
+≥
+
+( 1
+
+22l0+1 + δ
+
+2
+
+)
+
+M cε, 2l.
+
+(30) We next provide an approximation of the l.h.s. A1 of the inequality above. Let’s denote by ε2i ˜σ2i, the 2 i’s moment of the normal distribution Γ ε. We then obtain by expanding little by little: 
+
+A1 := 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)2lΓε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx 
+
+=
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(
+
+x − y1 + y2
+
+2 + y1 + y2
+
+2 − Mε, 1
+
+)2l
+
+Γε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx 
+
+=
+
+> l
+
+∑
+
+> i=0
+
+(2l
+
+2i
+
+) ε2i ˜σ2i
+
+22l−2i
+
+∫
+
+> R
+
+∫
+
+> R
+
+(
+
+y1 − Mε, 1 + y2 − Mε, 2
+
+)2l−2i
+
+qε(y1)qε(y2)dy 1dy 2
+
+=
+
+> l
+
+∑
+
+> i=0
+
+(2l
+
+2i
+
+) ε2i ˜σ2i
+
+22l−2i
+
+> 2l−2i
+
+∑
+
+> k=0
+
+(2l − 2ik
+
+)
+
+M cε,k M cε, 2l−2i−k.
+
+We gather in this expression, the smaller and larger moments. For this, we note that 
+
+M cε, 0 = 1, M cε, 1 = 0 and that ˜σ0 = 1 and we consider that 
+
+• for i = l : (2l
+
+2i
+
+) ε2i ˜σ2i
+
+22l−2i
+
+> 2l−2i
+
+∑
+
+> k=0
+
+(2l − 2ik
+
+)
+
+M cε,k M cε, 2l−2i−k = ε2l ˜σ2l,
+
+• for i = l − 1
+
+(2l
+
+2i
+
+) ε2i ˜σ2i
+
+22l−2i
+
+> 2l−2i
+
+∑
+
+> k=0
+
+(2l − 2ik
+
+)
+
+M cε,k M cε, 2l−2i−k =
+
+( 2l
+
+2l − 2
+
+)
+
+ε2l−2˜σ2l−2
+
+M cε, 2
+
+2 ,
+
+• in the terms i = 0 , ..., l − 2, 
+
+∑
+
+> k=0 ,1,2l−2i−1,2l−2i
+
+(2l − 2ik
+
+)
+
+M cε,k M cε, 2l−2i−k = 2 M cε, 2l−2i.
+
+20 We infer that 
+
+A1 = ε2l ˜σ2l +
+
+( 2l
+
+2l − 2
+
+)
+
+ε2l−2 ˜σ2l−2
+
+M cε, 2
+
+2+
+
+> l−2
+
+∑
+
+> i=0
+
+(2l
+
+2i
+
+)
+
+ε2i ˜σ2i
+
+1
+
+22l−2i
+
+> 2l−2i−2
+
+∑
+
+> k=2
+
+(2l − 2ik
+
+)
+
+M cε,k M cε, 2l−2i−k
+
++ 1
+
+22l−1 M cε, 2l +
+
+> l−2
+
+∑
+
+> i=1
+
+(2l
+
+2i
+
+) ε2i ˜σ2i
+
+22l−2i−1 M cε, 2l−2i.
+
+(31) We next notice that, using an interpolation argument, for all j such that 2 ≤ j ≤ 2l − 2, we have 
+
+M cε,j ≤ (M cε, 2
+
+) 2l−j 
+
+> 2l−2
+
+(M cε, 2l
+
+) j−2 
+
+> 2l−2
+
+.
+
+We deduce, thanks to (23), that 
+
+M cε,j ≤ ε 2l−j
+
+> l−1
+
+(M cε, 2l
+
+) j−2 
+
+> 2l−2
+
+.
+
+We use this inequality in (31) to obtain that 
+
+A1 ≤ ε2l ˜σ2l +
+
+( 2l
+
+2l − 2
+
+) ˜σ2l−2ε2l
+
+2+
+
+> l−2
+
+∑
+
+> i=0
+
+(2l
+
+2i
+
+) ε2i ˜σ2i
+
+22l−2i
+
+> 2l−2i−2
+
+∑
+
+> k=2
+
+(2l − 2ik
+
+)
+
+ε 2l+2 i
+
+> l−1
+
+(M cε, 2l
+
+) 2l−2i−4
+
+> 2l−2
+
++ 1
+
+22l−1 M cε, 2l +
+
+> l−2
+
+∑
+
+> i=1
+
+(2l
+
+2i
+
+)
+
+ε2i ˜σ2i
+
+1
+
+22l−2i−1 ε 2i
+
+> l−1
+
+(M cε, 2l
+
+) l−i−1
+
+> l−1
+
+≤ ε2l
+
+(˜σ2l + l(2 l − 1) 
+
+2 ˜σ2l−2
+
+)
+
++ 1
+
+22l−1 M cε, 2l
+
++
+
+> l−2
+
+∑
+
+> i=0
+
+(2l
+
+2i
+
+) ˜σ2i
+
+22l−2i
+
+(2l−2i−2∑
+
+> k=2
+
+(2l − 2ik
+
+))
+
+ε 2l+2 il 
+
+> l−1
+
+(M cε, 2l
+
+) 2l−2i−4
+
+> 2l−2
+
++
+
+> l−2
+
+∑
+
+> i=1
+
+(2l
+
+2i
+
+) ˜σ2i
+
+22l−2i−1 ε 2il 
+
+> l−1
+
+(M cε, 2l
+
+) l−i−1 
+
+> l−1
+
+.
+
+We next remark that (2 l−2i−4) /(2 l−2) ∈ (0 , 1) for all i ∈ { 0, l −2} (resp. ( l−i−1) /l −1 ∈
+
+(0 , 1) for all i ∈ { 1, . . . , l − 2), hence we may then the Young’s inequality in the last two lines above to find that, for arbitrary c0 > 0, there is a constant ˜K(l, c 0) depending on l, 
+
+the ( ˜σ2i)i=1 ,...,l and c0 such that: 
+
+A1 ≤ ε2l ˜K(l, c 0) + 
+
+( 1
+
+22l−1 + c0
+
+)
+
+M cε, 2l.
+
+Choosing next c0 small enough we obtain a constant K2l depending only on l, possibly in a complicated way, such that 
+
+A1 ≤ K2lε2l +
+
+( 1
+
+22l−1 + δ
+
+4
+
+)
+
+M cε, 2l. (32) 
+
+21 Plugging (32) in the left-hand side of (30) and using l ≥ l0 + 1 we deduce that 
+
+M cε, 2l ≤ 4K2l
+
+δ ε2l.
+
+Note that using H¨ older inequality, the inequality above implies that 
+
+M |c| 
+
+> ε,k
+
+≤ Ckεk,
+
+for all 2 ≤k ≤ l and thus for all k ≥ 2 since l is arbitrary large. 
+
+We next prove the following Lemma. 
+
+Lemma 3.2 Let’s assume (H3) –(H4) –(H5) . Then, for ε ≤ ε0 small enough, we have 
+
+|M cε, 2 − ε2| ≤ Cε 4, Mε, 1 ≤ Cε, 
+
+with C a constant that does not depend on ε.
+
+Proof . In order to obtain the precise estimate on M cε, 2 in Lemma 3.2, we use again (26), but this time we provide a more precise approximation of the r.h.s using a Taylor expansion on m and the previous estimates (23)–(24). We recall that (26) reads 
+
+( ε2
+
+2 − M cε, 2
+
+2
+
+)
+
+=
+
+∫
+
+> R
+
+(x − Mε, 1)2m(x)qε(x)dx − M cε, 2
+
+∫
+
+> R
+
+m(x)qε(x)dx. 
+
+We next use a Taylor expansion on m as follows 
+
+m(x) = m(X) + ( x − X)m′(X) + ( x − X)2rm 
+
+> 1
+
+[X]( x), (33) with 
+
+rm 
+
+> 1
+
+[X]( x) = 
+
+∫ 10
+
+(1 − σ)m′′ (X + σ(x − X)) dσ satisfying |rm 
+
+> 1
+
+[X]( x)| ≤ Cm, ∀ x ∈ R,
+
+by (H4). This leads to 
+
+∫
+
+> R
+
+(x − Mε, 1)2m(x)qε(x)dx = m(Mε, 1)
+
+∫
+
+> R
+
+(x − Mε, 1)2qε(x)dx + m′(Mε, 1)
+
+∫
+
+> R
+
+(x − Mε, 1)3qε(x)dx 
+
++
+
+∫
+
+> R
+
+(x − Mε, 1)4rm 
+
+> 1
+
+[Mε, 1]( x)dx 
+
+= m(Mε, 1)M cε, 2 + m′(Mε, 1)M cε, 3 +
+
+∫
+
+> R
+
+(x − Mε, 1)4rm 
+
+> 1
+
+[Mε, 1]( x)qε(x)dx. 
+
+We then obtain thanks to (24) and Assumption (H4) that 
+
+∣∣∣∣∫
+
+> R
+
+(x − Mε, 1)2m(x)qε(x)dx − m(Mε, 1)M cε, 2 − m′(Mε, 1)M cε, 3
+
+∣∣∣∣ ≤ Cε 4.
+
+Similarly, we compute using (33) 
+
+∫
+
+> R
+
+m(x)qε(x)dx = m(Mε, 1) + 
+
+∫
+
+> R
+
+(x − Mε, 1)2rm 
+
+> 1
+
+[Mε, 1]( x)qε(x)dx, 
+
+22 and again thanks to (24) and Assumption (H4) we obtain that 
+
+∣∣∣∣M cε, 2
+
+∫
+
+> R
+
+m(x)qε(x)dx − m(Mε, 1)M cε, 2
+
+∣∣∣∣ ≤ Cε 4.
+
+Introducing these inequalities in (26) and applying (24) with k = 3, we conclude that 
+
+∣∣∣∣
+
+ε2
+
+2 − M cε, 2
+
+2
+
+∣∣∣∣ ≤ | m′(Mε, 1)M cε, 3| + Cε 4 ≤ Cε 3. (34) We next rewrite the equality (25) as below 
+
+∫
+
+> R
+
+(x − Mε, 1)m(x)qε(x)dx = 0 .
+
+Using again (33) we obtain that 
+
+m′(Mε, 1)M cε, 2 +
+
+∫
+
+> R
+
+(x − Mε, 1)3rm 
+
+> 1
+
+[Mε, 1]( x)qε(x)dx = 0 .
+
+We deduce again that ∣∣m′(Mε, 1)M cε, 2
+
+∣∣ ≤ Cε 3.
+
+Since |M cε, 2 − ε2| ≤ Cε 3, we find that for ε sufficiently small 
+
+|m′(Mε, 1)| ≤ Cε. (35) We next notice that ∫
+
+> R
+
+m(x)qε(x)dx = m(Mε, 1) + O(ε2),
+
+which implies that for ε small enough 
+
+m(Mε, 1) < 1 − δ/ 2.
+
+This inequality together with (35) and Assumption (H4) implies that 
+
+|Mε, 1| ≤ Cε. 
+
+We also deduce using (34) that 
+
+|M cε, 2 − ε2| ≤ Cε 4.
+
+# 3.2 The proof of Theorem 1.1–(i). 
+
+We divide the proof in three parts : (0) integrability properties of qε, (i) the estimate on 
+
+M cε,k , (ii) the estimate on |Mε, 1|.(0) Integrability properties of qε. By definition, if qε is a solution of (5), we have: 
+
+(
+
+1 + m(x) −
+
+∫
+
+> R
+
+m(y)qε(y)dy 
+
+)
+
+qε = Te[qε].
+
+23 We note here that combining assumption (H5) with (H4), we have 
+
+(
+
+1 + m(x) −
+
+∫
+
+> R
+
+m(y)qε(y)dy 
+
+)
+
+≥ c(1 + x2).
+
+so that: 
+
+qε(x) ≤ C
+
+1 + x2 |Tε[qε]( x)| ∀ x ∈ R. (36) At this point, we obtain our result by induction on ℓ. We already have the property for 
+
+ℓ = 1 by assumption. If the property holds for l ∈ N, then we may apply Proposition B.1 to obtain that Tε[qε] ∈ L1((1+ x2)ldx ). Plugging in (36) entails that qε ∈ L1((1+ x2)(l+1) dx ).
+
+(i) The estimate on M cε,k . We prove the estimate on M cε,k by induction. The estimate is already proved for k = 2. We assume that the estimate holds for all k ≤ k0 − 1. We prove it for k = k0 following similar arguments as in the proof of Lemma 3.2 on the estimate on M cε, 2.We multiply (5) by ( x − Mε, 1)k and integrate to obtain 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)kΓε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dz − M cε, 2l
+
+=
+
+∫
+
+> R
+
+(x − Mε, 1)km(x)qε(x)dx −
+
+(∫ 
+
+> R
+
+m(x)qε(x)dx 
+
+)
+
+M cε,k .
+
+(37) Let’s first estimate the right hand side. Using (33), evaluated at X = Mε, 1, we write 
+
+∫
+
+> R
+
+(x−Mε, 1)km(x)qε(x)dx = m(Mε, 1)M cε,k +m′(Mε, 1)M cε,k +1 +
+
+∫
+
+> R
+
+(x−Mε, 1)k+2 rm 
+
+> 1
+
+[Mε, 1]( x)qε(x)dx, 
+
+and hence, since |Mε, 1| ≤ Cε and |M cε,j | ≤ Cj εj ,
+
+∣∣∣∣∫
+
+> R
+
+(x − Mε, 1)km(x)qε(x)dx − m(Mε, 1)M cε,k 
+
+∣∣∣∣ ≤ Dkεk+2 .
+
+We obtain similarly 
+
+∫
+
+> R
+
+m(x)qε(x)dx = m(Mε, 1) + m′(Mε, 1)Mε, 1 +
+
+∫
+
+> R
+
+(x − Mε, 1)2rm 
+
+> 1
+
+[Mε, 1]( x)qε(x)dx, 
+
+and hence ∣∣∣∣∫
+
+> R
+
+m(x)qε(x)dx − m(Mε, 1)
+
+∣∣∣∣ ≤ D0ε2.
+
+We deduce that, up to changing the constant Dk,
+
+∣∣∣∣∫
+
+> R
+
+(x − Mε, 1)km(x)qε(x)dx − (
+
+∫
+
+> R
+
+m(x)qε(x)dx )M cε,k 
+
+∣∣∣∣ ≤ Dkεk+2 . (38) Recall that σk is the k-th order moment of G and εk ˜σk is the k-th order moment of Γ ε.Note that 
+
+σk = 2 k/ 2˜σk =
+
+{ k! 
+
+> 2k/ 2(k/ 2)!
+
+for k even ,
+
+0 for k odd . (39) 
+
+24 For the l.h.s. of (37), we compute 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)k0 Γε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx 
+
+=
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(
+
+x − y1 + y2
+
+2 + y1 + y2
+
+2 − Mε, 1
+
+)k0
+
+Γε
+
+(
+
+x − y1 + y2
+
+2
+
+)
+
+qε(y1)qε(y2)dy 1dy 2dx 
+
+=
+
+> k0
+
+∑
+
+> i=0
+
+(k0
+
+i
+
+) εi ˜σi
+
+2k0−ik0−i∑
+
+> j=0
+
+(k0 − ij
+
+)
+
+M cε,j M cε,k 0−i−j .
+
+We next use the assumption of induction to deduce that 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)k0 Γε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx 
+
+= 1
+
+2k0−1 M cε,k 0 + εk0
+
+> k0
+
+∑
+
+> i=1
+
+(k0
+
+i
+
+)˜σi
+
+1
+
+2k0−ik0−i∑
+
+> j=0
+
+(k0 − ij
+
+)
+
+σj σk0−i−j
+
++ εk0 1
+
+2k0 ˜σ0
+
+> k0−1
+
+∑
+
+> j=1
+
+(k0
+
+j
+
+)
+
+σj σk0−j + O(εk0+2 ).
+
+In these sums, we note that j and k0 −j (resp. i, j and k0 −i−j) cannot be simultenaously even if k0 is odd. As a direct consequence, since the odd central moments of a Normal distribution vanish, if k0 is odd we obtain that 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)k0 Γε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx = 1
+
+2k0−1 M cε,k 0 + O(εk0+2 ),
+
+and hence 
+
+M cε,k 0 = O(εk0+2 ).
+
+Let’s now assume that k0 is even and hence there exists l0 such that k0 = 2 l0. We have, using again the equality above, (39) and the fact that the odd central moments of a Normal distribution vanish, 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)2l0 Γε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx − 1
+
+22l0−1 M cε, 2l0
+
+= ε2l0 1
+
+22l0
+
+> l0
+
+∑
+
+> i=1
+
+(2l0
+
+2i
+
+)
+
+σ2i2il0−i∑
+
+> j=0
+
+(2l0 − 2i
+
+2j
+
+)
+
+σ2j σ2l0−2i−2j
+
++ ε2l0 1
+
+22l0 σ0
+
+> l0−1
+
+∑
+
+> j=1
+
+(2l0
+
+2j
+
+)
+
+σ2j σ2l0−2j + O(εk0+2 ).
+
+We next use (39) to obtain that 
+
+(2l0
+
+2i
+
+) ( 2l0 − 2i
+
+2j
+
+)
+
+σ2iσ2j σ2l0−2i−2j = σ2l0
+
+(l0
+
+i
+
+) ( l0 − ij
+
+)
+
+.
+
+25 We deduce that 
+
+∫
+
+> R
+
+∫
+
+> R
+
+∫
+
+> R
+
+(x − Mε, 1)2l0 Γε
+
+(x − y1 + y2
+
+2
+
+)qε(y1)qε(y2)dy 1dy 2dx − 1
+
+22l0−1 M cε, 2l0
+
+= ε2l0 σ2l0
+
+1
+
+22l0
+
+> l0
+
+∑
+
+> i=1
+
+(l0
+
+i
+
+)
+
+2il0−i∑
+
+> j=0
+
+(l0 − ij
+
+)
+
++ ε2l0 σ2l0
+
+1
+
+22l0
+
+> l0−1
+
+∑
+
+> j=1
+
+(l0
+
+j
+
+)
+
++ O(εk0+2 )= ε2l0 σ2l0
+
+1
+
+22l0
+
+[
+
+2l0 (2 l0 − 1) + 2 l0 − 2
+
+]
+
++ O(εk0+2 ) = ε2l0 σ2l0 (1 − 1
+
+22l0−1 ) + O(εk0+2 ).
+
+We then combine (37), (38) and the equation above to obtain that 
+
+M cε,k 0 = εk0 σk0 + O(εk0+2 ).
+
+(ii) The estimate on |Mε, 1|. Similarly to the proof of Lemma 3.2 we use the following equality ∫
+
+> R
+
+(x − Mε, 1)m(x)qε(x)dx = 0 .
+
+We next use a higher order Taylor expansion for m(x) around Mε, 1
+
+m(x) = m(Mε, 1) + m′(Mε, 1)( x − Mε, 1) + m′′ (Mε, 1)( x − Mε, 1)2 + rm 
+
+> 2
+
+[Mε, 1]( x)( x − Mε, 1)3.
+
+Combining the equalities above, we obtain 
+
+m′(Mε, 1)M cε, 2 + m′′ (Mε, 1)M cε, 3 = O(ε4).
+
+From the estimate in step (i) we deduce that 
+
+m′(Mε, 1)M cε, 2 = O(ε4).
+
+From Lemma 3.2 we deduce that 
+
+m′(Mε, 1) = O(ε2),
+
+and hence 
+
+Mε, 1 = O(ε2).
+
+# 4 The proof of Theorem 1.1–(ii) 
+
+In this section we prove Theorem 1.1–(ii). Let qε be a steady solution to (5) and N ε(x) = 
+
+εqε(εx ). We will prove that 
+
+∥∥∥N ε(x) − G(x)(1 + ˜Mε, 1 x)
+
+∥∥∥L2(R,G −1(x)dx ) ≤ Cε 2, (40) 
+
+26 which implies (10). To this end, we will use the expansion of N ε in terms of Hermite polynomials, that is Nε = hεG, with hε ∈ L2(R, G (x)dx ) that we can expand as follows 
+
+hε(x) = 
+
+> +∞
+
+∑
+
+> i=0
+
+αiHi(x).
+
+Since α0 = 1 and α1 = ˜Mε, 1, H0(x) = 1, H1(x) = x, proving (40) is equivalent with showing +∞∑
+
+> k=2
+
+α2 
+
+> k
+
+≤ Cε 4. (41) We split the proof of Theorem 1.1-(ii) into two steps. We first obtain separately informations on moments of hε. We postpone the proof of Theorem 1.1-(ii) to the last part of this section. 
+
+# 4.1 Crude bounds on moments of hε
+
+From item (i), we already have (9) on the moments of qε. We translate at first this estimate in terms of the Hermite coefficients ( αk)k∈N in the lemma below. We emphasize that such estimates are interesting by themselves, but they hold for fixed k only so that we will need a different analysis afterwards to complete our result. 
+
+Lemma 4.1 For all k ≥ 1, there exists a constant Ck such that 
+
+|α1| ≤ C1ε, |αk | ≤ Ckε2.
+
+Proof . We first notice thanks to (9) and (19) that 
+
+|α1| = | ˜Mε, 1| ≤ C1ε. 
+
+We next prove the result for k ≥ 2 by induction and using Lemma 2.1. Note that, for 
+
+k = 2, 
+
+α2 = 1
+
+√2
+
+( ˜M cε, 2 − σ2 − R(2) ), R(2) = ˜M 2 
+
+> ε, 1
+
+− 2 ˜Mε, 1α1 = − ˜M 2
+
+> ε, 1
+
+.
+
+Using again (9) and (19) we deduce that |α2| ≤ C2ε2. We now suppose that, for all 2 ≤ k ≤ k0, |αk| ≤ Ckε2. we prove the result for k = k0 + 1. In view of Lemma 2.1, (9) and (19) it is enough to prove that |R(k0 + 1) | ≤ Ck0+1 ε2.Since for all 2 ≤ k ≤ k0, |αk| ≤ Ckε2 and since | ˜Mε, 1| ≤ C1ε, we deduce that 
+
+R(k0 + 1) = − (k0 + 1) ˜Mε, 1 (k0α1σk0−1 + α0σk0 ) + ( k0 + 1) α1σk0 + O(ε2)=( k0 + 1)( α1 − ˜Mε, 1)σk0 + O(ε2)where O(ε2) stands for a quantity dominated by Ck0 ε2. We next use that α1 = ˜Mε, 1, to deduce that |R(k0 + 1) | ≤ Ck0+1 ε2. This ends the proof. 
+
+To compute ℓ2-norm of the coefficients ( αk)k∈N, we will need the following lemma that yields a control on the fourth moments of the solution. 
+
+27 Lemma 4.2 Assume (H3) , (H4) and (H6) . Then, there exists a positive constant A3
+
+such that, for ε small enough, 
+
+∫
+
+> R
+
+x4 N 2 
+
+> ε
+
+(x)
+
+G(x) dx ≤ A3. (42) 
+
+Proof . We recall that 
+
+qε = Tε[qε]
+
+1 + m − ∫ 
+
+> R
+
+m(y)qε(y)dy. 
+
+Assumption (H4) and Lemma 3.2 imply that 
+
+∫
+
+> R
+
+m(y)qε(y)dy ≤ Cm
+
+∫
+
+> R
+
+y2qε(y)dy ≤ Cε 2.
+
+Therefore, for ε small enough, ∫ 
+
+> R
+
+m(y)qε(y)dy ≤ 1/2. Using this property and since 
+
+m(x) ≥ 0 we obtain that, for ε small enough, 
+
+qε ≤ 2Tε[qε], (43) We deduce from (43) and the definition of Tε that 0 ≤ qε(x) ≤ 2
+
+ε√π
+
+∫ ∫
+
+exp 
+
+(
+
+− (x − y1+y2 
+
+> 2
+
+)2 + δ′y21 + δ′y22
+
+ε2
+
+)
+
+qε(y1)e δ′y21 
+
+> ε2
+
+qε(y2)e δ′y22 
+
+> ε2
+
+dy 1dy 2.
+
+One can verify that 
+
+−x2 − (y1 + y2)2
+
+4 + x(y1 + y2) − δ′(y21 + y22) ≤ − 2δ′
+
+1 + 2 δ′ x2 ∀(x, y 1, y 2) ∈ R3,
+
+and hence 
+
+qε(x) ≤ 2
+
+ε√π e− 
+
+> 2δ′
+> 1+2 δ′x2
+> ε2
+
+( ∫
+
+> R
+
+qε(y1)e δ′y21 
+
+> ε2
+
+dy 1
+
+)2
+
+≤ 2A21
+
+ε√π e−  
+
+> 2δ′
+> 1+2 δ′x2
+> ε2
+
+. (44) If δ′ ≥ 1/2 then, 2δ′ 
+
+> 1+2 δ′
+
+≥ 1/2 and hence, we deduce from the assumed integral bound that there exists a constant A2 independent of ε such that we have the pointwise bound: 
+
+qε(x) ≤ A2
+
+ε e− 3x2 
+
+> 8ε2
+
+, ∀ x ∈ R. (45) If we are in the case δ′ < 1/2, we notice that (44) implies that for any constant δ′′ < 2δ′ 
+
+> 1+2 δ′
+
+,there exists a constant A′ 
+
+> 1
+
+such that 
+
+∫
+
+> R
+
+qε(y)e δ′′ y2 
+
+> ε2
+
+dy ≤ A′
+
+> 1
+
+.
+
+Moreover, the mapping δ′ 7 → 2δ′ 
+
+> 1+2 δ′
+
+− δ′ is positive on [0 , 1/2] and vanishes in 0 and 1 /2only. Consequently, we can iterate the computations above a finite number of times to obtain that there exists a constant A2 for which 
+
+qε(x) ≤ A2
+
+ε e− 3x2 
+
+> 8ε2
+
+, ∀ x ∈ R.
+
+The inequality (42) then follows thanks to N ε(x) = εqε(εx ). 
+
+28 4.2 Main proof 
+
+We are now ready to prove (41). We will find an estimate of type 
+
+> L
+
+∑
+
+> k=2
+
+|αk|2 ≤ Cε 4, for ε ≤ ε0, with ε0 small enough ,
+
+and C independent of L. We will prove this property by induction. Since this property is already true for L = 2 (see Lemma 4.1), we assume that, for L ≥ 2, 
+
+> L
+
+∑
+
+> k=2
+
+|αk|2 ≤ Cε 4, for ε ≤ ε0, with ε0 small enough , (46) with C and ε0 to be chosen later. We then prove that 
+
+> L+1
+
+∑
+
+> k=2
+
+|αk|2 ≤ Cε 4.
+
+For k = 2 , · · · L + 1, we multiply (18) by αk and sum over k to obtain 
+
+> L+1
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+α2 
+
+> k
+
+=
+
+> L+1
+
+∑
+
+> k=2
+
+αk
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
++
+
+> L+1
+
+∑
+
+> k=2
+
+αkm(ε) 
+
+> k
+
+−
+
+> L+1
+
+∑
+
+> k=2
+
+√k!αk
+
+2kk−1∑
+
+> l=1
+
+αlαk−l
+
+√l!( k − l)! 
+
+−
+
+> L+1
+
+∑
+
+> k=2
+> ∞
+
+∑
+
+> l=1
+
+α2
+
+> k
+
+αlm(ε) 
+
+> l
+
++
+
+> L+1
+
+∑
+
+> k=2
+
+αk (H1, m εHk)G α1.
+
+We control the terms separately. On the left-hand side, we have: 
+
+> L+1
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+α2 
+
+> k
+
+≤ ( − 1
+
+2 + ( H0, m εH0)G
+
+) L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+.
+
+Moreover, thanks to Assumptions (H3), (H4) and (33) we have 
+
+∫
+
+> R
+
+mε(x)G(x)dx ≤ Cmε2,
+
+and hence 
+
+> L+1
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+α2 
+
+> k
+
+≤ ( − 1
+
+2 + Cmε2) L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+.
+
+We next split the right-hand side RHS 1 + RHS 2 + RHS 3 + RHS 4 + RHS 5. Concerning 
+
+29 the first term, we have: 
+
+|RHS 1| ≤ ∣∣
+
+> L+1
+
+∑
+
+> k=2
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+αk
+
+∣∣
+
+=
+
+∣∣∣∫
+
+> R
+
+mε(x)
+
+(+∞∑
+
+> l=2
+
+αlHl(x)
+
+) ( L+1 ∑
+
+> k=2
+
+αkHk(x)
+
+)
+
+G(x)dx 
+
+∣∣∣
+
+≤
+
+∫
+
+> R
+
+m2 
+
+> ε
+
+(x)
+
+(+∞∑
+
+> l=2
+
+αlHl(x)
+
+)2
+
+G(x)dx 
+
+ 
+
+> 1/2
+
+∫
+
+> R
+
+(L+1 ∑
+
+> k=2
+
+αkHk
+
+)2
+
+G(x)dx 
+
+
+
+> 1/2
+
+=
+
+∫
+
+> R
+
+m2 
+
+> ε
+
+(x)
+
+(+∞∑
+
+> l=2
+
+αlHl(x)
+
+)2
+
+G(x)dx 
+
+ 
+
+> 1/2
+
+(L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+.
+
+We notice that, using that m′′ is uniformly bounded, 
+
+∫
+
+> R
+
+m2
+
+> ε
+
+(x)
+
+(+∞∑
+
+> l=2
+
+αlHl(x)
+
+)2
+
+G(x)dx ≤ C3ε4
+
+∫
+
+> R
+
+x4
+
+(+∞∑
+
+> l=2
+
+αlHl(x)
+
+)2
+
+G(x)dx 
+
+≤ C3ε4
+
+∫
+
+> R
+
+x4
+
+( N ε(x)
+
+G(x) − α0H0(x) − α1H1(x)
+
+)2
+
+G(x)dx. 
+
+We are now in a position to apply Lemma 4.2. We obtain that there exists a constant B1
+
+independent of ε such that 
+
+∫
+
+> R
+
+m2
+
+> ε
+
+(x)
+
+(+∞∑
+
+> l=2
+
+αlHl(x)
+
+)2
+
+G(x)dx ≤ B21 ε4,
+
+and hence 
+
+|RHS 1| ≤ B1ε2
+
+(L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+.
+
+We also compute, using Lemma 2.4, 
+
+|RHS 2| ≤ 
+
+∣∣∣∣∣
+
+> L+1
+
+∑
+
+> k=2
+
+m(ε) 
+
+> k
+
+αk
+
+∣∣∣∣∣ ≤
+
+(L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2 (L+1 ∑
+
+> k=2
+
+(mε, H k)2
+
+> G
+
+)1/2
+
+≤ Kmε2
+
+(L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+.
+
+We leave aside RHS 3 and we next compute 
+
+|RHS 4| =
+
+∣∣∣
+
+> L+1
+
+∑
+
+> k=2
+
+α2 
+
+> k
+
+(mε,
+
+> ∞
+
+∑
+
+> l=1
+
+αlHl)G
+
+∣∣∣ = ( L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)∣∣∣∫
+
+> R
+
+mε(x)(N ε(x) − G(x)) dx 
+
+∣∣∣.
+
+Using again Assumptions (H3), (H4) and (33) we have 
+
+∫
+
+> R
+
+mε(x)G(x)dx ≤ Cmε2,
+
+∫
+
+> R
+
+mε(x)N ε(x)dx ≤ Cmε2
+
+∫
+
+> R
+
+x2N ε(x)dx. 
+
+30 We deduce that there exists a constant B2 such that 
+
+|RHS 4| ≤ B2ε2
+
+> L+1
+
+∑
+
+> k=2
+
+α2
+
+> k
+
+.
+
+For the last term of the r.h.s. we have 
+
+|RHS 5| ≤ | α1|
+
+∣∣∣∣∣
+
+> L+1
+
+∑
+
+> k=2
+
+(H1, m εHk)G αk
+
+∣∣∣∣∣
+
+≤ | α1|
+
+(L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2 (L+1 ∑
+
+> k=2
+
+(H1mε, H k)2
+
+> G
+
+)1/2
+
+≤ | α1|
+
+(+∞∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+‖mεH1‖L2(R,G (x)dx )
+
+≤ K1C1ε3
+
+(+∞∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+,
+
+where we have used Lemma 2.5. It remains only to control the cubic term RHS 3. This is the only term for the control of which we will use the induction assumption. We have indeed (46) and consequently, for all k such that 2 ≤ k ≤ L we have |αk | ≤ Cε 2. We also recall that |α1| ≤ C1ε. Enforcing that C ≥ C1 without restriction, we compute that: 
+
+|RHS 3| ≤ 
+
+∣∣∣∣∣
+
+> L+1
+
+∑
+
+> k=2
+
+√k!αk
+
+2kk−1∑
+
+> l=1
+
+αlαk−l
+
+√l!( k − l)! 
+
+∣∣∣∣∣
+
+≤ 1
+
+2√2 |α2|α21 + C2ε3
+
+> L+1
+
+∑
+
+> k=3
+
+|αk|
+
+2kk−1∑
+
+> l=1
+
+√(kl
+
+)
+
+≤ 1
+
+2√2 |α2|α21 + C2ε3
+
+> L+1
+
+∑
+
+> k=3
+
+√k |αk|
+
+2k
+
+(k−1∑
+
+> l=1
+
+(kl
+
+))1/2
+
+≤ 1
+
+2√2 |α2|α21 + C2ε3
+
+> L+1
+
+∑
+
+> k=3
+
+√k |αk|
+
+2k/ 2
+
+≤ C21
+
+2√2 |α2|ε2 + C2ε3
+
+(L+1 ∑
+
+> k=3
+
+α2
+
+> k
+
+)1/2 (+∞∑
+
+> k=3
+
+k
+
+2k
+
+)1/2
+
+≤ B3
+
+√2 |α2|ε2 + C2 B3
+
+√2 ε3
+
+(L+1 ∑
+
+> k=3
+
+α2
+
+> k
+
+)1/2
+
+.
+
+We next choose ε0 such that C2ε0 ≤ 1. We deduce that for all ε ≤ ε0,
+
+|RHS 3| ≤ B3
+
+√2 ε2
+
+|α2| +
+
+(L+1 ∑
+
+> k=3
+
+α2
+
+> k
+
+)1/2 ≤ B3ε2
+
+(L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+.
+
+31 Combining the inequalities above we deduce that 
+
+( 1
+
+2 − (Cm + B2)ε2
+
+) (L+1 ∑
+
+> k=2
+
+α2
+
+> k
+
+)1/2
+
+≤ (B1 + Km + K1C1ε + B3
+
+)ε2.
+
+Choosing C large enough – wrt constants B1, K m and B3 that are independant of L –and ε0 small enough – wrt Cm, B 2, K 1, C 1 that are also independant of L – we obtain the result. 
+
+# 5 Proof of Theorem 2.2 
+
+We look now for a solution to (16) in the form N ε = hεG where hε ∈ L2(R, G (x)d x) and 
+
+ε is sufficiently small. Note that ultimately we are interested in a positive solution Nε
+
+corresponding to a population density. However, for the moment we focus on the proof of Theorem 2.2 which does not require a positivity condition. The positivity of the steady solution will follow from Theorem 2.3. We recall that in Section 2, we transformed (16) into a problem on ℓ2(N) by writing: 
+
+h =
+
+> ∞
+
+∑
+
+> k=0
+
+αkHk.
+
+Noticing that N ε being of unit mass translates into α0 = 1 , we infered the infinite di-mensional system of equations (18) in terms of ( αk)k≥1. We want to construct a unique solution to this system such that: 
+
+|α1| ≤ Cε |α2| ≤ Cε 2,
+
+with a C sufficiently large and an ε sufficiently small. Below we assume C and ε are given and we only point out restrictions on these quantities for our result to hold true. To avoid incompatibility requirements, we introduce other notations Km for a constant depending on m and C and K for a constant independent of relevant parameter. To prepare computations we provide a preliminary analysis of (18) in order to design a resolution method. Indeed, in case k = 1 , we have 2 k−1 − 1 = 0 . Hence, the factor of 
+
+α1 in the left-hand side of (18) is ( H0, m εH0) that is of order ε2, while it will remain of order 1 for k ≥ 2. It is then not possible to use this term as a pivot to compute α1 while it is possible for αk (k ≥ 2). This remark motivates the following splitting to solve (18). Firstly, assuming α2 is given, we infer that α1 solves: 
+
+m(ε)1 α21 +
+
+[
+
+(H0, m εH0)G − (H1, m εH1)G +
+
+> ∞
+
+∑
+
+> l=2
+
+αlm(ε)
+
+> l
+
+]
+
+α1
+
+= m(ε)1 +
+
+> ∞
+
+∑
+
+> l=2
+
+αl (Hl, m εH1)G . (47) A central technical result in our analysis then reads: 
+
+Lemma 5.1 Let C > 0, there exists a constant Km depending only on m such that, for 
+
+ε sufficiently small (depending on C) the following properties hold true: 
+
+32 (i) Given α2 ∈ Bℓ2(N2)(0 , Cε 2) there is a unique α1 ∈ (−Kmε, K mε) solution to (47) .(ii) The induced mapping α2 → α1[α2] that is defined on Bℓ2(N2)(0 , Cε 2) is Km-Lipschitz. 
+
+We remark that, in terms of α1, the equation (47) is quadratic if m(ε)1 6 = 0 while it degenerates into a linear equation when m(ε)1 = 0 . The linear case arises when m is even which we assume in our analysis when m has a maximum in 0 . However, in this latter context, our approach restricts to even solutions for which α1 vanishes by assumption. We postpone the proof of Lemma 5.1 to a further subsection. Secondly, assuming that α1 is given, the system of equations (18) for k ≥ 2 reads: 
+
+L[α2] = m(ε)2 − Q[α2]where, L and Q are defined by 
+
+Lk[α2] := 
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+αk −
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+Qk[α2] := 
+
+√k!
+
+2kk−1∑
+
+> l=1
+
+αlαk−l
+
+√l!( k − l)! + αk
+
+> ∞
+
+∑
+
+> l=1
+
+αl(Hl, m εH0)G
+
+− α1(H1, m εHk)G.
+
+for k ≥ 2. Our rewriting of the set of equations for k ≥ 2 relies on the remark that we have in our system source terms depending on m(ε), linear terms in α2 and bilinear terms in α1. We point out that, despite α1 is a priori a fixed quantity so that the associated terms could be considered as source terms or linear terms, we treat them as nonlinearities since in what follows, we assume that α1 = α1[α2].
+
+For legibility, we dropped the ε-dependencies for L, Q. Key results concerning these mappings are the following two lemmas. Concerning L, we have: 
+
+Lemma 5.2 Let ε be sufficiently small. For arbitrary Q2 ∈ ℓ2(N2) there is a unique 
+
+α2:= L−1[Q2] ∈ ℓ2(N2) satisfying 
+
+• L[α2] = Q2
+
+• |α2| ≤ 2k0+2 |Q2| with k0 ∈ N to be made precise depending on m only. 
+
+Assuming that α1 = α1[α2] in the formulas defining Q, we obtain: 
+
+Lemma 5.3 There exists a constant Km depending only on m such that, for ε sufficiently small, depending on C, the mapping Q[·] is well-defined on Bℓ2(N2)(0 , Cε 2) with 
+
+• Q[¯ 0] | ≤ Kmε3
+
+• α1 7 → Q[α1] is Kmε-Lipschitz on Bℓ2(N2)(0 , Cε 2).
+
+Again the proofs of these technical results are postponed to a further subsection. We explain at first how they entail Theorem 2.2. 
+
+33 5.1 Proof of Theorem 2.2. 
+
+Let us denote by the same symbol Km the max of the Km constructed in Lemma 5.3, Lemma 5.1 and Lemma 2.4. Let then C = 2 k0+3 Km and fix C > C, ε sufficiently small so that Lemma 5.2 and Lemma 5.3 hold true. 
+
+Existence. We obtain existence of a solution by a fixed-point argument. Let T :
+
+Bℓ2(N2)(0 , Cε 2) → ℓ2(N2) be defined by: 
+
+T [α2] = L−1[m(ε)2 − Q[α2]] Let α2 ∈ Bℓ2(N2)(0 , Cε 2). Applying Lemma 5.3, we have 
+
+|Q[α1]] | ≤ Km(C + 1) ε3,
+
+while Lemma 2.4 ensures that |m(ε)| ≤ Kmε2. Combining with Lemma 5.2, we obtain that: 
+
+|T [α2]| ≤ 2k0+2 (Kmε2 + Km(C + 1) ε3) .
+
+Consequently, choosing ε sufficiently small, we infer that T maps Bℓ2(N2)(0 , Cε 2) into itself. Furthermore, given β(1) and β(2) in Bℓ2(N2 )(0 , Cε 2), applying successively the Lipschitz properties of Q and the boundedness of the right inverse L−1, we infer: 
+
+‖T [ ¯β(2) ] − T [ ¯β(1) ]‖ℓ2 (N1) ≤ 2k0+2 Kmε‖ ¯β(1) − ¯β(2) ‖ℓ2(N1).
+
+In particular, T is a contraction up to restricting the size of ε. We conclude that T admits a unique fixed-point on Bℓ2(N2)(0 , Cε 2) that we denote α(ε)1 = ( α(ε) 
+
+> k
+
+)k≥2. We denote the corresponding α(ε)1 = α1[αε
+
+> 2
+
+].
+
+We set now: 
+
+hε = H0 +
+
+> ∞
+
+∑
+
+> k=1
+
+α(ε) 
+
+> k
+
+Hk
+
+By construction hε ∈ L2(R, G (x)dx ). Furthermore, for arbitrary k ≥ 0 we can define: 
+
+γk = ( mεhε, H k)G = ( H0, m εHk)G +
+
+> ∞
+
+∑
+
+> l=1
+
+α(ε) 
+
+> l
+
+(Hl, m εHk)G ,
+
+We can then recast the k-th equation of (18) into: 
+
+γk =
+
+(
+
+˜T [hε] −
+
+(
+
+1 −
+
+∫
+
+> R
+
+mε(x)hε(x)G(x)dx 
+
+)
+
+hε, H k
+
+)
+
+> G
+
+∀ k ≥ 1. (48) In particular, thanks to Lemma C.1, we have ( γk)k∈N ∈ ℓ2(N), and then ∑ 
+
+> k
+
+γkHk ∈
+
+L2(R, G (x)dx ). Let denote π = ( ∑ 
+
+> k
+
+γkHk − mεhε)G. Since mε grows polynomially, we have that x 7 → π(x) exp( η|x|) ∈ L1(R) for all η > 0 so that the Fourier transform ˆ π of π is 
+
+34 holomorphic on C. By construction, all derivatives of ˆ π vanish in the origin showing that ˆπ and thus π vanish. Identifying Hermite coefficients, we conclude that: ( ˜T [hε]( x) − hε(x)) −
+
+(
+
+mε(x) −
+
+∫
+
+> R
+
+mεhεG(x)dx 
+
+)
+
+hε(x) = 0 ∀ x ∈ R.
+
+Uniqueness. Let Nε be a solution to (15) in U(ε)(C). We can then construct hε and the associated α(ε) ∈ ℓ2(N). By assumption we have that α(ε)2 ∈ Bℓ2(N2)(0 , Cε 2). Multiplying the equation for hε with Hk, we infer that α(ε) satisfies (18) so that α(ε)1 is indeed a fixed point of the above T that is a contraction. This ends the proof. In the following subsections, we give proofs for the technical lemmas : Lemma 5.2, Lemma 5.1 and Lemma 5.3. 
+
+# 5.2 Proof of Lemma 5.2 
+
+Let Q2 ∈ ℓ2(N2) and remark that we are interested in solving the system: 
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+αk −
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+= Qk ∀ k ≥ 2, (49) where the unknown is α2 ∈ ℓ2(N2).
+
+Remark 5.4 In this system, one could expect to approximate the left-hand side by the diagonal operator with coefficients (1 /2k−1 −1) k≥2 that is the operator obtained by deleting the ε-dependent terms. However, we lack a uniform bound of the perturbation in terms of ε. We should then use this remark for small k only and use that the second part of the left-hand side corresponds to the operator h 7 → mεh that is controlled by assumption (H1) .Thanks to this assumption, we can introduce a number k0 ∈ N (depending on m but not on ε) such that: 
+
+mε + 1 ≥ 1
+
+2k0+1 ∀ ε > 0. (50) 
+
+Uniqueness. Firstly, we investigate uniqueness of a α2 ∈ ℓ2(N2) such that L[α2] = Q2.
+
+By difference, this amounts to show the unique solution with Q2 = 0 is α2 = 0 .
+
+So let’s suppose α2 ∈ ℓ2(N2) is a solution with Q2 = 0 . Multiplying by αk each 
+
+k-equation and summing over k, we obtain: 
+
+> ∞
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+α2 
+
+> k
+
+−
+
+> ∞
+
+∑
+
+> k=2
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+αk = 0 . (51) 
+
+35 Concerning the second term, we have: 
+
+> ∞
+
+∑
+
+> k=2
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+αk
+
+=
+
+∫
+
+> R
+
+mε(x)|
+
+> ∞
+
+∑
+
+> l=2
+
+αlHl(x)|2G(x)dx 
+
+=
+
+> k0+1
+
+∑
+
+> l=2
+> k0+1
+
+∑
+
+> l′=2
+
+αlαl′
+
+∫
+
+> R
+
+mεHl(x)Hl′ (x)G(x)dx + 2 
+
+> k0+1
+
+∑
+
+> l=2
+> ∞
+
+∑
+
+> l′=k0+2
+
+αlαl′
+
+∫
+
+> R
+
+mεHl(x)Hl′ (x)G(x)dx 
+
++
+
+∫
+
+> R
+
+mε(x)|
+
+> ∞
+
+∑
+
+> l=k0+2
+
+αlHl(x)|2G(x)dx, 
+
+where ∫
+
+> R
+
+mε(x)|
+
+> ∞
+
+∑
+
+> l=k0+2
+
+αlHl(x)|2G(x)dx ≥ − 
+
+(
+
+1 − 1
+
+2k0+1 
+
+) ∞∑
+
+> l=k0+2
+
+|αl|2.
+
+Combining a Cauchy Schwarz inequality and Lemma 2.4 we have: 
+
+> k0+1
+
+∑
+
+> l=2
+> ∞
+
+∑
+
+> l′=k0+2
+
+αlαl′
+
+∫
+
+> R
+
+mε(x)Hl(x)Hl′ (x)G(x)dx 
+
+≥ − 
+
+(∫
+
+> R
+
+m2
+
+> ε
+
+(x)|
+
+> k0+1
+
+∑
+
+> l=2
+
+αlHl(x)|2G(x)dx 
+
+) 1
+
+> 2
+
+
+
+> ∞
+
+∑
+
+> l=k0+2
+
+|αl|2
+
+
+
+> 1
+> 2
+
+≥ − ε2Km
+
+(k0+1 ∑
+
+> l=2
+
+|αl|2
+
+) 1
+
+> 2
+
+
+
+> ∞
+
+∑
+
+> l=k0+2
+
+|αl|2
+
+
+
+> 1
+> 2
+
+≥ − ε2 Km
+
+2
+
+> k0+1
+
+∑
+
+> l=2
+
+|αl|2 − ε2 Km
+
+2
+
+> ∞
+
+∑
+
+> l=k0+2
+
+|αl|2.
+
+with a constant Km depending only on m (also through k0). Similarly, we obtain 
+
+> k0+1
+
+∑
+
+> l=2
+> k0+1
+
+∑
+
+> l′=2
+
+αlαl′
+
+∫
+
+> R
+
+mε(x)Hl(x)Hl′ (x)G(x)dx 
+
+≥ − 
+
+(∫
+
+> R
+
+mε(x)2|
+
+> k0+1
+
+∑
+
+> l=2
+
+αlHl(x)|2G(x)dx 
+
+) 1 
+
+> 2
+
+(k0+1 ∑
+
+> l=2
+
+|αl|2
+
+) 1
+
+> 2
+
+≥ − ε2Km
+
+(k0+1 ∑
+
+> l=2
+
+|αl|2
+
+)
+
+.
+
+Eventually, we conclude that 
+
+−
+
+> ∞
+
+∑
+
+> k=2
+
+( ∞∑
+
+> l=2
+
+αlHl, m εHk
+
+)
+
+> G
+
+αk ≤
+
+(
+
+1 + Kmε2 − 1
+
+2k0+1 
+
+) ∞∑
+
+> l=k0+2
+
+|αl|2 + 2 Kmε2
+
+> k0+1
+
+∑
+
+> l=2
+
+|αl|2.
+
+(52) 
+
+36 As for the first term of (51), we obtain similarly: 
+
+> ∞
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+α2
+
+> k
+
+≤ − 
+
+(1
+
+2 − Kmε2
+
+) k0+1 ∑
+
+> k=2
+
+|αl|2 −
+
+(
+
+1 − 1
+
+2k0+2 − Kmε2
+
+) ∞∑
+
+> k=k0+2
+
+|αl|2. (53) Plugging (52) and (53) into (51), taking small ε, we infer that : 1
+
+4
+
+> k0+1
+
+∑
+
+> l=2
+
+|αl|2 + 1
+
+41
+
+2k0+1 
+
+> ∞
+
+∑
+
+> l=k0+2
+
+|αl|2 ≤ 0,
+
+that is ¯ α2 = 0 
+
+Existence. We proceed now with constructing a candidate α2 = L−1Q2 by finite-rank approximations. Let K ≥ k0 +1 be arbitrary large. We look for α(K)1 = ( α(K)2 , . . . , α (K) 
+
+> K
+
+) ∈
+
+RK−1 solving: 
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+α(K) 
+
+> k
+
+−
+
+( K∑
+
+> l=2
+
+α(K) 
+
+> l
+
+Hl, m εHk
+
+)
+
+> G
+
+= Qk ∀ k = 2 , . . . , K, (54) This turns out te be an invertible linear system. Indeed, let us denote by M(K) the matrix implicitly involved by this system. For any β = ( β1, . . . , β k) we have 
+
+β · M(K) · β⊤ =
+
+> K
+
+∑
+
+> k=2
+
+[( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+βk −
+
+( K∑
+
+> l=2
+
+βlHl, m εHk
+
+)
+
+> G
+
+]
+
+βk
+
+The restrictions on ε required in the previous uniqueness proof entail with similar com-putations that (when K ≥ k0)
+
+β · M(K) · β⊤ ≥ 1
+
+4
+
+> k0+1
+
+∑
+
+> l=2
+
+|βl|2 + 1
+
+2k0+2 
+
+> K
+
+∑
+
+> l=k0+2
+
+|βl|2.
+
+This entails that Ker (M(K)) = {0}. We recover that there is a unique α(K)2 solution to (54). Below we denote also α(K)2 the trivial extension of this solution and that is an element of ℓ2(N2).
+
+For arbitrary K ≥ k0 + 2, we observe again that (thanks again to our previous restric-tions on ε): 1
+
+2k0+2 |α(K)2 |2 ≤ α(K)2 · M(K) · α(K)2 =
+
+> K
+
+∑
+
+> k=2
+
+Qkα(K)
+
+> k
+
+and then by a Cauchy-Schwarz ineuquality: 
+
+|α(K)2 | ≤ 2k0+2 |Q2| ∀ K ≥ k0 + 2 .
+
+37 We can then extract a weakly converging limit α2. Since the left-hand side of (49) is continuous for the weak topology for arbitrary k ≥ 2, we obtain that α2 is a candidate to be L−1Q2. Furthemore, it satisfies the required control 
+
+|α2| ≤ 2k0+2 |Q2|.
+
+This ends the proof. 
+
+# 5.3 Proofs of Lemmas 5.1 and 5.3 
+
+We analyze successively the α1 equation and the mapping Q. This order is chosen since 
+
+α1 is involved in the definition of Q.
+
+Proof . [Proof of Lemma 5.1] As indicated above, we consider the case m(ε)1 6 = 0 only. The case m(ε)1 = 0 yields with similar (but simpler) arguments. 
+
+Proof of item (i). Let β2 ∈ ℓ2(N2) with ‖β2‖ℓ2(N2) ≤ Cε 2 and set 
+
+D(ε) := ( H0, m εH0)G − (H1, m εH1)G,mβ := ( β2, m(ε))G =
+
+> ∞
+
+∑
+
+> l=2
+
+βlm(ε) 
+
+> l
+
+,
+
+˜mβ := ( 
+
+> ∞
+
+∑
+
+> l=2
+
+βlHl, m εH1)G.
+
+With such notations equation (47) with associated with β2 reads: 
+
+m(ε)1 α21 +
+
+(
+
+D(ε) + mβ
+
+)
+
+α1 = m(ε)1 + ˜ mβ . (55) In this equation, we notice that, by a standard integral convergence argument, we have that: 
+
+D(ε) =
+
+∫
+
+> R
+
+(1 − | H1(x)|2)( mε − mε(0)) G(x)d x
+
+= ε2 m′′ (0) 
+
+2
+
+∫
+
+> R
+
+(1 − | H1(x)|2)x2G(x)d x + O(ε3),
+
+(56) where the coefficient of ε2 above is nonzero thanks to assumption (H1) and since ∫
+
+> R
+
+(1 −|H1(x)|2)x2G(x)d x = ∫
+
+> R
+
+(1 − x2)x2G(x)d x 6 = 0. On the other hand, the analysis of source terms in Lemma 2.4 and Lemma 2.5 entails: 
+
+|mβ | ≤ ‖ β2‖ℓ2(N2)‖m(ε)‖L2(R,G (x)d x) ≤ Kmε2‖β2‖ℓ2(N2),
+
+| ˜mβ | ≤ ‖ β2‖ℓ2(N2)‖m(ε)H1‖L2(R,G (x)d x) ≤ Kmε2‖β2‖ℓ2(N2),
+
+|m(ε)1 | ≤ Kmε3.
+
+Thus, using ‖β2‖ℓ2(N2) ≤ Cε 2, we infer that : 
+
+[
+
+D(ε) + mβ
+
+]2
+
++ 4 m(ε)1 (m(ε)1 + ˜ mβ ) = ε4
+
+( m′′ (0) 
+
+2
+
+∫
+
+> R
+
+(1 − | H1(x)|2)x2G(x)d x
+
+)2
+
++ O(ε5),
+
+38 so that (55) admits two real roots for small ε :
+
+α1 = − D(ε) + mβ
+
+2m(ε)1
+
++
+
+([D(ε) + mβ
+
+]2 + 4 m(ε)1 (m(ε)1 + ˜ mβ )
+
+) 1
+
+> 2
+
+2m(ε)1
+
+˜α1 = − D(ε) + mβ
+
+2m(ε)1
+
+−
+
+([D(ε) + mβ
+
+]2 + 4 m(ε)1 (m(ε)1 + ˜ mβ )
+
+) 1
+
+> 2
+
+2m(ε)1
+
+.
+
+Introducing ∆β := 4( m(ε)1 (m(ε)1 + ˜ mβ )) 
+
+[D(ε) + mβ
+
+]2
+
+we remark that: 
+
+α1 = (D(ε) + mβ )
+
+2mε
+
+> 1
+
+(√1 + ∆ β − 1
+
+)
+
+˜α1 = − (D(ε) + mβ )
+
+2mε
+
+> 1
+
+(√1 + ∆ β + 1 
+
+)
+
+.
+
+With similar arguments as previously, we get that: (D(ε) + mβ ) = m′′ 
+
+(0) 
+
+2
+
+∫
+
+> R
+
+(1 − | H1(x)|2)x2G(x)d x ε 2 + O(ε3)while |mε
+
+> 1
+
+| ≤ Kmε3 and ∆ β ≤ K1ε2 with a constant K1 depending on C. Since the square root is 1-lipschitz on [1 /2, 3/2] , we conclude: 
+
+|α1| ≤ |D(ε) + mβ |
+
+2|mε
+
+> 1
+
+| |∆β | ≤ 2 |m(ε)1 + ˜ mβ |
+
+|D(ε) + mβ | ≤ Kmε. 
+
+while 
+
+|˜α1| ≥ Cm
+
+ε .
+
+We have then one possible root that is α1.
+
+Proof of item (ii). Let us now consider β(1) and β(2) in Bℓ2(N2)(0 , Cε 2). We have, with obvious notations (and applying the linearity of β → (mβ , ˜mβ )) 
+
+|α(1) 1 − α(2) 1 | ≤ |m(1)  
+
+> β
+
+− m(2)  
+
+> β
+
+|
+
+2mε
+
+> 1
+
+(√ 
+
+1 + ∆ (1)  
+
+> β
+
+− 1
+
+)
+
++ (D(ε) + m(2)  
+
+> β
+
+)
+
+2m(ε)1
+
+(√ 
+
+1 + ∆ (1)  
+
+> β
+
+−
+
+√
+
+1 + ∆ (2) 
+
+> β
+
+)
+
+≤ Kmε‖β(1) − β(2) ‖ℓ2(N2) + (D(ε) + m(2)  
+
+> β
+
+)
+
+2m(ε)1
+
+|∆(1)  
+
+> β
+
+− ∆(2)  
+
+> β
+
+|
+
+where: (D(ε) + m(2)  
+
+> β
+
+)
+
+2m(ε)1
+
+|∆(1)  
+
+> β
+
+− ∆(2)  
+
+> β
+
+|≤ 2
+
+ | ˜m(1)  
+
+> β
+
+− ˜m(2)  
+
+> β
+
+|
+
+(D(ε) + m(2)  
+
+> β
+
+) + (|m(ε)1 | + | ˜m(2)  
+
+> β
+
+|)(2 |D(ε)| + |m(1)  
+
+> β
+
+| + |m(2)  
+
+> β
+
+|)
+
+|D(ε) + m(2)  
+
+> β
+
+|(D(ε) + m(1)  
+
+> β
+
+)2 |m(1)  
+
+> β
+
+− m(2)  
+
+> β
+
+|
+
+
+
+≤ Km‖β(1) − β(2) ‖ℓ2(N2).
+
+39 This concludes the proof. 
+
+With these computations, we analyse now the behavior of Q.
+
+Proof . [Proof of Lemma 5.3] Firstly, we fix ε small so that the content of the previous proposition is satisfied. Since Q is made of component multiplications and α1, the formula defining its components are well-defined on Bℓ2(N2)(0 , Cε 2). To prove that the result lies in ℓ2(N2) we restrict to compute the value in 0 and lipschitz-properties of the mapping. We have: 
+
+Qk[¯ 0] = α1[¯ 0]( mεH1, H k)G
+
+Hence, combining Lemma 2.4 and the previous lemma yields: 
+
+|Q[¯ 0] | ≤ | α1[¯ 0] |‖ mεH1‖L2(R,G (x)d x) ≤ Kmε3.
+
+To compute the lipschitz properties, we extract the bilinear part from the nonlinear part due to α1. For β ∈ Bℓ2(N2)(0 , Cε 2) we split Qk[ ¯β] = Qbl k [ ¯β, ¯β] + Rk[ ¯β] where: 
+
+Rk[ ¯β] = 1
+
+2√2 α1[ ¯β]2δk=2 +
+
+√k!
+
+2k α1[ ¯β]βk−1δk≥3 + βkα1[ ¯β]( H1, m ε)G − α1[ ¯β]( H1, m εHk)G.
+
+Combining the lipschitz-properties of α1 and the size of mε in L2(R, G (x)d x) we obtain: 
+
+‖R[ ¯β(1) ] − R[ ¯β(2) ]‖ℓ2(N1) ≤ Kmε‖β(1) − β(2) ‖ℓ2(N2) , ∀ (β(1) , β (2) ) ∈ [Bℓ2(N)(0 , Cε 2)] 2.
+
+While with similar arguments as previously, we have, for arbitrary ¯β(1) , ¯β(2) in ℓ2(N2) : 
+
+‖Qbl [ ¯β(1) , ¯β(2) ]‖2 
+
+> ℓ2(N2)
+
+≤
+
+> ∞
+
+∑
+
+> k=2
+
+k!
+
+4k
+
+∣∣∣∣∣
+
+> k−2
+
+∑
+
+> l=2
+
+β(1)  
+
+> l
+
+β(2) 
+
+> k−l
+
+√l!( k − l)! 
+
+∣∣∣∣∣
+
+> 2
+
++
+
+> ∞
+
+∑
+
+> k=2
+
+|
+
+> ∞
+
+∑
+
+> l=2
+
+β(1)  
+
+> k
+
+β(2)  
+
+> l
+
+(Hl, m εH0)G|2
+
+≤
+
+> ∞
+
+∑
+
+> k=2
+
+1
+
+2kk−2∑
+
+> l=2
+
+|β(1)  
+
+> l
+
+|2|β(2) 
+
+> k−l
+
+|2 +
+
+> ∞
+
+∑
+
+> k=2
+
+|β(1)  
+
+> k
+
+|2‖β(2) ‖2
+
+> ℓ2(N2)
+
+‖mεH0‖2
+
+> L2(R,G (x)d x)
+
+≤ (1 + Kmε2)) ‖ ¯β(1) ‖2
+
+> ℓ2(N2)
+
+‖ ¯β(2) ‖2
+
+> ℓ2(N2)
+
+.
+
+This concludes the proof. 
+
+# 6 Proof of Theorem 2.3 
+
+We proceed with the anlysis of the time-dependent problem (15). Similarly to the sta-tionary problem, we use the fact that the problem reads more simply when formulated in terms of the unknown h = Nε/G. Hence, we rewrite the problem to be tackled: 
+
+
+
+∂th = ( ˜T [h] − h) −
+
+(
+
+mε −
+
+∫
+
+> R
+
+mε(x)h(x)G(x)d x
+
+)
+
+h, h(0 , ·) = h0,
+
+(57) and we analyze the potential large-time properties of a solution to this problem. Our approach to Theorem 2.3 follows the classical scheme. Firstly, we analyze a Cauchy 
+
+40 theory for (57) with a given initial data h0 ∈ L2(R, G (x)dx ). We obtain existence and uniqueness of a solution for short times. In a second step, we show that for initial data close to the stationary state ¯hε = Nε/G, we have a uniform bound for the solution that entails this solution is global in time. We end-up the section by a proof of the stability estimates. Before going into more precise statements and their associated proofs, we remind that we tackled a problem similar to (15) in [19] up to normalizing the mass of the density. We proved that non-negative continuous initial data with enough bounded moments yield a unique solution that is continuous (in time and space) and has bounded moments (com-parable to the initial data). Furthermore, this solution remains positive for all times. The main challenge in the first part of this section is to prove that we can construct a continu-ous solution that remains bounded in the weighted-L2 space. The uniqueness result that we mention here entails that, if we assume further that the initial data is positive and continuous, the solution we construct is the unique one we constructed in our previous paper so that it remains positive as long as it exists. 
+
+# 6.1 Cauchy theory for (57) 
+
+In this part, we build a Cauchy theory on the basis of the following a priori estimate. Let 
+
+h be a solution on (0 , T ). We perform a dot-product between (57) and h (according to the L2(R, G (x)dx ) scalar product). We obtain: 1
+
+2d
+
+dt ‖h(t, ·)‖2  
+
+> L2(R,G (x)dx )
+
++
+
+∫
+
+> R
+
+(1 + mε(x)) |h(t, x )|2G(x)dx 
+
+=
+
+( ˜T [h], h 
+
+) 
+
+> G
+
++
+
+∫
+
+> R
+
+mε(x)h(t, x )G(x)dx ‖h(t, ·)‖2 
+
+> L2(R,G (x)dx )
+
+.
+
+We recall that we assume 1+ mε ≥ 0. Since ˜T is bilinear continuous (see Lemma C.1), this entails via a standard Gronwall inequality that the L2(R, G (x)dx )-norm of the solution may only double on short times (see Section 6.1.2 for related computations) so that: 
+
+h ∈ L∞(0 , T ; L2(R, G (x)dx )) (58) 
+
+√1 + mεh ∈ L2(0 , T ; L2(R, G (x)dx )) . (59) We point out that, with such a regularity, we have in particular ( ˜T [h]−h)−
+
+(
+
+mε −
+
+∫
+
+> R
+
+mε(x)h(x)G(x)d x
+
+)
+
+h ∈ L2((0 , T ); L1(R, G (x)dx )) ⊂ L1
+
+> loc
+
+((0 , T )×R).
+
+This entails that we may require 
+
+∂th = ( ˜T [h] − h) −
+
+(
+
+mε −
+
+∫
+
+> R
+
+mε(x)h(x)G(x)d x
+
+)
+
+h in D′((0 , T ) × R), (60) so that ∂th ∈ L2((0 , T ); L1(R, G (x)dx )) . We have then h ∈ C([0 , T ]; L1(R, G (x)dx )) so that initial conditions can be matched in the sense: 
+
+h(0 , ·) = h0 in L1(R, G (x)dx ) (61) Eventually, we give the following definition for our solutions: 
+
+41 Definition 6.1 Given h0 ∈ L2(R, G (x)d x) and T > 0, we call solution to (57) on (0 , T )
+
+any h : (0 , T ) × R → R satisfying regularity requirements (58) -(59) and equation (57) in the sense of (60) -(61) .
+
+Our main result concerning the Cauchy theory reads: 
+
+Theorem 6.2 Let h0 ∈ L2(R, G (x)d x)∩Cb(R) be non-negative and such that 
+
+‖h0‖L2(R,G (x)dx ) ≤ M. 
+
+Then there exists TM > 0 depending only on M such that, for arbitrary T < T M , there is a unique solution to (57) on (0 , T ). Moreover, this solution is non-negative. 
+
+What remains of this subsection is devoted to the proof of this theorem. We split this proof into two parts. Firstly, we obtain uniqueness relying on our previous contribution [19], we postpone the existence proof to the end of this subsection. 
+
+6.1.1 Proof of Theorem 6.2. Uniqueness 
+
+Let h0 ∈ L2(R, G (x)dx )∩Cb(R) be non-negative and h any solution that we may construct on (0 , T ) for some T > 0. In particular, for all k ≥ 1, we have n0 := h0G ∈ Xk where: 
+
+Xk := 
+
+{
+
+n ∈ L1(R),
+
+∫
+
+> R
+
+(1 + |x|)kn(x)dx < ∞
+
+}
+
+.
+
+and n = hG ∈ L∞((0 , T ); Xk ). Seeing (15) as a differential system in Nε with source term 
+
+T1[Nε] we infer that: 
+
+n(t, x ) = n0(x) exp 
+
+[
+
+−t(1 + mε(x)) + 
+
+∫ t
+
+> 0
+
+∫
+
+> R
+
+mε(y)n(s, y )d yds
+
+]
+
++
+
+∫ t
+
+> 0
+
+exp 
+
+[
+
+−(t − s)(1 + mε(x)) + 
+
+∫ ts
+
+∫
+
+> R
+
+mε(y)n(u, y )d ydu
+
+]
+
+T1[n(s, ·)]d s. 
+
+At this point, we remark that mε is continuous with (1 + mε) ≥ 0. Furthermore, by standard convolution arguments, we have that T1[n] ∈ L∞(0 , T ; Cb(R)) . This entails that 
+
+n ∈ Cb([0 , T ] × R) solves (15) in D′((0 , T )) for all x ∈ R. We can then argue that [19, Proposition 1] entails there is at most one such solution that is positive. 
+
+6.1.2 Proof of Theorem 6.2. Existence 
+
+To obtain existence of a solution in the sense of Definition 6.1, we proceed with a Galerkin method. For this, we plug that h(t, x ) = ∑ 
+
+> k
+
+αk(t)Hk(x) in (57) and transform this system into the infinite differential system: 
+
+
+
+˙αk =
+
+√k!
+
+2kk∑
+
+> l=0
+
+αlαk−l
+
+√l!( k − l)! − αk −
+
+( ∞∑
+
+> l=0
+
+αlHl , m ε(Hk − αkH0)
+
+)
+
+> G
+
+∀ k ≥ 1,αk(0) = α0
+
+> k
+
+(62) 
+
+42 where α0 = 1 is constant with time. Fix K ≥ 1 arbitrary large. By a standard Cauchy-Lipschitz argument, there exists 
+
+TK > 0 and a unique ( α(K) 
+
+> k
+
+)k=1 ,...,K ∈ C1([0 , T K ]) satisfying: 
+
+
+
+˙α(K) 
+
+> k
+
+=
+
+√k!
+
+2kk∑
+
+> l=0
+
+α(K) 
+
+> l
+
+α(K)
+
+> k−l
+
+√l!( k − l)! − α(K) 
+
+> k
+
+−
+
+( K∑
+
+> l=0
+
+α(K) 
+
+> l
+
+Hl , m ε(Hk − α(K) 
+
+> k
+
+H0)
+
+)
+
+> G
+
+α(K) 
+
+> k
+
+(0) = α0
+
+> k
+
+∀ k = 1 . . . , K, 
+
+with α(K)0 = 1 . Let us denote h(K) = ∑Kk=0 α(K) 
+
+> k
+
+Hk. Dot-multiplying this latter differential system with ( α(K) 
+
+> k
+
+)k=1 ,...,K , we infer that: 1
+
+2d
+
+dt
+
+[
+
+‖h(K)‖2
+
+> L2(R,G (x)dx )
+
+]
+
++ ‖h(K)‖2 
+
+> L2(R,G (x)dx )
+
+=
+
+> K
+
+∑
+
+> k=0
+> k
+
+∑
+
+> l=0
+
+√k!
+
+2k
+
+α(K) 
+
+> l
+
+α(K) 
+
+> k−l
+
+α(K)
+
+> k
+
+√l!( k − l)! 
+
+−(P(K)mεh(K), h (K))G +
+
+∫
+
+> R
+
+mε(y)h(K)(t, y )G(y)d y‖h(K)‖2
+
+> L2(R,G (x)dx )
+
+where P(K) is the projection on the K-first modes in the Hermite expansion. Since this is a bounded symmetric mapping, we have: (P(K)mεh(K), h (K))G =
+
+∫
+
+> R
+
+mε(y)|h(K)(t, y )|2G(y)d y. 
+
+Eventually, we infer that: 1
+
+2d
+
+dt
+
+[
+
+‖h(K)‖2
+
+> L2(R,G (x)dx )
+
+]
+
++
+
+∫
+
+> R
+
+(1 + mε(y)) |h(K)(t, y )|2G(y)d y
+
+=
+
+> K
+
+∑
+
+> k=0
+> k
+
+∑
+
+> l=0
+
+√k!
+
+2k
+
+α(K) 
+
+> l
+
+α(K) 
+
+> k−l
+
+α(K)
+
+> k
+
+√l!( k − l)! +
+
+∫
+
+> R
+
+mε(y)h(K)(t, y )G(y)d y‖h(K)‖2
+
+> L2(R,G (x)dx )
+
+.
+
+To control the right-hand side, we recall that ˜T defines a bounded bilinear mapping on 
+
+L2(R, G (x)dx ) (see Lemma C.1) so that there is a constant Cbl independent of K for which: K∑
+
+> k=0
+> k
+
+∑
+
+> l=0
+
+√k!
+
+2k
+
+α(K) 
+
+> l
+
+α(K) 
+
+> k−l
+
+α(K)
+
+> k
+
+√l!( k − l)! ≤ Cbl ‖h(K)‖3
+
+> L2(R,G (x)dx )
+
+.
+
+Similarly, by a standard Cauchy-Schwarz inequality: 
+
+∫
+
+> R
+
+mε(y)h(K)(t, y )G(y)d y‖h(K)‖2 
+
+> L2(R,G (x)dx )
+
+≤ ‖ mε‖L2(R,G (x)dx )‖h(K)‖3
+
+> L2(R,G (x)dx )
+
+.
+
+Eventually, we obtain that: 1
+
+2d
+
+dt
+
+[
+
+‖h(K)‖2
+
+> L2(R,G (x)dx )
+
+]
+
++
+
+∫
+
+> R
+
+(1 + mε(y)) |h(K)(t, y )|2G(y)d y
+
+≤ (Cbl + ‖mε‖L2(R,G (x)dx )
+
+) ‖h(K)‖3
+
+> L2(R,G (x)dx )
+
+. (63) 
+
+43 Consequently, with a classical blow-up alternative argument, we obtain that, under the further assumption that ‖h0‖L2(R,G (x)dx ) ≤ M, we can build a time TM depending only on M such that TK = TM and ‖h(K)(t, ·)‖L2 (R,G (x)dx ) ≤ 2M for all t ≤ TM . Integrating a last time (63) and using this control on the norm of h(K) we obtain also that: 
+
+∫ TM
+
+> 0
+
+∫
+
+> R
+
+(1 + mε(y)) |h(K)(t, y )|2G(y)d y ≤ M + (Cbl + ‖mε‖L2(R,G (x)dx )
+
+) 8TM M 3.
+
+We can let now K tend to infinity in this family of approximate solutions. For legibility we drop the index M and assume these solutions are defined on (0 , T ). With the computa-tion above, we have that h(K) is bounded in L∞(0 , T ; L2(R, G (x)dx )) with √1 + mεh(K)
+
+bounded in L2((0 , T ); L2(R, G (x)dx )) . We can thus extract a subsequence, that we do not relabel, for which 
+
+h(K) ⇀ h in L∞(0 , T ; L2(R, G (x)dx )) − w∗√1 + mεh(K) ⇀ D in L2((0 , T ); L2(R, G (x)dx )) − w. 
+
+We note here that the mapping h 7 → √1 + mεh is linear continuous L2(R, G (x)dx ) →
+
+L1(R, G (x)dx ). Because of the weak convergence of h(K), we conclude that D = √1 + mεh. 
+
+For fixed k ∈ N, we can then pass to the limit in the k equation satisfied by α(K) 
+
+> k
+
+for K ≥ k. 
+
+We infer that h = ∑ 
+
+> k
+
+αkHk with 
+
+
+
+˙αk =
+
+√k!
+
+2kk∑
+
+> l=0
+
+αlαk−l
+
+√l!( k − l)! − αk −
+
+( ∞∑
+
+> l=0
+
+αlHl , m ε(Hk − αkH0)
+
+)
+
+> G
+
+αk(0) = α0
+
+> k
+
+∀ k ∈ N.
+
+In other words, we obtain that: 
+
+
+
+∂t(h, H k )G = ( ˜T [h], H K ) − (√(1 + mε)h, √1 + mεHk) + 
+
+∫
+
+> R
+
+mε(y)h(·, y )G(y)dy( h, H k)(h(0 , ·), H k ) = ( h0, H k)
+
+∀ k ∈ N.
+
+Notice that 
+
+C∞ 
+
+> c
+
+(R) ⊂ { ϕ ∈ L2(R, G (x)dx ) s.t. √1 + mεϕ ∈ L2(R, G (x)dx )}
+
+in which the ( Hk)k≥1 are dense (since m grows at most polynomially). Moreover, ϕ ∈
+
+C∞ 
+
+> c
+
+(R) if and only if ϕ(·)/G (·) ∈ C∞ 
+
+> c
+
+(R). We infer that this latter equation extends to all test functions in C∞ 
+
+> c
+
+(R). That means (57) holds in D′((0 , T ) × R) with an initial condition in L1(R, G (x)dx ). This ends the existence proof. 
+
+# 6.2 Orbital stability of stationary states 
+
+In the previous proof, we obtained local-in-time existence of a solution for arbitrary initial data. We obtain now that, for data sufficiently close to the Gaussian, the solution is global and remains close to the Gaussian. We start with a statement in the stable case: 
+
+44 Proposition 6.3 Let us assume that m′′ 
+
+(0) > 0. Given C0 > 0 there exists C1 and C2
+
+depending on C0 and m such that the following property holds true. Given ε sufficiently small and a non-negative initial data h0 ∈ L2(R, G (x)d x)) ∩ Cb(R)
+
+such that 
+
+|α01| ≤ C0ε ‖α02‖ ≤ C0ε2,
+
+there is a unique global solution h to (57) that satisfies moreover: 
+
+|α1(t)| ≤ C1ε ‖α2(t)‖ ≤ C2ε2 ∀ t ≥ 0. (64) In this statement and from now on, we drop the index ℓ2(N2) in the norm of sequences with index 2 for legibility. In the unstable case, we have the following: 
+
+Proposition 6.4 Let us assume that m′′ 
+
+(0) < 0 and that m is even. Given C0 > 0 there exists C2 depending on C0 and m such that the following property holds true. Given ε sufficiently small and a non-negative even initial data h0 ∈ L2(R, G (x)d x)) ∩
+
+Cb(R) such that 
+
+α01 = 0 , ‖α02‖ ≤ C0ε2,
+
+there is a unique global solution h to (57) that satisfies moreover: 
+
+α1(t) = 0 , ‖α1(t)‖ ≤ C2ε2 ∀ t ≥ 0. (65) What remains of this section is devoted to a unified proof of both statements. Since we constructed a local-in-time Cauchy theory for (57) in the space L2(R, G (x)dx ) ∩ C(R)that propagates that h(t, ·) ≥ 0, we focus herein only on a proof of the bounds (64) (resp. (65)). For this, we fix C0 > 0 and we consider either that m satisfies m′′ 
+
+(0) > 0 (stable case) or that m′′ 
+
+(0) < 0 and is even (unstable even case). We fix a non-negative initial data h0 enjoying the bound: 
+
+|α01| ≤ C0ε ‖α02‖ ≤ C0ε2,
+
+and that is moreover even in the unstable case. We assume a priori that, for some T > 0, which may depend on ε, we have a unique solution on h on (0 , T ) in the sense of Definition 6.1 satisfying moreover (64) (resp. (65)) up to time T for some C1 and C2 to be fixed. We prove in the following arguments that, under some restrictions on C2 and ε (independent of the solution and T ) we have that 
+
+|α1(t)| ≤ C1ε/ 2 ‖α2(t)‖ ≤ C2ε2/2 ∀ t ∈ [0 , T ]. (66) Our result then follows via a standard continuation argument relying on our Cauchy theory. We split now the proof in two parts corresponding to the two bounds to be obtained. From now on, we use similar notations as in the stationary case. Namely, we rewrite (62) as a differential system on ℓ2(N) : dα1
+
+dt = m(ε)1 + L(ε)[α1] + Q(ε)[α1]. (67) 
+
+45 where L(ε) and Q(ε) stand for the respective extensions to the exponent k = 1 of the L
+
+and Q in the previous section: 
+
+L(ε)[α] = 
+
+[( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+αk −
+
+( ∞∑
+
+> l=1
+
+αlHl, m εHk
+
+)
+
+> G
+
+]
+
+> k∈N1
+
+(68) and 
+
+Q(ε)[α] = 
+
+[ √k!
+
+2kk−1∑
+
+> l=1
+
+αlαk−l
+
+√l!( k − l)! +
+
+> ∞
+
+∑
+
+> l=1
+
+αkαlm(ε)
+
+> l
+
+]
+
+> k∈N1
+
+.
+
+Without restriction, we enforce the first condition that C2 ≥ 1 (so that powers of C2 grow with the exponent) and ε ≤ 1 (so that the converse holds). We also enforce the condition 
+
+C2 > C1.
+
+Part 1. Computing a bound on α1(t). We start with the unstable even case. Thanks to the symmetries of the operator T (and thus ˜T ) and the symmetries of m we note that 
+
+hs(t, x ) = h(t, −x) is also a solution to (57) in the sense of Definition 6.1 with the same initial data h0. By uniqueness, we obtain that h(t, ·) is even for all t ∈ [0 , T ]. This entails that: 
+
+α1(t) = 
+
+∫
+
+> R
+
+h(t, x )H1(x)G(x)dx =
+
+∫
+
+> R
+
+h(t, x )xG (x)dx = 0 , ∀ t ∈ [0 , T ].
+
+We have our expected property. The stable case requires more details. We multiply the first equation of (67) with α1
+
+1
+
+2d
+
+dt|α1|2 = m(ε)1 α1 + L(ε)1 [α1]α1 + Q(ε)1 [α1]α1.
+
+For the first term, we argue again that |m(ε)1 | ≤ Kmε3 (see Lemma 2.4) to yield that 
+
+|m(ε)1 α1| ≤ η
+
+2 ε2|α1|2 + 1
+
+2η Kmε4, (69) for arbitrary η > 0. As for the second term, we note the following explicit formula 
+
+L(ε)1 [α1]α1 = (( H0, m εH0)G − (H1, m εH1)) |α1|2 −
+
+( ∞∑
+
+> l=2
+
+αlHl, m εα1H1
+
+)
+
+.
+
+in which we already computed (see (56)) and since m′′ 
+
+(0) = 1, that 
+
+∣∣(H0, m εH0)G − (H1, m εH1)G−ε2D0
+
+∣∣ ≤ Kmε3
+
+where 
+
+D0 =
+
+∫
+
+> R
+
+(1 − x2)x2G(x)d x< 0.
+
+On the other hand, thanks to Lemma 2.5, we have a constant Km for which: 
+
+∣∣(∑∞ 
+
+> l=2
+
+αlHl, α 1mεH1)G
+
+∣∣ ≤ | α1|‖ ∑∞ 
+
+> l=2
+
+αlHl‖L2(R,G (x)dx) ‖mεH1‖L2(R,G (x)dx) 
+
+≤ Kmε2‖α2‖ | α1| ≤ Km
+
+(
+
+ε3|α1|2 + C22ε5
+
+)
+
+. (70) 
+
+46 where we applied that ‖α2‖ ≤ C2ε2. Consequently, for small ε, we have 
+
+L(ε)1 [α1]α1 ≤ − ε2 3|D0|
+
+4 |α1|2 + KmC22ε5. (71) Finally, we observe that: 
+
+Q(ε)1 [α1]α1 =
+
+> ∞
+
+∑
+
+> l=1
+
+α21αlm(ε) 
+
+> l
+
+.
+
+Applying a Cauchy-Schwarz inequality and Lemma 2.4, we infer again: 
+
+∣∣∣∣∣
+
+> ∞
+
+∑
+
+> l=1
+
+αlm(ε)
+
+> l
+
+∣∣∣∣∣ ≤ ‖ α1‖ℓ2(N1)Kmε2 ≤ KmC2ε3,
+
+and 
+
+Q(ε)1 [α1]α1 ≤ KmC2ε3|α1|2. (72) Choosing η sufficiently small in (69) (depending only on m) and combining with (71)-(72) we infer that, for ε sufficiently small (depending on m and C2) there holds: d
+
+dt |α1|2 + |D0|
+
+2 ε2|α1|2 ≤ Kmε4. (73) After time integration, this entails that, as long as |α1| ≤ C1ε and ‖α2‖ ≤ C2ε2 we have: 
+
+|α1(t)|2 ≤ | α1(0) |2 + 4Kmε2
+
+|D0| . (74) We have the expected bound of (66) by choosing 
+
+C1 = 2 
+
+(
+
+C20 + 4Km
+
+|D0|
+
+) 1
+
+> 2
+
+. (75) 
+
+Part 2. Computing bounds on α2. In this second part, we do not distinguish the stable case and the unstable even case. We write a priori estimates directly for the full unknown 
+
+α2. The reader should note that these estimates should be written at first for ( α2, . . . , α K )with arbitrary large K to recover our estimates letting K → ∞ .We multiply now equations for α2 with α2. This yields: 1
+
+2d
+
+dt ‖α2‖2 = ( m(ε)2 , α2) + ( L(ε)2 [α1], α2) + ( Q(ε)2 [α1], α2)with ever the same convention that L(ε)2 (resp. Q(ε)2 ) regroups the components of L(ε)
+
+(resp. Q(ε)) with index k ≥ 2. We compute again a bound for the right-hand side under the assumption that |α1| ≤ C1ε and ‖α2‖ ≤ C2ε2 and ε sufficiently small. For the first term, we have again by a Cauchy-Schwarz inequality: 
+
+|
+
+> ∞
+
+∑
+
+> k=2
+
+m(ε) 
+
+> k
+
+αk| ≤ η
+
+2 ‖α2‖2 + Km
+
+2η ε4, (76) 
+
+47 for arbitrary η ∈ (0 , 1) . Concerning the second term, we note that: (L(ε)2 [α1], α2) = 
+
+> ∞
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+|αk|2 −
+
+( ∞∑
+
+> l=1
+
+αlHl, m ε
+
+> ∞
+
+∑
+
+> k=2
+
+αkHk
+
+)
+
+> G
+
+.
+
+At this point, we note that, thanks to (H1), we have a k0 ≥ 2 such that: 
+
+mε + 1 ≥ 1
+
+2k0 .
+
+We split then correspondingly the sum with respect to the chosen exponent k0. We obtain: (L(ε)2 [α1], α2) = 
+
+> k0+1
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+|αk|2 −
+
+(k0+1 ∑
+
+> l=2
+
+αlHl, m εk0+1 ∑
+
+> k=2
+
+αkHk
+
+)
+
+> G
+
+− 2
+
+
+
+> k0+1
+
+∑
+
+> l=2
+
+αlHl, m ε
+
+> ∞
+
+∑
+
+> k=k0+2
+
+αkHk
+
+
+
+> G
+
+−
+
+(
+
+α1mεH1,
+
+> ∞
+
+∑
+
+> k=2
+
+αkHk
+
+)
+
+> G
+
++
+
+> ∞
+
+∑
+
+> l=k0+2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+|αk|2 −
+
+
+
+> ∞
+
+∑
+
+> l=k0+2
+
+αlHl, m ε
+
+> ∞
+
+∑
+
+> l=k0+2
+
+αkHk
+
+
+
+> G
+
+.
+
+We denote with T1, T 2, T 3 the three lines on the right-hand side of this latter identity. For the last term, we remark that, by introducing hk0 = ∑∞ 
+
+> l=k0+2
+
+αlHl, there holds: 
+
+T3 =
+
+( 1
+
+2k0+1 + ( H0, m εH0)G
+
+) ∫ 
+
+> R
+
+|hk0 |2G(x)d x −
+
+∫
+
+> R
+
+(1 + mε)|hk0 |2G(x)d x
+
+≤
+
+(
+
+− 1
+
+2k0+1 + ( H0, m εH0)G
+
+) ∫ 
+
+> R
+
+|hk0 |2G(x)d x, 
+
+where we used the bound from below on (1 + mε) to pass from the first to the second line. When ε is chosen sufficiently small (depending on m), the above computations entail that: 
+
+T3 ≤ − 1
+
+2k0+2 
+
+> ∞
+
+∑
+
+> k=k0+2
+
+|αk|2. (77) Concerning T1, we apply again Lemma 2.5 to yield that: 
+
+|(H0, m εH0)G| +
+
+> k0+1
+
+∑
+
+> l=2
+> k0+1
+
+∑
+
+> k=2
+
+|(Hl, m εHk)G| ≤ Kmε2.
+
+Consequently, we obtain the bound: 
+
+T1 ≤ − 1
+
+2
+
+> k0+1
+
+∑
+
+> k=2
+
+|αk|2 + Kmε2
+
+> k0+1
+
+∑
+
+> k=2
+
+|αk|2,
+
+and, choosing ε sufficiently small (with a threshold depending on m), 
+
+T1 ≤ − 1
+
+4
+
+> k0+1
+
+∑
+
+> k=2
+
+|αk|2. (78) 
+
+48 Finally, we have: 
+
+|T2| ≤ 2
+
+∣∣∣∣∣(
+
+> k0+1
+
+∑
+
+> l21
+
+αlmεHl,
+
+> ∞
+
+∑
+
+> k=2
+
+αkHk)G
+
+∣∣∣∣∣ +
+
+∣∣∣∣∣(
+
+α1mεH1,
+
+> ∞
+
+∑
+
+> k=2
+
+αkHk
+
+)
+
+> G
+
+∣∣∣∣∣ .
+
+Applying again Cauchy-Schwarz inequalities and Lemma 2.5 for k ≤ k0 + 1 we infer: 
+
+∣∣∣∣∣(
+
+> k0+1
+
+∑
+
+> l=2
+
+αlmεHl,
+
+> ∞
+
+∑
+
+> k=2
+
+αkHk)G
+
+∣∣∣∣∣ ≤ Kmε2
+
+(k0+1 ∑
+
+> l=2
+
+|αl|2
+
+)1
+
+> 2
+
+
+
+> ∞
+
+∑
+
+> l=k0+2
+
+|αl|2
+
+
+
+> 1
+> 2
+
+≤ Kmε2‖α2‖2,
+
+∣∣∣∣∣(
+
+α1mεH1,
+
+> ∞
+
+∑
+
+> k=2
+
+αkHk
+
+)
+
+> G
+
+∣∣∣∣∣ ≤ | α1|‖ α2‖‖ mεH1‖L2(R,G (x)d x) ≤ Kmε2|α1|‖ α2‖.
+
+Combining the two latter estimates and introducing the a priori bounds |α1| ≤ C1ε, 
+
+‖α2‖ ≤ C2ε2 and C1 ≤ C2 we conclude that: 
+
+|T2| ≤ KmC22ε5. (79) Eventually, we combine (77)-(78)-(79) to yield: (L(ε)2 [α1], α2) ≤ − 1
+
+2k0+2 ‖α2‖2 + KmC22ε5. (80) As for the nonlinear term, we have: (Q(ε)2 [α1], α2) = 
+
+> ∞
+
+∑
+
+> k=2
+
+αk
+
+[ √k!
+
+2kk−1∑
+
+> l=1
+
+αlαk−l
+
+√l!( k − l)! +
+
+> ∞
+
+∑
+
+> l=1
+
+αkαlm(ε)
+
+> l
+
+]
+
+,
+
+that we split into S1 + S2 where: 
+
+S1 =
+
+> ∞
+
+∑
+
+> k=2
+> k−1
+
+∑
+
+> l=1
+
+1
+
+2k
+
+√(kl
+
+)
+
+αlαk−lαk , S2 =
+
+> ∞
+
+∑
+
+> l=1
+
+αlm(ε)
+
+> l
+> ∞
+
+∑
+
+> k=1
+
+α2
+
+> k
+
+.
+
+For S2, we use again Lemma 2.4 and the a priori bound on |α1| and ‖α2‖ to yield: 
+
+|S2| ≤ 
+
+( ∞∑
+
+> l=1
+
+|αl|2
+
+) 3 
+
+> 2
+
+( ∞∑
+
+> l=1
+
+|m(ε) 
+
+> l
+
+|2
+
+) 1
+
+> 2
+
+≤ ‖ mε‖L2(R,G (x)dx )
+
+(|α1|2 + ‖α2‖2) 3
+
+> 2
+
+and 
+
+|S2| ≤ KmC23ε5. (81) Finally, for S1 we use properties of binomials as in Appendix B, Lemma C.1: 
+
+|S1| ≤ ‖ α2‖
+
+
+
+> ∞
+
+∑
+
+> k=2
+
+[k−1∑
+
+> l=1
+
+1
+
+2k
+
+√(kl
+
+)
+
+αlαk−l
+
+]2
+
+> 1
+> 2
+
+≤ ‖ α2‖
+
+[ ∞∑
+
+> k=2
+
+1
+
+2kk−1∑
+
+> l=1
+
+α2 
+
+> l
+
+α2
+
+> k−l
+
+] 1
+
+> 2
+
+≤ ‖ α1‖2
+
+> ℓ2(N1)
+
+‖α2‖.
+
+49 In the regime prescribed by ‖α2‖ ≤ C2ε2, and the already proven inequality (74) (that we have also trivially in the unstable even case), we conclude again that, 
+
+|S1| ≤ C2ε2
+
+(
+
+|α1(0) |2 + 4Kmε2
+
+|D0| + C22ε4
+
+)
+
+. (82) Finally, combining (82) and (81) and choosing ε sufficiently small (wrt m and C2): 
+
+|(Q(ε)2 [α1], α2)| ≤ KmC23ε5 + C2ε2
+
+(
+
+|α1(0) |2 + 4Kmε2
+
+|D0|
+
+)
+
+. (83) Combining (76) with η sufficiently small (wrt k0) and letting Kη be a large enough constant such that Kη ≥ 3 + 1 /(2 η), (80) and (83), we conclude that: d
+
+dt ‖α2‖2 + 1
+
+2k0+4 ‖α2‖2 ≤ KηKm
+
+(
+
+C23ε5 + ε4)
+
++ C2
+
+(
+
+|α1(0) |2 + 4Kmε2
+
+|D0|
+
+)
+
+ε2 (84) and after time integration: 
+
+‖α2‖2 ≤ ‖ α2(0) ‖2 + 2 k0+4 
+
+(
+
+KηKm
+
+(
+
+C23ε5 + ε4)
+
++ C2
+
+(
+
+|α1(0) |2 + 4Kmε2
+
+|D0|
+
+)
+
+ε2
+
+)
+
+We have finally the expected bound of (66) if: 
+
+C2 ≥ 2
+
+[
+
+C20 + 2 k0+4 
+
+(
+
+2KηKm + C2
+
+(
+
+C20 + 4Km
+
+|D0|
+
+))] 1
+
+> 2
+
+(85) and ε is chosen sufficiently small. We observe that (75) reduces to choosing C2 sufficiently large wrt C0. In (85), we note that the right-hand side is sublinear in C2 so that (85) is surely satisfied if C2 is chosen sufficiently large wrt m and C0. We can then match the two conditions with C2
+
+sufficiently large. This ends up the proof. 
+
+# 6.3 Asymptotic stability of stationary states (Proof of The-orem 2.3) 
+
+We conclude this part with a proof of our main result, Theorem 2.3. For this, we fix C. 
+
+Applying Proposition 6.3 in the stable case, or Proposition 6.4 in the unstable even case, we obtain that, for any non-negative bounded and concentrated initial data h0, there exists a unique global solution h(t, ·) to (57) that satisfies, since C1 ≤ C2,
+
+|α1(t)| ≤ C2ε ‖α2(t)‖ ≤ C2ε2 ∀ t ≥ 0.
+
+Up to increasing the size of C2 and restricting the size of ε, Theorem 2.2 guarantees also the existence of a unique stationary solution ¯h to (57) in L2(R, G (x)d x) whose coefficient in the Hermite basis satisfy: 
+
+|α∞ 
+
+> 1
+
+| ≤ C2ε ‖α∞ 
+
+> 2
+
+‖ ≤ C2ε2. (86) We may then compute the difference h(t) − ¯h and especially its coefficients in the Hermite basis ( βk )k∈N. We recall that β0 = 0 so that we restrict to the coefficients larger than 1 in our computations. Theorem 2.3 is then a consequence to the following statements. In the stable case we show: 
+
+50 Proposition 6.5 Assume that m′′ 
+
+(0) > 0. Then, there exists K(0) and K(0)  
+
+> m
+
+> 0 depend-ing both only on m such that: 
+
+‖β1(t)‖ℓ2 (N1) ≤ K(0) ‖β(0) ‖ℓ2 (N1) exp( −K(0)  
+
+> m
+
+ε2t) ∀ t ≥ 0.
+
+Item (i) of Theorem 2.3 is a consequence to this statement. Item (ii) of Theorem 2.3 
+
+is a consequence to the following proposition: 
+
+Proposition 6.6 Assume that m′′ 
+
+(0) < 0 and that m is even. Then, for any even initial data there exists Km depending only on m for which: 
+
+‖β1(t)‖ℓ2(N1) ≤ ‖ β1(0) ‖ℓ2 (N1) exp( −Kmt) ∀ t ≥ 0.
+
+In what follows, we give again a unified proof of both propositions. Substracting from the equation for α1 the stationary solution α(∞)1 , we obtain that β1 is a solution to the differential system: dβ1
+
+dt = L(ε)[β1] + Q(ε) 
+
+> ∞
+
+[β1], (87) with L(ε) defined in (68) and 
+
+Q(ε) 
+
+> ∞
+
+[β] = 
+
+[ √k!
+
+2kk−1∑
+
+> l=1
+
+αlβk−l + βlα(∞)
+
+> k−l
+
+√l!( k − l)! +
+
+> ∞
+
+∑
+
+> l=1
+
+(αkβl + βkα(∞) 
+
+> l
+
+)m(ε)
+
+> l
+
+]
+
+> k∈N1
+
+.
+
+We show that the solutions to this system – satisfying the a priori bounds (86) – decay exponentially to 0 when ε is sufficiently small. In the unstable even case, we have directly by symmetry that β1 = 0 . In the stable case, we multiply the first equation of (87) by β1. We recover: 1
+
+2d
+
+dt |β1|2 = Dε|β1|2 −
+
+( ∞∑
+
+> l=2
+
+βlHl, β 1mεH1
+
+)
+
+> G
+
++
+
+> ∞
+
+∑
+
+> l=1
+
+(βlα1 + α(∞) 
+
+> l
+
+β1)β1m(ε) 
+
+> l
+
+,
+
+where Dε = ( H0, m εH0)G − (H1, m εH1)G satisfies (recall m′′ 
+
+(0) = 1) 
+
+|Dε − ε2D0| ≤ Kmε3, D0 < 0.
+
+We estimate the remainder terms, using Lemma 2.5 and similarly to (70), 
+
+∣∣∣∣∣( ∞∑
+
+> l=2
+
+βlHl, β 1mεH1
+
+)
+
+> G
+
+∣∣∣∣∣ ≤ Kmε2|β1|‖ β2‖ ≤ Km
+
+(ε3|β1|2 + ε‖β2‖2)
+
+with again the same convention for ‖ · ‖ and Km depending only on m. As for the last term, we use that |α1| + ‖α(∞)2 ‖ ≤ 2 ¯C1ε and |α1| + ‖α(∞)2 ‖ ≤ 2C2ε. This entails thanks to Lemma 2.4 and a Cauchy-Schwarz inequality that 
+
+∣∣∣∣∣
+
+> ∞
+
+∑
+
+> l=1
+
+(βlα1 + α(∞) 
+
+> l
+
+β1)β1m(ε)
+
+> l
+
+∣∣∣∣∣ ≤ | α1|| β1|
+
+( ∞∑
+
+> l=1
+
+|βl|2
+
+) 1 
+
+> 2
+
+( ∞∑
+
+> l=1
+
+|m(ε) 
+
+> l
+
+|2
+
+) 1
+
+> 2
+
++ |β1|2
+
+( ∞∑
+
+> l=1
+
+|α(∞) 
+
+> l
+
+|2
+
+) 1 
+
+> 2
+
+( ∞∑
+
+> l=1
+
+|m(ε) 
+
+> l
+
+|2
+
+) 1
+
+> 2
+
+≤ C2Kmε3 (|β1|2 + ‖β2‖2)
+
+51 We conclude that, for ε sufficiently small, 1
+
+2d
+
+dt |β1|2 + |D0|
+
+2 ε2|β1|2 ≤ Kmε‖β2‖2. (88) We obtain a similar inequality on β2 in both stable and unstable even cases. To this end, we multiply the equation on β2 by β2. We obtain 1
+
+2d
+
+dt‖β2‖2 =
+
+> ∞
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+|βk|2 −
+
+( ∞∑
+
+> l=1
+
+βlHl, m ε
+
+> ∞
+
+∑
+
+> k=2
+
+βkHk
+
+)
+
+> G
+
++
+
+> ∞
+
+∑
+
+> k=2
+
+[ √k!
+
+2kk−1∑
+
+> l=1
+
+αlβk−l + βlα(∞)
+
+> k−l
+
+√l!( k − l)! +
+
+> ∞
+
+∑
+
+> l=1
+
+(αkβl + βkα(∞) 
+
+> l
+
+)m(ε)
+
+> l
+
+]
+
+βk.
+
+(89) We compute the right-hand side of this system as previously. We split the right-hand into L + N L where L stands for the first line and N L for the second one. Introducing k0
+
+again, such that (1 + mε) ≥ 2−k0 , we rewrite L = L(≤) + L(≥) + L(c), with 
+
+L(≤) =
+
+> k0+1
+
+∑
+
+> k=2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+|βk|2 −
+
+(k0+1 ∑
+
+> l=2
+
+βlHl, m εk0+1 ∑
+
+> k=2
+
+βkHk
+
+)
+
+> G
+
+L(≥) =
+
+> ∞
+
+∑
+
+> k=k0+2
+
+( 1
+
+2k−1 − 1 + ( H0, m εH0)G
+
+)
+
+|βk|2 −
+
+
+
+> ∞
+
+∑
+
+> l=k0+2
+
+βlHl, m ε
+
+> ∞
+
+∑
+
+> k=k0+2
+
+βkHk
+
+
+
+> G
+
+L(c) = −
+
+(
+
+β1H1, m ε
+
+> ∞
+
+∑
+
+> k=2
+
+βkHk
+
+)
+
+> G
+
+− 2
+
+
+
+> ∞
+
+∑
+
+> l=k0+2
+
+βlHl, m εk0+1 ∑
+
+> k=2
+
+βk Hk
+
+
+
+> G
+
+.
+
+For the first and second terms, we infer as in Section 6.2 that, for ε sufficiently small, 
+
+L(≤) ≤ − 1
+
+4
+
+> k0+1
+
+∑
+
+> k=2
+
+|βk|2, L(≥) ≤ − 1
+
+2k0+2 
+
+> ∞
+
+∑
+
+> k=k0+2
+
+|βk|2.
+
+As for L(c), we obtain, with similar computations as in the previous subsection, that 
+
+|L(c)| ≤ Kmε2 (|β1|‖ β2‖ + ‖β2‖2) ≤ Km
+
+(ε3|β1|2 + ε‖β2‖2) .
+
+Eventually, we conclude that, for ε sufficiently small, 
+
+L ≤ − 1
+
+2k0+3 ‖β2‖2 + Kmε3|β1|2. (90) As for the nonlinear term, we write N L = N L 1 + N L 2, with 
+
+N L 1 =
+
+> ∞
+
+∑
+
+> k=2
+
+√k!
+
+2kk−1∑
+
+> l=1
+
+αlβk−l + βlα(∞)
+
+> k−l
+
+√l!( k − l)! βk , N L 2 =
+
+> ∞
+
+∑
+
+> k=2
+> ∞
+
+∑
+
+> l=1
+
+(αkβl + βkα(∞) 
+
+> l
+
+)m(ε) 
+
+> l
+
+βk .
+
+52 Concerning N L 2, using the Cauchy-Schwarz inequality and Lemma 2.4, we obtain 
+
+|N L 2| ≤ 
+
+> ∞
+
+∑
+
+> k=2
+
+|αk|| βk |
+
+> ∞
+
+∑
+
+> l=1
+
+|βl|| m(ε) 
+
+> l
+
+| +
+
+> ∞
+
+∑
+
+> k=2
+
+|βk|2
+
+> ∞
+
+∑
+
+> l=1
+
+|α(∞) 
+
+> l
+
+|| m(ε) 
+
+> l
+
+|≤ ‖ α2‖‖ β2‖‖ β1‖ℓ2(N1)‖m(ε)1 ‖ + ‖β2‖2‖α(∞)1 ‖ℓ2(N1)‖m(ε)1 ‖≤ C2Kmε3 (|β1|2 + ‖β2‖2) .
+
+As for N L 1, we use again the Cauchy-Schwarz inequality and a classical binomial identity to yield 
+
+N L 1 ≤ ‖ β2‖
+
+
+
+> ∞
+
+∑
+
+> k=2
+
+[k−1∑
+
+> l=1
+
+1
+
+2k
+
+√(kl
+
+)
+
+|αl|| βk−l|
+
+]2
+
+> 1
+> 2
+
++
+
+
+
+> ∞
+
+∑
+
+> k=2
+
+[k−1∑
+
+> l=1
+
+1
+
+2k
+
+√(kl
+
+)
+
+|βl|| α(∞) 
+
+> k−l
+
+|
+
+]2
+
+> 1
+> 2
+
+
+
+≤ ‖ β2‖
+
+( ∞∑
+
+> k=2
+
+1
+
+2kk−1∑
+
+> l=1
+
+|βk−l|2|αl|2
+
+)1
+
+> 2
+
++
+
+( ∞∑
+
+> k=2
+
+1
+
+2kk−1∑
+
+> l=1
+
+|βl|2|α(∞) 
+
+> k−l
+
+|2
+
+) 1
+
+> 2
+
+
+
+≤ 1
+
+2 ‖β2‖‖ β1‖ℓ2(N1)
+
+(
+
+‖α1‖2 
+
+> ℓ2(N1)
+
++ ‖α(∞)1 ‖2
+
+> ℓ2(N1)
+
+) 1
+
+> 2
+
+≤ C2ε‖β2‖(β21 + ‖β2‖2) 1
+
+> 2
+
+≤ C22ε2
+
+η |β1|2 + ( η
+
+4 + C2ε)‖β2‖2 ≤ C22ε2
+
+η |β1|2 + η
+
+2 ‖β2‖2,
+
+for arbitrary η ∈ (0 , 1) and ε small enough. Eventually, we obtain that, for arbitrary fixed 
+
+η ∈ (0 , 1) , we can find a constant Kη such that, for ε sufficiently small (depending on η), 
+
+N L ≤ Kηε2|β1|2 + η‖β2‖2.
+
+Chosing η = 1 /2k0 +4 , combining with (90) and restricting the size of ε if necessary, we finally obtain a constant ˜Km for which 
+
+L + N L ≤ − 1
+
+2k0+4 ‖β2‖2 + ˜Kmε2|β1|2.
+
+Combining this with (89) we obtain that 1
+
+2d
+
+dt ‖β2‖2 + 1
+
+2k0+4 ‖β2‖2 ≤ ˜Kmε2|β1|2. (91) This completes the proof in the unstable even case since β1 ≡ 0 and the latter inequality entails the expected exponential decay of |β1|. In the stable case, we multiply (88) with 4 ˜Km/|D0| and do a summation with (91), to obtain 1
+
+2d
+
+dt
+
+[
+
+4 ˜Km
+
+|D0| |β1|2 + ‖β2‖2
+
+]
+
++ 1
+
+2k0+4 ‖β2‖2 + 2 ˜Kmε2|β1|2 ≤ ˜Kmε2|β1|2 + 4 ˜Km
+
+|D0| Kmε‖β2‖2.
+
+Restricting again the size of ε if necessary, we conclude that: 1
+
+2d
+
+dt
+
+[
+
+4 ˜Km
+
+|D0| |β1|2 + ‖β2‖2
+
+]
+
++ 1
+
+2k0+5 ‖β2‖2 + ˜Kmε2|β1|2 ≤ 0,
+
+that implies again the expected exponential decay of ‖β1‖ℓ2(N1) with time. 
+
+53 A The admissibility condition of the extremum point 
+
+In this section we prove that the second inequality in Assumption (H1) is indeed a nec-essary condition for the existence of a concentrated steady solution around xm. Let’s consider a steady solution 
+
+Tε[qε] = qε(1 + m(x) −
+
+∫
+
+m(x)qε(x)dx ).
+
+We define min  
+
+> x∈R
+
+m(x) = m−.
+
+We also let Ω η be the following set Ωη := {x | m− ≤ m(x) ≤ m− + 1 + η},
+
+with η > 0. We then claim that 
+
+∫
+
+> Ωη
+
+qε(t, x )dx ≥ η
+
+1 + η .
+
+This inequality would imply that if m(xm) > m − + 1 + η, then there is no steady solution concentrated around xm.To prove this property we define 
+
+m(x) = m(x) − m− − 1 − η. 
+
+Then, we have Ωη = {x | − 1 − η ≤ m(x) ≤ 0}
+
+We can re-write the equation on qε as follows 
+
+T [qε] = qε(1 + m −
+
+∫
+
+mq εdx ).
+
+From the positivity of T (qε) and qε we deduce that 
+
+∫
+
+> R
+
+m(y)qε(y)dy ≤ 1 + m(x).
+
+We then evaluate this at the minimum point of m to obtain 
+
+∫
+
+> R
+
+m(y)qε(y)dy ≤ − η. 
+
+We then use the fact that ∫
+
+> Ωη
+
+m(y)qε(y)dy ≤
+
+∫
+
+> R
+
+m(y)qε(y)dy, 
+
+to obtain that (−1 − η)
+
+∫
+
+> Ωη
+
+qε(y)dy ≤ − η, 
+
+which leads to the result. 
+
+54 B Tε is continuous on L1((1 + x2)ldx ).
+
+In this appendix, we focus on the following proposition: 
+
+Proposition B.1 Let ε > 0 and l ∈ N. The mapping q 7 → Tε[q] is bilinear continuous on 
+
+L1((1 + x2l)dx ).
+
+We provide a proof to make the paper self-contained. However, we point out that this result is a straightforward continuation of [19, Lemma A.2]. 
+
+Proof . We give a proof in case ε = 1 . Since bilinearity is obvious, we focus on integrability properties. Let l ∈ N and q ∈ L1((1 + x2)ldx ). Given ℓ ∈ { 0, . . . , l }, we have for all x ∈ R
+
+|x2ℓT1[q]( x)| =
+
+∫
+
+> R
+
+∫
+
+> R
+
+(
+
+x − y1 + y2
+
+2 + y1 + y2
+
+2
+
+)2ℓ
+
+Γ1
+
+(
+
+x − y1 + y2
+
+2
+
+)
+
+|q(y1)|| q(y2)|dy 1dy 2
+
+=
+
+> 2ℓ
+
+∑
+
+> k=0
+> k
+
+∑
+
+> i=0
+
+(2ℓk
+
+) ( ki
+
+)
+
+2k
+
+∫
+
+> R
+
+∫
+
+> R
+
+(
+
+x − y1 + y2
+
+2
+
+)2ℓ−k
+
+Γ1
+
+(
+
+x − y1 + y2
+
+2
+
+)
+
+yi
+
+> 1
+
+|q(y1)|yk−i 
+
+> 2
+
+|q(y2)|dy 1y2
+
+Here we note that for all instances we have i ≤ 2l and k − i ≤ 2l and that when j ≤ 2l
+
+we have yj q(y) ∈ L1(R) with : 
+
+∫
+
+> R
+
+|yj q(y)|dy ≤ C(j, ℓ )
+
+∫
+
+> R
+
+(1 + y2l)|q(y)|dy. 
+
+We can then apply Fubini theorem to yield that x2ℓT1[q]( x) ∈ L1(R) with: 
+
+∫
+
+> R
+
+x2ℓ|T1[q]( x)|dx ≤ C(ℓ, l )
+
+(∫ 
+
+> R
+
+(1 + y2l)|q(y)|dy 
+
+)2
+
+.
+
+This ends the proof. 
+
+# C ˜T1 is continuous. 
+
+Let h1, h 2 ∈ L2(R, G (x)d x), with 
+
+h1 =
+
+> ∞
+
+∑
+
+> k=0
+
+αkHk, h2 =
+
+> ∞
+
+∑
+
+> k=0
+
+βkHk,
+
+such that ( αk)k∈N ∈ ℓ2(N) and ( βk)k∈N ∈ ℓ2(N). We define ˜T1[h1, h 2] = 
+
+> ∞
+
+∑
+
+> k=0
+
+γkHk where γk =
+
+√k!
+
+2kk∑
+
+> l=0
+
+αlβk−l
+
+√l!( k − l)! ∀ k ∈ N. (92) 
+
+Lemma C.1 The operator ˜T1 defines a bounded bilinear mapping L2(R, G (x)dx )2 →
+
+L2(R, G (x)dx ). Moreover, we have 
+
+˜T1[h1, h 2] = G−1T1[h1G, h 2G] ∀ (h1, h 2) ∈ (L2(R, Gdx )) 2. (93) 
+
+55 Proof . Bilinearity is obvious. We prove that ˜T1 is a well-defined continuous mapping. In particular, we show that the right-hand side of (92) is converging in L2(R, G dx). We have 
+
+∑
+
+> k∈N
+
+|γk|2 ≤
+
+> ∞
+
+∑
+
+> k=0
+
+k!
+
+4k
+
+( k∑
+
+> l=0
+
+|αl|| βk−l|
+
+l!( k − l)! 
+
+)2
+
+≤
+
+> ∞
+
+∑
+
+> k=0
+
+1
+
+4kk∑
+
+> l′=0
+
+(kl′
+
+) k∑
+
+> l=0
+
+α2 
+
+> l
+
+β2
+
+> k−l
+
+.
+
+Up to extending the sequences αk and βk by αk = 0 and βk = 0 if k ∈ Z \ N, we obtain 
+
+∑
+
+> k∈N
+
+|γk|2 ≤ ∑
+
+> k∈Z
+
+∑
+
+> l∈Z
+
+α2 
+
+> l
+
+β2 
+
+> k−l
+
+≤
+
+(∑
+
+> k∈Z
+
+|αl|2
+
+) ( ∑
+
+> k∈Z
+
+|βl|2
+
+)
+
+.
+
+Consequently, ˜T1 defines a bounded bilinear mapping L2(R, G (x)dx )2 → L2(R, G (x)dx ). The interested reader can also verify that the operator ( h1, h 2) → G−1T1[h1G, h 2G] is a bilinear continuous mapping L2(R, G (x)dx )2 → L2(R, G (x)dx ). Finally notice that the equality (93) holds for h1 = Hk and h2 = Hl, for any ( k, ℓ ) ∈ N2, thanks to (17). The equality (93) then follows from the continuity of both operators. 
+
+# Acknowledgements 
+
+This work is funded by the European Union ERC-2024-COG MUSEUM-101170884. Views and opinions expressed are however those of the authors only and do not necessarily reflect those of the European Union or the European Research Council Executive Agency (ERCEA). Neither the European Union nor the granting authority can be held responsible for them. 
+
+# References 
+
+[1] N. H. Barton, A. M. Etheridge, and A. Veber, The infinitesimal model: definition, derivation and implications. Theor. Pop. Biol. , 118:50–73, 2017. [2] M. Bessemoulin-Chatard and F. Filbet, On the Convergence of Discontinuous Galerkin/Hermite Spectral Methods for the Vlasov–Poisson System SIAM Journal on Numerical Analysis , 61(4), 1664-1688, 2023. [3] M. Bessemoulin-Chatard and F. Filbet, On the stability of conservative discontin-uous Galerkin/Hermite spectral methods for the Vlasov-Poisson system, Journal of Computational Physics , 451, 110881, 2022. [4] Bobylev, A. V. The theory of the nonlinear spatially uniform Boltzmann equation for Maxwell molecules. Mathematical physics reviews , 7, 111–233, Soviet Sci. Rev. Sect. C Math. Phys. Rev., 7, Harwood Academic Publ., Chur, 1988. [5] M. G. Bulmer, The Mathematical Theory of Quantitative Genetics , Oxford, UK: Clarendon Press, 1980. 
+
+56 [6] R. B¨ urger, The Mathematical Theory of Selection, Recombination and Mutation ,Wiley Series in Mathematical and Computational Biology, John Wiley & Sons, Ltd., Chichester, 2000. [7] V. Calvez, J. Garnier and F. Patout, A quantitative genetics model with sexual mode of reproduction in the regime of small variance, Journal de l’ ´Ecole polytechnique — Math´ ematiques , 6 (2019), 537-579. [8] V. Calvez, T. Lepoutre and D. Poyato, Ergodicity of the fisher infinitesimal model with quadratic selection, Nonlinear Analysis , 238 (2024), 113392, 59 pp. [9] V. Calvez, D. Poyato and F. Santambrogio, Uniform contractivity of the fisher infinitesimal model with strongly convex selection, Analysis and PDE , (2025), 18(8):1835–1874. [10] P. Degond, A. Frouvelle, and G. Raoul, Local Stability of Perfect Alignment for a Spatially Homogeneous Kinetic Model. J Stat Phys 157 , (2014) 84–112. [11] L. Dekens, Evolutionary dynamics of complex traits in sexual populations in a strongly heterogeneous environment: How normal? Journal of Mathematical Biology ,
+
+84 (2022), 15. [12] L. Dekens and S. Mirrahimi. Dynamics of Dirac concentrations in the evolution of quantitative alleles with sexual reproduction. Nonlinearity , 35(11):5781, 2022. [13] F. Filbet and F. Golse, On the approximation of the von-Neumann equation in the semi-classical limit. Part I: Numerical algorithm, Journal of Computational Physics, 527, 2025. [14] R. A. Fisher. Xv.-the correlation between relatives on the supposition of mendelian inheritance. Earth. Environ. Sci. Trans. R. Soc. Edinb. , 52(2):399–433, 1919. [15] N. Fournier, and B. Perthame. A Nonexpanding Transport Distance for Some Struc-tured Equations. SIAM Journal on Mathematical Analysis , 53(6):6847–6872, 2021. [16] F. Galton Natural inheritance , MacMillan, London, 1889. [17] J. Garnier, O. Cotto, E. Bouin, T. Bourgeron, T. Lepoutre, O. Ronce, and V. Calvez. Adaptation of a quantitative trait to a changing environment: new analytical insights on the asexual and infinitesimal sexual models. Theor. Popul. Biol. , 152, 2023. [18] H. Grad. On the kinetic theory of rarefied gases. Comm. Pure appl. Math. , 2, (1949). [19] J. Guerand, M. Hillairet, and S. Mirrahimi. A moment-based approach for the anal-ysis of the infinitesimal model in the regime of small variance. Kinetic and Related Models , 18(3), 389–425, 2025. [20] T. Lorenzi and C. Pouchol Asymptotic analysis of selection-mutation models in the presence of multiple fitness peaks Nonlinearity , 33(11), 5791, 2020. [21] M. Lynch and B. Walsh. Genetics and Analysis of Quantitative Traits . Sinauer Associates, Inc., 1998. [22] M. Kirkpatrick and N. H. Barton, Evolution of a species’ range, Amer. Nat. , 150 
+
+(1997), 1-23. [23] M. Kopp and S. Matuszewski, Rapid evolution of quantitative traits: Theoretical perspectives, Evolutionary Applications , 7 (2014), 169-191. 
+
+57 [24] R. Lande and S. Shannon, The role of genetic variation in adaptation and population persistence in a changing environment, Evolution , 50 (1996), 434-437. [25] P. Magal, and G. Raoul, Dynamics of a kinetic model describing protein transfers in a cell population, J. Math. Biol. 91(76), 2025. [26] S. Mirrahimi and G. Raoul, Population structured by a space variable and a pheno-typical trait, Theoretical Population Biology , 84 (2013), 87-103. [27] F. Patout, The cauchy problem for the infinitesimal model in the regime of small variance, Anal. PDE , 16 (2023), 1289-1350. [28] B. Perthame and M. Strugarek and C. Taing Selection–mutation dynamics with asymmetrical reproduction kernels. Nonlinear Analysis , 222:112947, 2022. [29] G. Raoul, Macroscopic limit from a structured population model to the Kirkpatrick-Barton model, Bulletin des Sciences Math´ ematiques , (2025), 205:103697. [30] O. Ronce and M. Kirkpatrick, When sources become sinks: migration meltdown in heterogeneous habitats, Evolution , 55 (2001), 1520-1531. [31] M. Turelli, Commentary: Fisher’s infinitesimal model: A story for the ages, Theo-retical Population Biology , 118 (2017), 46-49. 
+
+58

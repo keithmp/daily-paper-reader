@@ -1,0 +1,1423 @@
+Title: Evolutionary Advantage of Diversity-Generating Retroelements in Switching Environments
+
+URL Source: https://arxiv.org/pdf/2602.16447v1
+
+Published Time: Thu, 19 Feb 2026 02:06:26 GMT
+
+Number of Pages: 28
+
+Markdown Content:
+# Evolutionary Advantage of Diversity-Generating Retroelements in Switching Environments 
+
+L´ eo R´ egnier, 1 Paul Rochette, 2 Rapha¨ el Laurenceau, 2 David Bikard, 2 Simona Cocco, 1 and R´ emi Monasson 1
+
+> 1
+
+Laboratory of Physics of the Ecole Normale Sup´ erieure, PSL & CNRS UMR8023, Sorbonne Universit´ e, Paris, France 
+
+> 2
+
+Synthetic Biology, Institut Pasteur, Universit´ e Paris Cit´ e, Paris, France. 
+
+Diversity-Generating Retroelements (DGRs) create rapid, targeted variation within specific ge-nomic regions in phages and bacteria. They operate through stochastic retro-transcription of a template region (TR) into a variable region (VR), which typically encodes ligand-binding proteins. Despite their prevalence, the evolutionary conditions that maintain such hypermutating systems re-main unclear. Here we introduce a two-timescale framework separating fast VR diversification from slow TR evolution, allowing the dynamics of DGR-controlled loci to be analytically understood from the TR design point of view. We quantity the fitness gain provided by the diversification mecha-nism of DGR in the presence of environmental switching with respect to standard mutagenesis. Our framework accounts for observed patterns of DGR activity in human-gut Bacteroides and clarifies when constitutive DGR activation is evolutionarily favored. 
+
+Introduction . Diversity-Generating Retroelements (DGRs), first identified in the Bordetella phage [1], rep-resent an important class of hypermutation systems that enable rapid adaptation in phage and microbial popu-lations. Recent work has clarified their structural orga-nization [2, 3], documented their diversity across micro-bial genomes [4–6], elucidated their biological roles [6, 7], and highlighted their potential for engineering applica-tions [8, 9]. DGRs introduce mutations by copying a template region (TR) into a target variable region (VR) through an error-prone reverse transcription process [10– 12] (Fig. 1 (a) ). The mechanism is inherently asymmet-ric. While the TR slowly evolves through standard mu-tagenesis, the VR is quickly and repeatedly diversified and overwritten, with mutations concentrated at posi-tions corresponding to a specific TR nucleotide (typically, Adenine). This localized hypermutating system can gen-erate extensive phenotypic diversity at loci involved in host recognition, cell–cell interactions, or environmental sensing [5–7]. Recent studies on the human gut microbiome [5, 13, 14] illustrate the benefits of high DGR mutation rates [15]. Infants are born with very few DGRs in their microbiome, but by one year, they reach adult-like levels. Remark-ably, ∼ 72% of the 388 parental DGRs were observed to switch their VR during this period. Some Bacteroides 
+
+species (notably B. ovatus and B. finegoldii ) maintain high DGR activity: 13–40% of VRs diverge within 14 days. This suggests that diversification operates on a dedicated timescale far faster than standard mutation. While environmentally regulated DGR activation might explain infant microbiome diversification and context-dependent activity in many species [5, 14, 16], it does not address a more fundamental question: under what conditions is a DGR-based hypermutating system actually advantageous and thus maintained rather than lost? Because DGR activity depends on a functional re-verse transcriptase, mutations that impair this enzyme could in principle silence diversification, highlighting a potential evolutionary fragility of such systems. The long-term selective benefit of such constitutively active diversification is not immediately obvious and requires explicit mechanistic modeling. Although hypermutation has been studied in other biological contexts [17–19], the evolutionary forces governing the dynamics in systems with the distinctive architecture of DGRs remain largely unexplored. 
+
+FIG. 1. Illustration of the DGR system. (a) The main components of a DGR are shown. The template region (TR, blue) is copied into the variable region (VR, orange) at rate ν, with mutations introduced specifically at adenine (A) positions. The TR mutates at rate μ. The fitness of an individual—defined by its (TR, VR) pair—depends solely on its VR sequence. (b) Sketch of a fluctuating environment. Every interval τ , the environment switches to favor a different target (VR) sequence. The population frequency f (t) of the fittest sequence (with fitness Se) then adapts to these shifts. 
+
+DGR model and evolutionary dynamics. Hereafter, a DGR is defined by the nucleotidic sequences of its VR 
+
+and TR , of equal length L (Fig. 1 (a) ). In the follow-ing, we use bold symbols when refering to the precise sequences of nucleotides. Under standard point muta-tion process, each nucleotide in the VR and TR may 
+
+> arXiv:2602.16447v1 [q-bio.PE] 18 Feb 2026
+
+2mutate with rate (probability per unit of time) μ. In addition, the VR varies due to the DGR replacement and hypermutation mechanism, which happens at rate 
+
+ν ≫ μ. In practice, we assume that a new VR replaces the current VR after being randomly drawn from the 
+
+TR . In this random process, nucleotides C, G, T in the 
+
+TR are copied as such in the VR at the same positions, while A’s are equally likely to mutate into C, G, T or to remain unchanged [20]. As proteins are expressed from the VR , the fitness (growth rate) S(VR , t ) of the full DGR depends exclu-sively on the nucleotide sequence of the VR . For simplic-ity, we assume that S is additive across sites (no epistasis) [21, 22], and that fitness contributions depend solely on the nucleotide identity at each position rather than the encoded amino acids. The fitness at time t is given by 
+
+S(VR , t ) = 
+
+> L
+
+∑
+
+> i=1
+
+si, VR i (t) , (1) where si,q denotes the contribution of a nucleotide q =
+
+A, T, C, G at position i along the VR sequence. To model environmental changes, we assume below that the s fac-tors vary with time t on a characteristic switching time 
+
+τ , as represented in Fig. 1 (b) .A key insight is that selection acts on the DGR on two distinct timescales :
+
+• Fast (at the VR level): VR sequences diversify through repeated overwriting by the TR at rate ν
+
+and compete under environmental fluctuations. The pattern of Adenines (A) on the TR determines which 
+
+VR genotypes are accessible. 
+
+• Slow (at the TR level): the TR sequence mutates at the much lower per-base rate μ. TR variants are indirectly selected through the VR ’s they generate: the mean fitness of the VR population shapes the long-term evolutionary potential of the TR .This separation of timescales is strongly supported by experimental observations (see below) and allows for an analytical treatment of the DGR dynamics. In the following, we first analyze VR selection , showing how the effective growth rate depends on the DGR replacement rate ν relative to environmental switching 
+
+τ . Second, we address TR selection , explaining how se-lection acts on the TR sequence itself, and in particular, we derive the conditions under which the diversifying nucleotide (Adenine) is evolutionarily stable. In this framework, loss of DGR activity is modeled exclusively through selection acting on the TR sequence; we do not consider deactivation arising from mutations in the reverse transcriptase. Lastly, we explore the effects of the TR length on the selection dynamics, identifying the regimes in which DGR-mediated diversification is most advantageous. This framework explains experimental observations and identifies conditions under which DGRs are maintained, regulated, or lost in natural systems. 
+
+Experimental background. The authors of [14] stud-ied five Bacteroides DGR, and found two species that maintained a high level of DGR activity both in vitro 
+
+and in vivo in the absence of selective pressure (as ev-idenced by sustained activity in monoconolized mice). After t =14 days, a fraction φ of VR ranging from 13 to 40 % had diverged from the initial ones. Within our modeling framework, this fraction is sim-ply given by φ = 1 − e−νt due to the lack of selection (s independent of the nucleotide content), see details in Supplementary Materials (SM) [23] Sec. 1. Matching this formula with the experimentally observed fraction, we in-fer the diversification rates for these two Bacteroides to be between ν = 10 −2 day −1 and ν = 4 × 10 −2 day −1, see Table I.                  
+
+> Quantity Notation Range (day −1)
+> DGR diversification rate ν10 −2– 4 ×10 −2
+> Growth rate Se1 – 10 Growth rate per variable site s10 −1– 10 Spontaneous mutation rate μ10 −9– 10 −8
+> per base Mutation rate for full VR μL 10 −7– 10 −5
+> TABLE I. Approximate rates relevant for DGR dynamics in
+> Bacteroides .
+
+As a point of comparison, the actual doubling time of Bacteroides is around 2 hours in optimal conditions and up to a day [24, 25] (in situations where selection plays a role), resulting in a growth rate Se between 1 and 10 day −1. Because the spontaneous mutation rate per generation per base is about 10 −9, the rate 
+
+μ of spontaneous mutation per base is of the order of 10 −9 − 10 −8 day −1 [25, 26]. Consequently, the rate μL 
+
+of spontaneous mutation apparition (without DGR) in the region where selection occurs (the VR encoded part, approximately 100-1000 bases) ranges between 10 −7 and 10 −5 day −1. The effective number of sites L should be restricted to codons containing adenines within the hypermutation interval, not the entire sequence, as the phenotype is defined by the protein product encoded by the VR. This effective number L of variable sites can be estimated from the data of Ref. [5] to be between 1–8 (interval which contains 95% of the data, see SM Sec. 2). Consequently, there is a huge time scale separation (at least 3 orders of magnitude) between the estimated DGR rate, the replication rate and the rate at which spontaneous mutations appear in a sequence: 
+
+μL ≪ ν ≤ Se. This is a strong indication that DGR mutation and selection work on a time scale different from the classical selection mechanism. 3
+
+Fast dynamics of the VR population at fixed TR. 
+
+On time scales < 1/(μL ), the TR is effectively fixed, while the VR evolves under selection and is periodically overwritten via DGR-mediated diversification at rate ν.Because the model assumes independent sites, we adopt a per-base perspective: we first focus on a single site (L = 1), and then generalize the results to L > 1. Nucleotides A, C, G, T are labeled as 1 , 2, 3, 4 ( Q = 4 possible states). For the sake of simplicity, we consider a cyclic environmental dynamics of period Qτ . Here τ
+
+is the switching time. For t ∈ [q′τ, (q′ + 1) τ ] with q′ =1, ..., Q , the preferred nucleotide is q∗(t) = q′ and confers a fitness advantage S(q′, t ) = s > 0 (as L = 1) with respect to the other Q − 1 ones, i.e. s1,q (t) = s δ q,q ∗(t) in Eq. (1). This model corresponds to a classical framework of phenotypic switching [27–29]. The population sizes nq (t) of VR carrying nucleotides 
+
+q at time t obey the Wright-Fisher coupled equations: dnq (t)
+
+dt = (s δ q,q ∗(t) − ν) nq (t) + ν
+
+Q
+
+> Q
+
+∑
+
+> p=1
+
+np(t) . (2) Standard mutagenesis (no DGR) is described by the same equations with ν replaced with μ. This set of linear differ-ential equations can be solved as explained in SM Sec. 3. Formally speaking, after each cycle of duration Qτ , the 
+
+Q-dimensional vector of population sizes, n = {nq }, is multiplied by a ( Q×Q)-dimensional matrix M , whose en-tries encode the transition rates appearing in Eq. (2), see details in SM. Due to the periodicity of the time evolu-tion, the effective growth rate is given by S1 = ln Λ /(Qτ ), where Λ is the largest eigenvalue of M . This growth rate is plotted in Fig. 2 (a) as a function of the mutational rate and is in excellent agreement with the results of numeri-cal simulations for finite population size. As observed from Fig. 2 (a) , the growth rate S1 is maxi-mal when the rate ν is roughly equal to 1 /τ [27, 28], and largely exceeds its asymptotic value s/Q at both large and small ν. In each of these limits, a fixed (small ν)or a random (large ν) nucleotide is best for a fraction 1/Q of the time, explaining this expression. Notice that, for large τ , S1 decays slowly as the mutation rate ν is lowered below its optimal value ∼ 1/τ : the system has time to adapt to the slowly fluctuating environment even though mutations become rarer. The above results remain qualitatively correct for L > 
+
+1 variable sites, i.e. for a TR with L Adenines. We assume that two successive environments select for se-quences with different states at every position. With-out DGR, spontaneous mutations happen at rate μ in-dependently on each site, and the effective fitness is just 
+
+LS 1(μ). With the DGR mechanism, all VR bases are simultaneously redrawn at each mutational event, intro-ducing correlations between the sites. The effective fit-                          
+
+> FIG. 2. VR selection.(a) Effective growth rate as a function of the switching rate νfor L= 1. (b) Same as (a) for length
+> L= 10. Takeover times for the DGR system estimated from simulations (more than 99.5% of the population) (c) and from Eq. (4) (d) vs. diversification rate νfor L= 1. Parameter values: Q= 4, s= 1, population size = 10 8,μ= 10 −5.
+
+ness with diversification rate ν reads 
+
+SL(ν) ≈ max 
+
+ sL 
+
+Q , sL − ν + ν
+
+QL +ln 
+
+( 2ν
+
+> sLQ L
+
+)
+
+τ
+
+ , (3) see SM Sec. 3 for details about the derivation. Results are shown in Fig. 2 (b) , and are qualitatively similar to the L = 1 case. Our analysis unveils the condition under which a popu-lation of organisms equipped with DGR ultimately grows much faster than one lacking it (see also phase diagrams in SM Sec. 3). In particular, when ν ∼ 1/τ , there is a consistent advantage to the DGR mechanism regard-less of the value of SL. However, if SL is too small, the takeover time of the DGR-equipped population, 
+
+ttakeover ≈ 1
+
+SL(ν) − L S 1(μ) (4) may become prohibitively long. Two conditions must be met to avoid large ttakeover values, as illustrated in Fig. 2 (c) and (d) for L = 1. First, ν should not be larger than s, as replacement by DGR-generated variants would occur so frequently that the system would gain little advantage. Second, τ must not be exceedingly larger than 1 /s , as low spontaneous mutation rate μ
+
+would be sufficient to track very slow environmental changes, as mentioned above. These conditions for 4the success of DGR appear to be met in experimental situations [14], where we infer ν ≲ Se. This condition stays true considering L below 8 as the effective number of variable sites and s = Se/L . (Table I), ensuring both sufficient positive selection and high growth rate. 
+
+Slow dynamics of the TR. We now allow the nu-cleotides in the TR to mutate at a rate μ. A detailed treatment of the Wright-Fisher equations describing the evolution of the population of ( TR , VR ) pairs in a fluc-tuating environment is provided in SM Sec. 4. We here-after summarize the main results and provide intuition that supports them. Informally speaking, a TR sequence can be evolution-arily fit in two distinct ways. First, it may carry many 
+
+A’s that allow the VR to diversify and adapt to any en-vironment. However, continual diversification of the VR 
+
+at a rate ν leads to the frequent loss of adaptation in stable contexts. Second, the TR may carry non-Adenine nucleotides that are well-adapted to the current environ-ment; their copies in the VR then provide a fitness ad-vantage and are far less mutable (rate μ ≪ ν). Analysis of the evolutionary dynamics of a population of sequences of length L = 1 allows us to assess how these two fac-tors may concur to push the TR to eventually loose its Adenines [30]. In particular, we find that the overwhelm-ing majority of TR sequences either carry a A, or do not carry a A but are adapted to the current environment. The fraction of the latter is approximately given by 
+
+fnot A = ˜μ
+
+˜ν2 τ
+
+(e˜ντ − 1 − ˜ντ ) , (5) where ˜ μ = Q μ and ˜ ν = (1 − 1 
+
+> Q
+
+) ν. We deduce from the previous formula the existence of three regimes depend-ing on the value of ˜ ν and τ : fnot A ∼ ˜μ exp (˜ ντ ) /(˜ ν2τ ) for 
+
+ν ≫ 1/τ , ˜ μ/ ˜ν for ν ∼ 1/τ , ˜ μ τ for ˜ ν ≪ 1/τ . We compare this approximation with simulations in Fig. 3 (a) , (b) ,and (c) , confirming its validity. Imposing fnot A ≪ 1gives the conditions that allow the DGR mechanism to be favorable with respect to standard spontaneous muta-tional processes. If the switching time τ of the environ-ment is tightly regulated, that is, if the changes in the environment are periodic, the DGR mechanism gives a fitness advantage provided that ˜μ ≪ ˜ν ∼ 1
+
+τ . (6) However, the condition above is not sufficient in the case of an environment with a wide distribution of switching times. Adenines in the TR become strongly disfavored if τ may significantly exceed 1 /˜ν, see Eq. (5). For example, consider the case of τ algebraically distributed, with typical time-scale τ0 and exponent β,
+
+i.e. with cumultative probability P(τ ≥ t) = ( τ0/t )β .The adenine is lost with a probability of the order of (˜ ντ 0)β , condition which corresponds to fnot A ∼ 1. This theoretical scaling is confirmed in Fig. 3 (e) by simulations estimating the probability PA lost that, by the end of the environmental bout of random duration 
+
+τ , the population of TR carrying A no longer dominates (fraction smaller than 1 /2). This example shows that strongly (algebraically) variable environmental duration can be disastrous for the maintenance of the DGR mechanism, despite the fact that the typical timescale 
+
+τ0 of these environmental duration still obey ˜ ντ 0 ≈ 1.                                                                           
+
+> FIG. 3. TR selection. (a) to (c) .Fraction fnot A
+> of sequences in the TR population carrying non-adenine nculeotides. (a) ντ ≫1 ( τ= 200, μ= 10 −7, 10 −6, and 10 −5); (b) ντ = 1 ( ν= 1 /τ = 10 −2, 5 ·10 −2and 10 −1); (c)
+> ντ ≪1 ( μ= 10 −6, 10 −5and 10 −4and τ= 5). Increasing values of νor μare shown in blue, orange and green succes-sively. Dashed lines correspond to the expressions of Eq. (5) in the respective regimes. (d) Probability PA lost that the fraction of TR with an A(initially, equal to 1) is lower than 1/Q = 1 /4 as a function of ντ 0where τ0is the typical dura-tion of an environment. Dashed line corresponds to ( ντ 0)β.We take μ= 10 −4,β= 1 /2 and ν= 10 −3, 10 −2and 10 −1.
+> (e) Phase diagram in the ( L, τ ) plane. Dashed lines show the theoretical prediction for τcin Eq. (7) Blue points are deter-mined by solving the dynamics for infinite population size. Parameters are μ= 10 −6and ν= 10 −2.
+
+The above analysis can be extended to L > 1. To do so, we examine the conditions that lead to the loss of sequences with all L sites occupied by adenines. As seen previously, this maximally-diversifying TR com-petes with the best adapted sequence in the current envi-ronment, whose population grows as 
+
+( μL 
+
+> Qν
+
+)L
+
+eνt : the pref-actor corresponds to the L spontaneous mutation events 5needed to reach the best adapted TR , and the exponen-tial term the gain in losing the DGR (SM Sec. 4). In addition, random sequences invade the population, with a fraction growing as eμLt . As a consequence, the all-L
+
+DGR is outcompeted when the time τ exceeds 
+
+τc(L) = min 
+
+[ L
+
+ν ln 
+
+( νQ 
+
+μL 
+
+)
+
+, 1
+
+μL 
+
+]
+
+. (7) see Fig. 3 (e) . The phase diagram in the ( L, τ ) plane shows the existence of three regimes, corresponding to the three types of dominant TR sequences. The DGR phase is best stable over time for the optimal length 
+
+L∗ ∼ √ν/μ , (8) up to a logarithmic factor. This result stresses that having extended variable regions in the TR can be beneficial for the resilience of the DGR system, but that too long TR are not robust against spontaneous mutations. This is consistent with the relatively low number L (up to 10 2) of variable sites found in [5, 14] and displayed in SM Sec. 2. We stress that our analysis focuses on the potential loss of DGR due to the TR dynamics only. Other mechanisms, such as reverse transcriptase inactivation, are left for future studies. 
+
+Conclusion. Our analysis unveils to what extent and conditions the DGR system offers fitness advantages over standard spontaneous mutation processes in frequently changing environments. If the environmental context is stable or does not vary quickly enough, the DGR becomes progressively inoperant through the loss of the Adenines in the TR after some critical time we have estimated. Our study therefore emphasizes the need for being able to tune the activation and desactivation of the DGR mechanism [14, 31], despite its inherent cost e.g. due to the sensing of the environment fluctuations. Organisms can enable/disable the DGR apparatus in multiple ways: some might down-regulate diversification when it is un-necessary [5, 14], others may effectively silence the system through mutations that impair the reverse transcriptase [11, 14, 32], while engineered systems can bypass the VR entirely and reintegrate cDNA directly into the TR [8]. An additional relevant context include coevolving DGR populations [33] in which the environmental switching time τ is replaced by the inverse DGR switching rate 1 /ν 
+
+of the other population. We could also consider scenarios in which finite population size modulates the benefits of hypermutation [18]. All of these possibilities constitute promising directions for future modeling efforts. Future analysis should take into account the existence of mutational biases inherent to DGRs and their conse-quences for protein-level selection. Because selection acts on amino acids, the position of adenines within codons can substantially affect the number of accessible amino-acid variants (for example, AAC codons can diversify into 15 amino acids, whereas having an adenine only at the third position yields negligible variation). These posi-tional effects, together with biases in DGR A-to-N sub-stitutions [8, 9, 14], shape the landscape of possible re-ceptor or ligand variants. Exploring how diversification proceeds under these alternative architectures and muta-tional regimes would be interesting.                                              
+
+> [1] M. Liu, R. Deora, S. R. Doulatov, M. Gingery, F. A. Eiserling, A. Preston, D. J. Maskell, R. W. Simons, P. A. Cotter, J. Parkhill, and J. F. Miller, Science 295 , 2091 (2002). [2] W. Dai, A. Hodes, W. H. Hui, M. Gingery, J. F. Miller, and Z. H. Zhou, Proceedings of the National Academy of Sciences 107 , 4347 (2010), publisher: Proceedings of the National Academy of Sciences. [3] S. Handa, T. Biswas, J. Chakraborty, G. Ghosh, B. G. Paul, and P. Ghosh, Nature (2025). [4] L. Wu, M. Gingery, M. Abebe, D. Arambula, E. Czornyj, S. Handa, H. Khan, M. Liu, M. Pohlschroder, K. L. Shaw, A. Du, H. Guo, P. Ghosh, J. F. Miller, and S. Zimmerly, Nucleic Acids Research 46 , 11 (2018). [5] S. Roux, B. G. Paul, S. C. Bagby, S. Nayfach, M. A. Allen, G. Attwood, R. Cavicchioli, L. Chistoserdova, R. J. Gruninger, S. J. Hallam, M. E. Hernandez, M. Hess, W.-T. Liu, T. A. McAllister, M. A. O’Malley, X. Peng, V. I. Rich, S. R. Saleska, and E. A. Eloe-Fadrosh, Nature Communications 12 , 3076 (2021). [6] M. Carrasco-Villanueva, C. Wang, and C. Wei, BMC Genomics 25 , 1227 (2024). [7] A. Vallota-Eastman, E. C. Arrington, S. Meeken, S. Roux, K. Dasari, S. Rosen, J. F. Miller, D. L. Valen-tine, and B. G. Paul, BMC Genomics 21 , 664 (2020). [8] R. Laurenceau, P. Rochette, E. Lopez-Rodriguez, C. Fan, A. Maire, P. Vittot, K. M. Cerdas-Mej´ ıas, A. Bouvier, T. Chrysostomou, and D. Bikard, bioRxiv (2025), 10.1101/2025.03.24.644984. [9] I. Unlu, M. K. Smiley, V. Potapov, Y. Renoux-Martin, Z.-Y. Sun, and H. C. Lim, PLOS Genetics 22 , 1 (2026). [10] H. Guo, L. V. Tse, R. Barbalat, S. Sivaamnuaiphorn, M. Xu, S. Doulatov, and J. F. Miller, Molecular Cell
+> 31 , 813 (2008). [11] H. Guo, L. V. Tse, A. W. Nieh, E. Czornyj, S. Williams, S. Oukil, V. B. Liu, and J. F. Miller, PLOS Genetics 7,1 (2011). [12] H. Guo, D. Arambula, P. Ghosh, and J. F. Miller, Mi-crobiology Spectrum 2(2014). [13] A. Gulyaeva, L. Liu, S. Garmaeva, M. Kruk, R. K. Weersma, H. J. M. Harmsen, and A. Zhernakova, Mi-crobiology Spectrum , e01066 (2024). [14] B. R. Macadangdang, Y. Wang, C. L. Woodward, J. I. Revilla, B. M. Shaw, K. Sasaninia, G. E. Varnum, S. K. Makanani, C. Berruto, U. Ahuja, et al. , Science 390 ,eadv2111 (2025). [15] A. Giraud, I. Matic, O. Tenaillon, A. Clara, M. Radman, M. Fons, and F. Taddei, Science 291 , 2606 (2001). [16] B. R. Macadangdang, S. K. Makanani, and J. F. Miller, Annual Review of Microbiology 76 , 389 (2022), epub 2022 Jun 1.
+
+6
+
+[17] I. Martincorena and N. M. Luscombe, BioEssays 35 , 123 (2013). [18] M. Lynch, M. S. Ackerman, J.-F. Gout, H. Long, W. Sung, W. K. Thomas, and P. L. Foster, Nature Re-views Genetics 17 , 704 (2016). [19] Y. Ram and L. Hadany, Evolution 66 , 2315 (2012). [20] We do not need to consider partial correction of the VR 
+
+by the repair protein MutS. As observed in Ref. [14] the DGR diversification mechanism is all-or-nothing: the 
+
+VR is either entirely corrected into the initial VR , or en-tirely kept as it is. [21] A. L. Halpern and W. J. Bruno, Molecular Biology and Evolution 15 , 910 (1998). [22] C. S. Wylie and E. I. Shakhnovich, Proceedings of the National Academy of Sciences 108 , 9916 (2011). [23] See Supplemental Material at [URL will be inserted by publisher] for analytical details and additional figures. [24] J. C. Frantz and R. E. McCallum, Journal of Bacteriology 
+
+137 , 1263 (1979). [25] S. Zhao, T. D. Lieberman, M. Poyet, K. M. Kauffman, S. M. Gibbons, M. Groussin, R. J. Xavier, and E. J. Alm, Cell host & microbe 25 , 656 (2019). [26] N. R. Garud, B. H. Good, O. Hallatschek, and K. S. Pollard, PLOS Biology 17 , 1 (2019). [27] D. H. De Groot, A. J. Tjalma, F. J. Bruggeman, and E. Van Nimwegen, Proceedings of the National Academy of Sciences 120 , e2211091120 (2023). [28] E. Kussell and S. Leibler, Science 309 , 2075 (2005). [29] A. Taitelbaum, R. West, M. Assaf, and M. Mobilia, Phys. Rev. Lett. 125 , 048105 (2020). [30] Notice that if the environment favors A on the VR , then this adapted nucleotide can be produced only by a A on the TR . This case does therefore not contribute to the loss of Adenines on the TR . Further details can be found in SM Sec. 3. [31] S. Nimkulrat, H. Lee, T. G. Doak, and Y. Ye, Frontiers in Microbiology Volume 7 - 2016 (2016). [32] S. S. Naorem, J. Han, S. Wang, W. R. Lee, X. Heng, J. F. Miller, and H. Guo, Proceedings of the National Academy of Sciences of the United States of America 
+
+114 , E10187 (2017). [33] A. Buckling and P. B. Rainey, Proceedings of the Royal Society of London. Series B: Biological Sciences 269 , 931 (2002). SUPPLEMENTAL MATERIAL A model of Diversity Generating Retroelements population dynamics. 
+
+> CONTENTS
+
+S1. Experimental background 1S2. Estimation of the number L of variable sites 2S3. Fast dynamics of the VR population at fixed TR 3A. L = 1 3B. L > 1 41. Q = 2: perturbation theory 42. General Q lower bound 8S4. Slow dynamics of the TR 11 A. L = 1 11 1. The TR =A population: first order 11 2. The TR ̸ =A population: the order μ correction 13 3. Simplified dynamics 18 4. Dicussion about VR =A selection by the environment 18 B. L > 1 19 Supplementary References 22  
+
+> S1. EXPERIMENTAL BACKGROUND
+
+In this section, we explain the calculations of the Experimental background section of the main text. The setup is the following: the experiment starts with a population n0(0) of individuals with the same Variable Region (VR). At a rate ν, the Template Region (TR) go through the Diversity Generating Retroelement (DGR) mechanism which leads to the replacement of the initial VR by a new one. We note the population in this category 
+
+n1(t), population initially empty. Because there is no selection against the VR in the experiment of Ref. [S1], we suppose that both populations grow at a same rate Se. Finally, because it is unlikely for the system to produce the same VR as the initial one through the DGR mechanism, the number of possible VR growing exponentially with the number of Adenines, we consider that an individual in population 1 stays there. Of note, even for small number of Adenines, this changes the estimated rate 
+
+ν by a prefactor 1 − 1/Q at most (probability to produce the same nucleotide with only one diversifying nucleotide). From this, we have the differential equations describing the time evolution of the system: ˙n0(t) = ( Se − ν)n0(t)˙n1(t) = Sen1(t) + νn 0(t) .
+
+(S1) (S2) The solution of this system of equations is given by: 
+
+n0(t) = n0(0) e(Se−ν)t , n 1(t) = n0(0) 
+
+(
+
+eSet − e(Se−ν)t)
+
+, (S3) from which we deduce the expression of the fraction φ of the population with distinct VR from the original one as a function of time given in the main text: 
+
+φ = n1(t)
+
+n0(t) + n1(t) = 1 − e−νt . (S4) 2   
+
+> S2. ESTIMATION OF THE NUMBER LOF VARIABLE SITES
+
+We do an estimate of the number of variable sites in the region undergoing DGR via the dataset assembled in Ref. [S2]. Because it is not the whole TR that will go through the hypermutation mechanism of the DGR, we consider only codons which are between two mutations (detected in the VR). All codons having an Adenine are then considered to be potential variable sites (even though there was no mutation in the VR at those positions). The histogram of the count L of such variable sites is presented in Fig. S1. We obtain that 95% of sequences have less than L = 8 variable site in the region undergoing the DGR hypermutation mechanism.      
+
+> Fig. S1. Number of variable sites distribution. Histogram of the number Lof codons containing an Adenine in the region detected as DGR from Ref. [S2], with the additional constraint that the codon is in an interval where DGR mutations have been detected.
+
+3
+
+S3. FAST DYNAMICS OF THE VR POPULATION AT FIXED TR A. L = 1 
+
+As detailed in the main text, the population vector n = ( nq )0≤q≤Q−1 of the Q nucleotides obeys the matrix equation dn
+
+dt = Aq∗(t)n . (S5) The Aq∗(t) matrix corresponds to (Aq∗(t)
+
+)
+
+> q1,q 2
+
+= δq1,q 2 (sδ q1,q ∗(t) − ν) + ν/Q : all states mutate equally into any other at rate ν, and only the nucleotide q∗(t) (which changes every time τ ) has a growth rate of s.The solution is formally expressed as n(Qτ ) = ∏Q−1 
+
+> q=0
+
+exp ( τ A q ) n(0) = M n(0). At large times T = kQτ , the population has been through k growth cycles, and the population has been enriched by a factor M k. To get the growth rate of the population under these conditions, we find the largest eigenvalue Λ of M , which gives the effective population growth rate S1(ν) such that 
+
+eS1(ν)T = eS1(ν)kτ Q ≈ ∑
+
+> p
+
+(M k · n(0)) p ∝ Λk (S6) leading to 
+
+S1 = ln Λ 
+
+Qτ (S7) as explained in the main text. We show in Fig. S2 the phase diagram in ( τ, ν ) which delimits the parameter space region where the DGR system dominates the non DGR one i.e. S1(ν) > S 1(μ). 
+
+Fig. S2. Phase diagram of the DGR vs non-DGR system as a function of ν and τ , for μ = 10 −4. The region where 
+
+S1(ν) > S 1(μ) is delimited by the red contour. The region S1(ν) < S 1(μ) is darkened. 4    
+
+> B. L > 1
+> 1. Q= 2 : perturbation theory
+
+In this section we present the method for deriving the large L effective fitness of a DGR system of length L,replacement rate ν and Q = 2 nucleotides (let’s note them 0 and 1). During the time interval [0 , τ ], the system selects for 0s: the fitness/growth rate of a sequence with k zeros is simply 
+
+sk . Similarly, during the time interval [ τ, 2τ ], the system selects for 1s: the fitness/growth rate of a sequence with k
+
+0s (and L − k 1s) is simply s(L − k). Then due to the DGR system, each sequence is replaced at rate ν by a new one, uniformly distributed among any of the 2 L possible ones. We fix the scale of time with s = 1. The system is cyclic of period 2 τ .We are interested in the effective growth rate of the system: if we note A0 (resp. A1) the transition matrix during the first time interval (resp. the second one), then the evolution of the population vector n of size 2 L indexed by the sequence (e.g. 11000 for L = 5) is given by 
+
+n(2 τ ) = exp ( τ A 1) · exp ( τ A 0) · n(0) . (S8) Thus, if we note Λ L the dominant eigenvalue of exp ( τ A 1)·exp ( τ A 0), the effective growth rate SL(ν) of the population is given by: 
+
+SL(ν) = ln Λ L
+
+2τ . (S9) The objective is to compute SL(ν). 
+
+Reduction of the matrix size/Removal of degeneracy. At first, let’s consider the exact form of A0 and A1. They are both 2 L square matrices, 
+
+A0 = diag ( s(# of 0) − ν) + ν
+
+2L 1 · 1† = D0 + ν
+
+2L 1 · 1†
+
+A1 = diag ( s(#of 1) − ν) + ν
+
+2L 1 · 1† = D1 + ν
+
+2L 1 · 1†
+
+(S10) (S11) where 1 is the vector with only 1s as entries. A trivial basis of this space is given by the 2 L vectors indexed by their ordered sequence of 0s and 1s, that we can note eσ , σ being a vector of size L of 0s and 1s. We search for eigenvalues of the Ai’s. Let us note Ek the subspace generated by vectors where k nucleotides are 0 (generated by the eσ ’s where ∑ 
+
+> i
+
+σi = L − k), and Hk = Ek ∩ { v|v · 1 = 0 }. We note that the dimension of Ek is (Lk
+
+)
+
+while the one of Hk is (Lk
+
+) − 1. Besides, all elements in v in Hk are eigenvectors of both A0 and A1 of eigenvalues k
+
+and L − k respectively: 
+
+A0 · v = D0 · v + ν
+
+2L 1 · 1† · v = kv A1 · v = ( L − k)v
+
+(S12) (S13) Consequently, we found 2 L − (L + 1) (independent) eigenvectors of exp ( τ A 1) · exp ( τ A 0) of same eigenvalue eLτ as for any k and v ∈ H k
+
+exp ( τ A 1) · exp ( τ A 0) · v = eτ (L−k)+ τ k v = eLτ v . (S14) Thus, Λ L is given by the maximum between eLτ and the maximum eigenvalue on the projected space of dimension 
+
+L + 1 corresponding to the remaining eigenvectors to find. An orthonormal basis of this space is simply given by the 
+
+L + 1 vectors we will note |k⟩. Each |k⟩ corresponds to the sum of all (Lk
+
+) basis vector in Ek (vectors with a 1 at the corresponding sequence with k 0s, 0 for all other entries), normalised by 1 /
+
+√(Lk
+
+),
+
+|k⟩ = 1
+
+√(Lk
+
+)∑  
+
+> σ|∑
+> iσi=L−k
+
+eσ . (S15) 5By projecting A0 and A1 in this basis, we get the projected A0 and A1 (we keep the same notation in the projected space): 
+
+A0 =
+
+> L
+
+∑
+
+> k=0
+
+(k − ν)|k⟩⟨ k|+ ν
+
+2LL∑
+
+> k,ℓ =0
+
+√(Lk
+
+)√(Lℓ
+
+)
+
+|k⟩⟨ ℓ|
+
+A1 =
+
+> L
+
+∑
+
+> k=0
+
+(L − k − ν)|k⟩⟨ k|+ ν
+
+2LL∑
+
+> k,ℓ =0
+
+√(Lk
+
+)√(Lℓ
+
+)
+
+|k⟩⟨ ℓ|
+
+(S16) (S17) where we used that 
+
+1 · 1†|k⟩ = ∑
+
+> ℓ
+
+√(Lk
+
+)√(Lℓ
+
+)
+
+⟨ℓ| (S18) This first step gives us a much smaller matrix to diagonalize (2 L versus L + 1), and we can check our calculations numerically by computing the top eigenvalue for both matrices. 
+
+Fig. S3. Comparison of the effective growth rate SL(ν) obtained from the top eigenvalue of the 2 L matrix and the L + 1 matrix for L = 3. 6
+
+Perturbation theory at small ν/ 2L Next, we would like to find an approximate expression of the eigenvalues and eigenvectors of both A0 and A1 in order to compute Λ L.For that, we use perturbation theory at first order in ν/ 2L, using that at ν = 0 both A0 and A1 are both diagonal in the basis of ( |k⟩)0≤k≤L, of non-degenerate eigenvalues. We note (|k(0) ⟩) 
+
+> 0≤k≤L
+
+and 
+
+(
+
+λ(0) 
+
+> k
+
+)
+
+> 0≤k≤L
+
+the first order shifted eigenvectors and eigenvalues of A0 (resp. (|k(1) ⟩) 
+
+> 0≤k≤L
+
+and 
+
+(
+
+λ(1) 
+
+> k
+
+)
+
+> 0≤k≤L
+
+the first order shifted eigenvectors and eigenvalues of A1). We get that: 
+
+|k(0) ⟩ = |k⟩ + ν
+
+2L
+
+∑ 
+
+> ℓ̸=k
+
+√(Lk
+
+)√(Lℓ
+
+)
+
+k − ℓ |ℓ⟩
+
+λ(0)  
+
+> k
+
+= k − ν + ν
+
+2L
+
+(Lk
+
+)
+
+(S19) (S20) and 
+
+|k(1) ⟩ = |k⟩ + ν
+
+2L
+
+∑ 
+
+> ℓ̸=k
+
+√(Lk
+
+)√(Lℓ
+
+)
+
+ℓ − k |ℓ⟩
+
+λ(1)  
+
+> k
+
+= L − k − ν + ν
+
+2L
+
+(Lk
+
+)
+
+.
+
+(S21) (S22) Of note , the two basis of eigenvectors are two (distinct) orthonormal basis at first order in ν. From this, we get the formal expression for exp ( τ A 1) · exp ( τ A 0): exp ( τ A 1) · exp ( τ A 0) = ∑
+
+> k,ℓ
+
+e(λ(0)    
+
+> k+λ(1)
+> ℓ)τ
+
+|k(0) ⟩⟨ k(0) |ℓ(1) ⟩⟨ ℓ(1) | (S23) We can evaluate this expression on all the eigenvectors |k(0) ⟩, taking the maximal one as a proxy for Λ L (rigorously: a lower bound). 
+
+⟨k(0) |exp ( τ A 1) · exp ( τ A 0) |k(0) ⟩ = eλ(0)   
+
+> kτ
+
+∑
+
+> ℓ
+
+eλ(1)   
+
+> ℓτ
+
+⟨k(0) |ℓ(1) ⟩2 (S24) The exponential terms are maximized for k = L and ℓ = 0, which provides us with a (good) lower bound for Λ L (by neglecting all other exponential terms): ΛL ≥ eλ(0)   
+
+> Lτ
+
+eλ(1) 0 τ ⟨L(0) |0(1) ⟩2 = eτ (2 L−2ν+2 ν/ 2L)
+
+( 2ν
+
+2LL
+
+)2
+
+(S25) Finally, we obtain the approximate lower-bound estimate for SL(ν): 
+
+SL(ν) ≥
+
+ln max 
+
+(
+
+eLτ , e τ (2 L−2ν+2 ν/ 2L) ( 2ν
+
+> 2LL
+
+)2)
+
+2τ = max 
+
+(
+
+L
+
+2 , L − ν(1 − 2−L) + ln ( 2ν
+
+> 2LL
+
+)
+
+τ
+
+)
+
+(S26) We can find the optimal DGR switching rate ν∗ by maximizing this expression over ν and get 
+
+ν∗ = 1
+
+τ (1 − 2−L) (S27) which confirms the optimality of taking ν ≈ 1/τ even in the DGR setting with length L > 1. We expect this lower bound to work better at: 
+
+• ν ≪ 1: because it is perturbation theory in ν.
+
+• ν 
+
+> 2LL
+
+eτ L ≥ 1: the time for best sequence to appear and dominate the population. Otherwise, the exponentials are not dominant and do not dictate the term to keep in the sum. The interpretation is the following: the population currently selected needs some minimal time to grow and dominate by the end of the time window. Thus, the lower bound is poor at τ , ν and L too small. 7
+
+Fig. S4. Lower bound of SL(ν) versus its exact value by direct diagonalization of the L + 1 matrix for L = 4, L = 8, L = 12 and L = 16. 
+
+Interpretation of the result At this point, we notice that the result Eq. (S26) can be derived in a simpler way. Let us consider an initial population n(0). During the first time interval [0 , τ ], the population with L 0s on their VR noted n0... 0 grows exponentially at a rate L − ν + ν/ 2L, and thus is the dominant population (the total population is approximatively given by n0... 0). In particular, if we also consider the population n1... 1 with L 1s in that time window, their dynamics obey ˙n1... 1(t) = ν
+
+2L n0... 0(t) (S28) such that at time τ ,
+
+n1... 1(τ ) ≈ ν
+
+L2L n0... 0(τ ) (S29) using that n0... 0 grows exponentially at rate L − ν + ν/ 2L ≈ L.When the environment changes to select 1s, we consider the population of L 0s in their VR which switches to L 1s. Besides, we only consider this transition, neglecting all others (individuals which do other transitions are lost). The dynamics is then given by: ˙n1... 1(t) = ( L − ν + ν/ 2L)n1... 1(t) + ν
+
+2L n0... 0(t) . (S30) 8Because n0... 0(t) = n0... 0(τ ) for t > τ (only 1s are selected, 0s have zero growth rate), we have that: 
+
+n1... 1(2 τ ) = ν
+
+2L(L − ν(1 − 1/2L)) n0... 0(τ )
+
+(
+
+e(L−ν+ν/ 2L)τ − 1
+
+)
+
++ n1... 1(τ )e(L−ν+ν/ 2L)τ
+
+≈ e(L−ν+ν/ 2L)τ ( ν
+
+2LL n0... 0(τ ) + n1... 1(τ )
+
+)
+
+≈ e(L−ν+ν/ 2L)τ 2ν
+
+2LL n0... 0(τ ) .
+
+(S31) (S32) (S33) To summarize, during each environment window, the total population will grow by a factor 2ν 
+
+> 2LL
+
+e(L−ν+ν/ 2L)τ at least thanks to the transition 0 . . . 0 to 1 . . . 1. Thus, the effective growth rate is at least 
+
+SL(ν) ≥
+
+ln 
+
+( 2ν 
+
+> 2LL
+
+e(L−ν+ν/ 2L)τ
+
+)
+
+τ (S34) which gives exactly Eq. (S26) obtained via perturbation theory (the other lower bound L/ 2 coming simply from a population without any DGR switching which grows of a factor Lτ during one bout and stays fixed during the next one). Thus, it means that, to first order in ν, the main contribution of the DGR mechanism to the fitness is given by this transition of the fittest sequence of the previous bout to the next fittest sequence. We will use that directly when considering the case Q > 2. 
+
+2. General Q lower bound 
+
+Reduction of the matrix size. We note Aκ the rate matrix for state κ,
+
+Aκ = diag ( s(# of κ) − ν) + ν
+
+2L 1 · 1† . (S35) We can apply the same projection procedure to the Aκ matrices to find the highest eigenvalue in the smaller vector space. For any κ we have the Aκ matrix (similarly to the previous part) for κ = 0 , . . . , Q − 1: 
+
+Aκ = ∑   
+
+> c0,...,c Q−1|∑
+> kck=L
+
+(cκ − ν)|c0, . . . , c Q−1⟩⟨ c0, . . . , c Q−1|
+
++ ν
+
+QLL∑     
+
+> c0,...,c Q−1,c ′
+> 0,...,c ′
+> Q−1|∑
+> kck=L, ∑
+> kc′
+> k=L
+
+√( Lc0, . . . , c Q−1
+
+)√( Lc0, . . . , c Q−1
+
+)
+
+|c0, . . . , c Q−1⟩⟨ c′
+
+> 0
+
+, . . . , c ′
+
+> Q−1
+
+| (S36) where ck is the number of symbol k in the sequence. We see indeed that this is exact in Fig. S5, meaning that we can use this smaller matrix to compare our approximated results that we will obtain in the following section. 
+
+Effective fitness expression. A lower bound is given by 
+
+SL(ν) ≥
+
+ln max 
+
+(
+
+eLτ , e Qτ (L−ν+ν/Q L)
+
+( 2ν
+
+> QLL
+
+)Q)
+
+Qτ = max 
+
+ L
+
+Q , L − ν(1 − Q−L) + ln 
+
+( 2ν
+
+> QLL
+
+)
+
+τ
+
+ . (S37) It corresponds to the path of states 0 . . . 0 to 1 . . . 1 to 2 . . . 2, so on and so forth where transition from one state to the other happens at rate ν/Q L. Indeed, because the growth rate is L in the new state, we get that the population 
+
+n1 in the newly selected state at time t knowing the population in the previously selected state n0 (which will not grow anymore as it is not selected anymore) obeys the equation: dn1
+
+dt = ( L − ν(1 − 1/Q L)) n + ν
+
+QL n0 (S38) of solution 
+
+n1(τ ) ≈ e(L−ν(1 −1/Q L)) τ
+
+( ν
+
+LQ L n0(0) + n1(0) 
+
+)
+
+(S39) 9at large τ . Using that during the previous environment the population n0 grew exponentially at rate L and mutated at rate ν/Q L into the population n1, we get as in (S29) that 
+
+n1(0) = ν
+
+LQ L n0(0) . (S40) which leads to 
+
+n1(τ ) ≈ e(L−ν(1 −1/Q L)) τ 2ν
+
+QLL n0(0) . (S41) Doing the operation Q times gives us the lower bound above, that we check in Fig. S6. This gives us back ν∗ =  
+
+> 1
+> τ(1 −Q−L)
+
+.
+
+Fig. S5. Comparison of the top eigenvalue of the QL matrix and the O(L3) matrix for L = 3. 
+
+We also show in Fig. S7 the phase diagram in ( τ, ν ) which delimits the parameter space region where the DGR system dominates the non DGR one i.e. SL(ν) > LS 1(μ). 10 
+
+Fig. S6. Lower bound of SL(ν)/L versus its exact value by direct diagonalization of the O(L3) square matrix for L = 4, L = 6, 
+
+L = 8 and L = 10. 
+
+Fig. S7. Phase diagram of the DGR vs non-DGR system as a function of ν and τ , for μ = 10 −4 and L = 5. The region where 
+
+SL(ν) > LS 1(μ) is delimited by the red contour. The region SL(ν) < LS 1(μ) is darkened. 11 
+
+S4. SLOW DYNAMICS OF THE TR A. L = 1 
+
+To describe the TR dynamics, we will separate the discussion by separating over the diverse type of (TR,VR) 
+
+genotypes. We note A the nucleotide which corresponds to the diversification (when present in the TR ), T corre-sponding to the currently selected nucleotide (when present in the VR ), and N for all the rest (we note M when we include A in this population). We represent the graph of population fluxes between the different (TR, VR) 
+
+populations. Of note, we make the assumption that T̸ = A, hypothesis we discuss in the end of the section. 
+
+Fig. S8. The graph of population transitions. The graph of effective transitions between the different (TR,VR) 
+
+population (first letter is the TR , second the VR ). A corresponds to the diversifying nucleotide, T to the currently selected nucleotide, M to any nucleotide except form T , N to any nucleotide except from A and T . In blue are the population with growth rate 1, in red those with growth rate 0. Hashed circles correspond to population of size of order μ, while plain lines are of order 1. Dotted arrows represent transitions of order μ, plain line arrows those of order ν. We do not represent transitions which would lead to μ2 corrections to the population sizes. 
+
+1. The TR =A population: first order 
+
+As seen in the first part, by taking ν ≈ 1/τ we are going to select for TR with the Adenine. Thus, as a first step, we describe this population, which should dominate the whole population. To do so, we split this population in two: either they have the right VR =T (population of size nAT (t)) or they don’t (population of size nAM (t)). The equations describing the joint dynamics of these two populations are given by: ˙nAT =
+
+(
+
+1 − ν Q − 1
+
+Q
+
+)
+
+nAT + ν
+
+Q nAM 
+
+˙nAM = − ν
+
+Q nAM + ν Q − 1
+
+Q nAT 
+
+(S42) (S43) of solution given by: 
+
+nAT (t) = C+eλ+t + C−eλ−t
+
+nAM (t) = C+x+eλ+t + C−x−eλ−t
+
+(S44) (S45) where ∆ = 
+
+√
+
+(1 − ν)2 + 4ν
+
+Q , λ± = 1 − ν ± ∆
+
+2 . (S46) 12 and 
+
+x± = Qλ ± − Q + ν(Q − 1) 
+
+νC+ = nAM (0) − x+nAT (0) 
+
+x+ − x−
+
+C− = x+nAT (0) − nAM (0) 
+
+x+ − x−
+
+(S47) (S48) (S49) For the initial conditions, we use that at times t ≫ 1/(λ+ − λ−) = 1 /∆, 
+
+nAM (t)
+
+nAT (t) + nAM (t) ∼ x+
+
+1 + x+
+
+. (S50) However, we know that the initial fraction of the population in ( A, T ) and ( A, M ) are given by the respective fractions at the previous time window, where the ( A, T ) population corresponds to a fraction 1 /(Q − 1) of the previous ( A, M )population ( T not being the selected nucleotide in the previous time window and supposing that the behaviour of all non positively selected nucleotide is the same). Thus, the initial fraction of sites starting in state (TR,VR) =(A,T) can be approximated by 
+
+nAT (0) = x+
+
+(Q − 1)(1 − x+) , n AM (0) = 1 − nAT (0) (S51) From this, we get the fraction of the population in each state, 
+
+fAT (t) = nAT (t)
+
+nAM (t) + nAT (t) , f AM (t) = nAM (t)
+
+nAM (t) + nAT (t) . (S52) Using this, we get the full description of the TR =A population as well as the average fitness λ(t) which is given by the fraction of the population in the AT state: 
+
+λ(t) = 1 × fAT (t) + 0 × fAM (t) = fAT (t) (S53) We check our analytical results against numerical simulations in Fig. S9. 13 
+
+Fig. S9. A population fraction. Comparison between numerical simulations (lines) and theoretical predictions (dots) of the population of TR having an adenine. The population size is 10 7, and the parameters are τ = 20, ν = 5 .10 −2, μ = 10 −5,
+
+Q = 4. 
+
+2. The TR ̸ =A population: the order μ correction 
+
+To describe this population, we directly compute the fraction dynamics using Wright-Fisher equations [S3] as we computed the average fitness dynamics λ(t) (to first order, without the μ corrections). In the following, we can replace when necessary fAT (t) = λ(t) and fAM (t) = 1 − λ(t). We will note Λ( t) ≡ ∫ t 
+
+> 0
+
+λ(s)d s.
+
+TR =T, VR = M
+
+˙fT M (t) = ( −ν − λ(t)) fT M (t) + μ
+
+Q fAM (t) (S54) such that 
+
+fT M (t) = fT M (0) e−νt −Λ( t) + μ
+
+Q e−νt −Λ( t)
+
+∫ t
+
+> 0
+
+eνs +Λ( s)fAM (s)d s
+
+= fT M (0) e−νt −Λ( t) + μ
+
+Q e−νt −Λ( t)
+
+∫ t
+
+> 0
+
+eνs +Λ( s)(1 − λ(s))d s
+
+(S55) (S56) 
+
+TR =T, VR =T
+
+˙fT T (t) = (1 − λ(t)) fT T (t) + μ
+
+Q fAT (t) + νf T M (t) (S57) such that 
+
+fT T (t) = fT T (0) et−Λ( t) + et−Λ( t)
+
+∫ t
+
+> 0
+
+( μ
+
+Q fAT (s) + νf T M (s)
+
+)
+
+e−s+Λ( s)ds
+
+= fT T (0) et−Λ( t) + et−Λ( t)
+
+∫ t
+
+> 0
+
+( μ
+
+Q λ(s) + νf T M (s)
+
+)
+
+e−s+Λ( s)ds
+
+(S58) (S59) 14 
+
+TR =N, VR =T
+
+˙fN T (t) = (1 − λ(t) − ν)fN T (t) + μ(Q − 2) 
+
+Q (fAT (t) + fT T (t)) (S60) We neglect fT T (t) ≪ fAT (t): 
+
+fN T (t) = fN T (0) et−Λ( t)−νt + μ(Q − 2) 
+
+Q et−Λ( t)−νt 
+
+∫ t
+
+> 0
+
+e−s+Λ( s)+ νs fAT (s)d s
+
+= fN T (0) et−Λ( t)−νt + μ(Q − 2) 
+
+Q et−Λ( t)−νt 
+
+∫ t
+
+> 0
+
+e−s+Λ( s)+ νs λ(s)d s
+
+(S61) (S62) 
+
+TR = N , VR =M
+
+˙fN M (t) = −λ(t)fN M (t) + μ(Q − 2) 
+
+Q fAM (t) + νf N T (t) (S63) of solution given by 
+
+fN M (t) = fN M (0) e−Λ( t) + e−Λ( t)
+
+∫ t
+
+> 0
+
+eΛ( s)
+
+( μ(Q − 2) 
+
+Q fAM (s) + νf N T (s)
+
+)
+
+ds
+
+= fN M (0) e−Λ( t) + e−Λ( t)
+
+∫ t
+
+> 0
+
+eΛ( s)
+
+( μ(Q − 2) 
+
+Q (1 − λ(s)) + νf N T (s)
+
+)
+
+ds
+
+(S64) (S65) We then have to solve the self consistent equation which connects the different fractions together: 
+
+fT M (0) = fN T (τ )
+
+Q − 2
+
+fT T (0) = fN M (τ )
+
+Q − 2
+
+fN T (0) = fT M (τ ) Q − 2
+
+Q − 1
+
+fN M (0) = fT T (τ ) + fT M (τ ) Q − 2
+
+Q − 1 + fN M (τ ) 1
+
+Q − 2 + fN T (τ ) 1
+
+Q − 2 .
+
+(S66) (S67) (S68) (S69) The idea behind the self consistent equations is to consider that, at the next time epoch, it will be a different nucleotide (let’s say G) that will be selected. We have to consider, when the selected nucleotide changes, where are the different populations going to be splitted. 
+
+• TT: going to NM population (not the best nucleotide in new time window). 
+
+• NT: a fraction 1 /(Q − 2) of the population is GT (N can be any of the Q − 2 nucleotides) and thus goes to the GM population. The rest is going to the NM population (neither the selected nucleotide at TR or at VR ). 
+
+• TM: a fraction 1 /(Q − 1) of the population is TG and goes to the NG population. The rest goes to the NM population. 
+
+• NM: Because of the rapid replacement by the DGR activity, this population is mostly constituted in equal fractions of ( TR , VR ) population where the TR matches the VR . In that case, there are effectively Q − 2subpopulations, with one corresponding to the GG population (thus a fraction 1 /(Q − 2)). The rest goes to the 
+
+N M population. The other part of the population where the TR does not match the VR behaves similarly as the T M population, in particular all the populations where the VR is a G and the TR is not an A, a T or a 
+
+G (there are Q − 3 of those): these will be added to the NG population. At this point, we observe as in the first part of the main text that the TR ̸ =A population dynamics can be ex-pressed as a linear problem: indeed, the time evolution between [0 , τ [ can be expressed as a linear transformation of the frequencies vector ⃗ f → M⃗ f +⃗ b (the expressions at time τ being affine in those at time 0), while the final transformation of the subpopulations when the optimum sequence changes is of the form ⃗ f → C⃗f . Thus, to find the 15                           
+
+> Fig. S10. Non A populations fraction. Comparison between numerical simulations (lines) and theoretical predictions (dots) of the fraction of the population of TR not having an adenine. (a) The TR =T, VR =T population, (b) The TR =T,
+> VR =M population, (c) The TR =N, VR =T population, (d) The TR =N, VR =M population. The population size is 10 12 , and the parameters are τ= 20, ν= 5 .10 −2,μ= 10 −5,Q= 4.
+
+initial conditions self-consistently, we have to find the solution ⃗ f ∗ of the matrix problem ⃗ f = C · M⃗ f + C⃗b .We check that Eqs. (S66) to (S69) allow to correctly predict the dynamics of each population. In Fig. S10, we use the solution ⃗ f ∗ = ( I − C · M )−1 · C⃗b at time τ as initial condition for the results of subsections 1 to 4. We observe a perfect match between our simulations during the time window [0 , τ ] and the analytical results. Besides, we confirm that the T T population dominates the population (of TR ̸ =A) early in the dynamics, as supposed in the next section text. From these, we can evaluate the fraction of the population which has for TR a nucleotide which is not A as a function of time, displayed in Fig. S11. Finally, we can evaluate the average fraction fnot A sequences as a function of the parameters of the model and compare it to the results of numerical simulations. Once again, we obtain a perfect match with our analytical result. 16 
+
+Fig. S11. Non A population fraction. Comparison between numerical simulations (lines) and theoretical predictions (dots) of the fraction of the population of TR not having an adenine. The population size is 10 12 , and the parameters are τ = 20, 
+
+ν = 5 .10 −2, μ = 10 −5, Q = 4. 17 
+
+Fig. S12. Non A population fraction. Comparison between numerical simulations (lines) and theoretical predictions (dots) of the fraction of the population of TR not having an adenine. The population size is 10 12 , and the parameters are μ = 10 −5,
+
+Q = 4. 18  
+
+> 3. Simplified dynamics
+
+We offer to do a simple approximation here to better understand the dynamics of the TR population. The idea is that we consider the population with an Adenine in the TR as the dominant one. As in the previous sections, we note fAT (t) (resp. fAM (t)) the fraction of the population with an A at the TR and the currently selected nucleotide (resp. any non-selected nucleotide) noted T (resp. M ) in the VR , with T̸ = A otherwise A is surely selected in both the TR and the VR . The fitness advantage of having T at the VR is s. In the following, we fix time scales by taking 
+
+s = 1 (which is equivalent as taking the inverse growth rate as the unit of time). We use Wright-Fisher equations [S3] to describe the population dynamics and note λ(t) = 1 × fAT (t) + 0 × fAM (t) the average population fitness. At first, because ν ≫ μ, we neglect the TR mutation rate μ for the determination of the fraction of the population in each state. We get the following coupled equations: 
+
+{ ˙fAT (t) = (1 − λ(t) − ν Q−1 
+
+> Q
+
+)fAT (t) + ν 
+
+> Q
+
+fAM (t)˙fAM (t) = ( −λ(t) − ν 
+
+> Q
+
+)fAM (t) + ν Q−1 
+
+> Q
+
+fAT (t) (S70) where fAT (t) + fAM (t) = 1. We obtain the asymptotic fitness λ(t) → λ by solving Eq. (S70) when time derivatives are 0 (and the condition that frequencies sum to 1). We obtain an asymptotic fitness (that we can approximate in the limit ν ≪ 1): 
+
+λ =1 − ν +
+
+√
+
+(1 − ν)2 + 4ν
+
+> Q
+
+2 ∼ 1 − Q − 1
+
+Q ν (S71) Then, to estimate the fraction of sequences which are not A at the TR , we consider that the main contributor corresponds to sequences from the AT and AM populations which mutated to the TR =T population (which happens at rate μ/Q ). This hypothesis is well justified from the exact derivation and simulations of Fig. S10. Because the rate ν is much larger than μ, we make the approximation that the VR is immediatly replaced by a T as well. This results in the following dynamics for the TR =T, VR =T population fraction, the population which lost its A in its 
+
+TR (in this approximation): ˙fT T (t) = (1 − λ)fT T (t) + μ
+
+Q (S72) of solution, using Eq. (S71), given by: 
+
+fT T (t) = μ
+
+Q(1 − λ)
+
+(
+
+e(1 −λ)t − 1
+
+)
+
+∼ μ
+
+(Q − 1) ν
+
+(
+
+e Q−1  
+
+> Qνt
+
+− 1
+
+)
+
+(S73) such that the average fraction of population without an A in their TR is approximately given by: 
+
+fnot A = 1
+
+τ
+
+∫ τ
+
+> 0
+
+fT T (t)d t
+
+= μ
+
+ν(Q − 1) 
+
+[ Q
+
+(Q − 1) ντ (e Q−1  
+
+> Qντ
+
+− 1) − 1
+
+]
+
+, (S74) as given in Eq. (5) of the main text.   
+
+> 4. Dicussion about VR =A selection by the environment
+
+We discuss the case when the environment selects for Adenines in the VR .As seen in the graph of Fig. S13 for transitions between populations, the dynamics of the population where TR =A remain unchanged when the environment selects for an Adenine. Consequently, the asymptotic fitness remains 
+
+λ ∼ 1 − Q − 1
+
+Q ν . (S75) 19                
+
+> Fig. S13. The graph of population transitions with adenine selection in the VR. The graph of effective transitions between the different (TR,VR) population (first letter is the TR , second the VR ). Acorresponds to the diversifying nucleotide,
+> Mto any nucleotide except form A. In blue are the population with growth rate 1, in red those with growth rate 0. Hashed circles correspond to population of size of order μ, while plain lines are of order 1. Dotted arrows represent transitions of order
+> μ, plain line arrows those of order ν.We do not represent transitions which would lead to μ2corrections to the population sizes.
+
+When considering the population where TR ̸ = A, the dynamics of the frequencies are governed by ˙fM A (t) = (1 − λ − ν) fM A (t) + μ Q − 1
+
+Q fAA (t)˙fM M (t) = −λf M M (t) + μ Q − 1
+
+Q fAM (t) . (S76) However, we note that both frequencies exhibit negative growth rates (1 − λ − ν ∼ − ν/Q and −λ < 0), preventing the expansion of either population. Thus, in this type of environmental selection, Adenines in the TR are not counter-selected.   
+
+> B. L > 1
+
+Fot this section, we build on the intuition developed for L = 1: we consider that the time for the population with only A at the TR and with the optimal sequence at the VR is much shorter than the time it will take to get mutations in the TR . Then, we consider the dynamics of the TR sequences which become progressively the same as the VR sequences. Indeed, the cost of DGR is that sequences are replaced at rate ν, thus sequences with the optimal sequence directly on their TR have a fitness advantage of ν.We note nk(t) the number (resp. fk(t) the frequency) of the sequences with k right bases on the TR and L − k
+
+Adenines. The rest of sequences is grouped together in a single population n(t) that can not make the right VR 
+
+sequence under DGR. Initially, n0(t) = N (resp. f0(t) = 1), we only have A in every TR . We get the following system of equation which describes the TR dynamics: ˙n0(t) = 
+
+(
+
+L − ν − μL Q − 1
+
+Q + ν
+
+QL
+
+)
+
+n0 + μ
+
+Q n1
+
+˙nk(t) = 
+
+(
+
+L − ν − μL Q − 1
+
+Q + ν
+
+QL−k
+
+)
+
+nk + μ(L − k + 1) 
+
+Q nk−1 + μ(k + 1) 
+
+Q nk+1 
+
+˙n(t) = ( L − ν)n(t) + 
+
+> L
+
+∑
+
+> k=0
+
+μL (Q − 2) 
+
+Q nk(t) .
+
+(S77) (S78) (S79) We are interested in the regime where the population n0 dominates, and define τc as the time where this hypothesis breaks. Thus, the equation for the frequencies become (using that the average fitness growth is mainly determined 20 by the fitness of n0): ˙f0(t) = μ
+
+Q f1
+
+˙fk(t) = ν
+
+QL−k
+
+(
+
+1 − 1
+
+Qk
+
+)
+
+fk + μ(L − k + 1) 
+
+Q fk−1 + μ(k + 1) 
+
+Q fk+1 
+
+˙f (t) = 
+
+(
+
+μL Q − 1
+
+Q − ν
+
+QL
+
+)
+
+f (t) + 
+
+> L
+
+∑
+
+> k=0
+
+μL (Q − 2) 
+
+Q fk(t) .
+
+(S80) (S81) (S82) We check in Fig. S14 that this set of differential equations describe correctly the population dynamics simulation for the population size N large enough (renormalizing the frequencies to 1 at every time step to account for the dynamics after τc as well). 
+
+Fig. S14. Frequency of each sub-population. Comparison between numerical simulations (lines) and theoretical predictions (dots) of the fraction fk of the population of TR having k correct nucleotides and L − k adenines, and f (t) the rest. Parameters are L = 2, μ = 10 −3, ν = 10 −1 and N = 4 × 10 5.
+
+Solving this system of equation, we get the time τc at which ∑Lk=1 fk(t) + f (t) gets larger than 1 /2. To understand the dependance of τc with the parameters, we consider two situations: either sequences with higher fitness (the ones corresponding to the fk(t)’s) takeover, or the length is so large that fitness advantage of adding the right nucleotides is too low and random mutations in the TR takeover (sequences corresponding to f (t)). For the first regime, we neglect the transitions fk+1 → fk which we suppose to be irrelevant to the determination of 
+
+τc. Besides,we consider f0(t) ≈ 1 fixed. This results in the simplified form for the triangular system of equations, ˙fk(t) = ν
+
+QL−k
+
+(
+
+1 − 1
+
+Qk
+
+)
+
+fk + μ(L − k + 1) 
+
+Q fk−1 . (S83) We can solve this sytem of equations in the following manner: for any k, fk(t) is a sum of exponentials with rates 
+
+λj = ν
+
+QL−j
+
+(
+
+1 − 1
+
+Qj
+
+)
+
+, (S84) for j = 0 to j = k, such that 
+
+fk(t) = 
+
+> k
+
+∑
+
+> j=0
+
+Ck,j eλj t . (S85) 21 In particular, using that for k > 1, 
+
+fk(t) = μ(L − k + 1) 
+
+Q
+
+∫ t
+
+> 0
+
+fk−1(s)eλk (t−s)ds , (S86) we deduce that for j = 0 to j = k − 1, 
+
+Ck,j = μ(L − k + 1) 
+
+Q(λj − λk) Ck−1,j , C k,k = μ(L − k + 1) 
+
+Q
+
+> k−1
+
+∑
+
+> j=0
+
+Ck−1,j 
+
+λk − λj
+
+(S87) which solution is given by 
+
+Ck,j =
+
+∏km=1 
+
+( μ(L−m+1) 
+
+> Q
+
+)
+
+∏km=1 ,m ̸ =j (λj − λm) . (S88) In particular, when only considering the dominating exponential term at every k,
+
+fk(t) ≈
+
+( μL 
+
+Qλ k
+
+)k
+
+eλk t . (S89) Thus, τc is approximatively given by the smallest of the times τk such that fk(τk) = 1 /2, 
+
+τc ∝ min 
+
+> k=1 ,...,L
+
+{ kQ L−k
+
+ν ln 
+
+( νQ 
+
+μkQ L−k
+
+)} 
+
+. (S90) Due to the exponential dependance in L, we can safely assume that it is the k = L term which is the minimum, leading to 
+
+τc ≈ L
+
+ν ln 
+
+( νQ 
+
+μL 
+
+)
+
+. (S91) In the second regime, we consider only f (t), and the f0(t) ≈ 1 contribution (the others are of order μ at most), which results in 
+
+f (t) ≈ μL Q−2
+
+> Q
+
+μL Q−1 
+
+> Q
+
+− ν
+
+> QL
+
+[
+
+exp 
+
+[( 
+
+μL Q − 1
+
+Q − ν
+
+QL
+
+)
+
+t
+
+]
+
+− 1
+
+]
+
+≈ Q − 2
+
+Q − 2 exp 
+
+[
+
+μL Q − 1
+
+Q t
+
+]
+
+(S92) (S93) leading to 
+
+τc ∝ 1
+
+μL (S94) up to constant prefactors. Combining Eqs. (S91) and (S94), we obtain Eq. (7) of the main text. 22 
+
+SUPPLEMENTARY REFERENCES 
+
+[S1] B. R. Macadangdang, Y. Wang, C. L. Woodward, J. I. Revilla, B. M. Shaw, K. Sasaninia, G. E. Varnum, S. K. Makanani, C. Berruto, U. Ahuja, et al. , Science 390 , eadv2111 (2025). [S2] S. Roux, B. G. Paul, S. C. Bagby, S. Nayfach, M. A. Allen, G. Attwood, R. Cavicchioli, L. Chistoserdova, R. J. Gruninger, S. J. Hallam, M. E. Hernandez, M. Hess, W.-T. Liu, T. A. McAllister, M. A. O’Malley, X. Peng, V. I. Rich, S. R. Saleska, and E. A. Eloe-Fadrosh, Nature Communications 12 , 3076 (2021). [S3] R. A. Neher and B. I. Shraiman, Reviews of Modern Physics 83 , 1283 (2011).

@@ -1,0 +1,1534 @@
+Title: 2603.07137v1.pdf
+
+URL Source: https://arxiv.org/pdf/2603.07137v1
+
+Published Time: Tue, 17 Mar 2026 03:18:57 GMT
+
+Number of Pages: 29
+
+Markdown Content:
+# Preservation Constraints on aDNA Information Generation and the HSF Posterior 
+
+# Sourcing Framework: A First-Principles Critique of Conventional Methods 
+
+Wan-Qian Zhao 1* , Shu-Jie Zhang 1, Zhan-Yong Guo 2, Mei-Jun Li 3
+
+1. School of Life Sciences, Zhengzhou University, Zhengzhou, China 
+
+2. College of Agronomy, Henan Agricultural University, Zhengzhou, China 
+
+3. National Key Laboratory of Petroleum Resources and Engineering, College of Geosciences, 
+
+China University of Petroleum (Beijing), Beijing, China 
+
+> *
+
+Corresponding author and email: wqzhao@zzu.edu.cn Abstract 
+
+Fossil DNA preservation varies with depositional environments and diagenesis, producing 
+
+fragments of heterogeneous origins and degradation states. We use first-principles biomolecular 
+
+analysis to classify fossil molecular environments into four system types, distinguished by three 
+
+orthogonal indicators: origin (H/h: host/heterologous), deamination status (D/d), and similarity 
+
+ratio (S/s). Conventional aDNA pipelines assume a binary mix of endogenous host DNA and 
+
+modern contaminants, overlooking multisource complexity from multiple species and 
+
+time-averaged deposits. This leads to bias: authentic signals suppressed during enrichment, 
+
+alignment, or damage filtering, and exogenous/ancient admixed fragments misassigned as 
+
+endogenous, particularly in open systems. We introduce the HSF (Host/Species-specific Fragment) 
+
+posterior traceability framework to address this. It treats fragments as primary units, maximizes 
+
+source diversity, detects isolated sequences, defers lineage assignment to preserve uncertainty, and 
+
+applies phylogenetic consistency to discriminate origins. Combined with preservation 
+
+characterization (e.g., 3D imaging and volumetric openness assessment), it improves authenticity 
+
+evaluation and reduces misassignment in mixed-signal samples. Case studies identify novel fossil 
+
+DNA patterns (CRSRR and SRRA) and demonstrate superior performance compared with 
+
+conventional methods. The HSF framework enhances aDNA reliability, extends molecular 
+
+archaeology to challenging contexts, and aids genome evolution and lineage reconstruction. 
+
+Keywords 
+
+aDNA , HSF , deamination , probe-directed enrichmen t; target-guided alignment , molecular 
+
+depositional systems , phylogenetic traceability Introduction: Frameworks for Authenticity Assessment in aDNA 
+
+The central challenge in aDNA research stems from the fact that fossil formation and preservation 
+
+span geological timescales. During this period, environmental variables (including temperature, 
+
+pH, moisture content, mineral –organic interface reactions, and microbial activity) interact in 
+
+heterogeneous and nonlinear ways [1–3]. These complex, site-specific diagenetic processes cannot 
+
+be fully replicated by generalized degradation models derived from controlled laboratory 
+
+experiments using purified DNA or from patterns observed in a limited set of exceptionally 
+
+preserved samples [4–6]. 
+
+Conventional aDNA methodologies implicitly assume that biomolecules recovered from fossils 
+
+comprise a simple binary mixture: endogenous host residues plus modern contamination. 
+
+Contamination mitigation therefore relies on physical cleaning, probe-directed enrichment, 
+
+chemical damage markers (primarily cytosine deamination), and fragment-length filtering [7, 8]. 
+
+In practice, the conventional workflows begin with probe-directed enrichment (kinship-based 
+
+target capture), which selectively captures fragments complementary to predefined probes while 
+
+excluding non-matching sequences. This is followed by target-guided alignment (using tools such 
+
+as BLAST, MAFFT, or BWA, with reference databases restricted to the fossil taxon, the target 
+
+species, and closely related genera), deamination pattern filtering, and fragment-length criteria. 
+
+This paradigm, however, overlooks a critical aspect of fossil taphonomy: exogenous biomolecules 
+
+can infiltrate fossil interiors during diagenesis through pore networks, groundwater flow, or 
+
+hydrocarbon fluids, leading to long-term mixing with endogenous molecules [9-13 ].
+
+Phylogenetically biased probes applied early in the workflow s introduce systematic bias, which is 
+
+further amplified by subsequent filtering steps. Fragments from environmental, parasitic, or 
+
+symbiotic sources that happen to share sequence similarity or degradation signatures with the 
+
+target may be preferentially retained, while authentic host-derived fragments lacking these 
+
+diagnostic features are disproportionately discarded. Taken together, these steps amplify structural 
+
+limitations in conventional approaches, particularly in non-closed preservation systems where 
+
+multisource molecular assemblages are common. 
+
+From a first-principles perspective, we introduce the HSF selection framework to systematically 
+
+address the wide range of preservation conditions and corresponding biomolecular decay patterns 
+
+observed in fossils. The framework treats individual sequence fragments as the fundamental unit 
+
+of analysis to reduce methodological bias introduced by early experimental priors. It integrates 
+
+degradation kinetics with unbiased sequence-based evidence to support more robust authenticity 
+
+assessment and enables direct, systematic comparison between results from conventional pipelines 
+
+and HSF-based processing. Potential broader applications include large-scale HSF screening to 
+
+inform genome evolution inferences and taxon-specific genome reconstruction. Although developed primarily for aDNA, the approach delineates general principles for information 
+
+recovery under severe preservation constraints and provides a conceptual foundation for studying 
+
+complex molecular depositional environments. 1. From Time Capsules to Depositional Systems 
+
+A System-Level Framework for Molecular Preservation 
+
+To address the complexity of the “fossil state –biomolecular decay ” relationship, we propose a
+
+classification of four representative preservation systems (non-exhaustive) based on commonly 
+
+observed patterns of molecular preservation in fossils, delineated along a physical gradient of 
+
+molecular openness and exchange potential: 
+
+Closed -p reserved System : biomolecules are rapidly isolated from water after burial —
+
+typically by encapsulation in minerals or lipids, or by permanent freezing. As a result, 
+
+chemical degradation is negligible and endogenous biomolecules remain largely intact. 
+
+Although a perfectly closed-preserved fossil system has not been empirically confirmed, 
+
+localized or transient examples may exist (e.g., asphalt seeps, certain siliceous 
+
+concretions, and salt-cave deposits). 
+
+Closed -d egrading system : This system is characterized by extremely low porosity and 
+
+near-complete isolation from the external environment. Residual water phases induce 
+
+slow, time-dependent chemical degradation. Many high-profile ancient human genomic 
+
+datasets reported in the literature likely belong to this category, although their 
+
+classification requires further validation within a system-level framework [14-16] .
+
+Open -p reserved system : Here, porous media are subject to repeated cycles of wetting 
+
+and drying as well as groundwater flow, resulting in continuous water-mediated material 
+
+exchange [9-11 ]. This leads to persistent introduction and long-term accumulation of 
+
+exogenous molecules, producing complex molecular mixtures following external input. 
+
+Certain fossils from Jehol Biota provide representative examples of this system [17].
+
+Invasion -r eplacement system : In this scenario, infiltration by microorganisms, small 
+
+animals, or plant roots results in the predominance of exogenous biomolecule s that 
+
+coexist with endogenous components, ultimately altering the overall molecular 
+
+composition [16 , 17 ]. Instances of extensive parasitic colonization within large fossil 
+
+bones illustrate this type. 
+
+System interrelationships and dynamic transitions: these four categories describe typical 
+
+molecular-exchange modes rather than mutually exclusive states. A fossil may belong to one 
+
+preservation system at a given time but can transition between systems during geological 
+
+processes. Moreover, different regions of the same specimen may exhibit different preservation 
+
+systems. 
+
+Therefore, differences in biomolecular preservation should be interpreted in terms of the 
+
+physicochemical properties of the sampling location and the potential for inter-system transitions 
+
+during diagenesis, rather than chronological age alone. This classification is defined by boundary 
+
+conditions that govern material exchange rather than by specific environmental types, thereby 
+
+ensuring descriptive completeness at the system level. 2. Fossils as Mixed Molecular Reservoirs 
+
+Framework of a three binary-pair framework 
+
+In non-closed systems, the assumption that fossil DNA originates solely from the host, with any 
+
+other DNA being modern contamination, does not hold . Instead, a fossil should be regarded as a
+
+molecular depositional reservoir that evolves continuously over time and contains biomolecules 
+
+derived from multiple periods and multiple species. To systematically classify fossil biomolecules, 
+
+we introduce a three binary-pair framework , which categorizes fragments according to three 
+
+independent attributes: 
+
+Host (H) vs. non-host (h) origin .
+
+Deaminated (D) vs. non-deaminated (d) status .
+
+Similarity (S) vs. dissimilarity (s) to the target genome .
+
+Here, the “target genome ” refers to the reference sequence used during probe enrichment and 
+
+sequence assembly. Early ancient human studies typically used the modern human reference 
+
+genome (e.g., rCRS), whereas more recent work often employs assembled Denisovan or 
+
+Neanderthal genomes. 
+
+This system allows fragments to be represented using three-letter combinations (e.g., HDS, hds), 
+
+facilitating quantitative comparison of preservation and origin properties. Consequently, eight 
+
+molecular categories arise: HSD, HsD, HSd, Hsd, hSD, hsD, hSd, and hsd. 
+
+The minimal complete state space of fossil biomolecules 
+
+This classification is not empirical but is derived from the current information 
+
+framework as an operationally minimal and complete state space for lineage attribution. 
+
+The relative proportions of these molecular categories are determined by three physical 
+
+variables: 
+
+Exogenous input load (H /h) 
+
+This reflects the balance between externally introduced molecules (via water or other 
+
+transport pathways) and endogenous host biomolecule s, including contributions from 
+
+symbiotic or parasitic organisms. 
+
+Similarity expression ratio (S /s) 
+
+This represents the proportion of sequences that are similar versus dissimilar to the 
+
+target genome, reflecting the degree of external sequence input relative to host-derived 
+
+signals. 
+
+Water-phase contact (D /d) This indicates whether molecular fragments have experienced aqueous exposure within 
+
+the sample. Such exposure directly affects water-mediated chemical degradation rates, 
+
+including deamination. 
+
+These three variables jointly determine both the state and evolutionary trajectory of 
+
+preservation systems. 
+
+System –molecule correspondence 
+
+In summary, if fossil preservation can be classified into four macroscopic systems, then 
+
+eight classes of biomolecule s necessarily exist at the microscopic level. Their 
+
+distributions are not equiprobable; instead, their relative proportions constitute 
+
+diagnostic signals of preservation system states. 
+
+Accordingly , deamination alone should not be treated as the sole discriminative axis ; physical 
+
+system variables regulate the steady-state proportions of all eight molecular categories ; these 
+
+proportional relationships influence lineage attribution outcomes. Thus, the compositional profile 
+
+of the eight molecular classes simultaneously reflects preservation system status and constrains 
+
+subsequent origin inference. A detailed discussion of the relationships between preservation 
+
+systems and the eight molecular classes is provided in the first section of Materials and Methods .
+
+3. Logical Limitations of Conventional Methodologies 
+
+Conventi onal methods often ignore that multiple systems can coexist within fossils and evolve 
+
+over time , particularly in open systems or those subject to external intrusions. When eight 
+
+molecular categories are mixed simultaneously, the number of distinguishable molecular states is 
+
+mathematically compressed, which can introduce structural bias into analyses. Figure 1 shows the 
+
+screening process for these eight molecular categories .
+
+3.1 Systematically Discarded Environmental and Ecological Signals 
+
+Probe-directed enrichment (kinship-based /target capture) preferentially recovers fragments 
+
+complementary to the designed probes , typically from a specific genus, species, or reference 
+
+genome ; thus , systematically excludes non ‑complementary fragments. Consequently, informative 
+
+signals from other taxa (environmental /exogenous sources) are often discarded early, creating 
+
+systematic information bias. Figure 1. Effects of three critical steps in the conventional workflow s on eight categori es of ancient hominin                                                       
+
+> molecules. The pipeline is: probe-directed enrichment →target-guided alignment →deamination filtering. Probe
+> enrichment led to loss of Hsd/HsD/hsD; sequence alignment biased fragment selection toward fossil taxa and
+> misidentified hSD; deamination filtering missed HSd, causing downstream SNP-calling and assembly errors.
+> Causal chain: probe complementary enrichment →sequence alignment parameter shift →deamination-filter
+> omission →systematic misselection/omission of large molecules.
+
+3.2 Loss of Host Biomolecules 
+
+Biomolecul ar degradation involves both detectable and undetectable forms of damage. 
+
+Undetectable damage includes oxidative modification, crosslinking, Maillard reactions, and 
+
+degradation into ultrashort fragments. Detectable damage primarily involves two pathways under 
+
+nuclease-free, neutral pH, ambient conditions: 
+
+Depurination followed by β-elimination , leading to strand breaks 
+
+Cytosine deamination (C →T transitions) 
+
+The depurination → β-elimination pathway occurs at approximately 2.4 times the rate of 
+
+deamination [18-20 ]. Furthermore, strand breaks generated by depurination can result in the loss 
+
+of terminal nucleotides, including those bearing deamination signatures. 
+
+Thus, fragments displaying deamination patterns represent a survivorship-biased subset of the 
+
+original host DNA population, whereas a substantial fraction of authentic host fragments lacking 
+
+detectable deamination are systematically excluded. 
+
+Based on in vitro parameters, in the host DNA filtering system employed by the Fu –Pää bo group 
+
+(2025), non-deaminated host fragments may outnumber fragments exhibiting six terminal C → T
+
+substitutions by approximately 14.4-fold [7]. Although this estimate derives from in vitro parameters and has limited precision, the conclusion that large numbers of host fragments are 
+
+discarded remains robust. 
+
+It should also be noted that when biomolecule s are isolated from water, both depurination and 
+
+deamination rates decrease dramatically or effectively cease. 
+
+Throughout this work, the term “deamination ” carries three distinct meanings depending on 
+
+context: A molecular state variable ; a system-level preservation indicator ; an analytical filtering 
+
+parameter. These meanings must be distinguished carefully. 
+
+3.3 Fragment Misassignment: Overlooked Critical Factors 
+
+Conventional workflow s prioritize fragments with high similarity to the target sequence or its 
+
+degradation signatures (terminal deamination, short length), while discarding signals lacking these 
+
+features. This selection logic is vulnerable to systematic misassignment for the following reasons: 
+
+Improper use of chemical indicators : deamination and strand breakage depend on local 
+
+diagenetic conditions (pH, temperature, aqueous exposure, salinity, mineral interfaces). Damage 
+
+varies significantly within the same fossil, rendering uniform thresholds unreliable for inferring 
+
+antiquity or separating endogenous from exogenous material. 
+
+Failure to account for multisystem coexistence : a single fossil can contain molecules from 
+
+multiple temporal phases and taxa. Ancient exogenous DNA may acquire degradation signatures 
+
+indistinguishable from host fragments, leading to unresolved overlapping H/h signals that 
+
+conventional pipelines cannot disentangle. 
+
+Systematic bias from target-guided sequence alignment : when the search scope is limited to 
+
+close relatives, non-host-specific sequences (especially conserved interspecific regions of 30-60 
+
+bp) are particularly prone to being misclassified as host-derived sequences. 
+
+Neglect of historical contamination sources : in sites with prolonged human activity or complex 
+
+taphonomy, diagenetic processes can continuously introduce and mix biomolecules from diverse 
+
+ancient origins (including environmental Homo bio molecules) unless system closure is 
+
+demonstrated . Conventional filtering cannot reliably exclude fragments that share highly similar 
+
+sequences or chemical signatures but originate from different periods, individuals, or taxa. 
+
+These limitations create a structural methodological barrier : without independent 
+
+confirmation of preservation-system closure, prevailing approaches cannot robustly distinguish 
+
+endogenous host signals from ancient exogenous or multisource inputs. 
+
+3.4 Ancient Human Genomes as Intrinsically Uncertain Outcomes 
+
+Reliable genome assembly from ancient human material requires the simultaneous satisfaction of 
+
+the following conditions: high endogenous content, low levels of removable contamination 
+
+(quantifiable, for example, via h-HSF metrics; see Materials and Methods ), sufficient fragment 
+
+length distribution and precise mappability, appropriate selection of reference sequence, 
+
+demonstration that SNPs are independent of postmortem chemical damage, effective exclusion of fragmentation uncertainties (including M-type, P-type, and AT-type , see Materials and Methods ). 
+
+If any of these conditions is not met, genome assembly should be deferred or avoided to prevent 
+
+systematic fragment misselection or omission. 
+
+In studies of ancient humans, the vast majority of skeletal remains are non in situ , usually 
+
+incomplete skeletons or bone fragments, and are therefore typically preserved in open depositional 
+
+systems. No matter how parameters are optimized in conventional workflows (e.g., by expanding 
+
+reference datasets of sequence alignment , increasing probe specificity, or adjusting hybridization 
+
+thresholds), it remains extremely difficult to reliably distinguish, on the basis of sequence 
+
+similarity or chemical damage signatures (e.g., deamination patterns), fragments originating from 
+
+different temporal phases, different individuals (including the presumed host, other archaic 
+
+hominins, modern humans, or non-hominin taxa) that exhibit highly comparable characteristics to 
+
+the target sequence. 
+
+This constitutes a fundamental logical barrier inherent to conventional methodologies. The only 
+
+robust way to resolve this impasse is to perform independent assessment of preservation-system 
+
+closure prior to downstream analysis. In the absence of evidence confirming that the sample 
+
+represents a near-cl osed system, the resulting data carry intrinsic uncertainty, and any associated 
+
+biological or evolutionary inferences , including gene flow between archaic and modern humans, 
+
+admixture timing and direction, and proposed functional links between archaic alleles and modern 
+
+phenotypes or disease risk , must be regarded as provisional and subjected to systematic 
+
+reevaluation. 
+
+3.5 The True Value of Chemical Damage Markers 
+
+Deamination is primarily controlled by liquid water availability, salinity, and temperature. It 
+
+therefore reflects molecular contact with aqueous phases rather than molecular age itself. 
+
+Accordingly, deamination is better interpreted as an indicator of preservation environment and 
+
+exposure history (such as wetting frequency, pore heterogeneity, and geochemical conditions ), 
+
+rather than as a direct proxy for molecular antiquity. aDNA may exhibit deamination or remain 
+
+unaffected depending on environmental conditions. Thus, deamination should be regarded as an 
+
+environmental response variable, useful for reconstructing exposure histories and contextualizing 
+
+damage patterns across fossil matrices. 
+
+3.6 Data Traceability Limitations 
+
+Conventional workflows often lack adequate data traceability. Published genome assemblies 
+
+frequently omit detailed contig-level information, including fragment identifiers and damage 
+
+patterns, which should ideally be archived as accessible supplementary materials. 
+
+Because traditional pipelines do not treat fragment-level provenance tracking as essential, manual 
+
+verification becomes extremely difficult when dealing with large raw datasets. 
+
+3.7 Valid Scope of Conventional Methods It is important to emphasize that this study does not deny the effectiveness of 
+
+deamination-oriented approaches in highly closed systems characterized by minimal material 
+
+exchange and dominance of a single host source. However, these methods implicitly generalize 
+
+the assumption of a reducible closed system to arbitrary systems . When applied to open or 
+
+multi-system samples, systematic biases are likely to arise. 
+
+Until preservation system classification and molecular origin are clearly established, conclusions 
+
+based solely on conventional methodologies should be regarded as containing inherent 
+
+uncertainty. 
+
+4. HSF Selection: A New Analytical Framework for Ancient DNA Fragments 
+
+To avoid a priori assumptions and resolve fragment provenance in the presence of overlapping H/h 
+
+signals, we propose a streamlined signal-separation framework consisting of the following core 
+
+principles and procedures. 
+
+4.1 General Analytical Strategy 
+
+To avoid introducing target-specific bias during data generation, library preparation is performed 
+
+without probe-directed enrichment or other prior assumptions about the expected host taxon . In 
+
+multisystem depositional contexts where non-host signals may dominate or interfere, the 
+
+framework prioritizes the explicit identification and classification of HSFs. 
+
+Two principal categories are distinguished: 
+
+H-HSF — fragments reliably attributable to the presumed host individual or taxon ;
+
+h-HSF — fragments attributable to exogenous sources, other taxa, or post-depositional intrusion 
+
+(treated as potential contamination or mixed inputs). 
+
+These HSFs serve as the primary indicators for fragment provenance and traceability. Chemical 
+
+damage patterns (e.g., deamination) are retained for conditional use when preservation-system 
+
+context makes them informative, but are not applied as a universal authenticity filter. 
+
+4.2 Fragment Attribution Principles 
+
+Fragment origin is determined based on intrinsic sequence properties, including: Similarity to 
+
+candidate host genomes , statistical significance of alignment , consistency with established 
+
+phylogenetic relationships .
+
+Specifically: HSD/HSd categories are used to extract candidate host signals ; hSD/hSd categories 
+
+are used to identify environmental (non-host) signals ; the remaining molecular classes are used to 
+
+characterize preservation system states and inform modeling ; detailed operational procedures are provided in the Materials and Methods section. 
+
+5. Paradigm Differences Between Conventional Methods and HSF Selection 
+
+5.1 Conventional Approaches 
+
+From a logical standpoint, conventional methodologies implicitly assume a reducible 
+
+closed –degrading system and adopt a species-prior framework. As mentioned before, from 
+
+targeted probe enrichment to the subsequent selecting steps , resulting experimental outcomes do 
+
+not fully align with the actual complexity of fossil molecular systems. 
+
+From a procedural perspective, conventional workflows rely on probe-directed enrichment, during 
+
+which exogenous fragments may be inadvertently captured. When combined with high-cycle PCR 
+
+amplification (typically ≥35 cycles) and target-guided alignment, both the experimental and 
+
+computational stages become strongly biased toward the predefined target, thereby amplifying 
+
+early errors. These steps collectively exacerbate structural blind spots in the traditional pipeline. 
+
+5.2 HSF Selection 
+
+From a conceptual standpoint, it treats fossil biomolecul es as existing in a multi-system stochastic 
+
+state space defined by H/h × D/d × S/s. The framework first evaluates statistical significance in 
+
+phylogenetic distribution and subsequently imposes constraints based on phylogenetic 
+
+consistency. 
+
+Methodologically, it follows a Bayesian-iterative logic: uncertainty is explicitly represented, 
+
+iteratively updated, and progressively constrained throughout the analysis. Operationally, it 
+
+employs standard library preparation (typically 5–20 PCR cycles) without target-specific 
+
+enrichment or reference restrictions during sequencing and alignment. Fragment provenance is 
+
+determined post hoc based on statistical significance and phylogenetic consistency. This approach 
+
+preserves multispecies signals, enables concurrent detection of SNPs and complex recombination 
+
+structures, and substantially expands the recoverable information space. 
+
+5.3 Handling Incomplete Reference Databases in the HSF Framework 
+
+When reference databases are incomplete (e.g., when certain taxa are underrepresented), 
+
+alignment to the phylogenetically closest sequenced species should be treated as an explicit, 
+
+predictable projection bias. In the HSF framework, this is managed by recording and reporting 
+
+projection uncertainty, incorporating projection weights or conducting sensitivity analyses in 
+
+downstream models as appropriate, and conservatively elevating assignments to the next stable 
+
+phylogenetic rank (e.g., family) when genus-level data are absent. 
+
+Reference incompleteness thus becomes a controlled, transparent analytical parameter rather than a hidden bias amplified by early experimental design. 
+
+5.4 Two Distinct Conceptual Frameworks for Fossil Biomolecules 
+
+The divergence between the two conceptual frameworks arises from differing assumptions about 
+
+the fundamental problem of how to represent molecular assemblages in fossils (Figure 2).
+
+The HSF framework advocates characterization along at least three orthogonal dimensions (H/h, 
+
+S/s, D/d). Within this approach, the S/s axis should adopt a broad taxonomic scope that 
+
+encompasses all possible biological sources contributing to the molecular assemblage, rather than 
+
+being restricted to phylogenetically close relatives. Relying solely on the D/d dimension to 
+
+dichotomize molecular origins into “modern ” versus “host-age-equivalent ” categories is 
+
+insufficient to capture the complex interplay between species provenance and temporal context. 
+
+Additional perspectives, including preservation-system state, paleogeographic setting, climatic 
+
+evolution, geological events, lineage continuity, and ecological dynamics, are therefore required to 
+
+adequately reconstruct time –provenance relationships. 
+
+In contrast, conventional approaches typically reduce the representation to two dimensions (S/s 
+
+and D/d). Here, S/s is often limited to genus- or species-level phylogenetic alignment, while D/d is 
+
+coarsely partitioned into “modern-origin ” and “host-age-corresponding ” categories. Subsequent 
+
+analytical steps further compress or discard time –provenance information, causing a significant 
+
+reduction in representational power and impairing the system ’s ability to distinguish correct 
+
+matches from incorrect alignment s.        
+
+> Figure 2.Two perspectives on fossil bi omolecular groups
+
+5. 5 Logical Differences Between the Two Approaches 
+
+The fundamental distinction between conventional methods and HSF selection does not lie in the 
+
+strictness or permissiveness of filtering criteria. Rather, it concerns whether target-specific priors 
+
+are imposed during the data-generation stage and whether uncertainty is implicitly embedded and amplified at early steps. HSF selection addresses this limitation by transforming uncertainty into 
+
+an explicit, identifiable, and manageable analytical object. Through iterative statistical testing and 
+
+phylogenetic consistency constraints, inferences are progressively refined, thereby reducing 
+
+systematic bias introduced by experimental priors. The framework ’s primary contribution is the 
+
+establishment of a transparent mechanism for bias identification and control, although its broader 
+
+positioning and relative performance still require rigorous comparative validation. 
+
+5. 6 Validation of HSF Selection and Conventional Methods 
+
+HSF Selection employs a standard next-generation sequencing workflow without target-specific 
+
+enrichment, whereas conventional methods rely on probe-directed enrichment followed by 
+
+target-guided amplification strategies. The two approaches therefore differ systematically in 
+
+enrichment bias, fragment representativeness, and patterns of error accumulation. 
+
+The core distinction between the methods does not lie in whether raw data should be forced into a
+
+single “universal ” format compatible with both pipelines (since the data are generated under 
+
+fundamentally different conceptual premises and their interpretation depends on post hoc fragment 
+
+alignment and probabilistic inference). Rather, the critical difference concerns the prior 
+
+assumption about the nature of the fossil: whether it is treated as a dynamic reservoir capable of 
+
+continuously accumulating bio molecules from multiple temporal phases and biological sources. 
+
+This conceptual prior fundamentally shapes the experimental design and analytical logic, 
+
+rendering the two workflows products of mutually incompatible inferential frameworks. 
+
+Ideally, rigorous comparison would involve parallel application of both methods to identical 
+
+specimens or reanalysis of previously generated non-enriched raw libraries using the HSF 
+
+framework. However, large-scale systematic comparisons remain currently unfeasible due to the 
+
+absence of mandatory cross-laboratory sample-sharing protocols and the scarcity of dedicated 
+
+funding for validation studies. 
+
+6. Empirical Case Studies 
+
+6. 1 Limitations of Deamination as an Authenticity Criterion 
+
+At present, conventional analytical workflows are primarily applied to fossils younger than 
+
+approximately one million years and are typically limited to SNP detection at species or 
+
+subspecies resolution. Such approaches provide relatively limited insight into broader 
+
+paleoenvironmental and ecological information. Based on methodological inference, these 
+
+workflows are most suitable for fossils preserved under relatively stable physicochemical 
+
+conditions , particularly closed –degrading systems characterized by limited material exchange and 
+
+intermittent water supply. 
+
+For fossil samples confirmed as closed systems — through three-dimensional X-ray imaging and internal volumetric ratio analysis (IVR) —no deaminated fragments have been observed. Examples 
+
+include well-preserved fossil specimens containing primate and plant aDNA fragments recovered 
+
+from sealed containers [17 ]. In such cases, biomolecul es were rapidly isolated following 
+
+deposition and remained protected from subsequent aqueous exposure. These observations 
+
+demonstrate that deamination is a conditional and localized phenomenon rather than an intrinsic 
+
+property of aDNA, consistent with established degradation kinetics. 
+
+6. 2 Empirical Example 1: Re-evaluation of Fragments Screened by Conven tional Methods 
+
+To assess the performance of conventional methods on real data, we selected published ancient 
+
+hominin genome datasets and associated figures/tabl es. Reads/contigs annotated as Homo were 
+
+subjected to independent re-analysis .
+
+6.2.1 Non-hominin Top Matches (error) 
+
+Several fragments annotated as Homo were extracted from supplementary figures/table s or 
+
+assembled genomes in multiple published studies and re-aligned against NCBI nr/nt. Results 
+
+showed that, for some fragments (e.g., row 2 in Table 1), the top three highest Ident () matches 
+
+were microbial sequences rather than hominin. Other fragments exhibited M-type (modern 
+
+human-like) or P-type uncertainty (see Materials and Methods ). These findings indicate that 
+
+traditional screening pipelines may fail to effectively exclude exogenous or symbiotic sequences.            
+
+> Table 1. Uncertainties in identifications produced by conventional methods
+> †Best match: non-h ominin s
+
+6.2.2 Alignment Bias in Re-assessed Sequencing Data 
+
+Public sequencing datasets (e.g., ERR922054 and GWHAMOS01000001) were re-aligned using 
+
+an unbiased BLAST online search against the NCBI nr/nt database . The fractions of fragments 
+
+with out certain hit s were 4.0% and 3.6% for the two datasets; M- type uncertain fragments accounted for 76% and 49.9%, respectively, and P- type uncertain fragments were 6% and 17.9%. 
+
+Related species included modern humans, human commensal bacteria, environmental bacteria 
+
+(e.g., Lycogala flavofuscum ), and environmental arthropods (e.g., Oppiella nova ). The results 
+
+indicate that conventional methods may have already introduced substantial distortion into their 
+
+original data, a risk that has previously been overlooked. 
+
+6.2.3 Masking Effects During Assembly 
+
+In the progression from raw reads to contigs and ultimately to genome assembly, many studies fail 
+
+to disclose specific criteria for read inclusion/excl usion or the exact parameters used in assembly. 
+
+When some misassignments occur early in the process, subsequent contig- or scaffold-level 
+
+alignments frequently converge toward the human reference genome, yielding an apparently 
+
+idealized archaic hominin profile that conceals the underlying biases. Neverthe less, non-human 
+
+top BLAST hits remain detectable in several published figures/tables and assemblies (see Table 1), 
+
+indicating that the issue stems not only from inherent methodological limitations but also from 
+
+discretionary decisions during manual curation or filtering. These factors simultaneously amplify 
+
+the risk of error and obscure its presence. 
+
+6.2.4 Unknown Factors and Potential Mixed Signals 
+
+When methodological limitations are combined with multiple unknown influences (e.g., burial 
+
+environment heterogeneity, symbiotic/parasitic sequence interference, sample source variability), 
+
+resulting inferences may deviate from biological reality. 
+
+In the study of dental calculus from the Harbin cranium (>146,000 years old), two mtDNA 
+
+sequences reconstructed from the same sample (GenBank accessions: C_AA108315.1 and 
+
+C_AA108316.1) exhibit T/C heteroplasmy at rCRS position 14073 [7]. This suggests DNA from 
+
+multiple individuals infiltrated the fossil, producing overlapping fragments from different time 
+
+periods or donors during burial and diagenesis. It underscores the risk of host sequence mixing 
+
+with exogenous or multi-temporal DNA in open-system samples. 
+
+6. 3 Empirical Case Study II: Discovery of Novel Molecular Structural Patterns Using HSF 
+
+Selection 
+
+In a Lycoptera (Jehol Biota) specimen, 3D X- ray and IVR show coexisting closed and open 
+
+systems; sequencing produced many short fragments, including plants, fish and mammals 
+
+(PRJNA1309836), with little evidence of deamination. Some reads map to modern genomes but 
+
+have low Ident () values, supporting a non- modern origin. Given the environmenta l, ecological, 
+
+distributional, evolutionary context, and geological historythese fragments are more plausibly 
+
+ancient exogenous inputs (see Table 2). Table 2. HSF selection of DNA fragments from Lycoptera fossils 
+
+Key observations :
+
+6.3.1 Plant HSFs Indicating Ancient Environmental Deposition 
+
+Among green plant sequences, five maize-related HSF fragments were identified. Their Ident (α)
+
+values differed substantially from those of modern cultivated varieties, effectively excluding 
+
+recent contamination. 
+
+Because maize was introduced into China only in the 17th century, this finding suggests that 
+
+environmental biomolecul es may have accumulated within fossil matrices long before modern 
+
+agricultural activity. However, further verification requires integration with stratigraphic and 
+
+sedimentological evidence. 
+
+6.3.2 Evidence for Ancient Ray-Finned Fish Lineages 
+
+A total of 281 ray-finned fish HSF fragments were identified, including sequences that align with 
+
+taxa no longer present in the region. A plausible explanation is that these fragments derive from 
+
+extinct species contemporaneous with the fossil deposit (~120 Ma). If independently confirmed, 
+
+this finding would carry implications for phylogenetic and biogeographic reconstruction and 
+
+therefore merits targeted replication experiments. Such an outcome would be consistent with the 
+
+presence of a closed-preservation system in the sampled material. Furthermore, it can challenge 
+
+the conventional understanding of a million-year age limit for aDNA recovery, since DNA 
+
+survival is governed primarily by the physicochemical state of the material rather than by absolute 
+
+chronological age. 
+
+6.3.3 Non-Human Primate HSF Signals 
+
+Fifty non-human primate HSF fragments were identified. These sequences differ markedly from 
+
+modern human genomes, excluding modern contamination. They may represent ancient hominoid 
+
+biomolecul ar inputs deposited within fossil matrices, potentially providing molecular evidence for 
+
+paleoecological dynamics and species turnover. Nevertheless, these interpretations remain 
+
+provisional and require independent validation. 
+
+6.3.4 Newly Identified Molecular Structural Patterns We report two previously undocumented large-scale DNA structural patterns exhibiting complex 
+
+variation: 
+
+Coding Region Sliding Replication and Recombination (CRSRR) : This pattern was 
+
+identified within a transposase-coding region of sequences derived from Lycoptera 
+
+fossils. It suggests a potential mechanism of genomic self-modification involving sliding 
+
+replication coupled with recombination [21 ].
+
+Sequence Reversal and Rearrangement (SRRA) : Observed in sequence fragments 
+
+that align to regions of human genes, this pattern is characterized by the insertion of 
+
+hairpin-forming sequences within 3’UTR (untran slated regio n) . Such insertions may 
+
+influence mRNA stability and gene regulation [17].
+
+These structural features, involving multiple insertion –deletion events, have not been described in 
+
+modern biology . Whether originating in the Cretaceous or other periods, these sequences can form 
+
+new genetic structural elements that may affect protein expression and genome evolution in 
+
+currently uncharacterized ways, thereby revealing fundamental regulatory mechanisms of 
+
+evolutionary change and linking molecular paleontology with modern biology. 
+
+6.3. 5 Scope of Interpretation 
+
+These case studies primarily demonstrate the signal recovery capability of HSF Selection in 
+
+open-system contexts, particularly its capacity to retrieve information systematically lost under 
+
+conventional workflows. Their purpose is to illustrate methodological feasibility rather than to 
+
+establish definitive evolutionary conclusions ; accordingly, they should be interpreted as 
+
+proof-of-capability rather than statistical proof-of-hypothesis. Discussion and Outlook 
+
+Implications for the Discipline and Reappraisal of Conventional Methodologies 
+
+Conventional aDNA approaches have long treated most fossils, particularly ancient hominin 
+
+remains, as closed systems containing only endogenous remains plus modern contamination. This 
+
+assumption overlooks that most samples act as open containers, accumulating biomolecules from 
+
+multiple temporal phases and biological sources; the methods therefore lack systematic means to 
+
+exclude ancient exogenous inputs. Even with ongoing algorithmic improvements, prevailing 
+
+pipelines have never incorporated fossil openness or multisource contamination history as explicit 
+
+analytical prerequisites [22, 23 ]. Consequently, genome reconstructions from open-system 
+
+samples (e.g., Denisovan and Neanderthal assemblies) require rigorous evaluation of potential 
+
+confounding effects from ancient molecular admixture on sequence purity and inferential 
+
+reliability. 
+
+This study, grounded in first-principles reasoning, systematically exposes inherent logical flaws in 
+
+conventional methodologies and questions the reliability of certain paleogenomic conclusions 
+
+drawn over the past two decades. At present, traditional approaches remain the dominant paradigm 
+
+in the field, are endorsed by highly influential research groups, and frequently appear in 
+
+CNS-level journals, effectively shaping disciplinary trajectories. In this academic environment, 
+
+the HSF framework faces substantial barriers to acceptance in high-impact outlets and to securing 
+
+corresponding funding. Should the identified methodological limitations be independently 
+
+confirmed, a broad range of published paleogenomic inferences, including raw datasets, 
+
+reconstructed genomes, interpretations of ancient –modern gene flow, and downstream biomedical 
+
+applications, will require systematic reappraisal and may necessitate partial correction or 
+
+retraction. 
+
+Paradigm Shift in Molecular Paleontology 
+
+From first-principles reasoning, we propose a new conceptual paradigm consisting of four 
+
+integrated components: fossils as dynamic molecular reservoirs; four preservation-system types 
+
+governing biomolecular information generation and loss; an eight-category molecular state space 
+
+(H/h × D/d × S/s); and the HSF posterior traceability framework as the core analytical engine. If 
+
+this paradigm holds, molecular paleontological studies should begin with explicit determination of 
+
+the preservation-system state of each sample. Although the framework is newly introduced and 
+
+currently supported by limited empirical evidence, initial applications have already recovered 
+
+large-scale DNA structural patterns (e.g., CRSRR and SRRA) that are systematically excluded by 
+
+conventional pipelines, demonstrating superior information recovery potential. 
+
+Rigorous validation will require independent laboratories to perform controlled testing on 
+
+well-characterized closed-system material (e.g., permafrost-preserved specimens, sealed volcanic 
+
+ash deposits, salt-encapsulated samples) and to conduct parallel comparisons with conventional 
+
+workflows on identical samples. As access to high-quality endogenous remains becomes 
+
+increasingly restricted, HSF fragments offer distinct operational and representational advantages for species identification, phylogenetic placement, and reconstruction of molecular evolutionary 
+
+dynamics. 
+
+Large-scale systematic screening of HSFs across ancient strata and diverse substrates , including 
+
+skeletal fossils, source rocks, archaeological ceramics, permafrost, and fine-grained sedimentary 
+
+deposits , is therefore recommended. Priority should be given to unambiguously closed and 
+
+well-preserved samples, where high-confidence genome reconstruction or lineage-specific 
+
+inference can be performed under stringent contamination controls. This research direction aligns 
+
+closely with sedimentary aDNA studies in sampling scope but provides a more comprehensive 
+
+logical framework. In particular, it enhances the reliability of phylogenetic inference in 
+
+environments with substantial exogenous molecular input. Materials and Methods 
+
+1. Relationship Between Fossil Preservation Systems and Eight Molecular Categories 
+
+The four preservation systems do not set the probability of presence for the eight molecular 
+
+categories; they determine each category ’s relative proportions. HSF selection leverages these 
+
+proportional imbalances for reverse inference. IVR and 3D X-ray imaging can assess openness 
+
+versus closedness, while deamination patterns can distinguish closed degradation from closed 
+
+preservation systems. The relationships can be summarized and inverted by the following 
+
+conceptual System × Molecule matrix ; the expected matrix is :
+
+Closed-preservation : Pore connectivity ↓; H/h ↑, h-HSF* ↓; D/d ↓, S/s ↑
+
+Closed-degradation : Pore connectivity ↓; H/h ↑, h-HSF* ↓; D/d ↑, S/s ↑
+
+Open-preservation : Pore connectivity ↑; H/h ↓, h-HSF** ↑; D/d ↕, S/s ↕
+
+Invasion-replacement : Internal voids ↑, pore connectivity ↑; H/h ↓, h-HSF** ↑; D/d ↕; S/s ↕
+
+Notes: h-HSF* : derived from host-associated parasitic/symbiont organisms ; h-HSF** : derived 
+
+from both host-associated organisms and external environmental sources ; ↕: uncertain, but 
+
+coupled with changes in the local molecular environment and time elapsed .
+
+2. Concept, Theoretical Basis, and Scope of HSF Selection 
+
+Definition : HSF (Host-specific fragment) refers to a DNA fragment that, in sequence alignment 
+
+analysis, matches a particular genus, species, or higher taxonomic unit in a statistically significant 
+
+and phylogenetically reasonable manner (i.e., its best hit is statistically significantly isolated), and 
+
+shows a clear gap from homologous sequences of other species. The identification of HSF rests on 
+
+three pillars: 
+
+2.1 Phylogenetic reasonableness 
+
+Interspecific phylogenetic relationships have been robustly established by morphology and 
+
+molecular phylogenetics, providing a biological constraint .
+
+2.1 Statistical isolation 
+
+The E-value gap between the top BLAST hit and the next best hit is ≥ 3 orders of magnitude (see 
+
+step 4); based on sequence alignment algorithms such as BLAST, the match exhibits both 
+
+significance and uniqueness .
+
+2.3 Representativeness of reference data 
+
+Genomes in the reference database should cover all relevant species involved in the evolutionary 
+
+history of the fossil locality; at minimum, coverage should reach order or family level when 
+
+genus/species data are insufficient; public databases (e.g. NCBI nr/nt) should be combined to 
+
+provide the broadest possible cross-species alignment background. 3. Scope of Application and Logical Boundaries 
+
+HSF selection is applicable to taxa where closely related species have sequenced genomes, 
+
+phylogenetic relationships are well resolved, clade structure is stable (e.g. most mammals and 
+
+vertebrates). 
+
+For taxa with poor sequencing coverage or unresolved phylogenetic position, the reliability of 
+
+HSF assignment decreases markedly and must be used with caution; alternatively, HSFs may be 
+
+screened at higher taxonomic ranks (e.g. family or order level for a marine decapod with limited 
+
+genus/species data). 
+
+4. Core Principles 
+
+HSF is not simply the “best hit ” sequence. It is a match that exhibits statistical isolation under the 
+
+dual constraints of statistical significance and phylogenetic consistency. 
+
+In this study, “statistically significant isolation ” is operationally defined through quantitative 
+
+criteria in Sub1 (confirmatory HSF) and Sub2 (exploratory HSF) steps. The purpose of Sub2 is not 
+
+to provide a final host assignment, but to avoid losing potential authentic signals in incomplete 
+
+reference systems.      
+
+> Fig ure 3.Workflow sfor HSF selection
+
+5. HSF Selection Workflow s
+
+Figure 3 provides an overview of the entire process: sequence input → alignment filtering →
+
+authenticity triage → statistical/phylogenetic testing → uncertainty removal → conditional rescue 
+
+→ output HSF classification. 
+
+5.1 Reference Databases and E-value Thresholds Database priority: NCBI nr/nt (to minimize misassignment) ; E-value threshold: ≤ 1.00 × 10 ⁻⁷ . This 
+
+threshold represents an empirical compromise between reducing cross-species misassignment risk 
+
+and retaining sufficient sensitivity for short fragments in highly complex databases. Constraint: 
+
+Fragments ≤ 60 bp often fail to reach this threshold and can only serve as auxiliary evidence; they 
+
+should not be used as core HSF or Sub1 molecules. This step addresses only whether a match is 
+
+statistically significant, not whether the source is credible. 
+
+5.2 Deamination Status Triage (Branching, Not Classification) 
+
+DNA deamination primarily manifests as C→T transitions enriched at the 3′ end and extending 
+
+upstream. Therefore, fragments are therefore divided into two classes: d-class (no deamination) →
+
+proceed directly to step 3; D-class → trim deamination-enriched terminal bases before re-entering 
+
+step 1.
+
+Deamination processing must occur before taxonomic assignment, not after. This step restores the 
+
+original sequence structure and does not constitute an authenticity filter. 
+
+5.3 Functional Group Filtering (Complexity Reduction) 
+
+This step is not performed at the genus or species level, but at broader taxonomic categories (e.g., 
+
+primates or higher ranks). Based on the preliminary alignment results from step 1, fragments are 
+
+initially classified into: fragments related to the fossil-bearing taxon group (e.g. , primates), 
+
+fragments unrelated to the fossil-bearing taxon group. 
+
+This classification serves only as a complexity-reduction filter for downstream steps 5. 4–5.5 and 
+
+does not constitute evidence for HSF assignment. Only fragments preliminarily associated with 
+
+the fossil taxon group proceed to statistical and phylogenetic testing. 
+
+5.4 Statistical Criteria for Sub1a/Sub1d HSF (Confirmatory HSF) 
+
+Significant isolation: E-value gap ≥ 3 orders of magnitude between the top hit and the second-best 
+
+hit (This is an operational empirical threshold that balances sensitivity and specificity; it may be 
+
+further calibrated in future work.For each fragment, BLAST results are sorted by ascending 
+
+E-value ).
+
+The required statistical gap is: Top 1 E-value vs. Top 2 E-value differs by ≥ 3 orders of magnitude 
+
+(i.e., Top 2 E-value ≥ 1000 × Top 1 E-value). This criterion excludes cases where the query 
+
+sequence matches multiple species nearly equally well and ensures that the top hit is statistically 
+
+isolated rather than merely one of many similar matches. 
+
+5.5 Phylogenetic consistency check (biological constraint) 
+
+The taxonomic assignments of Top 2 and Top 3 hits must be compatible with established 
+
+phylogenetic relationships. For example: if Top 1 = Homo sapiens , then Top 2/Top 3 should 
+
+belong to closely related taxa (e.g., great apes or other primates) ; if Top 2/Top 3 belong to 
+
+distantly related lineages (e.g., bacteria or basal metazoans), phylogenetic consistency is violated. 
+
+Only fragments that satisfy both statistical isolation and phylogenetic consistency are classified as 
+
+Sub1a (undamaged) or Sub1d (deaminated but trimmed) HSF —Type I (high-confidence) 
+
+assignments. The phylogenetic consistency judgment relies on published consensus phylogenies and is not a per-fragment subjective decision. 
+
+5. 6 Types of Assignment Uncertainty — Strict Exclusion 
+
+Fragments that violate phylogenetic expectations are assigned to uncertainty categories (see Table 
+
+3) and strictly removed from the Sub1 HSF set: 
+
+M-type uncertainty (Multiple-hit ambiguity) : multiple species show essentially identical 
+
+or near-identical E-values; no unique source can be determined. 
+
+P-type uncertainty (Phylogenetic conflict): Top 1 matches the expected fossil lineage (e.g., 
+
+hominin), but Top 2/Top 3 match distantly related organisms (e.g., bacteria). Fast-evolving, 
+
+undersampled microbial lineages make reliable exclusion difficult; Top 1 cannot be trusted in 
+
+such cases. 
+
+5.7 AT-type uncertainty (interpretive dilemma at A/T sites) 
+
+A/T positions are ambiguous due to deamination vs. true SNP; such positions should not be used 
+
+for mutation rate or phylogenetic inference, especially in short, highly deaminated fragments. 
+
+5.8 Low-complexit / repetitive sequences: excluded outright.    
+
+> Table 3. Uncertainty categories
+
+5.9 Ident (): a simple quantitative index of fragment –reference similarity 
+
+Definition: Ident () = Percent Identity × Query Cover × 100% ; example: Identity = 95%, Query 
+
+Cover = 80% → Ident () = 76%. 
+
+Ident () provides a more comprehensive measure of overall similarity than identity or coverage 
+
+alone and serves as an auxiliary reference for fragment provenance , but It should not replace 
+
+phylogenetic judgment. Fragments with Ident () ≤ 70% indicate substantial divergence from the 
+
+reference genome and warrant caution. 
+
+5.10 Sub2 HSF — Conditional Rescue Strategy 
+
+For fragments previously classified as M-type or P-type uncertainty, conditional rescue into Sub2 
+
+(exploratory HSF) may be considered if all of the following are satisfied: 
+
+The “candidate species ” (usually the top 2–3 hits , often lower taxa ) responsible for the uncertainty 
+
+have no documented ecological or geological presence in the fossil region; no Sub1 HSF exists for 
+
+those “candidate species ” in the datasets. 
+
+Openness testing (IVR + 3D X-ray) rules out late-stage contamination or mixing .
+
+Ident () conform to evolutionary expectations: given a well- represented reference dataset, Ident (α) reflects matching differences to known genomes and can indicate phylogenetic relationships. 
+
+If the sample can be confirmed as a closed system, shows the above data features, and has native 
+
+factor evidence (e.g., geological, paleoecological, species distribution history), conditional 
+
+recovery of the fragment is justified. 
+
+5.11 Supplementary Notes 
+
+Preservation system state and fragment assignment are iteratively refined in actual analysis 
+
+(Bayesian-like feedback loop), not determined unidirectionally. 
+
+The top hit is not automatically an HSF. 
+
+E-value < 1 is generally biologically meaningful; initial noise filtering uses ≤ 1 × 10 ⁻⁷ ; subsequent 
+
+isolation requires ΔE ≥ 3 orders of magnitude. 
+
+In very large databases (hundreds of TB –PB), bit score difference Δbits ≥ 10 (≈ 3 orders of 
+
+magnitude in E-value) is a widely used practical rule for statistical significance. 
+
+Statistical significance ≠ sufficient biological evidence. The NCBI nr/nt database is heavily biased 
+
+toward model organisms, medically relevant taxa, and certain microbes, while most vertebrate and 
+
+invertebrate lineages remain undersampled. 
+
+For human/primate fragments, Top 1–3 E-values are frequently very close (Δbits < 10) due to 
+
+over-representation. 
+
+When Top 2/3 hits are distant taxa, short conserved domains or database bias must be considered. 
+
+For undersampled lineages, large Δbits may occur, but precise phylogenetic placement remains 
+
+difficult → assignment should be conservatively elevated to the appropriate higher taxon. 
+
+5.12 Boundaries of HSF Selection 
+
+HSF directly addresses only one of three independent authenticity dimensions: 
+
+Molecular authenticity (ancient vs. modern contaminant) .
+
+Lineage authenticity (most probable phylogenetic source) .
+
+Host authenticity (whether the molecule derives from the fossil organism itself ). 
+
+HSF primarily resolves dimension 2 and, when combined with preservation system diagnosis, 
+
+provides probabilistic support for dimensions 1 and 3 — never deterministic proof. 
+
+HSF + closed system → high posterior probability that the fragment derives from the host 
+
+lineage .
+
+HSF + open system → high posterior probability that the fragment derives from the 
+
+surrounding paleoenvironment .
+
+Neither equivalence is absolute proof : HSF + closed systems ≠ deterministic proofs, but rather 
+
+elevate the subsequent posterior probabilities to a range that can be used for inference. 
+
+Comprehensive assessment of three-dimensional molecular authenticity must incorporate native 
+
+factors (paleogeography, climate evolution, geological events, lineage continuity, ecological dynamics) as boundary conditions and probability constraints. 
+
+5.13 For undersampled clades 
+
+HSF provides evidence of non-random, non-generalized homology matching and membership in a
+
+particular phylogenetic branch — not precise species-level assignment. Interpretation is ultimately 
+
+constrained by reference database completeness. 
+
+5.14 Methodological Summary 
+
+Core logical chain: statistical significance → sequence authenticity triage → phylogenetic 
+
+consistency → uncertainty removal → conditional rescue. The methodology starts from 
+
+statistical isolation, applies phylogenetic constraints and rigorous uncertainty filtering, and 
+
+ultimately yields reliable lineage assignment — consistent with the initial HSF concept. 
+
+Risk mitigation: Cross-validation across multiple databases (GenBank + custom local 
+
+databases) offsets reference incompleteness. 
+
+All rescue decisions must be accompanied by an independent, traceable evidence chain to 
+
+minimize subjective bias introduced in Sub2. 
+
+6. System Characterization of Fossils 
+
+6.1 Openness assessment 
+
+Porosity and volume are quantified using IVR combined with 3D X-ray scanning to evaluate 
+
+openness and heterogeneity, thereby determining closed versus open preservation state. 
+
+6.2 Signal analysis 
+
+HSF counts and taxonomic distribution are recorded, with h-HSF categories distinguished from 
+
+host- derived, parasitic/symbiont, and other origins. The distribution of Ident (α) values across 
+
+HSFs is examined for consistency with expected evolutionary divergence and used to identify 
+
+lineage signals (interpretive layer). 
+
+6.3 Deamination fragment characteristics 
+
+The number of deaminated fragments is quantified and their taxonomic distribution is tested 
+
+against expected statistical patterns as evidence of molecular degradation. 
+
+6.4 Background factor evaluation 
+
+Paleogeographic setting, climatic evolution, geological events, lineage continuity, and ecological 
+
+dynamics are treated as contextual variables. Their influence on bi omolecular taxonomic 
+
+distribution and system characterization is assessed to provide boundary conditions and 
+
+probabilistic constraints. 
+
+6.5 Important considerations 
+
+Integrated judgment should combine physicochemical characteristics of the embedding matrix, 
+
+surface, and sampling region with molecular data. Conclusions based on any single line of 
+
+evidence should be avoided. 6.6 Logical hierarchy 
+
+System characterization and HSF selection operate at different levels: system characterization 
+
+constitutes exogenous constraints, based on depositional environment and input conditions, used 
+
+to evaluate internal material exchange and information generation mechanisms. 
+
+HSF selection is a conditional probabilistic inference performed within these boundaries to parse 
+
+lineage assignment signals , which cannot substitute for system diagnosis but can serve as 
+
+supporting evidence (preservation system state is correlated with fragment provenance 
+
+probability) ; together , they form a continuous analytical framework from information generation 
+
+to interpretation. 
+
+System diagnosis and provenance inference are iteratively refined rather than unidirectionally 
+
+determined. Physical determination of the preservation system provides the prior boundary 
+
+conditions for analysis, while HSF selection constitutes posterior probabilistic inference of lineage 
+
+origin under those conditions ; in causal structure, the relationship is one of “boundary constraint ”
+
+versus “conditional inference ”, not mutual determination.                  
+
+> Table 4. Diagnostic features of the four preservation systems
+> f-HSF +:derived from external environmental species (non-host parasitic/symbiont origin)
+
+7. Software Applications 
+
+Sequence alignment is performed using the NCBI Nucleotide BLAST online tool, starting with the 
+
+Core_nt database and extending to NCBI nr/nt. DNA sequence homology analysis is conducted 
+
+using MEGA11. References 
+
+1. Pedersen, M.W. et al. (2015) Ancient and modern environmental DNA. Philos Trans R Soc 
+
+Lond B Biol Sci 370 (1660), 20130383. 
+
+2. Arb øll, T.P. et al. (2023) Revealing the secrets of a 2900-year-old clay brick, discovering a time 
+
+capsule of ancient DNA. Scientific Reports 13 (1), 13092. 
+
+3. Willerslev, E. et al. (2003) Diverse plant and animal genetic records from holocene and 
+
+pleistocene sediments. Science 300, 791-795. 
+
+4. Briggs, A.W. et al. (2007) Patterns of damage in genomic DNA sequences from a Neandertal. 
+
+PNAS 104, 14616-21. 
+
+5. Meyer, M. et al. (2012) A high-coverage genome sequence from an archaic Denisovan 
+
+individual. Science 338, 222 –226. 
+
+6. Burbano, H.A. et al. (2010) Targeted investigation of the Neandertal genome by array-based 
+
+sequence capture. Science 328 (5979), 723-5. 
+
+7. Fu, Q. et al. (2025) Denisovan mitochondrial DNA from dental calculus of 
+
+the >146,000-year-old Harbin cranium. Cell 188 (15), 3919-3926 e9. 
+
+8. Fu, Q. et al. (2025) The proteome of the late Middle Pleistocene Harbin individual. Science 14, 
+
+704-707. 
+
+9. Kendall, C. et al. (2018) Diagenesis of archaeological bone and tooth. Palaeogeography 
+
+Palaeoclimatology Palaeoecology 491, 21-37. 
+
+10. Díaz-Cort és, A. et al. (2024) Diagnosis of archaeological bones: Analyzing the state of 
+
+conservation of lower Pleistocene bones through diagenesis methods. Microchemical Journal 206, 
+
+111353. 
+
+11. Smith, C.I. et al. (2008) The precision of porosity measurements: Effects of sample 
+
+pre-treatment on porosity measurements of modern and archaeological bone. Palaeogeography, 
+
+Palaeoclimatology, Palaeoecology 266 (3-4), 175-182. 
+
+12. Peterson, J.E. et al. (2010) Influence of microbial biofilms on the preservation of primary soft 
+
+tissue in fossil and extant archosaurs. PLoS One 5 (10), e13334. 
+
+13. Saitta, E.T. et al. (2019) Cretaceous dinosaur bone contains recent organic material and 
+
+provides an environment conducive to microbial communities. Elife 8, e46205. 
+
+14 . Schweitzer, M.H. et al. (2005) Soft-tissue vessels and cellular preservation in Tyrannosaurus 
+
+rex. Science 307, 1952-1955. 
+
+15. Wiemann, J. et al. (2018) Fossilization transforms vertebrate hard tissue proteins into 
+
+N-heterocyclic polymers. Nat Commun 9 (1), 4741. 
+
+16. Massilani, D. et al. (2022) Microstratigraphic preservation of ancient faunal and hominin DNA 
+
+in Pleistocene cave sediments. Proc Natl Acad Sci U S A 119 (1), e2113666118. 
+
+17. Zhao, L.J. et al. (2025) Ancient DNA Reveals Hominoid Evolution: Intermediate DNA 
+
+Sequences and Advances in Molecular Paleontology. bioRxiv 04 .27 .650833 
+
+18. An, R. et al. (2014) Non-enzymatic depurination of nucleic acids: factors and mechanisms. 
+
+PLoS One 9 (12), e115950. 
+
+19. Frederico, L.A. et al. (1990) A sensitive genetic assay for the detection of cytosine 
+
+deamination: determination of rate constants and the activation energy. Biochemistry 29 (10), 
+
+2532-7. 
+
+20. Loeb, L.A. and Preston, B.D. (1986) Mutagenesis by apurinic/apyrimidinic sites. Annu Rev Genet 20, 201-30. 
+
+21. Zhao, W. Q. et al. (20 24 ) Ancient DNA from 120-Million-Year-Old Lycoptera Fossils Reveals 
+
+Evolutionary Insights. arXiv :2412.06521 
+
+22. Al-Asadi, H. et al. (2019) Inference and visualization of DNA damage patterns using a grade 
+
+of membership model. Bioinformatics . 35:1292-1298 .
+
+23. Ravishankar, S. et al. (2025) Filtering out the noise: metagenomic classifiers optimize ancient 
+
+DNA mapping, Briefings in Bioinformatics 26, bbae646 .

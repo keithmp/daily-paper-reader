@@ -1,0 +1,3799 @@
+Title: The interplay of selection and dormancy in a Moran model can lead to coexistence of types
+
+URL Source: https://arxiv.org/pdf/2602.24106v1
+
+Published Time: Mon, 02 Mar 2026 02:04:35 GMT
+
+Number of Pages: 36
+
+Markdown Content:
+THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL CAN LEAD TO COEXISTENCE OF TYPES 
+
+Jochen Blath 1, Baptiste Le Duigou 2 and András Tóbiás 3
+
+(March 2, 2026) 
+
+Abstract: In this paper we propose a Moran model that describes the population dynamics of two types: While the first type has a selective advantage during reproduc-tion, the second type can avoid replacement during reproduction with some positive probability by switching temporarily into a dormant state .We investigate the interplay of both evolutionary strategies by studying the invasion dynamics of the dormant type into the resident (selectively advantageous) population in the large population limit of the system. It turns out that the dormancy trait can not only invade and subsequently fixate under suitable parameter assumptions despite its selective disadvantage (a phenomenon that has already been observed in a related context in Blath and Tóbiás [BT20]), but that there is also a novel regime of stable coexistence of both types due to a frequency-dependent balancing effect that did not arise in the previous setup with Lotka–Volterra type symmetric competition. The emergence of a coexistence regime here rests in part on specific properties of the Moran modelling framework, in particular its fixed overall population size that enforces instant re-colonization after death events, as well as on the (positive) mortality and resuscitation rates of the dormant state. We provide heuristic explanations for the observed types of behaviour and the corresponding proofs, which involve comparisons to suitable branching processes, approximations by dynamical systems, and an analysis of asymptotic behaviour of the latter. 
+
+MSC 2010. 92D25, 60J85, 34D05. 
+
+Keywords and phrases. Moran model, selection, dormancy, invasion, coexistence, founder control. 1. Introduction 
+
+Dormancy is an ubiquitous trait that allows organisms to switch into reversible and non-proliferative states that are protected from unfavourable conditions [LdHWB21]. It is generally believed that this strategy, although typically being costly, can contribute to the survival and resilience of species, and may also foster coexistence and diversity in species communities. However, the precise consequences of dormancy in given scenarios are highly sensitive to the modelling of the dormancy-related mechanisms.       
+
+> 1Goethe-Universität Frankfurt, Institute of Mathematics, and C3S– Center for Critical Computational Studies, Robert-Mayer-Straße 10, 60325 Frankfurt am Main, Germany, blath@math.uni-frankfurt.de
+> 2Department of Computer Science and Information Theory, Faculty of Electrical Engineering and Informatics, Bu-dapest University of Technology and Economics, Műegyetem rkp. 3., H-1111 Budapest, Hungary, and HUN-REN Alfréd Rényi Institute of Mathematics, Reáltanoda utca 13–15, H-1053 Budapest, Hungary, leduigou@cs.bme.hu
+> 3Department of Computer Science and Information Theory, Faculty of Electrical Engineering and Informatics, Bu-dapest University of Technology and Economics, Műegyetem rkp. 3., H-1111 Budapest, Hungary, and HUN-REN Alfréd Rényi Institute of Mathematics, Reáltanoda utca 13–15, H-1053 Budapest, Hungary, tobias@cs.bme.hu
+> arXiv:2602.24106v1 [q-bio.PE] 27 Feb 2026 2JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS
+
+For example, in population genetics , which usually assumes fixed (but large) population sizes and long time-scales, it has been shown that dormancy can affect ancestral relationships in multiple and idiosyncratic ways, leading to novel coalescent structures [KKL01, BGKW16], [BGKW18], depending on the involved time-scales and switching mechanisms (e.g. responsive vs stochastic). Moreover, in (stochastic) adaptive dynamics , where population sizes are regulated by Lotka–Volterra type competition on the ecological scale, it has been shown that so-called competition-induced dor-mancy , even when combined with a reduced reproductive rate in order to incorporate the costs of such a strategy, can successfully invade and subsequently fixate in a resident populations without this trait [BT20]. A similar (costly) invasion is not possible for spontaneous dormancy, see e.g. in [P24], again highlighting the relevance of the precise dormancy strategy. This seems to be even more the case in random environments, where several different kinds of dormancy can become optimal, depending on the distributional properties of the environment [BHS21]. Recently, probabilistic research is increasingly bridging the realms of both evolutionary and ecological modelling frameworks – note for example the identification of ancestral structures from population genetics in logistic systems [AFS25, F25, GN25], or the application of coalescent theory in models from stochastic adaptive dynamics on a suitable time-scale [CH24]. In the present paper, we follow these research threads by transferring the idea of competition-induced dormancy into the population-genetic framework of a fixed-size Moran model, more precisely a variant of Moran’s original model [M58] without mutation and with some additional transitions, all considered on the ecological scale. Here, competitive edges become selective advantages, and killed individuals are instantaneously replaced by new offspring. While one would at first glance expect a qualitatively similar behaviour to the one described for a corresponding competitive birth–death model in [BT20] (invasion and subsequent fixation of the dormancy trait), it turns out that new effects, resting crucially on the specifics of the Moran model framework, can appear. In particular, invasion can now lead to 
+
+coexistence of both types instead of fixation of the invader. The corresponding parameter regimes for all possible outcomes, including also so-called founder control (a term borrowed from spatial ecology, see e.g. [V15], referring to fixation of the resident and extinction of the mutant, regardless of their types), can be identified explicitly. This yields an example for a scenario in which dormancy indeed fosters coexistence, in line with general ecological predictions. The organization of the paper is as follows. In Section 2, we define our model and state our main results. In particular, in Section 2.1 we introduce our Moran model, which consists of two types of individuals: One having a selective advantage and the other being able to avoid selective pressure by switching to a dormant state. After some preliminary results on the underlying dynamical system in Section 2.2 and on the branching processes approximating small sub-populations in Section 2.3, in Section 2.4, we present our main results, in particular Theorem 2.8, which determines the fate of a single mutant individual of the dormancy type appearing in a large resident population of the other type. As part of this theorem, we also compute the asymptotic probability of a successful mutant invasion in the large-population limit, as well as the asymptotic time until reaching a macroscopic population size. We further characterize whether a successful invasion leads to coexistence vs a complete fixation of mutants and extinction of residents. In Section 3 we discuss our modelling choices as well as relations to previous work, and we interpret the conditions for invasion and coexistence from the main theorem. Finally, after the statement and proof of some preliminary results on the global stability properties of the underlying two-dimensional dynamical system in Section 4, we carry out the proof of our main result in Section 5. THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 3
+
+2. Model definition and main results 
+
+2.1. Model definition. We consider a population of N ∈ N individuals which can each have two different traits called type 1 and type 2. Type 2 individuals additionally come in two states, called active state (denoted by 2a) and dormant state ( 2d), while we consider type 1 particles to be always active. The three-dimensional vector of type counts X(N )(t) =  X(N )1 (t), X (N )2a (t), X (N )2d (t) (for e.g. type 1 given by X(N )1 (t) = # {individuals of type 1 at time t}) evolves as a continuous-time Markov chain with state space N30 and transitions as follows. There are Moran type reproduction events involving active (type 1 and 2a) individuals. Note that a particularity of the Moran dynamics is that any birth event is matched with a death event at the same time, so that the overall population size is always constant. This effectively entangles birth, death, and competition. Each pair of active individuals meets at rate 1 
+
+> N
+
+independently of the other pairs. (1) When two type 1 individuals meet, a uniformly chosen one reproduces and the other one dies, and thus the type counts remain unchanged. (2) We fix p ∈ (0 , 1) . When two type 2 individuals meet, we uniformly choose one of them who tries to reproduce, thus exercising competitive pressure on the other. With probability 1 − p,the reproduction is successful, the latter individual dies and is replaced by one offspring of the former. Since both are of the same type, the type counts remain unchanged. However, with probability p, the non-reproducing individual escapes into dormancy (switching to type 2d), does not vanish, and thus prevents reproduction. (3) When a type 1 and a type 2a individual meet, we assume that type 1 has a selective advantage that amounts to being more likely to be chosen as the reproducing individual. This is realized as follows. (a) With probability 1+ s 
+
+> 2
+
+, the type 1 individual gets a chance to reproduce. If this happens, then with (conditional) probability 1−p, it replaces the type 2a individual by its offspring, while with probability p, the type 2a individual again becomes dormant and the type 1
+
+individual cannot reproduce. (b) With probability 1−s 
+
+> 2
+
+, the type 2a individual reproduces and it replaces the type 1 indi-vidual with its offspring. Additionally, type 2d individuals (1) switch back into the active state (2a) at rate σ > 0,(2) and die at rate κ. Upon death, in line with the Moran model assumption of fixed population size, a parent is picked from the currently present population and produces one offspring of its own kind that takes the vacant slot of the deceasing individual. (In particular, if the picked parent is of type 2d, nothing happens.) 
+
+Remark 2.1. When the proportion of type 1 individuals in the population is close to 1, a positive κ
+
+is advantageous for type 1 since dying individuals in the dormant subpopulation will be replaced with high probability with type 1 individuals – in contrast to the case κ = 0 , where this is not possible. Hence, when a small subpopulation of type 2 tries to invade a type 1 resident population, a κ > 0
+
+makes this invasion more difficult. According to the description above, if the current state of X(N )(·) is (ℓ, n, m ) ∈ N30, then the process jumps to 
+
+• (ℓ + 1 , n − 1, m ) at rate 1 
+
+> N
+
+ℓn 1+ s 
+
+> 2
+
+(1 − p),
+
+• (ℓ − 1, n + 1 , m ) at rate 1 
+
+> N
+
+ℓn 1−s
+
+> 2
+
+• (ℓ, n − 1, m + 1) at rate 1 
+
+> N
+
+(ℓn 1+ s 
+
+> 2
+
++ n(n − 1)) p,4 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+• (ℓ, n + 1 , m − 1) at rate σm + κm nN ,
+
+• (ℓ + 1 , n, m − 1) at rate κm ℓN .For a detailed discussion of our modelling choices we refer to Section 3.1 below. 2.2. The dynamical system and its equilibria. Thanks to [EK86, Theorem 2.1, p. 456], on any fixed time interval of the form [0 , T ] for some T ≥ 0, the rescaled process   1 
+
+> N
+
+X(N )(t) converges uniformly in probability to the solution of a certain system of ODEs, given convergence of initial conditions in probability. Since X(N )1 (t) + X(N )2a (t) + X(N )2d (t) = N , this system of ODEs is essentially two-dimensional. We could for example focus on the coordinates x1(t) and x2a(t), with the redundant coordinate x2d(t) then determined by x2d(t) = 1 − x1(t) − x2a(t), for t ≥ 0. In this case, the limiting system reads 
+
+˙x1(t) = x1(t)x2a(t)
+
+ 1 + s
+
+2 (1 − p) − 1 − s
+
+2
+
+
+
++ κx 1(t)(1 − x1(t) − x2a(t)) ,
+
+˙x2a(t) = x1(t)x2a(t)
+
+ 1 − s
+
+2 − 1 + s
+
+2
+
+
+
+− x2a(t)2p + κx 2a(t)(1 − x1(t) − x2a(t)) + σ(1 − x1(t) − x2a(t)) ,
+
+which after some simplification becomes 
+
+˙x1(t) = x1(t)
+
+
+
+x2a(t)( s − 1 + s
+
+2 p) + κ(1 − x1(t) − x2a(t)) 
+
+
+
+,
+
+˙x2a(t) = −x1(t)x2a(t)s − x2a(t)2p + (1 − x1(t) − x2a(t))( κx 2a(t) + σ),
+
+(2.1) where the dynamics of x2d(t) can be expressed as 
+
+˙x2d(t) = x1(t)x2a(t) 1 + s
+
+2 p + x2a(t)2p − x2d(t)( κ(x1(t) + x2a(t)) + σ). (2.2) In order to prepare the main result on invasion and coexistence in our Moran model, we now briefly discuss the existence and stability of equilibria of the system (2.1). It is easy to see that (1 , 0) is an equilibrium of the system. We can identify another monomorphic equilibrium of the form (0 , ¯x2a). In that case, we obtain 
+
+0 = −¯x22ap + (1 − ¯x2a)( κ¯x2a + σ),
+
+and thus 
+
+¯x2a = κ − σ + p(κ − σ)2 + 4 σ(p + κ)2( p + κ) . (2.3) 
+
+Lemma 2.2 (Stability of monomorphic equilibria) .
+
+(i) If p < 2s 
+
+> 1+ s
+
+, then (0 , ¯x2a) is unstable and (1 , 0) is stable. (ii) Let p > 2s 
+
+> 1+ s
+
+. In this case, we say that the basic dormancy emergence condition is satisfied. For 
+
+D = p(s + 1) − 2s we define the critical dormancy mortality rate for the invasion of type 1 by 
+
+˜κ = −2Dσ − p4D2σ2 − 4( −4p + 2 D)σD 2
+
+4D − 8p , (2.4) 
+
+and the critical dormancy mortality rate for the invasion of type 2 by 
+
+κ′ = σs
+
+ 1 + s
+
+2 p − s
+
+
+
+. (2.5) 
+
+Then the following assertions hold: 
+
+(S1) When κ ∈ (0 , ˜κ), (0 , ¯x2a) is stable ,
+
+(S2) When κ ∈ (0 , κ ′), (1 , 0) is unstable, 
+
+(S3) When κ ∈ (κ′, ∞), (1 , 0) is stable, 
+
+(S4) When κ ∈ (˜ κ, ∞), (0 , ¯x2a) is unstable .THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 5
+
+Further, if σ > 2s2 
+
+> p(1 −s)
+
+, then ˜κ < κ ′, and in that case, both equilibria are unstable in (˜ κ, κ ′), and otherwise, ˜κ > κ ′ and both equilibria are stable in (κ′, ˜κ).
+
+The proof of this lemma will be carried out in Section 4.1. Regarding the existence of a third, coordinate-wise positive (polymorphic) equilibrium, we have the following lemma. 
+
+Lemma 2.3 (Conditions for the existence of a polymorphic equilibrium) .
+
+• If σ > 2s2 
+
+> p(1 −s)
+
+, then the dynamical system (2.1) has a coordinate-wise positive equilibrium of the form (˜ x1, ˜x2a) with ˜x1, ˜x2a > 0 and ˜x1 + ˜ x2a < 1 if and only if κ ∈ (˜ κ, κ ′). If such an equilibrium exists, it is also unique and given by the formula 
+
+˜x2a = 2κs + σ(2 s − p(1 + s)) 
+
+κp (s − 1) + s(−2s + p(s + 1)) , ˜x1 = ˜ x2a
+
+ s − 1 + s
+
+2 p − κ 1
+
+κ + 1 . (2.6) 
+
+• In contrast, if σ < 2s2 
+
+> p(1 −s)
+
+, then the dynamical system (2.1) has a coordinate-wise positive equilibrium of the form (˜ x1, ˜x2a) as above if and only if κ ∈ (κ′, ˜κ). If such an equilibrium exists, it is also unique and given by (2.6) .Moreover, in both cases, for κ = ˜ κ, the equilibria (0 , ¯x2a) and (˜ x1, ˜x2a) formally coincide, whereas for 
+
+κ = κ′, the equilibria (1 , 0) and (˜ x1, ˜x2a) formally coincide. The condition σ > 2s2 
+
+> p(1 −s)
+
+vs. σ < 2s2 
+
+> p(1 −s)
+
+will be interpreted in Remark 3.1 below. 
+
+Remark 2.4. When σ̸ = 2s2 
+
+> p(1 −s)
+
+, the equilibrium (˜ x1, ˜x2a) defined by (2.6) is almost everywhere coordinate-wise nonzero. However, (˜ x1, ˜x2a) is only coordinate-wise positive (and in (0 , 1) 2) in the cases mentioned in Lemma 2.3. For the latter case, we make some conjectures on the stability of 
+
+(˜ x1, ˜x2a) in Conjecture 4.5 below. As an illustration, in Figure 1 we plot the coordinates of the equilibria of (2.1) as a function of κ for two different values of σ.In what follows, we refer by founder control to the simultaneous stability of (1 , 0) and (0 , ¯x2a) and by stable coexistence to the simultaneous instability of these two equilibria, cf. also Remark 2.5 below. 2.3. Three phases of an invasion and two branching processes. We will study the situation where at time zero, the initial condition of our Moran model is X(N )(0) = ( N − 1, 1, 0) , i.e. almost all individuals are from the resident type 1 and there is one single active type 2 “mutant” individual. Our main result below, Theorem 2.8, determines the fate of the population after the appearance of this first mutant individual for large N . To be able to state and prove this theorem, we need to define the (asymptotic) survival probability of an invader, and its invasion fitness . Both quantities can be derived from a suitable coupled branching process for the invader during the early phase of the invasion. Hence, we already here discuss the three classical phases of the invasion, similarly to the strategy in the seminal paper of Champagnat [C06], where a competitive Lotka–Volterra type model with logistic competition was studied. 
+
+• Phase I: As long as the mutant population is small compared to N (but not extinct), the type 1 population size remains close to N thanks to the constant population size assumption. Hence, the influence of the resident on the invader is almost constant, and we can approximate the mutant population size by an autonomous two-type binary branching process. 
+
+• Phase II: This phase begins once the total mutant population size has successfully reached 
+
+εN for some ε > 0 small but not depending on N (thus exiting from phase I), which will have an asymptotically positive probability as N → ∞ only if (1 , 0) is an unstable equilibrium of the 6 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+Figure 1. We plot, for p = 0 .4 and s = 0 .1, the evolution of ¯x2a, ˜x2a and ˜x1 according to κ, for two values of σ, the first one less and the second one greater than 2s2 
+
+> p(1 −s)
+
+. The light-red region corresponds to founder control (in the first case) and coexistence (on the second) coinciding with the existence of (˜ x2a, ˜x2d). Moreover, the pictures verify the properties of (˜ x1, ˜x2a) stated in Lemma 2.3. We also remark the apparition of an asymptote (red vertical line) that will be made explicit in the proof of Lemma 2.3 in Section 4.1. dynamical system (2.1). Given this, 1 
+
+> N
+
+X(N )(·) can now be approximated by the solution to (2.1) (where we approximate 1 
+
+> N
+
+X(N )2d (·) by n2d(·) = 1 − n1(·) − n2a(·)). The solution then converges to (0 , ¯x2a) whenever this equilibrium is asymptotically stable, and in case it is unstable, it will approach (˜ x1, ˜x2a).
+
+• Phase III: This phase only occurs if the dynamical system tends to (0 , ¯x2a). In this last phase, 1
+
+> N
+
+ X(N )2a (t), X (N )2d (t) stays close to (¯ x2a, ¯x2d) where ¯x2d = 1 − ¯x2a, while the resident population goes extinct. We now collect some necessary properties of the branching process approximation of the invader dur-ing phase I. Here, as long as the total type 2 population is small but not extinct, the effect of dormancy due to self-interaction of type 2a can be ignored and type 2d individuals mostly get replaced by type 
+
+1 individuals upon death (for κ > 0), and hence we can approximate the process  X(N )2a (t), X (N )2d (t)
+
+by an autonomous (i.e. independent of type 1) branching process  Z(N )2a (t), Z (N )2d (t) that jumps from 
+
+(i, j ) ∈ N20 to: 
+
+• (i − 1, j ) at rate i 1+ s 
+
+> 2
+
+(1 − p),
+
+• (i + 1 , j ) at rate i 1−s
+
+> 2
+
+• (i − 1, j + 1) at rate pi 1+ s 
+
+> 2
+
+,
+
+• (i + 1 , j − 1) at rate σj ,
+
+• (i, j − 1) at rate κj .This approximation will be made precise in Section 5. We first compute the mean growth rate of the invading population, that is, the invasion fitness of the mutant, from this branching process. Indeed, the mean matrix of the two-type branching process is 
+
+J := 
+
+−s 1+ s 
+
+> 2
+
+pσ −σ − κ
+
+
+
+,THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 7
+
+which has an eigenvalue with positive real part if and only if its determinant is negative, i.e. if 
+
+κ < κ ′, (2.7) which happens to be the condition (S2) of instability of (1 , 0) from Lemma 2.2, see Section 3.4 for an interpretation. When there is such an eigenvalue, we will denote it by λ2, and this is the desired mean growth rate. Solving the characteristic equation, we obtain 
+
+λ2 = −s − σ − κ +
+
+q
+
+(s + σ + κ)2 − 4( s(σ + κ) − 1+ s 
+
+> 2
+
+pσ )2 . (2.8) The second quantity required for our invasion theorem is the survival (or, equivalently, the extinction )
+
+probability of the invader, again obtained from this branching process. More precisely, denote the latter by q2a for the branching process started from one active (type 2a) individual and zero dormant (type 
+
+2d) individuals; then we have q2a = 1 in the subcritical case and q2a < 1 in the supercritical case. Using [AN72, Chapter V.3], the pair of extinction probabilities (q2a, q 2d) satisfies 
+
+q2a = 1 + s
+
+2 (1 − p) + 1 − s
+
+2 q22a + p 1 + s
+
+2 q2d,q2d = σσ + κ q2a + κσ + κ .
+
+Solving this for q2a leads to the quadratic equation 
+
+0 = 1 − s
+
+2 q22a +
+
+
+
+p 1 + s
+
+2
+
+σσ + κ − 1
+
+
+
+q2a + 1 + s
+
+2
+
+
+
+(1 − p) + p κσ + κ
+
+
+
+.
+
+This second degree polynomial has a positive leading coefficient, is positive at 0 and is equal to 0 at 
+
+1, moreover, again thanks to [AN72, Chapter 5], it has a root in (0 , 1) if the following matrix has an eigenvalue > 1:
+
+M := 
+
+1 − s 1+ s 
+
+> 2
+
+p 
+
+> σσ+κ
+
+0
+
+
+
+.
+
+As the characteristic polynomial is λ2 − λ(1 − s) − p 1+ s 
+
+> 2
+> σσ+κ
+
+, which at 1 is equal to s − p 1+ s 
+
+> 2
+> σσ+κ
+
+, and this quantity is precisely negative thanks to condition (2.7), we have a root in (0 , 1) for the polynomial function in q2a.In Phase III, when 1
+
+> N
+
+ X(N )2a (t), X (N )2d (t) ≈ (¯ x2a, ¯x2d) and X(N )1 (t) is already small compared to N
+
+but not yet extinct, the type 1 population size X(N )1 (t) can be approximated by the branching process 
+
+Z1(t) that jumps from n ∈ N0 to 
+
+• n + 1 at rate n¯x2a 1+ s 
+
+> 2
+
+(1 − p) + κ¯x2d,
+
+• n − 1 at rate n¯x2a 1−s 
+
+> 2
+
+.The net growth rate (i.e. birth rate minus death rate) of the branching process corresponding to the invasion of type 1 against type 2 is 
+
+−λ1 := −
+
+
+
+¯x2a( 1 + s
+
+2 p − s) − κ¯x2d
+
+
+
+, (2.9) i.e., when p > 2s 
+
+> 1+ s
+
+, this branching process is supercritical if and only if 
+
+¯x2a < κκ + 1+ s 
+
+> 2
+
+p − s , (2.10) which happens to be the condition for instability of (0 , ¯x2a) in that case, as we will see later in the proofs, and subcritical otherwise. When p < 2s 
+
+> 1+ s
+
+, the branching process is always supercritical. 8 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+Remark 2.5 (Reverse invasion of type 1 and fixation of type 2) . One can also study the reverse invasion direction, where a small population of type 1 tries to invade a resident population of type 2 with an initial condition such that X(N )1 (0) = 1 and 1
+
+> N
+
+ X(N )2a (0) , X (N )2d (0)  ≈ (¯ x2a, ¯x2d). The branching process approximating the type 1 population in Phase I of this invasion is the same as the one that approximates the type 1 population in Phase III of the invasion of type 2, and the same holds with the roles of type 1 and 2 swapped. We will formally not study the invasion of type 1 in this paper, but at least on a heuristic level, it is clear that type 1 can invade if and only if type 2 cannot fixate, while type 1 fixates if and only if type 2 cannot invade. As anticipated, the case where none (resp. both) of the types can invade the other one turns out to be equivalent to founder control (resp. stable coexistence). For additional interpretation and equivalent conditions for the sub- and supercriticality of the branch-ing processes and the emergence of the coordinate-wise positive equilibrium (˜ x2a, ˜x2d), see Section 3.4. 2.4. Statement of the main results. To identify the three phases of the potential invasion and the corresponding extinction and coexistence scenarios, we define several hitting times. Indeed, for ε ≥ 0
+
+let 
+
+T 1 
+
+> ε
+
+= inf {t ≥ 0 : X(N )1 (t) = ⌊εN ⌋} ,
+
+the first time when the type 1 population size reaches size ⌊εN ⌋. In particular, T 10 is the extinction time of type 1. Certainly, T 1 
+
+> ε
+
+also depends on N , but we suppress this in the notation for simplicity. Define further X2(t) = X2a(t) + X2d(t) for t ≥ 0, and for ε ≥ 0 put 
+
+T 2 
+
+> ε
+
+= inf {t ≥ 0 : X(N )2 (t) = ⌊εN ⌋} . (2.11) Moreover, when the coordinate-wise positive (polymorphic) equilibrium (˜ x1, ˜x2a) of the dynamical system (2.1) exists, for β > 0 we define the coexistence region 
+
+Aco  
+
+> β
+
+:= (˜ x1 − β, ˜x1 + β) × (˜ x2a − β, ˜x2a + β) × (˜ x2d − β, ˜x2d + β)
+
+and the first entrance time in the coexistence region, 
+
+T co  
+
+> β
+
+= inf t ≥ 0 : 1
+
+N
+
+ X(N )1 (t), X (N )2a (t), X (N )2d (t) ∈ Aco  
+
+> β
+
+,
+
+where ˜x2d = 1 − ˜x1 − ˜x2a. When this equilibrium does not exist, we define Aco  
+
+> β
+
+= ∅ and consequently 
+
+T co  
+
+> β
+
+= + ∞.
+
+Definition 2.6 (Invasion scenarios) . For our main theorem, we distinguish the following scenarios: (i) Type 1 (resident) fixates: λ2 < 0 and λ1 < 0.(ii) Invasion and fixation of type 2: λ2 > 0, λ1 > 0, and conditional on the event {T 20 > T 10 }, we have 
+
+lim  
+
+> N→∞
+
+T 10
+
+log N = 1
+
+λ2
+
++ 1
+
+λ1
+
+in probability (2.12) as well as 
+
+lim  
+
+> N→∞
+
+1
+
+N
+
+ X(N )2a (T 10 ), X (N )2d (T 10 ) = (¯ x2a, ¯x2d) in probability . (2.13) (iii) Coexistence: λ2 > 0, λ1 < 0, and for all sufficiently small β > 0, conditional on the event 
+
+{T 20 > T 10 ∧ T co  
+
+> β
+
+}, we have 
+
+lim  
+
+> N→∞
+
+T co 
+
+> β
+
+log N = 1
+
+λ2
+
+in probability . (2.14) (iv) Founder control: λ2 < 0 and λ1 > 0.THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 9
+
+Remark 2.7. Recall from Section 2.3 that λ2 > 0 is equivalent to q2a < 1, i.e. the non-extinction of the mutant type 2 with asymptotically positive probability. Hence, conditioning on T 20 having a large value is only relevant in the case of invasion and fixation of type 2 (ii) and coexistence (iii). Moreover, it follows from Lemma 2.3 that apart from the critical case σ = 2s2 
+
+> p(1 −s)
+
+, the coordinate-wise positive equilibrium (˜ x1, ˜x2a) exists if and only if λ1 and λ2 have opposite signs, i.e. precisely in the case of coexistence (iii) and founder control (iv). This way, replacing {T 20 > T 10 } with {T 20 > T 10 ∧ T co  
+
+> β
+
+} for 
+
+β > 0 would make no difference in case (ii). Then our main result is the following: 
+
+Theorem 2.8 (Invasion, fixation, coexistence and founder control) . Assume that p̸ = 2s 
+
+> 1+ s
+
+, κ / ∈ { ˜κ, κ ′},and X(N )(0) = ( N − 1, 1, 0) . Then for all sufficiently small β > 0 we have 
+
+lim   
+
+> N→∞
+
+P T 20 < T 10 ∧ T co 
+
+> β
+
+ = q2a
+
+and conditional on the event {T 20 < T 10 ∧ T co  
+
+> β
+
+}, we have 
+
+lim  
+
+> N→∞
+
+T 20
+
+log N = 0 in probability . (2.15) 
+
+Moreover, (a) if p < 2s 
+
+> 1+ s
+
+, then (i) holds (1 fixates) for all κ ≥ 0.(b) if p > 2s 
+
+> 1+ s
+
+and σ > 2s2 
+
+> p(1 −s)
+
+, then 
+
+• (i) holds (1 fixates) for κ > κ ′,
+
+• (ii) holds (2 fixates) for 0 ≤ κ < ˜κ,
+
+• and (iii) (coexistence) holds for ˜κ < κ < κ ′.(c) if p > 2s 
+
+> 1+ s
+
+and σ < 2s2 
+
+> p(1 −s)
+
+, then 
+
+• (i) holds for κ > ˜κ,
+
+• (ii) holds (2 fixates) for 0 ≤ κ < κ ′,
+
+• and (iv) (founder control) holds for κ ∈ (κ′, ˜κ).
+
+See Figures 2, 3, and 4 for a vizualisation of the corresponding parameter regimes. 
+
+(0 , ¯x2a) stable 
+
+(1 , 0) stable founder control 2 fixates 1 fixates 1 fixates 
+
+κ′ ˜κ0
+
+κ
+
+Figure 2. In the case p > 2s 
+
+> 1+ s
+
+and σ < 2s2 
+
+> p(1 −s)
+
+, we have ˜κ > κ ′. In the founder control regime where κ ∈ (κ′, ˜κ), both equilibria (0 , ¯x2a) and (1 , 0) are locally asymptotically stable, and the coordinate-wise positive equilibrium (˜ x1, ˜x2a) also exists (but we expect it to be unstable). The proof of Theorem 2.8 will be carried out in Section 5. It will be based on the proofs of the previous lemmas on the existence and stability of equilibria of the dynamical system (2.1) (see Section 4.1), as well as on some additional results on the convergence of the dynamical system, which will be presented 10 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+(1 , 0) unstable 
+
+(0 , ¯x2a) unstable 
+
+coexistence 2 fixates 1 fixates 1 fixates 
+
+˜κ κ′0
+
+κ
+
+Figure 3. In the case p > 2s 
+
+> 1+ s
+
+and σ > 2s2 
+
+> p(1 −s)
+
+, we have ˜κ < κ ′. In the coexis-tence regime where κ ∈ (˜ κ, κ ′), both equilibria (0 , ¯x2a) and (1 , 0) are unstable, and the coordinate-wise positive equilibrium (˜ x1, ˜x2a) emerges (and we expect it to be asymp-totically stable, see Conjecture 4.5). in Section 4.2 together with their proofs. As already indicated, despite the fact that the population size of our Moran model is not governed by logistic competition but constant, the main structure of the invasion analysis follows the classical three-phase paradigm originating from [C06]. We note that the approximation by branching processes and logistic curves is also reminiscent of the analysis of selective sweeps in the population-genetic literature, in particular in the context of genetic hitchhiking (see e.g. [EPW06] and the references therein). However, there are also some differences. For example, since type 2 has two sub-types in our model, we need to employ Freidlin–Wentzell type large-deviation arguments to conclude that the type 2a (resp. 2d) population size scaled by N stays close to ¯x2a (resp. 
+
+¯x2d) during Phase III. This is done most conveniently using the methods of [C06]. New difficulties arise for the behaviour of the dynamical system (2.1) in the case κ > 0. While for 
+
+κ = 0 the proof of Theorem 2.8 can almost be seen as a simplified version of the one of the main results of [BT20] (which in turn uses various proof techniques from [CCLLS21]) up to moderate modifications accounting for the constant population size. In contrast, for κ > 0 the analysis of the equilibria of the system (2.1) and their stability becomes surprisingly tedious, and the proof of the convergence of the dynamical system to the desired equilibrium also requires some additional arguments such as the Bendixson–Dulac criterion. 
+
+Remark 2.9 (General comments on the assertions of Theorem 2.8) .
+
+(1) Note that the behaviour of the dynamical system becomes richer for κ > 0. Indeed, for κ = 0 ,the case (iii) of coexistence and the one (iv) of founder control never occur. Indeed, in Figure 4, we see that the width of the blue founder control region (iv) vanishes as σ ↓ 0.(2) Note that there is no result in Theorem 2.8 corresponding to (2.13) about X(N )1 (T 20 ) in case (i) because X(N )1 (T 20 ) = N almost surely on the event {T 20 < ∞} .(3) Note also the additional term + 1 
+
+> λ1
+
+in (2.12) in case (ii) compared to (2.14) in case (iii). This is the duration of the last phase of the invasion of type 2 where the former resident (type 1)population goes extinct. (4) When σ = 2s2 
+
+> p(1 −s)
+
+, ˜κ and κ′ coincide. Here, we do not have any assertion about the critical case 
+
+κ = ˜ κ = κ′. For κ smaller than this expression, type 2 fixates, and for κ larger than it, type 1
+
+fixates. The proof of Theorem 2.8 applies in this case for κ̸ = ˜ κ = κ′, but for simplicity we did not include this as a separate case in the theorem. 
+
+Remark 2.10 (Stability of the polymorphic equilibrium) . According to Lemma 2.2, case (iii) corre-sponds to the case when (1 , 0) and (0 , ¯x2a) are both unstable. In this case, (˜ x1, ˜x2a) is coordinate-wise positive and we expect that it is asymptotically stable, however, this seems to be tedious to show directly via linearization. What we actually show below in the proof of Lemma 4.3 is that THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 11 
+
+Figure 4. For fixed values of p = 0 .1, and s = 0 .05 (so that p > 2s 
+
+> 1+ s
+
+), we plot ˜κ
+
+(blue) and κ′ as functions of σ. Light green regime: fixation of type 2; blue regime: founder control; gray regime: fixation of type 1; yellow regime: stable coexistence. The vertical line {σ = 2s2 
+
+> p(1 −s)
+
+} separates the cases (b) (left) and (c) (right). The gray regime corresponds to scenario (i), the light green one to scenario (ii), the yellow one to scenario (iii), and the blue one to scenario (iv). in this case, solutions (x1(t), x 2a(t)) to the dynamical system (2.1) satisfying x1(0) , x 2a(0) > 0 and 
+
+x1(0) + x2a(0) < 1 cannot converge to a periodic orbit as t → ∞ , neither to (1 , 0) or (0 , ¯x2a), not even along a diverging sequence of times. Consequently, using the Poincaré–Bendixson theorem, the ω-limit set of any solution to the dynamical system (2.1) with an initial condition satisfying x1(0) , x 2a(0) > 0
+
+and x1(0) + x2a(0) < 1 has to contain the equilibrium (˜ x1, ˜x2a). We expect but cannot prove that the ω-limit set cannot be a homoclinic orbit or a composition of multiple homoclinic orbits around this equilibrium, but just a singleton consisting of the equilibrium itself. (Note that a homoclinic orbit around (˜ x1, ˜x2a) could only exist if this equilibrium were a saddle point, which would, however, contradict Conjecture 4.5.) In Section 3.3 we briefly compare our results on coexistence, fixation of one type, and founder control to some prior results in related stochastic population-dynamic models (partially with dormancy). 
+
+Remark 2.11 (Dependence of the size of the coexistence/founder control region on s and p). The dependence of the size of coexistence or founder control regions on the underlying parameters is rather complex. While Figures 2 and 3 are purely schematic, and Figure 4 is for fixed s and p, we conclude this section with a quick glance at the dependence of this region on s and p. Indeed, as we can see in Figure 5, the size of the coexistence/founder control interval becomes larger for small values of s
+
+(yellow region), except when p is also small. Indeed, κ′ tends to infinity when s tends to 0 (unless it is compensated by simultaneously taking p to 0), while ˜κ converges to a positive value for s to 0 (cf. its representation in Lemma 2.2), so that we obtain an increasing coexistence region for small s (and all other parameters fixed). (This will indeed be a coexistence and not a founder control region for small 
+
+s because κ′ will be larger than ˜κ.) Intuitively, for decreasing s the residents lose their reproductive advantage, and need large values of κ to compensate this loss from the high mortality in the seed bank. This follows from the fact that the residents fixate for κ > κ ′. Putting it differently, for fixed 
+
+κ in the invasion regime of residents (i.e. the union of the regime of fixation of type 1 and the one of coexistence), the fixation of residents will be replaced by a coexistence regime when s tends to 0. 12 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+Figure 5. We plot, for p and s satisfying p > 2s 
+
+> 1+ s
+
+, the maximum of the size of the interval where we have coexistence or founder control according to σ. Here, we generated a large number of random pairs (s, p ) such that p > 2s 
+
+> 1+ s
+
+and then chose the maximizer of |˜κ − κ′| from a finite set of values of σ ∈ (0 , 1) .3. Discussion 
+
+In this section, we begin with a review our modelling assumptions in Section 3.1, discuss the partic-ular consequences of the fixed population size assumption of the Moran model in Section 3.2, review some relations to existing work in Section 3.3, interpret the mutual invasion conditions in Section 3.4 and finally comment on the metastability of coexistence equilibria for stochastic systems in Section 3.5. 3.1. Modelling choices. In our Moran model, reproduction is incorporated by picking pairs of par-ticles at a fixed rate, and choosing one of them for (potential) death and the other one for potential reproduction. This is formally similar to modelling competition events in the approximation of Lotka– Volterra models (as in [FM04]), where, however, only one particle dies, and reproduction is completely disentagled from competitive events. We include a selective advantage of one type with the help of our parameter s, which gives a higher chance to the type 1 particle to become the reproducing parent. Note that the fixed population size assumption of the Moran model here enforces the simultaneity of competitive death and reproduction. One novelty in this Moran set-up is that particles exhibiting a dormancy trait can avoid competitive death and thus compensate selective disadvantages in a particular way, similar to the Lotka–Volterra set-up in [BT20]. We deem it natural to allow escape into dormancy both for intra- and inter-species competition (with the same probability). A similar entanglement appears in the dormant state for strictly positive death rates κ. Here, if a dormant particle dies, we assume that its spot is immediately taken by a uniformly chosen particle from THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 13 
+
+the whole (currently present) population. Since we do not consider this a competitive/selective event, individuals of all types are equally likely to recolonize. Again, this instant recolonization is due to the fixed population size assumption of the Moran. Interestingly, this is also precisely the mechanism that allows for the emergence of coexistence (for suitable parameters), in contrast to the Lotka–Volterra type model in [BT20], where dormant individuals died at a linear rate without replacement and coexistence (or founder control) was impossible. See the discussion in Section 3.2 below. In the light of the above, two modification of the dynamics of the model seem to be plausible, although we refrain from investigating their full consequences here: 
+
+• One could introduce a selective advantage according to s also when re-colonizing vacant slot due to death in the dormant state. 
+
+• One could pick different different transition probabilities, say p1, p 2a, for escape into dormancy depending on the type of the potential parent ( 1 or 2a), and even p2a = 0 might be considered. We believe that in both cases, coexistence regimes still exist, but do not delve into the details here. Regarding time-scales, recall that in our model we assume strong selection of order O(1) and weak dormancy times (also O(1) ) on the ecological scale. One might be tempted to switch to an evolu-tionary scale O(N ) with weak selection s/N and strong dormancy times O(N ) and try to identify a corresponding diffusion limit. We leave this approach for future investigation. 3.2. Consequences of the Moran modelling framework. It turns out that the fixed population size assumption of the Moran model has profound consequences, both on the level of results and the technical treatment of the model. These stem from two main effects: First, the death of an individual always occurs simultaneously with birth of another one, so that there are no ‘vacant population slots’ (instant recolonization). Second, the fixed total population size means that in the description of the model one type out of 1, 2a, 2d is always redundant, and the corresponding ODE limits are two- instead of three dimensional. We begin with the consequences of instant recolonization, in particular during the death of a dormant individual. In absence of this, i.e. for κ = 0 , invasion implies fixation: Coexistence and founder control never occur. This was also already true in the Lotka–Volterra type model of [BT20] with symmetric competition and competition-induced dormancy, even in the variant of the model that included death in the dormant state. While for κ = 0 , the proof of Theorem 2.8 is an easy adaptation of that of the main result of [BT20], this is not true anymore for κ > 0 and in that case, the behaviour of the model of the present paper becomes much more complex. The point is that recolonization of slots vacated by type 2 particles always helps the type 1 particles. However, it turns out that the effect of increasing κ is different for small σ than for large σ. Assume that the choice of the parameters s, p, σ is such that for κ = 0 , type 2 fixates. Then, if σ is small, increasing κ first makes (1 , 0) stable and thus it leads to founder control (lack of invasion of type 2), and only afterwards it makes (0 , ¯x2a) unstable, leading to the fixation of type 1. When σ is large, the stability of these two equilibria changes in the reverse order, and in the intermediate regime where 
+
+(0 , ¯x2a) is already unstable but (1 , 0) is still also unstable, we have coexistence (invasion of type 1). Eventually, for κ large enough, type 1 will again reach fixation. The lower dimensionality, in particular for the many-particle ODE limit, has technical advantages, allowing for a more complete analysis of asymptotic behaviour involving elements of the Poincaré– Bendixson theory, in particular the Bendixson–Dulac criterion. However, on a technical level, com-putations related to the existence and stability of equilibria of the dynamical system are often still substantially more involved than in the case of the dynamical system corresponding to [BT20], despite the fact that the latter system is rank-3 three-dimensional. 14 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+3.3. Relation to existing models. The dichotomy between a coexistence regime and a founder control regime has been observed in many different types of population-dynamic models before. One of the most classical population-dynamic models is the two-type competitive Lotka–Volterra model. Here, when competition is symmetric between the two types, invasion implies fixation (namely, the type with the higher net reproduction rate wins). But if one makes competition asymmetric , depending on the strength of intra- vs. interspecific competition, a regime of stable coexistence or one of founder control emerges. In the regime of stable coexistence, the system has a stable coordinate-wise positive equilibrium, while in the case of founder control, it has an unstable one, and in the case of fixation of one type it has no coordinate-wise positive equilibrium. See e.g. [B83] for a reference. In these Lotka–Volterra models, coexistence is equivalent to the coordinate-wise nonzero equilib-rium having two positive coordinates and being stable, which also both have to be smaller than the corresponding positive coordinates of the equilibria with exactly one positive and one zero coordinate. The characterization of founder control is similar, but here the coordinate-wise positive equilibrium is unstable. This is also similar to our model because here, for σ > 2s2 
+
+> p(1 −s)
+
+, type 1 can invade if and only if ˜x2a < ¯x2a and type 2 can invade if and only if ˜x2a > 0, i.e. ˜x1 < 1. I.e., intuitively speaking, type 1 can invade if and only if it can reduce the type 2a population size at equilibrium, and type 2 can invade if and only if it can reduce the type 1 population size at equilibrium. We do not know whether 
+
+(˜ x1, ˜x2a) is stable in the coexistence regime and unstable in the founder control regime, but we expect that this is the case (cf. Conjecture 4.5). A microbial phenomenon with a similar but even stronger effect than asymmetric competition is horizontal gene transfer. There have been different ways of modelling it in the mathematical litera-ture, see e.g. [BCFMT16, BCFMT18, CMT19, BPT23], but the way of modelling most similar to the instantaneous recolonization in the present paper is the one in [BT21]. Indeed, here any individual of one type is able to turn individuals of the other type into its own type, at a rate proportional to the population size of the other type. Thanks to this feature, under certain conditions even an unfit type that would be able to survive on its own can coexist with the other type (even if the latter is capable of competition-induced dormancy modelled similarly to [BT20]), which is not the case for usual asymmetric competition. Apart from the regimes of fixation and coexistence, for different choices of the parameters, a founder control regime was also identified in [BT21]. 3.4. Interpretation of the invasion conditions. We begin with the analysis of the invasion of a single active type 2 individual into a resident population of type 1. Let us recall from (2.7) that this invasion is possible if the branching process approximating type 2 in the initial phase is supercritical, which means that the equilibrium (1 , 0) is unstable. This happens if and only if 
+
+κ < σs
+
+ 1 + s
+
+2 p − s
+
+
+
+= κ′.
+
+Equivalently, we can also write this condition as 
+
+s < 1 + s
+
+2 p σκ + σ . (3.1) For κ = 0 , this coincides with the condition 2s 
+
+> 1+ s
+
+< p (which is necessary for the invasion of type 2 for any κ ≥ 0 and is sufficient for κ = 0 ), i.e. the evolutionary outcome then does not depend on σ.The right-hand side of (3.1) can be interpreted as the probability that in the initial phase of the invasion of type 2, a type 2a individual survives a potential selective death event caused by a type 1
+
+individual via switching to dormancy, and then waking up before dying in the dormant state. Here, we note that when almost the entire population is of type 1, the death of dormant individuals, due to instant recolonization by a uniformly chosen individual from the whole population, leads to a creation of type 1 individuals with high probability. The left-hand side is the selective disadvantage of type THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 15 
+
+2a individuals relative to the initially resident type 1. We also clearly see in (3.1) that if we fix all parameters but κ, then the larger κ is, the harder it becomes for type 2 to invade. We can further rewrite (3.1) as 
+
+κκ + σ s < σκ + σ
+
+ 1 + s
+
+2 p − s
+
+
+
+.
+
+This means that compared to the case κ = 0 , the selective advantage s of type 1 gets multiplied by the probability κκ+σ that a dormant individual dies before waking up, while the benefit 1+ s 
+
+> 2
+
+p − s of type 2 coming from its ability of selection-induced dormancy gets multiplied by the complementary probability σκ+σ , and type 2 still has to have a larger advantage than type 1 to invade. This way, while for κ = 0 the value of σ is indifferent and only the relation between s and p matters, for σ > 0 we see an additional trade-off between κ and σ.For the opposite invasion direction (type 1 invading into type 2 residents), recall that according to (2.9), the branching process of type 1 is supercritical, i.e. (0 , ¯x2a) is unstable, if and only if 
+
+κ¯x2d >
+
+ 1 + s
+
+2 p − s
+
+
+
+¯x2a.
+
+Each individual in this branching process creates new individuals thanks to the death of type 2d
+
+individuals at rate κ¯x2d and dies due to its disadvantage caused by the selection-induced dormancy of type 2 at rate   1+ s 
+
+> 2
+
+p − s¯x2a. The difference between this effective birth rate and death rate must be positive in order that type 1 can invade. It is remarkable that the invasion properties of type 1 thus depend on the relative composition of the active and dormant sub-populations of the resident type 2.If we fix all parameters but σ, ¯x2a will tend to 1 and ¯x2d to 0 as σ → ∞ , and therefore for fixed κ
+
+it becomes more and more difficult for type 1 to invade if one increases σ.We have seen in Theorem 2.8 that coexistence can only occur if and only if 
+
+σ > 2s2
+
+p(1 − s) (3.2) and ˜κ < κ < κ ′ = σs
+
+ 1+ s 
+
+> 2
+
+p − s
+
+
+
+. This condition is equivalent to the simultaneous supercriticality of the type 1 and type 2 branching processes, i.e. 
+
+κ′ = σs
+
+ 1 + s
+
+2 p − s
+
+
+
+> κ > ¯x2a
+
+¯x2d
+
+ 1 + s
+
+2 p − s
+
+
+
+.
+
+Thus, for the existence of such a κ it is necessary that σ¯x2d > s ¯x2a. Using that ¯x2d = 1 − ¯x2a, the latter condition is equivalent to 
+
+¯x2a < σs + σ .
+
+This gives an upper bound on the size of the active equilibrium population size of type 2 such that mutual invasion, and in particular of type 1, can be possible. 
+
+Remark 3.1. As we have seen, condition (3.2) is equivalent to the existence of κ for which there is coexistence, while σ < 2s2 
+
+> p(1 −s)
+
+is equivalent to the presence of founder control for some appropriately chosen κ. We often write these inequalities formally as conditions on σ because this is convenient for some proofs, but note that the roles of p and σ in these inequalities are actually symmetric. From a biological point of view, we think that the most suitable way of writing (3.2) is the following: 
+
+pσ > 2s2
+
+1 − s .
+
+This means on the one hand that even if the selection-induced switching mechanism is not so strong (i.e. p is relatively small), a fast resuscitation (i.e. large σ) can compensate this in order to reach coexistence (for some κ). On the other hand, a slow resuscitation (i.e. small σ) can (for some κ) be compensated by an efficient selection-induced switching to dormancy (i.e. large p). 16 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+3.5. Stable vs metastable coexistence. An ubiquitous and well-known caveat that arises when sto-chastic individual based systems are approximated by ODEs is that stable equilibria in the dynamical system typically do not imply perpetual stability in the stochastic system, due to random fluctuations, even in the Moran model set-up, where the overall population size remains constant for all times. In particular, in our set-up, even if one can verify that under the coexistence scenario (iii) the system (2.1) converges to (˜ x1, ˜x2a) as time tends to infinity, this does not mean simultaneous perpetual non-extinction of types 1 and 2 in the Moran model. Indeed, the Markov chain (X(N )(t)) t≥0 will almost surely either reach the absorbing state (N, 0, 0) or the subset {(0 , x 2a, N −x2a) : x2a ∈ { 0, 1, . . . , N }} of the state space and stay there forever (restricted to the latter subset, the Markov chain is irreducible, and hence almost surely neither type 2a nor type 2d can go extinct forever). Thus, either type 1 or type 2 will die out in almost surely finite time for fixed N , leading to the fixation of the other type. Let us note that in models with logistic competition, not only coexistence is merely metastable, but also the entire population dies out in almost surely finite time (in contrast to the Moran model set-up). However, the expected extinction time grows exponentially with the carrying capacity. 4. Preparatory analysis of the dynamical system (2.1) The goal of the present section is to prove preliminary results on the dynamical system (2.1) that we will need for the proof of Theorem 2.8. First, in Section 4.1, we prove results on the existence and stability of equilibria of the dynamical system that were already stated in Section 2. Based on these results and their proofs, in Section 4.2 we state and prove lemmas on the asymptotic behaviour of the system. 4.1. Existence and stability of equilibria. In this section we provide our previously stated asser-tions on the existence and stability of equilibria of the system (2.1): Lemmas 2.2 and 2.3. 
+
+Proof of Lemma 2.2. Let us first analyse the stability of the monomorphic equilibrium (1 , 0) . The Jacobi matrix at this point is 
+
+J(1 ,0) := 
+
+−κ s − 1+ s 
+
+> 2
+
+p − κ
+
+−σ −σ − s
+
+
+
+.
+
+Its trace is negative and its determinant satisfies det J(1 ,0) = σ(s − 1+ s 
+
+> 2
+
+p) + κs , and so from the basic linearization theorem we can derive the following conclusions: 
+
+(a) stability of (1 , 0) ⇔ κ > κ ′ = σs
+
+
+
+p 1 + s
+
+2 − s
+
+
+
+,
+
+(b) instability of (1 , 0) ⇔ 0 < κ < κ ′ = σs
+
+
+
+p 1 + s
+
+2 − s
+
+
+
+.
+
+Regarding the stability of the other monomorphic equilibrium (0 , ¯x2a), we obtain for the corresponding Jacobi matrix: 
+
+J(0 ,¯x2a) := 
+
+¯x2a(s − 1+ s 
+
+> 2
+
+p) + κ(1 − ¯x2a) 0
+
+−¯x2as − κ¯x2a − σ −2p¯x2a − κ¯x2a − σ + κ(1 − ¯x2a)
+
+
+
+.
+
+Let us first observe that the bottom right entry is always negative, indeed, 
+
+−2p¯x2a − κ¯x2a − σ + κ(1 − ¯x2a) < 0 ⇔ ¯x2a > κ − σ
+
+2( p + κ) ,
+
+which is always satisfied thanks to the expression (2.3) for ¯x2a. Then, the stability only depends on the sign of the determinant, and so on the sign of the upper left entry. When s − 1+ s 
+
+> 2
+
+p − κ > 0, stability is equivalent to 
+
+¯x2a < κκ − s + 1+ s 
+
+> 2
+
+p , (4.1) THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 17 
+
+which is impossible as the right-hand side is negative, and ¯x2a is positive. We then have instability when s − 1+ s 
+
+> 2
+
+p > κ . For κ > s − 1+ s 
+
+> 2
+
+p, we have stability when 
+
+¯x2a > κκ − s + 1+ s 
+
+> 2
+
+p , (4.2) which is impossible for p < 2s 
+
+> 1+ s
+
+, because ¯x2a < 1, we have instability in that case. And when p > 2s 
+
+> 1+ s
+
+,using (2.3) again, we must have 
+
+κ − σ + p(κ − σ)2 + 4 σ(p + κ)2( p + κ) > κκ − s + 1+ s 
+
+> 2
+
+p .
+
+Writing R = κ − s + 1+ s 
+
+> 2
+
+p (R > 0 here), we must have 
+
+Rp(κ − σ)2 + 4 σ(p + κ) > 2κ(p + κ) − R(κ − σ)
+
+⇔ R2(( κ − σ)2 + 4 σ(p + κ)) > 4( p + κ)2κ2 + R2(κ − σ)2 − 4κ(p + κ)( κ − σ)R
+
+⇔ ˜Q(κ) := ( κ + p)( κ2(−4p + 2 D) + κ2Dσ + D2σ) > 0, (4.3) with 
+
+D = p(s + 1) − 2s (4.4) and where for the first equivalence, we used that the right-hand side of the first line is positive for 
+
+κ > 0. Let us also remark that D − 2p = p(s − 1) − 2s. Considering the second degree polynomial 
+
+˜Q(κ) that we have in κ, the leading coefficient of ˜Q is negative, ˜Q(0) > 0, and so there is a unique root in (0 , ∞). Knowing that D − 2p < 0, this unique root must be 
+
+˜κ = −2Dσ − p4D2σ2 − 4( −4p + 2 D)σD 2
+
+4D − 8p
+
+(cf. (2.4)). And so, we obtain the instability of (0 , ¯x2a) when κ > ˜κ and the stability of (0 , ¯x2a) when 
+
+0 < κ < ˜κ. Summarizing, to have stability, the following three conditions must be satisfied: 
+
+(0) κ > s − 1 + s
+
+2 p, 
+
+(1) p > 2s
+
+1 + s ,
+
+(2) 0 < κ < ˜κ. 
+
+Condition (0) can be ignored since it is automatically implied by (1) combined with κ > 0.If p < 2s 
+
+> 1+ s
+
+, then (0 , ¯x2a) is unstable because of condition (1) and (1 , 0) is stable, because we have 
+
+κ > σs
+
+ 1+ s 
+
+> 2
+
+p − s
+
+
+
+= κ′.18 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+The instability of (1 , 0) corresponds to the case where 0 < κ < κ ′. In that case, p > 2s 
+
+> 1+ s
+
+. Further we have that ˜κ < κ ′ when 
+
+σs
+
+ 1 + s
+
+2 p − s
+
+
+
+> −2Dσ − p4D2σ2 − 4( −4p + 2 D)σD 2
+
+4D − 8p
+
+⇔ 4( D − 2p) D
+
+2
+
+σs + 2 Dσ < −p4D2σ2 − 4( −4p + 2 D)σD 2 as D − 2p < 0
+
+⇔ 2σD 
+
+ D − 2ps + 1 
+
+
+
+< −p4D2σ2 − 4( −4p + 2 D)σD 2
+
+⇔ 4σ2D2 D − 2ps + 1 
+
+2
+
+> 4D2σ2 − 4( −4p + 2 D)σD 2 as D − 2ps + 1 < 0 ⇔ p(s − 1) < s 
+
+⇔ 4σ2D2 D − 2ps
+
+2
+
++ 8 σ2D2 D − 2ps > −4( −4p + 2 D)σD 2
+
+⇔ σ2 D − 2ps
+
+2
+
++ 2 σ2 D − 2ps > −(2 D − 4p)σ
+
+⇔ σ
+
+2s2 (D − 2p) + σs < −1
+
+⇔ D − 2p
+
+2s + 1 < − sσ
+
+⇔ σ > 2s2
+
+p(1 − s) ,
+
+Then, the condition to have ˜κ < κ ′ is: 
+
+σ > 2s2
+
+p(1 − s) . (4.5) Now, if p > 2s 
+
+> 1+ s
+
+, we have: 
+
+(S1) When κ ∈ (0 , ˜κ), (0 , ¯x2a) is stable ,
+
+(S2) When κ ∈ (0 , κ ′), (1 , 0) is unstable, 
+
+(S3) When κ ∈ (κ′, ∞), (1 , 0) is stable, 
+
+(S4) When κ ∈ (˜ κ, ∞), (0 , ¯x2a) is stable .
+
+Further, if σ > 2s2 
+
+> p(1 −s)
+
+, then ˜κ < κ ′, and we have that both equilibria are unstable in (˜ κ, κ ′), and otherwise both equilibria are stable in the interval with reverse endpoints. This concludes the proof. □
+
+Proof of Lemma 2.3. Observe that in the general case, the Jacobi matrix at an (potentially polymor-phic) equilibrium (˜ x1, ˜x2a) is given by 
+
+J(˜ x1,˜x2a) := 
+
+˜x2a(s − 1+ s 
+
+> 2
+
+p) + κ(1 − ˜x1 − ˜x2a) − κ˜x1 ˜x1(s − 1+ s 
+
+> 2
+
+p) − κ˜x1
+
+−˜x2as − κ˜x2a − σ −˜x1s − 2p˜x2a − κ˜x2a − σ + κ(1 − ˜x1 − ˜x2a)
+
+
+
+.
+
+In particular, if we assume that (ex1, ex2a) is indeed coordinate-wise positive, we have that ˜x2a(s − 
+
+> 1+ s
+> 2
+
+p) + κ(1 − ˜x1 − ˜x2a) = 0 in order to have ˙x1 = 0 , and so the Jacobi matrix reduces to 
+
+J(˜ x1,˜x2a) := 
+
+ −κ˜x1 ˜x1(s − 1+ s 
+
+> 2
+
+p) − κ˜x1
+
+−˜x2as − κ˜x2a − σ −˜x1s − 2p˜x2a − κ˜x2a − σ + κ(1 − ˜x1 − ˜x2a)
+
+
+
+.THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 19 
+
+Let us now investigate explicit expressions for such a truly polymorphic equilibrium. It must satisfy the equations 
+
+0 = x1(t)
+
+
+
+x2a(t)( s − 1 + s
+
+2 p) + κ(1 − x1(t) − x2a(t)) 
+
+
+
+,
+
+0 = −x1(t)x2a(t)s − x2a(t)2p + (1 − x1(t) − x2a(t))( κx 2a(t) + σ).
+
+From the first equation, we obtain 
+
+˜x2a = κ(˜ x1 − 1) 1
+
+s − 1+ s 
+
+> 2
+
+p − κ ,
+
+and from the second: 
+
+˜x1 = −˜x22ap + (1 − ˜x2a)( κ˜x2a + σ)˜x2a + κ˜x2a + σ ,
+
+and putting the equations together yields 
+
+˜x2a = κ
+
+ −˜x22ap + (1 − ˜x2a)( κ˜x2a + σ)˜x2a + κ˜x2a + σ − 1
+
+ 1
+
+s − 1+ s 
+
+> 2
+
+p − κ
+
+= κ −˜x22ap − ˜x2a(κ˜x2a + σ) − ˜x2as
+
+˜x2as + κ˜x2a + σ
+
+1
+
+s − 1+ s 
+
+> 2
+
+p − κ .
+
+After dividing on both sides by ˜x2a and rearranging the terms, we get 
+
+˜x2a = 2κs + σ(2 s − p(1 + s)) 
+
+κp (s − 1) + s(−2s + p(s + 1)) . (4.6) We can already see from this that lim κ→0 ˜x2a = −σ/s , and so the coordinate-wise positive equilibrium does not exist for κ small enough. Further, ˜x2a is negative if p < 2s 
+
+> 1+ s
+
+, so that we now suppose that 
+
+p > 2s 
+
+> 1+ s
+
+. We also always have that 
+
+˜x1 = ˜ x2a
+
+
+
+s − 1 + s
+
+2 p − κ
+
+ 1
+
+κ + 1 , (4.7) and 
+
+˜x2d = ˜x2a
+
+κ
+
+ 1 + s
+
+2 p − s
+
+
+
+.
+
+In order for all those three coordinates to belong to (0 , 1) , we need that 
+
+0 < ˜x2a < κκ + 1+ s 
+
+> 2
+
+p − s .
+
+Of particular interest is the existence of the coordinate-wise positive equilibrium in the case when the two monomorphic equilibria are unstable (which is possible only if σ > 2s2 
+
+> p(1 −s)
+
+). First, we note that when κ = κ′ = σs ( 1+ s 
+
+> 2
+
+p − s), then the numerator of ˜x2a is equal to 0, and so is ˜x2a, and then ˜x1 = 1 
+
+because of (4.7) above. Also, when κ = ˜ κ, we have 
+
+˜x1 = 0 ⇔ (2˜ κs − σD )( −2˜ κ − D) = (˜ κp (1 − s) − sD )2˜ κ
+
+⇔ ˜κ2(−4s − 2p(1 − s)) + 2˜ κσD + σD 2 = 0 
+
+(recalling the definition of D from (4.4)), which is indeed the case for ˜κ by computing the roots of the second degree polynomial ˜Q defined in (4.3). And so, as ˜x1 = 0 at ˜κ, we have 
+
+˜x2a = ˜κ
+
+˜κ + 1+ s 
+
+> 2
+
+p − s ,
+
+at ˜κ, and this is precisely the value of ¯x2a at ˜κ as we have seen in (4.1)–(4.2). Now we assume that σ > 2s2 
+
+> p(1 −s)
+
+(we will comment on the case σ < 2s2 
+
+> p(1 −s)
+
+at the end of the proof). To finish the proof of Lemma 2.3, we need to show that the coordinate-wise positive equilibrium (˜ x1, ˜x2a)
+
+exists on (˜ κ, κ ′) (i.e. when the two monomorphic equilibria are unstable). 20 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+In the first boundary point ˜κ, this equilibrium will be equal to (0 , ¯x2a), which is the stable equilibrium before the interval we consider, and on the second boundary point κ′, this equilibrium will be equal to (1 , 0) , the stable equilibrium after the interval we consider. For the existence of the coordinate-wise positive equilibrium on the interval, we need in particular that the denominator of ˜x2a (cf. (4.6)) does not vanish on this interval. Moreover, as lim κ→0 ˜x2a < 0, ˜x2a = ¯ x2a in ˜κ and ˜x2a only vanishes in κ′
+
+which is greater than ˜κ, we would like to show that the asymptote (where the denominator vanishes) appears in (0 , ˜κ) (See the right image of Figure 1 for an illustration). Using the expression of ˜x2a, we have the asymptote when 
+
+κ = s(−2s + p(s + 1)) 
+
+p(1 − s) .
+
+Also, the denominator vanishes before κ′ = σs
+
+
+
+p 1+ s 
+
+> 2
+
+− s
+
+
+
+if 
+
+s(−2s + p(s + 1)) 
+
+p(1 − s) < σs
+
+
+
+p 1 + s
+
+2 − s
+
+
+
+⇔ sp(1 − s) < σ
+
+2s
+
+⇔ σ > 2s2
+
+p(1 − s) ,
+
+which is precisely the condition we have in (4.5), which guarantees that we have an interval where the previous two equilibria, (1 , 0) and (0 , ¯x2a), are unstable. Moreover, when σ > 2s2 
+
+> p(1 −s)
+
+, we obtain, by considering ˜κ as a function of σ, that 
+
+˜κ >  
+
+> 4Ds 2
+> p(1 −s)
+
++ 4Ds p(1 −s)
+
+ps2 + (2 p − D)p(1 − s)4(2 p − D) .
+
+Also: 
+
+Ds + Dps2 + (2 p − D)p(1 − s)2p − D = D
+
+⇔ s + ps2 + (2 p − D)p(1 − s) = 2 p − D
+
+⇔ s2 + (2 p − D)p(1 − s) = ( p(1 − s) + s)2
+
+⇔ (2 p − D)p(1 − s) = p2(1 − s)2 + 2 ps (1 − s)
+
+⇔ 2p − D = p(1 − s) + 2 s, 
+
+which is always the case as D = p(s + 1) − 2s. And using that the asymptote occurs when κ = sD p(1 −s) ,we have that when σ > 2s2 
+
+> p(1 −s)
+
+, then ˜κ > sD p(1 −s) . To summarize, when we have an interval where the first two equilibria are unstable, then the asymptote of ˜x2a occurs before κ = κ′ = σs
+
+ p 1+ s 
+
+> 2
+
+− s, and also before κ = ˜ κ. In particular, it explains why ˜x2a goes from −σ/s to ¯x2a on (0 , ˜κ) and does not vanish on this interval, as it only vanishes at κ′ > ˜κ.Writing ˜x2a = f (κ), we can rewrite ˜x1 and ˜x2d as 
+
+˜x1 = f (κ)
+
+
+
+s − 1 + s
+
+2 p − κ
+
+ 1
+
+κ + 1 ˜x2d = f (κ)
+
+κ
+
+ 1 + s
+
+2 p − s
+
+
+
+.THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 21 
+
+For such a function f , we have 
+
+f ′(κ) = 2s(κp (s − 1) + s(−2s + p(s + 1))) − p(s − 1)(2 κs + σ(2 s − p(1 + s))) (κp (s − 1) + s(−2s + p(s + 1))) 2
+
+= 2s2(−2s + p(s + 1)) − σp (s − 1)(2 s − p(1 + s)) (κp (s − 1) + s(−2s + p(s + 1))) 2 .
+
+And so f ′(κ) < 0 ⇔ σ > 2s2 
+
+> p(1 −s)
+
+, which is the case here. From this, we obtain that ˜x2a and ˜x2d are decreasing, and so ˜x1 = 1 − ˜x2a − ˜x2d is increasing. Using the results we have above about the values of (˜ x1, ˜x2a) at ˜κ and κ′, we conclude that the coordinate-wise positive equilibrium exists precisely on the interval (˜ κ, κ ′) when σ > 2s2 
+
+> p(1 −s)
+
+.Also, when σ < 2s2 
+
+> p(1 −s)
+
+, this equilibrium exists if and only if κ ∈ (κ′, ˜κ). Indeed, we obtain, similarly as above, that the asymptote is not only greater than κ′ but also larger than ˜κ (See the left image of Figure 1 for a visualization). And we obtain all the results formulated in that case using the proofs of the ones formulated for σ > 2s2 
+
+> p(1 −s)
+
+. □
+
+4.2. Convergence of the dynamical system. Lemma 4.1. Consider the dynamical system (2.1) . Assume that x1(0) , x 2a(0) > 0, x1(0)+ x2a(0) < 1,and that the assumptions of Theorem 2.8 on p, s, σ, κ hold. Then, (x1(t), x 2a(t)) has no periodic orbit lying in ¯∆, where ∆ is the open and simply connected subset 
+
+∆ = {(x1, x 2a) ∈ R2 : x1, x 2a > 0, x 1 + x2a < 1} ⊂ R2,
+
+which is positively invariant under the flow of (2.1) .Proof. The divergence of system (2.1) is 
+
+x2a(t) s − 1 + s
+
+2 p − x1(t)s − 2x2a(t)p − σ + κ(2 − 3x1(t) − 3x2a(t)) . (4.8) Writing, for any κ ≥ 0,
+
+f (x1, x 2a) = x1
+
+
+
+x2a
+
+ s − 1 + s
+
+2 p + κx 2d
+
+
+
+,g(x1, x 2a) = −x1x2as − x22ap + x2d(κx 2a + σ),
+
+where x2d = x2d(x1, x 2a) = 1 − x1 − x2a, we have ˙x1(t) = f (x1(t), x 2a(t)) , ˙x2a(t) = g(x1(t), x 2a(t)) and thus 
+
+∂x1
+
+ f (x1, x 2a)
+
+x1x2a
+
+
+
+= ∂x1
+
+
+
+s − 1 + s
+
+2 p + κ x2d
+
+x2a
+
+
+
+= − κx2a
+
+,∂x2a
+
+ g(x1, x 2a)
+
+x1x2a
+
+
+
+= ∂x2a
+
+
+
+− s − x2a
+
+x1
+
+p + x2d
+
+x1
+
+κ + σ x2d
+
+x1x2a
+
+
+
+= − px1
+
+− κx1
+
+− σ x2d
+
+x1x22a
+
+− σx2ax1
+
+,
+
+and thanks to the Bendixson–Dulac criterion, using that the divergence we obtained is negative in the open and simply connected subset ∆, where the multiplicator function (x1, x 2a) 7 → 1 
+
+> x1x2a
+
+is continuously differentiable, it follows that the system has no periodic orbit lying entirely in ∆.By the assumption of the lemma, the initial condition x1(0) + x2a(0) lies in ∆, and the closure ∆ of 
+
+∆ is positively invariant under the system (2.1). Now we show that there is no nontrivial periodic orbit in ∆ that has a point in ∆. Note that if such a periodic orbit exists, then by a timeshift we also obtain such a periodic orbit starting in ∆ at time 0. So assume for a contradiction that there exists such a periodic orbit φ = ( φt)t≥0 = ( φ(1)  
+
+> t
+
+, φ (2 a) 
+
+> t
+
+)t≥0 with period T > 0 and with φ0 ∈ ∆. Then this trajectory cannot lie entirely in ∆, so it must hit ∂∆ at some finite time. Let t = inf {s ∈ [0 , T ] : φs ∈ ∂∆}. Now we show that t < ∞ leads to a contradiction in all possible cases. 22 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+Case 1 : φt = ( x1, 0) for some 0 ≤ x1 < 1. Then, the right-hand side of the second equation of (2.1) is σ(1 − x1) > 0. It follows by continuity that there exists some ε > 0 such that ˙φ(2 a) 
+
+> u
+
+> 0 for all 
+
+u ∈ (t − ε, t + ε). However, this contradicts the assumption that φ· hits {(y, 0) : y ∈ [0 , 1] } ⊆ ∂∆ at time t.
+
+Case 2 : φt = (1 , 0) . Then, since (1 , 0) is an equilibrium of (2.1), it follows that φs = (1 , 0) for all 
+
+s ≥ t. This contradicts the assumption that φ is a nontrivial periodic orbit. 
+
+Case 3 : φt = (0 , x 2a) for some 0 < x 2a ≤ 1. Then, at time t, ˙φ(1) vanishes and stays zero forever. Now, for s > t , we have 
+
+˙φ(2 a) 
+
+> s
+
+= (1 − φ(2 a) 
+
+> s
+
+)( κφ (2 a) 
+
+> s
+
++ σ),
+
+so (φ(2 a) 
+
+> s
+
+)s≥t is the solution of a one-dimensional autonomous ODE, which cannot have a nontrivial periodic orbit (in fact, it clearly converges to the stable equilibrium ¯x2a of the one-dimensional system as time tends to infinity). 
+
+Case 4 : φ(1)  
+
+> t
+
+, φ (2 a) 
+
+> t
+
+> 0 and φ(1)  
+
+> t
+
++ φ(2 a) 
+
+> t
+
+= 1 . This case is similar to Case 1. Indeed, now for 
+
+φ(2 d) 
+
+> t
+
+(·) := 1 − φ(1)  
+
+> t
+
+(·) − φ(2 a) 
+
+> t
+
+(·) we obtain (cf. (2.2)) 
+
+˙φ(2 d) 
+
+> t
+
+= φ(1)  
+
+> t
+
+φ(2 a)
+
+> t
+
+1 + s
+
+2 p + ( φ(2 a) 
+
+> s
+
+)2p > 0.
+
+Thus, by continuity, there must exist some ε > 0 such that for all u ∈ (t − ε, t + ε), ˙φ(2 d) 
+
+> u
+
+> 0. But this contradicts the assumption that φ· hits {(x1, x 2a) : x1, x 2a > 0, x 1 + x2a = 1 } ⊆ ∂∆ at time t.We conclude that if there exists a nontrivial periodic orbit in ∆, it must lie entirely in ∂∆. However, our argument in Cases 1 and 2 shows that such a trajectory cannot pass through a point of the form 
+
+(x1, 0) with 0 ≤ x1 ≤ 1: For x1 < 1 the problem is that the trajectory must enter ∆, and for x1 = 1 it degenerates to an equilibrium. Moreover, our reasoning in Case 3 shows that such a periodic trajectory cannot pass through a point of the form (0 , x 2a) with 0 < x 2a ≤ 1 because it would converge to (0 , ¯x2a)
+
+as time tends to infinity. Finally, by Case 4, it cannot pass through a point of the form (x1, x 2a) with 
+
+x1, x 2a > 0, x1 + x2a = 1 either because it would also enter ∆.It follows that system (2.1) has no periodic orbit in ∆. □
+
+Remark 4.2. Since x1(t) + x2a(t) < 1, the divergence (4.8) is negative on the entire set ∆ whenever 
+
+κ < σ/ 2 (in particular if κ = 0 ). In this case, it follows immediately from the Bendixson criterion that the system has no periodic orbit lying entirely in ∆, which simplifies the proof of Lemma 4.1. 
+
+Lemma 4.3. Consider the dynamical system (2.1) under the assumption p > 2s 
+
+> 1+ s
+
+and for κ > 0.Under the condition x1(0) + x2a(0) < 1 and supposing that the system does not start at an equilibrium, we have the following convergences for σ > 2s2 
+
+> p(1 −s)
+
+:1) If κ ∈ (0 , ˜κ), the system converges to (0 , ¯x2a).2) If κ ∈ (˜ κ, κ ′), the system converges along a subsequence to (˜ x1, ˜x2a).3) If κ ∈ (κ′, ∞), the system converges to (1 , 0) .
+
+And when σ < 2s2 
+
+> p(1 −s)
+
+, we have κ′ < ˜κ and the following convergences: 1) If κ ∈ (0 , κ ′), the system converges to (0 , ¯x2a).2) If κ ∈ (˜ κ, ∞), the system converges to (1 , 0) .
+
+Remark 4.4. We refrain from investigating the convergence for κ ∈ (κ′, ˜κ) when σ < 2s2 
+
+> p(1 −s)
+
+. Here, what we know is that both (1 , 0) and (0 , ¯x2a) are locally asymptotically stable, so they each have a domain of attraction with a nonempty interior. However, this case is not relevant for our study, as the approximating branching process for the mutant population in our stochastic individual-based model THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 23 
+
+during the first phase of invasion is subcritical (thanks to Lemma 5.1 below), and thus a mutant invasion is unsuccessful with high probability, so that a dynamical system approximation is meaningless. 
+
+Proof of Lemma 4.3. Let us suppose that the solution converges to (1 , 0) as t → ∞ when κ < κ ′. Then writing 
+
+g2a(x1, x 2a) = −x1x2as − x22ap + (1 − x1 − x2a)( κx 2a + σ)
+
+and noting that ˙x2a(t) = g2a(x1(t), x 2a(t)) according to the second equation of (2.1), we have thanks to the continuity of g2a that 
+
+lim  
+
+> t→∞
+
+˙x2a(t) = lim  
+
+> t→∞
+
+g2a(x1(t), x 2a(t)) = g2a(1 , 0) = 0 .
+
+Thus, for ε > 0 fixed we can find t0 = t0(ε) > 0 such that for all t ≥ t0 we have 
+
+x2d(t) < x1(t)x2a(t)s + x22a(t)pκx 2a(t) + σ + ε, 
+
+and then 
+
+˙x1(t) < x 1(t)
+
+
+
+x2a(t)( s − 1 + s
+
+2 p) + κ  x1(t)x2a(t)s + x22a(t)pκx 2a(t) + σ + ε
+
+.
+
+And also 
+
+˙x1(t) < x 1(t)x2a(t)
+
+
+
+s − 1 + s
+
+2 p + x1(t)κ sσ + x2a(t)κ pσ
+
+
+
++ κε. 
+
+Using that lim t→∞ x1(t) = 1 , lim t→∞ x2a(t) = 0 and κ sσ < p 1+ s 
+
+> 2
+
+− s, when ε is small enough we have for t > t 0 large enough that 
+
+˙x1(t) < 0,
+
+which is a contradiction, as x1(t) must tend to 1. Thus, the solution cannot converge to (1 , 0) when 
+
+κ < κ ′.Let us suppose that the solution converges to (0 , ¯x2a) when κ > ˜κ. Using κ > ˜κ, we have that 
+
+˜Q(κ) < 0 ( ˜Q defined in (4.3)), and so: 
+
+¯x2a < κκ + 1+ s 
+
+> 2
+
+p − s
+
+⇔ ¯x2a
+
+
+
+s − 1 + s
+
+2 p
+
+
+
++ κ(1 − ¯x2a) > 0.
+
+Using that lim t→∞ x2a(t) = ¯ x2a, we have, for ε > 0, that there exists T > 0 such that ∀ t ≥ T we have 
+
+˙x1(t) > x 1(t)( ε − κx 1(t)) ,
+
+And using that lim t→∞ x1(t) = 0 , we have ˙x1(t) > 0 for t large enough. This is a contradiction, and hence (x1(t), x 2a(t)) cannot converge to (0 , ¯x2a) when κ > ˜κ.It remains to check the cases when the ω-limit set of our solution is a connected set consisting of a finite number of equilibria together with homoclinic and heteroclinic orbits connecting these equilibria. In such a case, we have a sequence of non-equilibrium points (qn)n∈N included in such an orbit such that lim n∈N qn = y, where y is an equilibrium. But for all n, we have a sequence of times (tnm)m∈N such that the trajectory along those times converges to qn as m tends to infinity. By extraction, we have a sequence of times such that the trajectory tends to y. As the solution gets closer and closer to y, we have that if y is a stable equilibrium then the solution must stay close to it, and so we cannot have a homoclinic or heteroclinic orbit involving y. But if y is (1 , 0) (resp. (0 , ¯x2a)) and y is unstable, then as we have seen ˙x1 is negative (resp. positive) in a neighborhood of y in ∆, and so the solution cannot get as close as we want to y, and this contradicts the existence of any heteroclinic or homoclinic orbit 24 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+involving such a y. This excludes all the homoclinic or heteroclinic orbits involving a stable equilibrium or the equilibria (1 , 0) and (0 , ¯x2a) when those ones are unstable. As we do not consider the case when both of these equilibra are stable, it remains to see what we get when both are unstable. Indeed, we do not have any result on the stability of the coordinate-wise positive equilibrium. But thanks to what we have proven, we just have two possibilities as time tends to +∞: convergence to this equilibrium or a union of finitely many homoclinic orbits around this equilibrium. In case of a union of homoclinic orbits, we can extract a sequence of times such that the trajectory along this sequence converges to this equilibrium. According to the Poincaré–Bendixson theorem, since the system is two-dimensional and autonomous and the bounded set ∆ is positively invariant under it, any trajectory starting from ∆ must converge to a connected set consisting of a finite number of equilibria together with homoclinic and heteroclinic orbits between them, a periodic orbit (limit cycle), or an equilibrium. Lemma 4.1 excludes the existence of a periodic orbit. Using the proof of this lemma, we exclude all the cases that are not contained in the statements of the lemma, and we conclude the proof. □
+
+To end this section, we provide a conjecture on the behaviour of the dynamical system (2.1) in the cases that we were not able to treat fully in the present section. 
+
+Conjecture 4.5. (A) For σ > 2s2 
+
+> p(1 −s))
+
+, if κ ∈ (˜ κ, κ ′), the equilibrium (˜ x1, ˜x2a) of the system (2.1) is locally asymptotically stable. Consequently, started from a coordinate-wise positive initial condition 
+
+(x1(0) , x 2a(0)) such that x1(0) + x2a(0) < 1, the system converges to (ex1, ex2a).(B) For σ < 2s2 
+
+> p(1 −s))
+
+, if κ ∈ (κ′, ˜κ), the equilibrium (˜ x1, ˜x2a) is unstable and both eigenvalues of the corresponding Jacobi matrix have a strictly positive real part. 
+
+Note that if the first assertion in (A) is true, then the second one follows immediately. Indeed, if 
+
+(˜ x1, ˜x2a) is asymptotically stable, there can be no homoclinic orbit around it, and we have seen in the proof of Lemma 4.3 that apart from the equilibrium (˜ x1, ˜x2a), only the union of such homoclinic orbits around this equilibrium can be a possible candidate for the ω-limit set of any relevant solution. 5. Proof of Theorem 2.8 
+
+The goal of this section is to prove our main result, Theorem 2.8. Sections 5.1, 5.2, and 5.3 provide preliminary results on the first, second, and third phase of the invasion, respectively. We will use these, and the results of Section 4, altogether in order to complete the proof of the theorem in Section 5.4. 5.1. First phase of the invasion: extinction or growth of the mutant population. 
+
+Proof. When X(N )1 is close to the total population size N , we may approximate the process 
+
+(X(N )2a (t), X (N )2d (t)) by the branching process (Z(N )2a (t), Z (N )2d (t)) introduced in Section 2.3. Let us recall that q2a denotes the extinction probability of this branching process. Recall also from (2.11) that 
+
+T 2 
+
+> ε
+
+= inf {t ≥ 0 : X(N )2 (t) = ⌊εN ⌋} 
+
+and similarly 
+
+T 1 
+
+> ε
+
+= inf {t ≥ 0 : X(N )1 (t) = ⌊εN ⌋} .
+
+We verify the following lemma about the first phase of the invasion. Its statement is essentially analogous to the one of [CCLLS21, Lemma 3.2], and its proof is also similar; nevertheless we provide it here in full detail for completeness and accessibility. Note also the mathematically but also biologically related result in [BT20, Proposition 4.1]. THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 25 
+
+Lemma 5.1. Under the assumptions of Theorem 2.8, there exists a function f : (0 , ∞) → (0 , ∞)
+
+tending to zero as ε ↓ 0 such that 
+
+lim inf   
+
+> N→∞
+
+P
+
+ T 20
+
+log( N ) ≤ f (ε); T 20 < T 2
+
+> ε
+
+
+
+= q2a − oε(1) (5.1) 
+
+and 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+T 2 
+
+> ε
+
+≤ T 20 ; T 2
+
+> ε
+
+log N − 1
+
+λ2
+
+≤ f (ε)
+
+
+
+− (1 − q2a) = oε(1) , (5.2) 
+
+where oε(1) tends to 0 as ε ↓ 0.Proof. We first show that 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+T 20 < T 2
+
+> ε
+
+1
+
+N X(N )(0) =   N − 1
+
+N , 1
+
+N , 0
+
+− q2a = oε(1) . (5.3) To do so, we introduce the branching process (Zε, − 
+
+> 2a
+
+(t), Z ε, − 
+
+> 2d
+
+(t)) that jumps from (i, j ) ∈ N20 to: 
+
+• (i − 1, j ) at rate i 1+ s 
+
+> 2
+
+(1 − p)c−,
+
+• (i + 1 , j ) at rate i 1−s 
+
+> 2
+
+(1 − ε),
+
+• (i − 1, j + 1) at rate pi ( 1+ s 
+
+> 2
+
+(1 − ε) − ε),
+
+• (i + 1 , j − 1) at rate σj ,
+
+• (i, j − 1) at rate κj (1 + ε),with c− = 1+ εp  
+
+> 1−p
+
++ 2pε  
+
+> (1+ s)(1 −p)
+
+, and the branching process (Zε, +2a (t), Z ε, +2d (t)) that jumps from (i, j ) ∈ N20
+
+to: 
+
+• (i − 1, j ) at rate i 1+ s 
+
+> 2
+
+(1 − p)c+,
+
+• (i + 1 , j ) at rate i 1−s 
+
+> 2
+
+(1 + ε),
+
+• (i − 1, j + 1) at rate pi ( 1+ s 
+
+> 2
+
+(1 + ε) + ε),
+
+• (i + 1 , j − 1) at rate σj + κjε ,with c+ = 1 − pε  
+
+> 1−p
+
+, to obtain the almost sure simultaneous sandwich couplings 
+
+Zε, − 
+
+> 2v
+
+(t) ≤ Z(N )2v (t) ≤ Zε, +2v (t),Zε, − 
+
+> 2v
+
+(t) ≤ X(N )2v (t) ≤ Zε, +2v (t),
+
+(5.4) on [0 , T 20 ∧ T 2 
+
+> ε
+
+] for ε small enough, where v ∈ { a, d }. Indeed, the processes appearing in (5.4) can be constructed on the same probability space including a suitable Poissonian construction, which we will formally introduce below in the proof of Lemma 5.2. We write q(ε, ⋄) for the extinction probability of (Zε, ⋄ 
+
+> 2a
+
+(t), Z ε, ⋄ 
+
+> 2d
+
+(t)) for ⋄ ∈ {− , +} and ε > 0 fixed. As in [CCLLS21, p. 487], we obtain: 
+
+0 ≤ lim inf  
+
+> ε→0
+
+|q(ε, ⋄) − q2a| ≤ lim sup 
+
+> ε→0
+
+|q(ε, ⋄) − q2a| ≤ lim sup 
+
+> ε→0
+
+|q(ε, −) − q(ε, +) |.
+
+We introduce also T (ε, ⋄),2 
+
+> x
+
+= inf {t > 0 : Z(ε, ⋄)2a (t) + Z(ε, ⋄)2d (t) = ⌊N x ⌋} . Thanks to the sandwich coupling, we have: 
+
+P(T (ε, −),2 
+
+> ε
+
+≤ T (ε, −),20 ) ≤ P(T 2 
+
+> ε
+
+≤ T 20 ) ≤ P(T (ε, +) ,2 
+
+> ε
+
+≤ T (ε, +) ,20 ),
+
+and moreover: 
+
+lim inf   
+
+> N→∞
+
+P(T (ε, −),2 
+
+> ε
+
+≤ T (ε, −),20 ) ≥ 1 − q(ε, −),
+
+lim sup  
+
+> N→∞
+
+P(T (ε, +) ,2 
+
+> ε
+
+≤ T (ε, +) ,20 ) ≤ 1 − q(ε, +) ,26 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+and hence: 
+
+lim sup  
+
+> N→∞
+
+|P(T 2 
+
+> ε
+
+≤ T 20 ) − (1 − q2a)| = oε(1) ,
+
+and we obtain (5.3) by taking complements. Now, let B the event that the branching process (Z(N )2a (t), Z (N )2d (t)) goes extinct. Moreover, let f be a continuous function such that f (ε) −−−→ 
+
+> ε→0
+
+0. Using that 
+
+lim sup  
+
+> N→∞
+
+P B△{ T 20 < T 2 
+
+> ε
+
+} + P B△{ T (ε, +) ,20 < ∞}  = oε(1) ,
+
+where △ means symmetric difference, we can end the proof of the result on the first phase of the invasion: 
+
+≥ lim inf   
+
+> N→∞
+
+P
+
+ T 20
+
+log( N ) ≤ f (ε); T (ε, +)2 0 < ∞
+
+
+
+− oε(1) 
+
+≥ lim inf   
+
+> N→∞
+
+P
+
+ T (ε, +) ,20
+
+log( N ) ≤ f (ε); T (ε, +)2 0 < ∞
+
+
+
+− oε(1) 
+
+≥ lim inf   
+
+> N→∞
+
+P(T (ε, +)2 0 < ∞) − oε(1) 
+
+≥ q2a − oε(1) ,
+
+and thus we have verified (5.1). Hence, on the event {T 20 < T 2 
+
+> ε
+
+}, we have 
+
+lim  
+
+> N→∞
+
+T 20
+
+log N = 0 in probability . (5.5) Let us recall, for the rest of the proof, that we have 
+
+lim sup  
+
+> N→∞
+
+|P(T 2 
+
+> ε
+
+≤ T 20 ) − (1 − q2a)| = oε(1) .
+
+Moreover, we will see that 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+T 2 
+
+> ε
+
+≤ T 20 ; | T 2
+
+> ε
+
+log N − 1
+
+λ2
+
+| ≤ f (ε)
+
+
+
+− (1 − q2a) = oε(1) ,
+
+where f is a function that satisfies the same conditions as before. Indeed, let us denote by ˜λ(ε, ⋄) the maximal eigenvalue of the mean matrix of (Z(ε, ⋄)2a , Z (ε, ⋄)2d ). This eigenvalue is positive for ε small enough and tends to λ2 as ε → 0. As before: 
+
+P
+
+
+
+T (ε, −),2 
+
+> ε
+
+≤ T (ε, −),20 ∧ log Nλ2
+
+(1 + f (ε)) 
+
+
+
+≤ P
+
+
+
+T 2 
+
+> ε
+
+≤ T 20 ∧ log Nλ2
+
+(1 + f (ε)) 
+
+
+
+≤ P
+
+
+
+T (ε, +) ,2 
+
+> ε
+
+≤ T (ε, +) ,20 ∧ log Nλ2
+
+(1 + f (ε)) 
+
+
+
+,
+
+for ε small enough such that | ˜λ(ε, ⋄) 
+
+> λ2
+
+− 1| ≤ f (ε)2 .For ε small enough, we can argue analogously to [BT23, equation (4.34)] to obtain 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+T 2 
+
+> ε
+
+≤ T 20 ∧ log Nλ2
+
+(1 + f (ε)) 
+
+
+
+− (1 − q2a) = oε(1) ,
+
+and therefore 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+T 2 
+
+> ε
+
+≤ T 20 ; | T 2
+
+> ε
+
+log N − 1
+
+λ2
+
+| ≤ f (ε)
+
+
+
+− (1 − q2a) = oε(1) ,
+
+which is (5.2), as wanted. □THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 27 
+
+5.2. Second phase of the invasion: getting close to the new equilibrium. Let us now consider the second phase, where the number of resident individuals starts to decrease and the population gets closer to its new equilibrium (which is either (0 , ¯x2a) or (˜ x1, ˜x2a), depending on the choice of parameters). Note that according to Lemma 5.1, in case (1 , 0) is hyperbolically asymptotically stable, or equivalently, q2a = 1 , i.e. κ > κ ′ = σs ( 1+ s 
+
+> 2
+
+p − s), type 2 dies out in the first phase with high probability and therefore no second phase occurs. Using the Kesten–Stigum theorem for multi-type branching processes (see e.g. [GB03, Theorem 2.1]), when λ2 > 0 (which is equivalent to κ < κ ′, i.e. (2.7)), we have: 
+
+ Z(N )2a (t)
+
+Z(N )2 (t) , Z(N )2d (t)
+
+Z(N )2 (t)
+
+
+
+−−−→ 
+
+> t→∞
+
+(π2a, π 2d),
+
+almost surely conditionally on the event of survival of the branching process, where Z(N )2 (t) = Z(N )2a (t)+ 
+
+Z(N )2d (t) and (π2a, π 2d) is the positive left eigenvector associated to λ2 such that π2a + π2d = 1 .We first need to prove the following lemma in order to use Lemma 4.1 below. 
+
+Lemma 5.2. Assume that (2.7) holds. Then for C sufficiently large and for δ > 0 such that π2a ± δ ∈
+
+(0 , 1) , we have: 
+
+lim inf   
+
+> N→∞
+
+P
+
+
+
+∃ t ∈ [T 2 
+
+> ε
+
+, T 2√ε]; εN C ≤ X(N )2 (t) ≤ √εN ; π2a − δ < X(N )2a (t)
+
+X(N )2 (t) < π 2a + δ T 2√ε < T 20
+
+
+
+≥ 1 − oε(1) .
+
+To a great extent, this lemma is analogous to [CCLLS21, Proposition 3.2] and [BT20, Proposition 4.4], and the principle of the proof is also rather similar. Still, some arguments, especially the ones related to the semimartingale decomposition of the mutant active/dormant proportions, have to be adapted to our setting. Moreover, the way we will use this lemma will be different from the aforemen-tioned papers, due to the differences in the behaviour of the corresponding dynamical systems. 
+
+Proof of Lemma 5.2. As in [BT20, Proposition 4.4], if π2a − δ < X(N )2a (T 2      
+
+> ε)
+> X(N)2(T2
+> ε)
+
+< π 2a + δ, there is nothing to show. We then also suppose that X(N )2a (T 2      
+
+> ε)
+> X(N)2(T2
+> ε)
+
+≤ π2a − δ and remark that the case X(N )2a (T 2      
+
+> ε)
+> X(N)2(T2
+> ε)
+
+≥ π2a + δ
+
+will be similar. First of all, it is clear that Lemma 5.1 also holds with ε replaced by √ε everywhere on the left-hand side, i.e. under the conditions of this lemma, we can also find a suitable f such that 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+T 2√ε ≤ T 20 ; | T 2√ε
+
+log N − 1
+
+λ2
+
+| ≤ f (ε)
+
+
+
+− (1 − q2a) = oε(1) .
+
+The expression for the lim inf in the lemma told us that after reaching T 2 
+
+> ε
+
+, with high probability, for 
+
+ε small enough, the mutant population will not shrink below εN C for C sufficiently large. We introduce the stopping time 
+
+Tε,ε/C = inf t ≥ T 2 
+
+> ε
+
+; X(N )2 (t) ≤ εN C .
+
+Using [CCLLS21, Lemma A.1] and the supercriticality of (Z(ε, −)2 (t)) yields 
+
+lim   
+
+> N→∞
+
+P Tε,ε/C < T 2√ε|T 2√ε < T 20
+
+ = 0 .
+
+Further, by [CCLLS21, Lemma A.2], using the stochastic domination of the total size of mutant individuals by a Yule process with birth rate 1−s 
+
+> 2
+
+(by considering the second type of jump in the definition of the process X(N )), we have 
+
+lim   
+
+> N→∞
+
+P T 2√ε ≤ T 2 
+
+> ε
+
++ log log(1 /ε ) T 2√ε < T 20
+
+ ≤ √ε(log(1 /ε )) 1−s 
+
+> 2
+
+.28 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+To show that with probability close to one our fraction X(N )2a (t)
+
+X(N )2 (t) cannot stay below π2a −δ on [T 2
+
+ε , T 2√ε],we introduce five independent Poisson random measures Pi on [0 , ∞]2 with intensity dudθ , correspond-ing to all the possible transitions for the process X(N ). We denote by ˜Pi(du, dθ ) = Pi(du, dθ ) − dudθ 
+
+the associated compensated measures. Then, X(N )2a (t)
+
+X(N )2 (t) is a semimartingale that we can rewrite as 
+
+X(N )2a (t)
+
+X(N )2 (t) = X(N )2a (T 2
+
+ε )
+
+X(N )2 (T 2
+
+ε ) + M2(t) + V2(t),
+
+for t ≥ T 2
+
+ε , M2 a martingale and V2 a finite variation process such that 
+
+M2(t) = −
+
+Z tT 2
+
+> ε
+
+Z
+
+[0 ,∞[
+
+1θ≤ 1 
+
+> N
+
+X(N )1 (u−)X(N )2a (u−) 1+ s 
+
+> 2
+
+(1 −p)
+
+X(N )2d (u−)
+
+X(N )2 (u−)( X(N )2 (u−) − 1) ˜P1(du, dθ )+
+
+Z tT 2
+
+> ε
+
+Z
+
+[0 ,∞[
+
+1θ≤ 1 
+
+> N
+
+X(N )1 (u−)X(N )2a (u−) 1−s
+
+> 2
+
+X(N )2d (u−)
+
+X(N )2 (u−)( X(N )2 (u−) + 1) ˜P2(du, dθ )
+
+−
+
+Z tT 2
+
+> ε
+
+Z
+
+[0 ,∞[
+
+1θ≤ 1 
+
+> N
+
+p(X(N )1 (u−)X(N )2a (u−) 1+ s 
+
+> 2
+
++X(N )2a (u−)( X(N )2a (u−)−1)) 
+
+1
+
+X(N )2 (u−)˜P3(du, dθ )+
+
+Z tT 2
+
+> ε
+
+Z
+
+[0 ,∞[
+
+1θ≤σX (N )2d (u−)+ κ X(N )2d (u−)XN
+
+> 2a(u−)
+> N
+
+1
+
+X(N )2 (u−)˜P4(du, dθ )+
+
+Z tT 2
+
+> ε
+
+Z
+
+[0 ,∞[
+
+1θ≤κ X(N )1 (u−)X(N )2d (u−)
+
+> N
+
+X(N )2a (u−)
+
+X(N )2 (u−)( X(N )2 (u−) − 1) ˜P5(du, dθ ),
+
+and 
+
+V2(t) = −
+
+Z tT 2
+
+> ε
+
+1
+
+N X(N )1 (u)X(N )2a (u) 1 + s
+
+2 (1 − p) X(N )2d (u)
+
+X(N )2 (u)( X(N )2 (u) − 1) du 
+
++
+
+Z tT 2
+
+> ε
+
+1
+
+N X(N )1 (u)X(N )2a (u) 1 − s
+
+2
+
+X(N )2d (u)
+
+X(N )2 (u)( X(N )2 (u) + 1) du 
+
+−
+
+Z tT 2
+
+> ε
+
+1
+
+N p(X(N )1 (u)X(N )2a (u) 1 + s
+
+2 + X(N )2a (u)( X(N )2a (u) − 1)) 1
+
+X(N )2 (u) du 
+
++
+
+Z tT 2
+
+> ε
+
+
+
+σX (N )2d (u) + κ X(N )2d (u)X(N )2a (u)
+
+N
+
+ 1
+
+X(N )2 (u) du 
+
++
+
+Z tT 2
+
+> ε
+
+κ X(N )1 (u)X(N )2d (u)
+
+NX(N )2a (u)
+
+X(N )2 (u)( X(N )2 (u) − 1) du. THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 29 
+
+For M2, we have the following predictable quadratic variation: 
+
+⟨M2⟩t = −
+
+Z tT 2
+
+> ε
+
+1
+
+N X(N )1 (u)X(N )2a (u) 1 + s
+
+2 (1 − p) (X(N )2d (u)) 2
+
+(X(N )2 (u)) 2(X(N )2 (u) − 1) 2 du 
+
++
+
+Z tT 2
+
+> ε
+
+1
+
+N X(N )1 (u)X(N )2a (u) 1 − s
+
+2(X(N )2d (u)) 2
+
+(X(N )2 (u)) 2(X(N )2 (u) + 1) 2 du 
+
+−
+
+Z tT 2
+
+> ε
+
+1
+
+N p
+
+
+
+X(N )1 (u)X(N )2a (u) 1 + s
+
+2 + X(N )2a (u)( X(N )2a (u) − 1) 
+
+ 1(X(N )2 (u)) 2 du 
+
++
+
+Z tT 2
+
+> ε
+
+
+
+σX (N )2d (u) + κ X(N )2d (u)X(N )2a (u)
+
+N
+
+ 1(X(N )2 (u)) 2 du 
+
++
+
+Z tT 2
+
+> ε
+
+κ X(N )1 (u)X(N )2d (u)
+
+N
+
+(X(N )2a (u)) 2
+
+(X(N )2 (u)( X(N )2 (u) − 1)) 2 du. 
+
+And so, ∃ C0 > 0 such that ∀ t ≥ T 2 
+
+> ε
+
+: ⟨M2⟩t ≤ C0(t − T 2 
+
+> ε
+
+) sup T 2     
+
+> ε≤u≤t1
+> X(N)2(u)−1
+
+. This leads us to 
+
+⟨M2⟩(T 2  
+
+> ε+log log(1 /ε )) ∧Tε,ε/C
+
+≤ C0 log log(1 /ε ) 
+
+> εN C
+
+− 1 ,
+
+and using this, as in [CCLLS21], 
+
+lim sup  
+
+> N→∞
+
+P
+
+
+
+sup     
+
+> T2
+> ε≤t≤T2
+> ε+log log(1 /ε )
+
+|M2(t)| ≥ ε | T 2√ε < T 20
+
+
+
+≤ lim sup  
+
+> N→∞
+
+h
+
+P
+
+
+
+sup     
+
+> T2
+> ε≤t≤(T2
+> ε+log log(1 /ε )) ∧Tε,ε/C
+
+|M2(t)| ≥ ε | T 2√ε < T 20
+
+
+
++ P
+
+
+
+Tε,ε/C < T 2 
+
+> ε
+
++ log log(1 /ε ) | T 2√ε < T 20
+
+i 
+
+≤ lim sup  
+
+> N→∞
+
+1
+
+ε2 E
+
+h
+
+⟨M2⟩(T 2  
+
+> ε+log log(1 /ε )) ∧Tε,ε/C
+
+T 2√ε < T 20
+
+i
+
++ √ε log( 1
+
+ε ) 1−s
+
+> 2
+
+= √ε log  1/ε  1−s 
+
+> 2
+
+.
+
+For the finite variation process, we rewrite it as 
+
+V2(t) = 
+
+Z tT 2
+
+> ε
+
+P (u) X(N )2a (u)
+
+X(N )2 (u)
+
+ X(N )2 (u)
+
+X(N )2 (u) + 1 + Q(u) X(N )2a (u)
+
+X(N )2 (u)
+
+ X(N )2 (u)
+
+X(N )2 (u) − 1 + R(u) X(N )2a (u)
+
+X(N )2 (u)
+
+
+
+du, 
+
+where 
+
+P (u)(x) = 1
+
+N X(N )1 (u) 1 − s
+
+2 (1 − x)x, Q(u)(x) = 
+
+
+
+κ X(N )1 (u)
+
+N − 1
+
+N X(N )1 (u) 1 + s
+
+2 (1 − p)
+
+
+
+x(1 − x),R(u)(x) = − 1
+
+N p
+
+
+
+X(N )1 (u)x 1 + s
+
+2 + x(X(N )2a (u) − 1) 
+
+
+
++
+
+
+
+σ + κ X(N )2a (u)
+
+N
+
+
+
+(1 − x).
+
+Then, for N large enough and ε small enough, on [T 2 
+
+> ε
+
+, T 2√ε], those functions are close on [0 , 1] to the polynomial functions 
+
+P (x) = 1 − s
+
+2 (1 − x)x, Q(x) =  κ − 1 + s
+
+2 (1 − p)(1 − x)x, R(x) = σ(1 − x) − px 1 + s
+
+2 .
+
+And so, for ε small enough, the integrand of V2 is close to the function 30 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+S(x) = x(1 − x)
+
+ 1 − s
+
+2 − 1 + s
+
+2 (1 − p) + κ
+
+
+
++ σ(1 − x) − px 1 + s
+
+2 .
+
+And we can rewrite S as: 
+
+S(x) = −x2
+
+p 1 + s
+
+2 − s + κ
+
+
+
+− x(s + σ − κ) + σ. 
+
+Then we have S(0) > 0, S(1) < 0, and as the degree of S is two, we know that x′ = S(x) has a unique equilibrium in [0 , 1] . Moreover, this equilibrium is π2a. Indeed, we have that (π2a, π 2d) is a left eigenvector associated to λ2 for the matrix J, and that π2d = 1 − π2a. Then, 
+
+−sπ 2a + σ(1 − π2a) = π2a
+
+−(s + σ + κ) + 
+
+q
+
+(s + σ + κ)2 − 4( s(σ + κ) − 1+ s 
+
+> 2
+
+pσ )2
+
+and thus 
+
+π2a = 2σ
+
+q
+
+(s + σ + κ)2 − 4( s(σ + κ) − 1+ s 
+
+> 2
+
+pσ ) + σ + s − κ.
+
+Using this, we can easily check that π2a is a root of S.We can then choose δ > 0 and θ > 0 such that π2a − δ > 0 and ∀ x < π 2a − δ: S(x) > θ/ 2. And so, for ε small enough and N sufficiently large, we have for all u ∈ [T 2 
+
+> ε
+
+, T 2√ε] and x ∈ ]0 , π 2a − δ[:
+
+P (u)(x) X(N )2
+
+X(N )2 + 1 + Q(u)(x) X(N )2
+
+X(N )2 − 1 + R(u)(x) ≥ θ
+
+2 > 0.
+
+We now define t(ε)2a = inf {t ≥ T 2 
+
+> ε
+
+: X(N )2a (t)   
+
+> X(N)2(t)
+
+≥ π2a − δ}. Using all the results we got before, we have that on {T 2√ε < T 20 } and ∀ t ∈ [T 2 
+
+> ε
+
+, (T 2 
+
+> ε
+
++ log log(1 /ε )) ∧ t(ε)2a ] :
+
+π2a − δ ≥ X(N )2a (t)
+
+X(N )2 (t) ≥ θ
+
+2
+
+  log log(1 /ε ) ∧ (tε 
+
+> 2a
+
+− T 2 
+
+> ε
+
+) − ε, 
+
+with a probability greater than 1 − √ε log(1 /ε ) 1−s 
+
+> 2
+
+. And, as log log(1 /ε ) −−−→ 
+
+> ε→0
+
+∞, we have that, for ε
+
+small enough, tε 
+
+> 2a
+
+≤ T 2 
+
+> ε
+
++ log log(1 /ε ) and so tε 
+
+> 2a
+
+≤ T 2√ε with a probability close to one on {T 2√ε < T 20 }.Moreover, using that each jump of the fraction is less than 1  
+
+> εN C+1
+
+, we get that for N sufficiently large, the fraction is contained in the interval [π2a − δ, π 2a + δ]. This finishes the proof of the lemma. □
+
+According to Lemma 5.2, knowing that the mutants reach the level √εN before dying out, with high probability the population of mutants will not go below εN C for a C sufficiently large after having reached the level εN . Moreover, the proportion of active mutants in the mutant population will be close to the equilibrium (π2a, π 2d) before the size of the mutant population reaches √εN .We will see in Section 5.4 that the previous lemmas regarding the convergence of the dynamical system will, in case of invasion, bring us from the configuration state obtained in Lemma 5.2 to an initial condition corresponding to Lemma 5.3. In case of coexistence, Lemma 5.2 and the lemmas on the dynamical system will in turn be useful for proving that the rescaled stochastic process approaches the polymorphic equilibrium with high probability conditional on mutant survival. THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 31 
+
+5.3. Third phase of the invasion: Extinction of the formerly resident population. Let us now study a configuration where the mutant population size has grown close to its equilibrium and the originally resident population has shrunk to a size that is small compared to the mutant one. We will estimate the time to extinction of the latter and show that in the meantime, the mutant population stays close to its equilibrium with high probability. We suppose here that ¯x2a > κκ+ 1+ s  
+
+> 2p−s
+
+in order the the branching process associated to the previously resident population is subcritical (see 2.10). Let us also recall that this condition is equivalent to the one for the stability of (0 , ¯x2a) which is κ < ˜κ.To carry out this program formally, we first define TSε = inf {t > 0, X (N )(t) ∈ Sε}, where 
+
+Sε = {0} × [¯ x2a − ε, ¯x2a + ε] × [¯ x2d − ε, ¯x2d + ε].
+
+As in [BT20, Proposition 4.9], we will prove the following assertion. 
+
+Lemma 5.3. Under the assumptions of Theorem 2.8 in case ¯x2a > κκ+ 1+ s  
+
+> 2p−s
+
+, there exist positive numbers ε0 and C0 such that for all ε ∈ (0 , ε 0), if the initial condition satisfies 
+
+X(N )2a (0) 
+
+N − ¯x2a ≤ ε, X(N )2d (0) 
+
+N − ¯x2d ≤ ε and N ηε ≤ X(N )1 (0) ≤ εN, 
+
+for η ∈ (0 , 12 ), then we have 
+
+∀ ˜C > 1
+
+λ1
+
++ C0ε, lim   
+
+> N→∞
+
+P(TSε ≤ ˜C log( N )) = 1 ,
+
+∀ 0 ≤ ˜C < 1
+
+λ1
+
+− C0ε, lim   
+
+> N→∞
+
+P(TSε ≤ ˜C log( N )) = 0 .
+
+Proof. We first again use arguments from [CCLS17, Section 4.1] to show that the rescaled mutant population size 1 
+
+> N
+
+(X(N )2a (t), X (N )2d (t)) will stay close to its equilibrium (¯ x2a, ¯x2d). For ε > 0 and i ∈{a, d } consider the stopping times 
+
+T 1√ε = inf {t ≥ 0 : X(N )1 (t) ≥ √εN },T 10 = inf {t ≥ 0 : X(N )1 (t) = 0 },Rε,i = inf 
+
+n
+
+t ≥ 0 : X(N )2i (t)
+
+N − ¯x2i > ε 
+
+o
+
+.
+
+We introduce the processes (Y ε, ≤ 
+
+> 2a
+
+(t), Y ε, ≤ 
+
+> 2d
+
+(t)) and (Y ε, ≥ 
+
+> 2a
+
+(t), Y ε, ≥ 
+
+> 2d
+
+(t)) to obtain the sandwich coupling 
+
+N Y ε, ≤ 
+
+> 2i
+
+(t) ≤ X(N )2i (t) ≤ N Y ε, ≥ 
+
+> 2i
+
+(t) a.s. for i ∈ { a, d } and 0 ≤ t ≤ T 1√ε,
+
+where the process (Y ε, ≤ 
+
+> 2a
+
+(t), Y ε, ≤ 
+
+> 2d
+
+(t)) jumps for (i, j ) ∈ N20 from ( iN , jN ) to: 
+
+• ( iN − 1 
+
+> N
+
+, jN ) at rate √εi 1+ s 
+
+> 2
+
+,
+
+• ( iN − 1 
+
+> N
+
+, jN + 1 
+
+> N
+
+) at rate pi (i−1)  
+
+> N
+
+,
+
+• ( iN + 1 
+
+> N
+
+, jN − 1 
+
+> N
+
+) at rate σj ,
+
+• ( iN , jN − 1 
+
+> N
+
+) at rate κj (1 + √ε),
+
+and the process (Y ε, ≥ 
+
+> 2a
+
+(t), Y ε, ≥ 
+
+> 2d
+
+(t)) jumps from ( iN , jN ) to: 
+
+• ( iN − 1 
+
+> N
+
+, jN ) at rate i 1+ s 
+
+> 2
+
+,
+
+• ( iN + 1 
+
+> N
+
+, jN ) at rate √εi 1−s
+
+> 2
+
+• ( iN − 1 
+
+> N
+
+, jN + 1 
+
+> N
+
+) at rate pi (i−1)  
+
+> N
+
++ √εi 1+ s 
+
+> 2
+
+p,
+
+• ( iN + 1 
+
+> N
+
+, jN − 1 
+
+> N
+
+) at rate σj + κj √ε.32 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+We introduce for these processes the stopping times 
+
+R⋄ 
+
+> η,v
+
+= inf {t ≥ 0 : Y ε, ⋄ 
+
+> 2v
+
+(t) /∈ [¯ x2v − η, ¯x2v + η]},
+
+where η > 0, v ∈ { a, d } and ⋄ ∈ {≤ , ≥} . For the process (Y ε, ≤ 
+
+> 2a
+
+(t), Y ε, ≤ 
+
+> 2d
+
+(t)) , its dynamics is close, for 
+
+N large enough and ε small enough, to the one of the unique solution of the system 
+
+˙y2a(t) = σy 2d(t) − y2a(t) p(y2a(t) − √ε) + √ε 1 + s
+
+2
+
+,
+
+˙y2d(t) = py 2a(t)( y2a(t) − √ε) − (σ + κ(1 + √ε)) y2d(t).
+
+So, for all ε small enough, this system has a unique positive equilibrium (denoted by (¯ yε, ≤ 
+
+> 2a
+
+, ¯yε, ≤ 
+
+> 2d
+
+))that tends to (¯ x2a, ¯x2d) when ε tends to 0. Thanks to Lemma 4.3, we have, for ε small enough, the asymptotic stability of, and thus convergence to, this equilibrium for any nonnegative initial condition (except (0 , 0) ). Moreover, we have ε′ 
+
+> 0
+
+and c0 such that, for all ε ∈ (0 , ε ′
+
+> 0
+
+):
+
+∀ i ∈ { a, d } : |¯yε, ≤ 
+
+> 2i
+
+− ¯x2i| ≤ (c0 − 1) ε and 0 /∈ [¯ x2i − c0ε, ¯x2i + c0ε].
+
+From this we obtain, thanks to [FW84, Chapter 5], that there exists a V > 0 such that 
+
+lim   
+
+> N→∞
+
+P R≤ 
+
+> c0ε,a
+
+> exp( N V ); R≤ 
+
+> c0ε,d
+
+> exp( N V ) = 1 .
+
+Similarly, lim N →∞ P(R≥ 
+
+> c0ε,a
+
+> exp( N V ); R≥ 
+
+> c0ε,d
+
+> exp( N V )) = 1 .
+
+As the total population size is constant, we have for our c0 that for ε small enough Rc0ε,a ∧ Rc0ε,d ≤
+
+T 1√ε, and as in [BT20, Section 4.3], we note that on {Rc0ε,i ≤ T 1√ε}, we have Rc0ε,i ≥ R≤ 
+
+> c0ε,i
+
+∧ R≥
+
+> c0ε,i
+
+.And thus 
+
+lim   
+
+> N→∞
+
+P (Rc0ε,a ∧ Rc0ε,d ≤ exp( N V ) ∧ T 1√ε
+
+ = 0 . (5.6) This result shows that the mutant population stays close to its equilibrium on [0 , exp( N V ) ∧ T 1√ε] as 
+
+N tends to infinity. It remains for us to see that the resident population will indeed go extinct, and that the extinction takes place approximately after 1 
+
+> λ1
+
+log N time units. To show this, we introduce the processes (Zε, ≤ 
+
+> 1
+
+(t)) t≥0 and (Zε, ≥ 
+
+> 1
+
+(t)) t≥0 with the following transitions from n ∈ N0 to 
+
+• n + 1 at rate n((¯ x2a − c0ε) 1+ s 
+
+> 2
+
+(1 − p) + κ(¯ x2d − c0ε)) ,
+
+• n − 1 at rate n(¯ x2a + c0ε) 1−s 
+
+> 2
+
+,for Zε, ≤ 
+
+> 1
+
+, and: 
+
+• n + 1 at rate n((¯ x2a + c0ε) 1+ s 
+
+> 2
+
+(1 − p) + κ(¯ x2d + c0ε)) ,
+
+• n − 1 at rate n(¯ x2a − c0ε) 1−s 
+
+> 2
+
+,for Zε, ≥ 
+
+> 1
+
+, where we suppose that we start Zε, ≤ 
+
+> 1
+
+in ⌊N ηε ⌋ and Zε, ≥ 
+
+> 1
+
+in ⌈N ε ⌉, to obtain yet another sandwich coupling 
+
+Zε, ≤ 
+
+> 1
+
+(t) ≤ X(N )1 (t) ≤ Zε, ≥ 
+
+> 1
+
+(t) a.s. for t ∈ INε = 0, R c0ε,a ∧ Rc0ε,d ∧ T 1√ε
+
+.
+
+For ε small enough, these two processes are subcritical with growth rate ¯x2a(s − p 1+ s 
+
+> 2
+
+) + κ¯x2d ± O (ε).Using arguments analogous to [CCLS17, Section 4.1], because the birth rate is less than the death rate (we are in the case where p > 2s 
+
+> 1+ s
+
+and ¯x2a > κκ+ 1+ s  
+
+> 2p−s
+
+), we have 
+
+∀ ˜C < 
+
+
+
+¯x2a
+
+ p 1 + s
+
+2 − s − κ¯x2d
+
+−1
+
+lim   
+
+> N→∞
+
+P SZε, ⋄ 
+
+> 1
+> 0
+
+≤ ˜C log( N ) = 0 ,
+
+∀ ˜C > 
+
+
+
+¯x2a
+
+ p 1 + s
+
+2 − s − κ¯x2d
+
+−1
+
+lim   
+
+> N→∞
+
+P SZε, ⋄ 
+
+> 1
+> 0
+
+≤ ˜C log( N ) = 1 ,THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 33 
+
+for ⋄ ∈ {≤ , ≥} , and SN 
+
+> 0
+
+= inf {t ≥ 0 : N (t) = 0 }.Moreover, for Zε, ≤ 
+
+> 1
+
+(0) = ⌊ηεN ⌋, we have for ε small enough that 
+
+lim   
+
+> N→∞
+
+P SZε, ≤ 
+
+> 1
+> 0
+
+> N ∧ SZε, ≤ 
+
+> 1
+> ⌊εN ⌋
+
+ = 0 , (5.7) where SZε, ≤  
+
+> 1
+> ⌊εN ⌋
+
+is the first time when our process Zε, ≤ 
+
+> 1
+
+reaches ⌊εN ⌋. Using all of this, we have, similarly to [BT20], for C ≥ 0:
+
+P(T 10 < C log( N )) − P(SZε, ≤ 
+
+> 1
+> 0
+
+< C log( N )) = P(T 10 < C log( N ) ≤ S Zε, ≤ 
+
+> 1
+> 0
+
+)
+
+≤ P(T 10 < C log( N ); Rc0ε,a ∧ Rc0ε,d < T 1√ε ∧ T 10 )+ P(T 10 < C log( N ); T 10 ∧ Rc0ε,a ∧ Rc0ε,d > T 1√ε)+ P(T 10 < C log( N ) ≤ SZε, ≤ 
+
+> 1
+> 0
+
+; T 10 < R c0ε,a ∧ Rc0ε,d ∧ T 1√ε)
+
+≤ P(Rc0ε,a ∧ Rc0ε,d < T 1√ε ∧ C log( N )) + P(T 10 > T 1√ε)
+
+≤ P(Rc0ε,a ∧ Rc0ε,d < T 1√ε ∧ N ) + P(T 10 > T 1√ε ∧ N )
+
+≤ P(Rc0ε,a ∧ Rc0ε,d < T 1√ε ∧ N ) + P(SZε, ≤ 
+
+> 1
+> 0
+
+> S Zε, ≤  
+
+> 1
+> ⌊εN ⌋
+
+∧ N ),
+
+where we obtain the second inequality by noting that if T 10 ∈ [0 , I Nε ], then T 10 ≥ SZε, ≤ 
+
+> 1
+> 0
+
+. By (5.6) and (5.7), we have 
+
+lim sup  
+
+> N→∞
+
+P(T 10 < C log( N )) ≤ lim   
+
+> N→∞
+
+P(SZε, ≤ 
+
+> 1
+> 0
+
+≤ C log( N )) ,
+
+and using the same steps with SZε, ≥ 
+
+> 1
+> 0
+
+yields 
+
+lim inf   
+
+> N→∞
+
+P(T 10 < C log( N )) ≥ lim   
+
+> N→∞
+
+P(SZε, ≥ 
+
+> 1
+> 0
+
+≤ C log( N )) ,
+
+which implies the lemma. □
+
+This gives us that, in our setting, we reach extinction of the residents within order log( N ) time units, while the mutant population stays close to its equilibrium. We now have the necessary results on all three phases of an invasion of mutant individuals against resident ones. 5.4. Completion of the proof of Theorem 2.8. Let us now put together the findings of the previous three subsections and the preparatory results of Section 4 on the dynamical system (2.1) to obtain the theorem. First of all, note that we have already proved (2.15) in (5.5), and that in parts (a), (b), (c) of the theorem, the assertion of the theorem in case (i) (fixation of type 1) and (iv) (founder control) readily follows from Section 2.3. Hence, it remains to consider parts (b) and (c) and show that under their respective assumptions, assertions (ii) and (iii) hold. We first present the proof when assertion (ii) should hold. For ε > 0 and β > 0, we introduce the sets 
+
+• B 1 
+
+> ε
+
+= [ π2a − δ, π 2a + δ] × [ εN C , √εN ],
+
+• B 2 
+
+> β
+
+= [0 , N β ] × [N (¯ x2a − β), N (¯ x2a + β)] × [N (¯ x2d − β), N (¯ x2d + β)] ,
+
+and the stopping times 
+
+• T ′ 
+
+> ε
+
+= inf {t ≥ 0 : ( X(N )2a (t)   
+
+> X(N)2(t)
+
+, X (N )2 (t)) ∈ B 1 
+
+> ε
+
+},
+
+• T ′′  
+
+> β
+
+= inf {t ≥ 0 : ( X(N )1 (t), X (N )2a (t), X (N )2d (t)) ∈ B 2 
+
+> β
+
+}.34 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+We consider the (pre-limiting) fixation event 
+
+A(N, ε ) = 
+
+n TSβ
+
+log( N ) −   1
+
+λ1
+
++ 1
+
+λ2
+
+ ≤ f (ε); TSβ < T 20
+
+o
+
+.
+
+On {TSβ < T 20 } we have T 2√ε < T ′′  
+
+> β
+
+< T Sβ , and if T ′ 
+
+> ε
+
+< ∞ then T ′ 
+
+> ε
+
+< T ′′  
+
+> β
+
+and thus 
+
+lim inf   
+
+> N→∞
+
+P(A(N, ε )) ≥ lim inf  
+
+> N→∞
+
+h
+
+P
+
+
+
+| T ′
+
+> ε
+
+log( N ) − 1
+
+λ2
+
+| ≤ f (ε)3 ; T ′ 
+
+> ε
+
+< T 20 ; T 2√ε < T 20
+
+
+
+× inf   
+
+> x=( x1,x 2a,x 2d) : ( x2ax2,x 2)∈B 1
+> ε
+
+P
+
+
+
+| T ′′  
+
+> β
+
+< T ′
+
+> ε
+
+log( N ) | ≤ f (ε)3 ; T ′′  
+
+> β
+
+< T 20 |X(N )(0) = x
+
+
+
+× inf 
+
+> x∈B 2
+> β
+
+P
+
+
+
+| TSβ − T ′′ 
+
+> β
+
+log( N ) − 1
+
+λ1
+
+| ≤ f (ε)3 ; TSβ < T 20 |X(N )(0) = x
+
+i 
+
+.
+
+We need to show that the right-hand side is close to 1 − q2a when ε is small. For the first term we have, using the same reasoning that in [CCLLS21, proof of (3.61)]: 
+
+lim inf   
+
+> N→∞
+
+P
+
+ T ′
+
+> ε
+
+log( N ) − 1
+
+λ2
+
+≤ f (ε)3 ; T ′ 
+
+> ε
+
+< T 20 ; T 2√ε < T 20
+
+
+
+≥ 1 − q2a + oε(1) .
+
+For the second term, we write for m = ( m1, m 2a, m 2d) ∈ [0 , ∞[3, the unique solution xm of the dynamical system (2.1) with initial condition m. Thanks to the continuity of the flow of this dynamical system with respect to the initial condition and thanks to the convergence provided by Lemma 4.3 (we suppose κ < ˜κ ∧ κ′ for assertion (ii)), we have the convergence of the dynamical system to (0 , ¯x2a).Precisely, for any β that we choose small enough, we can find ε0 and δ0 such that for all ε ∈ (0 , ε 0)
+
+and all δ ∈ (0 , δ 0), there exists tβ,ε,δ such that ∀ t > t β,ε,δ :
+
+|xx0
+
+(t) − (0 , ¯x2a, ¯x2d)| ≤ β, 
+
+for any initial condition x0 ∈ B 1 
+
+> ε
+
+. Then, using [EK86, Theorem 2.1, p. 456], we obtain for ε < ε 0:
+
+lim   
+
+> N→∞
+
+P
+
+
+
+T ′′  
+
+> β
+
+− T ′ 
+
+> ε
+
+< t β,ε,δ 
+
+ X(N )2a (0) 
+
+X(N )2 (0) , X (N )2 (0) 
+
+
+
+∈ B 1
+
+> ε
+
+
+
+= 1 − oε(1) .
+
+Therefore, the second term is close to one when N tends to infinity and ε is small enough. For the third term, using Lemma 5.3, there exists β0 > 0 such that for all β < β 0 and ε small enough: 
+
+lim   
+
+> N→∞
+
+P
+
+ TSβ − T ′′ 
+
+> β
+
+log( N ) − 1
+
+λ1
+
+≤ f (ε)3 X(N )(0) ∈ B 2
+
+> β
+
+
+
+= 1 − oε(1) .
+
+Using all of this, we obtain: 
+
+lim inf   
+
+> N→∞
+
+P
+
+ TSβ
+
+log( N ) −
+
+ 1
+
+λ1
+
++ 1
+
+λ2
+
+
+
+≤ f (ε); TSβ < T 20
+
+
+
+≥ 1 − q2a − oε(1) .
+
+As we reach the extinction of the residents within log( N ) time units when we start from B2 
+
+> β
+
+, we then have on the event {T 10 < T 20 }:
+
+lim  
+
+> N→∞
+
+T 10
+
+log N = 1
+
+λ2
+
++ 1
+
+λ1
+
+in probability ,
+
+and we also obtain the result regarding the convergence of the mutant population in the theorem as keeping in mind that the mutant population stays as close as we want to its equilibrium. Similarly, by modifying the assumptions, we obtain the result stated in the theorem regarding T co 
+
+> β
+
+in case (iii). Indeed, with the proper assumptions, Lemma 4.3 gave us the convergence to (˜ x1, ˜x2a) for the second phase. THE INTERPLAY OF SELECTION AND DORMANCY IN A MORAN MODEL 35 
+
+Note that the branching process associated to the residents we used for the third phase is no more subcritical here. What will happen in this situation was stated in Remark 3.5. 
+
+□
+
+Acknowledgements. BLD was partially supported by the ERC Synergy Grant No. 810115 – DY-NASNET. Funding acknowledgement by BLD and AT: Project no. STARTING 149835 has been im-plemented with the support provided by the Ministry of Culture and Innovation of Hungary from the National Research, Development and Innovation Fund, financed under the STARTING_24 funding scheme. Further funding acknowledgement by AT: This paper was supported by the János Bolyai Research Scholarship of the Hungarian Academy of Sciences. AT also wishes to thank the Goethe University Frankfurt for hospitality. 
+
+References 
+
+[AFS25] M. André , F. Foutel-Rodier and E. Schertzer . Moments of density-dependent branching processes and their genealogy. arXiv:2509.05231 (2025). [AN72] K. B. Athreya and P. E. Ney , Branching processes , Springer (1972). [BCFMT16] S. Billiard, P. Collet, R. Ferrière, S. Méléard and V. Tran, The effect of competition and horizontal trait inheritance on invasion, fixation, and polymorphism. J. Theoret. Biol. 411 :48—58 (2016). [BCFMT18] S. Billiard, P. Collet, R. Ferrière, S. Méléard, and V. Tran, Stochastic dynamics for adaptation and evolution of microorganisms, Journal of the European Mathematical Society , pages 527–552, special issue for the Proceedings ECM2016 (2018). [BHS21] J. Blath , F. Hermann , and M. Slowik , A branching process model for dormancy and seed banks in randomly fluctuating environments, J. Math. Biol. , 83 , article number: 17 (2021). [BGKW16] J. Blath , A. González Casanova , N. Kurt , and M. Wilke-Berengurer , A new coalescent for seed-bank models, Ann. Appl. Probab. 26:2 , 857–891 (2016). [BGKW18] J. Blath , A. González Casanova , N. Kurt , and M. Wilke-Berengurer , The seed bank coalescent with simultaneous switching, Electron. J. Probab. ,25 , paper no. 27, 21 pp. (2020). [BPT23] J. Blath , T. Paul , and A. Tóbiás . A stochastic adaptive dynamics model for bacterial populations with mutation, dormancy and transfer. ALEA Latin American Journal of Probability and Mathematical Statistics , 20 , 313–357 (2023). [BT20] J. Blath and A. Tóbiás , Invasion and fixation of microbial dormancy traits under competitive pressure, 
+
+Stoch. Proc. Appl. 130:12 , 7363-7395 (2020). [BT21] J. Blath and A. Tóbiás , The interplay of dormancy and transfer in bacterial populations: Invasion, fixation and coexistence regimes, Theoret. Pop. Biol. 139 18–49 (2021). [BT23] J. Blath and A. Tóbiás , Microbial virus epidemics in the presence of contact-mediated host dormancy, 
+
+ESAIM: PS 27 , 174—220 (2023). [BT26] J. Blath and A. Tóbiás , Emergence of microbial host dormancy during a persistent virus epidemic, to appear in the J. Math. Biol. , see also: arXiv:2504.04943 (2026). [B83] Immanuel M. Bomze , Lotka-Volterra equation and replicator dynamics: A two-dimensional classification, 
+
+Biological Cybernetics , 48 , 201–211 (1983). [C06] N. Champagnat , A microscopic interpretation for adaptive dynamics trait substitution sequence models, 
+
+Stochastic Process. Appl. , 116(8) , 1127–1160 (2006). [CMT19] N. Champagnat , S. Méléard , and V. C. Tran , Stochastic analysis of emergence of evolutionary cyclic behavior in population dynamics with transfer, arXiv:1901.02385 (2019). [CCLS17] C. Coron , M. Costa , H. Leman , and C. Smadi , A stochastic model for speciation by mating preferences, 
+
+J. Math. Biol. , 76 , 1421–1463 (2018). [CH24] N. Champagnat and V. Hass , Convergence of population processes with small and frequent mutations to the canonical equation of adaptive dynamics, Ann. Appl. Probab. 35:1 , 1–63 (2025). [CCLLS21] C. Coron , M. Costa , F. Laroche , H. Leman , and C. Smadi , Emergence of homogamy in a two-loci stochastic population model, ALEA, Lat. Am. J. Probab. Math. Stat. 18 , 469-–508 (2021). [DMB11] C. Dombry, C. Mazza, and V. Bansaye , Phenotypic diversity and population growth in a fluctuating environment, Adv. in Appl. Probab. , 43:2 , 375—398 (2011). 36 JOCHEN BLATH, BAPTISTE LE DUIGOU AND ANDRÁS TÓBIÁS 
+
+[EK86] S. N. Ethier and T. G. Kurtz , Markov processes. Characterization and convergence , Wiley Series in Probability and Mathematical Statistics: Probability and Mathematical Statistics. John Wiley & Sons Inc., New York (1986). [EPW06] A. Etheridge , P. Pfaffelhuber , and A. Wakolbinger , An approximate sampling formula under genetic hitchhiking, Ann. Appl. Probab. , 16:2 , 685–729 (2006). [F25] R. Forien Lambda-Fleming-Viot processes arising in logistic Bienaymé-Galton-Watson processes with a large carrying capacity. arXiv:2501.16837 (2025). [FM04] N. Fournier and S. Méléard , A microscopic probabilistic description of a locally regulated population and macroscopic approximations. Ann. Appl. Probab. , 14(4) :1880–1919 (2004). [FW84] M. Freidlin and A. D. Wentzell , Random perturbations of dynamical systems , Grundlehren der Math-ematischen Wissenschaften (Fundamental Principles of Mathematical Sciences), volume 260, Springer (1984). [GN25] R. Garrett and J. Nava-Trejo Genealogies under logistic growth. arXiv:2509.05217 (2025). [GB03] H-O. Georgii and E. Baake , Supercritical multitype branching processes: the ancestral types of typical individuals. Adv. App. Probab. , 35(4) :1090-1110 (2003). [KKL01] I. Kaj, S.M. Krone, M. Lascoux , Coalescent theory for seed bank models, Journal of Applied Proba-bility , 38:2 , 285–300 (2001). [LdHWB21] J. T. Lennon, F. den Hollander, M. Wilke Berenguer, J. Blath , Principles of seed banks: Complexity emerging from dormancy, Nature Commun. , 12 , article number: 4807 (2021). [M58] P. A. P. Moran , Random processes in genetics, Mathematical Proceedings of the Cambridge Philosophical Society , 54:1 , 60–71 (1958). [P24] T. Paul , The Impact of Dormancy on the Ecological, Evolutionary and Pathogenic Prop-erties of Microbial Populations, PhD thesis, HU Berlin , https://edoc.hu-berlin.de/items/ 4d177e18-9ae9-4827-93c7-54176ab2fce6 (2024). [V15] J. Vandermeer , Some complications of the elementary forms of competition in a source/sink and meta-community context: the role of intranstive loops. arXiv:1502.05225 (2015).

@@ -1,0 +1,576 @@
+Title: MEDNA-DFM: A Dual-View FiLM-MoE Model for Explainable DNA Methylation Prediction
+
+URL Source: https://arxiv.org/pdf/2602.22850v1
+
+Published Time: Fri, 27 Feb 2026 01:45:06 GMT
+
+Number of Pages: 31
+
+Markdown Content:
+# MEDNA-DFM: A Dual-View FiLM-MoE Model for Explainable DNA Methylation Prediction 
+
+## Yi He 1,4 †, Yina Cao 2†, Jixiu Zhai 3,4 , Di Wang 1,4 ,Junxiao Kong 4, Tianchi Lu 4,5* 
+
+> 1
+
+Cuiying Honors College, Lanzhou University, Lanzhou, Gansu, China. 
+
+> 2
+
+School of Management, Lanzhou University, Lanzhou, Gansu, China. 
+
+> 3
+
+Shanghai Innovation Institute, Shanghai, China. 
+
+> 4
+
+School of Mathematics and Statistics, Lanzhou University, Lanzhou, Gansu, China. 
+
+> 5
+
+Department of Computer Science, City University of Hong Kong, Kowloon, Hong Kong, China. *Corresponding author(s). E-mail(s): tianchilu4-c@my.cityu.edu.hk; 
+
+> †
+
+These authors contributed equally to this work. 
+
+Abstract 
+
+Accurate computational identification of DNA methylation is essential for under-standing epigenetic regulation. Although deep learning excels in this binary clas-sification task, its ”black-box” nature impedes biological insight. We address this by introducing a high-performance model MEDNA-DFM, alongside mechanism-inspired signal purification algorithms. Our investigation demonstrates that MEDNA-DFM effectively captures conserved methylation patterns, achieving robust distinction across diverse species. Validation on external independent datasets confirms that the model’s generalization is driven by conserved intrin-sic motifs (e.g., GC content) rather than phylogenetic proximity. Furthermore, applying our developed algorithms extracted motifs with significantly higher reli-ability than prior studies. Finally, empirical evidence from a Drosophila 6mA case study prompted us to propose a ”sequence-structure synergy” hypothesis, suggesting that the GAGG core motif and an upstream A-tract element func-tion cooperatively. We further validated this hypothesis via in silico mutagenesis, confirming that the ablation of either or both elements significantly degrades the model’s recognition capabilities. This work provides a powerful tool for methyla-tion prediction and demonstrates how explainable deep learning can drive both methodological innovation and the generation of biological hypotheses. 
+
+1
+
+> arXiv:2602.22850v1 [cs.LG] 26 Feb 2026
+
+# 1 Introduction 
+
+DNA methylation stands as a cornerstone of epigenetic regulation, playing an indispensable role in orchestrating gene expression, genomic stability, and cellular dif-ferentiation [1, 2]. Among diverse chemical modifications, 5-methylcytosine (5mC), N6-methyladenine (6mA), and 4-methylcytosine (4mC) constitute the primary com-ponents of this network through distinct biochemical mechanisms [3–5]. Specifically, 5mC generally functions as a transcriptional repressor involved in critical processes like genomic imprinting and chromatin organization [1], whereas 6mA and 4mC are piv-otal for DNA replication fidelity, repair, and transposon silencing [3, 6]. The dynamic equilibrium of these sites maintains biological homeostasis, while aberrant patterns drive tumorigenesis and pathological states, serving as critical biomarkers for early diagnosis [2, 7, 8]. Consequently, identifying these modifications and their sequence patterns is paramount for decoding complex epigenetic regulatory mechanisms. While experimental techniques like Whole-Genome Bisulfite Sequencing (WGBS) and SMRT sequencing offer high-resolution landscapes, their prohibitive costs and laborious protocols restrict scalability, necessitating a shift toward computational pre-diction [9]. Early approaches predominantly relied on conventional machine learning algorithms, such as SVMs and Random Forests, utilizing handcrafted physico-chemical and nucleotide frequency features [10]. Recently, deep learning integration has catalyzed breakthrough advancements, particularly following the introduction of multi-type methylation prediction by iDNA-MS (2020) [11]. The field rapidly transitioned toward end-to-end frameworks for automatic high-dimensional feature extraction: iDNA-ABF (2022) introduced multi-scale biological language modeling for contextual semantics [12]; Methyl-GP (2025) leveraged pre-trained models for cross-species prediction [13]; and AutoFE-Pointer (2025) optimized precision via auto-weighted feature extraction [14]. This evolution marks a significant leap from manual feature engineering to autonomous, semantic-aware representation learning. However, despite Transformer- and BERT-based architectures continually setting performance benchmarks, their massive parameterization renders them inherently opaque ”black boxes,” severely impeding the extraction of biological insights. Although recent studies have begun to incorporate interpretability analyses, these efforts remain largely fragmented and exhibit significant limitations. Specifically, existing inter-pretability endeavors, such as those in Methyl-GP [13] and iDNA-ABF [12], are predominantly confined to visualizing attention mechanisms to localize potential regions of interest and sequence motifs. However, such superficial observations rely-ing solely on attention weights are prone to generating false-positive identifications of functional regions [15]. While AutoFE-Pointer [14] implemented dynamic feature weighting via pointer networks, the observed fluctuation in interpretability when pro-cessing specific methylation types (e.g., 5hmC) exposes the inadequacy of lightweight feature selection strategies in capturing complex long-range dependencies. More criti-cally, these studies suffer from a fundamental methodological deficiency: a lack of deep dissection regarding the model’s decision-making mechanism. Elucidating how the model utilizes biological information must be a prerequisite for interpretability, rather than an optional supplement. This omission of the critical attribution link obscures the connection between data features and biological significance, thereby creating a 2bottleneck in translating computational predictive power into interpretable biological knowledge. To address these limitations, we present a comprehensive study that bridges high-precision prediction with systematic, mechanism-driven explainability. We first developed MEDNA-DFM, a deep learning model founded on a Dual-View archi-tecture and Feature-wise Linear Modulation (FiLM) [16]. Specifically, it synergizes DNABERT-6mer [17] and DNABERT-2 [18] by utilizing global semantic vectors from the latter to dynamically modulate local fine-grained representations of the former via a FiLM [16] guide, subsequently integrating fused features through a Mixture of Experts (MoE) module [19, 20]. This architecture enables superior performance across diverse DNA methylation types, as demonstrated on 17 benchmark datasets covering 5hmC, 4mC, and 6mA (detailed statistics in Supplementary Table 1) [11]. To tran-scend the limitations of single-species training, we implemented a Multi-species Joint Fine-tuning strategy. Inspired by the biological consensus that identical methylation types share conserved sequence motifs across species, this approach integrates diverse genomic data to compel the model to capture universal, intrinsic biochemical signa-tures rather than overfitting to species-specific biases [13, 21, 22]. More critically, we developed two novel interpretability algorithms—Contrastive Weighted Gradient Attribution (CWGA) and Contrastive Attention Cohen’s d (CAD)—that were directly inspired by our mechanistic analysis of the model’s internal decision-making (Supple-mentary Note 1). By applying these custom-designed algorithms to MEDNA-DFM, we effectively overcome the artifacts and false-positive signals inherent in existing interpretability approaches. We first validated the superior predictive performance of MEDNA-DFM across 17 benchmarks, confirming that the model achieves robust generalization within spe-cific methylation categories. We further applying the model to external independent datasets, validating that predictions are driven by conserved motifs (e.g., GC content) rather than phylogenetic proximity. Furthermore, by applying our CAD and CWGA algorithms to MEDNA-DFM for Signal Disentanglement and Purification, we dis-tilled high-confidence motifs with statistical significance orders of magnitude higher than prior methods. Crucially, through an in-depth investigation of 6mA regulation in Drosophila, we proposed a new “sequence-structure synergy” hypothesis, positing that the GAGG core sequence [23] and an upstream A-tract structural element [24] act in a binary cooperative manner to facilitate 6mA modification, thereby offering a coherent explanation for key contradictions in the field [25]. To rigorously test this hypothesis within our computational framework, we designed an in silico mutagenesis strategy. The results compellingly demonstrate that the simulated ablation of either the GAGG motif or the A-tract significantly impairs the model’s predictive performance, while a concurrent mutation causes severe performance decay. This in silico validation not only provides strong computational evidence for their cooperative necessity, but also effectively verifies the faithfulness of our interpretability algorithms in capturing true biological dependencies. In summary, this study provides a robust tool for DNA methy-lation prediction, MEDNA-DFM, as well as a systematic computational framework to generate and validate mechanism-driven biological insights. 32 Results 
+
+MEDNA-DFM Establishes a New Benchmark for Multi-Type DNA Methylation Identification with Superior Consistency 
+
+MEDNA-DFM demonstrated highly competitive predictive performance across a comprehensive benchmark of 17 datasets (detailed statistics are summarized in Supple-mentary Table 1) spanning three DNA modification types (5hmC, 4mC, 6mA) [11]. We benchmarked MEDNA-DFM against a broad spectrum of representative predictors, including iDNA-ABF [12], Methyl-GP [13], AutoFE-Pointer [14] and others [11, 26– 32](detailed in Supplementary Table 2). All comparisons were conducted strictly adhering to the original dataset partitions to guarantee a direct and fair assessment. Visual inspection of the performance curves in Fig.1A (AUC) and Fig.1B (MCC) reveals a clear trend: MEDNA-DFM consistently occupies the top-tier boundary across the majority of datasets, demonstrating superior robustness compared to baseline methods. Quantitatively, our model achieved state-of-the-art (SOTA) performance in 6, 6, and 7 out of the 17 datasets for ACC, AUC, and MCC, respectively. For instance, in the 5hmC H.sapiens dataset, MEDNA-DFM achieved the highest MCC (90.49%) and a highly competitive AUC (96.92%), ranking among the top-performing models. It maintained this consistent performance in the 5hmC M.musculus dataset (AUC 98.65%, MCC 93.58%). The model’s superior predictive power extended to the more challenging 4mC and 6mA modification types. In the 4mC benchmarks, MEDNA-DFM consistently ranked as a leading method, notably achieving the high-est MCC (76.64%) in the C.equisetifolia dataset and a leading AUC (93.00%) in the F.vesca dataset. For the 10 distinct 6mA datasets, MEDNA-DFM displayed excep-tional generalizability. It achieved the highest or second-highest AUC in 7 out of 10 datasets, including C.elegans (97.30%), D.melanogaster (97.55%), and H.sapiens (97.40%). While some methods like AutoFE [14] or Methyl-GP [13] showed strong performance on individual datasets, our model’s key advantage lies in its exceptional consistency and high-level performance across all datasets. 
+
+Ablation Analysis Reveals That Specialized Modules Are Essential for Predictive Superiority 
+
+To systematically deconstruct the structural efficacy of MEDNA-DFM, we evaluated the contribution of each architectural component through extensive ablation studies across diverse biological domains (Fig.1C–H, Supplementary Tables 3, 4, 5). First, the Dual-View DNABERT module was identified as the cornerstone of fea-ture extraction, with its impact being most pronounced in complex plant genomes. As illustrated in Fig.1C (AUC) and Fig.1D (MCC), a comprehensive evaluation across the 17 datasets reveals a distinct performance hierarchy governed by token granularity. Generally, the 6-mer tokenization strategy consistently yields the most robust results, dominating the top-tier metrics, whereas the 3-mer baseline generally exhibits the lowest predictive capability. This superiority of high-order tokenization is particularly pronounced in complex plant genomes. Specifically,in the 4mC C.equisetifolia dataset, our granularity analysis revealed that the 6-mer tokenization strategy is critical for 4A1 A2 A3 A4            
+
+> 0.75 0.8 0.85 0.9 0.95 1
+> Ablation study on the FiLM module: AUC Metrics on 17 Benchmark Datasets AUC
+> A1 A2 A3 A4
+> 0.5 0.6 0.7 0.8 0.9 1
+> Ablation study on the FiLM module: MCC Metrics on 17 Benchmark Datasets MCC
+> Non MoE-1 MoE-2 MoE-4 MoE-8
+> 0.8 0.85 0.9 0.95 1
+> Ablation study on the MoE module: AUC Metrics on 17 Benchmark Datasets AUC
+> Non MoE-1 MoE-2 MoE-4 MoE-8
+> 0.5 0.6 0.7 0.8 0.9 1
+> Ablation study on the MoE module: MCC Metrics on 17 Benchmark Datasets MCC
+
+ADE FG HBCFig. 1 Comprehensive performance evaluation and ablation analysis of the MEDNA-DFM. (A, B) Comparison of predictive performance between MEDNA-DFM and representative state-of-the-art methods across 17 benchmark datasets. The line charts illustrate the AUC (A) and MCC (B) scores. (C, D) Impact of token granularity on feature extraction. The bar charts display AUC and MCC metrics for different k-mer tokenization strategies (3, 4, 5, and 6-mer) utilized in the Dual-View DNABERT module. (E, F) Ablation study on the efficacy of the FiLM module. Boxplots summarize the distribution of AUC and MCC values across all datasets for four structural variants: 
+
+A1 (Full Model with Global-to-Local FiLM modulation), A2 (Simple Fusion via concatenation), A3 
+
+(6-mer backbone only), and A4 (Reversed FiLM with Local-to-Global modulation). The red dashed line indicates the median performance of the proposed A1 model. (G, H) Analysis of model capacity regarding the MoE module. Boxplots compare the AUC and MCC distributions for the baseline model without MoE ( Non ) and variants equipped with increasing numbers of experts ( MoE-1, MoE-2, MoE-4, MoE-8 ). 
+
+5capturing long-range semantic dependencies. It achieved an MCC of 0.7664, over-whelmingly outperforming the 3-mer baseline (MCC 0.6360). This substantial 0.1304 performance margin confirms that coarser-grained tokenization effectively prevents the fragmentation of semantic motifs in high-variability sequences. Furthermore, the FiLM module proved indispensable for contextual calibration. As depicted in the boxplots of Fig.1E (AUC) and Fig.1F (MCC), the proposed architec-ture (Variant A1) established a statistically significant performance advantage across the 17 benchmark datasets. The distribution of A1 scores consistently secured the highest median values with minimal variance, indicating superior stability. Interest-ingly, the MCC landscape (Fig.1F) revealed a crucial directional dependency: while the Reversed FiLM strategy (Variant A4) outperformed the static fusion baselines (Variants A2 and A3), it consistently lagged behind A1. This observation con-firms that the ”Global-to-Local” modulation flow is optimal for feature refinement, whereas the reverse direction offers only marginal gains. This structural superior-ity was particularly evident in organisms with dense methylation patterns. Using the 6mA T.thermophile dataset, we demonstrated the superiority of our FiLM-based directional architecture (Variant A1) over static fusion baselines. The dynamic mod-ulation of local features by global context yielded an AUC of 0.9452, providing a statistically significant gain of 0.0194 over the direct addition method (Variant A2, AUC 0.9258). This result underscores that simple feature aggregation is insufficient for resolving the intricate epigenetic landscape of thermophilic organisms. Finally, the Mixture-of-Experts module was validated as effective for balancing model capacity and ensuring stable generalization across diverse biological domains. A comprehensive evaluation across the 17 benchmark datasets (Fig. 1G, H) reveals a clear performance trajectory based on expert allocation. Architectures lacking the MoE routing (Non) or restricted to a single expert (MoE-1) exhibit a significant performance gap compared to the optimal four-expert configuration (MoE-4, indicated by the blue dashed line). While configuring the model with two (MoE-2) or eight (MoE-8) experts narrows this gap, their median performances still slightly lag behind MoE-4. Crucially, the scatter points representing individual datasets are more concentrated within the MoE-4 boxplots. This tighter clustering signifies superior stability and robust predic-tion consistency across highly variable species, mitigating the extreme performance fluctuations observed in other variants. This global stability translates directly to individual complex genomes. For instance, in the 4mC S.cerevisiae dataset, the opti-mized MoE-4 configuration emerged as the distinct optimal choice. It achieved an AUC of 0.8170, surpassing the over-parameterized eight-expert variant (MoE-8, AUC 0.8035) by 0.0135. This demonstrates that a coherently scaled multi-expert system effectively mitigates expert redundancy while enhancing the capture of heterogeneous motif patterns. Collectively, these results indicate that the model’s generalizability is not species-specific but stems from a synergistic design capable of adapting to diverse genomic contexts. 6Domain-Adaptive Fine-Tuning and Adversarial Regularization Are Essential for Model Robustness 
+
+Beyond architectural innovations, the specialized training paradigms adopted in this study were identified as pivotal determinants for achieving peak performance (Fig.2, Supplementary Tables 6, 7). Our ablation analysis explicitly highlights the indispens-ability of domain-adaptive fine-tuning. As illustrated in the scatter plots of Fig.2A–C, the vast majority of data points are situated significantly above the diagonal iden-tity line ( y = x), visually confirming that the full model consistently outperforms the variant lacking fine-tuning across ACC, AUC, and MCC metrics. The exclusion of this phase resulted in severe performance degradation across all evaluated met-rics, particularly in datasets with high epigenetic variability. For instance, in the A B CD E FWith & Without Fine-Tuning With & Without Adversarial Training      
+
+> Fig. 2 Impact of domain-adaptive fine-tuning and adversarial regularization on model robustness.(A,B,C) Performance comparison with and without fine-tuning. The scatter plots dis-play the ACC (A), AUC (B), and MCC (C) scores across all datasets. The y-axis represents the MEDNA-DFM model utilizing domain-adaptive fine-tuning, while the x-axis represents the model without this phase. (D,E,F) Efficacy of adversarial training. Comparison of ACC (D), AUC (E), and MCC (F) between models trained with (y-axis) and without (x-axis) adversarial regularization. In all plots, each point represents one benchmark dataset. The purple dashed diagonal line ( y=x)indicates the baseline of identical performance; points located above this line demonstrate that the applied strategy (fine-tuning or adversarial training) yields superior predictive metrics.
+
+74mC C.equisetifolia dataset, the model without fine-tuning suffered a drastic collapse in MCC from 0.7664 to 0.6679, representing a relative performance deficit of 9.85%. This empirical evidence strongly suggests that while pre-trained models provide gener-alized genomic representations [17, 18], task-specific adaptation is crucial for aligning these features with the distinct distribution of methylation data [13]. Complementing this, adversarial training emerged as a vital regularization strategy [33, 34]. Although the data points in Fig.2D–F cluster closer to the diagonal compared to the fine-tuning plots, they maintain a consistent position above the baseline, indicating a robust, albeit more subtle, performance gain. In the challenging 4mC S.cerevisiae dataset, the removal of adversarial perturbations led to a clear MCC drop from 0.5081 to 0.4762 (-0.0319), while a similar trend was observed in 4mC F.vesca (MCC decrease from 0.7102 to 0.6862). These results indicate that adversarial training plays a nuanced yet contributory role in smoothing the decision boundary, thereby enhancing the model’s resilience against input variations. Consequently, the predictive superiority of MEDNA-DFM is not merely a product of its static architecture but is significantly reinforced by the dynamic interplay of these advanced training strategies. 
+
+MEDNA-DFM Achieves Effective Methylation Distinction and Captures Conserved Methylation Patterns Across Species 
+
+We investigated the internal representation dynamics of MEDNA-DFM to validate its ability to strictly distinguish methylation states and uncover biologically intrin-sic patterns. First, the model demonstrates a progressive capability for methylation discrimination, effectively separating positive (red) from negative (blue) samples. Tracking the feature space via UMAP visualization [35] reveals that the decision boundary between methylated and non-methylated sequences becomes increasingly distinct at each key processing stage (Fig.3A–D; see Supplementary Fig.S2 for all 17 datasets). Specifically, the separability improves markedly from the initial fine-tuning phase, through the context-guided modulation by the FiLM module, and crystallizes finally after integration by the MoE module (Fig.3D). This stepwise refine-ment visually corroborates the ablation studies, confirming that each architectural component actively contributes to distilling discriminative biological signals from the raw sequence. Second, Motivated by the observation that identical methylation types share intrinsic sequence patterns (e.g., the conserved CpG motifs for 5hmC or [G/C]AGG[C/T] for 6mA across species) [22, 36, 37], we adopted a multi-species integration strategy. The cross-dataset evaluation (Fig.3E, the raw and normalized cross-species ACC matrices are detailed in Supplementary Tables 8 and 9, respec-tively) confirms the effectiveness of this approach. The heatmap displays a distinct block-diagonal structure, where species belonging to the same modification type (visu-alized with their corresponding chemical structures for 5hmC, 4mC, and 6mA) cluster tightly together with high prediction correlations. This indicates that MEDNA-DFM has successfully disentangled the fundamental, modification-specific semantic patterns from species-specific genomic background noise. Instead of memorizing species identi-ties, the model focuses on the evolutionarily conserved biochemical signatures, thereby achieving robust generalization within each modification family while maintaining strict boundaries between distinct chemical modifications. 8Raw Embed Post-DNABERT Post-FiLM Post-MoE A B C D
+
+# EFig. 3 Visualization of internal representation dynamics and cross-species generaliza-tion capabilities.(A–D) Trajectory of feature space evolution via UMAP visualization. The scatter plots illustrate the distribution of samples at four key processing stages: (A) Raw Embeddings, (B) 
+
+Post-DNABERT, (C) Post-FiLM, and (D) Post-MoE. Blue points represent positive samples, while yellow points represent negative samples. (E) Cross-dataset heatmap. The matrix depicts the pair-wise evaluation where rows represent source datasets (training) and columns represent target datasets (testing). Color intensity reflects the relative transferability, calculated as the ACC on the target set normalized by the source-on-source baseline. The chemical structures at the bottom correspond to the three DNA methylation categories: 5-hydroxymethylcytosine (5hmC), N4-methylcytosine (4mC), and N6-methyladenine (6mA). 
+
+9External Validation Reveals Conserved Motif-Driven Generalization in MEDNA-DFM 
+
+To rigorously evaluate the biological generalization capability of MEDNA-DFM, we employed a cross-modification design to verify whether the model genuinely captures universal epigenetic grammars rather than merely overfitting to the enzymatic signa-tures of a single methylation type. We performed a systematic external validation using an independent Homo sapiens 5mC dataset against models pre-trained on all 17 bench-mark datasets (detailed in Supplementary Table 9). We selected three representative models— Mus musculus (5hmC), Casuarina equisetifolia (4mC), and Caenorhabditis elegans (6mA)—to further characterize the relationship between predictive perfor-mance and evolutionary distance (Fig. 4). As illustrated in Fig. 4E and Fig. 4F , the model trained on M. musculus achieved the highest generalization performance (AUC = 0.9294, ACC = 0.8956). This is expected, given the close phylogenetic relationship between humans and mice (both Chordata). However, a counter-intuitive phenomenon emerged when comparing the other two models. As shown in the phylogenetic tree in Fig. 4F, C. elegans (Animalia) is evolutionarily closer to H. sapiens than C. equisetifo-lia (Plantae) . Despite this, the C. equisetifolia model significantly outperformed the C. elegans model, achieving an AUC of 0.8997 and ACC of 0.7750, whereas the C. elegans 
+
+model failed to generalize effectively (AUC = 0.4916, ACC = 0.5017). The kpLogo [38] analysis reveals the underlying mechanism(Fig. 4A–D; comprehensive motif profiles for all 17 benchmark datasets are provided in Supplementary Fig.S3): The external 
+
+H. sapiens 5mC dataset exhibits a strong enrichment of CG dinucleotides(Fig. 4A), a hallmark of mammalian methylation [39]. Similarly, both the M. musculus (5hmC) and 
+
+C. equisetifolia (4mC) datasets are characterized by GC-rich motifs(Fig. 4B, C), con-sistent with the high GC content often observed in methylated regions of plants [40]. This structural similarity explains why the ”Plant” model transfers well to Human data. In contrast, the C. elegans 6mA dataset is dominated by A-rich motifs (e.g., ApT or TpA context) and lacks CG enrichment(Fig. 4D) [36]. Consequently, the model trained on this data looks for features that do not exist in the Human 5mC context, leading to near-random prediction performance. These results demonstrate that MEDNA-DFM successfully captures intrinsic biochemical rules—specifically, the preference for GC-rich versus AT-rich environments—across species boundaries. The model’s ability to prioritize sequence syntax over species labels and methylation types validates its potential as a generalizable tool for exploring methylation mechanisms in uncharacterized genomes. 
+
+Signal Disentanglement and Purification Enables Highly Reliable Motif Mining 
+
+First, our analysis demonstrates that MEDNA-DFM functions as a statistical sig-nal disentangler, effectively deconstructing complex biological patterns into distinct functional components. As observed in the 6mA D.melanogaster dataset (Fig. 5A), the model separates the local biochemical context from distal sequence dependencies. Specifically, the DNABERT (CAD) view concentrates intensely on the central adenine ’A’ and its immediate neighbors (guanine ’G’ and cytosine ’C’), capturing the fine-grained local modification environment. In contrast, the FiLM (CWGA) view, while 10 5hmC_M.musculus   
+
+> 4mC_C.equisetifolia
+> 6mA_C.elegans
+> 0.9294 0.8997
+> 0.4916
+> 0
+> 0.1
+> 0.2
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> 0.7
+> 0.8
+> 0.9
+> 1M.musculus
+> C.equisetifolia
+> C.elegans
+
+External dataset: 
+
+Homo sapiens 
+
+> Plantae
+> Animalia
+> Nematoda
+> Chordata
+> Homo sapiens
+> Mus musculus
+> Caenorhabditis elegans
+> Casuarina equisetifolia
+
+AUC 
+
+# A
+
+# B
+
+# C
+
+# D
+
+# E
+
+# FFig. 4 Mechanism of motif-driven generalization across evolutionary boundaries. (A–D) 
+
+Comparative motif analysis using kpLogo illustrating the sequence preferences of the target and source datasets. (A) The external independent validation set Homo sapiens (5mC). (B–D) The source datasets used for training: (B) M. musculus (5hmC), (C) C. equisetifolia (4mC), (D) C. elegans 
+
+(6mA). (E) AUC of the three source models directly applied to the external H. sapiens dataset. 
+
+(F) Contrast between phylogenetic distance and predictive accuracy (ACC). The phylogenetic tree shows the evolutionary proximity of the species to H. sapiens , while the bar chart (right) reveals that the evolutionarily distant plant model ( C. equisetifolia ) significantly outperforms the closely related nematode model ( C. elegans ). 
+
+11 acknowledging the central site, allocates significant decision weights to distal flanking adenines. Interestingly, the complete sequence motif landscape generated by the tra-ditional KpLogo analysis [38] could be almost precisely viewed as the union of the two independent feature subsets derived from CAD and CWGA(Fig. 5A). Furthermore, this signal disentanglement capability directly translates into supe-rior motif mining performance, enabling the purification of core features and the unmasking of auxiliary elements submerged in raw sequence data. We validated this by comparing our model-guided discovery against standard STREME [41] analysis on raw sequences using the 5hmC H.sapiens dataset (Fig. 5B). While direct applica-tion of STREME to raw data identified a statistically significant CG-enriched motif (E-value = 5 .4 × 10 −24 ), its biological relevance was diluted by background noise, as evidenced by a relatively low-confidence match to the SP2 transcription factor (MA0516.3; p = 1 .85 × 10 −4). In stark contrast, our method acted as a high-fidelity filter: the motif extracted via the DNABERT view (CAD) achieved a markedly higher CAD 
+
+> CAD
+
+KpLogo 
+
+CWGA 
+
+> CWGA
+> STREME
+
+# A B
+
+TOMTOM 
+
+STREME 
+
+&     
+
+> Raw Data  CAD  CWGA
+> Fig. 5 Signal disentanglement and high-fidelity motif purification via MEDNA-DFM. (A) Comparison of sequence logo landscapes for the 6mA D.melanogaster dataset. The traditional KpLogo analysis effectively represents a composite union of these two independent feature subsets.
+> (B) Analytical workflow for model-guided motif discovery and validation. Sequence features extracted from CAD and CWGA methods, along with raw data, are processed through STREME. The resulting motifs are validated via TOMTOM to identify statistically significant matches to known transcription factor binding sites.
+
+12 statistical match to the EGR1 binding site (MA1831.2; p = 2 .25 × 10 −5; comprehen-sive CAD purification metrics and downstream TOMTOM alignments are detailed in Supplementary Table 10 and Supplementary Fig.S4). Crucially, the model also recov-ered functional signals completely overlooked by traditional analysis. The FiLM view (CWGA) successfully unmasked a distinct auxiliary motif, 1-CCAAAA, which cor-responds to the PI transcription factor (MA0559.1) (Supplementary Table 11 and Supplementary Fig.S5). This motif was completely submerged in the STREME results from the raw data. To quantitatively validate motif reliability, we compared the statistical significance (p-values) between our methods against raw data analysis (STREME) and inter-pretable models Methyl-GP [13] and iDNA-ABF [12]. As shown in Table 1 and 2, our method consistently identified motifs with substantially higher confidence lev-els. In the 6 mA A.thaliana dataset (Table 1), the multi-scale k-mer analysis of     
+
+> Table 1 Comparison of p-values for 6mA in A.thaliana across different methods. Baseline results for Methyl-GP and its corresponding STREME analysis are adopted from Xie et al. [13].
+
+STREME Methyl-GP (3mer) Methyl-GP (4mer) Methyl-GP (5mer) Methyl-GP (6mer) CAD CWGA 4.1 × 10 −4 1.25 × 10 −2 2.25 × 10 −3 2.18 × 10 −2 4.66 × 10 −2 1.37 × 10 −5 6.16 × 10 −5                                        
+
+> Table 2 Comparison of p-values across different methylation types and species. Baseline results for iDNA-ABF and its corresponding STREME analysis are adopted from Jin et al. [12]. 4mC Tolypocladium 5hmC H.sapiens 6mA C.equisetifolia STREME 5.0×10 −29.3×10 −12.7×10 −2
+> iDNA ABF 2.83 ×10 −25.47 ×10 −22.04 ×10 −3
+> CAD 7.85 ×10 −42.25 ×10 −55.54 ×10 −4
+> CWGA 1.77 ×10 −31.45 ×10 −49.68 ×10 −4
+
+Methyl-GP yielded p-values ranging from 1 .25 × 10 −2 to 4 .66 × 10 −2, indicating only marginal significance. Even the direct STREME analysis ( p = 4 .1 × 10 −4) outper-formed Methyl-GP. However, our CAD view achieved a decisive significance level of 1.37 × 10 −5, representing an improvement of nearly two orders of magnitude over the best Methyl-GP configuration. This superiority was further corroborated in com-parisons with iDNA-ABF (Table 2). For instance, in the complex 5 hmC H.sapiens 
+
+dataset, the motif extracted by iDNA-ABF ( p = 5 .47 × 10 −2) and raw STREME (p = 9 .3 × 10 −1) failed to pass stringent significance thresholds. In stark contrast, our model successfully purified the signal, identifying a core motif with a highly sig-nificant p-value of 2 .25 × 10 −5. Similar trends were observed in 4 mC T olypocladium 
+
+and 6 mA C.equisetif olia , where both CAD and CWGA views consistently surpassed the baselines. These results confirm that MEDNA-DFM acts as a robust statistical amplifier, effectively suppressing background noise to reveal highly reliable and stable biological signals that remain obscured or fluctuate in competing models. 13 Case Study: Computational Deconstruction of Drosophila 6mA Reveals a Sequence-Structure Dependency 
+
+To investigate the underlying patterns of Drosophila 6mA regulation, we analyzed the internal representations of the MEDNA-DFM model using UMAP dimensionality reduction (Fig. 6). This analysis revealed a distinct functional dichotomy between the model’s modules. First, the DNABERT module precisely captured the GAGG core motif centered on the modification site (Fig. 6C), consistent with the canonical con-sensus identified in Drosophila [23]. While this feature provided an initial separation of P
+
+> O
+> P
+> O
+> P
+> O
+> P
+> O
+> OH P
+> O
+> P
+> O
+> P
+> O
+> P
+> O
+> OH
+> CG
+> A T
+> CG
+> CG
+
+local DNA bending 
+
+A-Tract (poly-A sequence) 
+
+Data Flow 
+
+# Dual-View DNABERT FiLM 
+
+> Post-DNABERT
+> Post-FiLM
+
+# A B
+
+# C D
+
+Fig. 6 Computational deconstruction of the sequence-structure dependency in 
+
+Drosophila 6mA regulation. The schematic illustrates the progressive purification of biological signals as data flows through the MEDNA-DFM architecture. (A) UMAP visualization of the feature space at the Post-DNABERT stage. While initial discrimination is achieved, positive samples (red) remain dispersed into disparate sub-clusters. (B) UMAP visualization at the Post-FiLM stage. This stage effectively draws the previously divergent sub-clusters together. (C) Corresponding to (A), the Dual-View DNABERT module captures the local GAGG core motif (D) Corresponding to (B), the FiLM module captures the A-Tract, which induces local DNA bending .
+
+14 methylated (positive) and non-methylated (negative) samples, the UMAP visualiza-tion indicated that positive samples were dispersed into multiple disparate sub-clusters (Fig. 6A). This divergence suggests that while the GAGG motif is a necessary anchor, the sequence contexts surrounding it are highly variable, preventing a unified repre-sentation based on sequence identity alone. Crucially, the FiLM module identified a secondary, stable signal: a dependency on an A-Tract (poly-A sequence) (Fig. 6D). Mapping this sequence to DNA shape parameters [42] confirms that it induces a signif-icant narrow minor groove and local DNA bending [43]. When this structural feature was incorporated, the previously divergent sub-clusters in the UMAP space were effec-tively drawn together, maximizing the global separation between positive and negative classes (Fig. 6B). This computational observation demonstrates that the Drosophila 
+
+6mA signal is not defined by a monolithic sequence, but rather by a composite signa-ture consisting of a variable GAGG sequence core spatially coupled with a conserved upstream structural element, a mechanism reminiscent of the ”shape-sequence” dual recognition mode observed in transcription factors [44]. 
+
+In silico Mutagenesis Validates the Sequence-Structure Dependency and Algorithm Faithfulness 
+
+To quantitatively validate the sequence-structure dependency observed in the 
+
+Drosophila melanogaster case study, and to simultaneously evaluate the interpre-tative faithfulness of our proposed CAD and CWGA algorithms, we performed a targeted in silico mutagenesis experiment (Fig. 7; comprehensive quantitative results are detailed in Supplementary Table 12) [45, 46]. We systematically perturbed the core sequence motif (GAGG) and the structural element (A-tract) in the positive samples of the test set. To rigorously eliminate the confounding effects of altered background distributions, the nucleotide frequencies were strictly preserved during perturbations [47, 48]. Specifically, the core GAGG motif was mutated to CTCC, and consecutive A-tracts(AAAA) were replaced with alternating TATA sequences (Fig. 7A). Negative samples were kept intact to serve as an internal control. The experimental results present a compelling and rigorously controlled evidence chain. As illustrated in Fig.7B, across all perturbation groups, the specificity (SP) for neg-ative samples remained exceptionally constant at 0.9299. This demonstrates that our mutation strategy successfully maintained the background distribution, ensuring that any observed performance degradation is entirely attributable to the ablation of true positive methylation signals rather than a systemic model collapse. In contrast, the sensitivity (SN) exhibited a stepwise decline, directly corroborating the synergistic reg-ulation mechanism. Independent disruption of either the core motif (Mut-GAGG) or the upstream structural element (Mut-A-tract) resulted in a substantial failure to rec-ognize true 6mA sequences, with SN dropping from 0.9298 (Wild-type) to 0.8810 and 0.8574, respectively. This strongly indicates that even with an intact GAGG core, the absence of the cooperative A-tract structural element impairs the model’s predictive capability. Furthermore, the global performance metrics evaluation (Fig. 7C) revealed that the simultaneous ablation of both elements (Mut-Both) yielded the severe perfor-mance degradation. The overall accuracy (ACC) dropped from 0.9298 to 0.8622, AUC decreased from 0.9755 to 0.9441, and the Matthews correlation coefficient (MCC), 15 Fig. 7 Targeted in silico mutagenesis reveals the sequence-structure dependency and validates the faithfulness of interpretation algorithms. The top schematic (A) illustrates the computational perturbation strategy applied to the positive test samples. The GAGG core motif and the upstream A-tract (AAAA) were specifically mutated to CTCC and alternating TATA, respec-tively. Negative samples were kept intact as an internal control. (B) Comparison of Sensitivity (SN) and Specificity (SP) across the wild-type (WT) and three mutated conditions (Mut-GAGG, Mut-A-tract, and Mut-Both). (C) Evaluation of global predictive performance metrics, including Accuracy (ACC), Area Under the Curve (AUC), and Matthews Correlation Coefficient (MCC). 
+
+a metric highly sensitive to classification errors, plummeted from 0.8597 to 0.7311. Importantly, the precise targeting of these perturbations was strictly guided by the specific features extracted via our CAD and CWGA algorithms. The fact that disrupt-ing these algorithm-identified regions triggers such a profound loss in predictive power provides direct computational evidence that CAD and CWGA successfully isolate the true, causal features driving the model’s decisions, rather than capturing statistical artifacts. Together, these results serve a dual purpose: they not only validate that the MEDNA-DFM model’s decision-making is firmly grounded in the authentic biologi-cal sequence-structure dependency of 6mA regulation, but also demonstrate the high faithfulness and utility of our interpretation algorithms. 
+
+# 3 Discussion 
+
+In this study, we first validated MEDNA-DFM’s predictive superiority across 17 bench-marks, with ablation studies confirming the critical efficacy of architecture. Extending 16 beyond standard metrics, our external validation revealed that MEDNA-DFM prior-itizes intrinsic sequence syntax over species and modification labels, demonstrating a motif-driven generalization that transcends both evolutionary and chemical bound-aries. Unlike previous studies that stopped at performance benchmarking or superficial attention visualization [12, 13], we advanced to a deep dissection of the model’s internal decision-making mechanism, which directly inspired the development of our CAD and CWGA algorithms. By applying these algorithms for signal purification, we distilled high-confidence motifs with statistical significance two to three orders of magnitude higher than those identified by previous attention-based methods (e.g., iDNA-ABF) or standard motif scanners (e.g., STREME). Most notably, our computational deconstruction offers a novel mechanistic perspec-tive on Drosophila 6mA regulation, moving beyond simple sequence pattern matching. Based on the computational observation that sequence (GAGG) and structure (A-Tract) features are spatially coupled, we rigorously validated this sequence-structure dependency via targeted in silico mutagenesis. The profound performance degradation observed upon ablating these specific regions confirmed their cooperative necessity, while simultaneously demonstrating the high faithfulness of our CAD and CWGA algorithms in isolating true causal features. Driven by this validated computational dependency, we propose a ”Sequence-Shape Synergy” hypothesis for Drosophila 6mA regulation. We postulate that the recruitment of the 6mA methyltransferase (Writer) complex is not a single-step event but a sequential process. The complex may first anchor to the GAGG motif via sequence-specific DNA binding domains, followed by a conformation confirmation step triggered by the narrow minor groove and DNA bend-ing induced by the upstream A-Tract. This ”structural sensor” mechanism ensures that methylation occurs only when both the correct sequence and the permissive local topology are present. Crucially, this binary regulation hypothesis offers a unifying explanation for the persistent controversies in Drosophila 6mA research. First, it redefines the previously reported ”AG-rich” consensus (e.g., AGAGGAG) [49]. We argue that this elongated motif is not a monolithic recognition sequence, but rather a statistical amalgam of two functionally distinct signals—the GAGG core and the A-rich structural ele-ment—which our model successfully decouples. Second, it resolves the paradox of ”extremely low 6mA levels” [25, 50]. While GAGG motifs are abundant across the genome, the probability of a GAGG motif co-occurring with a structural A-Tract in the exact spatial configuration required for the ”AND-gate” activation is exceed-ingly low. This aligns with the principle that multicellular eukaryotes employ high ”contextual redundancy” (or syntax) to ensure regulatory precision [51]. Thus, the observed scarcity of 6mA likely reflects this exquisite regulatory stringency rather than experimental noise or contamination. Despite these promising insights, we acknowledge certain limitations regarding the scope of our current study. Methodologically, the validity and faithfulness of CAD and CWGA have been robustly established through external biological validation (includ-ing qualitative and quantitative comparisons with authoritative tools like kpLogo and STREME, as well as baseline models) and in silico mutagenesis. However, in terms of 17 biological scope, MEDNA-DFM is primarily designed to decipher DNA sequence syn-tax. We recognize that DNA methylation in vivo is also influenced by dynamic spatial contexts, such as chromatin accessibility [52] and nucleosome positioning [53]. How-ever, incorporating these multi-dimensional features into a unified model is currently constrained by the limited availability and inherent noise of high-resolution spatial datasets across non-model species. Therefore, rather than attempting to capture the full in vivo complexity, our framework serves as a reliable sequence-level pre-screening mechanism. By efficiently narrowing down the target search space, CAD and CWGA provide a computational baseline that can help prioritize candidates, thereby reduc-ing experimental costs and accelerating downstream biological discoveries and clinical biomarker identification. 
+
+# 4 Methods 
+
+## 4.1 Datasets 
+
+Benchmark Datasets 
+
+We reuse the exact data sources and original train/test partitions from the iDNA-MS benchmark, without any alteration [11]. This benchmark, established by Lv et al., comprises 17 independent datasets covering multiple species, various DNA methylation types (4mC, 6mA, and 5hmC), and a uniform sequence length of 41 bp. Per the iDNA-MS benchmark definition, each sample is labeled as either positive (modification site) or negative (non-modification site). Detailed statistics for these 17 datasets, including species, modification type, and the number of positive and negative samples in the training and test sets, are exhaustively listed in Supplementary Table 1. 
+
+External Datasets 
+
+For independent validation, we curated a balanced human dataset ( N = 27 , 900) from the BERT-5mC repository [54] by retaining all positive samples and under-sampling the top-ranked negative sequences to achieve a 1:1 ratio. Evaluation was performed via direct zero-shot inference using the frozen pre-trained MEDNA-DFM, strictly excluding any fine-tuning or data leakage. 
+
+## 4.2 The MEDNA-DFM Architecture 
+
+Overview 
+
+MEDNA-DFM (Dual-View FiLM-MoE Model) is a deep learning architecture designed for the binary classification of DNA methylation (Fig.8). The architecture comprises four core components: (i) a Dual-View DNABERT Feature Extraction module, (ii) a FiLM module, (iii) an MoE module, and (iv) a Final Prediction Layer. 
+
+Dual-View DNABERT Module 
+
+The model employs two parallel encoders to process the input DNA sequence S (length 
+
+L = 41). (1) DNABERT-6mer: The sequence is tokenized into overlapping 6-mers and processed by DNABERT. The pooler output—derived from the special [CLS] token 18 4mC 
+
+5hmC 6mA 
+
+# A
+
+DNA Data producing Datasets Input sequences  
+
+> 6mer
+> BPE
+
+×12 
+
+> Token
+> embedding
+> Positional
+> embedding
+> Token
+> embedding
+> ALiBi
+
+... 
+
+# ... 
+
+# D 
+
+> ×12 kmer
+
+h
+
+> bpe
+
+h
+
+# B
+
+# 
+
+# 
+
+# C
+
+> Verctor Spilitting
+> Multi-Head Self-
+> Attention
+> Add & Norm
+> Feed Forward
+> Add & Norm
+> Merge to vector
+> Layer-Norm
+
+expert1 
+
+> Verctor Spilitting
+> Multi-Head Self-
+> Attention
+> Add & Norm
+> Feed Forward
+> Add & Norm
+> Merge to vector
+> Layer-Norm
+
+expert2 
+
+> Verctor Spilitting
+> Multi-Head Self-
+> Attention
+> Add & Norm
+> Feed Forward
+> Add & Norm
+> Merge to vector
+> Layer-Norm
+
+expert3 
+
+> Verctor Spilitting
+> Multi-Head Self-
+> Attention
+> Add & Norm
+> Feed Forward
+> Add & Norm
+> Merge to vector
+> Layer-Norm
+
+expert4 
+
+# EFig. 8 Architecture of the MEDNA-DFM. (A) Overview of the benchmark data process-ing flow. (B) The Dual-View DNABERT module, featuring two parallel encoders. (C) The FiLM (Feature-wise Linear Modulation) module. (D) The Mixture of Experts (MoE) module. (E) The final Classification Module, which maps the aggregated high-dimensional features to binary predic-tion logits. 
+
+via a dense layer with Tanh activation—is serves as the k-mer representation hkmer .(2) DNABERT2: The same sequence S is tokenized via Byte Pair Encoding (BPE) and processed by DNABERT2. The final hidden states of all BPE tokens are subjected to mean pooling to generate the contextual representation hbpe .
+
+FiLM Module 
+
+To synthesize the two representations, we implement a Feature-wise Linear Modulation (FiLM) mechanism. An auxiliary Multilayer Perceptron (MLP) maps the contextual representation hbpe to affine modulation parameters. The MLP consists of two linear layers with an intermediate ReLU activation, formulated as: [γ, β ] = Linear 2(ReLU(Linear 1(hbpe ))) The resulting output vector ( ∈ R2d) is partitioned along the feature dimension into a scale vector γ ∈ Rd and a shift vector β ∈ Rd (d = 768). These coefficients constitute 19 an element-wise affine transformation to the k-mer representation hkmer :
+
+hmod = γ ⊙ hkmer + β
+
+where ⊙ denotes the Hadamard product. 
+
+Mixture of Experts (MoE) Module 
+
+The MoE module aggregates features from N = 4 experts, conditioned on hbpe . The process consists of three stages: 
+
+Gating Network. The gating network computes a probability distribution 
+
+w ∈ RN to weight the experts. It projects the input hbpe followed by a Softmax normalization: 
+
+w = Softmax(Linear N (hbpe )) 
+
+Expert Architecture. The module comprises N isomorphic experts, each pro-cessing the modulated representation hmod . The input vector ( d = 768) is reshaped into a sequence of m = 4 segments (dimension 192 each). This sequence is encoded by a single-layer Transformer ( nhead = 4, dff = 256, with GELU activation). The out-put is flattened and fused with the original input via a residual connection and Layer Normalization: 
+
+hexpert i = LayerNorm( hmod + Flatten(Transformer(Reshape( hmod )))) 
+
+Feature Aggregation. The final representation is derived by aggregating the expert outputs according to weights w, followed by a final linear projection: 
+
+hmoe = Linear d
+
+> N
+
+X
+
+> i=1
+
+wi · hexpert i 
+
+!
+
+Classification Module 
+
+The representation hmoe serves as input to the final classification head. This module is implemented as a two-layer MLP that maps the high-dimensional features to the label space. Specifically, the input is projected to a hidden dimension of 20, regularized via Dropout ( p = 0 .5) and ReLU activation, before passing through the output layer: 
+
+z = Linear 2(ReLU(Dropout(Linear 20 (hmoe )))) where z ∈ R2 represents the predicted logits for the binary classification task. 
+
+## 4.3 Model Training and Evaluation Setup 
+
+Pre-training and Initialization 
+
+We employed a fine-tuning strategy based on Methyl-GP to initialize our feature encoders [13]. For the DNABERT branch, we directly utilized the official pre-trained weights provided by Methyl-GP; for the DNABERT2 branch, we replicated their multi-species fine-tuning protocol. Specifically, we constructed aggregated datasets for 20 4mC, 5hmC, and 6mA: the former two incorporated training samples from all species, whereas the 6mA dataset excluded T. thermophile to mitigate bias arising from its excessive sample size. The DNABERT2 encoder was fine-tuned on these domain-specific datasets. Ultimately, both branches were initialized using the fine-tuned parameters. 
+
+Implementation and Training Strategy 
+
+The MEDNA-DFM framework was implemented using PyTorch (v1.13.1) and the Transformers library (v4.18.0) [55, 56], with all experiments conducted on NVIDIA A100 80GB GPUs. We employed the AdamW optimizer [57] ( β1 = 0 .9, β 2 = 0 .999) to minimize a composite objective function that integrates flooding regularization and adversarial training. To mitigate overfitting, we adopted a flooding-regularized cross-entropy loss. Let 
+
+LCE = −
+
+> 1
+
+X
+
+> k=0
+
+yk log(ˆ yk)denote the standard cross-entropy loss for the binary classification task; the final optimized loss L is defined as: 
+
+L = |L CE − b| + b
+
+where b is the dataset-specific flood level. To further enhance model robustness, we incorporated adversarial training via the Fast Gradient Method (FGM) [58]. Specif-ically, we applied a perturbation radv to the embedding parameters w during the forward pass, scaled by the gradient’s ℓ2-norm with ϵ = 1 .0: 
+
+radv = ϵ · ∇wL(θ, x, y )
+
+∥∇ wL(θ, x, y )∥2
+
+Model parameters were updated using accumulated gradients from both the origi-nal and perturbed passes. Key hyperparameters—including learning rate, batch size, weight decay, and flood level b—were optimized individually for each of the 17 benchmark datasets to maximize the mean AUPRC under 5-fold cross-validation. 
+
+Evaluation Metrics 
+
+Defining methylated sites as positive instances, we evaluated model performance using a fixed decision threshold of 0.5. Based on this cutoff, we reported Accuracy (ACC), Sensitivity (Sn), Specificity (Sp), and the Matthews Correlation Coefficient (MCC). Additionally, to assess discriminative power independent of the decision boundary, we calculated the Area Under the Receiver Operating Characteristic Curve (AUC). They provide a quantitative measure of the model’s global performance, where higher scores are indicative of better classification quality. 
+
+ACC = T P + T N T P + T N + F P + F N 
+
+21 Sn = T P T P + F N Sp = T N T N + F P M CC = T P × T N − F P × F N 
+
+p(T P + F P )( T P + F N )( T N + F P )( T N + F N )where T P (True Positive) denotes the number of methylated sites correctly identified by the model; T N (True Negative) represents the number of non-methylated sites correctly identified; F P (False Positive) refers to the number of non-methylated sites incorrectly predicted as methylated; and F N (False Negative) indicates the number of methylated sites incorrectly predicted as non-methylated. 
+
+Ablation Study Design 
+
+To dissect the contribution of each component within MEDNA-DFM, we conducted a series of ablation studies. Unless otherwise specified, all variants retained the same architecture, hyperparameters, and training procedures as the final model. 
+
+Optimization of k-mer Granularity. To determine the optimal tokenization resolution, we evaluated four variants by initializing the DNABERT encoder with weights pre-trained on different k-mer lengths ( k ∈ { 3, 4, 5, 6}). 
+
+Necessity of Asymmetric Modulation. To validate the specific FiLM-based architecture, we compared the final model against three structural variants. The 
+
+Single-Encoder Baseline excluded the DNABERT2 branch entirely, utilizing only the hkmer representation for classification. The Concatenation Fusion variant sub-stituted the element-wise affine transformation with a direct concatenation of hkmer 
+
+and hbpe . The Reverse Modulation variant inverted the dependency, employing 
+
+hkmer to generate the affine parameters that modulate hbpe .
+
+Configuration of the MoE Module. We validated the Mixture-of-Experts strategy by first testing a No-MoE baseline, where the modulated features were directly fed into the classification head. Subsequently, to determine the optimal expert capac-ity, we evaluated variants with varying numbers of experts ( N ∈ { 1, 2, 4, 8}), analyzing the trade-off between model complexity and predictive performance. 
+
+Impact of Training Strategies. We quantified the impact of our specialized training protocols through two control experiments: (i) w/o Adversarial Training: A variant disabling the Fast Gradient Method (FGM) perturbation to assess its contribution to robustness. (ii) w/o Specific Fine-tuning: A variant initializing the Dual-View module with off-the-shelf pre-trained DNABERT weights, bypassing our domain-adaptive fine-tuning process. 
+
+## 4.4 Feature Representation Visualization 
+
+To visualize the evolution of learned representations, we extracted 768-dimensional feature vectors from the test set at four distinct computational stages of the MEDNA-DFM inference process. These high-dimensional vectors were projected into a two-dimensional embedding space using the Uniform Manifold Approximation and 22 Projection algorithm [35], implemented via the umap-learn library (v0.5.9). The pro-jection was configured with n neighbors=100, min dist=0.1, and random state=42 to ensure stability. The visualization targets the following representations: (1) the [CLS] token output ( hkmer ) from the randomly initialized DNABERT-6mer encoder; (2) the 
+
+hkmer from the fully fine-tuned encoder; (3) the modulation output from the FiLM module ( hmod ); and (4) the final aggregated output from the Mixture of Experts module ( hmoe ). 
+
+## 4.5 Evaluation for Cross-Species Generalization 
+
+To evaluate the transferability of the learned features, we conducted an exhaustive pairwise evaluation among the 17 benchmark datasets. We constructed a performance matrix where each cell ( i, j ) denotes the inference performance (AUC) of the predictor trained on dataset i when applied to the test set of dataset j. This process involved direct inference using the frozen parameters of the source model. The raw AUC matrix was subsequently row-normalized by dividing each value by the corresponding on-diagonal AUC (source-on-source performance) to derive the relative performance ratios visualized in the study. 
+
+## 4.6 Contrastive Signal Purification Algorithms 
+
+The design of our CWGA and CAD algorithms is grounded in a dual-source valida-tion: the mechanistic dissection of the model’s internal decision-making (detailed in Supplementary Note 1) and the critical recognition that raw attention weights often produce ’artifacts’ rather than faithful explanations [15]. To address these limitations, we formulated these algorithms to mitigate statistical noise and align interpretation with the model’s actual feature modulation strategies, ensuring the identification of genuine biological drivers. 
+
+Contrastive Attention Cohen’s d (CAD) 
+
+To identify the motifs most diagnostic for discriminating between positive and nega-tive samples within the Dual-View DNABERT module, we designed and implemented a post-hoc statistical procedure termed CAd (Contrastive Attention Cohen’s d). This procedure was developed to quantify the effect size of the attentional differences directed toward specific motifs between the two sample classes. 
+
+Generation of high-confidence sample sets: The analysis began with the construction of high-confidence contrastive sample sets. We loaded the pre-trained MEDNA-DFM model to perform predictions on the entire test set. Sequences were then filtered to include only those that were both correctly classified and achieved a Softmax confidence score greater than 0.9 (confidence threshold). This process yielded a high-confidence positive sample set ( Spos ) and a high-confidence negative sample set (Sneg ). 
+
+Construction of attention score distributions: Next, the DNABERT-6mer and DNABERT2 modules were loaded. We then iterated through all sequences in both the Spos and Sneg sets to extract attention scores. Specifically, for each sequence, the attention scores directed from the [CLS] token to every motif token ( m) were 23 obtained from the final transformer layer and averaged across all attention heads. For any given motif m, all corresponding scores were collected to construct an attention score distribution for the positive sample set, Apos = {p1, p 2, ..., p npos }, and for the negative sample set, Aneg = {n1, n 2, ..., n nneg }.
+
+Calculation of CAd and statistical significance: Finally, the CAd and its statistical significance were calculated. We set a minimum occurrence threshold (MIN SAMPLES = 3), and all motifs m that met this threshold in both distributions (i.e., npos ≥ 3 and nneg ≥ 3) were processed.For each qualifying motif, its Contrastive Attention Cohen’s d was calculated as the standardized effect size, representing the difference between the two distribution means ( ¯Apos − ¯Aneg ) divided by their pooled standard deviation sp:
+
+CAd m = ¯Apos − ¯Aneg 
+
+sp
+
+where ¯Apos and ¯Aneg are the means of the Apos and Aneg distributions, respectively. The pooled standard deviation sp was calculated as follows: 
+
+sp =
+
+s
+
+(npos − 1) s2 
+
+> pos
+
++ ( nneg − 1) s2
+
+> neg
+
+npos + nneg − 2In this formula, npos and nneg are the sample sizes of Apos and Aneg (i.e., the num-ber of occurrences of motif m), and s2 
+
+> pos
+
+and s2 
+
+> neg
+
+are the sample variances of these two distributions, respectively. Concurrently, to assess the statistical significance of the observed CAd values, a Welch’s t-test was performed on the two independent dis-tributions, Apos and Aneg . This test was selected as it is statistically more robust and does not assume equal variances. The final results were sorted in descending order by their CAd values to highlight the most discriminative diagnostic motifs. 
+
+Contrastive Weighted Gradient Attribution (CWGA) 
+
+To systematically elucidate the sequence patterns determinative of model decisions in a DNA sequence binary classification task, we designed and implemented the Contrastive Weighted Gradient Attribution (CWGA) method. This approach leverages gradient attribution techniques, is grounded in high-confidence samples, and is weighted by the effect size of feature dimensions. It quantifies the contribution of sequence units at different granularities (BPE tokens and 6mer tokens) to the model’s classification outcomes. 
+
+High-confidence contrastive sample selection: We utilized the trained MEDNA-DFM model to perform inference on the test set. Samples that were correctly classified with a Softmax confidence score exceeding a predefined threshold were fil-tered. The top N (NUM SAMPLES TO ANALYZE = 100) samples were then selected to construct the high-confidence positive set Spos and the high-confidence negative set 
+
+Sneg , respectively. 
+
+Discriminative feature dimension selection: For each feature dimension d
+
+output by the FiLM module, we calculated the mean difference in activation values 24 between the positive and negative samples ∆d = ¯Odpos − ¯Odneg 
+
+We then employed a two-sided t-test to assess the statistical significance (p-value) of this difference and proceeded to compute the standardized effect size, Cohen’s d. All dimensions were ranked according to the absolute value of Cohen’s d, |dd|, and the top K (TOP N DIMS FOR AGGREGATION = 40) most discriminative dimensions were selected to form the set Dtop . The resulting dd value served as the weight for the subsequent attribution calculations. 
+
+Attribution calculation: For each selected dimension d ∈ Dtop , we employed distinct integrated gradient methods to compute the contribution of the two types of sequence units. For BPE tokens, we applied the Layer Integrated Gradients (LIG) method. With the embedding layer as the attribution target, we calculated the attri-bution scores Adpos (tb) and Adneg (tb) for each BPE token tb with respect to the output value of dimension d. The difference was taken as the token’s discriminative contribution for that dimension: 
+
+δd(tb) = Adpos (tb) − Adneg (tb)For 6mer tokens, we applied the standard Integrated Gradients (IG) method. With the embedding vector as the attribution target, we calculated the attribution scores 
+
+Adpos (tk) and Adneg (tk) for each 6mer unit tk with respect to the output value of dimension d. The difference was taken as the k-mer’s discriminative contribution for that dimension: 
+
+δd(tk) = Adpos (tk) − Adneg (tk)
+
+Weighted aggregation and normalization: The token contribution δd(t) from each dimension was weighted by that dimension’s Cohen’s d value, dd. These weighted contributions were then summed over all dimensions in Dtop to obtain the total contribution C(t) for a given token t:
+
+C(t) = X
+
+> d∈Dtop
+
+(dd × δd(t)) Finally, this total contribution was normalized by the maximum absolute contribution across all tokens: ˆC(t) = C(t)max t′ |C(t′)|
+
+The final results were sorted in descending order to highlight the most discriminative diagnostic motifs. 
+
+# 5 Data availability 
+
+The datasets in this study are available from the corresponding author on reasonable request, and will be made fully public upon the formal publication of this manuscript. 25 6 Code availability 
+
+The complete repository will be made publicly available upon the formal acceptance and publication of this article. In the interim, researchers may contact the correspond-ing author for access to specific algorithmic implementations on a reasonable request basis. 
+
+# References 
+
+[1] Smith, Z.D., Meissner, A.: Dna methylation: roles in mammalian development. Nature Reviews Genetics 14 (3), 204–220 (2013) [2] Robertson, K.D.: Dna methylation and human disease. Nature Reviews Genetics 
+
+6(8), 597–610 (2005) [3] Xiao, C.-L., Zhu, S., He, M., Chen, D., Zhang, Q., Chen, Y., Yu, G., Liu, J., Xie, S.-Q., Luo, F., et al. : N6-methyladenine dna modification in the human genome. Molecular cell 71 (2), 306–318 (2018) [4] Breiling, A., Lyko, F.: Epigenetic regulatory functions of dna modifications: 5-methylcytosine and beyond. Epigenetics & chromatin 8(1), 24 (2015) [5] Lv, H., Dao, F.-Y., Zhang, D., Yang, H., Lin, H.: Advances in mapping the epi-genetic modifications of 5-methylcytosine (5mc), n6-methyladenine (6ma), and n4-methylcytosine (4mc). Biotechnology and Bioengineering 118 (11), 4204–4216 (2021) [6] Oliveira, P.H., Touchon, M., Rocha, E.P.: The interplay of restriction-modification systems with mobile genetic elements and their prokaryotic hosts. Nucleic acids research 42 (16), 10618–10631 (2014) [7] Mikeska, T., Craig, J.M.: Dna methylation biomarkers: cancer and beyond. Genes 
+
+5(3), 821–864 (2014) [8] Koch, A., Joosten, S.C., Feng, Z., Ruijter, T.C., Draht, M.X., Melotte, V., Smits, K.M., Veeck, J., Herman, J.G., Van Neste, L., et al. : Analysis of dna methylation in cancer: location revisited. Nature reviews Clinical oncology 15 (7), 459–466 (2018) [9] Yong, W.-S., Hsu, F.-M., Chen, P.-Y.: Profiling genome-wide dna methylation. Epigenetics & chromatin 9(1), 26 (2016) [10] Xu, T., Zheng, X., Li, B., Jin, P., Qin, Z., Wu, H.: A comprehen-sive review of computational prediction of genome-wide features. Briefings in Bioinformatics 21 (1), 120–134 (2018) https://doi.org/10.1093/bib/bby110 https://academic.oup.com/bib/article-pdf/21/1/120/50498351/bby110.pdf 26 [11] Lv, H., Dao, F.-Y., Zhang, D., Guan, Z.-X., Yang, H., Su, W., Liu, M.-L., Ding, H., Chen, W., Lin, H.: idna-ms: an integrated computational tool for detecting dna modification sites in multiple genomes. Iscience 23 (4) (2020) https://doi. org/10.1016/j.isci.2020.100991 [12] Jin, J., Yu, Y., Wang, R., Zeng, X., Pang, C., Jiang, Y., Li, Z., Dai, Y., Su, R., Zou, Q., et al. : idna-abf: multi-scale deep biological language learning model for the interpretable prediction of dna methylations. Genome biology 23 (1), 219 (2022) [13] Xie, H., Wang, L., Qian, Y., Ding, Y., Guo, F.: Methyl-gp: accurate generic dna methylation prediction based on a language model and representation learning. Nucleic Acids Research 53 (6), 223 (2025) [14] Feng, X., Xin, R., Wu, J., Zheng, J., Wang, C., Yu, C.: Autofe-pointer: Auto-weighted feature extractor based on pointer network for dna methyla-tion prediction. International Journal of Biological Macromolecules 311 , 143668 (2025) [15] Jain, S., Wallace, B.C.: Attention is not explanation. arXiv preprint arXiv:1902.10186 (2019) [16] Perez, E., Strub, F., De Vries, H., Dumoulin, V., Courville, A.: Film: Visual rea-soning with a general conditioning layer. In: Proceedings of the AAAI Conference on Artificial Intelligence, vol. 32 (2018) [17] Ji, Y., Zhou, Z., Liu, H., Davuluri, R.V.: Dnabert: pre-trained bidirectional encoder representations from transformers model for dna-language in genome. Bioinformatics 37 (15), 2112–2120 (2021) [18] Zhou, Z., Ji, Y., Li, W., Dutta, P., Davuluri, R., Liu, H.: Dnabert-2: Effi-cient foundation model and benchmark for multi-species genome. arXiv preprint arXiv:2306.15006 (2023) [19] Jacobs, R.A., Jordan, M.I., Nowlan, S.J., Hinton, G.E.: Adaptive mixtures of local experts. Neural computation 3(1), 79–87 (1991) [20] Shazeer, N., Mirhoseini, A., Maziarz, K., Davis, A., Le, Q., Hinton, G., Dean, J.: Outrageously large neural networks: The sparsely-gated mixture-of-experts layer. arXiv preprint arXiv:1701.06538 (2017) [21] Zemach, A., McDaniel, I.E., Silva, P., Zilberman, D.: Genome-wide evolutionary analysis of eukaryotic dna methylation. Science 328 (5980), 916–919 (2010) https: //doi.org/10.1126/science.1186366 [22] Fu, Y., Luo, G.-Z., Chen, K., Deng, X., Yu, M., Han, D., Hao, Z., Liu, J., Lu, X., Dor´ e, L.C., et al. : N6-methyldeoxyadenosine marks active transcription start 27 sites in chlamydomonas. Cell 161 (4), 879–892 (2015) https://doi.org/10.1016/j. cell.2015.04.010 [23] Zhang, G., Huang, H., Liu, D., Cheng, Y., Liu, X., Zhang, W., Yin, R., Zhang, D., Zhang, P., Liu, J., et al. : N6-methyladenine dna modification in drosophila. Cell 161 (4), 893–906 (2015) https://doi.org/10.1016/j.cell.2015.04.018 [24] Rohs, R., Jin, X., West, S.M., Joshi, R., Honig, B., Mann, R.S.: Origins of speci-ficity in protein-dna recognition. Annual review of biochemistry 79 (1), 233–269 (2010) https://doi.org/10.1146/annurev-biochem-060408-091030 [25] O’Brown, Z.K., Boulias, K., Wang, J., Wang, S.Y., O’Brown, N.M., Hao, Z., Shibuya, H., Fady, P.-E., Shi, Y., He, C., et al. : Sources of artifact in measure-ments of 6ma and 4mc abundance in eukaryotic genomic dna. BMC genomics 
+
+20 (1), 445 (2019) https://doi.org/10.1186/s12864-019-5754-6 [26] Zeng, W., Gautam, A., Huson, D.H.: Mulan-methyl—multiple transformer-based language models for accurate dna methylation prediction. GigaScience 12 , 054 (2023) https://doi.org/10.1093/gigascience/giad054 [27] Yu, Y., He, W., Jin, J., Xiao, G., Cui, L., Zeng, R., Wei, L.: idna-abt: advanced deep learning model for detecting dna methylation with adaptive features and transductive information maximization. Bioinformatics 37 (24), 4603–4610 (2021) https://doi.org/10.1093/bioinformatics/btab677 [28] Yu, H., Dai, Z.: Snnrice6ma: a deep learning method for predicting dna n6-methyladenine sites in rice genome. Frontiers in genetics 10 , 1071 (2019) https: //doi.org/10.3389/fgene.2019.01071 [29] Liu, Q., Chen, J., Wang, Y., Li, S., Jia, C., Song, J., Li, F.: Deeptorrent: a deep learning-based approach for predicting dna n4-methylcytosine sites. Briefings in bioinformatics 22 (3), 124 (2021) https://doi.org/10.1093/bib/bbaa124 [30] Tsukiyama, S., Hasan, M.M., Deng, H.-W., Kurata, H.: Bert6ma: prediction of dna n6-methyladenine site using deep learning-based approaches. Briefings in Bioinformatics 23 (2), 053 (2022) https://doi.org/10.1093/bib/bbac053 [31] Li, Z., Jiang, H., Kong, L., Chen, Y., Lang, K., Fan, X., Zhang, L., Pian, C.: Deep6ma: a deep learning framework for exploring similar patterns in dna n6-methyladenine sites across different species. PLoS computational biology 17 (2), 1008767 (2021) https://doi.org/10.1371/journal.pcbi.1008767 [32] Pian, C., Zhang, G., Li, F., Fan, X.: Mm-6mapred: identifying dna n6-methyladenine sites based on markov model. Bioinformatics 36 (2), 388–392 (2020) https://doi.org/10.1093/bioinformatics/btz556 [33] Goodfellow, I.J., Shlens, J., Szegedy, C.: Explaining and harnessing adversarial 28 examples. CoRR abs/1412.6572 (2014) [34] Miyato, T., Dai, A.M., Goodfellow, I.: Adversarial training methods for semi-supervised text classification. In: International Conference on Learning Represen-tations (2017) [35] Healy, J., McInnes, L.: Uniform manifold approximation and projection. Nature Reviews Methods Primers 4(1), 82 (2024) https://doi.org/10.1038/ s43586-024-00363-x [36] Greer, E.L., Blanco, M.A., Gu, L., Sendinc, E., Liu, J., Aristiz´ abal-Corrales, D., Hsu, C.-H., Aravind, L., He, C., Shi, Y.: Dna methylation on n6-adenine in c. elegans. Cell 161 (4), 868–878 (2015) [37] Tahiliani, M., Koh, K.P., Shen, Y., Pastor, W.A., Bandukwala, H., Brudno, Y., Agarwal, S., Iyer, L.M., Liu, D.R., Aravind, L., et al. : Conversion of 5-methylcytosine to 5-hydroxymethylcytosine in mammalian dna by mll partner tet1. Science 324 (5929), 930–935 (2009) [38] Wu, X., Bartel, D.P.: k plogo: positional k-mer analysis reveals hidden specificity in biological sequences. Nucleic acids research 45 (W1), 534–538 (2017) https: //doi.org/10.1093/nar/gkx323 [39] Lister, R., Pelizzola, M., Dowen, R.H., Hawkins, R.D., Hon, G., Tonti-Filippini, J., Nery, J.R., Lee, L., Ye, Z., Ngo, Q.-M., et al. : Human dna methylomes at base resolution show widespread epigenomic differences. nature 462 (7271), 315–322 (2009) https://doi.org/10.1038/nature08514 [40] Law, J.A., Jacobsen, S.E.: Establishing, maintaining and modifying dna methy-lation patterns in plants and animals. Nature Reviews Genetics 11 (3), 204–220 (2010) https://doi.org/10.1038/nrg2719 [41] Bailey, T.L.: Streme: accurate and versatile sequence motif discovery. Bioin-formatics 37 (18), 2834–2840 (2021) https://doi.org/10.1093/bioinformatics/ btab203 [42] Rohs, R., West, S.M., Sosinsky, A., Liu, P., Mann, R.S., Honig, B.: The role of dna shape in protein–dna recognition. Nature 461 (7268), 1248–1253 (2009) [43] Nelson, H.C., Finch, J.T., Luisi, B.F., Klug, A.: The structure of an oligo (da) ·
+
+oligo (dt) tract and its biological implications. Nature 330 (6145), 221–226 (1987) https://doi.org/10.1038/330221a0 [44] Slattery, M., Zhou, T., Yang, L., Machado, A.C.D., Gordˆ an, R., Rohs, R.: Absence of a simple code: how transcription factors read the genome. Trends in biochemical sciences 39 (9), 381–399 (2014) https://doi.org/10.1016/j.tibs.2014.07.002 29 [45] Alipanahi, B., Delong, A., Weirauch, M.T., Frey, B.J.: Predicting the sequence specificities of dna-and rna-binding proteins by deep learning. Nature biotechnol-ogy 33 (8), 831–838 (2015) https://doi.org/10.1038/nbt.3300 [46] Zhou, J., Troyanskaya, O.G.: Predicting effects of noncoding variants with deep learning–based sequence model. Nature methods 12 (10), 931–934 (2015) https: //doi.org/10.1038/nmeth.3547 [47] Whalen, S., Schreiber, J., Noble, W.S., Pollard, K.S.: Navigating the pitfalls of applying machine learning in genomics. Nature Reviews Genetics 23 (3), 169–181 (2022) https://doi.org/10.1038/s41576-021-00434-9 [48] Ghandi, M., Lee, D., Mohammad-Noori, M., Beer, M.A.: Enhanced regulatory sequence prediction using gapped k-mer features. PLoS computational biology 
+
+10 (7), 1003711 (2014) https://doi.org/10.1371/journal.pcbi.1003711 [49] Yao, B., Li, Y., Wang, Z., Chen, L., Poidevin, M., Zhang, C., Lin, L., Wang, F., Bao, H., Jiao, B., et al. : Active n6-methyladenine demethylation by dmad regulates gene expression by coordinating with polycomb protein in neurons. Molecular cell 71 (5), 848–857 (2018) [50] Boulet, M., Gilbert, G., Renaud, Y., Schmidt-Dengler, M., Planti´ e, E., Bertrand, R., Nan, X., Jurkowski, T., Helm, M., Vandel, L., et al. : Adenine methyla-tion is very scarce in the drosophila genome and not erased by the ten-eleven translocation dioxygenase. Elife 12 , 91655 (2023) [51] Yang, L., Wang, D.: Interpretable structural-semantic decoding reveals language-like organisation of regulatory information in DNA (2025). https://arxiv.org/abs/ 2503.23494 [52] Klemm, S.L., Shipony, Z., Greenleaf, W.J.: Chromatin accessibility and the regulatory epigenome. Nature Reviews Genetics 20 (4), 207–220 (2019) https: //doi.org/10.1038/s41576-018-0089-8 [53] Struhl, K., Segal, E.: Determinants of nucleosome positioning. Nature structural & molecular biology 20 (3), 267–273 (2013) https://doi.org/10.1038/nsmb.2506 [54] Wang, S., Liu, Y., Liu, Y., Zhang, Y., Zhu, X.: Bert-5mc: an interpretable model for predicting 5-methylcytosine sites of dna based on bert. PeerJ 11 , 16600 (2023) https://doi.org/10.7717/peerj.16600 [55] Paszke, A., Gross, S., Massa, F., Lerer, A., Bradbury, J., Chanan, G., Killeen, T., Lin, Z., Gimelshein, N., Antiga, L., et al.: Pytorch: An imperative style, high-performance deep learning library. Advances in neural information processing systems 32 (2019) [56] Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., 30 Rault, T., Louf, R., Funtowicz, M., Davison, J., Shleifer, S., Platen, P., Ma, C., Jernite, Y., Plu, J., Xu, C., Le Scao, T., Gugger, S., Drame, M., Lhoest, Q., Rush, A.: Transformers: State-of-the-art natural language processing. In: Liu, Q., Schlangen, D. (eds.) Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations, pp. 38–45. Association for Computational Linguistics, Online (2020). https://doi.org/10.18653/v1/2020. emnlp-demos.6 . https://aclanthology.org/2020.emnlp-demos.6/ 
+
+[57] Loshchilov, I., Hutter, F.: Decoupled weight decay regularization. In: International Conference on Learning Representations (2019). 
+
+https://openreview.net/forum?id=Bkg6RiCqY7 
+
+[58] Liu, X., Dai, S., Fiumara, G., De Meo, P.: An adversarial training method for text classification. Journal of King Saud University - Computer and Information Sciences 35 (8), 101697 (2023) https://doi.org/10.1016/j.jksuci.2023.101697 31

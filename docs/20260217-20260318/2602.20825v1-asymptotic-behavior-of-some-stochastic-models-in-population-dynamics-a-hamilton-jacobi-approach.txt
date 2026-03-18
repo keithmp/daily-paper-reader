@@ -1,0 +1,1785 @@
+Title: Asymptotic behavior of some stochastic models in population dynamics: a Hamilton-Jacobi approach
+
+URL Source: https://arxiv.org/pdf/2602.20825v1
+
+Published Time: Wed, 25 Feb 2026 01:49:53 GMT
+
+Number of Pages: 30
+
+Markdown Content:
+# Asymptotic behavior of some stochastic models in population dynamics: a Hamilton-Jacobi approach 
+
+## Anouar Jedd ∗
+
+> ∗
+
+CMAP, École polytechnique, Institut polytechnique de Paris, 
+
+## anouar.jeddi@polytechnique.edu February 25, 2026 
+
+Abstract 
+
+In this paper, we investigate the asymptotic behavior of individual-based models describing the evolution of a population structured by a real trait, subject to selection and mutation. We consider two di ff erent sets of assumptions: first, the case of critical or subcritical branching population processes in a regime combining a discretization of the trait space, small mutations, large time and large initial population size, where we are able to characterize using a Hamilton-Jacobi approach, the survival set of the population, and the asymptotic of the logarithmic scaling of subpopulation sizes. Sec-ond, we generalize by a direct method the convergence to the classical Hamilton-Jacobi equation obtained in the super-critical branching regime considered in [6] to a more general trait space and under weaker assumptions. Moreover, we establish that the stochastic and the deterministic dynamics are asymptotically equivalent in large population. 
+
+# 1 Introduction 
+
+In this paper, we provide a probabilistic justification for certain Hamilton-Jacobi equa-tions from stochastic individual-based models in a large population regime. Our goal is to prove that, on logarithmic time and size scales, the sizes of subpopulations converge to a viscosity solution of a Hamilton-Jacobi equation, able to account for extinction of subpopulations. 1
+
+> arXiv:2602.20825v1 [math.PR] 24 Feb 2026
+
+In recent years, a Hamilton-Jacobi approach has been emerged as an important tool in the mathematical analysis of evolutionary biology (see [9]). This approach consists in studying the evolution of populations structured by a quantitative trait subject to se-lection and mutation, in a regime of small mutations and large time and considering exponential orders of magnitude of population sizes. The original approach is based on PDEs models in population dynamics, structured by phenotypes, or traits (see for in-stance [9, 15, 3, 12]). More precisely, these references prove that the Hopf-Cole transfor-mation of the population density converges to a viscosity solution of a Hamilton-Jacobi equation. This approach captures the concentration of the population into Dirac masses at the dominant traits, characterized through the associated viscosity solution. This de-terministic approach takes into account the evolution of negligible populations, but not the possibility of local extinction of subpopulations, since population densities in the PDE are always positive everywhere in space. In this context, some attempts to account for extinct populations have been introduced in [14] (see also [11]), by imposing a singu-lar mortality rate below a survival threshold, and in this case the limit dynamics is not anymore described by a classical Hamilton-Jacobi equation. A natural alternative approach to account for extinctions would be to consider stochas-tic individual based models instead PDEs models. This approach was followed in sev-eral references [4, 5, 7, 8]. Classically the link between individual based models and Hamilton-Jacobi equations was carried out in two steps: first, prove the convergence of the individual based model to a PDE in a limit of large population (see [4, 5]); second obtain the Hamilton-Jacobi equation from the PDE as explained above. However, these two successive scalings do not allow to account for possible extinction of subpopulations, as discussed above. In [7, 8] individual based models with rare mutations were considered in a discrete trait space and with a scaling parameter K. Defining the subpopulation size of individu-als of type i at time t as N Ki (t), these references establish an asymptotic behavior of the exponents βKi (t) defined by N Ki (t log K) = KβKi (t). These exponents can be seen as a Hopf-Cole transform in a discrete trait space with logarithmic time scaling. In these references a regime of rare mutations was considered, but not small mutations. In order to model small mutations, the trait space should be discretized in steps de-pending on the mutation sizes. Recently in [6] such a discretization of the trait space was introduced by considering a parameter δK → 0 as K → +∞. This work introduces a birth-2death individual based model with mutation in the discrete trait space with small muta-tions of size of the order 1 / log K. In the limit K → +∞, the exponents βKi defined as above by the Hopf-Cole transform are proved to converge to a viscosity solution of a Hamilton-Jacobi equation. Up to our knowledge, this is the first and only work which establishes a direct derivation of a Hamilton-Jacobi equation from an individual-based model, but under restrictive assumptions. In particular their branching model does not allow for ex-tinction, because the reproduction is assumed uniformly super-critical in space (the birth rate is strictly greater than the death rate), and the initial subpopulation sizes are lower bounded. This implies the survival of all subpopulations at all time with probability con-verging to 1 . In addition this reference considers only the case of the one dimensional torus as trait space. The method used relies on compactness and Lipschitz estimates re-quiring these assumptions. Our objective in this work is to extend the derivation of Hamilton-Jacobi equations from individual-based models in two more general settings. The first one allows local extinctions and the second one generalizes the super-critical case. 
+
+First part: In this part we study the case of critical or subcritical spatial branching pro-cesses in the real trait space. We assume no lower bound on the initial subpopulation sizes so that extinction of subpopulations and ultimately extinction of the whole popu-lation occur almost surely. Under the classical Hopf-Cole transform, the extinction of a subpopulation means that the exponent takes the value −∞ . Therefore, we cannot expect anymore the tightness of the exponents to hold at all times and across the entire trait space, and the limit Hamilton-Jacobi equation needs to be modified to account for ex-tinction. Then the question consists in characterizing the limit Hamilton-Jacobi equation by introducing appropriate cut-o ff and in proving the convergence of exponents of sub-populations. Following the same intuition as in [14], we expect to obtain the Hamilton-Jacobi equation in a region of the spatio-temporal space corresponding to the survival set and −∞ for extinct subpopulations. In the critical or subcritical case, we will prove that this equation actually takes a very simple form (much simpler than in [14]), obtained by directly applying a cut-o ff to the original Hamilton-Jacobi equation when it is negative. Note that the convergence of the exponents to −∞ does not make use of the sub-criticality assumption, and would apply in more general cases. To study the behavior of the population in the set of survival we introduce a new method based on comparing the stochastic dynamics with the deterministic one. In gen-3eral we cannot expect that the stochastic dynamics is close to its mean. However, in the subcritical case we will prove that this holds true which explains why we can describe simply the limit dynamics. We use a method relying on control of variances based on maximum principles. A sec-ond important step is to study the convergence of the exponents of the mean dynamics obtained by the classical Hopf-Cole transform. These exponents satisfy a discrete ver-sion of the classical PDE in [3] for which convergence to the Hamilton-Jacobi equation is known. An additional di ffi culty to show the convergence in our case comes from the discrete nature of the PDE which was studied in a more general setting in [12]. Com-bining these two steps we prove the convergence in the limit of large population of the exponents to the viscosity solution of the corresponding Hamilton-Jacobi equation with cut-o ff .The method used in this part is direct and do not rely on the classical tightness cri-teria, in contrast to [6] which makes use of Lipschitz estimates and martingale control. However, the convergence here is weaker: pointwise in time and locally uniformly in trait space. Whether a stronger convergence holds true remains unclear because, first the ex-ponents can takes the value −∞ , and second our method does not allow to determine the behavior at the boundary between the extinction and survival sets. 
+
+Second part: In this part, we study the super-critical branching regime considered in [6] in a more general trait space and under more realistic assumptions. In this setting all the initial subpopulation sizes are large, and we work in a uniformly super-critical regime, meaning that the subpopulation sizes remain large and the total population size is always infinite. This last fact makes the construction of the model not obvious, because mutations can occur from an infinite number of subpopulations. Then, to justify the ex-istence of the model, we introduce a new localization argument. Our proof of the convergence toward the Hamilton-Jacobi equation follows a similar method as above. We first establish a uniform control on the normalized variances us-ing the maximum principle that holds in super-critical regime. This allows us to deduce that the stochastic and deterministic dynamics are asymptotically equivalent, which im-plies that the stochastic and deterministic exponents are close. We then conclude us-ing the convergence of the Hopf-Cole transform of the mean dynamics to the associated Hamilton-Jacobi equation. Here we obtain a stronger convergence, locally uniform in time and space, and we deduce the tightness of the exponents ( βK )K .4This paper is organized as follows: in Section 2, we define the model. Section 3 is de-voted to the critical or subcritical regime. Finally, in Section 4, we study the supercritical regime. We refer to the beginning of Sections 3 and 4 for more details about each section. 
+
+# 2 Model and motivation 
+
+We recall the branching stochastic model introduced in [6] in a more general trait space R,
+
+instead of the one-dimensional torus in [6]. We consider a population parameterized by a scaling parameter K ∈ N, composed of individuals characterized by a trait which belongs to R, subject to mutation. We consider a discretized trait space with discretization step 
+
+δK such that δK → 0 as K → +∞. The trait space associated to the scaling parameter K
+
+is given by XK := {iδ K , i ∈ Z}. We define in a probabilistic space ( Ω, F , P) a Markov pure jump process ( N Ki (t), i ∈ Z, t ≥ 0) that models the size of the subpopulations, where for each i ∈ Z, the size of the subpopulation of trait iδ K at time t is N Ki (t). Our model is a branching process in continuous time, so we only need to specify the individual birth and death rates. Any individual with trait x ∈ X K :• gives birth to a new individual with the same trait x at rate b(x); • dies at rate d(x); • or gives birth to a new individual with trait y ∈ X K at rate 
+
+δK p log KG (( y − x) log K). (1) Here, b : R → R+ is the birth rate, d : R → R+ is the death rate and p > 0 is the mutation rate. We assume that G is a probability kernel describing mutation e ff ects. It is scaled in (1) at logarithmic scale to make small mutations of sizes of the order 1log K , and δK to make the Riemann sum corresponding to the global population mutation rate converge. In the remaining, we define hK = δK log K. 
+
+The process ( N Ki (t), i ∈ Z, t ≥ 0) can be constructed using Poisson random measures in a classical way (cf. e.g. [10, 1]). Let ( Qbi )i∈Z, (Qdi )i∈Z, and ( Qpi )i∈Z, be sequences of inde-pendents Poisson random measures on R+ × R+ with Lebesgue intensity, defined on the probabilistic space ( Ω, F , P). Informally speaking let us give some classical trajectorial representations about our process which will be justified in each setting in sections 3 and 54: for all i ∈ Z
+
+N Ki (t) = N Ki (0) + 
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+1y≤b(iδ K )N Ki (s−)Qbi (ds, dy ) −
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+1y≤d(iδ K )N Ki (s−)Qdi (ds, dy )+
+
+X
+
+> j∈Z
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+1y≤ph K G(( j−i)hK )N Kj (s−)Qpj (ds, dy ).
+
+(2) Furthermore, by compensating the Poisson random measures, we obtain the following semi-martingale decomposition: 
+
+N Ki (t) = N Ki (0) + 
+
+Z t
+
+> 0
+
+(b(iδ K ) − d(iδ K )) N Ki (s)ds +
+
+X
+
+> l∈Z
+
+ph K G(lh K )
+
+Z t
+
+> 0
+
+N Kl+i (s)ds + MKi (t), (3) where MKi is a local martingale with quadratic variation (see [1]) 
+
+⟨MKi ⟩t =
+
+Z t
+
+> 0
+
+(b(iδ K ) + d(iδ K )) N Ki (s)ds +
+
+X
+
+> l∈Z
+
+ph K G(lh K )
+
+Z t
+
+> 0
+
+N Kl+i (s)ds. (4) Note that this representation needs a justification, since N Ki appears both on the left and right hand side, and the stochastic integrals need to be well-defined. This is the case if for all T > 0, and i ∈ Z, we have 
+
+E
+
+
+
+sup  
+
+> t∈[0 ,T ]
+
+(b(iδ K ) + d(iδ K )) N Ki (t) + 
+
+X
+
+> j∈Z
+
+ph K G(( j − i)hK )N Kj (t)
+
+< ∞. (5) Under this assumption we denote for all i ∈ Z and t ≥ 0, n Ki (t) = E(N Ki (t)) , and we take the expectation in (3). We obtain the system of ordinary di ff erential equations: 
+
+  
+
+> dn Ki(t)
+> dt
+
+= ( b(iδ K ) − d(iδ K )) nKi (t) + Pl∈Z ph K G(lh K )nKl+i (t), (t, i ) ∈ R+ × Z,nKi (0) = nK, 0(iδ K ),
+
+(6) where nK, 0 is the initial condition. Our goal is to study the exponential growth of the population when K → +∞, and more precisely to describe the exponent of each subpopulation in the form Kβ , where 
+
+β ∈ {−∞} ∪ [0 , +∞). To this end we introduce following [6] the Hopf-Cole transform at a logarithmic scale 
+
+βKi (t) = log N Ki (t log K)log K , (7) 6and the corresponding transform of the mean dynamics 
+
+uKi (t) = log nKi (t log K)log K , (8) which satisfies the equation 
+
+ 
+
+> ddt
+
+uKi (t) = b(iδ K ) − d(iδ K ) + Pl∈Z ph K G(lh K )elog K(uKl+i (t)−uKi (t)) , ∀(t, i ) ∈ (0 , +∞) × Z,uKi (0) = uK, 0(iδ K ).
+
+(9) The above system is a discretized version of the integro-di ff erential equation studied in [3], where the solution converges to a viscosity solution of a Hamilton-Jacobi equation. We refer to [12] for the study of such discrete models in a more general setting. Following [6, 12], we define the linear interpolation of βKi , which allows us to define a dynamics in the continuous trait space R : for all t > 0 and x ∈ R let i ∈ Z such that 
+
+x ∈ [iδ K , (i + 1) δK ),
+
+eβK (t, x ) = βKi (t)(1 − xδK
+
++ i) + βKi+1 (t)( xδK
+
+− i). (10) The linear interpolation of uKi is defined in the same way as above and denoted by euK .
+
+The remaining of the paper is dedicated to the study of the convergence of ( eβK )K , as 
+
+K → +∞.
+
+## Assumptions A 
+
+Here, we assume the general classical assumptions from [3] in a discrete setting close to [12]. 1. We assume that b and d are Lipschitz-continuous functions, the mutation rate p is constant, and there exist positive constants b and d , such that for any x ∈ R,0 ≤ b(x) ≤ b, 0 ≤ d(x) ≤ d. (11) 2. The kernel G has super-exponential decay, i,e 
+
+Z
+
+> R
+
+G(x)eax dx < +∞, ∀a ∈ R.
+
+73. There exists a positive constant L such that, for any i ∈ Z and K ≥ 1
+
+uK, 0(( i + 1) δK ) − uK, 0(iδ K )
+
+δK
+
+≤ L, (12) i.e for any K ≥ 1, u K, 0 is L-Lipschitz continuous in the discrete trait space XK .4. The linear interpolation euK, 0 of uK, 0, converges locally uniformly to a continuous function u0, as K → +∞.5. Finally, we assume that for all ε > 0, we have 1
+
+Kε ≪ δK ≪ 1log K . (13) Assumption 2 is standard in the Hamilton–Jacobi approach (see [3]) and ensures that the Hamilton–Jacobi equation is well-defined. Kernels with slow decay were studied in [12], leading to a non-standard Hamilton–Jacobi equations. Assumption 4 implies that u0 is 
+
+L-Lipschitz. Finally, Assumption 5 follows from [6] and implies in particular that hK → 0,
+
+as K → +∞..In addition, for technical reason, the mutation rate is assumed constant in this paper, this makes the spatial lipschitz bound of uK global. 
+
+# 3 Critical or sub-critical case: 
+
+In this section, we investigate the asymptotic behavior assuming a uniformly critical or subcritical dynamics. In Subsection 3.1, we state our assumptions. In Subsection 3.2, we establish preliminary results concerning well-posedness and the existence of second mo-ments. In Subsection 3.3, we state our main result. Subsection 3.4 is devoted to the Hamilton–Jacobi approach applied to the mean dynamics, which constitutes the first step in the proof of the main result. In Subsection 3.5, we quantify the gap between the stochastic and deterministic dynamics, which is the key idea of the proof. Finally, Subsection 3.6 is devoted to the proof of the main result. 
+
+## 3.1 Assumptions B 
+
+We state our assumptions in the case of a uniformly critical or subcritical dynamics. 81. There exist positive constants A1 and A2 such that for all i ∈ Z, and K ≥ 1
+
+uK, 0(iδ K ) ≤ − A1|iδ K | + A2. (14) 2. We assume that 
+
+E
+
+ X 
+
+> i∈Z
+
+N Ki (0) 2
+
+< +∞. (15) 3. We assume that there exists a positive constant C such that sup 
+
+> i∈Z
+
+nKi (0) E
+
+N Ki (0) − nKi (0) 
+
+nKi (0) 
+
+2 ≤ C. (16) 4. We assume a subcritical branching regime for all traits: 
+
+α := sup 
+
+> x∈R
+
+b(x) − d(x) + p ≤ 0. (17) Assumption B-1 is classical in the Hamilton-Jacobi approach (see for instance [3, 12]), it gives the a ffi ne decay of uK . Moreover, it implies that Pi∈Z nKi (0) < +∞. Therefore, by Borel-Cantelli lemma’s we have for large enough i, that N Ki (0) = 0 almost surely. As-sumption B-2 guarantees the well-posedness of the dynamics (2) and the integrability of the martingales involved in the semi martingale decomposition (3), as proved in Propo-sition 3.1. Assumption B-3 means that, initially the variance is bounded by the mean for each subpopulation. This is for example the case if N Ki (0) is a Poisson random variable with parameter nKi (0) . Note that N Ki (0) may be correlated random variables for di ff er-ent i. Furthermore, combined with Assumption A-4, this implies that βK (0) converges in probability to u0 when u0 > 0, and to −∞ when u0 < 0. This will be a consequence of the arguments of section 3.6. 
+
+## 3.2 Preliminary result 
+
+Proposition 3.1. Under Assumptions A-1-2 and Assumption B-2. The process (N Ki (t), i ∈
+
+Z, t ≥ 0) is well-defined, and we have for all T > 0
+
+E sup  
+
+> t∈[0 ,T ]
+
+ X 
+
+> i∈Z
+
+N Ki (t)
+
+2!
+
+≤ C(T , K ), (18) 
+
+where C(T , K ) is a positive constant depending on T , K but not on i. 
+
+9Proof. By standard coupling argument, we construct in ( Ω, F , P) a Yule process ZK with parameter b + p and initial condition Pi∈Z N Ki (0) such that 
+
+X
+
+> i∈Z
+
+N Ki (t) ≤ ZKt , almost surely ∀t ≥ 0. (19) Under assumption B-2, the Yule process ZK is well-defined, and admits a finite second moment. Hence, (5) is verified, and thus ( N Ki (t), i ∈ Z, t ≥ 0) is well-defined and satisfies (18). 
+
+## 3.3 Convergence result in the critical or subcritical dynamics 
+
+Let us state our main theorem. 
+
+Theorem 3.2. Under Assumptions A-B, in the limit of K → +∞, the stochastic process (eβK )K ⊂
+
+D(R+, C (R, R)) converges in the sense of finite-dimensional distributions in probability locally in space to the deterministic function 
+
+β(t, x ) = 
+
+
+
+u(t, x ) for (t, x ) ∈ { (t, x ) ∈ [0 , +∞) × R, u(t, x ) > 0},
+
+−∞ for (t, x ) ∈ { (t, x ) ∈ [0 , +∞) × R, u(t, x ) < 0},
+
+(20) 
+
+where u is the unique Lipschitz continuous viscosity solution of the Hamilton-Jacobi equation: 
+
+
+
+∂tu(t, x ) = b(x) − d(x) + p R 
+
+> R
+
+G(y)e∇u(t,x ).y dy, ∀(t, x ) ∈ (0 , +∞) × R,u(0 , . ) = u0(.).
+
+(21) 
+
+More precisely, we prove that for all η > 0, t > 0 and real numbers a < b, 
+
+if {t} × [a, b ] ⊂ { u > 0}, we have 
+
+lim  
+
+> K→+∞
+
+P( sup 
+
+> x∈[a,b ]
+
+|eβK (t, x ) − u(t, x )| > η ) = 0 , (22) 
+
+if {t} × [a, b ] ⊂ { u < 0}, we have 
+
+lim  
+
+> K→+∞
+
+P( sup 
+
+> x∈[a,b ]
+
+eβK (t, x ) = −∞ ) = 1 . (23) This theorem provides a probabilistic derivation of a Hamilton-Jacobi equation with cut-o ff . It characterizes the space-time domain of survival and describes within this set the limit behavior of exponents of the population using a Hamilton-Jacobi approach. In 10 addition this result shows that the exponents go to −∞ in the set where the viscosity solu-tion is negative. In other words (23) means that for large K the subpopulations are extinct. The proof of this result is divided into two main steps. The first step consists in prov-ing that the linear interpolation of the Hopf-Cole transform of the mean dynamics euK ,
+
+converges to the viscosity solution u of the associated Hamilton-Jacobi equation. This is based on the Arzela-Ascoli theorem, using local uniform bounds and local uniform Lip-schitz estimates in both time and space as in [3] but in discretized setting. The second step, the key step of the proof. It consists in comparing the stochastic dynamics with the deterministic one. This is achieved by establishing a uniform control of variances over all subpopulations, which allows us to prove that, in probability βK and uK remain close on the set {u > 0}, when the parameter K is large. As a consequence of the first step, we conclude that the stochastic exponent βK converges to the viscosity solution of the corre-sponding Hamilton-Jacobi equation on the set where this solution is positive. On the set where the viscosity solution is negative, the first step implies that the mean dynamics nK
+
+converges to zero. The integer-valued nature of the subpopulation sizes then ensures that the stochastic dynamics also converges to zero. Finally, we note that the convergence of the exponent to −∞ in {u < 0} holds true in general and in particular does not require any sub-criticality or super-criticality assumption. 
+
+## 3.4 Hamilton-Jacobi approach for the mean dynamics 
+
+In this subsection, we investigate the Hamilton-Jacobi approach for the mean dynamics as a first step to analyze the stochastic dynamics. 
+
+Theorem 3.3. Under Assumptions A and B-1, in the limit K → +∞, the sequence of functions 
+
+(euK )K converges locally uniformly in time and space to the unique viscosity solution of (21) .Proof. To prove this result, we use the Arzelà–Ascoli theorem. Let T > 0. From Assump-tions A-1-3, and B-1, Lemma 4.1 and Proposition 4.2 in [12], we have for all ( t, i ) ∈
+
+[0 , T ] × Z that 
+
+−L|iδ K | + A4 + A5t ≤ uKi (t) ≤ − A1|iδ K | + A2 + A3t, (24) and 
+
+|uKi+1 (t) − uKi (t)| ≤ ∥p∥Lip 
+
+p |uKi+1 (t)|δK + CLip (T )δK = CLip (T )δK , (25) where A3, A 4, A 5, A 6 are constants independent of K, and CLip (T ) is a positive constant independent of K, but depends on T . We deduce a local bound, and spatial Lipschitz 11 estimates. Now, we prove the Lipschitz estimates in time. For K large enough, we have 
+
+|∂tuKi (t)| ≤ b + d + p
+
+X
+
+> l∈Z
+
+hK G(lh K )eCLip (T )|lh K |
+
+≤ b + d + 2 p
+
+Z
+
+> R
+
+G(x)eCLip (T )|x|dx. 
+
+Thus, we obtain uniform local Lipschitz estimates in time. Then, by the Arzelà-Ascoli theorem, we deduce the convergence along a subsequence of K to a continuous function 
+
+u, and by classical arguments of viscosity solutions and Assumption A-4, we conclude that u is a viscosity solution of (21). Moreover, by uniqueness of viscosity solutions of (21), we deduce the convergence of the full sequence ( euK )K to u. 
+
+## 3.5 The gap between the stochastic and the deterministic dynamics 
+
+In this subsection, we state and prove the next result which compares the stochastic and the deterministic dynamics. 
+
+Proposition 3.4. Let T > 0. We have for all (t, i ) ∈ [0 , T ] × Z,nKi (t log K)E
+
+N Ki (t log K) − nKi (t log K)
+
+nKi (t log K)
+
+2 ≤ C(K(α+o(1)) t + C(T ) log K), (26) 
+
+where C is a positive constant independent of K, C (T ) is a positive constant independent of 
+
+K, and depending on T , and o(1) a constant depending only on K, which goes to zero when 
+
+K → +∞. Recall that α has been defined in (17) . Moreover, at a logarithmic time scale N K /n K
+
+converges in L2 to 1 in {u > 0}, i,e, for all t > 0 and real numbers a < b, such that {t} × [a, b ] ⊂{u > 0}, we have 
+
+E
+
+
+
+sup  
+
+> {i∈Z,iδ K∈[a,b ]}
+
+N Ki (t log K)
+
+nKi (t log K) − 1
+
+2
+
+→ 0, as K → +∞. (27) This result is a consequence of the branching property, and implies that the normal-ized variances are small when the mean dynamics is large. The proof relies on Itô’s lemma and the maximum principle. This is an original proof which, to the best of our knowl-edge, is non standard in the theory of branching processes. 
+
+Proof. Let T > 0. Let us define for all ( t, i ) ∈ [0 , T ] × Z, S Ki (t) = (N Ki (t)−nKi (t)) 2  
+
+> nKi(t)
+
+. Using the semi martingale decomposition in (3) which is well-defined by (18), and by Ito’s lemma, we 12 obtain for all t > s > 0,SKi (t) = SKi (s) + 
+
+Z ts
+
+(b(iδ K ) − d(iδ K )) SKi (τ)dτ + 2 
+
+Z ts
+
+p
+
+X
+
+> l∈Z
+
+hK G(lh K )(N Ki (τ) − nKi (τ))( N Kl+i (τ) − nKl+i (τ)) 
+
+nKi (τ) dτ 
+
+−
+
+Z ts
+
+p
+
+X
+
+> l∈Z
+
+hK G(lh K )(N Ki (τ) − nKi (τ)) 2nKl+i (τ)(nKi (τ)) 2 dτ +
+
+Z ts
+
+d⟨MKi ⟩τ
+
+nKi (τ) + eMKi (t) − eMKi (s),
+
+where t 7→ eMKi (t) is a martingale, since all quantities in the above decomposition are bounded at most by second moments of the population sizes, and by (18) we have 
+
+E
+
+
+
+sup 
+
+> i∈Z
+
+sup  
+
+> t∈[0 ,T ]
+
+N Ki (t)2
+
+≤ C(T , K ).
+
+We define Y Ki (t) = E(SKi (t)) , which is well-defined, and we take the expectation in the above equation, and by Young’s inequality we deduce that 
+
+Y Ki (t) ≤Y Ki (s) + 
+
+Z ts
+
+b(iδ K ) − d(iδ K ) + p
+
+X
+
+> l∈Z
+
+hK G(lh K )Y Ki (τ)) dτ 
+
++
+
+Z ts
+
+p
+
+X
+
+> l∈Z
+
+hK G(lh K )nKl+i (τ)
+
+nKi (τ) (Y Kl+i (τ)) − Y Ki (τ)) dτ +
+
+Z ts
+
+dE(⟨MKi ⟩τ )
+
+nKi (τ) .
+
+Moreover, as mentioned in the proof of Theorem 3.3, since the mutation rate is assumed to be constant, the Lipchitz bound in space (25) is global, and then 
+
+X
+
+> l∈Z
+
+hK G(lh K )nKl+i (τ)
+
+nKi (τ) ≤
+
+X
+
+> l∈Z
+
+hK G(lh K )eCLip (T / log K)|lh K |.
+
+By Assumptions A-1 and A-2, we deduce that 1
+
+nKi (τ)
+
+dE(⟨MKi ⟩τ )
+
+dτ = b(iδ K ) + d(iδ K ) + p
+
+X
+
+> l∈Z
+
+hK G(lh K )nKl+i (τ)
+
+nKi (τ) ≤ C(T / log K), (28) where C(.) is a positive function independent of K, t and i. Moreover, by Assumption B-4, we have 
+
+b(iδ K ) − d(iδ K ) + p
+
+X
+
+> l∈Z
+
+hK G(lh K )) ≤ α + o(1) , (29) where o(1) is a negligible constant depending only on K and going to zero when K goes 13 to infinity. Therefore 
+
+ddt Y Ki (t) ≤ (α + o(1)) Y Ki (t) + p
+
+X
+
+> l∈Z
+
+hK G(lh K )nKl+i (t)
+
+nKi (t) (Y Kl+i (t) − Y Ki (t)) + C(T / log K). (30) By the maximum principle (see Appendix A), we conclude that 
+
+Y Ki (t) ≤ e(α+o(1)) t sup 
+
+> i∈Z
+
+Y Ki (0) + C(T / log K)t. (31) Hence (26) is proved. Let us now prove the last point of the Proposition 3.4. Let t > 0 and real numbers a < b, 
+
+such that {t} × [a, b ] ⊂ { u > 0}, we have by the convergence of euK to u that for all iδ K ∈ [a, b ]
+
+nKi (t log K) = KuKi (t) ≥ Kinf x∈[a,b ] u(t,x )/2.
+
+Therefore, by (26) we obtain that 
+
+E
+
+
+
+sup  
+
+> {i∈Z,iδ K∈[a,b ]}
+
+N Ki (t log K)
+
+nKi (t log K) − 1
+
+2
+
+≤
+
+X 
+
+> i∈Z, iδ K∈[a,b ]
+
+CK − inf x∈[a,b ] u(t,x )/2(K(α+o(1)) t) + C(t) log K)
+
+≤ K− inf x∈[a,b ] u(t,x )/4
+
+δK
+
+.
+
+From (13), we conclude the L2 convergence. 
+
+## 3.6 Proof of Theorem 3.2 
+
+Convergence in {u < 0}:
+
+Let t ≥ 0 and a ≤ b real numbers such that {t} × [a, b ] ⊂ { u < 0}. We have by the uniform convergence of euK to u and the fact that sup x∈[a,b ] u(t, x ) < 0 that 
+
+nKi (t log K) = KuKi (t) ≤ K
+
+> sup
+> {x∈[a,b ]}
+> u(t,x )/2
+
+→ 0, as K → +∞, ∀i ∈ Z, iδ K ∈ [a, b ]. (32) 14 Thus 
+
+P( sup  
+
+> {i∈Z/iδ K∈[a,b ]}
+
+N Ki (t log K) ≥ 1) ≤ E sup  
+
+> {i∈Z/iδ K∈[a,b ]}
+
+N Ki (t log K)
+
+≤
+
+X 
+
+> {i∈Z/iδ K∈[a,b ]}
+
+nKi (t log K)
+
+≤ C K
+
+> sup
+> {x∈[a,b ]}
+> u(t,x )/2
+
+δK
+
+.
+
+By (13) this probability goes to zero when K → +∞. Moreover, the supremum of N Ki is integer-valued, hence sup  
+
+> {i∈Z/iδ K∈[a,b ]}
+
+N Ki (t log K)) = 0 , (33) with probability converging to 1 when K → +∞. Furthermore, {u < 0} is an open set we can deduce using similar arguments that max( eβK (t, a ), eβK (t, b )) converges to −∞ with probability converging to 1. Hence, we deduce (23). 
+
+Convergence in {u > 0}.
+
+Let η > 0, t ≥ 0 and a ≤ b real numbers such that {t} × [a, b ] ⊂ { u > 0}. Let i ∈ Z such that 
+
+iδ K ∈ [a, b ], we have by Proposition 3.4 and Theorem 3.3 for large enough K that 
+
+P  βKi (t) − uKi (t) > η  = P
+
+ 1log K log 1 + N Ki (t log K) − nKi (t log K)
+
+nKi (t log K)
+
+!
+
+> η 
+
+
+
+≤ P
+
+ 1log K
+
+N Ki (t log K) − nKi (t log K)
+
+nKi (t log K) > η 
+
+ + P
+
+
+
+N Ki (t log K) − nKi (t log K)
+
+nKi (t log K) > 1/2
+
+
+
+≤
+
+ 1
+
+η2 log 2 K + 4 
+
+
+
+E
+
+
+
+N Ki (t log K) − nKi (t log K)
+
+nKi (t log K)
+
+
+
+> 2
+
+≤ C
+
+ 1
+
+η2 log 2 K + 4 
+
+
+
+K−uKi (t)(K(α+o(1)) t + C(t) log K)
+
+≤ C
+
+ 1
+
+η2 log 2 K + 4 
+
+
+
+K− inf 
+
+> {x∈[a,b ]}u(t,x )/2
+
+(K(α+o(1)) t + C(t) log K)
+
+≤ CK − inf 
+
+> {x∈[a,b ]}u(t,x )/4
+
+.
+
+15 In the same way we can prove that max( eβK (t, a ) − euK (t, a ) , eβK (t, b ) − euK (t, b ) ) converges in probability to zero. Thus,from (13), we deduce that 
+
+P
+
+ sup 
+
+> {x∈[a,b ]}
+
+eβK (t, x ) − euK (t, x ) > η 
+
+ → 0, as K → +∞. (34) Therefore, by Theorem 3.3, we conclude the proof of (22). 
+
+# 4 Super-critical case 
+
+This section is devoted to the asymptotic analysis of the supercritical dynamics i,e the birth rate is greater than or equal to the death rate. In Subsection 4.1, we state our as-sumptions. Subsection 4.2 is devoted to preliminary results concerning the existence of the stochastic model and the Hamilton–Jacobi approach for the mean dynamics. In Sub-section 4.3, we state our main result and provide a result analogous to Proposition 3.4, which is the key in the proof of the main theorem. Finally, Subsection 4.4 contains the proof of the convergence toward the viscosity solution. 
+
+## 4.1 Assumptions C 
+
+1. We assume that there exist two positive constants A, B such that for all i ∈ Z
+
+uKi (0) ≤ A|iδ K | + B. (35) 2. We assume that there exists a > 0, such that for all i ∈ Z, we have 
+
+nKi (0) ≥ Ka. (36) 3. We assume a uniformly supercritical dynamics, i,e, for all x ∈ R
+
+b(x) ≥ d(x). (37) 4. Finally, we assume a similar condition as (16), i.e, there exists a positive constant C
+
+such that sup 
+
+> i∈Z
+
+E
+
+N Ki (0) − nKi (0) 
+
+nKi (0) 
+
+2 ≤ CKa . (38) 16 Assumption C-1 is new in the framework of Hamilton-Jacobi approach. The classical as-sumption (14) is stronger and allows to perform the analysis in the classical functional spaces. Here, we will introduce a new functional space depending on apriori bounds on the solution of the Hamilton-Jacobi equation. Assumption C-2 is a strong assump-tion meaning that initially the density of all populations is large, but this assumption is weaker than that one in [6] where a minimal initial population was assumed for the stochastic dynamics N K (0). In (37), we include the possibility that the birth rate and the death rate can be equal which includes the setting of [6]. Furthermore, combining (36) with (37) we obtain that for all t > 0 and i ∈ Z
+
+nKi (t) ≥ Ka. (39) In this setting the initial total population size can be infinite, i.e, Pi∈Z N Ki (0) = + ∞ almost surely. This is clear in the case where the subpopulation sizes N Ki are independent. Let us prove that. By Paley–Zygmund inequality and from C-2, we have for all i ∈ Z that 
+
+P(N Ki (0) > K a/ 2) = PN Ki (0) > Ka/ 2
+
+nKi (0) nKi (0) 
+
+≥ 1 − Ka/ 2
+
+nKi (0) 
+
+2 nKi (0) 2
+
+E(N Ki (0) 2)
+
+≥ (1 − K−a/ 2)2 nKi (0) 2
+
+E(N Ki (0) 2).
+
+Moreover, from C-4 we have E(N Ki (0) 2)/(nKi (0) 2) ≤ C(1 + 1 
+
+> Ka
+
+). Then for K large enough we have 
+
+P(∀i ∈ Z, N Ki (0) > K a/ 2) = 1 . (40) Thus, Pi∈Z N Ki (0) = + ∞almost surely. 
+
+## 4.2 Preliminary results and Hamilton-Jacobi approach for the mean dynamics 
+
+The next proposition shows the existence of the model, and provides the integrability of the first and second moments involved in the mutation term. Note that due the fact that the initial population maybe infinite there is no first jump time in (2). Hence the notion of solution should be carefully defined. We will say that a process ( N Ki (t), i ∈
+
+Z, t ≥ 0) defined on the probability space ( Ω, F , P) is solution to our branching population dynamics if for all i ∈ Z, the process ( N Ki (t), t ≥ 0) is almost surely finite and satisfies 17 almost surely (2). 
+
+Proposition 4.1. Under Assumptions A-C, there exist a process (N Ki (t), i ∈ Z, t ≥ 0) solution to our branching dynamics, and for all T > 0, we have 
+
+max 
+
+E
+
+
+
+sup  
+
+> t∈[0 ,T ]
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (t)
+
+
+
+, E
+
+
+
+sup  
+
+> t∈[0 ,T ]
+
+X
+
+> i∈Z
+
+e−CA|ih K |(N Ki (t)) 2
+
+ < +∞, (41) 
+
+where CA := 2 A + 1 .
+
+Proof. To prove that the process N K is well-defined, we introduce new arguments. First, we approximate the process by a well-defined process that implies the existence of the process as a mathematical object, then we prove that it is finite by introducing a judicious stopping time and applying localization arguments. This model was studied in [6] in the torus, in which there is a finite number of finite subpopulations which makes the existence standard. But here, the initial total population size is infinite. Then, first we justify the existence of the process N K and hence we prove that the size of each subpopulation is finite and satisfies (41). Let us justify the existence of a process N K solution to (2). To this end let M > 0. We define on the same probability space the stochastic process N K,M defined as follows for all t > 0, i ∈ Z, |iδ K | < M N K,M i (t) = N Ki (0) + 
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+1y≤b(iδ K )N K,M i (s−)Qbi (ds, dy ) −
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+1y≤d(iδ K )N K,M i (s−)Qdi (ds, dy )+
+
+X  
+
+> j∈Z,|jδ K|<M
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+1y≤ph K G(( j−i)hK )N K,M j (s−)Qpj (ds, dy ),
+
+(42) and N K,M i (t) = 0 , for i ∈ Z, |iδ K | ≥ M. Note that for all M > 0, the process N K,M is well-defined because the initial population is finite and with finite second order moment and there is at most a finite number of jumps in the stochastic integrals above. This can be proved under (35) by classical coupling arguments with a Yule Process as in the proof of Proposition 3.1. Moreover, N K,M i (t) is non-decreasing in M, so the limit when M goes to infinity exists almost surely for all i ∈ Z and t ∈ R+. Hence the existence of N K , as increasing limit of N K,M . Moreover letting M go to infinity in (42) we deduce that N K is a solution to (2). Let us now show that N K is finite and satisfies (41). We introduce the stopping time τM ,
+
+18 defined for all θ > 0, by 
+
+τθ = inf {t > 0,
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (t) ≥ θ}. (43) Let us prove that for any T > 0, we have 
+
+P(sup 
+
+> θ≥1
+
+τθ ≥ T ) = 1 . (44) Let T > 0. For all t ∈ [0 , τ θ ∧ T ], we have 
+
+N Ki (t ∧ τθ) ≤ N Ki (0)+ 
+
+Z t∧τθ
+
+> 0
+
+Z
+
+> N
+
+1y≤b(iδ K )N Ki (s−)Qbi (ds, dy )+
+
+X
+
+> j∈Z
+
+Z t∧τθ
+
+> 0
+
+Z
+
+> R+
+
+1y≤ph K G(( j−i)hK )N Kj (s−)Qpj (ds, dy ).
+
+Then, sup   
+
+> t∈[0 ,T ∧τθ]
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (t) ≤
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (0) + 
+
+X
+
+> i∈Z
+
+e−CA|ih K |
+
+Z T ∧τθ
+
+> 0
+
+Z
+
+> R+
+
+1y≤b(iδ K )N Ki (s−)Qbi (ds, dy )+
+
+X
+
+> i∈Z
+
+X
+
+> j∈Z
+
+e−CA|ih K |
+
+Z T ∧τθ
+
+> 0
+
+Z
+
+> R+
+
+1y≤ph K G(( j−i)hK )N Kj (s−)Qpj (ds, dy ).
+
+(45) Furthermore for any ( t, i ) ∈ R+ × Z, we have 
+
+N Ki (t ∧ τθ) ≤ eCA|ih K |θ, 
+
+and 
+
+X
+
+> j∈Z
+
+hK G(( j − i)hK )N Kj (t ∧ τθ) = 
+
+X
+
+> j∈Z
+
+hK eCA|jh K |G(( j − i)hK )e−CA|jh K |N Kj (t ∧ τθ)
+
+≤ eCA|ih K |θ
+
+X
+
+> j∈Z
+
+hK eCA|lh K |G(lh K ).
+
+Hence, the local martingale involved in the decomposition of N Ki , is a martingale before 19 T ∧ τθ. Therefore, we take the expectation in (45), to obtain 
+
+E sup   
+
+> t∈[0 ,T ∧τθ]
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (t) ≤ E X 
+
+> i∈N
+
+e−CA|ih K |N Ki (0)  + E
+
+ Z T ∧τθ
+
+> 0
+
+X
+
+> i∈Z
+
+e−CA|ih K |b(iδ K )N Ki (s)
+
+
+
++ E
+
+ Z T ∧τθ
+
+> 0
+
+X
+
+> i∈Z
+
+X
+
+> j∈Z
+
+ph K G(( j − i)hK )e−CA|ih K |N Kj (s)ds 
+
+
+
+≤ E X 
+
+> i∈N
+
+e−CA|ih K |N Ki (0)  + bE
+
+ Z T ∧τθ
+
+> 0
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (s)ds 
+
+
+
++ pE
+
+ Z T ∧τθ
+
+> 0
+
+X
+
+> j∈Z
+
+X
+
+> i∈Z
+
+hK eCA|(j−i)hK |G(( j − i)hK )e−CA|jh K |N Kj (s)ds 
+
+
+
+≤ E X 
+
+> i∈Z
+
+e−CA|ih K |N Ki (0)  + C
+
+Z T
+
+> 0
+
+E
+
+ X 
+
+> i∈Z
+
+e−CA|ih K |N Ki (s ∧ τθ)ds 
+
+
+
+.
+
+Note that T 7→ E sup t∈[0 ,T ∧τθ ]
+
+Pi∈Z e−CA|ih K |N Ki (t) is measurable and bounded by θ. Thus, by Gronwall’s inequality and (35), we obtain that for any θ > 0
+
+E sup   
+
+> t∈[0 ,T ∧τθ]
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (t) ≤ eCT E X 
+
+> i∈Z
+
+e−CA|ih K |N Ki (0)  ≤ C(T , K ). (46) By contradiction we assume that (44) fails, then there exists T > 0 such that P(sup θ≥1 τθ <T ) := aT > 0. Therefore E sup t∈[0 ,T ∧τθ ]
+
+Pi∈N e−CA|ih K |N Ki (t) > a T θ → +∞, as θ → +∞. This is in contradiction with (46). Finally, by Fatou’s Lemma and (46), we deduce that 
+
+E sup  
+
+> t∈[0 ,T ]
+
+X
+
+> i∈Z
+
+e−CA|ih K |N Ki (t) ≤ C(T , K ).
+
+The proof of the second moment follows similar arguments. Let us give the main points. We introduce a new stopping time as 
+
+τ′ 
+
+> θ
+
+= inf {t > 0,
+
+X
+
+> i∈Z
+
+e−CA|ih K |(N Ki (t)) 2 ≥ θ}.
+
+20 The representation of ( N K )2 is given as follows 
+
+N Ki (t)2 =N Ki (0) 2 +
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+(2 N Ki (s−) + 1) 1y≤b(iδ K )N Ki (s−)Qbi (ds, dy ) −
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+(2 N Ki (s−) − 1) 
+
+1y≤d(iδ K )N Ki (s−)Qdi (ds, dy ) + 
+
+X
+
+> j∈Z
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+(2 N Ki (s−) + 1) 1y≤ph K G(( j−i)hK )N Kj (s−)Qpj (ds, dy ).
+
+(47) The only point which di ff ers from the previous proof is the fact that the local martingale appearing in the mutation term in (47) is a martingale before τ′
+
+> θ
+
+. For all ( t, i ) ∈ (0 , +∞)×Z,
+
+we have 
+
+X
+
+> j∈Z
+
+N Ki (t ∧ τ′
+
+> θ
+
+)hK G(( j − i)hK )N Kj (t ∧ τ′
+
+> θ
+
+) ≤
+
+X
+
+> j∈Z
+
+12(( N Ki (t ∧ τ′
+
+> θ
+
+)) 2 + ( N Kj (t ∧ τ′
+
+> θ
+
+)) 2)hK G(( j − i)hK )
+
+≤ 12θe CA|ih K | X
+
+> j∈Z
+
+hK (1 + e−| jh K |)G(jh K ).
+
+Hence, we can take the expectation in (47), the remainder of the proof is similar as above, using the fact that 
+
+E
+
+ X 
+
+> i∈N
+
+e−CA|ih K |N Ki (0) 2
+
+≤ C(T , K ),
+
+which results from (35) and (38). That completes the proof of (41). 
+
+Proposition 4.2. Under Assumptions A-C, Equation (6) has a unique solution nK ∈ C1(R+, eℓ1
+
+> A
+
+(Z)) ,
+
+where 
+
+eℓA
+
+> 1
+
+(Z) := {v ∈ RZ,
+
+X
+
+> i∈Z
+
+e−CA|ih K ||vi | < +∞} , (48) 
+
+and CA := 2 A + 1 , introduced in Proposition 4.1. 
+
+See Appendix B for the proof. The next proposition shows the convergence of the Hopf-Cole transformation uK to the viscosity solution of the Hamilton-Jacobi equation, under Assumptions A-C. 
+
+Proposition 4.3. Under Assumptions A-C, (euK )K converges locally uniformly to the unique Lipschitz-continuous viscosity solution of the Hamilton-Jacobi equation: 
+
+
+
+∂tu(t, x ) = b(x) − d(x) + p R 
+
+> R
+
+G(y)e∇u(t,x ).y dy, (t, x ) ∈ (0 , +∞) × R,u(0 , . ) = u0(.).
+
+(49) See Appendix B for the proof. 21 4.3 Convergence result in the supercritical regime 
+
+Theorem 4.4. Under Assumptions A-C, the sequence of stochastic processes (eβK )K converges in probability locally uniformly to the unique Lipschitz-continuous viscosity solution of the equation 
+
+
+
+∂tu(t, x ) = b(x) − d(x) + p R 
+
+> R
+
+G(y)e∇u(t,x ).y dy, (t, x ) ∈ (0 , +∞) × R,u(0 , . ) = u0(.).
+
+This theorem gives a probabilistic derivation of the classical Hamilton-Jacobi equation in a uniformly supercritical dynamics. 
+
+Proposition 4.5. Let T > 0. For any (t, i ) ∈ [0 , T ] × Z, we have 
+
+E N Ki (t log K) − nKi (t log K)
+
+nKi (t log K)
+
+!2
+
+≤ C(T )
+
+Ka/ 2 , (50) 
+
+where C(T ) is a positive constant increasing on T , but independent on K. 
+
+Moreover, for all η > 0 and T , D > 0, we have 
+
+P
+
+ sup   
+
+> {(t,i )∈[0 ,T ]×Z/iδ K∈[−D,D ]}
+
+N Ki (t log K) − nKi (t log K)
+
+nKi (t log K) > η 
+
+ ≤ C(T , D )
+
+η2δK Ka/ 2 , (51) 
+
+where C(T , D ) is a positive constant depending on T , D and increasing on T , but independent on K. Hence, on a logarithmic time scale, N K /n K converges in probability to 1 locally uniformly in time and space. Proof. Let T > 0. For all ( t, i ) ∈ [0 , T ] × Z, we define SKi (t) = N Ki (t)−nKi (t)  
+
+> nKi(t)
+
+. Using Itô’s lemma and the semi-martingale decomposition (3), which is well-defined by (41), we have for all 0 < s < t SKi (t) = SKi (s) + 
+
+Z ts
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (τ)
+
+nKi (τ) (SKl+i (τ) − SKi (τ)) dτ +
+
+Z ts
+
+dM Ki (τ)
+
+nKi (τ) .
+
+Then 
+
+SKi (t)2 = SKi (s)2 +
+
+Z ts
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (τ)
+
+nKi (τ) 2SKi (τ)( SKl+i (τ) − SKi (τ)) ds +
+
+Z ts
+
+d⟨MKi ⟩τ
+
+nKi (τ)2
+
++ eMKi (t) − eMKi (s),
+
+(52) 22 where t 7→ eMKi is a martingale, which is a consequence of (41). We define, Y Ki (t) = 
+
+E
+
+SKi (t)2
+
+, which is also well-defined by (41). By Young’s inequality, we obtain that 
+
+Y Ki (t) ≤ Y Ki (s) + 
+
+Z ts
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (τ)
+
+nKi (τ) (Y Kl+i (τ) − Y Ki (τ)) dτ +
+
+Z ts
+
+dE(⟨MKi ⟩τ )
+
+nKi (τ)2 .
+
+Furthermore, from (25) the spatial Lipschitz bound of uK , is global on [0 , T ] × Z, and 
+
+T 7→ CLip (T ) is increasing. We obtain 
+
+Z ts
+
+dE(⟨MKi ⟩τ )
+
+nKi (τ)2 =
+
+Z ts
+
+1
+
+nKi (τ)
+
+
+
+b(iδ K ) + d(iδ K ) + 
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (τ)
+
+nKi (τ) dτ 
+
+
+
+≤
+
+Z ts
+
+C(T / log K)dτ nKi (τ) ,
+
+where T 7→ C(T ) is increasing. Then by (39), we deduce that 
+
+dY Ki (t)
+
+dt ≤
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (t)
+
+nKi (t) (Y Kl+i (t) − Y Ki (t)) + C(T / log K)
+
+Ka . (53) Therefore, by the maximum principle (see Appendix B for the proof), and (38), we deduce (50). Moreover, let η > 0, we have by the submartingale inequality and from (52), that for all i ∈ ZP( sup  
+
+> t∈[0 ,T ]
+
+| eMKi (t)| > η ) ≤ 1
+
+η E(| eMKi (T )|)
+
+≤ 1
+
+η
+
+
+
+E(SKi (T )) 2 + E(SKi (0)) 2
+
++
+
+Z T
+
+> 0
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (s)
+
+nKi (s) 2E|SKi (s)( SKl+i (s) − SKi (s)) |
+
+
+
+ds 
+
++
+
+Z T
+
+> 0
+
+dE(⟨MKi ⟩s)
+
+nKi (s)2
+
+
+
+.
+
+Moreover, we have 
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (s)
+
+nKi (s) E
+
+
+
+2|SKi (s)( SKl+i (s) − SKi (s)) |
+
+
+
+≤ p
+
+X
+
+> l∈Z
+
+hK G(lh K )eCLip (T / log K)|lh K |(3 Y Ki (s) + Y Kl+i (s)) .
+
+(54) 23 Thus, from (50) we deduce that 
+
+P( sup  
+
+> t∈[0 ,T ]
+
+| eMKi (t)| > η ) ≤ C(T / log K)
+
+ηK a/ 2 . (55) Therefore, from (52) and (55), we obtain for K large enough that 
+
+P( sup  
+
+> t∈[0 ,T ]
+
+(SKi (t)) 2 > η ) ≤ P(SKi (0)) 2 > η/ 4 + P sup  
+
+> t∈[0 ,T ]
+
+| eMKi (t)| > η/ 4
+
++ P
+
+ Z T
+
+> 0
+
+X
+
+> l∈Z
+
+ph K G(lh K )nKl+i (s)
+
+nKi (s) 2|SKi (s)( SKl+i (s) − SKi (s)) |ds > η/ 4
+
+
+
+≤ C(T / log K)
+
+ηK a/ 2 .
+
+(56) This implies (51), and hence N K /n K converges in probability to 1 , on a logarithmic time scale. We conclude the proof of Proposition 4.5. 
+
+## 4.4 Proof of Theorem 4.4 
+
+Let us prove the convergence toward the Hamilton-Jacobi equation. By similar computa-tions as in the proof of Theorem 3.1, and by (51), we deduce that 
+
+P
+
+ sup  
+
+> {(t,x )∈[0 ,T ]×[−D,D ]}
+
+eβK (t, x ) − euK (t, x ) > η 
+
+
+
+≤ P
+
+ sup   
+
+> {(t,i )∈[0 ,T ]×Z/iδ K∈[−2D, 2D]}
+
+βKi (t) − uKi (t) > η 
+
+
+
+= P
+
+ sup   
+
+> (t,iδ K)∈[0 ,T ]×[−2D, 2D]
+
+1log K log 
+
+
+
+1 + N Ki (t log K) − nKi (t log K)
+
+nKi (t log K)
+
+
+
+> η 
+
+
+
+≤ ( 1
+
+η2 log 2 K + 4) C(T , 2D)
+
+δK Ka/ 2 .
+
+Moreover, from Proposition 4.3, uK converges to the viscosity solution of (49), we con-clude the proof of Theorem 4.4. 24 Appendix A 
+
+Proof of the maximum principle for (30) : Recall that K is fixed in this proof. Let T > 0. We recall that Y Ki (t) = E
+
+(N Ki (t)−nKi (t)) 2 
+
+> nKi(t)
+
+
+
+. We start by bounding the growth of Y Ki
+
+when |i| → +∞. We have, 
+
+Y Ki (t) ≤ 2E(N Ki (t)) 2
+
+nKi (t) + 2 nKi (t).
+
+From (18), we have 
+
+E(N Ki (t)) 2 ≤ C(T , K ), and nKi (t) ≤ pC(T , K ), ∀t ∈ [0 , T ].
+
+Furthermore, from (24) we have that nKi (t) ≥ e−L|ih K |+A4 log K+A5t. Therefore, we deduce that 
+
+Y Ki (t) ≤ eC(T , K )( eL|ih K | + 1) . (57) Our goal is to deduce from (30) that (Y Ki (t) − C(T / log K)t)e−(α+o(1)) t − C ≤ 0, (58) where C is given by (16). To this end, let us define for all ( t, i ) ∈ [0 , T ] × Z, and for some positive constant D to be chosen latter 
+
+eY Ki (t) := 
+
+Y Ki (t) − C(T / log K)te−(α+o(1)) t − C
+
+
+
+e−(L+1) |lh K |e−Dt .
+
+By contradiction, we assume that 
+
+M = sup  
+
+> (t,i )∈[0 ,T ]×Z
+
+eY Ki (t) > 0. (59) 25 From (57), eY Ki (t) vanishes as |i| → +∞. Let ( tK , i K ) be a maximum point of fY K in [0 , T ] × Z.
+
+By (38) we have that tK > 0. Thus, it follows from (30) at ( tK , i K ) that 
+
+ddt eY KiK (tK ) ≤ − D eY KiK (tK ) + p
+
+X
+
+> l∈Z
+
+hK G(lh K )nKl+iK (tK )
+
+nKiK (tK ) (e(L+1)( |(l+iK )hK |−| iK hK |) eY Kl+iK (tK ) − eY KiK (tK )) 
+
+≤ − DM + p
+
+X
+
+> l∈Z
+
+hK G(lh K )nKl+iK (tK )
+
+nKiK (tK ) (e(L+1) |lh K |M − M)
+
+≤
+
+ − D + p
+
+X
+
+> l∈Z
+
+hK G(lh K )( e(L+1+ CLip (T / log K)) |lh K |
+
+M. 
+
+Then, for D > p Pl∈Z hK G(lh K )( e(L+1+ CLip (T / log K)) |lh K |, we have 
+
+ddt eY KiK (tK ) < 0.
+
+This is in contradiction with the fact that tK > 0. Hence (58) is proved. 
+
+## Appendix B 
+
+Proof of Proposition 4.2 The proof follows the classical Picard iteration method. The novelty here is that the initial condition is not integrable. We introduce a new functional space in which existence and uniqueness hold. For more details about the existence and uniqueness of such a discrete system, we refer to Appendix A in [12]. We define BK = ( aKi,j )i,j ∈Z the infinite real matrix where aKi,j = ph K G(( j − i)hK ), D K the infinite diagonal matrix whose diagonal elements are b(iδ K ) − d(iδ K ) for all i ∈ Z, and we define the infinite vector nK = ( nKi )i∈Z. We write Equation (6) as 
+
+ddt nK (t) = ( DK + BK )nK (t). (60) Let T > 0. We consider the following closed subset of C([0 , T ], eℓ1
+
+> A
+
+(Z)) : 
+
+H := 
+
+
+
+n ∈ C([0 , T ], eℓ1
+
+> A
+
+(Z)) , ∥n(t)∥eℓ1 
+
+> A(Z)
+
+≤ C(t)∥n(0) ∥eℓ1
+
+> A(Z)
+
+, ∀t ∈ [0 , T ]
+
+
+
+, (61) where 
+
+∥n∥L∞([0 ,T ],eℓ1 
+
+> A(Z))
+
+:= sup  
+
+> t∈[0 ,T ]
+
+X
+
+> i∈Z
+
+e−CA|ih K ||ni (t)|,
+
+26 and C(t) := 1+ e(b+d+2 p)t. Note that C([0 , T ], eℓ1
+
+> A
+
+(Z)) endowed with the norm ∥.∥L∞([0 ,T ],eℓ1
+
+> A(Z))
+
+,
+
+is a Banach space. Let us now define the mapping 
+
+Φ :H 7→ H 
+
+n 7→ Φ(n),
+
+where Φ(n) is the unique solution of 
+
+ 
+
+> ddt
+
+Φ(n)( t) = ( DK + BK )n(t)
+
+Φ(n)(0) = nK (0) .
+
+Note that from (35) there exists a positive constant C(K) such that ∥nK (0) ∥eℓ1 
+
+> A(Z)
+
+≤ C(K).
+
+Then, the proof follows by simple computations proving that, for a small time T > 0,
+
+Φ(H) ⊂ H , and it is a contraction in H with the norm ∥.∥L∞([0 ,T ],eℓ1
+
+> A(Z))
+
+. We conclude the existence and uniqueness until this small time T , and by classical iteration arguments, we conclude the existence and uniqueness of the global solution. 
+
+## Proof of Proposition 4.3 
+
+The proof of this result follows similar arguments to the proof of Theorem 3.3. Note that from (35), and by adapting the proof of the comparison principle in Proposition 3.4 in [12], we obtain for some positive constant C, that uKi (t) ≤ A|iδ K | + B + Ct. Moreover, from (39), we have uKi (t) ≥ a. We deduce that, uK is locally uniformly bounded. The spatial Lipschitz bound is given by Proposition 4.2 in [12], and the Lipschitz bound in time can be deduced as in the proof of Theorem 3.3. Then, by the Arzelà–Ascoli theorem, we conclude the compactness of ( euK )K , and classical arguments yield the convergence along subsequences to the Hamilton-Jacobi equation. The uniqueness of such Hamilton-Jacobi equations with an initial condition of linear growth is well-known (see for instance [2]). Hence, the local uniform convergence of the full sequence ( euK )K to the unique viscosity solution of (49). 
+
+## Proof of the maximum principle of (53) 
+
+The only change from the proof given in Appendix A is the behavior of Y K at infin-ity in space. In this case, it is easy to see from (41) that max 
+
+
+
+nKi (t), E(N Ki (t)) 2
+
+≤
+
+C(T , K )eCA|ih K |. Moreover, since nKi (t) ≥ Ka, we deduce the exponential growth of Y K for 27 fixed K, i,e 
+
+Y Ki (t) ≤ C(T , K )eC|ih K |,
+
+where C is a positive constant. Then, the remainder of the proof is exactly as in Appendix A. 
+
+Acknowledgements: The author thanks Nicolas Champagnat and Sylvie Méléard for their comments and careful reading. This work is funded by the European Union (ERC, SINGER, 101054787). Views and opinions expressed are however those of the author only and do not necessarily reflect those of the European Union or the European Research Council. Neither the European Union nor the granting authority can be held responsible for them. This work has also been supported by the Chair "Modélisation Mathématique et Biodiversité" of Veolia Environnement-École Polytechnique-Museum National d’Histoire Naturelle-Fondation X. 28 References 
+
+[1] V. Bansaye and S. Méléard. Stochastic Models for Structured Populations , volume 1.4. Mathematical Biosciences Institute Lecture Series, 2015. [2] G. Barles. Solutions de viscosité des équations de Hamilton-Jacobi . Springer-Verlag Berlin Heidelberg, 1994. [3] G. Barles, S. Mirrahimi, and B. Perthame. Concentration in Lotka-Volterra parabolic or integral equations: a general convergence result. Methods and Applications of Anal-ysis , 16(3):321–340, 2009. [4] N. Champagnat, R. Ferrière, and S. Méléard. Unifying evolutionary dynamics: from individual stochastic processes to macroscopic models. Theoretical Population Biol-ogy , 69(3):297–321, 2006. [5] N. Champagnat, R. Ferrière, and S. Méléard. From individual stochastic processes to macroscopic models in adaptive evolution. Stochastic Models , 24:2–44, 2008. [6] N. Champagnat, S. Méléard, S. Mirrahimi, and V. Chi Tran. Filling the gap between individual-based evolutionary models and Hamilton-Jacobi equations. Journal de l’École polytechnique — Mathématiques , Tome 10:1247–1275, 2023. [7] N. Champagnat, S. Méléard, and V.C Tran. Stochastic analysis of emergence of evo-lutionary cyclic behavior in population dynamics with transfer. Ann. Appl. Probab ,31:1820–1867, 2021. [8] L. Coquille, A. Kraut, and C. Smadi. Stochastic individual-based models with power law mutation rate on a general finite trait space. Electron. J. Probab. , 26:1–37, 2021. [9] O. Diekmann, P-E. Jabin, S. Mischler, and B. Perthame. The dynamics of adaptation: An illuminating example and a Hamilton–Jacobi approach. Theoretical Population Biology , 67:257–271, 2005. [10] N. Fournier and S. Méléard. A microscopic probabilistic description of a locally regulated population and macroscopic approximations. The Annals of Applied Prob-ability , 14(4):1880–1919, 2004. [11] P-E. Jabin. Small populations corrections for selection-mutation models. Networks and Heterogeneous Media , 7(4):805–836, 2012. 29 [12] A. Jeddi. Convergence of a discrete selection-mutation model with exponentially decaying mutation kernel to a hamilton-jacobi equation. arXiv:2412.06657 , 2024. [13] A. Lorz, S. Mirrahimi, and B. Perthame. Dirac mass dynamics in multidimension-alnonlocal parabolic equations. Communications in Partial Di ff erential Equations ,36(6):1071–1098, 2011. [14] S. Mirrahimi, G. Barles, B. Perthame, and P.E. Souganidis. A singular hamilton-jacobi equation modeling the tail problem. SIAM Journal on Mathematical Analysis ,44(6):10.1137/100819527, 2012. [15] B. Perthame and G. Barles. Dirac concentrations in Lotka-Volterra parabolic PDEs. 
+
+Indiana Univ. Math. J. , 57:3275–3301, 2008. 30
