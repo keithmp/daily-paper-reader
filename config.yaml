@@ -70,3 +70,4 @@ subscriptions:
           source: manual
           note: ''
       updated_at: '2026-03-18T01:43:58.372Z'
+      paused: false
