@@ -1,0 +1,809 @@
+Title: Co-Diffusion: An Affinity-Aware Two-Stage Latent Diffusion Framework for Generalizable Drug-Target Affinity Prediction
+
+URL Source: https://arxiv.org/pdf/2603.11125v1
+
+Published Time: Fri, 13 Mar 2026 00:08:37 GMT
+
+Number of Pages: 14
+
+Markdown Content:
+> 1
+
+# Co-Diffusion: An Affinity-Aware Two-Stage Latent Diffusion Framework for Generalizable Drug-Target Affinity Prediction 
+
+Yining Qian, Pengjie Wang, Yixiao Li, An-Yang Lu, Cheng Tan, Shuang Li, and Lijun Liu ∗
+
+Abstract —Predicting drug–target affinity is fundamental to virtual screening and lead optimization. However, existing deep models often suffer from representation collapse in stringent cold-start regimes, where the scarcity of labels and domain shifts prevent the learning of transferable pharmacophores and binding motifs. In this paper, we propose Co-Diffusion, a novel affinity-aware framework that redefines DTA prediction as a constrained latent denoising process to enhance generalization. Co-Diffusion employs a two-stage paradigm: Stage I establishes an affinity-steered latent manifold by aligning drug and target embeddings under an explicit supervised objective, ensuring that the latent space reflects the intrinsic binding landscape. Stage II intro-duces modality-specific latent diffusion as a stochastic perturb-and-denoise regularizer, forcing the model to recover consis-tent affinity semantics from noisy structural representations. This approach effectively mitigates the reconstruction-regression conflict common in generative DTA models. Theoretically, we show that Co-Diffusion maximizes a variational lower bound on the joint likelihood of drug structures, protein sequences, and binding strength. Extensive experiments across multiple bench-marks demonstrate that Co-Diffusion significantly outperforms state-of-the-art baselines, particularly yielding superior zero-shot generalization on unseen molecular scaffolds and novel protein families—paving a robust path for in silico drug prioritization in unexplored chemical spaces. 
+
+Index Terms —Latent diffusion model, drug-target affinity prediction, protein-ligand binding affinity, cold-start 
+
+I. I NTRODUCTION 
+
+Predicting drug–target binding affinity (DTA) is a founda-tional task in computer-aided drug discovery. It quantifies the strength of the interaction between a small molecule and a protein target, providing essential data for virtual screening, target validation, and lead optimization [1, 2]. Unlike binary drug–target interaction (DTI) classification, DTA provides 
+
+This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible. Yining Qian is with the School of Computer Science and Engineer-ing, Northeastern University, Shenyang 110819, China (e-mail: qianyiningn-ing@126.com). Pengjie Wang, Yixiao Li, and An-Yang Lu are with the College of Information Science and Engineering, Northeastern University, Shenyang 110819, China (e-mail: 3508288313@qq.com, 2470845@stu.neu.edu.cn). Cheng Tan is with Westlake University, Hangzhou 310000, China (e-mail: chengtan9907@gmail.com). Shuang Li is with the School of Artificial Intelligence, Beihang University, Beijing 100000, China (e-mail: shuangliai@buaa.edu.cn). Lijun Liu is with the Key Laboratory of Bioresource Research and Development of Liaoning Province, College of Life and Health Sciences, Northeastern University, Shenyang 110169, China ( Corresponding author e-mail: liulijun@mail.neu.edu.cn). 
+
+Fig. 1: Overview of the drug discovery process. The proposed Co-Diffusion framework operates at the predictive modeling stage, providing robust affinity estimates to guide the selection of candidates before in vitro testing. 
+
+continuous affinity estimates that enable fine-grained ranking and prioritization of therapeutic candidates [3–5]. While exper-imental assays such as ELISA or surface plasmon resonance offer high-fidelity measurements, they remain labor-intensive and low-throughput. Given that the journey from initial dis-covery to clinical approval often exceeds a decade with multi-billion-dollar investments [6, 7], computational DTA serves as a critical high-throughput triage layer to prioritize compounds for expensive in vitro validation [8, 9], as illustrated in Fig. 1. In practice, affinity is reported via standardized biochemical readouts such as the dissociation constant Kd, inhibition constant Ki, or IC50 . Because these values typically span multiple orders of magnitude, log-transformed targets (e.g., 
+
+y = − log 10 Kd) are commonly employed to stabilize the learning process [10]. DTA is thus naturally formulated as a regression problem, requiring representations that can resolve subtle chemical and structural variations to yield stable, well-calibrated predictions. Recent deep learning models have substantially advanced supervised DTA prediction by learning end-to-end represen-tations and capturing complex nonlinear interaction patterns [11–14]. However, the empirical success of these models often evaporates in stringent cold-start scenarios, where test-time drugs or targets occupy unseen regions of the chemical and biological manifolds [15]. This generalization gap stems from a fundamental limitation: purely discriminative architec-tures often learn brittle, pair-specific correlations rather than intrinsic, transferable binding determinants (e.g., conserved pharmacophores or binding site motifs). Consequently, cold-start DTA calls for a stronger inductive bias that can reconcile 
+
+> arXiv:2603.11125v1 [stat.ML] 11 Mar 2026 2
+
+multimodal structural diversity with affinity-relevant consis-tency. These challenges have motivated the exploration of gen-erative and probabilistic formulations for DTA. Variational approaches, such as VAE-based designs [16–18], introduce latent variables to regularize representation learning. How-ever, these methods frequently suffer from semantic dilution, where the structural reconstruction objective overwhelms the subtle signals required for affinity prediction, leading to a ”reconstruction–regression conflict.” While Latent Diffusion Models (LDMs) offer superior expressive power in capturing complex, multi-modal distributions, standard diffusion training is driven by denoising fidelity rather than binding supervision. Directly integrating diffusion into a DTA pipeline may thus yield diverse latents that remain weakly coupled to the actual binding strength. To bridge these gaps, we propose Co-Diffusion , a novel affinity-aware latent diffusion framework with a two-stage training paradigm tailored for robust cold-start generalization. In Stage I, Co-Diffusion establishes an affinity-steered latent manifold by aligning drug and target embeddings under an explicit supervised objective, ensuring the latent space serves as a semantic anchor for binding landscapes. In Stage II, we introduce modality-specific latent diffusion as a stochastic perturb-and-denoise regularizer. By constraining the denoising dynamics to preserve affinity predictiveness, Co-Diffusion forces the model to recover consistent binding semantics from noisy structural perturbations. This approach leverages the ex-pressive prior-learning capabilities of diffusion while ensuring that learned features remain invariant to the distribution shifts inherent in prospective discovery. Our main contributions are summarized as follows.  
+
+> •
+
+We propose Co-Diffusion, an affinity-steered latent diffu-sion framework that harmonizes structural representation learning with binding-strength supervision, specifically optimized for stringent cold-start DTA prediction.  
+
+> •
+
+We introduce a unique two-stage training paradigm that first anchors an affinity-aligned latent manifold and subsequently applies latent-space diffusion as a noise-robust regularizer, effectively bypassing the traditional reconstruction–regression conflict.  
+
+> •
+
+We provide a principled probabilistic derivation showing that Co-Diffusion optimizes a variational lower bound on the joint likelihood of drug structures, protein sequences, and affinity. Extensive experiments demonstrate its state-of-the-art generalization on unseen drugs and novel tar-gets. II. R ELATED WORK 
+
+The evolution of DTA prediction has transitioned from classical statistical methods to deep learning paradigms. Ex-isting literature can be broadly categorized into discriminative architectures and generative latent-variable frameworks. 
+
+A. Discriminative Paradigms for DTA 
+
+Discriminative models aim to learn a direct mapping from drug-target pairs to affinity values, focusing on the architec-tural fusion of chemical and biological modalities. 
+
+a) Structural and Sequential Encoders.: Early mile-stones such as DeepDTA [19] and WideDTA [20] utilized 1D convolutional neural networks (CNNs) to extract local motifs from SMILES strings and amino-acid sequences. To better preserve the spatial topology of small molecules, graph-based methods like GraphDTA [21], FAPE-DTI [22] and GSAML-DTA [23] employed Graph Neural Networks (GNNs) to cap-ture geometric pharmacophores. More recently, Transformer-based models, including MolTrans [24], AttentionDTA [25] and MocFormer [26], have leveraged self-attention mecha-nisms to model long-range dependencies and sub-structural cross-interactions. 
+
+b) The Generalization Bottleneck.: Despite achieving high accuracy on randomized splits, these discriminative mod-els often suffer from representational brittleness in cold-start scenarios. Without explicit structural regularization, these models tend to memorize spurious correlations specific to the training set rather than distilling transferable binding determinants. This lack of robustness necessitates an induc-tive bias that can decouple essential binding semantics from distributional noise. 
+
+B. Generative and Probabilistic Regularization 
+
+To mitigate label scarcity and domain shift, researchers have introduced generative components to regularize the latent space. 
+
+a) Variational Latent-Variable Models.: Generative DTA models primarily utilize Variational Autoencoders (VAEs) to learn structured representations. Co-VAE [16] uses dual-branch VAEs with co-regularization to align drug and target latent spaces. PAIR-VAE [17] synthesizes auxiliary interac-tion instances by rebuilding drug–target pairs and optimizes them jointly with original data under a label-sharing pro-tocol. TransVAE-DTA [18] combines Transformer architec-tures with variational layers to steer representations toward affinity-relevant clusters. However, these VAE-style designs often encounter a reconstruction–regression conflict: the heavy objective of reconstructing raw molecular structures or protein sequences can dilute the subtle affinity signals, leading to a semantic misalignment where the latent space prioritizes structural fidelity over predictive utility. 
+
+b) Emergence of Diffusion Models in Bio-AI.: Diffusion models have recently revolutionized molecular docking (e.g., Re-Dock [27]) and protein folding by modeling complex conformational distributions. However, their application in DTA remains largely untapped. Existing diffusion models are predominantly designed for generative sampling of coordinates or graphs, rather than serving as discriminative regularizers for affinity regression. Our Co-Diffusion framework fills this gap by repurposing latent diffusion as a stochastic perturb-and-denoise regularizer, bridging the expressive power of genera-tive priors with the precision of affinity-aware supervision. III. M ETHODOLOGY 
+
+This section details the Co-Diffusion framework through five integrated components. We first formalize the DTA pre-diction task and provide the theoretical prerequisites for Latent 3
+
+Fig. 2: Latent Diffusion Process in Training and Inference. (a) In training, the VAE encoder produces latent z0, which is perturbed to zt by adding noise. A UNet is trained to predict the noise, following the Noise-Prediction Training Objective . (b) In inference, the reverse denoising process transforms sampled noise zT back to z0, which is decoded to generate the target sequence, as described in Generation .Diffusion Models (LDMs). We then present a rigorous prob-abilistic derivation of the Co-Diffusion objective, followed by an exposition of the network architecture and the two-stage optimization strategy designed to decouple latent alignment from generative refinement. 
+
+A. Problem Definition 
+
+Let D be the space of drug compounds (SMILES) and T be the space of protein targets (amino acid sequences). A DTA dataset is defined as S = {(xid, xit, y i)}Ni=1 , where xd ∈ D ,
+
+xt ∈ T , and y ∈ R represents the log-transformed affinity (e.g., pK d). Our goal is to learn a predictive mapping f :
+
+D × T → R that generalizes to unseen drug-target pairs in cold-start scenarios. 
+
+B. Latent Diffusion Model 
+
+Latent Diffusion Models [28] operate on a compressed latent manifold rather than raw input space, significantly enhancing computational efficiency and focus on semantic features. 
+
+a) Framework Overview.: Given an observed data sam-ple x ∈ RD , a latent autoencoder is first trained to learn a compact representation z0 ∈ Rd with d ≪ D. The autoencoder consists of an encoder E : x → z0 and a decoder 
+
+D : z0 → ˆx, optimized via a reconstruction objective: 
+
+LVAE = Ex∼pdata (x)
+
+|x − D (E(x)) |2 .
+
+After training the autoencoder, a diffusion model (DM) is applied in the latent space z0 = E(x) to learn its genera-tive distribution. Fig. 2 illustrates the overall latent diffusion framework using the target sequence as an example. 
+
+b) Latent Diffusion Process.: Following the denoising diffusion probabilistic model (DDPM) [29] framework, aforward diffusion process in latent space gradually corrupts 
+
+z0 into noise through a Markov chain: 
+
+q(z1: T |z0) = 
+
+> T
+
+Y
+
+> k=1
+
+q(zk|zk−1)
+
+where q(zk|zk−1) = N (zk; √1 − βkzk−1, β tI), {βk}Tk=1 is a fixed variance schedule. As T → ∞ , q(zT ) → N (0, I).To learn the generative distribution, a reverse denoising process is modeled: 
+
+pθ (z0: T ) = p(zT )
+
+> T
+
+Y
+
+> k=1
+
+pθ (zk−1|zk)
+
+where p(zT ) = N (0, I), each pθ (zk−1|zk) is parameterized as a Gaussian distribution with mean predicted by a neural network μθ (zk, k ) and variance σ2
+
+> k
+
+.
+
+c) Variational Lower Bound.: To optimize the model, diffusion models aim to maximize the log-likelihood of data 
+
+log pθ (z0). However, direct optimization is intractable, so an evidence lower bound (ELBO) is instead maximized by introducing the forward process q(z1: T |z0) as an approximate posterior. This leads to the following ELBO: 
+
+log pθ (z0) ≥ Eq(z1: T |z0)
+
+
+
+log pθ (z0: T )
+
+q(z1: T |z0)
+
+
+
+= −L DM (1) where LDM can be rewritten as: 
+
+LDM =DKL (q(zT |z0)∥p(zT )) +
+
+> T
+
+X
+
+> k=2
+
+DKL (q(zk−1|zk, z0)∥pθ (zk−1|zk)) 
+
+− Eq [log pθ (z0|z1)] .
+
+(2) Each term in this decomposition has a distinct meaning: 4
+
+1) The first term penalizes the mismatch between the termi-nal forward distribution q(zT |z0) and the prior p(zT ).2) The summation accounts for mismatches between the reverse generative distribution pθ (zk−1|zk) and the exact reverse posterior q(zk−1|zk, z0).3) The final term corresponds to the reconstruction log-likelihood at step k = 1 .
+
+d) Noise-Prediction Training Objective.: To simplify op-timization, LDMs adopt the reparameterization proposed in [29], where the forward process is expressed as: 
+
+zk = √¯αkz0 + √1 − ¯αkϵ, ϵ ∼ N (0, I),
+
+with ¯αk = Qks=1 (1 − βs). The model learns to predict the noise ϵ from the noisy latent zk:
+
+Lsimple = Ez0,ϵ,k 
+
+h
+
+|ϵ − ϵθ (zk, k )|2i
+
+. (3) 
+
+e) Generation.: After training, new data samples are generated by sampling zT ∼ N (0, I) and iteratively applying the learned reverse process to obtain z0, followed by D(z0).LDMs effectively combine the variational principles of VAEs with the high-quality generation of DM. By operating in a learned latent space, LDMs provide a scalable and modular framework for efficient high-dimensional generation with a well-defined ELBO on the data likelihood. 
+
+C. The Co-Diffusion Model 
+
+The LDM is a state-of-the-art for generative models to find out the marginal distribution p(x) for a high-dimensional random vector x. However, in our scenario, it could not be used directly to predict drug-target binding affinity. In this section, referring to the structure of LDM, we propose a Co-Diffusion model to predict affinities through removing the decoder layer and adding a prediction layer. We first formulate our drug-target affinity prediction prob-lem as follows. Let xd and xt be the feature vectors for a drug and a target, and y be the affinity values. We aim to learn a predictive model p(y|xd, xt) based on the training triplets 
+
+{xid, xit, y i}Ni=1 . We assume the latent variables for drug xd
+
+and target xt as zd, 0 and zt, 0, respectively. And a forward diffusion process in latent space gradually corrupts zd, 0 into noise zd,k = √¯αkzd, 0 + √1 − ¯αkϵ (k ∈ [1 , T ]), so does zt,k .We propose a Co-Diffusion model as shown in Fig. 3. The Co-Diffusion model contains two recognition models 
+
+qϕd (zd, 0|xd) and qϕt (zt, 0|xt), which independently produce the latent variables zd, 0 and zt, 0 from the input xd and 
+
+xt, respectively, two diffusion processes pθd (zd, 0|zd,k ) and 
+
+pθt (zt, 0|zt,k ), which produce zd,k , ˆzd, 0 and zt,k , ˆzt, 0, re-spectively, and a prediction model pθy (y|ˆzd, 0, ˆzt, 0), which generates a drug-target affinity prediction from ˆzd, 0 and ˆzt, 0.Besides, we make the following assumptions to obtain a tractable ELBO while keeping drug–target interaction modeled in the likelihood. 
+
+(A1) Factorized prior over latent diffusion trajectories. 
+
+pθ (zd, 0: T , z t, 0: T ) = pθd (zd, 0: T ) pθt (zt, 0: T ) .
+
+(A2) Mean–field variational family. 
+
+qϕ(zd, 0: T , z t, 0: T | xd, x t) = qϕd (zd, 0: T | xd) qϕt (zt, 0: T | xt) .
+
+(A3) Conditionally independent diffusion trajectories given their initial latents. The latent path z⋆, 1: T evolves as a Markov chain driven by its own independent noise process, 
+
+q(zd, 1: T , z t, 1: T | zd, 0, z t, 0) = q(zd, 1: T | zd, 0) q(zt, 1: T | zt, 0) .
+
+Remark 1: Assumptions (A1)–(A3) are model-ing/variational choices made purely for tractable inference rather than biological claims. We factorize the prior and the variational family (A1–A2) and let the two diffusion trajectories evolve with independent noise given their own initial latents (A3), which mirrors the graphical model and enables stable, scalable optimization of two DDPM-style branches. The drug–target interaction is retained explicitly in the likelihood pθy (y | zd, 0, z t, 0), which couples the latents during training and prediction. This separation (simple priors/posteriors for efficiency, interaction in the likelihood for fidelity) follows standard probabilistic practice and reduces gradient variance and computational cost. Based on the above assumptions, we have the following theorem for the lower bound of log likelihood of the joint distribution of (y, z d, 0, z t, 0), which is taken as the objective function of the Co-Diffusion model. 
+
+Fig. 3: The graphical structure for Co-Diffusion model. 
+
+Theorem 3.1: With the assumptions (A1)-(A3), the graphi-cal model shown in Fig. 3 generates an ELBO of log likelihood of the joint distribution of (y, z d, 0, z t, 0) as 
+
+log pθ (y, z d, 0, z t, 0) ≥ L (θ; y, z d, 0, z t, 0) = LCoDiff 
+
+= LCoREG − L DrugDiff − L TargetDiff 
+
+(4) where θ = {θd, θ t, θ y },
+
+LCoREG = Eq [log pθy (y|zd, 0, zt, 0)] 
+
+LDrugDiff = DKL (q(zd,T |zd, 0)∥pθd (zd,T )) +
+
+> T
+
+X
+
+> k=2
+
+DKL (q(zd,k −1|zd,k , zd, 0)∥pθd (zd,k −1|zd,k )) 
+
+− Eq [log pθd (zd, 0|zd, 1)] ,
+
+LTargetDiff = DKL (q(zt,T |zt, 0)∥pθt (zt,T )) +
+
+> T
+
+X
+
+> k=2
+
+DKL (q(zt,k −1|zt,k , zt, 0)∥pθt (zt,k −1|zt,k )) 
+
+− Eq [log pθt (zt, 0|zt, 1)] .5
+
+Proof: Similar to (1), the log likelihood of the joint distribution of (y, z d, 0, z t, 0) has the following lower bound: 
+
+log pθ (y, z d, 0, z t, 0)= log 
+
+Z
+
+pθ (y, zd, 0: T , zt, 0: T ) dzd, 1: T dzt, 1: T
+
+≥Eq
+
+
+
+log pθ (y, zd, 0: T , zt, 0: T )
+
+q(zd, 1: T , zt, 1: T |zd, 0, zt, 0)
+
+
+
+.
+
+(5) Under Assumptions (A1)-(A3), and the graphical model as shown in Fig. 3, we have: 
+
+q(zd, 1: T , zt, 1: T |zd, 0, zt, 0) = q(zd, 1: T |zd, 0)q(zt, 1: T |zt, 0),pθ (y, zd, 0: T , zt, 0: T ) = pθ (zd, 0: T )pθ (zt, 0: T )pθ (y|zd, 0, zt, 0).
+
+Substituting above equations into (5) provides 
+
+log pθ (y, z d, 0, z t, 0) ≥ Eq
+
+log pθy (y|zd, 0, zt, 0)
+
++ Eq
+
+
+
+log pθd (zd, 0: T )
+
+q(zd, 1: T |zd, 0)
+
+
+
++ Eq
+
+
+
+log pθt (zt, 0: T )
+
+q(zt, 1: T |zt, 0)
+
+
+
+. (6) Referring to (1), the lower bound of likelihood of the joint distribution in (5) can be obtained from (6). In (4), LDrugDiff and LTargetDiff represent the DM bound for drugs and targets, respectively, and LCoREG is a co-regularized term which represents the regression bound responsible for the affinity reconstruction penalty for a pair of drug and target. For LCoREG , we further assume pθy (y|zd, 0, zt, 0) to be a normal distribution, whose probability are computed from zd, 0
+
+and zt, 0 through the network, then we have: 
+
+log pθy (y|zd, 0, zt, 0) = −λ(y − ˆy)2 + C. (7) where ˆy = fθy (ˆ zd, 0, ˆzt, 0), C is a constant, and λ is the co-regularization parameter. Using the diffusion process zd,k = √¯αkzd, 0 + √1 − ¯αkϵd
+
+(ϵd ∼ N (0, I)), zt,k = √¯αkzt, 0 + √1 − ¯αkϵt (ϵt ∼ N (0, I)), similar to (3), the ELBO LCoDiff in the Co-Diffusion model at point (y, z d, 0, z t, 0) can be simplified as follows: 
+
+Lsimple  
+
+> CoREG
+
+≈ − λ(y − fθy (ˆ zd, 0, ˆzt, 0)) 2
+
+Lsimple  
+
+> DrugDiff
+
+≈ − Ezd, 0,ϵd,k 
+
+h
+
+ϵd − ϵθd (√¯αkzd, 0 + √1 − ¯αkϵd, k ) 2i
+
+Lsimple  
+
+> TargetDiff
+
+≈ − Ezt, 0,ϵt,k 
+
+h
+
+ϵt − ϵθt (√¯αkzt, 0 + √1 − ¯αkϵt, k ) 2i
+
+where k ∈ [1 , T ] can be selected randomly, and for not too small √¯αk, ˆzd, 0 and ˆzt, 0 are reconstructed by 
+
+ˆz∗,0 = z∗,k − √1 − ¯αkϵθ∗
+
+√¯αk
+
+. (8) 
+
+D. Network Architecture 
+
+As shown in Fig. 4, Co-Diffusion integrates five sequential components: ①tokenization & feature extraction, ②variational encoding, ③latent diffusion module, ④regression on varia-tional latents, and ⑤regression on reconstructed latents. 
+
+Fig. 4: Overview of Co-Diffusion. 
+
+a) Tokenization & GatedConv Extractors.: SMILES strings and protein sequences are first tokenized and em-bedded into high-dimensional vectors. These embeddings are processed through stacked Gated Convolution (GatedConv) blocks. Each block couples a 1-D convolution with a Gated Linear Unit (GLU), followed by layer normalization, dropout, and a residual connection. The gating mechanism adaptively suppresses uninformative noise while the residual stacking ensures stable gradient flow across long biological sequences. Finally, global max-pooling and a linear projection yield compact pre-variational feature vectors hd and ht.
+
+b) Variational Encoders: Two lightweight neural heads transform (hd, h t) into Gaussian parameters (μ, log σ); The initial latents zd, 0 and zt, 0 are sampled via the reparameteri-zation trick: 
+
+zd, 0 = μd + σd ⊙ εd, zt, 0 = μt + σt ⊙ εt, ε∗ ∼ N (0 , I ).
+
+where ⊙ denotes element-wise multiplication and ε∗ follows a standard normal distribution. These latents serve a dual purpose: they support supervised affinity prediction in Stage 
+
+④ and act as clean semantic anchors for diffusion-based reconstruction in Stage ③, effectively regularizing the latent geometry. 6
+
+c) Latent Diffusion Module: The drug and protein latents are denoised by independent ε-prediction networks operating in latent space. Each network adopts a 1-D UNet-style archi-tecture with symmetric skip connections to preserve muliti-scale structural information. Diffusion timesteps are encoded using sinusoidal positional embeddings and integrated into the UNet blocks via FiLM-style (Feature-wise Linear Modulation) affine transformations, enabling time-conditioned denoising. The forward process gradually corrupts z∗,0 to z∗,k ; the network then predicts the added noise ˆε to reconstruct ˆz∗,0.Operating in a low-dimensional latent space significantly re-duces computational overhead while concentrating the model’s capacity on affinity-relevant feature interactions. 
+
+d) Regression on Variational Latents (CoREG var ): Asymmetric regressor head projects and concatenates zd, 0 and 
+
+zt, 0 to output an intermediate affinity estimate ˆyvar . This path provides the primary supervised signal that shapes the latent manifold before any diffusion refinement is introduced, ensur-ing that the latent space is inherently organized by binding strength. 
+
+e) Regression on Reconstructed Latents (CoREG diff ): 
+
+AFollowing the denoising process, (ˆ zd, 0, ˆzt, 0) are fed into a twin regressor head to produce the final prediction ˆydiff .Training this head encourages the diffusion modules to re-cover task-critical determinants rather than generic structural artifacts, thereby enhancing the model’s robustness and zero-shot generalization to unseen drug-target pairs. 
+
+E. Two-Stage Training Strategy and Objective Functions a) Two-Stage Optimization: To mitigate the reconstruction–regression conflict inherent in generative DTA models, we adopt a decoupled two-stage training strategy that separates affinity alignment from generative refinement. 
+
+Stage I ( ①→②→④): We jointly optimize the GatedConv ex-tractors and variational encoders using the affinity-supervised CoREG var objective (see the green path in Fig. 4). During this stage, the diffusion modules remain inactive. This phase establishes a binding-steered manifold, ensuring the model first captures ”what determines affinity” without being distracted by structural denoising tasks. 
+
+Stage II (②→③→⑤): The Stage-I encoders are frozen to preserve the established affinity-aligned space. We then activate the modality-specific latent diffusion branches (see the blue path in Fig. 4). Each latent is perturbed and denoised via the UNet-ϵ architecture, optimized by the CoREG diff head. The diffused latents must simultaneously satisfy two conditions: (i) maintaining high affinity-predictive power and (ii) remaining consistent with the Stage-I anchors. This ensures that the generative prior stabilizes and regularizes the affinity manifold rather than overriding its semantic structure. 
+
+b) Objective Functions: Stage I focuses exclusively on the supervised regression accuracy: 
+
+LStage-I = Lsimple CoREG var . (9) Stage II optimizes a composite objective that couples latent-space denoising with final prediction precision: 
+
+LStage-II = Lsimple CoREG diff − L simple DrugDiff − L simple TargetDiff . (10) 
+
+Algorithm 1 Two-Stage Training for Co-Diffusion 
+
+Require: Training set D = {(xid, xit, y i)}Ni=1 ; diffusion schedule {¯αk}Tk=1 
+
+Ensure: Trained parameters ϕd, ϕ t, θ d, θ t, θ y 
+
+> 1:
+
+Stage I: Encoder Pretraining  
+
+> 2:
+
+for each epoch do  
+
+> 3:
+
+for each mini-batch in D do  
+
+> 4:
+
+Compute μid, σid = fϕd (xd), μit, σit = fϕt (xt) 
+
+> 5:
+
+Sample zd, 0, zt, 0 using reparameterization  
+
+> 6:
+
+Compute ˆyvar = fθy (zd, 0, zt, 0) 
+
+> 7:
+
+Compute loss LStage-I and update ϕd, ϕ t, θ y 
+
+> 8:
+
+end for  
+
+> 9:
+
+end for  
+
+> 10:
+
+Stage II: Diffusion Model Training (Fix ϕd, ϕ t) 
+
+> 11:
+
+for each epoch do  
+
+> 12:
+
+for each mini-batch in D do  
+
+> 13:
+
+Encode xd, xt into zd, 0, zt, 0 
+
+> 14:
+
+Select k from [1 , T ] randomly.  
+
+> 15:
+
+Sample noise ϵd, ϵt 
+
+> 16:
+
+Generate zd,k , zt,k via diffusion schedule  
+
+> 17:
+
+Predict noises ˆϵd = ϵθd (zd,k , k ), ˆϵt = ϵθt (zt,k , k ) 
+
+> 18:
+
+Compute ˆzd, 0, ˆzt, 0 by (8)  
+
+> 19:
+
+Compute ˆydiff = fθy (ˆ zd, 0, ˆzt, 0) 
+
+> 20:
+
+Compute loss LStage-II and update θd, θ t, θy 
+
+> 21:
+
+end for  
+
+> 22:
+
+end for 
+
+The components are defined as:  
+
+> •
+
+Lsimple DrugDiff and Lsimple TargetDiff are the standard ε-prediction losses (latent-space denoising) that drive the reverse processes 
+
+zd,T → zd, 0 and zt,T → zt, 0 across diffusion timesteps.  
+
+> •
+
+Lsimple CoREG diff is the regression loss on reconstructed latents, ensuring the denoising process remains task-aware.  
+
+> •
+
+The negative signs in LStage-II represent the maximization of diffusion likelihood in a minimization framework, ensuring all terms are optimized in a consistent direction. IV. R ESULTS 
+
+In this section, we first describe the benchmark datasets, evaluation metrics, and experimental settings used in this study. We then report results across multiple evaluation sce-narios and visualize the correspondence between predicted and ground-truth affinities. Next, ablation studies are conducted to quantify the individual contribution of each component in Co-Diffusion. Finally, we present a series of analyses, including sensitivity to key hyperparameters, visualization of the enhanced features, and out-of-sample evaluation. 
+
+A. Datasets 
+
+The benchmark datasets selected to evaluate our model were the KIBA [30] and Davis [31] datasets, which are widely recognized, commonly used drug-target affinity datasets. Ta-ble I illustrates the statistical information of these two datasets. Both KIBA and Davis offer drug–target affinity labels; Davis records Kd, whereas KIBA employs KIBA scores [5]. For 7
+
+numerical stability on Davis, we apply the logarithmic trans-formation to obtain p Kd as in Eq. 11. pKd = − log 10 (Kd) + 9 (11) TABLE I: Statistics of the benchmark datasets used in this study.          
+
+> Dataset Targets Drugs Binding pairs
+> KIBA 229 2111 118,254 Davis 442 68 30,056
+
+Data Splitting To assess the generalization performance of Co-Diffusion in practical cold-start scenarios, we adopt a systematic dataset partitioning approach:  
+
+> •
+
+Training Set: Contains 80% of drugs and 80% of targets, along with their corresponding interaction pairs. This set is used to train the model.  
+
+> •
+
+Validation and Test Sets: Constructed from the remaining 20% of drugs and targets to simulate cold-start conditions. We define three disjoint evaluatoin settings: 
+
+– Unseen Drugs (UD): Comprises interactions between 20% new drugs and 80% training targets. 
+
+– Unseen Targets (UT): Comprises interactions be-tween 20% new targets and 80% training drugs. 
+
+– Unseen Pairs (UP): Comprises interactions between 20% new drugs and 20% new targets, forming en-tirely novel drug-target combinations. Each setting is further split evenly into validation and test sub-sets (50% each), ensuring a strict separation between training and evaluation data and enabling a rigorous assessment of the model’s performance under cold-start conditions. 
+
+Sequence Processing Drugs and targets, represented by SMILES strings and amino acid sequences respectively, are tokenized into fixed-length indexed arrays:  
+
+> •
+
+Davis: Ld ≤ 85 , Lp ≤ 1200  
+
+> •
+
+KIBA: Ld ≤ 100 , Lp ≤ 1000 
+
+where Ld is the SMILES length and Lp is the protein length. Unique characters (64 for SMILES, 25 for proteins) are mapped to integers for uniform encoding. 
+
+B. Evaluation Metrics 
+
+We employ four widely recognized and representative met-rics that are standard in DTA prediction: mean squared error (MSE), mean absolute error (MAE), Concordance Index (CI), and r2
+
+> m
+
+. These complementary indicators jointly evaluate the predictive accuracy, ranking consistency, and overall agree-ment between predictions and experimental measurements, forming a comprehensive and comparable assessment frame-work across benchmarks and prior studies. 
+
+a) MSE: Let y and ˆy denote the ground-truth and pre-dicted affinity scores for the test drug–target pairs, respectively. MSE measures the predictive accuracy by the average squared deviation: MSE = 1
+
+n
+
+> n
+
+X
+
+> i=1
+
+(ˆ yi − yi)2. (12) 
+
+b) MAE: MAE evaluates the absolute prediction error by the mean magnitude of deviations: MAE = 1
+
+n
+
+> n
+
+X
+
+> i=1
+
+|ˆyi − yi|. (13) 
+
+c) CI: CI quantifies the probability that the predicted affinity scores preserve the correct ordering of true affinities across all comparable drug–target pairs. It is defined as: CI = 1
+
+Z
+
+X
+
+> δi>δ j
+
+Φ( bi − bj ) (14) where bi and bj are predicted affinities for samples with ground-truth affinities δi and δj respectively, with δi > δ j .
+
+Z is the total number of valid comparison pairs. Φ( ·) is a piecewise function defined as: 
+
+Φ( x) = 
+
+
+
+1, if x > 00.5, if x = 0 0, if x < 0
+
+(15) A CI value close to 1 indicates that the predicted ranking aligns well with the true affinity order, while values around 0.5 or below suggest random or reversed rankings. 
+
+d) r2
+
+> m
+
+: The r2 
+
+> m
+
+metric captures the overall agreement between predicted and experimental affinity values by incor-porating both the correlation strength and systematic deviation from the ideal regression line: 
+
+r2 
+
+> m
+
+= r2
+
+
+
+1 −
+
+q
+
+r2 − r20
+
+
+
+(16) where r2 is the standard coefficient of determination and r20
+
+is its baseline counterpart obtained by regression through the origin. Higher r2 
+
+> m
+
+values (approaching 1) indicate stronger predictive reliability and better generalization performance. 
+
+C. Hyperparameter Settings 
+
+We implemented the proposed Co-Diffusion model in Python 3.9 using PyTorch 2.0.0 with CUDA 11.8. All ex-periments were conducted on a single NVIDIA GeForce RTX 4090 GPU (24GB memory). The model was trained for up to 100 epochs with a batch size of 256 using the Adam optimizer with a learning rate of 0.001. Dropout was applied at a rate of 0.2 in convolutional layers and 0.1 in the fully connected layers of the regression module. Drug SMILES strings and target sequences were tokenized and embedded into fixed-size matrices of shape ( Ld, 128) and ( Lp, 128), respectively. The encoder consists of three Gated Convolutional layers with output channels of 256, 512, and 768, each with a kernel size of 4. A global max-pooling layer is applied, followed by a fully connected layer that projects the representation to a 384-dimensional latent vector. In the diffusion module, we adopt a linear noise schedule with β ∈ [0 .0001 , 0.0004] and set the number of diffusion steps to T = 1000 . Both the CoReg var 
+
+and CoReg dif f modules comprise three fully connected layers with hidden dimensions [512, 64, 1]. 8
+
+(a) MSE and MAE (b) CI and r2
+
+> m
+
+Fig. 5: Performance comparison on Davis and KIBA under random split. TABLE II: Performance Comparison on Davis and KIBA Datasets Under Cold-start Scenarios. 
+
+Dataset Settings Method MSE(std) ↓ MAE(std) ↓ CI(std) ↑ r2
+
+> m
+
+↑
+
+Davis 
+
+Unseen-drug DeepDTA 0.745 (0.008) 0.704 (0.050) 0.699 (0.045) 0.078 AttentionDTA 0.656 (0.004) 0.622 (0.003) 0.682 (0.010) 0.104 GraphDTA 0.590 (0.016) 0.552 (0.014) 0.695 (0.008) 0.077 Co-VAE 0.577 (0.009) 0.523 (0.014) 0.616 (0.005) 0.128 TransVAE-DTA 0.643 (0.012) 0.542 (0.009) 0.543 (0.010) 0.007 Pair-VAE 0.570 (0.004) 0.498 (0.007) 0.730 (0.003) 0.134 Co-Diffusion 0.568 (0.007) 0.471 (0.005) 0.722 (0.007) 0.166 
+
+Unseen-target DeepDTA 0.884 (0.024) 0.711 (0.008) 0.751 (0.033) 0.183 AttentionDTA 0.565 (0.014) 0.560 (0.022) 0.814 (0.002) 0.450 GraphDTA 0.565 (0.010) 0.527 (0.011) 0.763 (0.003) 0.399 Co-VAE 0.570 (0.018) 0.518 (0.016) 0.811 (0.011) 0.443 TransVAE-DTA 0.863 (0.011) 0.543 (0.007) 0.747 (0.007) 0.198 Pair-VAE 0.637 (0.010) 0.497 (0.009) 0.813 (0.006) 0.373 Co-Diffusion 0.556 (0.021) 0.429 (0.008) 0.836 (0.008) 0.461 
+
+Unseen-Pair DeepDTA 0.886 (0.027) 0.737 (0.012) 0.712 (0.300) 0.072 AttentionDTA 0.837 (0.020) 0.696 (0.002) 0.715 (0.006) 0.114 GraphDTA 0.874 (0.036) 0.606 (0.023) 0.631 (0.021) 0.032 Co-VAE 0.828 (0.026) 0.617 (0.025) 0.597 (0.011) 0.096 TransVAE-DTA 0.908 (0.005) 0.622 (0.006) 0.538 (0.004) 0.008 Pair-VAE 0.820 (0.032) 0.582 (0.013) 0.741 (0.010) 0.010 Co-Diffusion 0.806 (0.015) 0.551 (0.013) 0.728 (0.010) 0.149 KIBA 
+
+Unseen-drug DeepDTA 0.457 (0.022) 0.461 (0.011) 0.715 (0.007) 0.335 AttentionDTA 0.420 (0.012) 0.444 (0.019) 0.733 (0.008) 0.383 GraphDTA 0.400 (0.011) 0.434 (0.016) 0.750 (0.004) 0.444 
+
+Co-VAE 0.416 (0.004) 0.417 (0.007) 0.751 (0.011) 0.397 TransVAE-DTA 0.590 (0.009) 0.539 (0.008) 0.656 (0.010) 0.189 Pair-VAE 0.496 (0.006) 0.484 (0.007) 0.719 (0.004) 0.297 Co-Diffusion 0.421 (0.003) 0.406 (0.004) 0.751 (0.007) 0.402 Unseen-target DeepDTA 0.377 (0.016) 0.435 (0.013) 0.677 (0.017) 0.332 AttentionDTA 0.370 (0.045) 0.426 (0.027) 0.678 (0.050) 0.337 GraphDTA 0.457 (0.045) 0.481 (0.027) 0.627 (0.028) 0.215 Co-VAE 0.353 (0.010) 0.397 (0.005) 0.680 (0.010) 0.364 TransVAE-DTA 0.654 (0.003) 0.600 (0.004) 0.512 (0.007) 0.100 Pair-VAE 0.411 (0.004) 0.443 (0.009) 0.641 (0.005) 0.282 Co-Diffusion 0.347 (0.009) 0.383 (0.015) 0.685 (0.010) 0.377 
+
+Unseen-Pair DeepDTA 0.493 (0.006) 0.506 (0.013) 0.633 (0.025) 0.137 AttentionDTA 0.480 (0.010) 0.502 (0.022) 0.649 (0.007) 0.163 GraphDTA 0.551 (0.054) 0.536 (0.030) 0.574 (0.023) 0.045 Co-VAE 0.463 (0.027) 0.477 (0.034) 0.649 (0.008) 0.176 TransVAE-DTA 0.711 (0.008) 0.644 (0.010) 0.497 (0.008) 0.025 Pair-VAE 0.469 (0.002) 0.495 (0.005) 0.635 (0.006) 0.151 Co-Diffusion 0.432 (0.005) 0.459 (0.008) 0.660 (0.009) 0.201 
+
+1.All DTA models were trained using the hyperparameter settings reported in their original papers for consistency. 2.Results reported as mean ± standard deviation over five independent runs. 9
+
+D. Baselines 
+
+We compare Co-Diffusion with six state-of-the-art base-lines. DeepDTA, AttentionDTA, and GraphDTA are taken as canonical representatives of sequence-based, Transformer-based, and graph-based paradigms, respectively; Co-VAE, TransVAE-DTA, and PAIR-VAE exemplify contemporary gen-erative approaches. We briefly summarize these models below.  
+
+> •
+
+DeepDTA (2018)[19]: It uses two parallel 1D CNN encoders on one-hot SMILES and amino-acid sequences, then concatenates the features and regresses affinity with fully connected layers.  
+
+> •
+
+AttentionDTA (2019)[25]: It encodes drugs and proteins with sequence models (e.g., CNN/RNN) and uses cross-modal attention to emphasize salient substructures and residues before affinity regression.  
+
+> •
+
+GraphDTA (2021)[21]: It represents drugs as molecular graphs and applies GNNs (GCN/GAT/GIN) while encod-ing proteins from sequences, then fuses both embeddings to predict affinity.  
+
+> •
+
+Co-VAE (2021)[16]: It learns dual variational latents for drugs and targets, uses co-regularization to align them, and jointly optimizes reconstruction and affinity objectives to improve robustness.  
+
+> •
+
+TransVAE-DTA (2024)[18]: It couples Transformer en-coders with a variational latent layer and cross-attention, leveraging reconstruction and regression losses to stabi-lize and guide representation learning.  
+
+> •
+
+PAIR-VAE (2025)[17]: It reconstructs drug–target pairs to generate augmented interactions under a label-sharing scheme, and jointly trains original and reconstructed pairs to enhance generalization. 
+
+E. Performance Comparison with State-of-the-Art Approaches 
+
+We evaluate Co-Diffusion against state-of-the-art baselines on Davis and KIBA under two distinct protocols: (i) random in distribution splits and (ii) stringent cold-start splits. 
+
+Random splits. Under the random split regimen, most deep models deliver uniformly high predictive fidelity (low MSE/MAE and high CI/ r2
+
+> m
+
+). As shown in Fig. 5, Co-Diffusion remains highly competitive on Davis and outstrips all baselines on KIBA, achieving the superior balance between error minimization and ranking consistency. These results indicate that latent diffusion can match or exceed established architectures under standard conditions. However, prior studies [16, 32, 33] have noted that random splits may introduce spu-rious performance inflation due to scaffold-level redundancy and sequence overlap, which allows models to exploit single-modality ”shortcuts” rather than distilling genuine interaction signals. We therefore proceed to cold-start evaluations for a more rigorous assessment of model robustness. 
+
+Cold-start splits. Table II reports the performance under three cold-start scenarios: unseen drug, unseen target, and un-seen pair. All methods exhibit a significant performance decay relative to the random split, with the unseen-pair scenario emerging as the most formidable challenge. On Davis, Co-Diffusion consistently surpasses competing methods across all three settings. Notably, in the unseen-drug case, it matches or improves upon the best MSE while delivering substantial gains in CI and r2
+
+> m
+
+; in the unseen-target case, it attains the best MSE, CI and r2 
+
+> m
+
+with a marginal MAE improvement; and in the most challenging unseen-pair scenario, Co-Diffusion achieves a 6.4% reduction in MAE compared to the second-best Co-VAE and a 2.6% improvement in r2 
+
+> m
+
+over AttentionDTA. On KIBA, Co-Diffusion secures the best MAE and competitive CI in the unseen-drug setting (with GraphDTA slightly leading on MSE/ r2
+
+> m
+
+), and surpasses all baselines across all metrics in the unseen-target and unseen-pair settings, with the margin widening in the latter. These results highlight the strong cold-start generalization of Co-Diffusion, particularly when both drugs and targets are novel. Figure 6 presents the scatter plots of predicted versus observed affinities on Davis (top) and KIBA (bottom) across the three cold-start settings. 
+
+F. Ablation Study 1) Mechanistic Contribution of the Diffusion Module: 
+
+We assess the contribution of the modality-specific diffusion modules on the Davis dataset (Table III). We compare three variants: Drug-Diffusion (diffusion on the drug branch only), Target-Diffusion (target branch only), and No-Diffusion (vari-ational latents without diffusion). TABLE III: Ablation test of diffusion components under cold-start scenarios on the Davis dataset.                                                      
+
+> Settings Method MSE ↓MAE ↓CI(std) ↑r2
+> m↑
+> Unseen Drug Co-Diffusion 0.568 0.471 0.722 0.166
+> Drug-Diffusion 0.580 0.498 0.630 0.122 Target-Diffusion 0.617 0.537 0.636 0.122 No-diffusion 0.571 0.519 0.619 0.131 Unseen Target Co-Diffusion 0.556 0.429 0.836 0.461 Drug-Diffusion 0.542 0.482 0.821 0.457 Target-Diffusion 0.529 0.498 0.835 0.484
+> No-diffusion 0.570 0.518 0.811 0.443 Unseen Pair Co-Diffusion 0.806 0.551 0.728 0.149
+> Drug-Diffusion 0.828 0.590 0.620 0.103 Target-Diffusion 0.846 0.606 0.647 0.112 No-diffusion 0.821 0.615 0.608 0.098
+
+In the unseen-drug scenario, the full Co-Diffusion model attains the best results across all metrics, suggesting that dual-modality regularization is essential for capturing complex interaction landscapes. Interestingly, while Target-Diffusion performs well on MSE in the unseen-target setting, the full Co-Diffusion model yields the lowest MAE and highest CI, indicating a better global alignment of the latent space. In the unseen-pair scenario, the full model outperforms all vari-ants, demonstrating that applying diffusion to both modalities provides the most consistent gains. This confirms that latent diffusion acts as a powerful perturb-and-denoise regularizer that prevents the model from overfitting to training-specific structural artifacts, validating our hypothesis that latent-space diffusion effectively regularizes the representation manifold against distribution shifts. 
+
+2) Significance of the Affinity-Aware Two-Stage Scheme: 
+
+To evaluate the necessity of our affinity-steered Stage I, we compared Co-Diffusion against an ”end-to-end” variant where 10 
+
+Fig. 6: Scatter plots of predicted versus actual affinity on Davis (top) and KIBA (bottom) under Unseen Drug, Unseen Target, and Unseen Pair. The dashed line denotes the identity line. TABLE IV: Comparison of Co-Diffusion trained with an affinity-aware two-stage regimen versus an end-to-end variant across cold-start scenarios on KIBA and Davis.                                                             
+
+> Setting Method (Co-Diffusion)
+> KIBA Davis MSE ↓MAE ↓CI ↑RM2 ↑MSE ↓MAE ↓CI ↑r2
+> m↑
+> Unseen Drug end-to-end 0.537 0.490 0.686 0.256 0.622 0.509 0.692 0.127 two-stage 0.421 0.406 0.751 0.402 0.568 0.471 0.722 0.166 Unseen Target end-to-end 0.405 0.439 0.632 0.290 0.522 0.413 0.830 0.496 two-stage 0.347 0.383 0.685 0.377 0.556 0.429 0.836 0.461 Unseen Pair end-to-end 0.488 0.505 0.597 0.135 0.858 0.570 0.693 0.121 two-stage 0.432 0.459 0.660 0.201 0.806 0.551 0.728 0.149
+
+the encoder, diffusion module, and regressor are optimized simultaneously. As shown in Table IV, the two-stage scheme consistently outperforms the end-to-end alternative across both datasets. The performance gap arises from the resolution of the reconstruction–regression conflict. In end-to-end optimization, the model faces competing gradient pressures: the diffu-sion module seeks to maximize structural density (denois-ing fidelity), while the regressor demands focus on fine-grained affinity determinants. This often leads to semantic dilution, where the latent variables sacrifice predictive utility for structural reconstruction. In contrast, our scheme sequen-tially decouples these objectives—Stage I anchors the latent manifold to binding semantics, while Stage II refines this manifold through diffusion-based regularization. This ensures that the learned representations are both noise-tolerant and task-specific. 
+
+G. Hyperparameter Sensitivity and Exploration-Exploitation Trade-off 
+
+We investigate the sensitivity of Co-Diffusion to the number of steps T and noise magnitude β (Tables V, VI). All other settings follow our default configuration to isolate the effect of each hyperparameter. 
+
+1) Impact of Diffusion Steps T : We vary T ∈
+
+800 , 1000 , 1200 . Performance follows a concave profile, with 
+
+T =1000 offering the optimal equilibrium between distribu-tional exploration and denoising stability. On KIBA, MAE is 11 
+
+minimized near T =1000 across unseen-drug/target/pair splits, while r2 
+
+> m
+
+peaks or remains near-peak. On Davis, unseen-target shows a monotonic increase in r2 
+
+> m
+
+with T , whereas MAE is lowest at T =1000 . At T = 800 , the forward process under-explores the latent space, limiting the model’s ability to bridge domain shifts. Conversely, at T = 1200 , the extended reverse chain tends to accumulate stochastic errors, marginally degrading the r2 
+
+> m
+
+and MAE. A minor exception occurs on the small-scale Davis unseen-pair split, where a shorter chain (T = 800 ) slightly mitigates noise accumulation, suggesting that step counts should be modestly tuned according to data density. 
+
+2) Impact of Noise Magnitude β: We next probed the noise magnitude by evaluating three linear β ranges: [1e −5, , 4e −5] ,
+
+[1e −4, , 4e −4] , and [1e −4, , 4e −3] . The linear β range 
+
+[1e −4, , 4e −4] proved to be the most reliable schedule. Insuf-ficient noise ( [1e −5, , 4e −5] ) results in weak latent perturba-tions, failing to push the model beyond the training manifold. Excessive noise ( [1e −4, , 4e −3] ), however, dominates the la-tent signal, making the reverse process numerically unstable and causing a sharp decline in r2 
+
+> m
+
+(e.g., from 0.1491 to 0.0950 on Davis unseen-pair). Mechanistically, a moderate 
+
+β balances manifold expansion with recoverability, ensuring that the diffusion process regularizes without destroying the underlying binding semantics. TABLE V: Sensitivity of Co-Diffusion to the number of diffusion steps T on Davis and KIBA.                                           
+
+> TSetting Davis KIBA MAE ↓r2
+> m↑MAE ↓r2
+> m↑
+> 800 Unseen Pair 0.5487 0.1401 0.4669 0.2074 Unseen Drug 0.4709 0.1614 0.4096 0.4011 Unseen Target 0.4311 0.4477 0.3953 0.3801 1000 Unseen Pair 0.5510 0.1491 0.4591 0.2011 Unseen Drug 0.4710 0.1660 0.4065 0.4016 Unseen Target 0.4293 0.4609 0.3831 0.3772 1200 Unseen Pair 0.5926 0.1363 0.4679 0.2055 Unseen Drug 0.4989 0.1565 0.4107 0.3920 Unseen Target 0.4431 0.4736 0.4038 0.3708
+
+TABLE VI: Sensitivity of Co-Diffusion to the number of noise magnitude beta on Davis and KIBA.                                              
+
+> Beta Setting Davis KIBA MAE ↓r2
+> m↑MAE ↓r2
+> m↑
+> [1e −5,4e −5]
+> Unseen Pair 0.5842 0.1408 0.4713 0.1986 Unseen Drug 0.5100 0.1612 0.4062 0.3967 Unseen Target 0.4845 0.4317 0.4048 0.3557
+> [1e −4,4e −4]
+> Unseen Pair 0.5510 0.1491 0.4591 0.2011 Unseen Drug 0.4710 0.1660 0.4065 0.4016 Unseen Target 0.4293 0.4609 0.3831 0.3772
+> [1e −4,4e −3]
+> Unseen Pair 0.5717 0.0950 0.4886 0.1645 Unseen Drug 0.4807 0.1193 0.4538 0.3435 Unseen Target 0.5042 0.2946 0.4285 0.3399
+
+TABLE VII: Out-of-sample results on recent PDBbind entries.                                                                                            
+
+> ID Year True Pred. MSE (↓)6j0g 2019 5.640 5.609 0.001 6ce6 2018 5.100 5.162 0.004 5zyg 2019 5.210 5.277 0.005 6qlp 2019 5.280 5.349 0.005 6s56 2019 5.100 5.182 0.007 5xpi 2018 5.280 5.189 0.008 6j0o 2019 4.920 5.018 0.010 6ajy 2019 5.280 5.379 0.010 5ja0 2017 5.220 5.120 0.010 6dq4 2018 4.920 5.023 0.011 6n3y 2019 5.440 5.331 0.012 5wxh 2017 6.150 6.034 0.013 6i13 2019 5.120 5.261 0.020 6t1i 2019 5.260 5.104 0.024 6pgc 2019 5.350 5.190 0.026 5u0e 2017 5.110 5.283 0.030 6t1m 2019 5.210 5.394 0.034 6gfz 2018 5.510 5.321 0.036 5uk8 2017 6.400 6.603 0.041 6i12 2019 5.570 5.356 0.046 ...............
+> Overall Performance (Mean MSE)
+> Pair-VAE (2025) 1.179
+> Co-Diffusion (Ours) 0.961
+
+H. Latent Manifold Visualization and Topological Expansion 
+
+To probe how Co-Diffusion enhances generalization, we vi-sualize latent distributions of original and refined embeddings using t-SNE (Fig.7). Panels (a–f) for KIBA and (g–l) for Davis show that diffusion-refined embeddings (blue) do not merely replicate original features (green) but strategically expand into the sparse topological voids of the latent space. This structured expansion indicates that Co-Diffusion avoids ”outlier” scatter; instead, it populates under-represented regions of the manifold with noise-robust representations. Such behavior is consistent with the model interpolating the binding landscape, which effectively bridges the gap between seen training scaffolds and unseen test chemotypes. The overlap between original and refined clusters confirms that our affinity-consistency constraint successfully preserves biological plausibility while fostering the diversity required for robust cold-start prediction. 
+
+I. Out-of-Sample Test 
+
+To evaluate Co-Diffusion’s generalization beyond standard benchmarks, we performed an out-of-sample evaluation on “fresh” data. This set was curated from recently deposited affinity measurements in the PDBbind database, ensuring that all targets and drugs had zero overlap with the training distribution. This setup mimics a prospective drug discovery scenario where the model must navigate unexplored regions of the drug-target manifold. As summarized in Table VII, Co-Diffusion achieves an overall Mean Squared Error (MSE) of 0.961, significantly outperforming the latest generative baseline, PAIR-VAE (MSE = 1.179). The substantial performance gap (an 18.5% improve-ment) highlights the inherent limitations of standard variational frameworks in handling domain shifts. While PAIR-VAE re-lies on heuristic pair-synthesis to regularize its latent space, 12 
+
+(a) New vs. Old Drugs (Unseen Drug) (b) New vs. Old Drugs (Unseen Target) (c) New vs. Old Drugs (Unseen Pair) 
+
+(d) New vs. Old Targets (Unseen Drug) (e) New vs. Old Targets (Unseen Target) (f) New vs. Old Targets (Unseen Pair) 
+
+(g) New vs. Old Drugs (Unseen Drug) (h) New vs. Old Drugs (Unseen Target) (i) New vs. Old Drugs (Unseen Pair) 
+
+(j) New vs. Old Targets (Unseen Drug) (k) New vs. Old Targets (Unseen Target) (l) New vs. Old Targets (Unseen Pair) 
+
+Fig. 7: t-SNE projections of new (blue) vs. original (green) drug and target embeddings on KIBA (a–f) and Davis (g–l) under unseen drug, unseen target, and unseen pair scenarios. 13 
+
+its representations often suffer from semantic dilution when encountering truly out-of-distribution samples. In contrast, Co-Diffusion leverages the expressive prior-learning of the latent diffusion module to recover robust binding determinants even under significant structural perturbations. A detailed error analysis reveals that Co-Diffusion provides highly calibrated predictions for a substantial proportion of the external set: 34% of the entries exhibit a per-sample squared error of ≤ 0.1, and 45% remain within ≤ 0.2. The Top-20 ranked predictions, spanning various protein families and molecular scaffolds, demonstrate that the model maintains high predictive fidelity across diverse biochemical contexts (Table VII). 
+
+J. Discussion 
+
+Through comprehensive benchmarking across diverse split protocols, Co-Diffusion demonstrates three distinctive advan-tages that address the intrinsic bottlenecks of DTA predic-tion. (1) Robust Generalization via Manifold Interpola-tion. Unlike purely discriminative models that often succumb to the ”shortcut learning” of observed pairs, Co-Diffusion exhibits superior performance in cold-start scenarios. Our results suggest that by regularizing the latent space through a denoising process, the model implicitly performs manifold in-terpolation—populating under-represented regions of the drug-target landscape with noise-robust, transferable binding deter-minants. This allows for stable predictions even when encoun-tering molecular scaffolds or protein families that lie far from the training distribution. (2) Synergizing Affinity-Awareness with Generative Priors. A pivotal innovation of Co-Diffusion is the two-stage decoupling of alignment and refinement. While traditional VAE-based approaches often suffer from semantic dilution due to the reconstruction-regression conflict, our Stage I anchors the latent space to binding semantics, while Stage II employs latent diffusion as a stochastic perturb-and-denoise regularizer. This design ensures that the generative power of diffusion is strictly harnessed to refine affinity-relevant features rather than merely reconstructing structural noise. The observed t-SNE clusters confirm that diffusion-refined embeddings maintain high semantic fidelity while fos-tering the diversity required for out-of-distribution robustness. 
+
+(3) Theoretical Rigor and Probabilistic Coherence. Beyond empirical success, Co-Diffusion is grounded in a principled probabilistic framework. By optimizing a variational lower bound on the joint likelihood of drug, target, and affinity, the framework provides a mathematical guarantee that the denois-ing refinement remains consistent with the underlying binding physics. This coherence bridges the gap between black-box deep learning and interpretable probabilistic inference. 
+
+K. Limitations and Future Work 
+
+Despite its promising performance, several avenues remain for the enhancement of Co-Diffusion. First, the current frame-work utilizes a uniform diffusion horizon and a predefined noise schedule. In the context of heterogeneous chemical and protein data, implementing adaptive or learnable noise schedules could further balance regularization strength with sampling efficiency. Second, while Co-Diffusion achieves high fidelity using 1D/2D inputs, incorporating 3D geometric priors or pocket-specific conformations could further enrich the latent space, particularly for complex binding sites with high confor-mational plasticity. Future research will focus on (i) geometry-aware conditional diffusion to inject physics-based constraints into the reverse process and (ii) exploring the model’s per-formance in ultra-large-scale virtual screening to assess its real-world throughput and reliability in pharmaceutical lead discovery. V. CONCLUSION In this paper, we tackle the critical challenge of cold-start generalization in DTA prediction by introducing Co-Diffusion, a novel affinity-aware latent diffusion framework. By decoupling the prediction task into an affinity-steered alignment stage and a diffusion-based refinement stage, Co-Diffusion effectively reconciles the expressive capacity of generative priors with the precision of binding-relevant se-mantics. This architecture enables the model to recover robust binding determinants from stochastic perturbations, signifi-cantly mitigating the performance degradation caused by label scarcity and domain shift. Theoretically, we demonstrate that the framework optimizes a principled variational lower bound on the joint distribution of drugs and targets. Empirically, extensive evaluations across multiple benchmarks—including prospective PDBbind validation—show that Co-Diffusion con-sistently outstrips existing discriminative and variational base-lines. Ultimately, Co-Diffusion offers a robust and theoretically grounded paradigm for computational triage, paving the way for more accurate and efficient exploration of the vast chemical space in early-stage drug discovery. REFERENCES         
+
+> [1] Mei Li, Ye Cao, Xiaoguang Liu, and Hua Ji. Structure-aware graph attention diffusion network for protein–ligand binding affinity prediction. IEEE Transactions on Neural Networks and Learning Systems , 2023. [2] Shihong Chen, Haicheng Yi, Zhuhong You, Xuequn Shang, Yu-An Huang, Lei Wang, and Zhen Wang. Local–global structure-aware geometric equivariant graph representation learning for predicting protein–ligand binding affinity. IEEE Transactions on Neural Networks and Learning Systems , 2025. [3] Y. Luo, X. Zhao, J. Zhou, J. Yang, Y. Zhang, W. Kuang, J. Peng, L. Chen, and J. Zeng. A network integration approach for drug-target interaction prediction and computational drug repositioning from heterogeneous information. Nat. Commun. ,8(1):573, 2017. [4] Zhangli Lu, Chuqi Lei, Kaili Wang, Libo Qin, Jing Tang, and Min Li. Dtiam: A unified framework for predicting drug-target interactions, binding affinities and activation/inhibition mechanisms. arXiv preprint arXiv:2312.15252 , 2023. [5] Xiangpeng Bi, Shugang Zhang, Wenjian Ma, Huasen Jiang, and Zhiqiang Wei. Hisif-dta: a hierarchical semantic information fusion framework for drug-target affinity prediction. IEEE Journal of Biomedical and Health Informatics , 2023. [6] Q. Kim, J.-H. Ko, S. Kim, N. Park, and W. Jhe. Bayesian neural network with pretrained protein embedding enhances prediction accuracy of drug-protein interaction. Bioinform. , 37(20):3428– 3435, 2021. [7] Yining Qian, Qingjie Wang, Libang Yin, and An Yang Lu. Cf-dti: Coarse-to-fine feature extraction for enhanced drug-target interaction prediction. 2024. 14
+
+[8] Ziduo Yang, Weihe Zhong, Qiujie Lv, Tiejun Dong, Guanxing Chen, and Calvin Yu-Chian Chen. Interaction-based inductive bias in graph neural networks: enhancing protein-ligand binding affinity predictions from 3d structures. IEEE Transactions on Pattern Analysis and Machine Intelligence , 2024. [9] Xun Peng, Chunping Ouyang, Yongbin Liu, Ying Yu, Jian Liu, and Min Chen. Multimodal drug target binding affinity prediction using graph local substructure. IEEE Journal of Biomedical and Health Informatics , 29(3):1625–1634, 2024. [10] N. Watanabe, Y. Ohnuki, and Y. Sakakibara. Deep learning integration of molecular and interactome data for protein-compound interaction prediction. J. Cheminformatics , 13(1): 36, 2021. [11] M. Bagherian, E. Sabeti, K. Wang, M. A. Sartor, Z. Nikolovska-Coleska, and K. Najarian. Machine learning approaches and databases for prediction of drug-target interaction: a survey paper. Briefings Bioinform. , 22(1):247–269, 2021. [12] Ziduo Yang, Weihe Zhong, Qiujie Lv, Tiejun Dong, Guanxing Chen, and Calvin Yu-Chian Chen. Interaction-based inductive bias in graph neural networks: enhancing protein-ligand binding affinity predictions from 3d structures. IEEE Transactions on Pattern Analysis and Machine Intelligence , 2024. [13] K. Fang, Y. Zhang, S. Du, and J. He. Colddta: Utilizing data augmentation and attention-based feature fusion for drug-target binding affinity prediction. Comput. Biol. Medicine , 164: 107372, 2023. [14] Y. Zhang, Y. Hu, N. Han, A. Yang, X. Liu, and H. Cai. A survey of drug-target interaction and affinity prediction methods via graph neural networks. Comput. Biol. Medicine , 163:107136, 2023. [15] Zhangli Lu, Guoqiang Song, Huimin Zhu, Chuqi Lei, Xinliang Sun, Kaili Wang, Libo Qin, Yafei Chen, Jing Tang, and Min Li. Dtiam: a unified framework for predicting drug-target interactions, binding affinities and drug mechanisms. Nature Communications , 16(1):2548, 2025. [16] Tianjiao Li, Xing-Ming Zhao, and Limin Li. Co-vae: Drug-target binding affinity prediction by co-regularized variational autoencoders. IEEE Transactions on Pattern Analysis and Machine Intelligence , 44(12):8861–8873, 2021. [17] Yining Qian, Xuewen Zhang Zhang, and An-Yang Lu. Pair-vae: Variational pairwise augmentation with label sharing for generalizable drug–target interaction prediction. In 2025 IEEE International Conference on Bioinformatics and Biomedicine (BIBM), Accepted , 2025. [18] Changjian Zhou, Zhongzheng Li, Jia Song, and Wensheng Xiang. Transvae-dta: Transformer and variational autoencoder network for drug-target binding affinity prediction. Computer Methods and Programs in Biomedicine , 244:108003, 2024. [19] Hakime ¨ Ozt¨ urk, Arzucan ¨ Ozg¨ ur, and Elif Ozkirimli. Deepdta: deep drug–target binding affinity prediction. Bioinformatics , 34 (17):i821–i829, 2018. [20] Hakime ¨Ozt¨ urk, Elif Ozkirimli, and Arzucan ¨Ozg¨ ur. Wid-edta: prediction of drug-target binding affinity. arXiv preprint arXiv:1902.04166 , 2019. [21] T. Nguyen, H. Le, T. P. Quinn, T. Nguyen, T. D. Le, and S. Venkatesh. Graphdta: predicting drug-target binding affinity with graph neural networks. Bioinform. , 37(8):1140–1147, 2021. [22] Yining Qian, Jingxuan Wei, Haolong Wu, and Yue Hong. Fape-dti: Enhancing drug–target interaction prediction with focal attention and relative positional encoding. In International Conference on Intelligent Computing , pages 359–370. Springer, 2025. [23] J. Liao, H. Chen, L. Wei, and L. Wei. Gsaml-dta: An in-terpretable drug-target binding affinity prediction model based on graph neural networks with self-attention mechanism and mutual information. Comput. Biol. Medicine , 150:106145, 2022. [24] Kexin Huang, Cao Xiao, Lucas M Glass, and Jimeng Sun. Moltrans: molecular interaction transformer for drug–target interaction prediction. Bioinformatics , 37(6):830–836, 2021. [25] Qichang Zhao, Fen Xiao, Mengyun Yang, Yaohang Li, and Jianxin Wang. Attentiondta: prediction of drug–target binding affinity using attention model. In 2019 IEEE international conference on bioinformatics and biomedicine (BIBM) , pages 64–69. IEEE, 2019. [26] Yi-Lun Zhang, Wen-Tao Wang, Jia-Hui Guan, Deepak Kumar Jain, Tian-Yang Wang, and Swalpa Kumar Roy. Mocformer: a two-stage pre-training-driven transformer for drug–target in-teractions prediction. International Journal of Computational Intelligence Systems , 17(1):165, 2024. [27] Yufei Huang, Odin Zhang, Lirong Wu, Cheng Tan, Haitao Lin, Zhangyang Gao, Siyuan Li, and Stan. Z. Li. Re-dock: Towards flexible and realistic molecular docking with diffusion bridge. 2024. [28] Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Bj¨ orn Ommer. High-resolution image synthesis with latent diffusion models. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition , pages 10684–10695, 2022. [29] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. Advances in neural information processing systems , 33:6840–6851, 2020. [30] Jing Tang, Agnieszka Szwajda, Sushil Shakyawar, Tao Xu, Petteri Hintsanen, Krister Wennerberg, and Tero Aittokallio. Making sense of large-scale kinase inhibitor bioactivity data sets: a comparative and integrative analysis. Journal of chemical information and modeling , 54(3):735–743, 2014. [31] Mindy I Davis, Jeremy P Hunt, Sanna Herrgard, Pietro Ciceri, Lisa M Wodicka, Gabriel Pallares, Michael Hocker, Daniel K Treiber, and Patrick P Zarrinkar. Comprehensive analysis of kinase inhibitor selectivity. Nature biotechnology , 29(11):1046– 1051, 2011. [32] Peizhen Bai, Filip Miljkovi´ c, Bino John, and Haiping Lu. Interpretable bilinear attention network with domain adaptation improves drug–target prediction. Nature Machine Intelligence ,5(2):126–136, 2023. [33] Lifan Chen, Xiaoqin Tan, Dingyan Wang, Feisheng Zhong, Xiaohong Liu, Tianbiao Yang, Xiaomin Luo, Kaixian Chen, Hualiang Jiang, and Mingyue Zheng. Transformercpi: improv-ing compound–protein interaction prediction by sequence-based deep learning with self-attention mechanism and label reversal experiments. Bioinformatics , 36(16):4406–4414, 2020.

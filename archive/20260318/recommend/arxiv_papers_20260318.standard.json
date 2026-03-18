@@ -1,0 +1,874 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-18T19:58:11.189094+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 36,
+    "deep_cap": 8,
+    "deep_selected": 8,
+    "quick_candidates": 69,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.16194v1",
+      "title": "TPMM: Three-component Posterior Mixture Model Enables Robust Inverton Detection in Low-Depth Metagenomes and Suggests Potential Viral Invertons",
+      "abstract": "Bacterial phase variation enables reversible, locus-specific phenotypic switching, often driven by DNA inversion (invertons). To identify these events, researchers commonly rely on sequencing reads that provide orientation-specific support. Metagenomic sequencing, which captures total genetic material independent of cultivation, offers a powerful platform for the comprehensive study of invertons. However, computational inverton calling from metagenomic data is difficult at low sequencing depth: hard read-support cutoffs can miss true events, while sequence-only predictors lack read-backed interpretability and uncertainty quantification. To address this, we present TPMM, a three-component posterior mixture model for inverton calling in metagenomic data. TPMM explicitly incorporates sequencing depth to formulate inverton detection as a probabilistic mixture problem. Starting from candidates flanked by inverted repeats, the model classifies the candidates into noise, low-probability, or high-probability inversion signals using read evidence. Finally, TPMM assigns posterior probabilities as soft labels and applies cumulative Bayesian False Discovery Rate control to robustly identify true invertons. On two real gut metagenomic datasets, TPMM agrees well with PhaseFinder at high depth but recovers substantially more invertons under systematic downsampling, demonstrating superior performance in sparse-data regimes. We further examine potential reversible inversion elements in viral genomes and provide supporting analyses, suggesting a broader scope for inversion-mediated regulation.",
+      "authors": [
+        "Yi Lu",
+        "Jiaojiao Guan",
+        "Yang Shen",
+        "Jiayu Shang",
+        "Yanni Sun"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-03-17T07:21:07+00:00",
+      "link": "https://arxiv.org/pdf/2603.16194v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Detection of DNA inversion in metagenomes for evolutionary study",
+      "llm_evidence_cn": "宏基因组中用于演化研究的DNA反转检测",
+      "llm_evidence": "宏基因组中用于演化研究的DNA反转检测",
+      "canonical_evidence": "宏基因组中用于演化研究的DNA反转检测",
+      "llm_tldr_en": "Introduces TPMM for robust detection of DNA inversions in low-depth metagenomes to study bacterial phase variation.",
+      "llm_tldr_cn": "介绍TPMM模型，用于在低深度宏基因组中稳健检测DNA反转，以研究细菌相位变异。",
+      "llm_tldr": "介绍TPMM模型，用于在低深度宏基因组中稳健检测DNA反转，以研究细菌相位变异。",
+      "llm_tags": [
+        "query:pangen:composite"
+      ],
+      "matched_query_tag": "query:pangen:composite",
+      "matched_query_text": "Papers central to 泛基因组与复杂基因演化相关论文检索, especially work that connects or combines: pangenome analysis and construction; complex gene evolution mechanisms; comparative genomics of complex traits; genomic structural variations in pangenomes; gene family expansion and contraction evolution; phylogenomic analysis of gene evolution; recent advances in pangenome research and gene evolution; computational methods for pangenome construction and evolutionary analysis; impact of structural variations on complex gene evolution; evolutionary dynamics of core and dispensable genes in pangenomes.",
+      "matched_requirement_id": "req-composite-pangen",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.15171v1",
+      "title": "A mechanical bifurcation constrains the evolution of cell sheet folding in the family Volvocaceae",
+      "abstract": "The processes of morphogenesis that give rise to the shapes of organs and organisms during development are often driven by mechanical instabilities. Can such mechanical bifurcations also drive or constrain the evolution of these processes in the first place? We discover an instance of these constraints in the green algae of the family Volvocaceae. During their development, their bowl-shaped embryonic cell sheet turns itself inside out. This inversion is driven by a simple wave of cell wedging in the genus Pleodorina (16-128 cells) and more complex programmes of cell shape changes in Volvox (~400-50000 cells). However, no species with intermediate cell numbers (256 cells) have been described. Here, we relate this gap to a mechanical bifurcation: Focusing on the inversion of Pleodorina californica (64 cells), we develop a continuum model, in which the cell shape changes driving inversion appear as changes of the intrinsic curvature of an elastic surface. A mechanical bifurcation in this model predicts that inversion is only possible in a subset of its parameter space. Strikingly, parameters estimated for P. californica fall into this possible subset, but those that we extrapolate to 256 or more cells using allometric observations and a model of cell cleavage in Volvocaceae do not. Our work thus suggests that the more complex inversion strategies of Volvox are an evolutionary necessity to obviate this bifurcation and indicates more broadly how mechanical bifurcations can drive the evolution of morphogenesis.",
+      "authors": [
+        "Valens Tribet",
+        "Pierre A. Haas"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft",
+        "physics.bio-ph",
+        "q-bio.TO"
+      ],
+      "published": "2026-03-16T12:06:38+00:00",
+      "link": "https://arxiv.org/pdf/2603.15171v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "constrains the evolution of cell sheet folding",
+      "llm_evidence_cn": "限制细胞层折叠的演化",
+      "llm_evidence": "限制细胞层折叠的演化",
+      "canonical_evidence": "限制细胞层折叠的演化",
+      "llm_tldr_en": "Investigates how mechanical bifurcations constrain the evolution of morphogenesis in green algae.",
+      "llm_tldr_cn": "研究机械分叉如何限制绿藻形态发生过程中的演化。",
+      "llm_tldr": "研究机械分叉如何限制绿藻形态发生过程中的演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.16657v1",
+      "title": "A characterization of terminal planar networks by forbidden structures",
+      "abstract": "The class of terminal planar networks was recently introduced from a biological perspective in relation to the visualization of phylogenetic networks, and its connection to upward planar networks has been established. We provide a Kuratowski-type theorem that characterizes terminal planar networks by a finite set of forbidden structures, defined via six families of 0/1-labeled graphs. Another characterization based on planarity of supergraphs yields linear-time algorithms for testing terminal planarity and for computing such planar drawings. We describe an application that is potentially relevant in broader, non-phylogenetic settings. We also discuss a connection of our main result to an open problem on the forbidden structures of single-source upward planar networks.",
+      "authors": [
+        "Haruki Miyaji",
+        "Yuki Noguchi",
+        "Hexuan Liu",
+        "Takatora Suzuki",
+        "Keita Watanabe",
+        "Taoyang Wu",
+        "Momoko Hayamizu"
+      ],
+      "primary_category": "math.CO",
+      "categories": [
+        "math.CO"
+      ],
+      "published": "2026-03-17T15:25:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.16657v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Visualization and characterization of phylogenetic networks",
+      "llm_evidence_cn": "系统发育网络的演化可视化与特征化",
+      "llm_evidence": "系统发育网络的演化可视化与特征化",
+      "canonical_evidence": "系统发育网络的演化可视化与特征化",
+      "llm_tldr_en": "Characterizes terminal planar networks used for the visualization of complex phylogenetic networks.",
+      "llm_tldr_cn": "表征了用于复杂系统发育网络可视化的终端平面网络。",
+      "llm_tldr": "表征了用于复杂系统发育网络可视化的终端平面网络。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.12111v1",
+      "title": "Breaching the Barrier: Transition Pathways of Coral Larval Connectivity Across the Eastern Pacific",
+      "abstract": "Genetic analyses indicate minimal gene flow across the so-called Eastern Pacific Barrier (EPB) in larvae of the reef-building coral \\emph{Porites lobata}. Notably, Clipperton Atoll, situated on the eastern side of the EPB, is the only site that exhibits detectable genetic connectivity with the Line Islands, which lie to the west of the EPB. To elucidate the relationship between this genetic signal and large-scale Pacific Ocean circulation, we analyze historical trajectories of surface-drifting buoys from the Global Drifter Program (GDP). We first discretize the GDP drifter trajectories into a Markov chain representation and subsequently apply transition path theory (TPT) in combination with Bayesian inference. The TPT analysis identifies reactive trajectories -- pathways that connect the Line Islands to Clipperton Atoll with minimal detours -- whose travel times do not exceed 5 months, which is taken as an upper bound for the larval survival time of \\emph{P. lobata}. Consistently, the posterior distribution of transport from Pacific islands west of the EPB to Clipperton Atoll attains a local maximum in the Line Islands at a travel time of approximately 2.5 months. Our probabilistic characterization of the Lagrangian dynamics therefore supports a scenario of weak, but non-negligible, permeability of the EPB, in agreement with the genetic evidence, and it motivates a refined dynamical definition of the EPB based on the remaining duration of reactive trajectories. Furthermore, our results indicate that the connectivity between the Line Islands and Clipperton Atoll is governed primarily by the seasonal modulation of the North Equatorial Countercurrent, rather than by the phase of the El Niño--Southern Oscillation (ENSO). Finally, Clipperton Atoll's role as a terminal sink for trajectories is relevant to the planned mining operations.",
+      "authors": [
+        "Maria Olascoaga",
+        "Francisco Beron-Vera",
+        "Gage Bonner",
+        "Cora McKean",
+        "Ramona Joss"
+      ],
+      "primary_category": "physics.ao-ph",
+      "categories": [
+        "physics.ao-ph",
+        "math.PR",
+        "nlin.CD"
+      ],
+      "published": "2026-03-12T16:15:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.12111v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "genetic connectivity and gene flow across barriers",
+      "llm_evidence_cn": "跨越障碍的遗传连通性与基因流",
+      "llm_evidence": "跨越障碍的遗传连通性与基因流",
+      "canonical_evidence": "跨越障碍的遗传连通性与基因流",
+      "llm_tldr_en": "Analyzes genetic connectivity of coral larvae across the Eastern Pacific Barrier using ocean circulation data.",
+      "llm_tldr_cn": "利用海洋环流数据分析珊瑚幼虫跨越东太平洋屏障的遗传连通性。",
+      "llm_tldr": "利用海洋环流数据分析珊瑚幼虫跨越东太平洋屏障的遗传连通性。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2602.18854v1",
+      "title": "Modeling Dynamics, Cell Type Specificity, and Perturbations in Gene Regulatory Networks",
+      "abstract": "Gene regulatory networks (GRNs) define the regulatory relationships among molecules such as transcription factors, chromatin remodelers, and target genes. GRNs play a critical role in diverse biological processes, including development, disease manifestation, and evolution. However, fully characterizing these networks across multiple cell types and states remains a significant challenge. Recent advances in single-cell omics have dramatically enhanced our ability to measure biological systems at unprecedented resolution. These technologies have opened new avenues for computational methods to infer GRNs, offering deeper insights into cell type-specific mechanisms, causality, and dynamic regulatory processes. This review summarizes the current state of GRN inference from single cell omic datasets, with a particular focus on dynamics and perturbations, and outlines key open challenges that must be addressed to advance the field.",
+      "authors": [
+        "Junha Shin",
+        "Spencer Halberg-Spencer",
+        "Yuda Liu",
+        "Suvojit Hazra",
+        "Erika Da-Inn Lee",
+        "Sushmita Roy"
+      ],
+      "primary_category": "q-bio.MN",
+      "categories": [
+        "q-bio.MN"
+      ],
+      "published": "2026-02-21T14:34:03+00:00",
+      "link": "https://arxiv.org/pdf/2602.18854v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "GRNs role in evolution and biological processes",
+      "llm_evidence_cn": "基因调节网络在演化和生物过程中的作用",
+      "llm_evidence": "基因调节网络在演化和生物过程中的作用",
+      "canonical_evidence": "基因调节网络在演化和生物过程中的作用",
+      "llm_tldr_en": "Reviews computational methods for inferring gene regulatory networks and their roles in evolution and development.",
+      "llm_tldr_cn": "综述了推断基因调节网络的计算方法及其在演化和发育中的作用。",
+      "llm_tldr": "综述了推断基因调节网络的计算方法及其在演化和发育中的作用。",
+      "llm_tags": [
+        "query:q1"
+      ],
+      "matched_query_tag": "query:q1",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.18854v1"
+    },
+    {
+      "id": "2603.02036v1",
+      "title": "Lag-Induced Critical Transitions to Extinction in Replicating Systems",
+      "abstract": "Replicating systems sustained by error-prone enzymatic amplification can undergo critical transitions between persistence and extinction. In RNA viruses, such transitions are classically governed by mutation rates and fitness landscapes, giving rise to error thresholds and lethal mutagenesis. Motivated by experimental evidence that polymerase-targeting antivirals constrain replication, we analyze replicating systems with explicit delays in replication-enzyme availability. We identify a lag-induced (dynamical) critical transition driven by the loss of temporal coordination between genome translation and replication. At a fixed mutation rate and replicative fitness landscape, populations cross an extinction threshold solely due to time delays. Within the quasispecies framework, replication-translation timing emerges as an independent control parameter, defining a distinct dynamical route to extinction and suggesting new antiviral strategies based on modulating replicase availability. More generally, we propose that the pathway to collapse described in this article can be understood as lag-time-induced tipping (τ-tipping).",
+      "authors": [
+        "Edward A. Turner",
+        "Francisco Crespo",
+        "Joan Gimeno",
+        "Ernest Fontich",
+        "Santiago F. Elena",
+        "Josep Sardanyés"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "math.DS"
+      ],
+      "published": "2026-03-02T16:22:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.02036v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "evolutionary dynamics and extinction in replicating systems",
+      "llm_evidence_cn": "复制系统中的演化动力学与灭绝",
+      "llm_evidence": "复制系统中的演化动力学与灭绝",
+      "canonical_evidence": "复制系统中的演化动力学与灭绝",
+      "llm_tldr_en": "Analyzes how replication delays drive extinction transitions in RNA viruses and other replicating systems.",
+      "llm_tldr_cn": "分析了复制延迟如何驱动RNA病毒及其他复制系统的灭绝转变。",
+      "llm_tldr": "分析了复制延迟如何驱动RNA病毒及其他复制系统的灭绝转变。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.02036v1"
+    },
+    {
+      "id": "2602.17532v1",
+      "title": "Systematic Evaluation of Single-Cell Foundation Model Interpretability Reveals Attention Captures Co-Expression Rather Than Unique Regulatory Signal",
+      "abstract": "We present a systematic evaluation framework - thirty-seven analyses, 153 statistical tests, four cell types, two perturbation modalities - for assessing mechanistic interpretability in single-cell foundation models. Applying this framework to scGPT and Geneformer, we find that attention patterns encode structured biological information with layer-specific organisation - protein-protein interactions in early layers, transcriptional regulation in late layers - but this structure provides no incremental value for perturbation prediction: trivial gene-level baselines outperform both attention and correlation edges (AUROC 0.81-0.88 versus 0.70), pairwise edge scores add zero predictive contribution, and causal ablation of regulatory heads produces no degradation. These findings generalise from K562 to RPE1 cells; the attention-correlation relationship is context-dependent, but gene-level dominance is universal. Cell-State Stratified Interpretability (CSSI) addresses an attention-specific scaling failure, improving GRN recovery up to 1.85x. The framework establishes reusable quality-control standards for the field.",
+      "authors": [
+        "Ihor Kendiukhov"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.AI"
+      ],
+      "published": "2026-02-19T16:43:12+00:00",
+      "link": "https://arxiv.org/pdf/2602.17532v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI foundation models for single-cell genomics and biological information",
+      "llm_evidence_cn": "用于单细胞基因组学和生物信息的AI基础模型",
+      "llm_evidence": "用于单细胞基因组学和生物信息的AI基础模型",
+      "canonical_evidence": "用于单细胞基因组学和生物信息的AI基础模型",
+      "llm_tldr_en": "Evaluates interpretability of single-cell AI models in capturing biological regulation and co-expression.",
+      "llm_tldr_cn": "评估了单细胞AI模型在捕获生物调控和共表达方面的可解释性。",
+      "llm_tldr": "评估了单细胞AI模型在捕获生物调控和共表达方面的可解释性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.17532v1"
+    },
+    {
+      "id": "2602.19408v1",
+      "title": "Variations on the Problem of Identifying Spectrum-Preserving String Sets",
+      "abstract": "In computational genomics, many analyses rely on efficient storage and traversal of $k$-mers, motivating compact representations such as spectrum-preserving string sets (SPSS), which store strings whose $k$-mer spectrum matches that of the input. Existing approaches, including Unitigs, Eulertigs and Matchtigs, model this task as a path cover problem on the deBruijn graph. We extend this framework from paths to branching structures by introducing necklace covers, which combine cycles and tree-like attachments (pendants). We present a greedy algorithm that constructs a necklace cover while guaranteeing, under certain conditions, optimality in the cumulative size of the final representation.   Experiments on real genomic datasets indicate that the minimum necklace cover achieves smaller representations than Eulertigs and comparable compression to the Masked Superstrings approach, while maintaining exactness of the $k$-mer spectrum.",
+      "authors": [
+        "Sankardeep Chakraborty",
+        "Roberto Grossi",
+        "Ren Kimura",
+        "Giulia Punzi",
+        "Kunihiko Sadakane",
+        "Wiktor Zuba"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-02-23T00:58:22+00:00",
+      "link": "https://arxiv.org/pdf/2602.19408v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "efficient storage and traversal of k-mers in computational genomics",
+      "llm_evidence_cn": "计算基因组学中k-mer的高效存储与遍历",
+      "llm_evidence": "计算基因组学中k-mer的高效存储与遍历",
+      "canonical_evidence": "计算基因组学中k-mer的高效存储与遍历",
+      "llm_tldr_en": "Introduces necklace covers for more compact representation of genomic k-mer spectra in de Bruijn graphs.",
+      "llm_tldr_cn": "引入项链覆盖法，用于在de Bruijn图中更紧凑地表示基因组k-mer谱。",
+      "llm_tldr": "引入项链覆盖法，用于在de Bruijn图中更紧凑地表示基因组k-mer谱。",
+      "llm_tags": [
+        "query:q9"
+      ],
+      "matched_query_tag": "query:q9",
+      "matched_query_text": "recent advances in genomics and evolutionary biology",
+      "matched_requirement_id": "req-9",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.19408v1"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2602.20100v1",
+      "title": "Transcending the Annotation Bottleneck: AI-Powered Discovery in Biology and Medicine",
+      "abstract": "The dependence on expert annotation has long constituted the primary rate-limiting step in the application of artificial intelligence to biomedicine. While supervised learning drove the initial wave of clinical algorithms, a paradigm shift towards unsupervised and self-supervised learning (SSL) is currently unlocking the latent potential of biobank-scale datasets. By learning directly from the intrinsic structure of data - whether pixels in a magnetic resonance image (MRI), voxels in a volumetric scan, or tokens in a genomic sequence - these methods facilitate the discovery of novel phenotypes, the linkage of morphology to genetics, and the detection of anomalies without human bias. This article synthesises seminal and recent advances in \"learning without labels,\" highlighting how unsupervised frameworks can derive heritable cardiac traits, predict spatial gene expression in histology, and detect pathologies with performance that rivals or exceeds supervised counterparts.",
+      "authors": [
+        "Soumick Chatterjee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "eess.IV"
+      ],
+      "published": "2026-02-23T18:15:30+00:00",
+      "link": "https://arxiv.org/pdf/2602.20100v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI-powered discovery from genomic sequences and linkage of morphology to genetics",
+      "llm_evidence_cn": "利用AI从基因组序列中进行发现，并将形态学与遗传学联系起来",
+      "llm_evidence": "利用AI从基因组序列中进行发现，并将形态学与遗传学联系起来",
+      "canonical_evidence": "利用AI从基因组序列中进行发现，并将形态学与遗传学联系起来",
+      "llm_tldr_en": "Synthesizes AI advances in biomedicine, including learning from genomic sequences to discover novel phenotypes.",
+      "llm_tldr_cn": "综述了AI在生物医学中的进展，包括利用基因组序列学习来发现新表型。",
+      "llm_tldr": "综述了AI在生物医学中的进展，包括利用基因组序列学习来发现新表型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.20100v1",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.10302v1",
+      "title": "How to make the most of your masked language model for protein engineering",
+      "abstract": "A plethora of protein language models have been released in recent years. Yet comparatively little work has addressed how to best sample from them to optimize desired biological properties. We fill this gap by proposing a flexible, effective sampling method for masked language models (MLMs), and by systematically evaluating models and methods both in silico and in vitro on actual antibody therapeutics campaigns. Firstly, we propose sampling with stochastic beam search, exploiting the fact that MLMs are remarkably efficient at evaluating the pseudo-perplexity of the entire 1-edit neighborhood of a sequence. Reframing generation in terms of entire-sequence evaluation enables flexible guidance with multiple optimization objectives. Secondly, we report results from our extensive in vitro head-to-head evaluation for the antibody engineering setting. This reveals that choice of sampling method is at least as impactful as the model used, motivating future research into this under-explored area.",
+      "authors": [
+        "Calvin McCarter",
+        "Nick Bhattacharya",
+        "Sebastian W. Ober",
+        "Hunter Elliott"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-11T00:54:06+00:00",
+      "link": "https://arxiv.org/pdf/2603.10302v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-guided protein engineering and sequence sampling",
+      "llm_evidence_cn": "AI引导的蛋白质工程与序列采样",
+      "llm_evidence": "AI引导的蛋白质工程与序列采样",
+      "canonical_evidence": "AI引导的蛋白质工程与序列采样",
+      "llm_tldr_en": "Proposes sampling methods for protein language models to optimize biological properties.",
+      "llm_tldr_cn": "提出了蛋白质语言模型的采样方法，以优化生物学特性。",
+      "llm_tldr": "提出了蛋白质语言模型的采样方法，以优化生物学特性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.09154v1",
+      "title": "Bioalignment: Measuring and Improving LLM Disposition Toward Biological Systems for AI Safety",
+      "abstract": "Large language models (LLMs) trained on internet-scale corpora can exhibit systematic biases that increase the probability of unwanted behavior. In this study, we examined potential biases towards synthetic vs. biological technological solutions across four domains (materials, energy, manufacturing, and algorithms). A sample of 5 frontier and 5 open-weight models were measured using 50 curated Bioalignment prompts with a Kelly criterion-inspired evaluation framework. According to this metric, most models were not bioaligned in that they exhibit biases in favor of synthetic (non-biological) solutions. We next examined if fine-tuning could increase the preferences of two open-weight models, Llama 3.2-3B-Instruct and Qwen2.5-3B-Instruct, for biological-based approaches. A curated corpus of ~22M tokens from 6,636 PMC articles emphasizing biological problem-solving was used first to fine-tune Llama 3B with a mixed corpus of continued training and instruction-formatted. This was then extended to Qwen 3B using instruction-formatted only. We found that QLoRA fine-tuning significantly increased the scoring of biological solutions for both models without degrading general capabilities (Holm-Bonferroni-corrected p < 0.001 and p < 0.01, respectively). This suggests that even a small amount of fine-tuning can change how models weigh the relative value of biological and bioinspired vs. synthetic approaches. Although this work focused on small open-weight LLMs, it may be extensible to much larger models and could be used to develop models that favor bio-based approaches. We release the benchmark, corpus, code, and adapter weights.",
+      "authors": [
+        "Trent R Northen",
+        "Mingxun Wang"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-03-10T03:44:58+00:00",
+      "link": "https://arxiv.org/pdf/2603.09154v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM disposition toward biological systems",
+      "llm_evidence_cn": "大语言模型对生物系统的倾向性",
+      "llm_evidence": "大语言模型对生物系统的倾向性",
+      "canonical_evidence": "大语言模型对生物系统的倾向性",
+      "llm_tldr_en": "Measures and improves large language models' alignment and preferences toward biological solutions.",
+      "llm_tldr_cn": "衡量并改进大语言模型对生物解决方案的对齐和偏好。",
+      "llm_tldr": "衡量并改进大语言模型对生物解决方案的对齐和偏好。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.21395v1",
+      "title": "Momentum Memory for Knowledge Distillation in Computational Pathology",
+      "abstract": "Multimodal learning that integrates genomics and histopathology has shown strong potential in cancer diagnosis, yet its clinical translation is hindered by the limited availability of paired histology-genomics data. Knowledge distillation (KD) offers a practical solution by transferring genomic supervision into histopathology models, enabling accurate inference using histology alone. However, existing KD methods rely on batch-local alignment, which introduces instability due to limited within-batch comparisons and ultimately degrades performance.   To address these limitations, we propose Momentum Memory Knowledge Distillation (MoMKD), a cross-modal distillation framework driven by a momentum-updated memory. This memory aggregates genomic and histopathology information across batches, effectively enlarging the supervisory context available to each mini-batch. Furthermore, we decouple the gradients of the genomics and histology branches, preventing genomic signals from dominating histology feature learning during training and eliminating the modality-gap issue at inference time.   Extensive experiments on the TCGA-BRCA benchmark (HER2, PR, and ODX classification tasks) and an independent in-house testing dataset demonstrate that MoMKD consistently outperforms state-of-the-art MIL and multimodal KD baselines, delivering strong performance and generalization under histology-only inference. Overall, MoMKD establishes a robust and generalizable knowledge distillation paradigm for computational pathology.",
+      "authors": [
+        "Yongxin Guo",
+        "Hao Lu",
+        "Onur C. Koyun",
+        "Zhengjie Zhu",
+        "Muhammet Fatih Demir",
+        "Metin Nafi Gurcan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-02-24T21:51:12+00:00",
+      "link": "https://arxiv.org/pdf/2602.21395v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "integrating genomics and AI for cancer diagnosis",
+      "llm_evidence_cn": "整合基因组学与AI进行癌症诊断",
+      "llm_evidence": "整合基因组学与AI进行癌症诊断",
+      "canonical_evidence": "整合基因组学与AI进行癌症诊断",
+      "llm_tldr_en": "Proposes a knowledge distillation framework to transfer genomic supervision into histopathology AI models.",
+      "llm_tldr_cn": "提出了一种知识蒸馏框架，将基因组监督信息转移到组织病理学AI模型中。",
+      "llm_tldr": "提出了一种知识蒸馏框架，将基因组监督信息转移到组织病理学AI模型中。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.21395v1",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.11133v1",
+      "title": "Higher-Order Modular Attention: Fusing Pairwise and Triadic Interactions for Protein Sequences",
+      "abstract": "Transformer self-attention computes pairwise token interactions, yet protein sequence to phenotype relationships often involve cooperative dependencies among three or more residues that dot product attention does not capture explicitly. We introduce Higher-Order Modular Attention, HOMA, a unified attention operator that fuses pairwise attention with an explicit triadic interaction pathway. To make triadic attention practical on long sequences, HOMA employs block-structured, windowed triadic attention. We evaluate on three TAPE benchmarks for Secondary Structure, Fluorescence, and Stability. Our attention mechanism yields consistent improvements across all tasks compared with standard self-attention and efficient variants including block-wise attention and Linformer. These results suggest that explicit triadic terms provide complementary representational capacity for protein sequence prediction at controllable additional computational cost.",
+      "authors": [
+        "Shirin Amiraslani",
+        "Xin Gao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-11T16:07:56+00:00",
+      "link": "https://arxiv.org/pdf/2603.11133v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for protein sequence to phenotype relationships",
+      "llm_evidence_cn": "利用AI研究蛋白质序列与表型的关系",
+      "llm_evidence": "利用AI研究蛋白质序列与表型的关系",
+      "canonical_evidence": "利用AI研究蛋白质序列与表型的关系",
+      "llm_tldr_en": "Proposes a triadic interaction attention mechanism to improve protein sequence modeling and phenotype prediction.",
+      "llm_tldr_cn": "提出了一种三元交互注意力机制，以改进蛋白质序列建模和表型预测。",
+      "llm_tldr": "提出了一种三元交互注意力机制，以改进蛋白质序列建模和表型预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.10285v1",
+      "title": "Conversational AI-Enhanced Exploration System to Query Large-Scale Digitised Collections of Natural History Museums",
+      "abstract": "Recent digitisation efforts in natural history museums have produced large volumes of collection data, yet their scale and scientific complexity often hinder public access and understanding. Conventional data management tools, such as databases, restrict exploration through keyword-based search or require specialised schema knowledge. This paper presents a system design that uses conversational AI to query nearly 1.7 million digitised specimen records from the life-science collections of the Australian Museum. Designed and developed through a human-centred design process, the system contains an interactive map for visual-spatial exploration and a natural-language conversational agent that retrieves detailed specimen data and answers collection-specific questions. The system leverages function-calling capabilities of contemporary large language models to dynamically retrieve structured data from external APIs, enabling fast, real-time interaction with extensive yet frequently updated datasets. Our work provides a new approach of connecting large museum collections with natural language-based queries and informs future designs of scientific AI agents for natural history museums.",
+      "authors": [
+        "Yiyuan Wang",
+        "Andrew Johnston",
+        "Zoë Sadokierski",
+        "Rhiannon Stephens",
+        "Shane T. Ahyong"
+      ],
+      "primary_category": "cs.HC",
+      "categories": [
+        "cs.HC",
+        "cs.AI",
+        "cs.CY",
+        "cs.DL",
+        "cs.ET"
+      ],
+      "published": "2026-03-11T00:07:32+00:00",
+      "link": "https://arxiv.org/pdf/2603.10285v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Conversational AI to query life-science collections",
+      "llm_evidence_cn": "利用对话式AI查询生命科学馆藏数据",
+      "llm_evidence": "利用对话式AI查询生命科学馆藏数据",
+      "canonical_evidence": "利用对话式AI查询生命科学馆藏数据",
+      "llm_tldr_en": "A conversational AI system for exploring large-scale natural history museum specimen records.",
+      "llm_tldr_cn": "一种用于探索大规模自然历史博物馆标本记录的对话式人工智能系统。",
+      "llm_tldr": "一种用于探索大规模自然历史博物馆标本记录的对话式人工智能系统。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.21550v1",
+      "title": "Extending Sequence Length is Not All You Need: Effective Integration of Multimodal Signals for Gene Expression Prediction",
+      "abstract": "Gene expression prediction, which predicts mRNA expression levels from DNA sequences, presents significant challenges. Previous works often focus on extending input sequence length to locate distal enhancers, which may influence target genes from hundreds of kilobases away. Our work first reveals that for current models, long sequence modeling can decrease performance. Even carefully designed algorithms only mitigate the performance degradation caused by long sequences. Instead, we find that proximal multimodal epigenomic signals near target genes prove more essential. Hence we focus on how to better integrate these signals, which has been overlooked. We find that different signal types serve distinct biological roles, with some directly marking active regulatory elements while others reflect background chromatin patterns that may introduce confounding effects. Simple concatenation may lead models to develop spurious associations with these background patterns. To address this challenge, we propose Prism, a framework that learns multiple combinations of high-dimensional epigenomic features to represent distinct background chromatin states and uses backdoor adjustment to mitigate confounding effects. Our experimental results demonstrate that proper modeling of multimodal epigenomic signals achieves state-of-the-art performance using only short sequences for gene expression prediction.",
+      "authors": [
+        "Zhao Yang",
+        "Yi Duan",
+        "Jiwei Zhu",
+        "Ying Ba",
+        "Chuan Cao",
+        "Bing Su"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-02-25T04:16:21+00:00",
+      "link": "https://arxiv.org/pdf/2602.21550v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for gene expression prediction from DNA",
+      "llm_evidence_cn": "利用AI从DNA预测基因表达",
+      "llm_evidence": "利用AI从DNA预测基因表达",
+      "canonical_evidence": "利用AI从DNA预测基因表达",
+      "llm_tldr_en": "Integrates multimodal signals for better gene expression prediction from DNA sequences.",
+      "llm_tldr_cn": "整合多模态信号，以更好地从DNA序列预测基因表达。",
+      "llm_tldr": "整合多模态信号，以更好地从DNA序列预测基因表达。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.21550v1",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.12073v1",
+      "title": "A Multi-Label Temporal Convolutional Framework for Transcription Factor Binding Characterization",
+      "abstract": "Transcription factors (TFs) regulate gene expression through complex and co-operative mechanisms. While many TFs act together, the logic underlying TFs binding and their interactions is not fully understood yet. Most current approaches for TF binding site prediction focus on individual TFs and binary classification tasks, without a full analysis of the possible interactions among various TFs. In this paper we investigate DNA TF binding site recognition as a multi-label classification problem, achieving reliable predictions for multiple TFs on DNA sequences retrieved in public repositories. Our deep learning models are based on Temporal Convolutional Networks (TCNs), which are able to predict multiple TF binding profiles, capturing correlations among TFs andtheir cooperative regulatory mechanisms. Our results suggest that multi-label learning leading to reliable predictive performances can reveal biologically meaningful motifs and co-binding patterns consistent with known TF interactions, while also suggesting novel relationships and cooperation among TFs.",
+      "authors": [
+        "Pietro Demurtas",
+        "Ferdinando Zanchetta",
+        "Giovanni Perini",
+        "Rita Fioresi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-12T15:42:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.12073v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Deep learning for transcription factor binding site prediction in DNA",
+      "llm_evidence_cn": "利用深度学习预测DNA中的转录因子结合位点",
+      "llm_evidence": "利用深度学习预测DNA中的转录因子结合位点",
+      "canonical_evidence": "利用深度学习预测DNA中的转录因子结合位点",
+      "llm_tldr_en": "A temporal convolutional framework improves the characterization of multi-label transcription factor interactions.",
+      "llm_tldr_cn": "一种时间卷积框架改进了多标签转录因子相互作用的表征。",
+      "llm_tldr": "一种时间卷积框架改进了多标签转录因子相互作用的表征。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.11125v1",
+      "title": "Co-Diffusion: An Affinity-Aware Two-Stage Latent Diffusion Framework for Generalizable Drug-Target Affinity Prediction",
+      "abstract": "Predicting drug-target affinity is fundamental to virtual screening and lead optimization. However, existing deep models often suffer from representation collapse in stringent cold-start regimes, where the scarcity of labels and domain shifts prevent the learning of transferable pharmacophores and binding motifs. In this paper, we propose Co-Diffusion, a novel affinity-aware framework that redefines DTA prediction as a constrained latent denoising process to enhance generalization. Co-Diffusion employs a two-stage paradigm: Stage I establishes an affinity-steered latent manifold by aligning drug and target embeddings under an explicit supervised objective, ensuring that the latent space reflects the intrinsic binding landscape. Stage II introduces modality-specific latent diffusion as a stochastic perturb-and-denoise regularizer, forcing the model to recover consistent affinity semantics from noisy structural representations. This approach effectively mitigates the reconstruction-regression conflict common in generative DTA models. Theoretically, we show that Co-Diffusion maximizes a variational lower bound on the joint likelihood of drug structures, protein sequences, and binding strength. Extensive experiments across multiple benchmarks demonstrate that Co-Diffusion significantly outperforms state-of-the-art baselines, particularly yielding superior zero-shot generalization on unseen molecular scaffolds and novel protein families-paving a robust path for in silico drug prioritization in unexplored chemical spaces.",
+      "authors": [
+        "Yining Qian",
+        "Pengjie Wang",
+        "Yixiao Li",
+        "An-Yang Lu",
+        "Cheng Tan",
+        "Shuang Li",
+        "Lijun Liu"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-03-11T14:47:58+00:00",
+      "link": "https://arxiv.org/pdf/2603.11125v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI framework for drug-target affinity prediction",
+      "llm_evidence_cn": "用于药物-靶点亲和力预测的AI框架",
+      "llm_evidence": "用于药物-靶点亲和力预测的AI框架",
+      "canonical_evidence": "用于药物-靶点亲和力预测的AI框架",
+      "llm_tldr_en": "Proposes a diffusion framework to improve the generalization of drug-target affinity prediction in virtual screening.",
+      "llm_tldr_cn": "提出了一种扩散框架，以提高虚拟筛选中药物-靶点亲和力预测的泛化能力。",
+      "llm_tldr": "提出了一种扩散框架，以提高虚拟筛选中药物-靶点亲和力预测的泛化能力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.22236v1",
+      "title": "CrossLLM-Mamba: Multimodal State Space Fusion of LLMs for RNA Interaction Prediction",
+      "abstract": "Accurate prediction of RNA-associated interactions is essential for understanding cellular regulation and advancing drug discovery. While Biological Large Language Models (BioLLMs) such as ESM-2 and RiNALMo provide powerful sequence representations, existing methods rely on static fusion strategies that fail to capture the dynamic, context-dependent nature of molecular binding. We introduce CrossLLM-Mamba, a novel framework that reformulates interaction prediction as a state-space alignment problem. By leveraging bidirectional Mamba encoders, our approach enables deep ``crosstalk'' between modality-specific embeddings through hidden state propagation, modeling interactions as dynamic sequence transitions rather than static feature overlaps. The framework maintains linear computational complexity, making it scalable to high-dimensional BioLLM embeddings. We further incorporate Gaussian noise injection and Focal Loss to enhance robustness against hard-negative samples. Comprehensive experiments across three interaction categories, RNA-protein, RNA-small molecule, and RNA-RNA demonstrate that CrossLLM-Mamba achieves state-of-the-art performance. On the RPI1460 benchmark, our model attains an MCC of 0.892, surpassing the previous best by 5.2\\%. For binding affinity prediction, we achieve Pearson correlations exceeding 0.95 on riboswitch and repeat RNA subtypes. These results establish state-space modeling as a powerful paradigm for multi-modal biological interaction prediction.",
+      "authors": [
+        "Rabeya Tus Sadia",
+        "Qiang Ye",
+        "Qiang Cheng"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-02-23T19:57:11+00:00",
+      "link": "https://arxiv.org/pdf/2602.22236v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI and Biological Large Language Models for RNA interaction prediction",
+      "llm_evidence_cn": "利用AI和生物大语言模型进行RNA相互作用预测",
+      "llm_evidence": "利用AI和生物大语言模型进行RNA相互作用预测",
+      "canonical_evidence": "利用AI和生物大语言模型进行RNA相互作用预测",
+      "llm_tldr_en": "Introduces a Mamba-based AI framework for predicting RNA interactions using biological embeddings.",
+      "llm_tldr_cn": "介绍了一种基于Mamba的AI框架，利用生物嵌入预测RNA相互作用。",
+      "llm_tldr": "介绍了一种基于Mamba的AI框架，利用生物嵌入预测RNA相互作用。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.22236v1",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.12351v1",
+      "title": "Probabilistic Joint and Individual Variation Explained (ProJIVE) for Data Integration",
+      "abstract": "Collecting multiple types of data on the same set of subjects is common in modern scientific applications including, genomics, metabolomics, and neuroimaging. Joint and Individual Variance Explained (JIVE) seeks a low-rank approximation of the joint variation between two or more sets of features captured on common subjects and isolates this variation from that unique to eachset of features. We develop an expectation-maximization (EM) algorithm to estimate a probabilistic model for the JIVE framework. The model extends probabilistic principal components analysis to multiple data sets. Our maximum likelihood approach simultaneously estimates joint and individual components, which can lead to greater accuracy compared to other methods. We apply ProJIVE to measures of brain morphometry and cognition in Alzheimer's disease. ProJIVE learns biologically meaningful courses of variation, and the joint morphometry and cognition subject scores are strongly related to more expensive existing biomarkers. Data used in preparation of this article were obtained from the Alzheimer's Disease Neuroimaging Initiative (ADNI) database. Code to reproduce the analysis is available on our GitHub page.",
+      "authors": [
+        "Raphiel J. Murden",
+        "Ganzhong Tian",
+        "Deqiang Qiu",
+        "Benajmin B. Risk"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "q-bio.QM",
+        "stat.CO",
+        "stat.ME"
+      ],
+      "published": "2026-03-12T18:16:07+00:00",
+      "link": "https://arxiv.org/pdf/2603.12351v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Data integration for genomics using EM algorithm",
+      "llm_evidence_cn": "利用EM算法进行基因组学数据整合",
+      "llm_evidence": "利用EM算法进行基因组学数据整合",
+      "canonical_evidence": "利用EM算法进行基因组学数据整合",
+      "llm_tldr_en": "A probabilistic framework for integrating multiple data types like genomics and metabolomics.",
+      "llm_tldr_cn": "一种用于整合基因组学和代谢组学等多种数据类型的概率框架。",
+      "llm_tldr": "一种用于整合基因组学和代谢组学等多种数据类型的概率框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.12344v1",
+      "title": "Generalist Large Language Models for Molecular Property Prediction: Distilling Knowledge from Specialist Models",
+      "abstract": "Molecular Property Prediction (MPP) is a central task in drug discovery. While Large Language Models (LLMs) show promise as generalist models for MPP, their current performance remains below the threshold for practical adoption. We propose TreeKD, a novel knowledge distillation method that transfers complementary knowledge from tree-based specialist models into LLMs. Our approach trains specialist decision trees on functional group features, then verbalizes their learned predictive rules as natural language to enable rule-augmented context learning. This enables LLMs to leverage structural insights that are difficult to extract from SMILES strings alone. We further introduce rule-consistency, a test-time scaling technique inspired by bagging that ensembles predictions across diverse rules from a Random Forest. Experiments on 22 ADMET properties from the TDC benchmark demonstrate that TreeKD substantially improves LLM performance, narrowing the gap with SOTA specialist models and advancing toward practical generalist models for molecular property prediction.",
+      "authors": [
+        "Khiem Le",
+        "Sreejata Dey",
+        "Marcos Martínez Galindo",
+        "Vanessa Lopez",
+        "Ting Hua",
+        "Nitesh V. Chawla",
+        "Hoang Thanh Lam"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-12T18:06:21+00:00",
+      "link": "https://arxiv.org/pdf/2603.12344v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for molecular property prediction and structural insights",
+      "llm_evidence_cn": "利用AI进行分子性质预测和结构洞察",
+      "llm_evidence": "利用AI进行分子性质预测和结构洞察",
+      "canonical_evidence": "利用AI进行分子性质预测和结构洞察",
+      "llm_tldr_en": "Distills knowledge from tree models into LLMs for molecular property prediction in drug discovery.",
+      "llm_tldr_cn": "将树模型知识蒸馏至大模型，用于药物研发中的分子性质预测。",
+      "llm_tldr": "将树模型知识蒸馏至大模型，用于药物研发中的分子性质预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2602.22247v1",
+      "title": "Multi-Dimensional Spectral Geometry of Biological Knowledge in Single-Cell Transformer Representations",
+      "abstract": "Single-cell foundation models such as scGPT learn high-dimensional gene representations, but what biological knowledge these representations encode remains unclear. We systematically decode the geometric structure of scGPT internal representations through 63 iterations of automated hypothesis screening (183 hypotheses tested), revealing that the model organizes genes into a structured biological coordinate system rather than an opaque feature space.   The dominant spectral axis separates genes by subcellular localization, with secreted proteins at one pole and cytosolic proteins at the other. Intermediate transformer layers transiently encode mitochondrial and ER compartments in a sequence that mirrors the cellular secretory pathway. Orthogonal axes encode protein-protein interaction networks with graded fidelity to experimentally measured interaction strength (Spearman rho = 1.000 across n = 5 STRING confidence quintiles, p = 0.017).   In a compact six-dimensional spectral subspace, the model distinguishes transcription factors from their target genes (AUROC = 0.744, all 12 layers significant). Early layers preserve which specific genes regulate which targets, while deeper layers compress this into a coarser regulator versus regulated distinction. Repression edges are geometrically more prominent than activation edges, and B-cell master regulators BATF and BACH2 show convergence toward the B-cell identity anchor PAX5 across transformer depth. Cell-type marker genes cluster with high fidelity (AUROC = 0.851). Residual-stream geometry encodes biological structure complementary to attention patterns. These results indicate that biological transformers learn an interpretable internal model of cellular organization, with implications for regulatory network inference, drug target prioritization, and model auditing.",
+      "authors": [
+        "Ihor Kendiukhov"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-02-24T17:57:59+00:00",
+      "link": "https://arxiv.org/pdf/2602.22247v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI foundation models for single-cell gene representation and biological knowledge encoding",
+      "llm_evidence_cn": "用于单细胞基因表示和生物知识编码的AI基础模型",
+      "llm_evidence": "用于单细胞基因表示和生物知识编码的AI基础模型",
+      "canonical_evidence": "用于单细胞基因表示和生物知识编码的AI基础模型",
+      "llm_tldr_en": "Decodes the geometric structure of scGPT representations to reveal how AI organizes gene and cellular information.",
+      "llm_tldr_cn": "解码scGPT表示的几何结构，揭示AI如何组织基因和细胞信息。",
+      "llm_tldr": "解码scGPT表示的几何结构，揭示AI如何组织基因和细胞信息。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2602.22247v1",
+      "quick_tier": "8plus"
+    }
+  ]
+}

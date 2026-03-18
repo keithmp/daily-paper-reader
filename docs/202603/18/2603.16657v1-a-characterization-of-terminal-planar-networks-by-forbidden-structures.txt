@@ -1,0 +1,842 @@
+Title: A characterization of terminal planar networks by forbidden structures
+
+URL Source: https://arxiv.org/pdf/2603.16657v1
+
+Published Time: Wed, 18 Mar 2026 01:27:08 GMT
+
+Number of Pages: 29
+
+Markdown Content:
+# A characterization of terminal planar networks by forbidden structures ∗
+
+Haruki Miyaji 1, Yuki Noguchi 2, Hexuan Liu 1, Takatora Suzuki 1,Keita Watanabe 1, Taoyang Wu 3, and Momoko Hayamizu †4
+
+> 1
+
+Department of Pure and Applied Mathematics, Graduate School of Fundamental Science and Engineering, Waseda University, Tokyo, Japan 
+
+> 2
+
+Department of Applied Mathematics, School of Fundamental Science and Engineering, Waseda University, Tokyo, Japan 
+
+> 3
+
+School of Computing Science, University of East Anglia, Norwich, UK 
+
+> 4
+
+Department of Applied Mathematics, Faculty of Science and Engineering, Waseda University, Tokyo, Japan 
+
+Abstract 
+
+The class of terminal planar networks was recently introduced from a biological perspective in relation to the visualization of phylogenetic networks, and its connection to upward planar networks has been es-tablished. We provide a Kuratowski-type theorem that characterizes terminal planar networks by a finite set of forbidden structures, de-fined via six families of 0/1-labeled graphs. Another characterization based on planarity of supergraphs yields linear-time algorithms for test-ing terminal planarity and for computing such planar drawings. We describe an application that is potentially relevant in broader, non-phylogenetic settings. We also discuss a connection of our main result to an open problem on the forbidden structures of single-source upward planar networks. 
+
+# 1 Introduction 
+
+Finding the set of forbidden structures that characterizes a graph class is a fundamental topic in graph theory. The well-known Kuratowski’s theo-rem [1] states that a graph is planar if and only if it contains no subgraph homeomorphic to K5 or K3,3. This type of characterization is known for dif-ferent graph classes (e.g., [2, 3, 4]; see Chapter 7 of [5] for details). However, such forbidden structures are unknown for several important graph classes, including upward planar networks and terminal planar networks. 
+
+> ∗
+
+This work is based on the Master’s and Bachelor’s theses of Haruki Miyaji and Yuki Noguchi, respectively, supervised by Momoko Hayamizu. 
+
+> †
+
+Corresponding author: hayamizu@waseda.jp 
+
+1
+
+> arXiv:2603.16657v1 [math.CO] 17 Mar 2026
+
+Upward planar digraphs are a classical and well-studied class in graph drawing (e.g., [6, 7, 8, 9]). A digraph is upward planar if it admits a planar drawing in which all edges are monotone upward with respect to the vertical direction. For embedded digraphs with a single source, upward planarity has been characterized by Thomassen [10] in terms of certain forbidden patterns, and this characterization is used in the algorithms in [6] (see Theorem 6.13 in Section 6.7 of [11] for details). Despite this understanding of the embedded case, neither forbidden subgraphs nor forbidden minors are currently known for upward planar digraphs. Terminal planar networks were more recently introduced by Moulton– Wu [12] as a subclass of directed phylogenetic networks motivated by the visualization of evolutionary relationships among organisms. A directed phy-logenetic network is an acyclic digraph with a unique root and one or more leaves, and it is terminal planar if it admits a planar embedding such that all terminals (the root and leaves) lie on the outer face. In [12], it was shown that a directed phylogenetic network is terminal planar if and only if a cer-tain single-source supergraph of it—which we call the t-completion in this paper—is upward planar, and linear-time algorithms for terminal planarity testing and drawing were described. However, the characterization based on upward planarity of t-completion does not easily yield a Kuratowski-type characterization of terminal planar networks, since the forbidden structures of upward planar networks are not fully understood, as mentioned above. Another limitation of this approach is that it does not apply to undirected graphs, because of the inherently directed nature of upward planarity. In this paper, we provide a characterization of terminal planar networks in terms of a finite set of forbidden structures, called H1, . . . , H6 structures (Theorem 5.14), which is valid for undirected graphs as well (Corollary 5.15). This is indeed a Kuratowski-type theorem because H1 and H4 structures are nothing but subdivisions of K3,3 and K5, respectively. When we only consider binary phylogenetic networks, H1, H2, and H3 structures are the only possible obstructions (Corollaries 5.16 and 5.17). To prove the main theorem, we first show the equivalence among the terminal planarity of directed phylogenetic networks and the planarity of their supergraphs called the st -completion and the terminal cut-completion (Theorem 4.2). This characterization plays an important role in proving the main theorem and also furnishes new linear-time algorithms for testing terminal planarity and for drawing such networks since it links terminal planarity with planarity, not with upward planarity. The remainder of the paper is organized as follows. Section 2 introduces the basic definitions and notation of graph theory, and Section 3 reviews the concepts and known results on graph planarity, including upward pla-narity and terminal planarity of phylogenetic networks. In Section 4, in addition to proving Theorem 4.2, we also briefly mention the relationship between terminal planar directed phylogenetic networks and bar-visibility 2digraphs. In Section 5, after setting up the necessary terminology, we prove Theorem 5.14 and also describe linear-time algorithms for terminal planarity testing and for drawing such networks. In Section 6, we demonstrate an ap-plication of the main result in more general, non-phylogenetic settings by providing a characterization of planar graphs with an embedding such that specified vertices lie on the outer face (Theorem 6.2). Finally, in Section 7, we give a conclusion and briefly discuss how our results may be relevant to the open problem of determining the forbidden structures for upward planar networks. 
+
+# 2 Basic definitions and notation 
+
+2.1 Undirected graphs 
+
+An undirected graph is defined by an ordered pair (V, E ) consisting of a set 
+
+V of vertices and a set E of undirected edges. Given an undirected graph 
+
+G, V (G) and E(G) denote the vertex set and edge set of G, respectively. A graph G is finite if both V (G) and E(G) are finite sets. Given an edge 
+
+{u, v } of an undirected graph, the vertices u and v are called the endpoints 
+
+of the edge. An edge {u, v } with u = v is called a loop . Two or more edges between the same pair of vertices are called multiple edges . An undirected graph is simple if it contains neither loops nor multiple edges. In this paper, we only consider finite simple undirected graphs. For a vertex v and an edge e of a graph, if v is an endpoint of e, we say that e is incident to v. For two distinct vertices u and v of a graph G, if 
+
+{u, v } ∈ E(G), then u and v are said to be adjacent . For any vertex v of a graph G, Adj G(v) denotes the set of all vertices adjacent to v. The value 
+
+|Adj G(v)| is called the degree of v in G and is denoted by deg G(v). A vertex of G with degree 1 is called a leaf or terminal vertex of G, and an edge incident to a leaf is called a pendant edge of G.A graph P with V (P ) = {v1, v 2, . . . , v k} and E(P ) = {{ v1, v 2}, {v2, v 3}, . . . , {vk−1, v k}} 
+
+is called a path . In this case, the vertices v1 and vk are called the endpoints 
+
+of P , and the other vertices are called the internal vertices of P . The value 
+
+k −1 is the length of P (where k ≥ 2). A path can be represented as an alter-nating sequence of vertices and edges v1, {v1, v 2}, v 2, . . . , v k−1, {vk−1, v k}, v k,but when the context is clear, we often write v1−v2−· · ·− vk. A path with the endpoints u and v is called a u-v path and may be denoted by [u, v ]. A graph 
+
+C with V (C) = {v1, v 2, . . . , v k} and E(C) = {{ v1, v 2}, {v2, v 3}, . . . , {vk−1, v k}, {vk, v 1}} 
+
+such that all vertices are distinct is called a cycle (k ≥ 3). Two graphs G and H are isomorphic , denoted by G ≃ H, if there exists a bijection ϕ : V (G) → V (H) such that for any u, v ∈ V (G), we have {u, v } ∈ 
+
+E(G) if and only if {ϕ(u), ϕ (v)} ∈ E(H). If V (G) ⊆ V (H) and E(G) ⊆
+
+E(H), then G is a subgraph of H, and we say H contains G, or H is a 
+
+supergraph of G. This relationship is denoted by G ⊆ H. In particular, if 3G ⊆ H and V (G) = V (H), then G is a spanning subgraph of H. If G ⊆ H
+
+and G̸ ≃ H, then we write G ⊊ H. In this case, we call G a proper subgraph of H and H a proper supergraph of G. The union of two graphs G and H,denoted by G ∪ H, is the graph with vertex set V (G) ∪ V (H) and edge set 
+
+E(G) ∪ E(H). Similarly, the intersection G ∩ H is the graph with vertex set 
+
+V (G) ∩ V (H) and edge set E(G) ∩ E(H).A graph G is connected if there exists a u-v path for any u, v ∈ V (G).We write [u, v ]G to mean a u-v path in a graph G. For two vertices u and v
+
+of a graph G, the distance between u and v in G is defined by the length of a shortest u-v path in G. A connected component of G is a connected subgraph of G that is not a proper subgraph of any other connected subgraph of G.Given a graph G, the graph obtained by removing an edge e from G is denoted by G − e, and this operation is called the deletion of e. For any 
+
+E′ ⊂ E(G), the graph G − E′ denotes the graph that is obtained by deleting all edges in E′ from G. Similarly, the graph obtained by removing a vertex 
+
+v together with all edges incident to v from G is denoted by G − v, and this operation is called the deletion of v. For any V ′ ⊆ V (G), the graph G − V ′
+
+denotes the graph that is obtained by deleting all vertices in V ′.For a graph G, e ∈ E(G) is called a cut edge of G if G−e is disconnected. Also, v ∈ V (G) is called a cut vertex of G if G − v is disconnected. An edge 
+
+e of an undirected graph G is a cut edge of G if and only if e is not contained in any cycle of G (e.g., [13, Theorem 2.3]). A graph G is biconnected if it contains no cut vertices. This implies that a biconnected graph does not contain any cut edges. A biconnected subgraph of G that is not a proper subgraph of any other biconnected subgraph is called a block of G.For an edge {u, v } of a graph G, the subdivision of {u, v } is the operation of replacing {u, v } with a u-v path of length at least 1. A graph obtained by a finite sequence of edge subdivisions is called a subdivision of G. For a vertex v of a graph G with deg G(v) = 2 , and its incident edges e1 = {u1, v }
+
+and e2 = {u2, v }, the smoothing of v is the operation whereby v, e1, and e2
+
+are deleted, and a new edge {u1, u 2} is added instead. Note that since we only consider simple graphs in this paper, if smoothing results in multiple edges, they are always replaced by a single edge. The simple graph obtained by smoothing all possible vertices of a graph G is called the smoothed graph of G. Two graphs G and H are homeomorphic , denoted by G ≈ H, if there exist subdivisions G′ of G and H′ of H such that G′ ≃ H′ holds. For an edge e = {u, v } in a graph G, the contraction of e is the operation that merges u and v into a single new vertex, replaces e by this vertex, and connects it to all neighbors of u or v while all other vertices and edges are kept unchanged. The resulting graph is denoted by G/e . As in smoothing, if contraction creates multiple edges, they are replaced by a single edge. More generally, for a set of edges E′ ⊆ E(G), the graph obtained by contracting all edges in E′ is denoted by G/E ′. A graph G′ is called a minor of a graph G if 
+
+G′ can be obtained from G by a sequence of vertex deletions, edge deletions, 4and edge contractions. In this case, we say that G contains G′ as a minor. A graph with n vertices in which every pair of distinct vertices is adjacent is called a complete graph and is denoted by Kn. A graph G is bipartite if 
+
+V (G) can be partitioned into two non-empty subsets X and Y such that every edge of G has one endpoint in X and the other in Y . The sets X and 
+
+Y are called the partite sets of G. A bipartite graph G with partite sets 
+
+X and Y with |X| = p and |Y | = q is called a complete bipartite graph, denoted by Kp,q , if every vertex in X is adjacent to every vertex in Y .
+
+2.2 Directed graphs 
+
+A directed graph , or digraph , is an ordered pair D = ( V, A ), where V is a set of vertices and A is a set of directed edges called arcs . For a digraph D,its vertex set and arc set are denoted by V (D) and by A(D), respectively. A digraph D is finite if both V (D) and A(D) are finite sets. An arc is an ordered pair of vertices (u, v ); u is called the tail and v the head of the arc. A simple digraph has no loops or parallel arcs. In this paper, all digraphs are assumed to be finite and simple. Two digraphs D and H are isomorphic , denoted by D ≃ H, if there exists a bijection ϕ : V (D) → V (H) such that (u, v ) ∈ A(D) if and only if 
+
+(ϕ(u), ϕ (v)) ∈ A(H) for all u, v ∈ V (D). The concepts of subgraphs, proper subgraphs, spanning subgraphs, supergraphs, and proper supergraphs are defined similarly to the undirected case. The underlying graph of a digraph D, denoted Du, is the (simple) undi-rected graph obtained from D by replacing each arc (u, v ) ∈ A(D) with an undirected edge {u, v } and removing duplicate edges if necessary. A digraph D is weakly connected if its underlying graph Du is connected. Vertex and arc deletion are defined analogously to the undirected case. Cut arcs, cut vertices, and biconnectivity for digraphs are defined according to whether weak connectivity is preserved after deletion. The in-degree indeg D(v) and out-degree outdeg D(v) of a vertex v are the number of arcs with head v and with tail v, respectively. A vertex s with indeg D(s) = 0 is called a source (or the root when it is the only source of D), and a vertex t with outdeg D(t) = 0 is called a sink . A directed path is a digraph P with V (P ) = {v1, v 2, . . . , v k} and 
+
+A(P ) = {(v1, v 2), (v2, v 3), . . . , (vk−1, v k)}, where the vertices are all distinct. The vertices v1 and vk are the first and last vertices of P , respectively. The length and internal vertices of P are defined as in the undirected case. A directed cycle is digraph C with V (C) = {v1, v 2, . . . , v k} and A(C) = 
+
+{(v1, v 2), (v2, v 3), . . . , (vk−1, v k), (vk, v 1)} where the vertices are all distinct. A digraph is acyclic if it has no directed cycle as a subgraph. For an arc 
+
+(u, v ) of an acyclic digraph, u is sometimes called a parent of v, and v a child 
+
+of u.53 Known Results on Planarity 
+
+3.1 Planarity of Undirected Graphs 
+
+The study of planarity in undirected graphs is a classical topic in graph theory. A drawing of an undirected graph G is an embedding of each vertex 
+
+v of G to a point in the plane, and each edge {u, v } to a simple curve connecting u and v without self-intersections. If G can be drawn in the plane so that each edge crosses only at its endpoints, G is said to be planar ,and such a drawing is called a planar drawing or plane graph of G.Given a planar drawing of a planar graph G, a face is a region of a planar drawing. The unbounded region is called the external face while the others are interior faces . A planar graph G is outerplanar if there exists a planar drawing of G such that all vertices of G are placed on the exterior face. Planar graphs are characterized by forbidden structures, notably by the results of Kuratowski [1] and Wagner [3]. 
+
+Theorem 3.1 ([1]) . An undirected graph G is planar if and only if it contains no subgraph that is homeomorphic to K3,3 or K5.Since K3,3 and K5 contain no vertices of degree two or less, Theorem 3.1 can be rephrased as follows: An undirected graph G is planar if and only if it contains no subgraph that is isomorphic to a subdivision of K3,3 or K5.
+
+Theorem 3.2 ([3]) . An undirected graph G is planar if and only if it contains neither K3,3 nor K5 as a minor. Analogous to Kuratowski’s theorem, the forbidden subgraphs of outer-planar graphs are also known well. 
+
+Theorem 3.3 ([2]) . An undirected graph G is outerplanar if and only if it contains no subgraph that is homeomorphic to K2,3 or K4.
+
+3.2 Planarity for Directed Graphs 
+
+A digraph D is said to be planar (resp. outerplanar ) if its underlying graph 
+
+Du is planar (resp. outerplanar). The concept of “upward planarity” has long been studied in graph theory as a notion of planarity specific to digraphs (e.g., [6, 7, 8, 9]). A digraph is upward planar if it admits a planar upward drawing, where an upward drawing of a digraph is such that all the edges are represented by directed curves increasing monotonically in the vertical direction [7]. It is known that a digraph has an upward drawing if and only if it is acyclic [7]. Theorem 3.5 characterizes upward planar digraphs using planar st -digraphs (see Definition 3.4). We will use this result in Section 4. 6Definition 3.4. An st -digraph is any directed graph that has a unique source s, a unique sink t, and a unique arc (s, t ). In particular, an acyclic and planar st -digraph is called an acyclic planar st -digraph. 
+
+Theorem 3.5 ([8, 14]; see also Theorem 1 in [9]) . A directed graph G is upward planar if and only if there exists a planar st -digraph containing G
+
+as a spanning subgraph. 𝐺 
+
+> 𝑠
+> 𝑡
+
+Figure 1: An illustration of Theorem 3.5. Left: an upward planar digraph G.Right: an acyclic planar st -digraph that contains G as a spanning subgraph. 
+
+3.3 Terminal Planar Phylogenetic Networks 
+
+Phylogenetic networks are classes of graphs, directed or undirected, that generalize phylogenetic trees and have been widely used to describe com-plex evolutionary histories and relationships among species. Typically, in a directed phylogenetic network, the leaves represent extant species, and the root represents their common evolutionary ancestor. Planar drawings (or nearly planar drawings) of phylogenetic networks can facilitate the interpretation of evolutionary data. In particular, when there exists a planar drawing in which all terminal vertices, i.e., the root and the leaves, are placed on the external face, even intricate reticulate evolution can be visually represented in a clear manner. Motivated by this, Moulton– Wu [12] introduced the notion of terminal planar networks. The terminal planar property is defined analogously for undirected and directed graphs, but in this subsection, we review the characterization of directed terminal planar networks as given in [12]. 
+
+Definition 3.6. Let S = {t1, . . . , t n} be a nonempty finite set ( n ≥ 1). An undirected phylogenetic network (with terminal set S) is defined to be a connected undirected graph N such that S can be identified with the set 
+
+{v ∈ V (N ) | deg N (v) = 1 }. In this case, each element of S ∩ V (N ) is called a leaf of N . A directed phylogenetic network (with source s and sink set S)is defined to be a connected acyclic digraph N that satisfies the following conditions: 71. N has a unique source s with (indeg N (s), outdeg N (s)) = (0 , 1) .2. S can be identified with the set of sinks of N , and each sink ti of N
+
+satisfies (indeg N (ti), outdeg N (ti)) = (1 , 0) .In a directed phylogenetic network N , the source s and each sink ti are also called the root and the leaf of N , respectively. 
+
+Remark 3.7. Any directed phylogenetic network N with a source s and sinks t1, . . . , t k (k ≥ 1) can be converted into an undirected phylogenetic network Nu with terminal set {s, t 1, . . . , t k} by simply ignoring all edge ori-entations. However, for an undirected phylogenetic network with terminal set S, it may not be possible to assign edge directions so that the resulting directed phylogenetic network has one vertex in S designated as the root and the remaining vertices in S as leaves. This is illustrated by the undirected phylogenetic networks G1 and G2 in Figure 2. While G2 can be oriented to obtain a directed phylogenetic network such that {t1, t 2, t 3, t 4} consists of a unique source and three sinks, G1 cannot be oriented into a directed phylogenetic network with {t1, t 2} being a pair of the source and sink. To see the difference between G1 and G2, consider the block induced by 
+
+{a, b, c } of each graph. In G1, regardless of which of t1 and t2 is the source and the other is the sink, there is no pair {vin , v out } of distinct vertices in 
+
+{a, b, c } such that the flow from the source comes into the block through 
+
+vin and goes out from vout to arrive at the sink in the end. More precisely, the flow from the source inevitably enters and exits a before arriving at the sink, implying that the block must contain a directed cycle on {a, b, c }. By contrast, in G2, when either t1 or t2 is the source and thus t3 is a sink, the flow enters a and leaves through b to arrive at t3. Similarly, when t3 is the source, the flow enters b and leaves through a to arrive at the sinks t1 and 
+
+t2. In either case, one can easily construct a flow on G2 that avoids directed cycles. 𝑡 !
+
+> 𝑡 "
+> 𝑡 #
+> 𝑎
+> 𝐺 !
+> 𝑏
+> 𝑐
+> 𝑡 !
+> 𝑡 "
+> 𝐺 "
+> 𝑎
+> 𝑏
+> 𝑐
+
+Figure 2: The undirected phylogenetic networks G1 and G2 mentioned in Remark 3.7: G2 can be oriented into a directed phylogenetic network while 
+
+G1 cannot. 
+
+Definition 3.8. An undirected phylogenetic network N is terminal planar 
+
+if there exists a planar drawing of N in which all leaves are on the external face. Similarly, a directed phylogenetic network N is terminal planar if there 8is a planar drawing in which both the root and all leaves of N are on the external face. By Definition 3.8, if a directed phylogenetic network N is terminal planar, then its underlying graph Nu is also terminal planar. For an undirected phylogenetic network N with terminal set S, suppose there exists a acyclic digraph ⃗ N with a unique source s ∈ S and a sink set S \ { s}, meaning that ⃗N is a directed phylogenetic network. Then, if N is terminal planar, so is ⃗N .Moulton–Wu [12] obtained Theorem 3.10 that characterizes when a di-rected phylogenetic network N is terminal planar using a supergraph N + of 
+
+N , which is defined in Definition 3.9 (see Figure 3 for an illustration). 
+
+Definition 3.9 ([12]) . Given a directed phylogenetic network N = ( V, A )
+
+with source s and sink set {t1, . . . , t n}, let V (N +) := V ∪ { t} and A(N +) := 
+
+A ∪ { (t1, t ), . . . , (tn, t )}. The digraph N + is called the t-completion of N .Note that N + was called a “completion” in [12], but in this paper, we will use the term “ t-completion” to distinguish it from other completions to be defined later. 
+
+Theorem 3.10 ([12]) . For a directed phylogenetic network N , N is terminal planar if and only if its t-completion N + is upward planar. Moulton–Wu [12, Theorem 3.2] proved the following strict inclusion re-lations among various classes of planar phylogenetic networks: 
+
+Pouter (S) ⊊ Pterminal (S) ⊊ Pupward (S) ⊊ P(S). (1) Here, for any set S with |S| ≥ 2, each of the sets P(S), Pupward (S), Pterminal (S),and Pouter (S) denotes the collection of all planar, upward planar, terminal planar, and outerplanar directed phylogenetic networks with sink set S, re-spectively. See Figure 4 for explicit examples illustrating that each inclusion in (1) is strict. The first inclusion in (1) follows from the fact that if a directed (or undirected) phylogenetic network N is outerplanar, then there exists a planar drawing in which all vertices of N are placed on the external face, namely, 
+
+N is terminal planar. The second inclusion in (1) follows from Theorem 3.10 since N is a subgraph of N +.
+
+# 4 Characterization of Terminal Planar Networks Using Supergraphs 
+
+Theorem 3.10 provides a characterization of terminal planar directed phylo-genetic networks by focusing on the upward planarity of the t-completion. 9𝑠  
+
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑁 𝑁 !
+> 𝑠
+> 𝑡
+
+Figure 3: A directed phylogenetic network N with source s and sink set 
+
+{t1, t 2, t 3, t 4} (left) and the t-completion N + of N (right). 𝑡 ! 𝑡 "
+
+𝑁 !
+
+> 𝑡 !
+> 𝑡 "
+
+𝑁 " 𝑁 #
+
+> 𝑡 !
+> 𝑡 "
+
+𝑁 $
+
+> 𝑡 "𝑡 !
+
+𝑁 %   
+
+> 𝑡 "𝑡 !
+> 𝑠 𝑠 𝑠 𝑠 𝑠
+
+Figure 4: Examples demonstrating the strict inclusions expressed in (1). 
+
+N1 ∈ P outer (S), N2 ∈ P terminal (S) \ P outer (S), N3 ∈ P upward (S) \ P terminal (S),
+
+N4 ∈ P (S) \ P upward (S), N5̸ ∈ P (S) (all examples except N1 are reproduced from Fig. 2 of [12]). 10 However, since the forbidden structures for upward planar networks remain unresolved, Theorem 3.10 does not directly lead to a characterization of the forbidden structures for terminal planar networks. In this section, we introduce new supergraphs different from the t-completion and provide a new characterization of terminal planar directed phylogenetic networks by focusing on the planarity of such supergraphs (Theorem 4.2). 
+
+Definition 4.1. Let N = ( V, A ) be a directed phylogenetic network with source s and sink set {t1, . . . , t n}. Let t be a new vertex not contained in V .Two supergraphs of N , denoted by N ∗ and N x, are defined as follows: 1. N ∗ is the acyclic st -digraph with V (N ∗) := V ∪ { t} and A(N ∗) := 
+
+A ∪ { (t1, t ), . . . , (tn, t )} ∪ { (s, t )}. We call N ∗ the st -completion of N .2. N x is the acyclic digraph (without multiple edges) with V (N x) := 
+
+V ∪{ t} and A(N x) := A∪{ ( ˜ t1, t ), . . . , ( ˜ tn, t )}∪{ (˜ s, t )}, where ˜s denotes the unique child of s in N , and for each i ∈ [1 , n ], ˜ti denotes the unique parent of ti in N . We call N x the terminal cut-completion of N .
+
+Theorem 4.2. For any directed phylogenetic network N , the following state-ments are equivalent. 1. N is terminal planar. 2. The st -completion N ∗ of N is planar. 3. The terminal cut-completion N x of N is planar. 
+
+Proof . First, we prove the equivalence of 1 and 2. Suppose N is terminal planar. By Theorem 3.10, its t-completion N + is upward planar. Theo-rem 3.5 then ensures the existence of an acyclic planar st -digraph D for which N + is a spanning subgraph. To see that N ∗ is a subgraph of D,consider the following. By Definition 4.1, V (N ∗) = V (N +) = V (D) and 
+
+A(N ∗) = A(N +) ∪ { (s, t )} hold. Since (s, t ) ∈ A(D) by Definition 3.4, to-gether with A(N +) ⊆ A(D), it follows that A(N ∗) ⊆ A(D). Therefore, N ∗
+
+is a subgraph of D, and thus N ∗ is planar. Conversely, if N ∗ is planar, it is a spanning subgraph of itself, so by Theorem 3.5, N ∗ is upward planar. Since by definition N + ⊆ N ∗, N + is also upward planar, and by Theorem 3.10, N
+
+is terminal planar. Next, we show the equivalence of 2 and 3. By Theorem 3.1, it suffices to show that the underlying graph N ∗ 
+
+> u
+
+of N ∗ contains a subgraph homeo-morphic to K5 or K3,3 if and only if N xu does as well. Note that in N ∗ 
+
+> u
+
+,the source s and each sink ti have degree-2. Let sm( N ∗ 
+
+> u
+
+) denote the simple graph obtained by smoothing all terminal vertices s, t 1, . . . , t n of N ∗ 
+
+> u
+
+. Then, we can see that N xu − { s, t 1, . . . , t n} is isomorphic to sm( N ∗ 
+
+> u
+
+). Thus, if N ∗
+
+> u
+
+has a subgraph homeomorphic to K5, then N xu also has the same property. Conversely, if N xu contains a subgraph G that is homeomorphic to K5, then 11 G ⊆ N xu −{ s, t 1, . . . , t n} since K5 has no vertex of degree one. Thus, sm( N ∗ 
+
+> u
+
+)
+
+also contains G as a subgraph, which implies that N ∗ 
+
+> u
+
+contains a subgraph homeomorphic to K5. The same argument applies for K3,3. Thus, the equiv-alence of 2 and 3 is established. We note that the notion of terminal planarity is related to bar-visibility graphs and digraphs [15], which is sometimes called ϵ-visibility [16] or left-visibility [17]. It is known that a (possibly multi-source and multi-sink) digraph D is a bar-visibility digraph if and only if D′ is an acyclic planar 
+
+st -digraph [16, 17, 18], where D′ is a supergraph obtained from D by intro-ducing a unique source s, a unique sink t and the arc (s, t ). In our setting, if 
+
+D is a directed phylogenetic network N , then D′ can be seen as essentially the same as the st -completion N ∗, except for the difference that N ∗ has an arc (s, ˜s) while D′ has a directed path of length 2 from s to ˜s. Then, by Theorem 4.2, we can see that a directed phylogenetic network N is terminal planar if and only if N is a bar-visibility digraph. The interested reader is referred to [17]. 
+
+# 5 Characterization of Terminal Planar Networks by Forbidden Subgraphs 
+
+In Sections 3.3 and 4, we discussed the necessary and sufficient conditions for a directed phylogenetic network to be terminal planar, focusing on the upward planarity or planarity of their supergraphs. Hereafter, we will con-sider the forbidden subgraphs that characterize terminal planarity in directed and undirected phylogenetic networks. The main result of this paper, The-orem 5.14 is an analogue of Theorem 3.1. To state Theorem 5.14, we first introduce the concepts of 0/1-labeled graphs and cut-labeled graphs , along with basic graph operations defined on such graphs. 
+
+5.1 0/1-Labeled Graphs 
+
+A 0/1-labeled graph is a pair (G, g ), where G = ( V, E ) is a connected undi-rected graph and g : V ∪ E → { 0, 1} is a function. In this setting, (G, g ) is called a 0/1-labeled graph of G determined by g, and g is referred to as the 
+
+labeling function of G. Each vertex v ∈ V and each edge e ∈ E are called a 
+
+vertex and an edge of (G, g ), respectively. For each element x ∈ V ∪ E, we say x has label 1 if g(x) = 1 , and label 0 otherwise. For two 0/1-labeled graphs (F, f ) and (G, g ), we say that (F, f ) and 
+
+(G, g ) are label-preserving isomorphic if F ≃ G and each vertex (resp. edge) of F has the same label of its corresponding vertex (resp. edge) of G. If 
+
+F ⊆ G and f is the restriction of g to V (F ) ∪ E(F ), then (F, f ) is called a label-preserving subgraph of (G, g ), in which case we write (F, f ) ⫅ (G, g )
+
+and often represent (F, f ) by (F, g |F ). If G ⊆ F and f is an extension of g
+
+12 to V (F ) ∪ E(F ), then (F, f ) is called a label-preserving supergraph of (G, g ),denoted by (G, g ) ⫅ (F, f ).
+
+Definition 5.1. A vertex v of a 0/1-labeled graph (G, g ) is called label-preserving smoothable if deg G(v) = 2 and the two edges incident to v,
+
+e1 = {u1, v } and e2 = {u2, v }, satisfy g(e1) = g(e2). For a label-preserving smoothable vertex v of (G, g ), label-preserving smoothing of vertex v is de-fined as obtaining a 0/1-labeled graph (H, h ) from (G, g ) as follows: 
+
+• V (H) := V (G) \ { v}, E(H) := ( E(G) \ { e1, e 2}) ∪ {{ u1, u 2}} 
+
+• For each x ∈ V (H) ∪ E(H), define h(x) := 
+
+(
+
+g(e1) if x = {u1, u 2},g(x) otherwise .
+
+Moreover, the 0/1-labeled graph obtained by label-preserving smoothing all possible vertices of (G, g ) is called the label-preserving smoothed graph of 
+
+(G, g ).
+
+Definition 5.2. For an edge {u, v } of a 0/1-labeled graph (G, g ), label-preserving subdivision of the edge {u, v } is defined as obtaining a 0/1-labeled graph (H, h ) from (G, g ). The graph H is obtained by replacing the edge 
+
+{u, v } of G with a path [u, v ] of length at least one. The labeling function h
+
+of H is defined as follows: 
+
+• For each edge or internal vertex x (with x̸ = u, v ) on the path [u, v ] in 
+
+H corresponding to the edge {u, v }, set h(x) := g({u, v }).
+
+• For each x ∈ V (G) ∪ E(G), set h(x) := g(x).Given two 0/1-labeled graphs (G, g ) and (H, h ), if (H, h ) can be obtained from (G, g ) by applying a finite sequence of label-preserving edge subdivi-sions, then (H, h ) is called a label-preserving subdivision of (G, g ).
+
+Definition 5.3. Given two 0/1-labeled graphs (G, g ) and (H, h ), let (G′, g ′)
+
+and (H′, h ′) be 0/1-labeled graphs obtained from (G, g ) and (H, h ), respec-tively, by finite sequences of label-preserving edge subdivisions and label-preserving vertex smoothings. If (G′, g ′) ∼= ( H′, h ′), then (G, g ) and (H, h )
+
+are said to be label-preserving homeomorphic . We write (G, g ) ≊ (H, h ).Vertex deletion and edge deletion in 0/1-labeled graphs are defined anal-ogously to those in unlabeled graphs. For an edge {u, v } of a 0/1-labeled graph (G, g ), the label-preserving contraction of the edge {u, v } is defined as obtaining a 0/1-labeled graph (F, f ) from (G, g ) as follows: F is the graph ob-tained by contracting the edge {u, v } in G. The label of the vertex w ∈ V (F ),created by identifying u and v, is given by f (w) := max {g(u), g (v)}, while the labels of all other vertices and edges in F , except for w, are the same as those of their corresponding elements in G.13 5.2 Cut-Labeled Graphs 
+
+For a connected undirected graph G = ( V, E ), the 0/1-labeled graph (G, ℓ )
+
+with the labeling function ℓ : V ∪ E → { 0, 1} defined in equation (2) is called the cut-labeled graph of G and is written as L(G).
+
+ℓ(x) := 
+
+(
+
+1 if x ∈ V ∪ E is a cut vertex or cut edge of G, 
+
+0 otherwise. (2) 
+
+Definition 5.4. Let N = ( V, A ) be a directed phylogenetic network with a source s and a sink set {t1, . . . , t n}. The cut-completion of N , denoted by N c, is the acyclic digraph defined by V (N c) := V ∪ { t}, A(N c) := 
+
+A ∪ { (v1, t ), . . . , (vk, t )}, where {v1, . . . , v k} is the set of all cut vertices of the underlying graph Nu of N . Let L(Nu) denote the cut-labeled graph of the underlying graph Nu = ( V, E ) of N . Let N cu = ( V c, E c) be the underlying graph of the cut-completion N c. The 0/1-labeled graph Lc(Nu) := ( N cu, ℓ c)
+
+is called the label-preserving cut-completion of L(Nu), where ℓc is a function on V c ∪ Ec defined by 
+
+ℓc(x) := 
+
+(
+
+ℓ(x) if x ∈ V ∪ E, 
+
+0 otherwise. (3) In Proposition 5.5, recall that the st -completion N ∗ is defined in Defini-tion 4.1 and the terminal cut-completion N x in Definition 5.4. 
+
+Proposition 5.5. For any directed phylogenetic network N , if the cut-completion N c is planar, then both N x and N ∗ are planar. 
+
+Proof . Since N x ⊆ N c, the planarity of N c immediately implies that of 
+
+N x. Furthermore, if N x is planar, then by Theorem 4.2, the graph N ∗ is also planar. This completes the proof. 
+
+5.3 Hi Structures 
+
+Let K− 
+
+> 3,3
+
+denote the graph obtained by removing an arbitrary edge from K3,3.Let K(−e)3,3 denote the graph obtained by subdividing an arbitrary edge of K3,3
+
+exactly twice and then removing the edge between the two vertices created by this subdivision. Let K(−v)3,3 denote the graph obtained by subdividing each edge of K3,3 at least once, removing an arbitrary vertex of K3,3, and then smoothing all smoothable vertices. The graphs K− 
+
+> 5
+
+, K(−e)5 , and K(−v)5
+
+are defined analogously by replacing K3,3 with K5 in the above definitions. 
+
+Definition 5.6. For each i ∈ [1 , 6] , we define the undirected graph Hi by 
+
+H1 ≃ K3,3, H 2 ≃ K(−v)3,3 , H 3 ≃ K(−e)3,3 , H 4 ≃ K5, H 5 ≃ K(−v)5 , H 6 ≃ K(−e)5 .An Hi graph is any 0/1-labeled graph obtained from a 0/1-labeled graph 14 𝑠    
+
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑠
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑡
+> 𝑠
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑠
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑡
+> i)ii) iii) iv)
+
+Figure 5: Illustration of cut-labeled graphs and Definition 5.4. i) A directed phylogenetic network N with source s and sink set {t1, t 2, t 3, t 4}. ii) The cut-completion N c of N . iii) The cut-labeled graph L(Nu) of N . iv) The label-preserving cut-completion Lc(Nu) of L(Nu).
+
+(Hi, h i) satisfying the following conditions by label-preserving contraction of zero or more pendant edges: 1. ∀v ∈ V (Hi), hi(v) := 
+
+(
+
+1 if deg Hi (v) = 1 0 if ∃x ∈ Adj Hi (v) with deg Hi (x) = 1 
+
+2. ∀e ∈ E(Hi), hi(e) := 0 .The number of Hi graphs in Definition 5.6 is easily determined. For example, the number of H5 graphs equals 5, since by symmetry it equals the number of distinct ways in which pendant edges can be contracted. Similarly, it is easy to verify that there are 12 H2 graphs. We also note that it is possible that a 0/1-labeled graph has an Hi graph and an Hj graph ( i̸ = j) as its label-preserving subgraphs. For example, if a graph contains an H1 graph where all vertices have label 1, then it contains an H2 graph that is obtained by the label-preserving contraction of the three pendant edges of (H2, h 2) in Figure 6. 𝑖 = 1 𝑖 = 2 𝑖 = 3 𝑖 = 4 𝑖 = 5 𝑖 = 6
+
+Figure 6: Illustration of the family of (Hi, h i) satisfying the conditions in Definition 5.6. Vertices labeled 1 are shown in red; vertices with unspecified labels are shown in gray. All edges are labeled 0 and shown in blue. 
+
+Definition 5.7. Let (G, g ) be a 0/1-labeled graph. Suppose there exist 
+
+i ∈ [1 , 6] and a label-preserving subgraph (F, g |F ) of (G, g ) such that (F, g |F )
+
+15 is label-preserving homeomorphic to an Hi graph. Then (G, g ) is said to 
+
+contain an Hi structure, and (F, g |F ) is called an Hi structure of (G, g ). If no such structure exists, (G, g ) is said to not contain an Hi structure. An 
+
+Hi structure (F, g |F ) of (G, g ) is called minimal if there exists no proper label-preserving subgraph (F ′, g |F ′ ) of (G, g ) with F ′ ⊊ F that is also an Hi
+
+structure of (G, g ).
+
+Proposition 5.8. Let (G, g ) be a 0/1-labeled graph, let i ∈ [1 , 6] be ar-bitrary, and let (H, h ) be an Hi graph. Suppose that (G, g ) contains an 
+
+Hi structure (F, g |F ) that is label-preserving homeomorphic to (H, h ). Then there exists an injection ψ : V (H) → V (F ) such that (H, h ) is label-preserving isomorphic to the graph obtained from (F, g |F ) by smoothing all vertices out-side the image {ψ(v) | v ∈ V (H)}.
+
+Proof . The proposition states that (F, g |F ) can be transformed into (H, h )
+
+by label-preserving smoothing of finitely many vertices in (F, g |F ), without subdividing any edges. If (H, h ) contains no vertex v with deg H (v) = 2 , then there is no need to create new degree-2 vertices when transforming (F, g |F )
+
+into (H, h ), so indeed no edge subdivision is required, and (F, g |F ) can be transformed into (H, h ) using only label-preserving smoothings. Let S ⊆
+
+V (F ) denote the set of vertices that are not smoothed in the transformation from (F, g |F ) to (H, h ). Then there exists a bijection τ from S to V (H),and ψ := τ −1 gives the desired injection. Indeed, the image of ψ coincides with S, and all vertices outside S are smoothed, so the conditions of the proposition are satisfied. Next, suppose (H, h ) has a vertex v with deg H (v) = 2 . In this case, 
+
+i ∈ { 2, 3} and (H, h ) is an Hi graph obtained by label-preserving contraction of one or more pendant edges of (Hi, h i) (as in Definition 5.6), where v is the contracted vertex where the ends of a pendant edge have been identified. By Definition 5.6, each edge of (H, h ) has label 0, and by assumption, (F, g |F ) ≊
+
+(H, h ). Note that by Definitions 5.1 and 5.2, if a 0/1-labeled graph has an edge labeled 1, then any graph label-preserving homeomorphic to it also has an edge labeled 1. Thus, every edge of (F, g |F ) has label 0, and applying any sequence of label-preserving subdivisions or smoothings to (F, g |F ) yields graphs in which every edge also has label 0. Moreover, by Definition 5.2, every degree-2 vertex obtained by label-preserving subdivision of an edge labeled 0 also has label 0. Suppose for contradiction that for some v with 
+
+deg H (v) = 2 , there is no corresponding vertex in (F, g |F ). This means that 
+
+v arises as a result of a label-preserving subdivision of (F, g |F ) during the process of transforming from (F, g |F ) to (H, h ). Then h(v) = 0 must hold. However, by the construction in Definition 5.6, such a vertex v is obtained by label-preserving contraction of a pendant edge in (Hi, h i), which implies 
+
+h(v) = 1 . This is a contradiction. Therefore, for every vertex v of (H, h )
+
+with deg H (v) = 2 , there exists a vertex of (F, g |F ) that corresponds to v.Consequently, as in the previous case, if S ⊆ V (F ) is the set of vertices 16 not smoothed in the transformation from (F, g |F ) to (H, h ), then the inverse 
+
+ψ := τ −1 of the bijection τ : S → V (H) provides the desired injection. The injection ψ constructed in Proposition 5.8 is called an Hi structure mapping . In general, ψ is not unique. For example, since an H1 graph has no vertices with specified 0/1 labels and all edges are labeled 0, the mapping from vertices of the H1 graph to vertices of the Hi structure is not uniquely determined. 
+
+5.4 Forbidden Structures for Terminal Planar Networks: Proof of Necessity 
+
+Proposition 5.9. Let G be an undirected graph containing a path P =
+
+u, {u, v }, v, {v, w }, w of length 2. If v is not a cut vertex of G and neither 
+
+{u, v } nor {v, w } is a cut edge of G, then G contains a cycle that includes 
+
+P .
+
+Proof . Since v is not a cut vertex of G, G − v is connected. Therefore, in 
+
+G, there exists a u-w path P ′ that does not contain v nor the edges {u, v }
+
+and {v, w }. Thus, G contains the cycle formed by P ∪ P ′.
+
+Proposition 5.10. Let i ∈ [1 , 6] , (H, h ) be any Hi graph, and suppose that the cut-labeled graph (Nu, ℓ ) of a directed phylogenetic network N contains a minimal Hi structure (F, ℓ |F ) ≊ (H, h ). Let ψ : V (H) → V (F ) be the Hi
+
+structure mapping as defined in Proposition 5.8. Then the following hold: 1. For any vertex v of (H, h ), h(v) = 1 if and only if ψ(v) is a cut vertex of Nu.2. F is contained in a single block of Nu.
+
+Proof . By Proposition 5.8, the corresponding vertex ψ(v) of (F, ℓ |F ) for each v in (H, h ) satisfies ℓ|F (ψ(v)) = h(v). Since ℓ|F is the restriction of ℓ to 
+
+V (F ) ∪ E(F ), we have ℓ|F (ψ(v)) = ℓ(ψ(v)) . Thus, ℓ(ψ(v)) = 1 if and only if 
+
+h(v) = 1 . Noting that ℓ(ψ(v)) = 1 exactly when ψ(v) is a cut vertex of Nu.Recall that (H, h ) is obtained by label-preserving contraction of at least zero pendant edges of (Hi, h i) in Definition 5.6, so it may not contain any vertex v with deg H (v) = 1 . In this case, for any v ∈ V (H), H − v is connected, i.e., H is 2-connected by Definition 5.6. Since F ≈ H, F is also 2-connected. Next, suppose (H, h ) has exactly one vertex v with deg H (v) = 1 . Let u
+
+denote the neighbor of v in (H, h ). Then H is the union of the 2-connected graph H − v and the pendant edge {u, v }. Thus, F consists of a 2-connected graph F0 homeomorphic to H − v, and a path [ψ(u), ψ (v)] F homeomorphic to {u, v }. Since any 2-connected subgraph of an undirected graph G is contained in a single block of G, it suffices to show that F is contained 17 in some 2-connected subgraph of Nu. For the path [ψ(u), ψ (v)] F of length 
+
+k ≥ 1, set w1 := ψ(u), wk+1 := ψ(v), so [ψ(u), ψ (v)] F can be written as 
+
+w1 − w2 − · · · − wk − wk+1 . Adding the edge {w0, w 1} ∈ E(F0), the path 
+
+w0 − w1 − w2 − · · · − wk − wk+1 is denoted Pk. As discussed in the proof of Proposition 5.8, since every edge of a Hi graph is labeled 0, every edge of a Hi structure is also labeled 0. Thus, no edge of Pk is a cut edge of 
+
+Nu. Similarly, no internal vertex of Pk is a cut vertex of Nu. This follows because, by Definition 5.6, h(u) = 0 , so by the claim proved above, the corresponding vertex ψ(u) = w1 in (F, ℓ |F ) is not a cut vertex of Nu, and by minimality of (F, ℓ |F ), each wj for j ∈ [2 , k ] is not a cut vertex of Nu. By Proposition 5.9, for each j ∈ [1 , k ], there exists a cycle Cj ⊆ Nu containing 
+
+wj−1 − wj − wj+1 . Since F0 is 2-connected and C1 shares the edge {w0, w 1}
+
+with F0, it is clear that, for any two vertices x, y in F0 ∪ C1, there exist two 
+
+x-y paths with no common internal vertices. Hence, F0 ∪ C1 is 2-connected. By induction, F0 ∪ C1 ∪ · · · ∪ Ck is also 2-connected. Since Pk ⊆ C1 ∪ · · · ∪ Ck,
+
+F ⊆ F0 ∪ C1 ∪ · · · ∪ Ck ⊆ Nu, so there exists a block of Nu containing F .The same conclusion holds when (H, h ) has more than one vertex v with 
+
+deg H (v) = 1 by a similar argument. 
+
+Lemma 5.11. Let Nu be the underlying graph of a directed phylogenetic network N with source s and sink set {t1, . . . , t n} and assume that N has at least two edges. Let G be a subgraph of Nu that contains a cut ver-tex of Nu and is contained within a block B of Nu. For any subset V1 =
+
+{v1, . . . , v k} (k ≥ 1) of the set of cut vertices of Nu contained in V (G), let 
+
+N x and its sink t be defined as in Definition 4.1. Then, the underlying graph 
+
+N xu of N x contains a collection {P1, . . . , P k} of undirected paths satisfying the following conditions: 1. For every i ∈ [1 , k ], Pi is a path in N xu connecting vi ∈ V1 to the sink 
+
+t.2. For any distinct i, j ∈ [1 , k ], V (Pi) ∩ V (Pj ) = {t}.3. For every i ∈ [1 , k ], V (Pi) ∩ V (B) = {vi}.
+
+Proof . For any connected graph H, the graph TH defined as follows is a tree [19, Theorem 1]: V (TH ) is the union of the set A of cut vertices of H
+
+and the set B of blocks of H, and {a, b } ∈ E(TH ) if and only if a ∈ V (b)
+
+for a ∈ A and b ∈ B . Then, by the assumption that Nu can be oriented into N , there is a one-to-one correspondence between the set of leaves of the tree TNu and the set of pendant edges {{ t1, ˜t1}, . . . , {tn, ˜tn}, {s, ˜s}} of Nu,where we used the argument in Remark 3.7. For each cut vertex vi of Nu in 
+
+V (G), let ai denote the corresponding vertex of TNu , let b denote the vertex of TNu corresponding to the block of Nu containing G, and let Z be the set of vertices of TNu corresponding to the set { ˜t1, . . . , ˜tn, ˜s}, that is cut vertices of Nu incident to pendant edges. Then, for any i ∈ [1 , k ], in the component 18 C(ai) of TNu − { ai, b } containing ai, there exists a path πi from ai to some 
+
+zi ∈ Z. Let Pi be the path in N xu from vi to zi corresponding to each πi,with the edge {zi, t } appended. It follows that each Pi is a path in N xu from 
+
+vi to t, and the fact that each πi does not include b ensures that each Pi does not include any edge of B, so V (Pi) ∩ V (B) = {vi}. Moreover, since C(ai)
+
+and C(aj ) are disjoint for i̸ = j, V (Pi) ∩ V (Pj ) = {t}. Hence, {P1, . . . , P k}
+
+satisfies conditions 1–3. 𝑠    
+
+> 𝑡
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑡 %
+> 𝑡 &
+> 𝑡 ̃!
+> 𝑡 ̃"
+> 𝑡 ̃#
+> 𝑡 ̃$
+> 𝑡 ̃%
+> 𝑡 ̃&
+> 𝒗 𝟏
+> 𝑠 ̃
+> 𝒗 𝟐 𝒗 𝟑
+> 𝑡 '
+> 𝑡 ̃(=𝑡 ̃'
+> 𝑡 (
+
+Figure 7: The line segments represent E(Nu), the curves represent E(N xu ) \
+
+E(Nu). The filled vertices denote V (G), in particular, V1 = {v1, v 2, v 3} is shown in red. The thick black segments represent E(G). In this situation, the collection of three green paths [v1, t ], [v2, t ], [v3, t ] is one example that satisfies the conditions of Lemma 5.11. 
+
+Proposition 5.12. Let N be a directed phylogenetic network. If N is terminal planar, then for any i ∈ [1 , 6] , the cut-labeled graph L(Nu) of N
+
+does not contain an Hi structure. 
+
+Proof . Let N be a terminal planar directed phylogenetic network with source s and sink set {t1, . . . , t n}. Suppose for contradiction, that L(Nu) = (Nu, ℓ ) contains some minimal Hi structure (F, ℓ |F ) for some i ∈ [1 , 6] . It suffices to only consider i ∈ { 2, 3, 5, 6}. This is because Nu is planar, by Theorem 3.1, Nu does not contain any subgraph that is a subdivision of K5
+
+or K3,3. However, if i = 1 , then F ⊆ Nu is a subdivision of K3,3, and if i = 4 ,then F ⊆ Nu is a subdivision of K5. Therefore, it is sufficient to derive a contradiction for each of the following four cases: i) i = 2 , ii) i = 3 , iii) i = 5 ,and iv) i = 6 . Recall from Theorem 4.2 that N is terminal planar if and only if the underlying graph N xu of the terminal cut-completion N x of N is planar. We shall show that, in each case i)–iv), N xu contains a subdivision of K5 or K3,3.19 i) In the case i = 2 , (F, ℓ |F ) is label-preserving homeomorphic to some 
+
+H2 graph (H, h ), and by Proposition 5.8, F is isomorphic to a subdi-vision of H. Since F ⊆ Nu ⊆ N xu , N xu also contains F . H has three vertices v1, v 2, v 3 with deg H (vj ) ∈ { 1, 2}. Recall that H is obtained by label-preserving contraction of zero or more pendant edges of (H2, h 2)
+
+in Figure 6, and thus h(vj ) = 1 for j ∈ [1 , 3] . By Proposition 5.10, each 
+
+ψ(vj ) ∈ V (F ) is a cut vertex of Nu. Also by Proposition 5.10, F is con-tained in a block of Nu. Therefore, regarding {ψ(v1), ψ (v2), ψ (v3)} as V1
+
+in Lemma 5.11, N xu contains a set {P1, P 2, P 3} of undirected paths sat-isfying the conditions 1–3 of Lemma 5.11. Since F, P 1, P 2, P 3 ⊆ N xu ,
+
+F ∪ P1 ∪ P2 ∪ P3 is a subgraph of N xu . By conditions 1 and 3 of Lemma 5.11, each Pj is a path connecting ψ(vj ) ∈ V1 to the sink 
+
+t ∈ V (N xu ) of N x, with V (Pj ) ∩ V (F ) = {ψ(vj )}. By condition 2, 
+
+V (Pj ) ∩ V (Pk) = {t} for j̸ = k. Therefore, as shown in Figure 8(i), 
+
+F ∪ P1 ∪ P2 ∪ P3 is a subdivision of K3,3.ii) In the case i = 3 , (F, ℓ |F ) is label-preserving homeomorphic to some H3
+
+graph (H, h ), and by Proposition 5.8, F is isomorphic to a subdivision of H. By the same reasoning as in case i), N xu also contains F . H has two vertices v1, v 2 with deg H (vj ) ∈ { 1, 2}. Recall that H is obtained by label-preserving contraction of zero or more pendant edges of (H3, h 3)
+
+in Figure 6, and thus h(vj ) = 1 for j ∈ [1 , 2] . By Proposition 5.10, each 
+
+ψ(vj ) ∈ V (F ) is a cut vertex of Nu. Also by Proposition 5.10, F is contained in a block of Nu. Therefore, regarding {ψ(v1), ψ (v2)} as V1 in Lemma 5.11, N xu contains a set {P1, P 2} of undirected paths satisfying the conditions 1–3 of Lemma 5.11. Since F, P 1, P 2 ⊆ N xu , F ∪ P1 ∪ P2
+
+is a subgraph of N xu . By the same reasoning as in case i), as shown in Figure 8(ii), F ∪ P1 ∪ P2 is a subdivision of K3,3.iii) In the case i = 5 , (F, ℓ |F ) is label-preserving homeomorphic to some 
+
+H5 graph (H, h ), and by Proposition 5.8, F is isomorphic to a subdi-vision of H. By the same reasoning as in case i), N xu also contains F .
+
+H has four vertices v1, v 2, v 3, v 4 with deg H (vj ) ∈ { 1, 3}. Recall that 
+
+H is obtained by label-preserving contraction of zero or more pendant edges of (H5, h 5) in Figure 6, and thus h(vj ) = 1 for j ∈ [1 , 4] . By Proposition 5.10, each ψ(vj ) ∈ V (F ) is a cut vertex of Nu. Also by Proposition 5.10, F is contained in a block of Nu. Therefore, regard-ing {ψ(v1), ψ (v2), ψ (v3), ψ (v4)} as V1 in Lemma 5.11, N xu contains a set {P1, P 2, P 3, P 4} of undirected paths satisfying the conditions 1–3 of Lemma 5.11. Since F, P 1, P 2, P 3, P 4 ⊆ N xu , F ∪ P1 ∪ P2 ∪ P3 ∪ P4 is a subgraph of N xu . By the same reasoning as in case i), as shown in Figure 8(iii), F ∪ P1 ∪ P2 ∪ P3 ∪ P4 is a subdivision of K5.iv) In the case i = 6 , (F, ℓ |F ) is label-preserving homeomorphic to some H6
+
+graph (H, h ), and by Proposition 5.8, F is isomorrphic to a subdivision 20 of H. By the same reasoning as in case i), N xu also contains F . H has two vertices v1, v 2 with deg H (vj ) ∈ { 1, 3}. Recall that H is obtained by label-preserving contraction of zero or more pendant edges of (H6, h 6)
+
+in Figure 6, and thus h(vj ) = 1 for j ∈ [1 , 2] . By Proposition 5.10, each 
+
+ψ(vj ) ∈ V (F ) is a cut vertex of Nu. Also by Proposition 5.10, F is contained in a block of Nu. Therefore, regarding {ψ(v1), ψ (v2)} as V1 in Lemma 5.11, N xu contains a set {P1, P 2} of undirected paths satisfying the conditions 1–3 of Lemma 5.11. Since F, P 1, P 2 ⊆ N xu , F ∪ P1 ∪ P2
+
+is a subgraph of N xu . By the same reasoning as in case i), as shown in Figure 8(iv), F ∪ P1 ∪ P2 is a subdivision of K5.Therefore, in each of the cases i)–iv), by Theorem 3.1, N xu is not planar. However, by Theorem 4.2, if N is terminal planar, then N x is planar, and hence N xu is also planar. This is a contradiction. Thus, if N is terminal planar, then L(Nu) does not contain any of the structures H1, . . . , H6.i)  
+
+> 𝑡
+> ii)
+> 𝑡
+> iii) 𝑡 iv)
+> 𝑡
+
+Figure 8: An example of a subgraph (F, ℓ |F ) of N xu discussed in the proof of Propositionon 5.12 in Cases i)–iv) (note that only the cases where each 
+
+vj satisfies deg H (vj ) = 1 are illustrated here). In this figure, every line connecting two vertices represents a path in N xu , and E(F ) denotes the union of all edges contained in the black paths. The cut vertices ψ(vj ) of Nu
+
+contained in V (F ) are shown in red, and for each ψ(vj ), a path Pj satisfying Conditions 1–3 of Lemma 5.11 is depicted as a green line. 
+
+5.5 Forbidden Structures for Terminal Planar Networks: Proof of Sufficiency 
+
+Proposition 5.13. Let N be a directed phylogenetic network. If N is not terminal planar, then there exists i ∈ [1 , 6] such that the cut-labeled graph 
+
+L(Nu) of N contains an Hi structure. 
+
+Proof . If N is not planar, then by Theorem 3.1, Nu ≈ K3,3 or Nu ≈ K5,so L(Nu) contains either an H1 or H4 structure. Assume N is planar but not terminal planar. We show that L(Nu) contains an Hi structure for some 
+
+i ∈ { 2, 3, 5, 6}. By Theorem 4.2, the above assumption is equivalent to 
+
+N being planar while N x is not planar. By Proposition 5.5, if N x is not planar, then N c is also not planar. Thus, Nu is planar, but the supergraph 21 N cu is not. Therefore, by Theorem 3.1, there exists a subgraph G of N cu
+
+that is homeomorphic to K5 or K3,3, with G̸ ⊆ Nu. Let t denote the sink of N c. By Definition 5.4, V (N cu) = V (Nu) ∪ { t} and E(N cu) = E(Nu) ∪{{ v1, t }, . . . , {vk, t }} , so G̸ ⊆ Nu and G ⊆ N cu implies t ∈ V (G). Since 
+
+G ≈ K3,3 or G ≈ K5, and deg G(t) = 2 or deg G(t)̸ = 2 , we consider the following four cases. Let L(Nu) = ( Nu, ℓ ).
+
+• Case 1: G ≈ K3,3 and deg G(t)̸ = 2 . Since G ≈ K3,3 and deg G(t) = 3 ,
+
+G − t is homeomorphic to a graph obtained from K(−v)3,3 (≃ H2) by con-tracting zero or more pendant edges. By Definition 5.4, any subgraph of N cu that excludes t and its incident edges is a subgraph of Nu, so 
+
+G − t ⊆ Nu. Furthermore, G − t contains three distinct cut vertices 
+
+v1, v 2, v 3 of Nu, and by the definition of L(Nu), we have ℓ(vi) = 1 for all i ∈ [1 , 3] . Let {t, w 1, w 2}⊔{ u1, u 2, u 3} = {v ∈ V (G) | deg G(v) = 3 }.Then G is the union of a graph G′ homeomorphic to K2,3 and three in-ternally vertex-disjoint ui-t paths [u1, t ]G, [u2, t ]G, [u3, t ]G, where each 
+
+vi satisfies [vi, t ]G ⊆ [ui, t ]G. Since K2,3 is 2-connected, G′ contains no cut edge of Nu, thus ℓ(e) = 0 for every edge e of G′. If ui = vi for all 
+
+i, then (G′, ℓ |G′ ) is an H2 structure in (Nu, ℓ ). Next, if u1̸ = v1, since 
+
+G contains no degree-1 vertex, [u1, v 1]G contains no pendant edge of 
+
+Nu. Without loss of generality, we may assume that [u1, v 1]G contains no cut edge of Nu, by choosing v1 to be the cut vertex of Nu closest to 
+
+u1 along the path [u1, t ]G. By redefining G′ ∪ [u1, v 1]G as G′, (G′, ℓ |G′ )
+
+is an H2 structure.This reasoning applies for any number of indices i
+
+such that ui̸ = vi. Therefore, (Nu, ℓ ) contains an H2 structure. 
+
+• Case 2: G ≈ K3,3 and deg G(t) = 2 . Since G ≈ K3,3 and deg G(t) = 2 ,
+
+G − t is homeomorphic to a graph obtained from K(−e)3,3 (≃ H3) by contracting zero or more pendant edges. As in Case 1, G − t ⊆ Nu,and G − t contains two distinct cut vertices v1, v 2 of Nu, with ℓ(vi) = 1 
+
+for i ∈ [1 , 2] . Let {u1, w 1, w 2} ⊔ { u2, w 3, w 4} = {v ∈ V (G) | deg G(v) = 3}. Then G is the union of a graph G′ homeomorphic to K− 
+
+> 3,3
+
+and two internally vertex-disjoint ui-t paths [u1, t ]G, [u2, t ]G, with each vi
+
+satisfying [vi, t ]G ⊆ [ui, t ]G. Since K− 
+
+> 3,3
+
+is 2-connected, G′ contains no cut edge of Nu, thus ℓ(e) = 0 for any edge e of G′. If ui = vi for both i, then (G′, ℓ |G′ ) is an H3 structure. If u1̸ = v1, using the same reasoning as in Case 1, [u1, v 1]G can be assumed to contain no cut edge. By redefining G′ ∪ [u1, v 1]G as G′, (G′, ℓ |G′ ) is an H3 structure. This applies for any number of ui̸ = vi. Therefore, (Nu, ℓ ) contains an H3
+
+structure. 
+
+• Case 3: G ≈ K5 and deg G(t)̸ = 2 . For G ≈ K5 and deg G(t) = 4 , G−t
+
+is homeomorphic to a graph obtained from K(−v)5 (≃ H5) by contracting zero or more pendant edges. By similar logic, G − t ⊆ Nu and G − t
+
+22 contains four distinct cut vertices v1, v 2, v 3, v 4 of Nu with ℓ(vi) = 1 for all i ∈ [1 , 4] . Let {t, u 1, u 2, u 3, u 4} = {v ∈ V (G) | deg G(v) = 4 }. Then 
+
+G is the union of a graph G′ homeomorphic to K4 and four internally vertex-disjoint ui-t paths [u1, t ]G, [u2, t ]G, [u3, t ]G, [u4, t ]G with each vi
+
+satisfying [vi, t ]G ⊆ [ui, t ]G. Since K4 is 2-connected, G′ contains no cut edge of Nu, thus ℓ(e) = 0 for every edge e of G′. If ui = vi for all 
+
+i, (G′, ℓ |G′ ) is an H5 structure. If u1̸ = v1, by the same reasoning as in Case 1, [u1, v 1]G can be chosen to contain no cut edge. By redefining 
+
+G′ ∪ [u1, v 1]G as G′, (G′, ℓ |G′ ) is an H5 structure. This applies for any number of ui̸ = vi. Therefore, (Nu, ℓ ) contains an H5 structure. 
+
+• Case 4: G ≈ K5 and deg G(t) = 2 . For G ≈ K5 and deg G(t) = 2 , G−t
+
+is homeomorphic to a graph obtained from K(−e)5 (≃ H6) by contracting zero or more pendant edges. Similarly, G − t ⊆ Nu, and G − t contains two distinct cut vertices v1, v 2 of Nu with ℓ(vi) = 1 for i ∈ [1 , 2] . Let 
+
+{u1, u 2, w 1, w 2, w 3} = {v ∈ V (G) | deg G(v) = 4 }. Then G is the union of a graph G′ homeomorphic to K− 
+
+> 4
+
+and two internally vertex-disjoint 
+
+ui-t paths [u1, t ]G, [u2, t ]G, with each vi satisfying [vi, t ]G ⊆ [ui, t ]G.Since K− 
+
+> 4
+
+is 2-connected, G′ contains no cut edge of Nu, thus ℓ(e) = 0 
+
+for any edge e of G′. If ui = vi, (G′, ℓ |G′ ) is an H6 structure. If 
+
+u1̸ = v1,by the same reasoning as in Case 1, [u1, v 1]G can be assumed to contain no cut edge. By redefining G′ ∪ [u1, v 1]G as G′, (G′, ℓ |G′ ) is an H6 structure. This applies for any number of ui̸ = vi. Therefore, 
+
+(Nu, ℓ ) contains an H6 structure. Therefore, if N is not terminal planar, then in any of Cases 1–4, L(Nu)
+
+contains some Hi structure ( i ∈ [1 , 6] ). 
+
+5.6 Main Results 
+
+Combining Propositions 5.12 and 5.13, we obtain the following result, which is illustrated in Figure 9. 
+
+Theorem 5.14. Let N be a directed phylogenetic network. Then, N is terminal planar if and only if, for any i ∈ [1 , 6] , the cut-labeled graph L(Nu)
+
+of N contains no Hi structure. Note that although Theorem 5.14 concerns a directed phylogenetic net-work N , both Proposition 5.12 and Proposition 5.13 focus only on the cut-labeled graph of the underlying graph Nu of N . Therefore, if an undirected phylogenetic network G is isomorphic to the underlying graph Nu of a di-rected phylogenetic network N , then Theorem 5.14 applies equally to the cut-labeled graph of G as well. This yields Corollary 5.15. 
+
+Corollary 5.15. Let G be an undirected graph that is isomorphic to the underlying graph of a directed phylogenetic network. Then, G is terminal 23 𝑠 
+
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $
+> 𝑡 %
+
+Figure 9: An example of non-terminal planar networks. In this case, the network contains an H2 structure. planar if and only if, for any i ∈ [1 , 6] , the cut-labeled graph L(G) contains no Hi structure. An undirected phylogenetic network G is called binary if every non-leaf vertex v of G satisfies deg G(v) ∈ { 2, 3}. Similarly, a directed phylogenetic network N is called binary if every vertex v of N that is neither a root nor a leaf satisfies (indeg N (v), outdeg N (v)) ∈ { (1 , 1) , (2 , 1) , (1 , 2) }.By definition, the degree of each vertex in a binary phylogenetic network is at most 3. On the other hand, for any i ∈ [4 , 6] , any graph that contains an Hi structure must have a vertex of degree at least 4, so a cut-labeled graph of a binary phylogenetic network cannot contain an H4, H5, or H6
+
+structure. It then follows from Theorem 5.14 that we obtain Corollary 5.16 and Corollary 5.17. 
+
+Corollary 5.16. Let N be a binary directed phylogenetic network. Then, 
+
+N is terminal planar if and only if the cut-labeled graph L(Nu) of N contains no H1, H2, or H3 structure. 
+
+Corollary 5.17. Let G be an undirected graph that is isomorphic to the underlying graph of a binary directed phylogenetic network. Then, G is terminal planar if and only if the cut-labeled graph L(G) contains no H1,
+
+H2, or H3 structure. Although we have obtained the forbidden subgraphs for terminal planar networks, we can describe more efficient, linear-time algorithms for termi-nal planarity testing and drawing without checking the existence of these obstructions. Given a directed phylogenetic network N —or its underlying undirected graph Nu—one can test its terminal planarity in linear time sim-ply by checking the planarity of its st -completion N ∗ by Theorem 4.2 (for linear-time planarity testing, see [20, 21, 22]). Moreover, a terminal planar drawing of N can be obtained in linear time by computing a planar embed-ding of this st -digraph N ∗ (using e.g. [8, 23]) and then removing the unique sink t and its incident edges from the embedding. Our algorithms provide a distinct approach from the linear-time algorithms in [12] that rely on testing 24 the upward planarity after t-completion N +. Upward planarity can be de-termined in linear time for single-source digraphs ([7] and [9, Theorem 15]) while being NP-complete for multi-source digraphs [24]. 
+
+# 6 Application 
+
+So far, we have obtained the forbidden subgraphs of terminal planar phy-logenetic networks in both directed and undirected settings (Theorem 5.14 and Corollary 5.15). In this section, we will show a quick application of Corollary 5.15. To be more specific, we will present Theorem 6.2 which gives a characterization of undirected graphs admitting a planar drawing in which all specified vertices lie on the outer face (e.g. Figure 10). The key idea behind this result is the operation of transforming undirected planar graphs into undirected planar phylogenetic networks, as is illustrated in Figure 10. ii) i)   
+
+> 𝑥 !
+> 𝑥 "
+> 𝑥 #
+> 𝑥 $
+> 𝑥 %
+> 𝑡 !
+> 𝑡 "𝑡 #
+> 𝑡 $𝑡 %
+> 𝑥 !
+> 𝑥 "
+> 𝑥 #
+> 𝑥 $
+> 𝑥 %
+> 𝑡 !
+> 𝑡 "
+> 𝑡 #
+> 𝑡 $𝑡 %
+
+Figure 10: i) An undirected graph G with Vo ⊆ V (G) such that there ex-ists a planar drawing of G where all vertices in the prescribed subset Vo
+
+(highlighted in yellow) lie on the outer face. ii) An undirected phylogenetic network ˜G constructed from G by adding a pendant edge (x, t ) for each 
+
+x ∈ Vo, and a terminal planar drawing of ˜G.From now on, let G be a planar connected undirected graph, and let 
+
+Vo ⊆ V (G) be the set of vertices that we wish to place on the outer face in a planar drawing of G. Without loss of generality, we may assume that for every cut vertex v of G, each connected component of G − v contains at least one element of Vo. Indeed, when a connected component C of G − v has no element of Vo, we may choose any planar drawing of C in finding a desirable planar drawing of G.In the proof of Theorem 6.2, we will use Theorem 6.1, which is a restate-ment of classic results in [25] (Theorem a.1 and Lemma a.1 in [25]; see also Theorem 4.1 in [26]). Briefly, Lempel et al. [25] showed that there exists such an acyclic orientation of G that is described in Theorem 6.1 if and only if there exists a function called an st -numbering of G. For details, see [25, 26]. 
+
+Theorem 6.1. Let G be a connected undirected graph, and let {s, t } be an edge of G. Then G can be oriented to an acyclic digraph with a unique 25 source s and a unique sink t if and only if G is biconnected. 
+
+Theorem 6.2. Let G be a planar connected undirected graph and let Vo ⊆
+
+V (G) such that for every cut vertex v of G, each connected component of 
+
+G − v contains at least one vertex in Vo. Let ω : V (G) ∪ E(G) → { 0, 1} be the labeling function defined by equation (4): 
+
+ω(x) := 
+
+(
+
+1 if x is a cut vertex or cut edge of G, or x ∈ Vo,
+
+0 otherwise. (4) Then, G admits a planar drawing in which all vertices in Vo lie on the outer face if and only if the 0/1-labeled graph (G, ω ) contains no Hi structure for any i ∈ [1 , 6] .
+
+Proof . For each vertex xi ∈ Vo of G, let ˜G be the graph obtained by adding a new vertex ti with deg ˜G(ti) = 1 and an edge {xi, t i}. Let T denote the set of added vertices {ti}. By construction, ˜G is an undirected phylogenetic network with terminal set T . Moreover, G admits a planar drawing in which all elements of Vo lie on the outer face if and only if ˜G is terminal planar. To apply Corollary 5.15 to ˜G, we show that ˜G is isomorphic to the un-derlying graph of some directed phylogenetic network. Let s be an arbitrary vertex in T . Let ˆG be the graph obtained from ˜G by adding a new vertex t
+
+and edges {si, t } for each si ∈ T \ { s}. Although ˆG need not be biconnected, the graph G⋆ obtained by adding the edge {s, t } to ˆG is biconnected. By Theorem 6.1, there exists an acyclic orientation of G⋆ with s as the unique source and t as the unique sink. Under such an orientation, the subgraph ˜G
+
+of G⋆ is also acyclic. Clearly, ˜G has a unique root s and leaves connected to t. Therefore, ˜G is the underlying graph of some directed phylogenetic network. Hence, by Corollary 5.15, ˜G is terminal planar if and only if L( ˜G)
+
+contains no Hi structure for any i ∈ [1 , 6] .It remains to show that the cut-labeled graph L( ˜G) contains no Hi
+
+structure if and only if (G, ω ) contains no Hi structure. We claim that 
+
+(G, ω ) ⊆ L( ˜G). Indeed, by construction of ˜G, each x ∈ Vo is a cut vertex of ˜G, so the label ω(x) of each element x ∈ V (G) ∪ E(G) is unchanged in 
+
+L( ˜G). In addition, each pendant edge {xi, t i} in L( ˜G) has label 1 since it is a cut edge of ˜G; however, for any i ∈ [1 , 6] , no Hi structure contains an edge with label 1, so L( ˜G) contains an Hi structure if and only if (G, ω ) contains an Hi structure. 
+
+# 7 Conclusion and Open Problem 
+
+We obtained two characterizations of terminal planar networks. The first one, which concerns directed networks, is based on the planarity of cer-tain supergraphs (Theorem 4.2). This characterization furnishes new linear-time algorithms for terminal planarity testing and drawing as described in 26 Section 5.6. It also plays an important role in proving our main result, a Kuratowski-type characterization that is valid for both directed and undi-rected networks (Theorem 5.14 and Corollary 5.15). Building on the concept of cut-labeled graphs, we identified a finite family of forbidden subgraphs, denoted by the Hi structures, which are defined using the six graphs shown in Figure 6. As discussed in Section 6, our main result readily applies to the more general problem of determining whether an undirected graph G admits a planar drawing in which a specified set of vertices Vo ⊆ V (G) all lie on the outer face. It remains open whether one can obtain a Kuratowski-type theorem for upward planar networks, even in the single-source case. It would be there-fore interesting to try to reveal their forbidden subgraphs by weakening some of the Hi structures ( i ∈ [1 , 6] ) discussed in this paper. Since H1 and H4
+
+(K3,3 and K5, respectively) are the forbidden structures of planar graphs, they are clearly forbidden subgraphs of upward planar networks. In con-trast, it appears that H2 and H5 are not forbidden subgraphs of upward planar networks, as shown by the examples in Figure 11. We note that H3
+
+and H6 may require more careful treatment; among single-source acyclic di-graphs containing H3 or H6, some are upward planar while others are not, as illustrated in Figure 12. ii) i)
+
+Figure 11: Single-source upward planar networks that contain i) an H2 struc-ture and ii) an H5 structure. i) ii) iii) iv) 
+
+Figure 12: i) A non-upward planar network containing an H3 structure, ii) an upward planar network containing an H3 structure, iii) a non-upward planar network containing an H6 structure, iv) an upward planar network containing an H6 structure. 27 References 
+
+[1] Casimir Kuratowski. Sur le problème des courbes gauches en topologie. 
+
+Fundamenta Mathematicae , 15(1):271–283, 1930. [2] Gary Chartrand and Frank Harary. Planar permutation graphs. An-nales de l’institut Henri Poincaré. Section B. Calcul des probabilités et statistiques , 3(4):433–438, 1967. [3] Klaus Wagner. Über eine eigenschaft der ebenen komplexe. Mathema-tische Annalen , 114(1):570–590, 1937. [4] Maria Chudnovsky, Neil Robertson, Paul Seymour, and Robin Thomas. The strong perfect graph theorem. Annals of Mathematics , 164(1):51– 229, 2006. [5] Andreas Brandstädt, Van Bang Le, and Jeremy P. Spinrad. Graph Classes: A Survey . Society for Industrial and Applied Mathematics, 1999. [6] Michael D. Hutton and Anna Lubiw. Upward planar drawing of single-source acyclic digraphs. SIAM Journal on Computing , 25(2):291–311, 1996. [7] Paola Bertolazzi, Giuseppe Di Battista, Carlo Mannino, and Roberto Tamassia. Optimal upward planarity testing of single-source digraphs. 
+
+SIAM Journal on Computing , 27(1):132–169, 1998. [8] Giuseppe Di Battista and Roberto Tamassia. Algorithms for plane representations of acyclic digraphs. Theoretical Computer Science ,61(2):175–198, 1988. [9] Ashim Garg and Roberto Tamassia. Upward planarity testing. Order ,12(2):109–133, 1995. [10] Carsten Thomassen. Planar acyclic oriented graphs. Order , 5(4):349– 361, 1989. [11] Giuseppe Di Battista, Peter Eades, Roberto Tamassia, and Ioannis G. Tollis. Graph Drawing: Algorithms for the Visualization of Graphs .Prentice-Hall, Upper Saddle River, 1999. [12] Vincent Moulton and Taoyang Wu. Planar rooted phylogenetic net-works. IEEE/ACM Transactions on Computational Biology and Bioin-formatics , 20(2):1289–1297, 2023. [13] John A. Bondy and Uppaluri S. R. Murty. Graph Theory with Applica-tions . Elsevier, New York, 1976. 28 [14] David Kelly. Fundamentals of planar ordered sets. Discrete Mathemat-ics , 63(2):197–216, 1987. [15] Yuanrui Feng, Jun Ge, Douglas B. West, and Yan Yang. Some new results on bar visibility of digraphs. Discrete Applied Mathematics ,360:342–352, 2025. [16] Roberto Tamassia and Ioannis G. Tollis. A unified approach to visibility representations of planar graphs. Discrete & Computational Geometry ,1(4):321–341, 1986. [17] Stephen K. Wismath. Characterizing bar line-of-sight graphs. In Pro-ceedings of the First Annual Symposium on Computational Geometry ,SCG ’85, pages 147–152, 1985. [18] Stephen K. Wismath. Bar-representable visibility graphs and a related network flow problem . PhD thesis, University of British Columbia, 1989. [19] Frank Harary and Geert Prins. The block-cutpoint-tree of a graph. 
+
+Publicationes Mathematicae Debrecen , 13:103–107, 1966. [20] Kellogg S. Booth and George S. Lueker. Testing for the consecutive ones property, interval graphs, and graph planarity using PQ-tree algorithms. 
+
+Journal of Computer and System Sciences , 13(3):335–379, 1976. [21] John M. Boyer and Wendy J. Myrvold. On the cutting edge: Simplified 
+
+O(n) planarity by edge addition. Journal of Graph Algorithms and Applications , 8(3):241–273, 2004. [22] John Hopcroft and Robert Tarjan. Efficient planarity testing. Journal of the ACM , 21(4):549–568, 1974. [23] Giuseppe Di Battista, Roberto Tamassia, and Ioannis G. Tollis. Area requirement and symmetry display of planar upward drawings. Discrete & Computational Geometry , 7(4):381–401, 1992. [24] Ashim Garg and Roberto Tamassia. On the computational complexity of upward and rectilinear planarity testing. SIAM Journal on Comput-ing , 31(2):601–625, 2001. [25] Abraham Lempel, Shimon Even, and Israel Cederbaum. An algorithm for planarity testing of graphs. In Theory of Graphs: International Symposium , pages 215–232. Gordon and Breach, 1967. [26] Hubert de Fraysseix, Patrice Ossona de Mendez, and Pierre Rosenstiehl. Bipolar orientations revisited. Discrete Applied Mathematics , 56(2):157– 179, 1995. 29
