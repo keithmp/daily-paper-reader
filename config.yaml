@@ -70,3 +70,42 @@ subscriptions:
           source: manual
           note: ''
       updated_at: '2026-03-18T01:43:58.372Z'
+    - tag: XENO
+      description: 查找异种器官移植、MHC及SLA相关的学术论文
+      enabled: true
+      keywords:
+        - keyword: Xenotransplantation
+          keyword_cn: 异种移植
+          query: Xenotransplantation research and clinical trials
+        - keyword: MHC
+          keyword_cn: 主要组织相容性复合体
+          query: Major Histocompatibility Complex in organ transplantation
+        - keyword: SLA
+          keyword_cn: 猪白细胞抗原
+          query: Swine Leukocyte Antigen complex
+        - keyword: Immune rejection
+          keyword_cn: 免疫排斥
+          query: Mechanisms of hyperacute and chronic xenograft rejection
+        - keyword: Porcine donor
+          keyword_cn: 猪供体
+          query: Genetically modified porcine donors for xenotransplantation
+        - keyword: Histocompatibility
+          keyword_cn: 组织相容性
+          query: Histocompatibility matching in cross-species transplantation
+      intent_queries:
+        - query: Role of SLA and MHC in xenotransplantation immune response
+          query_cn: SLA和MHC在异种移植免疫反应中的作用
+          enabled: true
+          source: manual
+          note: ''
+        - query: Advances in genetically engineered pigs for organ transplantation
+          query_cn: 用于器官移植的基因工程猪研究进展
+          enabled: true
+          source: manual
+          note: ''
+        - query: Immunological barriers and histocompatibility in xenografts
+          query_cn: 异种移植物的免疫屏障与组织相容性
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-03-18T01:58:04.810Z'
