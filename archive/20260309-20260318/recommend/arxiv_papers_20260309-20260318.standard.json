@@ -1,13 +1,13 @@
 {
   "mode": "standard",
-  "generated_at": "2026-03-18T02:08:18.622742+00:00",
+  "generated_at": "2026-03-18T02:35:26.350206+00:00",
   "stats": {
     "mode": "standard",
     "tag_count": 1,
-    "deep_divecandidates": 23,
+    "deep_divecandidates": 21,
     "deep_cap": 6,
     "deep_selected": 10,
-    "quick_candidates": 38,
+    "quick_candidates": 37,
     "quick_skim_target": 11,
     "quick_selected": 11
   },
@@ -37,13 +37,13 @@
         "query:基因演化"
       ],
       "llm_score": 10.0,
-      "llm_evidence_en": "Species tree reconstruction and phylogenetics",
-      "llm_evidence_cn": "物种树构建与系统发育分析",
-      "llm_evidence": "物种树构建与系统发育分析",
-      "canonical_evidence": "物种树构建与系统发育分析",
-      "llm_tldr_en": "Presents a scalable divide-and-conquer algorithm for reconstructing species evolutionary trees.",
-      "llm_tldr_cn": "提出一种可扩展的分治算法，用于从多基因数据中重建系统发育物种树。",
-      "llm_tldr": "提出一种可扩展的分治算法，用于从多基因数据中重建系统发育物种树。",
+      "llm_evidence_en": "Scalable species tree reconstruction algorithm",
+      "llm_evidence_cn": "可扩展的物种树构建算法",
+      "llm_evidence": "可扩展的物种树构建算法",
+      "canonical_evidence": "可扩展的物种树构建算法",
+      "llm_tldr_en": "SDSR uses spectral graph theory for efficient and scalable species tree reconstruction from genetic markers.",
+      "llm_tldr_cn": "SDSR利用谱图理论，通过遗传标记进行高效且可扩展的物种树重建。",
+      "llm_tldr": "SDSR利用谱图理论，通过遗传标记进行高效且可扩展的物种树重建。",
       "llm_tags": [
         "query:q2"
       ],
@@ -71,13 +71,13 @@
         "query:基因演化"
       ],
       "llm_score": 10.0,
-      "llm_evidence_en": "Covariant description of evolutionary dynamics in genotype space",
-      "llm_evidence_cn": "基因型空间演化动力学的协变描述",
-      "llm_evidence": "基因型空间演化动力学的协变描述",
-      "canonical_evidence": "基因型空间演化动力学的协变描述",
-      "llm_tldr_en": "A geometric framework modeling biological evolution as a learning process on fitness landscapes.",
-      "llm_tldr_cn": "一个将生物演化建模为适应度景观上学习过程的几何框架。",
-      "llm_tldr": "一个将生物演化建模为适应度景观上学习过程的几何框架。",
+      "llm_evidence_en": "Geometric framework for evolutionary dynamics in genotype and phenotype spaces",
+      "llm_evidence_cn": "基因型和表型空间中演化动力学的几何框架",
+      "llm_evidence": "基因型和表型空间中演化动力学的几何框架",
+      "canonical_evidence": "基因型和表型空间中演化动力学的几何框架",
+      "llm_tldr_en": "Develops a covariant description of evolution as a learning process on fitness landscapes.",
+      "llm_tldr_cn": "开发了演化动力学的协变描述，将其建模为适应度景观上的学习过程。",
+      "llm_tldr": "开发了演化动力学的协变描述，将其建模为适应度景观上的学习过程。",
       "llm_tags": [
         "query:q5"
       ],
@@ -107,58 +107,19 @@
         "query:基因演化"
       ],
       "llm_score": 9.0,
-      "llm_evidence_en": "inference from phylogenetic trees",
-      "llm_evidence_cn": "基于系统发育树的推断",
-      "llm_evidence": "基于系统发育树的推断",
-      "canonical_evidence": "基于系统发育树的推断",
-      "llm_tldr_en": "Introduces a neural Bayes estimator for phylodynamic inference from genomic sequences.",
-      "llm_tldr_cn": "引入了一种用于从基因组序列进行系统发育动力学推断的神经贝叶斯估计器。",
-      "llm_tldr": "引入了一种用于从基因组序列进行系统发育动力学推断的神经贝叶斯估计器。",
+      "llm_evidence_en": "Phylodynamic inference from phylogenetic trees using neural Bayes estimators",
+      "llm_evidence_cn": "使用神经贝叶斯估计器从系统发育树中进行系统动力学推断",
+      "llm_evidence": "使用神经贝叶斯估计器从系统发育树中进行系统动力学推断",
+      "canonical_evidence": "使用神经贝叶斯估计器从系统发育树中进行系统动力学推断",
+      "llm_tldr_en": "Uses neural networks to estimate epidemic dynamics directly from reconstructed phylogenetic trees.",
+      "llm_tldr_cn": "利用神经网络直接从重建的系统发育树中估计流行病动态。",
+      "llm_tldr": "利用神经网络直接从重建的系统发育树中估计流行病动态。",
       "llm_tags": [
         "query:q2"
       ],
       "matched_query_tag": "query:q2",
       "matched_query_text": "phylogenetic analysis and tree construction",
       "matched_requirement_id": "req-2",
-      "selection_source": "fresh_fetch"
-    },
-    {
-      "id": "2603.08913v1",
-      "title": "Quantifying Memorization and Privacy Risks in Genomic Language Models",
-      "abstract": "Genomic language models (GLMs) have emerged as powerful tools for learning representations of DNA sequences, enabling advances in variant prediction, regulatory element identification, and cross-task transfer learning. However, as these models are increasingly trained or fine-tuned on sensitive genomic cohorts, they risk memorizing specific sequences from their training data, raising serious concerns around privacy, data leakage, and regulatory compliance. Despite growing awareness of memorization risks in general-purpose language models, little systematic evaluation exists for these risks in the genomic domain, where data exhibit unique properties such as a fixed nucleotide alphabet, strong biological structure, and individual identifiability. We present a comprehensive, multi-vector privacy evaluation framework designed to quantify memorization risks in GLMs. Our approach integrates three complementary risk assessment methodologies: perplexity-based detection, canary sequence extraction, and membership inference. These are combined into a unified evaluation pipeline that produces a worst-case memorization risk score. To enable controlled evaluation, we plant canary sequences at varying repetition rates into both synthetic and real genomic datasets, allowing precise quantification of how repetition and training dynamics influence memorization. We evaluate our framework across multiple GLM architectures, examining the relationship between sequence repetition, model capacity, and memorization risk. Our results establish that GLMs exhibit measurable memorization and that the degree of memorization varies across architectures and training regimes. These findings reveal that no single attack vector captures the full scope of memorization risk, underscoring the need for multi-vector privacy auditing as a standard practice for genomic AI systems.",
-      "authors": [
-        "Alexander Nemecek",
-        "Wenbiao Li",
-        "Xiaoqian Jiang",
-        "Jaideep Vaidya",
-        "Erman Ayday"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "cs.CR",
-        "q-bio.GN"
-      ],
-      "published": "2026-03-09T20:30:37+00:00",
-      "link": "https://arxiv.org/pdf/2603.08913v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 9.0,
-      "llm_evidence_en": "Genomic language models for DNA sequence representation and variant prediction",
-      "llm_evidence_cn": "用于DNA序列表示和变异预测的基因组语言模型",
-      "llm_evidence": "用于DNA序列表示和变异预测的基因组语言模型",
-      "canonical_evidence": "用于DNA序列表示和变异预测的基因组语言模型",
-      "llm_tldr_en": "Evaluates privacy and memorization risks in AI-driven genomic language models.",
-      "llm_tldr_cn": "评估了AI驱动的基因组语言模型中的隐私和记忆风险。",
-      "llm_tldr": "评估了AI驱动的基因组语言模型中的隐私和记忆风险。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
       "selection_source": "fresh_fetch"
     },
     {
@@ -180,19 +141,92 @@
         "query:基因演化"
       ],
       "llm_score": 9.0,
-      "llm_evidence_en": "sequential learning theory for phylodynamic inference and taxa addition",
-      "llm_evidence_cn": "系统发育动力学推断与分类群添加的序列学习理论",
-      "llm_evidence": "系统发育动力学推断与分类群添加的序列学习理论",
-      "canonical_evidence": "系统发育动力学推断与分类群添加的序列学习理论",
-      "llm_tldr_en": "Develops a framework to optimize phylodynamic inference and understand how adding taxa improves tree accuracy.",
-      "llm_tldr_cn": "开发了一个优化系统发育动力学推断的框架，研究分类群添加如何提高树的准确性。",
-      "llm_tldr": "开发了一个优化系统发育动力学推断的框架，研究分类群添加如何提高树的准确性。",
+      "llm_evidence_en": "improving phylodynamic inference and taxa addition",
+      "llm_evidence_cn": "改进系统发育动力学推断和分类单元添加",
+      "llm_evidence": "改进系统发育动力学推断和分类单元添加",
+      "canonical_evidence": "改进系统发育动力学推断和分类单元添加",
+      "llm_tldr_en": "Establishes a theoretical framework for how adding taxa improves Bayesian phylodynamic and genealogical inference.",
+      "llm_tldr_cn": "建立了关于增加分类单元如何改进贝叶斯系统发育动力学和谱系推断的理论框架。",
+      "llm_tldr": "建立了关于增加分类单元如何改进贝叶斯系统发育动力学和谱系推断的理论框架。",
       "llm_tags": [
         "query:q2"
       ],
       "matched_query_tag": "query:q2",
       "matched_query_text": "phylogenetic analysis and tree construction",
       "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.10161v2",
+      "title": "Omics Data Discovery Agents",
+      "abstract": "The biomedical literature contains a vast collection of omics studies, yet most published data remain functionally inaccessible for computational reuse. When raw data are deposited in public repositories, essential information for reproducing reported results is dispersed across main text, supplementary files, and code repositories. In rarer instances where intermediate data is made available (e.g. protein abundance files), its location is irregular. In this article, we present an agentic framework that fetches omics-related articles and transforms the unstructured information into searchable research objects. Our system employs large language model (LLM) agents with access to tools for fetching omics studies, extracting article metadata, identifying and downloading published data, executing containerized quantification pipelines, and running analyses to address novel question. We demonstrate automated metadata extraction from PubMed Central articles, achieving 80% precision for dataset identification from standard data repositories. Using model context protocol (MCP) servers to expose containerized analysis tools, our set of agents were able to identify a set of relevant articles, download the associated datasets, and re-quantify the proteomics data. The results had a 63% overlap in differentially expressed proteins when matching reported preprocessing methods. Furthermore, we show that agents can identify semantically similar studies, determine data compatibility, and perform cross-study comparisons, revealing consistent protein regulation patterns in liver fibrosis. This work establishes a foundation for converting the static biomedical literature into an executable, queryable resource that enables automated data reuse at scale.",
+      "authors": [
+        "Alexandre Hutton",
+        "Jesse G. Meyer"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-03-10T18:53:10+00:00",
+      "link": "https://arxiv.org/pdf/2603.10161v2",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI agents for discovering and processing omics data",
+      "llm_evidence_cn": "用于发现和处理组学数据的AI代理",
+      "llm_evidence": "用于发现和处理组学数据的AI代理",
+      "canonical_evidence": "用于发现和处理组学数据的AI代理",
+      "llm_tldr_en": "Develops LLM agents to automate the discovery and extraction of omics data from biomedical literature.",
+      "llm_tldr_cn": "开发LLM代理，自动从生物医学文献中发现和提取组学数据。",
+      "llm_tldr": "开发LLM代理，自动从生物医学文献中发现和提取组学数据。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.10873v1",
+      "title": "SNPgen: Phenotype-Supervised Genotype Representation and Synthetic Data Generation via Latent Diffusion",
+      "abstract": "Polygenic risk scores and other genomic analyses require large individual-level genotype datasets, yet strict data access restrictions impede sharing. Synthetic genotype generation offers a privacy-preserving alternative, but most existing methods operate unconditionally, producing samples without phenotype alignment, or rely on unsupervised compression, creating a gap between statistical fidelity and downstream task utility. We present SNPgen, a two-stage conditional latent diffusion framework for generating phenotype-supervised synthetic genotypes. SNPgen combines GWAS-guided variant selection (1,024-2,048 trait-associated SNPs) with a variational autoencoder for genotype compression and a latent diffusion model conditioned on binary disease labels via classifier-free guidance. Evaluated on 458,724 UK Biobank individuals across four complex diseases (coronary artery disease, breast cancer, type 1 and type 2 diabetes), models trained on synthetic data matched real-data predictive performance in a train-on-synthetic, test-on-real protocol, approaching genome-wide PRS methods that use $2$-$6\\times$ more variants. Privacy analysis confirmed zero identical matches, near-random membership inference (AUC $\\approx 0.50$), preserved linkage disequilibrium structure, and high allele frequency correlation ($r \\geq 0.95$) with source data. A controlled simulation with known causal effects verified faithful recovery of the imposed genetic association structure.",
+      "authors": [
+        "Andrea Lampis",
+        "Michela Carlotta Massi",
+        "Nicola Pirastu",
+        "Francesca Ieva",
+        "Matteo Matteucci",
+        "Emanuele Di Angelantonio"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-11T15:23:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.10873v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-driven synthetic genotype generation and GWAS-guided variant selection",
+      "llm_evidence_cn": "AI驱动的合成基因型生成与GWAS引导的变异选择",
+      "llm_evidence": "AI驱动的合成基因型生成与GWAS引导的变异选择",
+      "canonical_evidence": "AI驱动的合成基因型生成与GWAS引导的变异选择",
+      "llm_tldr_en": "SNPgen uses latent diffusion to generate phenotype-supervised synthetic genotypes for genomic analysis.",
+      "llm_tldr_cn": "SNPgen利用潜扩散模型生成受表型监督的合成基因型，用于基因组分析。",
+      "llm_tldr": "SNPgen利用潜扩散模型生成受表型监督的合成基因型，用于基因组分析。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
       "selection_source": "fresh_fetch"
     },
     {
@@ -213,19 +247,56 @@
         "query:基因演化"
       ],
       "llm_score": 9.0,
-      "llm_evidence_en": "Cross-species genomic foundation models for resistance prediction",
-      "llm_evidence_cn": "跨物种基因组基础模型用于耐药性预测",
-      "llm_evidence": "跨物种基因组基础模型用于耐药性预测",
-      "canonical_evidence": "跨物种基因组基础模型用于耐药性预测",
-      "llm_tldr_en": "Evaluates genomic foundation models for predicting antimicrobial resistance across phylogenetically distinct species.",
-      "llm_tldr_cn": "评估基因组基础模型在系统发育不同的物种间预测抗生素耐药性的能力。",
-      "llm_tldr": "评估基因组基础模型在系统发育不同的物种间预测抗生素耐药性的能力。",
+      "llm_evidence_en": "cross-species antimicrobial resistance prediction",
+      "llm_evidence_cn": "跨物种抗生素耐药性预测",
+      "llm_evidence": "跨物种抗生素耐药性预测",
+      "canonical_evidence": "跨物种抗生素耐药性预测",
+      "llm_tldr_en": "Uses genomic foundation models to predict antimicrobial resistance across phylogenetically distinct species.",
+      "llm_tldr_cn": "利用基因组基础模型预测不同系统发育物种间的抗生素耐药性。",
+      "llm_tldr": "利用基因组基础模型预测不同系统发育物种间的抗生素耐药性。",
       "llm_tags": [
         "query:q3"
       ],
       "matched_query_tag": "query:q3",
       "matched_query_text": "comparative genomics across species",
       "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.11244v1",
+      "title": "A Standardized Framework For Evaluating Gene Expression Generative Models",
+      "abstract": "The rapid development of generative models for single-cell gene expression data has created an urgent need for standardised evaluation frameworks. Current evaluation practices suffer from inconsistent metric implementations, incomparable hyperparameter choices, and a lack of biologically-grounded metrics. We present Generated Genetic Expression Evaluator (GGE), an open-source Python framework that addresses these challenges by providing a comprehensive suite of distributional metrics with explicit computation space options and biologically-motivated evaluation through differentially expressed gene (DEG)-focused analysis and perturbation-effect correlation, enabling standardized reporting and reproducible benchmarking. Through extensive analysis of the single-cell generative modeling literature, we identify that no standardized evaluation protocol exists. Methods report incomparable metrics computed in different spaces with different hyperparameters. We demonstrate that metric values vary substantially depending on implementation choices, highlighting the critical need for standardization. GGE enables fair comparison across generative approaches and accelerates progress in perturbation response prediction, cellular identity modeling, and counterfactual inference.",
+      "authors": [
+        "Andrea Rubbi",
+        "Andrea Giuseppe Di Francesco",
+        "Mohammad Lotfollahi",
+        "Pietro Liò"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-03-11T19:11:03+00:00",
+      "link": "https://arxiv.org/pdf/2603.11244v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI framework for evaluating gene expression models",
+      "llm_evidence_cn": "用于评估基因表达模型的AI框架",
+      "llm_evidence": "用于评估基因表达模型的AI框架",
+      "canonical_evidence": "用于评估基因表达模型的AI框架",
+      "llm_tldr_en": "Introduces a standardized framework for evaluating generative models of single-cell gene expression data.",
+      "llm_tldr_cn": "介绍了一个用于评估单细胞基因表达数据生成模型的标准化框架。",
+      "llm_tldr": "介绍了一个用于评估单细胞基因表达数据生成模型的标准化框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
       "selection_source": "fresh_fetch"
     },
     {
@@ -250,19 +321,19 @@
         "query:基因演化"
       ],
       "llm_score": 9.0,
-      "llm_evidence_en": "AI-driven protein engineering and mutational trajectories",
-      "llm_evidence_cn": "AI驱动的蛋白质工程与突变轨迹研究",
-      "llm_evidence": "AI驱动的蛋白质工程与突变轨迹研究",
-      "canonical_evidence": "AI驱动的蛋白质工程与突变轨迹研究",
-      "llm_tldr_en": "Introduces EvoFlows, an AI model that learns mutational trajectories between evolutionarily-related protein sequences.",
-      "llm_tldr_cn": "引入EvoFlows，这是一种学习进化相关蛋白质序列之间突变轨迹的AI模型。",
-      "llm_tldr": "引入EvoFlows，这是一种学习进化相关蛋白质序列之间突变轨迹的AI模型。",
+      "llm_evidence_en": "modeling mutational trajectories between evolutionarily-related sequences",
+      "llm_evidence_cn": "模拟进化相关序列间的突变轨迹",
+      "llm_evidence": "模拟进化相关序列间的突变轨迹",
+      "canonical_evidence": "模拟进化相关序列间的突变轨迹",
+      "llm_tldr_en": "Models mutational trajectories between evolutionarily-related protein sequences for protein engineering.",
+      "llm_tldr_cn": "模拟进化相关蛋白质序列间的突变轨迹，用于蛋白质工程。",
+      "llm_tldr": "模拟进化相关蛋白质序列间的突变轨迹，用于蛋白质工程。",
       "llm_tags": [
-        "query:q7"
+        "query:q10"
       ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
       "selection_source": "fresh_fetch"
     },
     {
@@ -288,9 +359,9 @@
       "llm_evidence_cn": "用于单细胞基因组学发现的AI智能体",
       "llm_evidence": "用于单细胞基因组学发现的AI智能体",
       "canonical_evidence": "用于单细胞基因组学发现的AI智能体",
-      "llm_tldr_en": "An AI agent that unifies expression embeddings and LLMs for interactive single-cell genomic discovery.",
-      "llm_tldr_cn": "一种结合表达嵌入和LLM的AI智能体，用于交互式单细胞基因组发现。",
-      "llm_tldr": "一种结合表达嵌入和LLM的AI智能体，用于交互式单细胞基因组发现。",
+      "llm_tldr_en": "ELISA integrates scGPT and LLMs to translate single-cell data into mechanistic biological hypotheses.",
+      "llm_tldr_cn": "ELISA结合了scGPT和LLM，将单细胞数据转化为机械性的生物学假设。",
+      "llm_tldr": "ELISA结合了scGPT和LLM，将单细胞数据转化为机械性的生物学假设。",
       "llm_tags": [
         "query:q7"
       ],
@@ -298,78 +369,51 @@
       "matched_query_text": "利用AI进行基因组相关研究也包含",
       "matched_requirement_id": "req-7",
       "selection_source": "fresh_fetch"
-    },
+    }
+  ],
+  "quick_skim": [
     {
-      "id": "2603.11940v1",
-      "title": "Exhaustive Circuit Mapping of a Single-Cell Foundation Model Reveals Massive Redundancy, Heavy-Tailed Hub Architecture, and Layer-Dependent Differentiation Control",
-      "abstract": "Mechanistic interpretability of biological foundation models has relied on selective feature sampling, pairwise interaction testing, and observational trajectory analysis. Each of these can introduce systematic bias. Here we present three experiments that address these limitations through exhaustive circuit tracing, higher order combinatorial ablation, and causal trajectory steering in Geneformer, a transformer based single cell foundation model. First, exhaustive tracing of all 4065 active sparse autoencoder features at layer 5 yields 1393850 significant downstream edges, a 27 fold expansion over selective sampling. This reveals a heavy tailed hub distribution in which 1.8 percent of features account for disproportionate connectivity and 40 percent of the top 20 hubs lack biological annotation. These results indicate systematic annotation bias in prior selective analyses. Second, three way combinatorial ablation across 8 feature triplets shows that redundancy deepens monotonically with interaction order, with a three way ratio of 0.59 versus a pairwise ratio of 0.74, and with zero synergy. This confirms that the model architecture is subadditive at all tested orders. Third, trajectory guided feature steering establishes a causal link between layer position and differentiation directionality. Late layer features at L17 consistently push cell states toward maturity, with fraction positive equal to 1.0. Early and mid layer features at L0 and L11 mostly push away from maturity, with fraction positive ranging from 0.00 to 0.58. Together these results move from correlation toward causal evidence for layer dependent control of cell state.",
+      "id": "2603.08463v1",
+      "title": "Evolving Symbiosis, from Barricelli's Legacy to Collective Intelligence: a simulated and conceptual approach",
+      "abstract": "This report documents the work of our group (named SymBa) at the ALICE 2026 workshop in Copenhagen. Inspired by the pioneering work by Nils Aall Barricelli on symbiogenesis of numerical organisms (i.e., 1D cellular automata) in 1953 (70+ years ago!!), we discussed the role of symbiogenesis as mechanism contributing to the origins of life, open-endedness, and collective intelligence. We report replications of Barricelli's original work in 1D worlds, an extension to 2D symbioorganisms, and preliminary experimentation with DNA-norms. We discuss the implications of symbiogenesis for artifical life and artificial intelligence, and outline several opportunities for future works, both at the conceptual level as well as using different substrates (neural networks, neural cellular automata, etc.)",
       "authors": [
-        "Ihor Kendiukhov"
+        "James Ashford",
+        "Marko Cvjetko",
+        "Richard Löffler",
+        "Berfin Sakallioglu",
+        "Alessandro Valerio",
+        "Marta Tataryn",
+        "Benedikt Hartl",
+        "Léo Pio-Lopez",
+        "Stefano Nichele"
       ],
-      "primary_category": "cs.LG",
+      "primary_category": "cs.NE",
       "categories": [
-        "cs.LG"
+        "cs.NE"
       ],
-      "published": "2026-03-12T13:53:20+00:00",
-      "link": "https://arxiv.org/pdf/2603.11940v1",
+      "published": "2026-03-09T14:57:24+00:00",
+      "link": "https://arxiv.org/pdf/2603.08463v1",
       "tags": [
         "keyword:基因演化",
         "query:基因演化"
       ],
-      "llm_score": 9.0,
-      "llm_evidence_en": "interpretability of a single-cell genomic foundation model",
-      "llm_evidence_cn": "单细胞基因组基础模型的可解释性研究",
-      "llm_evidence": "单细胞基因组基础模型的可解释性研究",
-      "canonical_evidence": "单细胞基因组基础模型的可解释性研究",
-      "llm_tldr_en": "Performs exhaustive circuit mapping on Geneformer, a genomic foundation model, to reveal regulatory mechanisms.",
-      "llm_tldr_cn": "对基因组基础模型Geneformer进行电路映射，揭示其调控机制。",
-      "llm_tldr": "对基因组基础模型Geneformer进行电路映射，揭示其调控机制。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "fresh_fetch"
-    },
-    {
-      "id": "2603.15171v1",
-      "title": "A mechanical bifurcation constrains the evolution of cell sheet folding in the family Volvocaceae",
-      "abstract": "The processes of morphogenesis that give rise to the shapes of organs and organisms during development are often driven by mechanical instabilities. Can such mechanical bifurcations also drive or constrain the evolution of these processes in the first place? We discover an instance of these constraints in the green algae of the family Volvocaceae. During their development, their bowl-shaped embryonic cell sheet turns itself inside out. This inversion is driven by a simple wave of cell wedging in the genus Pleodorina (16-128 cells) and more complex programmes of cell shape changes in Volvox (~400-50000 cells). However, no species with intermediate cell numbers (256 cells) have been described. Here, we relate this gap to a mechanical bifurcation: Focusing on the inversion of Pleodorina californica (64 cells), we develop a continuum model, in which the cell shape changes driving inversion appear as changes of the intrinsic curvature of an elastic surface. A mechanical bifurcation in this model predicts that inversion is only possible in a subset of its parameter space. Strikingly, parameters estimated for P. californica fall into this possible subset, but those that we extrapolate to 256 or more cells using allometric observations and a model of cell cleavage in Volvocaceae do not. Our work thus suggests that the more complex inversion strategies of Volvox are an evolutionary necessity to obviate this bifurcation and indicates more broadly how mechanical bifurcations can drive the evolution of morphogenesis.",
-      "authors": [
-        "Valens Tribet",
-        "Pierre A. Haas"
-      ],
-      "primary_category": "cond-mat.soft",
-      "categories": [
-        "cond-mat.soft",
-        "physics.bio-ph",
-        "q-bio.TO"
-      ],
-      "published": "2026-03-16T12:06:38+00:00",
-      "link": "https://arxiv.org/pdf/2603.15171v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 9.0,
-      "llm_evidence_en": "Evolution of cell sheet folding in Volvocaceae algae",
-      "llm_evidence_cn": "团藻科藻类细胞层折叠的演化",
-      "llm_evidence": "团藻科藻类细胞层折叠的演化",
-      "canonical_evidence": "团藻科藻类细胞层折叠的演化",
-      "llm_tldr_en": "This study explores how mechanical bifurcations constrain the evolution of morphogenesis in green algae.",
-      "llm_tldr_cn": "该研究探讨了力学分叉如何限制绿藻形态发生过程的演化。",
-      "llm_tldr": "该研究探讨了力学分叉如何限制绿藻形态发生过程的演化。",
+      "llm_score": 8.0,
+      "llm_evidence_en": "symbiogenesis as a mechanism for origins of life",
+      "llm_evidence_cn": "共生起源作为生命起源的机制",
+      "llm_evidence": "共生起源作为生命起源的机制",
+      "canonical_evidence": "共生起源作为生命起源的机制",
+      "llm_tldr_en": "Explores symbiogenesis and artificial life through simulations of numerical organisms and DNA-norms.",
+      "llm_tldr_cn": "通过模拟数值生物和DNA规范，探索共生起源和人工生命。",
+      "llm_tldr": "通过模拟数值生物和DNA规范，探索共生起源和人工生命。",
       "llm_tags": [
         "query:q1"
       ],
       "matched_query_tag": "query:q1",
       "matched_query_text": "evolutionary biology and mechanisms",
       "matched_requirement_id": "req-1",
-      "selection_source": "fresh_fetch"
-    }
-  ],
-  "quick_skim": [
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
     {
       "id": "2603.08062v1",
       "title": "Adversarial Domain Adaptation Enables Knowledge Transfer Across Heterogeneous RNA-Seq Datasets",
@@ -390,50 +434,14 @@
         "keyword:基因演化",
         "query:基因演化"
       ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI and deep learning for RNA-seq transcriptomics",
-      "llm_evidence_cn": "利用AI和深度学习进行RNA-seq转录组学研究",
-      "llm_evidence": "利用AI和深度学习进行RNA-seq转录组学研究",
-      "canonical_evidence": "利用AI和深度学习进行RNA-seq转录组学研究",
-      "llm_tldr_en": "Proposes a domain adaptation framework for transferring knowledge across heterogeneous RNA-seq datasets.",
-      "llm_tldr_cn": "提出了一种领域自适应框架，用于在异构RNA-seq数据集之间进行知识迁移。",
-      "llm_tldr": "提出了一种领域自适应框架，用于在异构RNA-seq数据集之间进行知识迁移。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "fresh_fetch",
-      "quick_tier": "8plus"
-    },
-    {
-      "id": "2603.10261v1",
-      "title": "Discovery of a Hematopoietic Manifold in scGPT Yields a Method for Extracting Performant Algorithms from Biological Foundation Model Internals",
-      "abstract": "We report the discovery and extraction of a compact hematopoietic algorithm from the single-cell foundation model scGPT, to our knowledge the first biologically useful, competitive algorithm extracted from a foundation model via mechanistic interpretability. We show that scGPT internally encodes a compact hematopoietic manifold with significant developmental branch structure, validated on a strict non-overlap Tabula Sapiens external panel and confirmed via frozen-head zero-shot transfer to an independent multi-donor immune panel. To isolate this geometry, we introduce a general three-stage extraction method consisting of direct operator export from frozen attention weights, a lightweight learned adaptor, and a task-specific readout, producing a standalone algorithm without target-dataset retraining. In 88-split donor-holdout benchmarks against scVI, Palantir, DPT, CellTypist, PCA, and raw-expression baselines, the extracted algorithm achieves the strongest pseudotime-depth ordering and leads on key subtype endpoints (CD4/CD8 AUROC 0.867, mono/macro AUROC 0.951). Compared to standard probing of frozen scGPT embeddings with a 3-layer MLP, the extracted head is BH-significantly better on 6/8 classification endpoints while completing a full 12-split evaluation campaign 34.5x faster with approximately 1000x fewer trainable parameters. The exported operator compresses from three pooled attention heads to a single head without statistically significant loss, and further to a rank-64 surrogate. Mechanistic interpretability of the compact operator reveals a concentrated four-factor core explaining 66.2% of ablation impact, with factors resolving into explicit T/lymphoid, B/plasma, granulocytic, and monocyte/macrophage gene programs. A supplementary second-manifold validation (intercellular communication geometry) confirms that the extraction method generalizes beyond hematopoiesis.",
-      "authors": [
-        "Ihor Kendiukhov"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "q-bio.CB",
-        "q-bio.GN"
-      ],
-      "published": "2026-03-10T22:44:12+00:00",
-      "link": "https://arxiv.org/pdf/2603.10261v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
       "llm_score": 7.0,
-      "llm_evidence_en": "AI foundation model for biological cell manifolds",
-      "llm_evidence_cn": "用于生物细胞流形的AI基础模型",
-      "llm_evidence": "用于生物细胞流形的AI基础模型",
-      "canonical_evidence": "用于生物细胞流形的AI基础模型",
-      "llm_tldr_en": "Extracting biological algorithms from the scGPT foundation model to understand hematopoietic development.",
-      "llm_tldr_cn": "从scGPT基础模型中提取生物算法，以理解造血发育过程。",
-      "llm_tldr": "从scGPT基础模型中提取生物算法，以理解造血发育过程。",
+      "llm_evidence_en": "Deep learning for RNA-seq phenotype prediction",
+      "llm_evidence_cn": "深度学习用于RNA-seq表型预测",
+      "llm_evidence": "深度学习用于RNA-seq表型预测",
+      "canonical_evidence": "深度学习用于RNA-seq表型预测",
+      "llm_tldr_en": "A domain adaptation framework for transferring knowledge across heterogeneous transcriptomic datasets.",
+      "llm_tldr_cn": "一种用于在异质转录组数据集之间转移知识的深度学习领域自适应框架。",
+      "llm_tldr": "一种用于在异质转录组数据集之间转移知识的深度学习领域自适应框架。",
       "llm_tags": [
         "query:q7"
       ],
@@ -466,13 +474,13 @@
         "query:基因演化"
       ],
       "llm_score": 6.0,
-      "llm_evidence_en": "Bioinformatics tool linking and workflow reproducibility",
-      "llm_evidence_cn": "生物信息学工具链接与工作流可重复性",
-      "llm_evidence": "生物信息学工具链接与工作流可重复性",
-      "canonical_evidence": "生物信息学工具链接与工作流可重复性",
-      "llm_tldr_en": "CoPaLink improves bioinformatics workflow reproducibility by linking tools in code to paper mentions.",
-      "llm_tldr_cn": "CoPaLink通过将代码中的工具与论文描述相链接，提高了生物信息学工作流的可重复性。",
-      "llm_tldr": "CoPaLink通过将代码中的工具与论文描述相链接，提高了生物信息学工作流的可重复性。",
+      "llm_evidence_en": "linking bioinformatics tools across papers",
+      "llm_evidence_cn": "跨论文链接生物信息学工具",
+      "llm_evidence": "跨论文链接生物信息学工具",
+      "canonical_evidence": "跨论文链接生物信息学工具",
+      "llm_tldr_en": "A tool to link bioinformatics software in code to mentions in papers, supporting workflow reproducibility.",
+      "llm_tldr_cn": "一种将代码中的生信工具与论文描述链接的工具，支持工作流的可重复性。",
+      "llm_tldr": "一种将代码中的生信工具与论文描述链接的工具，支持工作流的可重复性。",
       "llm_tags": [
         "query:profile-1:composite"
       ],
@@ -483,123 +491,44 @@
       "quick_tier": "6"
     },
     {
-      "id": "2603.08463v1",
-      "title": "Evolving Symbiosis, from Barricelli's Legacy to Collective Intelligence: a simulated and conceptual approach",
-      "abstract": "This report documents the work of our group (named SymBa) at the ALICE 2026 workshop in Copenhagen. Inspired by the pioneering work by Nils Aall Barricelli on symbiogenesis of numerical organisms (i.e., 1D cellular automata) in 1953 (70+ years ago!!), we discussed the role of symbiogenesis as mechanism contributing to the origins of life, open-endedness, and collective intelligence. We report replications of Barricelli's original work in 1D worlds, an extension to 2D symbioorganisms, and preliminary experimentation with DNA-norms. We discuss the implications of symbiogenesis for artifical life and artificial intelligence, and outline several opportunities for future works, both at the conceptual level as well as using different substrates (neural networks, neural cellular automata, etc.)",
+      "id": "2603.08913v1",
+      "title": "Quantifying Memorization and Privacy Risks in Genomic Language Models",
+      "abstract": "Genomic language models (GLMs) have emerged as powerful tools for learning representations of DNA sequences, enabling advances in variant prediction, regulatory element identification, and cross-task transfer learning. However, as these models are increasingly trained or fine-tuned on sensitive genomic cohorts, they risk memorizing specific sequences from their training data, raising serious concerns around privacy, data leakage, and regulatory compliance. Despite growing awareness of memorization risks in general-purpose language models, little systematic evaluation exists for these risks in the genomic domain, where data exhibit unique properties such as a fixed nucleotide alphabet, strong biological structure, and individual identifiability. We present a comprehensive, multi-vector privacy evaluation framework designed to quantify memorization risks in GLMs. Our approach integrates three complementary risk assessment methodologies: perplexity-based detection, canary sequence extraction, and membership inference. These are combined into a unified evaluation pipeline that produces a worst-case memorization risk score. To enable controlled evaluation, we plant canary sequences at varying repetition rates into both synthetic and real genomic datasets, allowing precise quantification of how repetition and training dynamics influence memorization. We evaluate our framework across multiple GLM architectures, examining the relationship between sequence repetition, model capacity, and memorization risk. Our results establish that GLMs exhibit measurable memorization and that the degree of memorization varies across architectures and training regimes. These findings reveal that no single attack vector captures the full scope of memorization risk, underscoring the need for multi-vector privacy auditing as a standard practice for genomic AI systems.",
       "authors": [
-        "James Ashford",
-        "Marko Cvjetko",
-        "Richard Löffler",
-        "Berfin Sakallioglu",
-        "Alessandro Valerio",
-        "Marta Tataryn",
-        "Benedikt Hartl",
-        "Léo Pio-Lopez",
-        "Stefano Nichele"
+        "Alexander Nemecek",
+        "Wenbiao Li",
+        "Xiaoqian Jiang",
+        "Jaideep Vaidya",
+        "Erman Ayday"
       ],
-      "primary_category": "cs.NE",
+      "primary_category": "cs.LG",
       "categories": [
-        "cs.NE"
+        "cs.LG",
+        "cs.CR",
+        "q-bio.GN"
       ],
-      "published": "2026-03-09T14:57:24+00:00",
-      "link": "https://arxiv.org/pdf/2603.08463v1",
+      "published": "2026-03-09T20:30:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.08913v1",
       "tags": [
         "keyword:基因演化",
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "Symbiogenesis as a mechanism for the origins of life and evolution",
-      "llm_evidence_cn": "共生起源作为生命起源和演化的机制",
-      "llm_evidence": "共生起源作为生命起源和演化的机制",
-      "canonical_evidence": "共生起源作为生命起源和演化的机制",
-      "llm_tldr_en": "Explores symbiogenesis as an evolutionary mechanism through simulations and DNA-norms.",
-      "llm_tldr_cn": "通过模拟和DNA规范探讨共生起源作为一种演化机制。",
-      "llm_tldr": "通过模拟和DNA规范探讨共生起源作为一种演化机制。",
+      "llm_evidence_en": "genomic language models for DNA sequences",
+      "llm_evidence_cn": "用于DNA序列的基因组语言模型",
+      "llm_evidence": "用于DNA序列的基因组语言模型",
+      "canonical_evidence": "用于DNA序列的基因组语言模型",
+      "llm_tldr_en": "Evaluates memorization and privacy risks in genomic language models used for DNA sequence analysis.",
+      "llm_tldr_cn": "评估用于DNA序列分析的基因组语言模型中的记忆和隐私风险。",
+      "llm_tldr": "评估用于DNA序列分析的基因组语言模型中的记忆和隐私风险。",
       "llm_tags": [
-        "query:q1"
+        "query:q7"
       ],
-      "matched_query_tag": "query:q1",
-      "matched_query_text": "evolutionary biology and mechanisms",
-      "matched_requirement_id": "req-1",
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
       "selection_source": "fresh_fetch",
       "quick_tier": "8plus"
-    },
-    {
-      "id": "2603.10911v1",
-      "title": "Macroscopic Dominance from Microscopic Extremes: Symmetry Breaking in Spatial Competition",
-      "abstract": "How do competing populations convert a spatial advantage into macroscopic dominance? We introduce a stochastic model for resource competition that decouples the transient discovery phase from monopolization. Initial symmetry breaking is governed by extreme value statistics of first-passage times: a linear spatial disadvantage requires an exponentially larger population to overcome. However, transient superiority cannot stabilize dominance. A non-reciprocal interaction bias is strictly necessary to arrest local fluctuations and drive the system into a robust absorbing state.",
-      "authors": [
-        "Stuti Guha",
-        "Shawn D. Ryan",
-        "Bhargav R. Karamched"
-      ],
-      "primary_category": "q-bio.PE",
-      "categories": [
-        "q-bio.PE"
-      ],
-      "published": "2026-03-11T15:57:25+00:00",
-      "link": "https://arxiv.org/pdf/2603.10911v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 7.0,
-      "llm_evidence_en": "Stochastic model for resource competition in populations",
-      "llm_evidence_cn": "种群资源竞争的随机模型",
-      "llm_evidence": "种群资源竞争的随机模型",
-      "canonical_evidence": "种群资源竞争的随机模型",
-      "llm_tldr_en": "A stochastic model explains how competing populations achieve macroscopic dominance through symmetry breaking.",
-      "llm_tldr_cn": "一个随机模型解释了竞争种群如何通过对称性破缺实现宏观优势。",
-      "llm_tldr": "一个随机模型解释了竞争种群如何通过对称性破缺实现宏观优势。",
-      "llm_tags": [
-        "query:q5"
-      ],
-      "matched_query_tag": "query:q5",
-      "matched_query_text": "population genetics and evolutionary dynamics",
-      "matched_requirement_id": "req-5",
-      "selection_source": "fresh_fetch",
-      "quick_tier": "7"
-    },
-    {
-      "id": "2603.08300v1",
-      "title": "A thermodynamic metric quantitatively predicts disordered protein partitioning and multicomponent phase behavior",
-      "abstract": "Intrinsically disordered regions (IDRs) of proteins mediate sequence-specific interactions underlying diverse cellular processes, including the formation of biomolecular condensates. Although IDRs strongly influence condensate compositions, quantitative frameworks that predict and explain their phase behavior in complex mixtures remain lacking. Here we introduce a thermodynamic model that quantitatively predicts the behavior of arbitrary combinations of IDRs across a wide range of concentrations, with accuracy comparable to state-of-the-art simulations. The model learns low-dimensional, context-independent representations of IDR sequences that combine to form mixture representations, producing context-dependent interactions. These representations define a thermodynamic metric space in which distances between IDRs correspond directly to differences in their thermodynamic properties. We show that the model predicts multicomponent phase diagrams in quantitative agreement with molecular simulations without being trained on free-energy or phase-coexistence data. The metric space provides geometrically intuitive predictions of IDR partitioning, multicomponent condensation, and context-dependent mutational effects, addressing several central problems in IDR biophysics within a single model. Systematic interrogation of the learned representations reveals how amino-acid composition and sequence patterning jointly determine mixture thermodynamics. Together, our results establish a unified and interpretable framework for predicting and understanding the behavior of complex mixtures of IDRs and other sequence-dependent biomolecules.",
-      "authors": [
-        "Zhuang Liu",
-        "Beijia Yuan",
-        "Mihir Rao",
-        "Gautam Reddy",
-        "William M. Jacobs"
-      ],
-      "primary_category": "cond-mat.soft",
-      "categories": [
-        "cond-mat.soft",
-        "cond-mat.mtrl-sci",
-        "cond-mat.stat-mech",
-        "q-bio.BM"
-      ],
-      "published": "2026-03-09T12:24:36+00:00",
-      "link": "https://arxiv.org/pdf/2603.08300v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 6.0,
-      "llm_evidence_en": "thermodynamic model for protein sequence representations",
-      "llm_evidence_cn": "蛋白质序列表示的热力学模型",
-      "llm_evidence": "蛋白质序列表示的热力学模型",
-      "canonical_evidence": "蛋白质序列表示的热力学模型",
-      "llm_tldr_en": "Predicts disordered protein phase behavior using sequence-based thermodynamic representations.",
-      "llm_tldr_cn": "利用基于序列的热力学表示预测无序蛋白质的相位行为。",
-      "llm_tldr": "利用基于序列的热力学表示预测无序蛋白质的相位行为。",
-      "llm_tags": [
-        "query:profile-1:composite"
-      ],
-      "matched_query_tag": "query:profile-1:composite",
-      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; molecular evolution and genetic variation; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
-      "matched_requirement_id": "req-composite-profile-1",
-      "selection_source": "fresh_fetch",
-      "quick_tier": "6"
     },
     {
       "id": "2603.10161v1",
@@ -619,55 +548,20 @@
         "keyword:基因演化",
         "query:基因演化"
       ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI agents for omics data discovery and reuse",
-      "llm_evidence_cn": "用于组学数据发现和重用的AI智能体",
-      "llm_evidence": "用于组学数据发现和重用的AI智能体",
-      "canonical_evidence": "用于组学数据发现和重用的AI智能体",
-      "llm_tldr_en": "An agentic framework uses LLMs to fetch and transform unstructured omics data into searchable research objects.",
-      "llm_tldr_cn": "一个智能体框架利用大模型将非结构化组学数据转化为可搜索的研究对象。",
-      "llm_tldr": "一个智能体框架利用大模型将非结构化组学数据转化为可搜索的研究对象。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "fresh_fetch",
-      "quick_tier": "8plus"
-    },
-    {
-      "id": "2603.11133v1",
-      "title": "Higher-Order Modular Attention: Fusing Pairwise and Triadic Interactions for Protein Sequences",
-      "abstract": "Transformer self-attention computes pairwise token interactions, yet protein sequence to phenotype relationships often involve cooperative dependencies among three or more residues that dot product attention does not capture explicitly. We introduce Higher-Order Modular Attention, HOMA, a unified attention operator that fuses pairwise attention with an explicit triadic interaction pathway. To make triadic attention practical on long sequences, HOMA employs block-structured, windowed triadic attention. We evaluate on three TAPE benchmarks for Secondary Structure, Fluorescence, and Stability. Our attention mechanism yields consistent improvements across all tasks compared with standard self-attention and efficient variants including block-wise attention and Linformer. These results suggest that explicit triadic terms provide complementary representational capacity for protein sequence prediction at controllable additional computational cost.",
-      "authors": [
-        "Shirin Amiraslani",
-        "Xin Gao"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-03-11T16:07:56+00:00",
-      "link": "https://arxiv.org/pdf/2603.11133v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
       "llm_score": 7.0,
-      "llm_evidence_en": "AI for protein sequence phenotype relationships",
-      "llm_evidence_cn": "用于蛋白质序列表型关系的AI研究",
-      "llm_evidence": "用于蛋白质序列表型关系的AI研究",
-      "canonical_evidence": "用于蛋白质序列表型关系的AI研究",
-      "llm_tldr_en": "Proposes a modular attention mechanism to capture triadic interactions in protein sequences.",
-      "llm_tldr_cn": "提出了一种模块化注意力机制，用于捕捉蛋白质序列中的三元相互作用。",
-      "llm_tldr": "提出了一种模块化注意力机制，用于捕捉蛋白质序列中的三元相互作用。",
+      "llm_evidence_en": "agentic framework for omics data discovery",
+      "llm_evidence_cn": "用于组学数据发现的智能体框架",
+      "llm_evidence": "用于组学数据发现的智能体框架",
+      "canonical_evidence": "用于组学数据发现的智能体框架",
+      "llm_tldr_en": "An LLM agent framework to automate the discovery and extraction of omics data from scientific literature.",
+      "llm_tldr_cn": "一种利用大语言模型智能体从科学文献中自动发现和提取组学数据的框架。",
+      "llm_tldr": "一种利用大语言模型智能体从科学文献中自动发现和提取组学数据的框架。",
       "llm_tags": [
-        "query:q7"
+        "query:profile-1:composite"
       ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; molecular evolution and genetic variation; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
       "selection_source": "fresh_fetch",
       "quick_tier": "7"
     },
@@ -693,13 +587,13 @@
         "query:基因演化"
       ],
       "llm_score": 6.0,
-      "llm_evidence_en": "comparing protein surfaces to separate conformational variability from structural divergence",
-      "llm_evidence_cn": "比较蛋白质表面以区分构象变化与结构演化差异",
-      "llm_evidence": "比较蛋白质表面以区分构象变化与结构演化差异",
-      "canonical_evidence": "比较蛋白质表面以区分构象变化与结构演化差异",
-      "llm_tldr_en": "A framework for aligning protein surfaces to measure structural divergence across diverse proteins.",
-      "llm_tldr_cn": "一种用于比对蛋白质表面以衡量不同蛋白质间结构演化差异的框架。",
-      "llm_tldr": "一种用于比对蛋白质表面以衡量不同蛋白质间结构演化差异的框架。",
+      "llm_evidence_en": "separating conformational variability from structural divergence",
+      "llm_evidence_cn": "区分构象变异与结构演化差异",
+      "llm_evidence": "区分构象变异与结构演化差异",
+      "canonical_evidence": "区分构象变异与结构演化差异",
+      "llm_tldr_en": "Introduces a joint geometric-chemical distance to align protein surfaces and detect true structural divergence.",
+      "llm_tldr_cn": "引入了几何-化学联合距离来比对蛋白质表面，从而检测真实的结构演化差异。",
+      "llm_tldr": "引入了几何-化学联合距离来比对蛋白质表面，从而检测真实的结构演化差异。",
       "llm_tags": [
         "query:q3"
       ],
@@ -710,31 +604,139 @@
       "quick_tier": "6"
     },
     {
-      "id": "2603.10161v2",
-      "title": "Omics Data Discovery Agents",
-      "abstract": "The biomedical literature contains a vast collection of omics studies, yet most published data remain functionally inaccessible for computational reuse. When raw data are deposited in public repositories, essential information for reproducing reported results is dispersed across main text, supplementary files, and code repositories. In rarer instances where intermediate data is made available (e.g. protein abundance files), its location is irregular. In this article, we present an agentic framework that fetches omics-related articles and transforms the unstructured information into searchable research objects. Our system employs large language model (LLM) agents with access to tools for fetching omics studies, extracting article metadata, identifying and downloading published data, executing containerized quantification pipelines, and running analyses to address novel question. We demonstrate automated metadata extraction from PubMed Central articles, achieving 80% precision for dataset identification from standard data repositories. Using model context protocol (MCP) servers to expose containerized analysis tools, our set of agents were able to identify a set of relevant articles, download the associated datasets, and re-quantify the proteomics data. The results had a 63% overlap in differentially expressed proteins when matching reported preprocessing methods. Furthermore, we show that agents can identify semantically similar studies, determine data compatibility, and perform cross-study comparisons, revealing consistent protein regulation patterns in liver fibrosis. This work establishes a foundation for converting the static biomedical literature into an executable, queryable resource that enables automated data reuse at scale.",
+      "id": "2603.11000v1",
+      "title": "Cross-Species Transfer Learning for Electrophysiology-to-Transcriptomics Mapping in Cortical GABAergic Interneurons",
+      "abstract": "Single-cell electrophysiological recordings provide a powerful window into neuronal functional diversity and offer an interpretable route for linking intrinsic physiology to transcriptomic identity. Here, we replicate and extend the electrophysiology-to-transcriptomics framework introduced by Gouwens et al. (2020) using publicly available Allen Institute Patch-seq datasets from both mouse and human cortex. We focus on GABAergic inhibitory interneurons to target a subclass structure (Lamp5, Pvalb, Sst, Vip) that is comparable and conserved across species. After quality control, we analyzed 3,699 mouse visual cortex neurons and 506 human neocortical neurons from neurosurgical resections. Using standardized electrophysiological features and sparse PCA, we reproduced the major class-level separations reported in the original mouse study. For supervised prediction, a class-balanced random forest provided a strong feature-engineered baseline in mouse data and a reduced but still informative baseline in human data. We then developed an attention-based BiLSTM that operates directly on the structured IPFX feature-family representation, avoiding sPCA and providing feature-family-level interpretability via learned attention weights. Finally, we evaluated a cross-species transfer setting in which the sequence model is pretrained on mouse data and fine-tuned on human data for an aligned 4-class task, improving human macro-F1 relative to a human-only training baseline. Together, these results confirm reproducibility of the Gouwens pipeline in mouse data, demonstrate that sequence models can match feature-engineered baselines, and show that mouse-to-human transfer learning can provide measurable gains for human subclass prediction.",
       "authors": [
-        "Alexandre Hutton",
-        "Jesse G. Meyer"
+        "Theo Schwider",
+        "Ramin Ramezani"
       ],
-      "primary_category": "q-bio.GN",
+      "primary_category": "cs.LG",
       "categories": [
-        "q-bio.GN"
+        "cs.LG",
+        "q-bio.NC"
       ],
-      "published": "2026-03-10T18:53:10+00:00",
-      "link": "https://arxiv.org/pdf/2603.10161v2",
+      "published": "2026-03-11T17:23:54+00:00",
+      "link": "https://arxiv.org/pdf/2603.11000v1",
       "tags": [
         "keyword:基因演化",
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "LLM agents for omics data discovery",
-      "llm_evidence_cn": "用于组学数据发现的大语言模型智能体",
-      "llm_evidence": "用于组学数据发现的大语言模型智能体",
-      "canonical_evidence": "用于组学数据发现的大语言模型智能体",
-      "llm_tldr_en": "An agentic framework using LLMs to extract and organize unstructured omics data.",
-      "llm_tldr_cn": "一种利用大语言模型提取和组织非结构化组学数据的智能体框架。",
-      "llm_tldr": "一种利用大语言模型提取和组织非结构化组学数据的智能体框架。",
+      "llm_evidence_en": "cross-species transcriptomic identity mapping",
+      "llm_evidence_cn": "跨物种转录组身份映射",
+      "llm_evidence": "跨物种转录组身份映射",
+      "canonical_evidence": "跨物种转录组身份映射",
+      "llm_tldr_en": "Uses transfer learning to map electrophysiology to transcriptomics across mouse and human species.",
+      "llm_tldr_cn": "利用迁移学习在小鼠和人类物种间建立电生理与转录组的映射关系。",
+      "llm_tldr": "利用迁移学习在小鼠和人类物种间建立电生理与转录组的映射关系。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "comparative genomics across species",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.10261v1",
+      "title": "Discovery of a Hematopoietic Manifold in scGPT Yields a Method for Extracting Performant Algorithms from Biological Foundation Model Internals",
+      "abstract": "We report the discovery and extraction of a compact hematopoietic algorithm from the single-cell foundation model scGPT, to our knowledge the first biologically useful, competitive algorithm extracted from a foundation model via mechanistic interpretability. We show that scGPT internally encodes a compact hematopoietic manifold with significant developmental branch structure, validated on a strict non-overlap Tabula Sapiens external panel and confirmed via frozen-head zero-shot transfer to an independent multi-donor immune panel. To isolate this geometry, we introduce a general three-stage extraction method consisting of direct operator export from frozen attention weights, a lightweight learned adaptor, and a task-specific readout, producing a standalone algorithm without target-dataset retraining. In 88-split donor-holdout benchmarks against scVI, Palantir, DPT, CellTypist, PCA, and raw-expression baselines, the extracted algorithm achieves the strongest pseudotime-depth ordering and leads on key subtype endpoints (CD4/CD8 AUROC 0.867, mono/macro AUROC 0.951). Compared to standard probing of frozen scGPT embeddings with a 3-layer MLP, the extracted head is BH-significantly better on 6/8 classification endpoints while completing a full 12-split evaluation campaign 34.5x faster with approximately 1000x fewer trainable parameters. The exported operator compresses from three pooled attention heads to a single head without statistically significant loss, and further to a rank-64 surrogate. Mechanistic interpretability of the compact operator reveals a concentrated four-factor core explaining 66.2% of ablation impact, with factors resolving into explicit T/lymphoid, B/plasma, granulocytic, and monocyte/macrophage gene programs. A supplementary second-manifold validation (intercellular communication geometry) confirms that the extraction method generalizes beyond hematopoiesis.",
+      "authors": [
+        "Ihor Kendiukhov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.CB",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-10T22:44:12+00:00",
+      "link": "https://arxiv.org/pdf/2603.10261v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "extracting algorithms from biological foundation models",
+      "llm_evidence_cn": "从生物基础模型中提取算法",
+      "llm_evidence": "从生物基础模型中提取算法",
+      "canonical_evidence": "从生物基础模型中提取算法",
+      "llm_tldr_en": "Extracts a hematopoietic manifold algorithm from the scGPT foundation model via mechanistic interpretability.",
+      "llm_tldr_cn": "通过机械可解释性从scGPT基础模型中提取造血流形算法。",
+      "llm_tldr": "通过机械可解释性从scGPT基础模型中提取造血流形算法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.10811v1",
+      "title": "Protein Counterfactuals via Diffusion-Guided Latent Optimization",
+      "abstract": "Deep learning models can predict protein properties with unprecedented accuracy but rarely offer mechanistic insight or actionable guidance for engineering improved variants. When a model flags an antibody as unstable, the protein engineer is left without recourse: which mutations would rescue stability while preserving function? We introduce Manifold-Constrained Counterfactual Optimization for Proteins (MCCOP), a framework that computes minimal, biologically plausible sequence edits that flip a model's prediction to a desired target state. MCCOP operates in a continuous joint sequence-structure latent space and employs a pretrained diffusion model as a manifold prior, balancing three objectives: validity (achieving the target property), proximity (minimizing mutations), and plausibility (producing foldable proteins). We evaluate MCCOP on three protein engineering tasks - GFP fluorescence rescue, thermodynamic stability enhancement, and E3 ligase activity recovery - and show that it generates sparser, more plausible counterfactuals than both discrete and continuous baselines. The recovered mutations align with known biophysical mechanisms, including chromophore packing and hydrophobic core consolidation, establishing MCCOP as a tool for both model interpretation and hypothesis-driven protein design. Our code is publicly available at github.com/weroks/mccop.",
+      "authors": [
+        "Weronika Kłos",
+        "Sidney Bender",
+        "Lukas Kades"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-11T14:19:52+00:00",
+      "link": "https://arxiv.org/pdf/2603.10811v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-guided latent optimization for biologically plausible protein sequence edits",
+      "llm_evidence_cn": "AI引导的潜空间优化，用于生物学上合理的蛋白质序列编辑",
+      "llm_evidence": "AI引导的潜空间优化，用于生物学上合理的蛋白质序列编辑",
+      "canonical_evidence": "AI引导的潜空间优化，用于生物学上合理的蛋白质序列编辑",
+      "llm_tldr_en": "A framework using diffusion models to suggest minimal protein sequence edits for desired property changes.",
+      "llm_tldr_cn": "一个利用扩散模型建议蛋白质序列编辑以实现所需属性变化的框架。",
+      "llm_tldr": "一个利用扩散模型建议蛋白质序列编辑以实现所需属性变化的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.11940v1",
+      "title": "Exhaustive Circuit Mapping of a Single-Cell Foundation Model Reveals Massive Redundancy, Heavy-Tailed Hub Architecture, and Layer-Dependent Differentiation Control",
+      "abstract": "Mechanistic interpretability of biological foundation models has relied on selective feature sampling, pairwise interaction testing, and observational trajectory analysis. Each of these can introduce systematic bias. Here we present three experiments that address these limitations through exhaustive circuit tracing, higher order combinatorial ablation, and causal trajectory steering in Geneformer, a transformer based single cell foundation model. First, exhaustive tracing of all 4065 active sparse autoencoder features at layer 5 yields 1393850 significant downstream edges, a 27 fold expansion over selective sampling. This reveals a heavy tailed hub distribution in which 1.8 percent of features account for disproportionate connectivity and 40 percent of the top 20 hubs lack biological annotation. These results indicate systematic annotation bias in prior selective analyses. Second, three way combinatorial ablation across 8 feature triplets shows that redundancy deepens monotonically with interaction order, with a three way ratio of 0.59 versus a pairwise ratio of 0.74, and with zero synergy. This confirms that the model architecture is subadditive at all tested orders. Third, trajectory guided feature steering establishes a causal link between layer position and differentiation directionality. Late layer features at L17 consistently push cell states toward maturity, with fraction positive equal to 1.0. Early and mid layer features at L0 and L11 mostly push away from maturity, with fraction positive ranging from 0.00 to 0.58. Together these results move from correlation toward causal evidence for layer dependent control of cell state.",
+      "authors": [
+        "Ihor Kendiukhov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-12T13:53:20+00:00",
+      "link": "https://arxiv.org/pdf/2603.11940v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Interpretability of single-cell foundation models in genomics",
+      "llm_evidence_cn": "基因组学中单细胞基础模型的可解释性",
+      "llm_evidence": "基因组学中单细胞基础模型的可解释性",
+      "canonical_evidence": "基因组学中单细胞基础模型的可解释性",
+      "llm_tldr_en": "This study uses circuit mapping to interpret Geneformer, a transformer-based single-cell foundation model.",
+      "llm_tldr_cn": "该研究通过电路映射解释了Geneformer，这是一种基于Transformer的单细胞基础模型。",
+      "llm_tldr": "该研究通过电路映射解释了Geneformer，这是一种基于Transformer的单细胞基础模型。",
       "llm_tags": [
         "query:q7"
       ],
@@ -745,40 +747,38 @@
       "quick_tier": "8plus"
     },
     {
-      "id": "2603.11244v1",
-      "title": "A Standardized Framework For Evaluating Gene Expression Generative Models",
-      "abstract": "The rapid development of generative models for single-cell gene expression data has created an urgent need for standardised evaluation frameworks. Current evaluation practices suffer from inconsistent metric implementations, incomparable hyperparameter choices, and a lack of biologically-grounded metrics. We present Generated Genetic Expression Evaluator (GGE), an open-source Python framework that addresses these challenges by providing a comprehensive suite of distributional metrics with explicit computation space options and biologically-motivated evaluation through differentially expressed gene (DEG)-focused analysis and perturbation-effect correlation, enabling standardized reporting and reproducible benchmarking. Through extensive analysis of the single-cell generative modeling literature, we identify that no standardized evaluation protocol exists. Methods report incomparable metrics computed in different spaces with different hyperparameters. We demonstrate that metric values vary substantially depending on implementation choices, highlighting the critical need for standardization. GGE enables fair comparison across generative approaches and accelerates progress in perturbation response prediction, cellular identity modeling, and counterfactual inference.",
+      "id": "2603.10911v1",
+      "title": "Macroscopic Dominance from Microscopic Extremes: Symmetry Breaking in Spatial Competition",
+      "abstract": "How do competing populations convert a spatial advantage into macroscopic dominance? We introduce a stochastic model for resource competition that decouples the transient discovery phase from monopolization. Initial symmetry breaking is governed by extreme value statistics of first-passage times: a linear spatial disadvantage requires an exponentially larger population to overcome. However, transient superiority cannot stabilize dominance. A non-reciprocal interaction bias is strictly necessary to arrest local fluctuations and drive the system into a robust absorbing state.",
       "authors": [
-        "Andrea Rubbi",
-        "Andrea Giuseppe Di Francesco",
-        "Mohammad Lotfollahi",
-        "Pietro Liò"
+        "Stuti Guha",
+        "Shawn D. Ryan",
+        "Bhargav R. Karamched"
       ],
-      "primary_category": "q-bio.GN",
+      "primary_category": "q-bio.PE",
       "categories": [
-        "q-bio.GN",
-        "cs.LG"
+        "q-bio.PE"
       ],
-      "published": "2026-03-11T19:11:03+00:00",
-      "link": "https://arxiv.org/pdf/2603.11244v1",
+      "published": "2026-03-11T15:57:25+00:00",
+      "link": "https://arxiv.org/pdf/2603.10911v1",
       "tags": [
         "keyword:基因演化",
         "query:基因演化"
       ],
       "llm_score": 7.0,
-      "llm_evidence_en": "AI-driven evaluation of gene expression models",
-      "llm_evidence_cn": "利用AI评估基因表达模型",
-      "llm_evidence": "利用AI评估基因表达模型",
-      "canonical_evidence": "利用AI评估基因表达模型",
-      "llm_tldr_en": "GGE is a framework for standardized evaluation of generative models for single-cell gene expression data.",
-      "llm_tldr_cn": "GGE是一个用于标准化评估单细胞基因表达生成模型的框架。",
-      "llm_tldr": "GGE是一个用于标准化评估单细胞基因表达生成模型的框架。",
+      "llm_evidence_en": "stochastic model for resource competition in populations",
+      "llm_evidence_cn": "群体资源竞争的随机模型",
+      "llm_evidence": "群体资源竞争的随机模型",
+      "canonical_evidence": "群体资源竞争的随机模型",
+      "llm_tldr_en": "Investigates how competing populations achieve macroscopic dominance through microscopic symmetry breaking.",
+      "llm_tldr_cn": "研究竞争群体如何通过微观对称性破缺实现宏观优势。",
+      "llm_tldr": "研究竞争群体如何通过微观对称性破缺实现宏观优势。",
       "llm_tags": [
-        "query:q7"
+        "query:q5"
       ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
       "selection_source": "fresh_fetch",
       "quick_tier": "7"
     }

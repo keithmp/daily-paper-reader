@@ -1,45 +1,8 @@
 {
-  "generated_at": "2026-03-18T02:25:58.474492+00:00",
-  "updated_date": "20260217-20260318",
+  "generated_at": "2026-03-18T02:35:26.351546+00:00",
+  "updated_date": "20260309-20260318",
   "carryover_days": 9,
   "items": [
-    {
-      "id": "2603.13051v1",
-      "title": "Causal Cellular Context Transfer Learning (C3TL): An Efficient Architecture for Prediction of Unseen Perturbation Effects",
-      "abstract": "Predicting the effects of chemical and genetic perturbations on quantitative cell states is a central challenge in computational biology, molecular medicine and drug discovery. Recent work has leveraged large-scale single-cell data and massive foundation models to address this task. However, such computational resources and extensive datasets are not always accessible in academic or clinical settings, hence limiting utility. Here we propose a lightweight framework for perturbation effect prediction that exploits the structured nature of biological interventions and specific inductive biases/invariances. Our approach leverages available information concerning perturbation effects to allow generalization to novel contexts and requires only widely-available bulk molecular data. Extensive testing, comparing predictions of context-specific perturbation effects against real, large-scale interventional experiments, demonstrates accurate prediction in new contexts. The proposed approach is competitive with SOTA foundation models but requires simpler data, much smaller model sizes and less time. Focusing on robust bulk signals and efficient architectures, we show that accurate prediction of perturbation effects is possible without proprietary hardware or very large models, hence opening up ways to leverage causal learning approaches in biomedicine generally.",
-      "authors": [
-        "Michael Scholkemper",
-        "Sach Mukherjee"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "q-bio.QM"
-      ],
-      "published": "2026-03-13T15:02:49+00:00",
-      "link": "https://arxiv.org/pdf/2603.13051v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "Prediction of genetic perturbation effects using transfer learning",
-      "llm_evidence_cn": "利用迁移学习预测遗传扰动效应",
-      "llm_evidence": "利用迁移学习预测遗传扰动效应",
-      "canonical_evidence": "利用迁移学习预测遗传扰动效应",
-      "llm_tldr_en": "A lightweight transfer learning architecture for predicting the effects of genetic and chemical perturbations.",
-      "llm_tldr_cn": "一种用于预测遗传和化学扰动效应的轻量级迁移学习架构。",
-      "llm_tldr": "一种用于预测遗传和化学扰动效应的轻量级迁移学习架构。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.13051v1",
-      "carry_days": 1
-    },
     {
       "id": "2603.12111v1",
       "title": "Breaching the Barrier: Transition Pathways of Coral Larval Connectivity Across the Eastern Pacific",
@@ -64,13 +27,13 @@
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "Genetic connectivity and gene flow in coral larvae",
-      "llm_evidence_cn": "珊瑚幼虫的遗传连通性与基因流",
-      "llm_evidence": "珊瑚幼虫的遗传连通性与基因流",
-      "canonical_evidence": "珊瑚幼虫的遗传连通性与基因流",
-      "llm_tldr_en": "Analyzes genetic connectivity and ocean circulation to explain gene flow across the Eastern Pacific Barrier.",
-      "llm_tldr_cn": "分析遗传连通性和海洋环流，解释跨东太平洋屏障的基因流。",
-      "llm_tldr": "分析遗传连通性和海洋环流，解释跨东太平洋屏障的基因流。",
+      "llm_evidence_en": "genetic connectivity and gene flow in coral larvae",
+      "llm_evidence_cn": "珊瑚幼虫的遗传连通性与基因流分析",
+      "llm_evidence": "珊瑚幼虫的遗传连通性与基因流分析",
+      "canonical_evidence": "珊瑚幼虫的遗传连通性与基因流分析",
+      "llm_tldr_en": "Analyzes genetic connectivity and ocean circulation to explain gene flow patterns in Eastern Pacific corals.",
+      "llm_tldr_cn": "分析遗传连通性与海洋环流，解释东太平洋珊瑚的基因流模式。",
+      "llm_tldr": "分析遗传连通性与海洋环流，解释东太平洋珊瑚的基因流模式。",
       "llm_tags": [
         "query:q5"
       ],
@@ -104,13 +67,13 @@
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "Deep learning for DNA transcription factor binding prediction",
-      "llm_evidence_cn": "利用深度学习进行DNA转录因子结合位点预测",
-      "llm_evidence": "利用深度学习进行DNA转录因子结合位点预测",
-      "canonical_evidence": "利用深度学习进行DNA转录因子结合位点预测",
-      "llm_tldr_en": "Uses Temporal Convolutional Networks to predict multi-label transcription factor binding on DNA sequences.",
-      "llm_tldr_cn": "使用时间卷积网络预测DNA序列上的多标签转录因子结合位点。",
-      "llm_tldr": "使用时间卷积网络预测DNA序列上的多标签转录因子结合位点。",
+      "llm_evidence_en": "deep learning for DNA transcription factor binding characterization",
+      "llm_evidence_cn": "用于DNA转录因子结合表征的深度学习",
+      "llm_evidence": "用于DNA转录因子结合表征的深度学习",
+      "canonical_evidence": "用于DNA转录因子结合表征的深度学习",
+      "llm_tldr_en": "Uses Temporal Convolutional Networks to predict multi-label transcription factor binding sites on DNA.",
+      "llm_tldr_cn": "利用时间卷积网络预测DNA上的多标签转录因子结合位点。",
+      "llm_tldr": "利用时间卷积网络预测DNA上的多标签转录因子结合位点。",
       "llm_tags": [
         "query:q7"
       ],
@@ -143,13 +106,13 @@
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "AI-driven genetic programming for protein structure prediction using evolutionary views",
-      "llm_evidence_cn": "利用AI遗传编程结合演化视角进行蛋白质结构预测",
-      "llm_evidence": "利用AI遗传编程结合演化视角进行蛋白质结构预测",
-      "canonical_evidence": "利用AI遗传编程结合演化视角进行蛋白质结构预测",
-      "llm_tldr_en": "Proposes a genetic programming framework for protein structure prediction using evolutionary and semantic features.",
-      "llm_tldr_cn": "提出一种利用演化和语义特征进行蛋白质二级结构预测的遗传编程框架。",
-      "llm_tldr": "提出一种利用演化和语义特征进行蛋白质二级结构预测的遗传编程框架。",
+      "llm_evidence_en": "Genetic programming for protein structure prediction",
+      "llm_evidence_cn": "遗传规划用于蛋白质结构预测",
+      "llm_evidence": "遗传规划用于蛋白质结构预测",
+      "canonical_evidence": "遗传规划用于蛋白质结构预测",
+      "llm_tldr_en": "A multi-objective genetic programming framework for enhanced protein secondary structure prediction.",
+      "llm_tldr_cn": "一种用于增强蛋白质二级结构预测的多目标遗传规划框架。",
+      "llm_tldr": "一种用于增强蛋白质二级结构预测的多目标遗传规划框架。",
       "llm_tags": [
         "query:q7"
       ],
@@ -161,40 +124,153 @@
       "carry_days": 1
     },
     {
-      "id": "2603.11000v1",
-      "title": "Cross-Species Transfer Learning for Electrophysiology-to-Transcriptomics Mapping in Cortical GABAergic Interneurons",
-      "abstract": "Single-cell electrophysiological recordings provide a powerful window into neuronal functional diversity and offer an interpretable route for linking intrinsic physiology to transcriptomic identity. Here, we replicate and extend the electrophysiology-to-transcriptomics framework introduced by Gouwens et al. (2020) using publicly available Allen Institute Patch-seq datasets from both mouse and human cortex. We focus on GABAergic inhibitory interneurons to target a subclass structure (Lamp5, Pvalb, Sst, Vip) that is comparable and conserved across species. After quality control, we analyzed 3,699 mouse visual cortex neurons and 506 human neocortical neurons from neurosurgical resections. Using standardized electrophysiological features and sparse PCA, we reproduced the major class-level separations reported in the original mouse study. For supervised prediction, a class-balanced random forest provided a strong feature-engineered baseline in mouse data and a reduced but still informative baseline in human data. We then developed an attention-based BiLSTM that operates directly on the structured IPFX feature-family representation, avoiding sPCA and providing feature-family-level interpretability via learned attention weights. Finally, we evaluated a cross-species transfer setting in which the sequence model is pretrained on mouse data and fine-tuned on human data for an aligned 4-class task, improving human macro-F1 relative to a human-only training baseline. Together, these results confirm reproducibility of the Gouwens pipeline in mouse data, demonstrate that sequence models can match feature-engineered baselines, and show that mouse-to-human transfer learning can provide measurable gains for human subclass prediction.",
+      "id": "2603.14717v1",
+      "title": "Training-Free Generation of Protein Sequences from Small Family Alignments via Stochastic Attention",
+      "abstract": "Most protein families have fewer than 100 known members, a regime where deep generative models overfit or collapse. We propose stochastic attention (SA), a training-free sampler that treats the modern Hopfield energy over a protein alignment as a Boltzmann distribution and draws samples via Langevin dynamics. The score function is a closed-form softmax attention operation requiring no training, no pretraining data, and no GPU, with cost linear in alignment size. Across eight Pfam families, SA generates sequences with low amino acid compositional divergence, substantial novelty, and structural plausibility confirmed by ESMFold and AlphaFold2. Generated sequences fold more faithfully to canonical family structures than natural members in six of eight families. Against profile HMMs, EvoDiff, and the MSA Transformer, which produce sequences that drift far outside the family, SA maintains 51 to 66 percent identity while remaining novel, in seconds on a laptop. The critical temperature governing generation is predicted from PCA dimensionality alone, enabling fully automatic operation. Controls confirm SA encodes correlated substitution patterns, not just per-position amino acid frequencies.",
       "authors": [
-        "Theo Schwider",
-        "Ramin Ramezani"
+        "Jeffrey D. Varner"
       ],
       "primary_category": "cs.LG",
       "categories": [
-        "cs.LG",
-        "q-bio.NC"
+        "cs.LG"
       ],
-      "published": "2026-03-11T17:23:54+00:00",
-      "link": "https://arxiv.org/pdf/2603.11000v1",
+      "published": "2026-03-16T01:42:47+00:00",
+      "link": "https://arxiv.org/pdf/2603.14717v1",
       "tags": [
         "keyword:基因演化",
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "conserved across species transcriptomics",
-      "llm_evidence_cn": "跨物种保守的转录组学研究",
-      "llm_evidence": "跨物种保守的转录组学研究",
-      "canonical_evidence": "跨物种保守的转录组学研究",
-      "llm_tldr_en": "Uses transfer learning to map electrophysiology to transcriptomics across mouse and human.",
-      "llm_tldr_cn": "利用迁移学习在小鼠和人类之间进行电生理与转录组学的跨物种映射。",
-      "llm_tldr": "利用迁移学习在小鼠和人类之间进行电生理与转录组学的跨物种映射。",
+      "llm_evidence_en": "AI-driven protein sequence generation from alignments",
+      "llm_evidence_cn": "AI驱动的基于序列比对的蛋白质序列生成",
+      "llm_evidence": "AI驱动的基于序列比对的蛋白质序列生成",
+      "canonical_evidence": "AI驱动的基于序列比对的蛋白质序列生成",
+      "llm_tldr_en": "Proposes a training-free AI method to generate novel protein sequences from small family alignments.",
+      "llm_tldr_cn": "提出了一种无需训练的AI方法，能从小型家族比对中生成新的蛋白质序列。",
+      "llm_tldr": "提出了一种无需训练的AI方法，能从小型家族比对中生成新的蛋白质序列。",
       "llm_tags": [
-        "query:q3"
+        "query:q7"
       ],
-      "matched_query_tag": "query:q3",
-      "matched_query_text": "comparative genomics across species",
-      "matched_requirement_id": "req-3",
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
       "selection_source": "carryover_cache",
-      "paper_id": "2603.11000v1",
+      "paper_id": "2603.14717v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.14870v1",
+      "title": "IgPose: A Generative Data-Augmented Pipeline for Robust Immunoglobulin-Antigen Binding Prediction",
+      "abstract": "Predicting immunoglobulin-antigen (Ig-Ag) binding remains a significant challenge due to the paucity of experimentally-resolved complexes and the limited accuracy of de novo Ig structure prediction. We introduce IgPose, a generalizable framework for Ig-Ag pose identification and scoring, built on a generative data-augmentation pipeline. To mitigate data scarcity, we constructed the Structural Immunoglobulin Decoy Database (SIDD), a comprehensive repository of high-fidelity synthetic decoys. IgPose integrates equivariant graph neural networks, ESM-2 embeddings, and gated recurrent units to synergistically capture both geometric and evolutionary features. We implemented interface-focused k-hop sampling with biologically guided pooling to enhance generalization across diverse interfaces. The framework comprises two sub-networks--IgPoseClassifier for binding pose discrimination and IgPoseScore for DockQ score estimation--and achieves robust performance on curated internal test sets and the CASP-16 benchmark compared to physics and deep learning baselines. IgPose serves as a versatile computational tool for high-throughput antibody discovery pipelines by providing accurate pose filtering and ranking. IgPose is available on GitHub (https://github.com/arontier/igpose).",
+      "authors": [
+        "Tien-Cuong Bui",
+        "Injae Chung",
+        "Wonjun Lee",
+        "Junsu Ko",
+        "Juyong Lee"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-16T06:16:03+00:00",
+      "link": "https://arxiv.org/pdf/2603.14870v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI framework capturing evolutionary features for binding prediction",
+      "llm_evidence_cn": "捕捉演化特征用于结合预测的AI框架",
+      "llm_evidence": "捕捉演化特征用于结合预测的AI框架",
+      "canonical_evidence": "捕捉演化特征用于结合预测的AI框架",
+      "llm_tldr_en": "Uses GNNs and ESM-2 to capture evolutionary features for immunoglobulin-antigen binding prediction.",
+      "llm_tldr_cn": "利用图神经网络和ESM-2捕捉演化特征，用于免疫球蛋白-抗原结合预测。",
+      "llm_tldr": "利用图神经网络和ESM-2捕捉演化特征，用于免疫球蛋白-抗原结合预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.14870v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.15390v1",
+      "title": "Hecate: A Modular Genomic Compressor",
+      "abstract": "We present Hecate, a modular lossless genomic compression framework. It is designed around uncommon but practical source-coding choices. Unlike many single-method compressors, Hecate treats compression as a conditional coding problem over coupled FASTA/FASTQ streams (control, headers, nucleotides, case, quality, extras). It uses per-stream codecs under a shared indexed block container. Codecs include alphabet-aware packing with an explicit side channel for out-of-alphabet residues, an auxiliary-index Burrows-Wheeler pipeline with custom arithmetic coding, and a blockwise Markov mixture coder with explicit model-competition signaling. This architecture yields high throughput, exact random-access slicing, and referential mode through streamwise binary differencing. In a comprehensive benchmark suite, Hecate provides the best compression vs. speed trade-offs against state-of-the-art established tools (MFCompress, NAF, bzip3, AGC), with notably stronger behaviour on large genomes and high-similarity referential settings. For the same compression ratio, Hecate is 2 to 10 times faster. When given the same time budget as other algorithms, Hecate achieves up to 5% to 10% better compression.",
+      "authors": [
+        "Kamila Szewczyk",
+        "Sven Rahmann"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-16T15:06:28+00:00",
+      "link": "https://arxiv.org/pdf/2603.15390v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "modular genomic compressor for FASTA/FASTQ streams",
+      "llm_evidence_cn": "用于FASTA/FASTQ流的模块化基因组压缩器",
+      "llm_evidence": "用于FASTA/FASTQ流的模块化基因组压缩器",
+      "canonical_evidence": "用于FASTA/FASTQ流的模块化基因组压缩器",
+      "llm_tldr_en": "Introduces Hecate, a modular framework for efficient lossless compression of genomic data streams.",
+      "llm_tldr_cn": "介绍了Hecate，一个用于基因组数据流高效无损压缩的模块化框架。",
+      "llm_tldr": "介绍了Hecate，一个用于基因组数据流高效无损压缩的模块化框架。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; molecular evolution and genetic variation; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.15390v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.15171v1",
+      "title": "A mechanical bifurcation constrains the evolution of cell sheet folding in the family Volvocaceae",
+      "abstract": "The processes of morphogenesis that give rise to the shapes of organs and organisms during development are often driven by mechanical instabilities. Can such mechanical bifurcations also drive or constrain the evolution of these processes in the first place? We discover an instance of these constraints in the green algae of the family Volvocaceae. During their development, their bowl-shaped embryonic cell sheet turns itself inside out. This inversion is driven by a simple wave of cell wedging in the genus Pleodorina (16-128 cells) and more complex programmes of cell shape changes in Volvox (~400-50000 cells). However, no species with intermediate cell numbers (256 cells) have been described. Here, we relate this gap to a mechanical bifurcation: Focusing on the inversion of Pleodorina californica (64 cells), we develop a continuum model, in which the cell shape changes driving inversion appear as changes of the intrinsic curvature of an elastic surface. A mechanical bifurcation in this model predicts that inversion is only possible in a subset of its parameter space. Strikingly, parameters estimated for P. californica fall into this possible subset, but those that we extrapolate to 256 or more cells using allometric observations and a model of cell cleavage in Volvocaceae do not. Our work thus suggests that the more complex inversion strategies of Volvox are an evolutionary necessity to obviate this bifurcation and indicates more broadly how mechanical bifurcations can drive the evolution of morphogenesis.",
+      "authors": [
+        "Valens Tribet",
+        "Pierre A. Haas"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft",
+        "physics.bio-ph",
+        "q-bio.TO"
+      ],
+      "published": "2026-03-16T12:06:38+00:00",
+      "link": "https://arxiv.org/pdf/2603.15171v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "mechanical constraints on the evolution of cell sheet folding",
+      "llm_evidence_cn": "细胞层折叠演化的力学约束",
+      "llm_evidence": "细胞层折叠演化的力学约束",
+      "canonical_evidence": "细胞层折叠演化的力学约束",
+      "llm_tldr_en": "Investigates how mechanical bifurcations constrain the evolution of morphogenesis in green algae.",
+      "llm_tldr_cn": "研究了力学分叉如何约束绿藻形态发生过程的演化。",
+      "llm_tldr": "研究了力学分叉如何约束绿藻形态发生过程的演化。",
+      "llm_tags": [
+        "query:q1"
+      ],
+      "matched_query_tag": "query:q1",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-1",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.15171v1",
       "carry_days": 1
     },
     {
