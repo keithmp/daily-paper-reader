@@ -1,6 +1,357 @@
 {
-  "generated_at": "2026-03-06T19:11:18.471356+00:00",
-  "updated_date": "20260306",
+  "generated_at": "2026-03-18T02:08:18.624192+00:00",
+  "updated_date": "20260309-20260318",
   "carryover_days": 9,
-  "items": []
+  "items": [
+    {
+      "id": "2603.15052v1",
+      "title": "Diverse communities promote the coexistence of closely-related strains through emergent equalization and stabilization",
+      "abstract": "Microbial communities harbor extensive fine-scale diversity: closely-related strains of the same species coexist alongside many distantly-related taxa. Yet strain coexistence remains poorly understood, largely because most studies neglect the diverse communities in which strains are embedded. Here we combine community ecology and statistical physics to study the dynamics of closely-related strains in a community context. We demonstrate that in a diverse community, indirect interactions between strains -- mediated through the surrounding community members -- can be as strong as direct ones. These community-mediated feedbacks cause conspecific strains to behave as if they have correlated growth rates and reduced competition. Using modern coexistence theory, we show that these effects correspond to equalizing and stabilizing mechanisms which together promote strain coexistence. The same equalizing and stabilizing mechanisms also qualitatively transform strain abundance correlations: strains that compete strongly and show negative correlations in isolation instead show positive correlations in a community, appearing mutualistic despite being competitors. Our results demonstrate that strain dynamics are emergent consequences of the surrounding community, and that capturing community feedbacks does not require the full interaction network; only a small number of emergent parameters.",
+      "authors": [
+        "Naven Narayanan Venkatanarayanan",
+        "Akshit Goyal"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cond-mat.stat-mech",
+        "nlin.AO"
+      ],
+      "published": "2026-03-16T10:06:42+00:00",
+      "link": "https://arxiv.org/pdf/2603.15052v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "dynamics of closely-related strains in communities",
+      "llm_evidence_cn": "群落中近缘菌株的演化动力学",
+      "llm_evidence": "群落中近缘菌株的演化动力学",
+      "canonical_evidence": "群落中近缘菌株的演化动力学",
+      "llm_tldr_en": "Studies how diverse communities promote coexistence of closely-related strains via ecological feedbacks.",
+      "llm_tldr_cn": "研究多样化群落如何通过生态反馈促进近缘菌株的共存。",
+      "llm_tldr": "研究多样化群落如何通过生态反馈促进近缘菌株的共存。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.15052v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.13787v1",
+      "title": "Advancing Cancer Prognosis with Hierarchical Fusion of Genomic, Proteomic and Pathology Imaging Data from a Systems Biology Perspective",
+      "abstract": "To enhance the precision of cancer prognosis, recent research has increasingly focused on multimodal survival methods by integrating genomic data and histology images. However, current approaches overlook the fact that the proteome serves as an intermediate layer bridging genomic alterations and histopathological features while providing complementary biological information essential for survival prediction. This biological reality exposes another architectural limitation: existing integrative analysis studies fuse these heterogeneous data sources in a flat manner that fails to capture their inherent biological hierarchy. To address these limitations, we propose HFGPI, a hierarchical fusion framework that models the biological progression from genes to proteins to histology images from a systems biology perspective. Specifically, we introduce Molecular Tokenizer, a molecular encoding strategy that integrates identity embeddings with expression profiles to construct biologically informed representations for genes and proteins. We then develop Gene-Regulated Protein Fusion (GRPF), which employs graph-aware cross-attention with structure-preserving alignment to explicitly model gene-protein regulatory relationships and generate gene-regulated protein representations. Additionally, we propose Protein-Guided Hypergraph Learning (PGHL), which establishes associations between proteins and image patches, leveraging hypergraph convolution to capture higher-order protein-morphology relationships. The final features are progressively fused across hierarchical layers to achieve precise survival outcome prediction. Extensive experiments on five benchmark datasets demonstrate the superiority of HFGPI over state-of-the-art methods.",
+      "authors": [
+        "Junjie Zhou",
+        "Bao Xue",
+        "Meiling Wang",
+        "Wei Shao",
+        "Daoqiang Zhang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-14T06:30:51+00:00",
+      "link": "https://arxiv.org/pdf/2603.13787v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "integrating genomic data using AI for cancer prognosis",
+      "llm_evidence_cn": "利用AI整合基因组数据进行癌症预后",
+      "llm_evidence": "利用AI整合基因组数据进行癌症预后",
+      "canonical_evidence": "利用AI整合基因组数据进行癌症预后",
+      "llm_tldr_en": "Proposes a hierarchical fusion framework for cancer prognosis using genomic and proteomic data.",
+      "llm_tldr_cn": "提出一种分层融合框架，利用基因组和蛋白质组数据进行癌症预后预测。",
+      "llm_tldr": "提出一种分层融合框架，利用基因组和蛋白质组数据进行癌症预后预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.13787v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.14405v1",
+      "title": "ES-Merging: Biological MLLM Merging via Embedding Space Signals",
+      "abstract": "Biological multimodal large language models (MLLMs) have emerged as powerful foundation models for scientific discovery. However, existing models are specialized to a single modality, limiting their ability to solve inherently cross-modal scientific problems. While model merging is an efficient method to combine the different modalities into a unified MLLM, existing methods rely on input-agnostic parameter space heuristics that fail to faithfully capture modality specialization. To overcome this limitation, we propose a representation-aware merging framework that estimates merging coefficients from embedding space signals. We first design a probe input that consists of different modality tokens and forward it through each specialized MLLM to obtain layer-wise embedding responses that reflect modality-specific representation changes. We then estimate complementary merging coefficients at two granularities from the embedding space: layer-wise coefficients from coarse-grained signals and element-wise coefficients from fine-grained signals, which are jointly combined for robust coefficient estimation. Experiments on interactive effect prediction benchmarks show that our method outperforms existing merging methods and even surpasses task-specific fine-tuned models, establishing that embedding space signals provide a principled and effective foundation for cross-modal MLLM merging.",
+      "authors": [
+        "Wonbin Lee",
+        "Dongki Kim",
+        "Sung Ju Hwang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-15T14:38:32+00:00",
+      "link": "https://arxiv.org/pdf/2603.14405v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "biological multimodal large language models for discovery",
+      "llm_evidence_cn": "用于科学发现的生物多模态大语言模型",
+      "llm_evidence": "用于科学发现的生物多模态大语言模型",
+      "canonical_evidence": "用于科学发现的生物多模态大语言模型",
+      "llm_tldr_en": "Proposes ES-Merging to combine specialized biological MLLMs into a unified model.",
+      "llm_tldr_cn": "提出ES-Merging方法，将专门的生物多模态大模型融合成统一模型。",
+      "llm_tldr": "提出ES-Merging方法，将专门的生物多模态大模型融合成统一模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.14405v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.13051v1",
+      "title": "Causal Cellular Context Transfer Learning (C3TL): An Efficient Architecture for Prediction of Unseen Perturbation Effects",
+      "abstract": "Predicting the effects of chemical and genetic perturbations on quantitative cell states is a central challenge in computational biology, molecular medicine and drug discovery. Recent work has leveraged large-scale single-cell data and massive foundation models to address this task. However, such computational resources and extensive datasets are not always accessible in academic or clinical settings, hence limiting utility. Here we propose a lightweight framework for perturbation effect prediction that exploits the structured nature of biological interventions and specific inductive biases/invariances. Our approach leverages available information concerning perturbation effects to allow generalization to novel contexts and requires only widely-available bulk molecular data. Extensive testing, comparing predictions of context-specific perturbation effects against real, large-scale interventional experiments, demonstrates accurate prediction in new contexts. The proposed approach is competitive with SOTA foundation models but requires simpler data, much smaller model sizes and less time. Focusing on robust bulk signals and efficient architectures, we show that accurate prediction of perturbation effects is possible without proprietary hardware or very large models, hence opening up ways to leverage causal learning approaches in biomedicine generally.",
+      "authors": [
+        "Michael Scholkemper",
+        "Sach Mukherjee"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-13T15:02:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.13051v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for predicting genetic perturbation effects",
+      "llm_evidence_cn": "利用AI预测基因扰动效应",
+      "llm_evidence": "利用AI预测基因扰动效应",
+      "canonical_evidence": "利用AI预测基因扰动效应",
+      "llm_tldr_en": "A lightweight framework for predicting cellular responses to genetic and chemical perturbations.",
+      "llm_tldr_cn": "一种轻量级框架，用于预测细胞对基因和化学扰动的反应。",
+      "llm_tldr": "一种轻量级框架，用于预测细胞对基因和化学扰动的反应。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.13051v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.12111v1",
+      "title": "Breaching the Barrier: Transition Pathways of Coral Larval Connectivity Across the Eastern Pacific",
+      "abstract": "Genetic analyses indicate minimal gene flow across the so-called Eastern Pacific Barrier (EPB) in larvae of the reef-building coral \\emph{Porites lobata}. Notably, Clipperton Atoll, situated on the eastern side of the EPB, is the only site that exhibits detectable genetic connectivity with the Line Islands, which lie to the west of the EPB. To elucidate the relationship between this genetic signal and large-scale Pacific Ocean circulation, we analyze historical trajectories of surface-drifting buoys from the Global Drifter Program (GDP). We first discretize the GDP drifter trajectories into a Markov chain representation and subsequently apply transition path theory (TPT) in combination with Bayesian inference. The TPT analysis identifies reactive trajectories -- pathways that connect the Line Islands to Clipperton Atoll with minimal detours -- whose travel times do not exceed 5 months, which is taken as an upper bound for the larval survival time of \\emph{P. lobata}. Consistently, the posterior distribution of transport from Pacific islands west of the EPB to Clipperton Atoll attains a local maximum in the Line Islands at a travel time of approximately 2.5 months. Our probabilistic characterization of the Lagrangian dynamics therefore supports a scenario of weak, but non-negligible, permeability of the EPB, in agreement with the genetic evidence, and it motivates a refined dynamical definition of the EPB based on the remaining duration of reactive trajectories. Furthermore, our results indicate that the connectivity between the Line Islands and Clipperton Atoll is governed primarily by the seasonal modulation of the North Equatorial Countercurrent, rather than by the phase of the El Niño--Southern Oscillation (ENSO). Finally, Clipperton Atoll's role as a terminal sink for trajectories is relevant to the planned mining operations.",
+      "authors": [
+        "Maria Olascoaga",
+        "Francisco Beron-Vera",
+        "Gage Bonner",
+        "Cora McKean",
+        "Ramona Joss"
+      ],
+      "primary_category": "physics.ao-ph",
+      "categories": [
+        "physics.ao-ph",
+        "math.PR",
+        "nlin.CD"
+      ],
+      "published": "2026-03-12T16:15:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.12111v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Genetic connectivity and gene flow in coral larvae",
+      "llm_evidence_cn": "珊瑚幼虫的遗传连通性与基因流",
+      "llm_evidence": "珊瑚幼虫的遗传连通性与基因流",
+      "canonical_evidence": "珊瑚幼虫的遗传连通性与基因流",
+      "llm_tldr_en": "Analyzes genetic connectivity and ocean circulation to explain gene flow across the Eastern Pacific Barrier.",
+      "llm_tldr_cn": "分析遗传连通性和海洋环流，解释跨东太平洋屏障的基因流。",
+      "llm_tldr": "分析遗传连通性和海洋环流，解释跨东太平洋屏障的基因流。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.12111v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.10873v1",
+      "title": "SNPgen: Phenotype-Supervised Genotype Representation and Synthetic Data Generation via Latent Diffusion",
+      "abstract": "Polygenic risk scores and other genomic analyses require large individual-level genotype datasets, yet strict data access restrictions impede sharing. Synthetic genotype generation offers a privacy-preserving alternative, but most existing methods operate unconditionally, producing samples without phenotype alignment, or rely on unsupervised compression, creating a gap between statistical fidelity and downstream task utility. We present SNPgen, a two-stage conditional latent diffusion framework for generating phenotype-supervised synthetic genotypes. SNPgen combines GWAS-guided variant selection (1,024-2,048 trait-associated SNPs) with a variational autoencoder for genotype compression and a latent diffusion model conditioned on binary disease labels via classifier-free guidance. Evaluated on 458,724 UK Biobank individuals across four complex diseases (coronary artery disease, breast cancer, type 1 and type 2 diabetes), models trained on synthetic data matched real-data predictive performance in a train-on-synthetic, test-on-real protocol, approaching genome-wide PRS methods that use $2$-$6\\times$ more variants. Privacy analysis confirmed zero identical matches, near-random membership inference (AUC $\\approx 0.50$), preserved linkage disequilibrium structure, and high allele frequency correlation ($r \\geq 0.95$) with source data. A controlled simulation with known causal effects verified faithful recovery of the imposed genetic association structure.",
+      "authors": [
+        "Andrea Lampis",
+        "Michela Carlotta Massi",
+        "Nicola Pirastu",
+        "Francesca Ieva",
+        "Matteo Matteucci",
+        "Emanuele Di Angelantonio"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-11T15:23:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.10873v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for synthetic genotype generation and GWAS analysis",
+      "llm_evidence_cn": "利用AI生成合成基因型并进行GWAS分析",
+      "llm_evidence": "利用AI生成合成基因型并进行GWAS分析",
+      "canonical_evidence": "利用AI生成合成基因型并进行GWAS分析",
+      "llm_tldr_en": "SNPgen uses latent diffusion to generate phenotype-supervised synthetic genotypes for genomic analysis.",
+      "llm_tldr_cn": "SNPgen利用潜在扩散模型生成受表型监督的合成基因型，用于基因组分析。",
+      "llm_tldr": "SNPgen利用潜在扩散模型生成受表型监督的合成基因型，用于基因组分析。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.10873v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.12073v1",
+      "title": "A Multi-Label Temporal Convolutional Framework for Transcription Factor Binding Characterization",
+      "abstract": "Transcription factors (TFs) regulate gene expression through complex and co-operative mechanisms. While many TFs act together, the logic underlying TFs binding and their interactions is not fully understood yet. Most current approaches for TF binding site prediction focus on individual TFs and binary classification tasks, without a full analysis of the possible interactions among various TFs. In this paper we investigate DNA TF binding site recognition as a multi-label classification problem, achieving reliable predictions for multiple TFs on DNA sequences retrieved in public repositories. Our deep learning models are based on Temporal Convolutional Networks (TCNs), which are able to predict multiple TF binding profiles, capturing correlations among TFs andtheir cooperative regulatory mechanisms. Our results suggest that multi-label learning leading to reliable predictive performances can reveal biologically meaningful motifs and co-binding patterns consistent with known TF interactions, while also suggesting novel relationships and cooperation among TFs.",
+      "authors": [
+        "Pietro Demurtas",
+        "Ferdinando Zanchetta",
+        "Giovanni Perini",
+        "Rita Fioresi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-12T15:42:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.12073v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "deep learning for DNA transcription factor binding site recognition",
+      "llm_evidence_cn": "用于DNA转录因子结合位点识别的深度学习",
+      "llm_evidence": "用于DNA转录因子结合位点识别的深度学习",
+      "canonical_evidence": "用于DNA转录因子结合位点识别的深度学习",
+      "llm_tldr_en": "Uses Temporal Convolutional Networks to predict multi-label transcription factor binding on DNA sequences.",
+      "llm_tldr_cn": "使用时间卷积网络预测DNA序列上的多标签转录因子结合位点。",
+      "llm_tldr": "使用时间卷积网络预测DNA序列上的多标签转录因子结合位点。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.12073v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.12293v1",
+      "title": "Multi-objective Genetic Programming with Multi-view Multi-level Feature for Enhanced Protein Secondary Structure Prediction",
+      "abstract": "Predicting protein secondary structure is essential for understanding protein function and advancing drug discovery. However, the intricate sequence-structure relationship poses significant challenges for accurate modeling. To address these, we propose MOGP-MMF, a multi-objective genetic programming framework that reformulates PSSP as an automated optimization task focused on feature selection and fusion. Specifically, MOGP-MMF introduces a multi-view multi-level representation strategy that integrates evolutionary, semantic, and newly introduced structural views to capture the comprehensive protein folding logic. Leveraging an enriched operator set, the framework evolves both linear and nonlinear fusion functions, effectively capturing high-order feature interactions while reducing fusion complexity. To resolve the accuracy-complexity trade-off, an improved multi-objective GP algorithm is developed, incorporating a knowledge transfer mechanism that utilizes prior evolutionary experience to guide the population toward global optima. Extensive experiments across seven benchmark datasets demonstrate that MOGP-MMF surpasses state-of-the-art methods, particularly in Q8 accuracy and structural integrity. Furthermore, MOGP-MMF generates a diverse set of non-dominated solutions, offering flexible model selection schemes for various practical application scenarios. The source code is available on GitHub: https://github.com/qian-ann/MOGP-MMF/tree/main.",
+      "authors": [
+        "Yining Qian",
+        "Lijie Su",
+        "Meiling Xu",
+        "Xianpeng Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.NE"
+      ],
+      "published": "2026-03-11T09:32:27+00:00",
+      "link": "https://arxiv.org/pdf/2603.12293v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI and evolutionary views for protein structure prediction",
+      "llm_evidence_cn": "利用AI和演化视角进行蛋白质结构预测",
+      "llm_evidence": "利用AI和演化视角进行蛋白质结构预测",
+      "canonical_evidence": "利用AI和演化视角进行蛋白质结构预测",
+      "llm_tldr_en": "MOGP-MMF uses genetic programming and evolutionary views to enhance protein secondary structure prediction.",
+      "llm_tldr_cn": "MOGP-MMF利用遗传规划和演化视角来增强蛋白质二级结构预测。",
+      "llm_tldr": "MOGP-MMF利用遗传规划和演化视角来增强蛋白质二级结构预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.12293v1",
+      "carry_days": 1
+    },
+    {
+      "id": "2603.11000v1",
+      "title": "Cross-Species Transfer Learning for Electrophysiology-to-Transcriptomics Mapping in Cortical GABAergic Interneurons",
+      "abstract": "Single-cell electrophysiological recordings provide a powerful window into neuronal functional diversity and offer an interpretable route for linking intrinsic physiology to transcriptomic identity. Here, we replicate and extend the electrophysiology-to-transcriptomics framework introduced by Gouwens et al. (2020) using publicly available Allen Institute Patch-seq datasets from both mouse and human cortex. We focus on GABAergic inhibitory interneurons to target a subclass structure (Lamp5, Pvalb, Sst, Vip) that is comparable and conserved across species. After quality control, we analyzed 3,699 mouse visual cortex neurons and 506 human neocortical neurons from neurosurgical resections. Using standardized electrophysiological features and sparse PCA, we reproduced the major class-level separations reported in the original mouse study. For supervised prediction, a class-balanced random forest provided a strong feature-engineered baseline in mouse data and a reduced but still informative baseline in human data. We then developed an attention-based BiLSTM that operates directly on the structured IPFX feature-family representation, avoiding sPCA and providing feature-family-level interpretability via learned attention weights. Finally, we evaluated a cross-species transfer setting in which the sequence model is pretrained on mouse data and fine-tuned on human data for an aligned 4-class task, improving human macro-F1 relative to a human-only training baseline. Together, these results confirm reproducibility of the Gouwens pipeline in mouse data, demonstrate that sequence models can match feature-engineered baselines, and show that mouse-to-human transfer learning can provide measurable gains for human subclass prediction.",
+      "authors": [
+        "Theo Schwider",
+        "Ramin Ramezani"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "published": "2026-03-11T17:23:54+00:00",
+      "link": "https://arxiv.org/pdf/2603.11000v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "conserved across species transcriptomics",
+      "llm_evidence_cn": "跨物种保守的转录组学研究",
+      "llm_evidence": "跨物种保守的转录组学研究",
+      "canonical_evidence": "跨物种保守的转录组学研究",
+      "llm_tldr_en": "Uses transfer learning to map electrophysiology to transcriptomics across mouse and human.",
+      "llm_tldr_cn": "利用迁移学习在小鼠和人类之间进行电生理与转录组学的跨物种映射。",
+      "llm_tldr": "利用迁移学习在小鼠和人类之间进行电生理与转录组学的跨物种映射。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "comparative genomics across species",
+      "matched_requirement_id": "req-3",
+      "selection_source": "carryover_cache",
+      "paper_id": "2603.11000v1",
+      "carry_days": 1
+    }
+  ]
 }

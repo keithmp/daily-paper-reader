@@ -1,0 +1,274 @@
+Title: Sequential learning theory for Markov genealogy processes
+
+URL Source: https://arxiv.org/pdf/2603.09033v1
+
+Published Time: Wed, 11 Mar 2026 00:19:14 GMT
+
+Number of Pages: 9
+
+Markdown Content:
+# Sequential learning theory for Markov genealogy processes 
+
+## David J. Pascall 11MRC Biostatistics Unit, University of Cambridge, Cambridge, UK 
+
+# 1 Abstract 
+
+We introduce a filtration-based framework for studying when and why adding taxa improves phylodynamic inference, by constructing a natural ordering of observed tips and applying sequential Bayesian analysis to the resulting filtration. We decompose the expected variance reduction on taxa addition into learning, mismatch, and covariance components, classify estimands into learning classes based on the pathwise behaviour of the mismatch, and show that for absorbing estimands an oracle who knows the latent absorption status obtains event-wise learning guarantees unavailable to the analyst. The gap between oracle and analyst is irreducible under stochastic sampling processes, establishing a fundamental limit on what sequence data alone can reveal about the latent genealogy. 
+
+# 2 Introduction 
+
+A natural question in phylodynamic inference is whether adding taxa to an analysis always improves esti-mation. Practitioners have observed that this is not always the case, as additional sequences can increase posterior uncertainty, degrade mixing, or amplify model misspecification. Yet the theoretical foundations for understanding when and why taxa addition helps or hurts are largely absent. In this paper, we introduce a filtration-based framework for studying this question. By constructing a random ordering of observed tips via a uniform permutation, we obtain a natural filtration on the sequence data, which allows standard results from sequential Bayesian analysis to be applied to phylodynamic inference. The framework reveals that the answer depends critically on what is being estimated: for fixed parameters like substitution or birth rates, classical guarantees apply directly, but for estimands that change with the sample (such as the tMRCA of the included tips) the situation is more complex, because the target itself shifts as taxa are added. 1
+
+> arXiv:2603.09033v1 [q-bio.QM] 10 Mar 2026
+
+We show that for any sequential estimand with a well-defined limit target (the value that would be obtained if the entire latent genealogy were observed), the expected posterior variance about that limit target decreases on taxa addition. However, this process-averaged guarantee masks important structure. We decompose the variance change into learning, mismatch, and covariance components. We also show that for absorbing estimands, those sequential estimands where there is a possibility of early maintained equality with the limit estimand, the learning process simplifies dramatically post-absorption. We introduce an oracle who knows the absorption status and show that the oracle obtains event-wise learning guarantees that the analyst cannot access, because the absorption status depends on the latent genealogy. The gap between oracle and analyst is irreducible: even after all sampled tips are observed, the analyst’s uncertainty strictly exceeds the oracle’s, reflecting a fundamental limit on what can be learned from sequence data alone without knowledge of the latent process structure. 
+
+# 3 Mathematical setup 
+
+We work on a probability space (Ω , F, P) supporting a random element ∆.
+
+∆ = (Θ , G, Λ) 
+
+We define the law P as follows: 
+
+Θ ∼ π
+
+G| Θ ∼ PΘ
+
+h(G) = {(xi, t i)}f (G)
+
+> i=1
+
+Λ|f (G) ∼ Uf (G)
+
+Let Θ be the random variable describing the parameters of an arbitrary Markov genealogy process (MGP) with sampling and mutation, per the definition of King et al. (2024), and let PΘ be the conditional law of the genealogy. We limit the focus to MGPs that generate genealogies on finite numbers of tips. We have some prior π on Θ. Let G be the latent marked tree-valued random variable given by PΘ. Let f (G) be the deterministic function of G counting the number of observed samples under the sampling process, and 
+
+z(G) = nmax be the deterministic function counting all the tips on the latent full genealogy, so f (G) ≤ nmax 
+
+surely. Let h(G) be the deterministic function extracting the set of paired sequences, x, and sampling times, 
+
+t, of the observed nodes on the tree. These samples induce an implicit subtree of G. Let Λ be a permutation 2of 1 : f (G), such that Λ is conditionally independent of (Θ , G) given f (G).Henceforth, we will work with the new conditional law, P∗, defined by conditioning on f (G) ≥ m + 1 for some fixed integer m ≥ 3, to ensure that the quantities we want to work with are defined in all cases - the minimal phylogenetically interesting tree is on 3 tips. We use Λ to define an ordering of the data, and then work with the natural filtration on this data. 
+
+Yk = ( xΛ( k), t Λ( k))
+
+Dn = ( Y1, ..., Y n)
+
+Fn = σ(Dn)
+
+By construction Fn ⊂ F n+1 , and such a non-padded nesting exists for n ≤ m, and in particular n = 3 .We then define ˆπn(·) = P∗((Θ , G) ∈ ·|F n), a deterministic function of Dn, so that ˆπn is the posterior distribution obtained by conditioning on Dn and using the initial prior, π. Let k be a measurable function of (Θ , G), and let K = k(Θ , G) denote the estimand of interest. The induced posterior on K is given by the pushforward ˆπKn = ˆ πn ◦ k−1. The posterior variance of K is then Var ˆπn (K), which equals Var( K|F n) a.s. It is convenient to define a taxonomy of estimand classes; permutation-invariant estimands, functions of 
+
+(Θ , G), which have limit, K∞, and fixed, Kf , estimands as subclasses, and permutation-variant estimands where the estimand is a function of (Θ , G, Λ) . Limit estimands are differentiated from fixed estimands by the existence of a hypothetical sequence of permutation-variant estimands ( ˜Kn)n≤nmax , such that as n → nmax ,
+
+˜Kn → K∞ = ˜Knmax under the sequence defined by every permutation of the nmax observations. Estimands in the fixed estimand class can be considered degenerate limit estimands. The sequential estimand constituted by the observed tips under a realisation of the process is written (Kn)n≤f (G).Note that, for permutation-variant estimands, conditioning on Fn resolves the Λ-dependence mediated through the induced subtree a.s., since Dn determines which sampled tips have been revealed among the first n observations, so Kn becomes a function of (Θ , G) conditional on Dn and the pushforward remains well defined. 
+
+# 4 Results 
+
+The first thing that the setup above allows us to do is classify types of estimands into what we call learn-ing classes . Learning classes aim for a full classification of sequential estimands in MGPs by relating the permutation-variant estimands in the sequence to their limit estimand, K∞. Sequential estimands are first divided by whether the mismatch path is monotone. They are then divided by whether equality with the 3limit estimand is reachable before nmax with positive probability and if it is, once reached, is absorbing in all, some or no cases. Constant sequences are then separated into their own class of degenerate absorbing monotone estimands. 
+
+• Fixed: Constant sequential estimands. Kn = Kf a.s. for all n.
+
+• Absorbing monotonic: Non-constant sequential estimands for which the sequence (|K∞ − Kn|) is a.s. non-increasing in n, and P(∃n < n max : Kn = K∞) > 0.
+
+• Absorbing non-monotonic: Non-constant sequential estimands for which the sequence (|K∞ − Kn|) is not a.s. non-increasing in n, P(∃n < n max : Kn = K∞) > 0, and if Kn = K∞, then Km = K∞ for all 
+
+m ≥ n a.s. 
+
+• Mixed non-monotonic: Sequential estimands for which the sequence (|K∞ − Kn|) is not a.s. non-increasing in n, P(∃n < m < n max : Kn = K∞, K m̸ = K∞) > 0 and P(∃n′ < n max : Kn′ = K∞, K m =
+
+K∞∀m > n ′) > 0.
+
+• Non-absorbing non-monotonic: Sequential estimands for which the sequence (|K∞ − Kn|) is not a.s. non-increasing in n, and ∀n < n max − 1 such that P(Kn = K∞) > 0, P(∃m > n : Km̸ = K∞|Kn =
+
+K∞) > 0.
+
+• Terminal monotonic: Sequential estimands for which the sequence (|K∞ − Kn|) is a.s. non-increasing in n, and P(∃n < n max : Kn = K∞) = 0 .
+
+• Terminal non-monotonic: Sequential estimands for which the sequence (|K∞ − Kn|) is not a.s. non-increasing in n, and P(∃n < n max : Kn = K∞) = 0 .Both the definition of sequential estimands and the learning class taxonomy can be extended to the non-finite case, but we leave this for future work. These classes have clear example estimands that appear in practice. As examples, tMRCA-type estimands are absorbing monotonic, tree length is terminal monotonic, and the clock rate is fixed. 
+
+Proposition 1 (Standard learning for permutation-invariant estimands) . Under the construction above, 
+
+(Fn)n≤f (G) is a filtration on (Ω , F, P∗), and for any square-integrable permutation-invariant estimand, K,
+
+EP∗ [Var( K|F n)] ≥ EP∗ [Var( K|F n+1 )] .Proof. This is a standard result, e.g. see Durrett (2019). We simply verify the hypotheses; by construction 
+
+Fn ⊂ F n+1 , by permutation-invariance the estimand is a fixed target across the filtration (i.e. K does not change with n), and by assumption K is square-integrable, therefore the result follows by application of the Law of Total Variance and taking expectations under P∗.4We can use the fact that standard learning applies to limit estimands in order to say something about learning for general phylodynamic sequential estimands, under the assumption that the target we actually care about is the limit target. Directly, that result says that, if our true target is the limit target, taxa addition leads to a reduction in uncertainty in expectation. However, we can get better understanding of this process by decomposing the variance of the sequential estimand in terms of the limit estimand. 
+
+Lemma 1 (Variance decomposition for sequential estimands) . For any sequential estimand, Kn, with square-integrable limit estimand, K∞, and square-integrable difference, K∞ − Kn, then, 
+
+EP∗ [Var( K∞|F n)] = EP∗ [Var( Kn|F n)] + 
+
+EP∗ [Var( K∞ − Kn|F n)] + 2EP∗ [Cov( Kn, K ∞ − Kn|F n)] 
+
+Proof. Note that K∞ = Kn + ( K∞ − Kn), substitute that into Var( K∞|F n), apply the conditional version of Bienaymé’s identity and simplify. That is, we can decompose our uncertainty about our limit target into our uncertainty about the current sequential target, our uncertainty about the discrepancy between our current sequential target and the limit target, and how the two uncertainties relate to each other. 
+
+Theorem 1 (Sequential learning decomposition) . For any pair of sequential estimands, Kn and Kn+1 , with square-integrable limit estimand, K∞, and square-integrable differences, K∞ − Kn and K∞ − Kn+1 , then, 
+
+0 ≤EP∗ [Var( Kn|F n) − Var( Kn+1 |F n+1 )] + 
+
+EP∗ [Var( K∞ − Kn|F n) − Var( K∞ − Kn+1 |F n+1 )] + 2EP∗ [Cov( Kn, K ∞ − Kn|F n) − Cov( Kn+1 , K ∞ − Kn+1 |F n+1 )] 
+
+Proof. Apply Lemma 1 to EP∗ [Var( K∞|F n)] and EP∗ [Var( K∞|F n+1 )] , then difference them, noting by Proposition 1 that the former is larger than the latter. This relates the previous result to learning, and applies generally across all the learning classes. We already observed that the uncertainty about the limit target decreased on average on taxa addition, but this gives us a mechanistic breakdown of where that learning is occurring. The first pair of terms is analogous to a classical learning term, the expected change in our uncertainty about the current target in the sequence on taxa addition. The second pair is a "mismatch" term, measuring the expected change in our uncertainty 5about how far the current target is from the limit estimand. The final term is about the expected change in how the uncertainty about the current target and the uncertainty about the discrepancy covary. None of the three terms have an obvious sign; adding a taxon may increase uncertainty about the new sequential target, the uncertainty about the distance of the current target depends on the learning class of the estimand (learning classes are precisely about the pathwise structure of this mismatch) but remain hard to conceptualise in general, and the covariance structure relies on the precise geometry of phylogenetic posteriors which are complex and poorly understood. Despite this, the theorem says that while these three terms can trade-off against each other, their sum must remain non-negative by the improvement guarantees of Proposition 1. For absorbing monotonic or absorbing learning class estimands, we can get a further decomposition in terms of the absorbing event, which allows further characterisation of the learning for these classes. 
+
+Lemma 2 (Partitioned decomposition conditional on absorption status) . Let (Kn)n≤f (G) be an absorbing monotonic or absorbing sequential estimand with square-integrable limit estimand, K∞, and square-integrable differences, K∞ −Kn, for 3 ≤ n ≤ f (G). Let τ be the random time at which absorption occurs on the observed sequence, if it does occur, that is τ = inf {n ∈ { 1, ..., f (G)} : Kn = K∞} with τ = ∞ if the set is empty, then, 
+
+0 ≤P∗(τ ≤ n)EP∗ [Var( K∞|F n) − Var( K∞|F n+1 )| τ ≤ n]+ 
+
+P∗(τ = n + 1) EP∗ [Var( Kn|F n) − Var( K∞|F n+1 )| τ = n + 1]+ 
+
+P∗(τ = n + 1) EP∗ [Var( K∞ − Kn|F n)| τ = n + 1]+ 2P∗(τ = n + 1) EP∗ [Cov( Kn, K ∞ − Kn|F n)| τ = n + 1]+ 
+
+P∗(n + 1 < τ )EP∗ [Var( Kn|F n) − Var( Kn+1 |F n+1 )| n + 1 < τ ]+ 
+
+P∗(n + 1 < τ )EP∗ [Var( K∞ − Kn|F n) − Var( K∞ − Kn+1 |F n+1 )| n + 1 < τ ]+ 2P∗(n + 1 < τ )EP∗ [Cov( Kn, K ∞ − Kn|F n) − Cov( Kn+1 , K ∞ − Kn+1 |F n+1 )| n + 1 < τ ]
+
+Proof. Partition the result of Theorem 1 by the events {τ ≤ n}, {τ = n + 1 } and {n + 1 < τ }, using the Law of Total Expectation on the total random variable, which is valid because τ is measurable with respect to F. Then simplify using the facts that on {τ ≤ n}, Kn = Kn+1 = K∞, and on {τ = n + 1 }, Kn+1 = K∞,so the relevant mismatch and covariance terms vanish. This decomposition splits the learning regime into three discrete structural states for absorbing monotonic or absorbing sequential estimands. When τ ≤ n the mismatch has already vanished and learning is classical, when τ = n + 1 the addition of the next taxon resolves the remaining mismatch, and when τ = ∞ mismatch 6persists on taxon addition and the structure remains as it was in Theorem 1. There are two key points that are relevant to interpreting this result. Firstly, this remains a result averaged across the entire process. It does not say that within every structural state there is variance reduction on taxon addition in expectation, just that this decomposition is possible and the average result of Proposition 1 applies. Secondly, the analyst cannot make use of this decomposition. What the analyst knows at step n is contained in Fn, but τ is not contained in Fn (or Fn+1 ); it is not Fn-measurable. At this point we can introduce an oracle who knows what the analyst knows plus τ . Their expanded filtration is σ(Dn, τ ) = F′
+
+> n
+
+. This has immediate consequences. 
+
+Corollary 1 (Event-wise in expectation variance reduction for the oracle) . Let (Kn)n≤f (G) be an absorbing monotonic or absorbing sequential estimand with square-integrable limit estimand, K∞, and square-integrable differences, K∞ − Kn, for 3 ≤ n ≤ f (G), and let τ be the random time at which absorption occurs, as defined in Lemma 2, then under the oracle filtration σ(Dn, τ ) = F′
+
+> n
+
+,
+
+EP∗ [Var( Kn|F ′
+
+> n
+
+)|τ ≤ n] ≥ EP∗
+
+[Var( Kn+1 |F ′
+
+> n+1
+
+)|τ ≤ n]
+
+EP∗ [Var( K∞|F ′
+
+> n
+
+)|τ = n + 1] ≥ EP∗
+
+[Var( Kn+1 |F ′
+
+> n+1
+
+)|τ = n + 1 ]
+
+EP∗ [Var( K∞|F ′
+
+> n
+
+)|n + 1 < τ ] ≥ EP∗
+
+[Var( K∞|F ′
+
+> n+1
+
+)|n + 1 < τ ]
+
+Proof. As τ is F′
+
+> n
+
+-measurable, the approach of Proposition 1 applies. The Law of Total Expectation can be applied eventwise, and the expectations taken with respect to the process. Then simplify using that on 
+
+{τ ≤ n}, Kn = Kn+1 = K∞, and on {τ = n + 1 }, Kn+1 = K∞ from Lemma 2. There are two important takeaways from Corollary 1. The first is that the oracle gets guarantees about classical learning for the sequential estimands that the analyst uses in practice, because the oracle knows that they’re already the target that they care about. The analyst has to carry a burden of not knowing, which leads to them having to consider the mismatch and covariance terms when the oracle can ignore them. The second is that the oracle gets guaranteed learning in expectation eventwise. As we will see, the analyst has to pay for those same guarantees. 
+
+Theorem 2 (Event-conditional learning) . Let K∞ be a square-integrable estimand, and let E ∈ F with 
+
+P∗(E) > 0 be some event that is being conditioned on. Let Wn ⊂ W n+1 be some nested σ-algebras within F.Write Vk = Var( K∞|W k) and Zk = P∗(E|W k), then, 
+
+EP∗ [Vn − Vn+1 |E] = EP∗ [Vn − Vn+1 ] + Cov P∗ (Vn, Z n) − Cov P∗ (Vn+1 , Z n+1 )
+
+P∗(E)
+
+7Proof. By definition, EP∗ [Vn − Vn+1 |E] = EP∗ [( Vn−Vn+1 )1E ] 
+
+> P∗(E)
+
+. For each term, apply the tower property through the appropriate σ-algebra: since Vn is Wn-measurable, EP∗ [Vn1E ] = EP∗ [VnZn], and since Vn+1 is Wn+1 -measurable, EP∗ [Vn+1 1E ] = EP∗ [Vn+1 Zn+1 ]. Expanding each product of expectations using E[XY ] = 
+
+E[X]E[Y ] + Cov( X, Y ) and noting that Zk is a martingale with EP∗ [Zk] = P∗(E) for all k, the result follows after dividing through by P∗(E).This allows us to directly compare the learning of the oracle and the analyst. For the oracle, who knows the status of the event, their posterior probability of the event is either 1 or 0, so the second term vanishes, and they’re left with the term that by Proposition 1 gives classical learning guarantees. The analyst, for whom the event is uncertain, keeps the second term, and fails to learn eventwise in expectation if a negative covariance correction term between their estimand and the posterior probability is sufficient to overwhelm the process guarantees of Proposition 1. 
+
+Lemma 3 (Analyst-oracle decomposition) . Let (Kn)n≤f (G) be an absorbing monotonic or absorbing sequen-tial estimand with square-integrable limit estimand, K∞, and let τ be the random time at which absorption occurs. Let Var( K∞|F n) be the analyst’s posterior variance and Var( K∞|F ′
+
+> n
+
+) be the oracle’s posterior vari-ance under F′ 
+
+> n
+
+= σ(Dn, τ ). Then, 
+
+Var( K∞|F n) = EP∗ [Var( K∞|F ′
+
+> n
+
+)|F n] + Var P∗ (EP∗ [K∞|F ′
+
+> n
+
+] |F n)
+
+a.s. Proof. This is the Law of Total Variance applied to nested σ-algebras. As Fn ⊂ F ′
+
+> n
+
+, the result follows. The second term here, the conditional variance of the oracle’s posterior mean given only the analyst’s information, is the component of the analyst’s uncertainty that is driven by blindness to the absorption status - a direct expression of the cost of the analyst not knowing what the oracle knows. 
+
+Theorem 3 (Irreducibility of the oracle gap) . Let (Kn)n≤f (G) be a scalar absorbing monotonic sequential estimand with square-integrable limit estimand, K∞, and square-integrable differences of constant sign, K∞ −
+
+Kn. Let τ be the random time at which absorption occurs, as defined in Lemma 2, with 0 < P∗(τ <
+
+∞|F f (G)) < 1 on a set of positive probability. If EP∗ [Kf (G)|F f (G), τ < ∞] = EP∗ [Kf (G)|F f (G), τ = ∞] on the set where 0 < P∗(τ < ∞|F f (G)) < 1, then, EP∗ [Var P∗ (EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|F f (G))] > 0.Proof. Write A = {τ < ∞} and H = σ(Ff (G), A ). Since Ff (G) ⊂ H ⊂ F ′ 
+
+> f(G)
+
+, the conditional Law of Total Variance gives Var P∗ (EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|F f (G)) ≥ Var P∗ (EP∗ [EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|H ]|F f (G)). As H is a binary enlarge-ment, the conditional variance identity for binary enlargements gives Var P∗ (EP∗ [EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|H ]|F f (G)) = 
+
+8P∗(A|F f (G))P∗(Ac|F f (G))( EP∗ [EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|F f (G), A ]−EP∗ [EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|F f (G), A c]) 2. By the Tower Prop-erty EP∗ [EP∗ [K∞|F ′ 
+
+> f(G)
+
+]|F f (G), A ] = EP∗ [K∞|F f (G), A ] as σ(Ff (G), A ) ⊂ F ′ 
+
+> f(G)
+
+, and likewise on Ac. Since 
+
+K∞ = Kf (G)+( K∞−Kf (G)) and K∞−Kf (G) = 0 a.s. on A, we have, EP∗ [K∞|F f (G), A ]−EP∗ [K∞|F f (G), A c] = 
+
+EP∗ [Kf (G)|F f (G), A ] − EP∗ [Kf (G)|F f (G), A c] − EP∗ [K∞ − Kf (G)|F f (G), A c]. We can then cancel using the 
+
+EP∗ [Kf (G)|F f (G), τ < ∞] = EP∗ [Kf (G)|F f (G), τ = ∞] assumption. K∞̸ = Kf (G) a.s. on Ac by the definition of the event, and by the constant sign assumption the difference has constant sign, so the difference has strict constant sign a.s. on Ac. Therefore, EP∗ [K∞ − Kf (G)|F f (G), A c]̸ = 0 whenever P∗(Ac|F f (G)) > 0. Hence the squared term above is strictly positive on the set where 0 < P∗(A|F f (G)) < 1, which has positive probability by assumption. Taking expectations with respect to the process gives the required result. That is, even after observing all sampled tips, the analyst’s posterior variance strictly exceeds the expected oracle posterior variance, assuming terminal sequential mean-independence from absorption status. In other words, that knowing whether your current sequential target already equals the limit target shouldn’t impact your expected estimate of the current target. This is very natural assumption for many phylogenetic estimands. Consider the tMRCA of all the tips in the current sample. We introduce the straddling criterion to talk about this geometrically. Consider the root of a tree, a set of tips straddles the root if the set contains a tip from at least two distinct subtrees descending from it. Straddling can be defined for all other nodes similarly. As soon as a set of tips straddles the root, the tMRCA of that set of tips is fixed to the root age. Straddling for non-root nodes only implies that the tMRCA of that set is at least as old as the age of that node, but it is easy to introduce a notion of strict straddling , which adds the condition that the set does not contain any tips that don’t descend from that node, which carries the properties at the root through to non-root nodes. Knowing whether the current sample has straddled the root should not change the estimate of the tMRCA of the current sample set, but it should still impact your estimate of the age of the root of the full latent genealogy, the terminal sequential mean-independence from absorption status assumption encodes precisely this intuition. 
+
+# References 
+
+Durrett, R. (2019). Probability: Theory and Examples . Cambridge University Press, UK, 5th edition. King, A. A., Lin, Q., and Ionides, E. L. (2024). Exact phylodynamic likelihood via structured markov genealogy processes. arXiv , page 2405.17032. 9
