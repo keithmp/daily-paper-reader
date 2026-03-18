@@ -25,3 +25,48 @@ subscriptions:
     stage: A
     diff_threshold_pct: 15
   keyword_recall_mode: or
+  intent_profiles:
+    - tag: 基因演化
+      description: 查找基因组学与生物演化相关的学术论文
+      enabled: true
+      keywords:
+        - keyword: evolutionary biology
+          keyword_cn: 演化生物学
+          query: evolutionary biology and mechanisms
+        - keyword: phylogenetics
+          keyword_cn: 系统发育学
+          query: phylogenetic analysis and tree construction
+        - keyword: comparative genomics
+          keyword_cn: 比较基因组学
+          query: comparative genomics across species
+        - keyword: molecular evolution
+          keyword_cn: 分子演化
+          query: molecular evolution and genetic variation
+        - keyword: population genetics
+          keyword_cn: 群体遗传学
+          query: population genetics and evolutionary dynamics
+        - keyword: natural selection
+          keyword_cn: 自然选择
+          query: signatures of natural selection in genomes
+      intent_queries:
+        - query: 利用AI进行基因组相关研究也包含
+          query_cn: 利用AI进行基因组相关研究也包含
+          enabled: true
+          source: manual
+          note: ''
+        - query: 猪的异种移植
+          query_cn: 猪的异种移植
+          enabled: true
+          source: manual
+          note: ''
+        - query: recent advances in genomics and evolutionary biology
+          query_cn: 基因组学与演化生物学的最新进展
+          enabled: true
+          source: manual
+          note: ''
+        - query: molecular mechanisms of genome evolution
+          query_cn: 基因组演化的分子机制
+          enabled: true
+          source: manual
+          note: ''
+      updated_at: '2026-03-18T01:43:58.372Z'
