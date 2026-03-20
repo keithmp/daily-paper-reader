@@ -1,370 +1,8 @@
 {
-  "generated_at": "2026-03-19T20:15:54.853177+00:00",
-  "updated_date": "20260319",
+  "generated_at": "2026-03-20T20:14:38.468002+00:00",
+  "updated_date": "20260320",
   "carryover_days": 9,
   "items": [
-    {
-      "id": "2603.04748v1",
-      "title": "SeekRBP: Leveraging Sequence-Structure Integration with Reinforcement Learning for Receptor-Binding Protein Identification",
-      "abstract": "Motivation: Receptor-binding proteins (RBPs) initiate viral infection and determine host specificity, serving as key targets for phage engineering and therapy. However, the identification of RBPs is complicated by their extreme sequence divergence, which often renders traditional homology-based alignment methods ineffective. While machine learning offers a promising alternative, such approaches struggle with severe class imbalance and the difficulty of selecting informative negative samples from heterogeneous tail proteins. Existing methods often fail to balance learning from these ``hard negatives'' while maintaining generalization. Results: We present SeekRBP, a sequence--structure framework that models negative sampling as a sequential decision-making problem. By employing a multi-armed bandit strategy, SeekRBP dynamically prioritizes informative non-RBP sequences based on real-time training feedback, complemented by a multimodal fusion of protein language and structural embeddings. Benchmarking demonstrates that SeekRBP consistently outperforms static sampling strategies. Furthermore, a case study on Vibrio phages validates that SeekRBP effectively identifies RBPs to improve host prediction, highlighting its potential for large-scale annotation and synthetic biology applications.",
-      "authors": [
-        "Xiling Luo",
-        "Le Ou-Yang",
-        "Yang Shen",
-        "Jiaojiao Guan",
-        "Dehan Cai",
-        "Jun Zhang",
-        "Rui Zhang",
-        "Yanni Sun",
-        "Jiayu Shang"
-      ],
-      "primary_category": "q-bio.GN",
-      "categories": [
-        "q-bio.GN"
-      ],
-      "published": "2026-03-05T02:53:42+00:00",
-      "link": "https://arxiv.org/pdf/2603.04748v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI framework for identifying receptor-binding proteins in viral sequences",
-      "llm_evidence_cn": "用于识别病毒序列中受体结合蛋白的AI框架",
-      "llm_evidence": "用于识别病毒序列中受体结合蛋白的AI框架",
-      "canonical_evidence": "用于识别病毒序列中受体结合蛋白的AI框架",
-      "llm_tldr_en": "SeekRBP uses reinforcement learning and sequence-structure integration to identify viral receptor-binding proteins.",
-      "llm_tldr_cn": "SeekRBP结合序列结构与强化学习，用于识别高度分化的病毒受体结合蛋白。",
-      "llm_tldr": "SeekRBP结合序列结构与强化学习，用于识别高度分化的病毒受体结合蛋白。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.04748v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.02952v1",
-      "title": "Sparse autoencoders reveal organized biological knowledge but minimal regulatory logic in single-cell foundation models: a comparative atlas of Geneformer and scGPT",
-      "abstract": "Background: Single-cell foundation models such as Geneformer and scGPT encode rich biological information, but whether this includes causal regulatory logic rather than statistical co-expression remains unclear. Sparse autoencoders (SAEs) can resolve superposition in neural networks by decomposing dense activations into interpretable features, yet they have not been systematically applied to biological foundation models.   Results: We trained TopK SAEs on residual stream activations from all layers of Geneformer V2-316M (18 layers, d=1152) and scGPT whole-human (12 layers, d=512), producing atlases of 82525 and 24527 features, respectively. Both atlases confirm massive superposition, with 99.8 percent of features invisible to SVD. Systematic characterization reveals rich biological organization: 29 to 59 percent of features annotate to Gene Ontology, KEGG, Reactome, STRING, or TRRUST, with U-shaped layer profiles reflecting hierarchical abstraction. Features organize into co-activation modules (141 in Geneformer, 76 in scGPT), exhibit causal specificity (median 2.36x), and form cross-layer information highways (63 to 99.8 percent). When tested against genome-scale CRISPRi perturbation data, only 3 of 48 transcription factors (6.2 percent) show regulatory-target-specific feature responses. A multi-tissue control yields marginal improvement (10.4 percent, 5 of 48 TFs), establishing model representations as the bottleneck.   Conclusions: These models have internalized organized biological knowledge, including pathway membership, protein interactions, functional modules, and hierarchical abstraction, yet they encode minimal causal regulatory logic. We release both feature atlases as interactive web platforms enabling exploration of more than 107000 features across 30 layers of two leading single-cell foundation models.",
-      "authors": [
-        "Ihor Kendiukhov"
-      ],
-      "primary_category": "q-bio.GN",
-      "categories": [
-        "q-bio.GN",
-        "cs.LG",
-        "q-bio.CB"
-      ],
-      "published": "2026-03-03T13:05:11+00:00",
-      "link": "https://arxiv.org/pdf/2603.02952v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "interpreting biological knowledge in single-cell foundation models using autoencoders",
-      "llm_evidence_cn": "使用自动编码器解释单细胞基础模型中的生物学知识",
-      "llm_evidence": "使用自动编码器解释单细胞基础模型中的生物学知识",
-      "canonical_evidence": "使用自动编码器解释单细胞基础模型中的生物学知识",
-      "llm_tldr_en": "Applies sparse autoencoders to extract interpretable biological features from single-cell foundation models.",
-      "llm_tldr_cn": "利用稀疏自动编码器从单细胞基础模型中提取可解释的生物学特征。",
-      "llm_tldr": "利用稀疏自动编码器从单细胞基础模型中提取可解释的生物学特征。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.02952v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.02273v1",
-      "title": "Graph Attention Based Prioritization of Disease Responsible Genes from Multimodal Alzheimer's Network",
-      "abstract": "Prioritizing disease-associated genes is central to understanding the molecular mechanisms of complex disorders such as Alzheimer's disease (AD). Traditional network-based approaches rely on static centrality measures and often fail to capture cross-modal biological heterogeneity. We propose NETRA (Node Evaluation through Transformer-based Representation and Attention), a multimodal graph transformer framework that replaces heuristic centrality metrics with attention-driven relevance scoring. Using AD as a case study, gene regulatory networks are independently constructed from microarray, single-cell RNA-seq, and single-nucleus RNA-seq data. Random-walk sequences derived from these networks are used to train a BERT-based model for learning global gene embeddings, while modality-specific gene expression profiles are compressed using variational autoencoders. These representations are integrated with auxiliary biological networks, including protein-protein interactions, Gene Ontology semantic similarity, and diffusion-based gene similarity, into a unified multimodal graph. A graph transformer assigns NETRA scores that quantify gene relevance in a disease-specific and context-aware manner. Gene set enrichment analysis shows that NETRA achieves a normalized enrichment score of about 3.9 for the Alzheimer's disease pathway, substantially outperforming classical centrality measures and diffusion models. Top-ranked genes enrich multiple neurodegenerative pathways, recover a known late-onset AD susceptibility locus at chr12q13, and reveal conserved cross-disease gene modules. The framework preserves biologically realistic heavy-tailed network topology and is readily extensible to other complex disorders.",
-      "authors": [
-        "Binon Teji",
-        "Subhajit Bandyopadhyay",
-        "Swarup Roy"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-03-01T06:46:18+00:00",
-      "link": "https://arxiv.org/pdf/2603.02273v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "Graph transformer for gene regulatory network analysis",
-      "llm_evidence_cn": "用于基因调控网络分析的图变换器",
-      "llm_evidence": "用于基因调控网络分析的图变换器",
-      "canonical_evidence": "用于基因调控网络分析的图变换器",
-      "llm_tldr_en": "Uses a multimodal graph transformer to prioritize disease-responsible genes from regulatory networks.",
-      "llm_tldr_cn": "使用多模态图变换器从调控网络中优先排序疾病相关基因。",
-      "llm_tldr": "使用多模态图变换器从调控网络中优先排序疾病相关基因。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.02273v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.07233v1",
-      "title": "Retrieval-Augmented Generation for Predicting Cellular Responses to Gene Perturbation",
-      "abstract": "Predicting how cells respond to genetic perturbations is fundamental to understanding gene function, disease mechanisms, and therapeutic development. While recent deep learning approaches have shown promise in modeling single-cell perturbation responses, they struggle to generalize across cell types and perturbation contexts due to limited contextual information during generation. We introduce PT-RAG (Perturbation-aware Two-stage Retrieval-Augmented Generation), a novel framework that extends Retrieval-Augmented Generation beyond traditional language-model applications to cellular biology. Unlike standard RAG systems designed for text retrieval with pre-trained LLMs, perturbation retrieval lacks established similarity metrics and requires learning what constitutes relevant context, making differentiable retrieval essential. PT-RAG addresses this through a two-stage pipeline: first, retrieving candidate perturbations $K$ using GenePT embeddings, then adaptively refining the selection through Gumbel-Softmax discrete sampling conditioned on both the cell state and the input perturbation. This cell-type-aware differentiable retrieval enables end-to-end optimization of the retrieval objective jointly with generation. On the Replogle-Nadig single-gene perturbation dataset, we demonstrate that PT-RAG outperforms both STATE and vanilla RAG under identical experimental conditions, with the strongest gains in distributional similarity metrics ($W_1$, $W_2$). Notably, vanilla RAG's dramatic failure is itself a key finding: it demonstrates that differentiable, cell-type-aware retrieval is essential in this domain, and that naive retrieval can actively harm performance. Our results establish retrieval-augmented generation as a promising paradigm for modelling cellular responses to gene perturbation. The code to reproduce our experiments is available at https://github.com/difra100/PT-RAG_ICLR.",
-      "authors": [
-        "Andrea Giuseppe Di Francesco",
-        "Andrea Rubbi",
-        "Pietro Liò"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "cs.IR"
-      ],
-      "published": "2026-03-07T14:31:27+00:00",
-      "link": "https://arxiv.org/pdf/2603.07233v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI for predicting cellular responses to gene perturbation",
-      "llm_evidence_cn": "利用AI预测细胞对基因扰动的反应",
-      "llm_evidence": "利用AI预测细胞对基因扰动的反应",
-      "canonical_evidence": "利用AI预测细胞对基因扰动的反应",
-      "llm_tldr_en": "Uses retrieval-augmented generation to predict cellular responses to genetic perturbations in single-cell biology.",
-      "llm_tldr_cn": "利用检索增强生成技术预测单细胞生物学中细胞对基因扰动的反应。",
-      "llm_tldr": "利用检索增强生成技术预测单细胞生物学中细胞对基因扰动的反应。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.07233v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.03547v1",
-      "title": "Learning functional groups in complex microbiomes",
-      "abstract": "From soil to the gut, communities composed of thousands of microbes perform functions such as carbon sequestration and immune system regulation. Here, we introduce a data-driven approach that explains how community function can be traced to just a few groups of microbes or genes. In gut communities, our neural-network based clustering algorithm correctly recovers known functional groups. In the ocean metagenome, it distills ~500 gene modules down to three sparse groups highlighting survival strategies at different depths. In soils, it distills ~4400 bacterial species into two groups that enter a mathematical model of nitrate metabolism. By combining interpretable ML with strain isolation and sequencing experiments, we connect the metabolic specialization of each group to community-wide responses to perturbations. This integrated approach yields simple structure-function maps of microbiomes, allowing the discovery of molecular mechanisms underlying human and environmental health. More broadly, we illustrate how to do function-informed dimensionality reduction in biology.",
-      "authors": [
-        "Matthew S Schmitt",
-        "Kiseok Lee",
-        "Freddy Bunbury",
-        "Joseph A Landsittel",
-        "Vincenzo Vitelli",
-        "Seppe Kuehn"
-      ],
-      "primary_category": "physics.bio-ph",
-      "categories": [
-        "physics.bio-ph",
-        "q-bio.GN"
-      ],
-      "published": "2026-03-03T22:03:59+00:00",
-      "link": "https://arxiv.org/pdf/2603.03547v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "Neural-network based clustering for metagenome and gene modules",
-      "llm_evidence_cn": "基于神经网络的宏基因组和基因模块聚类",
-      "llm_evidence": "基于神经网络的宏基因组和基因模块聚类",
-      "canonical_evidence": "基于神经网络的宏基因组和基因模块聚类",
-      "llm_tldr_en": "Uses machine learning to identify functional microbial groups and gene modules in complex microbiomes.",
-      "llm_tldr_cn": "利用机器学习识别复杂微生物群中的功能微生物群落和基因模块。",
-      "llm_tldr": "利用机器学习识别复杂微生物群中的功能微生物群落和基因模块。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.03547v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.06950v1",
-      "title": "How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences",
-      "abstract": "DNA foundation models have become transformative tools in bioinformatics and healthcare applications. Trained on vast genomic datasets, these models can be used to generate sequence embeddings, dense vector representations that capture complex genomic information. These embeddings are increasingly being shared via Embeddings-as-a-Service (EaaS) frameworks to facilitate downstream tasks, while supposedly protecting the privacy of the underlying raw sequences. However, as this practice becomes more prevalent, the security of these representations is being called into question. This study evaluates the resilience of DNA foundation models to model inversion attacks, whereby adversaries attempt to reconstruct sensitive training data from model outputs. In our study, the model's output for reconstructing the DNA sequence is a zero-shot embedding, which is then fed to a decoder. We evaluated the privacy of three DNA foundation models: DNABERT-2, Evo 2, and Nucleotide Transformer v2 (NTv2). Our results show that per-token embeddings allow near-perfect sequence reconstruction across all models. For mean-pooled embeddings, reconstruction quality degrades as sequence length increases, though it remains substantially above random baselines. Evo 2 and NTv2 prove to be most vulnerable, especially for shorter sequences with reconstruction similarities > 90%, while DNABERT-2's BPE tokenization provides the greatest resilience. We found that the correlation between embedding similarity and sequence similarity was a key predictor of reconstruction success. Our findings emphasize the urgent need for privacy-aware design in genomic foundation models prior to their widespread deployment in EaaS settings. Training code, model weights and evaluation pipeline are released on: https://github.com/not-a-feature/DNA-Embedding-Inversion.",
-      "authors": [
-        "Sofiane Ouaari",
-        "Jules Kreuer",
-        "Nico Pfeifer"
-      ],
-      "primary_category": "q-bio.GN",
-      "categories": [
-        "q-bio.GN",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "published": "2026-03-06T23:52:26+00:00",
-      "link": "https://arxiv.org/pdf/2603.06950v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI foundation models for genomic sequences",
-      "llm_evidence_cn": "基因组序列的AI基础模型",
-      "llm_evidence": "基因组序列的AI基础模型",
-      "canonical_evidence": "基因组序列的AI基础模型",
-      "llm_tldr_en": "Evaluates the privacy and security of DNA embeddings generated by genomic foundation models.",
-      "llm_tldr_cn": "评估基因组基础模型生成的DNA嵌入的隐私和安全性。",
-      "llm_tldr": "评估基因组基础模型生成的DNA嵌入的隐私和安全性。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.06950v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.02753v1",
-      "title": "Deep learning-guided evolutionary optimization for protein design",
-      "abstract": "Designing novel proteins with desired characteristics remains a significant challenge due to the large sequence space and the complexity of sequence-function relationships. Efficient exploration of this space to identify sequences that meet specific design criteria is crucial for advancing therapeutics and biotechnology. Here, we present BoGA (Bayesian Optimization Genetic Algorithm), a framework that combines evolutionary search with Bayesian optimization to efficiently navigate the sequence space. By integrating a genetic algorithm as a stochastic proposal generator within a surrogate modeling loop, BoGA prioritizes candidates based on prior evaluations and surrogate model predictions, enabling data-efficient optimization. We demonstrate the utility of BoGA through benchmarking on sequence and structure design tasks, followed by its application in designing peptide binders against pneumolysin, a key virulence factor of \\textit{Streptococcus pneumoniae}. BoGA accelerates the discovery of high-confidence binders, demonstrating the potential for efficient protein design across diverse objectives. The algorithm is implemented within the BoPep suite and is available under an MIT license at \\href{https://github.com/ErikHartman/bopep}{GitHub}.",
-      "authors": [
-        "Erik Hartman",
-        "Di Tang",
-        "Johan Malmström"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "q-bio.QM",
-        "stat.ML"
-      ],
-      "published": "2026-03-03T08:53:12+00:00",
-      "link": "https://arxiv.org/pdf/2603.02753v1",
-      "tags": [
-        "keyword:基因演化",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI-guided evolutionary optimization for protein sequences",
-      "llm_evidence_cn": "AI引导的蛋白质序列演化优化",
-      "llm_evidence": "AI引导的蛋白质序列演化优化",
-      "canonical_evidence": "AI引导的蛋白质序列演化优化",
-      "llm_tldr_en": "Combines genetic algorithms with Bayesian optimization to efficiently design novel protein sequences.",
-      "llm_tldr_cn": "结合遗传算法与贝叶斯优化，高效设计具有特定功能的新型蛋白质序列。",
-      "llm_tldr": "结合遗传算法与贝叶斯优化，高效设计具有特定功能的新型蛋白质序列。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.02753v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.09061v1",
-      "title": "Distribution-free screening of spatially variable genes in spatial transcriptomics",
-      "abstract": "Spatial transcriptomics (ST) technologies enable transcriptome-wide gene expression profiling while preserving spatial resolution, offering unprecedented opportunities to uncover complex spatial structures. Due to the ultra-high dimensionality of ST data, identifying spatially variable genes (SVGs) associated with unknown spatial clusters has become a central task in ST data analysis. Here, we develop a distribution-free SVG screening method based on a novel quasi-likelihood ratio statistic, the MM-test, combined with a knockoff procedure to control the false discovery rate (FDR). MM-test leverages auxiliary information, such as spatial distances, about the unknown spatial domains for SVG screening. Notably, in addition to two-dimensional ST datasets, MM-test is well-suited for increasingly common three-dimensional (3D), multi-slice ST datasets. Extensive benchmarking using simulations and 34 real ST datasets demonstrates that MM-test consistently outperforms existing SVG detection methods. In a 3D mouse brain dataset, MM-test accurately delineates fine-scale structures that are challenging for other methods, such as the 3D architecture of the pyramidal layer of the hippocampal cornu ammonis and the dentate gyrus. Theoretical guarantees-including selection consistency, FDR control, and an error bound for post-selection clustering-are also established.",
-      "authors": [
-        "Changhu Wang",
-        "Qiyun Huang",
-        "Zihao Chen",
-        "Jin Liu",
-        "Ruibin Xi"
-      ],
-      "primary_category": "stat.AP",
-      "categories": [
-        "stat.AP",
-        "stat.ME"
-      ],
-      "published": "2026-03-10T01:07:36+00:00",
-      "link": "https://arxiv.org/pdf/2603.09061v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:Xeno",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI-driven screening of spatially variable genes in transcriptomics",
-      "llm_evidence_cn": "利用AI进行空间转录组学中空间可变基因的筛选",
-      "llm_evidence": "利用AI进行空间转录组学中空间可变基因的筛选",
-      "canonical_evidence": "利用AI进行空间转录组学中空间可变基因的筛选",
-      "llm_tldr_en": "Develops a distribution-free method for identifying spatially variable genes in high-dimensional transcriptomics data.",
-      "llm_tldr_cn": "开发了一种无分布方法，用于在高维转录组数据中识别空间可变基因。",
-      "llm_tldr": "开发了一种无分布方法，用于在高维转录组数据中识别空间可变基因。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.09061v1",
-      "carry_days": 2
-    },
-    {
-      "id": "2603.13432v1",
-      "title": "Spatial Transcriptomics as Images for Large-Scale Pretraining",
-      "abstract": "Spatial Transcriptomics (ST) profiles thousands of gene expression values at discrete spots with precise coordinates on tissue sections, preserving spatial context essential for clinical and pathological studies. With rising sequencing throughput and advancing platforms, the expanding data volumes motivate large-scale ST pretraining. However, the fundamental unit for pretraining, i.e., what constitutes a single training sample, remains ill-posed. Existing choices fall into two camps: (1) treating each spot as an independent sample, which discards spatial dependencies and collapses ST into single-cell transcriptomics; and (2) treating an entire slide as a single sample, which produces prohibitively large inputs and drastically fewer training examples, undermining effective pretraining. To address this gap, we propose treating spatial transcriptomics as croppable images. Specifically, we define a multi-channel image representation with fixed spatial size by cropping patches from raw slides, thereby preserving spatial context while substantially increasing the number of training samples. Along the channel dimension, we define gene subset selection rules to control input dimensionality and improve pretraining stability. Extensive experiments show that the proposed image-like dataset construction for ST pretraining consistently improves downstream performance, outperforming conventional pretraining schemes. Ablation studies verify that both spatial patching and channel design are necessary, establishing a unified, practical paradigm for organizing ST data and enabling large-scale pretraining.",
-      "authors": [
-        "Yishun Zhu",
-        "Jiaxin Qi",
-        "Jian Wang",
-        "Yuhua Zheng",
-        "Jianqiang Huang"
-      ],
-      "primary_category": "cs.CV",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "published": "2026-03-13T05:12:26+00:00",
-      "link": "https://arxiv.org/pdf/2603.13432v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:Xeno",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI pretraining for spatial transcriptomics",
-      "llm_evidence_cn": "空间转录组学的AI预训练",
-      "llm_evidence": "空间转录组学的AI预训练",
-      "canonical_evidence": "空间转录组学的AI预训练",
-      "llm_tldr_en": "Proposes a new image-based pretraining unit for large-scale spatial transcriptomics data analysis.",
-      "llm_tldr_cn": "为大规模空间转录组数据分析提出了一种新的基于图像的预训练单元。",
-      "llm_tldr": "为大规模空间转录组数据分析提出了一种新的基于图像的预训练单元。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.13432v1",
-      "carry_days": 1
-    },
     {
       "id": "2603.10885v1",
       "title": "Continuous Diffusion Transformers for Designing Synthetic Regulatory Elements",
@@ -405,148 +43,25 @@
       "matched_requirement_id": "req-7",
       "selection_source": "carryover_cache",
       "paper_id": "2603.10885v1",
-      "carry_days": 1
+      "carry_days": 2
     },
     {
-      "id": "2603.15052v1",
-      "title": "Diverse communities promote the coexistence of closely-related strains through emergent equalization and stabilization",
-      "abstract": "Microbial communities harbor extensive fine-scale diversity: closely-related strains of the same species coexist alongside many distantly-related taxa. Yet strain coexistence remains poorly understood, largely because most studies neglect the diverse communities in which strains are embedded. Here we combine community ecology and statistical physics to study the dynamics of closely-related strains in a community context. We demonstrate that in a diverse community, indirect interactions between strains -- mediated through the surrounding community members -- can be as strong as direct ones. These community-mediated feedbacks cause conspecific strains to behave as if they have correlated growth rates and reduced competition. Using modern coexistence theory, we show that these effects correspond to equalizing and stabilizing mechanisms which together promote strain coexistence. The same equalizing and stabilizing mechanisms also qualitatively transform strain abundance correlations: strains that compete strongly and show negative correlations in isolation instead show positive correlations in a community, appearing mutualistic despite being competitors. Our results demonstrate that strain dynamics are emergent consequences of the surrounding community, and that capturing community feedbacks does not require the full interaction network; only a small number of emergent parameters.",
+      "id": "2603.18461v1",
+      "title": "Cell-Type Prototype-Informed Neural Network for Gene Expression Estimation from Pathology Images",
+      "abstract": "Estimating slide- and patch-level gene expression profiles from pathology images enables rapid and low-cost molecular analysis with broad clinical impact. Despite strong results, existing approaches treat gene expression as a mere slide- or spot-level signal and do not incorporate the fact that the measured expression arises from the aggregation of underlying cell-level expression. To explicitly introduce this missing cell-resolved guidance, we propose a Cell-type Prototype-informed Neural Network (CPNN) that leverages publicly available single-cell RNA-sequencing datasets. Since single-cell measurements are noisy and not paired with histology images, we first estimate cell-type prototypes-mean expression profiles that reflect stable gene-gene co-variation patterns.CPNN then learns cell-type compositional weights directly from images and models the relationship between prototypes and observed bulk or spatial expression, providing a biologically grounded and structurally regularized prediction framework. We evaluate CPNN on three slide-level datasets and three patch-level spatial transcriptomics datasets. Across all settings, CPNN achieves the highest performance in terms of Spearman correlation. Moreover, by visualizing the inferred compositional weights, our framework provides interpretable insights into which cell types drive the predicted expression. Code is publicly available at https://github.com/naivete5656/CPNN.",
       "authors": [
-        "Naven Narayanan Venkatanarayanan",
-        "Akshit Goyal"
-      ],
-      "primary_category": "q-bio.PE",
-      "categories": [
-        "q-bio.PE",
-        "cond-mat.stat-mech",
-        "nlin.AO"
-      ],
-      "published": "2026-03-16T10:06:42+00:00",
-      "link": "https://arxiv.org/pdf/2603.15052v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "dynamics of closely-related strains in microbial communities",
-      "llm_evidence_cn": "微生物群落中近缘菌株的演化动力学",
-      "llm_evidence": "微生物群落中近缘菌株的演化动力学",
-      "canonical_evidence": "微生物群落中近缘菌株的演化动力学",
-      "llm_tldr_en": "Study shows how diverse communities stabilize the coexistence of closely-related microbial strains.",
-      "llm_tldr_cn": "研究揭示了多样化群落如何通过间接相互作用稳定近缘微生物菌株的共存。",
-      "llm_tldr": "研究揭示了多样化群落如何通过间接相互作用稳定近缘微生物菌株的共存。",
-      "llm_tags": [
-        "query:q5"
-      ],
-      "matched_query_tag": "query:q5",
-      "matched_query_text": "population genetics and evolutionary dynamics",
-      "matched_requirement_id": "req-5",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.15052v1",
-      "carry_days": 1
-    },
-    {
-      "id": "2603.14405v1",
-      "title": "ES-Merging: Biological MLLM Merging via Embedding Space Signals",
-      "abstract": "Biological multimodal large language models (MLLMs) have emerged as powerful foundation models for scientific discovery. However, existing models are specialized to a single modality, limiting their ability to solve inherently cross-modal scientific problems. While model merging is an efficient method to combine the different modalities into a unified MLLM, existing methods rely on input-agnostic parameter space heuristics that fail to faithfully capture modality specialization. To overcome this limitation, we propose a representation-aware merging framework that estimates merging coefficients from embedding space signals. We first design a probe input that consists of different modality tokens and forward it through each specialized MLLM to obtain layer-wise embedding responses that reflect modality-specific representation changes. We then estimate complementary merging coefficients at two granularities from the embedding space: layer-wise coefficients from coarse-grained signals and element-wise coefficients from fine-grained signals, which are jointly combined for robust coefficient estimation. Experiments on interactive effect prediction benchmarks show that our method outperforms existing merging methods and even surpasses task-specific fine-tuned models, establishing that embedding space signals provide a principled and effective foundation for cross-modal MLLM merging.",
-      "authors": [
-        "Wonbin Lee",
-        "Dongki Kim",
-        "Sung Ju Hwang"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "published": "2026-03-15T14:38:32+00:00",
-      "link": "https://arxiv.org/pdf/2603.14405v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:Xeno",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "Biological multimodal large language models for scientific discovery",
-      "llm_evidence_cn": "用于科学发现的生物多模态大语言模型",
-      "llm_evidence": "用于科学发现的生物多模态大语言模型",
-      "canonical_evidence": "用于科学发现的生物多模态大语言模型",
-      "llm_tldr_en": "Proposes ES-Merging to combine specialized biological MLLMs into a unified model using embedding space signals.",
-      "llm_tldr_cn": "提出ES-Merging框架，利用嵌入空间信号将专门的生物多模态大模型合并为统一模型。",
-      "llm_tldr": "提出ES-Merging框架，利用嵌入空间信号将专门的生物多模态大模型合并为统一模型。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.14405v1",
-      "carry_days": 1
-    },
-    {
-      "id": "2603.16708v1",
-      "title": "Learning Lineage-guided Geodesics with Finsler Geometry",
-      "abstract": "Trajectory inference investigates how to interpolate paths between observed timepoints of dynamical systems, such as temporally resolved population distributions, with the goal of inferring trajectories at unseen times and better understanding system dynamics. Previous work has focused on continuous geometric priors, utilizing data-dependent spatial features to define a Riemannian metric. In many applications, there exists discrete, directed prior knowledge over admissible transitions (e.g. lineage trees in developmental biology). We introduce a Finsler metric that combines geometry with classification and incorporate both types of priors in trajectory inference, yielding improved performance on interpolation tasks in synthetic and real-world data.",
-      "authors": [
-        "Aaron Zweig",
-        "Mingxuan Zhang",
-        "David A. Knowles",
-        "Elham Azizi"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG"
-      ],
-      "published": "2026-03-17T16:00:41+00:00",
-      "link": "https://arxiv.org/pdf/2603.16708v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "Lineage trees in developmental biology for trajectory inference",
-      "llm_evidence_cn": "发育生物学中的谱系树用于轨迹推断",
-      "llm_evidence": "发育生物学中的谱系树用于轨迹推断",
-      "canonical_evidence": "发育生物学中的谱系树用于轨迹推断",
-      "llm_tldr_en": "This paper uses Finsler geometry and lineage tree priors to improve trajectory inference in biological systems.",
-      "llm_tldr_cn": "本文利用芬斯勒几何和谱系树先验知识来改进生物系统中的轨迹推断。",
-      "llm_tldr": "本文利用芬斯勒几何和谱系树先验知识来改进生物系统中的轨迹推断。",
-      "llm_tags": [
-        "query:q3"
-      ],
-      "matched_query_tag": "query:q3",
-      "matched_query_text": "phylogenetic analysis and tree construction",
-      "matched_requirement_id": "req-3",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.16708v1",
-      "carry_days": 1
-    },
-    {
-      "id": "2603.13787v1",
-      "title": "Advancing Cancer Prognosis with Hierarchical Fusion of Genomic, Proteomic and Pathology Imaging Data from a Systems Biology Perspective",
-      "abstract": "To enhance the precision of cancer prognosis, recent research has increasingly focused on multimodal survival methods by integrating genomic data and histology images. However, current approaches overlook the fact that the proteome serves as an intermediate layer bridging genomic alterations and histopathological features while providing complementary biological information essential for survival prediction. This biological reality exposes another architectural limitation: existing integrative analysis studies fuse these heterogeneous data sources in a flat manner that fails to capture their inherent biological hierarchy. To address these limitations, we propose HFGPI, a hierarchical fusion framework that models the biological progression from genes to proteins to histology images from a systems biology perspective. Specifically, we introduce Molecular Tokenizer, a molecular encoding strategy that integrates identity embeddings with expression profiles to construct biologically informed representations for genes and proteins. We then develop Gene-Regulated Protein Fusion (GRPF), which employs graph-aware cross-attention with structure-preserving alignment to explicitly model gene-protein regulatory relationships and generate gene-regulated protein representations. Additionally, we propose Protein-Guided Hypergraph Learning (PGHL), which establishes associations between proteins and image patches, leveraging hypergraph convolution to capture higher-order protein-morphology relationships. The final features are progressively fused across hierarchical layers to achieve precise survival outcome prediction. Extensive experiments on five benchmark datasets demonstrate the superiority of HFGPI over state-of-the-art methods.",
-      "authors": [
-        "Junjie Zhou",
-        "Bao Xue",
-        "Meiling Wang",
-        "Wei Shao",
-        "Daoqiang Zhang"
+        "Kazuya Nishimura",
+        "Ryoma Bise",
+        "Shinnosuke Matsuo",
+        "Haruka Hirose",
+        "Yasuhiro Kojima"
       ],
       "primary_category": "cs.CV",
       "categories": [
         "cs.CV"
       ],
-      "published": "2026-03-14T06:30:51+00:00",
-      "link": "https://arxiv.org/pdf/2603.13787v1",
+      "published": "2026-03-19T03:42:11+00:00",
+      "link": "https://arxiv.org/pdf/2603.18461v1",
       "tags": [
         "keyword:PANGEN",
         "keyword:Xeno",
@@ -556,13 +71,13 @@
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "integrating genomic data with AI for cancer prognosis",
-      "llm_evidence_cn": "利用AI整合基因组数据进行癌症预后研究",
-      "llm_evidence": "利用AI整合基因组数据进行癌症预后研究",
-      "canonical_evidence": "利用AI整合基因组数据进行癌症预后研究",
-      "llm_tldr_en": "Proposes a hierarchical fusion model to integrate genomic, proteomic, and imaging data for cancer prognosis.",
-      "llm_tldr_cn": "提出一种层次融合模型，整合基因组、蛋白质组和影像数据以提高癌症预后精度。",
-      "llm_tldr": "提出一种层次融合模型，整合基因组、蛋白质组和影像数据以提高癌症预后精度。",
+      "llm_evidence_en": "AI-driven gene expression estimation from pathology images",
+      "llm_evidence_cn": "利用AI从病理图像中估计基因表达",
+      "llm_evidence": "利用AI从病理图像中估计基因表达",
+      "canonical_evidence": "利用AI从病理图像中估计基因表达",
+      "llm_tldr_en": "Proposes a neural network to estimate gene expression from pathology images using single-cell RNA-seq guidance.",
+      "llm_tldr_cn": "提出一种利用单细胞RNA测序指导从病理图像估计基因表达的神经网络。",
+      "llm_tldr": "提出一种利用单细胞RNA测序指导从病理图像估计基因表达的神经网络。",
       "llm_tags": [
         "query:q7"
       ],
@@ -570,51 +85,11 @@
       "matched_query_text": "利用AI进行基因组相关研究也包含",
       "matched_requirement_id": "req-7",
       "selection_source": "carryover_cache",
-      "paper_id": "2603.13787v1",
+      "paper_id": "2603.18461v1",
       "carry_days": 1
     },
     {
-      "id": "2603.17247v1",
-      "title": "Binary Latent Protein Fitness Landscapes for Quantum Annealing Optimization",
-      "abstract": "We propose Q-BIOLAT, a framework for modeling and optimizing protein fitness landscapes in binary latent spaces. Starting from protein sequences, we leverage pretrained protein language models to obtain continuous embeddings, which are then transformed into compact binary latent representations. In this space, protein fitness is approximated using a quadratic unconstrained binary optimization (QUBO) model, enabling efficient combinatorial search via classical heuristics such as simulated annealing and genetic algorithms.   On the ProteinGym benchmark, we demonstrate that Q-BIOLAT captures meaningful structure in protein fitness landscapes and enables the identification of high-fitness variants. Despite using a simple binarization scheme, our method consistently retrieves sequences whose nearest neighbors lie within the top fraction of the training fitness distribution, particularly under the strongest configurations. We further show that different optimization strategies exhibit distinct behaviors, with evolutionary search performing better in higher-dimensional latent spaces and local search remaining competitive in preserving realistic sequences.   Beyond its empirical performance, Q-BIOLAT provides a natural bridge between protein representation learning and combinatorial optimization. By formulating protein fitness as a QUBO problem, our framework is directly compatible with emerging quantum annealing hardware, opening new directions for quantum-assisted protein engineering.   Our implementation is publicly available at: https://github.com/HySonLab/Q-BIOLAT",
-      "authors": [
-        "Truong-Son Hy"
-      ],
-      "primary_category": "cs.LG",
-      "categories": [
-        "cs.LG",
-        "q-bio.QM"
-      ],
-      "published": "2026-03-18T01:06:20+00:00",
-      "link": "https://arxiv.org/pdf/2603.17247v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:Xeno",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "AI and protein language models for fitness landscape optimization",
-      "llm_evidence_cn": "利用AI和蛋白质语言模型进行适应度景观优化",
-      "llm_evidence": "利用AI和蛋白质语言模型进行适应度景观优化",
-      "canonical_evidence": "利用AI和蛋白质语言模型进行适应度景观优化",
-      "llm_tldr_en": "Uses protein language models and quantum annealing to optimize protein fitness landscapes.",
-      "llm_tldr_cn": "结合蛋白质语言模型与量子退火技术，对蛋白质适应度景观进行建模与优化。",
-      "llm_tldr": "结合蛋白质语言模型与量子退火技术，对蛋白质适应度景观进行建模与优化。",
-      "llm_tags": [
-        "query:q7"
-      ],
-      "matched_query_tag": "query:q7",
-      "matched_query_text": "利用AI进行基因组相关研究也包含",
-      "matched_requirement_id": "req-7",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.17247v1",
-      "carry_days": 1
-    },
-    {
-      "id": "2603.17380v1",
+      "id": "2603.17380v2",
       "title": "SCALE:Scalable Conditional Atlas-Level Endpoint transport for virtual cell perturbation prediction",
       "abstract": "Virtual cell models aim to enable in silico experimentation by predicting how cells respond to genetic, chemical, or cytokine perturbations from single-cell measurements. In practice, however, large-scale perturbation prediction remains constrained by three coupled bottlenecks: inefficient training and inference pipelines, unstable modeling in high-dimensional sparse expression space, and evaluation protocols that overemphasize reconstruction-like accuracy while underestimating biological fidelity. In this work we present a specialized large-scale foundation model SCALE for virtual cell perturbation prediction that addresses the above limitations jointly. First, we build a BioNeMo-based training and inference framework that substantially improves data throughput, distributed scalability, and deployment efficiency, yielding 12.51* speedup on pretrain and 1.29* on inference over the prior SOTA pipeline under matched system settings. Second, we formulate perturbation prediction as conditional transport and implement it with a set-aware flow architecture that couples LLaMA-based cellular encoding with endpoint-oriented supervision. This design yields more stable training and stronger recovery of perturbation effects. Third, we evaluate the model on Tahoe-100M using a rigorous cell-level protocol centered on biologically meaningful metrics rather than reconstruction alone. On this benchmark, our model improves PDCorr by 12.02% and DE Overlap by 10.66% over STATE. Together, these results suggest that advancing virtual cells requires not only better generative objectives, but also the co-design of scalable infrastructure, stable transport modeling, and biologically faithful evaluation.",
       "authors": [
@@ -638,7 +113,7 @@
         "q-bio.QM"
       ],
       "published": "2026-03-18T05:51:08+00:00",
-      "link": "https://arxiv.org/pdf/2603.17380v1",
+      "link": "https://arxiv.org/pdf/2603.17380v2",
       "tags": [
         "keyword:PANGEN",
         "keyword:Xeno",
@@ -648,13 +123,13 @@
         "query:基因演化"
       ],
       "llm_score": 8.0,
-      "llm_evidence_en": "AI foundation model for genetic perturbation prediction",
-      "llm_evidence_cn": "用于基因扰动预测的AI基础模型",
-      "llm_evidence": "用于基因扰动预测的AI基础模型",
-      "canonical_evidence": "用于基因扰动预测的AI基础模型",
-      "llm_tldr_en": "Presents SCALE, a foundation model for predicting cellular responses to genetic and chemical perturbations.",
-      "llm_tldr_cn": "提出SCALE基础模型，用于预测细胞对基因和化学扰动的反应。",
-      "llm_tldr": "提出SCALE基础模型，用于预测细胞对基因和化学扰动的反应。",
+      "llm_evidence_en": "Foundation model for virtual cell perturbation prediction",
+      "llm_evidence_cn": "用于虚拟细胞扰动预测的基础模型",
+      "llm_evidence": "用于虚拟细胞扰动预测的基础模型",
+      "canonical_evidence": "用于虚拟细胞扰动预测的基础模型",
+      "llm_tldr_en": "SCALE is a foundation model for predicting cellular responses to genetic and chemical perturbations.",
+      "llm_tldr_cn": "SCALE 是一个用于预测细胞对遗传和化学扰动反应的基础模型。",
+      "llm_tldr": "SCALE 是一个用于预测细胞对遗传和化学扰动反应的基础模型。",
       "llm_tags": [
         "query:q7"
       ],
@@ -662,90 +137,7 @@
       "matched_query_text": "利用AI进行基因组相关研究也包含",
       "matched_requirement_id": "req-7",
       "selection_source": "carryover_cache",
-      "paper_id": "2603.17380v1",
-      "carry_days": 1
-    },
-    {
-      "id": "2603.17026v1",
-      "title": "Sympatric speciation by symmetry-breaking: The three-clade case",
-      "abstract": "In this paper we expand the concept of biological speciation by symmetry breaking of Golubitsky and Stewart to the case of three clades in which N populations following the same dynamical laws can separate. The underlying differential equation is based on a fifth order polynomial of a trait variable with first or second order coupling. We present some general strategies to find all possible steady states and their stabilities. Numerical data are given for a specific system. We show the locations of three-clade distributions in dependence on the coupling and an environmental parameter. The results show a decrease of the number of stable states with higher coupling and a higher probability of ending in a three-clade state for larger N. Limits and potentials of the approach if zero roots for the trait variable occur are discussed.",
-      "authors": [
-        "Giagkos-Ion Chlomoudis",
-        "Thomas Fuhrmann-Lieker",
-        "Meskerem A. Mebratie",
-        "Gokul B. Nair",
-        "Werner M. Seiler"
-      ],
-      "primary_category": "q-bio.PE",
-      "categories": [
-        "q-bio.PE"
-      ],
-      "published": "2026-03-17T18:06:32+00:00",
-      "link": "https://arxiv.org/pdf/2603.17026v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:Xeno",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "mathematical modeling of sympatric speciation and clades",
-      "llm_evidence_cn": "同域物种形成与演化支的数学建模",
-      "llm_evidence": "同域物种形成与演化支的数学建模",
-      "canonical_evidence": "同域物种形成与演化支的数学建模",
-      "llm_tldr_en": "Explores biological speciation through symmetry-breaking in a three-clade population model.",
-      "llm_tldr_cn": "通过三演化支群体模型中的对称性破缺探讨生物物种形成的机制。",
-      "llm_tldr": "通过三演化支群体模型中的对称性破缺探讨生物物种形成的机制。",
-      "llm_tags": [
-        "query:q2"
-      ],
-      "matched_query_tag": "query:q2",
-      "matched_query_text": "evolutionary biology and mechanisms",
-      "matched_requirement_id": "req-2",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.17026v1",
-      "carry_days": 1
-    },
-    {
-      "id": "2603.17754v1",
-      "title": "Slow evolution towards generalism in a model of variable dietary range",
-      "abstract": "Species sharing a habitat will co-evolve to make use of the available resources, as consumption is modulated by competition and negative feedback loops between consumers and resources. The dietary range of a given species determines the resources it has access to and thus the other species with which it competes. A narrow dietary range avoids competition at the cost of over-reliance on a small selection of resources; conversely a wide dietary range provides more alternatives but also more chance of competition with other species. Here, we investigate the evolution of dietary range within a mathematical model of niche formation. We find highly path dependent co-evolution dynamics characterised by long-lived quasi-stable states. Ultimately, stochastic effects drive the evolution of generalist diets, as we uncover in our analysis and simulations.",
-      "authors": [
-        "Elliot M. Butterworth",
-        "Tim Rogers"
-      ],
-      "primary_category": "q-bio.PE",
-      "categories": [
-        "q-bio.PE"
-      ],
-      "published": "2026-03-18T14:16:49+00:00",
-      "link": "https://arxiv.org/pdf/2603.17754v1",
-      "tags": [
-        "keyword:PANGEN",
-        "keyword:Xeno",
-        "keyword:基因演化",
-        "query:PANGEN",
-        "query:Xeno",
-        "query:基因演化"
-      ],
-      "llm_score": 8.0,
-      "llm_evidence_en": "Mathematical model of species co-evolution and niche formation",
-      "llm_evidence_cn": "物种共同演化和生态位形成的数学模型",
-      "llm_evidence": "物种共同演化和生态位形成的数学模型",
-      "canonical_evidence": "物种共同演化和生态位形成的数学模型",
-      "llm_tldr_en": "Investigates the evolution of dietary range and niche formation through co-evolutionary dynamics.",
-      "llm_tldr_cn": "通过共同演化动力学研究饮食范围的演变和生态位的形成。",
-      "llm_tldr": "通过共同演化动力学研究饮食范围的演变和生态位的形成。",
-      "llm_tags": [
-        "query:q2"
-      ],
-      "matched_query_tag": "query:q2",
-      "matched_query_text": "evolutionary biology and mechanisms",
-      "matched_requirement_id": "req-2",
-      "selection_source": "carryover_cache",
-      "paper_id": "2603.17754v1",
+      "paper_id": "2603.17380v2",
       "carry_days": 1
     }
   ]

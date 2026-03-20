@@ -6,85 +6,85 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-03-19
-- 运行时间：2026-03-19 20:30:04 UTC
+- 最新运行日期：2026-03-20
+- 运行时间：2026-03-20 20:19:04 UTC
 - 运行状态：成功
 - 本次总论文数：21
 - 精读区：8
 - 速读区：13
 
 ### 今日简报（AI）
-今日精选 21 篇 AI 生物医学前沿进展，深度解析生成式智能体与蛋白质语言模型在组学研究中的核心突破。
-重点推荐 ELISA 智能体实现的可解释单细胞发现，以及 RXNRECer 利用主动学习对酶功能注释精度的显著提升。
-建议关注多模态对齐与持续预训练技术，探索大模型在病理预测及细胞扰动建模中的泛化应用。
-- 详情：[/202603/19/README](/202603/19/README)
+今日深度解析 21 篇前沿成果，聚焦物种演化的对称性破缺机制与阿尔茨海默症致病基因的精准识别。
+重点推荐通过数学模型探索同域物种形成的新视角，以及利用图注意力网络整合多模态数据定位致病基因的突破性方法。
+建议关注基因组基础模型的隐私安全风险，以及强化学习在受体结合蛋白鉴定等生物信息交叉领域的创新应用。
+- 详情：[/202603/20/README](/202603/20/README)
 
 ### 精读区论文标签
-1. [ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics](/202603/19/2603.11872v2-elisa-an-interpretable-hybrid-generative-ai-agent-for-expression-grounded-discovery-in-single-cell-genomics)  
-   标签：评分：9.0/10、query:q7
-   evidence：用于单细胞基因组学发现的AI智能体
-2. [RXNRECer Enables Fine-grained Enzymatic Function Annotation through Active Learning and Protein Language Models](/202603/19/2603.12694v1-rxnrecer-enables-fine-grained-enzymatic-function-annotation-through-active-learning-and-protein-language-models)  
-   标签：评分：9.0/10、query:q7
-   evidence：利用AI进行酶功能注释和蛋白质语言模型
-3. [An Interpretable Machine Learning Framework for Non-Small Cell Lung Cancer Drug Response Analysis](/202603/19/2603.16330v1-an-interpretable-machine-learning-framework-for-non-small-cell-lung-cancer-drug-response-analysis)  
-   标签：评分：9.0/10、query:q7
-   evidence：利用AI进行癌症基因组学和个性化医疗研究
-4. [Looking for (Genomic) Needles in a Haystack: Sparsity-Driven Search for Identifying Correlated Genetic Mutations in Cancer](/202603/19/2603.16721v1-looking-for-genomic-needles-in-a-haystack-sparsity-driven-search-for-identifying-correlated-genetic-mutations-in-cancer)  
-   标签：评分：9.0/10、query:q7
-   evidence：利用AI和算法识别癌症中的基因组突变
-5. [Molecular-scale, nonlinear actomyosin binding dynamics drive population-scale adaptation and evolutionary convergence](/202603/19/2603.17183v1-molecular-scale-nonlinear-actomyosin-binding-dynamics-drive-population-scale-adaptation-and-evolutionary-convergence)  
-   标签：评分：9.0/10、query:q5
-   evidence：通过模拟探索种群规模的适应和进化趋同
-6. [An Active Learning Framework for Data-Efficient, Human-in-the-Loop Enzyme Function Prediction](/202603/19/2602.23269v1-an-active-learning-framework-for-data-efficient-human-in-the-loop-enzyme-function-prediction)  
+1. [Sympatric speciation by symmetry-breaking: The three-clade case](/202603/20/2603.17026v1-sympatric-speciation-by-symmetry-breaking-the-three-clade-case)  
+   标签：评分：9.0/10、query:q2
+   evidence：生物物种形成与演化支分离机制
+2. [Graph Attention Based Prioritization of Disease Responsible Genes from Multimodal Alzheimer's Network](/202603/20/2603.02273v1-graph-attention-based-prioritization-of-disease-responsible-genes-from-multimodal-alzheimers-network)  
    标签：评分：8.0/10、query:q7
-   evidence：针对环境序列酶功能预测的主动学习
-7. [Prediction-based Inference in Electronic Health Record (EHR)-linked Biobanks](/202603/19/2603.14356v1-prediction-based-inference-in-electronic-health-record-ehr-linked-biobanks)  
+   evidence：用于基因调控网络分析的图变换器
+3. [Deep learning-guided evolutionary optimization for protein design](/202603/20/2603.02753v1-deep-learning-guided-evolutionary-optimization-for-protein-design)  
+   标签：评分：8.0/10、query:q7
+   evidence：AI引导的蛋白质序列演化优化
+4. [Sparse autoencoders reveal organized biological knowledge but minimal regulatory logic in single-cell foundation models: a comparative atlas of Geneformer and scGPT](/202603/20/2603.02952v1-sparse-autoencoders-reveal-organized-biological-knowledge-but-minimal-regulatory-logic-in-single-cell-foundation-models-a-comparative-atlas-of-geneformer-and-scgpt)  
+   标签：评分：8.0/10、query:q7
+   evidence：使用自动编码器解释单细胞基础模型中的生物学知识
+5. [Advancing Cancer Prognosis with Hierarchical Fusion of Genomic, Proteomic and Pathology Imaging Data from a Systems Biology Perspective](/202603/20/2603.13787v1-advancing-cancer-prognosis-with-hierarchical-fusion-of-genomic-proteomic-and-pathology-imaging-data-from-a-systems-biology-perspective)  
    标签：评分：8.0/10、query:profile-1
-   evidence：生物样本库中基于机器学习的GWAS推断
-8. [A Formal Physical Framework for the Origin of Life: Dissipation-Driven Selection of Evolving Replicators](/202603/19/2603.15230v1-a-formal-physical-framework-for-the-origin-of-life-dissipation-driven-selection-of-evolving-replicators)  
-   标签：评分：8.0/10、query:q2
-   evidence：进化复制子的选择与生命起源
+   evidence：基因组和蛋白质组数据的分层融合用于癌症预后
+6. [Hecate: A Modular Genomic Compressor](/202603/20/2603.15390v1-hecate-a-modular-genomic-compressor)  
+   标签：评分：8.0/10、query:pangen
+   evidence：针对FASTA/FASTQ流的无损基因组压缩框架
+7. [SCALE:Scalable Conditional Atlas-Level Endpoint transport for virtual cell perturbation prediction](/202603/20/2603.17380v1-scalescalable-conditional-atlas-level-endpoint-transport-for-virtual-cell-perturbation-prediction)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用AI大模型进行基因扰动预测
+8. [Interplay between evolutionary and epidemic time scales challenges the outcome of control policies](/202603/20/2603.18801v1-interplay-between-evolutionary-and-epidemic-time-scales-challenges-the-outcome-of-control-policies)  
+   标签：评分：8.0/10、query:q5
+   evidence：演化与流行病时间尺度的相互作用
 
 ### 速读区论文标签
-1. [Multimodal Alignment Improves Generalizability of Genomic Biomarker Prediction in Computational Pathology](/202603/19/2603.00193v1-multimodal-alignment-improves-generalizability-of-genomic-biomarker-prediction-in-computational-pathology)  
+1. [Learning functional groups in complex microbiomes](/202603/20/2603.03547v1-learning-functional-groups-in-complex-microbiomes)  
    标签：评分：8.0/10、query:q7
-   evidence：利用大语言模型将生物标志物知识整合到表示学习中
-2. [CoPeP: Benchmarking Continual Pretraining for Protein Language Models](/202603/19/2603.00253v2-copep-benchmarking-continual-pretraining-for-protein-language-models)  
+   evidence：基于神经网络的宏基因组和基因模块聚类
+2. [SeekRBP: Leveraging Sequence-Structure Integration with Reinforcement Learning for Receptor-Binding Protein Identification](/202603/20/2603.04748v1-seekrbp-leveraging-sequence-structure-integration-with-reinforcement-learning-for-receptor-binding-protein-identification)  
    标签：评分：8.0/10、query:q7
-   evidence：基于演化统计数据训练的AI蛋白质语言模型
-3. [HarmonyCell: Automating Single-Cell Perturbation Modeling under Semantic and Distribution Shifts](/202603/19/2603.01396v1-harmonycell-automating-single-cell-perturbation-modeling-under-semantic-and-distribution-shifts)  
+   evidence：用于识别病毒序列中受体结合蛋白的AI框架
+3. [How Private Are DNA Embeddings? Inverting Foundation Model Representations of Genomic Sequences](/202603/20/2603.06950v1-how-private-are-dna-embeddings-inverting-foundation-model-representations-of-genomic-sequences)  
    标签：评分：8.0/10、query:q7
-   evidence：用于单细胞扰动建模的AI框架
-4. [Causal Circuit Tracing Reveals Distinct Computational Architectures in Single-Cell Foundation Models: Inhibitory Dominance, Biological Coherence, and Cross-Model Convergence](/202603/19/2603.01752v1-causal-circuit-tracing-reveals-distinct-computational-architectures-in-single-cell-foundation-models-inhibitory-dominance-biological-coherence-and-cross-model-convergence)  
+   evidence：基因组序列的AI基础模型
+4. [Retrieval-Augmented Generation for Predicting Cellular Responses to Gene Perturbation](/202603/20/2603.07233v1-retrieval-augmented-generation-for-predicting-cellular-responses-to-gene-perturbation)  
    标签：评分：8.0/10、query:q7
-   evidence：解释生物基础模型
-5. [Causal Circuit Tracing Reveals Distinct Computational Architectures in Single-Cell Foundation Models: Inhibitory Dominance, Biological Coherence, and Cross-Model Convergence](/202603/19/2603.01752v2-causal-circuit-tracing-reveals-distinct-computational-architectures-in-single-cell-foundation-models-inhibitory-dominance-biological-coherence-and-cross-model-convergence)  
+   evidence：利用AI预测细胞对基因扰动的反应
+5. [Distribution-free screening of spatially variable genes in spatial transcriptomics](/202603/20/2603.09061v1-distribution-free-screening-of-spatially-variable-genes-in-spatial-transcriptomics)  
    标签：评分：8.0/10、query:q7
-   evidence：解释单细胞AI基础模型
-6. [Multi-objective Genetic Programming with Multi-view Multi-level Feature for Enhanced Protein Secondary Structure Prediction](/202603/19/2603.12293v1-multi-objective-genetic-programming-with-multi-view-multi-level-feature-for-enhanced-protein-secondary-structure-prediction)  
+   evidence：利用AI进行空间转录组学中空间可变基因的筛选
+6. [Spatial Transcriptomics as Images for Large-Scale Pretraining](/202603/20/2603.13432v1-spatial-transcriptomics-as-images-for-large-scale-pretraining)  
    标签：评分：7.0/10、query:q7
-   evidence：结合演化视角和遗传编程进行蛋白质结构预测
-7. [Multimodal Protein Language Models for Enzyme Kinetic Parameters: From Substrate Recognition to Conformational Adaptation](/202603/19/2603.12845v1-multimodal-protein-language-models-for-enzyme-kinetic-parameters-from-substrate-recognition-to-conformational-adaptation)  
+   evidence：空间转录组学的大规模预训练
+7. [Spatial Transcriptomics as Images for Large-Scale Pretraining](/202603/20/2603.13432v2-spatial-transcriptomics-as-images-for-large-scale-pretraining)  
    标签：评分：7.0/10、query:q7
-   evidence：利用AI蛋白质语言模型研究酶动力学
-8. [Causal Cellular Context Transfer Learning (C3TL): An Efficient Architecture for Prediction of Unseen Perturbation Effects](/202603/19/2603.13051v1-causal-cellular-context-transfer-learning-c3tl-an-efficient-architecture-for-prediction-of-unseen-perturbation-effects)  
+   evidence：空间转录组学的大规模预训练
+8. [Auto-WHATMD : Automated Wasserstein-based High-dimensional feature extraction Analysis of Trajectories from Molecular Dynamics](/202603/20/2603.14414v1-auto-whatmd--automated-wasserstein-based-high-dimensional-feature-extraction-analysis-of-trajectories-from-molecular-dynamics)  
    标签：评分：7.0/10、query:q7
-   evidence：用于基因扰动预测的AI
-9. [MAD: Microenvironment-Aware Distillation -- A Pretraining Strategy for Virtual Spatial Omics from Microscopy](/202603/19/2603.13401v1-mad-microenvironment-aware-distillation----a-pretraining-strategy-for-virtual-spatial-omics-from-microscopy)  
+   evidence：AI驱动的蛋白质突变特征提取
+9. [Multi-Task Genetic Algorithm with Multi-Granularity Encoding for Protein-Nucleotide Binding Site Prediction](/202603/20/2603.14797v1-multi-task-genetic-algorithm-with-multi-granularity-encoding-for-protein-nucleotide-binding-site-prediction)  
    标签：评分：7.0/10、query:q7
-   evidence：用于虚拟空间组学的AI预训练策略
-10. [Single molecule localization microscopy challenge: a biologically inspired benchmark for long-sequence modeling](/202603/19/2603.11296v1-single-molecule-localization-microscopy-challenge-a-biologically-inspired-benchmark-for-long-sequence-modeling)  
+   evidence：利用AI预测蛋白质-核苷酸结合位点
+10. [Leveraging Phytolith Research using Artificial Intelligence](/202603/20/2603.11476v1-leveraging-phytolith-research-using-artificial-intelligence)  
    标签：评分：6.0/10、query:q7
-   evidence：生物启发的成像长序列建模基准
-11. [An Evolutionary Algorithm with Probabilistic Annealing for Large-scale Sparse Multi-objective Optimization](/202603/19/2603.11874v1-an-evolutionary-algorithm-with-probabilistic-annealing-for-large-scale-sparse-multi-objective-optimization)  
-   标签：评分：6.0/10、query:pangen
-   evidence：用于大规模优化的演化算法
-12. [GPU-Accelerated Genetic Programming for Symbolic Regression with Beagle Framework](/202603/19/2603.12292v1-gpu-accelerated-genetic-programming-for-symbolic-regression-with-beagle-framework)  
+   evidence：用于高通量植硅体分析的AI流水线
+11. [Hierarchical p-Adic Framework for Gene Regulatory Networks: Theory and Stability Analysis](/202603/20/2603.14097v1-hierarchical-p-adic-framework-for-gene-regulatory-networks-theory-and-stability-analysis)  
+   标签：评分：6.0/10、query:q10
+   evidence：基因调控网络的数学框架
+12. [Refold: Refining Protein Inverse Folding with Efficient Structural Matching and Fusion](/202603/20/2603.14350v1-refold-refining-protein-inverse-folding-with-efficient-structural-matching-and-fusion)  
    标签：评分：6.0/10、query:q7
-   evidence：用于符号回归的遗传编程
-13. [A Multi-task Large Reasoning Model for Molecular Science](/202603/19/2603.12808v1-a-multi-task-large-reasoning-model-for-molecular-science)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于分子科学的AI推理模型
+   evidence：利用深度学习进行蛋白质序列设计
+13. [Punctuated Equilibria in Artificial Intelligence: The Institutional Scaling Law and the Speciation of Sovereign AI](/202603/20/2603.14664v1-punctuated-equilibria-in-artificial-intelligence-the-institutional-scaling-law-and-the-speciation-of-sovereign-ai)  
+   标签：评分：6.0/10、query:q2
+   evidence：演化生物学中的间断平衡理论
 
 
 <div class="dpr-home-promo-card">
