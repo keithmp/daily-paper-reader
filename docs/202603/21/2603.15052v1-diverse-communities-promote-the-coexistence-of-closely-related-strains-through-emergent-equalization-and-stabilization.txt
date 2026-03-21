@@ -1,0 +1,4481 @@
+Title: Diverse communities promote the coexistence of closely-related strains through emergent equalization and stabilization
+
+URL Source: https://arxiv.org/pdf/2603.15052v1
+
+Published Time: Tue, 17 Mar 2026 06:36:29 GMT
+
+Number of Pages: 41
+
+Markdown Content:
+## Diverse communities promote the coexistence of closely-related strains through emergent equalization and stabilization 
+
+Naven Narayanan Venkatanarayanan 1∗ and Akshit Goyal 2†
+
+> 1
+
+National Centre for Biological Sciences, Tata Institute of Fundamental Research, Bengaluru 560065. and 
+
+> 2
+
+International Centre for Theoretical Sciences, Tata Institute of Fundamental Research, Bengaluru 560089. 
+
+Microbial communities harbor extensive fine-scale diversity: closely-related strains of the same species coexist alongside many distantly-related taxa. Yet strain coexistence remains poorly under-stood, largely because most studies neglect the diverse communities in which strains are embedded. Here we combine community ecology and statistical physics to study the dynamics of closely-related strains in a community context. We demonstrate that in a diverse community, indirect interactions between strains—mediated through the surrounding community members—can be as strong as di-rect ones. These community-mediated feedbacks cause conspecific strains to behave as if they have correlated growth rates and reduced competition. Using modern coexistence theory, we show that these effects correspond to equalizing and stabilizing mechanisms which together promote strain coexistence. The same equalizing and stabilizing mechanisms also qualitatively transform strain abundance correlations: strains that compete strongly and show negative correlations in isolation instead show positive correlations in a community, appearing mutualistic despite being competitors. Our results demonstrate that strain dynamics are emergent consequences of the surrounding com-munity, and that capturing community feedbacks does not require the full interaction network; only a small number of emergent parameters. 
+
+Microbial communities, ranging from the human gut to marine ecosystems, are characterized by immense biodi-versity [1–5]. While most studies have focused on diver-sity at the species level, recent high-resolution metage-nomic studies have revealed an equally striking layer of “fine-scale” diversity: the long-term coexistence of mul-tiple closely-related strains within the same species, both in natural and evolved communities [6–12]. This strain-level variation often determines the functional output of the microbiome, including pathogen susceptibility and metabolic health [13–20]. Yet despite its importance, we lack a quantitative framework that can predict when and why closely-related strains coexist. Current ecological theory suggests that it should be very unlikely for closely-related strains to stably coexist, since their high niche overlap means that even small fit-ness differences can lead to strains competitively exclud-ing each other [21–28]. Yet empirical observations re-peatedly show that strains routinely coexist for extended periods of time [3, 10–12, 29]. To explain this puzzle, several alternate mechanisms have been proposed, e.g., frequency-dependent selection [30, 31], phage-mediated interactions [32] and metabolic niche partitioning [19]. However, all these mechanisms operate at the level of isolated strain pairs and neglect the diverse com-munity in which strains are embedded [33]. In natu-ral settings, strains do not interact in a vacuum—they are coupled to hundreds of co-occurring species which can mediate indirect interactions between strains [34–37]. Whether these community-mediated feedbacks qualita-tively change strain coexistence—and whether they dis-tort the strain abundance correlations widely used to in-  
+
+> ∗navenv@ncbs.res.in
+> †akshitg@icts.res.in
+
+fer ecological interactions [11, 38–45]—remains an open question. Recent theoretical work using tools from statisti-cal physics has made significant progress in under-standing such diverse communities [46–52]. These ap-proaches show how collective community-mediated feed-backs emerge from the many ecological interactions in a diverse community. However, they neglect strain struc-ture and focus almost exclusively on the species level. Thus, we lack a framework that accounts for strains within species and reveals how community feedbacks shape the coexistence of closely-related strains. Here, we bridge this gap by developing a unified the-oretical framework to study the dynamics of closely-related strains embedded in diverse communities. We start with a minimal model of a diverse ecological com-munity containing strains within species, where each species consists of a pair of strains [7, 8, 10, 11]. Us-ing the cavity method, we coarse-grain this full commu-nity into an effective description at the level of strains. Our central finding is that a diverse community col-lectively exerts two ecological forces on closely-related strains: (1) an emergent equalizing force, which corre-lates apparent strain growth rates, and (2) an emergent stabilizing force, which reduces their apparent competi-tive interaction strengths. Using modern coexistence the-ory, we show that these community-mediated equalizing and stabilizing forces significantly promote strain coex-istence [25, 26, 53]. Strains can coexist in a community even when, in isolation, they would exclude each other. Further, these forces also transform strain abundance correlations: strains that compete strongly in isolation can appear mutualistic in a community. Our framework highlights that community context can enhance strain co-existence and reveals how to interpret strain abundance correlations in a community. 
+
+> arXiv:2603.15052v1 [q-bio.PE] 16 Mar 2026
+
+2                      
+
+> FIG. 1: Dynamics of closely-related strains in highly-diverse ecological communities. (a) Schematic of model setup with S≫1species (we show two: iand j) in a community having two distinct strains αand β. All strains interact through a Generalized Lotka-Volterra (GLV) model with interaction matrix Aiαjβ (Eqs. (2) –(4) ). (b) Schematic showing that interaction strengths are random variables with a characteristic species dissimilarity σand interstrain interaction dissimilarity λ. For conceptual illustration we show these strains in a high-dimensional niche space. (c) Using the cavity method, we coarse-grain the GLV model describing the full highly-diverse community (left) into an effective two-strain GLV model (right) for a typical strain pair of the same species. This model shows that strains behave as if they have different apparent growth rates Keff and interaction strengths Aeff .
+
+RESULTS 
+
+An ecological model of strain dynamics in highly-diverse communities. We aim to understand how diverse ecological communities shape the dynamics of closely-related strains. To do so, we consider a simple ecological model where S ≫ 1 species interact with each other (Fig. 1a). Each species i consists of two closely-related strains, α and β, with abundances Niα and Niβ .We assume two strains per species not just because it is simple and tractable, but also because it is motivated by experimental observations [6, 8, 10–12]. Strain dynamics are described by the following set of 2 S ordinary differ-ential equations, which extend the canonical Generalized Lotka-Volterra (GLV) model to include strain structure (Appendix A): 
+
+dN iα 
+
+dt = Niα 
+
+Kiα −
+
+> S
+
+X
+
+> j=1
+
+Aiαjα Njα −
+
+> S
+
+X
+
+> j=1
+
+Aiαjβ Njβ 
+
+
+
+(1) where Kiα is the intrinsic growth rate of strain α of species i, and Aiαjβ is the strength of interaction from strain β of species j. Given the large number of species, we follow in the tradition of complex systems by modeling the underlying parameters as quenched random variables drawn from a Gaussian distribution (Methods) [46–52]. To model strains within species, we parameterize the interaction matrix A at two levels (Fig. 1a–b). At the species level, the strength of interactions Aiαjα and Aiαjβ 
+
+between strains from different species i and j is charac-terized by a standard deviation σ. These interactions take the form: 
+
+Aiαjα = μS + σ
+
+√S aij + λ
+
+√S xijα , (2) 
+
+Aiαjβ = μS + σ
+
+√S aij − λ
+
+√S xijα , (3) where μ sets the mean interspecies competition, aij is a random variable capturing species-level variation (iden-tical for both strains of the same species j), and xijα 3captures strain-level variation. The scaling of interac-tion strengths with the number of species S merely en-sures a good thermodynamic limit S → ∞ (Appendix A) and is consistent with interactions between phyloge-netically distant species being weaker than between con-specific strains. Both aij and xijα are uncorrelated with zero mean and unit variance. Note that in this setting, strains α and β of species j affect a distant strain iα with nearly identical strength—differing only by the ±λ terms. Importantly, since xijα has mean 0, no strain is system-atically better than the other. Thus as λ increases, so do the phenotypic differences between strains, and conse-quently, their interactions with other taxa. Since the pre-cise genotype-phenotype map connecting strain genomes with ecological interactions is still unknown, this is effec-tively equivalent to the common simplifying assumption of a smooth genotype-phenotype map [54]. At the strain level, the strength of direct interactions between strains α and β of the same species Aiαiβ are much stronger and differ by a smaller amount character-ized by λ. These interactions are given by: 
+
+Aiαiβ = ˜ μ + λy i, Aiβiα = ˜ μ − λy i, Aiαiα = 1 , (4) where ˜ μ ∼ O (1) reflects the average direct interaction strength between closely-related strains; yi is a standard normal random variable that helps capture differences in the consumption preferences between both strains of species i, given by 2 λy i. When λ = 0, strains of the same species have identical interactions with the rest of the community. As λ increases, they become increasingly distinct in how they interact. Since strains are more sim-ilar than species, we assume strain interaction dissimilar-ity λ is less than species interaction dissimilarity σ.We also assume that the intrinsic growth rates, Kiα 
+
+and Kiβ of two closely-related strains iα and iβ are in-dependent for simplicity. However as we explain later, relaxing this assumption does not qualitatively affect our results (Appendix F). Together, these assumptions cap-ture the hierarchical organization of community diver-sity, i.e., strains within species. While one can use more complex ecological models, e.g., consumer-resource mod-els [55–57], given that such models often map to GLV models [48, 58, 59], we suspect that our results might also apply more broadly. 
+
+Community-mediated feedbacks correlate strain growth rates and reduce competition. To understand how closely-related strains behave in our model, we use the cavity method from statistical physics (Fig. 1c, Ap-pendix B). The key idea is to “coarse-grain” the sur-rounding community and ask how it shapes the dynamics of strains α and β of a focal species. Our central finding is that high-diversity community dynamics reduce to an effective two-strain model at steady-state: 0 = dN α
+
+dt = Nα
+
+ Keff  
+
+> α
+
+− Aeff 
+
+> αα
+
+Nα − Aeff  
+
+> αβ
+
+Nβ
+
+ , (5) 0 = dN β
+
+dt = Nβ
+
+ Keff  
+
+> β
+
+− Aeff  
+
+> ββ
+
+Nβ − Aeff 
+
+> βα
+
+Nα
+
+ . (6) Note that here we have dropped the species index i to highlight that we are focusing on a typical strain pair of a given species. Crucially, the effective parameters Keff 
+
+and Aeff are not the bare parameters of the original model in Eq. (1). Instead, they are significantly modified by community-mediated feedbacks (Fig. 1c; Appendix C). Note that the growth rates and direct interactions be-tween strains themselves do not change. Instead, inter-actions with the rest of the community result in strains behaving as if they were directly interacting with a dif-ferent apparent strength, and growing with a different apparent rate. Community feedbacks affect strains via two distinct mechanisms. The first mechanism, which we term “emer-gent equalization”, modifies the effective or apparent growth rates of closely-related strains Keff  
+
+> α
+
+and Keff  
+
+> β
+
+. Be-cause closely-related strains interact similarly with other species in the community, their effective growth rates be-come correlated and more equalized corr( Keff  
+
+> α
+
+, K eff  
+
+> β
+
+) = 
+
+ρK (Appendix B). In the absence of a community we assume that the growth rates of both strains are uncor-related and different, corr( Kα, K β ) = 0. However, this assumption is not central to our results: even if there is a correlation in isolation, community feedbacks will further equalize growth rates by increasing this correlation. The second mechanism, which we term “emergent sta-bilization”, modifies the effective or apparent interaction strengths Aeff . Community feedbacks reduce inter-strain competition to ˜ μeff ≈ ˜μ − 2σ2ν, where ν is a susceptibil-ity that measures the community’s average response to perturbations (Appendix C). This reduction in competi-tion can be understood by realizing that in a community, strains interact not just directly with each other, but also indirectly through other community members. The reason that indirect interactions typically buffer compe-tition, rather than intensify it, is because of an “enemy of my enemy is my friend” effect: a strain that inhibits another distantly-related taxon is likely to indirectly ben-efit its closely-related strain partner due to lowered in-hibition by this taxon. The reduction factor 2 σ2ν thus reflects the net sum of such effects through all taxa in the community. This expression shows that as communities become more heterogeneous ( σ increases) and diverse ( ν
+
+increases), they can buffer strain interactions more ef-fectively, resulting in more stabilized competition. Com-bined, these equalizing and stabilizing forces represent the two ways in which community-mediated feedbacks reshape strain dynamics. 
+
+Strain coexistence can be enhanced by surround-ing communities. We now explore the consequences of community-mediated feedbacks on strain coexistence. To illustrate, we show an example of two closely-related strains α and β with intrinsic growth rates Kα and Kβ .In isolation, these strains compete directly with interac-tion strength ˜ μ ≈ 1 (Methods). Because they compete strongly, their niches overlap significantly — in isolation, the strain with higher growth rate will competitively ex-4       
+
+> FIG. 2: Community feedbacks enhance strain coexistence. (a) Two closely-related strains competing strongly in isolation: the strain with higher growth rate excludes the other. (b) The same two strains (red) embedded in a diverse community (gray) now stably coexist. (c) Explanation using modern coexistence theory due to niche differences
+> Nand fitness ratio F. In isolation, strains in (a) sit in the exclusion re-gion (circle). Community feedbacks serve as both an equalizing mech-anism (vertical arrow) and stabilizing mechanism (horizontal arrow), together pushing the strains into the coexistence region (triangle). (d) Phase diagram of the ratio of coexistence probability in community ver-sus isolation, with strain interaction dissimilarity λand direct interstrain interaction strength ˜μ. Communities enhance coexistence (blue) when strains are similar and compete strongly.
+
+clude the other at steady state (Fig. 2a). However, when we embed the same strain pair in a diverse community, we find that they now stably coexist (Fig. 2b). The key to understanding this result lies in the community-mediated feedbacks we identified above. In the language of modern coexistence theory (MCT) [25, 26, 53, 60], coexistence requires that stabilizing forces (niche differences) exceed equalizing forces (fitness ra-tio). For a two-strain GLV model, this criterion de-fines a coexistence region in the plane of fitness ratio 
+
+F = ( Kα
+
+pAβα Aββ )/(Kβ
+
+pAαβ Aαα ) versus niche differ-ence N = 1 − pAαβ Aβα /pAαα Aββ , measuring 1 minus the niche overlap due to strain competition (Fig. 2c) [61]. Strains coexist when niche differences are large enough to overcome fitness ratio; otherwise, one strain excludes the other (Appendix D). Without community context, closely-related strains typically sit in the exclusion region of this diagram (open circle in Fig. 2c). Their low niche difference N places them outside the the coexistence boundary. Community feedbacks change this picture by moving strains along two axes simultaneously. Closely-related strains (small λ)have the same effective interactions; hence their effective fitness ratio is simply the ratio of their effective growth rates, Feff ≈ Keff  
+
+> α
+
+/K eff  
+
+> β
+
+. Community feedbacks make these effective growth rates more correlated, pushing Feff 
+
+toward 1—this serves as an equalizing mechanism that moves strains downward on the diagram (Fig. 2c). Com-munity feedbacks also reduce the effective strain interac-tion strengths, which increases their effective niche dif-ferences N eff = 1 −
+
+q
+
+Aeff  
+
+> αβ
+
+Aeff 
+
+> βα
+
+/
+
+q
+
+Aeff 
+
+> αα
+
+Aeff  
+
+> ββ
+
+—this serves as a stabilizing mechanism that moves strains rightward (Appendix E). Together, the equalizing and stabilizing effects of the community work together to push strain pairs towards the coexistence region (filled triangle in Fig. 2c). Does community context always promote coexistence? Using extensive numerical simulations, we asked whether a random strain pair is more likely to coexist in a com-munity than in isolation across a range of parameters (Methods). Fig. 2d shows the relative ratio of coexistence probabilities (community versus isolation) as a function of strain interaction dissimilarity λ and the mean direct interaction strength between strains ˜ μ.Strikingly, when strains are very closely-related (small 
+
+λ) and have strong direct interactions (large ˜ μ), their co-existence is enhanced by a diverse community than in isolation (Fig. 2d, blue). This can be understood by not-ing that the equalizing and stabilizing effects of a com-munity are strongest only when strains are very similar and interact strongly (Appendix E). As strains become more dissimilar (high λ), their ef-fective fitness ratio Feff begins to increase (Appendix E). Moreover, the effective strain interactions become stronger and polarized. This significantly weakens both the equalizing and stabilizing effects of the community. A similar weakening of the community’s equalizing effect occurs when strains have weak direct competition (low ˜μ). Indeed, as strains either get more dissimilar or have weaker interactions, community feedbacks begin to act in the opposite direction, even serving as “anti-equalizing” and “anti-stabilizing” mechanisms (Appendix E). As a result, dissimilar strains get pushed out of the coexistence region by the community, which now suppreses their co-existence (Fig. 2d, red). Together, these results show that community-mediated feedbacks enhance coexistence the most for strains that compete strongest in isolation and are most closely-related. 
+
+Competing strains appear mutualistic due to com-munity feedbacks. Community-mediated feedbacks do not just transform strain coexistence; they can also fun-damentally change the apparent nature of their interac-tions. In particular, they can change the sign of the cor-relation between abundances of closely-related strains. Such correlations have often been used to infer strain in-teractions from data [11, 38, 43, 44, 62–65]. To illustrate this, we consider several pairs of closely-related strains α and β which coexist in isolation. In this 5                    
+
+> FIG. 3: Competing strains appear mutualistic due to community feedbacks. (a) Two closely-related strains αand βcompeting in isola-tion show a strong negative abundance correlation. Red ellipse shows 90% confidence ellipse from theory. (b) The same strain pair embed-ded in a diverse community now shows a positive abundance corre-lation; ellipse shows cavity theory prediction. (c) Explanation using the effective two-strain model (Eqs. (5) –(6) ). Heatmap shows strain abundance correlation as a function of effective inter-strain interac-tion strength ˜μeff and effective growth rate correlation ρK. Community feedbacks both stabilize (reduce ˜μeff ) and equalize strains (increase
+> ρK), together moving the strain pair from negative (circle) to positive (triangle) correlations. Positive correlations make strains appear mu-tualistic in a community despite having the strongest competition in isolation. (d) ραβ as a function of species dissimilarity σ, comparing simulations (dots) and cavity theory (curve). Inset: the strength of both equalization ( ρK, green) and stabilization ( ⟨1/det( Aeff )2⟩, magenta) increases with σ.
+
+setting, their abundances are strongly negatively corre-lated across realizations: whichever strain has the higher intrinsic growth rate, Kα or Kβ , tends to dominate over the other (Fig. 3a). This is consistent with the inter-pretation that these strains compete strongly. However, when we embed the same strain pairs in a diverse commu-nity, this picture changes dramatically—the abundance correlations between closely-related strains reverses sign and becomes strongly positive (Fig. 3b). Strains that competed strongly in isolation—and could even exclude each other—now appear mutualistic in a community con-text. Thus, community feedbacks can completely reverse the nature of the apparent interaction between closely-related strains. The key to understanding this reversal lies in the community-mediated equalization and stabilization mechanisms we identified above. In the effective two-strain model (Eqs. (5)–(6)), strain abundance correla-tions depend on both the effective inter-strain interaction strength ˜ μeff and the correlation between effective growth rates ρK . We can visualize this dependence by plotting the strain abundance correlation using simulations of a two-strain GLV model (Fig. 3c). In isolation, the strain pair sits in the region of negative correlations (open circle in Fig. 3c)—with strongly competitive direct interactions and no correlation between strain growth rates. Commu-nity feedbacks move the strain pair along two axes simul-taneously: stabilization reduces the effective interaction strength ˜ μeff between strains, while equalization dramat-ically increases the correlation ρK between their effective growth rates. Together, these forces push the strain pair into the region of positive correlations (filled triangle in Fig. 3c). How do these effects depend on the properties of the surrounding community? In Fig. 3d, we show the strain abundance correlation as a function of species dissim-ilarity σ, which measures the heterogeneity of species interactions in the community. As σ increases, the correlation increases and eventually becomes positive. Our cavity theory (solid curve) accurately captures this trend. The underlying reason for this increase in strain abundance correlations is that both community-mediated forces strengthen with increasing σ. Both the equaliz-ing force ρK and stabilizing force ⟨1/det( Aeff )2⟩ (Ap-pendix B) grow as communities become more heteroge-neous (Fig. 3d, inset). More heterogeneous communities thus exert stronger feedbacks on closely-related strains, making their effective growth rates more correlated and their effective competition weaker, which together drive the transition to positive abundance correlations. It is these positive abundance correlations that give the ap-pearance that the strains are mutualistic, even though they compete strongly. Together, these results show that in a diverse community, the sign of strain abundance cor-relations rarely reflect the sign of direct interactions be-tween strains. 
+
+Strain dissimilarity governs strength of commu-nity feedbacks. Having established that community feedbacks can reverse the sign of strain abundance cor-relations, we now ask how the strength of these feed-backs depends on the phenotypic dissimilarity between strains. To build intuition, we return to the effective two-strain model in Eqs. (5)–(6). In this model, strain abundances are obtained by inverting the effective in-teraction matrix Aeff , so that N = ( Aeff )−1Keff . This means that two quantities govern strain abundance cor-relations. The first is the equalization strength, measured by ρK = corr( Keff  
+
+> α
+
+, K eff  
+
+> β
+
+), which captures how similarly the community shapes both strains’ apparent growth rates. When equalization is strong, a community that promotes the growth of one strain also tends to promote its closely-related partner. The second is the stabiliza-tion strength, measured by ⟨1/det( Aeff )2⟩, which arises naturally from inverting the interaction matrix Aeff and captures how sensitively strain abundances respond to 6                   
+
+> FIG. 4: Strain dissimilarity governs strength of community feed-backs and strain abundance correlations. (a) Strain abundance correlation versus strain interaction dissimilarity λfor a community with fixed species dissimilarity σ.Correlations transition from positive to negative at a critical dissimilarity λc(dotted line). (b) The reason: both equalization ( ρK, green) and stabilization ( ⟨1/det( Aeff )2⟩, magenta) weaken with increasing λ. Shown are values normalized to the max-imum. When both these community feedbacks weaken, abundance correlations return to being negative, as they would in isolation. (c) Phase diagram of strain abundance correlations in (λ, σ )space. The black line marks the theoretically predicted boundary from the cav-ity method separating positive and negative correlations. Gray region is disallowed since strains cannot be more dissimilar than species. (d) Regimes of strain abundance correlations in (σ, ˜μ)space: always negative (top), transitioning from positive to negative with increasing λ
+> (middle), and always positive (bottom). Black line shows the analytical boundary from the cavity method.
+
+growth rate differences. When community feedbacks re-duce effective competition between strains, small differ-ences in growth rates no longer translate into large dif-ferences in abundance—instead, correlated growth rates translate more directly into correlated abundances. Both equalization and stabilization rely on the fact that closely-related strains interact similarly with the rest of the community. As strains become more dissimilar (increasing λ), this breaks down: they begin to experi-ence the community differently, weakening both forces (Fig. 4b). Consequently, strain abundance correlations decrease with increasing λ. Such abundance correlation patterns have been empirically observed in data from mi-crobial communities [7, 11, 66]. In this case, we observe that abundance correlations eventually become negative beyond a critical dissimilarity λc (Fig. 4a). This occurs when community feedbacks become too weak to over-come direct competition, and once this happens, strains behave much as they would in isolation (Appendix F). Thus, the critical dissimilarity λc represents an emergent phenotypic scale below which strains appear mutualistic due to the community, and above which they behave as if they do not “see” the community at all. What determines this scale? The answer is the species dissimilarity σ, which controls the overall strength of community feedbacks. Communities with more hetero-geneous interactions (larger σ) exert stronger equaliza-tion and stabilization, pushing λc to higher values and making positive correlations possible over a wider range of strain dissimilarities (Fig. 4c). The cavity method ac-curately predicts the boundary separating positive and negative correlations (black line). The mean direct inter-action strength ˜ μ plays a complementary role: stronger direct competition between strains makes it harder for community feedbacks to overcome them. As explained before, these feedbacks are especially weak when species interactions in the community are very similar (low σ). Combined the effects of direct strain interactions and community-wide species dissimilarity can be summarized in the form of a final diagram, shown in Fig. 4d. This results in three distinct regimes in ( σ, ˜μ) space—strain abundance correlations which remain always positive, al-ways negative, and transitioning with increasing strain interaction dissimilarity λ (Appendix F). Thus, strain abundance correlations can exhibit a variety of behaviors depending on the balance between direct interactions and indirect community-mediated ones. These results reinforce a central message of our study: community feedbacks are crucial for interpreting strain abundance correlations. Importantly, rather than at-tempting to measure the full interaction network, to un-derstand strain coexistence and correlations in a highly-diverse community, it may be sufficient to characterize two simple community-mediated feedbacks: equalization and stabilization. 
+
+DISCUSSION 
+
+The coexistence of closely-related strains within mi-crobial communities presents a major puzzle. Here, we attempt to understand the ecological drivers that shape strain-level diversity and dynamics. Our study reveals that strain dynamics cannot be understood in isolation— they are emergent consequences of the diverse commu-nities in which strains are embedded. Combining com-munity ecology and statistical physics, we show that community-mediated feedbacks reshape strain interac-tions through two distinct mechanisms: emergent equal-ization, which correlates the effective growth rates of con-specific strains, and emergent stabilization, which mod-ifies their effective competitive interactions. Through these forces, community feedbacks qualitatively change the conditions for strain coexistence and the sign of their abundance correlations in ways that cannot be captured by studying strain pairs in isolation. The mechanisms of emergent equalization and stabi-lization connect naturally to modern coexistence theory, 7which attributes coexistence to stabilizing niche differ-ences and equalizing fitness ratio [25]. We find that community-mediated equalization and stabilization are strongest when strains are phenotypically most similar and compete most strongly in isolation. This counterin-tuitive result may explain why even strains which differ only slightly in their phenotype routinely coexist in di-verse microbial communities. In this way, our work con-tributes to debates on the role of stabilizing and equaliz-ing mechanisms in promoting the coexistence of phyloge-netically similar (or different) species [27, 28]. Further, it also contributes a new strain-centered mechanism to a growing interest in “emergent coexistence”, the ability of species pairs to coexist in larger communities, but not pairwise [67–69]. Our findings also complement recent data analysis [11, 66] which showed that species and strain abundance cor-relations decay with increasing phylogenetic distance, and attributed it to population-independent environmen-tal equalization. Our framework reveals that, at least for strains, similar patterns can also arise in a totally population-dependent manner. Namely, internal com-munity feedbacks can act like environmental equaliza-tion, without any changes in the external environment. This might have implications for other studies interpret-ing equalization and stabilization [70]. More broadly, our results show that abiotic and biotic factors affect-ing strains need not be independent; a community can simultaneously exert effects that appear like both. This highlights that one must infer ecological processes from strain abundance data with care. Our model naturally involves some simplifying as-sumptions which can be relaxed in future work. First, we considered communities in which each species harbors ex-actly two strains. While this is somewhat consistent with experimental data [6, 8, 10, 11], extending our work to al-low more strains per species will allow us to generalize our results to more complex contexts. Second, our approach considers unstructured interactions and does not incor-porate metabolic and spatial structure. Whether the presence of such structure would create deviations from our predictions [71] is important to understand in future work. Third, we focused on steady-state (equilibrium) communities, yet microbial communities often exhibit fluctuating abundance dynamics [8, 11, 66, 72]. Gen-eralizing our results to these dynamical non-equilibrium scenarios also remains an avenue for future work. Fi-nally, we consider community assembly from a pool al-ready containing strains within species, but neglect the complex eco-evolutionary dynamics that result in such a pool. In the future, it would be valuable to understand the conditions in which such a strain structure can spon-taneously emerge via evolution. Our work also makes empirically verifiable predictions. The predicted transition from positive to negative corre-lations with increasing phenotypic dissimilarity could be tested using metagenomic data from communities where strains can be inferred from genomic variation alone. The dependence of this transition on merely the statistical properties of community interactions, i.e., species dis-similarity σ, enables interpreting strain interactions from abundance correlations once these interaction statistics can be measured. Our results offer quantitative guidance for correctly comparing strain dynamics across sites, in-dividuals or environments in light of their surrounding communities. Finally, our work takes the first steps to systemati-cally incorporate the hierarchical organization of biolog-ical diversity in ecological dynamics. While we focused at the level of strains within species, our work can be built upon to include a more complete hierarchy of di-versity, from phyla to families to strains. Doing so will help concretely connect models of the same community at different resolutions, i.e., a coarse-grained model at the family level [57, 73] with a fine-grained one at the strain level [11]. We envision this leading to a unified theory of community dynamics at different levels of biological organization. 
+
+Acknowledgments. We would like to thank P. Mehta, M. Sireci, S. Pollak, J. Grilli, M. Polz, M. Bar-bier, E. Blumenthal, G. Chure, J. McEnany, S.Y. Li, and Z. Feng for helpful discussions. This research was supported in part by the International Centre for Theo-retical Sciences (ICTS) for participating in the program — Winter School on Quantitative Systems Biology 2025 (Code: ICTS/Prog-qsb/2025/1). AG acknowledges sup-port from the Ashok and Gita Vaish Junior Researcher Award, the ANRF Ramanujan Fellowship, as well the DAE, Govt. of India, under project no. RTI4001.                      
+
+> [1] N. Fierer, M. Breitbart, J. Nulton, P. Salamon, C. Lozupone, R. Jones, M. Robeson, R. A. Edwards, B. Felts, S. Rayhawk, et al. , Metagenomic and small-subunit rrna analyses reveal the genetic diversity of bac-teria, archaea, fungi, and viruses in soil, Applied and environmental microbiology 73 , 7059 (2007). [2] W.-S. Shu and L.-N. Huang, Microbial diversity in ex-treme environments, Nature Reviews Microbiology 20 ,219 (2022), publisher: Nature Publishing Group. [3] M. J. Rosen, M. Davison, D. Bhaya, and D. S. Fisher, Fine-scale diversity and extensive recombination in a quasisexual bacterial population occupying abroad niche, Science 348 , 1019 (2015). [4] X. C. Morgan, N. Segata, and C. Huttenhower, Biodiver-sity and functional genomics in the human microbiome, Trends in genetics 29 , 51 (2013). [5] J. Ding, L. Fu, Z.-W. Ding, Y.-Z. Lu, S. H. Cheng, and R. J. Zeng, Environmental evaluation of coexistence
+
+8
+
+of denitrifying anaerobic methane-oxidizing archaea and bacteria in a paddy field, Applied microbiology and biotechnology 100 , 439 (2016). [6] S. Zhao, T. D. Lieberman, M. Poyet, K. M. Kauffman, S. M. Gibbons, M. Groussin, R. J. Xavier, and E. J. Alm, Adaptive evolution within gut microbiomes of healthy people, Cell Host & Microbe 25 , 656 (2019), publisher: Elsevier. [7] N. R. Garud, B. H. Good, O. Hallatschek, and K. S. Pollard, Evolutionary dynamics of bacteria in the gut microbiome within and across hosts, PLOS Biology 17 ,e3000102 (2019), publisher: Public Library of Science. [8] M. Roodgar, B. H. Good, N. R. Garud, S. Martis, M. Avula, W. Zhou, S. Lancaster, H. Lee, A. Babveyh, S. Nesamoney, K. S. Pollard, and M. P. Snyder, Longitu-dinal linked read sequencing reveals ecological and evo-lutionary responses of a human gut microbiome during antibiotic treatment, bioRxiv , 2019.12.21.886093 (2019), publisher: Cold Spring Harbor Laboratory Section: New Results. [9] D. T. Truong, A. Tett, E. Pasolli, C. Huttenhower, and N. Segata, Microbial strain-level population structure and genetic diversity from metagenomes, Genome Re-search 27 , 626 (2017). [10] B. H. Good, M. J. McDonald, J. E. Barrick, R. E. Lenski, and M. M. Desai, The dynamics of molecular evolution over 60,000 generations, Nature 551 , 45 (2017), number: 7678 Publisher: Nature Publishing Group. [11] A. Goyal, L. S. Bittleston, G. E. Leventhal, L. Lu, and O. X. Cordero, Interactions between strains govern the eco-evolutionary dynamics of microbial communities, eLife 11 , e74987 (2022), publisher: eLife Sciences Publi-cations, Ltd. [12] M. Poyet, M. Groussin, S. M. Gibbons, J. Avila-Pacheco, X. Jiang, S. M. Kearney, A. R. Perrotta, B. Berdy, S. Zhao, T. Lieberman, et al. , A library of human gut bacterial isolates paired with longitudinal multiomics data enables mechanistic microbiome research, Nature medicine 25 , 1442 (2019). [13] G. E. Leventhal, C. Boix, U. Kuechler, T. N. Enke, E. Sli-werska, C. Holliger, and O. X. Cordero, Strain-level di-versity drives alternative community types in millimetre-scale granular biofilms, Nature Microbiology 3, 1295 (2018), number: 11 Publisher: Nature Publishing Group. [14] T. Van Rossum, P. Ferretti, O. M. Maistrenko, and P. Bork, Diversity within species: interpreting strains in microbiomes, Nature Reviews Microbiology 18 , 491 (2020). [15] C. Zhang and L. Zhao, Strain-level dissection of the con-tribution of the gut microbiome to human metabolic dis-ease, Genome medicine 8, 41 (2016). [16] Y. Yan, L. H. Nguyen, E. A. Franzosa, and C. Hutten-hower, Strain-level epidemiology of microbial communi-ties and the human microbiome, Genome medicine 12 ,71 (2020). [17] T. Vatanen, D. R. Plichta, J. Somani, P. C. M¨ unch, T. D. Arthur, A. B. Hall, S. Rudolf, E. J. Oakeley, X. Ke, R. A. Young, et al. , Genomic variation and strain-specific func-tional adaptation in the human gut microbiome during early life, Nature microbiology 4, 470 (2019). [18] L. R. Kalan, J. S. Meisel, M. A. Loesche, J. Horwin-ski, I. Soaita, X. Chen, A. Uberoi, S. E. Gardner, and E. A. Grice, Strain-and species-level variation in the mi-crobiome of diabetic wounds is associated with clinical outcomes and therapeutic efficacy, Cell host & microbe 
+
+25 , 641 (2019). [19] S.-Y. Park, C. Rao, K. Z. Coyte, G. A. Kuziel, Y. Zhang, W. Huang, E. A. Franzosa, J.-K. Weng, C. Huttenhower, and S. Rakoff-Nahoum, Strain-level fitness in the gut mi-crobiome is an emergent property of glycans and a single metabolite, Cell 185 , 513 (2022). [20] I. L. Brito and E. J. Alm, Tracking strains in the micro-biome: insights from metagenomics and models, Fron-tiers in Microbiology 7, 712 (2016). [21] G. E. Hutchinson, The Paradox of the Plankton, The American Naturalist 95 , 137 (1961), publisher: The Uni-versity of Chicago Press. [22] R. MacArthur and R. Levins, The limiting similarity, convergence, and divergence of coexisting species, The american naturalist 101 , 377 (1967). [23] P. Chesson, Mechanisms of maintenance of species diver-sity, Annual review of Ecology and Systematics 31 , 343 (2000). [24] J. M. Chase and M. A. Leibold, Ecological niches: link-ing classical and contemporary approaches (University of Chicago Press, 2009). [25] P. B. Adler, J. HilleRisLambers, and J. M. Levine, A niche for neutrality, Ecology letters 10 , 95 (2007). [26] J. W. Spaak, O. Godoy, and F. De Laender, Mapping species niche and fitness differences for communities with multiple interaction types, Oikos 130 , 2065 (2021). [27] J. HilleRisLambers, P. B. Adler, W. S. Harpole, J. M. Levine, and M. M. Mayfield, Rethinking community as-sembly through the lens of coexistence theory, Annual review of ecology, evolution, and systematics 43 , 227 (2012). [28] M. M. Mayfield and J. M. Levine, Opposing effects of competitive exclusion on the phylogenetic structure of communities, Ecology letters 13 , 1085 (2010). [29] A. Papula, G. Birzu, and D. S. Fisher, Extensive recombi-nation, selection, and asexual blooms shape the diversity of the dominant clade of prochlorococcus, bioRxiv , 2025 (2025). [30] J. A. Ascensao, K. D. Abedi, A. N. Prasad, and O. Hal-latschek, Frequency-dependent fitness effects are ubiqui-tous, bioRxiv (2025). [31] S. J. Walton, Q. Xu, R. Sharma, H. R. Gellert, C.-F. Yeh, J. Cremer, K. S. Xue, D. A. Petrov, and B. H. Good, Community coalescence reveals strong selection and co-existence within species in complex microbial communi-ties, bioRxiv , 2025 (2025). [32] T. F. Thingstad, S. V˚ age, J. E. Storesund, R.-A. San-daa, and J. Giske, A theoretical analysis of how strain-specific viruses can control microbial species diversity, Proceedings of the National Academy of Sciences 111 ,7813 (2014). [33] A. Goyal and G. Chure, Paradox of the sub-plankton: Plausible mechanisms and open problems underlying strain-level diversity in microbial communities, Environ-mental Microbiology 27 , e70094 (2025). [34] G. F. Fussmann, M. Loreau, and P. A. Abrams, Eco-evolutionary dynamics of communities and ecosystems, Functional ecology , 465 (2007). [35] A. P. Hendry, Eco-evolutionary dynamics (Princeton uni-versity press, 2017). [36] L. Govaert, E. A. Fronhofer, S. Lion, C. Eizaguirre, D. Bonte, M. Egas, A. P. Hendry, A. De Brito Martins, C. J. Meli´ an, J. A. Raeymaekers, et al. , Eco-evolutionary 9
+
+feedbacks—theoretical models and perspectives, Func-tional Ecology 33 , 13 (2019). [37] A. Goyal, T. Wang, V. Dubinkina, and S. Maslov, Ecology-guided prediction of cross-feeding interactions in the human gut microbiome, Nature communications 12 ,1335 (2021). [38] K. Faust and J. Raes, Microbial interactions: from net-works to models, Nature Reviews Microbiology 10 , 538 (2012). [39] J. Tackmann, J. F. M. Rodrigues, and C. von Mering, Rapid inference of direct interactions in large-scale eco-logical networks from heterogeneous microbial sequenc-ing data, Cell systems 9, 286 (2019). [40] R. C. L´ opez, J. A. Bonachela, M. G. Dominguez-Bello, M. Manhart, S. A. Levin, M. J. Blaser, and M. A. Mu˜ noz, Imbalance in gut microbial interactions as a marker of health and disease, bioRxiv , 2025 (2025). [41] T. Van Rossum, P. Ferretti, O. M. Maistrenko, and P. Bork, Diversity within species: interpreting strains in microbiomes, Nature Reviews Microbiology 18 , 491 (2020), number: 9 Publisher: Nature Publishing Group. [42] P.-Y. Ho, B. H. Good, and K. C. Huang, Competition for fluctuating resources reproduces statistics of species abundance over time across wide-ranging microbiotas, Elife 11 , e75168 (2022). [43] D. Berry and S. Widder, Deciphering microbial interac-tions and detecting keystone species with co-occurrence networks, Frontiers in microbiology 5, 219 (2014). [44] M. Tikhonov, R. W. Leach, and N. S. Wingreen, In-terpreting 16s metagenomic data without clustering to achieve sub-otu resolution, The ISME journal 9, 68 (2015). [45] A. Carr, C. Diener, N. S. Baliga, and S. M. Gibbons, Use and abuse of correlation analyses in microbial ecology, The ISME journal 13 , 2647 (2019). [46] S. Y. Li, Z. Feng, A. Goyal, and P. Mehta, Population ge-netics in complex ecological communities, arXiv preprint arXiv:2509.23977 (2025). [47] G. Bunin, Ecological communities with lotka-volterra dy-namics, Physical Review E 95 , 042414 (2017). [48] M. Advani, G. Bunin, and P. Mehta, Statistical physics of community ecology: a cavity solution to macarthur’s consumer resource model, Journal of Statistical Mechan-ics: Theory and Experiment 2018 , 033406 (2018). [49] M. Tikhonov and R. Monasson, Innovation rather than improvement: A solvable high-dimensional model high-lights the limitations of scalar fitness, Journal of Statis-tical Physics 172 , 74 (2018). [50] A. Mahadevan, M. T. Pearce, and D. S. Fisher, Spa-tiotemporal ecological chaos enables gradual evolution-ary diversification without niches or tradeoffs, eLife 12 ,e82734 (2023), publisher: eLife Sciences Publications, Ltd. [51] N. K. Patro, W. Taylor, and A. Goyal, Emergent self-inhibition governs the landscape of stable states in complex ecosystems, arXiv preprint arXiv:2511.06697 (2025). [52] Z. Feng, R. Marsland III, J. W. Rocks, and P. Mehta, Emergent competition shapes top-down versus bottom-up control in multi-trophic ecosystems, PLOS Computa-tional Biology 20 , e1011675 (2024). [53] P. Chesson, Mechanisms of maintenance of species diversity, Annual Review of Ecol-ogy and Systematics 31 , 343 (2000), eprint: https://doi.org/10.1146/annurev.ecolsys.31.1.343. [54] P. Lemos-Costa, Z. R. Miller, and S. Allesina, Phylogeny structures species’ interactions in experimental ecological communities, Ecology Letters 27 , e14490 (2024). [55] A. Goyal and S. Maslov, Diversity, stability, and repro-ducibility in stochastically assembled microbial ecosys-tems, Physical Review Letters 120 , 158102 (2018). [56] R. Marsland III, W. Cui, J. Goldford, A. Sanchez, K. Ko-rolev, and P. Mehta, Available energy fluxes drive a tran-sition in the diversity, stability, and functional structure of microbial communities, PLoS computational biology 
+
+15 , e1006793 (2019). [57] J. E. Goldford, N. Lu, D. Baji´ c, S. Estrela, M. Tikhonov, A. Sanchez-Gorostiaga, D. Segr` e, P. Mehta, and A. Sanchez, Emergent simplicity in microbial community assembly, Science 361 , 469 (2018). [58] A. Goyal, J. W. Rocks, and P. Mehta, Universal niche geometry governs the response of ecosystems to environ-mental perturbations, PRX Life 3, 013010 (2025). [59] A. D. Letten, P.-J. Ke, and T. Fukami, Linking mod-ern coexistence theory and contemporary niche theory, Ecological Monographs 87 , 161 (2017). [60] G. Barab´ as, R. D’Andrea, and S. M. Stump, Ches-son’s coexistence theory, Ecological monographs 88 , 277 (2018). [61] P. Chesson, Updates on mechanisms of maintenance of species diversity, Journal of ecology 106 , 1773 (2018). [62] K. Faust, L. Lahti, D. Gonze, W. M. De Vos, and J. Raes, Metagenomics meets time series analysis: unraveling mi-crobial community dynamics, Current opinion in micro-biology 25 , 56 (2015). [63] S. Freilich, R. Zarecki, O. Eilam, E. S. Segal, C. S. Henry, M. Kupiec, U. Gophna, R. Sharan, and E. Ruppin, Com-petitive and cooperative metabolic interactions in bacte-rial communities, Nature communications 2, 589 (2011). [64] A. Barber´ an, S. T. Bates, E. O. Casamayor, and N. Fierer, Using network analysis to explore co-occurrence patterns in soil microbial communities, The ISME journal 6, 343 (2012). [65] J. Zhou, Y. Deng, F. Luo, Z. He, Q. Tu, X. Zhi, J. Zhou, Y. Deng, F. Luo, Z. He, et al. , Functional molecular ecological networks. mbio 1: e00169-10, View in Article (2010). [66] M. Sireci, M. A. Mu˜ noz, and J. Grilli, Environmen-tal fluctuations explain the universal decay of species-abundance correlations with phylogenetic distance, Pro-ceedings of the National Academy of Sciences 120 ,e2217144120 (2023). [67] G. Aguad´ e-Gorgori´ o and S. K´ efi, Emergent coexistence and the limits of reductionism in ecological communities, bioRxiv , 2025 (2025). [68] Z. R. Miller and D. Max, Multispecies coexistence emerges from pairwise exclusions in communities with competitive hierarchy, Ecology Letters 28 , e70206 (2025). [69] C.-Y. Chang, D. Baji´ c, J. C. Vila, S. Estrela, and A. Sanchez, Emergent coexistence in multispecies micro-bial communities, Science 381 , 343 (2023). [70] A. Bupu, W. R. Shoemaker, O. Mazzarisi, and J. Grilli, A balance between environmental filtering and competi-tive exclusion modulates the macroecology of alternative stable states in microbial communities, bioRxiv , 2025 (2025). [71] S. Pearl Mizrahi, H. Lee, A. Goyal, E. Owen, and J. Gore, Structured interactions explain the absence of keystone 10 
+
+species in synthetic microcosms, The ISME Journal 19 ,wraf211 (2025). [72] J. Grilli, Macroecological laws describe variation and di-versity in microbial communities, Nature communica-tions 11 , 4743 (2020). [73] K. K. Lee, S. Liu, K. Crocker, J. Wang, D. R. Hug-gins, M. Tikhonov, M. Mani, and S. Kuehn, Functional regimes define soil microbiome response to environmental change, Nature 644 , 1028 (2025). [74] M. H. Begier and M. Hamdan, Correlation in a bivariate normal distribution with truncation in both variables, Australian Journal of Statistics 13 , 77 (1971). [75] S. Rosenbaum, Moments of a truncated bivariate nor-mal distribution, Journal of the Royal Statistical Society Series B: Statistical Methodology 23 , 405 (1961). [76] C. Song, G. Barab´ as, and S. Saavedra, On the conse-quences of the interdependence of stabilizing and equal-izing mechanisms, The American Naturalist 194 , 627 (2019). 11 
+
+SUPPLEMENTARY INFORMATION 
+
+APPENDIX A: SETUP OF HIGHLY-DIVERSE GLV MODEL WITH STRAIN STRUCTURE 
+
+We wish to understand the dynamics of highly-diverse, densely interacting communities (where the number of species S → ∞ ) with fine-scale strain structure, i.e., where species are comprised of multiple strains. For simplicity, we first consider the case where each species has two strains α and β. We will derive the effective dynamics for a typical closely-related strain pair embedded in a highly-diverse community using the cavity method. We will see that the dynamics describing a closely-related strain pair can be coarse-grained to a two-dimensional GLV model, where the impact of the community manifests as changes to effective model parameters such as growth rates, self-inhibition strengths and interstrain interactions. We derive these dynamics for communities governed by these GLV dynamics, but our results and conclusions are general and should apply to other niche models such as CRMs as well (albeit with greater mathematical tedium). We work with a community following GLV dynamics described by the following set of ordinary differential equations: 
+
+dN iα 
+
+dt = Niα 
+
+Kiα − Niα − Aiαiβ Niβ −
+
+> S
+
+X 
+
+> j=1
+> j̸=i
+
+Aiαjα Njα −
+
+> S
+
+X 
+
+> j=1
+> j̸=i
+
+Aiαjβ Njβ 
+
+ , (S1) where the intrinsic growth rates Kiα for strain α of species i, and interaction strengths Aiαjβ — representing the inhibition from strain β of species j on strain α of species i — are random variables defined according to the following ensemble: 
+
+Aiαjα = μS + σa ij + λx ijα (S2) 
+
+Aiαjβ = μS + σa ij − λx ijα (S3) 
+
+Aiβjα = μS + σa ij + λx ijβ (S4) 
+
+Aiβjβ = μS + σa ij − λx ijβ (S5) 
+
+Aiβiα = ˜ μ + λy iαβ (S6) 
+
+Aiαiβ = ˜ μ − λy iαβ (S7) 
+
+Kiα = K + σK ziα (S8) where aij , xijα , yiαβ and ziα are zero-mean random variables with the following statistics: 
+
+⟨aij akl ⟩ = δik δjl 
+
+S + ρd jk δil 
+
+S (S9) 
+
+⟨xijα xklβ ⟩ = δik δjl δαβ 
+
+S + ρδ jk δil 
+
+S (S10) 
+
+⟨yiαβ yjγδ ⟩ = δij δαγ δβδ (S11) 
+
+⟨ziα zjβ ⟩ = δij δαβ . (S12) This ensemble assumes that two closely-related strains jα and jβ of species j impact a distant strain (say iα ) with nearly the same randomly-chosen interaction strength. However, the impacts of jα and jβ on iα are not identical. Instead they differ by a random modifier of strength proportional to λ. The parameter λ thus quantifies the interaction dissimilarity between closely-related strains. λ = 0 implies strains of the same species are identical; as λ increases they become increasingly different. The parameter σ similarly indicates the interaction dissimilarity between two distinct species i and j.We are interested in the collective dynamics of all strains in the community at steady-state. 
+
+dN iα \0
+
+dt = Niα \0
+
+Kiα − Niα \0 −
+
+> S
+
+X
+
+> j=1
+
+Aiαjα Njα \0 −
+
+> S
+
+X
+
+> j=1
+
+Aiαjβ Njβ \0
+
+ = 0 . (S13) 12 
+
+APPENDIX B: CAVITY DERIVATION OF EFFECTIVE TWO-STRAIN MODEL 
+
+To derive effective equations for a typical pair of closely-related strains iα and iβ , we will use the cavity method. We start by assuming that a community with S species — with two strains per species — is at steady state. To this community, we add a new cavity species 0. The invading cavity species also consists of a pair of closely-related strains 0α and 0 β. After the two strains 0 α and 0 β of the cavity species invade, the dynamics of all other strains will change as: 
+
+dN iα 
+
+dt = Niα 
+
+Kiα −
+
+> S
+
+X
+
+> j=1
+
+Aiαjα Njα −
+
+> S
+
+X
+
+> j=1
+
+Aiαjβ Njβ − Aiα 0αN0α − Aiα 0β N0β
+
+ . (S14) From the definition of our ensemble, we see that both 0 α and 0 β act as small perturbations to the growth rate 
+
+δK jα of all other strains jα . Thus, linear response is justified and we can write the perturbed abundance trajectories of strains jα and jβ in the community as 
+
+Njα ≈ Njα \0 − X
+
+> k
+
+νjαkα (Akα 0αN0α + Akα 0β N0β ) − X
+
+> k
+
+νjαkβ (Akβ 0αN0α + Akβ 0β N0β ) , (S15) 
+
+Njβ ≈ Njβ \0 − X
+
+> k
+
+νjβkα (Akα 0αN0α + Akα 0β N0β ) − X
+
+> k
+
+νjβkβ (Akβ 0αN0α + Akβ 0β N0β ) , (S16) where νjαkβ = δN jα  
+
+> δK kβ
+
+is a susceptibility. Substituting these into the dynamics for the cavity strains 0 α and 0 β, we get 
+
+dN 0α
+
+dt = N0α
+
+h
+
+K0α − N0α − X 
+
+> j̸=0
+
+A0αjα Njα − X 
+
+> j̸=0
+
+A0αjβ Njβ − A0α0β N0β
+
+i
+
+, (S17) 
+
+dN 0β
+
+dt = N0β
+
+h
+
+K0β − N0β − X 
+
+> j̸=0
+
+A0βjα Njα − X 
+
+> j̸=0
+
+A0βjβ Njβ − A0β0αN0α
+
+i
+
+. (S18) The terms in the sum over S species involve the sum of a large number of random variables. We will now analyze each of these terms in high-dimensional limit S → ∞ separately. The set of terms which multiply μS , ρσa pj and 
+
+σp1 − ρ2amj are as follows 0 = N0α
+
+h
+
+K0α − N0α − A0α0β N0β − X 
+
+> j̸=0
+
+A0αjα Njα \0 − X 
+
+> j̸=0
+
+A0αjβ Njβ \0
+
++ X
+
+> jk
+
+A0αjα νjαkα Akα 0α
+
+| {z }
+
+> 1
+
+N0α + X
+
+> jk
+
+A0αjα νjαkα Akα 0β
+
+| {z }
+
+> 2
+
+N0β
+
++ X
+
+> jk
+
+A0αjα νjαkβ Akβ 0α
+
+| {z }
+
+> 3
+
+N0α + X
+
+> jk
+
+A0αjα νjαkβ Akβ 0β
+
+| {z }
+
+> 4
+
+N0β
+
++ X
+
+> jk
+
+A0αjβ νjβkα Akα 0α
+
+| {z }
+
+> 5
+
+N0α + X
+
+> jk
+
+A0αjβ νjβkα Akα 0β
+
+| {z }
+
+> 6
+
+N0β
+
++ X
+
+> jk
+
+A0αjβ νjβkβ Akβ 0α
+
+| {z }
+
+> 7
+
+N0α + X
+
+> jk
+
+A0αjβ νjβkβ Akβ 0β
+
+| {z }
+
+> 8
+
+N0β
+
+i
+
+. (S19) 
+
+Term 1 :
+
+X
+
+> jk
+
+A0αjα νjαkα Akα 0α = X
+
+> jk
+
+ μS + σa 0j + λx 0jα 
+
+
+
+νjαkα 
+
+ μS + σa k0 + λx k0α
+
+
+
+(S20) 13 Considering the expectation of this random variable, we get: 
+
+X
+
+> jk
+
+*
+
+μ2
+
+S2 + >μS σa k0 + *μS λx k0α + >μS σa 0j + *μS λx 0jα + σ2a0j ak0 +  :
+
+σλa 0j xk0α +  :
+
+σλa k0x0jα + λ2x0jα xk0α
+
++
+
+(S21) where each of the cancelled terms are subleading in O(S−1/2) and vanish as S → ∞ .=⇒ 1 = σ2
+
+*X
+
+> jk
+
+a0j ak0νjαkα 
+
++
+
++ λ2
+
+*X
+
+> jk
+
+x0jα xk0ανjαkα 
+
++
+
+, (S22) = σ2S ⟨a0j ak0⟩ ⟨ νjαkα ⟩ + λ2S ⟨x0jα xk0α⟩ ⟨ νjαkα ⟩ , (S23) = σ2ρ ⟨ναα ⟩ + λ2ρ ⟨ναα ⟩ , (S24) where ⟨ναα ⟩ is the mean of the αα terms of the community-wide susceptibility matrix, defined as 
+
+⟨ναα ⟩ = X
+
+> ij
+
+∂N iα 
+
+∂K jα 
+
+. (S25) Similarly, we can define the cross-susceptibility as 
+
+⟨ναβ ⟩ = X
+
+> ij
+
+∂N iα 
+
+∂K jβ 
+
+. (S26) Following similar steps, we can compute all the other circled terms in eq (S19). 
+
+Term 2 :
+
+X
+
+> jk
+
+A0βjα νjαkα Akα 0β = σ2
+
+*X
+
+> jk
+
+a0j ak0νjαkα 
+
++
+
+− λ2
+
+*X
+
+> jk
+
+x0jα xk0ανjαkα 
+
++
+
+, (S27) = σ2S ⟨a0j ak0⟩ ⟨ νjαkα ⟩ − λ2S ⟨x0jα xk0α⟩ ⟨ νjαkα ⟩ , (S28) = σ2ρ ⟨ναα ⟩ − λ2ρ ⟨ναα ⟩ , (S29) 
+
+Term 3 :
+
+X
+
+> jk
+
+A0βjα νjαkβ Akβ 0α = σ2
+
+*X
+
+> jk
+
+a0j ak0νjαkβ 
+
++
+
++ λ2
+
+*X
+
+> jk
+
+x0jα xk0β νjαkβ 
+
++
+
+, (S30) = σ2S ⟨a0j ak0⟩ ⟨ νjαkβ ⟩ + λ2S ⟨x0jα xk0β ⟩ ⟨ νjαkβ ⟩ , (S31) = σ2ρ ⟨ναβ ⟩ + λ2ρ ⟨ναβ ⟩ , (S32) 
+
+Term 4 :
+
+X
+
+> jk
+
+A0βjα νjαkβ Akβ 0β = σ2
+
+*X
+
+> jk
+
+a0j ak0νjαkβ 
+
++
+
+− λ2
+
+*X
+
+> jk
+
+x0jα xk0β νjαkβ 
+
++
+
+, (S33) = σ2S ⟨a0j ak0⟩ ⟨ νjαkβ ⟩ − λ2S ⟨x0jα xk0β ⟩ ⟨ νjαkβ ⟩ , (S34) = σ2ρ ⟨ναβ ⟩ − λ2ρ ⟨ναβ ⟩ , (S35) 
+
+Term 5 :
+
+X
+
+> jk
+
+A0βjβ νjβkα Akα 0α = σ2
+
+*X
+
+> jk
+
+a0j ak0νjβkα 
+
++
+
+− λ2
+
+*X
+
+> jk
+
+x0jα xk0ανjβkα 
+
++
+
+, (S36) = σ2S ⟨a0j ak0⟩ ⟨ νjβkα ⟩ − λ2S ⟨x0jα xk0α⟩ ⟨ νjβkα ⟩ , (S37) = σ2ρ ⟨νβα ⟩ − λ2ρ ⟨νβα ⟩ , (S38) 14 
+
+Term 6 :
+
+X
+
+> jk
+
+A0βjβ νjβkα Akα 0β = σ2
+
+*X
+
+> jk
+
+a0j ak0νjβkα 
+
++
+
++ λ2
+
+*X
+
+> jk
+
+x0jα xk0ανjβkα 
+
++
+
+, (S39) = σ2S ⟨a0j ak0⟩ ⟨ νjβkα ⟩ + λ2S ⟨x0jα xk0α⟩ ⟨ νjβkα ⟩ , (S40) = σ2ρ ⟨νβα ⟩ + λ2ρ ⟨νβα ⟩ , (S41) 
+
+Term 7 :
+
+X
+
+> jk
+
+A0βjβ νjβkβ Akβ 0α = σ2
+
+*X
+
+> jk
+
+a0j ak0νjβkβ 
+
++
+
+− λ2
+
+*X
+
+> jk
+
+x0jα xk0β νjβkβ 
+
++
+
+, (S42) = σ2S ⟨a0j ak0⟩ ⟨ νjβkβ ⟩ − λ2S ⟨x0jα xk0β ⟩ ⟨ νjβkβ ⟩ , (S43) = σ2ρ ⟨νββ ⟩ − λ2ρ ⟨νββ ⟩ , (S44) 
+
+Term 8 :
+
+X
+
+> jk
+
+A0βjβ νjβkβ Akβ 0β = σ2
+
+*X
+
+> jk
+
+a0j ak0νjβkβ 
+
++
+
++ λ2
+
+*X
+
+> jk
+
+x0jα xk0β νjβkβ 
+
++
+
+, (S45) = σ2S ⟨a0j ak0⟩ ⟨ νjβkβ ⟩ + λ2S ⟨x0jα xk0β ⟩ ⟨ νjβkβ ⟩ , (S46) = σ2ρ ⟨νββ ⟩ + λ2ρ ⟨νββ ⟩ , (S47) Similarly, the terms involving Njα \0 and Njβ \0 can be simplified by recognizing that they represent the sum of many weakly correlated random variables and in the large S limit become Gaussian fields. Thus we only need to compute their first and second moments, which we will calculate below. Similarly, the closely-related cavity strain 0 β
+
+has dynamics as follows 0 = N0β
+
+h
+
+K0β − N0β − A0β0αN0α − X 
+
+> j̸=0
+
+A0βjα Njα \0 − X 
+
+> j̸=0
+
+A0βjβ Njβ \0
+
++ X
+
+> jk
+
+A0βjα νjαkα Akα 0α
+
+| {z }
+
+> 1
+
+N0α + X
+
+> jk
+
+A0βjα νjαkα Akα 0β
+
+| {z }
+
+> 2
+
+N0β
+
++ X
+
+> jk
+
+A0βjα νjαkβ Akβ 0α
+
+| {z }
+
+> 3
+
+N0α + X
+
+> jk
+
+A0βjα νjαkβ Akβ 0β
+
+| {z }
+
+> 4
+
+N0β
+
++ X
+
+> jk
+
+A0βjβ νjβkα Akα 0α
+
+| {z }
+
+> 5
+
+N0α + X
+
+> jk
+
+A0βjβ νjβkα Akα 0β
+
+| {z }
+
+> 6
+
+N0β
+
++ X
+
+> jk
+
+A0βjβ νjβkβ Akβ 0α
+
+| {z }
+
+> 7
+
+N0α + X
+
+> jk
+
+A0βjβ νjβkβ Akβ 0β
+
+| {z }
+
+> 8
+
+N0β
+
+i
+
+. (S48) Both K0α and K0β are values centred around a mean K and deviation δK i with statistics ⟨δK i⟩ = 0 and ⟨δK 2 
+
+> i
+
+⟩ = σ2 
+
+> K
+
+.The circled terms are almost the same as for the 0 α strain, except they all start with A0β instead of A0α. This doesn’t change what the terms evaluate to, because the terms involving ρ in Eq (S10) are independent of α and β. Thus we can substitute the circled terms from previous calculations in Eqns (S24)–(S47). One crucial behaviour that emerges due to our model setup is that although there are strain level differences within a species (modelled using λx 0jα or 15 
+
+λx 0jβ ), at the species level they encounter the same inter-species interactions i.e., σij remains strain independent. This leads to the emergence of correlational structures between the fluctuating parts of the effective growth rates of the two strains in addition to their means and variances. Calculating this abundance correlation of conspecific strains is crucial to understand their joint distributions. We can calculate the first, second, and cross-moments for the strains. First, we define for each of the strains 
+
+Sα = X
+
+> j
+
+A0α jα Njα \0 + X
+
+> j
+
+A0α jβ Njβ \0, (S49) 
+
+Sβ = X
+
+> j
+
+A0β jα Njα \0 + X
+
+> j
+
+A0β jβ Njβ \0. (S50) Using the interaction coefficients defined for the ensemble (S2-S7), we can write 
+
+⟨Sα⟩ =
+
+*X
+
+> j
+
+ μS + σa 0j + λx 0jα 
+
+
+
+Njα \0 + X
+
+> j
+
+ μS + σa 0j − λx 0jα 
+
+
+
+Njβ \0
+
++
+
+. (S51) Expanding out we get, 
+
+*X
+
+> j
+
+μS Njα \0 +
+
+*X
+
+> j
+
+σa 0j Njα \0 +
+
+  :X
+
+> j
+
+λx 0jα Njα \0 + X
+
+> j
+
+μS Njβ \0 +
+
+*X
+
+> j
+
+σa 0j Njβ \0 −
+
+  :X
+
+> j
+
+λx 0jα Njβ \0
+
++
+
+(S52) which can be reduced. Note that the exact same reduction can be performed for Sβ . From above, we can find that 
+
+⟨Sα⟩ = ⟨Sβ ⟩ = μ(⟨Nα + Nβ ⟩) (S53) where ⟨Nα⟩ and ⟨Nβ ⟩ are the means of all the abundances of the α and β strains of the non-cavity species. Similarly we can calculate the second moments of Sα
+
+⟨S2
+
+> α
+
+⟩ =
+
+*X
+
+> jk
+
+ μS + σa 0j + λx 0jα 
+
+  μS + σa 0k + λx 0kα 
+
+
+
+Njα \0Nkα \0
+
++
+
+(S54) +
+
+*X
+
+> jk
+
+ μS + σa 0j − λx 0jα 
+
+  μS + σa 0k − λx 0kα 
+
+
+
+Njβ \0Nkβ \0
+
++
+
++ 2 
+
+*X
+
+> jk
+
+ μS + σa 0j + λx 0jα 
+
+  μS + σa 0k − λx 0kβ 
+
+
+
+Njα \0Nkβ \0
+
++
+
+We can expand and remove all the subleading terms that go to 0. Following expansion, we get 
+
+⟨S2
+
+> α
+
+⟩ = X
+
+> jk
+
+ μ2
+
+S2 Njα \0Nkα \0
+
+
+
++ X
+
+> jk
+
+ σ2
+
+S a0j a0kNjα \0Nkα \0
+
+
+
++ X
+
+> jk
+
+ λ2
+
+S x0jα x0kα Njα \0Nkα \0
+
+
+
+(S55) + X
+
+> jk
+
+ μ2
+
+S2 Njβ \0Nkβ \0
+
+
+
++ X
+
+> jk
+
+ σ2
+
+S a0j a0kNjβ \0Nkβ \0
+
+
+
++ X
+
+> jk
+
+ λ2
+
+S x0jβ x0kβ Njβ \0Nkβ \0
+
+
+
+(S56) + 2 
+
+X
+
+> jk
+
+ μ2
+
+S2 Njα \0Nkβ \0
+
+
+
++ X
+
+> jk
+
+ σ2
+
+S a0j a0kNjα \0Nkβ \0
+
+
+
++ X
+
+> jk
+
+ λ2
+
+S x0jα x0kβ Njα \0Nkβ \0
+
+ . (S57) Summing all the quantities, we are left with, 
+
+⟨S2
+
+> α
+
+⟩ = μ2  ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ + σ2  ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ + λ2  ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ + 2  μ2⟨NαNβ ⟩ + σ2⟨NαNβ ⟩ − λ2⟨NαNβ ⟩ (S58) The variance of the fluctuating component in strain β can be obtained using the same method and we find that by rearranging the terms and grouping them, we can rewrite it as 16 
+
+⟨S2
+
+> α
+
+⟩ = ⟨S2 
+
+> β
+
+⟩ = μ2⟨(Nα + Nβ )2⟩ + σ2⟨(Nα + Nβ )2⟩ + λ2⟨(Nα − Nβ )2⟩ (S59) We can also obtain the variances of the two quantities by subtracting the first moments of the expressions 
+
+V ar (Sα) = V ar (Sβ ) = σ2⟨(Nα + Nβ )2⟩ + λ2⟨(Nα − Nβ )2⟩ (S60) We can introduce for simplicity 
+
+Mj = Njα \0 + Njβ \0, Dj = Njα \0 − Njβ \0. (S61) where 
+
+⟨M 2⟩ = ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ + 2 ⟨NαNβ ⟩ (S62) 
+
+⟨D2⟩ = ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ − 2⟨NαNβ ⟩ (S63) Using this new notation, we can calculate the cross-moment of the fluctuating parts of both strains i.e. ⟨Sα, S β ⟩⟨SαSβ ⟩ =
+
+*X
+
+> j
+
+μS Mj + σ
+
+√S
+
+X
+
+> j
+
+a0j Mj + λ
+
+√S
+
+X
+
+> j
+
+x0jα Dj
+
+ X
+
+> k
+
+μS Mk + σ
+
+√S
+
+X
+
+> k
+
+a0kMk + λ
+
+√S
+
+X
+
+> k
+
+x0kα Dk
+
+!+ 
+
+(S64) which, following taking the product is equal to, 
+
+⟨SαSβ ⟩ = μ2 X
+
+> jk
+
+⟨Mj Mk⟩ + σ2 X
+
+> jk
+
+⟨a0j a0k⟩⟨ Mj Mk⟩ − λ2 X
+
+> jk
+
+⟨x0jα x0kβ ⟩⟨ Dj Dk⟩. (S65) Since x0jα and x0jβ are independent, the third term vanishes. Further we can calculate the covariance of the fluctuating components of the two strains using the formula Cov( Sα, S β ) = ⟨SαSβ ⟩ − ⟨ Sα⟩⟨ Sβ ⟩. Using the formula, we can obtain Cov( Sα, S β ) = σ2
+
+S
+
+X
+
+> j
+
+⟨M 2 
+
+> j
+
+⟩ = σ2
+
+⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ + 2 ⟨NαNβ ⟩
+
+
+
+, (S66) which is strictly positive. The variances of the two fluctuating parts are Var( Sα) = Var( Sβ ) = σ2⟨M 2⟩ + λ2⟨D2⟩. (S67) Thus, the correlation between Sα and Sβ (from S66 and S67) is 
+
+ρint = Corr( Sα, S β ) = Cov( Sα, S β )
+
+pVar( Sα)Var( Sβ ) =
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E , (S68) where 
+
+⟨M 2⟩ = ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ + 2 ⟨NαNβ ⟩, (S69) 
+
+⟨D2⟩ = ⟨N 2
+
+> α
+
+⟩ + ⟨N 2 
+
+> β
+
+⟩ − 2⟨NαNβ ⟩. (S70) As λ increases, the antisymmetric (difference) effects dominates, and the correlation between the two strains de-creases from near +1 toward 0. This means that nearly-identical strains ( λ ≈ 0) feel very similar effective environments and thus have correlated growth rates (i.e., effects from other species in the community) This effect is further com-pounded by the effects of the environment on the growth rates of the two strains. On one hand, the shared variance in interaction effects at the species level ( σ2) keeps the abundances of the two strain coupled ( ρint ≈ 1, resulting in 17 positive correlations between strains) while on the other hand strain interaction dissimilarity ( λ) and environmental noise serves to decouple the abundance fluctuations. Note that there is an additional σ2 
+
+> K
+
+terms that emerges from independent fluctuations around the mean growth rate K which are drawn from a distribution N (0 , σ 2 
+
+> K
+
+). As a result, in the large S limit, the mean-field dynamics for the 0 α and 0 β strains become 0 = N0α
+
+h
+
+K − μ(⟨Nα⟩ + ⟨Nβ ⟩) + 
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E
+
+z(int) 0α +
+
+q
+
+σ2 
+
+> K
+
+z0α
+
+| {z } 
+
+> effective growth rate, Keff 0α
+
+−
+
+
+
+1 − (σ2 + λ2)ρ (⟨ναα ⟩ + ⟨ναβ ⟩) − (σ2 − λ2)ρ(⟨νββ ⟩ + ⟨νβα ⟩)
+
+| {z } 
+
+> effective self-inhibition, Aeff 0α0α
+
+N0α
+
+−
+
+
+
+˜μ − λy 0αβ − (σ2 + λ2)ρ(⟨νββ ⟩ + ⟨νβα ⟩) − (σ2 − λ2)ρ(⟨ναα ⟩ + ⟨ναβ ⟩)
+
+| {z } 
+
+> effective interaction with closely-related strain, Aeff 0α0β
+
+N0β
+
+i
+
+, (S71) where z(int) 0α and z0α are independent standard normal variable withs zero mean and unit variance. 0 = N0β
+
+h
+
+K − μ(⟨Nα⟩ + ⟨Nβ ⟩)
+
+| {z }
+
++
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E ρint z(int) 0α +
+
+q
+
+(1 − ρ2int )z(int) 0β
+
+ +
+
+q
+
+σ2 
+
+> K
+
+z0β
+
+| {z } 
+
+> effective growth rate, Keff 0β
+
+−
+
+
+
+1 − (σ2 + λ2)ρ(⟨νββ ⟩ + ⟨νβα ⟩) − (σ2 − λ2)ρ(⟨ναα ⟩ + ⟨ναβ ⟩)
+
+| {z } 
+
+> effective self-inhibition, Aeff 0β0β
+
+N0β
+
+−
+
+
+
+˜μ + λy 0αβ − (σ2 + λ2)ρ (⟨ναα ⟩ + ⟨ναβ ⟩) − (σ2 − λ2)ρ(⟨νββ ⟩ + ⟨νβα ⟩)
+
+| {z } 
+
+> effective interaction with closely-related strain, Aeff 0β0α
+
+N0α
+
+i
+
+. (S72) Eqns (S71) and (S72) describe a two-strain GLV model with effective parameters that contain the effect of the community on a prototypical closely-related strain pair 0 α and 0 β. Note that z(int) 0β , z 0β are also independent random variables drawn from N (0 , 1). More simply, we can rewrite the above two equations as 0 = N0α
+
+h
+
+(g + σg z(int) 0α + σK z0α
+
+
+
+− Aeff 0α0αN0α − Aeff 0α0β N0β ] (S73) 0 = N0β
+
+ 
+
+g + σg
+
+
+
+ρint z(int) 0α +
+
+q
+
+(1 − ρ2int )z(int) 0β
+
+
+
++ σK z0β
+
+
+
+− Aeff 0β0αN0α − Aeff 0β0β N0β
+
+
+
+(S74) where g refers to the mean of the effective carrying capacity equal to K −μ (⟨Nα + Nβ ⟩) and σg refers to the variance arising from the joint effect of all strains from the other species equal to 
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E
+
+.Looking at this form of the two-strain model at equilibrium, we can see the presence of an emergent correlation between the growth rates of the two strains indicate a coupling of growth rates (correlated by some strength ρint — a phenomenon that is not observed in a simple 2 strain model in the absence of the community (see Appendix F below for a detailed calculation). From eqns. S68, S73, S74, we can simply calculate the correlation between Kα and Kβ as Corr( Kα, K β ) = ρK = ρint σ2
+
+> g
+
+σ2 
+
+> g
+
++ σ2
+
+> K
+
+=
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E
+
++ σ2
+
+> K
+
+(S75) More succinctly, we can write down the equations above in the form of the effective two species model as in equations 5 and 6 in the main text i.e. 18 0 = dN α
+
+dt = Nα
+
+ Keff  
+
+> α
+
+− Aeff 
+
+> αα
+
+Nα − Aeff  
+
+> αβ
+
+Nβ
+
+ , (S76) 0 = dN β
+
+dt = Nβ
+
+ Keff  
+
+> β
+
+− Aeff  
+
+> ββ
+
+Nβ − Aeff 
+
+> βα
+
+Nα
+
+ . (S77) We further assume for simplicity that ⟨ναα ⟩ = ⟨νββ ⟩ and ⟨ναβ ⟩ = ⟨νβα ⟩, and thus we can define ν = ⟨ναα ⟩ + ⟨ναβ ⟩
+
+and equal to ⟨νβα ⟩ + ⟨νββ ⟩. Numerical simulations support the validity of this assumption. The effective parameters of the effective two-species model is then as follows 
+
+Keff  
+
+> α
+
+= K − μ(⟨Nα⟩ + ⟨Nβ ⟩) + 
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E
+
+z(int) 0α +
+
+q
+
+σ2 
+
+> K
+
+z0α (S78) 
+
+Keff  
+
+> β
+
+= K − μ(⟨Nα⟩ + ⟨Nβ ⟩) + 
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
++ λ2
+
+D
+
+(Nα − Nβ )2E ρint z(int) 0α +
+
+q
+
+(1 − ρ2int )z(int) 0β
+
+ +
+
+q
+
+σ2 
+
+> K
+
+z0β
+
+(S79) 
+
+Aeff 0α0α = Aeff 0β0β = 1 − 2σ2ρν (S80) 
+
+Aeff 0α0β = (˜ μ − λy − 2σ2ρν ) (S81) 
+
+Aeff 0β0α = (˜ μ + λy − 2σ2ρν ) (S82) where Keff  
+
+> α
+
+, K eff  
+
+> β
+
+are the effective growth rates of the two strains. The community serves to reduce the average growth rate by a term μ(⟨Nα⟩ + ⟨Nβ ⟩) and adds extra variance as well. Aeff 0α0α, A eff 0β0β are the effecting self-regulating terms for the two strains which is reduced due to the effects of the community relative the strains in isolation. Lastly, 
+
+Aeff 0α0β , A eff 0β0α are the effective competition (or inter-strain interaction) coefficients. Note that the community serves to reduce the magnitude of competition within and between strains. This reduced competition shapes the coexistence dynamics of both strains sensu “enemy of the enemy is a friend” effect. Thus, ρK provides us information on the joint effects of independent variation of growth rates σ2 
+
+> K
+
+and correlated fluctuations arising from interactions with the rest of the community. We can simplify these equations in the low λ limit, which describes the dynamics of two closely related strains by setting λ = 0 which gives us lim 
+
+> λ→0+
+
+Keff  
+
+> α
+
+= K − μ(⟨Nα⟩ + ⟨Nβ ⟩) + 
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E
+
+z(int) 0α +
+
+q
+
+σ2 
+
+> K
+
+z0α (S83) lim 
+
+> λ→0+
+
+Keff  
+
+> β
+
+= K − μ(⟨Nα⟩ + ⟨Nβ ⟩) + 
+
+r
+
+σ2
+
+D
+
+(Nα + Nβ )2E ρint z(int) 0α +
+
+q
+
+(1 − ρ2int )z(int) 0β
+
+ +
+
+q
+
+σ2 
+
+> K
+
+z0β (S84) lim  
+
+> λ→0+
+
+Aeff 0α0α = Aeff 0β0β = 1 − 2σ2ρν (S85) lim 
+
+> λ→0+
+
+Aeff 0α0β = (˜ μ − 2σ2ρν ) (S86) lim  
+
+> λ→0+
+
+Aeff 0β0α = (˜ μ − 2σ2ρν ) (S87) 
+
+APPENDIX C: SOLVING THE EFFECTIVE TWO-STRAIN MODEL USING SELF-CONSISTENCY RELATIONS 
+
+When both strains survive at steady state (S71) and (S72)), both per capita growth rates are zero. This yields a pair of equations in N0α and N0β which are solved simultaneously. When they cannot coexist, solutions to these equations are infeasible and correspond to at least one of the strains having negative abundance. The form of the per capita growth rates in eqns (S71) and (S72) represents two correlated Gaussians. Thus the joint abundance distribution of strains 0 α and 0 β is a bivariate Gaussian truncated below 0 for both variables N0α and N0β . This truncated binormal is fully described by 5 parameters: the means and variances of the two variables and the correlation between them 
+
+ραβ . To compute these 5 parameters, we first set both per capita growth rates to 0 and simultaneously solve the resulting equations for N ± 
+
+> 0α
+
+and N ± 
+
+> 0β
+
+:19 
+
+N ± 
+
+> 0α
+
+= Aeff 0β0β Keff 0α − Aeff 0α0β Keff 0β
+
+Aeff 0α0αAeff 0β0β − Aeff 0β0αAeff 0α0β
+
+, (S88) 
+
+N ± 
+
+> 0β
+
+= Aeff 0α0αKeff 0β − Aeff 0β0αKeff 0α
+
+Aeff 0α0αAeff 0β0β − Aeff 0β0αAeff 0α0β
+
+. (S89) Here, the ± indicates that solutions may suggest either positive or negative abundances, depending on whether both strains survive. This corresponds to the untruncated joint distribution. We can evaluate the denominator of S88 and S89 as they are the same (henceforth called ∆) as it essentially is the determinant of an interaction matrix with effective parameterS of a 2-strain GLV model. To simplify the calculation, we introduce some shorthand notation We henceforth define g = K − μ(⟨Nα⟩ + ⟨Nβ ⟩), the deterministic part of the effective growth rate and σ2 
+
+> g
+
+=(σ2 M 2 + λ2 D2 ), the fluctuating part. We also define C = (1 − ˜μ)(1 + ˜ μ − 4σ2ρν ) and D = λ2. Lastly, this assumption allows us to simply write down the elements of the effective A matrix as follows, 
+
+Aeff 0α0α = Aeff 0β0β = 1 − 2σ2ρν = ξ (S90a) 
+
+Aeff 0α0β = (˜ μ − λy − 2σ2ρν ) = ˜ μeff − λy (S90b) 
+
+Aeff 0β0α = (˜ μ + λy − 2σ2ρν ) = ˜ μeff + λy (S90c) Further we will sometimes interchangeably call the determinant C + Dy 2 or ∆ to improve legibility of the expression. Using this new notation, it becomes clear that C = ( ξ2 − (˜ μeff )2). Using this notation, we can first substitute (see S71) and (S72) and calculate the first moment of N ±
+
+> 0α
+
+.
+
+N ± 
+
+> 0α
+
+= ξ(g + σg z(int) 0α + σK z0α) − (˜ μeff − λy ) g + σg (ρint z(int) 0α + p1 − ρ2int z(int) 0β ) + σK z0β
+
+
+
+(ξ2 − (˜ μeff )2) + λ2y2 (S91) Taking the expectation value of this expressions gives us 
+
+⟨N ±
+
+> 0α
+
+⟩ =
+
+ 1∆ (g(ξ − (˜ μeff − λy )
+
+
+
+(S92) This leads to 
+
+⟨N ±
+
+> 0α
+
+⟩ = g  ξ − ˜μeff   1∆
+
+
+
++ >
+
+λ
+
+D y
+
+∆
+
+E
+
+(S93) which following evaluation of the expectation values for y ∼ N (0 , 1) results in the expression 
+
+⟨N ±
+
+> 0α
+
+⟩ = g(1 − ˜μ)
+
+r π
+
+2( ξ2 − (˜ μeff )2)λ2 e (ξ2−( ˜ μeff )2)2λ2 erfc 
+
+r (ξ2 − (˜ μeff )2)2λ2
+
+
+
+. (S94) where C is defined as earlier with C > 0 and “erfc” is the complementary error function. We find that ⟨Nβ ⟩ = ⟨Nα⟩.Next, we require to calculate the second moments as well as the cross-moment of Nα and Nβ . Calculating these quantities will bring us closer to determining the sign and magnitude of abundance correlations between closely-related strains. We calculate the untruncated second moment as well as the cross-moment by squaring the expressions in (S88) and (S89). First, to calculate the second moment of ⟨N 2
+
+> α
+
+⟩ we can write 
+
+⟨N ±
+
+> 0α
+> 2
+
+⟩ =
+
+* Aeff 0β0β Keff 0α − Aeff 0α0β Keff 0β
+
+Aeff 0α0αAeff 0β0β − Aeff 0β0αAeff 0α0β
+
+2+
+
+. (S95) This can be split into 
+
+⟨N ±
+
+> 0α
+> 2
+
+⟩ =
+
+*
+
+ξ2(g + σg z(int) 0α + σK z0α)2
+
+∆2
+
++
+
+− 2
+
+* ξ(˜ μeff − λy )( g + σg z(int) 0α + σK z0α)( g + σg (ρint z(int) 0α + p1 − ρ2int z(int) 0β ) + σK z0β )∆2
+
++
+
++
+
+* (˜ μeff − λy )2(g + σg (ρint z(int) 0α + p1 − ρ2int z(int) 0β ) + σK z0β )2
+
+∆2
+
++
+
+. (S96) 20 Expanding this, we get 
+
+ξ2
+
+ 1∆2
+
+  g2 + σ2 
+
+> g
+
++ σ2
+
+> K
+
+ − 2ξ ˜μeff (g2 + σ2 
+
+> g
+
+ρint )
+
+ 1∆2
+
+
+
++ (˜ μeff )2(g2 + σ2 
+
+> g
+
+ρ2int + σ2 
+
+> g
+
+(1 − ρ2int ) + σ2 
+
+> K
+
+)
+
+ 1∆2
+
+
+
++λ2(g2 + σ2 
+
+> g
+
+ρ2int + σ2 
+
+> g
+
+(1 − ρ2int ) + σ2 
+
+> K
+
+)
+
+ y2
+
+∆2
+
+
+
+. (S97) .We can note that the coefficients of the third and fourth term reduce to ( g2 + σ2 
+
+> g
+
++ σ2 
+
+> K
+
+) i.e. the coefficients of the first term. Grouping all the terms with g2⟨ 1∆2 ⟩, this reduces to 
+
+g2
+
+ 1∆2
+
+
+
+(ξ − ˜μeff )2 − 2σ2 
+
+> g
+
+ξ ˜μeff ρint 
+
+ 1∆2
+
+
+
++ ( σ2 
+
+> K
+
++ σ2 
+
+> g
+
+)( ξ2 + (˜ μeff )2)
+
+ 1∆2
+
+
+
++ λ2(g2 + σ2 
+
+> g
+
++ σ2 
+
+> K
+
+)
+
+ y2
+
+∆2
+
+
+
+. (S98) From the definition, we can see that ( ξ − ˜μeff ) is equal to (1 − ˜μ). Also note that ρint σ2 
+
+> g
+
+= σ2⟨M 2⟩ and (1 − ρint )σ2 
+
+> g
+
+=
+
+λ2⟨D2⟩. Rearranging and substituting the coefficients of 1∆2 , we get 
+
+D
+
+N ±
+
+> 0α
+> 2
+
+E
+
+=  g2 + ρint σ2
+
+> g
+
+ (1 − ˜μ)2
+
+ 1∆2
+
+
+
++  σ2 
+
+> g
+
+(1 − ρint ) + σ2
+
+> K
+
+  1∆2
+
+
+
++ λ2  g2 + σ2 
+
+> g
+
++ σ2
+
+> K
+
+  y2
+
+∆2
+
+
+
+(S99) 
+
+D
+
+N ±
+
+> 0β
+> 2
+
+E
+
+=  g2 + ρint σ2
+
+> g
+
+ (1 − ˜μ)2
+
+ 1∆2
+
+
+
++  σ2 
+
+> g
+
+(1 − ρint ) + σ2
+
+> K
+
+  1∆2
+
+
+
++ λ2  g2 + σ2 
+
+> g
+
++ σ2
+
+> K
+
+  y2
+
+∆2
+
+
+
+(S100) Note that these calculations of first and second moments are of the untruncated abundances of the α and β strains. Next,we calculate the untruncated cross-moment of the strains ⟨N0αN0β ⟩. This is given by 
+
+⟨N0αN0β ⟩ =
+
+* (Aeff 0β0β Keff 0α − Aeff 0α0β Keff 0β )( Aeff 0α0αKeff 0β − Aeff 0β0αKeff 0α)(Aeff 0α0αAeff 0β0β − Aeff 0β0αAeff 0α0β )2
+
++
+
+. (S101) Following substitution and decomposing into four components we ge, 
+
+* ξ2(g + σg z(int) 0α + σK z0α)( g + σg (ρint z(int) 0α + p(1 − ρ2int )z(int) 0β ) + σK z0β )∆2
+
++
+
+−
+
+*
+
+ξ(˜ μeff + λy )( g + σg z(int) 0α + σK z0α)2
+
+∆2
+
++
+
+−
+
+* ξ(˜ μeff − λy )( g + σg (ρint z(int) 0α + p(1 − ρ2int )z(int) 0β ) + σK z0β )2
+
+∆2
+
++
+
++
+
+* (˜ μeff + λy )(˜ μeff − λy )( g + σg z(int) 0α + σK z0α)( g + σg (ρint z(int) 0α + p(1 − ρ2int )z(int) 0β ) + σK z0β )∆2
+
++
+
+(S102) Making the appropriate substitutions and taking the expectation values yields 
+
+ξ2(g2 + ρint σ2 
+
+> g
+
+)
+
+ 1∆2
+
+
+
+− 2ξ ˜μeff (g2 + σ2 
+
+> g
+
++ σ2 
+
+> K
+
+)
+
+ 1∆2
+
+
+
++ (˜ μeff )2(g2 + ρint σ2 
+
+> g
+
+)
+
+ 1∆2
+
+
+
+− λ2(g2 + ρint σ2 
+
+> g
+
+)
+
+ y2
+
+∆2
+
+
+
+.Making a similar substitution as earlier where ( ξ − ˜μeff ) = (1 − ˜μ) and rearranging terms gives us 
+
+⟨N0αN0β ⟩ =  g2 + σ2 
+
+> g
+
+ρint 
+
+ (1 − ˜μ)2
+
+ 1∆2
+
+
+
+− 2˜ μeff ξ  (1 − ρint ) σ2 
+
+> g
+
++ σ2
+
+> K
+
+  1∆2
+
+
+
+− λ2(g2 + ρint σ2 
+
+> g
+
+)
+
+ y2
+
+∆2
+
+
+
+. (S103) To get complete expressions for (S99),(S100), and (S103), we still require values for the expectation of 1∆2 and  
+
+> y2
+> ∆2
+
+. Recall ∆ = C + Dy 2, i.e., the difference between the product of the self-regulation terms of each strain and the 21 product of the cross-strain interaction terms. Also recall C = ( ξ2 − (˜ μeff )2), D = λ2. Further, y ∼ Normal(0,1). We find these expectation values are 
+
+ 1∆2
+
+
+
+= 1 − (C − D)p π 
+
+> 2CD
+
+e C 
+
+> 2D
+
+erfc 
+
+q C
+
+> 2D
+
+2CD (S104) 
+
+ y2
+
+∆2
+
+
+
+= −1 − (C + D)p π 
+
+> 2CD
+
+e C 
+
+> 2D
+
+erfc 
+
+q C
+
+> 2D
+
+2D2 . (S105) By substituting the expressions from (S104) and (S105) into (S99),(S100), and (S103), we can get complete expres-sions for the untruncated second and cross-moments of the variables. The cross moment offers a clear picture and partitioning of the multiple effects driving the correlation patterns of the competing strains in a community. Term 1 is the “filtering” contribution. When the community creates a favourable environment (high mean effective growth rate ‘g’) or when species-level interaction dissimilarity is high i.e. high σ2⟨M 2⟩ and it fluctuates in ways that affect both strains equally, their abundances fall and rise together leading to positive correlations. Term 2 captures the fact that within the species, strains can experience slightly different environments (even if they are mildly dissimilar (λ) or due to intrinsic variation in growth rates ( σK )). This leads to a decorrelation of strain abundances resulting in a negative contribution to the cross-moment. Term 3 is the ”sorting” contribution to variance. When λ is large, environmental fluctuations push strains in opposite directions i.e. one strain benefits while the other suffers. This is also a mechanism that flips correlations from positive to negative as λ increases. The covariance of abundance between the two conspecific strains of the focal species is obtained by subtracting the product of the means from the calculated cross–moment. Using 
+
+N0α N0β = g2(1 − ˜μ)2
+
+ 1∆
+
+2
+
+, (S106) we obtain Cov  N0α, N 0β
+
+ = N0αN0β − N0α N0β (S107) = g2(1 − ˜μ)2
+
+ 1∆2
+
+
+
+−
+
+ 1∆
+
+2!
+
++ σ2 
+
+> g
+
+ρint (1 − ˜μ)2
+
+ 1∆2
+
+
+
+− 2˜ μeff ξ  (1 − ρint ) σ2 
+
+> g
+
++ σ2
+
+> K
+
+  1∆2
+
+
+
+− λ2 g2 + ρint σ2
+
+> g
+
+  y2
+
+∆2
+
+
+
+. (S108) Conveniently for us, σ2 
+
+> g
+
+ρint = σ2 (N0α + N0β )2 and (1 − ρint )σ2 
+
+> g
+
+= λ2 (N0α − N0β )2 . Also, the first term of the covariance is exactly 0 as λ → 0 and remains close to 0 for a large range of λ (upto O(1)). It contributes negligibly to the covariance relative to the other three terms. Thus, we can approximate the covariance of conspecific strain abundances as, Cov  N0α, N 0β
+
+ = σ2(1 − ˜μ)2 (N0α + N0β )2 − 2λ2(1 − 2σ2ρν )(˜ μ − 2σ2ρν )⟨(N0α − N0β )2⟩  1∆2
+
+
+
++ 2 σ2 
+
+> K
+
+(1 − 2σ2ρν )(˜ μ − 2σ2ρν )
+
+ 1∆2
+
+
+
+− λ2  g2 + σ2 (N0α + N0β )2   y2
+
+∆2
+
+
+
+(S109) Following appropriate substitution of quantities, we can rewrite it as, Cov  N0α, N 0β
+
+ = (σ2⟨(N0α + N0β )2⟩)(1 − ˜μ)2
+
+ 1∆2
+
+| {z }
+
+> Shared species dissimilarity effects on conspecific strains (Positive)
+
+− 2σ2 
+
+> K
+
+(1 − 2σ2ρν )(˜ μ − 2σ2ρν )
+
+ 1∆2
+
+| {z }
+
+> Intrinsic growth rate differences (Negative)
+
+− λ2
+
+
+
+2(1 − 2σ2ρν )(˜ μ − 2σ2ρν )⟨(N0α − N0β )2⟩
+
+ 1∆2
+
+
+
++  (K − μ ⟨N0α + N0β ⟩)2 + σ2⟨(N0α + N0β )2⟩  y2
+
+∆2
+
+ | {z }  
+
+> Strain interaction dissimilarity driven effect (only when λ > 0; Negative)
+
+(S110) 22 The corresponding correlation between the two strains is then 
+
+ραβ = Cov  N0α, N 0β
+
+pVar( N0α) Var( N0β ) , (S111) where the numerator is given by Eq. (S108) and the denominator can be obtained from the single–strain moments Eq. (S99, S100), or directly measured from simulations conditioned on two–strain coexistence. However, biologically we are only interested in the non-negative abundances of the strains. Thus, given the untrun-cated expressions along with the truncation of the variables Nα and Nβ at (0,0), we need to calculate the truncated first, second and cross-moments of the variables to get their accurate distributions. Previous work has calculated these truncated moments from the untruncated variables for bivariate, standard normal random variables [74, 75]. We make use of these expressions and back-transform these variables to our required variables Nα and Nβ with untruncated means and variances to obtain the necessary expressions. Thus the cavity framework yields a closed system of 12 self-consistency equations relating the following unknowns i.e., 1) Truncated first moments: ⟨Nα⟩, ⟨Nβ ⟩ , 2) truncated second moments: ⟨N 2
+
+> α
+
+⟩, ⟨N 2 
+
+> β
+
+⟩, 3) survival probabilities: ϕα, ϕβ , ϕαβ , 4) susceptibilities: ναα , νββ , ναβ , νβα , and 5) the truncated cross-moment: ⟨NαNβ ⟩. The self consistency equations which were solved together are as follows 
+
+⟨Nα⟩ = ⟨N ±
+
+> 0α
+
+⟩ +
+
+q
+
+Var( N ±
+
+> 0α
+
+) ⟨X | X > h, Y > k ⟩ (S112) 
+
+⟨N 2
+
+> α
+
+⟩ = ⟨N ±
+
+> 0α
+> 2
+
+⟩ + 2 N ±
+
+> 0α
+
+q
+
+Var( N ±
+
+> 0α
+
+) ⟨X | X > h, Y > k ⟩ + Var( N ±
+
+> 0α
+
+) ⟨X2 | X > h, Y > k ⟩ (S113) 
+
+⟨Nβ ⟩ = ⟨N ± 
+
+> 0β
+
+⟩ +
+
+q
+
+Var( N ± 
+
+> 0β
+
+) ⟨X | X > h, Y > k ⟩ (S114) 
+
+⟨N 2 
+
+> β
+
+⟩ = ⟨N ±
+
+> 0β
+> 2
+
+⟩ + 2 N ±
+
+> 0β
+
+q
+
+Var( N ± 
+
+> 0β
+
+) ⟨X | X > h, Y > k ⟩ + Var( N ± 
+
+> 0β
+
+) ⟨X2 | X > h, Y > k ⟩ (S115) 
+
+⟨NαNβ ⟩ = ⟨N0α⟩⟨ N0β ⟩ +
+
+q
+
+Var( N ±
+
+> 0α
+
+)
+
+q
+
+Var( N ± 
+
+> 0β
+
+)⟨XY | X > h, Y > k ⟩
+
+= + 
+
+q
+
+Var( N ± 
+
+> 0β
+
+)⟨Y | X > h, Y > k ⟩⟨ N0α⟩ +
+
+q
+
+Var( N ±
+
+> 0α
+
+)⟨X | X > h, Y > k ⟩⟨ N0β ⟩ (S116) 
+
+ϕα = Φ( −h) = P (Nα > 0) (S117) 
+
+ϕβ = Φ( −k) = P (Nβ > 0) (S118) 
+
+ϕαβ = L = P (Nα > 0, N β > 0) (S119) 
+
+⟨ναα ⟩ = ϕαξ
+
+ 1∆
+
+
+
+(S120) 
+
+⟨νββ ⟩ = ϕβ ξ
+
+ 1∆
+
+
+
+(S121) 
+
+⟨ναβ ⟩ = −ϕαβ ˜μeff 
+
+ 1∆
+
+
+
+(S122) 
+
+⟨νβα ⟩ = −ϕαβ ˜μeff 
+
+ 1∆
+
+
+
+(S123) where ⟨X⟩ and ⟨Y ⟩ are the first moments of two standard normal random variables ’X’ and ’Y’ (that correspond to the α and β strains respectively), ⟨X2⟩, ⟨Y 2⟩ correspond to their second moments, and ⟨XY ⟩ corresponds to their cross-moments. We standardized the untruncated distribution by defining the limits h and k as follows: 
+
+h = − ⟨N ±
+
+> 0α
+
+⟩
+
+q
+
+Var( N ±
+
+> 0α
+
+)
+
+, k = − ⟨N ± 
+
+> 0β
+
+⟩
+
+q
+
+Var( N ± 
+
+> 0β
+
+)(S124) so that the truncation region becomes {X > h, Y > k }. The marginal survival probabilities for each strain type are then given by ϕα and ϕβ in the above equations where Φ( ·) is the standard normal cumulative distribution function. The joint survival probability, representing the fraction of species in which both strains coexist, is given by ϕαβ .Lastly, the terms Var( N ±
+
+> 0α
+
+) and Var( N ± 
+
+> 0β
+
+) are the variances of the untruncated distributions of the conspecific strain abundances. 23 
+
+FIG. S1: Joint distribution of strain abundances is a truncated bivariate Gaussian for closely-related strains (low λ). Panels in the top row show scatter plots for the abundances of strains α and β of the same species at steady-state within a diverse community with S = 100 species. On the left, we show results from simulations of the full community with 2S strains; on the right, theoretical predictions from the cavity method for the same parameter set. The points in the right panel were generated using Monte Carlo sampling based on a truncated bivariate Gaussian distribution with moments as calculated from the cavity method. Bottom left panel shows a QQ plot to confirm that the distributions (both analytic and simulations) were bivariate normal. To check for the normality of the distributions we plotted the square of the Mahalanobis distance of the sample distributions against a theoretical χ2 distribution following which we performed a KS test to check for deviations from the theoretical distributions. Inset box shows p-values; p > 0.1 suggests that both joint distributions — from simulations and cavity theory — are consistent with a truncated bivariate Gaussian. In the bottom right panel we show contours for the joint distributions obtained from simulations and cavity theory at 1σ, 2σ, and 3σ. Wiggles indicate low sampling. Parameters: μ = 0 .3, ˜μ = 0 .5, σ = 0 .2, σ K = 0 .02 , S = 100 , ρ = 0 .99 , Realizations = 500 
+
+> Solution of self-consistency equations using a truncated bivariate Gaussian ansatz
+
+The effective two-strain model derived via the cavity method (Eqs. (S73) and (S74)) suggests that the joint distri-bution of ( Nα, N β ) is a bivariate Gaussian truncated below zero in both variables. We first verify this ansatz directly. Fig. S1A–B shows scatter plots of ( Nα, N β ) at steady state from simulations of the full 2 S-strain community (A) and from Monte Carlo sampling of the cavity-predicted truncated bivariate Gaussian (B). The two distributions are visually indistinguishable. To test Gaussianity quantitatively, we plot the squared Mahalanobis distance of the sample distributions against a theoretical χ2 distribution (Fig. S1C). KS test p-values exceed 0 .1 for both the simulation and cavity distributions, confirming consistency with a truncated bivariate Gaussian. The 1 σ, 2 σ, and 3 σ contours from theory and simulation also agree closely (Fig. S1D). In Fig. S2, we compare the analytical solutions of the self-consistency equations with numerical simulations across 24 6                                    
+
+> 00.05 0.1 0.15
+> h N, i
+> 0.47
+> 0.48
+> 0.49
+> 0.5
+> 0.51
+> 0.52
+> 0.53
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h N- i
+> 0.47
+> 0.48
+> 0.49
+> 0.5
+> 0.51
+> 0.52
+> 0.53
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h N,
+> 2 i
+> 0.26
+> 0.27
+> 0.28
+> 0.29
+> 0.3
+> 0.31
+> 0.32
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h N-
+> 2 i
+> 0.26
+> 0.27
+> 0.28
+> 0.29
+> 0.3
+> 0.31
+> 0.32
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> ?,
+> 0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> ?-
+> 0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> ?,-
+> 0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h 8,, i
+> 1.3
+> 1.31
+> 1.32
+> 1.33
+> 1.34
+> 1.35
+> 1.36
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h 8-- i
+> 1.3
+> 1.31
+> 1.32
+> 1.33
+> 1.34
+> 1.35
+> 1.36
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h 8,- i
+> -0.65
+> -0.64
+> -0.63
+> -0.62
+> -0.61
+> -0.6
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h 8-, i
+> -0.65
+> -0.64
+> -0.63
+> -0.62
+> -0.61
+> -0.6
+> Analytics
+> Simulation
+> 6
+> 00.05 0.1 0.15
+> h N, N- i
+> 0.22
+> 0.24
+> 0.26
+> 0.28
+> 0.3
+> Analytics
+> Simulation
+
+All Variables: ~7 = 0:50; < = 0:200
+
+FIG. S2: Numerical simulations match analytical calculations for self-consistency variables. Orange dots show mean value of variables with error bars showing standard error of mean across all realizations. Blue line shows the analytical values derived from cavity calculations (see below in Appendix F; eq. S164-S179). We find that this analytical approach matches well with numerical simulations (see Figure S2). At large λ, simulations deviate from analytics due to breakdown of 2D Gaussian ansatz (see Figure S4) . Parameters used in simulations (and analytics): 
+
+μ = 0 .3, ˜μ = 0 .5, σ = 0 .2, σ K = 0 .02 , S = 100 , ρ = 0 .99 , Realizations = 500 .
+
+the full range of λ. All 12 quantities—first moments, second moments, cross-moment, survival probabilities, and susceptibilities—largely agree with simulations. Fig. S3 further confirms this agreement via one-to-one comparisons of the first, second, and cross-moments, which fall on the identity line across the full range of λ explored. However, for some quantities there is a slight discrepancy at larger strain interaction dissimilarity λ. This can be understoof by noting that the denominator of the abundance expressions in Eqs. (S88) and (S89) is ∆ = C + λ2y2,where C = ξ2 − (˜ μeff )2 and y ∼ N (0 , 1). At low λ, λ2y2 ≪ C, so ∆ is effectively constant across realizations and the ratio of a Gaussian numerator by a constant denominator inherits Gaussianity. As λ increases, λ2y2 becomes comparable to C, introducing a χ2 random variable in the denominator. This produces heavier tails and mild right skew in the marginal distributions, visible as a characteristic “fanning out” of the joint abundance scatter plots relative to the elliptical Gaussian contours (Fig. S4). Two observations are important here. First, this deviation is a property of the true two-strain dynamics, not an artifact of the cavity approximation: the same non-Gaussian shape appears in simulations of both the full 2 S-strain community and the effective two-strain model (Fig. S4, left and center panels). The cavity method correctly identifies the effective model; it is the subsequent Gaussian ansatz that becomes approximate. Second, despite this deviation in distributional shape, the low-order moments that determine observable quantities of interest such as strain abundance correlations remain accurately predicted throughout the parameter range. Small deviations appear only in the cross-moment at the largest values of λ (Fig. S3). As a result, the cavity theory accurately captures the strain abundance correlation, including the sign transition at λc and its dependence on σ and ˜ μ (Figs. 3 and 4 in the main text). Developing an improved distributional ansatz that captures the non-Gaussian tails at large λ—for instance, using scale mixtures of normals to account for the stochastic denominator—is a natural extension but is not necessary to 25 Analytics                                       
+
+> 0.45 0.5 0.55
+> Simulation
+> 0.45
+> 0.5
+> 0.55
+> (A) hhN,,iiand hhN--ii
+> 1:1 line
+> hN,i
+> hN-i
+> Analytics
+> 0.22 0.24 0.26 0.28 0.3
+> Simulation
+> 0.22
+> 0.23
+> 0.24
+> 0.25
+> 0.26
+> 0.27
+> 0.28
+> 0.29
+> 0.3
+> (B) hhN,,N--ii
+> 1:1 line
+> hN,N-i
+> Analytics
+> 0.26 0.28 0.3 0.32
+> Simulation
+> 0.25
+> 0.26
+> 0.27
+> 0.28
+> 0.29
+> 0.3
+> 0.31
+> 0.32
+> (C) hhN,,
+> 2iiand hhN--
+> 2ii
+> 1:1 line
+> hN,
+> 2i
+> hN-
+> 2i
+
+1:1 Comparison by Statistic Type 
+
+FIG. S3: Strain abundance correlation between numerics and analytics match closely for first, second, and cross-moments. From left to right: panels show the comparison of first, cross, and second moments of the two strains generated from simulations (y-axis) and cavity calculations (analytics; x-axis). Each data point refers to the average value over all realizations (S=500) of the quantity for a given λ value. All the moments lie on the 1:1 line barring few minute deviations of two cross-moment terms. Parameters: μ = 0 .3, ˜μ = 0 .5, σ = 0 .2, σ K = 0 .02 , S =100 , ρ = 0 .99 , Realizations = 500 , λ ∈ [0 .005 , 0.15] .
+
+FIG. S4: Truncated bivariate Gaussian description of joint distribution of strain abundances breaks down at larger λ. Left and center panels show joint abundances scatter plots for the same set of disorder parameters via numerical simulations of the entire community (2S species) and the effective 2-strain model respectively. The observed distribution and deviation from truncated bivariate Gaussianity is exactly similar. In the right panel, we see the truncated bivariate Gaussian ansatz constraining the analytical solution and leading to qualitatively different abundance scatterplots. These points in the right panel were generated using Monte Carlo sampling based on a truncated bivariate Gaussian distribution with moments as calculated from the cavity method. Parameters: μ =0.3, ˜μ = 0 .5, σ = 0 .2, σ K = 0 .02 , S = 100 , ρ = 0 .99 , Realizations = 500 .
+
+support the conclusions of this work. 
+
+APPENDIX D: MAPPING TO MODERN COEXISTENCE THEORY 
+
+Modern coexistence theory (MCT) decomposes coexistence requirements into stabilizing mechanisms (niche dif-ferentiation) and equalizing mechanisms (fitness ratios). We first establish the general framework and derive the coexistence criterion, then connect our effective two-strain models to these canonical definitions. 26 
+
+Standard Two-Species LV Form and Mutual Invasibility 
+
+We consider our effective two strain model which is akin to a generic two-species Lotka-Volterra competition model: 
+
+dN α
+
+dt = Nα
+
+ Keff  
+
+> α
+
+− Aeff 
+
+> αα
+
+Nα − Aeff  
+
+> αβ
+
+Nβ
+
+ , (S125) 
+
+dN β
+
+dt = Nβ
+
+ Keff  
+
+> β
+
+− Aeff  
+
+> ββ
+
+Nβ − Aeff 
+
+> βα
+
+Nα
+
+ . (S126) where Keff  
+
+> α
+
+, K eff  
+
+> β
+
+are the effective growth rates of the two focal strains following coarse-graining of the community and 
+
+Aeff  
+
+> αβ
+
+, A eff  
+
+> βα
+
+are inter-strain interaction coefficient and Aeff 
+
+> αα
+
+, A eff  
+
+> ββ
+
+are self-regulation coefficients. For simplicity, we will drop the superscript for the rest of this section. Strain α can invade when rare in a resident β population if its per-capita growth rate is positive when Nα → 0 and 
+
+Nβ is at its single-strain equilibrium N ∗ 
+
+> β
+
+= Kβ /A ββ :
+
+Kα − Aαβ 
+
+Kβ
+
+Aββ 
+
+> 0 ⇐⇒ Kα
+
+Kβ
+
+> Aαβ 
+
+Aββ 
+
+≡ γαβ (S127) where we define the ‘relative limitation ratio’ γαβ = Aαβ /A ββ , measuring how sensitive strain β’s equilibrium is to competition from strain α.Similarly, strain β invades strain α when rare if: 
+
+Kβ
+
+Kα
+
+> Aβα 
+
+Aαα 
+
+= γβα ⇐⇒ Kα
+
+Kβ
+
+< 1
+
+γβα 
+
+(S128) Coexistence via mutual invasibility therefore requires: 
+
+γαβ < Kα
+
+Kβ
+
+< 1
+
+γβα 
+
+(S129) 
+
+Niche Overlap and Fitness Ratio 
+
+Following standard operating definitions in MCT, the niche overlap is defined as the geometric mean of the relative limitation ratios [61]: ˜N = √γαβ γβα =
+
+s
+
+Aαβ Aβα 
+
+Aαα Aββ 
+
+(S130) This quantity measures how similar the interspecific effects are to the intraspecific effects; ˜N = 1 corresponds to identical niches (neutral competition), while ˜N < 1 indicates niche differentiation. The coexistence condition (S129) can be rewritten in terms of ˜N by noting that: 
+
+γαβ = ˜N
+
+r γαβ 
+
+γβα 
+
+, 1
+
+γβα 
+
+= 1˜N
+
+r γαβ 
+
+γβα 
+
+(S131) Substituting into (S129): ˜N
+
+r γαβ 
+
+γβα 
+
+< Kα
+
+Kβ
+
+< 1˜N
+
+r γαβ 
+
+γβα 
+
+(S132) Dividing through by pγαβ /γ βα , we obtain the standard MCT form: ˜N < Kα
+
+Kβ
+
+r γβα 
+
+γαβ 
+
+< 1˜N (S133) The quantity 
+
+F ≡ Kα
+
+Kβ
+
+r γβα 
+
+γαβ 
+
+= Kα
+
+Kβ
+
+s
+
+Aβα /A αα 
+
+Aαβ /A ββ 
+
+= Kα
+
+Kβ
+
+s
+
+Aβα Aββ 
+
+Aαβ Aαα 
+
+(S134) 27 is the fitness ratio in MCT. It combines the intrinsic growth rate ratio Kα/K β with a factor pγβα /γ αβ that accounts for asymmetries in competitive relative limitation ratios. The coexistence condition ˜N < F < 1/ ˜N states that coexistence requires the fitness ratio to lie within a window determined by niche overlap. When ˜N is small (strong niche differentiation), the window is wide and coexistence is robust to fitness ratios. When ˜N → 1 (identical niches), the window collapses and only F = 1 (perfect fitness equality) permits coexistence. For equal self-regulation Aαα = Aββ ≡ A, the relative limitation ratios simplify to: 
+
+γαβ = Aαβ 
+
+A , γβα = Aβα 
+
+A (S135) and the fitness ratio becomes: 
+
+F = Kα
+
+Kβ
+
+s
+
+Aβα 
+
+Aαβ 
+
+(S136) When additionally the cross-interactions are equal, Aαβ = Aβα ≡ B, we have γαβ = γβα = B/A = ˜N , and the fitness ratio reduces to: 
+
+F = Kα
+
+Kβ
+
+(S137) In this fully symmetric case, the coexistence condition becomes simply: ˜N < Kα
+
+Kβ
+
+< 1˜N (S138) For analytical tractability with Gaussian-distributed growth rates, we convert the ratio condition to a difference condition. This conversion is made to avoid dividing two Gaussians leading to a Cauchy-like distribution (ratio dis-tribution). Such distributions have heavy tails and makes moment calculations difficult thereby precluding analytical expressions for coexistence probabilities (which Gaussians allow for especially when σK << K ). In the symmetric case (S138), define ¯K = ( Kα + Kβ )/2 and ∆ K = Kα − Kβ , so that Kα = ¯K + ∆ K/ 2 and 
+
+Kβ = ¯K − ∆K/ 2. The ratio becomes: 
+
+Kα
+
+Kβ
+
+= ¯K + ∆ K/ 2¯K − ∆K/ 2 (S139) The lower bound ˜N < K α/K β rearranges to: ˜N ( ¯K − ∆K/ 2) < ¯K + ∆ K/ 2∆K · 1 + ˜N
+
+2 > ¯K( ˜N − 1) ∆K > −2 ¯K 1 − ˜N
+
+1 + ˜N (S140) Similarly, the upper bound Kα/K β < 1/ ˜N yields ∆ K < 2 ¯K 1− ˜N 
+
+> 1+ ˜N
+
+. Combining: 
+
+|∆K| < 2 ¯K 1 − ˜N
+
+1 + ˜N (S141) For Kα, K β ∼ N (K, σ 2 
+
+> K
+
+) independently, we have ¯K ∼ N (K, σ 2 
+
+> K
+
+/2), so ¯K ≈ K when σK ≪ K. The coexistence threshold is thus approximately 2 K(1 − ˜N )/(1 + ˜N ). This means that when the difference in strain growth rates is within the calculated threshold, we can expect conspecific strain coexistence. More generally, |∆K| tells us how different the two strains are in their growth rates upon which strain competition and exclusion can act on. The RHS of eqn S141 tells us that when niches overlap completely ˜N → 1, even minimal growth rate asymmetry can lead to exclusion of a strain. However, when niche overlap is minimal, ˜N ≪ 1, the window of coexistence becomes larger and strains can coexist despite relatively larger growth rate differences. Thus, the question that follows from this analysis is how community-mediated feedbacks can reshape the conditions for coexistence. In other words, does the presence of a community narrow or widen the coexistence window relative to the isolation case? In Appendix E, we attempt to answer this question. 28 
+
+APPENDIX E: EXPRESSING THE EFFECTIVE TWO-STRAIN MODEL IN THE MCT FRAMEWORK Two-strain model in the absence of a community (Baseline Case) 
+
+We consider two closely-related strains α and β with GLV dynamics: 
+
+dN α
+
+dt = Nα[Kα − Nα − (˜ μ − λy )Nβ ] (S142) 
+
+dN β
+
+dt = Nβ [Kβ − Nβ − (˜ μ + λy )Nα] (S143) where Kα, K β ∼ N (K, σ 2 
+
+> K
+
+) are intrinsic growth rates, ˜ μ is mean inter-strain competition, λ quantifies strain interaction dissimilarity, and y ∼ N (0 , 1) is a random interaction modifier. Identifying with the general form (S125) and S126: Aαα = Aββ = 1, Aαβ = ˜ μ + λy , Aβα = ˜ μ − λy .The relative limitation ratios are: 
+
+γαβ = Aαβ 
+
+Aββ 
+
+= ˜ μ + λy, γβα = Aβα 
+
+Aαα 
+
+= ˜ μ − λy (S144) The niche overlap is: ˜Nbaseline = √γαβ γβα = p(˜ μ + λy )(˜ μ − λy ) = p˜μ2 − λ2y2 (S145) The fitness ratio (S136) is: 
+
+Fbaseline = Kα
+
+Kβ
+
+r γβα 
+
+γαβ 
+
+= Kα
+
+Kβ
+
+s
+
+˜μ − λy 
+
+˜μ + λy (S146) The coexistence condition ˜N < F < 1/ ˜N becomes: 
+
+p˜μ2 − λ2y2 < Kα
+
+Kβ
+
+s
+
+˜μ − λy 
+
+˜μ + λy < 1
+
+p˜μ2 − λ2y2 (S147) For small λ (similar strains), γαβ ≈ γβα ≈ ˜μ, so pγβα /γ αβ ≈ 1 and the fitness ratio simplifies to F ≈ Kα/K β .The niche overlap becomes ˜N ≈ ˜μ, and the coexistence condition reduces to: ˜μ < Kα
+
+Kβ
+
+< 1˜μ (S148) Converting to difference form: 
+
+|Kα − Kβ | < 2K 1 − ˜μ
+
+1 + ˜ μ (S149) 
+
+Two-strain model in the presence of a community (Community Feedback Model) 
+
+Using the cavity method, the effective dynamics for strains embedded in a diverse community ( S → ∞ species) become: 0 = Nα[Keff  
+
+> α
+
+− ξN α − (˜ μeff − λy )Nβ ] (S150) 0 = Nβ [Keff  
+
+> β
+
+− ξN β − (˜ μeff + λy )Nα] (S151) with effective parameters: 
+
+Keff  
+
+> α
+
+= g +
+
+q
+
+σ2 
+
+> g
+
+z(int) 0α +
+
+q
+
+σ2 
+
+> K
+
+z0α (S152) 
+
+Keff  
+
+> β
+
+= g +
+
+q
+
+σ2
+
+> g
+
+
+
+ρint z(int) 0α +
+
+q
+
+1 − ρ2int z(int) 0β
+
+
+
++
+
+q
+
+σ2 
+
+> K
+
+z0β (S153) 
+
+ξ = 1 − 2σ2ρ ν, ˜μeff = ˜ μ − 2σ2ρ ν (S154) 
+
+g = K − μ⟨Nα + Nβ ⟩ (S155) 29 where z(int) 0α , z (int) 0β , z 0α, z 0β ∼ N (0 , 1) are independent, σ2 is inter-species interaction variance, μ is mean inter-species competition, ρ is inter-species interaction correlation, and ν is the community susceptibility. Identifying with the general form: Aαα = Aββ = ξ, Aαβ = ˜ μeff − λy , Aβα = ˜ μeff + λy .The relative limitation ratios are: 
+
+γαβ = ˜μeff − λy ξ , γβα = ˜μeff + λy ξ (S156) The niche overlap is: ˜NCFM = √γαβ γβα =
+
+p(˜ μeff − λy )(˜ μeff + λy )
+
+ξ =
+
+p(˜ μeff )2 − λ2y2
+
+ξ (S157) The fitness ratio is: 
+
+FCFM = Keff 0α
+
+Keff 0β
+
+r γβα 
+
+γαβ 
+
+= Keff 0α
+
+Keff 0β
+
+s
+
+˜μeff + λy 
+
+˜μeff − λy (S158) For small λ, γαβ ≈ γβα ≈ ˜μeff /ξ , so the fitness ratio simplifies to F ≈ Keff 0α/K eff 0β and the niche overlap becomes ˜NCFM ≈ ˜μeff /ξ .The ratio ˜ μeff /ξ is: ˜μeff 
+
+ξ = ˜μ − 2σ2ρ ν 
+
+1 − 2σ2ρ ν (S159) The coexistence condition in difference form becomes: 
+
+|Keff 0α − Keff 0β | < 2g 1 − ˜μeff /ξ 
+
+1 + ˜ μeff /ξ = 2 g ξ − ˜μeff 
+
+ξ + ˜ μeff = 2 g 1 − ˜μ
+
+1 + ˜ μ − 4σ2ρ ν (S160) where we used ξ − ˜μeff = 1 − ˜μ and ξ + ˜ μeff = 1 + ˜ μ − 4σ2ρν . We can see the effects of the community on shaping coexistence by the 4 σ2ρν term in the denominator of S160. As the variance of species interactions increases, the denominator reduces leading to a larger coexistence window. We can now compute the coexistence probabilities of the strains competing in isolation which we call ‘Baseline Model’ and the strains competing in the presence of the community and associated feedbacks ‘Community Feedback Model (CFM)’). By calculating their probabilities and taking their ratio ( Rcoexist ) we can identify whether the community enhances ( Rcoexist > 1) or hinders strain coexistence ( Rcoexist < 1). Note that this form of easy decomposition of fitness and niche differences arises when λ is small. However, with increasing λ, it is no longer easy to partition the effects of filtering and sorting into these constituents as they are interconnected in a complicated fashion [76]. For the baseline model in the symmetric limit, the coexistence probability is determined by how often |Kα − Kβ |
+
+falls within the threshold 2 K(1 − ˜μ)/(1 + ˜ μ). Since Kα, K β ∼ N (K, σ 2 
+
+> K
+
+) independently, ∆ K = Kα − Kβ ∼ N (0 , 2σ2 
+
+> K
+
+). For X ∼ N (0 , σ 2), we have P (|X| < T ) = erf( T / (σ√2)). With σ2 = 2 σ2 
+
+> K
+
+and T = 2 K(1 − ˜μ)/(1 + ˜ μ): 
+
+Pbaseline = erf 
+
+ 2K(1 − ˜μ)(1 + ˜ μ)√2 · √2σK
+
+
+
+= erf 
+
+ K(1 − ˜μ)
+
+σK (1 + ˜ μ)
+
+
+
+(S161) For the CFM, from Eqs. (S152)–(S153): 
+
+Keff 0α − Keff 0β =
+
+q
+
+σ2
+
+> g
+
+
+
+(1 − ρint )z(int) 0α −
+
+q
+
+1 − ρ2int z(int) 0β
+
+
+
++
+
+q
+
+σ2 
+
+> K
+
+(z0α − z0β ) (S162) Since z(int) 0α , z (int) 0β , z 0α, z 0β are independent standard normals: Var(∆ Keff ) = σ2
+
+> g
+
+(1 − ρint )2 + (1 − ρ2int ) + 2 σ2
+
+> K
+
+= σ2 
+
+> g
+
+[2 − 2ρint ] + 2 σ2 
+
+> K
+
+= 2 σ2 
+
+> g
+
+(1 − ρint ) + 2 σ2 
+
+> K
+
+(S163) 30 With the coexistence conditions in the community feedback model being 2 g(1 − ˜μ)/(1 + ˜ μ − 4σ2ρν ) and variance 2[ σ2 
+
+> g
+
+(1 − ρint ) + σ2 
+
+> K
+
+]: 
+
+PCFM = erf 
+
+ g(1 − ˜μ)(1 + ˜ μ − 4σ2ρν )
+
+q
+
+σ2 
+
+> g
+
+(1 − ρint ) + σ2
+
+> K
+
+ (S164) Next, we define the arguments of the error functions: Θbaseline = K(1 − ˜μ)
+
+σK (1 + ˜ μ) , ΘCFM = g(1 − ˜μ)(1 + ˜ μ − 4σ2ρν )
+
+q
+
+σ2 
+
+> g
+
+(1 − ρint ) + σ2
+
+> K
+
+(S165) Since erf( x) is monotonically increasing, PCFM > P baseline iff Θ CFM > Θbaseline . The ratio is: ΘCFM 
+
+Θbaseline 
+
+= gK · 1 + ˜ μ
+
+1 + ˜ μ − 4σ2ρν · σK
+
+q
+
+σ2 
+
+> g
+
+(1 − ρint ) + σ2
+
+> K
+
+= gK|{z} 
+
+> mean fitness reduction
+
+× 1 + ˜ μ
+
+1 + ˜ μ − 4σ2ρν 
+
+| {z }
+
+> niche enhancement
+
+×
+
+s
+
+σ2
+
+> K
+
+σ2 
+
+> g
+
+(1 − ρint ) + σ2
+
+> K
+
+| {z }
+
+> variance ratio (measure of dispersion of fitness ratios)
+
+(S166) As shown by the underbraces in S166, there are three different biological mechanisms that contribute to the coexistence probability ratio that are different for the baseline model and CFM respectively. Note that these three mechanisms are not independent but partitioned in a manner to highlight the different drivers of coexistence. The first factor, gK , captures mean fitness reduction. Because strains embedded in a community competes with strains from other species, their effective mean growth rate g is lower than the intrinsic carrying capacity K. This shrinks the coexistence window for strain. This effect is always present in competitive communities μ > 0. The second factor shows that community feedbacks reduce the effective inter-strain competition and self-regulation of the strain i.e. ˜ μ → ˜μeff and 1 → ξ. The ultimate effect is a decrease in the effective niche overlap which increases the probability of coexistence and increases with increasing species interaction dissimilarity ( σ). The third factor captures relative strengths of equalization of strain growth rates and asymmetry in competitive ability between strains. When strains are vary similar ( λ → 0), ρint ≈ 1 and this ratio approaches 1. Here, com-munity feedbacks equalize strain growth rates. However, with increasing λ, strains get more dissimilar making their competitive ability asymmetric. This leads either strain excluding the other thereby reducing the probability of coexistence. Rearranging the terms, we can obtain an inequality where CFM promotes coexistence by requiring: 
+
+ gK
+
+2  1 + ˜ μ
+
+1 + ˜ μ − 4σ2ρν 
+
+2
+
+> 1 + σ2 
+
+> g
+
+(1 − ρint )
+
+σ2
+
+> K
+
+(S167) This expression however, contains a number of emergent parameters from the model which obfuscate its biological meaning. Using the expressions from equations S68 and from the definition of g and σg , we can rewrite S167 as 
+
+
+
+1 − μ(⟨Nα + Nβ ⟩)
+
+K
+
+2  1 + ˜ μ
+
+1 + ˜ μ − 4σ2ρν 
+
+2
+
+> 1 + λ2 (Nα − Nβ )2
+
+σ2
+
+> K
+
+(S168) In the limit of low λ → 0 i.e. very similar strains, we can simplify the above equation leading to 
+
+
+
+1 − 2μ⟨N ⟩)
+
+K
+
+2  1 + ˜ μ
+
+1 + ˜ μ − 4σ2ρν 
+
+2
+
+> 1 (S169) In competitive communities, μ > 0 and the abundances of the strains are greater than 0. This implies that the first term on the LHS is less than 1. Further, the second term is greater than 1 in the presence of a community (i.e. when σ > 0). Their product requires to be greater than the RHS. At low λ, we can approximate the bounds of the RHS leading to being equal to 1. The lower values of the RHS increase the likelihood that CFM promotes coexistence relative to the baseline model. In the other limit, as λ → σ, we see that the RHS increases from 1 monotonically 31 
+
+FIG. S5: Community feedback promotes strain coexistence. Panel (A) shows two strains ( α and β) of a focal species competing in isolation where one goes extinct. Panel (B) shows that when embedded in a diverse community of S = 100 species (light blue trajectories), the same strain pair can undergo coexistence. Panel (C) Modern Coex-istence Theory axes (i.e. Fitness-Niche Difference space) showing niche difference ( N = 1 − ˜ρ) versus fitness ratio (F) for all strain pairs. Open circles indicate isolation; filled triangles indicate community context. Arrows connect corresponding pairs, showing how community feedback shifts their positions. The teal region permits coexistence (ρ < F < 1/ρ ); gray regions lead to exclusion. Community interactions, via equalization of growth rates can reduce the variance in fitness ratios while also modifying reducing niche differences. Parameters: σ = 0 .38 , σK = 0 .2,
+
+λ = 0 .10 , ˜μ = 0 .70 , ρ = 0 .99 .
+
+FIG. S6: Community feedbacks can also suppress strain coexistence of dissimilar strains. Panel (A) shows two strains ( α and β) of a focal species coexist stably when competing in isolation. Panel (B) shows that when embedded in a diverse community of S = 100 species (light blue trajectories), the same strain pair undergoes competitive exclusion, with one strain driven to extinction. Panel (C) Modern Coexistence Theory axes (i.e. Fitness-Niche Difference space) showing niche difference ( N = 1 − ρ) versus fitness ratio ( F) for all strain pairs. Open circles indicate isolation; filled triangles indicate community context. Arrows connect corresponding pairs, showing how community feedback shifts their positions. The teal region permits coexistence ( ρ < F < 1/ρ ); gray regions lead to exclusion. Ellipses show two standard deviation confidence regions. Community interactions can push strain pairs outside the coexistence boundary by amplifying fitness ratios while also modifying reducing niche differences. Parameters: σ = 0 .38 , σK = 0 .15 , λ = 0 .10 , ˜μ = 0 .80 , ρ = 0 .99 .
+
+to an upper bound 1 + σ2
+
+> σ2
+> K
+
+(Nα − Nβ )2 implying that the requirement of LHS is now greater to ensure that the community enhances coexistence. In this limit, biologically, we see that the ratio of the variances of species interaction dissimilarity ( σ2)to independent growth rate fluctuations ( σ2 
+
+> K
+
+) is a key factor in determining coexistence enhancement or hindrance by a community (relative to isolated strain pairs). In the main text in Figure 2d, we show an instance of how community enhances the probability of coexistence at low λ of the two strains. In Figure S6, we show the opposite outcome at a larger value of λ. We also show how, in this case, the community reduces coexistence probability by increasing fitness ratios to a greater degree than increasing 32 niche differences. We also explore the relative effects and interplay of species interaction dissimilarity ( σ) and independent variation in growth rates σ2 
+
+> K
+
+in determining increased or lowered probability of coexistence ( Rcoexist > or < 1). From the inequality in eqn S167, we can identify that σK sets the scale of intrinsic growth rate variation between strains. When σK is small (Figure S7a,c), growth rates are nearly identical across strains, so even a small community-mediated perturbation to the growth rate difference can tip the competitive balance from coexistence to exclusion. The community’s sorting effect λ2⟨D2⟩, becomes the dominant source of fitness ratios, and the stronger the species interaction dissimilarity ( σ), the stronger these effects due to increased differences in strain abundances i.e. higher 
+
+⟨D2⟩. By amplifying the variance of the strains, σ while strongly correlating their abundances, also increases the probability of both strains going extinct. This results in the community maintaining (or reducing; as σ increases) the coexistence probability of two interacting strains relative to the isolation case. When σK is large (Figure S7b,d), the intrinsic growth rate variation already dominates the fitness ratio, and the additional community effects through 
+
+σ are a relatively small perturbation. In this regime, the community’s niche-enhancing effect via σ, which reduces effective niche overlap independently of the fitness ratio, can operate without being undermined by the sorting effects from interactions. The comparison between baseline and CFM coexistence probabilities reveals competing mechanisms that can either promote or hinder strain coexistence. Firstly, we know that the mean effective growth rate g satisfies a self-consistency condition. At equilibrium: 
+
+⟨Nα + Nβ ⟩ = 2g(ξ − ˜μeff )
+
+ξ2 − (˜ μeff )2 + λ2y2 (S170) Substituting into g = K − μ⟨Nα + Nβ ⟩ and working in the low λ regime, we can solve and obtain: 
+
+g = K
+
+1 + 2μ(ξ−˜μeff ) 
+
+> ξ2−(˜ μeff )2
+
+(S171) Therefore, we can understand the 3 mechanisms shown in S166 at the low λ regime. Firstly, for small μ: g/K ≈
+
+1 − 2μ/ (ξ + ˜ μeff ), showing that mean fitness reduction scales linearly with μ. Thus, the net community feedback ultimately reduces the mean effective growth rate relative to the growth rates of the carrying capacities of strains in isolation. Secondly, community feedback reduces the effective niche overlap from ˜ μ to ˜ μeff /ξ < ˜μ (when ν > 0). This can be verified: ˜ μeff /ξ = (˜ μ − 2σ2ρν )/(1 − 2σ2ρν ) < ˜μ requires ˜ μ − 2σ2ρν < ˜μ(1 − 2σ2ρν ), which simplifies to 1 > ˜μ, always true. This stabilizing effect scales as σ2ρν .Thirdly, when λ ≈ 0, the correlation ρint → 1, synchronizing fitness fluctuations. The variance of fitness ratios 2σ2 
+
+> g
+
+(1 − ρint ) + 2 σ2 
+
+> K
+
+approaches the baseline 2 σ2 
+
+> K
+
+. When λ > 0 and is increased, ρint decreases, increasing the uncorrelated variance contribution. Further, increasing λ also increases the variance in growth rates ( σg ) in addition decorrelating fluctuations. Thus, community feedback stabilizes through emergent niche differentiation and correlated fluctuations, but desta-bilizes through mean fitness reduction and variance amplification. Thus, we predict that high-variance environments in weakly competitive communities and similar strains favor CFM whereas low-variance environments with strongly competing communities and divergent strains disfavor it. 
+
+> APPENDIX F: STRAIN ABUNDANCE CORRELATIONS IN A COMMUNITY VERSUS IN ISOLATION
+
+In this section, we first calculate the how the strain abundance correlation changes with increasing strain interaction dissimilarity between strains embedded in a community. Next, we identify an expression for the value of λc, a critical value of lambda beyond which positive correlations between strains turn negative. We present a model of two competing strains in isolation (for comparison) and show that it is almost impossible to obtain positive correlations between these strains. Lastly, we show that even if we relax our assumption that the growth rates of strains in isolation are uncorrelated, the presence of a community only further enhances the positive correlation between them. 33 (A) Low <, Low <K            
+
+> Phenotypicdissimilarity(6)
+> 0.01 0.02 0.03 0.04 0.05 0.06
+> Interstrain interaction (~7)
+> 0.6
+> 0.65
+> 0.7
+> 0.75
+> 0.8
+> 0.85
+> 0.9
+> 0.95
+> <=0:12,<K=0:10
+
+(B) Low <, High <K            
+
+> Phenotypicdissimilarity(6)
+> 0.01 0.02 0.03 0.04 0.05 0.06
+> Interstrain interaction (~7)
+> 0.6
+> 0.65
+> 0.7
+> 0.75
+> 0.8
+> 0.85
+> 0.9
+> 0.95
+> <=0:12,<K=0:25
+
+(C) High <, Low <K            
+
+> Phenotypicdissimilarity(6)
+> 0.01 0.02 0.03 0.04 0.05 0.06
+> Interstrain interaction (~7)
+> 0.6
+> 0.65
+> 0.7
+> 0.75
+> 0.8
+> 0.85
+> 0.9
+> 0.95
+> <=0:38,<K=0:10
+
+(D) High <, High <K            
+
+> Phenotypicdissimilarity(6)
+> 0.01 0.02 0.03 0.04 0.05 0.06
+> Interstrain interaction (~7)
+> 0.6
+> 0.65
+> 0.7
+> 0.75
+> 0.8
+> 0.85
+> 0.9
+> 0.95
+> <=0:38,<K=0:25
+> 0.6
+> 0.7
+> 0.8
+> 0.9
+> 11
+> 1.1
+> 1.2
+> Rcoex = Pcommunity =Pisolation
+
+FIG. S7: Effect of interaction variance σ and growth rate heterogeneity σK on community-mediated coex-istence. Phase diagrams showing the coexistence ratio Rcoex = Pcommunity /P isolation across strain interaction dis-similarity ( λ) and inter-strain interaction strength ( ˜μ) for four parameter combinations. In Panel(A), we show Rcoexist 
+
+heatmap for low inter-species interaction variance ( σ = 0 .12 ) and low growth rate heterogeneity ( σK = 0 .10 ). In Panel (B), we look at the case of low inter-species interaction variance ( σ = 0 .12 ) and high growth rate heterogeneity (σK = 0 .25 ). In Panel (C), we look at the case of high inter-species interaction variance ( σ = 0 .38 ) and low growth rate heterogeneity ( σK = 0 .01 ). In Panel (D), we look at the case of high inter-species interaction variance ( σ = 0 .38 )and high growth rate heterogeneity ( σK = 0 .25 ). Blue regions ( Rcoex > 1) indicate community-enhanced coexistence; red regions ( Rcoex < 1) indicate community-suppressed coexistence; white corresponds to Rcoex = 1 (no net effect). Higher inter-species interaction variance ( σg ) generally strengthens community feedback effects, while growth rate heterogeneity ( σK ) modulates the balance between enhancement and suppression. All panels share a common colour scale. Parameters: S = 100 species, ρ = 0 .99 .34 
+
+Crossover strain interaction dissimilarity value for transition from positive to negative values of strain abundance correlation for competing strains in a community 
+
+The correlation ραβ (λ) is entirely controlled by the sign of the covariance (S108). We therefore define the crossover value λc as the first value of λ at which the covariance changes sign: Cov  N0α, N 0β
+
+ 
+
+> λ=λc
+
+= 0 . (S172) Using Eq. (S108), this condition reads 
+
+g2(1 −˜μ)2
+
+ 1∆2
+
+
+
+−
+
+ 1∆
+
+2!
+
++σ2 
+
+> g
+
+ρint (1 −˜μ)2
+
+ 1∆2
+
+
+
+−2˜ μeff ξ  (1 − ρint ) σ2 
+
+> g
+
++ σ2
+
+> K
+
+  1∆2
+
+
+
+−λ2 g2+ρint σ2
+
+> g
+
+  y2
+
+∆2
+
+
+
+= 0 ,
+
+(S173) where 1∆ , 1∆2 and 
+
+D y2
+
+> ∆2
+
+E
+
+are the averages defined above, evaluated at 
+
+C = ξ(λc)2 − ˜μeff (λc)2, B = λ2 
+
+> c
+
+, (S174) and the dependence of ξ, ˜ μeff and ρint on λ enters via the self–consistency of the cavity solution for ν, g2 and σ2 
+
+> g
+
+.In the full cavity theory, all of the quantities g2, σ2 
+
+> g
+
+, ν, ρint and hence ( ξ, ˜μeff , C, 1∆ , 1∆2 ,
+
+D y2
+
+> ∆2
+
+E
+
+) are determined self–consistently as functions of (˜ μ, σ, λ ) and the underlying random–matrix parameters. In Figure 3a, we plot our theoretical line (in black) by solving the equation S173, for the necessary parameter values. For intuition, we show below a simplified description of λc, by identifying that the first term of S108 is, in the parameter regimes we work in, 0 (simulations show it is orders of magnitude smaller than the other terms of the expression). This provides a simplified expression for Eq. (S173) which we can write as 
+
+λ2 
+
+> c
+
+=
+
+σ2 
+
+> g
+
+ρint (1 − ˜μ)2 − 2˜ μeff ξ  (1 − ρint ) σ2 
+
+> g
+
++ σ2
+
+> K
+
+ 1∆2
+
+ g2 + ρint σ2
+
+> g
+
+ D y2
+
+> ∆2
+
+E , (S175) which makes explicit how the crossover emerges. In particular, as σK → 0, the expression further reduces to 
+
+λ2 
+
+> c
+
+=
+
+σ2
+
+> g
+
+ ρint (1 − ˜μ)2 − (1 − ρint ) 2˜ μeff ξ 1∆2
+
+ g2 + ρint σ2
+
+> g
+
+ D y2
+
+> ∆2
+
+E , (S176) shows that the numerator (and its sign) arises from (i) a balance between two quantities weighted by ρint , which correlates the fluctuations of the strains and (ii) the purely strain–level sorting contribution in the denominator. A higher value of ρint guarantees a larger λc required for a crossover. Therefore, greater correlation of strains (generated by larger variation in species interaction dissimilarity σ2 will require greater strain interaction dissimilarity ( λ) to crossover into negatively correlated abundances. We next derive the condition that separates the region where correlations can transition from positive to negative (as λ increases) from the region where correlations are always negative. For Eq. S108 as λ → 0, we have D = λ2 → 0, so ∆ = C + Dy 2 → C becomes deterministic, and ρint → 1 from equation since λ2⟨D2⟩ → 0. The expectations over 
+
+y therefore simplify as ⟨1/∆⟩ becomes 1 /C , ⟨1/∆2⟩ becomes 1 /C 2, and consequently ⟨1/∆2⟩ − ⟨ 1/∆⟩2 goes to 0. At 
+
+ρint = 1,the sorting term λ2⟨y2/∆2⟩ = 0 since λ2 goes to 0 faster than any potential divergence in the expectation which implies σ2 
+
+> g
+
+= σ2
+
+D
+
+(Nα + Nβ )2E
+
+.Combining these results, the limiting covariance of the strain abundances is lim  
+
+> λ→0
+
+Cov( Nα, N β ) = 1
+
+C2
+
+h
+
+σ2(1 − ˜μ)2 D
+
+(Nα + Nβ )2E
+
+− 2ξ ˜μeff σ2
+
+> K
+
+i
+
+. (S177) Since C2 > 0 assuming the system is stable, the sign of the covariance is determined by sign(Cov) = sign[ σ2⟨M 2⟩(1 −
+
+˜μ)2 − 2ξ ˜μeff σ2 
+
+> K
+
+]. The phase boundary between regimes occurs when σ2(1 − ˜μ)2
+
+D
+
+(Nα + Nβ )2E
+
+= 2 ξ ˜μeff σ2 
+
+> K
+
+, where ξ = 1 − 2σ2ρν and ˜μeff = ˜ μ − 2σ2ρν . When σ2(1 − ˜μ)2
+
+D
+
+(Nα + Nβ )2E
+
+> 2ξ ˜μeff σ2 
+
+> K
+
+, correlations are positive at small λ and can transition to negative as λ increases. When σ2(1 − ˜μ)2
+
+D
+
+(Nα + Nβ )2E
+
+< 2ξ ˜μeff σ2 
+
+> K
+
+, correlations are negative even at small λ
+
+and remain negative throughout. When this inequality becomes an equality, the limiting covariance of the conspecific strain abundances expression serves as the basis for the theory line calculated in the phase diagram in Figure 4 (panel c) which tells us when correlations transition from positive to negative. 35 
+
+> Comparison to the two-strain model in isolation
+
+To show that the presence of the community serves to correlate the strain growth rates, we can study the dynamics of the two strains in isolation. The equivalent two strain model can be written as follows: 
+
+dN α
+
+dt = Nα
+
+Kα − Nα − (˜ μ − λy ) Nβ
+
+, (S178) 
+
+dN β
+
+dt = Nβ
+
+Kβ − Nβ − (˜ μ + λy ) Nα
+
+. (S179) At steady state, ( dN α/dt = dN β /dt = 0), and assuming both strains coexist ( Nα, N β > 0), we set the per-capita growth rates to zero: 
+
+Kα = Nα + (˜ μ − λy ) Nβ , (S180) 
+
+Kβ = Nβ + (˜ μ + λy ) Nα. (S181) where Kα, K β ∼ N (K, σ 2 
+
+> K
+
+) are independently drawn intrinsic growth rates, ˜ μ is the mean inter-strain competition strength, λ quantifies strain interaction dissimilarity between strains, and y ∼ N (0 , 1) is a random variable that modifies interactions from realisation to realisation. The determinant of the 2x2 interaction matrix is: ¯∆ = 1 − (˜ μ − λy )(˜ μ + λy ) = 1 − ˜μ2 + λ2y2. (S182) which can be solved at equilibrium to give 
+
+N ∗ 
+
+> α
+
+= Kα − (˜ μ − λy ) Kβ
+
+¯∆ , (S183) 
+
+N ∗ 
+
+> β
+
+= Kβ − (˜ μ + λy ) Kα
+
+¯∆ . (S184) We can take the expectation values of these quantities, their squares as well as their product i.e. ⟨Nα⟩, ⟨N 2
+
+> α
+
+⟩ (and similarly for strain β) and ⟨NαNβ ⟩. We obtain, 
+
+⟨N ∗
+
+> α
+
+⟩ = K(1 − ˜μ + λy )¯∆ , ⟨N ∗ 
+
+> β
+
+⟩ = K(1 − ˜μ − λy )¯∆with the cross-moment being 
+
+⟨N ∗
+
+> α
+
+N ∗ 
+
+> β
+
+⟩ = K2(1 − ˜μ + λy )(1 − ˜μ − λy ) − 2˜ μ σ 2
+
+> K
+
+¯∆2
+
+and the second moments being 
+
+⟨N ∗2 
+
+> α
+
+⟩ = K2(1 − ˜μ + λy )2 + σ2 
+
+> K
+
+[1 + (˜ μ − λy )2]¯∆2
+
+⟨N ∗2 
+
+> β
+
+⟩ = K2(1 − ˜μ − λy )2 + σ2 
+
+> K
+
+[1 + (˜ μ + λy )2]¯∆2
+
+Averaging over y, we get 1st moments 
+
+⟨N ∗
+
+> α
+
+⟩ = ⟨N ∗ 
+
+> β
+
+⟩ = K(1 − ˜μ)
+
+ 1¯∆
+
+
+
+(S185) cross-moment 
+
+⟨N ∗
+
+> α
+
+N ∗ 
+
+> β
+
+⟩ = K2
+
+ (1 − ˜μ)2
+
+¯∆2
+
+
+
+− 2˜ μ σ 2
+
+> K
+
+ 1¯∆2
+
+
+
+− λ2
+
+ y2
+
+¯∆2
+
+
+
+(S186) 36 Single Species in Isolation (~7 = 0:50)            
+
+> Phenotypic dissimilarity ( 6)
+> 00.05 0.1 0.15
+> Abundance correlation between strains  , and  - (;,-)
+> -1
+> -0.8
+> -0.6
+> -0.4
+> -0.2
+> 0
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1
+> Abundance of strain ,(N ,)
+> 0.3 0.4 0.5 0.6 0.7 0.8 0.9
+> Abundance of strain  - (N -)
+> 0.3
+> 0.4
+> 0.5
+> 0.6
+> 0.7
+> 0.8
+> 0.9
+> 66= 0.06
+
+FIG. S8: Negative abundance correlation between 2 strains ( α and β) within a single species in isolation, i.e., in the absence of a community. Left panel shows the average steady-state abundance correlation between the two strains ραβ = corr( Nα, N β ) as a function of strain interaction dissimilarity λ. Strain abundance correlations are negative even at low λ and become increasingly negative with increasing λ. Right panel shows a scatter plot of strain abundances of the same species (Nα, N β ) at steady state for 1,000 separate realizations (scatter shown for 
+
+λ = 0 .06 ). Parameters: ˜μ = 0 .5, λ ∈ [0 , 0.15] , σ K = 0 .02 .
+
+and 2nd moments 
+
+⟨N ∗2 
+
+> α
+
+⟩ = ⟨N ∗2 
+
+> β
+
+⟩ = K2
+
+ (1 − ˜μ)2
+
+¯∆2
+
+
+
++ λ2
+
+ y2
+
+¯∆2
+
+
+
++ σ2
+
+> K
+
+ 1 + ˜ μ2 + λ2y2
+
+¯∆2
+
+
+
+. (S187) Thus, the covariance of the abundances of the strains at equilibrium is simply Cov( N ∗
+
+> α
+
+, N ∗ 
+
+> β
+
+) = K2(1 − ˜μ)2
+
+ 1¯∆2
+
+
+
+−
+
+ 1¯∆
+
+2!
+
+− 2˜ μ σ 2
+
+> K
+
+ 1¯∆2
+
+
+
+− λ2
+
+ y2
+
+¯∆2
+
+
+
+. (S188) In the limit of low λ, this can be approximately simplified to Cov( N ∗
+
+> α
+
+, N ∗ 
+
+> β
+
+) = −2˜ μσ 2 
+
+> K
+
+− λ2
+
+1 − ˜μ2 (S189) The difference between the first and second moments of 1¯∆ is almost exactly zero (observed from calculations for all values of λ); see Appendix C for expressions) and hence we are left with the second and third terms of the covariance which are both less than 0. This implies that barring values of ˜ μ ≈ 0, the correlations between strains in isolation are negative (or at best 0). Since we work in the regime of ˜ μ ∼ O(1) noting that strains of a species compete stronger with one another than with different species, we need not worry about the case of ˜ μ ≈ 0. The negative abundance correlation of conspecific strains could also be lost due to another extreme case where σK > K which leads to large probabilities of extinction of one or both strains. Here, the truncation of abundances at 0 leads to an inflation of the strain abundance correlation leading to it being close to 0. We do not work in this unrealistic region of parameter space either. In Fig. S8, we show the decrease in correlation with increasing strain interaction dissimilarity ( λ) as well as the scatter of abundances for both strains across different realizations for a given λ. This serves as a baseline to compare the transition in correlation sign and strength in the presence of a community as shown in Fig. 3. 37 
+
+FIG. S9: Strain abundance correlation ραβ in pairwise isolation across inter-strain interaction strength ( ˜μ)and growth rate heterogeneity ( σK ), for increasing carrying-capacity correlations ρK (0.00, 0.50, 0.95) at fixed strain interaction dissimilarity λ = 0 .02 . Each heatmap is computed from simulations integrated to steady-state, with mean carrying capacity ¯K = 1 . As ρK increases, negative correlations at several values of (until ˜μ ∼ 0.7)are progressively replaced by positive correlations, particularly at low ˜μ and high σK . Parameters: ˜μ ∈ [0 .01 , 0.90] ,
+
+σK ∈ [0 .005 , 0.50] with 10 equally spaced values. 
+
+Correlations between strains generically increases in a community relative to them in isolation 
+
+Here, we relax the assumption that the growth rates of strains in isolation are uncorrelated i.e. Corr( Kα, K b) = 0 and assume they have some underlying correlation ρiso . Let Kα = K + σK zα and Kβ = K + σK zβ , where zα and zβ
+
+are correlated random variables with Corr( zα, z β ) = ρiso . This intrinsic correlation persists whether the strains are in isolation or embedded in a community, giving Cov( Kα, K β ) = ρiso σ2 
+
+> K
+
+.In isolation, the effective growth rate correlation is simply ρiso . In a community, the effective growth rates acquire additional fluctuations mediated by interactions with other species (see Appendix B, eqns. S78 and S79): 
+
+Keff  
+
+> α
+
+= g + σg z(int)  
+
+> α
+
++ σK zα (S190) 
+
+Keff  
+
+> β
+
+= g + σg
+
+
+
+ρint z(int)  
+
+> α
+
++
+
+q
+
+1 − ρ2int z(int) 
+
+> β
+
+
+
++ σK zβ (S191) where z(int)  
+
+> α
+
+and z(int)  
+
+> β
+
+are independent standard normals representing community-mediated fluctuations, while zα and 
+
+zβ retain their intrinsic correlation ρiso . The community-induced correlation is ρint = σ2M 2/(σ2M 2 + λ2D2). The variance of each effective growth rate is Var( Keff  
+
+> α
+
+) = σ2 
+
+> g
+
++ σ2 
+
+> K
+
+, and the covariance between strain effective growth rates is Cov( Keff  
+
+> α
+
+, K eff  
+
+> β
+
+) = ρint σ2 
+
+> g
+
++ ρiso σ2 
+
+> K
+
+. The total effective growth rate correlation in the community is therefore 
+
+ρK = ρint σ2 
+
+> g
+
++ ρiso σ2
+
+> K
+
+σ2 
+
+> g
+
++ σ2
+
+> K
+
+. (S192) The community enhances correlation relative to isolation when ρK > ρ iso :
+
+ρint σ2 
+
+> g
+
++ ρiso σ2
+
+> K
+
+σ2 
+
+> g
+
++ σ2
+
+> K
+
+> ρ iso =⇒ ρint σ2 
+
+> g
+
++ ρiso σ2 
+
+> K
+
+> ρ iso σ2 
+
+> g
+
++ ρiso σ2 
+
+> K
+
+=⇒ ρint > ρ iso . (S193) Thus the community increases effective growth rate correlation if and only if the community-mediated correlation exceeds the intrinsic correlation. We can substitute the expression for ρint giving us, 
+
+σ2⟨(Nα + Nβ )2⟩
+
+σ2⟨(Nα + Nβ )2⟩ + λ2⟨(Nα − Nβ )2⟩ > ρ iso . (S194) When conspecific strains are very similar i.e. where λ ≪ σ, we have ρint ≈ 1 (as the second term in the denominator of S194 goes to 0 and λ → 0). This exceeds any underlying strain correlation (unless ρiso = 1), implying that community embedding generically enhances equalization especially between closely related strains. 38 
+
+> APPENDIX G: MATERIALS AND METHODS Numerical simulation of complete GLV system and model overview
+
+We performed numerical simulations of a generalized Lotka-Volterra model to investigate the population dynamics, coexistence, and correlation patterns of species and strains in microbial communities consisting of S species, each harboring two distinct strains (denoted α and β). The full system therefore comprises 2 S dynamical variables repre-senting strain-level abundances. All simulations were implemented in MATLAB v. R2025b and executed in parallel across multiple realizations for each parameter condition. All relevant code to reproduce figures and simulations can be accessed at https://github.com/eltanin4/strains-filtering-sorting-cavity .The temporal evolution of strain abundances follows the generalized Lotka-Volterra equations as decribed in 1: 
+
+dN iα 
+
+dt = Niα 
+
+Kiα −
+
+> S
+
+X
+
+> j=1
+
+Aiαjα Njα −
+
+> S
+
+X
+
+> j=1
+
+Aiαjβ Njβ 
+
+ (S195) where Niα denotes the abundance of strain α of specie ‘i’, Kiα represents the growth rate, and Aiαjβ quantifies the interaction strength between strains iα and jβ . To prevent numerical extinction artifacts during integration, a small constant (10 −20 ) was added to the right-hand side. The system was integrated using MATLAB’s ode45 adaptive Runge-Kutta solver over a time span of [0 , 2000] time units, which was sufficient for the system to reach equilibrium across all parameter regimes explored. The interaction matrix A encodes both within-species (intra-specific) and between-species (inter-specific) interac-tions, with a correlation structure that captures the relationship between strains of the same species. For interaction term details, refer to Appendix A. Simulations were conducted with S = 100 species (200 total strains) across 100 independent realizations per parameter condition. The asymmetry parameter λ was varied from 0.005 (as close to 0 yet not zero to prevent degeneracy of strains) to σ (the unscaled standard deviation of interaction coefficients). We make the biologically realistic assumption that strains cannot e more dissimilar than species. growth rates were set to a constant value ( K = 1 for all strains, with σK = 0 .02). Initial conditions were drawn uniformly at random from [0 , 1] for each strain. Following numerical integration, equilibrium abundances were determined from the final time point. Strains with abundances below a threshold of 10 −14 were classified as extinct and removed from subsequent analyses. For the surviving community, the theoretical equilibrium abundances were computed by solving the reduced linear system: 
+
+N ∗ = A−1red Kred (S196) where Ared and Kred denote the interaction matrix and growth rate vector restricted to surviving strains, respec-tively. The absolute value of the difference between the numerical and theoretical equilibria was recorded to verify convergence. Realizations producing any strain abundance exceeding 100 at equilibrium were rejected as biologically implausible and regenerated with new random interaction matrices, ensuring that all analyzed results correspond to stable, bounded ecological equilibria. For each realization, we computed the susceptibility matrix as the inverse of the reduced interaction matrix: 
+
+ν = A−1red (S197) The susceptibility νij quantifies the linear response of strain i’s equilibrium abundance to a perturbation in the growth rate of strain j. We extracted four categories of susceptibilities for each species where both strains survived namely the self-susceptibilities: ναα and νββ and the cross-susceptibilities: ναβ and νβα . These were averaged across species within each realization to obtain community-level susceptibility statistics. For each value of λ , we computed the mean abundances ( ⟨Nα⟩, ⟨Nβ ⟩), second moments ( ⟨N 2
+
+> α
+
+⟩, ⟨N 2 
+
+> β
+
+⟩), cross-moment ( ⟨NαNβ ⟩) (all conditioned on both strains surviving) as well as the fraction of α and β strains surviving ( ϕα and ϕβ respectively) and the fraction of species where both strains coexist ( ϕαβ ). Correlation coefficients: The correlation between α and β strain abundances was computed both across all strain pairs and restricted to coexisting pairs, using the standard formula: 
+
+ραβ = ⟨NαNβ ⟩ − ⟨ Nα⟩⟨ Nβ ⟩
+
+r
+
+(⟨N 2
+
+> α
+
+⟩ − ⟨ Nα⟩2)
+
+
+
+⟨N 2 
+
+> β
+
+⟩ − ⟨ Nβ ⟩2
+
+ (S198) Lastly, simulations were parallelized across asymmetry parameter values (i.e., λ) using MATLAB’s Parallel Com-puting Toolbox ( parfor ), with each worker independently generating interaction matrices, integrating the dynamical system, and computing summary statistics for a given λ value. 39 
+
+> Numerically solving the cavity self-consistency equations
+
+Concomitantly, we analytically calculate and solve the 12 essential quantities (first, second, and cross-moments as well as survival probabilities and susceptibilities) of the interacting strains obtained using the cavity method (see equations in Appendix C). Due to the system having 12 self-consistency quations and 12 unknowns, we the use nonlinear least squares method. We define the objective function to be the sum of the squares of the differences between the left and right-hand sides of the self-consistency equations. Prior to imposing the constraint that abundances must be positive, the cavity framework yields Gaussian-distributed abundances for each strain. The untruncated means, variances, and cross-moments of untruncated quantities have been shown in extensive detail from equations S94, S99, S100, and S103. From these moments, the untruncated covariance and correlation of the abundances of the conspecific strains follow as: Cov untrunc  
+
+> αβ
+
+= ⟨NαNβ ⟩untrunc − ⟨ N ±
+
+> 0α
+
+⟩⟨ N ± 
+
+> 0β
+
+⟩ (S199) 
+
+ρuntrunc  
+
+> αβ
+
+= Cov untrunc 
+
+> αβ
+
+q
+
+Var( N ±
+
+> 0α
+
+) Var( N ± 
+
+> 0β
+
+)(S200) Since only strains with positive equilibrium abundances survive, the observed statistics should correspond to mo-ments of a truncated bivariate normal distribution over the region {Nα > 0, N β > 0}. We standardized the untrun-cated distribution by defining: 
+
+h = − ⟨N ±
+
+> 0α
+
+⟩
+
+q
+
+Var( N ±
+
+> 0α
+
+)
+
+, k = − ⟨N ± 
+
+> 0β
+
+⟩
+
+q
+
+Var( N ± 
+
+> 0β
+
+)(S201) so that the truncation region becomes {X > h, Y > k } for standard bivariate normal variables ( X, Y ) with correlation 
+
+ρuntrunc  
+
+> αβ
+
+.The truncated moments were computed using the formulas of Rosenbaum [75] and Begier and Hamdan [74] for bivariate normal distributions truncated to upper rectangles. Specifically, ⟨X⟩ and ⟨Y ⟩ are the first moments of two standard normal random variables ’X’ and ’Y’ (that correspond to the α and β strains respectively), ⟨X2⟩, ⟨Y 2⟩
+
+correspond to their second moments, and ⟨XY ⟩ corresponds to their cross-moments., the joint survival probability is: 
+
+L = P (X > h, Y > k ) (S202) computed via the bivariate normal cumulative distribution function. The conditional first moments are: 
+
+⟨X | X > h, Y > k ⟩ = ϕ(h)Q(a) + ρϕ (k)Q(b)
+
+L (S203) 
+
+⟨Y | X > h, Y > k ⟩ = ρϕ (h)Q(a) + ϕ(k)Q(b)
+
+L (S204) where ϕ(·) is the standard normal density, Q(·) = 1 − Φ( ·) is the upper tail probability, and 
+
+a = k − ρh 
+
+p1 − ρ2 , b = h − ρk 
+
+p1 − ρ2 (S205) The conditional second moments are: 
+
+⟨X2 | X > h, Y > k ⟩ = L + hϕ (h)Q(a) + ρ2kϕ (k)Q(b) + eL (S206) 
+
+⟨Y 2 | X > h, Y > k ⟩ = L + kϕ (k)Q(b) + ρ2hϕ (h)Q(a) + eL (S207) where the edge term is: 
+
+e = ρp1 − ρ2
+
+√2π ϕ
+
+s
+
+h2 − 2ρhk + k2
+
+1 − ρ2
+
+!
+
+(S208) The conditional cross-moment is: 
+
+⟨XY | X > h, Y > k ⟩ = ρL + ρhϕ (h)Q(a) + ρkϕ (k)Q(b) + e′
+
+L (S209) 40 where e′ =
+
+√1−ρ2 
+
+> √2π
+
+ϕ
+
+q h2−2ρhk +k2
+
+> 1−ρ2
+
+
+
+.These standardized truncated moments were then transformed back to obtain the truncated abundance statistics (see Appendix C). Thus, the cavity framework yields a closed system of 12 self-consistency equations relating the following unknowns i.e., 1) Truncated first moments: ⟨Nα⟩, ⟨Nβ ⟩ , 2) truncated second moments: ⟨N 2
+
+> α
+
+⟩, ⟨N 2 
+
+> β
+
+⟩, 3) survival probabilities: 
+
+ϕα, ϕβ , ϕαβ , 4) susceptibilities: ναα , νββ , ναβ , νβα , and 5) the truncated cross-moment: ⟨NαNβ ⟩
+
+Each equation takes the form of a residual ri(x) = xi − fi(x), where xi is the i-th unknown and fi(x) is its predicted value from the cavity framework given the current estimates of all unknowns. The self-consistent solution satisfies 
+
+r(x∗) = 0. The system was solved by minimizing the sum of squared residuals: min 
+
+> x
+
+12
+
+> 12
+
+X
+
+> i=1
+
+ri(x)2 (S210) subject to bound constraints ensuring physical feasibility (e.g., non-negative moments, survival probabilities in [0 , 1]). Optimization was performed using MATLAB’s fmincon with the sequential quadratic programming (SQP) algorithm. For parameter sweeps over the asymmetry parameter λ, solutions were computed sequentially with a warm-start: the solution at each λ served as the initial guess for the subsequent value, improving convergence and ensuring continuity of the solutions. The correlation ρint between cavity fields was computed directly from the current estimates of the abundance moments at each iteration, ensuring internal consistency of the solution. 
+
+> APPENDIX H: PARAMETERS USED IN MAIN TEXT FIGURES
+
+In the main text and SI, we run all our simulations in the regime where ρ = 1 i.e., the interactions between species are symmetric. 
+
+Figure 1 (schematic) details. 
+
+The illustrations in this figure were made by AG and NV using the Inkscape software. Equations in the figure were converted from Latex text to .svg format via https://viereck.ch/latex-to-svg/ .
+
+Figure 2 (community mediated coexistence) details 
+
+Simulations of community-mediated coexistence were performed with S = 100 species (200 total strains). The mean inter-species interaction strength was μ = 0 .05, with interaction correlation ρ = 0 .99. growth rates were drawn from a normal distribution with mean K = 1 and standard deviation σK = 0 .2. The focal strain pair in Panels A and B used within-species cross-strain interaction ˜ μ = 0 .7 and asymmetry parameter λ = 0 .02. For the structured community condition, the inter-species interaction standard deviation was σ = 0 .38. The system was integrated over the time interval [0 , 2000] with extinction threshold 10 −14 . The phase diagram in Panel D swept over ˜ μ ∈ [0 .6, 0.95] in increments of 0.05 and λ ∈ [0 .005 , 0.06] in increments of 0.005, with 100 independent realizations per parameter point. 
+
+Figure 3. Strain abundance correlation patterns 
+
+The correlation structure across parameter space was characterized using S = 100 species (200 total strains). The mean inter-species interaction strength was μ = 0 .05, with interaction correlation ρ = 0 .99. growth rates were drawn from a normal distribution with mean K = 1 and standard deviation σK = 0 .022. The within-species cross-strain interaction was fixed at ˜ μ = 0 .5. The system was integrated until steady state for 100 different realizations. Panels (a) and (b) show scatter plots of the abundances of pair of strains in a species in isolation and in a community respectively (with σ = 0 .30). The ellipse drawn around the points represent 2 standard deviations of the distribution generated from the analytically predicted truncated bivariate Gaussian distribution (derived from the cavity method). The ellipse is constructed by eigendecomposition of the covariance matrix where eigenvalues and eigenvectors describe the size (along each principal axis) and orientation of the theoretical ellipse. In panel (c), we show how the same pair of strains in isolation (white circle) having negative correlation has positive correlation in a community (orange triangle) through stabilization (reduced ˜ μeff ) and equalization (higher ρK ) due to the community. These points are overlaid atop a heatmap of strain abundance correlations obtained by numerically solving the two-strain GLV for pairs of values of (˜ μeff , ρ K ) which are averaged across 500 independent realizations. In panel (d), we show that strain abundance correlations ( ραβ ) increase with increasing species interaction dissimilarity ( σ). The prediction from the analytic cavity solution (line) for the correlation is overlaid on top of correlation derived from simulations (dots). In panel (d) inset, we use ρK and 
+
+D 1 
+
+> ξ2−(˜ μeff )2+λ2y2
+
+E
+
+as measures of equalization and stabilization and show that they both increase with increasing σ.41 
+
+Figure 4. Mechanisms driving correlation transitions 
+
+For panel (a), simulations were run for communities using S = 100 species (200 total strains). The mean inter-species interaction strength was μ = 0 .30, with interaction correlation ρ = 0 .99. growth rates were drawn from a normal distribution with mean K = 1 and standard deviation σK = 0 .02. The system was integrated over the time interval [0 , 1000] with extinction threshold 10 −14 . Further, we fixed σ = 0 .06 to show positive to negative transition in correlations. Panel (b) uses ρK and 
+
+D 1 
+
+> ξ2−(˜ μeff )2+λ2y2
+
+E
+
+as measures of equalization and stabilization and show that they both increase with increasing λ ∈ [0 .005 , 0.11]. Panel (c) shows a phase diagram in ( σ, λ ) space with parameter sweep covering σ ∈ [0 .005 , 0.20] and λ ∈ [0 .005 , 0.20], both in increments of 0.005, restricted to λ ≤ σ. The phase diagram in panel (d) swept over ˜ μ ∈ [0 .1, 0.95] in increments of 0.03 and σ ∈ [0 .01 , 0.31] in increments of 0.01. Regimes were classified by evaluating correlations at λmin = 0 .01 and λmax = σ: positive-to-negative (blue) if ραβ (λmin ) > 0and ραβ (λmax ) < 0; always negative (red) if ραβ (λmax ) < 0 without sign change; and positive-to-zero/positive (green) otherwise (after checking for monotonicity). The theoretical line was calculated by solving the cavity self-consistency equations for each value of σ and finding a concomitant ˜ μ where the covariance goes to 0 using a binary search algorithm (faster than brute force search).

@@ -1,0 +1,2924 @@
+Title: Extinction behaviour for mutually enhancing continuous-state population dynamics
+
+URL Source: https://arxiv.org/pdf/2603.16190v1
+
+Published Time: Wed, 18 Mar 2026 00:43:55 GMT
+
+Number of Pages: 34
+
+Markdown Content:
+# Extinction behaviour for mutually enhancing continuous-state population dynamics 
+
+Jie Xiong 1, Xu Yang 2 and Xiaowen Zhou 3
+
+Abstract. In this paper, we study a two-dimensional process arising as the unique nonnegative solution to a system of two stochastic differential equations (SDEs) with mutually enhancing two-way interactions driven by independent Brownian motions and spectrally positive α-stable random measures. Such a SDE system can be identi-fied as a continuous-state Lotka-Volterra type population model. Extinction properties of the populations are studied for different choices of the coefficients involved in the SDEs. 
+
+Mathematics Subject Classifications (2010) : 60J80; 92D25; 60G57; 60G17. 
+
+Key words and phrases : Continuous-state branching process, competition, nonlinear branching, mutually enhancing interaction, stochastic Lotka-Volterra type population, extinction. 
+
+# 1 Introduction and main results 
+
+Continuous-state branching processes (CSBPs for short) are mathematical models that describe the evolution of rescaled populations. They arise as scaling limits of Galton-Watson branching processes and find applications in various fields such as biology, population genetics, physics, chemistry, and so on. We refer to [14, 22, 23] for reviews and literature on CSBPs. Extinction behavior is a key topic in the study of population models. Through the Lamperti random time change, the CSBP is associated with a spectrally positive L´ evy process stopped when first reaching 0, which allows many semiexplicit expressions. In particular, a sufficient and necessary condition, called Grey’s condition, is obtained in [13]. In recent years, many authors have studied the generalized nonlinear CSBP characterized by the following SDE. 
+
+Xt = X0 +
+
+Z t
+
+> 0
+
+γ0(Xs)d s +
+
+Z t
+
+> 0
+
+Z γ1(Xs)0
+
+W (d s, du) + 
+
+Z t
+
+> 0
+
+Z ∞
+
+> 0
+
+Z γ2(Xs−)0
+
+z ˜M (d s, dz, du), (1.1) where X0 > 0 and γ0 and γ1, γ 2 ≥ 0 are Borel functions on [0 , ∞), W and ˜N are Gaussian white noise and compensated Possion random measure. If γi(x) = γix for some constant γi, then the solution to (1.1) reduces to the classical CSBP. For γ2 ≡ 0 and γ1(x) = γ1x, (1.1) is also called the Dawson-Li SDE with its solution called a CSBP with competition in [31], where the function 
+
+γ0 models an impact of the current population size on the reproduction dynamics of individuals.  
+
+> 1Department of Mathematics and SUSTech International center for Mathematics, Southern University of Sci-ence & Technology, Shenzhen, China. Supported by National Key R&D Program of China (No. 2022YFA1006102) and National Natural Science Foundation of China Grant 12471418. Email: xiongj@sustech.edu.cn
+> 2School of Mathematics and Information Science, North Minzu University, Yinchuan, China. Supported by NSFC (No. 12471135). Email: xuyang@mail.bnu.edu.cn. Corresponding author.
+> 3Department of Mathematics and Statistics, Concordia University, Montreal, Canada. Supported by NSERC (RGPIN-2021-04100). Email: xiaowen.zhou@concordia.ca.
+
+1
+
+> arXiv:2603.16190v1 [math.PR] 17 Mar 2026
+
+Moreover, if γ0(x) = c1x − c2x2 for c1, c 2 > 0, then the solution to SDE (1.1), called the branching process with logistic growth” or “logistic branching process” in [15], models the den-sity dependence in population. This density dependence corresponds to intraspecific competition pressure, which is ubiquitous in ecology, and translates mathematically into a quadratic death rate. The terms γi(x)/x for i = 1 , 2 can be interpreted as population-size-dependent branching rates, and the drift involving γ0 can also be related to continuous population-size-dependent immigration. Population-size-dependent CSBPs arise as scaling limits of the corresponding discrete-state branching processes (see, e.g., [20, 21]). If γi(x) = γixr for i = 0 , 1, 2, the solu-tion to SDE (1.1) is called a CSBP with polynomial branching whose expectation of extinction time is discussed via Lamperti type transformations in [16], where the parameter r describes the degree of interaction. The CSBPs with polynomial branching arise as time-space scaling limits of discrete-state nonlinear branching processes. Intuitively, the functions γ1 and γ2 are population-dependent rates that generate a small and large number of branching events in chil-dren, respectively. Rather sharp conditions on extinction/non-extinction for SDE (1.1) are given in [19] using martingale techniques, and critical cases are further studied in [28]. The exponential ergodicity and the strong exponential ergodicity for the solution to SDE (1.1) is discussed in [17] using coupling techniques. More recently, models related to (1.1) have also attracted attention. The extinction/non-extinction for generalized nonlinear CSBPs with catastrophes is studied in [29]. [1] establishes necessary and sufficient conditions of extinction for the generalized nonlinear CSBPs with Neveu’s branching. The ergodic property of a CSBP with immigration and com-petition is given in [18]. General nonlinear CSBPs with competition in the L´ evy environment and CSBPs in varying environments are studied in [27] and [12], respectively. By [23, Theorems 7.1 and 8.1], on an enlarged probability space, on the right of (1.1), the third term can be transformed into R t
+
+> 0
+
+pγ1(Xs)d Bs, and the fourth term can be converted into 
+
+R t
+
+> 0
+
+R ∞ 
+
+> 0
+
+z ˜Mγ2 (d s, dz), where ( Bt)t≥0 is a Brownian motion and ˜Mγ2 (d s, dz) is an optional compen-sated Poisson random measure. Using the Lamperti transform for positive self-similar Markov processes, in certain cases, [5] studies the necessary and sufficient condition for extinction. Compared with the one-dimensional model (1.1), the study of two-dimensional interaction of generalized nonlinear CSBP characterized by the following SDE system is more challenging and the existing literature on this is sparse: 
+
+
+
+Xt = X0 +
+
+Z t
+
+> 0
+
+θ1(Xs, Y s)d s +
+
+Z t
+
+> 0
+
+γ10 (Xs)d s +
+
+Z t
+
+> 0
+
+pγ11 (Xs)d B1(s)+
+
+Z t
+
+> 0
+
+Z ∞
+
+> 0
+
+Z γ12 (Xs−)0
+
+z ˜N1(d s, dz, du),Yt = Y0 +
+
+Z t
+
+> 0
+
+θ2(Ys, X s)d s +
+
+Z t
+
+> 0
+
+γ20 (Ys)d s +
+
+Z t
+
+> 0
+
+pγ21 (Ys)d B2(s)+
+
+Z t
+
+> 0
+
+Z ∞
+
+> 0
+
+Z γ22 (Ys−)0
+
+z ˜N2(d s, dz, du),
+
+(1.2) where ( B1(t)) t≥0 and ( B2(t)) t≥0 are Brownian motions, and ˜N1(d s, dz, du) and ˜N2(d s, dz, du)are compensated Poisson random measures. The SDE system (1.2) is a solution to the CSBP of two-types when γij (x)/x are nonnegative constants for all i, j = 1 , 2. If γi0(x) = bi0x,
+
+γi1(x) = bi1x with bi1 > 0 and γi2 ≡ 0 for i = 1 , 2, then the SDE system (1.2) is studied in [33] and [6] when θ1(x, y ) = a1y, θ 2(y, x ) = a2x and θ1(x, y ) = a1xy, θ 2(y, x ) = a2xy for a1, a 2 > 0, respectively. If γi0(x) = ai0x+ηi, γij (x) = bij x and θ1(x, y ) = a1y, θ 2(y, x ) = a2x with bij , a i > 0for i, j = 1 , 2, then the SDEs system (1.2) is studied in [26] and the more general system with 2multiple SDEs in [2]. Two-type CSBP in varying environments characterized by the form of (1.2) is studied in [24, 25]. The SDE system (1.2) is also a dynamic stochastic Lotka-Volterra-type population. If γi0(x) = bi0x and γi1(x) = bi1x2 for i = 1 , 2, θ1(x, y ) = a2xy , θ2(y, x ) = a2xy 
+
+with b11 , b 21 , a 1, a 2 > 0, γ12 (x) = γ22 (x) ≡ 0, then SDE (1.2) is also called a competitive Lotka-Volterra model in random environments in [3] and references, and [11] considers the case that (( B1(t), B 2(t))) t≥0 is a correlated two-dimensional Brownian motion. If γi2(x) ≡ 0 and 
+
+γi1(x) = bi1x2 with bi1 > 0 for i = 1 , 2, and θ1(x, y )θ2(x, y ) < 0, then SDE (1.2) is called stochastic predator-prey models, and we refer to [10] and [4] for related persistence/extinction results. If θ1(x, y ) ≡ 0, θ2(x, y ) =: θ(x)κ(y) < 0 and γ10 (x), γ 20 (y) ≤ 0, then the extinction-extinguishing dichotomy for SDE system (1.2) is discussed in [32]. If θi(x, y ) = θi(x)κi(y) < 0 for 
+
+i = 1 , 2 and γij , θ i, κ i are power functions for i = 1 , 2 and j = 0 , 1, 2, the SDE (1.2) is mutually competitive and rather sharp conditions on the extinction-extinguishing dichotomy are given in [34]. Our aim of this paper is to establish the extinction/non-extinction conditions for SDE (1.2) with mutual enhancing, that is, interacting functions θ1, θ 2 > 0. For simplicity and readability, in this paper we only consider the special form of (1.2) with power function coefficients and power function intensities for ˜Ni(d s, dz, du), that is, the following SDE system: 
+
+
+
+Xt = X0 + a1
+
+Z t
+
+> 0
+
+Xθ1 
+
+> s
+
+Y κ1 
+
+> s
+
+ds − b10 
+
+Z t
+
+> 0
+
+Xr10  
+
+> s
+
+ds + b11 
+
+Z t
+
+> 0
+
+p2Xr11  
+
+> s
+
+dB1(s)+
+
+Z t
+
+> 0
+
+Z ∞
+
+> 0
+
+Z b12 Xr12 
+
+> s−
+> 0
+
+z ˜N1(d s, dz, du),Yt = Y0 + a2
+
+Z t
+
+> 0
+
+Y θ2 
+
+> s
+
+Xκ2 
+
+> s
+
+ds − b20 
+
+Z t
+
+> 0
+
+Y r20  
+
+> s
+
+ds + b21 
+
+Z t
+
+> 0
+
+p2Y r21  
+
+> s
+
+dB2(s)+
+
+Z t
+
+> 0
+
+Z ∞
+
+> 0
+
+Z b22 Y r22 
+
+> s−
+> 0
+
+z ˜N2(d s, dz, du),
+
+(1.3) where for i = 1 , 2, j = 0 , 1, 2, ai, κ i > 0 and θi, r ij , b ij ≥ 0. For i = 1 , 2, ( Bi(t)) t≥0 are two Brownian motions and ˜Ni(d s, dz, du) are two compensated Poisson random measures with intensity d sμ i(d z)d u. Here μi(d z) = αi(αi−1) Γ( αi)Γ(2 −αi) z−1−αi 1{z> 0}dz for αi ∈ (1 , 2), i = 1 , 2, and Γ denotes the Gamma function. We always assume that b11 + b12 > 0 and b21 + b22 > 0. We also assume that ( B1(t)) t≥0, ( B2(t)) t≥0, { ˜N1(d s, dz, du)}, and { ˜N2(d s, dz, du)} are independent of each other. The main methods to develop the criteria for extinction/non-extinction in [28, 1] are adapta-tions of the approach for Chen’s criteria on the uniqueness problem of Markov jump processes. These Chen’s criteria are first established in [7, 8] and can also be found in [9, Theorems 2.25 and 2.27]. A similar approach to studying the boundary behaviors for Markov processes can also be found in [30]. Such an approach typically involves identifying an appropriate test function that is applied to the infinitesimal generator of the generalized nonlinear CSBP and proving the desired result using a martingale argument. In [32] a stochastic Lotka-Volterra-type popu-lation dynamical system is proposed as a solution to an SDE system with one-sided interaction. The two-population model (1.3) with mutually competitive interaction is further studied in [34] where the coefficients a1 and a2 are both negative. The main methods of [32] and [34] rely on the generalization of Chen’s criteria technique from one-dimensional processes to two-dimensional processes. In the paper, we consider the model of mutually enhancing populations, namely a1, a 2 > 0, and leave the case of mixing interaction of a1a2 < 0 as a challenging open problem. The main 3methods of this paper are to develop the criteria of extinction/non-extinction again for a two-dimensional process which is an adaption of the approach for Chen’s criteria again. The key to applying this criterion is to find appropriate test functions for which our approach is mostly ad hoc, guessing bit by bit without an obvious intuition. For the extinction behavior, the criteria and the test functions in [32, 34] among other references are no longer applicable in this paper, and we need to develop new criteria and new testing functions that are more demanding. For any generic stochastic process V := ( V (t)) t≥0 and constant w > 0, let 
+
+τ0(V ) := inf {t ≥ 0 : V (t) = 0 }, τ − 
+
+> w
+
+(V ) := inf {t ≥ 0 : V (t) ≤ w}
+
+and 
+
+τ + 
+
+> w
+
+(V ) := inf {t ≥ 0 : V (t) ≥ w}
+
+with the convention inf ∅ = ∞. Let τ0 := τ0(X) ∧ τ0(Y ), τ − 
+
+> w
+
+:= τ − 
+
+> w
+
+(X) ∧ τ − 
+
+> w
+
+(Y ) and τ + 
+
+> w
+
+:= 
+
+τ + 
+
+> w
+
+(X) ∧ τ + 
+
+> w
+
+(Y ) for w > 0. In the following, we state the definition of a solution to the SDE system (1.3), which is defined before the minimum of the first hitting time of 0 or the explosion time for the two processes X and Y .
+
+Definition 1.1 By a solution to SDE (1.3) we mean a two-dimensional c` adl` ag process (X, Y ) := (( Xt, Y t)) t≥0 satisfying SDE (1.3) up to γn := τ −
+
+> 1/n
+
+∧τ + 
+
+> n
+
+for each n ≥ 1 and Xt = lim sup n→∞ Xγn−
+
+and Yt = lim sup n→∞ Yγn− for t ≥ lim n→∞ γn.
+
+By Definition 1.1, 0 and ∞ are absorbing states, and the solution is nonnegative. Definition 1.1 of the solution allows for weaker conditions for the uniqueness of the solution. In particular, the existence and pathwise uniqueness of SDE (1.3) can be obtained by the same arguments as in [32, Lemma A.1]. Throughout this paper, we always assume that the c` adl` ag process ( X, Y )is the unique solution to (1.3), and consequently, the process ( X, Y ) has the strong Markov property. We also assume that X0, Y 0 > 0 are deterministic and that all stochastic processes are defined on the same filtered probability space (Ω , F , Ft, P). Let E denote the corresponding expectation. For i = 1 , 2, let 
+
+ri := min rij − ϱij , j ∈ { bij ̸ = 0 , j = 0 , 1, 2} , bi := X
+
+> j=0 ,1,2
+
+bij 1{ri=rij −ϱij },
+
+where ϱij = j + 1 and ϱi2 = αi for i = 1 , 2 and j = 0 , 1. The above parameters determine the extinction behaviors for the processes ( X, Y ). We first consider the non-extinction behaviors. Note that the nonlinear one-dimensional CSBP (with a1Xθ1 
+
+> s
+
+Y κ1 
+
+> s
+
+replaced by a1Xθ1 
+
+> s
+
+in (1.3)) cannot reach 0 if r1 ≥ (θ1 − 1) ∧ 0 (see [19, p.2535]). The following result can also be shown similarly to [19, p.2535]. 
+
+Proposition 1.2 If r1, r 2 ≥ 0, then P{τ0 < ∞} = 0 .
+
+The next theorem concerns the extinction conditions for the two-dimensional model (1.3) under which Y κ1 
+
+> s
+
+in the interaction term a1Xθ1 
+
+> s
+
+Y κ1 
+
+> s
+
+does not affect the extinction of X when 
+
+r2 ≥ 0 and θ1 − 1 < r 1 < 0. 
+
+Theorem 1.3 Suppose that one of the following holds: 
+
+4(i) r1 ≥ 0 and θ2 − 1 < r 2 < 0;
+
+(ii) r2 ≥ 0 and θ1 − 1 < r 1 < 0.Then P{τ0 < ∞} = 0 .
+
+The following theorem presents a non-extinction condition, when both θ1 − 1 < r 1 < 0 and 
+
+θ2 − 1 < r 2 < 0 hold, which depends on the interaction term a1Xθ1 
+
+> s
+
+Y κ1 
+
+> s
+
+and a2Y θ2 
+
+> s
+
+Xκ2 
+
+> s
+
+.
+
+Theorem 1.4 P {τ0 < ∞} = 0 if θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0, and 
+
+(r1 + 1 − θ1)( r2 + 1 − θ2) > κ 1κ2. (1.4) Before considering critical cases, we first state the following condition, which means that the drift term plays a dominant role when the processes are near zero. 
+
+Condition 1.5 (i) For b10 b20 ̸ = 0 ,
+
+r10 − 1 < min r11 − ϱ1j , j ∈ { b1j̸ = 0 , j = 1 , 2} (1.5) 
+
+and 
+
+r20 − 1 < min r21 − ϱ2j , j ∈ { b2j̸ = 0 , j = 1 , 2} , (1.6) 
+
+where ϱi1 = 2 and ϱi2 = αi for i = 1 , 2;
+
+(ii) In addition to (r1 + 1 − θ1)/κ 1 < r 1/r 2, either (1.5) holds and (1.6) is not satisfied for 
+
+b10 b20 ̸ = 0 , or b20 = 0 and (1.5) holds for b10 ̸ = 0 ;
+
+(iii) In addition to (r2 + 1 − θ2)/κ 2 < r 2/r 1, either (1.6) holds and (1.5) is not satisfied for 
+
+b10 b20 ̸ = 0 , or b10 = 0 and (1.6) holds for b20 ̸ = 0 .
+
+Theorem 1.6 Suppose that θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0, and 
+
+(r1 + 1 − θ1)( r2 + 1 − θ2) = κ1κ2. (1.7) 
+
+We also assume that one of the following holds: 
+
+(i) Condition 1.5(i) is satisfied and 
+
+(a1/b 1)1/(r1+1 −θ1)(a2/b 2)1/κ 2 > 1; (1.8) (ii) b12 = b22 = 0 ,
+
+r10 − 1 = r11 − 2 = r20 − 1 = r21 − 2 =: r, θ1 = θ2, κ1 = κ2, and a1a2 ≥ b1b2.Then P{τ0 < ∞} = 0 .
+
+5Theorem 1.6(ii) implies that P{τ0 < ∞} = 0 when the inequality in (1.8) is replaced by an equality. Under (1.7), we have ( r1 + 1 − θ1)−1 = κ1κ2 
+
+> r2+1 −θ2
+
+and then (1.8) is equivalent to (a2/b 2) 1 
+
+> r2+1 −θ2
+
+(a1/b 1) 1 
+
+> κ1
+
+> 1, which is a symmetric form of (1.8). Next, we study the extinction behavior for ( X, Y ). For the one-dimensional nonlinear CSBP (with a1Xθ1 
+
+> s
+
+Y κ1 
+
+> s
+
+replaced by 
+
+a1Xθ1 
+
+> s
+
+in (1.3)), it reaches 0 with a positive probability when r1 < (θ1 − 1) ∧ 0. The following theorem shows that a similar result still holds for the two-dimensional system (1.3) in this case. 
+
+Theorem 1.7 Suppose that one of the following holds: 
+
+(i) r1 ≤ θ1 − 1 and r1 < 0;
+
+(ii) r2 ≤ θ2 − 1 and r2 < 0.Then P{τ0 < ∞} > 0.
+
+Remark 1.8 Observe that conditions (i) and (ii) of Theorem 1.7 only concern processes X and 
+
+Y , respectively. This suggests that P{τ0(X) < ∞} > 0 under condition (i) and P{τ0(Y ) <
+
+∞} > 0 under condition (ii). 
+
+In the following, we consider the case θ1 − 1 < r 1 < 0 and θ2 − 1 < r 2 < 0. We first state the following condition. 
+
+Condition 1.9 One of the following holds: 
+
+(i) Either 
+
+r1 + 1 
+
+r2 + 1 ∨ r1
+
+r2
+
+< κ2
+
+r2 + 1 − θ2
+
+(1.9) 
+
+or 
+
+r2 + 1 
+
+r1 + 1 ∨ r2
+
+r1
+
+< κ1
+
+r1 + 1 − θ1
+
+; (1.10) (ii) Either 
+
+1 − θ1
+
+κ1 − r2
+
+< κ2
+
+r2 + 1 − θ2
+
+∧ κ2 − r1
+
+1 − θ2
+
+∧ (1 − θ1) ∧ (2 − κ2) (1.11) 
+
+or 
+
+1 − θ2
+
+κ2 − r1
+
+< κ1
+
+r1 + 1 − θ1
+
+∧ κ1 − r2
+
+1 − θ1
+
+∧ (1 − θ2) ∧ (2 − κ1). (1.12) The assumptions in Condition 1.9 are related to the choices of test functions (see (3.82) and Lemmas 3.12 and 3.14) and may not allow intuitive interpretations. 
+
+Theorem 1.10 Suppose that θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0 and one of the following holds: 
+
+(i) Condition 1.5 holds and 
+
+(r1 + 1 − θ1)( r2 + 1 − θ2) < κ 1κ2; (1.13) 6(ii) For i = 1 , 2,
+
+ri0 − 1 ≥ min ri1 − ϱij , j ∈ { bij ̸ = 0 , j = 1 , 2} , bi0̸ = 0 (1.14) 
+
+with ϱi1 = 2 and ϱi2 = αi, and (1.13) and Condition 1.9 holds; 
+
+(iii) For i = 1 , 2, (1.14) holds, r1 + 1 − θ1 < κ 2 and r2 + 1 − θ2 < κ 1.Then P{τ0 < ∞} > 0.
+
+Theorem 1.10(i) concerns the case in which drift terms dominate when the process is near zero. Theorems 1.10(ii) and (iii) concern the case where diffusive terms dominate when the process is close to zero. When r1 = r2, the inequality (1.13) implies Condition 1.9(i). In the following, we present a result when the inequality in (1.13) is replaced by the equality. 
+
+Theorem 1.11 Suppose that θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0 and (1.7) holds. We also assume that Condition 1.5 holds and 
+
+(a1/b 1)1/(r1+1 −θ1)(a2/b 2)1/κ 2 < 1. (1.15) 
+
+Then P{τ0 < ∞} > 0.
+
+Given that (1.7) holds, the inequality (1.15) is equivalent to ( a2/b 2) 1 
+
+> r2+1 −θ2
+
+(a1/b 1) 1 
+
+> κ1
+
+< 1, which is a symmetric form of (1.15). It is more challenging and interesting to establish the conditions for P{τ0 < ∞} = 1, which will be considered in future work. Combining Proposition 1.2, Theorems 1.3–1.4, 1.6–1.7 and 1.10–1.11 we have the following remark. 
+
+Remark 1.12 Suppose that r1 = r2 := r.
+
+(1) P{τ0 < ∞} = 0 if one of the following conditions: 
+
+(i) r ≥ 0;
+
+(ii) ( θ1 − 1) ∨ (θ2 − 1) < r < 0 and (r + 1 − θ1)( r + 1 − θ2) > κ 1κ2.
+
+(2) P{τ0 < ∞} > 0 if one of the following conditions: 
+
+(i) r ≤ [( θ1 − 1) ∨ (θ2 − 1)] and r < 0;
+
+(ii) ( θ1 − 1) ∨ (θ2 − 1) < r < 0, (r + 1 − θ1)( r + 1 − θ2) < κ 1κ2, and in addition to either Condition 1.5(i) or (1.14) for i = 1 , 2.
+
+(3) If Condition 1.5(i) holds, (θ1 − 1) ∨ (θ2 − 1) < r < 0 and (r + 1 − θ1)( r + 1 − θ2) = κ1κ2,then 
+
+(i) P{τ0 < ∞} = 0 when (a1/b 1)1/(r+1 −θ1)(a2/b 2)1/κ 2 > 1;
+
+(ii) P{τ0 < ∞} > 0 when (a1/b 1)1/(r+1 −θ1)(a2/b 2)1/κ 2 < 1.
+
+At the end of this section, we give a brief description of the approaches to proofs of theo-rems. We use the generalized Chen’s criteria to establish the assertions on non-extinction and extinction with positive probability (see Section 2). These Chen’s criteria are first proposed in [7, 8] and can also be found in [9, Theorems 2.25 and 2.27]. For the proofs of Proposition 1.2, 7Theorems 1.3–1.4 and 1.6, we apply the non-extinction criteria given in [32] (see, e.g., Proposi-tion 2.1) to test functions that are of two-variable power or logarithmic type (see the functions 
+
+g and ˜ g defined in Lemmas 3.5 and 3.6). For the proofs of Theorems 1.7 and 1.10–1.11, we first establish the extinction criteria, which is given in Proposition 2.2 and a generalized Chen’s criterion. The key test function for the proof of Theorem 1.7 is chosen as a two-variable power function (see (3.18)). We select a two-variable power type test function in the proof of Theo-rems 1.10–1.11 (see (3.82) with the functions h defined in (3.36) and (3.49) and Lemmas 3.12, 3.14 and 3.16 for different conditions). For the case where the drift term dominates (Condition 1.5) as the system approaches zero, the test functions h and ˜h are given by (3.36) and (3.49), respectively, and condition (iii) in Proposition 2.2 is verified by Lemmas 3.10 and 3.11. For the case where diffusive terms dominate (see (1.14)) and Condition 1.9, we modify the function h
+
+defined in (3.36). Under Condition 1.9(i), we first replace yρ2 with y − y1−ε for a sufficiently small y, ε > 0 in (3.36) and then change it into ˜h(y) given by (3.51) (see (3.55)). For Condition 1.9(ii), we also change ρ1 ≥ 1 to 0 < ρ 1 < 1 and smooth it by replacing xρ1 with ( x + yδ)ρ1 for some δ > 1 (see (3.67)). For condition (iii) in Theorem 1.10, the function h is given in Lemma 3.16. The key condition (iii) in Proposition 2.2 is verified by Lemmas 3.12, 3.14, and 3.16. Similarly, the results can be proved for the cases of b10 , b 20 < 0 and b10 b20 < 0, and we omit them here. Let C2((0 , ∞)) and C2((0 , ∞) × (0 , ∞)) denote the second-order continuous differentiable function spaces on (0 , ∞) and (0 , ∞) × (0 , ∞), respectively. The remainder of the paper is arranged as follows. We state the extinction criteria for the two-dimensional process in Section 2. The proofs for the assertions in this section are given in Section 3. 
+
+# 2 Criteria for extinction 
+
+In this section, we establish some criteria that will be used to prove the theorems in Section 1. In the following, let (( xt, y t)) t≥0 be a two-dimensional c` adl` ag process with deterministic 
+
+x0, y 0 > 0, where ( xt)t≥0 and ( yt)t≥0 are two nonnegative processes defined before the minimum of their first times of hitting zero or explosion. Let L denote the operator such that for each 
+
+g ∈ C2((0 , ∞) × (0 , ∞)), the process 
+
+t 7 → M gt∧γm,n is a martingale , (2.1) where 
+
+M gt := g(xt, y t) − g(x0, y 0) −
+
+Z t
+
+> 0
+
+Lg(xs, y s)d s
+
+and γm,n := τ − 
+
+> 1/m
+
+∧ τ + 
+
+> n
+
+with τ − 
+
+> 1/m
+
+:= τ −
+
+> 1/m
+
+(x) ∧ τ −
+
+> 1/m
+
+(y) and τ + 
+
+> n
+
+:= τ + 
+
+> n
+
+(x) ∧ τ + 
+
+> n
+
+(y). In this section, let τ0 := τ0(x) ∧ τ0(y) and τ∞ := lim n→∞ τ + 
+
+> n
+
+. The following two criteria on non-extinction and extinction of process (( xt, y t)) t≥0, which generalize Chen’s criteria for the uniqueness problem of Markov jump processes. For the SDE system, the operator L can be obtained by Itˆ o’s formula. The following Proposition 2.1 given in [32] is a criterion to establish the non-extinction asser-tion and test functions g often take either the form of two-dimensional power type functions with negative power or the form of logarithm type functions, which is a key point. This proposition is used to prove Proposition 1.2, Theorems 1.3–1.4 and 1.6. 
+
+Proposition 2.1 ([32, Proposition 2.1]) For any fixed n ≥ 1, if there is a nonnegative function 
+
+g ∈ C2((0 , ∞)×(0 , ∞)) and a constant dn > 0 such that the following hold: (i) lim x∧y→0 g(x, y ) = 
+
+∞; (ii) Lg(x, y ) ≤ dng(x, y ) for all 0 < x, y ≤ n, then P{τ0 < ∞} = 0 .
+
+8The proposition 2.2 gives a new criterion for extinction and can be shown by adapting the approach to Chen’s criteria. The key to applying Proposition 2.2 is to select a suitable test function and to verify the key condition (iii) in the following. This proposition is used to prove Theorems 1.7, 1.10 and 1.11. The test functions g are often of the form of two-dimensional power type functions with positive powers, which are mostly obtained by ad hoc guessing without much intuitive interpretation, and the test functions in the previous papers are no longer appropriate. Note that the criteria and test functions in Theorems 1.7, 1.10, and 1.11 are different from those in [32, 34] and other references. The proof of Proposition 2.2 is based on (2.1) and a martingale argument. 
+
+Proposition 2.2 Let v > 0 and 0 < x 0, y 0 < v be fixed. Suppose that there are a function 
+
+g ∈ C2((0 , ∞) × (0 , ∞)) and a constant d > 0 such that 
+
+(i) g(x0, y 0) > 0 and C0 := sup x,y> 0 g(x, y ) < ∞;
+
+(ii) g(x, y ) ≤ 0 for all (x, y ) with x ∨ y ≥ v;
+
+(iii) Lg(x, y ) ≥ dg (x, y ) for all 0 < x, y ≤ v.Then P{τ0 < ∞} ≥ g(x0, y 0)/C 0 > 0.
+
+Proof. In view of (2.1), for all large enough m ≥ 1, 
+
+Eg(xt∧γm,v , y t∧γm,v ) = g(x0, y 0) + 
+
+Z t
+
+> 0
+
+ELg(xs, y s)1 {s≤γm,v }
+
+ds. 
+
+It then follows from integration by parts that e−dt Eg(xt∧γm,v , y t∧γm,v )
+
+= g(x0, y 0) + 
+
+Z t
+
+> 0
+
+e−ds d
+
+
+
+Eg(xs∧γm,v , y s∧γm,v )
+
++
+
+Z t
+
+> 0
+
+Eg(xs∧γm,n , y s∧γm,v )de −ds 
+
+= g(x0, y 0) + 
+
+Z t
+
+> 0
+
+e−ds ELg(xs, y s)1 {s≤γm,v }
+
+ds − d
+
+Z t
+
+> 0
+
+e−ds Eg(xs∧γm,v , y s∧γm,v )ds. 
+
+Under conditions (i) and (iii), we have 
+
+C0e−dt − g(x0, y 0) ≥ e−dt Eg(xt∧γm,v , y t∧γm,v ) − g(x0, y 0)
+
+≥ d
+
+Z t
+
+> 0
+
+e−ds Eg(xs, y s)1 {s≤γm,v }
+
+ds − d
+
+Z t
+
+> 0
+
+e−ds Eg(xs∧γm,v , y s∧γm,v )ds
+
+= −d
+
+Z t
+
+> 0
+
+e−ds Eg(xs∧γm,v , y s∧γm,v )1 {s>γ m,v }
+
+ds
+
+≥ − d
+
+Z t
+
+> 0
+
+e−ds Eg+(xs∧γm,v , y s∧γm,v )1 {s>γ m,v }
+
+ds, 
+
+where g+(u) := g(u) ∨ 0. Letting t → ∞ we obtain 
+
+g(x0, y 0) ≤ d
+
+Z ∞
+
+> 0
+
+e−ds Eg+(xs∧γm,v , y s∧γm,v )1 {s>γ m,v }
+
+ds
+
+= E
+
+h
+
+g+(xγm,v , y γm,v )d
+
+Z ∞
+
+> γm,v
+
+e−ds ds
+
+i
+
+= Eg+(xγm,v , y γm,v )e −dγ m,v .
+
+9Then, by the dominated convergence, we get 
+
+g(x0, y 0) ≤ lim  
+
+> m→∞
+
+Eg+(xγm,v , y γm,v )e −dγ m,v  = Eg+(xτ0∧τ + 
+
+> v
+
+, y τ0∧τ + 
+
+> v
+
+)e −d(τ0∧τ + 
+
+> v)
+
+
+
+= E
+
+h
+
+g+(xτ0∧τ + 
+
+> v
+
+, y τ0∧τ + 
+
+> v
+
+)e −d(τ0∧τ + 
+
+> v)
+
+ 1{τ0<τ +  
+
+> v}
+
++ 1 {τ0≥τ +    
+
+> v,τ +
+> v<∞}
+
++ 1 {τ0=τ + 
+
+> v=∞}
+
+i
+
+= E
+
+h
+
+g+(xτ0 , y τ0 )e −dτ 0 1{τ0<τ +  
+
+> v}
+
++ g+(xτ + 
+
+> v
+
+, y τ + 
+
+> v
+
+)e −dτ + 
+
+> v
+
+1{τ0≥τ +   
+
+> v,τ +
+> v<∞}
+
+i
+
+≤ C0P{τ0 < τ + 
+
+> v
+
+}, (2.2) where conditions (i) and (ii) are used in the last inequality. Since g(x0, y 0) > 0 under condition (i), then by (2.2), 
+
+P{τ0 < ∞} ≥ P{τ0 < τ + 
+
+> v
+
+} ≥ g(x0, y 0)/C 0 > 0,
+
+which completes the proof. 2
+
+# 3 Proofs of the main results 
+
+In preparation for the main proofs, we first introduce some notation and inequalities. For any 
+
+g ∈ C2((0 , ∞) × (0 , ∞)) and x, y, z ≥ 0 define 
+
+K1 
+
+> z
+
+g(x, y ) := g(x + z, y ) − g(x, y ) − g′
+
+> x
+
+(x, y )z (3.1) and 
+
+K2 
+
+> z
+
+g(x, y ) := g(x, y + z) − g(x, y ) − g′
+
+> y
+
+(x, y )z. (3.2) By Taylor’s formula, for any bounded function g with continuous second derivative, 
+
+g(x + z) − g(x) − g′(x)z = z2
+
+Z 10
+
+g′′ (x + zu )(1 − u)d u. (3.3) For the Borel function g in (0 , ∞), replacing the variable z with zx we get 
+
+Z ∞
+
+> 0
+
+g(z)μi(d z) = x−αi
+
+Z ∞
+
+> 0
+
+g(zx )μi(d z), i = 1 , 2, (3.4) where we use the fact μi(d( zx )) = x−αi μi(d z). The operator L is given by 
+
+Lg(x, y ) := a1xθ1 yκ1 g′
+
+> x
+
+(x, y ) + a2yθ2 xκ2 g′
+
+> y
+
+(x, y )
+
+−b10 xr10 g′
+
+> x
+
+(x, y ) + b11 xr11 g′′ 
+
+> xx
+
+(x, y ) + b12 xr12 
+
+Z ∞
+
+> 0
+
+K1 
+
+> z
+
+g(x, y )μ1(d z)
+
+−b20 yr20 g′
+
+> y
+
+(x, y ) + b21 yr21 g′′ 
+
+> yy
+
+(x, y ) + b22 yr22 
+
+Z ∞
+
+> 0
+
+K2 
+
+> z
+
+g(x, y )μ2(d z). (3.5) For i = 1 , 2 and ρ < α i let ci(ρ) := Γ( αi−ρ)Γ( αi)Γ(2 −ρ) . By [34, Lemma 4.2] and (3.3), for ρ ∈
+
+(−∞ , 0) ∪ (0 , 1) ∪ (1 , α i), 
+
+ci(ρ) = [ ρ(ρ − 1)] −1
+
+Z ∞
+
+> 0
+
+[(1 + z)ρ − 1 − ρz ]μi(d z) = 
+
+Z ∞
+
+> 0
+
+z2μi(d z)
+
+Z 10
+
+(1 + zu )ρ−2(1 − u)d u. (3.6) We now present a lemma for the proofs below. 10 Lemma 3.1 (i) For any u, v ≥ 0 and p, q > 1 with 1/p + 1 /q = 1 , we have u + v ≥
+
+p1/p q1/q u1/p v1/q and u/p + v/q ≥ u1/p v1/q .
+
+(ii) For x, y ≥ 0, we have xp + yp ≥ (x + y)p for any 0 < p ≤ 1 and xp + yp ≥ 21−p(x + y)p for any p > 1.
+
+(iii) Suppose that p1, p 2, p 3, p 4 > 0 and c1, c 2, c 3 > 0. If p3/p 1 + p4/p 2 > 1, then there is a constant 0 < c < 1 such that c1xp1 + c2yp2 ≥ c3xp3 yp4 for all 0 < x, y < c .
+
+Proof. Assertion (i) follows immediately from the Young inequality, and assertion (ii) is obvious. Let 0 < δ < 1 satisfy 1 − p4/p 2 < δ < p 3/p 1. Then δp 1 − p3 < 0 and (1 − δ)p2 − p4 < 0. By assertion (i), there are constants c4, c > 0 such that 
+
+c1xp1 + c2yp2 ≥ c4xδp 1 y(1 −δ)p1 = c3xp3 yp4 (c4/c 3)xδp 1−p3 y(1 −δ)p1−p4 ≥ c3xp3 yp4
+
+for all 0 < x, y < c . This proves assertion (iii). 2
+
+3.1 Proofs of Proposition 1.2 and Theorems 1.3–1.4 and 1.6 
+
+In this subsection, we use Proposition 2.1 to complete the proofs of Proposition 1.2 and Theorems 1.3–1.4 and 1.6. The test functions g are presented in Lemmas 3.5 and 3.6. The key to the proofs is to verify condition (ii) in Proposition 2.1 for which we need some lemmas in the following subsubsection. 
+
+3.1.1 Preliminaries 
+
+The following lemma is used to prove Lemma 3.5 in the next subsection where the key to its proof is applying Lemma 3.1(i). 
+
+Lemma 3.2 Suppose that r2 > θ 2 − 1, ρ1, ρ 2 > θ 1 ∨ θ2 and 
+
+r2 + 1 − θ2
+
+κ2
+
+> 1 + ρ2 + κ1 − θ2
+
+1 + ρ1 + κ2 − θ1
+
+. (3.7) 
+
+Then there are constants δ, C > 0 such that 
+
+yθ2−1−ρ2 xκ2 + xθ1−1−ρ1 yκ1 ≥ Cm δyr2−ρ2
+
+for all m ≥ 1 and 0 < x, y ≤ m−1.
+
+Proof. Let 
+
+p := 1 + ρ1 + κ2 − θ1
+
+1 + ρ1 − θ1
+
+, q := 1 + ρ1 + κ2 − θ1
+
+κ2
+
+.
+
+Then p, q > 1 and p−1 + q−1 = 1. Moreover, by (3.7), we obtain 1
+
+q = κ2
+
+1 + ρ1 + κ2 − θ1
+
+< r2 + 1 − θ2
+
+1 + ρ2 + κ1 − θ2
+
+,
+
+and then 
+
+δ := ( r2 + 1 − θ2) − 1 + ρ2 + κ1 − θ2
+
+q > 0, 1 + ρ1 + κ2 − θ1
+
+p − (1 + ρ1 − θ1) = 0 .
+
+11 Now, by Lemma 3.1(i), 
+
+x1+ ρ1+κ2−θ1 + y1+ ρ2+κ1−θ2 ≥ p1/p q1/q x(1+ ρ1+κ1−θ1)/p y(1+ ρ2+κ1−θ2)/q ,
+
+and then (x1+ ρ1+κ2−θ1 + y1+ ρ2+κ1−θ2 )/(yr2+1 −θ2 x1+ ρ1−θ1 ) ≥ p1/p q1/q y−δ.
+
+It follows that for m ≥ 1 and 0 < x, y ≤ m−1,
+
+yθ2−1−ρ2 xκ2 + xθ1−1−ρ1 yκ1
+
+= yr2−ρ2 (x1+ ρ1+κ2−θ1 + y1+ ρ2+κ1−θ2 )/(yr2+1 −θ2 x1+ ρ1−θ1 )
+
+≥ p1/p q1/q yr2−ρ2 y−δ ≥ p1/p q1/q mδyr2−ρ2 ,
+
+which completes the proof. 2
+
+The following Lemmas 3.3 and 3.4 are used to establish Lemma 3.6 in the next subsubsection and the key to the proofs is to apply Lemma 3.1(i) again. For θ1 − 1 < r 1 and θ2 − 1 < r 2, under (1.7), there are constants ρ1, ρ 2 > θ 1 ∨ θ2 such that 
+
+r1 + 1 − θ1
+
+κ1
+
+= κ2
+
+r2 + 1 − θ2
+
+= 1 + ρ1 + κ2 − θ1
+
+1 + ρ2 + κ1 − θ2
+
+. (3.8) 
+
+Lemma 3.3 Recalling ai and bi defined in Section 1, suppose that r1 > θ 1 − 1, r2 > θ 2 − 1 and 
+
+(a1/b 1)1/(r1+1 −θ1)(a2/b 2)1/κ 2 ≥ 1, (3.9) 
+
+and that (3.8) holds for ρ1, ρ 2 > θ 1 ∨ θ2. Then there is a constant δ0 > 0 such that 
+
+a1ρ1δ0xθ1−1−ρ1 yκ1 + a2ρ2xκ2 yθ2−1−ρ2 ≥ b1ρ1δ0xr1−ρ1 + b2ρ2yr2−ρ2 , x, y > 0.
+
+Proof. Let 
+
+p1 := 1 + ρ2 + κ1 − θ2
+
+1 + ρ2 − θ2
+
+, q1 := 1 + ρ2 + κ1 − θ2
+
+κ1
+
+,p2 := 1 + ρ1 + κ2 − θ1
+
+κ2
+
+, q2 := 1 + ρ1 + κ2 − θ1
+
+1 + ρ1 − θ1
+
+.
+
+Then p1, q 1, p 2, q 2 > 1, p−11 + q−11 = 1 and p−12 + q−12 = 1. In view of (3.8), we obtain q1 =(1 + ρ1 + κ2 − θ1)/(r1 + 1 − θ1). Combining this with (3.9) we have ( b1/a 1)q1 (b2/a 2)p2 ≤ 1, which implies that (b1ρ1)q1 (b2ρ2)p2 ≤ (a1ρ1)q1 (a2ρ2)p2 = ( a1ρ1)q1/p 1 (a2ρ2)p2/q 2 a1ρ1a2ρ2
+
+and then (b2ρ2)p2
+
+(a2ρ2)p2/q 2 a1ρ1p2/q 1
+
+≤ (a1ρ1)q1/p 1 a2ρ2q1/p 2
+
+(b1ρ1)q1 .
+
+Thus there is a constant δ0 > 0 satisfying (b2ρ2)p2
+
+(a2ρ2)p2/q 2 a1ρ1p2/q 1
+
+≤ δ0 ≤ (a1ρ1)q1/p 1 a2ρ2q1/p 2
+
+(b1ρ1)q1 .
+
+12 It follows that (a1ρ1δ0)1/p 1 (a2ρ2q1/p 2)1/q 1 ≥ b1ρ1δ0, (a1ρ1δ0p2/q 1)1/p 2 (a2ρ2)1/q 2 ≥ b2ρ2. (3.10) By (3.8) again, 1
+
+q1
+
+= κ1
+
+1 + ρ2 + κ1 − θ2
+
+= r1 + 1 − θ1
+
+1 + ρ1 + κ2 − θ1
+
+,
+
+1
+
+p2
+
+= κ2
+
+1 + ρ1 + κ2 − θ1
+
+= r2 + 1 − θ2
+
+1 + ρ2 + κ1 − θ2
+
+,
+
+and then (r1 + 1 − θ1) − 1 + ρ1 + κ2 − θ1
+
+q1
+
+= 0 , 1 + ρ2 + κ1 − θ2
+
+p1
+
+− (1 + ρ2 − θ2) = 0 ,
+
+(r2 + 1 − θ2) − 1 + ρ2 + κ1 − θ2
+
+p2
+
+= 0 , 1 + ρ1 + κ2 − θ1
+
+q2
+
+− (1 + ρ1 − θ1) = 0 .
+
+Now by Lemma 3.1(i) and (3.10), 
+
+p−11 a1ρ1δ0y1+ ρ2+κ1−θ2 + p−12 a2ρ2x1+ ρ1+κ2−θ1
+
+≥ p1/p 1 
+
+> 1
+
+q1/q 1 
+
+> 1
+
+(p−11 a1ρ1δ0y1+ ρ2+κ1−θ2 )1/p 1 (p−12 a2ρ2x1+ ρ1+κ2−θ1 )1/q 1
+
+= ( a1ρ1δ0)1/p 1 (a2ρ2q1/p 2)1/q 1 xr1−1−θ1 y1+ ρ2−θ2 ≥ b1ρ1δ0xr1−1−θ1 y1+ ρ2−θ2
+
+and 
+
+q−11 a1ρ1δ0y1+ ρ2+κ1−θ2 + q−12 a2ρ2x1+ ρ1+κ2−θ1
+
+≥ p1/p 2 
+
+> 2
+
+q1/q 2 
+
+> 2
+
+(q−11 a1ρ1δ0y1+ ρ2+κ1−θ2 )1/p 2 (q−12 a2ρ2x1+ ρ1+κ2−θ1 )1/q 2
+
+= ( a1ρ1δ0p2/q 1)1/p 2 (a2ρ2)1/q 2 yr2−1−θ2 x1+ ρ1−θ1 ≥ b2ρ2yr2−1−θ2 x1+ ρ1−θ1 .
+
+Then one can conclude the proof. 2
+
+Similar to Lemma 3.3 we have the following lemma. 
+
+Lemma 3.4 If both the assumption of Theorem 1.6(ii) and (1.7) hold, and r > θ − 1, then there is a constant δ0 > 0 such that 
+
+δ0a1y1+ κ−θ + a2x1+ κ−θ ≥ δ0b1xκy1−θ + b2yκx1−θ, x, y > 0.
+
+Proof. Let p := (1 + κ − θ)/(1 − θ) and q := p/ (p − 1). As the essential same argument in the proof of Lemma 3.3, we obtain 
+
+p−1δ0a1xθ−1yκ + p−1a2xκyθ−1 ≥ δ0b1xκ+θ−1, q−1δ0a1yκxθ−1 + q−1a2yθ−1xκ ≥ b2yκ+θ−1
+
+for some δ0 > 0, which implies the assertion. 2
+
+3.1.2 Proofs of Proposition 1.2 and Theorems 1.3–1.4 and 1.6 
+
+We next apply Proposition 2.1 to complete the proofs of Theorems 1.3–1.4 and 1.6, where the following Lemmas 3.5 and 3.6 are applied to validate condition (ii) of Proposition 2.1. 13 Lemma 3.5 Given g(x, y ) := x−ρ1 + y−ρ2 , x, y > 0, if the assumptions of either Theorem 1.3 or 1.4 hold, then there are constants ρ1, ρ 2, C n > 0 such that Lg(x, y ) ≤ Cng(x, y ) for all 
+
+0 < x, y ≤ n and n ≥ 1.
+
+Proof. (i) We first prove the result under the assumptions of Theorem 1.3. Since the proofs are similar, we only present that under condition (i) of Theorem 1.3. Observe that there are constants ρ1, ρ 2 > θ 1 ∨ θ2 such that (3.7) holds. By (3.4) and (3.6), 
+
+Z ∞
+
+> 0
+
+[( x + z)−ρi − x−ρi + ρizx −ρi ]μi(d z) = ciρi(ρi + 1) x−αi−ρi (3.11) with ci := ci(−ρi). Then by (3.5), for all 0 < x, y ≤ n,
+
+Lg(x, y ) = −a1ρ1xθ1−1−ρ1 yκ1 − a2ρ2yθ2−1−ρ2 xκ2
+
++ρ1b10 xr10 −1−ρ1 + b11 ρ1(ρ1 + 1) xr11 −2−ρ1 + c1ρ1(ρ1 + 1) b12 xr12 −α1−ρ1
+
++ρ2b20 yr20 −1−ρ2 + b21 ρ2(ρ2 + 1) yr21 −2−ρ2 + c2ρ2(ρ2 + 1) b22 yr22 −α2−ρ2
+
+≤ − a1ρ1xθ1−1−ρ1 yκ1 − a2ρ2yθ2−1−ρ2 xκ2
+
++ρ1(ρ1 + 1) x−ρ1 b10 xr10 −1 + b11 xr11 −2 + b12 c1xr12 −α1 
+
++ρ2(ρ2 + 1) y−ρ2 b20 yr20 −1 + b21 yr21 −2 + b22 c2yr22 −α2 
+
+≤ − a1ρ1xθ1−1−ρ1 yκ1 − a2ρ2yθ2−1−ρ2 xκ2 + C1,n xr1−ρ1 + C2,n yr2−ρ2 (3.12) with Ci,n := ρi(ρi +1)[ bi0nri0−1−ri +bi1nri1−2−ri +bi2nri2−αi−ri ] for i = 1 , 2. By (3.7) and Lemma 3.2, 
+
+−a1ρ1xθ1−1−ρ1 yκ1 − a2ρ2yθ2−1−ρ2 xκ2 + C2,n yr2−ρ2
+
+≤ − [( a1ρ1) ∧ (a2ρ2)] · [xθ1−1−ρ1 yκ1 + yθ2−1−ρ2 xκ2 ] + C2,n yr2−ρ2
+
+≤ C2,n − C[( a1ρ1) ∧ (a2ρ2)] mδyr2−ρ2 ≤ 0, 0 < x, y ≤ m−1 (3.13) for all large enough m, where δ, C > 0 are the constants determined in Lemma 3.2. From (3.12) and (3.13) it follows that 
+
+Lg(x, y ) ≤ − a1ρ1xθ1−1−ρ1 yκ1 − a2ρ2yθ2−1−ρ2 xκ2 + C2,n yr2−ρ2 + C1,n nr1 g(x, y )
+
+≤ C1,n nr1 g(x, y ), 0 < x, y ≤ m−1 (3.14) for all large enough m. Under the assumptions in condition (i), by (3.12), we have 
+
+Lg(x, y ) ≤ C1,n xr1−ρ1 + C2,n yr2−ρ2 ≤ [C1,n nr1 + C2,n m−r2 ]g(x, y ) (3.15) for all m−1 ≤ y ≤ n and 0 < x ≤ n, and 
+
+Lg(x, y ) ≤ − a2ρ2yθ2−1−ρ2 xκ2 + C1,n xr1−ρ1 + C2,n yr2−ρ2
+
+≤ yr2−ρ2 [C2,n − a2ρ2yθ2−1−r2 xκ2 ] + C1,n nr1 g(x, y )
+
+≤ yr2−ρ2 [C2,n − a2ρ2mr2+1 −θ2 
+
+> 0
+
+m−κ2 ] + C1,n nr1 g(x, y )
+
+≤ C1,n nr1 g(x, y ), m−1 ≤ x ≤ n, 0 < y ≤ m−10 (3.16) for m ≥ 1 and large enough m0 ≥ 1. Observe that Lg(x, y ) ≤ Cng(x, y ) for some Cn > 0 and all m−1 ≤ x ≤ n and m−10 ≤ y ≤ n. Combining (3.14)–(3.16) we get the assertion. (ii) Now we show the result under the assumptions of Theorem 1.4. Under (1.4), there are constants ρ1, ρ 2 > θ 1 ∨ θ2 such that 
+
+r1 − 1 − θ1
+
+κ1
+
+> 1 + ρ1 + κ2 − θ1
+
+1 + ρ2 + κ1 − θ2
+
+> κ2
+
+r2 − 1 − θ2
+
+.
+
+14 Then by Lemma 3.2 and the same arguments as in (3.13), we have 
+
+−a1ρ1xθ1−1−ρ1 yκ1 − a2ρ2yθ2−1−ρ2 xκ2 + C1,n xr1−ρ1 + C2,n yr2−ρ2 ≤ 0, 0 < x, y ≤ m−1
+
+for large enough m ≥ 1. By arguments similar to those in (3.15) and (3.16), we have Lg(x, y ) ≤
+
+Cn,m g(x, y ) for some constant Cn,m > 0 for large enough m ≥ 1 when m−1 ≤ x ≤ n and 0 < y ≤ n, or m−1 ≤ y ≤ n and 0 < x ≤ n. Now Lg(x, y ) ≤ Cn,m g(x, y ) for 0 < x, y ≤ n by (3.12). 2
+
+Lemma 3.6 Suppose that the assumptions of Theorem 1.6 hold. Under the conditions of Theorem 1.6(i) let 
+
+˜g(x, y ) := δ0x−ρ1 + y−ρ2 , x, y > 0,
+
+and under the conditions of Theorem 1.6(ii) define a nonnegative function ˜g ∈ C2((0 , ∞)×(0 , ∞)) 
+
+such that 
+
+˜g(x, y ) := ( δ0 + 1) ln n + δ0 ln x−1 + ln y−1, 0 < x, y < n. 
+
+Then there are constants ρ1, ρ 2, δ 0, C n > 0 such that L˜g(x, y ) ≤ Cn ˜g(x, y ) for all 0 < x, y < n 
+
+and n ≥ 1.
+
+Proof. (i) We first prove it under the conditions in Theorem 1.6(i). Under (1.7), there are constants ρ1, ρ 2 > θ 1 ∨ θ2 such that (3.8) holds. Let δ0 > 0 be the constant determined in the following. Then by (3.5) and (3.11), we obtain L˜g(x, y ) = −J1(x, y ) + J2(x, y ) + J3(x, y ) with 
+
+J1(x, y ) := δ0a1ρ1xθ1−1−ρ1 yκ1 + a2ρ2yθ2−1−ρ2 xκ2 ,
+
+J2(x, y ) := δ0b10 ρ1xr10 −1−ρ1 + b20 ρ2yr20 −1−ρ2 = δ0b1ρ1xr1−ρ1 + b2ρ2yr2−ρ2
+
+under Condition 1.5(i) and 
+
+J3(x, y ) := δ0b11 ρ1(ρ1 + 1) xr11 −2−ρ1 + b12 δ0c1(−ρ1)ρ1(ρ1 + 1) xr12 −α1−ρ1
+
++b21 ρ2(ρ2 + 1) yr21 −2−ρ2 + b22 c2(−ρ2)ρ2(ρ2 + 1) yr22 −α2−ρ2
+
+≤ c0[xr11 −2 + xr12 −α1 ]x−ρ1 + c0[yr21 −2 + yr22 −α2 ]y−ρ2
+
+for some constant c0 > 0. Under (1.8), there is a small enough constant ε > 0 such that 
+
+h a1
+
+(1 + ε)b1
+
+i1/(r1+1 −θ1)h a2
+
+(1 + ε)b2
+
+i1/κ 2
+
+≥ 1.
+
+By Lemma 3.3, there is a constant δ0 > 0 such that (1 + ε)J2(x, y ) ≤ J1(x, y ) for all x, y > 0. By Condition 1.5(i) again, there is a constant cn > 0 such that 
+
+−εδ 0b10 ρ1xr10 −1 + c0[xr11 −2 + xr12 −α1 ] ≤ cnδ0, −εb 20 ρ2yr20 −1 + c0[yr21 −2 + yr22 −α2 ] ≤ cn
+
+for all 0 < x, y ≤ n. Thus, for all 0 < x, y ≤ n, J3(x, y ) − εJ 2(x, y ) ≤ cn ˜g(x, y ) and we have 
+
+L˜g(x, y ) ≤ cn ˜g(x, y ). (ii) We then prove the result under the conditions in Theorem 1.6(ii). Let θ := θ1 and κ := κ1.Then r = κ + θ − 1. By Lemma 3.4, there is a constant δ0 > 0 such that 
+
+I(x, y ) := δ0a1y1+ κ−θ + a2x1+ κ−θ − δ0b1xκy1−θ − b2yκx1−θ ≥ 0, x, y > 0.
+
+15 It thus follows from (3.5) that 
+
+L˜g(x, y ) = −δ0a1xθ−1yκ − a2yθ−1xκ + δ0(b10 xr10 −1 + b11 xr11 −2)+( b20 yr20 −1 + b21 yr21 −2) = −xθ−1yθ−1I(x, y ) ≤ 0,
+
+which ends the proof. 2
+
+Now we are ready to complete the proofs of Proposition 1.2 and Theorems 1.3, 1.4 and 1.6. 
+
+Proof of Proposition 1.2. Let g be the test function given in Lemma 3.5. By (3.12), 
+
+Lg(x, y ) ≤ C1,n xr1−ρ1 + C2,n yr2−ρ2 ≤ [C1,n xr1 + C2,n yr2 ]g(x, y ) ≤ [C1,n nr1 + C2,n nr2 ]g(x, y )for some constants C1,n , C 2,n ≥ 0 and all 0 < x, y ≤ n. The conclusion follows from Proposition 2.1. 2
+
+Proof of Theorems 1.3 and 1.4. Let g be the test function determined in Lemma 3.5. Then by Proposition 2.1 and Lemma 3.5 one completes the proofs. 2
+
+Proof of Theorem 1.6. Let ˜ g be the test function defined in Lemma 3.6. Then one completes the proof combining Proposition 2.1 and Lemma 3.6. 2
+
+3.2 Proofs of Theorems 1.7, 1.10 and 1.11 
+
+In this subsection, we use Proposition 2.2 to establish the proofs of Theorems 1.7, 1.10 and 1.11. For the proof of Theorem 1.7, the test function g is taken as a power function with positive power (see (3.18)). For the proofs of Theorems 1.10 and 1.11, the test functions g(x, y ) := c + h(x, y )for some constant c > 0 (see (3.82)) and h are modifications of −(xρ1 + yρ2 )ρ in different cases. The key to applying Proposition 2.2 is verifying assumption (iii) of Proposition 2.2. For the case of dominant drifts (Condition 1.5), the function h is chosen as h(x, y ) := −(xρ1 + yρ2 )ρ for 
+
+ρ1, ρ 2 > 1 and 0 < ρ < 1 and the estimation of Lh is the key to verifying assumption (iii) of Proposition 2.2, which are given in Subsubsection 3.2.3. For the case of dominant diffusion or jump terms (assumption (1.14)), the functions h are modifications of −(xρ1 + y)ρ or −(x + yρ2 )ρ
+
+for ρ1, ρ 2 > 0 and 0 < ρ < 1 and the estimation of Lh is also the key in checking assumption (iii) of Proposition 2.2, which are given in Subsubsection 3.2.4. In Subsubsection 3.2.1, the proof of Theorem 1.7 is presented. Three lemmas in Subsubsection 3.2.2 are used to estimate Lh. The proofs of Theorems 1.10 and 1.11 are given at the end of Subsubsection 3.2.4. 
+
+3.2.1 Proof of Theorem 1.7 
+
+In this subsubsection, we prove Theorem 1.7 by applying Proposition 2.2 to the test function g
+
+given by (3.18). 
+
+Proof of Theorem 1.7. Since the proofs are similar, we only present that under condition (i). Let 0 < ρ < 1 ∧ (−r1) be fixed as follows. Since r1 ≤ θ1 − 1 and κ1 > 0, there are constants 0 < v < 1 and d > 0 such that 2−1b1(1 − ρ)[1 ∧ c1(ρ)] xr1+1 −θ1 − a1yκ1 ≥ 0, 2−1b1ρ(1 − ρ)[1 ∧ c1(ρ)] xρ+r1 − a2 ≥ dv (3.17) for all 0 < x, y ≤ v, where c1(ρ) is given by (3.6). Let 
+
+g(x, y ) := v − xρ − y, x, y > 0. (3.18) 16 Then sup x,y> 0 g(x, y ) ≤ v, and g(x, y ) ≤ 0 for all x ≥ v or y ≥ v. By (3.6), 
+
+x−ρ+α1
+
+Z ∞
+
+> 0
+
+[( x + z)ρ − xρ − ρzx ρ−1]μ1(d z) = 
+
+Z ∞
+
+> 0
+
+[(1 + z)ρ − 1 − ρz ]μ1(d z) = ρ(ρ − 1) c1(ρ).
+
+Then it follows from (3.5) and (3.17) that 
+
+Lg(x, y ) = −a1ρx ρ+θ1−1yκ1 − a2yθ2 xκ2 + b20 yr20 + b10 ρx ρ+r10 −1
+
++b11 ρ(1 − ρ)xρ+r11 −2 + b12 c1(ρ)ρ(1 − ρ)xρ+r12 −α1
+
+≥ − a1ρx ρ+θ1−1yκ1 − a2yθ2 xκ2 + b1ρ(1 − ρ)[1 ∧ c1(ρ)] xρ+r1
+
+≥ 2−1b1ρ(1 − ρ)[1 ∧ c1(ρ)] xρ+r1 − a2
+
++ρx ρ+θ1−1h
+
+2−1b1(1 − ρ)[1 ∧ c1(ρ)] xr1+1 −θ1 − a1yκ1
+
+i
+
+≥ dv ≥ dg (x, y ), 0 < x, y ≤ v. 
+
+Using Proposition 2.2 one gets P{τ0 < ∞} ≥ g(X0, Y 0)/v for 0 < X 0, Y 0 < (2 −1v)1/ρ . In general, X0, Y 0 > 0, we conclude the proof by applying the strong Markov property and the same arguments at the end of the proof of [34, Theorem 1.3]. 2
+
+3.2.2 Preliminaries 
+
+The following Lemmas 3.7–3.9 are needed to estimate Lh in Lemmas 3.10 and 3.11 with h
+
+defined by (3.36) and (3.49). Lemma 3.1(iii) and (i) are applied to show Lemmas 3.7 and 3.8, respectively. Lemma 3.9 contains an estimate of the integral R ∞ 
+
+> 0
+
+Kiz h(x, y )μi(d z) for i = 1 , 2 in (3.5), which is applied to prove Lemma 3.12. 
+
+Lemma 3.7 Suppose that 
+
+r1 + 1 − θ1
+
+κ1
+
+< r1 + ρ1
+
+r2 + ρ2
+
+< κ2
+
+r2 + 1 − θ2
+
+(3.19) 
+
+for θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0 and ρ1, ρ 2 ≥ 1. Then for any constants c1, c 2, c 3, c 4 > 0
+
+there is a constant 0 < c < 1 such that for all 0 < x, y ≤ c,
+
+c1xr1+ρ1 + c2yr2+ρ2 − c3xθ1−1+ ρ1 yκ1 − c4yθ2−1+ ρ2 xκ2 ≥ 0.
+
+Proof. Under (3.19), we have 
+
+θ1 − 1 + ρ1
+
+r1 + ρ1
+
++ κ1
+
+r2 + ρ2
+
+> 1, κ2
+
+r1 + ρ1
+
++ θ2 − 1 + ρ2
+
+r2 + ρ2
+
+> 1.
+
+Thus, by Lemma 3.1(iii), there is a constant 0 < c < 1 such that 2−1c1xr1+ρ1 + 2 −1c2yr2+ρ2 ≥ c3xθ1−1+ ρ1 yκ1 , 2−1c1xr1+ρ1 + 2 −1c2yr2+ρ2 ≥ c4yθ2−1+ ρ2 xκ2
+
+for all 0 < x, y ≤ c. This concludes the proof. 2
+
+Lemma 3.8 Suppose that 
+
+ a1
+
+(1 − ε0)b1
+
+1/(r1+1 −θ1) a2
+
+(1 − ε0)b2
+
+1/κ 2
+
+< 1 (3.20) 17 for θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0 and ε0 ∈ (0 , 1) , and in addition, 
+
+ a1/˜b1
+
+1/(r1+1 −θ1) a2/˜b2
+
+1/κ 2 < 1 (3.21) 
+
+and 
+
+r1 + 1 − θ1
+
+κ1
+
+= r1 + ρ1
+
+r2 + ρ2
+
+= κ2
+
+r2 + 1 − θ2
+
+, (3.22) 
+
+for ρ1, ρ 2 > 1, 0 < ρ < ρ −11 ∧ ρ−12 and ˜bi := (1 − ε0)(1 − ρiρ)bi, i = 1 , 2. Then there is δ0 > 0
+
+such that 
+
+δ0˜b1ρ1xr1+ρ1 + ˜b2ρ2yr2+ρ2 > δ 0a1ρ1xθ1+ρ1−1yκ1 + a2ρ2yθ2+ρ2−1xκ2 .
+
+Proof. Let 
+
+p1 := r1 + ρ1
+
+θ1 − 1 + ρ1
+
+, q 1 := r2 + ρ2
+
+κ1
+
+, p2 := r1 + ρ1
+
+κ2
+
+, q 2 := r2 + ρ2
+
+θ2 − 1 + ρ2
+
+.
+
+By (3.22) we have 1
+
+q1
+
+= κ1
+
+r2 + ρ2
+
+= r1 + 1 − θ1
+
+r1 + ρ1
+
+, 1
+
+p2
+
+= κ2
+
+r1 + ρ1
+
+= r2 + 1 − θ2
+
+r2 + ρ2
+
+. (3.23) It follows that 
+
+p−11 + q−11 = 1 , p−12 + q−12 = 1 , (3.24) which implies that p1, q 1, p 2, q 2 > 1. Under (3.21) and (3.22), we have 1 > [( a1/˜b1)1/(r1+1 −θ1)(a2/˜b2)1/κ 2 ]r1+ρ1
+
+= ( a1/˜b1)(r2+ρ2)/κ 1 (a2/˜b2)(r1+ρ1)/κ 2 = aq1 
+
+> 1
+
+ap2 
+
+> 2
+
+/(˜bq1 
+
+> 1
+
+˜bp2 
+
+> 2
+
+),
+
+where (3.23) is used in the last equality. Then (a1ρ1)q1 (a2ρ2)p2 < (˜b1ρ1)q1 (˜b2ρ2)p2 = ( ˜b1ρ1)q1/p 1 ˜b2ρ2 · (˜b2ρ2)p2/q 2 ˜b1ρ1,
+
+which implies that (a2ρ2)p2
+
+(˜b2ρ2)p2/q 2 ˜b1ρ1p2/q 1
+
+< (˜b1ρ1)q1/p 1 ˜b2ρ2q1/p 2
+
+(a1ρ1)q1 .
+
+Then there is a constant δ0 > 0 such that that (a2ρ2)p2
+
+(˜b2ρ2)p2/q 2 ˜b1ρ1p2/q 1
+
+< δ 0 < (˜b1ρ1)q1/p 1 ˜b2ρ2q1/p 2
+
+(a1ρ1)q1 .
+
+Therefore, (q1/p 2)1/q 1 (δ0˜b1ρ1)1/p 1 (˜b2ρ2)1/q 1 > δ 0a1ρ1, (p2/q 1)1/p 2 (δ0˜b1ρ1)1/p 2 (˜b2ρ2)1/q 2 > a 2ρ2.
+
+Now by Lemma 3.1(i) and (3.23) again 
+
+p−11 δ0˜b1ρ1xr1+ρ1 + p−12 ˜b2ρ2yr2+ρ2
+
+18 ≥ p1/p 1 
+
+> 1
+
+q1/q 1 
+
+> 1
+
+(p−11 δ0˜b1ρ1xr1+ρ1 )1/p 1 (p−12 ˜b2ρ2yr2+ρ2 )1/q 1
+
+= ( q1/p 2)1/q 1 (δ0˜b1ρ1)1/p 1 (˜b2ρ2)1/q 1 xθ1+ρ1−1yκ1 > δ 0a1ρ1xθ1+ρ1−1yκ1
+
+and 
+
+q−11 δ0˜b1ρ1xr1+ρ1 + q−12 ˜b2ρ2yr2+ρ2
+
+≥ p1/p 2 
+
+> 2
+
+q1/q 2 
+
+> 2
+
+(q−11 δ0˜b1ρ1xr1+ρ1 )1/p 2 (q−12 ˜b2ρ2yr2+ρ2 )1/q 2
+
+= ( p2/q 1)1/p 2 (δ0˜b1ρ1)1/p 2 (b2ρ2)1/q 2 yθ2+ρ2−1xκ2 > a 2ρ2yθ2+ρ2−1xκ2 .
+
+This completes the proof. 2
+
+To estimate the integral R ∞ 
+
+> 0
+
+Kiz h(x, y )μi(d z) for i = 1 , 2 in (3.5) with the function h defined in (3.36), (3.49) and in Lemmas 3.12 and 3.14 for different cases, we introduce functions K(v, z )and M (x, y ) in the following. Given 0 < ρ < 1 and ρ1 ≥ 1, for 0 ≤ v ≤ 1 and z > 0 let 
+
+K(v, z ) := − v[(1 + z)ρ1 − 1] + 1 ρ + 1 + zvρρ 1. (3.25) Then for M (x, y ) := −(xρ1 + y)ρ, we have K1
+
+> zx
+
+M (x, y ) = ( xρ1 + y)ρK( xρ1  
+
+> xρ1+y
+
+, z ). It thus follows from (3.4) that 
+
+Z ∞
+
+> 0
+
+K1 
+
+> z
+
+M (x, y )μ1(d z) = x−α1
+
+Z ∞
+
+> 0
+
+K1
+
+> zx
+
+M (x, y )μ1(d z)= x−α1 (xρ1 + y)ρ
+
+Z ∞
+
+> 0
+
+K( xρ1
+
+xρ1 + y , z )μ1(d z). (3.26) In the following we give an estimate on R ∞ 
+
+> 0
+
+K(v, z )μ1(d z). The estimate mainly relies on Taylor’s formula in (3.3) and change of variable similar to (3.4). 
+
+Lemma 3.9 (i) There is a constant ρ0 ≥ 2 such that for all ρ1 > ρ 0, all ˜ρ ∈ (0 , 1) and ρ := ˜ ρ/ρ 1,
+
+Z ∞
+
+> 0
+
+K(v, z )μ1(d z) ≥ ρ(1 − ρ)ρ21v2d1 − ρρ 1(ρ1 − 1) v ˜d1 (3.27) 
+
+for some constants d1, ˜d1 > 0.(ii) For any ρ1 > 1 and 0 < ρρ 1 < 1, and for all δ > 0 we have 
+
+Z ∞
+
+> 0
+
+K(v, z )μ1(d z) ≥ ρρ 1(1 − ρρ 1)c1(ρρ 1)v2 − ρρ 1(ρ1 − 1)[ v(1 − v)d1,δ + d2,δ vρ], (3.28) 
+
+where d1,δ := R δ 
+
+> 0
+
+z2(1 + z)ρ1−2μ1(d z), d2,δ := R ∞ 
+
+> δ
+
+z2μ1(d z) R 10 (1 + uz )ρρ 1−2du and function c1 is defined in (3.6). 
+
+Proof. (i) Observe that 
+
+K′′  
+
+> zz
+
+(v, z ) = ρ(1 − ρ)ρ21v2(1 + z)2ρ1−2v[(1 + z)ρ1 − 1] + 1 ρ−2
+
+−ρρ 1(ρ1 − 1) v(1 + z)ρ1−2v[(1 + z)ρ1 − 1] + 1 ρ−1
+
+=: ρ(1 − ρ)ρ21H1(v, z ) − ρρ 1(ρ1 − 1) H2(v, z ). (3.29) Then H1(v, z ) ≥ v2(1 + z)ρρ 1−2 and H2(v, z ) ≤ v(1 + z)ρ1−2 for 0 ≤ v ≤ 1. Now by (3.3), 
+
+Z 10
+
+K(v, z )μ1(d z) =
+
+Z 10
+
+z2μ1(d z)
+
+Z 10
+
+K′′  
+
+> zz
+
+(v, zu )(1 − u)d u
+
+19 ≥ ρ(1 − ρ)ρ21v2
+
+Z 10
+
+z2μ1(d z)
+
+Z 10
+
+(1 + zu )ρρ 1−2(1 − u)d u
+
+−ρρ 1(ρ1 − 1) v
+
+Z 10
+
+z2μ1(d z)
+
+Z 10
+
+(1 + zu )ρ1−2du
+
+=: ρ(1 − ρ)ρ21v2d1 − ρρ 1(ρ1 − 1) v ¯d1, 0 ≤ v ≤ 1. (3.30) Substituting z by zv −1/ρ 1 we obtain 
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+H1(v, zu )(1 − u)d u
+
+= v(α1−2) /ρ 1
+
+Z ∞
+
+> v1/ρ 1
+
+z2μ1(d z)
+
+Z 10
+
+H1(v, zv −1/ρ 1 u)(1 − u)d u =: vα1/ρ 1 ˜H1(v)and 
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+H2(v, zu )(1 − u)d u
+
+= v(α1−2) /ρ 1
+
+Z ∞
+
+> v1/ρ 1
+
+z2μ1(d z)
+
+Z 10
+
+H2(v, zuv −1/ρ 1 )(1 − u)d u =: vα1/ρ 1 ˜H2(v).
+
+It is elementary to see that lim 
+
+> v→0
+
+˜H1(v) = 
+
+Z ∞
+
+> 0
+
+z2μ1(d z)
+
+Z 10
+
+¯H1,ρ 1 (zu )(1 − u)d u
+
+and lim 
+
+> v→0
+
+˜H2(v) = 
+
+Z ∞
+
+> 0
+
+z2μ1(d z)
+
+Z 10
+
+¯H2,ρ 1 (zu )(1 − u)d u, 
+
+where ¯H1,ρ 1 (z) := z2ρ1−2(zρ1 + 1) ρ−2 and ¯H2,ρ 1 (z) := zρ1−2(zρ1 + 1) ρ−1. Then 
+
+Z 10
+
+z2μ1(d z)
+
+Z 10
+
+¯H2,ρ 1 (zu )(1 − u)d u ≤
+
+Z 10
+
+zρ1 μ1(d z) = α1(α1 − 1) (ρ1 − α1)Γ( α1)Γ(2 − α1)and 
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+¯H2,ρ 1 (zu )(1 − u)1 {zu ≤1}du
+
+≤
+
+Z ∞
+
+> 1
+
+zρ1 μ1(d z)
+
+Z z−1
+
+> 0
+
+uρ1−2du = ( ρ1 − 1) −1
+
+Z ∞
+
+> 1
+
+zμ 1(d z).
+
+By the dominated convergence, for ρρ 1 = ˜ ρ ∈ (0 , 1), lim 
+
+> ρ1→∞
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+¯H1,ρ 1 (zu )(1 − u)1 {zu> 1}du
+
+=
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+(zu )˜ρ−2(1 − u)1 {zu> 1}du
+
+=
+
+Z 10
+
+u˜ρ−2(1 − u)d u
+
+Z ∞
+
+> u−1
+
+z ˜ρμ1(d z) = α1(α1 − 1) (α1 − ˜ρ)Γ( α1)Γ(2 − α1)
+
+Z 10
+
+uα1−2(1 − u)d u
+
+and lim 
+
+> ρ1→∞
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+¯H2,ρ 1 (zu )(1 − u)1 {zu> 1}du
+
+20 = α1(α1 − 1) (α1 − ˜ρ)Γ( α1)Γ(2 − α1)
+
+Z 10
+
+uα1−2(1 − u)d u. 
+
+Since ρ(1 − ρ)ρ21 − ρρ 1(ρ1 − 1) = ρρ 1(1 − ρρ 1) > 0, then there is a constant ρ0 > 0 such that for all ρ1 > ρ 0, lim v→0 ρ(1 − ρ)ρ21 ˜H1(v) > lim v→0 ρρ 1(ρ1 − 1) ˜H2(v). Now there is a constant 
+
+v0 := v0(ρ1) ∈ (0 , 1) such that we have 
+
+ρ(1 − ρ)ρ21 ˜H1(v) ≥ ρρ 1(ρ1 − 1) ˜H2(v), 0 < v ≤ v0. (3.31) For v0 < v ≤ 1, we have H2(v, z ) ≤ vv ρ−10 (1 + z)ρρ 1−2 and then 
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+H2(v, zu )(1 − u)d u ≤ vv ρ−10
+
+Z 10
+
+du
+
+Z ∞
+
+> 1
+
+z2(1 + zu )ρρ 1−2μ1(d z).
+
+Replacing the variable z with y/u and using the fact μ1(d( y/u )) = uα1 μ1(d y) we have 
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+H2(v, zu )(1 − u)d u ≤ vv ρ−10
+
+Z 10
+
+uα1−2du
+
+Z ∞
+
+> u
+
+y2(1 + y)ρρ 1−2μ1(d y)
+
+≤ vv ρ−10
+
+Z 10
+
+uα1−2du
+
+Z ∞
+
+> 0
+
+z2(1 + z)ρρ 1−2μ1(d z) =: vv ρ−10 c0, v0 < v ≤ 1.
+
+Combining this with (3.29) and (3.31) we obtain 
+
+Z ∞
+
+> 1
+
+K(v, z )μ1(d z) = 
+
+Z ∞
+
+> 1
+
+z2μ1(d z)
+
+Z 10
+
+K′′  
+
+> zz
+
+(v, zu )(1 − u)d u ≥ − ρρ 1(ρ1 − 1) vv ρ−10 c0
+
+for all 0 < v ≤ 1. Together this with (3.30) one gets (3.27). (ii) By (3.29), 
+
+K′′  
+
+> zz
+
+(v, z ) = ρρ 1(1 − ρρ 1)v2(1 + z)2ρ1−2v[(1 + z)ρ1 − 1] + 1 ρ−2
+
+−ρρ 1(ρ1 − 1) v(1 − v)(1 + z)ρ1−2v[(1 + z)ρ1 − 1] + 1 ρ−2
+
+=: ρρ 1(1 − ρρ 1)K1(v, z ) − ρρ 1(ρ1 − 1) K2(v, z ). (3.32) For 0 ≤ v ≤ 1, 
+
+K1(v, z ) ≥ v2(1 + z)ρ1 ρ−2(1 + z)2ρ1−2 = v2(1 + z)ρρ 1−2.
+
+By (3.6), 
+
+Z ∞
+
+> 0
+
+z2μ1(d z)
+
+Z 10
+
+K1(v, uz )(1 − u)d u ≥ c1(ρρ 1)v2 (3.33) and for δ > 0
+
+Z δ
+
+> 0
+
+z2μ1(d z)
+
+Z 10
+
+K2(v, uz )(1 − u)d u ≤ v(1 − v)
+
+Z δ
+
+> 0
+
+z2(1 + z)ρ1−1μ1(d z) =: v(1 − v)d1,δ . (3.34) Moreover, for 0 ≤ v ≤ 1, 
+
+K2(v, z ) ≤ v(1 − v)v(1 + z)ρ1 ρ−1(1 − v)−1(1 + z)ρ1−1 = vρ(1 + z)ρρ 1−2
+
+and then for all δ > 0, 
+
+Z ∞
+
+> δ
+
+z2μ1(d z)
+
+Z 10
+
+K2(v, uz )(1 − u)d u ≤ vρ
+
+Z ∞
+
+> δ
+
+z2μ1(d z)
+
+Z 10
+
+(1 + uz )ρρ 1−2du =: d2,δ vρ. (3.35) 21 By (3.3) and (3.32), 
+
+K(v, z ) = z2
+
+Z 10
+
+K′′  
+
+> zz
+
+(v, zu )(1 − u)d u
+
+= ρρ 1(1 − ρρ 1)z2
+
+Z 10
+
+K1(v, uz )(1 − u)d u − ρρ 1(ρ1 − 1) z2
+
+Z 10
+
+K2(v, uz )(1 − u)d u. 
+
+Combining this with (3.33)–(3.35) we obtain (3.28). 2
+
+3.2.3 Equations (1.3) with dominate drift terms 
+
+In this subsubsection we consider equations (1.3) under Condition 1.5 where the drifts dominate. For 0 < ρ < 1 and ρ1, ρ 2 ≥ 1 define 
+
+h(x, y ) = −(xρ1 + yρ2 )ρ, x, y > 0, (3.36) which is the key test function to prove Theorems 1.10(i) and 1.11 under Condition 1.5. In the following we estimate Lh in Lemmas 3.10 and 3.11 for verifying assumption (iii) of Proposition 2.2. We first present a preliminary estimate on Lh by (3.5) and Lemma 3.9. Recall (3.25). By (3.26) and Lemma 3.9(i), for all large enough ρ1 ≥ 2 and ρρ 1 ∈ (0 , 1), there is a constant ˜d1 > 0such that 
+
+Z ∞
+
+> 0
+
+K1 
+
+> z
+
+h(x, y )μ1(d z) = x−α1 (xρ1 + yρ2 )ρ
+
+Z ∞
+
+> 0
+
+K( xρ1
+
+xρ1 + yρ2 , z )μ1(d z)
+
+≥ − ρρ 1(ρ1 − 1) ˜d1xρ1−α1 (xρ1 + yρ2 )ρ−1.
+
+Similarly, for all large enough ρ2 ≥ 2 and ρρ 2 ∈ (0 , 1), there is a constant ˜d2 > 0 such that 
+
+Z ∞
+
+> 0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z) ≥ − ρρ 2(ρ2 − 1) ˜d2yρ2−α2 (xρ1 + yρ2 )ρ−1.
+
+It thus follows from (3.5) that 
+
+Lh(x, y )
+
+≥ ρ(xρ1 + yρ2 )ρ−1h
+
+b10 ρ1xr10 −1+ ρ1 + b20 ρ2yr20 −1+ ρ2 − a1ρ1xθ1−1+ ρ1 yκ1 − a2ρ2xκ2 yθ2−1+ ρ2
+
+−ρ1(ρ1 − 1)[ b11 xr11 −2+ ρ1 + b12 ˜d1xr12 −α1+ρ1 ]
+
+−ρ2(ρ2 − 1)[ b21 yr21 −2+ ρ2 + b22 ˜d2yr22 −α2+ρ2 ]
+
+i
+
+. (3.37) By Lemma 3.9(ii), for 0 < ρρ 1 < 1 and ρ1 > 1, 
+
+Z ∞
+
+> 0
+
+K1 
+
+> z
+
+h(x, y )μ1(d z) = x−α1 (xρ1 + yρ2 )ρ
+
+Z ∞
+
+> 0
+
+K( xρ1
+
+xρ1 + yρ2 , z )μ1(d z)
+
+≥ ρρ 1x−α1
+
+h
+
+(1 − ρρ 1)c1(ρρ 1)x2ρ1 (xρ1 + yρ2 )ρ−2
+
+−(ρ1 − 1) d1,δ xρ1 yρ2 (xρ1 + yρ2 )ρ−2 − (ρ1 − 1) d2,δ xρρ 1
+
+i
+
+.
+
+Similar results hold for R ∞ 
+
+> 0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z) by symmetry. Thus, we also have 
+
+Lh(x, y )
+
+≥ ρ(xρ1 + yρ2 )ρ−1h
+
+b10 ρ1xr10 −1+ ρ1 − a1ρ1xθ1−1+ ρ1 yκ1 − a2ρ2xκ2 yθ2−1+ ρ2
+
+22 −ρ1(ρ1 − 1)[ b11 xr11 −2+ ρ1 + b12 ˜d1xr12 −α1+ρ1 ]
+
+i
+
++ρρ 2(xρ1 + yρ2 )ρ−2h
+
+(1 − ρρ 2)[ b21 yr21 −2+2 ρ2 + b22 c2(ρρ 2)yr22 −α2+2 ρ2 ]
+
+−(ρ2 − 1) xρ1 [b21 yr21 −2+ ρ2 + b22 ˜d1,δ yr22 −α2+ρ2 ]
+
+i
+
+−ρρ 2(ρ2 − 1) b22 ˜d2,δ yr22 −α2+ρρ 2 , (3.38) where ˜d1,δ , ˜d2,δ > 0 satisfy lim δ→∞ ˜d2,δ = 0. Based on the above estimation we state the following lemma, whose proof utilizes Lemmas 3.1 and 3.7. 
+
+Lemma 3.10 Suppose that θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0 and the assumptions of Theorem 1.10(i) hold. Then there are constants ρ1, ρ 2, ρ > 0 and C, c > 0 such that 
+
+Lh(x, y ) ≥ C, 0 < x, y ≤ c. (3.39) 
+
+Proof. We first establish the proof under Condition 1.5(i). Let ρ1, ρ 2 ≥ 2 be large enough constants satisfying (3.19). Let 0 < ρ < 1 be small enough such that r10 − 1 + ρ1ρ ≤ 0 and 
+
+r20 − 1 + ρ2ρ ≤ 0. By (3.37), 
+
+Lh(x, y ) ≥ ρ(xρ1 + yρ2 )ρ−1[J1(x, y ) − J2(x, y ) − J3(x) − J4(y)] , 0 < x, y < 1, (3.40) where 
+
+J1(x, y ) := b10 ρ1xr10 −1+ ρ1 + b20 ρ2yr20 −1+ ρ2 ,J2(x, y ) := a1ρ1xθ1−1+ ρ1 yκ1 + a2ρ2xκ2 yθ2−1+ ρ2 (3.41) and 
+
+J3(x) := ρ1(ρ1 − 1)[ b11 xr11 −2+ ρ1 + b12 ˜d1xr12 −α1+ρ1 ],J4(y) := ρ2(ρ2 − 1)[ b21 yr21 −2+ ρ2 + b22 ˜d2yr22 −α2+ρ2 ] (3.42) for some constants ˜d1, ˜d2 > 0. By Lemma 3.7, there is a constant 0 < c 1 < 1 such that 4−1J1(x, y ) ≥ J2(x, y ), 0 < x, y ≤ c1. (3.43) By Condition 1.5(i), there is a constant 0 < c 2 ≤ c1 such that 8 −1J1(x, y ) ≥ J3(x) and 8−1J1(x, y ) ≥ J4(y) for all 0 < x, y ≤ c2. Combining these with (3.40) and (3.43) we obtain 
+
+Lh(x, y ) ≥ 2−1ρ(xρ1 + yρ2 )ρ−1J1(x, y )for all 0 < x, y ≤ c2. By Lemma 3.1(ii), we have 
+
+J1(x, y ) = b10 ρ1xr10 −1+ ρ1ρxρ1(1 −ρ) + b20 ρ2yr20 −1+ ρ2ρyρ2(1 −ρ)
+
+≥ C[xρ1(1 −ρ) + yρ2(1 −ρ)] ≥ C(xρ1 + yρ2 )1−ρ (3.44) with C := ( b10 ρ1) ∧ (b20 ρ2). Thus, Lh(x, y ) ≥ 2−1ρC for all 0 < x, y ≤ c2, which gives (3.39). Since the proofs under Condition 1.5(ii)-(iii) are similar, we only present that under Condition 1.5(ii). If Condition 1.5(ii) and inequality (1.13) hold, there are large enough constants ρ1, ρ 2 ≥ 2such that (3.19) holds and ρ1/ρ 2 < r 1/r 2. Moreover, for all 0 < ρ < 1, 
+
+ρ1
+
+r1 + 2 ρ1
+
++ r2 + ρ2
+
+r2 + 2 ρ2
+
+> 1, ρ1(2 − ρ)
+
+r1 + 2 ρ1
+
++ r2 + ρρ 2
+
+r2 + 2 ρ2
+
+> 1. (3.45) 23 In the following, let 0 < ρ < 1 be small enough such that r10 − 1 + ρ1ρ = r1 + ρ1ρ ≤ 0 and 
+
+r2 + ρ2ρ ≤ 0. Recall (3.41) and (3.42). By (3.38), 
+
+Lh(x, y ) ≥ ρ(xρ1 + yρ2 )ρ−1b10 ρ1xr1+ρ1 − J2(x, y ) − J3(x)
+
++ρ(xρ1 + yρ2 )ρ−2˜c1yr2+2 ρ2 − ˜c2xρ1 yr2+ρ2  − ˜c0 ˜d2,δ yr2+ρρ 2 ,
+
+where ˜ c0 := ρρ 2(ρ2 − 1) b22 , ˜ c1 := ρ2(1 − ρρ 2)[ b21 ∧ (b22 c2(ρρ 2))] and ˜ c2 := ρ2(ρ2 − 1)[ b21 + b22 ˜d1,δ ]. Then for 0 < σ 1 < b 10 ρ1 and 0 < σ 2 < ˜c1,
+
+Lh(x, y ) ≥ ρ(xρ1 + yρ2 )ρ−1I1(x, y ) − J2(x, y ) − J3(x)
+
++ρ(xρ1 + yρ2 )ρ−2I2(x, y ) − (˜ c2 + σ2)xρ1 yr2+ρ2  − ˜c0 ˜d2,δ yr2+ρρ 2 , (3.46) where I1(x, y ) := ( b10 ρ1 − σ1)xr1+ρ1 + σ2yr2+ρ2 and I2(x, y ) := σ1xr1+2 ρ1 + (˜ c1 − σ2)yr2+2 ρ2 .Since lim δ→∞ ˜d2,δ = 0, there is a constant δ > 0 such that I2(x, y ) ≥ 8˜ c0 ˜d2,δ yr2+2 ρ2 . By Lemma 3.7, (3.19) and (3.45), there is a constant 0 < c 3 < 1 such that for all 0 < x, y ≤ c3 we have 
+
+I1(x, y ) ≥ 4J2(x, y ), I 2(x, y ) ≥ 2(˜ c2 + σ2)xρ1 yr2+ρ2 , I 2(x, y ) ≥ 8˜ c0 ˜d2,δ xρ1(2 −ρ)yr2+ρρ 2 . (3.47) It follows from Lemma 3.1(ii) that 
+
+I2(x, y ) − 2˜ c0 ˜d2,δ yr2+ρρ 2 (xρ1 + yρ2 )2−ρ ≥ I2(x, y ) − 4˜ c0 ˜d2,δ [yr2+ρρ 2 xρ1(2 −ρ) + yr2+2 ρ2 ] ≥ 0(3.48) for all 0 < x, y ≤ c3. By (1.5), there is a constant 0 < c 4 < c 3 such that 4 −1I1(x, y ) ≥ J3(x) for all 0 < x, y ≤ c4. Combining this with (3.46)–(3.48), one obtains 
+
+Lh(x, y ) ≥ 2−1ρ(xρ1 + yρ2 )ρ−1I1(x, y ), 0 < x, y ≤ c4.
+
+Similarly to (3.44), we have I1(x, y ) ≥ [( b10 ρ1 − σ1) ∧ σ2]( xρ1 + yρ2 )1−ρ, which gives (3.39). 2
+
+Let δ0 > 0 be the constant determined in Lemma 3.8. For ρ1, ρ 2, ρ > 0 define ˜h(x, y ) := −(δ0xρ1 + yρ2 )ρ, x, y > 0. (3.49) Similarly to Lemma 3.10, we have the following estimate of L˜h.
+
+Lemma 3.11 According to the assumptions of Theorem 1.11, there are constants ρ1, ρ 2, δ 0, ρ > 
+
+0 and C, c > 0 such that 
+
+L˜h(x, y ) ≥ C, 0 < x, y ≤ c. (3.50) 
+
+Proof. Using Lemma 3.8, the proof is a modification of that of Lemma 3.10, and we omit it here. 
+
+2
+
+3.2.4 Equations (1.3) with dominant diffusion or jump terms 
+
+In this subsubsection we study the SDE system (1.3) with dominant diffusion or jump terms, that is, under the assumption (1.14). The key function h is defined in Lemma 3.12 under Condition 1.9(i), in Lemma 3.14 under Condition 1.9(ii), and in Lemma 3.16 under assumption (iii) of Theorem 1.10. The estimates of Lh, key to verifying assumption (iii) of Proposition 2.2, are given in Lemmas 3.12, 3.14 and 3.16 for different cases. Applying these estimates and 24 Proposition 2.2, the proofs of Theorems 1.10 and 1.11 are given at the end of this subsubsection. For ε ∈ (0 , 1) define a nonnegative bounded function ˜h(y) := y − (1 + ε)−1y1+ ε(1 + y)−ε, y > 0. (3.51) Then ˜h′(y) = 1 − yε(1 + y)−ε + ε(1 + ε)−1y1+ ε(1 + y)−1−ε ≥ 0, ˜h′′ (y) = −εy ε−1(1 + y)−2−ε. (3.52) Thus, there is a constant c0 = c0(ε) ∈ (0 , 1) such that ˜h(y) ≥ 2−1y, 2−1 ≤ ˜h′(y) ≤ 1, −˜h′′ (y) ≥ 2−1εy ε−1, 0 < y ≤ 2c0. (3.53) It follows that for all 0 < y ≤ c0 we have ˜h(y + yzu ) ≤ y + yzu ≤ 2y ≤ 4˜h(y), 0 < y ≤ c0, 0 < z, u ≤ 1. (3.54) 
+
+Lemma 3.12 Suppose that (1.14) holds for i = 1 , 2, θ1 − 1 < r 1 < 0, θ2 − 1 < r 2 < 0 and (1.13) 
+
+and that condition 1.9(i) holds. In addition, under (1.9) let 
+
+h(x, y ) := −[xρ1 + ˜h(y)] ρ, x, y > 0, (3.55) 
+
+and under (1.10) let 
+
+h(x, y ) := −[yρ2 + ˜h(x)] ρ, x, y > 0.
+
+Then there are constants ρ1, ρ 2, ρ, ε > 0 and C, c > 0 such that Lh(x, y ) ≥ C for all 0 < x, y ≤ c.
+
+Before proving Lemma 3.12, we first show a preliminary estimate of Lh by (3.5) in the following lemma. 
+
+Lemma 3.13 Suppose that (1.14) holds for i = 1 , 2. Let h be the function defined in (3.55) for 
+
+0 < ρ, ε < 1 and ρ1 > 1. Then there are constants ˜c1, ˜c2, ˜c3, ˜c4 > 0 such that 
+
+Lh(x, y ) ≥ − 8−1˜c2ρx r1+ρρ 1 + ρ[xρ1 + ˜h(y)] ρ−1˜c1yr2+1+ ε − a1ρ1xρ1−1+ θ1 yκ1 − 2a2xκ2 yθ2 
+
++ρ[xρ1 + ˜h(y)] ρ−2˜c2xr1+2 ρ1 + ˜ c3yr2+2 − ˜c4xr1+ρ1 ˜h(y), 0 < x, y ≤ c0, (3.56) 
+
+where c0 ∈ (0 , 1) is the constant appearing in (3.53) .
+
+Proof. Observe that 
+
+h′
+
+> x
+
+(x, y ) = −ρρ 1[xρ1 + ˜h(y)] ρ−1xρ1−1, h′
+
+> y
+
+(x, y ) = −ρ[xρ1 + ˜h(y)] ρ−1˜h′(y) (3.57) and 
+
+h′′ 
+
+> xx
+
+(x, y ) = ρρ 1[xρ1 + ˜h(y)] ρ−2[(1 − ρρ 1)x2ρ1−2 − (ρ1 − 1) xρ1−2˜h(y)] . (3.58) Moreover, by (3.53), 
+
+h′′ 
+
+> yy
+
+(x, y ) = ρ(1 − ρ)[ xρ1 + ˜h(y)] ρ−2|˜h′(y)|2 − ρ[xρ1 + ˜h(y)] ρ−1˜h′′ (y)
+
+≥ 2−2ρ(1 − ρ)[ xρ1 + ˜h(y)] ρ−2 + 2 −1ερy ε−1[xρ1 + ˜h(y)] ρ−1, 0 < y ≤ 2c0. (3.59) 25 Let K(v, z ) be the function defined in (3.25). By (3.26) and (3.28), we have 
+
+Z ∞
+
+> 0
+
+K1 
+
+> z
+
+h(x, y )μ1(d z) = x−α1 [xρ1 + ˜h(y)] ρ
+
+Z ∞
+
+> 0
+
+K( xρ1
+
+xρ1 + ˜h(y) , z )μ1(d z)
+
+≥ ρρ 1x−α1
+
+h
+
+(1 − ρρ 1)c1(ρρ 1)x2ρ1 [xρ1 + ˜h(y)] ρ−2
+
+−(ρ1 − 1) d1,δ xρ1 ˜h(y)[ xρ1 + ˜h(y)] ρ−2 − (ρ1 − 1) d2,δ xρρ 1
+
+i
+
+, (3.60) where the constants d1,δ , d 2,δ > 0 satisfy lim δ→∞ d2,δ = 0. Combining with (3.53), (3.54) and (3.59), for 0 < z, u ≤ 1 and 0 < y ≤ c0 we have 
+
+h′′ 
+
+> yy
+
+(x, y + yzu ) ≥ 2−2ρ(1 − ρ)[ xρ1 + 4 ˜h(y)] ρ−2 + 2 −2ρε [xρ1 + 4 ˜h(y)] ρ−1yε−1
+
+≥ 22ρ−6ρ(1 − ρ)[ xρ1 + ˜h(y)] ρ−2 + 2 2ρ−4ρε [xρ1 + ˜h(y)] ρ−1yε−1. (3.61) Since h′′ 
+
+> yy
+
+(x, y ) ≥ 0 for all y > 0, then by (3.3), 
+
+Z ∞
+
+> 0
+
+K2 
+
+> yz
+
+h(x, y )μ2(d z) = y2
+
+Z ∞
+
+> 0
+
+z2μ2(d z)
+
+Z 10
+
+h′′ 
+
+> yy
+
+(x, y + yzu )(1 − u)d u
+
+≥ y2
+
+Z 10
+
+z2μ2(d z)
+
+Z 10
+
+h′′ 
+
+> yy
+
+(x, y + yzu )(1 − u)d u
+
+≥ ˆc1ρεy 2(1 − ρ)[ xρ1 + ˜h(y)] ρ−2 + [ xρ1 + ˜h(y)] ρ−1yε−1, 0 < y ≤ c0,
+
+for ˆ c1 := 2 2ρ−6 R 10 z2μ2(d z), where (3.61) is used in the last inequality. Then by (3.4), 
+
+Z ∞
+
+> 0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z) = y−α2
+
+Z ∞
+
+> 0
+
+K2 
+
+> yz
+
+h(x, y )μ2(d z)
+
+≥ ˆc1ρεy 2−α2 (1 − ρ)[ xρ1 + ˜h(y)] ρ−2 + [ xρ1 + ˜h(y)] ρ−1yε−1, 0 < y ≤ c0. (3.62) Further combining (3.5) with (3.57)–(3.60) and (3.62) one obtains 
+
+Lh(x, y )
+
+≥ ρ[xρ1 + ˜h(y)] ρ−1b21 2−1εy r21 −1+ ε + b22 ˆc1εy r22 +1 −α2+ε − a1ρ1xρ1−1+ θ1 yκ1 − a2˜h′(y)xκ2 yθ2 
+
++ρ[xρ1 + ˜h(y)] ρ−2h
+
+b11 ρ1(1 − ρρ 1)xr11 +2 ρ1−2 + b12 ρ1(1 − ρρ 1)c1(ρρ 1)xr12 +2 ρ1−α1
+
++b21 (1 − ρ)2 −2yr21 + b22 (1 − ρ)ˆ c1εy r22 +2 −α2
+
+−b11 ρ1(ρ1 − 1) xr11 +ρ1−2˜h(y) − b12 ρ1(ρ1 − 1) d1,δ xr12 +ρ1−α1 ˜h(y)
+
+i
+
+−b12 ρρ 1(ρ1 − 1) d2,δ xr12 +ρρ 1−α1 , 0 < x, y ≤ c0.
+
+Since lim δ→∞ d2,δ = 0, there is a large enough constant δ > 0 such that b12 ρ1(ρ1 − 1) d2,δ ≤ 8−1˜c2
+
+with ˜ c2 := ρ1(1 − ρρ 1)[ b11 ∧ (b12 c1(ρρ 1))]. By (3.52), ˜h′(y) ≤ 2 for all y > 0 we get (3.56) with ˜c1 := ε[( b21 2−1) ∧ (b22 ˆc1)] , ˜c3 := [ b21 (1 − ρ)2 −2] ∧ [b22 ˆc1ε] and ˜ c4 := ρ1(ρ1 − 1)[ b11 + b12 d1,δ ]. This ends the proof. 2
+
+Now we are ready to complete the proof of Lemma 3.12 applying Lemma 3.1(ii)–(iii). 
+
+Proof of the Lemma 3.12. Since the proofs are similar, we only present that under (1.9). By (1.9) and (1.13), we obtain 1 < κ2(r2 + 1) 
+
+r2 + 1 − θ2
+
+− r1, (r1 + 1 − θ1)
+
+κ1
+
+< κ2
+
+r2 + 1 − θ2
+
+, r1
+
+r2
+
+< κ2(r2 + 1) 
+
+r2 + 1 − θ2
+
+− r1.
+
+26 Then there is a constant ρ1 such that 1 < ρ 1, r1
+
+r2
+
+< ρ 1, (r1 + 1 − θ1)( r2 + 1) 
+
+κ1
+
+− r1 < ρ 1 < κ2(r2 + 1) 
+
+r2 + 1 − θ2
+
+− r1,
+
+which gives 
+
+ρ1 − 1 + θ1
+
+r1 + ρ1
+
++ κ1
+
+r2 + 1 > 1, κ2
+
+r1 + ρ1
+
++ θ2
+
+r2 + 1 > 1and 
+
+r1 + ρ1
+
+r1 + 2 ρ1
+
++ 1
+
+r2 + 2 > 1, r1 + ρρ 1
+
+r1 + 2 ρ1
+
++ 2 − ρr2 + 2 > 1 (3.63) for small enough 0 < ρ < 1 with 
+
+r1 + ρρ 1 < 0, r2 + ρ < 0. (3.64) Moreover, there is a sufficiently small constant 0 < ε < 1 such that 
+
+ρ1 − 1 + θ1
+
+r1 + ρ1
+
++ κ1
+
+r2 + 1 + ε > 1, κ2
+
+r1 + ρ1
+
++ θ2
+
+r2 + 1 + ε > 1. (3.65) By Lemma 3.1(ii), 
+
+xr1+ρρ 1 = [ xρ1 + ˜h(y)] ρ−2xr1+ρρ 1 [xρ1 + ˜h(y)] 2−ρ ≤ 2[ xρ1 + ˜h(y)] ρ−2[xr1+2 ρ1 + xr1+ρρ 1 ˜h(y)2−ρ]and 
+
+xr1+ρ1 = [ xρ1 + ˜h(y)] −1[xr1+2 ρ1 + xr1+ρ1 ˜h(y)] .
+
+Thus, it follows from Lemma 3.13 that 
+
+Lh(x, y ) ≥ ρ[xρ1 + ˜h(y)] ρ−14−1˜c2xr1+ρ1 + ˜ c1yr2+1+ ε − a1ρ1xρ1−1+ θ1 yκ1 − 2a2xκ2 yθ2 
+
++ρ[xρ1 + ˜h(y)] ρ−22−1˜c2xr1+2 ρ1 + ˜ c3yr2+2 − (˜ c4 + 4 −1˜c2)xr1+ρ1 ˜h(y)
+
+−4−1˜c2xr1+ρρ 1 ˜h(y)2−ρ
+
+≥ ρ[xρ1 + ˜h(y)] ρ−14−1˜c2xr1+ρ1 + ˜ c1yr2+1+ ε − a1ρ1xρ1−1+ θ1 yκ1 − 2a2xκ2 yθ2 
+
++ρ[xρ1 + ˜h(y)] ρ−22−1˜c2xr1+2 ρ1 + ˜ c3yr2+2 − (˜ c4 + 4 −1˜c2)xr1+ρ1 y
+
+−4−1˜c2xr1+ρρ 1 y2−ρ
+
+=: ρ[xρ1 + ˜h(y)] ρ−1I1(x, y ) + ρ[xρ1 + ˜h(y)] ρ−2I2(x, y ), 0 < x, y ≤ c0, (3.66) where we use the fact ˜h(y) ≤ y for all y > 0 in the second inequality. By Lemma 3.1(iii), (3.63) and (3.65), there is a constant 0 < c 1 ≤ c0 such that 
+
+I1(x, y ) ≥ 0, I2(x, y ) ≥ 4−1[˜ c2xr1+2 ρ1 + ˜ c3yr2+2 ], 0 < x, y < c 1.
+
+Thus, it follows from (3.64), (3.66), the fact ˜h(y) ≤ y, and Lemma 3.1(ii) that 
+
+Lh(x, y ) ≥ 4−1ρ[xρ1 + y]ρ−2[˜ c2xρ1(2 −ρ)xr1+ρρ 1 + ˜ c3y2−ρyr2+ρ]
+
+≥ 4−1ρ(˜ c2 ∧ ˜c3)[ xρ1 + y]ρ−2[xρ1(2 −ρ) + y2−ρ] ≥ 8−1ρ(˜ c2 ∧ ˜c3), 0 < x, y < c 1,
+
+which completes the proof. 2
+
+27 Lemma 3.14 Given θ1 − 1 < r 1 < 0 and θ2 − 1 < r 2 < 0, under Condition 1.9(ii), suppose that 
+
+(1.13) holds and (1.14) holds for i = 1 , 2. Under (1.11) let 
+
+ˆh(x, y ) := ( x + yδ)ρ1 + ˜h(y), h(x, y ) := −ˆh(x, y )ρ, x, y > 0, (3.67) 
+
+and under (1.12) let 
+
+ˆh(x, y ) := ( y + xδ)ρ2 + ˜h(x), h(x, y ) := −ˆh(x, y )ρ, x, y > 0.
+
+Then there are constants ρ1, ρ 2, ρ, ε > 0 and C, c > 0 such that Lh(x, y ) ≥ C for all 0 < x, y ≤ c.
+
+Before proving Lemma 3.14, we first give an estimate of Lh by (3.5) in the following lemma. 
+
+Lemma 3.15 Let 0 < ρ, ρ 1, ε < 1 and δ > 1 satisfy ρ1δ > 1, 0 < ε < δρ 1 − 1 and δρρ 1 < 1. Let 
+
+h be the function defined by (3.67) . Then there are constants c1, ˜c1, ˜c2, ˜c3 > 0 such that 
+
+Lh(x, y ) ≥ ρˆh(x, y )ρ−1[I1(x, y ) − I2(x, y )] − b22 ˜c1yr22 , 0 < x, y ≤ c1,
+
+where 
+
+I1(x, y ) := ˜ c2
+
+(x + yδ)ρ1−2xr11 + ( x + yδ)ρ1−α1 xr12  + ˜ c3yε+1 [yr21 −2 + yr22 −α2 ]
+
+and 
+
+I2(x, y ) := a1ρ1xθ1 yκ1 (x + yδ)ρ1−1 + 2 a2yθ2 xκ2 .
+
+Proof. Observe that 
+
+h′
+
+> x
+
+(x, y ) = −ρρ 1ˆh(x, y )ρ−1(x + yδ)ρ1−1, h ′′ 
+
+> xx
+
+(x, y ) ≥ ρρ 1(1 − ρ1)ˆh(x, y )ρ−1(x + yδ)ρ1−2 (3.68) and 
+
+h′
+
+> y
+
+(x, y ) = −ρˆh(x, y )ρ−1ρ1δ(x + yδ)ρ1−1yδ−1 + ˜h′(y),h′′ 
+
+> yy
+
+(x, y ) ≥ ρˆh(x, y )ρ−1 − ρ1(δ − 1) δ(x + yδ)ρ1−1yδ−2 − ˜h′′ (y).
+
+Since ρ1δ > 1 and 0 < ε < δρ 1 − 1, there is a sufficiently small constant 0 < c 1 < 1/2 such that for all 0 < y ≤ 2c1
+
+yδ−1(x + yδ)ρ1−1 ≤ yδ−1+ δ(ρ1−1) = yδρ 1−1 ≤ (ρ1δ)−1
+
+and (x + yδ)ρ1−1yδ−2 ≤ yδρ 1−2 = yε−1yδρ 1−ε−1 ≤ 4−1ε[ρ1(δ − 1) δ]−1yε−1.
+
+Thus, by (3.53), 
+
+h′
+
+> y
+
+(x, y ) ≥ − 2ρˆh(x, y )ρ−1, h′′ 
+
+> yy
+
+(x, y ) ≥ 2−2ρε ˆh(x, y )ρ−1yε−1, 0 < y ≤ 2( c0 ∧ c1), (3.69) where the constant c0 is determined in (3.53). Recall the function K(v, z ) defined in (3.25). By (3.29), for 0 ≤ v ≤ 1 we have 
+
+K′′  
+
+> zz
+
+(v, z ) ≥ ρρ 1(1 − ρ1)v(1 + z)ρ1−2v[(1 + z)ρ1 − 1] + 1 ρ−1 ≥ ρρ 1(1 − ρ1)v(1 + z)ρρ 1−2
+
+28 and then by (3.3) and (3.6), 
+
+Z ∞
+
+> 0
+
+K(v, z )μ1(d z) = 
+
+Z ∞
+
+> 0
+
+z2μ1(d z)
+
+Z 10
+
+K′′  
+
+> zz
+
+(v, zu )(1 − u)d u
+
+≥ ρρ 1(1 − ρ1)v
+
+Z ∞
+
+> 0
+
+z2μ1(d z)
+
+Z 10
+
+(1 + zu )ρρ 1−2(1 − u)d u = ρρ 1(1 − ρ1)c1(ρρ 1)v. (3.70) Now, by the arguments for the first equation of (3.60), 
+
+Z ∞
+
+> 0
+
+K1 
+
+> z
+
+h(x, y )μ1(d z) = −ˆh(x, y )ρ(x + yδ)−α1
+
+Z ∞
+
+> 0
+
+K( (x + yδ)ρ1
+
+ˆh(x, y ) , z )μ1(d z)
+
+≥ ρρ 1(1 − ρ1)c1(ρρ 1)ˆh(x, y )ρ−1(x + yδ)ρ1−α1 . (3.71) By (3.3) and (3.69), for 0 < y ≤ c0 ∧ c1
+
+Z c0
+
+> 0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z) = 
+
+Z c0
+
+> 0
+
+z2μ2(d z)
+
+Z 10
+
+h′′ 
+
+> yy
+
+(x, y + uz )(1 − u)d u
+
+≥ 2−2ρε 
+
+Z c0
+
+> 0
+
+z2μ2(d z)
+
+Z 10
+
+ˆh(x, y + uz )ρ−1(y + uz )ε−1(1 − u)d u. (3.72) By (3.54), for all 0 < y ≤ c0 and 0 < z, u ≤ 1, ˆh(x, y + yuz ) = [ x + ( y + yuz )δ]ρ1 + ˜h(y + yuz ) ≤ (x + 2 δyδ)ρ1 + 4 ˜h(y) ≤ 2δρ 1+1 ˆh(x, y ).
+
+Now replacing the variable z with yv in (3.72) and using the fact μ2(d( yv )) = y−α2 μ2(d v), for 0 < y ≤ c0 ∧ c1 we have 
+
+Z c0
+
+> 0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z)
+
+≥ 2−2ερy 2−α2
+
+Z c0/y 
+
+> 0
+
+v2μ2(d v)
+
+Z 10
+
+ˆh(x, y + yuv )ρ−1(y + yuv )ε−1(1 − u)d u
+
+≥ 2ε−3ερy ε+1 −α2
+
+Z 10
+
+z2μ2(d z)
+
+Z 10
+
+ˆh(x, y + yuz )ρ−1(1 − u)d u
+
+≥ 2ε−3+( δρ 1+1)( ρ−1) ερy ε+1 −α2 ˆh(x, y )ρ−1
+
+Z 10
+
+z2μ2(d z) =: 2 −2ρε ˜cˆh(x, y )ρ−1yε+1 −α2 .
+
+On the other hand, for all 0 < x, y ≤ c0,
+
+Z ∞
+
+> c0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z) ≥ − 
+
+Z ∞
+
+> c0
+
+ˆh(x, y + z)ρμ2(d z) ≥ − 
+
+Z ∞
+
+> c0
+
+ˆh(c0, c 0 + z)ρμ2(d z) =: −˜c1
+
+with ˜ c1 < ∞ by the assumption of δρρ 1 < 1. Then 
+
+Z ∞
+
+> 0
+
+K2 
+
+> z
+
+h(x, y )μ2(d z) ≥ 2−2ρε ˜cˆh(x, y )ρ−1yε+1 −α2 − ˜c1, 0 < x, y ≤ c0 ∧ c1. (3.73) It thus follows from (3.5), (3.68)–(3.69), (3.71) and (3.73) that 
+
+Lh(x, y )
+
+≥ ρˆh(x, y )ρ−1h
+
+ρ1(1 − ρ1)b11 (x + yδ)ρ1−2xr11 + b21 c1(ρρ 1)( x + yδ)ρ1−α1 xr12 
+
++2 −2ε[b21 yr21 +ε−1 + b22 ˜cy r22 +ε+1 −α2 ]29 −a1ρ1xθ1 yκ1 (x + yδ)ρ1−1 − 2a2yθ2 xκ2
+
+i
+
+− b22 ˜c1yr22 
+
+≥ ρˆh(x, y )ρ−1[I1(x, y ) − I2(x, y )] − b22 ˜c1yr22 , 0 < x, y ≤ c0 ∧ c1
+
+with ˜ c2 := ρ1(1 − ρ1)[ b11 ∧ (b21 c1(ρρ 1))] and ˜ c3 := 2 −2ε[b21 ∧ (b22 ˜c)]. Now we are ready to conclude the proof of Lemma 3.14 by Lemma 3.1(ii) again. 
+
+Proof of Lemma 3.14. Since the proofs are similar, we only state that under (1.11). Under (1.11), there is a constant 0 < ρ 1 < 1 satisfying 
+
+ρ1 < (1 − θ1) ∧ (2 − κ2) (3.74) and 
+
+ρ1 > 1 − θ1
+
+κ1 − r2
+
+, ρ1 < κ2
+
+r2 + 1 − θ2
+
+, ρ1 < κ2 − r1
+
+1 − θ2
+
+,
+
+which implies that there is a constant δ > ρ −11 > 1 such that 
+
+δ(1 − ρ1 − θ1) < κ 1 − 1 − r2, r2 + 1 − θ2 − δκ 2 < 0and 
+
+r1 < κ 2 − ρ1 + θ2/δ, (3.75) respectively. Moreover, there is a small enough constant 0 < ε < δρ 1 − 1 such that r2 + ε < 0, 
+
+δ(1 − ρ1 − θ1) < κ 1 − 1 − r2 − ε (3.76) and 
+
+r2 + ε + 1 − θ2 − δκ 2 < 0. (3.77) Let 0 < ρ < 1 be small enough satisfying 
+
+ρρ 1 + r1 < 0, r2 + ρ + ε < 0 (3.78) and δρρ 1 < 1. Let I1 and I2 be the functions defined in Lemma 3.15. As xρ1 ≤ y ≤ 1, by Lemma 3.1(ii) and the fact ˜h(y) ≤ y for y > 0 we get ˆh(x, y ) ≤ xρ1 + yδρ 1 + y ≤ 3y
+
+and then ˆh(x, y )ρ−1I1(x, y ) ≥ ˜c3ˆh(x, y )ρ−1yε+1 [yr21 −2 + yr22 −α2 ]
+
+≥ 3ρ−1˜c3yε+ρ[yr21 −2 + yr22 −α2 ] = 3 ρ−1˜c3yε+ρ[yr21 −2 + yr22 −α2 ].
+
+Since y ≤ xρ1 ≤ 1, we get ˆh(x, y ) ≤ xρ1 + yδρ 1 + y ≤ xρ1 + 2 y ≤ 3xρ1 , x + yδ ≤ x + xρ1δ ≤ 2x
+
+and then ˆh(x, y )ρ−1I1(x, y ) ≥ ˜c2ˆh(x, y )ρ−1(x + yδ)ρ1−2xr11 + ( x + yδ)ρ1−α1 xr12 
+
+30 ≥ 3ρ−1˜c2xρρ 1−ρ1 2ρ1−2xρ1−2+ r11 + 2 ρ1−α1 xρ1−α1+r12 .
+
+It follows from (1.14) that ˆh(x, y )ρ−1I1(x, y ) ≥ 3ρ−12ρ1−2(˜ c2 ∧ ˜c3)[ xρρ 1+r1 ∧ yr2+ρ+ε], 0 < x, y ≤ 1. (3.79) By (3.74) and (3.76), there is a constant 0 < c 2 ≤ c0 ∧ c1 such that ˜c3yr2+ε+1 = ˜c3yr2+ε+1 −δ(ρ1−1+ θ1)yδ(ρ1−1+ θ1) ≥ ˜c3yr2+ε+1 −δ(ρ1−1+ θ1)−κ1 (x + yδ)ρ1−1+ θ1 yκ1
+
+≥ 2a1ρ1xθ1 yκ1 (x + yδ)ρ1−1, 0 < y ≤ c2. (3.80) Similarly, by (3.74), (3.75) and (3.77), there is a constant 0 < c 3 ≤ c2 such that for all 0 <x, y ≤ c3
+
+˜c3yr2+ε+1 (x + yδ)2−ρ1 ≥ ˜c3yr2+ε+1 −θ2 yθ2 xκ2 (x + yδ)2−ρ1−κ2
+
+≥ ˜c3yr2+ε+1 −θ2 yθ2 xκ2 yδ(2 −ρ1−κ2) = ˜ c3yr2+ε+1 −θ2−δκ 2 yθ2 xκ2 yδ(2 −ρ1)
+
+≥ 4a221−ρ1+θ2/δ xκ2 yδ(2 −ρ1+θ2/δ )
+
+and ˜c2[xr11 + ( x + yδ)2−α1 xr12 ] ≥ ˜c2xr1+2 = ˜ c2xr1+2 −(κ2+2 −ρ1+θ2/δ )xκ2 x2−ρ1+θ2/δ 
+
+≥ 4a221−ρ1+θ2/δ xκ2 x2−ρ1+θ2/δ .
+
+Thus, by Lemma 3.1(ii) again, 
+
+I1(x, y )( x + yδ)2−ρ1 ≥ 4a221−ρ1+θ2/δ xκ2 x2−ρ1+θ2/δ + 4 a221−ρ1+θ2/δ xκ2 yδ(2 −ρ1+θ2/δ )
+
+≥ 4a2xκ2 (x + yδ)2−ρ1+θ2/δ ≥ 4a2yθ2 xκ2 (x + yδ)2−ρ1 , 0 < x, y ≤ c3. (3.81) Combining (3.80) and (3.81) we get 2 −1I1(x, y ) ≥ I2(x, y ) for all 0 < x, y ≤ c3, which together with Lemma 3.15 and (3.79) implies 
+
+Lh(x, y ) ≥ 3ρ−12ρ1−3(˜ c2 ∧ ˜c3)[ xρρ 1+r1 ∧ yr2+ρ+ε] − b22 ˜c1yr22 , 0 < x, y ≤ c3.
+
+By (3.78), there are constants C > 0 and 0 < c ≤ c3 such that Lh(x, y ) ≥ C for all 0 < x, y ≤ c.
+
+2
+
+In the following we introduce the key test function h and the estimate on Lh under the assumptions of Theorem 1.10(iii). 
+
+Lemma 3.16 Recall the function ˜h defined by (3.51) for 0 < ε < 2−1 ∧(r2 −1−κ1)∧(r1 −1−κ2).For θ1, θ 2 > 0 let ˆhθ1,θ 2 (x, y ) := x1−θ1 +y1−θ2 ; for θ1 > 0 and θ2 = 0 let ˆhθ1,0(x, y ) := x1−θ1 +˜h(y);for θ1 = 0 and θ2 > 0 let ˆh0,θ 2 (x, y ) := y1−θ2 + ˜h(x); for θ1 = θ2 = 0 let ˆh0,0(x, y ) := ˜h(x) + ˜h(y).For 0 < ρ < 1 let h(x, y ) := −ˆhθ1,θ 2 (x, y )ρ. Then, under the assumptions of Theorem 1.10(iii), there are constants C, c, ε > 0 such that Lh(x, y ) ≥ C for all 0 < x, y ≤ c.
+
+Proof. The proof is similar to those of Lemmas 3.10 and 3.12. We leave the details to interested readers. 2
+
+Now we are ready to complete the proofs of Theorems 1.10 and 1.11. 
+
+Proof of Theorem 1.10. Under the assumptions in Theorem 1.10(i), there are constants ρ, ρ 1, ρ 2
+
+determined in Lemma 3.10 and let the function h be defined by (3.36). Under the assumptions 31 of Theorem 1.10(ii), let h be the function defined in Lemmas 3.12 and 3.14. For the assumptions of Theorem 1.10(iii), let the function h be determined in Lemma 3.16. Let the constants C, c > 0be the constants determined in Lemmas 3.10, 3.12, 3.14 and 3.16. Set 
+
+g(x, y ) := |h(c, 0) | ∧ | h(0 , c )| + h(x, y ), x, y > 0. (3.82) Then the condition (i) of Proposition 2.2 is obvious and g(x, y ) ≤ 0 for all x ≥ c or y ≥ c. By Lemma 3.10, 3.12, 3.14 and 3.16, for all 0 < x, y ≤ c,
+
+Lg(x, y ) ≥ C ≥ C[|h(c, 0) | ∧ | h(0 , c )|]−1g(x, y ).
+
+Then by Proposition 2.2, one gets P{τ0 < ∞} ≥ g(X0, Y 0)[ |h(c, 0) | ∧ | h(0 , c )|]−1 for all small enough X0, Y 0 > 0. For general, X0, Y 0 > 0, applying the strong Markov property and the same arguments at the end of the proof of [34, Theorem 1.3] we conclude the proof. 2
+
+Proof of Theorem 1.11. Under the assumptions, let ρ, ρ 1, ρ 2, δ 0 be the constants given in Lemma 3.11 and h := ˜h be the function given by (3.49). By the same arguments as in the proof of Theorem 1.10, one completes the proof. 2
+
+Remark 3.17 By the proofs of Theorems 1.7, 1.10 and 1.11, there are constants C, c > 0 such that P{τ0 < ∞} ≥ C for all 0 < X 0, Y 0 ≤ c under the assumptions in Theorems 1.7, 1.10 and 1.11. 
+
+# References 
+
+[1] Bai, L. and Yang, X. (2024): Boundary behaviors for a continuous-state nonlinear Neveu’s branching process. Acta Math. Sin. (Engl. Ser.) 40 , 2005–2016. [2] Barczy, M., Li, Z. and Pap, G. (2015): Stochastic differential equation with jumps for multi-type continuous state and continuous time branching processes with immigration. ALEA, Lat. Am. J. Probab. Math. Stat. 12 , 129–169. [3] Bao, J., Mao, X., Yin, G. and Yuan C. (2011): Competitive Lotka-Volterra population dynamics with jumps. Nonlinear Anal. 74 . 6601–6616. [4] Bao, J. and Shao, J. (2016): Permanence and extinction of regime-switching predator-prey models. SIAM J. Math. Anal. 48 , 725–739. [5] Berestycki J, D¨ oring L, Mytnik, L. and Zambotti, L. (2015): Hitting properties and non-uniqueness for SDEs driven by stable processes. Stochastic Process. Appl. 125 , 918–940. [6] Cattiaux, P. and M´ el´ eard, S. (2010): Competitive or weak cooperative stochastic Lotka-Volterra systems conditioned on non-extinction. J. Math. Biol. 6, 797–829. [7] Chen, M. (1986a): Couplings of jump processes. Acta Math. Sinica, New Series. 2, 121–136. [8] Chen, M. (1986b): Jump Processes and Interacting Particle Systems (in Chinese). Beijing Normal Univ. Press. [9] Chen, M. (2004): From Markov Chains to Non-Equilibrium Particle Systems . Second ed., World Scientific. 32 [10] Du, N, Dang, N. and Yin, G. (2016): Conditions for permanence and ergodicity of certain stochastic predator-prey models. J. Appl. Probab. 53 , 187–202. [11] Evans, S. N., Hening, A. and Schreiber, S. (2015): Protected polymorphisms and evolu-tionary stability of patch-selection strategies in stochastic environents. J. Math. Biol. 71 ,325–359. [12] Fang, R. and Li, Z. (2022): Construction of continuous-state branching processes in varying environments. Ann. Appl. Probab . 32 , 3645–3673. [13] Grey, D. R. (1974): Asymptotic behaviour of continuous time, continuous state-space branching processes. J. Appl. Probab. 11 , 669–677. [14] Kyprianou, A. (2006): Introductory Lectures on Fluctuations of L´ evy Processes with Appli-cations. Universitext. Springer-Verlag, Berlin. [15] Lambert, A. (2005): The branching process with logistic growth. Ann. Appl. Probab. 15 ,1506–1535. [16] Li, P.-S. (2019): A continuous-state polynomial branching process. Stochastic Process. Appl. 
+
+129 , 2941–2967. [17] Li, P.-S. and Wang, J. (2020): Exponential ergodicity for general continuous-state nonlinear branching processes. Electron. J. Probab. 25 , 1–25. [18] Li, P.-S., Li, Z., Wang, J. and Zhou, X. (2025): Exponential ergodicity of branching pro-cesses with immigration and competition. Ann. Inst. H. Poincar´ e Probab. Statist. 61 , 350– 384. [19] Li, P.-S., Yang, X. and Zhou, X. (2019): A general continuous-state nonlinear branching process. Ann. Appl. Probab. 29 , 2523-2555. [20] Li, Y. (2006): On a continuous-state population-size-dependent branching process and its extinction. J. Appl. Probab. 43 , 195–207. [21] Li, Y. (2009): A weak limit theorem for generalized Jiˇ rina processes. J. Appl. Probab. 46 ,453–462. [22] Li, Z. (2011): Measure-Valued Branching Markov Processes. Springer, Berlin. [23] Li, Z. (2020): Continuous-state branching processes with immigration . A Chapter in: From Probability to Finance, pp.1-69, edited by Y. Jiao. Mathematical Lectures from Peking University. Springer, Singapore. [24] Li, Z. and Zhang, J. (2026): Two-type continuous-state branching processes in varying environments. Statist. Probab. Lett. 233 , 110669. [25] Li, Z. and Zhang, J. (2025): Stochastic equations for two-type continuous-state branching processes in varying environments. Discrete Contin. Dyn. Syst. Ser. S. 18 , 2678–2701. [26] Ma, R. (2013): Stochastic equations for two-type continuous-state branching processes with immigration. Acta Math. Sin. (Engl. Ser.) . 29 , 287–294. [27] Ma, R. and Zhou, X. (2024): Explosion of continuous-state branching processes with com-petition in L´ evy environment. J. Appl. Probab. 61 , (2024), 68–81. 33 [28] Ma, S., Yang, X. and Zhou, X. (2021): Boundary behaviors for a class of continuous-state nonlinear branching processes in critical cases. Electron. Commun. Probab. 26 (6), 1–10. [29] Marguet, A. and Smadi, C. (2021): Long time behaviour of continuous-state nonlinear branching processes with catastrophes. Electron. J. Probab. 26 , 1–32. [30] Meyn, S. P. and Tweedie, R. L. (1993): Stability of Markovian processes. III. Foster-Lyapunov criteria for continuous-time processes. Adv. in Appl. Probab. 25 , 518–548. [31] Pardoux, E. (2016): Probabilistic Models of Population Evolution: Scaling Limits, Genealo-gies and Interactions . Springer, Heidelberg. [32] Ren, Y., Xiong, J., Yang, X. and Zhou, X. (2022): On the extinction-extinguishing di-chotomy for a stochastic Lotka-Volterra type population dynamical system. Stochastic Pro-cess. Appl. 150 , 50-90. [33] Watanabe, S. (1969): On two dimensional Markov processes with branching property. 
+
+Trans. Amer. Math. Soc . 136 , 447–466. [34] Xiong, J., Yang, X. and Zhou, X. (2026): Extinction behaviour for competing continuous-state population dynamics. Stochastic Process. Appl. 196 , 104928. 34
