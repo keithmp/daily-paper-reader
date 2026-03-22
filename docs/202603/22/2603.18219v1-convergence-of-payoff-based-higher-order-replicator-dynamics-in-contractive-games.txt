@@ -1,0 +1,607 @@
+Title: Convergence of Payoff-Based Higher-Order Replicator Dynamics in Contractive Games
+
+URL Source: https://arxiv.org/pdf/2603.18219v1
+
+Published Time: Fri, 20 Mar 2026 00:13:48 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+> IEEE TRANSACTIONS AND JOURNALS TEMPLATE 1
+
+# Convergence of Payoff-Based Higher-Order Replicator Dynamics in Contractive Games 
+
+Hassan Abdelraouf, Vijay Gupta, and Jeff S. Shamma 
+
+Abstract — We study the convergence properties of a payoff-based higher-order version of replicator dynamics, a widely studied model in evolutionary dynamics and game-theoretic learning, in contractive games. Recent work has introduced a control-theoretic perspective for analyzing the convergence of learning dynamics through passivity the-ory, leading to a classification of learning dynamics based on the passivity notion they satisfy, such as δ-passivity, equilibrium-independent passivity, and incremental passiv-ity. We leverage this framework for the study of higher-order replicator dynamics for contractive games, which form the complement of passive learning dynamics. Stan-dard replicator dynamics can be represented as a cascade interconnection between an integrator and the softmax mapping. Payoff-based higher-order replicator dynamics include a linear time-invariant (LTI) system in parallel with the existing integrator. First, we show that if this added system is strictly passive and asymptotically stable, then the resulting learning dynamics converge locally to the Nash equilibrium in contractive games. Second, we es-tablish global convergence properties using incremental stability analysis for the special case of symmetric matrix contractive games. 
+
+Index Terms — Replicator dynamics, passivity, incremen-tal stability, learning in games. 
+
+I. I NTRODUCTION 
+
+Population games provide a mathematical framework for modeling strategic interactions in large populations of agents, where the payoff of each strategy depends on the overall distribution of strategies in the population [1]. The population state is represented by a point in the probability simplex whose components denote the fractions of agents selecting each strategy. A payoff function assigns rewards to these strategies based on the current population composition, while evolutionary or learning dynamics describe how agents revise their strategies in response to observed payoffs. The interaction between the learning dynamics, which map payoffs to strate-gies, and the game, which maps strategies to payoffs, naturally forms a dynamical system whose trajectories characterize the evolution of the population state. A central question in this framework is whether these dynamics converge to equilibrium concepts such as Nash equilibria. 
+
+Hassan Abdelraouf is with the School of Electrical and Computer Engineering, Purdue University, USA. (e-mail: abdelra5@purdue.edu) Vijay Gupta is with the School of Electrical and Computer Engineer-ing, Purdue University, USA. (e-mail: gupta869@purdue.edu) Jeff S. Shamma is with the Department of Industrial and Enterprise Systems Engineering, Grainger College of Engineering, University of Illinois at Urbana-Champaign, USA. (e-mail: jshamma@illinois.edu) 
+
+This interaction can be interpreted as a feedback intercon-nection between the learning dynamics and the game, enabling the use of control-theoretic tools to analyze convergence properties. In particular, passivity-based methods have been used to study convergence of learning dynamics in population games. In [2], the notion of δ-passivity was introduced to analyze convergence in contractive games. However, standard replicator dynamics (RD) fails to converge in certain games such as zero-sum games. To address this issue, [3] introduced the exponential RD and showed that it satisfies equilibrium-independent passivity. Building on these ideas, [4] developed a passivity-based classification of learning dynamics based on the passiv-ity notions they satisfy, including δ-passivity, equilibrium-independent passivity, and incremental passivity, and used this framework to study convergence in contractive games. In a related direction, [5] employed counterclockwise dissipativity to analyze convergence in potential games. These works focus primarily on standard (first-order) learning dynamics. Higher-order RD were studied in [6], which develops a general framework for higher-order evolutionary dynamics in games. Higher-order variants of RD have also been proposed to improve convergence properties. In particular, [7] introduced anticipatory RD, and [8] proposed strategic higher-order RD to improve convergence in zero-sum games. Motivated by these developments, this paper studies the convergence properties of payoff-based higher-order replicator dynamics in contractive games. The main contributions of this paper are twofold. First, we show that payoff-based higher-order replicator dynamics—characterized by the cascade inter-connection between the LTI system ((1 /s ) + h(s)) In and the softmax mapping—converge locally to the Nash equilibrium in contractive games when h(s) is strictly passive. Second, using incremental stability analysis, we study a broader class of learning dynamics characterized by the cascade interconnec-tion between G(s)In and the softmax mapping in symmetric matrix contractive games. We show that when these learning dynamics are implemented in a strictly contractive game, the feedback interconnection between the learning dynamics and the game is incrementally asymptotically stable if G(s)
+
+is passive and exponentially incrementally stable if G(s) is strictly passive. Under the Nash stationarity assumption, this implies asymptotic convergence to the Nash equilibrium in the first case and exponential convergence in the second.  
+
+> arXiv:2603.18219v1 [eess.SY] 18 Mar 2026 2IEEE TRANSACTIONS AND JOURNALS TEMPLATE
+
+II. N OTATIONS 
+
+Let R+ denote the set of nonnegative real numbers. For a vector x ∈ Rn, xi denotes its i-th component and diag( x)
+
+denotes the diagonal matrix whose diagonal entries are given by x. The identity matrix of dimension n is denoted by In.The vectors of all ones and all zeros in Rn are denoted by 1n
+
+and 0n, respectively. For x ∈ Rn, ∥x∥ denotes the Euclidean norm. For matrices A and B, A ⊗ B denotes their Kronecker product. The probability simplex in Rn is defined as ∆n =
+
+{x ∈ Rn : xi ≥ 0, i = 1 , . . . , n, 1⊤ 
+
+> n
+
+x = 1 }. Its interior is denoted by Int(∆ n). The tangent space of Int (∆ n) is Z =
+
+{z ∈ Rn : 1⊤ 
+
+> n
+
+z = 0 }. Let N ∈ Rn×(n−1) be a matrix whose columns form an orthonormal basis of Z, i.e., N ⊤N = In−1
+
+and 1⊤ 
+
+> n
+
+N = 0 . The softmax mapping σ : Rn → Int(∆ n) is defined by 
+
+σ(x)i = exp( xi)
+
+Pnj=1 exp( xj )
+
+III. P RELIMINARIES 
+
+A. Replicator dynamics and its higher-order variants 
+
+Replicator dynamics (RD) is a widely studied evolutionary dynamics in population games and learning in games [9], [10]. In RD, the dynamics are given by 
+
+˙z = p, x = σ(z), (1) where p(t) ∈ Rn is the payoff vector, z ∈ Rn is the score vector, and x ∈ ∆n is the resulting mixed strategy. Thus, RD can be viewed as the cascade interconnection between the integrator (1 /s )In and the softmax mapping σ(·).Motivated by this representation, we consider payoff-based higher-order variants of RD obtained by augmenting the score dynamics with an additional linear time-invariant (LTI) system driven by the payoff signal. Specifically, we consider dynamics of the form 
+
+˙r = p, 
+
+˙xh = ( Ah ⊗ In)xh + ( Bh ⊗ In)p, m = ( Ch ⊗ In)xh,z = r + m, x = σ(z),
+
+(2) where Ah ∈ Rm×m, Bh ∈ Rm×1, and Ch ∈ R1×m define a realization of h(s) = Ch(sI m − Ah)−1Bh.. Here r ∈ Rn is the standard RD score, xh ∈ Rmn is the internal state of the added LTI system, and m ∈ Rn is the resulting prediction signal. Equivalently, (2) is the cascade interconnection of 
+
+G(s) = ((1 /s ) + h(s)) In with the softmax mapping σ(·).This class includes anticipatory variants of RD [7]. We refer to these dynamics as payoff-based because the additional LTI subsystem is driven by the payoff signal. This differs from the strategic higher-order RD introduced in [8], where the additional subsystem is driven by the strategy signal. 
+
+B. Population Games and Nash Stationarity 
+
+We consider single-population games [1], where the popu-lation state is x ∈ ∆n and the payoff mapping is given by 
+
+p = F (x), F : ∆ n → Rn.
+
+Definition 1 (Nash Equilibrium) . A state x∗ ∈ ∆n is a Nash equilibrium of the population game F if 
+
+x∗⊤ F (x∗) ≥ z⊤F (x∗) ∀z ∈ ∆n.
+
+The set of Nash equilibria is denoted by NE( F ).
+
+In this paper, we focus on contractive games. 
+
+Definition 2 (Contractive Games [11]) . A population game F
+
+is called contractive if (x − y)⊤(F (x) − F (y)) ≤ 0 ∀x, y ∈
+
+∆n. If equality holds only when x = y, the game is said to be strictly contractive .
+
+Contractive games are also referred to as stable games [11]. When F is continuously differentiable, contractiveness admits the following differential characterization. 
+
+Theorem 1 (Stable Games [11]) . If F is continuously dif-ferentiable, then F is contractive if and only if its Jacobian satisfies z⊤∇F (x)z ≤ 0 ∀x ∈ ∆n, z ∈ Z .
+
+In a strictly contractive game, the Nash equilibrium is unique [12]. 
+
+Definition 3 (Nash Stationarity [1]) . A learning dynamics model ˙x = V(x, F (x)) satisfies Nash stationarity if 
+
+V(x∗, F (x∗)) = 0 ⇐⇒ x∗ ∈ NE( F ).
+
+Standard RD satisfies Nash stationarity in the interior of the simplex [13]. In particular, if x∗ ∈ Int(∆ n) is a Nash equi-librium of the population game F , then F (x∗) ∈ span( 1n)
+
+[1]. The payoff-based higher-order RD (2) also satisfies Nash stationarity on Int(∆ n) when the transfer function h(s) is asymptotically stable, as stated in the following lemma. 
+
+Lemma 1. Consider the payoff-based higher-order replicator dynamics (2) . If the transfer function h(s) = Ch(sI m −
+
+Ah)−1Bh is asymptotically stable, then the induced strategy dynamics satisfy Nash stationarity on Int(∆ n).
+
+The proof is straightforward and omitted for brevity. 
+
+C. Passivity and incremental stability 
+
+In this subsection, we recall the notions of passivity and incremental stability used throughout the paper. Consider the nonlinear system 
+
+˙x = f (x, u ),y = h(x, u ), (3) where x ∈ Rn is the state, u ∈ Rm is the input, and y ∈ Rm
+
+is the output. 
+
+Definition 4 (Passivity) . The system (3) is passive if there exists a continuously differentiable storage function V : Rn →
+
+R+ such that ˙V (x) ≤ u⊤y along all trajectories. 
+
+For an LTI system ˙x = Ax + Bu, y = Cx + Du, with transfer function H(s) = C(sI − A)−1B + D, passivity is equivalent to H(jω ) + H(jω )∗ ⪰ 0 ∀ ω ∈ R. The system is strictly passive if H(jω ) + H(jω )∗ ⪰ δI ∀ ω ∈ R for some δ > 0. In the SISO case, passivity condition reduces AUTHOR et al. : TITLE 3
+
+to Re {H(jω )} ≥ 0, while strict passivity corresponds to 
+
+Re {H(jω )} > 0 for all ω.
+
+Definition 5 (Incremental Stability [14]) . Consider the au-tonomous system ˙x = f (x), x ∈ C, where C ⊆ Rn is a forward-invariant set. The system is incrementally stable 
+
+if there exists a class K function α such that for any two solutions x(t; x0) and y(t; y0) with initial conditions x0, y 0 ∈C,
+
+∥x(t; x0) − y(t; y0)∥≤ α(∥x0 − y0∥).
+
+It is incrementally asymptotically stable if it is incrementally stable and 
+
+lim 
+
+> t→∞
+
+∥x(t; x0) − y(t; y0)∥= 0 .
+
+It is exponentially incrementally stable if there exist con-stants M > 0 and λ > 0 such that 
+
+∥x(t; x0) − y(t; y0)∥≤ M e −λt ∥x0 − y0∥.
+
+Since the learning dynamics studied in this paper are char-acterized by a cascade interconnection between an LTI system and the softmax mapping, we recall two properties of σ used in the analysis [15]. Its Jacobian is ∇σ(v) = diag( σ(v)) −
+
+σ(v)σ(v)⊤, which is symmetric positive semidefinite, with 
+
+w⊤∇σ(v)w ≥ 0 for all w ∈ Rn, and equality if and only if w ∈ span {1n}. Moreover, σ(v + c 1n) = σ(v), ∀c ∈ R.
+
+The following lemma will be used in the convergence analysis for matrix contractive games. 
+
+Lemma 2. Let N ∈ Rn×(n−1) be a matrix whose columns form an orthonormal basis of the tangent space Z. Let F ∈
+
+Rn×n be symmetric. 
+
+1) If z⊤F z > 0 for all z ∈ Z \ { 0}, then N ⊤F N ≻ 0.
+
+2) If z⊤F z ≥ 0 for all z ∈ Z , then N ⊤F N ⪰ 0.Proof. Let y ∈ Rn−1 and define z = N y . Since the columns of N span Z, we have z ∈ Z and y̸ = 0 implies z̸ = 0 . Then 
+
+y⊤(N ⊤F N )y = ( N y )⊤F (N y ) = z⊤F z. The result follows directly from the definiteness of F on Z.
+
+IV. L OCAL CONVERGENCE OF HIGHER -O RDER 
+
+REPLICATOR DYNAMICS IN CONTRACTIVE GAMES 
+
+We study the local stability of payoff-based higher-order replicator dynamics when implemented in contractive games. The interaction between the learning dynamics and the game forms a feedback interconnection, where the learning dynam-ics maps payoffs to strategies and the game maps strategies to payoffs. 
+
+Theorem 2. Consider the payoff-based higher-order repli-cator dynamics (2) implemented in a contractive game. Let 
+
+x∗ ∈ Int(∆ n) be an isolated mixed-strategy Nash equilibrium. If the transfer function h(s) = Ch(sI m − Ah)−1Bh is strictly passive, then x∗ is locally asymptotically stable. Proof. Consider the payoff-based higher-order replicator dy-namics (2) interconnected with the game p = F (x). Since the dynamics satisfies Nash stationarity in Int(∆ n), any Nash equilibrium x∗ ∈ Int(∆ n) satisfies p∗ = F (x∗) = α1n
+
+for some α ∈ R [1]. Using the shift-invariance property of the softmax mapping, the equilibrium signals can be written as r∗(t) = r0 + αt 1n, x∗ 
+
+> h
+
+= −α(A−1 
+
+> h
+
+Bh) ⊗ 1n, m ∗ =
+
+−α(ChA−1 
+
+> h
+
+Bh)1n, x ∗ = σ(r0). Choosing r(0) = log x∗ +
+
+c1n for some c ∈ R ensures x∗ = σ(r0). Linearizing the closed-loop dynamics around the equilibrium trajectroy yields 
+
+˙∆r = ∆ p, 
+
+˙∆xh = ( Ah ⊗ In)∆ xh + ( Bh ⊗ In)∆ p, 
+
+∆m = ( Ch ⊗ In)∆ xh,
+
+∆x = Q(∆ r + ∆ m),
+
+∆p = ∇F (x∗) ∆ x, 
+
+where Q = ∇σ(r0) = diag( x∗) − x∗x∗⊤ . Admissible deviations of the strategy lie in the tangent space Z. Let ∆r =
+
+N δr, ∆p = N δp, ∆x = N δx, ∆m = N δm, ∆xh =
+
+N δx h, where N = Im ⊗ N . Substituting into the linearized dynamics gives 
+
+˙δr = δp, ˜Ah = Ah ⊗ In−1,
+
+˙δx h = ˜Ahδx h + ˜Bhδp, ˜Bh = Bh ⊗ In−1,δm = ˜Chδx h, ˜Ch = Ch ⊗ In−1,δx = ˜Q(δr + δm ), ˜Q = N ⊤QN, δp = ˜F δx, ˜F = N ⊤∇F (x∗)N. 
+
+Since Q ⪰ 0 and ker( Q) = span( 1n), Q is positive definite on 
+
+Z. Hence, by Lemma 2, ˜Q ≻ 0. Define δx I = ˜Q δr, δx P =˜Q δm, so that δx = δx I + δx P . The resulting linearized dynamics can be interpreted as a feedback interconnection be-tween the game ˜F and a linear system composed of the parallel connection of the integrator subsystem and the auxiliary LTI subsystem (see Fig. 1). 1   
+
+> 𝑠 𝐼 𝑛 −1෨𝑄
+> ෨𝑄 ℎ(𝑠 )𝐼 𝑛 −1
+> ෨𝐹
+> 𝛿 𝑝 𝛿 𝑥 𝐼
+> 𝛿 𝑥 𝑃
+> +
+> 𝛿 𝑟
+> 𝛿 𝑚
+> 𝛿 𝑥
+
+Fig. 1 : Block diagram of the linearized local dynamics. The auxiliary subsystem has transfer function HQ(s) = 
+
+h(s) ˜Q. Since h(s) is strictly passive and ˜Q ≻ 0, HQ(jω ) + 
+
+HQ(jω )∗ = 2 Re( h(jω )) ˜Q. Since Re( h(jω )) ≥ α > 0,
+
+λmin (HQ(jω ) + H∗
+
+> Q
+
+(jω )) ≥ 2αλ min ( ˜Q) = δ > 0. Thus the auxiliary subsystem is strictly passive. By the KYP lemma [16, Lemma 6.3], there exist matrices P ≻ 0, L, and ϵ > 0
+
+satisfying P ˜Ah + ˜A⊤ 
+
+> h
+
+P = −L⊤L − ϵP, P ˜Bh = ˜C⊤ 
+
+> h
+
+˜Q. 
+
+Consider the Lyapunov function candidate 
+
+V (δr, δx h) = 12 δr ⊤ ˜Q δr + 12 δx ⊤ 
+
+> h
+
+P δx h.
+
+Its derivative along trajectories is 
+
+˙V = δp ⊤ ˜Q δr + δx ⊤ 
+
+> h
+
+(P ˜Ah + ˜A⊤ 
+
+> h
+
+P )δx h + δx ⊤ 
+
+> h
+
+˜C⊤ 
+
+> h
+
+˜Q δp 
+
+= δp ⊤δx − δx ⊤ 
+
+> h
+
+L⊤L δx h − ϵ δx ⊤ 
+
+> h
+
+P δx h.
+
+Using δp = ˜F δx and contractiveness of the game, δx ⊤ ˜F δx ≤
+
+0, which yields ˙V ≤ − ϵ δx ⊤ 
+
+> h
+
+P δx h ≤ 0. Hence ˙V = 0 only when δx h = 0m(n−1) . By LaSalle’s invariance principle, the 4 IEEE TRANSACTIONS AND JOURNALS TEMPLATE 
+
+largest invariant set is (δr, 0m(n−1) ). On this set, δp = 0n−1
+
+and δx = 0n−1, which implies δr = 0n−1. Therefore x∗ is locally asymptotically stable. 
+
+Example 1. Consider the Rock–Paper–Scissors (RPS) game, 
+
+F =
+
+ 0 −1 11 0 −1
+
+−1 1 0
+
+ .
+
+The game has a unique Nash equilibrium x∗ =(1 /3, 1/3, 1/3) . Moreover, it is lossless since z⊤F z = 0 for all 
+
+z ∈ Z . It is well known that the standard replicator dynamics fails to converge in the RPS game [7]. In contrast, the payoff-based higher-order replicator dynamics (2) converges locally to the Nash equilibrium for any strictly passive h(s). For example, with h(s) = 2s + 3 
+
+s2 + 3 s + 2 , Fig. 2 shows that the Nash equilibrium is locally asymptotically stable. 
+
+Fig. 2 : Local convergence of payoff-based higher-order repli-cator dynamics for h(s) = 2s + 3 
+
+s2 + 3 s + 2 in the RPS game. 
+
+V. G LOBAL CONVERGENCE OF HIGHER -ORDER REPLICATOR DYNAMICS IN MATRIX CONTRACTIVE GAMES 
+
+In this section, we study the convergence properties of a broad class of learning dynamics characterized by a cascade interconnection between the diagonal transfer function matrix 
+
+G(s) = g(s)In, where g(s) is passive, and the softmax mapping σ(·). This class includes several learning models such as the payoff-based higher-order replicator dynamics (2), where g(s) = (1 /s ) + h(s), replicator dynamics under perturbed or delayed payoff observations, and exponential replicator dynamics [3]. We first establish a general result that relates the stability of the variational dynamics of a nonlinear system to incremental stability of the nonlinear flow. In particular, we show that if a common quadratic Lyapunov function certifies stability of all trajectory linearizations, then the nonlinear system is globally incrementally stable. 
+
+Theorem 3. Consider the nonlinear system ˙x = f (x), x ∈
+
+Rn, with Jacobian A(x) = ∇f (x). Suppose there exists a symmetric matrix P ≻ 0 such that one of the following holds: 
+
+1) Exponential case. If there exists Q ≻ 0 satisfying 
+
+P A (x) + A(x)⊤P ⪯ − Q, ∀x ∈ Rn, (4) 
+
+then the system is globally exponentially incrementally stable. 
+
+2) Asymptotic case. If there exists a continuous matrix function Q : Rn → Sn 
+
+> +
+
+such that 
+
+P A (x) + A(x)⊤P ⪯ − Q(x), ∀x ∈ Rn, (5) 
+
+then the system is globally incrementally asymptotically stable, provided the largest invariant set contained in 
+
+E =
+
+n
+
+(y, e ) : e⊤ Z 10
+
+Q(y + θe ) dθ 
+
+
+
+e = 0 
+
+o
+
+is {(y, e ) : e = 0 }.If an equilibrium x⋆ exists, then it inherits the corresponding global stability property. Proof. (1) Exponential case. If (4) holds, then the system is contracting with respect to the constant metric P ≻ 0. Hence global exponential incremental stability follows from Theorem 2 in [17]. Moreover, if an equilibrium x⋆ exists, then setting 
+
+y(t) ≡ x⋆, which is a solution of the system, implies global exponential stability of x⋆.
+
+(2) Asymptotic case. Let x(·) and y(·) be two solutions and define the error e = x − y. Using the mean-value form of the Jacobian, 
+
+˙e = f (x) − f (y) = bA(t)e, bA(t) = 
+
+Z 10
+
+A(y + θe ) dθ. 
+
+Consider the Lyapunov function V (e) = e⊤P e, where P ≻ 0.Then 
+
+˙V = e⊤(P bA + bA⊤P )e
+
+= e⊤
+
+Z 10
+
+(P A (y + θe ) + A(y + θe )⊤P ) dθ 
+
+
+
+e. 
+
+By (5), 
+
+P bA + bA⊤P ⪯ − 
+
+Z 10
+
+Q(y + θe ) dθ. 
+
+Hence 
+
+˙V ≤ − e⊤
+
+Z 10
+
+Q(y + θe ) dθ 
+
+
+
+e ≤ 0.
+
+Therefore V is nonincreasing. The set where ˙V = 0 is 
+
+E =
+
+n
+
+(y, e ) : e⊤ Z 10
+
+Q(y + θe ) dθ 
+
+
+
+e = 0 
+
+o
+
+.
+
+By LaSalle’s invariance principle, trajectories converge to the largest invariant subset of E. By assumption, this invariant set is {(y, e ) : e = 0 }, so e(t) → 0. Thus the system is globally incrementally asymptotically stable. Finally, if an equilibrium 
+
+x⋆ exists, taking y(t) ≡ x⋆ gives global asymptotic stability of x⋆.Theorem 3 characterizes incremental stability of a nonlinear system in terms of a common quadratic Lyapunov function for all trajectory linearizations. We now apply this result to establish global convergence of the learning dynamics obtained by connecting G(s)In with σ(·) in symmetric matrix contractive games (see Fig. 3). AUTHOR et al. : TITLE 5𝜎 (⋅)𝑔 𝑠 𝐼 𝑛  
+
+> 𝐹 𝑥 𝑝
+> 𝑧
+
+Fig. 3 : Implementation of generalized RD in a matrix game. 
+
+Theorem 4. Consider the learning dynamics obtained from the cascade interconnection of a transfer function G(s) = 
+
+g(s)In with the softmax mapping σ(·), and suppose the dynamics satisfy Nash stationarity. When implemented in a symmetric matrix strictly contractive game 
+
+p = F x, F = F ⊤, z⊤F z < 0 ∀z ∈ Z \ { 0},
+
+the following hold: 
+
+1) If g(s) is passive, the unique Nash equilibrium is glob-ally asymptotically stable. 
+
+2) If g(s) is strictly passive, the the unique NE is globally exponentially stable. Proof. Let g(s) admit a state–space realization (A, B, C, D )
+
+with A ∈ Rm×m, B ∈ Rm×1, C ∈ R1×m. We take D = 0 to avoid direct feedthrough from p to z.*. The dynamics of G(s)
+
+are 
+
+˙ξ = ( A ⊗ In)ξ + ( B ⊗ In)p, z = ( C ⊗ In)ξ. 
+
+The closed-loop system is therefore 
+
+˙ξ = ( A ⊗ In)ξ + ( B ⊗ In)p, z = ( C ⊗ In)ξ, x = σ(z),p = F x. 
+
+Linearizing around a trajectory ( ¯ξ, ¯z, ¯x, ¯p) yields 
+
+∆ ˙ξ = ( A ⊗ In)∆ ξ + ( B ⊗ In)∆ p, 
+
+∆z = ( C ⊗ In)∆ ξ, 
+
+∆x = Q(¯ x)∆ z, 
+
+∆p = F ∆x, 
+
+where Q(¯ x) = diag(¯ x)− ¯x¯x⊤ is evaluated along the trajectory 
+
+¯x(t) and is therefore time-varying. Because admissible strategy deviations lie in the tangent space Z, write ∆x = N δx where 
+
+N ∈ Rn×(n−1) satisfies N ⊤N = In−1 and N ⊤1n = 0 .Define N = Im ⊗N and δξ = N ⊤∆ξ. The reduced dynamics become 
+
+δ ˙ξ = ˜A δξ + ˜B ˜F δx, ˜A = A ⊗ In−1,δz = ˜C δξ, ˜B = B ⊗ In−1,δx = ˜Q(¯ x) δz, ˜C = C ⊗ In−1,
+
+where ˜F = N ⊤F N, and ˜Q(¯ x) = N ⊤Q(¯ x)N. Since Q(¯ x) ⪰ 0
+
+and ker Q(¯ x) = span {1n}, Q(¯ x) is positive definite on Z.Hence Lemma 2 implies ˜Q(¯ x) ≻ 0. Similarly, strict contrac-tiveness of F yields ˜F ≺ 0. The resulting system can be interpreted as the negative-feedback interconnection between          
+
+> *If D̸= 0 , the output zdepends instantaneously on p, creating an algebraic loop because both Fand σ(·)are static maps.
+
+H(s) and ˜Q(¯ x) where H(s) = − ˜C(sI − ˜A)−1 ˜B ˜F = −g(s) ˜F
+
+as illustrated in Fig. 4. 𝐻 (𝑠 )  
+
+> ෨𝑄 (ҧ𝑥 )
+> 𝛿𝑧
+> 𝛿𝑥
+> −
+> 𝟎 (𝑛 −1)
+
+Fig. 4 : Block diagram representation of the linearized system. Since F is symmetric, it follows that 
+
+H(jω ) + H(jω )∗ = −2 Re( g(jω )) ˜F .     
+
+> a) Case 1: g(s)passive.:
+
+If g(s) is passive then 
+
+Re( g(jω )) ≥ 0. Because − ˜F ≻ 0, it follows that H(jω ) + 
+
+H(jω )∗ ⪰ 0, so H(s) is passive. By the positive real lemma [16, Lemma 6.2] there exists P ≻ 0 satisfying 
+
+P ˜A + ˜A⊤P ⪯ 0, −P ˜B ˜F = ˜C⊤.
+
+Consider V (δξ ) = 12 δξ ⊤P δξ . Along trajectories, 
+
+˙V = 12 δξ ⊤(P ˜A + ˜A⊤P )δξ − δξ ⊤ ˜C⊤δx ≤ − δz ⊤ ˜Q(¯ x)δz. 
+
+Since ˜Q(¯ x) ≻ 0, ˙V ≤ 0 with equality only when ˜Cδξ = 0 .Hence the set where ˙V = 0 is ker( ˜C). Because (A, C ) is observable, the lifted pair ( ˜A, ˜C) is also observable, implying that the largest invariant subset of ker( ˜C) is {0}. By LaSalle’s invariance principle, all trajectories converge to the origin, so every linearized LTV system is asymptotically stable. By Theorem 3, the nonlinear closed-loop system is globally in-crementally asymptotically stable. Under Nash stationarity and strict contractiveness, the unique Nash equilibrium is therefore globally asymptotically stable.    
+
+> b) Case 2: g(s)strictly passive.:
+
+If g(s) is strictly passive then Re( g(jω )) ≥ α > 0, implying 
+
+λmin (H(jω ) + H(jω )∗) ≥ 2αλ min (− ˜F ) > 0.
+
+Thus H(s) is strictly passive. By the KYP lemma there exists 
+
+P ≻ 0 such that 
+
+P ˜A + ˜A⊤P = −L⊤L − εP, −P ˜B ˜F = ˜C⊤.
+
+With V (δξ ) = 12 δξ ⊤P δξ ,
+
+˙V = − 12 ∥Lδξ ∥2− 12 ε δξ ⊤P δξ − δz ⊤ ˜Q(¯ x)δz ≤ − ε
+
+2 V. 
+
+Hence all linearizations are exponentially stable. Applying Theorem 3 yields global exponential incremental stability of the nonlinear system. By Nash stationarity and strict contrac-tiveness of the game, the unique Nash equilibrium is globally exponentially stable. 
+
+Remark 1. The asymptotic convergence result also holds when the game is contractive with a unique interior Nash equilibrium and g(s) is strictly passive. 
+
+Example 2 (Congestion game [18]) . Consider the congestion network shown in Fig. 5 with three routes O → A → D, O →
+
+B → D, and O → A → B → D. Let x = ( x1, x 2, x 3) ∈ ∆36 IEEE TRANSACTIONS AND JOURNALS TEMPLATE 
+
+denote the population state, where xi is the fraction of agents selecting route i. Each edge has latency equal to its total flow, except edge A → D, whose latency is twice the flow. The resulting route costs are 
+
+c(x) = 
+
+ 3x1 + x3
+
+2x2 + x3
+
+x1 + x2 + 3 x3
+
+ , p = −c(x) = −
+
+3 0 10 2 11 1 3
+
+| {z }
+
+> F
+
+x. 
+
+Since F is symmetric and negative definite on Z, the game is strictly contractive and admits a unique Nash equilibrium 
+
+x∗ =
+
+ 411 , 611 , 111 
+
+
+
+.OABDx1 + x3
+
+x2
+
+2x1
+
+x2 + x3
+
+> x3
+
+Fig. 5 : Congestion network 
+
+(a) G(s) = 2s2 + 3 .5s + 2 
+
+s3 + 3 s2 + 2 s In. (b) G(s) = 1
+
+s + 1 In.
+
+Fig. 6 : Convergence of learning dynamics obtained by cas-cading G(s) with σ(·) in the congestion game of Example 2. Fig. 6(a) illustrates convergence of the learning dynamics in the congestion game of Example 2, obtained by cascading 
+
+G(s) = 2s2+3 .5s+2  
+
+> s3+3 s2+2 s
+
+In with σ(·). Since G(s) is passive and the dynamics satisfy Nash stationarity on Int(∆ n) by Lemma 1, Theorem 4 implies that the closed-loop dynamics are incrementally asymptotically stable and the unique Nash equilibrium is globally asymptotically stable. Fig. 6(b) shows the exponential replicator dynamics (Ex-RD), corresponding to the cascade interconnection of the strictly passive transfer function 1/(s + 1) In with σ(·). In this case, Theorem 4 implies that the closed-loop dynamics are incrementally exponentially stable. However, since Ex-RD does not satisfy Nash stationarity, the dynamics converge exponentially to another equilibrium x† = σ(z∗), where z∗ =
+
+F σ (z∗).
+
+VI. C ONCLUSION 
+
+This paper studied the convergence properties of payoff-based higher-order replicator dynamics in contractive games from a control-theoretic perspective. We first showed that payoff-based higher-order replicator dynamics, characterized by the cascade interconnection between ((1 /s ) + h(s)) In and the softmax mapping, converge locally to the Nash equilibrium when h(s) is strictly passive. We then established global convergence results for a broader class of learning dynamics of the form G(s)In interconnected with the softmax mapping in symmetric strictly contractive matrix games. In particular, passivity of G(s) yields asymptotic convergence, while strict passivity yields exponential convergence. Future work will focus on extending the global convergence analysis to contrac-tive games beyond the symmetric matrix case and on studying robustness properties of higher-order replicator dynamics. 
+
+VII. R EFERENCES 
+
+[1] W. H. Sandholm, Population Games and Evolutionary Dynamics . MIT press, 2010. [2] M. J. Fox and J. S. Shamma, “Population games, stable games, and passivity,” Games , vol. 4, no. 4, pp. 561–583, 2013. [3] B. Gao and L. Pavel, “On passivity, reinforcement learning, and higher order learning in multiagent finite games,” IEEE Transactions on Auto-matic Control , vol. 66, no. 1, pp. 121–136, 2020. [4] H. Abdelraouf, G. Piliouras, and J. S. Shamma, “Passivity, no-regret, and convergent learning in contractive games,” in 2025 IEEE 64th Conference on Decision and Control (CDC) , pp. 4948–4954, IEEE, 2025. [5] N. C. Martins, J. Certório, and M. S. Hankins, “Counterclockwise dis-sipativity, potential games and evolutionary Nash equilibrium learning,” 
+
+IEEE Transactions on Automatic Control , 2025. [6] R. Laraki and P. Mertikopoulos, “Higher order game dynamics,” Journal of Economic Theory , vol. 148, no. 6, pp. 2666–2695, 2013. [7] G. Arslan and J. S. Shamma, “Anticipatory learning in general evolution-ary games,” in Proceedings of the 45th IEEE Conference on Decision and Control , pp. 6289–6294, IEEE, 2006. [8] B. Gao and L. Pavel, “Second-order mirror descent: Convergence in games beyond averaging and discounting,” IEEE Transactions on Automatic Control , 2023. [9] P. D. Taylor and L. B. Jonker, “Evolutionary stable strategies and game dynamics,” Mathematical Biosciences , vol. 40, no. 1-2, pp. 145–156, 1978. [10] P. Mertikopoulos and W. H. Sandholm, “Learning in games via re-inforcement and regularization,” Mathematics of Operations Research ,vol. 41, no. 4, pp. 1297–1324, 2016. [11] J. Hofbauer and W. H. Sandholm, “Stable games and their dynamics,” 
+
+Journal of Economic Theory , vol. 144, no. 4, pp. 1665–1693, 2009. [12] W. H. Sandholm, “Population games and deterministic evolutionary dynamics,” in Handbook of Game Theory with Economic Applications ,vol. 4, pp. 703–778, Elsevier, 2015. [13] W. H. Sandholm, “Pairwise comparison dynamics and evolutionary foundations for Nash equilibrium,” Games , vol. 1, no. 1, pp. 3–17, 2009. [14] F. Forni and R. Sepulchre, “A differential Lyapunov framework for contraction analysis,” IEEE Transactions on Automatic Control , vol. 59, no. 3, pp. 614–628, 2013. [15] B. Gao and L. Pavel, “On the properties of the softmax function with application in game theory and reinforcement learning,” arXiv preprint arXiv:1704.00805 , 2017. [16] H. K. Khalil, Nonlinear Systems . Upper Saddle River, NJ: Prentice Hall, 3 ed., 2002. [17] W. Lohmiller and J.-J. E. Slotine, “On contraction analysis for non-linear systems,” Automatica , vol. 34, no. 6, pp. 683–696, 1998. [18] S. Park and N. E. Leonard, “KL divergence regularized learning model for multi-agent decision making,” in 2021 American Control Conference (ACC) , pp. 4509–4514, IEEE, 2021.

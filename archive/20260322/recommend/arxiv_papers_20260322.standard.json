@@ -1,0 +1,679 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-22T20:02:07.347612+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 3,
+    "deep_cap": 8,
+    "deep_selected": 3,
+    "quick_candidates": 24,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.18505v1",
+      "title": "From Snapshots to Symphonies: The Evolution of Protein Prediction from Static Structures to Generative Dynamics and Multimodal Interactions",
+      "abstract": "The protein folding problem has been fundamentally transformed by artificial intelligence, evolving from static structure prediction toward the modeling of dynamic conformational ensembles and complex biomolecular interactions. This review systematically examines the paradigm shift in AI driven protein science across five interconnected dimensions: unified multimodal representations that integrate sequences, geometries, and textual knowledge; refinement of static prediction through MSA free architectures and all atom complex modeling; generative frameworks, including diffusion models and flow matching, that capture conformational distributions consistent with thermodynamic ensembles; prediction of heterogeneous interactions spanning protein ligand, protein nucleic acid, and protein protein complexes; and functional inference of fitness landscapes, mutational effects, and text guided property prediction. We critically analyze current bottlenecks, including data distribution biases, limited mechanistic interpretability, and the disconnect between geometric metrics and biophysical reality, while identifying future directions toward physically consistent generative models, multimodal foundation architectures, and experimental closed loop systems. This methodological transformation marks artificial intelligence's transition from a structural analysis tool into a universal simulator capable of understanding and ultimately rewriting the dynamic language of life.",
+      "authors": [
+        "Jingzhi Chen",
+        "Lijian Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-19T05:25:17+00:00",
+      "link": "https://arxiv.org/pdf/2603.18505v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI in genomics and protein evolution dynamics",
+      "llm_evidence_cn": "AI在基因组学与蛋白质演化动力学中的应用",
+      "llm_evidence": "AI在基因组学与蛋白质演化动力学中的应用",
+      "canonical_evidence": "AI在基因组学与蛋白质演化动力学中的应用",
+      "llm_tldr_en": "Reviews the evolution of AI in protein science, from static structure prediction to generative dynamics.",
+      "llm_tldr_cn": "综述了AI在蛋白质科学中的演进，从静态结构预测转向生成动力学和多模态交互。",
+      "llm_tldr": "综述了AI在蛋白质科学中的演进，从静态结构预测转向生成动力学和多模态交互。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.17754v1",
+      "title": "Slow evolution towards generalism in a model of variable dietary range",
+      "abstract": "Species sharing a habitat will co-evolve to make use of the available resources, as consumption is modulated by competition and negative feedback loops between consumers and resources. The dietary range of a given species determines the resources it has access to and thus the other species with which it competes. A narrow dietary range avoids competition at the cost of over-reliance on a small selection of resources; conversely a wide dietary range provides more alternatives but also more chance of competition with other species. Here, we investigate the evolution of dietary range within a mathematical model of niche formation. We find highly path dependent co-evolution dynamics characterised by long-lived quasi-stable states. Ultimately, stochastic effects drive the evolution of generalist diets, as we uncover in our analysis and simulations.",
+      "authors": [
+        "Elliot M. Butterworth",
+        "Tim Rogers"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-03-18T14:16:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.17754v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "evolutionary dynamics and co-evolution of species",
+      "llm_evidence_cn": "物种的演化动态与协同演化",
+      "llm_evidence": "物种的演化动态与协同演化",
+      "canonical_evidence": "物种的演化动态与协同演化",
+      "llm_tldr_en": "Investigates the evolution of dietary range and niche formation through co-evolutionary dynamics.",
+      "llm_tldr_cn": "通过协同演化动态研究生态位形成过程中饮食范围的演化。",
+      "llm_tldr": "通过协同演化动态研究生态位形成过程中饮食范围的演化。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.18219v1",
+      "title": "Convergence of Payoff-Based Higher-Order Replicator Dynamics in Contractive Games",
+      "abstract": "We study the convergence properties of a payoff-based higher-order version of replicator dynamics, a widely studied model in evolutionary dynamics and game-theoretic learning, in contractive games. Recent work has introduced a control-theoretic perspective for analyzing the convergence of learning dynamics through passivity theory, leading to a classification of learning dynamics based on the passivity notion they satisfy, such as \\textdelta-passivity, equilibrium-independent passivity, and incremental passivity. We leverage this framework for the study of higher-order replicator dynamics for contractive games, which form the complement of passive learning dynamics. Standard replicator dynamics can be represented as a cascade interconnection between an integrator and the softmax mapping. Payoff-based higher-order replicator dynamics include a linear time-invariant (LTI) system in parallel with the existing integrator. First, we show that if this added system is strictly passive and asymptotically stable, then the resulting learning dynamics converge locally to the Nash equilibrium in contractive games. Second, we establish global convergence properties using incremental stability analysis for the special case of symmetric matrix contractive games.",
+      "authors": [
+        "Hassan Abdelraouf",
+        "Vijay Gupta",
+        "Jeff S. Shamma"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY"
+      ],
+      "published": "2026-03-18T19:07:40+00:00",
+      "link": "https://arxiv.org/pdf/2603.18219v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "higher-order replicator dynamics in evolutionary dynamics",
+      "llm_evidence_cn": "演化动力学中的高阶复制子动力学",
+      "llm_evidence": "演化动力学中的高阶复制子动力学",
+      "canonical_evidence": "演化动力学中的高阶复制子动力学",
+      "llm_tldr_en": "Analyzes convergence of higher-order replicator dynamics in contractive games using passivity theory.",
+      "llm_tldr_cn": "利用钝化理论分析了收缩博弈中高阶复制子动力学的收敛性质。",
+      "llm_tldr": "利用钝化理论分析了收缩博弈中高阶复制子动力学的收敛性质。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.15170v1",
+      "title": "Cracking donuts and sorting lipids: geometry controls archaeal membrane stability and lipid organization",
+      "abstract": "Cells are defined by lipid membranes that differ in their structure across the tree of life. While the membranes of most bacteria and eukaryotes consist of single-headed bilayer lipids, the membranes of archaea are composed of mixtures of single-headed bilayer lipids and double-headed bolalipids. Archaeal bolalipids can adopt straight or u-shaped conformations, enabling them - together with bilayer lipids - to control whether membranes form bilayer or monolayer structures. Yet, the physical principles governing archaeal membranes remain largely unexplored, especially how membrane structure couples to externally imposed curvature during membrane remodeling. Here, we perform coarse-grained molecular dynamics simulations of toroidal vesicles to systematically probe the effects of all relevant combinations of mean and Gaussian curvatures on shape stability and lipid organization. We find that soft bilayer membranes can sustain all curvatures induced, whereas rigid bolalipid monolayer membranes either transition to different vesicle shapes or rupture. Bilayer-mimicking u-shaped bolalipids and bilayer lipids are spatially accumulated in regions of high mean membrane curvature independent of Gaussian curvature. Our work identifies curvature-composition coupling as a physical signature of archaeal membrane remodeling.",
+      "authors": [
+        "Felix Frey",
+        "Miguel Amaral",
+        "Anđela Šarić"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft",
+        "physics.bio-ph"
+      ],
+      "published": "2026-03-16T12:06:00+00:00",
+      "link": "https://arxiv.org/pdf/2603.15170v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "membrane structure across the tree of life",
+      "llm_evidence_cn": "生命树中不同物种的膜结构",
+      "llm_evidence": "生命树中不同物种的膜结构",
+      "canonical_evidence": "生命树中不同物种的膜结构",
+      "llm_tldr_en": "Investigates the physical principles of archaeal membranes and their structural evolution across domains.",
+      "llm_tldr_cn": "研究了古菌膜的物理原理及其在不同生命域中的结构演化。",
+      "llm_tldr": "研究了古菌膜的物理原理及其在不同生命域中的结构演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.14187v1",
+      "title": "Deep Learning From Routine Histology Improves Risk Stratification for Biochemical Recurrence in Prostate Cancer",
+      "abstract": "Accurate prediction of biochemical recurrence (BCR) after radical prostatectomy is critical for guiding adjuvant treatment and surveillance decisions in prostate cancer. However, existing clinicopathological risk models reduce complex morphology to relatively coarse descriptors, leaving substantial prognostic information embedded in routine histopathology underexplored. We present a deep learning-based biomarker that predicts continuous, patient-specific risk of BCR directly from H&E-stained whole-slide prostatectomy specimens. Trained end-to-end on time-to-event outcomes and evaluated across four independent international cohorts, our model demonstrates robust generalization across institutions and patient populations. When integrated with the CAPRA-S clinical risk score, the deep learning risk score consistently improved discrimination for BCR, increasing concordance indices from 0.725-0.772 to 0.749-0.788 across cohorts. To support clinical interpretability, outcome-grounded analyses revealed subtle histomorphological patterns associated with recurrence risk that are not captured by conventional clinicopathological risk scores. This multicohort study demonstrates that deep learning applied to routine prostate histopathology can deliver reproducible and clinically generalizable biomarkers that augment postoperative risk stratification, with potential to support personalized management of prostate cancer in real-world clinical settings.",
+      "authors": [
+        "Clément Grisi",
+        "Khrystyna Faryna",
+        "Nefise Uysal",
+        "Vittorio Agosti",
+        "Enrico Munari",
+        "Solène-Florence Kammerer-Jacquet",
+        "Paulo Guilherme de Oliveira Salles",
+        "Yuri Tolkach",
+        "Reinhard Büttner",
+        "Sofiya Semko",
+        "Maksym Pikul",
+        "Axel Heidenreich",
+        "Jeroen van der Laak",
+        "Geert Litjens"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-15T02:22:38+00:00",
+      "link": "https://arxiv.org/pdf/2603.14187v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Deep learning-based biomarker for prostate cancer risk stratification",
+      "llm_evidence_cn": "基于深度学习的前列腺癌风险分层生物标志物",
+      "llm_evidence": "基于深度学习的前列腺癌风险分层生物标志物",
+      "canonical_evidence": "基于深度学习的前列腺癌风险分层生物标志物",
+      "llm_tldr_en": "Predicts prostate cancer recurrence risk directly from histology slides using deep learning.",
+      "llm_tldr_cn": "利用深度学习直接从组织学切片预测前列腺癌生化复发风险，改进风险分层。",
+      "llm_tldr": "利用深度学习直接从组织学切片预测前列腺癌生化复发风险，改进风险分层。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.16421v1",
+      "title": "HGP-Mamba: Integrating Histology and Generated Protein Features for Mamba-based Multimodal Survival Risk Prediction",
+      "abstract": "Recent advances in multimodal learning have significantly improved cancer survival risk prediction. However, the joint prognostic potential of protein markers and histopathology images remains underexplored, largely due to the high cost and limited availability of protein expression profiling. To address this challenge, we propose HGP-Mamba, a Mamba-based multimodal framework that efficiently integrates histological with generated protein features for survival risk prediction. Specifically, we introduce a protein feature extractor (PFE) that leverages pretrained foundation models to derive high-throughput protein embeddings directly from Whole Slide Images (WSIs), enabling data-efficient incorporation of molecular information. Together with histology embeddings that capture morphological patterns, we further introduce the Local Interaction-aware Mamba (LiAM) for fine-grained feature interaction and the Global Interaction-enhanced Mamba (GiEM) to promote holistic modality fusion at the slide level, thus capture complex cross-modal dependencies. Experiments on four public cancer datasets demonstrate that HGP-Mamba achieves state-of-the-art performance while maintaining superior computational efficiency compared with existing methods. Our source code is publicly available at <a href=\"https://github.com/Daijing-ai/HGP-Mamba.git\">this https URL</a>.",
+      "authors": [
+        "Jing Dai",
+        "Chen Wu",
+        "Ming Wu",
+        "Qibin Zhang",
+        "Zexi Wu",
+        "Jingdong Zhang",
+        "Hongming Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-17T11:57:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.16421v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based integration of histology and generated protein features for cancer prediction",
+      "llm_evidence_cn": "利用AI整合组织学和生成的蛋白质特征进行癌症预测",
+      "llm_evidence": "利用AI整合组织学和生成的蛋白质特征进行癌症预测",
+      "canonical_evidence": "利用AI整合组织学和生成的蛋白质特征进行癌症预测",
+      "llm_tldr_en": "Uses AI to generate protein embeddings from images for multimodal cancer risk prediction.",
+      "llm_tldr_cn": "利用AI从图像中生成蛋白质嵌入，用于多模态癌症风险预测。",
+      "llm_tldr": "利用AI从图像中生成蛋白质嵌入，用于多模态癌症风险预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.14257v1",
+      "title": "Automatic Inter-document Multi-hop Scientific QA Generation",
+      "abstract": "Existing automatic scientific question generation studies mainly focus on single-document factoid QA, overlooking the inter-document reasoning crucial for scientific understanding. We present AIM-SciQA, an automated framework for generating multi-document, multi-hop scientific QA datasets. AIM-SciQA extracts single-hop QAs using large language models (LLMs) with machine reading comprehension and constructs cross-document relations based on embedding-based semantic alignment while selectively leveraging citation information. Applied to 8,211 PubMed Central papers, it produced 411,409 single-hop and 13,672 multi-hop QAs, forming the IM-SciQA dataset. Human and automatic validation confirmed high factual consistency, and experimental results demonstrate that IM-SciQA effectively differentiates reasoning capabilities across retrieval and QA stages, providing a realistic and interpretable benchmark for retrieval-augmented scientific reasoning. We further extend this framework to construct CIM-SciQA, a citation-guided variant achieving comparable performance to the Oracle setting, reinforcing the dataset's validity and generality.",
+      "authors": [
+        "Seungmin Lee",
+        "Dongha Kim",
+        "Yuni Jeon",
+        "Junyoung Koh",
+        "Min Song"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-03-15T07:27:06+00:00",
+      "link": "https://arxiv.org/pdf/2603.14257v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI framework for scientific QA using PubMed Central papers",
+      "llm_evidence_cn": "利用PubMed文献进行科学问答的AI框架",
+      "llm_evidence": "利用PubMed文献进行科学问答的AI框架",
+      "canonical_evidence": "利用PubMed文献进行科学问答的AI框架",
+      "llm_tldr_en": "An automated AI framework for generating multi-hop scientific QA datasets from biological literature.",
+      "llm_tldr_cn": "一种利用生物医学文献自动生成多跳科学问答数据集的AI框架。",
+      "llm_tldr": "一种利用生物医学文献自动生成多跳科学问答数据集的AI框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.16421v2",
+      "title": "HGP-Mamba: Integrating Histology and Generated Protein Features for Mamba-based Multimodal Survival Risk Prediction",
+      "abstract": "Recent advances in multimodal learning have significantly improved cancer survival risk prediction. However, the joint prognostic potential of protein markers and histopathology images remains underexplored, largely due to the high cost and limited availability of protein expression profiling. To address this challenge, we propose HGP-Mamba, a Mamba-based multimodal framework that efficiently integrates histological with generated protein features for survival risk prediction. Specifically, we introduce a protein feature extractor (PFE) that leverages pretrained foundation models to derive high-throughput protein embeddings directly from Whole Slide Images (WSIs), enabling data-efficient incorporation of molecular information. Together with histology embeddings that capture morphological patterns, we further introduce the Local Interaction-aware Mamba (LiAM) for fine-grained feature interaction and the Global Interaction-enhanced Mamba (GiEM) to promote holistic modality fusion at the slide level, thus capture complex cross-modal dependencies. Experiments on four public cancer datasets demonstrate that HGP-Mamba achieves state-of-the-art performance while maintaining superior computational efficiency compared with existing methods. Our source code is publicly available at https://github.com/Daijing-ai/HGP-Mamba.git.",
+      "authors": [
+        "Jing Dai",
+        "Chen Wu",
+        "Ming Wu",
+        "Qibin Zhang",
+        "Zexi Wu",
+        "Jingdong Zhang",
+        "Hongming Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-17T11:57:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.16421v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based integration of protein features for survival prediction",
+      "llm_evidence_cn": "利用AI整合蛋白质特征进行生存预测",
+      "llm_evidence": "利用AI整合蛋白质特征进行生存预测",
+      "canonical_evidence": "利用AI整合蛋白质特征进行生存预测",
+      "llm_tldr_en": "HGP-Mamba integrates histology and generated protein features for cancer survival risk prediction.",
+      "llm_tldr_cn": "HGP-Mamba整合组织学和生成的蛋白质特征，用于癌症生存风险预测。",
+      "llm_tldr": "HGP-Mamba整合组织学和生成的蛋白质特征，用于癌症生存风险预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15047v1",
+      "title": "CrossADR: enhancing adverse drug reactions prediction for combination pharmacotherapy with cross-layer feature integration and cross-level associative learning",
+      "abstract": "Combination pharmacotherapy offers substantial therapeutic advantages but also poses substantial risks of adverse drug reactions (ADRs). The accurate prediction of ADRs with interpretable computational methods is crucial for clinical safety management, drug development, and precision medicine. However, managing ADRs remains a challenge due to the vast search space of drug combinations and the complexity of physiological responses. Current graph-based architectures often struggle to effectively integrate multi-scale biological information and frequently rely on fixed association matrices, which limits their ability to capture dynamic organ-level dependencies and generalize across diverse datasets. Here we propose CrossADR, a hierarchical framework for organ-level ADR prediction through cross-layer feature integration and cross-level associative learning. It incorporates a gated-residual-flow graph neural network to fuse multi-scale molecular features and utilizes a learnable ADR embedding space to dynamically capture latent biological correlations across 15 organ systems. Systematic evaluation on the newly constructed CrossADR-Dataset-covering 1,376 drugs and 946,000 unique combinations-demonstrates that CrossADR consistently achieves state-of-the-art performance across 80 distinct experimental scenarios and provides high-resolution insights into drug-related protein protein interactions and pathways. Overall, CrossADR represents a robust tool for cross-scale biomedical information integration, cross-layer feature integration as well as cross-level associative learning, and can be effectively utilized to prevent ADRs in clinical decision-making.",
+      "authors": [
+        "Y. Cheung"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "math.AG"
+      ],
+      "published": "2026-03-16T09:58:03+00:00",
+      "link": "https://arxiv.org/pdf/2603.15047v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "integrating multi-scale biological information with graph-based architectures",
+      "llm_evidence_cn": "利用图架构整合多尺度生物信息",
+      "llm_evidence": "利用图架构整合多尺度生物信息",
+      "canonical_evidence": "利用图架构整合多尺度生物信息",
+      "llm_tldr_en": "Enhances adverse drug reaction prediction using cross-layer feature integration and associative learning.",
+      "llm_tldr_cn": "通过跨层特征整合和关联学习增强组合用药的不良反应预测，涉及多尺度生物信息整合。",
+      "llm_tldr": "通过跨层特征整合和关联学习增强组合用药的不良反应预测，涉及多尺度生物信息整合。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.17247v1",
+      "title": "Binary Latent Protein Fitness Landscapes for Quantum Annealing Optimization",
+      "abstract": "We propose Q-BIOLAT, a framework for modeling and optimizing protein fitness landscapes in binary latent spaces. Starting from protein sequences, we leverage pretrained protein language models to obtain continuous embeddings, which are then transformed into compact binary latent representations. In this space, protein fitness is approximated using a quadratic unconstrained binary optimization (QUBO) model, enabling efficient combinatorial search via classical heuristics such as simulated annealing and genetic algorithms.   On the ProteinGym benchmark, we demonstrate that Q-BIOLAT captures meaningful structure in protein fitness landscapes and enables the identification of high-fitness variants. Despite using a simple binarization scheme, our method consistently retrieves sequences whose nearest neighbors lie within the top fraction of the training fitness distribution, particularly under the strongest configurations. We further show that different optimization strategies exhibit distinct behaviors, with evolutionary search performing better in higher-dimensional latent spaces and local search remaining competitive in preserving realistic sequences.   Beyond its empirical performance, Q-BIOLAT provides a natural bridge between protein representation learning and combinatorial optimization. By formulating protein fitness as a QUBO problem, our framework is directly compatible with emerging quantum annealing hardware, opening new directions for quantum-assisted protein engineering.   Our implementation is publicly available at: https://github.com/HySonLab/Q-BIOLAT",
+      "authors": [
+        "Truong-Son Hy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-18T01:06:20+00:00",
+      "link": "https://arxiv.org/pdf/2603.17247v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based protein fitness landscape modeling and genetic algorithm optimization",
+      "llm_evidence_cn": "基于AI的蛋白质适应度景观建模与遗传算法优化",
+      "llm_evidence": "基于AI的蛋白质适应度景观建模与遗传算法优化",
+      "canonical_evidence": "基于AI的蛋白质适应度景观建模与遗传算法优化",
+      "llm_tldr_en": "Q-BIOLAT uses protein language models and genetic algorithms to optimize protein fitness landscapes.",
+      "llm_tldr_cn": "Q-BIOLAT利用蛋白质语言模型和遗传算法来优化蛋白质适应度景观。",
+      "llm_tldr": "Q-BIOLAT利用蛋白质语言模型和遗传算法来优化蛋白质适应度景观。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15080v1",
+      "title": "Open Biomedical Knowledge Graphs at Scale: Construction, Federation, and AI Agent Access with Samyama Graph Database",
+      "abstract": "Biomedical knowledge is fragmented across siloed databases -- Reactome for pathways, STRING for protein interactions, Gene Ontology for functional annotations, ClinicalTrials.gov for study registries, and dozens more. Researchers routinely download flat files from each source and write bespoke scripts to cross-reference them, a process that is slow, error-prone, and not reproducible. We present two open-source biomedical knowledge graphs -- Pathways KG (118,686 nodes, 834,785 edges from 5 sources) and Clinical Trials KG (7,774,446 nodes, 26,973,997 edges from 5 sources) -- built on Samyama, a high-performance graph database written in Rust.   Our contributions are threefold. First, we describe a reproducible ETL pattern for constructing large-scale KGs from heterogeneous public data sources, with cross-source deduplication, batch Cypher loading, and portable snapshot export. Second, we demonstrate cross-KG federation: loading both snapshots into a single graph tenant enables property-based joins across datasets, answering questions like ``Which biological pathways are disrupted by drugs currently in Phase~3 trials for breast cancer?'' -- a query that neither KG can answer alone. Third, we introduce schema-driven MCP server generation: each KG automatically exposes typed tools for LLM agents via the Model Context Protocol, enabling natural-language access to graph queries without manual tool authoring.   All data sources are open-license (CC~BY~4.0, CC0, OBO). Snapshots, ETL code, and MCP configurations are publicly available. The combined federated graph (7.89M nodes, 27.8M edges) loads in 76 seconds on commodity hardware (Mac Mini M4, 16GB RAM), and the signature cross-KG query -- ``which pathways are disrupted by drugs in Phase~3 breast cancer trials?'' -- returns validated results in 2.1 seconds.",
+      "authors": [
+        "Madhulatha Mandarapu",
+        "Sandeep Kunkunuru"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-16T10:36:13+00:00",
+      "link": "https://arxiv.org/pdf/2603.15080v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven biomedical knowledge graph construction and federation",
+      "llm_evidence_cn": "利用AI构建和联合生物医学知识图谱",
+      "llm_evidence": "利用AI构建和联合生物医学知识图谱",
+      "canonical_evidence": "利用AI构建和联合生物医学知识图谱",
+      "llm_tldr_en": "Presents Samyama, a high-performance graph database for federating fragmented biomedical knowledge sources.",
+      "llm_tldr_cn": "介绍了Samyama，一个用于联合碎片化生物医学知识源的高性能图数据库。",
+      "llm_tldr": "介绍了Samyama，一个用于联合碎片化生物医学知识源的高性能图数据库。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.17864v1",
+      "title": "Bivariate deconvolution for cancer detection after surgery",
+      "abstract": "Detection of minimal residual disease (MRD) in cancer patients after surgery can provide an early marker for disease recurrence and guide subsequent treatment decisions. Accurate and sensitive estimation of tumour burden after cancer surgery may be obtained through liq- uid biopsies, measuring circulating tumour DNA (ctDNA) using, for example, mutation-based Variant Allele Frequency (VAF) values. However, to be applicable to all patients this ei- ther requires tumour-informed, patient-specific mutation panels or sensitive, tumour-agnostic genome-wide measurements. We propose a solution that accounts for patient-specific charac- teristics in genome-wide screens. For that, we introduce a bivariate deconvolution model to estimate tumour proportion from circulating cell-free DNA (cfDNA) methylation profiles of patients before and after surgery. The observations are modelled as a convolution of two bivariate latent variables, corresponding to tumour and background signals, mixed by the tumour proportion at each measurement. This bivariate approach links pre- and post-surgery measurements improving estimation of the tumour proportion after surgery, when the tumour signal is potentially very weak, or absent. We approximate likelihood of the convolution through a discretisation of the bivariate density for each latent variable into a two-dimensional grid for each pair of observations which allows for fast maximum likelihood estimation. We evaluate the predictive performance of the estimated post-surgery tumour proportions based on cfDNA methylation against available mutation-based VAF values in one-year recurrence-free survival.",
+      "authors": [
+        "Nuria Senar",
+        "Stavros Makrodimitris",
+        "Michel H. Hof",
+        "Cornelis Verhoef",
+        "Saskia M. Wilting",
+        "Mark A. van de Wiel"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-03-18T15:52:28+00:00",
+      "link": "https://arxiv.org/pdf/2603.17864v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "genome-wide measurements and mutation-based VAF for cancer detection",
+      "llm_evidence_cn": "全基因组测量和基于突变的VAF用于癌症检测",
+      "llm_evidence": "全基因组测量和基于突变的VAF用于癌症检测",
+      "canonical_evidence": "全基因组测量和基于突变的VAF用于癌症检测",
+      "llm_tldr_en": "Proposes a bivariate deconvolution model to estimate tumor proportion from genome-wide liquid biopsies.",
+      "llm_tldr_cn": "提出一种双变量反卷积模型，通过全基因组液体活检评估肿瘤比例。",
+      "llm_tldr": "提出一种双变量反卷积模型，通过全基因组液体活检评估肿瘤比例。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15080v2",
+      "title": "Open Biomedical Knowledge Graphs at Scale: Construction, Federation, and AI Agent Access with Samyama Graph Database",
+      "abstract": "Biomedical knowledge is fragmented across siloed databases -- Reactome for pathways, STRING for protein interactions, ClinicalTrials.gov for study registries, DrugBank for drug vocabularies, DGIdb for drug-gene interactions, SIDER for side effects. We present three open-source biomedical knowledge graphs -- Pathways KG (118,686 nodes, 834,785 edges from 5 sources), Clinical Trials KG (7,774,446 nodes, 26,973,997 edges from 5 sources), and Drug Interactions KG (32,726 nodes, 191,970 edges from 3 sources) -- built on Samyama, a high-performance graph database written in Rust.   Our contributions are threefold. First, we describe a reproducible ETL pattern for constructing large-scale KGs from heterogeneous public data sources, with cross-source deduplication, batch loading (Python Cypher and Rust native loaders), and portable snapshot export. Second, we demonstrate cross-KG federation: loading all three snapshots into a single graph tenant enables property-based joins across datasets. Third, we introduce schema-driven MCP server generation for LLM agent access, evaluated on a new BiomedQA benchmark (40 pharmacology questions): domain-specific MCP tools achieve 98% accuracy vs. 0% for text-to-Cypher and 75% for standalone GPT-4o.   All data sources are open-license. The combined federated graph (7.9M nodes, 28M edges) loads in approximately 3 minutes on commodity cloud hardware, and cross-KG queries complete in 80ms-4s.",
+      "authors": [
+        "Madhulatha Mandarapu",
+        "Sandeep Kunkunuru"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-16T10:36:13+00:00",
+      "link": "https://arxiv.org/pdf/2603.15080v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "biomedical knowledge graphs including drug-gene interactions",
+      "llm_evidence_cn": "包含药物-基因相互作用的生物医学知识图谱",
+      "llm_evidence": "包含药物-基因相互作用的生物医学知识图谱",
+      "canonical_evidence": "包含药物-基因相互作用的生物医学知识图谱",
+      "llm_tldr_en": "Presents large-scale biomedical knowledge graphs for pathways and drug-gene interactions using AI agents.",
+      "llm_tldr_cn": "构建了包含通路和药物-基因相互作用的大规模生物医学知识图谱，支持AI访问。",
+      "llm_tldr": "构建了包含通路和药物-基因相互作用的大规模生物医学知识图谱，支持AI访问。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.18249v1",
+      "title": "RAFT-UP: Robust Alignment for Spatial Transcriptomics with Explicit Control of Spatial Distortion",
+      "abstract": "Spatial transcriptomics (ST) profiles gene expression across a tissue section while preserving the spatial coordinates. Because current ST technologies typically profile two-dimensional tissue slices, integrating and aligning slices from different regions of the same three-dimensional tissue or from samples under different conditions enables analyses that reveal 3D organization and condition-associated spatial patterns. Two major challenges remain. First, interpretable and flexible control over spatial distortion is needed because rigid transformations can be overly restrictive, whereas highly deformable mappings may arbitrarily distort spatial proximity. Second, biologically plausible matching is also needed, especially when the slices overlap partially. Here, we introduce RAFT-UP, a tool for robust ST alignment that provides explicit control over spatial distance preservation through a fused supervised Gromov-Wasserstein (FsGW) optimal transport framework. FsGW combines expression and spatial information, incorporates spot-wise constraints to discourage biologically implausible matches, and enforces a pairwise distance-consistency constraint that prevents mapping two pairs of spots when their spatial distances differ beyond a specified tolerance. We demonstrate that RAFT-UP accurately aligns slices from different regions of the same tissue and slices from different samples. Benchmarking shows that RAFT-UP improves spatial distance preservation while achieving spot label matching accuracy comparable to state-of-the-art methods. Finally, we demonstrate RAFT-UP on two spatially constrained downstream applications, including spatiotemporal mapping of developing mouse midbrain and comparative cross-slice analysis of cell-cell communication. RAFT-UP is available as open-source software.",
+      "authors": [
+        "Yaqi Wu",
+        "Jingfeng Wang",
+        "Xin Maizie Zhou",
+        "Yanxiang Zhao",
+        "Zixuan Cang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "math.OC"
+      ],
+      "published": "2026-03-18T20:15:41+00:00",
+      "link": "https://arxiv.org/pdf/2603.18249v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven alignment for spatial transcriptomics and gene expression analysis",
+      "llm_evidence_cn": "利用AI驱动的空间转录组学对齐和基因表达分析",
+      "llm_evidence": "利用AI驱动的空间转录组学对齐和基因表达分析",
+      "canonical_evidence": "利用AI驱动的空间转录组学对齐和基因表达分析",
+      "llm_tldr_en": "Introduces RAFT-UP for robust alignment of spatial transcriptomics slices to reveal 3D tissue organization.",
+      "llm_tldr_cn": "引入RAFT-UP用于空间转录组切片的稳健对齐，以揭示3D组织结构。",
+      "llm_tldr": "引入RAFT-UP用于空间转录组切片的稳健对齐，以揭示3D组织结构。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15217v1",
+      "title": "A multiscale discrete-to-continuum framework for structured population models",
+      "abstract": "Mathematical models of biological populations commonly use discrete structure classes to capture trait variation among individuals (e.g. age, size, phenotype, intracellular state). Upscaling these discrete models into continuum descriptions can improve analytical tractability and scalability of numerical solutions. Common upscaling approaches based solely on Taylor expansions may, however, introduce ambiguities in truncation order, uniform validity and boundary conditions. To address this, here we introduce a discrete multiscale framework to systematically derive continuum approximations of structured population models. Using the method of multiple scales and matched asymptotic expansions applied to discrete systems, we identify regions of structure space for which a continuum representation is appropriate and derive the corresponding partial differential equations. The leading-order dynamics are given by a nonlinear advection equation in the bulk domain and advection-diffusion processes in small inner layers about the leading wavefronts and stagnation point. We further derive discrete boundary layer descriptions for regions where a continuum representation is fundamentally inappropriate. Finally, we demonstrate the method on a simple lipid-structured model for early atherosclerosis and verify consistency between the discrete and continuum descriptions. The multiscale framework we present can be applied to other heterogeneous systems with discrete structure in order to obtain appropriate upscaled dynamics with asymptotically consistent boundary conditions.",
+      "authors": [
+        "Eleonora Agostinelli",
+        "Keith L. Chambers",
+        "Helen M. Byrne",
+        "Mohit P. Dalwadi"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "math.DS",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-16T12:54:30+00:00",
+      "link": "https://arxiv.org/pdf/2603.15217v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Structured population models and trait variation",
+      "llm_evidence_cn": "结构化种群模型与性状变异",
+      "llm_evidence": "结构化种群模型与性状变异",
+      "canonical_evidence": "结构化种群模型与性状变异",
+      "llm_tldr_en": "Derives continuum approximations for structured population models capturing trait variation.",
+      "llm_tldr_cn": "为捕捉性状变异的结构化种群模型推导连续近似描述。",
+      "llm_tldr": "为捕捉性状变异的结构化种群模型推导连续近似描述。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.18378v1",
+      "title": "BiSSLB: Binary Spike-and-Slab Lasso Biclustering",
+      "abstract": "Biclustering is a powerful unsupervised learning technique for simultaneously identifying coherent subsets of rows and columns in a data matrix, thus revealing local patterns that may not be apparent in global analyses. However, most biclustering methods are developed for continuous data and are not applicable for binary datasets such as single-nucleotide polymorphism (SNP) or protein-protein interaction (PPI) data. Existing biclustering algorithms for binary data often struggle to recover biclustering patterns under noise, face scalability issues, and/or bias the final results towards biclusters of a particular size or characteristic. We propose a Bayesian method for biclustering binary datasets called Binary Spike-and-Slab Lasso Biclustering (BiSSLB). Our method is robust to noise and allows for overlapping biclusters of various sizes without prior knowledge of the noise level or bicluster characteristics. BiSSLB is based on a logistic matrix factorization model with spike-and-slab priors on the latent spaces. We further incorporate an Indian Buffet Process (IBP) prior to automatically determine the number of biclusters from the data. We develop a novel coordinate ascent algorithm with proximal steps which allows for scalable computation. The performance of our proposed approach is assessed through simulations and two real applications on HapMap SNP and Homo Sapiens PPI data, where BiSSLB is shown to outperform other state-of-the-art binary biclustering methods when the data is very noisy.",
+      "authors": [
+        "Sijian Fan",
+        "Ray Bai"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-03-19T00:46:41+00:00",
+      "link": "https://arxiv.org/pdf/2603.18378v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Biclustering for SNP and protein-protein interaction data",
+      "llm_evidence_cn": "针对SNP和蛋白质相互作用数据的双聚类分析",
+      "llm_evidence": "针对SNP和蛋白质相互作用数据的双聚类分析",
+      "canonical_evidence": "针对SNP和蛋白质相互作用数据的双聚类分析",
+      "llm_tldr_en": "A Bayesian biclustering method for binary datasets like SNPs, useful for genomic pattern discovery.",
+      "llm_tldr_cn": "一种针对SNP等二值数据集的贝叶斯双聚类方法，有助于基因组模式发现。",
+      "llm_tldr": "一种针对SNP等二值数据集的贝叶斯双聚类方法，有助于基因组模式发现。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
