@@ -1,0 +1,804 @@
+Title: Agent-based imitation dynamics can yield efficiently compressed population-level vocabularies
+
+URL Source: https://arxiv.org/pdf/2603.15903v1
+
+Published Time: Wed, 18 Mar 2026 00:24:00 GMT
+
+Number of Pages: 25
+
+Markdown Content:
+# Agent-based imitation dynamics can yield efficiently compressed population-level vocabularies 
+
+Nathaniel Imel *1 , Richard Futrell 2, Michael Franke 3, and Noga Zaslavsky 1
+
+> 1
+
+Department of Psychology, New York University 
+
+> 2
+
+Department of Language Science, University of California, Irvine 
+
+> 3
+
+Department of Linguistics, University of T¨ ubingen 
+
+Abstract 
+
+Natural languages have been argued to evolve under pressure to efficiently compress meanings into words by optimizing the Information Bottleneck (IB) complexity-accuracy tradeoff. However, the un-derlying social dynamics that could drive the optimization of a language’s vocabulary towards efficiency remain largely unknown. In parallel, evolutionary game theory has been invoked to explain the emer-gence of language from rudimentary agent-level dynamics, but it has not yet been tested whether such an approach can lead to efficient compression in the IB sense. Here, we provide a unified model inte-grating evolutionary game theory with the IB framework and show how near-optimal compression can arise in a population through an independently motivated dynamic of imprecise strategy imitation in signaling games. We find that key parameters of the model—namely, those that regulate precision in these games, as well as players’ tendency to confuse similar states—lead to constrained variation of the tradeoffs achieved by emergent vocabularies. Our results suggest that evolutionary game dynamics could potentially provide a mechanistic basis for the evolution of vocabularies with information-theoretically optimal and empirically attested properties. 
+
+# 1 Introduction 
+
+Although there are infinitely many possible languages, only a limited subset are actually spoken throughout the world. And while there are many conceivable meanings that words can have, actual word meanings are also constrained to a limited subset with considerable shared structure. Semantic typology aims to characterize this subset, asking which meanings are expressed across languages and why (Croft, 2003; Kemp et al., 2018). To date, several robust semantic universals have been identified (Berlin and Kay, 1969; Barwise and Cooper, 1981; von Fintel and Matthewson, 2008), raising the question of their ultimate origin. One promising avenue of explanation, rooted in functionalist traditions, is that attested meaning systems reflect communicative pressures (Zipf, 1949; Rosch, 1978; Ferrer-i-Cancho and Sol´ e, 2003; Levinson, 2012; Kemp et al., 2018; Gibson et al., 2019). A common intuition for this idea is as follows: a language can be maximally simple, or it can be expressive, but it cannot be both maximally simple and maximally expressive simultaneously. Human languages might, however, evolve under pressure to optimally trade off simplicity and expressivity, and in doing so, substantially constrain the kinds of meanings that they lexicalize. This broad notion of efficient communication has been formally grounded by Zaslavsky et al. (2018) in a fundamental information-theoretic principle known as the Information Bottleneck (IB; Tishby et al., 1999). IB has been derived from rate-distortion theory (Shannon, 1959; Harremoes and Tishby, 2007;  
+
+> *Corresponding author: n.imel@nyu.edu
+
+1
+
+> arXiv:2603.15903v1 [cs.CL] 16 Mar 2026
+
+Zaslavsky, 2020), the mathematical theory of lossy data compression. Zaslavsky et al. (2018) argue that human languages evolve under pressure to optimally compress meanings into linguistic forms by satisfying the IB tradeoff between the informational complexity (or compressibility) and communicative accuracy of the vocabulary. This formal, quantitatively-testable prediction has been gaining broad empirical support based on extensive synchronic cross-linguistic data (Zaslavsky et al., 2018, 2019, 2021; Mollica et al., 2021; Chen et al., 2023), as well as direct diachronic evidence documenting language change (Zaslavsky et al., 2022). As noted by Levinson (2012), however, little is known about the actual agent-based and cultural dynamics that could drive languages toward optimality. In parallel, another significant body of work has drawn on concepts from evolutionary game theory (EGT) to investigate how shared meaning systems can emerge from local interactions between agents (Lewis, 1969; Steels, 1995; Nowak and Krakauer, 1999; Pawlowitsch, 2008; Skyrms, 2010; Huttegger et al., 2014; Franke and Correia, 2018; Spike et al., 2017). This literature has primarily focused on the foundational question of how meaning can emerge ex nihilo —how shared vocabularies can evolve in signaling games from exceedingly simple learning and evolutionary dynamics. From a broader perspective on language evo-lution, however, a significant conceptual gap remains: while EGT can explain how systems optimized for communicative success arise, it has not yet been explored whether such local success can yield the global information-theoretic efficiency that is empirically observed in human languages at the population level. Specifically, because EGT dynamics are typically driven by local utility rather than explicit optimization, it is not obvious that vocabularies that are evolutionarily stable in prominent EGT settings are also optimally efficient in the IB sense. With regard to the first challenge—of identifying process-level explanations of efficiency—several stud-ies have begun to investigate various evolutionary and learning dynamics. For example, Xu et al. (2016) explored a process of semantic chaining as a potential mechanistic account of how communicative effi-ciency may emerge, though without considering agent-based dynamics. Carstensen et al. (2014) and Carr et al. (2020) considered the dynamics of cultural transmission via iterated language learning in the lab, and K˚ ageb¨ ack et al. (2020) explored reinforcement learning dynamics in artificial agents. While these studies provide valuable insight into possible mechanisms by which efficient communication systems may emerge, they each employ a different formulation of efficiency, thus lacking a consistent theoretical framework. In particular, they do not shed light on how languages might optimize the IB tradeoff. More recent work has started to explore the emergence of IB-optimal communication systems in multi-agent reinforcement learn-ing settings (Chaabouni et al., 2021; Tucker et al., 2022, 2025; Gualdoni et al., 2024; Carlsson et al., 2024), yielding promising results as to the ability of interactive deep-learning agents to develop efficient human-like communication systems. These studies, however, heavily rely on model implementation decisions, such as the agents’ underlying deep-learning architecture and hyper-parameters, and more fundamentally, they focus only on dyadic communication without addressing how such pair-level behaviors scale to and shape cultural evolution at the population level. Furthermore, regarding the second open question—whether EGT optimality leads to efficient compres-sion in the IB sense—there is, to our knowledge, no prior research that establishes a link between EGT con-cepts of success in communication games and the IB framework. 1 Therefore, the previous literature leaves open two key questions: (1) what are the core, cultural evolutionary mechanisms by which a population’s language can become near-optimally efficient within the IB theoretical framework? (2) Are communication strategies that are optimal in EGT also information-theoretically optimal in the IB sense? Here, we aim to address these two open questions by considering a model of the cultural evolution of population-level behavior and analyzing it with respect to the IB theoretical bound for vocabulary efficiency. We draw on the fundamental dynamical model of evolutionary game theory, the replicator dynamic (Tay-
+
+> 1Though see Plotkin and Nowak (2000) and Skyrms (2010, Chapter 3) for work connecting language evolution and information theory, and Harper (2009) for more connections between EGT and information theory more generally.
+
+2lor and Jonker, 1978; Smith, 1982; Hofbauer and Sigmund, 1998), which describes how strategies or traits evolve based on their success, relative to the rest of the population. Specifically, we apply the social imita-tion dynamic proposed by Franke and Correia (2018) in the context of noisy, sim-max signaling games. Our approach does not require parameterizing agents with any particular learning algorithm, cognitive architec-ture, or priors, nor does it make strong assumptions about agents’ rationality in these games. The result of this abstraction is an account of how myopic optimization grounded in local interactions between agents can lead to the emergence of information-theoretically efficient population-level vocabularies. The contributions of our work are twofold. First, we provide a unified theoretical perspective on effi-cient compression in a class of Lewis-Skyrms signaling games by formally integrating the IB framework of Zaslavsky et al. (2018) with the noisy sim-max game and an accompanying population dynamic of Franke and Correia (2018). Second, using model simulations, we show that (i) this dynamic can lead populations of agents to evolve IB-efficient vocabularies; (ii) contextual pragmatic standards in the game systematically constrain the specific tradeoffs of emergent systems; and (iii) noisy imitation of strategies limits the emer-gent systems’ acheivable accuracy. Taken together, our work bridges two broad theoretical approaches to language evolution and demonstrates that local dynamics of imitation can drive population-level vocabular-ies towards information-theoretically optimal tradeoffs of the kind observed in human languages. The remainder of the paper is structured as follows. In Section 2, we provide background on the IB framework for semantic systems (Section 2.1), and an overview of Franke and Correia (2018)’s noisy sim-max game and accompanying population dynamic (Section 2.2). In Section 3, we introduce our unified framework that integrates efficient communication, as instantiated by IB, and evolutionary game theory, as instantiated by the imprecise imitation dynamic of the noisy sim-max game. We introduce a synthetic domain of idealized numerosity as our primary test case in Section 4, followed by the presentation of our main simulation results in Section 5. We discuss the implications of these results and conclude in Section 6. 
+
+# 2 Background 
+
+2.1 The Information Bottleneck framework for efficiently compressed semantic systems 
+
+Zaslavsky et al. (2018) argued that in order to support efficient communication, languages must compress meanings into words via a general information-theoretic principle known as the Information Bottleneck (IB; Tishby et al., 1999). IB is an extension of rate distortion theory, the branch of information theory that focuses on optimizing lossy data compression given limited resources (Shannon, 1959; Berger, 1971; Harremoes and Tishby, 2007). Applied to language, Zaslavsky et al. shows that the IB principle can be instantiated as a tradeoff between the informational complexity, or compressibility, and communicative accuracy, or informativeness, afforded by the vocabulary. We briefly summarize this formal framework below and in Figure 1A, keeping similar notation as Zaslavsky et al. (2018). Consider a semantic category system equipped with an inventory of words W to communicate about a set of world states, U. Let ut ∈ U be a target world state that a speaker needs to communicate, drawn from a communicative need distribution p(ut). Since speakers may have uncertainty over the observed world state, the speaker’s meanings are taken to be mental representations, or beliefs over world states, defined by a probability distribution mt(u) ≡ p(u|ut) that is associated with each target world state ut.Therefore, p(mt) = p(ut). A communication system is defined by a production distribution q(w|m) of one (or a mixture) of the language’s speakers, also referred to as an encoder, and by the interpretations a listener assigns to each word in the vocabulary. Assuming that the listener is Bayesian with respect to the speaker, each interpretation is defined as an estimator ˆmw(u) = P 
+
+> m
+
+m(u)q(m|w), which corresponds to the listener’s reconstruction of the speaker’s belief state (or internal mental representation). Optimal communication systems in this framework satisfy the IB complexity-accuracy tradeoff. In IB, both complexity and accuracy are defined in terms of mutual information, which is the most general 3measure of dependence between two random variables (Cover and Thomas, 2006). Given two (discrete) random variables X and Y , the mutual information I(X; Y ) can be written as the Kullback-Leibler (KL) divergence between the joint distribution of the variables and the product of their marginals, 
+
+I(X; Y ) = D [p(X, Y )∥p(X)p(Y )] (1) 
+
+= X
+
+> x,y
+
+p(x, y ) log p(x, y )
+
+p(x)p(y) . (2) The minimum of this quantity is achieved at 0 when X and Y are statistically independent, i.e. p(X, Y ) = 
+
+p(X)p(Y ); as X and Y become more dependent, the information that X and Y carry about each other increases. Given the discrete random variables for the speaker’s meaning M and word W , the complexity of a communication system is defined by the encoder’s information rate: 
+
+Iq(M ; W ) = X
+
+> m,w
+
+p(m)q(w|m) log q(w|m)
+
+q(w) . (3) The interpretation of this quantity roughly corresponds, on average, to the number of bits required to encode meanings into words (or any other communication signal). Maintaining a low information rate corresponds to using fewer bits for communication, and intuitively, to promote efficient communication, this quantity should be minimized to the extent possible. However, the complexity of the system trades off with its accuracy, defined as 
+
+Iq(W ; U ) = I(M ; U ) − Eq
+
+h
+
+D[M ∥ ˆM ]
+
+i
+
+. (4) where the KL divergence D[M ∥ ˆM ] is the distortion between the speaker and listener meanings. Note that 
+
+I(M ; U ), the information that the speaker’s meaning M carries about the true world state U , does not depend on the encoder nor on the listener’s interpretations. Therefore, maximizing accuracy in Equation (4) amounts to minimizing distortion (Harremoes and Tishby, 2007; Zaslavsky, 2020). Taken together, a language’s semantic system is efficient in the IB sense to the extent that it succeeds at minimizing the overall IB objective function 
+
+Fβ [q] = Iq(M ; W ) − βI q(W ; U ), (5) where β ≥ 1 specifies the tradeoff between minimizing complexity and maximizing accuracy. The solutions to this optimization problem define the IB theoretical bound of efficiency (see Figure 2 for example in our context). It is mathematically impossible for a system to lie above this bound; however, Zaslavsky and colleagues have shown that across many domains (Zaslavsky et al., 2018, 2019, 2021; Mollica et al., 2021; Taliaferro et al., 2025), the encoders corresponding to natural language semantic systems achieve near-optimal compression, i.e., they lie very close to the IB bound. These findings naturally raise the following question: what cultural evolutionary mechanisms drive semantic systems towards efficiency? In this work, we address this question by turning to a prominent line of work within the evolution of language: the evolutionary dynamics of signaling games. 
+
+2.2 Language evolution via the population dynamics of signaling games 
+
+The signaling games literature has long focused on how meaning can emerge ex nihilo via simple commu-nication games and minimalistic adaptive dynamics. The philosopher David Lewis introduced the signaling game to model conventional meaning in terms of strategic interaction (Lewis, 1969), described as follows: A Sender observes a private state and sends a signal to a Receiver, who then takes an action, and both players receive payoff if the Receiver’s action matches the Sender’s intended state. In the most austere version of 4Lewis’s game, there are two states, signals and actions. Over the decades, many researchers have explored many extensions of Lewis’s original game, as well as various Nash equilibria and the behavior of various evolutionary and learning dynamics of signaling (and related) games (Crawford and Sobel, 1982; Steels, 1995; Skyrms, 2010; Spike et al., 2017; Wechsler et al., 2025, i.a.). Here, we study a noisy variant of similarity-maximizing, or sim-max (J¨ ager, 2007; J¨ ager et al., 2011; O’Connor, 2014) signaling games, in which similar states of the world may be confused for each other. This game is played as follows: first, nature selects a state of the world xa ∈ X with probability p(xa). A Sender S observes a possibly different state xo ∈ X with probability p(xo|xa) due to the confusability of similar states. Sender then selects a signal w ∈ W with probability S(w|xo) to send to a Receiver, who can only observe the signal. Upon observing this signal, the Receiver intends to interpret ˆxo ∈ X . Due to confusability of similar states, Receiver R actually realizes state ˆxa with probability p(ˆ xa|ˆxo) as the final reconstruction of xa. Nature awards payoff to both players to the extent that the finally reconstructed state 
+
+ˆxa is similar to the actual state xa. The goal of both Sender and Receiver is to maximize the expected similarity between the Sender’s intended state and the Receiver’s reconstruction. There are two main reasons why this particular kind of signaling game is well-suited to study the evo-lution of efficiently compressed semantic systems. First, this game is independently motivated, originating in earlier work that modeled the evolution of vagueness in both synthetic domains (Franke and Correia, 2018; Correia and Franke, 2019) as well as the human color-naming domain (Correia and Ocel´ ak, 2019). However, it has not yet been studied in the context of efficiency in semantic systems. Second, unlike classic Lewis-Skyrms games, which assume perfect perception and use binary payoffs, this noisy sim-max game in-corporates perceptual uncertainty and graded similarity-based payoffs. This aligns nicely with the speaker’s perceptual uncertainty captured by the IB framework, offering a minimal setting for studying the relationship between Lewis-Skyrms games and the IB efficiency principle. Following prior work on modeling the evolution of communicative behavior in signaling games (Skyrms, 2010; Pawlowitsch, 2008; Huttegger et al., 2009, 2014; Nowak and Krakauer, 1999; Nowak et al., 2001; Franke and Correia, 2018; Jacob et al., 2023), we will model the evolution of communication based on the principles of frequency-dependent selection using a dynamic derived from the replicator equation (Taylor and Jonker, 1978; Schuster and Sigmund, 1983; Nowak, 2006). Although originally formulated in evo-lutionary biology (Price, 1970; Bomze, 1983; Page and Nowak, 2002), the replicator equation provides a general description of adaptation that extends naturally to cognition and learning (Harper, 2010; Cz´ egel et al., 2022; B¨ orgers and Sarin, 1997; Freund and Schapire, 1997; Hennes et al., 2020), making it a natural framework for modeling language evolution. Finally, as part of our evolutionary modeling, we will follow Franke and Correia (2018) in assuming that there are two unbounded and well-mixed populations—a Sender population and a Receiver population—and that types within populations of Senders and Receivers are represented as particular state-signal pairs. In this model, while individual agents follow deterministic strategies, their collective behavior can be described in probabilistic terms. Thus, S(w|xo) represents the probability a Sender randomly sampled from the pop-ulation uses signal w upon observing xo, and R(ˆ xo|w) represents the probability that a randomly sampled Receiver interprets signal w as ˆxo. These probabilistic mappings can be used to jointly define a single language with mixed strategy profiles. Taking this particular formalization of strategy evolution, moreover, allows us to study how individuals change their behavior at specific choice points (i.e., upon observing a state or receiving a signal). This is in contrast to prominent previous work modeling language evolution using replicator dynamics, which has assumed changes at the level of entire vocabularies (Nowak and Krakauer, 1999; Pawlowitsch, 2008) or grammars (Komarova, 2004; Nowak, 2006). This has the welcome benefit, as Franke and Correia (2018) note, this approach is more compatible with ideas of imitation and social learning than with biological evolution among agents inflexibly executing their innate behavior. In the next section, we explain in more detail how this dynamic can be used to build an integrative model of how language might evolve culturally from communicative pressures. 53 Integrating efficient communication and signaling game dynamics 
+
+Our overarching objective is to provide a concrete and mechanistic model of how human languages might evolve under pressure to efficiently compress meanings into words, as predicted by IB. To do this, we bridge two major theoretical frameworks: the IB framework and the evolutionary dynamics of signaling games. This also allows us to clearly evaluate whether notions of optimality in EGT (success in signaling games) may relate to information-theoretic optimality. Below, we describe the result of this unification and how the population dynamics of noisy social imitation can be used to test an evolutionary model of efficient semantic systems against IB’s theoretical predictions. 
+
+3.1 A unified communication model 
+
+Figure 1B presents a unified communication model that integrates the noisy sim-max game of of Franke and Correia (2018) with the information-theoretic framework for semantic systems of Zaslavsky et al. (2018). As before, nature chooses a state of the world xa with some probability, p(xa). A Sender S, who is randomly sampled from the population, observes xo ∼ p(xo|xa), and aims to communicate this observation to a Receiver. Due to confusability of similar states, Sender forms a belief representation mo(xa) ≡ p(xa|xo)
+
+about the actual state of the world and produces a word w ∼ S(w|xo) to communicate this belief. That is, the belief state mo corresponds to the communicative target and the communicative need distribution in this unified model is therefore given by p(mo) = P 
+
+> xa
+
+p(xa)p(xo|xa). A Receiver R, who is also randomly sampled from the population, then observes w and based on that aims to infer the Sender’s observation 
+
+ˆxo ∼ R(xo|w) and belief representation ˆmw(xa). The Receiver actually realizes state ˆxa with probability 
+
+p(ˆ xa|ˆxo) as the final reconstruction of xa. The payoff for Sender and Receiver is given by the similarity of states sim( xa, ˆxa). The population fitness of the language is the expected payoff, i.e. the expected similarity of actual and realized states, given the Sender and Receiver populations. 
+
+3.2 Communicative efficiency 
+
+How does the notion of efficiency apply in general to this communication model? We begin by consid-ering the mixed strategy profile of the Sender population S(w|mo), which is conditioned on a belief state 
+
+mo(xa), and treating it as a stochastic encoder. This allows us to quantify the complexity IS (Mo; W ) of the population’s semantic system. We then use the same mixed Sender strategy profile to characterize the accuracy IS (W ; Xa) that is achievable in principle, using a profile that corresponds to a Bayesian response to the Sender population, ˆmw(xa) = P 
+
+> mo
+
+S(w|mo)mo(xa). While expected utility depends on the ac-tual population of Receivers, we consider the Bayesian receiver in order to facilitate direct comparison to the optimal systems predicted by IB, which assumes a Bayesian decoder. A semantic system that emerges from Senders playing the noisy sim-max game will be communicatively efficient to the extent it minimizes 
+
+Fβ [S] = IS (Mo; W ) − βI S (W ; Xa) for some β. This quantity will always be bounded from below by the value of Fβ from the true optima, i.e. by the solutions to Equation (5). Note that, as in IB, our overall com-munication model applies generally to any well-specified semantic domain: the noisy signaling game and the IB framework are both formulated without reference to any specific assumptions about the psychological similarity of states, or prior distribution (i.e., communicative need) of states. 
+
+3.3 Evolutionary dynamics via imprecise imitation 
+
+The second contribution of our framework is to investigate the evolution of efficiency with respect to a concrete, dynamic model of cultural evolution. To do this, we explore how semantic systems may emerge from a population of noisy sim-max game players based on general principles of frequency-dependent se-lection using the imprecise conditional imitation dynamic . This dynamic was introduced by Franke and 6S(w | xo) R(̂ xo | w)
+
+xa wxo
+
+> p
+
+̂ xo p̂ xa 
+
+> mo(xa)̂mw(xa)
+> “half-dozen”
+
+= 𝔼 [ ]population fi tness  exp (−γ( − )2)̂xaxa    
+
+> actual observed signal intended realized
+
+complexity  I(Mo; W)
+
+accuracy 
+
+I(W; Xa)=
+
+= Mo
+
+Xa  
+
+> q(w|m)
+
+wmt 
+
+> mt(u)̂mw(u)
+
+complexity  I(M; W)
+
+accuracy  
+
+> =
+> encoder decoder
+
+̂
+
+mw 
+
+> I(W;U)=
+
+xa
+
+wxo
+
+> p
+
+̂ xo
+
+> p
+
+̂
+
+xâ
+
+xim 
+
+> o
+
+xim  
+
+> o
+> p
+> imitating
+> Sender
+> imitating
+> Receiver
+> pp
+
+S(w | xo) R(̂ xo | w)
+
+> original
+> Sender
+> original
+> Receiver
+
+# A
+
+# B
+
+# CFigure 1: A. The IB communication model of Zaslavsky et al. (2018), see Section 2.1 for details. B. 
+
+Communication model unifying noisy sim-max games with the IB framework. We illustrate our model on a semantic domain similar to numerals, and depict states as cards with varying quantities of dots, and meanings as (conditional) belief distributions about these states. We denote the (symmetric) noisy perception and interpretation of states as p. C. The imprecise conditional imitation dynamic (Franke and Correia, 2018). See main text and Appendix A for details. 7Correia (2018) to extend the replicator equation to signaling populations whose agents perceive states with uncertainty. A schematic description of the dynamic is shown in Figure 1C. The mechanism of imprecise social imitation is modeled as follows. Given that each agent can be described as possessing a repertoire of pure strategies—i.e., deterministic pairings of meanings and words— then at each time-step in evolution, an agent may revise their pure strategy by observing and imitating other agents’ behavior. Suppose the actual state of the world is xa. An imitating Sender will noisily perceive this as xim o , and has the option of what signal they will send in this perceived state. What signal is sent by the imitator will depend on the probability of having observing w sent by another Sender, who may have noisily perceived state xa as xo. Likewise, if w was the signal received by an imitating Receiver, then the interpretation that this Receiver assigns to this signal depends on the state ˆxa finally realized by the Receiver agent being imitated, and the imitator’s noisily perceived version ˆxim o . The formal details of this dynamic and a comprehensive summary of our notation is contained in Appendix A. For brevity, we simply summarize the discrete-time updates below, informally. The frequency of word w being used to communicate state xim  
+
+> o
+
+at the next time step grows in propor-tion to (i) the expected frequency of w given that xim  
+
+> o
+
+was observed by some (randomly sampled) imitating Sender, times (ii) the expected utility of this word relative to the population of Receivers. Likewise, the frequency of interpreting w as meaning ˆxim  
+
+> o
+
+grows in proportion to (i) the probability that ˆxim  
+
+> o
+
+is observed by a randomly sampled agent imitating a randomly sampled Receiver that actually realized ˆxa after re-ceiving word w, times (ii) the expected utility of the interpretation ˆxim  
+
+> o
+
+given w. Though tracing the full graphical model of the game dynamics of noisy imitation here can quickly become complex, the mechanism underlying our model is grounded in two simple ideas: (1) Agents are minimalistic, rather than cognitively sophisticated, and (2) communicative behaviors are imitated according to frequency-dependent fitness. To-gether, these two principles allow us to study a concrete, interpretable potential mechanism for the evolution of IB-efficiency in language. 
+
+3.4 Predictions 
+
+If the dynamics of imprecise social imitation in signaling games constitute a useful model of the evolution of natural-like semantic systems, then we should expect the systems emerging from the dynamical model to align with the predicted IB optimal systems. Specifically, we should expect the emergent systems to (1) lie close to the IB bound, and have small loss in efficiency compared to optimal systems, and (2) show category structure similar to the optimal IB systems. In the remainder of this paper, we show how to test these predictions, using a concrete semantic domain and an array of simulations. 
+
+# 4 Test case: Numerosity 
+
+To begin to explore the properties of our model, we consider a synthetic domain corresponding to a linear, one-dimensional semantic space. Specifically, the world states for Sender and Receiver are n numbers 
+
+X = {0, 1, . . . , n − 1}, and n available words. In all our simulations, we set n = 100 . Conceptually, this corresponds to a setting in which communicative agents must convey scalar magnitudes under noisy perceptual or cognitive constraints. In principle, this state space could represent a variety of conceptual or perceptual continua, such as brightness, temperature, spatial position, or an idealized mental number line. Of particular relevance to prior work on efficiency in language is the interpretation of this space as one of approximate, idealized numerosity. Numerosity presents a good test-bed for our evolutionary model, as such systems have been studied in the context of semantic typology (Xu and Regier, 2014; Deni´ c and Szymanik, 2024), and also in emergent 8communication (Carlsson et al., 2021), but not yet from the perspective of IB. 2 The resulting IB systems will bear similarity to natural language numeral systems; at low complexity ( β → 1), IB solutions resemble approximate numeral systems, while as β → ∞ , the IB solution is a bijective mapping from meanings to words and models exact numerosity. This is possible in principle because there are equally many words as meanings available in the communication game; there is no guarantee, however, that the imitation dynamic will carry the population to any particular IB solution, including the bijective mapping that corresponds to exact numerosity. In our evolutionary model, successful communication depends jointly on pragmatic conventions (how precisely meanings are expected to be conveyed) and on perceptual constraints governing how similar or confusable nearby magnitudes are. The following subsections specify how these factors are instantiated in our synthetic domain through the payoff structure and form of state confusability. 
+
+4.1 Payoff structure and confusion of states 
+
+Utility via pragmatic standards For our communicative utility function, we follow (Franke and Correia, 2018; Regier et al., 2015) in using a model from mathematical psychology (Shepard, 1957; Nosofsky, 1986) to model the similarity of meanings. Formally, the similarity between state x, x ′ ∈ X is given by: similarity γ (x, x ′) = exp( −γ (x − x′)2) s.t . γ ≥ 0. (6) Then we define utility uγ (x, x ′) simply to be the similarity between x and x′:
+
+uγ (x, x ′) = similarity γ (x, x ′). (7) In Equation (6), γ is an imprecision parameter representing a tolerable level of pragmatic slack. The mini-mum standard of precision (i.e., maximum pragmatic slack) is assumed when γ = 0 , which lets all pairs of Sender and Receiver meanings receive identical payoff. Perfect discrimination between states is enforced when γ → ∞ , in which only perfect guesses by Receiver yield nonzero payoff. We then define the popu-lation fitness for Sender and Receiver as the expected similarity between actual states of Nature and finally reconstructed states by Receiver: 
+
+EPr ,S,R [uγ (xa, ˆxa)] = 
+
+X
+
+> xa
+
+X
+
+> xo
+
+Pr( xa)p(xo|xa) X
+
+> w
+
+S(w|xo) X
+
+> ˆxo
+
+R(ˆ xo|w) X
+
+> ˆxa
+
+p(ˆ xa|xo)
+
+ · uγ (xa, ˆxa),
+
+(8) where p(xo|xa) ≡ p(xa|xo) represents the probability of confusing similar states, defined below, and Pr( xa)
+
+is a prior over meanings reflecting the need to which each needs to be communicated. 
+
+Prior over states We assume a uniform prior over states, giving each magnitude equal communicative need. This neutral setting allows us to isolate the role of perceptual noise and pragmatic incentives in shaping efficient systems. However, this assumption can easily be relaxed, and future extensions could introduce non-uniform priors to model realistic distributions of need or frequency. 3 To evaluate resulting 
+
+> 2A comprehensive empirical evaluation of our framework on actual natural language numeral systems would also involve a power-law distributed communicative need distribution, additional constraints on representation (e.g., empirically estimated simi-larities of numerosity, and mechanisms for recursion), and evaluating on attested typological data. Our goal in this paper, however, is not to provide a fine-grained diachronic model of one semantic domain, but rather to outline a more generally applicable, proof-of-concept dynamical model to explain the evolution of near IB-optimal category systems.
+> 3In preliminary simulations, replacing this with a power-law distributed prior did not qualitatively change our results. Therefore, to keep our model simple and transparent, we focus on the uniform setting.
+
+9systems with respect to IB, we considered a uniform prior over meanings identical to the prior over states, i.e. 
+
+p(xa) = p(xo), in order to avoid artifacts due to boundary conditions when deriving p(xo) from confusion probabilities. 
+
+State confusion probabilities Following Franke and Correia (2018), we assume that the probability of confusing states depends on their similarity. To do this, we renormalize the similarity function (Equa-tion (6)) to probabilities and fix a perceptual certainty parameter α, representing the level of noise in the game dynamics. We define the probability of confusing state x for state x′ as proportional to their similar-ity: 
+
+pα(x′ | x) = similarity α(x, x ′)
+
+P 
+
+> x′
+
+similarity α(x, x ′) . (9) Note that utility and state confusion are defined using the same similarity function, but their parameters— γ
+
+and α, respectively—are set independently. In all of our analyses, we fix α = 0 .5 (i.e., so that the state confusion function is Gaussian with width 1 centered at the actual state). 
+
+# 5 Results 
+
+5.1 Fixed points 
+
+We simulated the imprecise imitation dynamic for up to 10 5 time steps, measuring team expected utility, complexity, accuracy, and deviation from optimality defined by ε = min β { 1 
+
+> β
+
+(Fβ [q] − F ∗ 
+
+> β
+
+)} where F∗ 
+
+> β
+
+is the optimal value of Fβ from Equation (5) (see Zaslavsky et al., 2018, and Appendix B for more details). We find that this dynamic produces communication systems that are remarkably close to the IB bound of effi-cient compression (Figure 2A). Emergent systems achieve near-optimal trade-offs between complexity and accuracy, outperforming both randomly permuted controls and systems evolved under a finite-population replicator–mutator dynamic (Nowak and Krakauer, 1999). For full methodological details on our baselines, see Appendix D. To ensure that these findings generalize across a wide range of communicative environments, we sys-tematically varied the pragmatic standards parameter γ which determines the sharpness of game payoffs, across 100 logarithmically spaced values in the range [10 −8, 10] , which we found to span the empirically achievable saturation points of complexity, accuracy and utility for emergent systems. We also varied initial conditions across eight random seeds, yielding a total of 800 runs. Almost all systems converged well before our limit of 10 5 steps. 4
+
+Pragmatic standards shape the position of emergent systems on the information plane in the expected manner: games that reward finer distinctions (higher values of γ) yield more complex and accurate meaning systems. This systematic relationship between pragmatic standards and position on the complexity-accuracy tradeoff is visible in (Figure 2A), and we observe quantitatively a smooth gradient for this trend across intermediate values ( ρcomplexity ≈ ρaccuracy ≈ 0.99 , p = 0 .0). In addition, Figure 3 shows that emergent systems show similar categorization structure to IB-optimal systems. Consistent with the pattern of complexity-accuracy trade-offs we observe, we find that across low, medium, and high values of γ, the best-fitting (by ϵ) IB systems correspond to solutions at progressively higher β. We observe a high Spearman rank correlation between the two parameters ( ρ = 0 .99 , p = 0 .0)when paired based on this fitting (see Section C, Figure 6). These findings suggest that the pragmatic               
+
+> 4Convergence was defined to be when the sum of absolute elementwise differences between the matrices for successive pop-ulation distributions dropped below 10 −5, which typically occurred before 40 ,000 steps. All simulations converged except for one setting: γ≈1e−6. Near this value, and also near γ≈1e−2, convergence was slower and efficiency loss locally higher (Figure 2B), suggesting possible critical behavior near these values.
+
+10 A.  B. 
+
+> unachievable
+
+Figure 2: Emergent efficient semantic systems. A: Converged systems on the information plane, colored by the pragmatic standard of precision γ in the sim-max game. Circles denote systems evolved from our model, derived from Franke and Correia (2018), abbreviated as FC18. See Movie 1 visualizing the dynamics on the plane. Gray circles mark the result of permuting the systems evolved from the FC18 dynamics (see Appendix D). Gray triangles correspond to emergent systems evolved from a dynamic proposed in Nowak and Krakauer (1999), abbreviated as NK99, which we consider as another baseline. B:Game pragmatic standard of precision ( γ, Equation (6)) vs. efficiency loss ( ϵ, Equation (17)) of converged systems. Mean scores for systems emerging from our model are depicted in blue while mean scores for permuted counterparts are in gray. Shaded regions correspond to the 95% confidence interval. The inset shows a zoomed-in view of the emergent systems’ scores only. standard of precision in communication strongly constrains the distribution of near-optimal systems along the IB bound, and is therefore a promising agent-level mechanistic parameter for explaining variation in efficiency trade-offs. As can be observed in Figure 2A, however, the emergent systems do not span the full range of trade-offs. Noisy imitation appears to prevent convergence to a fully bijective mapping between meanings and words, even when such mappings are globally optimal (e.g., when γ = 1 ). The maximum achievable accuracy in this domain is I(Mo; Xa) ≈ 4.61 bits, yet the highest accuracy of any emergent system remains below 4 bits, suggesting a fundamental limit on communicative precision under noisy imitation dynamics. Interestingly, the emergent systems’ efficiency loss (deviation from optimality) also increases with γ, (Figure 2B; ρ =0.93 , p = 0 .0), indicating that as pressure for precise communication grows, IB-optimal solutions become harder for the imitation dynamic to approximate. Nevertheless, the emergent systems do achieve near-optimal efficiency: they approximately minimize complexity for their achieved accuracy values, and are more efficient than baseline counterpart systems. Crucially, this emergent efficiency is not an a priori feature of the model, but rather an empirical finding, as there is nothing in the evolutionary dynamics that guarantees IB-efficiency. In particular, although higher accuracy is expected because strategies yielding greater expected utility are preferentially imitated, it is not obvious why the dynamics should drive systems to also minimize complexity. Intuitively, one possibility 11 emergent                 
+
+> IB-fi tted
+> β=1.0307
+> γ=0.001 γ=10 γ=0.01
+> β=1.0975 β=1.508
+> A. B. C.
+> F. E. D.
+
+Figure 3: Sample of converged emergent systems and their optimal counterparts. A-C: 1-dimensional mode maps of converged system for γ = 0 .001 , 0.01 , 10 (Equation (6)). In each plot, the x-axis denotes the meaning space Xo = {0, . . . , 99 }, the y-axis denotes probability S(w|mo), and lines are the modal word 
+
+w (out of 100 possible words) used for each meaning mo = xo. The color of each line corresponds to the average meaning that the word is used to communicate, with black corresponding to x1 and bright orange corresponding to x100 . D-F: Mode maps for the optimal counterparts of the emergent systems in D-F, fitted by efficiency loss ϵ (Equation (17)). See Movie 2 for the evolution of the system in A.is that noisy imitation acts as a regularizer that softens category boundaries, and thereby indirectly reduces complexity. 
+
+5.2 Dynamics 
+
+Over iterations, we observe that expected team utility and communicative accuracy increase, and complexity increases roughly the minimum amount required for each current achieved accuracy, resulting in population systems remaining close to the bound throughout evolution (Figure 4, see also Movie 1 and Movie 2). Despite this general tendency toward compression, efficiency does not always improve monotonically over time. As shown in Figure 4D, deviation from optimality remains substantially below chance but ex-hibits transient fluctuations. In particular, a pronounced spike in efficiency loss occurs during the first 100 
+
+iterations, with the effect becoming more pronounced at higher values of γ.In contrast, the baseline finite-population dynamic we considered from Nowak and Krakauer (1999) fails to achieve the levels of efficiency reached by systems evolved under our model, or even the efficiency reached by the systems resulting from random permutations of our model’s converged systems. While some runs of the baseline dynamic lead to populations develop vocabularies whose words carry relatively high information about the environment, these systems are inefficient: they do not minimize complexity for the accuracy they achieve. 12 Complexity (bits) 
+
+> Accuracy (bits)
+> Population  fi tness
+> Evolution step
+
+## A.  B. 
+
+## C. 
+
+> Effi ciency loss (  )ϵ
+
+## D. 
+
+> Evolution step
+
+Figure 4: Complexity (A), accuracy (B), population fitness (C), and efficiency loss (D), relative to game pragmatic standard of precision ( γ) across discrete time step of simulated evolution. Lines in each plot show mean (with 95% CIs) across eight random seeds. Color corresponds to γ (Equation (6)). Taken together, the results of our simulations show that a model of imprecise imitation of communicative behavior can drive a population’s vocabulary towards near-optimal compression. Furthermore, our model predicts that both the local, contextual standards of precision in these games, and individuals’ tendency to confuse similar states, impose systematic constraints on the specific efficient trade-offs achieved by emergent vocabularies. 
+
+# 6 Discussion 
+
+In this paper, we set out to provide a mechanistic explanation of how efficient communication can arise in a population of language speakers, and to investigate whether previously studied notions of success in com-munication from game theory may be related to information-theoretic optimality. To do this, we unified a mathematically precise and empirically supported account of efficiency in semantic systems based on the IB principle (Zaslavsky et al., 2018), with a model of the emergence of vague meaning from evolutionary game theory (Franke and Correia, 2018). Our simulations demonstrates that a replicator dynamic of noisy social imitation can drive a communicative population’s vocabulary towards the theoretical bounds of efficiency. We also found that both the local, contextual standards of precision in these games and individuals’ tenden-cies to confuse similar states impose systematic constraints on the specific tradeoffs achieved by emergent vocabularies. These results suggest that evolutionary game dynamics can provide a mechanistic basis for the evolution of vocabularies with information-theoretically optimal and empirically attested properties. Our framework also offers conceptual and theoretical foundations for further studying how game-theoretic 13 and information-theoretic principles relate in language evolution. For example, in our framework, we have build on a game-theoretic approach that models the Sender and Receiver populations as emergent distribu-tion of many individuals’ pure strategies, which are not explicitly driven by any pressure for efficiency. One consequence of this is that even if the emergent population-level system achieve efficient compression, this does not necessarily imply that each individual in the population must be explicitly guided by efficiency. Interestingly, however, Imel et al. (2025) recently found empirical evidence suggesting that individuals do exhibit an inductive learning bias toward IB-efficient semantic system. This opens the question of why such a bias might emerge at the individual level, while, as we have shown, it is not necessary for population-level efficiency. Another important direction for future research is to further explore the mathematical relation-ships between evolutionary dynamics and information theoretic optimization. 
+
+# Acknowledgments 
+
+We thank Shane Steinert-Threlkeld for valuable feedback on earlier versions of this work. We are also grateful to the members of the Departments of Logic and Philosophy of Science and Language Science at UC Irvine, members of the MIT Computational Psycholinguistics Lab, as well as participants at the NeurIPS 2023 InfoCog Workshop and the CogSci 2023 conference for helpful discussions during the development of this project. 
+
+# References 
+
+Jon Barwise and Robin Cooper. Generalized quantifiers and natural language. In Philosophy, Language, and Artificial Intelligence: Resources for Processing Natural Language , pages 241–301. Springer, 1981. Toby Berger. Rate Distortion Theory: A Mathematical Basis for Data Compression. Prentice-Hall Series in Information and System Sciences. Prentice-Hall, Englewood Cliffs, N.J, 1971. ISBN 0-13-753103-6. B. Berlin and P. Kay. Basic Color Terms: Their Universality and Evolution . University of California Press, 1969. ISBN 978-0-520-01442-8. Immanuel M. Bomze. Lotka-Volterra equation and replicator dynamics: A two-dimensional classification. 
+
+Biological Cybernetics , 48(3):201–211, 1983. ISSN 1432-0770. doi: 10.1007/BF00318088. Tilman B¨ orgers and Rajiv Sarin. Learning Through Reinforcement and Replicator Dynamics. Journal of Economic Theory , 77(1):1–14, 1997. ISSN 0022-0531. doi: 10.1006/jeth.1997.2319. Emil Carlsson, Devdatt Dubhashi, and Fredrik D. Johansson. Learning Approximate and Exact Numeral Systems via Reinforcement Learning. Proceedings of the Annual Meeting of the Cognitive Science Soci-ety , 43(43), 2021. Emil Carlsson, Devdatt Dubhashi, and Terry Regier. Cultural evolution via iterated learning and commu-nication explains efficient color naming systems. Journal of Language Evolution , 9(1-2):49–66, 2024. ISSN 2058-458X. doi: 10.1093/jole/lzae010. Jon W. Carr, Kenny Smith, Jennifer Culbertson, and Simon Kirby. Simplicity and informativeness in seman-tic category systems. Cognition , 202:104289, 2020. ISSN 0010-0277. doi: 10.1016/j.cognition.2020. 104289. 14 Alexandra Carstensen, Jing Xu, Cameron T. Smith, and Terry Regier. Language evolution in the lab tends toward informative communication. Proceedings of the Annual Meeting of the Cognitive Science Society ,36(36), 2014. Rahma Chaabouni, Eugene Kharitonov, Emmanuel Dupoux, and Marco Baroni. Communicating artificial neural networks develop efficient color-naming systems. Proceedings of the National Academy of Sci-ences , 118(12):e2016569118, 2021. doi: 10.1073/pnas.2016569118. Sihan Chen, Richard Futrell, and Kyle Mahowald. An information-theoretic approach to the typology of spatial demonstratives. Cognition , 240:105505, 2023. ISSN 0010-0277. doi: 10.1016/j.cognition.2023. 105505. Jos´ e Pedro Correia and Michael Franke. Towards an Ecology of Vagueness. In Richard Dietz, editor, 
+
+Vagueness and Rationality in Language Use and Cognition , Language, Cognition, and Mind, pages 87–113. Springer International Publishing, Cham, 2019. ISBN 978-3-030-15931-3. doi: 10.1007/ 978-3-030-15931-3 6. Jos´ e Pedro Correia and Radek Ocel´ ak. Towards More Realistic Modeling of Linguistic Color Categorization. 
+
+Open Philosophy , 2(1):160–189, 2019. ISSN 2543-8875. doi: 10.1515/opphil-2019-0013. Thomas M. Cover and Joy A. Thomas. Elements of Information Theory (Wiley Series in Telecommunications and Signal Processing) . Wiley-Interscience, USA, 2006. ISBN 978-0-471-24195-9. Vincent P. Crawford and Joel Sobel. Strategic Information Transmission. Econometrica , 50(6):1431–1451, 1982. ISSN 0012-9682. doi: 10.2307/1913390. William Croft. Typology and Universals . Cambridge University Press, 2003. D´ aniel Cz´ egel, Hamza Giaffar, Joshua B. Tenenbaum, and E¨ ors Szathm´ ary. Bayes and Darwin: How replicator populations implement Bayesian computations. BioEssays , 44(4):2100255, 2022. ISSN 1521-1878. doi: 10.1002/bies.202100255. Milica Deni´ c and Jakub Szymanik. Recursive Numeral Systems Optimize the Trade-off Between Lexicon Size and Average Morphosyntactic Complexity. Cognitive Science , 48(3):e13424, 2024. ISSN 1551-6709. doi: 10.1111/cogs.13424. Ramon Ferrer-i-Cancho and Ricard V. Sol´ e. Least effort and the origins of scaling in human language. Pro-ceedings of the National Academy of Sciences , 100(3):788–791, 2003. doi: 10.1073/pnas.0335980100. Michael Franke and Jos´ e Pedro Correia. Vagueness and Imprecise Imitation in Signalling Games. The British Journal for the Philosophy of Science , 69(4):1037–1067, 2018. ISSN 0007-0882. doi: 10.1093/ bjps/axx002. Yoav Freund and Robert E Schapire. A Decision-Theoretic Generalization of On-Line Learning and an Application to Boosting. Journal of Computer and System Sciences , 55(1):119–139, 1997. ISSN 0022-0000. doi: 10.1006/jcss.1997.1504. Edward Gibson, Richard Futrell, Steven P. Piantadosi, Isabelle Dautriche, Kyle Mahowald, Leon Bergen, and Roger Levy. How Efficiency Shapes Human Language. Trends in Cognitive Sciences , 23(5):389–407, 2019. ISSN 1364-6613, 1879-307X. doi: 10.1016/j.tics.2019.02.003. 15 Eleonora Gualdoni, Mycal Tucker, Roger Levy, and Noga Zaslavsky. Bridging semantics and pragmatics in information-theoretic emergent communication. In A. Globerson, L. Mackey, D. Belgrave, A. Fan, U. Paquet, J. Tomczak, and C. Zhang, editors, Advances in Neural Information Processing Systems ,volume 37, pages 21059–21078. Curran Associates, Inc., 2024. doi: 10.52202/079017-0663. Marc Harper. Information geometry and evolutionary game theory. arXiv.org , 2009. ISSN 2331-8422. Marc Harper. The Replicator Equation as an Inference Dynamic, 2010. Peter Harremoes and Naftali Tishby. The Information Bottleneck Revisited or How to Choose a Good Distortion Measure. In 2007 IEEE International Symposium on Information Theory , pages 566–570, 2007. doi: 10.1109/ISIT.2007.4557285. Daniel Hennes, Dustin Morrill, Shayegan Omidshafiei, R´ emi Munos, Julien Perolat, Marc Lanctot, Au-drunas Gruslys, Jean-Baptiste Lespiau, Paavo Parmas, Edgar Du` e˜ nez-Guzm´ an, and Karl Tuyls. Neural Replicator Dynamics: Multiagent Learning via Hedging Policy Gradients. In Proceedings of the 19th International Conference on Autonomous Agents and MultiAgent Systems , AAMAS ’20, pages 492–501, Richland, SC, 2020. International Foundation for Autonomous Agents and Multiagent Systems. ISBN 978-1-4503-7518-4. Josef Hofbauer and Karl Sigmund. Evolutionary Games and Population Dynamics . Cambridge University Press, Cambridge, 1998. ISBN 978-0-521-62570-8. doi: 10.1017/CBO9781139173179. Simon Huttegger, Brian Skyrms, Pierre Tarr` es, and Elliott Wagner. Some dynamics of signaling games. 
+
+Proceedings of the National Academy of Sciences , 111(supplement 3):10873–10880, 2014. doi: 10. 1073/pnas.1400838111. Simon M. Huttegger, Brian Skyrms, Rory Smead, and Kevin J. S. Zollman. Evolutionary dynamics of Lewis signaling games: Signaling systems vs. partial pooling. Synthese , 172(1):177, 2009. ISSN 1573-0964. doi: 10.1007/s11229-009-9477-0. Nathaniel Imel, Jennifer Culbertson, Simon Kirby, and Noga Zaslavsky. Iterated language learning is shaped by a drive for optimizing lossy compression. In Proceedings of the 47th Annual Meeting of the Cognitive Science Society , 2025. Athul Paul Jacob, Yikang Shen, Gabriele Farina, and Jacob Andreas. The Consensus Game: Language Model Generation via Equilibrium Search, 2023. Gerhard J¨ ager. The evolution of convex categories. Linguistics and Philosophy , 30(5):551–564, 2007. ISSN 1573-0549. doi: 10.1007/s10988-008-9024-3. Gerhard J¨ ager, Lars P. Metzger, and Frank Riedel. Voronoi languages: Equilibria in cheap-talk games with high-dimensional types and few signals. Games and Economic Behavior , 73(2):517–537, 2011. ISSN 0899-8256. doi: 10.1016/j.geb.2011.03.008. Mikael K˚ ageb¨ ack, Emil Carlsson, Devdatt Dubhashi, and Asad Sayeed. A reinforcement-learning approach to efficient communication. PLOS ONE , 15(7):e0234894, 2020. ISSN 1932-6203. doi: 10.1371/journal. pone.0234894. Charles Kemp, Yang Xu, and Terry Regier. Semantic typology and efficient communication. Annual Review of Linguistics , pages 1–23, 2018. doi: 10.1146/annurev-linguistics-011817-045406. 16 Natalia L. Komarova. Replicator–mutator equation, universality property and population dynamics of learn-ing. Journal of Theoretical Biology , 230(2):227–239, 2004. ISSN 0022-5193. doi: 10.1016/j.jtbi.2004. 05.004. Stephen C. Levinson. Kinship and Human Thought. Science (New York, N.Y.) , 336(6084):988–989, 2012. doi: 10.1126/science.1222691. David Kellogg Lewis. Convention: A Philosophical Study . Cambridge, MA, USA: Wiley-Blackwell, 1969. Francis Mollica, Geoff Bacon, Noga Zaslavsky, Yang Xu, Terry Regier, and Charles Kemp. The forms and meanings of grammatical markers support efficient communication. Proceedings of the National Academy of Sciences , 118(49):e2025993118, 2021. doi: 10.1073/pnas.2025993118. Robert M. Nosofsky. Attention, similarity, and the identification–categorization relationship. Journal of Experimental Psychology: General , 115:39–57, 1986. ISSN 1939-2222. doi: 10.1037/0096-3445.115.1. 39. Martin A. Nowak. Evolutionary Dynamics: Exploring the Equations of Life . Harvard University Press, 2006. ISBN 978-0-674-02338-3. doi: 10.2307/j.ctvjghw98. Martin A. Nowak and David C. Krakauer. The evolution of language. Proceedings of the National Academy of Sciences , 96(14):8028–8033, 1999. doi: 10.1073/pnas.96.14.8028. Martin A. Nowak, Natalia L. Komarova, and Partha Niyogi. Evolution of Universal Grammar. Science , 291 (5501):114–118, 2001. doi: 10.1126/science.291.5501.114. Cailin O’Connor. The Evolution of Vagueness. Erkenntnis , 79(4):707–727, 2014. ISSN 1572-8420. doi: 10.1007/s10670-013-9463-2. Karen M. Page and Martin A. Nowak. Unifying Evolutionary Dynamics. Journal of Theoretical Biology ,219(1):93–98, 2002. ISSN 0022-5193. doi: 10.1006/jtbi.2002.3112. Christina Pawlowitsch. Why evolution does not always lead to an optimal signaling system. Games and Economic Behavior , 63(1):203–226, 2008. ISSN 0899-8256. doi: 10.1016/j.geb.2007.08.009. Joshua B. Plotkin and Martin A. Nowak. Language evolution and information theory. Journal of Theoretical Biology , 205(1):147–159, 2000. ISSN 0022-5193. doi: https://doi.org/10.1006/jtbi.2000.2053. George R. Price. Selection and Covariance. Nature , 227(5257):520–521, 1970. ISSN 1476-4687. doi: 10.1038/227520a0. Terry Regier, Charles Kemp, and Paul Kay. Word meanings across languages support efficient commu-nication Informativeness and simplicity as competing principles. In Brian MacWhinney and William O’Grady, editors, The Handbook of Language Emergence , pages 237–263. Wiley, 2015. Eleanor Rosch. Principles of Categorization. In Cognition and Categorization . Routledge, 1978. ISBN 978-1-032-63327-5. Kenneth Rose. Deterministic annealing for clustering, compression, classification, regression, and related optimization problems. Proceedings of the IEEE , 86(11):2210–2239, 1998. Peter Schuster and Karl Sigmund. Replicator dynamics. Journal of Theoretical Biology , 100(3):533–538, 1983. ISSN 0022-5193. doi: 10.1016/0022-5193(83)90445-9. 17 Claude E. Shannon. Coding Theorems for a Discrete Source With a Fidelity Criterion. In Claude E. Shan-non: Collected Papers , volume 7, pages 325–350. Institute of Radio Engineers, International Convention Record, 1959. doi: 10.1109/9780470544242.ch21. Roger N. Shepard. Stimulus and response generalization: A stochastic model relating generalization to distance in psychological space. Psychometrika , 22(4):325–345, 1957. ISSN 1860-0980. doi: 10.1007/ BF02288967. Brian Skyrms. Signals: Evolution, Learning, and Information . Oxford University Press, Oxford, 2010. ISBN 978-0-19-958082-8. doi: 10.1093/acprof:oso/9780199580828.001.0001. John Maynard Smith. Evolution and the Theory of Games . Cambridge University Press, Cambridge, 1982. Matthew Spike, Kevin Stadler, Simon Kirby, and Kenny Smith. Minimal Requirements for the Emergence of Learned Signaling. Cognitive Science , 41(3):623–658, 2017. ISSN 1551-6709. doi: 10.1111/cogs.12351. Luc Steels. A self-organizing spatial vocabulary. Artif. Life , 2(3):319–332, 1995. ISSN 1064-5462. Maya Taliaferro, Nathaniel Imel, Esti Blanco-Elorietta, and Noga Zaslavsky. Bilinguals exhibit semantic convergence while maintaining near-optimal efficiency. In Proceedings of the 47th Annual Meeting of the Cognitive Science Society , 2025. Peter D. Taylor and Leo B. Jonker. Evolutionary stable strategies and game dynamics. Mathematical Biosciences , 40(1):145–156, 1978. ISSN 0025-5564. doi: 10.1016/0025-5564(78)90077-9. Naftali Tishby, Fernando C Pereira, and William Bialek. The information bottlneck method. Proceedings of the 37th Annual Allerton Conference on Communication, Control and Computing , pages 368–377, 1999. Mycal Tucker, Roger P. Levy, Julie Shah, and Noga Zaslavsky. Trading off utility, informativeness, and com-plexity in emergent communication. In Alice H. Oh, Alekh Agarwal, Danielle Belgrave, and Kyunghyun Cho, editors, Advances in Neural Information Processing Systems , 2022. Mycal Tucker, Julie Shah, Roger Levy, and Noga Zaslavsky. Towards Human-Like Emergent Communica-tion via Utility, Informativeness, and Complexity. Open Mind , 9:418–451, 2025. ISSN 2470-2986. doi: 10.1162/opmi a 00188. Kai von Fintel and Lisa Matthewson. Universals in semantics. The Linguistic Review , 25(1-2):139–201, 2008. ISSN 1613-3676. doi: 10.1515/TLIR.2008.004. Stephen Wechsler, James W. Shearer, and Katrin Erk. The Emergence of Grammar through Reinforcement Learning. https://arxiv.org/abs/2503.01635v1, 2025. Yang Xu and Terry Regier. Numeral systems across languages support efficient communication: From approximate numerosity to recursion. In Cognitive Science Society (Cogsci-2014) , pages 1802–1807, 2014. Yang Xu, Terry Regier, and Barbara C. Malt. Historical Semantic Chaining and Efficient Communication: The Case of Container Names. Cognitive Science , 40(8):2081–2094, 2016. ISSN 0364-0213. doi: 10.1111/cogs.12312. Noga Zaslavsky. Information-Theoretic Principles in the Evolution of Semantic Systems . PhD thesis, The Hebrew University of Jerusalem, 2020. 18 Noga Zaslavsky, Charles Kemp, Terry Regier, and Naftali Tishby. Efficient compression in color naming and its evolution. Proceedings of the National Academy of Sciences , 115(31):7937–7942, 2018. doi: 10.1073/pnas.1800521115. Noga Zaslavsky, Terry Regier, Naftali Tishby, and Charles Kemp. Semantic categories of artifacts and animals reflect efficient coding. In 41st Annual Meeting of the Cognitive Science Society , 2019. Noga Zaslavsky, Mora Maldonado, and Jennifer Culbertson. Let’s talk (efficiently) about us: Person systems achieve near-Optimal compression. In Proceedings of the 43rd Annual Meeting of the Cognitive Science Society , 2021. Noga Zaslavsky, Karee Garvin, Charles Kemp, Naftali Tishby, and Terry Regier. The evolution of color naming reflects pressure for efficiency: Evidence from the recent past. Journal of Language Evolution ,page lzac001, 2022. ISSN 2058-458X. doi: 10.1093/jole/lzac001. George Kingsley Zipf. Human Behavior and the Principle of Least Effort: An Introduction to Human Ecology . Addison-Wesley Press, Cambridge, MA, 1949. 
+
+# A The replicator equation and the imprecise conditional imitation dynamic 
+
+The general, multiplicative form of the discrete time replicator equation is: 
+
+p(t+1)  
+
+> i
+
+= p(t)
+
+> i
+
+"
+
+fi(p(t))
+
+ϕ(p(t))
+
+#
+
+, (10) where p ∈ Rn is a vector of the distribution of n possible types in the population, pi is the proportion of type i ∈ [n] in the population, fi(p) is the expected fitness type i relative to the population, and ϕ(p) = Pnj=1 pj fj (p) represents the mean fitness of the population. Intuitively, Equation (10) says that if at time t
+
+a type has greater fitness than average, its proportion in the population will increase in the next time step. Franke and Correia’s imprecise conditional imitation dynamic, visualized as a graphical model in Fig-ure 5, describes how social imitation and communication interact in a stochastic, adaptive manner. 5 The interpretation of this process is as follows. At each time-step in evolution, an agent may revise their pure strategy, based on observing and imitating other agents’ behavior. Suppose the actual state of the world is 
+
+xa. An imitating Sender will noisily perceive this as xim o , and has the option of what signal they will send in this perceived state. This will depend on the probability of having observing w sent by another Sender, who may have noisily perceived state xa as xo. Likewise, if w was the signal received by an imitating Receiver, then the interpretation that this Receiver assigns to this signal depends the state ˆxa finally realized by a the Receiver agent being imitated, and the imitator’s noisily perceived version ˆxim o . Table 1 summarizes our notation. As an instance of the replicator dynamic, our model assumes that the frequency of a signaling behavior evolves according to its current frequency and expected utility relative to other behaviors’ frequencies in the current population. Thus evolution is driven by not only the communicative utility of signaling strategies, but also how these strategies interact with the current landscape of existing strategies. Since we are modeling evolution in sim-max games, the utility of Sender and Receiver’s strategies are defined in terms of how well they jointly maximize similarity between states xa, ˆxa ∈ X . Below, we describe in detail the discrete-time update equations of the imprecise conditional imitation dynamic. 
+
+> 5To be precise, this dynamic describes events probabilistically, but like the standard replicator equation it is a deterministic process at the level of modeling.
+
+19 xa
+
+# wxo
+
+> p
+
+# ̂ xo p̂
+
+# xa
+
+# S(t+1)(w | xim  
+
+> o
+
+# ) ∝ ⋅
+
+# R(t+1)(̂ xim  
+
+> o
+
+# | w)̂
+
+# xim 
+
+> o
+
+# ∝
+
+# xim       
+
+> op
+> imitating
+> Sender
+> imitated strategy frequency current strategy frequency expected strategy utility
+> imitating
+> Receiver
+> pp
+
+# 𝔼 xa,̂xa[u( , ) ∣ , ]⋅̂ xa ŵxim 
+
+> o
+
+# xa
+
+# P (w | )S(t) xim 
+
+> o
+
+# P (̂xim  
+
+> o
+
+# | )R(t) w
+
+# 𝔼 xa,̂xa[u( , ) ∣ , ]̂xâ xim 
+
+> o
+
+# wxa     
+
+> S(w|xo)R(̂xo|w)
+> original
+> Sender
+> original
+> Receiver
+
+Figure 5: The imprecise conditional imitation dynamic (Franke and Correia, 2018). The frequency of word w being used to communicate state xim  
+
+> o
+
+at the next time step grows in proportion to (i) the expected frequency of w given that xim  
+
+> o
+
+was observed by some (randomly sampled) imitating Sender, times (ii) the expected utility of this word relative to the population of Receivers. Likewise, the frequency of interpreting 
+
+w as meaning ˆxim  
+
+> o
+
+grows in proportion to (i) the probability that ˆxim  
+
+> o
+
+is observed by a randomly sampled agent imitating a randomly sampled Receiver that actually realized ˆxa after receiving word w, times (ii) the expected utility of the interpretation ˆxim  
+
+> o
+
+given w. See Equations (11) to (16) for the details of these conditional expectations. Notation Interpretation 
+
+xa actual state 
+
+xo Sender’s observed state 
+
+xim o an imitating Sender’s observed state 
+
+mo(xa) ≡ p(xa|xo) observation noise / belief state 
+
+p(mo) communicative need distribution 
+
+w signal 
+
+S(w|mo) ≡ S(w|xo) probability that a random Sender uses strategy w in xo
+
+ˆxo Receiver’s intended reconstruction state 
+
+ˆxim o an imitating Receiver’s observed state 
+
+R(ˆ xo|w) probability that a random Receiver uses strategy ˆxo in w
+
+ˆxa Receiver’s realized reconstruction state 
+
+ˆmw(xa) = P 
+
+> xo
+
+R(xo|w)p(xa|xo) Receiver’s reconstruction of Sender’s belief state Table 1: Mapping between our notation, Franke and Correia (2018)’s notation, and Zaslavsky et al. (2018)’s notation. 20 A.1 Modeling agent utility and imitation probabilities 
+
+Sender’s expected utility The expected utility for a Sender’s strategy is defined in terms of the utility of sending w in state xa given that xo was observed, with respect to the current Receiver population R:
+
+Exa,ˆxa [u(xa, ˆxa)|w, x o] = X
+
+> xa,ˆxa,ˆxo
+
+p(xa|xo)R(ˆ xo|w)p(ˆ xa|ˆxo) · u(xa, ˆxa). (11) To interpret this expectation, consider the following process. Nature first generates a state of the world, xa ∼
+
+p(xa), which the Sender noisily observes as xo. The first probability in the summation is the probability that 
+
+xa ∼ p(xa|xo) was the true state. Next, ˆxo ∼ R(ˆ xo|w) is the Receiver’s interpretation after observing w.Finally, ˆxa ∼ p(ˆ xa|ˆxo) is the Receiver’s final reconstruction of the actual state given their interpretation ˆxo,capturing decision-making noise on the Receiver’s end. 
+
+Sender’s imitation probability The probability that an imitator Sender will use signal w while having observed state xim o is 
+
+PS (w|xim o ) = X
+
+> xa,x o
+
+p(xa|xim o )p(xo|xa)S(w|xo), (12) where xa ∼ p(xa|xim o ) is drawn from the distribution over actual states given that xim o was observed by the imitating Sender, and xo ∼ p(xo|xa) is drawn according to the probability that the imitated Sender will confuse xa for xo.
+
+Receiver’s expected utility Parallel to the Sender, The Receiver’s fitness function is identified with the utility of guessing ˆxo after receiving w, with respect to the current Sender population S:
+
+Exa,ˆxa [u(xa, ˆxa)|w, ˆxo] = X
+
+> xa,ˆxa
+
+S(xa|w)p(ˆ xa|ˆxo) · u(xa, ˆxa), (13) where xa ∼ S(xa|w) is the state xa chosen by Nature, given the current Sender population, and ˆxa ∼
+
+p(ˆ xa|ˆxo) is the Receiver’s final reconstruction given the intended interpretation ˆxo.
+
+Receiver imitation probability The probability that an imitator will observe and adopt interpretation ˆxim o
+
+for signal w is 
+
+PR(ˆ xim o |w) = X
+
+> ˆxa,ˆxo
+
+p(ˆ xim o |ˆxa)p(ˆ xa|ˆxo)R(ˆ xo|w), (14) where ˆxo ∼ R(ˆ xo|w) is the randomly sampled imitated Receiver’s intended interpretation of w, and ˆxa ∼
+
+p(ˆ xa|ˆxo) is the imitated Receiver’s final reconstruction, given that ˆxo was intended. Having defined the expected utility for both the Sender and Receiver populations, we can now describe the discrete time update equations for the imprecise conditional imitation dynamic. 
+
+A.2 Discrete time update equations 
+
+For the update of the Sender population, assume that at time step t + 1 an imitating Sender observes xim o .Then the probability that the imitator adopts strategy w is: 
+
+S(t+1) (w|xim o )
+
+| {z }
+
+> updated strategy frequency
+
+∝ P (t) 
+
+> S
+
+(w|xim o )
+
+| {z }
+
+> imitated strategy probability
+
+· Exa,ˆxa
+
+u(xa, ˆxa)|w, x im o
+
+ .
+
+| {z }
+
+> imitated strategy utility
+
+(15) 21 For the Receiver population’s update, assume that at time step t + 1 the imitating Receiver observes w. Then the probability that the imitator adopts strategy ˆxim o is: 
+
+R(t+1) (ˆ xim o |w)
+
+| {z }
+
+> updated strategy frequency
+
+∝ P (t) 
+
+> R
+
+(ˆ xim o |w)
+
+| {z }
+
+> imitated strategy probability
+
+· Exa,ˆxa
+
+u(xa, ˆxa)|w, ˆxim o
+
+| {z }
+
+> imitated strategy utility
+
+. (16) The proportionality symbols indicate that the right-hand sides must be normalized so that the left hand side is a valid conditional probability distribution. To summarize this dynamic and highlight its connection to the bare general form of the discrete time replicator equation in Equation (10): the characteristic assumption in the replicator dynamic is that a behav-ior’s frequency grows in a population as a function of its current frequency and its expected utility, relative to the frequency of other behaviors in the current population. This is captured by Equation (15) for the Sender population: we are updating the probability of a sampling a signaling strategy as the probability that an imitating Sender will adopt the strategy, weighted by the utility this strategy is expected to achieve relative to the current Receiver population. Likewise, for the Receiver population, in Equation (16) we are updating the probability of an interpretation strategy by the probability an imitating Receiver will adopt it, weighted by the utility it is expected to achieve relative to the current Sender population. Importantly, this all happens with the possibility that agents will confuse perceptually similar states, which factors into both the probability of an imitator’s strategy (Equations (12) and (14)) and the expected utility of each strategy ( Equations (11) and (13)). For a precise derivation of each update rule from the standard replicator equation, we refer readers to Appendix A of Franke and Correia (2018). 
+
+# B IB theoretical solutions 
+
+Measuring efficiency loss As explained in Section Section 2.1, we call a language efficient to the extent it minimizes the IB objective function. To make this notion precise, we adopt Zaslavsky et al. (2018)’s metric of efficiency loss, or deviation from optimality, to quantify the extent to which any encoder S is suboptimal. This metric ϵS is defined 
+
+ϵS = 1
+
+βS
+
+∆FβS (17) where βS is selected as the β that minimizes ∆Fβ = Fβ [S(w|mo)] − F ∗ 
+
+> β
+
+.
+
+Theoretical bound To compute the IB bound for our domain, we used the IB method Tishby et al. (1999), in combination with reverse deterministic annealing (Rose, 1998), as described in Zaslavsky et al. (2018) (see also Zaslavsky, 2020, Chapter 7). We take Pr( xo) to be uniform and p(xa|xo) to be equal to the perceptual uncertainty / state-confusion in Equation (9). To compute the theoretical bound for our synthetic semantic domain, we applied the IB method for 795 values of β ∈ [1 , 10 7].
+
+# C Pragmatic standards vs. IB trade-offs 
+
+Figure 6 shows the monotonic relationship between γ, the parameter controlling pragmatic standards of precision in each noisy sim-max game, and the IB trade-off parameter values β of converged systems, where the latter are fitted by minimum deviation from optimality ( ϵ, Equation (17)). The resulting sigmoidal curve is smooth and highly monotonic, and the Spearman rank correlation between the two variables is very high ( ρ = 0 .99 , p = 0 .0). While γ and β are not mathematically related, these results empirically suggest that in the context of noisy imitation of communicative strategies, pragmatic standards of precision are a key potential mechanistic parameter for explaining the range of complexity-accuracy trade-offs to which populations converge. 22 1e-6 1e-3 1
+
+> 1
+> 1.1
+> 1.2
+> 1.3
+> 1.4
+> 1.5
+> , game precision parameter
+> fitted  , IB trade-off parameter
+
+Figure 6: Monotonic relationship between γ and β.
+
+# D Baselines 
+
+We constructed several baselines for the converged systems and for their evolution. To ensure that the efficiency objective is not trivially satisfied, we obtained hypothetical variants of the converged systems by randomly permuting the meanings of each system. We also constructed a dynamical baseline by comparing the trajectories to those resulting from a different evolutionary game dynamic proposed in the literature to model language evolution. We describe these baselines in the following subsection. 
+
+Permutations For a ‘static’ baseline, we take the converged systems resulting from the imprecise con-ditional imitation dynamic and permute their meaning-word mappings (i.e., for each system, we permute the rows of their stochastic encoder matrix). We systematically manipulated the randomness of this per-mutation, and therefore the strength of this baseline, by sampling without replacement from a conditional softmax distribution over the meaning space and varying the temperature parameter, τ . That is, for each converged Sender’s encoder, for each m ∈ M we swap the distribution S(w|m) with S(w|m′), sampling 
+
+m′ ∼ pτ (m′|m) ∝ exp( −1 
+
+> τ
+
+(m − m′)2). Notice that as τ → ∞ , the permutation is random; as τ → 0, the identity permutation is recovered. We used 100 logarithmically spaced values between 1 and 1000 for τ .
+
+Finite-population dynamic Second, we consider a dynamic baseline. For this, we simulate a dynamic previously studied by Nowak and Krakauer (1999) to investigate the evolution of semantic category systems. Informally, this dynamic models the evolution of language within a single, finite population, in which each individual plays with every other individual. Each member of the population plays equally often as a (prob-abilistic) Sender or Receiver. Fitness is based on communication success, and offspring inherit mappings by sampling their parent’s responses. This finite sampling introduces variation. Nowak and Krakauer (1999) showed, in a smaller toy domain, how this dynamic can lead to population-level vocabularies that are evolu-tionarily stable, yet do not maximize fitness (i.e., correspond to approximate non-strict Nash equilibria). A detailed description of this stochastic process as an algorithm can be found in Section E. 23 We chose this dynamical baseline because it has been independently proposed as a simple model of lan-guage evolution, and while related to the replicator dynamic, it differs from our model in several significant ways. Specifically: (1) it is a finite-population model, requiring sampling-based updates to be stochastic rather than deterministic; (2) it models language evolution within a single population by symmetrizing the signaling game, rather than involving two populations; (3) it does not include perceptual uncertainty; and (4) it incorporates mutation, as individuals in each generation acquire their parents’ languages through finite sampling. Meanwhile, Franke and Correia (2018)’s evolutionary dynamic also describes stochastic strategy transmission via imitation, but implements this at the modeling level via deterministic dynamics. 
+
+# E NK99 
+
+The stochastic process from Nowak and Krakauer (1999) is formally described in Algorithm 1. 
+
+Algorithm 1 Evolutionary Dynamics for Signal-Object Associations 
+
+Require: Number of individuals N , signals |W| , objects |M| , generations T , number of samples D 
+
+> 1:
+
+Initialize population: each individual i has random matrices S0 
+
+> i
+
+∈ R|W|×|M| and R0 
+
+> i
+
+∈ R|M|×|W|  
+
+> 2:
+
+for t = 0 to T − 1 do ▷ Iterate through generations  
+
+> 3:
+
+Set total payoff Fi ← 0 for each individual i 
+
+> 4:
+
+for each pair of individuals (i, j ), i̸ = j do ▷ Communication phase  
+
+> 5:
+
+Compute payoff F (i, j ) for i as speaker and j as listener according to Equation (18).  
+
+> 6:
+
+Update Fi ← Fi + F (i, j ) 
+
+> 7:
+
+Update Fj ← Fj + F (j, i ) 
+
+> 8:
+
+end for  
+
+> 9:
+
+Normalize payoffs Fi to compute fitness for each individual: Fitness i ← FiPNj=1 Fj 
+
+> 10:
+
+Generate offspring proportional to fitness:  
+
+> 11:
+
+for each individual i do  
+
+> 12:
+
+Choose parent index p with probability proportional to Fitness p 
+
+> 13:
+
+Offspring matrices S(t+1)  
+
+> i
+
+and R(t+1)  
+
+> i
+
+are sampled from parent p mappings: 
+
+S(t+1)  
+
+> i,mw
+
+← Sample from {S(t)
+
+> p,mw
+
+}, R(t+1)  
+
+> i,wm
+
+← Sample from {R(t)
+
+> p,wm
+
+} 
+
+> 14:
+
+Normalize S(t+1)  
+
+> i
+
+and R(t+1)  
+
+> i
+
+to maintain probabilities  
+
+> 15:
+
+end for  
+
+> 16:
+
+end for  
+
+> 17:
+
+Compute population-level averages of S and R to analyze results The symmetric fitness function from Nowak and Krakauer (1999) is: 
+
+F (L, L ′) = 12
+
+X
+
+> m
+
+X
+
+> w
+
+S(w|m)R′(w| ˆm) + S′(w|m)R(w| ˆm) (18) There are several things to notice about Equation (18). First, it assumes a uniform prior over meanings (objects), which is aligned with the setting we have assumed throughout our simulations. Second, it assumes binary payoffs, i.e., a regime in which γ → ∞ . Third, it assumes no confusion of meanings for Senders and Receivers, i.e. pα(u|m) is a delta function with α → ∞ . Interestingly, upon initial exploration of these latter assumptions, we found that (i) varying γ did not systematically change the complexity or accuracy of resulting systems, and (ii) introducing even a small amount of uncertainty α into Senders’ and Receivers’ 24 perception of meaning resulted in too little selection pressure, i.e. random systems at the information plane origin, which would constitute an uninformative baseline. To keep simulations finishing under a reasonable amount of time, we ran Algorithm 1 for T = 100 
+
+generations, assumed N = 20 individuals, and that each offspring could obtain, for each meaning m,
+
+D = 10 samples from its parents’ S(w|m), and likewise D = 10 samples from its parents’ R(m|w) for each word w.25

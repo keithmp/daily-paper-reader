@@ -1,0 +1,256 @@
+Title: Myopic Best Response as a Double-Edged Mechanism in Networked Social Dilemmas with Individual Solutions
+
+URL Source: https://arxiv.org/pdf/2603.18128v1
+
+Published Time: Fri, 20 Mar 2026 00:08:02 GMT
+
+Number of Pages: 12
+
+Markdown Content:
+# Myopic Best Response as a Double-Edged Mechanism in Networked Social Dilemmas with Individual Solutions 
+
+Hirofumi Takesue ∗
+
+Tokyo Metropolitan University 
+
+Abstract 
+
+Myopic best-response dynamics (MBRD) capture agents’ bounded rationality and can generate evolutionary outcomes that differ from those produced by widely examined imitation dynamics. In this study, we apply MBRD to a three-strategy social dilemma—the snowdrift game with an individual solution—in which not only defection but also an individual solution that guarantees a safe, constant payoff can undermine cooperation. Monte Carlo simulations show that, on a square lattice, the evolutionary dynamics result in distinct equilibria, including the dominance of the individual solution, the coexistence of cooperators and defectors, or all-strategy coexistence. By combining simulations with a simple heuristic that approximates the transition condition between the dominance of the individual solution and the all-strategy coexistence, the analysis reveals a dual role of neighborhood size. Specifically, smaller neighborhoods can promote cooperation even when the individual solution is relatively inexpensive; however, achieving cooperation under these conditions requires greater benefits from cooperation. Notably, this hindrance to cooperation contrasts with evolutionary outcomes observed under imitation dynamics. Analysis of local strategy configurations explains the transition between the all-strategy coexistence and the coexistence of cooperators and defectors while showing that this transition is absent in a one-dimensional lattice. These observations indicate that the persistent availability of individual solutions constitutes an additional inhibiting factor of cooperation in populations of boundedly rational agents. 
+
+# Introduction 
+
+The evolution of cooperation has been studied across di-verse disciplines, including the physical, biological, and social sciences. Evolutionary game theory provides a ro-bust framework for analyzing the conflict between individ-ual self-interest and collective welfare, revealing mech-anisms that can explain the spontaneous emergence of cooperation [1–6]. Recent studies have also explored how external institutions contribute to the maintenance of cooperation [7–10]. Among the various factors in-fluencing cooperation, networked interactions have been widely studied as a key mechanism facilitating its spon-taneous evolution [11–14]. Interactions with fixed neigh-bors within a network can sustain cooperation that would otherwise collapse in well-mixed populations.  
+
+> ∗Electronic address: hir.takesue@gmail.com
+
+The dynamics of strategy updating are a key compo-nent of evolutionary games on networks [13]. Among these, imitation dynamics are the most extensively studied [12]. In imitation dynamics, agents compare their payoffs with those of their neighbors and are more likely to adopt a neighbor’s strategy if it results in a higher payoff [15]. Such rules can serve as models of both biological evolution and social learning. Beyond imitation, researchers have examined how alternative updating dynamics affect coop-eration in networked games. Notable examples include aspiration dynamics [16], moody conditional cooperation [17, 18], reinforcement learning [19]. Studies have also explored combinations of multiple updating rules. For instance, imitation dynamics have been combined with aspiration dynamics [20–22], conformity [23, 24], the death-birth process [25], reinforcement learning [26], and logit dynamics [27–29]. Additionally, updating rules such 1
+
+> arXiv:2603.18128v1 [physics.soc-ph] 18 Mar 2026
+
+as aspiration dynamics have been applied to the study of network evolution [30]. Among various updating dynamics, myopic best-response dynamics (MBRD), also known as the logit rule, has attracted research interest since early studies of evo-lutionary games on networks [13, 31]. MBRD models agents who optimize payoffs using only current informa-tion about their neighbors’ strategies, making it a useful starting point for studying bounded rationality. Impor-tantly, MBRD produces patterns that differ significantly from those observed under imitation dynamics. Under MBRD, the improvement in cooperation seen with imita-tion dynamics occurs only in limited cases [32]. However, in the snowdrift game, MBRD in networked games can either facilitate or inhibit cooperation more than interac-tions in well-mixed populations, depending on parameter values, and cooperation can persist even in harsh condi-tions [33]. Additionally, in three-strategy games where imitation dynamics inhibit cooperation relative to well-mixed populations, MBRD can promote cooperation [34]. MBRD also gives rise to characteristic spatial patterns. Unlike imitation dynamics, which maintain cooperation through the formation of large cooperative clusters through network reciprocity, MBRD supports the coexistence of cooperation and defection through checkerboard-like pat-terns on square lattices [35–37] and honeycomb-like pat-terns on triangular lattices [38], particularly in the snow-drift game. These observations underscore the importance of considering MBRD when analyzing cooperation in net-worked evolutionary games. In this study, we apply MBRD to the snowdrift game with an individual solution (SDGIS) [39]. The snowdrift game is a well-established model of social dilemmas [40], in which individuals are incentivized to exploit their coun-terparts, but mutual free-riding leads to the worst outcome. This game has been applied to a broad range of contexts, including information security [41]. Within the SDGIS framework, individuals may choose to pursue the required goal independently rather than select cooperation or de-fection in the dilemma game. This third option, referred to as the individual solution, introduces an additional bar-rier to cooperation, as individuals may prefer self-reliant actions rather than outright free-riding. The individual solution is a safe strategy because achieving the goal does not depend on others’ cooperative efforts. However, such unilateral efforts are typically less efficient than outcomes achieved through cooperation (see Refs. [42] and [43] for applications of the individual-solution concept). Owing to its safe yet inefficient nature, which resembles defection in stag hunt games, SDGIS can be viewed as a combina-tion of snowdrift and stag hunt games. Evidence from human experiments further indicates that the availability of an individual solution often inhibits the emergence of cooperation [42]. This study contributes to the literature on the evo-lution of cooperation by identifying the dual effects of networked interactions under MBRD. A previous simu-lation study showed that, when imitation dynamics are applied, networked interactions expand the parameter region in which cooperators can persist in the SDGIS [39]. This enhancement of cooperation arises primar-ily from three-strategy coexistence maintained through cyclic dominance, a mechanism also observed in volun-tary social dilemmas [44–48]. Conversely, our simulation results show that, under MBRD, networked interactions with a small neighborhood size often inhibit cooperation. We corroborate this observation using a simple heuristic that distinguishes among equilibrium states and provides threshold conditions for transitions from dominance of the individual solution to all-strategy coexistence. These findings provide further evidence of the distinctive effects of MBRD [33, 35–38] and highlight the challenge posed by the individual solution as an additional barrier to co-operation among boundedly rational agents in networked games. 
+
+# Model 
+
+We consider SDGIS, represented by the payoff matrix [39]: 
+
+CDI
+
+
+
+b − c b − 2c b − 2cb 0 0
+
+b − cI b − cI b − cI
+
+ .
+
+The game consists of three strategies: cooperation ( C), defection ( D), and individual solution ( I). Cooperation produces the benefits of a collective solution ( b), which are enjoyed nonexclusively by both interacting agents. The to-tal production cost of the collective solution is 2c. When both agents cooperate, this cost is shared equally, yielding a payoff of b − c. When only one agent cooperates, the cooperator bears the full production cost alone, resulting in the sucker’s payoff of b − 2c. Agents who choose de-fection free ride on the benefit produced by a cooperating counterpart without incurring any cost and therefore ob-tain a payoff of b. However, when the counterpart does 2not cooperate, defectors receive a payoff of 0. The con-dition b − 2c > 0 ensures that the interaction between 
+
+C and D retains the defining structure of the snowdrift game. Selecting the individual solution yields a constant payoff of b − cI , reflecting the low-risk nature of this strat-egy. Notably, the payoff from the individual solution is independent of the partner’s action, because choosing this strategy guarantees achievement of the required goal in a manner comparable to mutual cooperation. Although the individual solution is less efficient than mutual coop-eration, it is less costly than the unilateral provision of collective benefits. This relationship is captured by the assumption c < c I < 2c. In the simulations presented below, c is set to 1. We explore evolutionary dynamics in which agents up-date their strategies by myopically selecting the strategy that maximizes their payoff. Agents are distributed across the vertices of a square lattice containing N = L2 indi-viduals, with periodic boundary conditions applied. At each elementary time step, one agent is randomly selected from the population. This agent tends to adopt the strat-egy s that maximizes its payoff given the strategies of its four neighbors. Specifically, the probability of selecting strategy s is expressed as follows: 
+
+exp( βU s)
+
+∑ 
+
+> s′∈{ C,D,I }
+
+exp( βU s′ ) .
+
+The probability of adopting strategy s depends on the pay-off Us that the strategy would yield, given the current strategies of the neighbors, as well as on the parameter β,which regulates the noisiness of strategy selection. This functional form of the Boltzmann distribution has been widely employed to model stochastic decision-making, in-cluding applications in policy selection in reinforcement learning [49] and the quantal response equilibrium in game theory [50]. In addition to payoff-based updates, strate-gies may also change through mutation, which occurs with probability μ. In this case, the agent randomly adopts one of the three strategies, independent of the payoffs realized in local interactions. We examined this evolutionary process using Monte Carlo simulations. At the start of each simulation run, a strategy is randomly assigned to each agent, and strategies subsequently evolve according to the dynamics described above. A Monte Carlo step (MCS) consists of N ele-mentary time steps, so that each agent has, on average, one opportunity to update their strategy during a single MCS. In typical simulations, the system undergoes a re-laxation period of 20,000 MCSs to reach a steady state, after which data are collected over the subsequent 2,000 MCSs. The reported results represent the mean values obtained from four independent simulation runs. The fre-quencies of the three strategies are denoted as fC , fD,and fI , corresponding to cooperation, defection, and the individual solution, respectively. The resulting equilibria are named according to the strategies that persist in the population; for example, a mixed-strategy equilibrium in which only cooperation and defection survive is called a 
+
+CD -equilibrium. 
+
+# Results 
+
+The evolutionary dynamics give rise to three possible equi-libria: the I-equilibrium, the CDI -equilibrium, or the 
+
+CD -equilibrium. Figure 1 shows the resulting strategy frequencies as a function of the cost of the individual so-lution, cI , for different values of the selection intensity β.As expected, the high cost of adopting the individual solu-tion facilitates the invasion of cooperation and defection, leading to a transition from the I-equilibrium to the CDI -equilibrium. The distinction between the two equilibria becomes more pronounced at large selection intensities (β = 10 and 20 ). The manner in which these transitions occur depends on the values of the benefit parameter b.When b = 2 .2, cooperation and defection emerge gradu-ally only when the value of cI approaches that of unilateral cooperation (i.e., cI = 2 ), even under high selection inten-sity. Conversely, when b = 2 .6, cooperation and defection appear at moderate values of cI .Simulations show that the CD -equilibrium emerges when the value of b is large, such as b = 6 . Unlike the cases with smaller values of b (e.g., 2.2 and 2.6), the sys-tem exhibits the I-equilibrium, all-strategy coexistence, or the extinction of the individual solution as cI increases, with only a small fraction of agents adopting the individual solution due to mutations. The CD -equilibrium emerges when β is sufficiently high. We first focus on the emergence of cooperation, specif-ically the transition between the I-equilibrium and the 
+
+CDI -equilibrium. Since the CDI -equilibrium does not appear in well-mixed populations under replicator dynam-ics [39], its emergence may require careful examination. Visualization of the dynamics on a square lattice elucidates the evolutionary process leading to the CDI -equilibrium 3b = 2.2 b = 2.6 b = 6                 
+
+> fC fD fI
+> 1.5 1.6 1.7 1.8 1.9 2.0 1.5 1.6 1.7 1.8 1.9 2.0 1.5 1.6 1.7 1.8 1.9 2.0
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+> cI
+> frequency
+> β
+> 0.1 110 20
+
+Fig. 1 Emergence of the I-, CDI -, and CD -equilibria under MBRD on a square lattice. As the cost of the individual solution 
+
+cI increases, the CDI -equilibrium emerges, and this transition becomes more pronounced at higher selection intensities β. For larger values of the benefit parameter b, the same increase in cI
+
+instead leads to the CD -equilibrium. Simulation parameters: 
+
+L = 100 and μ = 10 −6.  
+
+> 0.8 MCS 2 MCS
+> 0 MCS 0.1 MCS
+> CDI
+
+Fig. 2 Spatial coexistence of cooperation, defection, and in-dividual solution on a square lattice. Defection yields the highest payoff when agents are surrounded by cooperators, whereas the individual solution yields the highest payoff when agents are surrounded by defectors. Simulation parameters: 
+
+L = 30 , b = 2 .6, c I = 1 .8, β = 10 , and μ = 10 −6.
+
+(Figure 2). To highlight local interactions, we consider a small system ( L = 30 ) with all-C initial states, which helps illustrate the evolutionary process. Agents sur-rounded by four cooperators adopt defection because it yields higher payoffs than cooperation by free-riding (0.1 MCS). As defectors accumulate, the individual solution begins to emerge, yielding higher payoffs than defection when surrounded by defectors (0.8 MCS). The individual solution dominates over cooperation in these contexts be-cause it offers greater myopic payoffs in interactions with free-riders ( b − cI > b − 2c). These dynamics lead to the 
+
+CDI -equilibrium observed in Figure 1. The emergence of the I- and CDI -equilibria is fur-ther illustrated using a heatmap. Figure 3 shows the fre-quencies of the three strategies as a function of the two payoff parameters: b and cI . As cI increases, the CDI -equilibrium emerges, as observed in Figure 1. Addition-ally, large values of b expand the parameter region in which the CDI -equilibrium occurs. More specifically, the con-ditions for the system to reach the CDI -equilibrium can be approximated by the two threshold lines shown in the figure: cI = 7 /4 and b = 7 /3. When b < 7/3, the CDI -equilibrium emerges only after cI becomes sufficiently 4μ = 10 −6 μ = 10 −2       
+
+> fC fD fI
+> 1.4 1.6 1.8 2.0 1.4 1.6 1.8 2.0
+> 2.0 2.2 2.4 2.6 2.8 3.0
+> 2.0 2.2 2.4 2.6 2.8 3.0
+> 2.0 2.2 2.4 2.6 2.8 3.0
+> cI
+> b
+> frequency
+> 0.00 0.25 0.50 0.75 1.00
+> Fig. 3
+
+Distinction between the I- and CDI -equilibria based on two threshold conditions. The heatmaps show that the CDI -equilibrium emerges when cI > 7/4 and b > 7/3, with the black lines representing these two thresholds. For smaller values of b, cooperation and defection emerge only after the value of cI approaches that of unilateral cooperation (i.e., cI = 2 ). Parameters: L = 100 , β = 10 , and μ = 10 −6.
+
+large for the individual solution to lose its relative advan-tage. Conversely, cI = 7 /4 sharply determines which of the two equilibria emerges when b > 7/3. Consequently, cooperation and defection persist in the upper-right region of the diagram, where both conditions are satisfied. The two threshold conditions that distinguish the I-equilibrium from the CDI -equilibrium can be understood using a heuristic approach. In this study, we focus on the number of cooperators in a neighborhood ( nC ) because, according to the payoff matrix, all strategies receive the same payoff in interactions with defection D and the in-dividual solution I. Table 1 presents the payoff of each strategy categorized by nC . The individual solution I
+
+achieves the highest payoff when nC = 0 , indicating that a population absorbed into the I-equilibrium is unlikely to deviate from it. To prevent the system from settling into the I-equilibrium, cooperation must be selected by the neighbor of a cooperator when nC = 1 . Although de-
+
+Table 1 Payoff of each strategy conditional on the number of cooperators in the neighborhood ( nC )
+
+C D I
+
+nC = 0 4b − 8c 0 4( b − cI )
+
+nC = 1 4b − 7c b 4( b − cI )
+
+nC = 2 4b − 6c 2b 4( b − cI )
+
+nC = 3 4b − 5c 3b 4( b − cI )
+
+nC = 4 4b − 4c 4b 4( b − cI )
+
+fection may outperform the individual solution at nC = 1 ,the neighboring cooperator would disappear unless coop-erators also outperform the individual solution. Conse-quently, the CDI -equilibrium emerges when 4b − 7c > b 
+
+and 4b − 7c > 4( b − cI ), which correspond to the con-ditions b > 7c/ 3 and cI > 7c/ 4, consistent with the observations in Figure 3. When cooperation outperforms the individual solution at nC = 1 , this also ensures the ad-vantage of cooperators for nC ≥ 2, thereby permitting the emergence of defection as well. It should be noted that this heuristic is not strictly accurate, as the focal agent’s strat-egy choice does not directly alter nC , thus failing to depict the transitions between different nC configurations. Nev-ertheless, despite omitting the dynamics of local strategy frequencies, the heuristic provides a useful framework for understanding the transitions between the two equilibria. The conditions predicted by the simple heuristic do not apply when b > 3. Under this condition, the inequality 
+
+4b − 6c > 2b is satisfied (Table 1), indicating that cooper-ation yields higher payoffs than defection when nC = 2 .Consequently, the configuration with nC = 1 becomes less important for predicting the survival of cooperation and defection. In this parameter regime, cooperation can persist even at smaller values of cI , although its survival is not guaranteed. The outcomes illustrated in Figure 4 reflect this behavior. Unlike the case of b < 3, whether 
+
+cI exceeds 7/4 no longer reliably determines the emerging strategy composition. We examine how different network structures influence evolutionary dynamics (see Ref. [51] for a comprehensive analysis under imitation dynamics). In the analyses so far, we have focused on the von Neumann neighborhood on a square lattice, corresponding to a neighborhood size of k = 4 . To examine the effects of limited neighbor interactions, we also examined one-dimensional lattices (k = 2 ), square lattices with the Moore neighborhood (k = 8 ), and well-mixed populations ( k = N − 1). Using 5fC fI                        
+
+> 1.4 1.6 1.8 2.0 1.4 1.6 1.8 2.0
+> 0.00 0.25 0.50 0.75 1.00
+> cI
+> frequency
+> b
+> 2.98 3.1 4.9 5.1
+> Fig. 4 Emergence of the CDI -equilibrium at values of cIsmaller than those predicted by the heuristic when bis large. Specif-ically, for b > 3, cooperation—and consequently the CDI -equilibrium—emerges at cIvalues below 7/4, which is the critical cIsuggested by the heuristic. Simulation parameters:
+> L= 100 , β = 10 , and μ= 10 −6.
+
+the heuristic based on the number of cooperators in the neighborhood (Table 1), the critical values of b and cI
+
+can be derived similarly. Focusing on the case nC = 1 ,a cooperator can emerge when kb − (2 k − 1) c > b and 
+
+kb − (2 k − 1) c > k (b − cI ), which can be rewritten as 
+
+b > (2 k − 1) c/ (k − 1) and cI > (2 k − 1) c/k . For the emergence of the CDI -equilibrium, the initial inequality implies that the produced benefit ( b) need not be large when k is large, whereas the second indicates that the cost of the competitor strategy ( cI ) must increase with larger k.These results show that limited interactions arising from a small number of neighbors can both facilitate and hinder cooperation. The applicability of the heuristic across different neigh-borhood sizes is partially confirmed in Figure 5. The figure illustrates the case of β → ∞ , which allows a precise evaluation of the performance of the heuristic, as agents adopt the strategy that maximizes their payoff with probability 1, given their neighbors’ strategies. The lines in the figure indicate critical values of cI that separate the I- and CDI -equilibria. For the Moore neighborhood 
+
+k = 8 , the heuristic predicts that cooperation emerges when b > 15 /7 and cI > 15 /8. In simulations with 
+
+b = 2 .25 , a stepwise increase in fC and a correspond-ing decrease in fI are observed near the critical cI when 
+
+k = 8 . For b = 2 .5, the jump in strategy frequencies is observed for k = 4 , as previously observed in Figure 3, where the value of b exceeds the threshold for the von Neu-mann neighborhood (7/3), and cooperation emerges when 
+
+cI reaches critical values of 7/4. A similar transition is ob-served for k = 2 , where b exceeds the required threshold of 3, and the transition is observed at the corresponding critical cI = 3 /2. Although the figure illustrates agree-ment with the heuristic regarding the critical cI , additional simulations (not shown) confirmed that the heuristic also accurately predicts the critical values of b.The heuristic depends solely on whether a node has at least one cooperative neighbor; therefore, it is expected to operate similarly across different network structures. To assess its robustness, we conducted additional simu-lations using the network generation algorithm proposed by Watts and Strogatz [52], although these results are not shown. Specifically, we examined cases with rewiring probabilities of 0, 0.075, and 0.15. Across all cases, and for neighborhood sizes of k = 2 , 4, and 8, the equilibrium transitions occurred at the same critical values of b and cI .In contrast to the outcomes observed in networked in-teractions, the results for the well-mixed population do not align with the predictions by the heuristic. When the heuristic is applied mechanically to the well-mixed case (with large N ), it predicts the emergence of cooperation at b > 2 and cI > 2. However, the figure shows that cooperation does not follow this predicted pattern. In-stead, cooperation emerges across all panels when cI ≤ 2.This discrepancy indicates that a heuristic based on lo-cal strategy configurations does not apply to well-mixed populations. A similar analysis was also conducted with β < ∞
+
+(Figure 6). When b = 2 .25 (b = 2 .5), a similar transition from the I- to the CDI -equilibria is observed for k = 8 
+
+(k = 4 ). In these cases, cooperation emerges at similar values of cI , although the transition occurs more gradu-ally. A qualitative difference is observed for k = 2 when 
+
+b = 3 .1. Although the heuristic predicts that the benefits of cooperative behavior are sufficiently large under these conditions, cooperation emerges only gradually as cI in-creases. These observations indicate that finite values of 
+
+β can lead to deviations from the heuristic predictions in some cases. The results in Figures 5 and 6 highlight the dual effects of interactions with a limited number of neighbors. Coop-eration emerges at lower values of b for k = 8 and in well-mixed populations. Additionally, fC often reaches higher values when the neighborhood size is large, as observed with large b values in both figures. These observations indicate that limited local interactions can hinder coop-6fC fI     
+
+> b = 2.25  b = 2.5  b = 3.1  b = 5.1
+> 1.50 1.75 2.00 1.50 1.75 2.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+
+cI
+
+> frequency
+> k = 2 k = 4 k = 8 well−mixed
+
+Fig. 5 Dual effects of limited interactions with a small num-ber of neighbors on the emergence of cooperation (and the 
+
+CDI -equilibrium). When the neighborhood size ( k) is small, cooperation can emerge at relatively low values of the cost pa-rameter cI , but this emergence requires a large benefit b. The three lines indicate the critical values of cI that distinguish the 
+
+I- and CDI -equilibria for k = 8 , 4, and 2, ordered from the top panel to the bottom. The heuristic predictions are largely consistent with the simulation results, except in the case of a well-mixed population. This figure presents the results obtained under deterministic MBRD, implemented by assuming β → ∞ .Simulation parameters: N = 10 4 and μ = 10 −6.      
+
+> fCfI
+> b = 2.25  b = 2.5  b = 3.1  b = 5.1
+> 1.50 1.75 2.00 1.50 1.75 2.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+> 0.00 0.25 0.50 0.75 1.00
+
+cI
+
+> frequency
+> k = 2 k = 4 k = 8 well−mixed
+
+Fig. 6 Dual effects of small neighborhood sizes on the emergence of cooperation (and the CDI -equilibrium) under finite selection intensity ( βk = 40 ). The patterns observed in Figure 5 are replicated. The three lines indicate the same information as that shown in Figure 5. Simulation parameters: N = 10 4 and 
+
+μ = 10 −6.
+
+7fC fI                              
+
+> 35793579
+> 0.00 0.25 0.50 0.75 1.00
+> bfrequency
+> k = 2 k = 4 k = 8
+> Fig. 7 Emergence of the CD -equilibrium and near disappear-ance of the individual solution in a square lattice, contrasted with its persistence in a ring lattice. The transition to the CD -equilibrium occurs at b= 5 for k= 4 and b= 2 .6for k= 8 ,whereas fIremains approximately 0.25 when k= 2 .Deter-ministic strategy updating was applied. Simulation parameters:
+> N= 10 4, c I= 1 .85 , and μ= 10 −6.
+
+eration. Conversely, cooperation can still emerge when the cost of adopting the competing individual solution is small. Specifically, local interactions facilitate coopera-tion for low cI once b exceeds the critical value. It is important to note, however, that at finite selection inten-sity, the emergence of cooperation is delayed for small neighborhood sizes, which diminishes the merit of local interactions (e.g., k = 2 and b = 3 .1 in Figure 6). The next analysis examines the transition from the 
+
+CDI -equilibrium to the CD -equilibrium observed at large values of b in Figure 1. Figure 7 reports the strategy frequencies as a function of b under deterministic updat-ing ( β → ∞ ). The CD -equilibrium emerges at b = 5 
+
+for k = 4 and at b = 13 /5 for k = 8 . The frequency of the individual solution, shown in the right panel, be-comes negligible once b is sufficiently large. Conversely, a ring lattice with k = 2 does not exhibit this transition. Although the CDI -equilibrium emerges at b ≃ 3, as pre-dicted by the heuristic, the individual solution continues to maintain a positive frequency, even at large values of b.Inspection of the local strategy configuration provides insights into the presence or absence of the transition. Figure 8 shows a schematic representation of the strategy configuration on a lattice. In a square lattice with the von Neumann neighborhood, I can survive only when a node is surrounded by four Ds. The advantage of C over I is rein-forced as the number of cooperators increases ( nC ≥ 2), provided that it is already advantageous when nC = 1 
+
+(Table 1). Consequently, the environment that allows I to emerge is restricted to configurations with nC = 0 . Case (a) in the figure illustrates this scenario, focusing on agent 
+
+f , who is surrounded by three Cs and one I. Agent f must choose D rather than C to maintain the presence of I be-cause the agent currently using I will switch to C as soon as a cooperative neighbor emerges. Therefore, the CD -equilibrium emerges when C outperforms D in the case of nC = 3 , that is, when 4b − 5c > 3b, which simplifies to 
+
+b > 5c (Table 1). This observation explains the transition observed at b = 5 in Figure 7. A limitation of this rea-soning is that it ignores dynamic effects. For instance, as presented in case (b), two neighbors of agent f , denoted as n, may adopt D, compelling agent f to select C. This, in turn, can induce the central agent, originally adopting 
+
+I, to switch to C. The right panels of the figure depict the spatial strategy configurations. In the CDI -equilibrium observed at b = 4 .8, the individual solution is maintained primarily through protection by four free-riders. Con-versely, the CD -equilibrium observed at b = 5 .2 shows a structured pattern characterized by free-riders being sur-rounded by cooperators, whereas cooperators have both cooperative and defective neighbors. The transition in the Moore neighborhood can be inter-preted in a similar manner. In case (c), the central agent is surrounded by eight free-riders. This cluster remains stable against invasion when agent f , with three coopera-tive neighbors, continues to select D. (The center agent’s diagonal neighbors are more likely to select D because of the large number of cooperative neighbors.) The case of 
+
+nC = 3 —that is, 3( b − c) + 5( b − 2c) > 3b—corresponds to the critical value b = 13 /5 in Figure 7. Lastly, we focus on the ring lattice illustrated in case (d). In contrast to the von Neumann and Moore neigh-borhoods, the simple heuristic analysis does not predict the outcomes of this structure. Applying the same logic suggests that the CD -equilibrium should emerge when 
+
+(b − c) + ( b − 2c) > b . However, simulations indicate that the individual solution persists in the population. The underlying mechanism of this discrepancy arises from the instability of adjacent cooperators. Case (e) shows the 
+
+CD -equilibrium in the ring lattice, which emerges when cooperators outperform free-riders in the case of nC = 1 ,that is, (b − c) + ( b − 2c) > b . In this case, cooperators positioned between C and D, and free-riders located be-tween two Cs, achieve maximal payoffs. However, this equilibrium is vulnerable to noise. If a single cooperator 8Fig. 8 Schematic representation of the transition between the CDI -equilibrium and the CD -equilibrium. The stability of the               
+
+> CDI -equilibrium depends on whether the neighbors surrounding Icontinue to adopt D, as illustrated in cases (a) and (c); however, this configuration can become unstable over time, as shown in panel (b). This reasoning does not apply to a ring lattice (case (d)) due to the increased vulnerability of the CD -equilibrium to mutations (case (e)). The right panels show a 40 ×40 section of a simulation performed on a 200 ×200 lattice, where the transition to the CD -equilibrium produces a characteristic spatial pattern. Deterministic strategy updating was adopted. Simulation parameters: cI= 1 .85 and μ= 10 −6.
+
+is replaced by an agent adopting I, the adjacent cooper-ator can adopt I because nC = 0 . This vulnerability of adjacent cooperators explains the persistence of the CDI -equilibrium in the ring lattice. 
+
+# Discussion 
+
+This study examined the evolution of cooperation in SDGIS on networks under MBRD. The SDGIS is the snowdrift game with the third strategy, the individual so-lution, which provides a constant payoff. Monte Carlo simulations revealed the emergence of three distinct equi-libria—the I-equilibrium, the CDI -equilibrium, and the 
+
+CD -equilibrium, depending on agents’ myopic selection of the best response to the current strategies of their neighbors. A heuristic that considers the local distribu-tion of strategies explains the transition between the I-equilibrium and the CDI -equilibrium, particularly when the benefits of cooperative efforts are moderate. Simula-tions also showed that interactions with a limited number of neighbors—that is, a low network degree—have dual effects. Specifically, a low degree facilitates the emer-gence of cooperation when the cost of the individual so-lution is low. However, when the number of neighbors is small, the threshold for benefits required to sustain coop-eration increases. The analysis of local strategy configura-tions also clarifies the mechanisms underlying transitions, or their absence, between the CDI -equilibrium and the 
+
+CD -equilibrium. A comparison with previous studies highlights the cru-cial role of strategy updating dynamics. Parameter regions in which cooperation was observed expanded in SDGIS when network interactions and imitation dynamics were combined [39]. Conversely, MBRD does not support the emergence of cooperation, particularly when the benefits of cooperative efforts are small. This observation provides a novel example showing that, under MBRD, interactions on networks do not necessarily promote cooperation [32]. Furthermore, this study reinforces the claim that MBRD and imitation dynamics can have opposing effects on the emergence of cooperation [34]. The introduction of the third strategy also generated novel spatial patterns. Un-like cooperation sustained by checkerboard-like patterns in the two-strategy snowdrift game [35–37], free-riders are surrounded by cooperators, whereas cooperators maintain both cooperative and defective neighbors (Figure 8). This 9type of configuration, previously observed in the snowdrift game on a triangular lattice [27], is reproduced in SDGIS on a square lattice. This study concludes by highlighting its limitations and identifying potential avenues for future research. This study focused on MBRD, but a more cognitively demand-ing strategy updating rule could be explored. Reinforce-ment learning is a promising approach that is increas-ingly attracting the attention of the research community [53]. Unlike MBRD, which promotes cooperation through checkerboard-like spatial patterns, reinforcement learning often maintains cooperation through compact clusters of cooperators, similar to patterns observed under imitation dynamics [54, 55]. This difference suggests that the spa-tial patterns of cooperation on networks can reveal valu-able information about the underlying microscopic updat-ing dynamics. Research that systematically examines the role of different strategy updating dynamics may therefore provide deeper insights into the mechanisms driving the evolution of cooperation. 
+
+# References 
+
+[1] Martin A. Nowak. Five rules for the evolution of cooperation. Science , 314(5805):1560–1563, 2006. [2] Gilbert Roberts, Nichola Raihani, Redouan Bshary, H´ ector M. Manrique, Andrea Farina, Fl´ ora Samu, and Pat Barclay. The benefits of being seen to help others: indirect reciprocity and reputation-based partner choice. Philos. Trans. R. Soc. B Biol. Sci. ,376:20200290, 2021. [3] K´ aroly Tak´ acs, J¨ org Gross, Martina Testori, Sre-brenka Letina, Adam R. Kenny, Eleanor A. Power, and Rafael P. M. Wittek. Networks of reliable repu-tations and cooperation: a review. Philos. Trans. R. Soc. B Biol. Sci. , 376:20200297, 2021. [4] Chengyi Xia, Juan Wang, Matjaˇ z Perc, and Zhen Wang. Reputation and reciprocity. Phys. Life Rev. ,46:8–45, 2023. [5] Charlotte S L Rossetti and Christian Hilbe. Direct reciprocity among humans. Ethology ,130(4):e13407, 2024. [6] The Anh Han, Zhao Song, Theodor Cimpeanu, Manh Hong Duong, Marcus Krellner, Valerio Capraro, and Matjaz Perc. Cooperation versus social welfare. Phys. Life Rev. , 56:33–60, 2026. [7] Xiaojie Chen, Tatsuya Sasaki, ˚ Ake Br¨ annstr¨ om, and Ulf Dieckmann. First carrot, then stick: how the adaptive hybridization of incentives promotes co-operation. J. R. Soc. Interface , 12(102):20140935, 2015. [8] Xin Zhou, Adam Belloum, Michael H. Lees, Tom van Engers, and Cees de Laat. Costly incentives de-sign from an institutional perspective: cooperation, sustainability and affluence. Proc. R. Soc. A Math. Phys. Eng. Sci. , 478:20220393, 2022. [9] Zhenyu Shi, Wei Wei, Hongwei Zheng, and Zhim-ing Zheng. Bidirectional supervision: An effective method to suppress corruption and defection under the third party punishment mechanism of donation games. Appl. Math. Comput. , 450:127970, 2023. [10] Qianxi Yang and Yanlong Yang. A social monitoring mechanism for third-party judges promotes cooper-ation in evolutionary games. Appl. Math. Comput. ,483:128991, 2024. [11] Martin A. Nowak and Robert M. May. Evolutionary games and spatial chaos. Nature , 359(6398):826– 829, 1992. [12] Gy¨ orgy Szab´ o and G´ abor F´ ath. Evolutionary games on graphs. Phys. Rep. , 446:97–216, 2007. [13] Carlos P. Roca, Jos´ e A. Cuesta, and Angel S´ anchez. Evolutionary game theory: Temporal and spatial ef-fects beyond replicator dynamics. Phys. Life Rev. ,6(4):208–249, 2009. [14] Matjaˇ z Perc, Jillian J. Jordan, David G. Rand, Zhen Wang, Stefano Boccaletti, and Attila Szolnoki. Sta-tistical physics of human cooperation. Phys. Rep. ,687:1–51, 2017. [15] Gy¨ orgy Szab´ o and Csaba T˝ oke. Evolutionary pris-oner’s dilemma game on a square lattice. Phys. Rev. E, 58(1):69–73, 1998. [16] Xiaojie Chen and Long Wang. Promotion of co-operation induced by appropriate payoff aspirations in a small-world networked game. Phys. Rev. E ,77(1):017103, 2008. [17] Jelena Gruji´ c, Torsten R¨ ohl, Dirk Semmann, Man-fred Milinski, and Arne Traulsen. Consistent Strat-egy Updating in Spatial and Non-Spatial Behavioral Experiments Does Not Promote Cooperation in So-cial Networks. PLoS One , 7(11):e47718, 2012. [18] Giulio Cimini and Angel S´ anchez. Learning dynam-ics explains human behaviour in prisoner’s dilemma on networks. J. R. Soc. Interface , 11(94):20131186, 2014. 10 [19] Takahiro Ezaki, Yutaka Horita, Masanori Takezawa, and Naoki Masuda. Reinforcement Learning Ex-plains Conditional Cooperation and Its Moody Cousin. PLOS Comput. Biol. , 12(7):e1005034, 2016. [20] Kuangyi Xu, Kun Li, Rui Cong, and Long Wang. Cooperation guided by the coexistence of imitation dynamics and aspiration dynamics in structured pop-ulations. EPL , 117(4):48002, 2017. [21] H. Takesue. Roles of mutation rate and co-existence of multiple strategy updating rules in evolution-ary prisoner’s dilemma games. EPL , 126(5):58001, 2019. [22] Zhizhuo Zhou, Zhihai Rong, Wen Yang, and Zhi-Xi Wu. Coevolution of extortion strategies with mixed imitation and aspiration learning dynamics in spatial Prisoner’s Dilemma game. Chaos Solitons Fractals ,188:115541, 2024. [23] Attila Szolnoki and Matjaˇ z Perc. Conformity en-hances network reciprocity in evolutionary social dilemmas. J. R. Soc. Interface , 12(103):20141299, 2015. [24] Attila Szolnoki and Xiaojie Chen. Competition and partnership between conformity and payoff-based imitations in social dilemmas. New J. Phys. ,20(9):093008, 2018. [25] Attila Szolnoki and Zsuzsa Danku. Dynamic-sensitive cooperation in the presence of multiple strategy updating rules. Phys. A Stat. Mech. its Appl. ,511:371–377, 2018. [26] Shounan Lu and Yang Wang. Past-performance-driven strategy updating promote cooperation in the spatial prisoner’s dilemma game. Appl. Math. Com-put. , 491:129220, 2025. [27] Marco Antonio Amaral and Marco Alberto Javarone. Heterogeneous update mechanisms in evolutionary games: Mixing innovative and imitative dynamics. 
+
+Phys. Rev. E , 97(4):042305, 2018. [28] Zsuzsa Danku, Zhen Wang, and Attila Szolnoki. Im-itate or innovate: Competition of strategy updat-ing attitudes in spatial social dilemma games. EPL ,121(1):18002, 2018. [29] Xiaoyu Li, Le Cheng, Xiaotong Niu, Siying Li, Chen Liu, and Peican Zhu. Highly cooperative individuals’ clustering property in myopic strategy groups. Eur. Phys. J. B , 94(6):126, 2021. [30] Yijie Huang and Yanhong Chen. Investigating the evolutionary dynamics of cooperation on a dynamic network: the influence of aspiration-driven struc-tural adaptations. Appl. Math. Comput. , 509:129670, 2026. [31] Carlos P. Roca, Jos´ e A. Cuesta, and Angel S´ anchez. Effect of spatial structure on the evolution of coop-eration. Phys. Rev. E , 80(4):046106, 2009. [32] C P Roca, J A Cuesta, and A. S´ anchez. Promotion of cooperation on networks? The myopic best response case. Eur. Phys. J. B , 71(4):587–595, 2009. [33] M. Sysi-Aho, J. Saram¨ aki, J. Kert´ esz, and K. Kaski. Spatial snowdrift game with myopic agents. Eur. Phys. J. B , 44(1):129–135, 2005. [34] Hsuan-Wei Lee, Colin Cleveland, and Attila Szol-noki. Restoring spatial cooperation with myopic agents in a three-strategy social dilemma. Appl. Math. Comput. , 458:128226, 2023. [35] Gy¨ orgy Szab´ o, Attila Szolnoki, Melinda Varga, and L´ ıvia Hanusovszky. Ordering in spatial evolutionary games for pairwise collective strategy updates. Phys. Rev. E , 82(2):026110, 2010. [36] Gy¨ orgy Szab´ o and Attila Szolnoki. Selfishness, fra-ternity, and other-regarding preference in spatial evo-lutionary games. J. Theor. Biol. , 299:81–87, 2012. [37] Juan Shi, Jinzhuo Liu, Matjaˇ z Perc, Zhenghong Deng, and Zhen Wang. Neighborhood size effects on the evolution of cooperation under myopic dynamics. 
+
+Chaos , 31:123113, 2021. [38] Marco A. Amaral, Matjaˇ z Perc, Lucas Wardil, Attila Szolnoki, Elton J. da Silva J´ unior, and Jafferson K. L. da Silva. Role-separating ordering in social dilem-mas controlled by topological frustration. Phys. Rev. E, 95(3):032307, 2017. [39] Hirofumi Takesue. Evolution of cooperation in a three-strategy game combining snowdrift and stag hunt games. Appl. Math. Comput. , 495:129341, 2025. [40] John Maynard Smith. Evolution and the Theory of Games . Cambridge University Press, Cambridge; New York, 1982. [41] Xiang Hu and Chuandong Li. Security mechanisms against malicious strategy attacks in the spatial snow-drift game. Appl. Math. Model. , 150:116374, 2026. [42] J¨ org Gross and Carsten K.W. De Dreu. Individual solutions to shared problems create a modern tragedy of the commons. Sci. Adv. , 5(4):eaau7296, 2019. [43] Hirofumi Takesue. Hinderance of cooperation by in-dividual solutions: Evolutionary dynamics of three-strategy games combining the prisoner’s dilemma 11 and stag hunt. Appl. Math. Comput. , 510:129676, 2026. [44] Gy¨ orgy Szab´ o and Christoph Hauert. Phase transi-tions and volunteering in spatial public goods games. 
+
+Phys. Rev. Lett. , 89(11):118101, 2002. [45] Gy¨ orgy Szab´ o and Christoph Hauert. Evolutionary prisoner’s dilemma games with voluntary participa-tion. Phys. Rev. E , 66(6):062903, 2002. [46] Kaipeng Hu, Hao Guo, Ran Yang, and Lei Shi. Spa-tial voluntary public goods games with tunable lon-ers’ payoff. EPL , 128(2):28002, 2020. [47] A. Szolnoki, B. F. de Oliveira, and D. Bazeia. Pattern formations driven by cyclic interactions: A brief review of recent developments. EPL , 131(6):68001, 2020. [48] Danyang Jia, Chen Shen, Xiangfeng Dai, Xinyu Wang, Junliang Xing, Pin Tao, Yuanchun Shi, and Zhen Wang. Freedom of choice disrupts cyclic dominance but maintains cooperation in voluntary prisoner’s dilemma game. Knowledge-Based Syst. ,299:111962, 2024. [49] Richard S. Sutton and Andrew G. Barto. Reinforce-ment learning: an introduction . MIT Press, Cam-bridge, Mass., 1998. [50] Colin F. Camerer. Behavioral Game Theory: Exper-iments on Strategic Interaction . Princeton University Press, Princeton, N.J, 2003. [51] Lucas S. Flores, Marco A. Amaral, Mendeli H. Vainstein, and Heitor C.M. Fernandes. Coopera-tion in regular lattices. Chaos Solitons Fractals ,164:112744, 2022. [52] Duncan J Watts and Steven H Strogatz. Collec-tive dynamics of ‘small-world’ networks. Nature ,393(6684):440–442, 1998. [53] Kai Xie and Attila Szolnoki. Reinforcement learning in evolutionary game theory: A brief review of recent developments. Appl. Math. Comput. , 510:129685, 2026. [54] Chenyang Zhao, Guozhong Zheng, Chun Zhang, Jiqiang Zhang, and Li Chen. Emergence of coop-eration under punishment: A reinforcement learning perspective. Chaos , 34(7):073123, 2024. [55] Hongwei Kang, Chao Jiang, Yong Shen, Xingping Sun, and Qingyi Chen. Neighbor-aware reinforce-ment learning fosters cooperation in spatial public goods games. Chaos Solitons Fractals , 199:116862, 2025. 12

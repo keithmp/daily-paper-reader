@@ -1,0 +1,724 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-23T20:01:50.637148+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 4,
+    "deep_cap": 8,
+    "deep_selected": 4,
+    "quick_candidates": 19,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.20132v1",
+      "title": "Revisiting Gene Ontology Knowledge Discovery with Hierarchical Feature Selection and Virtual Study Group of AI Agents",
+      "abstract": "Large language models have achieved great success in multiple challenging tasks, and their capacity can be further boosted by the emerging agentic AI techniques. This new computing paradigm has already started revolutionising the traditional scientific discovery pipelines. In this work, we propose a novel agentic AI-based knowledge discovery-oriented virtual study group that aims to extract meaningful ageing-related biological knowledge considering highly ageing-related Gene Ontology terms that are selected by hierarchical feature selection methods. We investigate the performance of the proposed agentic AI framework by considering four different model organisms' ageing-related Gene Ontology terms and validate the biological findings by reviewing existing research articles. It is found that the majority of the AI agent-generated scientific claims can be supported by existing literatures and the proposed internal mechanisms of the virtual study group also play an important role in the designed agentic AI-based knowledge discovery framework.",
+      "authors": [
+        "Cen Wan",
+        "Alex A. Freitas"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-20T17:00:36+00:00",
+      "link": "https://arxiv.org/pdf/2603.20132v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI agents for Gene Ontology knowledge discovery",
+      "llm_evidence_cn": "用于基因本体知识发现的AI智能体",
+      "llm_evidence": "用于基因本体知识发现的AI智能体",
+      "canonical_evidence": "用于基因本体知识发现的AI智能体",
+      "llm_tldr_en": "Proposes an agentic AI framework to extract biological knowledge from Gene Ontology terms across organisms.",
+      "llm_tldr_cn": "提出了一种智能体AI框架，用于从不同物种的基因本体术语中提取生物学知识。",
+      "llm_tldr": "提出了一种智能体AI框架，用于从不同物种的基因本体术语中提取生物学知识。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.19473v1",
+      "title": "Reinforcement-guided generative protein language models enable de novo design of highly diverse AAV capsids",
+      "abstract": "Adeno-associated viral (AAV) vectors are widely used delivery platforms in gene therapy, and the design of improved capsids is key to expanding their therapeutic potential. A central challenge in AAV bioengineering, as in protein design more broadly, is the vast sequence design space relative to the scale of feasible experimental screening. Machine-guided generative approaches provide a powerful means of navigating this landscape and proposing novel protein sequences that satisfy functional constraints. Here, we develop a generative design framework based on protein language models and reinforcement learning to generate highly novel yet functionally plausible AAV capsids. A pretrained model was fine-tuned on experimentally validated capsid sequences to learn patterns associated with viability. Reinforcement learning was then used to guide sequence generation, with a reward function that jointly promoted predicted viability and sequence novelty, thereby enabling exploration beyond regions represented in the training data. Comparative analyses showed that fine-tuning alone produces sequences with high predicted viability but remains biased toward the training distribution, whereas reinforcement learining-guided generation reaches more distant regions of sequence space while maintaining high predicted viability. Finally, we propose a candidate selection strategy that integrates predicted viability, sequence novelty, and biophysical properties to prioritize variants for downstream evaluation. This work establishes a framework for the generative exploration of protein sequence space and advances the application of generative protein language models to AAV bioengineering.",
+      "authors": [
+        "Lucas Ferraz",
+        "Ana F. Rodrigues",
+        "Pedro Giesteira Cotovio",
+        "Mafalda Ventura",
+        "Gabriela Silva",
+        "Ana Sofia Coroadinha",
+        "Miguel Machuqueiro",
+        "Catia Pesquita"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cs.LG"
+      ],
+      "published": "2026-03-19T21:11:17+00:00",
+      "link": "https://arxiv.org/pdf/2603.19473v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI and protein language models for gene therapy vector design",
+      "llm_evidence_cn": "用于基因治疗载体设计的AI和蛋白质语言模型",
+      "llm_evidence": "用于基因治疗载体设计的AI和蛋白质语言模型",
+      "canonical_evidence": "用于基因治疗载体设计的AI和蛋白质语言模型",
+      "llm_tldr_en": "Uses reinforcement learning and protein language models to design diverse AAV capsids for gene therapy.",
+      "llm_tldr_cn": "利用强化学习和蛋白质语言模型设计用于基因治疗的多样化AAV衣壳。",
+      "llm_tldr": "利用强化学习和蛋白质语言模型设计用于基因治疗的多样化AAV衣壳。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.19636v1",
+      "title": "RiboSphere: Learning Unified and Efficient Representations of RNA Structures",
+      "abstract": "Accurate RNA structure modeling remains difficult because RNA backbones are highly flexible, non-canonical interactions are prevalent, and experimentally determined 3D structures are comparatively scarce. We introduce \\emph{RiboSphere}, a framework that learns \\emph{discrete} geometric representations of RNA by combining vector quantization with flow matching. Our design is motivated by the modular organization of RNA architecture: complex folds are composed from recurring structural motifs. RiboSphere uses a geometric transformer encoder to produce SE(3)-invariant (rotation/translation-invariant) features, which are discretized with finite scalar quantization (FSQ) into a finite vocabulary of latent codes. Conditioned on these discrete codes, a flow-matching decoder reconstructs atomic coordinates, enabling high-fidelity structure generation. We find that the learned code indices are enriched for specific RNA motifs, suggesting that the model captures motif-level compositional structure rather than acting as a purely compressive bottleneck. Across benchmarks, RiboSphere achieves strong performance in structure reconstruction (RMSD 1.25\\,Å, TM-score 0.84), and its pretrained discrete representations transfer effectively to inverse folding and RNA--ligand binding prediction, with robust generalization in data-scarce regimes.",
+      "authors": [
+        "Zhou Zhang",
+        "Hanqun Cao",
+        "Cheng Tan",
+        "Fang Wu",
+        "Pheng Ann Heng",
+        "Tianfan Fu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-20T04:36:35+00:00",
+      "link": "https://arxiv.org/pdf/2603.19636v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI-driven learning of RNA structural representations",
+      "llm_evidence_cn": "AI驱动的RNA结构表示学习",
+      "llm_evidence": "AI驱动的RNA结构表示学习",
+      "canonical_evidence": "AI驱动的RNA结构表示学习",
+      "llm_tldr_en": "RiboSphere uses geometric transformers and vector quantization to learn unified RNA structure representations.",
+      "llm_tldr_cn": "RiboSphere利用几何变换器和向量量化来学习统一的RNA结构表示。",
+      "llm_tldr": "RiboSphere利用几何变换器和向量量化来学习统一的RNA结构表示。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.19766v1",
+      "title": "Adapting a Pre-trained Single-Cell Foundation Model to Spatial Gene Expression Generation from Histology Images",
+      "abstract": "Spatial transcriptomics (ST) enables spot-level in situ expression profiling, but its high cost and limited throughput motivate predicting expression directly from HE-stained histology. Recent advances explore using score- or flow-based generative models to estimate the conditional distribution of gene expression from histology, offering a flexible alternative to deterministic regression approaches. However, most existing generative approaches omit explicit modeling of gene-gene dependencies, undermining biological coherence. Single-cell foundation models (sc-FMs), pre-trained across diverse cell populations, capture these critical gene relationships that histology alone cannot reveal. Yet, applying expression-only sc-FMs to histology-conditioned expression modeling is nontrivial due to the absence of a visual pathway, a mismatch between their pre-training and conditional ST objectives, and the scarcity of mixed-cell ST supervision. To address these challenges, we propose HINGE (HIstology-coNditioned GEneration), which retrofits a pre-trained sc-FM into a conditional expression generator while mostly preserving its learned gene relationships. We achieve this by introducing SoftAdaLN, a lightweight, identity-initialized modulation that injects layer-wise visual context into the backbone, coupled with an expression-space masked diffusion objective and a warm-start curriculum to ensure objective alignment and training stability. Evaluated on three ST datasets, ours outperforms state-of-the-art baselines on mean Pearson correlation and yields more accurate spatial marker expression patterns and higher pairwise co-expression consistency, establishing a practical route to adapt pre-trained sc-FMs for histology-conditioned spatial expression generation.",
+      "authors": [
+        "Donghai Fang",
+        "Yongheng Li",
+        "Zhen Wang",
+        "Yuansong Zeng",
+        "Wenwen Min"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-20T08:52:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.19766v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Adapting single-cell foundation models for spatial gene expression generation",
+      "llm_evidence_cn": "利用单细胞基础模型进行空间基因表达生成",
+      "llm_evidence": "利用单细胞基础模型进行空间基因表达生成",
+      "canonical_evidence": "利用单细胞基础模型进行空间基因表达生成",
+      "llm_tldr_en": "Uses AI foundation models to predict spatial gene expression from histology, capturing critical gene relationships.",
+      "llm_tldr_cn": "利用AI基础模型从组织学图像预测空间基因表达，捕捉关键的基因关联。",
+      "llm_tldr": "利用AI基础模型从组织学图像预测空间基因表达，捕捉关键的基因关联。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.16587v1",
+      "title": "HistoAtlas: A Pan-Cancer Morphology Atlas Linking Histomics to Molecular Programs and Clinical Outcomes",
+      "abstract": "We present HistoAtlas, a pan-cancer computational atlas that extracts 38 interpretable histomic features from 6,745 diagnostic H&E slides across 21 TCGA cancer types and systematically links every feature to survival, gene expression, somatic mutations, and immune subtypes. All associations are covariate-adjusted, multiple-testing corrected, and classified into evidence-strength tiers. The atlas recovers known biology, from immune infiltration and prognosis to proliferation and kinase signaling, while uncovering compartment-specific immune signals and morphological subtypes with divergent outcomes. Every result is spatially traceable to tissue compartments and individual cells, statistically calibrated, and openly queryable. HistoAtlas enables systematic, large-scale biomarker discovery from routine H&E without specialized staining or sequencing. Data and an interactive web atlas are freely available at https://histoatlas.com .",
+      "authors": [
+        "Pierre-Antoine Bannier"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.CV",
+        "eess.IV"
+      ],
+      "published": "2026-03-17T14:36:07+00:00",
+      "link": "https://arxiv.org/pdf/2603.16587v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Links histomics to gene expression and somatic mutations",
+      "llm_evidence_cn": "将组织学特征与基因表达及体细胞突变联系起来",
+      "llm_evidence": "将组织学特征与基因表达及体细胞突变联系起来",
+      "canonical_evidence": "将组织学特征与基因表达及体细胞突变联系起来",
+      "llm_tldr_en": "A pan-cancer atlas linking morphological features to molecular programs and clinical outcomes.",
+      "llm_tldr_cn": "一个将形态学特征与分子程序及临床结果联系起来的泛癌症图谱。",
+      "llm_tldr": "一个将形态学特征与分子程序及临床结果联系起来的泛癌症图谱。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15080v3",
+      "title": "Open Biomedical Knowledge Graphs at Scale: Construction, Federation, and AI Agent Access with Samyama Graph Database",
+      "abstract": "Biomedical knowledge is fragmented across siloed databases -- Reactome for pathways, STRING for protein interactions, ClinicalTrials.gov for study registries, DrugBank for drug vocabularies, DGIdb for drug-gene interactions, SIDER for side effects. We present three open-source biomedical knowledge graphs -- Pathways KG (118,686 nodes, 834,785 edges from 5 sources), Clinical Trials KG (7,774,446 nodes, 26,973,997 edges from 5 sources), and Drug Interactions KG (32,726 nodes, 191,970 edges from 3 sources) -- built on Samyama, a high-performance graph database written in Rust.   Our contributions are threefold. First, we describe a reproducible ETL pattern for constructing large-scale KGs from heterogeneous public data sources, with cross-source deduplication, batch loading (Python Cypher and Rust native loaders), and portable snapshot export. Second, we demonstrate cross-KG federation: loading all three snapshots into a single graph tenant enables property-based joins across datasets. Third, we introduce schema-driven MCP server generation for LLM agent access, evaluated on a new BiomedQA benchmark (40 pharmacology questions): domain-specific MCP tools achieve 98% accuracy vs. 85% for schema-aware text-to-Cypher and 75% for standalone GPT-4o, with zero schema errors.   All data sources are open-license. The combined federated graph (7.9M nodes, 28M edges) loads in approximately 3 minutes on commodity cloud hardware, with single-KG queries completing in 80-100ms and cross-KG federation joins in 1-4s",
+      "authors": [
+        "Madhulatha Mandarapu",
+        "Sandeep Kunkunuru"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-16T10:36:13+00:00",
+      "link": "https://arxiv.org/pdf/2603.15080v3",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agent access to drug-gene interaction knowledge graphs",
+      "llm_evidence_cn": "AI代理访问药物-基因相互作用知识图谱",
+      "llm_evidence": "AI代理访问药物-基因相互作用知识图谱",
+      "canonical_evidence": "AI代理访问药物-基因相互作用知识图谱",
+      "llm_tldr_en": "Presents large-scale biomedical knowledge graphs for drug-gene interactions and clinical trials.",
+      "llm_tldr_cn": "展示了用于药物-基因相互作用和临床试验的大规模生物医学知识图谱。",
+      "llm_tldr": "展示了用于药物-基因相互作用和临床试验的大规模生物医学知识图谱。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.19736v1",
+      "title": "A two-step sequential approach for hyperparameter selection in finite context models",
+      "abstract": "Finite-context models (FCMs) are widely used for compressing symbolic sequences such as DNA, where predictive performance depends critically on the context length k and smoothing parameter α. In practice, these hyperparameters are typically selected through exhaustive search, which is computationally expensive and scales poorly with model complexity. This paper proposes a statistically grounded two-step sequential approach for efficient hyperparameter selection in FCMs. The key idea is to decompose the joint optimization problem into two independent stages. First, the context length k is estimated using categorical serial dependence measures, including Cramér's ν, Cohen's \\k{appa} and partial mutual information (pami). Second, the smoothing parameter α is estimated via maximum likelihood conditional on the selected context length k. Simulation experiments were conducted on synthetic symbolic sequences generated by FCMs across multiple (k, α) configurations, considering a four-letter alphabet and different sample sizes. Results show that the dependence measures are substantially more sensitive to variations in k than in α, supporting the sequential estimation strategy. As expected, the accuracy of the hyperparameter estimation improves with increasing sample size. Furthermore, the proposed method achieves compression performance comparable to exhaustive grid search in terms of average bitrate (bits per symbol), while substantially reducing computational cost. Overall, the results on simulated data show that the proposed sequential approach is a practical and computationally efficient alternative to exhaustive hyperparameter tuning in FCMs.",
+      "authors": [
+        "José Contente",
+        "Ana Martins",
+        "Armando J. Pinho",
+        "Sónia Gouveia"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-03-20T08:20:30+00:00",
+      "link": "https://arxiv.org/pdf/2603.19736v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "FCMs used for compressing DNA sequences",
+      "llm_evidence_cn": "有限上下文模型用于DNA序列压缩",
+      "llm_evidence": "有限上下文模型用于DNA序列压缩",
+      "canonical_evidence": "有限上下文模型用于DNA序列压缩",
+      "llm_tldr_en": "Proposes an efficient hyperparameter selection method for finite-context models used in DNA sequence compression.",
+      "llm_tldr_cn": "提出了一种用于DNA序列压缩的有限上下文模型超参数高效选择方法。",
+      "llm_tldr": "提出了一种用于DNA序列压缩的有限上下文模型超参数高效选择方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15217v2",
+      "title": "A multiscale discrete-to-continuum framework for structured population models",
+      "abstract": "Mathematical models of biological populations commonly use discrete structure classes to capture trait variation among individuals (e.g. age, size, phenotype, intracellular state). Upscaling these discrete models into continuum descriptions can improve analytical tractability and scalability of numerical solutions. Common upscaling approaches based solely on Taylor expansions may, however, introduce ambiguities in truncation order, uniform validity and boundary conditions. To address this, here we introduce a discrete multiscale framework to systematically derive continuum approximations of structured population models. Using the method of multiple scales and matched asymptotic expansions applied to discrete systems, we identify regions of structure space for which a continuum representation is appropriate and derive the corresponding partial differential equations. The leading-order dynamics are given by a nonlinear advection equation in the bulk domain and advection-diffusion processes in small inner layers about the leading wavefronts and stagnation point. We further derive discrete boundary layer descriptions for regions where a continuum representation is fundamentally inappropriate. Finally, we demonstrate the method on a simple lipid-structured model for early atherosclerosis and verify consistency between the discrete and continuum descriptions. The multiscale framework we present can be applied to other heterogeneous systems with discrete structure in order to obtain appropriate upscaled dynamics with asymptotically consistent boundary conditions.",
+      "authors": [
+        "Eleonora Agostinelli",
+        "Keith L. Chambers",
+        "Helen M. Byrne",
+        "Mohit P. Dalwadi"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "math.DS",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-16T12:54:30+00:00",
+      "link": "https://arxiv.org/pdf/2603.15217v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Mathematical models for structured biological populations and trait variation",
+      "llm_evidence_cn": "结构化生物种群和性状变异的数学模型",
+      "llm_evidence": "结构化生物种群和性状变异的数学模型",
+      "canonical_evidence": "结构化生物种群和性状变异的数学模型",
+      "llm_tldr_en": "A multiscale framework to derive continuum approximations for discrete structured population models.",
+      "llm_tldr_cn": "一种为离散结构化种群模型推导连续近似的多尺度框架。",
+      "llm_tldr": "一种为离散结构化种群模型推导连续近似的多尺度框架。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.19814v1",
+      "title": "Stability analysis and long-time convergence of a partial differential equation model of two-phase ageing",
+      "abstract": "Recent biological evidence suggests the presence of a two-phase ageing process in several species. We introduce a system of two age-structured partial differential equations (PDE) representing two phases of ageing of a wild population. The model includes a coupling of both equations through birth and transition between phases and non-linearities due to competition. We show the existence, positivity and uniqueness of weak solutions in a general setting. For a simplified system of ordinary differential equations (ODE), we show existence and uniqueness of a strictly positive steady state attracting all trajectories. We study another simplification, a coupled PDE-ODE model, for which we prove existence, uniqueness and local asymptotic stability of a strictly positive steady state. Under further assumptions, but without assuming weak non-linearities, we show the global asymptotic stability of that steady state. The uniqueness of steady states and absence of oscillations in these systems show that the proportion of individuals in each phase at equilibrium is a unique feature of the model. This paves the way to ecological applications as the experimental measure of such a proportion could help gain some insight on the health of a wild population.",
+      "authors": [
+        "Luce Breuil"
+      ],
+      "primary_category": "math.AP",
+      "categories": [
+        "math.AP",
+        "math.DS",
+        "q-bio.PE"
+      ],
+      "published": "2026-03-20T09:59:41+00:00",
+      "link": "https://arxiv.org/pdf/2603.19814v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "PDE model of two-phase ageing in wild populations",
+      "llm_evidence_cn": "野生种群两阶段衰老的偏微分方程模型",
+      "llm_evidence": "野生种群两阶段衰老的偏微分方程模型",
+      "canonical_evidence": "野生种群两阶段衰老的偏微分方程模型",
+      "llm_tldr_en": "Analyzes a mathematical model for two-phase ageing in wild populations to understand evolutionary dynamics.",
+      "llm_tldr_cn": "分析野生种群两阶段衰老的数学模型，以理解演化动力学。",
+      "llm_tldr": "分析野生种群两阶段衰老的数学模型，以理解演化动力学。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15486v1",
+      "title": "Cuckoo-GPU: Accelerating Cuckoo Filters on Modern GPUs",
+      "abstract": "Approximate Membership Query (AMQ) structures are essential for high-throughput systems in databases, networking, and bioinformatics. While Bloom filters offer speed, they lack support for deletions. Existing GPU-based dynamic alternatives, such as the Two-Choice Filter (TCF) and GPU Quotient Filter (GQF), enable deletions but incur severe performance penalties. We present Cuckoo-GPU, an open-source, high-performance Cuckoo filter library for GPUs. Instead of prioritizing cache locality, Cuckoo-GPU embraces the inherently random access pattern of Cuckoo hashing to fully saturate global memory bandwidth. Our design features a lock-free architecture built on atomic compare-and-swap operations, paired with a novel breadth-first search-based eviction heuristic that minimizes thread divergence and bounds sequential memory accesses during high-load insertions. Evaluated on NVIDIA GH200 (HBM3) and RTX PRO 6000 Blackwell (GDDR7) systems, Cuckoo-GPU closes the performance gap between append-only and dynamic AMQ structures. It achieves insertion, query, and deletion throughputs up to 378x (4.1x), 6x (34.7x), and 258x (107x) higher than GQF (TCF) on the same hardware, respectively, and delivers up to a 350x speedup over the fastest available multi-threaded CPU-based Cuckoo filter implementation. Moreover, its query throughput rivals that of the append-only GPU-based Blocked Bloom filter - demonstrating that dynamic AMQ structures can be deployed on modern accelerators without sacrificing performance.",
+      "authors": [
+        "Tim Dortmann",
+        "Markus Vieth",
+        "Bertil Schmidt"
+      ],
+      "primary_category": "cs.DC",
+      "categories": [
+        "cs.DC",
+        "cs.DB"
+      ],
+      "published": "2026-03-16T16:15:13+00:00",
+      "link": "https://arxiv.org/pdf/2603.15486v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "GPU acceleration for bioinformatics data structures",
+      "llm_evidence_cn": "生物信息学数据结构的GPU加速",
+      "llm_evidence": "生物信息学数据结构的GPU加速",
+      "canonical_evidence": "生物信息学数据结构的GPU加速",
+      "llm_tldr_en": "Introduces Cuckoo-GPU to accelerate approximate membership queries essential for high-throughput bioinformatics.",
+      "llm_tldr_cn": "推出了Cuckoo-GPU，以加速高通量生物信息学中必不可少的近似成员查询。",
+      "llm_tldr": "推出了Cuckoo-GPU，以加速高通量生物信息学中必不可少的近似成员查询。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.19850v1",
+      "title": "Starvation suppression in scale-free metabolic networks: Dynamical mean-field analysis of dense catalytic reaction networks",
+      "abstract": "Cellular metabolic networks exhibit scale-free topologies with power-law degree distributions across diverse organisms. Although such topologies are often linked to mutational robustness and evolutionary advantage, their role in metabolic dynamics remains unclear. Using dynamical mean-field theory, we derive an exact solution for an intracellular catalytic reaction model on dense random networks with arbitrary degree distributions. We show that the metabolic-starvation transition observed under nutrient-poor conditions for homogeneous degree distributions disappears when the out-degree distribution is scale-free. We also show that the power-law distribution of biomolecular abundances observed in real cells reflects the power-law in-degree distribution of the underlying catalytic reaction network. Large-scale numerical simulations validate these predictions. Our results provide a theoretical framework linking network topology and metabolic dynamics, and identify a dynamical advantage of scale-free topology under nutrient limitation.",
+      "authors": [
+        "Kota Mitsumoto",
+        "Shuji Ishihara"
+      ],
+      "primary_category": "cond-mat.stat-mech",
+      "categories": [
+        "cond-mat.stat-mech",
+        "cond-mat.dis-nn",
+        "cond-mat.soft",
+        "nlin.AO",
+        "physics.bio-ph"
+      ],
+      "published": "2026-03-20T11:07:06+00:00",
+      "link": "https://arxiv.org/pdf/2603.19850v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary advantage and mutational robustness in metabolic networks",
+      "llm_evidence_cn": "代谢网络中的进化优势与突变稳健性",
+      "llm_evidence": "代谢网络中的进化优势与突变稳健性",
+      "canonical_evidence": "代谢网络中的进化优势与突变稳健性",
+      "llm_tldr_en": "Analyzes how scale-free metabolic network topologies provide evolutionary advantages and prevent starvation.",
+      "llm_tldr_cn": "分析了无标度代谢网络拓扑结构如何提供进化优势并抑制饥饿状态。",
+      "llm_tldr": "分析了无标度代谢网络拓扑结构如何提供进化优势并抑制饥饿状态。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.15778v1",
+      "title": "Biomedical active matter: Emergence and breakdown of collective functionalities",
+      "abstract": "Living systems are made of active materials with microscopic components that work together to perform macroscopic biological tasks. The breakdown of these collective functionalities leads to diseases, which, conversely, could be treated by exploiting self-organization in healthcare technologies. Here, we review recent advances in this rapidly growing field of biomedical active matter. The main themes are (1) collective self-assembly and spatiotemporal coordination; (2) collective motion, transport, and navigation; (3) collective sensing, signaling, and communication; and (4) collective adaptation, evolution, and learning. We discuss these emerging processes in a wide range of systems, including protein folding, biomolecular condensates, cytoskeleton dynamics, intracellular flows, bacterial biofilms, quorum sensing, cilia synchronization, wound healing, biolocomotion, neurons, endocrine signalling, and cardiovascular flow networks. For each, we highlight medical conditions associated with reduced collective functionality and how they may be treated using microrobotic swarms, bioinspired metamaterials, diagnostics, lab-on-chip devices, organoids, and other active and adaptive matter innovations.",
+      "authors": [
+        "Arnold Mathijssen",
+        "Hamed Almohammadi",
+        "Lauren Altman",
+        "Talia Calazans",
+        "M. J. Ferencz",
+        "Michelle Fung",
+        "Ian J. Lee",
+        "Maciej Lisicki",
+        "Ivy Liu",
+        "Maggie Liu",
+        "Tianyi Liu",
+        "Ernest Park",
+        "Ran Tao",
+        "Albane Thery",
+        "Zeyuan Wang",
+        "Margot Young"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "cond-mat.soft"
+      ],
+      "published": "2026-03-16T18:10:01+00:00",
+      "link": "https://arxiv.org/pdf/2603.15778v1",
+      "tags": [
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Collective adaptation and evolution in living systems",
+      "llm_evidence_cn": "生命系统中的集体适应与演化",
+      "llm_evidence": "生命系统中的集体适应与演化",
+      "canonical_evidence": "生命系统中的集体适应与演化",
+      "llm_tldr_en": "Reviews advances in biomedical active matter, including collective adaptation and evolution.",
+      "llm_tldr_cn": "综述了生物医学活性物质的进展，包括集体适应与演化。",
+      "llm_tldr": "综述了生物医学活性物质的进展，包括集体适应与演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.15903v1",
+      "title": "Agent-based imitation dynamics can yield efficiently compressed population-level vocabularies",
+      "abstract": "Natural languages have been argued to evolve under pressure to efficiently compress meanings into words by optimizing the Information Bottleneck (IB) complexity-accuracy tradeoff. However, the underlying social dynamics that could drive the optimization of a language's vocabulary towards efficiency remain largely unknown. In parallel, evolutionary game theory has been invoked to explain the emergence of language from rudimentary agent-level dynamics, but it has not yet been tested whether such an approach can lead to efficient compression in the IB sense. Here, we provide a unified model integrating evolutionary game theory with the IB framework and show how near-optimal compression can arise in a population through an independently motivated dynamic of imprecise strategy imitation in signaling games. We find that key parameters of the model -- namely, those that regulate precision in these games, as well as players' tendency to confuse similar states -- lead to constrained variation of the tradeoffs achieved by emergent vocabularies. Our results suggest that evolutionary game dynamics could potentially provide a mechanistic basis for the evolution of vocabularies with information-theoretically optimal and empirically attested properties.",
+      "authors": [
+        "Nathaniel Imel",
+        "Richard Futrell",
+        "Michael Franke",
+        "Noga Zaslavsky"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-03-16T20:47:52+00:00",
+      "link": "https://arxiv.org/pdf/2603.15903v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolutionary game theory and population dynamics",
+      "llm_evidence_cn": "演化博弈论与群体动力学",
+      "llm_evidence": "演化博弈论与群体动力学",
+      "canonical_evidence": "演化博弈论与群体动力学",
+      "llm_tldr_en": "Integrates evolutionary game theory with information theory to model language evolution in populations.",
+      "llm_tldr_cn": "将演化博弈论与信息论结合，模拟群体中的语言演化。",
+      "llm_tldr": "将演化博弈论与信息论结合，模拟群体中的语言演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.16297v1",
+      "title": "Quantum Pattern Matching in Generalised Degenerate Strings",
+      "abstract": "A degenerate string is a sequence of sets of characters. A generalized degenerate (GD) string extends this notion to the sequence of sets of strings, where strings of the same set are of equal length. Finding an exact match for a pattern string inside a GD string can be done in $O(mn+N)$ time (Ascone et al., WABI 2024), where $m$ is the pattern length, $n$ is the number of strings and $N$ the total length of strings constituting the GD string. We modify this algorithm to work under a quantum model of computation, achieving running time $\\tilde{O}(\\sqrt{mnN})$.",
+      "authors": [
+        "Massimo Equi",
+        "Md Rabiul Islam Khan",
+        "Veli Mäkinen"
+      ],
+      "primary_category": "quant-ph",
+      "categories": [
+        "quant-ph",
+        "cs.DS"
+      ],
+      "published": "2026-03-17T09:35:02+00:00",
+      "link": "https://arxiv.org/pdf/2603.16297v1",
+      "tags": [
+        "keyword:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "computational methods for string matching in genomics context",
+      "llm_evidence_cn": "基因组背景下的字符串匹配计算方法",
+      "llm_evidence": "基因组背景下的字符串匹配计算方法",
+      "canonical_evidence": "基因组背景下的字符串匹配计算方法",
+      "llm_tldr_en": "Introduces a quantum algorithm for pattern matching in generalized degenerate strings relevant to genomics.",
+      "llm_tldr_cn": "引入一种量子算法，用于基因组学相关的广义退化字符串模式匹配。",
+      "llm_tldr": "引入一种量子算法，用于基因组学相关的广义退化字符串模式匹配。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.17584v1",
+      "title": "A dynamic mechanism for prevalence of triangles in competitive networks",
+      "abstract": "Triangles are abundant in real-world networks but rare in standard null models for sparse graphs. Existing explanations typically rely on explicit triadic closure mechanisms or geometry-based connection rules. We propose an alternative hypothesis: the frequent appearance of triangles may arise naturally from the requirement of dynamic stability that maintains coexistence of species in Lotka-Volterra systems with competitive interactions. To evaluate this idea, we show that, across all possible interaction graphs, coexistence is guaranteed whenever the coupling strength is below the reciprocal of the graph's maximum degree. We also show that coexistence can persist up to a critical coupling strength of 1, which leaves a large gap that is unexplained by the graph degrees alone. These lower and upper bounds are achieved for star and complete graphs respectively. To investigate what structural properties of the interaction graph control the critical coupling within the gap, we optimise networks algorithmically while keeping the degree sequence fixed. We find that networks supporting stronger interaction strengths consistently exhibit higher clustering coefficients in several network models. Moreover, in real-world grassland plant networks, we observe higher clustering and stronger stability than those expected from a configuration model with the same degree sequence. Our result suggests that triangles, and clustering in general, may emerge as a structural signature of stabilising competition.",
+      "authors": [
+        "M. N. Mooij",
+        "M. Baudena",
+        "A. S. von der Heydt",
+        "L. Miele",
+        "I. Kryven"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph",
+        "math-ph",
+        "math.DS"
+      ],
+      "published": "2026-03-18T10:47:12+00:00",
+      "link": "https://arxiv.org/pdf/2603.17584v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "coexistence of species in Lotka-Volterra systems with competitive interactions",
+      "llm_evidence_cn": "具有竞争相互作用的Lotka-Volterra系统中物种的共存",
+      "llm_evidence": "具有竞争相互作用的Lotka-Volterra系统中物种的共存",
+      "canonical_evidence": "具有竞争相互作用的Lotka-Volterra系统中物种的共存",
+      "llm_tldr_en": "Proposes a mechanism for triangle prevalence in networks based on dynamic stability and species coexistence.",
+      "llm_tldr_cn": "提出了一种基于动态稳定性和物种共存的竞争网络中三角形普遍存在的机制。",
+      "llm_tldr": "提出了一种基于动态稳定性和物种共存的竞争网络中三角形普遍存在的机制。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.17633v1",
+      "title": "Atomic Trajectory Modeling with State Space Models for Biomolecular Dynamics",
+      "abstract": "Understanding the dynamic behavior of biomolecules is fundamental to elucidating biological function and facilitating drug discovery. While Molecular Dynamics (MD) simulations provide a rigorous physical basis for studying these dynamics, they remain computationally expensive for long timescales. Conversely, recent deep generative models accelerate conformation generation but are typically either failing to model temporal relationship or built only for monomeric proteins. To bridge this gap, we introduce ATMOS, a novel generative framework based on State Space Models (SSM) designed to generate atom-level MD trajectories for biomolecular systems. ATMOS integrates a Pairformer-based state transition mechanism to capture long-range temporal dependencies, with a diffusion-based module to decode trajectory frames in an autoregressive manner. ATMOS is trained across crystal structures from PDB and conformation trajectory from large-scale MD simulation datasets including mdCATH and MISATO. We demonstrate that ATMOS achieves state-of-the-art performance in generating conformation trajectories for both protein monomers and complex protein-ligand systems. By enabling efficient inference of atomic trajectory of motions, this work establishes a promising foundation for modeling biomolecular dynamics.",
+      "authors": [
+        "Liang Shi",
+        "Jiarui Lu",
+        "Junqi Liu",
+        "Chence Shi",
+        "Zhi Yang",
+        "Jian Tang"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cs.LG"
+      ],
+      "published": "2026-03-18T11:53:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.17633v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for biomolecular dynamics and trajectories",
+      "llm_evidence_cn": "利用AI进行生物分子动力学和轨迹建模",
+      "llm_evidence": "利用AI进行生物分子动力学和轨迹建模",
+      "canonical_evidence": "利用AI进行生物分子动力学和轨迹建模",
+      "llm_tldr_en": "Introduces a generative framework for atom-level MD trajectories of biomolecular systems.",
+      "llm_tldr_cn": "引入了一种用于生物分子系统原子级动力学轨迹生成的生成式框架。",
+      "llm_tldr": "引入了一种用于生物分子系统原子级动力学轨迹生成的生成式框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.18128v1",
+      "title": "Myopic Best Response as a Double-Edged Mechanism in Networked Social Dilemmas with Individual Solutions",
+      "abstract": "Myopic best-response dynamics (MBRD) capture agents' bounded rationality and can generate evolutionary outcomes that differ from those produced by widely examined imitation dynamics. In this study, we apply MBRD to a three-strategy social dilemma -- the snowdrift game with an individual solution -- in which not only defection but also an individual solution that guarantees a safe, constant payoff can undermine cooperation. Monte Carlo simulations show that, on a square lattice, the evolutionary dynamics result in distinct equilibria, including the dominance of the individual solution, the coexistence of cooperators and defectors, or all-strategy coexistence. By combining simulations with a simple heuristic that approximates the transition condition between the dominance of the individual solution and the all-strategy coexistence, the analysis reveals a dual role of neighborhood size. Specifically, smaller neighborhoods can promote cooperation even when the individual solution is relatively inexpensive; however, achieving cooperation under these conditions requires greater benefits from cooperation. Notably, this hindrance to cooperation contrasts with evolutionary outcomes observed under imitation dynamics. Analysis of local strategy configurations explains the transition between the all-strategy coexistence and the coexistence of cooperators and defectors while showing that this transition is absent in a one-dimensional lattice. These observations indicate that the persistent availability of individual solutions constitutes an additional inhibiting factor of cooperation in populations of boundedly rational agents.",
+      "authors": [
+        "Hirofumi Takesue"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph"
+      ],
+      "published": "2026-03-18T17:35:32+00:00",
+      "link": "https://arxiv.org/pdf/2603.18128v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolutionary outcomes in social dilemmas",
+      "llm_evidence_cn": "社会困境中的演化结果",
+      "llm_evidence": "社会困境中的演化结果",
+      "canonical_evidence": "社会困境中的演化结果",
+      "llm_tldr_en": "Explores how myopic best-response dynamics affect evolutionary outcomes in networked social games.",
+      "llm_tldr_cn": "探讨了近视最优反应动力学如何影响网络社会博弈中的演化结果。",
+      "llm_tldr": "探讨了近视最优反应动力学如何影响网络社会博弈中的演化结果。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

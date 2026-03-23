@@ -1,0 +1,713 @@
+Title: A dynamic mechanism for prevalence of triangles in competitive networks
+
+URL Source: https://arxiv.org/pdf/2603.17584v1
+
+Published Time: Thu, 19 Mar 2026 01:12:30 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# A dynamic mechanism for prevalence of triangles in competitive networks 
+
+## M.N. Mooij 1,2,* , M. Baudena 3,4,5 , A.S. von der Heydt 2,6 , L. Miele 3,7 , and I. Kryven 1,2,** 1Mathematical Institute, Utrecht University, Utrecht, The Netherlands 
+
+> 2
+
+Centre for Complex Systems Studies (CCSS), Utrecht University, Utrecht, The Netherlands 
+
+> 3
+
+National Research Council of Italy, Institute of Atmospheric Sciences and Climate (CNR-ISAC), 10133 Torino, Italy 
+
+> 4
+
+National Biodiversity Future Center (NBFC), 90133 Palermo, Italy 
+
+> 5
+
+Copernicus Institute of Sustainable Development, Utrecht University, Utrecht, The Netherlands 
+
+> 6
+
+Institute for Marine and Atmospheric Research (IMAU), Utrecht University, Utrecht, The Netherlands 
+
+> 7
+
+INRAE, UR1115, Plantes et Systèmes de culture Horticoles (PSH), Site Agroparc 84914, France 
+
+> *
+
+m.n.mooij@uu.nl 
+
+> **
+
+i.v.kryven@uu.nl 
+
+# Abstract 
+
+Triangles are abundant in real-world networks but rare in standard null models for sparse graphs. Existing explanations typically rely on explicit triadic closure mechanisms or geometry-based connection rules. We propose an alternative hypothesis: the frequent appearance of triangles may arise naturally from the requirement of dynamic stability that maintains coexistence of species in Lotka–Volterra systems with competitive interactions. To evaluate this idea, we show that, across all possible interaction graphs, coexistence is guaranteed whenever the coupling strength is below the reciprocal of the graph’s maximum degree. We also show that coexistence can persist up to a critical coupling strength of 1, which leaves a large gap that is unexplained by the graph degrees alone. These lower and upper bounds are achieved for star and complete graphs respectively. To investigate what structural properties of the interaction graph control the critical coupling within the gap, we optimise networks algorithmically while keeping the degree sequence fixed . We find that networks supporting stronger interaction strengths consis-tently exhibit higher clustering coefficients in several network models. Moreover, in real-world grassland plant networks, we observe higher clustering and stronger stability than those ex-pected from a configuration model with the same degree sequence. Our result suggests that triangles, and clustering in general, may emerge as a structural signature of stabilising compe-tition. 
+
+Keywords: Triadic closure, Stability in Complex Systems, Competitive Dynamics, Network Optimisation. 1
+
+> arXiv:2603.17584v1 [physics.soc-ph] 18 Mar 2026
+
+# 1 Introduction 
+
+In sufficiently sparse network models where edges are placed independently at random, triangles become increasingly rare as the network size grows [1]. This contrasts with observations in many large real-world networks, which have more triangles than their corresponding null models with the same degree sequence, for example, see the discussion in [2, 3] and the references therein. While triangles are unavoidable in dense networks due to the threshold and saturation effects [1], in sparse networks their abundance is typically attributed to two main mechanisms. In social networks, this phenomenon is commonly explained by triadic closure – the increased probability that two vertices become connected when they have a common neighbour. In particular, this is reflected in models with strong local clustering, such as the Watts–Strogatz small-world model [2]. In geometric networks, where vertices have coordinates in a latent metric space, local clustering arises naturally from the triangle inequality : if two vertices are both close in latent space to a third one, they are also likely to be close to each other and hence to induce a (topological) triangle [3]. Finally, it is worth mentioning that simply conditioning a generic random graph model, such as the Erdős–Rényi random graph or exponential random graph models, to contain many triangles typically produces highly regular and hence unrealistic structures as a consequence of measure degeneracy [4, 5]. Many networks that feature clustering, however, do not fall under either of the above-mentioned categories. In this paper we give a possible explanation for the surplus of triangles using asymp-totic stability theory for dynamical systems with competitive interactions. Namely, we consider a second-order system of ODEs governed by the Lotka-Volterra (LV) equations on a network with symmetric negative interactions. The interaction strength, referred to as the competitive pressure , and the carrying capacity are identical for all species. To quantify stability, we deter-mine the maximum competitive pressure (in absolute value) that the system can sustain while still admitting a coexistence equilibrium, that is, an equilibrium in which all species maintain strictly positive abundances in the large-time limit. We identify the maximum competitive pressure using a bifurcation analysis and call it the critical coupling of the system, with larger values indicating a more robust coexistence equilibrium. The relation between the critical coupling and the structure of the network has been a topic of extensive research. Robert May argued that the critical coupling of systems with a weighted Erdős–Rényi interaction matrix tends to zero as the system size grows [6]. Gao et al. observed that a bifurcation at the critical coupling in large dimensional systems with random interactions is captured by a one-dimensional ‘effective’ manifold [7]. In our previous works, we connected the critical coupling to Katz centrality [8] and showed that this quantity is bounded away from zero when the maximum degree (or the maximum total weight around a vertex) remain finite [9]. In this work, we develop an extremal graph theory argument to show that the critical cou-pling can take values only in the well-defined interval [∆ −1, 1] , where ∆ is the maximum degree of the network. We then focus on several random graph models and show that maximising the clustering while keeping the degrees fixed also tends to increase the critical coupling in net-works sampled from these models, and the reverse also holds: optimising for critical coupling enhances clustering. We then turn to a real-world network inferred from herbaceous plant communities across Northern Eurasia [10] and show that both its clustering and its critical coupling are larger than what would be expected in the maximum-entropy null model with an identical degree sequence. Taken together, these results suggest that the abundance of triangles in networks exceeding null-model predictions may reflect a selective bias toward systems that are more robust in the sense of asymptotic stability. 20.00 0.25 0.50 0.75 1.00 
+
+# τ
+
+## 0.00 
+
+## 0.25 
+
+## 0.50 
+
+## 0.75 
+
+## 1.00 
+
+> xmin
+
+## complete 
+
+## path 
+
+## star Figure 1: Least abundant species vs. coupling strength. The dependence of the minimum-abundance species value xmin at equilibrium on the coupling strength τ is shown for three graphs with 6 nodes: complete, path, and star. Abrupt jumps in the equilibrium branch appear as discontinuities, occurring at the critical coupling where the equilibrium loses feasibility. 
+
+# 2 Results 
+
+We consider a competitive LV system on a fixed, but possibly random, undirected network with a symmetric adjacency matrix A,
+
+dxi
+
+dt = xi(1 − xi) − τ
+
+> n
+
+X
+
+> j=1
+
+Aij xixj , (1) where x ∈ Rn is the vector of species abundances and the interaction strength τ ≥ 0 represents the competitive pressure. In the absence of interactions between the nodes, meaning τ = 0 , the system reduces to 
+
+n independent logistic equations, each with a carrying capacity of 1. In this case, the system will converge globally to an equilibrium state x∗, where x∗ 
+
+> i
+
+= 1 for all i = 1 , 2, . . . , n . The introduction of node interactions significantly alters the dynamics, with the system behaviour now depending on the underlying network structure. The stability of system (1) is governed by its Jacobian, 
+
+J(x)ik = 1 − 2xi − τ
+
+> n
+
+X
+
+> j=1
+
+Aij xj
+
+!
+
+1{i=k} − τ x i1{Aik =1 }. (2) Here, 1{·} denotes the indicator function (equal to 1 if the condition holds and 0 otherwise); thus 
+
+1{i=k} selects the diagonal terms, while 1{Aik =1 } selects the off-diagonal entries corresponding to edges in the network. If it exists, the equilibrium fixed point with x∗ 
+
+> i
+
+> 0 for all i = 1 , 2, . . . , n 
+
+is unique, globally stable [11], and given by 
+
+x∗(τ ) = ( I + τ A )−11. (3) We refer to x∗(τ ) as a branch of feasible points. Along this branch, the Jacobian simplifies to 
+
+J(x∗)ik = −xi
+
+ 1{i=k} + τ 1{Aik =1 }
+
+ . (4) 30 ∆−1
+
+## τc
+
+## 1
+
+guaranteed coexistence 
+
+guaranteed extinction 
+
+# G− G+
+
+critical coupling 
+
+## smaller clustering 
+
+## larger clustering Figure 2: Bounds for τc, the maximum coupling permitting coexistence. Across all graphs G, the lower and upper bounds are attained at G− and G+, respectively, where the definitions of G− and G+ depend on the constraint imposed on G – either a fixed number of nodes or a fixed maximum degree, as explained in Theorem 1. Consider τ continuously increasing on the interval [0 , τ c). This gives rise to two distinct types of bifurcation points that depend on the network structure [9]: (1) A boundary transcritical bifurcation occurs when the branch of stable feasible points 
+
+x∗(τ ) collides with one (or several) of the invariant hyperplanes Hi := {x ∈ Rn : xi = 0 }.(2) A saddle node or pitchfork bifurcation occurs when the feasible equilibrium branch x∗(τ )
+
+loses stability as the leading eigenvalue of the Jacobian crosses zero. By definition, this event happens when the branch is in the interior of the domain. In both scenarios the feasible fixed point loses stability, and the corresponding equilibrium branch becomes confined to one of the boundary invariant hyperplanes Hi (or to an intersection of several such hyperplanes). This event is interpreted as the extinction of one (or several) species. We define the critical coupling τc as the smallest value of τ > 0 for which at least one component of the fixed point x∗ 
+
+> i
+
+(τ ) is zero, which corresponds to at least one extinction. 
+
+τc = inf 
+
+> τ > 0
+
+{x∗ 
+
+> i
+
+(τ ) = 0 , i ∈ { 1, . . . , n }} . (5) As illustrated in Figure 1, the critical couplings correspond to discontinuities at the bifurcation points. In Section 2.1 we derive lower and upper bounds for the critical coupling. Furthermore, we show in Section 2.2 using optimisation algorithms, that the critical coupling and mean clustering are strongly dependent in several random graph models. Finally, Section 2.3 shows a similar observation in real-world competition networks. 
+
+## 2.1 Universal bounds for critical coupling 
+
+In this section, we derive lower and upper bounds for the critical coupling and show that 
+
+τc ∈ [∆ −1, 1] for any graph with maximum degree ∆. In particular, this shows that the lower bound on τc is independent of the network size. Consequently, arbitrarily large biological systems can be stable provided their maximum degree remains bounded. We further show that for a fixed number of nodes n, the least robust structure is the star graph Sn, while the most robust is the complete graph Kn. These results are formalized in the following main theorem, which is illustrated in Figure 2. 4Theorem 1. For every connected graph G = ( V, E ) on n vertices with |E| > 0,
+
+τc(G) ∈ (n − 1) −1, 1 , (6) 
+
+where the lower bound is uniquely attained by the star graph Sn and the upper bound by the complete graph Kn.For every finite graph G with maximum degree ∆ > 0,
+
+τc(G) ∈ ∆−1, 1 , (7) 
+
+where the lower bound is attained whenever G contains a component isomorphic to S∆+1 , while the upper bound is attained by graphs whose connected components are all complete graphs. 
+
+The proof of this theorem is an immediate consequence of Lemma 1, Lemma 2, and Lemma 3, which are formulated in the rest of this section. Figure 2 illustrates the statements of Theorem 1. 
+
+Lemma 1. Let G be a simple graph on n vertices with maximum degree ∆, and let τc(G) denote the critical coupling. Then 
+
+∆−1 ≤ τc(G) ≤ − λmin (A)−1.
+
+Proof. Let A be the adjacency matrix of G. The feasible branch is given by 
+
+x∗(τ ) = ( I + τ A )−11,
+
+which is well-defined for τ < ∆−1 ≤ ρ(A)−1.For τ = 0 this branch is stable. As τ increases, either a saddle-node or pitchfork bifurcation occurs when the leading eigenvalue of the Jacobian 
+
+J(x∗) = − diag (x∗)( I + τ A )
+
+crosses zero, which happens when τ = −λmin (A)−1. Hence no such bifurcation occurs for 
+
+τ < ∆−1 ≤ ρ(A)−1 ≤ − λmin (A)−1.
+
+It remains to rule out a transcritical bifurcation for τ < ∆−1. We write the fixed point componentwise, 
+
+x∗ 
+
+> i
+
+= 1 − τ X
+
+> j
+
+Aij x∗ 
+
+> j
+
+≤ 1,
+
+and therefore 
+
+x∗ 
+
+> i
+
+≥ 1 − τ deg( i) ≥ 1 − τ ∆.
+
+Thus 
+
+x∗ 
+
+> i
+
+(τ ) ≥ 1 − τ ∆ ≥ 0, for all i = 1 , . . . , n, 
+
+and so x∗(τ ) stays away from the invariant hyperplanes for these values of τ .
+
+Lemma 2. Among all connected graphs on n vertices, the star graph Sn uniquely minimises the critical coupling, with 
+
+τc(Sn) = ( n − 1) −1. (8) 
+
+Proof. For the star graph, the smallest component of x∗ occurs at the central node. Expanding 
+
+x∗(τ ) into its series, 
+
+x∗
+
+> k
+
+(τ ) = 
+
+> ∞
+
+X
+
+> i=0
+
+(−1) iτ iWi(k),
+
+5where Wi(k) denotes the number of walks of length i starting at node k. For the central vertex, denoted 1, the equilibrium value is 
+
+x∗
+
+> 1
+
+(τ ) = 
+
+> ∞
+
+X
+
+> i=0
+
+(−1) iτ i(n − 1) ⌊(i+1) /2⌋.
+
+Separating even and odd terms gives geometric sums 
+
+x∗
+
+> 1
+
+(τ ) = 
+
+> ∞
+
+X
+
+> j=0
+
+τ 2j (n − 1) j −
+
+> ∞
+
+X
+
+> j=0
+
+τ 2j+1 (n − 1) j+1 
+
+= 11 − (n − 1) τ 2 − (n − 1) τ
+
+1 − (n − 1) τ 2 = 1 − (n − 1) τ
+
+1 − (n − 1) τ 2 .
+
+The smallest positive root is therefore 
+
+τc(Sn) = ( n − 1) −1.
+
+To prove uniqueness, suppose that for some connected graph G we have x∗ 
+
+> i
+
+= 0 at τ =(n − 1) −1. Then nX
+
+> j=1
+
+Aij x∗ 
+
+> j
+
+= τ −1 = n − 1.
+
+Since each x∗ 
+
+> j
+
+≤ 1, it follows that x∗ 
+
+> j
+
+= 1 and deg( i) = n − 1 for all neighbours j of i. Thus Sn
+
+centred at i is a subgraph of G.For any neighbour j of i,
+
+1 + τ
+
+> n
+
+X
+
+> k=1
+
+Ajk x∗ 
+
+> k
+
+= 1 ,
+
+so nX
+
+> k=1
+
+Ajk x∗ 
+
+> k
+
+= 0 .
+
+Since x∗ 
+
+> k
+
+≥ 0 by continuity of x∗(τ ), every neighbour of j must have value 0. Hence j is only connected to i, and therefore G = Sn.
+
+Corollary 1. For any simple graph G with maximum degree ∆, τc(G) ≥ ∆−1. If one of the connected components of G is a star S∆+1 , then equality holds. Proof. The lower bound follows from Lemma 1. Recall that for a disconnected graph, the critical coupling equals the minimum of the critical couplings of its connected components. If 
+
+G has connected component C ∼= S∆+1 , then τc(G) ≤ τc(S∆+1 ) = ∆ −1. Combined with the general lower bound τc(G) ≥ ∆−1, we conclude that τc(G) = ∆ −1.
+
+Remark 1. Note that the sufficient condition in the above corollary is not necessary. Indeed, consider the double star on 7 vertices: two hubs i, ℓ of degree 3 sharing a common neighbour 
+
+j1, with two private leaves each (see Figure 3). Then ∆ = 3 and 
+
+x∗ 
+
+> i
+
+(τ ) = x∗ 
+
+> ℓ
+
+(τ ) = 1 − 3τ
+
+1 − 4τ 2 ,
+
+which vanishes at τ = 13 = ∆ −1. Thus τc = ∆ −1, even though no component in the graph is a star S4.
+
+6i ℓj1
+
+j2
+
+j3
+
+j4
+
+j5
+
+Figure 3: The double star with ∆ = 3 . Shaded nodes are the hubs where x∗ vanishes first. 
+
+Lemma 3. Let G be a simple graph on n vertices, and let τc(G) denote the critical coupling. Then 
+
+τc(G) ≤ 1. (9) 
+
+If G is connected, the equality is attained if and only if G ∼= Kn. If G is not connected, the equality is attained if and only if every connected component of G is a complete graph Kni with 
+
+ni ≥ 2.Proof. Let G be connected and d-regular, then 
+
+x∗ 
+
+> i
+
+= (1 + τ d )−1 > 0, for all i = 1 , . . . , n, 
+
+for all τ > 0, so no transcritical bifurcation occurs. In particular, let G be a complete graph 
+
+Kn, then λmin (A) = −1, hence 
+
+τc(Kn) = − 1
+
+λmin (A) = 1 .
+
+However, Kn uniquely maximises λmin (A) among all connected simple graphs with n ver-tices [12]. Since τc(G) ≤ − λmin (A)−1, as shown in Lemma 1, it follows that τc(G) ≤ τc(Kn) = 1 .If G is not connected, the same reasoning applies component-wise. 
+
+## 2.2 Network optimisation 
+
+To quantify triangle density, we use the clustering coefficients 
+
+C(G) = 1
+
+n
+
+> n
+
+X
+
+> i=1
+
+Ci, Ci = 2Ti
+
+di(di − 1) , d i ≥ 2, (10) where Ti is the number of triangles incident to node i, so that Ci measures the fraction of possible triangles around node i that are realized (and Ci = 0 when di < 2). The degree sequence of G is denoted by dG = ( d1, . . . , d n).Theorem 1 suggests that complete graphs, for which C(G) = 1 , are also the most robust in terms of having maximal τc. To investigate potential dependencies between the critical coupling τc and the mean clustering C, we optimise the network structure with respect to these quantities. Specifically, among all graphs with degree sequence dG, we identify those that attain the smallest and largest possible mean clustering by solving 
+
+arg min  
+
+> G′
+
+C(G′) and arg max  
+
+> G′
+
+C(G′) s.t. dG′ = dG. (11) We will find these optimal network structures by setting up the double-edge-swap Markov chain that rewires edges (i, j ) and (k, l ) in two distinct ways: 1) perpendicular rewiring, to (i, k )
+
+and (j, l ), and 2) crosswise rewiring to (i, l ) and (j, k ). These rewiring operations preserve the degree sequence of the network, ensuring that each node retains the same number of neighbours (Figure 4). More importantly, the double-edge-swap Markov chain is known to be irreducible 7crossed 
+
+> switched
+
+# 1 2
+
+# 3 4
+
+# 1 2
+
+# 3 4
+
+# 1 2
+
+# 3 4Figure 4: Illustration of the degree-preserving edge-swap (rewiring) operation. Two edges connecting nodes (1 , 2) and (3 , 4) are replaced by either crossed or switched configurations, conserving the degree of each node while altering network topology. [13], which guarantees that any network with the same degree sequence is reachable. In practice, the optimisation process may also spend a long time in various metastable states. Figure 5 illustrates the optimisation procedure for a specific network that can be divided into disjoint cliques. We observe that optimisation of the mean clustering of the network increases the critical coupling, which aligns with the statement of Lemma 3. -15 -10 -5 0 5 10 15 
+
+Rewiring number 
+
+> 0.20
+> 0.40
+> 0.60
+> 0.80
+> 1.00
+> Critical coupling,  c
+
+## b
+
+> c
+> Mean clustering
+> 0.00
+> 0.20
+> 0.40
+> 0.60
+> 0.80
+> 1.00
+> Mean clustering
+
+## a Decreased Increased 
+
+Rewiring number       
+
+> -15 -10 -5 0510 15
+
+Figure 5: Degree-preserving rewiring that increases clustering also increases the critical coupling. Single network with n = 14 nodes and m = 20 edges. The rewiring number counts successive degree-preserving edge swaps relative to the initial network (0); positive values increase the mean clustering coefficient and negative values decrease it. a, Representative networks along the rewiring trajectory. The dashed vertical line marks the initial network. Purple (left) indicates reduced clustering and green (right) increased clustering. b, Critical coupling τc (left axis) and mean clustering coefficient (right axis) versus rewiring number. To examine the full range of clustering and critical coupling, we apply the rewiring pro-cedure to several random network models. Specifically, we consider random regular networks (uniform degree), configuration-model networks with degree sequences sampled from a Poisson 80.0 0.2  
+
+> 0.30
+> 0.32
+> 0.34
+
+a  
+
+> Regular
+> 0.0 0.2
+> 0.18
+> 0.19
+> 0.19
+
+b  
+
+> Poisson
+> 0.0 0.2
+> 0.24
+> 0.25
+> 0.26
+
+c 
+
+> Geometric
+> 0.00 0.25
+> 0.25
+> 0.26
+
+d 
+
+> Watts Strogatz
+> 0.2 0.4
+> 0.03
+> 0.04
+
+e  
+
+> Barabási Albert
+> 0.0 0.1
+> 0.28
+> 0.30
+> 0.33
+> 0.35
+
+f  
+
+> 0.0 0.1
+> 0.20
+> 0.25
+> 0.30
+> 0.35
+
+g  
+
+> 0.0 0.2
+> 0.25
+> 0.30
+> 0.35
+
+h  
+
+> 0.00 0.25
+> 0.25
+> 0.30
+> 0.35
+
+i 
+
+> 0.1 0.2
+> 0.10
+> 0.20
+
+j   
+
+> Critical coupling,  c
+> Clustering coefficient
+> Clustering optimization  Coupling optimization
+> Data (clustering opt., ±3 SE) Data (coupling opt., ±3 SE) Linear fit Baseline (original network)
+
+Figure 6: The critical coupling shows positive correlation with the mean clustering coefficient. Each network is rewired to maximise or minimise the critical coupling τc or the clustering C (1000 rewirings both for optimisation and minimisation). For each network model we report the mean clustering coefficient and critical coupling across 100 networks. All networks have size n = 100 and mean degree ⟨k⟩ ≈ 4. For every network type, all configurations share the same degree sequence. a,f , regular ( d = 4 ); b,g , Erdős–Rényi ( p = 4 /n ); c,h , geometric (r = 2( π(n − 1)) −1/2); d,i , Watts–Strogatz ( d = 4 , p = 0 .1); e,j , Barabási–Albert ( m = 2 ). Red lines show linear fits; error bars are ±3 s.e.m.; purple stars indicate the initial, unoptimised networks. distribution, geometric random networks, and networks generated by the Watts–Strogatz and Barabási–Albert models. All models are constructed to have the same mean degree. For each model, we generate 100 networks with size 100. Within each model, all 100 realizations share the same degree sequence but differ in structure. For every network, we either optimise the mean clustering or the critical coupling of the network and record the measured values. We observe that the mean clustering coefficient and critical coupling are positively correlated across all network models (Fig. 6). This relationship is strongest in random regular networks and weakest in Barabási–Albert networks, where clustering influences critical coupling only at low values. Variance peaks in Erdős–Rényi networks and remains small in random regular networks. Note that the optimisation procedure is important, as shown by the difference between obtained values in the first and second row. 
+
+## 2.3 Real-world networks 
+
+We apply our framework to real-world networks representing natural grassland ecosystems, where interspecific competition is primarily driven by resource limitation. We infer these networks from the dataset compiled by Scheifes et al. [10], which combines vegetation-plot composition with measurements of nutrient concentrations — nitrogen (N) and phosphorus (P) — in the plants, in herbaceous plant communities across Northern Eurasia. We consider 872 plots classified into habitat types according to the EUNIS classification scheme [14], sum-marized in Table 1. For each habitat, the set of all species observed across its plots defines the corresponding "species pool", from which we sample to construct competitive networks. Specifically, we draw random subsets of 100 species from each species pool and use them as the node set of the network. Pairwise competition coefficients are computed from the niche 9overlap of species-specific resource-use strategies [15]. We retain the strongest 10% of edges. More details are provided in the Methods section. To test whether the resulting network struc-ture can be explained by degree heterogeneity alone, we compare each realized network to a configuration-model ensemble that preserves its degree sequence. For each environment, we generate 500 configuration-model realizations as simple networks (i.e., no self-loops and no multi-edges) with the same degree sequence as the realized network. We then compare the realized clustering coefficient difference ∆C and the critical coupling difference ∆τc (Figure 7a) against the corresponding distributions under the null ensemble. In all environments, ∆C > 0
+
+and ∆τc > 0 for all M = 500 configuration-model realizations. Table 1: Habitat classification acronym, group and type, with the number of species recorded per each habitat. 
+
+Var. Habitat group Habitat type # species 
+
+R1 Grasslands and lands dominated by forbs, mosses or lichens Dry grasslands 128 R2 Mesic grasslands 230 R3 Seasonally wet and wet grasslands 303 N1 Coastal habitats Coastal dunes and sandy shores 158 Q2 Wetlands Valley mires, poor fens and transition mires 155 Q5 Helophyte beds 192 S9 Heathlands, scrub and tundra Riverine and fen scrub 151 0.42 0.44 0.46 0.48 0.50 0.52 
+
+C
+
+> 0.040
+> 0.045
+> 0.050
+> 0.055
+> 0.060
+> 0.065
+> c
+
+a N1 
+
+> Q2
+> Q5
+> R1
+> R2
+> R3
+> S9
+
+b  
+
+> 0.0 0.5 1.0
+
+Interaction strength 
+
+> 0
+> 400
+> 800
+> 1200
+> 1600
+> Frequency
+
+c
+
+Figure 7: Construction and properties of realized interaction networks. a, Differences between real networks and degree-preserving configuration-model controls. Horizontal axis 
+
+∆C = Creal − Cconf and vertical axis ∆τc = τc, real − τc, conf . Creal and τc, real are measured on the real network. Cconf and τc, conf are the corresponding configuration-model quantities averaged over 500 realizations. Symbols denote environments as defined in Table 1. b, Example realized network of size n = 100 after retaining the strongest 10% of edges, where node size and colour are proportional to degree. c, Distribution of pairwise interaction strengths. The opaque region indicates interactions set to zero corresponding to absent edges in the realized network; 90% of edges are removed. 10 3 Discussion 
+
+Triadic closure, quantified by the clustering coefficient C, stabilises competitive networks. We measure stability by the critical coupling, i.e. the competition strength at which exclusions first appear. To separate topology from degree effects, we compare against random-network controls that preserve the degree sequence while changing which pairs are linked. Under this constraint the direction is consistent across all simulations we report: higher clustering corresponds to larger critical coupling. Real-world grassland networks follow the same trend, being more clustered and showing higher critical coupling than their degree-matched controls. This suggests that adaptation might be occurring in these networks. Our analysis has been done for sparse and competitive networks, which are pervasive in nature, e.g. [16]. Extending the analysis to non-sparse networks, where species interaction is ubiquitous, could be an interesting follow-up. Moreover, it still remains an open question if other types of systems, i.e. mutualistic, facilitative, or trophic, also show the same behaviour. Analysing additional real-world networks, for example in gut microbiome [17, 18], can further strengthen our work. In our analysis, we allow for the networks to become disconnected. This fragmentation can raise the critical coupling by containing extinction events in sub-networks, rather than allowing cascades to propagate through the full network. That mechanism is ecologically plausible: fragmented habitats and limited dispersal would localise competitive effects in much the same way. Finally, let us mention that our results are potentially relevant to various disciplines outside of ecology. In economics, the Lotka-Volterra system is often considered. Examples are modelling economies and banking systems [19, 20]. Also in computer science this system is used, for example in congestion control [21, 22] or performing combinatorial optimisation [8]. Overall, we conclude that stability is not only dictated by node degrees. The arrangement of competitive links matters, and triadic closure in particular shifts the threshold at which competitive exclusion sets in. 
+
+# 4 Methods 
+
+Optimisation routine. We optimise by degree-preserving edge rewiring with a Metropolis-Hastings algorithm. Let O(G) denote the objective (mean clustering or critical coupling when increasing it, or its negative when decreasing it), and let δ = O(G′) − O (G) be the change from a proposed rewiring G → G′. We accept proposals with probability 
+
+Pacc =
+
+(1, δ ≥ 0,
+
+exp( δ/T ), δ < 0, (12) where T > 0 is a temperature controlling acceptance of downhill moves (larger T implies more exploration). This stochastic acceptance helps escape local minima. For each network and for each direction (increase vs. decrease of mean clustering) we per-form many rewirings. At each step we sample candidate edge pairs uniformly at random and reject any move that would create self-loops or multi-edges, thereby preserving the degree se-quence. For every network type we run multiple independent optimisations that share the same degree sequence, obtained by generating one instance of the model and re-randomising edges while preserving that sequence. 11 Calculation of the critical coupling. To determine the critical coupling, we follow the approach of [8], and consider the iterative update 
+
+τk+1 = τk −
+
+> n
+
+Q
+
+> i=1
+
+xinP
+
+> j=1
+
+(−M −1AM −1) Q
+
+> i̸=j
+
+xi
+
+, (13) where M = I + τ A , leading to the bifurcation value τc = lim k→∞ τk.The equilibrium point x∗ > 0 can be obtained by inverting the matrix M . This inverse exists for all coupling strengths τ smaller than |λmin (A)|−1, where λmin (A) is the smallest eigenvalue of 
+
+A. When no transcritical bifurcation occurs first, the inverse ceases to exist at τ = |λmin (A)|−1
+
+and the system undergoes a pitchfork bifurcation. 
+
+Grassland competitive interaction networks Our aim is to obtain a data-based approx-imation of competitive structure within each environment using the nutrient-limitation infor-mation available in the dataset. The common ecological assumption is that species are more likely to compete strongly when their environmental preferences ("niches") are more similar, i.e. their niches overlap more [23, 24]. To implement this, we defined their niches based on the nutrient concentrations measured in the plots where they occurred. If they tend to occur under similar nutrient concentration conditions, their competition is stronger. In particular, we use the ratio of nitrogen and phosphorus N : P as the relevant niche to define competition, as it has been identified as a key driver of the dynamics of these grasslands [25, 26, 27]. For each species i, we collect the set of N : P values from plots in which the species is present, where presence is defined as abundance > 0. We then calculate the mean and standard deviation of these values, denoted (μi, σ i). Finally, we assume that the niche of the species i along the N : P
+
+axis is a normal distribution fi(x) with mean μi and standard deviation σi where x := N : P .Following a common approach in ecology [15, 28], pairwise interaction strength is given by the niche overlap, quantified by the Pianka index [29]. We retain only the strongest inferred interactions, removing the weakest 90% of off-diagonal overlap values and keeping the strongest 10% (Figure 7a). We performed a sensitivity analysis on the exact percentage of edges removed, see below. After thresholding, retained overlaps are treated as edges and removed overlaps as absent edges. The realized network is represented by an unweighted adjacency matrix A obtained by binarising the thresholded overlaps; self-interactions are excluded ( Aii = 0 ). An example realized network with n = 100 is shown in Figure 7b. 
+
+Sensitivity analysis of real-world networks. To assess if our results were sensitive to the exact percentage of removed edges, we repeated the analysis for the percentages 75% , 80% , 85% , 90% , 95% 
+
+for three habitats (R1, Q5 and S9). Each sampled network has 100 nodes; for each habi-tat/percentage we generated 50 sampled networks and, for each, 100 configuration-model net-works with matched degree sequence. We observe that clustering and the critical coupling are closer to the values predicted by the configuration model. However, they remain distinctly higher overall (Fig. 8). 
+
+# 5 Code availability 
+
+The code for this paper is available at 
+
+https://github.com/NiekMooij/An-adaptation-mechanism-regulating-triadic-closu re .12 0.40 0.45 0.50 0.55 
+
+> C
+> 0.03
+> 0.04
+> 0.05
+> 0.06
+> 0.07
+> c
+> Habitat
+> R1
+> Q5
+> S9
+> Percentage zero
+> 75%
+> 80%
+> 85%
+> 90%
+> 95%
+
+Figure 8: Sensitivity of the analysis to the percentage of edges that are removed across habitats. Points show percentage means for each habitat (blue/orange/green), with error bars indicating ±1 standard error. Lines connect percentages within each habitat; marker shapes denote the percentage of edges removed. Each sampled network has 100 nodes; for each habitat/percentage we generated 50 sampled networks and, for each, 100 configuration-model networks with matched degree sequence. 
+
+# 6 Data availability 
+
+No data is collected for this manuscript. 
+
+# References 
+
+[1] Bollobás, B. Random Graphs (Cambridge University Press, Cambridge, 2001), 2 edn. [2] Watts, D. J. & Strogatz, S. H. Collective dynamics of ‘small-world’ networks. Nature 393 ,440–442 (1998). [3] Boguna, M. et al. Network geometry. Nature Reviews Physics 3, 114–135 (2021). [4] Chakraborty, S., van der Hofstad, R. & den Hollander, F. Sparse random graphs with many triangles. Indagationes Mathematicae (2026). [5] Chatterjee, S. & Diaconis, P. Estimating and understanding exponential random graph models. The Annals of Statistics 41 , 2428–2461 (2013). [6] May, R. M. Will a large complex system be stable? Nature 238 , 413–414 (1972). [7] Gao, J., Barzel, B. & Barabási, A.-L. Universal resilience patterns in complex networks. 
+
+Nature 530 , 307–312 (2016). [8] Mooij, M. N. & Kryven, I. Finding large independent sets in networks using competitive dynamics. Communications Physics 8, 235 (2025). 13 [9] Mooij, M. N., Baudena, M., von der Heydt, A. S. & Kryven, I. Stable coexistence in indefinitely large systems of competing species. Proceedings of the Royal Society A: Math-ematical, Physical and Engineering Sciences 480 , 20240290 (2024). [10] Scheifes, D. J. P. et al. The plant root economics space in relation to nutrient limitation in Eurasian herbaceous plant communities. Ecology Letters 27 , e14402 (2024). [11] Goh, B. S. Global stability in many-species systems. The American Naturalist 111 , 135– 143 (1977). [12] Brouwer, A. E. & Haemers, W. H. Spectra of Graphs (Springer, New York, 2012). [13] Greenhill, C. The switch Markov chain for sampling irregular graphs. Combinatorics, Probability and Computing 24 , 556–573 (2015). [14] Davies, C. E., Moss, D. & Hill, M. O. EUNIS habitat classification revised 2004. Report to: European environment agency-European topic centre on nature protection and biodiversity 
+
+127–143 (2004). [15] Haraldsson, M. & Thébault, E. Emerging niche clustering results from both competition and predation. Ecology Letters 26 , 1200–1211 (2023). [16] Connell, J. H. On the prevalence and relative importance of interspecific competition: Evidence from field experiments. The American Naturalist 122 , 661–696 (1983). [17] Coyte, K. Z., Schluter, J. & Foster, K. R. The ecology of the microbiome: Networks, competition, and stability. Science 350 , 663–666 (2015). [18] Camacho-Mateu, J., Lampo, A., Sireci, M., Muñoz, M. A. & Cuesta, J. A. Sparse species interactions reproduce abundance correlation patterns in microbial communities. Proceed-ings of the National Academy of Sciences 121 , e2309575121 (2024). [19] Comes, C.-A. Banking system: Three level Lotka-Volterra model. Procedia Economics and Finance 3, 251–255 (2012). [20] Moran, J. & Bouchaud, J.-P. May’s instability in large economies. Phys. Rev. E 100 ,032307 (2019). [21] Antoniou, P. & Pitsillides, A. Congestion control in autonomous decentralized networks based on the Lotka-Volterra competition model. In Alippi, C., Polycarpou, M., Panayiotou, C. & Ellinas, G. (eds.) Artificial Neural Networks – ICANN 2009 , 986–996 (Springer Berlin Heidelberg, Berlin, Heidelberg, 2009). [22] Iguchi, T., Hasegawa, G. & Murata, M. A new congestion control mechanism of tcp with inline network measurement. In Kim, C. (ed.) Information Networking. Convergence in Broadband and Mobile Networking , 109–121 (Springer Berlin Heidelberg, Berlin, Heidel-berg, 2005). [23] Wandrag, E. M., Catford, J. A. & Duncan, R. P. Quantifying niche availability, niche over-lap and competition for recruitment sites in plant populations without explicit knowledge of niche axes. Journal of Ecology 107 , 1791–1803 (2019). [24] Chesson, P. Mechanisms of maintenance of species diversity. Annual review of Ecology and Systematics 31 , 343–366 (2000). 14 [25] Fay, P. A. et al. Grassland productivity limited by multiple nutrients. Nature Plants 1,1–5 (2015). [26] Güsewell, S. N: P ratios in terrestrial plants: variation and functional significance. New Phytologist 164 , 243–266 (2004). [27] Olde Venterink, H., Wassen, M. J., Verkroost, A. & De Ruiter, P. Species richness– productivity patterns differ between n-, p-, and k-limited wetlands. Ecology 84 , 2191–2199 (2003). [28] Mason, N. W., Mouillot, D., Lee, W. G. & Wilson, J. B. Functional richness, functional evenness and functional divergence: the primary components of functional diversity. Oikos 
+
+111 , 112–118 (2005). [29] Pianka, E. R. The structure of lizard communities. Annual review of Ecology and System-atics 53–74 (1973). 
+
+# 7 Funding 
+
+This work was supported by the Italian National Biodiversity Future Center (NBFC): Na-tional Recovery and Resilience Plan (NRRP), Mission 4 Component 2 Investment 1.4 of the Italian Ministry of University and Research; funded by the EU - NextGenerationEU (Project code CN 00000033). MB also acknowledges funds from the SENTINEL PRIN project – Call 2022, Grant No. 2022CM4F3X. This work was supported by the following NWO programs: Talentprogramme, project number VI.C.202.081; and research program VIDI, project num-ber VI.Vidi.213.108. Furthermore, the project acknowledges funds from the SENTINEL PRIN project – Call 2022, Grant No. 2022CM4F3X by the Italian Ministry of University and Research (MUR); from the DiviN-P project under the 2021-2022 BiodivProtect joint call, co-funded by the European Commission (GA No. 101052342) and MUR (CUP:B53C23001040006); and from the Italian National Biodiversity Future Center (NBFC): National Recovery and Resilience Plan (NRRP), Mission 4 Component 2 Investment 1.4 of MUR, funded by the EU - NextGenera-tionEU (CN 00000033). 
+
+# 8 Acknowledgements 
+
+The authors are grateful to Annegreet Veken for discussion that helped define the real-world networks and for supplying the data used to generate these networks. The authors are grate-ful to Jochem Hoogendijk, Mike de Vries, and Ruben Hendriks for helpful discussions. MNM gratefully acknowledges support from Complex Systems Fund, with special thanks to Peter Koeze. MB acknowledges funds from the SENTINEL PRIN project – Call 2022, Grant No. 2022CM4F3X by the Italian Ministry of University and Research (MUR); from the DiviN-P project under the 2021-2022 BiodivProtect joint call, co-funded by the European Commission (GA No. 101052342) and MUR (CUP:B53C23001040006); and from the Italian National Bio-diversity Future Center (NBFC): National Recovery and Resilience Plan (NRRP), Mission 4 Component 2 Investment 1.4 of MUR, funded by the EU - NextGenerationEU (CN 00000033). AvdH gratefully acknowledges support from NWO under the NWO Talentprogramme, project number VI.C.202.081. IK gratefully acknowledges support from Netherlands Research Organ-isation (NWO), research program VIDI, project number VI.Vidi.213.108. 15 9 Competing interests 
+
+The authors declare no competing interests. 
+
+# 10 Materials & Correspondence 
+
+Please contact MNM for correspondence. 16
