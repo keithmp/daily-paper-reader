@@ -1,0 +1,1586 @@
+Title: RECLAIM: Cyclic Causal Discovery Amid Measurement Noise
+
+URL Source: https://arxiv.org/pdf/2603.20585v1
+
+Published Time: Tue, 24 Mar 2026 00:28:06 GMT
+
+Number of Pages: 30
+
+Markdown Content:
+# RECLAIM: Cyclic Causal Discovery Amid Measurement Noise 
+
+## Muralikrishnna G. Sethuraman Faramarz Fekri 
+
+School of Electrical and Computer Engineering, Georgia Institute of Technology 
+
+Abstract 
+
+Uncovering causal relationships is a fundamental problem across science and engi-neering. However, most existing causal discovery methods assume acyclicity and direct access to the system variables—assumptions that fail to hold in many real-world settings. For instance, in genomics, cyclic regulatory networks are common, and measurements are often corrupted by instrumental noise. To address these challenges, we propose RECLAIM, a causal discovery framework that natively handles both cycles and measure-ment noise. RECLAIM learns the causal graph structure by maximizing the likelihood of the observed measurements via expectation-maximization (EM), using residual normaliz-ing flows for tractable likelihood computation. We consider two measurement models: (i) Gaussian additive noise, and (ii) a linear measurement system with additive Gaussian noise. We provide theoretical consistency guarantees for both the settings. Experiments on synthetic data and real-world protein signaling datasets demonstrate the efficacy of the proposed method. 
+
+# 1 Introduction 
+
+Understanding cause-effect relationships among variables is a central problem in science and engineering (Sachs et al., 2005; Friedman et al., 2000). Causal models provide a mechanistic view of a system, enabling prediction of its behavior under unseen interventions. Causal relations are typically encoded as a directed graph (DG), where edges represent causal dependencies, and learning them is naturally posed as a graph structure learning problem. Causal discovery methods broadly fall into three categories: (i) constraint-based , (ii) score-based , and (iii) hybrid . Constraint-based methods (Spirtes et al., 2000; Triantafillou and Tsamardinos, 2015) identify causal graphs consistent with the conditional independence constraints observed in data, but scale poorly as the number of required independence tests grows exponentially. Score-based methods (Hauser and Bühlmann, 2012) instead optimize a scoring function such as the Bayesian Information Criterion (BIC) over the space of graphs; greedy search is typically employed since the search space grows super-exponentially with the number of nodes. Hybrid methods (Tsamardinos et al., 2006; Solus et al., 2021) combine elements of both approaches. With few exceptions, most causal discovery methods rely on two key assumptions: (i) the underlying causal graph is acyclic (a directed acyclic graph, or DAG), and (ii) the system variables are directly observed. While these assumptions simplify the learning problem, they are often violated in practice. Variables of interest are frequently latent —for instance, a person’s beliefs cannot be measured directly, but surveys provide noisy proxies of the underlying state. Furthermore, feedback loops are prevalent in biological systems (Freimer et al., 2022), and such systems often exhibit structured measurement noise such as “dropout.” 1
+
+> arXiv:2603.20585v1 [cs.LG] 21 Mar 2026
+
+Imposing these assumptions in such settings can lead to misleading causal conclusions, limiting the practical applicability of existing methods. To address these challenges, we propose R ECLAIM , a novel causal discovery framework that learns latent causal structure while jointly modeling directed cycles and measurement noise. We consider two measurement noise models: (i) Gaussian additive noise, and (ii) a linear measurement system with Gaussian noise. Using interventional data, we first estimate the noise distribution parameters, then employ an expectation-maximization (EM) procedure to learn the causal graph via likelihood maximization. 
+
+## 1.1 Related Works 
+
+Cyclic causal discovery. The prior work on cyclic causal discovery spans constraint-based (Richardson, 1996), ICA-based (Lacerda et al., 2012), and score-based (Huetter and Rigollet, 2020; Améndola et al., 2020) approaches. Several methods also leverage interventional data for structure recovery (Hyttinen et al., 2012; Huetter and Rigollet, 2020). Most relevant to our work, Sethuraman et al. (2023) proposed a differentiable framework for nonlinear cyclic graphs that models data likelihood directly, bypassing acyclicity constraints. Sethuraman and Fekri (2025) later extended this to account for latent confounders. 
+
+Causal discovery from indirect measurements. Under indirect measurements, causal discovery broadly splits into two paradigms. Causal representation learning (CRL) aims to jointly recover latent variables and their causal structure from high-dimensional observa-tions under unknown transformations. Identifiability has been studied under parametric assumptions such as linear models (Squires et al., 2023; Buchholz et al., 2023) and polyno-mial transformations (Ahuja et al., 2024), as well as in fully nonparametric settings (von Kügelgen et al., 2023). Causal discovery under measurement noise , by contrast, assumes a known structural relationship between latents and observations, and focuses solely on recovering the causal graph over the latent variables. Harris and Drton (2013); Yoon et al. (2020) established consistency of the PC algorithm under Gaussian measurement error, and Saeed et al. (2020) extended this to a general constraint-based framework accommodating additive noise and dropouts. In the cyclic regime, Sethuraman et al. (2024) address dropout noise by treating zeroed-out variables as missing data. 
+
+## 1.2 Contributions 
+
+In this work, we address two central limitations in causal discovery: (i) inability to handle measurement error, and (ii) restriction to acyclic graphs. Our main contributions are: • We introduce R ECLAIM , a differentiable causal discovery framework that natively han-dles nonlinear cyclic relationships in the presence of additive Gaussian measurement error. • We consider two measurement noise models: (i) Gaussian additive noise and (ii) linear measurement systems, and provide a consistent estimator for the noise variance when appropriate interventions are available. • We establish that exact maximization of the proposed score function under appropriate interventions identifies the interventional Markov equivalence class of the ground-truth graph. 2• We conduct extensive experiments comparing R ECLAIM against the state-of-the-art causal discovery methods on both synthetic and real-world datasets, and show that increasing the number of measurements results in improved recovery performance. 
+
+1.2.1 Organization. 
+
+The remainder of the paper is organized as follows. Section 2 introduces the problem setup and the measurement models under consideration. Section 3 presents the technical details of R ECLAIM . Section 4 evaluates its effectiveness on synthetic and real-world benchmarks. Section 5 concludes the paper. 
+
+# 2 Problem Setup 
+
+## 2.1 Structural Causal Model 
+
+Let G = ( X , E ) denote a directed graph with vertex set X = {X1, . . . , Xd} and edge set 
+
+E ⊆ X × X . Let X = ( X1, . . . , Xd) be the associated random (endogenous) variable. The edge (Xi, Xj) ∈ E denotes a directed edge originated from the node Xi to the node Xj, with slight abuse of notation we also denote this edge as Xi → Xj. Following Bollen (1989); Pearl (2009), we utilize the framework of structural causal models (SCM) to represent the functional dependencies in the causal graph. For each i ∈ X , we have the following 
+
+structural equation :
+
+Xi = fi(pa G (Xi)) + Zi, (1) where fi, called the causal mechanism , encodes the functional dependency between the parents and the children. pa G (Xi) ≜ {Xj ∈ X | Xj → Xi ∈ E } denotes the parent set of a node Xi ∈ X . The set of variables Z = ( Z1, . . . , Zd) represent the exogenous noise within the system. We assume that the exogenous noise variables are independent of each other, i.e., Zi ⊥ Zj for i, j ∈ [d] and i̸ = j. This assumption, also known as causal sufficiency ,excludes hidden confounding and selection bias. Let f = ( f1, . . . , fd) be the combined causal mechanism, combining eq. (1) for all i ∈ [d], we obtain the following: 
+
+X = f (X) + Z. (2) However, it is not guaranteed that eq. (2) has a solution, primarily due to the (potential) presence of cycles in G. As a result, restrictions are necessary on the causal mechanism to ensure the system attains equilibrium (see appendix A for a detailed discussion). To that end, building on Sethuraman et al. (2023), we make the following assumption on the map 
+
+(id − f ) : X 7 → Z, which we call the forward map .
+
+Assumption 1. The forward map (id − f ) : X 7 → Z is a diffeomorphism 1.
+
+Finally, the SCM provides us with a probability density for the exogenous noise variables, which we denote as pZ. Given pZ, we can obtain the probability density of the endogenous variables using the change of variable property of probability densities. That is, 
+
+pG (X) = pZ
+
+ (id − f )( X) J(id − f )(Z) , (3) where J(id − f )(X) is the Jacobian matrix of the forward map evaluated at X.          
+
+> 1A function fis a diffeomorphism if f−1exists, and both fand f−1are differentiable.
+
+3Interventions. We consider surgical interventions (Pearl, 2009) within our framework. Under surgical interventions, when a subset of nodes XI ⊆ X are (surgically) intervened, we obtain a mutilated graph, denoted as do (I)( G), where all the incoming edges to the intervened nodes are removed (see fig. 1). We identify an intervention by the index set 
+
+I ⊆ [d] of the nodes intervened in X . Given a set of intervened nodes XI ⊆ X , let 
+
+U ∈ { 0, 1 }d×d be a diagonal masking matrix with Ukk = 1 if Xk ∈ X I , and 0 otherwise. The structural equations in eq. (2) are then modified as follows: 
+
+X = U f (X) + UZ + C, (4) where C ∈ Rd denotes the values of the intervened nodes. Consequently, under the intervention I, the probability density of the observations is given by 
+
+pdo (I)( G)(X) = pC (XI )pZ
+
+ Z[d]\I
+
+ J(id −U f )(Z) , (5) where pC denotes the interventional density, and Z[d]\I = (id − U f )( X) 
+
+> [d]\I
+
+. In our experiments, we assume that the intervened nodes are sampled from a distribution with known variance σ2 
+
+> I
+
+.
+
+## 2.2 Measurement System 
+
+In practice, the causal variables X are latent and only indirectly observed. They often pass through a measurement system, yielding measured variables Y = {Y1, . . . , Yp} (with Y being the corresponding random variable). Each Yj represents a coarsened measurement of X
+
+given by, 
+
+Yj = gj(X, εj), j = 1, . . . , p, (6) where g = ( g1, . . . , gp) denotes the coarsening mechanism (also referred as the measurement channel ), and ε = ( ε1, . . . , εd) represents any external factor that can affect the measurement system. We assume that p ≥ d (otherwise, identifiability is ill-posed), and εi ⊥ εj, for 
+
+i, j ∈ [p] and i̸ = j. This results in a combined measurement graph, denoted as Gm, whose vertex set contains both the latent variables X and the measured variables Y, i.e., X ∪ Y ,see fig. 1. In our work, we deal with two different types of measurement system: 1. Gaussian additive noise : In this case, p = d, εi ∼ N (0, σ2 
+
+> i
+
+), and 
+
+Yi = Xi + εi, i = 1, . . . , d. (7) Given the latent variables X, the density of the measurements is also Gaussian, i.e., 
+
+Y | X = x ∼ N (x, Dε), where Dε = Diag (σ21 , . . . , σ2 
+
+> d
+
+). We refer to pY|X (Y | X) as the 
+
+measurement channel density .2. Linear measurement system with Gaussian noise : Similar to the previous setting, we have εj ∼ N (0, σ2 
+
+> j
+
+). However, in this case, p can be larger than d, i.e., p ≥ d, and 
+
+Yj =
+
+> d
+
+# ∑
+
+> i=1
+
+Aji Xi + εj. (8) The matrix A = [ Aji ], with i ∈ [d] and j ∈ [p], is referred to as the measurement matrix ,and is assumed to be known and full (column) rank. Given the latent variables X,the conditional density of Y is again Gaussian, i.e., Y | X = x ∼ N (Ax, Dε), where 
+
+Dε = Diag (σ21 , . . . , σ2 
+
+> p
+
+).4X1        
+
+> X2
+> X3
+> Y1Y2Y3Y4Y5
+> (a)
+> X1
+> X2
+> X3
+> Y1Y2Y3Y4Y5
+> (b)
+
+Figure 1: (a) Illustration of a causal graph Gm encoding both the system variables X and the measured variables Y for a linear measurement system. (b) Mutilated graph, do (I)( Gm),resulting from a surgical intervention on X2.
+
+Goal. Given a set of interventions I = {Ik}Kk=1, our goal is to learn structure of G by maximizing the log-likelihood of the coarsened measurements . We present our approach towards addressing this problem in the next section. 
+
+# 3 RECLAIM Causal Discovery Framework 
+
+Let θ, ϕ represent the parameters of the latent variable density pG (X) and the conditional measurement density pY|X (Y | X), respectively. For an interventional experiment I ⊆ [d],we aim to learn the causal graph structure G by maximizing the likelihood of the observed variables. However, this maximization is generally intractable, since 
+
+p(Y | θ, ϕ, I) = 
+
+> Z
+
+pdo (I)( G)(X | θ) pY|X (Y | X, ϕ) dX
+
+does not admit a closed-form solution in general. To address this intractability, RECLAIM adopts an EM-based approach that maximizes a tractable lower bound on log p(Y | θ, ϕ). We now describe the framework in detail, beginning with defining the score function to be maximized, followed by an overview of the EM-based optimization procedure. We then detail the technical components of the expectation step: estimating the measurement process parameters, computing the latent likelihood, and sampling latents conditioned on the observations. Finally, we establish the theoretical guarantees of RECLAIM, showing that exact maximization of the score function recovers the true causal structure up to Markov equivalence. 
+
+## 3.1 Score Function 
+
+Given a family of interventions I = {Ik}Kk=1 and a causal graph G, we define the score function as the regularized log-likelihood of the observed variables under each interventional regime. Following Sethuraman and Fekri (2025), this takes the form: 
+
+SI (G) ≜ sup 
+
+> θ,ϕ
+> K
+
+# ∑
+
+> k=1
+
+EY∼p(k) log p(Y | θ, ϕ, Ik) − λ|G| , (9) where p(k) denotes the data-generating density under the k-th interventional experiment Ik,and λ|G| is an ℓ0-type sparsity penalty on the edge set of G.In practice, we assume access to a collection of finite samples per interventional experiments, 
+
+DI = {{ y(k,ℓ)}nk
+
+> ℓ=1
+
+}Kk=1. Thus, the expectation in eq. (9) is replaced with sample mean. 5Finally, we maximize the score function over the space of graphs G resulting in the following score function: ˜SI (DI ) ≜ sup 
+
+> G,θ,ϕ
+> K
+
+# ∑
+
+> k=1
+> nk
+
+# ∑
+
+> ℓ=1
+
+log p(y(k,ℓ) | θ, ϕ, Ik) − λ|G| . (10) 
+
+## 3.2 Optimizing The Score Via Penalized Expectation-Maximization 
+
+As discussed earlier, the intractability of eq. (10) stems from integrating out the latent variables, precluding a closed-form solution. To circumvent this, we adopt the penalized EM framework of Chen et al. (2014). Beginning from an initial guess θ0 for the latent SCM parameters (encompassing both the neural network weights and the graph adjacency), the algorithm alternates between the two steps below until a convergence criterion is met: 
+
+E-step: Given the current parameter estimate θt and the observations, form the surrogate objective Q(θ | θt) as the expected complete-data log-likelihood: 
+
+Q(θ | θt) = 
+
+> K
+
+# ∑
+
+> k=1
+> nk
+
+# ∑
+
+> ℓ=1
+
+EX∼p(·| y(k,ℓ),θt, ˆ ϕ,Ik )
+
+h
+
+log p X, y(k,ℓ) | θ, ˆ ϕ, Ik
+
+i
+
+. (11) where ˆϕ denotes the estimated parameters of the measurement channel (see section 3.3 for details), and log p X, y(k,ℓ) | θ, ˆ ϕ, Ik
+
+ = log pdo (Ik )( G)(X | θ) + log p y(k,ℓ) | X, ˆ ϕ. (12) 
+
+M-step: Update the parameters by solving the penalized maximization of the surrogate: 
+
+θt+1 = arg max  
+
+> θ
+
+Q(θ | θt) − λ R(θ), (13) where R(θ) is a sparsity-promoting regularizer on the graph. The maximization in the M-step is carried out with stochastic gradient ascent. A key observation is that the surrogate Q serves as a lower bound (up to a constant) on the marginal log-likelihood: 
+
+> K
+
+# ∑
+
+> k=1
+> nk
+
+# ∑
+
+> ℓ=1
+
+log p
+
+
+
+y(k,ℓ) | θ, ˆ ϕ, Ik
+
+
+
+≥ Q (θ | θt) − const. (14) Consequently, each M-step improves a valid lower bound on the log-likelihood of the observed-data rather than optimizing it directly. A formal derivation of eq. (14) and a convergence analysis are deferred to appendix B. 
+
+## 3.3 Estimation of Measurement System Parameters 
+
+Computing the surrogate objective Q in eq. (11) requires evaluating the measurement channel density, whose parameters are a priori unknown and must therefore be estimated from data. In the two measurment processes under consideration (Gaussian additive noise and linear measurement system), the unknown parameters correspond to the variances of the additive noise, which fully identify the measurement channel. Since the latent variables 
+
+X are not directly observed, estimating these parameters requires additional structure on the data-generating mechanism. We formalize this as the following condition on the intervention family I.6Condition 2 (Measurement Channel Identifiability) . An intervention family I = {Ik}Kk=1 is 
+
+measurement channel identifiable if, for each node Xi ∈ X , there exists an intervention Ik ∈ I 
+
+such that X i ∈ X Ik .
+
+Intuitively, condition 2 requires that every latent variable is targeted by at least one in-tervention, ensuring that its variance is known under that interventional regime and can therefore be used to identify the measurement noise. We now show that this condition is sufficient to identify the measurement parameters for each of the three noise models under consideration. 
+
+3.3.1 Gaussian Additive Noise. 
+
+Since X and ε are independent, the marginal variance of Yi decomposes as σ2 
+
+> Yi
+
+= σ2 
+
+> Xi
+
++ σ2 
+
+> i
+
+,where σ2 
+
+> Yi
+
+can be estimated directly from observations. While σ2 
+
+> Xi
+
+is generally unknown under observational data, condition 2 guarantees the existence of an intervention Ik ∈ I 
+
+under which Xi is intervened upon, fixing its variance to the known interventional variance 
+
+σ2 
+
+> I
+
+. The measurement noise variance is then recovered as σ2 
+
+> i
+
+= σ2 
+
+> Yi
+
+− σ2 
+
+> I
+
+.
+
+3.3.2 Linear Measurement System with Gaussian Noise. 
+
+In this setting, each observed variable Yj is a linear mixture of all latent variables (cf. eq. (8)), making direct variance decomposition infeasible. Notably, condition 2 does not require a single intervention targeting all nodes simultaneously. Instead, we exploit the structure of the measurement matrix A via the following proposition. 
+
+Proposition 3. Let A ∈ Rp×d be the measurement matrix with rank (A) = d , let ai denote the i -th column of A, and let A−i denote the measurement matrix excluding the i -th column. Then, there exists a vector t ∈ Rp such that A⊤−it = 0 and a⊤ 
+
+> i
+
+t̸ = 0.
+
+We defer the proof to appendix C.1. The key idea is to project the observations onto a direction ti that isolates the contribution of Xi. Specifically, choosing ti such that A⊤−i ti = 0
+
+and a⊤ 
+
+> i
+
+ti̸ = 0, and letting ζi = t⊤ 
+
+> i
+
+Y, we obtain: 
+
+ζi = t⊤ 
+
+> i
+
+Y = t⊤ 
+
+> i
+
+AX + t⊤ 
+
+> i
+
+ε = ( t⊤ 
+
+> i
+
+ai)Xi + t⊤ 
+
+> i
+
+ε.Since X and ε are independent, the variance of ζi decomposes as: 
+
+σ2 
+
+> ζi
+
+= ( t⊤ 
+
+> i
+
+ai)2σ2 
+
+> Xi
+
++ t⊤ 
+
+> i
+
+Dεti. (15) Condition 2 guarantees the existence of an intervnetion Ik containing Xi, and σ2 
+
+> Xi
+
+= σ2 
+
+> I
+
+.Letting t⊙ 
+
+> i
+
+≜ ti ⊙ ti, bi = σ2 
+
+> ζi
+
+− (t⊤ 
+
+> i
+
+ai)2σ2 
+
+> I
+
+, and σ2 = ( σ21 , . . . , σ2 
+
+> p
+
+), eq. (15) reduces to the linear equation (t⊙ 
+
+> i
+
+)⊤σ2 = bi. Aggregating sufficiently many such projection vectors into a matrix T2 = [( t(k))⊤ 
+
+> k
+
+], the noise variances are recovered by solving the convex least-squares problem: min 
+
+> σ2≥0
+
+T2σ2 − b 22. (16) This approach requires T2 to have rank p, which may not always be achievable. However, the following theorem shows that this is a generic property of the measurement matrix. 7Theorem 4. Let A ∈ Rp×d with p ≥ d and rank (A) = d . For each i ∈ [d], let Si(A) ≜ N (A⊤−i ),and define the admissible projection set as 
+
+T (A) ≜
+
+> d[
+> i=1
+
+{t ∈ Si(A) : a⊤ 
+
+> i
+
+t̸ = 0}.
+
+Let ¯A denote the set of full-rank matrices A for which no choice of t(1), . . . , t(p) ∈ T (A) yields 
+
+rank (T2) = p. Then ¯A has zero Lebesgue measure. 
+
+We defer the proof to appendix C.2. The projection vectors t’s are sampled to construct T2
+
+using the procedure detailed in algorithm D.1 in appendix D.1. 
+
+## 3.4 Computing Likelihood of Latent Variables 
+
+From eqs. (11) and (12), computing the surrogate loss function Q requires evaluating log likelihood of the latent variables, log pdo (Ik )( G)(X | θ). We describe how this is computed by detailing the SCM parameterization and the associated log-likelihood. 
+
+Modeling the Causal Mechanism. We model each causal mechanism fi in eq. (1) us-ing a contractive neural network, that is, a neural network with Lipschitz constant less than one, which is enforced during training by rescaling layer weights by their spectral norm (Behrmann et al., 2019). Contractivity guarantees, via the Banach fixed point the-orem (Rudin, 1953a), that the map (id − U f ) is invertible (ensuring that assumption 1 is satisfied) and the log-determinant of its Jacobian is well-defined. To prevent spurious self-loops and encourage sparsity, we introduce a dependency mask 
+
+M ∈ { 0, 1 }d×d with zero diagonal, whose entries are treated as Bernoulli random variables sampled via the Gumbel-softmax distribution (Jang et al., 2016), M ∼ pM(M | θ). The causal mechanism then takes the form: 
+
+[Fθ(X)] i = [ NN θ(M∗,i ⊙ X)] i, (17) where M∗,i denotes the i-th column of M. and the sparsity penalty is given by R(θ) = 
+
+EM∼pM (·| θ)∥M∥1.
+
+Log-Determinant of the Jacobian. Given the contractive neural network parameterization in eq. (17), the log-likelihood in eq. (11) requires evaluating the log-determinant of the Jacobian of (id − U f ). Naïve computation of the log-determinant of the Jacobian function has a computation cost that is O(d3). However, since the causal mechanism f is contractive, the log-determinant admits the convergent power series expansion (Behrmann et al., 2019): log det J(id −U f )(X) = −
+
+> ∞
+
+# ∑
+
+> m=1
+
+1
+
+m Tr 
+
+n
+
+Jm  
+
+> Uf
+
+(X)
+
+o
+
+. (18) The terms in the power series only depend on the trace of the powers of the Jacobian matrix, and hence reduces the computation cost to O(d2). However, Truncating this series introduces bias, which we correct using the Russian roulette estimator (Chen et al., 2019), and reduce the per-iteration cost using the Hutchinson trace estimator (Hutchinson, 1989). This results in the final unbiased estimator given by eq. (29) in appendix D.2. We defer the details to appendix D.2. 83.5 Sampling Latents Given the Observations 
+
+With the measurement parameters ˆϕ estimated and the latent likelihood in hand, the remaining challenge in evaluating Q is computing the posterior expectation over X. Since the nonlinear causal mechanisms preclude a closed-form posterior, we employ Sampling Importance Resampling (SIR) (Smith and Gelfand, 1992) to draw approximate posterior samples. We draw S proposal samples {x(s)}Ss=1 from a Gaussian proposal q(X | y) = N (μy, Dε),where the proposal mean μy depends on the measurement model: 
+
+μy =
+
+(
+
+y additive Gaussian and dropout, 
+
+(A⊤A)−1A⊤y linear measurement system. (19) Each sample is then assigned an importance weight proportional to: 
+
+w(s) ∝ p(x(s) | θ) p(y | x(s), θ)
+
+q(x(s) | y) , (20) and a final set of samples is obtained by resampling from {X(s)}Ss=1 according to the normalized weights { ˜w(s)}Ss=1.
+
+## 3.6 Consistency Under Exact Maximization 
+
+Having established the practical components of RECLAIM, we now turn to its theoretical justification. The following theorem shows that exact maximization of the score function in eq. (9) recovers the true causal structure up to I-Markov equivalence. Specifically, the graph ˆ G obtained by maximizing eq. (9) lies in the same general Markov equivalence class as the ground-truth graph G∗ (Bongers et al., 2021) across all interventional settings Ik ∈ I .
+
+Theorem 5. Let I = {Ik}Kk=1 be a family of interventional targets satifying condition 2, let G∗
+
+denote the ground truth directed graph, p(k) denote the data generating distribution for Ik ∈ I , and 
+
+ˆG := arg max G S(G). Then, under assumptions C.8 to C.11 and C.13, and for a suitably chosen 
+
+λ > 0, we have that ˆG ≡ I G∗. That is, ˆG is I-Markov equivalent to G∗.
+
+Here, we provide an overview of the key assumptions needed for theorem 5, as well as proof sketch below. See appendix C.3 for the full assumptions as well as the complete proof. Assumption C.8 ensures that the data-generating distribution lies within the model class, assumption C.9 guarantees that all the statistical independencies observed in the data is a re-sult of σ-separation in the data generating graph (Forré and Mooij, 2017). Assumptions C.10 and C.11 prevent the score from diverging to infinity. Finally, assumption C.13 ensures that the map from latent distribution to the observed distribution is injective. 
+
+Proof (sketch). Building on the characterization of general directed Markov equivalence class by (Bongers et al., 2021), extended to the interventional setting, we show that any graph outside this equivalence class has a strictly lower score than the ground truth graph G∗.This follows from the following two facts: (i) certain independencies present in the data are not captured by graphs outside the equivalence class, and (ii) each latent distribution results in a unique observed distribution. Combined with the expressiveness of the model class, this prevents such graphs from fitting the data properly. 90.1 0.3 0.5 0.7 0.9                    
+
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Min noise st. dev ( σmin )
+> AUPRC
+> 0.1 0.3 0.5 0.7 0.9
+> 0
+> 8
+> 16
+> 24
+> Min noise st. dev ( σmin )
+> SHD
+> Varying σmin (GAN)
+> 10 20 30 40 50
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Num. latent nodes ( d)
+> AUPRC
+> 10 20 30 40 50
+> 0
+> 50
+> 100
+> 150
+> Num. latent nodes ( d)
+> SHD
+> Varying Number of Nodes d(GAN)
+> Anchored-CI DCDI NODAGS RECLAIM (SIR)
+
+Figure 2: Performance comparison with varying minimum noise standard deviation ( σ)(top), and varying number of latent nodes ( d) (bottom) for Gaussian additive noise system. Shaded regions show ±1 standard deviation over 10 trials. 
+
+# 4 Experiments 
+
+We evaluate RECLAIM on both synthetic and real-world datasets against three state-of-the-art baselines: NODAGS-Flow (Sethuraman et al., 2023), DCDI (Brouillard et al., 2020), and Anchored-CI (Saeed et al., 2020). Together, these baselines span the key axes of comparison: NODAGS-Flow handles cycles and interventions but not measurement error; DCDI handles interventions but assumes acyclicity and ignores measurement error; and Anchored-CI models measurement error but assumes acyclicity and operates on observational data only. Since Anchored-CI returns a CPDAG representing a Markov equivalence class, we evaluate it on observational data and report the best score across all graphs in the equivalence class. 
+
+## 4.1 Synthetic Experiments 
+
+In all our synthetic experiments, cyclic graphs were generated using the Erd˝ os-Rényi (ER) random graph model with the expected outgoing edge density set to 2. RECLAIM and the baselines were evaluated on nonlinear SCMs with the latent variables generated using the following structural equations: 
+
+x = tanh 
+
+
+
+W⊤ x
+
+
+
++ z,where the weighted adjacency matrix is faithful to the graph generated using the ER model, and 0.2 ≤ | Wij | ≤ 0.9. The matrix W was rescaled to ensure that the causal mechanism remains contractive. The training dataset consists of observational data and single node interventions over all the nodes in the graph, i.e., I = ∅ ∪ {{ i}} di=1. For each interventional 10 10 12 14 16 18 20                     
+
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Num. measurements ( p)
+> AUPRC
+> 10 12 14 16 18 20
+> 0
+> 15
+> 30
+> 45
+> Num. measurements ( p)
+> SHD
+> Varying Number of Measurements p(Linear)
+> 0.1 0.3 0.5 0.7 0.9
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Min noise st. dev ( σmin )
+> AUPRC
+> 0.1 0.3 0.5 0.7 0.9
+> 0
+> 9
+> 18
+> 27
+> Min noise st. dev ( σmin )
+> SHD
+> Varying σmin (Linear)
+> Anchored-CI DCDI NODAGS RECLAIM (SIR)
+
+Figure 3: Performance comparison with varying number of measurements ( p) (top), and varying minimum noise standard deviation ( σ) (bottom) for Linear measurement system. Shaded regions show ±1 standard deviation over 10 trials. experiment Ik ∈ I , the intervened nodes Xi ∈ X Ik were sampled from N (0, 1 ), with 
+
+Nk = 1000 samples per intervention. We report performance using two metrics: AUPRC (higher is better) and SHD (lower is better). AUPRC summarizes edge recovery quality across thresholds, while SHD counts the number of edge additions, deletions, and reversals needed to recover the ground truth graph. Since SHD requires a binary adjacency matrix, we threshold the estimated edge probabilities at 0.8. 
+
+4.1.1 Gaussian Additive Noise. 
+
+We now consider the Gaussian additive noise setting, where measurements are corrupted as described in eq. (7). We evaluate all methods as a function of the minimum measurement noise scale σmin and the number of latent nodes d, probing robustness and scalability respectively, with results shown in fig. 2. 
+
+Sensitivity to measurement noise scale. We fix d = 10 and vary σmin between 0.1 and 0.9, with σmax = σmin + 0.3. As shown in fig. 2 (top), all methods degrade as σmin increases, but RECLAIM degrades more gracefully, the performance gap over the baselines widens with noise scale, highlighting the benefit of explicitly modeling measurement error. NODAGS-Flow matches the performance of RECLAIM when σmin = 0.1 as the influence of noise is very low at that scale. 11 Raf 
+
+> Mek
+> PLCg
+> PIP2
+> PIP3
+> ERK Akt
+> PKA
+> PKC
+> P38
+> PJNK
+
+Figure 4: Estimated graph learnt from Sachs et al. (2005) dataset 
+
+Impact of number of latent nodes. We fix σmin = 0.5 and σmax = 1, and vary d between 10 and 50. As shown in fig. 2 (bottom), performance degrades for all methods as d increases, but the gap between cyclic methods (RECLAIM and NODAGS-Flow) and acyclic methods (DCDI and Anchored-CI) widens substantially, suggesting that the cost of misspecifying graph structure compounds with graph size. 
+
+4.1.2 Linear Measurement System. 
+
+We now consider the linear measurement system setting, where measurements follow eq. (8) with Aij ∼ N (0, 1.5 ). We evaluate all methods as a function of the number of measurements 
+
+p and the minimum noise scale σmin , probing the effect of measurement redundancy and noise robustness respectively, with results shown in fig. 3. 
+
+Impact of number of measurements. We fix d = 10, σmin = 0.3, σmax = 0.6, and vary p
+
+between 10 and 20. As shown in fig. 3 (top), all methods perform poorly at p = d = 10, but RECLAIM recovers sharply as p increases, achieving near-perfect recovery for p ≥ 12. This suggests that even modest measurement redundancy is sufficient for RECLAIM to disentangle the latent structure, whereas the baselines continue to struggle across the full range of p.
+
+Sensitivity to measurement noise scale. We fix p = 15, d = 10 and vary σmin between 0.1 and 0.9, with σmax = σmin + 0.3. As shown in fig. 3 (bottom), the overall trend mirrors the Gaussian additive noise setting (all methods degrade with increasing noise), but RECLAIM degrades more gracefully than the baselines. Notably, RECLAIM is more robust here than in the Gaussian additive noise setting (AUPRC of 0.88 vs 0.84 at σmin = 0.9), which we attribute to the additional structure provided by the linear measurement system allowing for more accurate noise parameter estimation. 
+
+## 4.2 Real-World Protein Signaling Dataset 
+
+We evaluate RECLAIM and the baselines on the Sachs et al. (2005) protein signaling dataset, which consists of fluorescence intensity measurements of phosphorylated proteins and phos-pholipid components in human immune system cells across 13 interventional environments. These measurements are noisy proxies for true protein levels, corrupted by instrument and antibody staining noise (Krutzik et al., 2004). Importantly, 11 proteins and phospholipids are measured, making this a natural testbed for causal discovery under measurement noise. 12 Table 1: Performance with re-spect to SHD on Sachs et al. (2005) dataset 
+
+Method SHD 
+
+RECLAIM 19 NODAGS 22 DCDI 21 Anchored-CI 19 We train RECLAIM on the first 9 interventional environ-ments. Since the true variance of the intervened proteins is unavailable, we treat the measurement noise variance as a learnable parameter. The estimated signaling net-work after 200 epochs is shown in fig. 4, with SHD scores relative to the Sachs et al. (2005) ground-truth reported in table 1. The Raf ↔Mek cycle recovered by RECLAIM is consis-tent with the well-documented negative feedback from ERK to Raf-1 (Sturm et al., 2011), which DAG constrained methods structurally cannot recover. We note that the ground-truth graph from Sachs et al. (2005) is itself a DAG, despite feedback loops be-ing known to exist in these systems (Sturm et al., 2011)—meaning our SHD scores are conservative with respect to RECLAIM’s true recovery performance. 
+
+Additional experiments. Additionally, we also provide results in appendix E for the following settings: (i) varying number of cycles in latent graph, (ii) varying degree on nonlinearity of latent SCM, and (iii) varying sparsity of the latent graph. 
+
+# 5 Discussion and Conclusion 
+
+In this work, we introduced RECLAIM, a differentiable causal discovery framework that can jointly handle cyclic causal graphs, interventional data, and measurement noise in a unified probabilistic framework. Unlike existing methods that assume acyclicity or direct observation of system variables, RECLAIM operates on coarsened measurements across two noise settings: additive Gaussian, and linear measurement systems. We establish consistency of the graph estimator in the large-sample regime and demonstrate through experiments that RECLAIM outperforms state-of-the-art baselines, with particular gains in cyclic and high-noise regimes. A key limitation is the reliance on interventional data for measurement noise parameter estimation—insufficient interventional coverage can degrade both noise estimation and graph recovery. Future directions include relaxing this requirement, extending support to soft and unknown interventional targets, non-Gaussian exogenous noise, and jointly learning the measurement system from data. 
+
+## Acknowledgment 
+
+This material is based on work supported by the National Science Foundation (NSF) under Grant no. 2502298. 
+
+# References 
+
+Kartik Ahuja, Amin Mansouri, and Yixin Wang. Multi-domain causal representation learn-ing via weak distributional invariances. In International Conference on Artificial Intelligence and Statistics , pages 865–873. PMLR, 2024. Carlos Améndola, Philipp Dettling, Mathias Drton, Federica Onori, and Jun Wu. Structure 13 learning for cyclic linear causal models. In Conference on Uncertainty in Artificial Intelligence ,pages 999–1008. PMLR, 2020. Jens Behrmann, Will Grathwohl, Ricky TQ Chen, David Duvenaud, and Jörn-Henrik Jacob-sen. Invertible residual networks. In International Conference on Machine Learning , pages 573–582. PMLR, 2019. P Billingsley. Probability and measure, anniversary edition, wiley, hoboken. New Jersey ,1979(1986):2012, 1995. Kenneth A Bollen. Structural equations with latent variables . John Wiley & Sons, 1989. Stephan Bongers, Patrick Forré, Jonas Peters, and Joris M Mooij. Foundations of structural causal models with cycles and latent variables. The Annals of Statistics , 49(5):2885–2915, 2021. Philippe Brouillard, Sébastien Lachapelle, Alexandre Lacoste, Simon Lacoste-Julien, and Alexandre Drouin. Differentiable causal discovery from interventional data. Advances in Neural Information Processing Systems , 33:21865–21877, 2020. Simon Buchholz, Goutham Rajendran, Elan Rosenfeld, Bryon Aragam, Bernhard Schölkopf, and Pradeep Ravikumar. Learning linear causal representations from interventions under general nonlinear mixing. Advances in Neural Information Processing Systems , 36: 45419–45462, 2023. Lin S Chen, Ross L Prentice, and Pei Wang. A penalized em algorithm incorporating missing data mechanism for gaussian parameter estimation. Biometrics , 70(2):312–322, 2014. Ricky TQ Chen, Jens Behrmann, David K Duvenaud, and Jörn-Henrik Jacobsen. Residual flows for invertible generative modeling. Advances in Neural Information Processing Systems ,32, 2019. Gerald B Folland. Real analysis: modern techniques and their applications . John Wiley & Sons, 1999. Patrick Forré and Joris M Mooij. Markov properties for graphical models with cycles and latent variables. arXiv preprint arXiv:1710.08775 , 2017. Jacob W Freimer, Oren Shaked, Sahin Naqvi, Nasa Sinnott-Armstrong, Arwa Kathiria, Christian M Garrido, Amy F Chen, Jessica T Cortez, William J Greenleaf, Jonathan K Pritchard, et al. Systematic discovery and perturbation of regulatory genes in human t cells reveals the architecture of immune networks. Nature Genetics , 54(8):1133–1144, 2022. Nir Friedman. The bayesian structural em algorithm. In Conference on Uncertainty in Artificial Intelligence , 1998. URL https://api.semanticscholar.org/CorpusID:447055 .Nir Friedman, Michal Linial, Iftach Nachman, and Dana Pe’er. Using bayesian networks to analyze expression data. In Proceedings of the fourth annual international conference on Computational molecular biology , pages 127–135, 2000. Naftali Harris and Mathias Drton. Pc algorithm for nonparanormal graphical models. 
+
+Journal of Machine Learning Research , 14(11), 2013. Alain Hauser and Peter Bühlmann. Characterization and greedy learning of interventional markov equivalence classes of directed acyclic graphs. The Journal of Machine Learning Research , 13(1):2409–2464, 2012. Jan-Christian Huetter and Philippe Rigollet. Estimation rates for sparse linear cyclic causal models. In Conference on Uncertainty in Artificial Intelligence , pages 1169–1178. PMLR, 2020. 14 Michael F Hutchinson. A stochastic estimator of the trace of the influence matrix for Laplacian smoothing splines. Communications in Statistics-Simulation and Computation , 18 (3):1059–1076, 1989. Antti Hyttinen, Frederick Eberhardt, and Patrik O Hoyer. Learning linear cyclic causal models with latent variables. The Journal of Machine Learning Research , 13(1):3387–3439, 2012. Eric Jang, Shixiang Gu, and Ben Poole. Categorical reparameterization with Gumbel-Softmax. arXiv preprint arXiv:1611.01144 , 2016. Diederik P. Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In Yoshua Bengio and Yann LeCun, editors, 3rd International Conference on Learning Representations, ICLR 2015, San Diego, CA, USA, May 7-9, 2015, Conference Track Proceedings , 2015. URL 
+
+http://arxiv.org/abs/1412.6980 .Peter O Krutzik, Jonathan M Irish, Garry P Nolan, and Omar D Perez. Analysis of protein phosphorylation and cellular signaling events by flow cytometry: techniques and clinical applications. Clinical immunology , 110(3):206–221, 2004. Gustavo Lacerda, Peter L Spirtes, Joseph Ramsey, and Patrik O Hoyer. Discovering cyclic causal models by independent components analysis. arXiv preprint arXiv:1206.3273 , 2012. Joris M Mooij, Sara Magliacane, and Tom Claassen. Joint causal inference from multiple contexts. Journal of machine learning research , 21(99):1–108, 2020. Judea Pearl. Causality . Cambridge university press, 2009. Thomas Richardson. A discovery algorithm for directed cyclic graphs. In Proceedings of the Twelfth international conference on Uncertainty in artificial intelligence , pages 454–461, 1996. Walter Rudin. Principles of Mathematical Analysis . McGraw-Hill Book Company, Inc., New York-Toronto-London, 1953a. Walter Rudin. Principles of Mathematical Analysis . McGraw-Hill Book Company, Inc., New York-Toronto-London, 1953b. Karen Sachs, Omar Perez, Dana Pe’er, Douglas A. Lauffenburger, and Garry P. Nolan. Causal protein-signaling networks derived from multiparameter single-cell data. Science , 308 (5721):523–529, 2005. Basil Saeed, Anastasiya Belyaeva, Yuhao Wang, and Caroline Uhler. Anchored causal inference in the presence of measurement error. In Conference on uncertainty in artificial intelligence , pages 619–628. PMLR, 2020. Muralikrishnna G Sethuraman and Faramarz Fekri. Differentiable cyclic causal discovery under unmeasured confounders. arXiv preprint arXiv:2508.08450 , 2025. Muralikrishnna G Sethuraman, Romain Lopez, Rahul Mohan, Faramarz Fekri, Tommaso Biancalani, and Jan-Christian Hütter. Nodags-flow: Nonlinear cyclic causal structure learning. In International Conference on Artificial Intelligence and Statistics , pages 6371–6387. PMLR, 2023. Muralikrishnna G Sethuraman, Razieh Nabi, and Faramarz Fekri. Missnodag: Differentiable cyclic causal graph learning from incomplete data. arXiv preprint arXiv:2410.18918 , 2024. Adrian FM Smith and Alan E Gelfand. Bayesian statistics without tears: a sampling– resampling perspective. The American Statistician , 46(2):84–88, 1992. 15 Liam Solus, Yuhao Wang, and Caroline Uhler. Consistency guarantees for greedy permutation-based causal inference algorithms. Biometrika , 108(4):795–814, 2021. Peter Spirtes, Clark N Glymour, and Richard Scheines. Causation, prediction, and search . MIT press, 2000. Chandler Squires, Anna Seigal, Salil S Bhate, and Caroline Uhler. Linear causal disentangle-ment via interventions. In International conference on machine learning , pages 32540–32560. PMLR, 2023. E Sturm, E González-Alfonso, S Veilleux, J Fischer, J Graciá-Carpio, S Hailey-Dunsheath, A Contursi, A Poglitsch, A Sternberg, R Davies, et al. Massive molecular outflows and negative feedback in ulirgs observed by herschel-pacs. The Astrophysical Journal Letters ,733(1):L16, 2011. Sofia Triantafillou and Ioannis Tsamardinos. Constraint-based causal discovery from multi-ple interventions over overlapping variable sets. The Journal of Machine Learning Research ,16(1):2147–2205, 2015. Ioannis Tsamardinos, Laura E Brown, and Constantin F Aliferis. The max-min hill-climbing bayesian network structure learning algorithm. Machine learning , 65(1):31–78, 2006. Julius von Kügelgen, Michel Besserve, Liang Wendong, Luigi Gresele, Armin Keki´ c, Elias Bareinboim, David Blei, and Bernhard Schölkopf. Nonparametric identifiability of causal representations from unknown interventions. Advances in Neural Information Processing Systems , 36:48603–48638, 2023. C. F. Jeff Wu. On the Convergence Properties of the EM Algorithm. The Annals of Statistics ,11(1):95 – 103, 1983. doi: 10.1214/aos/1176346060. URL https://doi.org/10.1214/aos/ 1176346060 .Grace Yoon, Raymond J Carroll, and Irina Gaynanova. Sparse semiparametric canonical correlation analysis for data of mixed types. Biometrika , 107(3):609–625, 2020. 16 Appendices 
+
+The appendices are organized as follows. Appendix A discusses the solvability of the SCM considered in the work. Appendix B analyses the convergence of the EM algorithm in RECLAIM. Appendix C contains all the proofs. Appendix D provides additional details on the implementation of RECLAIM and the baselines. Finally, appendix E provides additional experimental results and training time comparison between RECLAIM and the baselines. 
+
+# A Solvability of Cyclic SCMs 
+
+Consider the cyclic SCM defined below: 
+
+X = f (X) + Z. (21) In general, it is not guaranteed that eq. (21) has solution, this is primarily due to the (potential) presence of cycles in G. In order to see why this is true, note that, we can view eq. (21) as the unique fixed point (if it exists) to the following discrete time dynamical system: 
+
+X(t + 1) = f  X(t) + Z, (22) where X(t) denotes the value of the random variable X at time t. In the following example, we illustrate how the choice of f dictates whether or not eq. (22) attains a unique fixed point. 
+
+Example A.1. Consider X 1, X2 ∈ R given by the following structural equations: X1(t + 1) = aX 2(t) + Z1, X2(t + 1) = bX 1(t) + Z2.
+
+Figure 5 shows an illustration of the evolution of trajectories for two different choices of the parameters 
+
+(a, b). From the right plot we can see that when we set a = 1.2 , and b = 2.3 , the systems is unstable and trajectory diverges. On the other hand, when a = 0.7 and b = −0.8 (left plot), the system is stable and reaches a stationary point. 
+
+To ensure eq. (22) admits a unique fixed point, we must impose additional restrictions on the causal mechanism f . One sufficient condition is to require f to be contractive .
+
+Definition A.2 (Contractive function) . A function f : Rd → Rd is said to be contractive if there exists a constant L < 1 such that for all x, y ∈ Rd,
+
+∥ f (x) − f (y)∥2 ≤ L∥x − y∥2.
+
+The constant L is called the Lipschitz constant. 
+
+When the causal mechanism f is contractive, Banach fixed point theorem gaurantees that eq. (22) has a unique fixed point (Rudin, 1953b, theorem 9.23). Consequently, the causal mechanisms considered in this work are restricted to be contractive and neural networks are used to model the causal mechanism in practice. Contractivity is achieved via spectral scaling of the layer weights as described in section 3.4 in the main paper. 
+
+# B Convergence of EM algorithm 
+
+Here, we provide the convergence analysis of RECLAIM’s EM-based score maximization algorithm. Let Θ(t) = ( θ(t), ˆϕ). For ease of notation, we focus on a single interventional 17 1 2 3
+
+1
+
+2
+
+3
+
+X1
+
+X2 a = 0.7 and b = −0.8 
+
+1 2 3
+
+2
+
+4
+
+a = 1.2 and b = 2.3 
+
+X1
+
+X2
+
+Figure 5: Illustration of state evolution for different choice of a and b for the system defined in example A.1. (Left) Choosing a = 0.7 and b = −0.8 results in a stable system and the system reaches a fixed point. (Right) Choosing a = 1.2 and b = 2.3 results in an unstable system and the trajectory diverges. experiment Ik ∈ I . However, the final result would still hold even when we consider the sum of likelihood over all the interventional experiments. Our analysis relies on the convergence of the EM algorithm (Wu, 1983; Friedman, 1998), with the crux of it relying on establishing that the total log-likelihood of the observed variables either increases or stays the same in each iteration of the algorithm. That is, 
+
+> nk
+
+# ∑
+
+> ℓ=1
+
+log p(y(k,ℓ) | Θt+1, Ik) ≥
+
+> nk
+
+# ∑
+
+> ℓ=1
+
+log p(y(k,ℓ) | Θt, Ik) (23) To that end, note that 
+
+> nk
+
+# ∑
+
+> i=1
+
+log p(y(k,ℓ) | Θ, Ik) = 
+
+> nk
+
+# ∑
+
+> i=1
+
+log p(y(k,ℓ), X(k,ℓ) | Θ, Ik)
+
+−
+
+> nk
+
+# ∑
+
+> i=1
+
+log p(X(k,ℓ) | y(k,ℓ), Θ, Ik)
+
+Taking expectation with respect X(k,ℓ) | y(k,ℓ) on both side, we get 
+
+> nk
+
+# ∑
+
+> i=1
+
+log p(y(k,ℓ) | Θ, Ik) = 
+
+> nk
+
+# ∑
+
+> i=1
+
+EX(k,ℓ) |y(k,ℓ);Θt log p(y(k,ℓ) | Θ, Ik)=
+
+> nk
+
+# ∑
+
+> i=1
+
+EX(k,ℓ) |y(k,ℓ);Θt log p(y(k,ℓ), X(k,ℓ) | Θ, Ik)
+
+| {z } 
+
+> =Q(θ|θt)
+
+−
+
+> nk
+
+# ∑
+
+> i=1
+
+EX(k,ℓ) |y(k,ℓ);Θt log p(X(k,ℓ) | y(k,ℓ), Θ, Ik). (24) The first term on the RHS in the above equation is nothing but Q(θ|θt). This is maximized in the M-step, i.e., Q(θ|θt+1) ≥ Q(θ|θt). On the other hand, 
+
+> nk
+
+# ∑
+
+> i=1
+
+EX(k,ℓ) |y(k,ℓ);Θt log p(X(k,ℓ) | y(k,ℓ), Θt+1, Ik)
+
+p(X(k,ℓ) | y(k,ℓ), Θt, Ik) =
+
+− DKL 
+
+
+
+p(X(k,ℓ) | y(k,ℓ), Θt, Ik) p(X(k,ℓ) | y(k,ℓ), Θt+1, Ik)
+
+
+
+≤ 0. 18 Thus, 
+
+> nk
+
+# ∑
+
+> i=1
+
+EX(k,ℓ) |y(k,ℓ);Θt log p(X(k,ℓ) | y(k,ℓ), Θt+1, Ik)
+
+≤
+
+> nk
+
+# ∑
+
+> i=1
+
+EX(k,ℓ) |y(k,ℓ);Θt log p(X(k,ℓ) | y(k,ℓ), Θt, Ik). (25) From combining eqs. (24) and (25), we can see that at the end of the M-step eq. (23) is satisfied. Thus, RECLAIM reaches a stationary point of the optimization objective. 
+
+# C Proofs 
+
+All the proofs are contained in this section. Starting with proof of proposition 3 in ap-pendix C.1. Appendix C.2 contains the proof of theorem 4. Finally, appendix C.3 contains the proof for theorem 5. 
+
+## C.1 Proof of Proposition 3 
+
+Proof. The claim of the proposition is equivalent to the following statement: 
+
+N (A⊤−i )̸ ⊂ a⊥ 
+
+> i
+
+.Since rank (A) = d, the vector ai /∈ span ({aj}j̸ =i ) as the columns of A are linearly indepen-dent. Furthermore, the null space of A⊤−i is the orthogonal complement of the span of the columns of A−i, i.e., N (A⊤−i) = span ({aj}j̸ =i)⊥.Now, let us assume, for the sake of contradiction that for each t ∈ Rp such that A⊤−it = 0, we have a⊤ 
+
+> i
+
+t = 0. This would mean that 
+
+N (A⊤−i) ⊂ a⊥ 
+
+> i
+
+.Taking orthogonal complement on both sides, we get 
+
+(a⊥ 
+
+> i
+
+)⊥ ⊂ N (A⊤−i)⊥.Note that, (a⊥ 
+
+> i
+
+)⊥ = span (ai), and also that N (A⊤−i)⊥ = span ({aj}j̸ =i ). That is, span (ai) ⊂
+
+span ({aj}j̸ =i ). This is a contradiction. Thus, there exists a vector t ∈ Rp such that a⊤ 
+
+> i
+
+t̸ = 0and A⊤−it = 0.
+
+## C.2 Proof of Theorem 4 
+
+Before we prove the theorem above, we state a technical lemma from functional analysis which is utilized in the proof of the theorem. 
+
+Lemma C.1. Let P : Rn → R be a non-trivial polynomial, then the zero set of P has zero Lebesgue measure. 
+
+See Folland (1999) for more details on lemma C.1. We are now ready to prove theorem 4 19 Theorem 4. We divide the proof into two parts. In part 1, we show the existence of a measurement matrix A0 that is not a part of ¯A. Then, in part 2, using the result from part 1 we then conclude that the set ¯A has zero Lebesgue measure. 
+
+Part 1: Existence of a measurement matrix A0 such that T2 is full rank 
+
+For p ≥ d, let us define A0 as follows: 
+
+A0 =
+
+Id
+
+0
+
+
+
+, i.e., a0, i = εi for i = 1, . . . , d.For i = 1, . . . , d, let t(i) = εi, and for i = d + 1, . . . , p, let t(i) = ε1 + εi. It is easy to check that 
+
+{t(1), . . . , t(p)} ⊆ T (A0). Thus, T2 takes the following form: 
+
+T2 =
+
+ Id 0E1, p−d Ip−d
+
+
+
+where E1, p−d ∈ Rp−d×d denotes a matrix with ones in the first column and zeros everywhere else. Clearly, rank (T2) = p, i.e., T2 is full rank. Thus, we have shown the existence of a non-trivial measurement matrix A0 /∈ ¯A.
+
+Part 2: ¯A has zero Lebesgue measure 
+
+Since rank (A) = d, we know that rank (A−i) = d − 1, and thus, A⊤−i ∈ R(d−1)×p has rank 
+
+d − 1. Then, there exists a subset of rows Ji ⊂ { 1, . . . , p}, with |Ji| = d − 1 such that the square matrix 
+
+Mi(A) ≜ (A−i)Ji ,∗ ∈ R(d−1)×(d−1)
+
+is invertible. Let t be such that A⊤−i t = 0 for some i ∈ [d]. Then, 
+
+Mi(A)⊤tJi + Ri(A)⊤t[p]\Ji = 0, where Ri(A) denotes the submatrix of A formed by rows not included in Ji. Since Mi(A) is invertible, we have 
+
+tJi = −
+
+
+
+Mi(A)⊤−1
+
+Ri(A)⊤t[p]\Ji .Thus, every admissible t has to have the following form: 
+
+t(A, u) = 
+
+"
+
+−
+
+
+
+Mi(A)⊤−1
+
+Ri(A)⊤uu
+
+#
+
+, u ∈ Rp−d.Moreover, 
+
+Mi(A)−1 = adj (Mi(A)) 
+
+det (Mi(A)) 
+
+Thus, the each coordinate of t(A, u) are: linear in u, divided det (Mi(A)) , and multiplied by polynomial functions of entries of A. Upon taking Hadamard product with itself, each entry of t⊙ is a polynomial function of u and the entries of A divided by the determinant of the minor matrices. 20 Suppose we choose p such vectors t(1), . . . , t(p) (each possibly corresponding to different column of A). The determinant of the resulting T2, det (T2) is also polynomial in u(ℓ), for 
+
+ℓ ∈ [p]; and polynomial in entries of A along with a division of the determinant of the minor matrices. That is, det (T2) = Polynomial in A, u(1), . . . , u(p)
+
+∏p 
+
+> ℓ=1
+
+det (Mℓ(A)) kℓ
+
+Let us define 
+
+D(A) ≜
+
+> p
+
+# ∏
+
+> ℓ=1
+
+det (Mℓ(A)) kℓ
+
+and 
+
+P(A, u(1), . . . , u(p)) ≜ D(A) · det (T2).Note that, since the minor matrices are invertible 
+
+P(A, u(1), . . . , u(p)) = 0 ⇐⇒ det (T2) = 0. In Part 1 , we showed the existence of an A0 and u(1) 
+
+> 0
+
+, . . . , u(p) 
+
+> 0
+
+for which the function 
+
+P(A0, u(1) 
+
+> 0
+
+, . . . , u(p) 
+
+> 0
+
+)̸ = 0. Thus the polynomial P is non-trivial. Hence, from lemma C.1, the zero set of P has zero Lebesgue measure. Thus, ¯A—which is a subset of the zero set of 
+
+P—has zero Lebesgue measure. 
+
+## C.3 Proof of Theorem 5 
+
+In this subsection we provide the proof of consistency of RECLAIM under exact maximiza-tion. We start by reviewing the relevant definitions and prior results required to prove theorem 5. 
+
+C.3.1 Preliminaries 
+
+Consider a directed graph G = ( X , E ). A path π between nodes Xi and Xk is a sequence of nodes (Xi0 , Xi1 , . . . , Xin ), with Xi0 = Xi, Xin = Xk, and every two consecutive nodes in the sequence are connected by an edge, i.e., either Xij → Xij+1 ∈ E or Xij ← Xij+1 ∈ E for all j = 0, . . . , n − 1, with X. A path is directed if all the edges from Xi to Xk are oriented the same way. A cycle through node Xi consists of a directed path from Xi to a node Xj and the directed edge Xj → Xi. For a node Xi, the set of ancestors is defined as an G (Xi) := {Xj ∈
+
+X | a directed path exists between Xj and Xi}. Similarly, the descendant of a node is defined as de G (Xi) := {Xj ∈ X | a directed path exists between Xi and Xj}. The strongly connected component of a node Xi is given by the intersection of the ancestors and the descendants of Xi, i.e., sc G (Xi) = an G (Xi) ∩ de G (Xi). We can apply these definitions to subsets XU by taking the union over all the elements in the subset, i.e., de G (XU ) = ∪i∈U de G (Xi). Finally, a node Xi is called a collider in a path π if it satisfies the following two conditions: (i) it is a non-endpoint node, and (ii) the subpath (Xk, Xi, Xj) is of the form Xk → Xi ← Xj.In a cyclic graph, the notion of σ-separation was introduced by Forré and Mooij (2017) to relate structural properties in the graph to independencies observed in the generated distribution. 
+
+Definition C.2 (σ-separation) . Let G = ( X , E ) be a directed graph and let XC ⊆ X be a subset of nodes. A path π = ( Xi0 , Xi1 , . . . , Xin ) is said to be σ-blocked given XC if 
+
+21 1. the first node of π, X i0 ∈ X C or its last node X in ∈ X C, or 2. π contains a collider X j /∈ X C,3. π contains a non-collider Xj ∈ X C that points towards a neighbor that is not in the same strongly connected component as Xj in G, i.e., Xk ← Xj ∈ π and Xk /∈ sc G (Xj), or Xj → Xℓ ∈ π and X ℓ /∈ sc G (Xj).The path π is said to be σ-open given XC if it is not σ-blocked. Two subsets of nodes XA, XB ⊆ X is said to be σ-separated given XC if all the paths between Xa and Xb, where a ∈ A and b ∈ B , are 
+
+σ-blocked given XC, and is denoted by 
+
+XA
+
+> σ
+
+⊥ 
+
+> G
+
+XB | X C.When the graph is cyclic, σ-separation defined above reduces to the standard d-separation. We node define the property that connects σ-separations with distributional independencies. 
+
+Definition C.3 (General directed global Markov Property (Forré and Mooij, 2017)) . Let G =(X , E ) be a directed graph and p denote the probability density of the observations X . The probability density p satisfies the general directed global Markov property if for XA, XB, XC ⊆ X XA
+
+> σ
+
+⊥ 
+
+> G
+
+XB | X C =⇒ XA ⊥ 
+
+> p
+
+XB | XC,
+
+where XA ⊥p XB | XC, denotes conditionally independence of XA and XB given XC with respect to p. 
+
+Joint causal modeling of interventions. We adopt the joint causal inference (JCI) frame-work proposed by Mooij et al. (2020) to unify multiple interventional settings into a single representative system. This is done by augmenting the system with context variables 
+
+CI = ( C1, . . . , CK ), where Ck corresponds to the k-th interventional setting Ik, we call this the meta system . We consider the system to be under the k-th interventional setting when 
+
+Cj = ∅ for j̸ = k and Ck = ξIk where ξIk ∈ R|Ik |. Additionally, we construct an augmented graph GI consisting of both the latent system variables X and the context variables CI . The children of each context variable Ck are the interventional targets in Ik, i.e., ch GI (Ck) = XIk .Note that there are no edges going from variables in X to the context variables CI , see fig. 6. Finally, given a family of interventional targets I = {Ik}Kk=1, and the corresponding context variables CI , the structural equations governing the meta system is given by ˜fi(pa GI (Xi), Zi) = 
+
+(
+
+(Ck)i if , ∃k ∈ [K]s.t. Ck̸ = ∅, Xi ∈ X Ik ,
+
+fi(pa G (Xi)) + Zi, otherwise. Note that pa GI (Xi) includes both latent system variables and the context variables. The meta-SCM above defines a probability distribution over the joint meta-system variables: 
+
+pGI (X, CI ) = pGI (CI )pGI (X | C I ), (26) where pGI (CI ) is called the context distribution and as noted by Mooij et al. (2020), the behavior of the system is unaffected by the context distribution. Furthermore, when Ck = ∅
+
+for all k ∈ [K], pGI (X | C I ) becomes the observational data, and 
+
+pGI (X | Ck = ξIk , C−k = ∅) = pdo (Ik )( G)(X).Recall, for the interventional setting Ik, probability density governing the latents X is given by eq. (5) which we repeat here for convenience 
+
+pdo (I)( G)(X) = pC (XI )pZ
+
+ Z[d]\I
+
+ J(id −U f )(Z) .22 X1 
+
+> X2
+> X3
+> (a)
+
+G
+
+> X1
+> X2
+> X3
+> (b) do
+
+({X1})( G)
+
+> X1
+> X2
+> X3
+> (c) do
+
+({X3})( G)  
+
+> X1
+> X2
+> X3
+> C1C2
+> (d)
+
+GI
+
+Figure 6: Illustration of the augmented graph GI corresponding the set of interventional targets I = {∅, {1}, {3}} . (b) and (c) represent the mutilated graph obtained after interven-tions on X1 and X3 respectively. The augmented graph is the union of G, do ({X1})( G), and do ({X3})( G) along with the context variables C1 and C2.
+
+Definition C.4. Let G = ( X , E ) be a directed graph, and I = {Ik}Kk=1 be a family of interventional experiments. Let MI (G) denote the set of positive densities pGI : R2d → R such that pGI is given by eq. (26) for all f : Rd → Rd, with fi(X) = fi(pa G (Xi)) , such that the resulting forward map 
+
+(id − f ) is a diffeomorphism, for all (σ2
+
+> Z,1
+
+, . . . , σ2
+
+> Z,d
+
+) such that Z ∼ N  0, Diag (σ2
+
+> Z,1
+
+, . . . , σ2 
+
+> Z,K
+
+).
+
+MI (G) denotes the set of interventional density generated by GI . We now show that these densities satisfy the general directed global Markov property. 
+
+Proposition C.5. Let G = ( X , E ) be a directed graph, and I = {Ik}Kk=1 be a family of interven-tional experiments, let p ∈ M I (G), then p satisfies the general directed global Markov property relative to GI .Proof. For a directed graph G and a choice of f : Rd → Rd such that the forward map 
+
+(id − f ) is a diffeomorphism, the structural equations are uniquely solvable with respect to each strongly connected component of G. Moreover, since the addition of context variable doesn’t introduce any cycles, from (Bongers et al., 2021, Theorem A.21), the distribution pGI
+
+is unique and it satisfies the general directed global Markov property. Given a family of interventional experiments, we now define a notion of an equivalence class of directed (cyclic) graphs based on the set of distributions induced by them. 
+
+Definition C.6 (I-Markov Equivalence Class) . Two directed graphs G and G′ are I-Markov equivalent if and only if MI (G) = MI (G′), denoted as G ≡ I G′. The set of all directed graphs that are I-Markov equivalent to G is the I-Markov equivalence class of G, denoted as I-MEC (G).
+
+C.3.2 Proof of Theorem 5 
+
+We now prove the main theoretical contribution of this work. Recall the score function defined in section 3.1 
+
+SI (G) ≜ sup 
+
+> θ,ϕ
+> K
+
+# ∑
+
+> k=1
+
+EY∼p(k) log p(Y | θ, ϕ, Ik) − λ|G| ,where p(k) is the true data-generating distribution for I = {Ik}Kk=1, and (θ, ϕ) represents the model parameters (latent SCM and measurement process). In the context of the meta 23 system, the score function above is equivalent to the following score: 
+
+SI (G) ≜ sup 
+
+> θ,ϕ
+
+E(Y,C)∼p∗I log pGI (Y, C | θ, ϕ) − λ|G| ,where p∗I denotes the joint ground-truth distribution for the observed and the context variables, and pGI (Y, C | θ) is given by 
+
+pGI (Y, C | θ, ϕ) = 
+
+> Z
+> X
+
+p(Y | X, ϕ)pGI (X, C | θ) dX. (27) Note that p(Y | X, ϕ) is defined by the measurement process g(X, ε).We define PI (G) as the set of all distributions pGI (X, C | θ) that can be expressed by the model specified by eqs. (2) and (5) in the main paper, and eq. (26). That is, PI (G) := {p |∃ θ s.t p = pGI (· | θ)}. Thus, it is clear that PI (G) ⊆ M I (G). Similarly, we define the of observed distributions expressable by G, denoted as PY,I (G) = {p | ∃ (θ, ϕ) s.t. p = pGI (· | 
+
+θ, ϕ)}. In the following proposition we show that PY,I (G) is uniquely determined by a 
+
+p ∈ P I (G) when I satisfies condition 2. 
+
+Proposition C.7. Let I = {Ik}Kk=1 be a family of interventional experiments satisfying condition 2. Then for a fixed set of measurement parameters ϕ, under both Gaussian additive noise (GAN) measurement process and linear measurement system, the map T : PI (G) → P Y,I (G) given by eq. (27) is injective. Proof. Under condition 2, the measurement noise variance is fully identifiable (see section 3.3 for more details). For sake of simplicity, let us assume that the noise variances are equal (the conclusion even otherwise) and set to σ2. Taking the characteristic functions of T p =
+
+T p ′ and dividing by the non-vanishing Gaussian factor e−σ2∥ξ∥2/2 yields Ep[e−iξ⊤ h(X)] = 
+
+Ep′ [e−iξ⊤ h(X)] for all ξ. Here, f (X) = X for GAN system and f (X) = AX for linear measurement system. Thus, from the uniqueness of the characteristic function (Billingsley, 1995), f# p = f# p′. Since f is injective, p = p′.Theorem 5 relies on the following set of assumptions. The first one ensures that the model is capable of representing the ground truth distribution. 
+
+Assumption C.8 (Sufficient Capacity) . The joint ground truth distribution p∗I is such that p∗I ∈ P I (G∗), where G∗ is the ground truth latent graph. 
+
+In other words, there exists a θ such that p∗I = pGI (· | θ). The second assumption generalizes the notion of faithfulness assumption to the interventional setting. 
+
+Assumption C.9 (I-σ-faithfulness) . For any subset of nodes A , B, D ⊆ X ∪ C I , and I k ∈ I 
+
+A σ̸⊥
+
+> GI
+
+B | D =⇒ A̸ ⊥
+
+> pGI
+
+B | C.The above assumption implies that any conditional independency observed in the data must imply a σ-separation in the corresponding interventional ground truth graph. 
+
+Assumption C.10 (Strict positivity) . For all (X, C) and p GI ∈ M I (G), p GI (X, C) > 0.
+
+Assumption C.11 (Finite differential entropy) . For a family of interventions {XIm }Mm=0,
+
+Ep∗I log p∗I (Y, C) < ∞.24 The last two assumptions ensure that the scenario where S(G∗) and S(G) are both infinity is avoided. This is formalized in the lemma below taken from Brouillard et al. (2020). 
+
+Lemma C.12 (Finiteness of the score function (Brouillard et al., 2020)) . Under the assump-tions C.8 and C.11, the score function is finite, that is, |S I (G)| < ∞.
+
+We finally make the assumption that the parameter space of θ and ϕ are compact. 
+
+Assumption C.13 (Parameter compactness) . The parameters of the measurement process ϕ
+
+belong to a compact metric space Φ.
+
+For the both Gaussian additive noise (GAN) and linear measurement system, the parameters correspond to the variance of the Gaussian distribution, ϕ = ( σ21 , . . . , σ2 
+
+> p
+
+). For the case of GAN system, p = d. The implication of the above assumption is that σ2 
+
+> j
+
+≤ σ2max , i.e., it is bounded above. Additionally, note that since we restrict the causal mechanism to contractive ,the parameters of latent SCM also belong to a compact space. From the results of Brouillard et al. (2020), we can now express the difference in score function between G∗ and G as the minimization of KL diverengence plus the difference in the regularization terms. 
+
+Lemma C.14 (Rewritting the score function (Brouillard et al., 2020)) . Under assumptions C.8 and C.11, we have 
+
+S(G∗) − S (G) = inf  
+
+> θ,ϕ
+
+DKL (p∗I ∥pGI (· | θ, ϕ)) + λ(|G| − |G ∗|).Furthermore, Sethuraman and Fekri (2025) showed that the KL divergence appearing the in lemma above is strictly positive when the latent variables are directly observed. 
+
+Lemma C.15 (Lemma A.18 (Sethuraman and Fekri, 2025)) . Let G = ( X , E ) be a directed graph, for a set of interventional targets I = {Ik}Kk=1, and p ∗ /∈ M I (G), then 
+
+inf   
+
+> p∈M I(G)
+
+D(p∗∥p) > 0. We now extend this result to the case of indirect measurements. 
+
+Lemma C.16. Let G = ( X , E ) be a directed graph, for a set of interventional targets I = {Ik}Kk=1
+
+satisfying condition 2, and p ∗ 
+
+> Y
+
+/∈ M Y,I (G), then 
+
+inf    
+
+> p∈M Y,I(Gm)
+
+D(p∗ 
+
+> Y
+
+∥pY ) > 0. 
+
+Proof. Since I satisfies condition 2, the parameters of the measurement process is fully identified. Moreover, from proposition C.7, the map T : PI (G) → P Y,I (G). Thus, T−1 p∗ 
+
+> Y
+
+/∈PI (G). Thus, from lemma C.15, no sequence {p(k)}∞ 
+
+> k=1
+
+⊂ M si(G) exists such that the limit lim k→∞ p(k) = T−1 p∗
+
+> Y
+
+. Therefore, there exists no sequence {p(k) 
+
+> Y
+
+}∞ 
+
+> k=1
+
+⊂ M Y,si (G) such that lim k→∞ p(k) 
+
+> Y
+
+= p∗
+
+> Y
+
+. Thus, inf    
+
+> p∈M Y,I(Gm)
+
+D(p∗ 
+
+> Y
+
+∥pY ) > 0. This proves the lemma. We are now ready to prove theorem 5. Recall, 25 Theorem 5.. Let I = {Ik}Kk=1 be a family of interventional targets satifying condition 2, let G∗
+
+denote the ground truth directed graph, p(k) denote the data generating distribution for Ik ∈ I , and 
+
+ˆG := arg max G S(G). Then, under assumptions C.8 to C.11 and C.13, and for a suitably chosen 
+
+λ > 0, we have that ˆG ≡ I G∗. That is, ˆG is I-Markov equivalent to G∗.Proof. The proof is a direct extension of Theorem 2 in Sethuraman and Fekri (2025), with lemma C.16 substituting lemma C.15. Which we present here for self-containment. It is sufficient to show that for G /∈ I -MEC (G∗), the score function of G is strictly lower than the score function of G∗, i.e., S(G∗) > S(G). Since G /∈ I -MEC (G∗) and p∗I ∈ M I (G∗) (by assumption C.8), there must exist subsets of nodes A, B, D ⊆ X ∪ C I such that either: 
+
+A σ
+
+⊥ 
+
+> G
+
+B | D and A σ̸⊥
+
+> G∗
+
+B | D, (C1) or 
+
+A σ̸⊥
+
+> G
+
+B | D and A σ
+
+⊥ 
+
+> G∗
+
+B | D, (C2) If no such subsets exist, then G and G∗ impose the same σ -separation constraints and thus induce the same set of distributions. This would imply that G ∈ I -MEC (G∗), contradicting our assumption. Since p∗I ∈ M I (G∗), in the case of (C1) , it must be true that A̸ ⊥p∗I B | D
+
+(assumption C.9). Therefore p∗I doesn’t satisfy the general directed Markov property with respect to GI and hence p∗I /∈ M I (G). For (C2) , if p∗I ∈ M I (G), then from assumption C.9, it must be true that A̸ ⊥p∗I B | C. However, p∗I ∈ M I (G∗), and proposition C.5 implies that A ⊥p∗I B | C, resulting in a contradiction. Therefore, p∗I /∈ M I (G). Morevover, from proposition C.7 we can conclude that p∗ 
+
+> Y,I
+
+/∈ M Y,I (G).For convenience, let 
+
+η(G) := inf  
+
+> θ
+
+DKL (p∗ 
+
+> Y,I
+
+∥pY,GI (· | θ, ϕ∗)) .Note that 
+
+η(G) = inf  
+
+> θ
+
+DKL (p∗ 
+
+> Y,I
+
+∥pY,GI (· | θ, ϕ∗)) ≥ inf   
+
+> p∈M Y,I(G)
+
+DKL (p(k) 
+
+> Y
+
+∥pY ) > 0, where we use lemma C.16 for the final inequality. Thus, from Lemma C.14 
+
+S(G∗) − S (G) = η(G) + λ(|G| − |G ∗|).Following Brouillard et al. (2020), we now show that by choosing λ sufficiently small, the above equation is stictly positive. Note that if |G| ≥ |G ∗| then S(G∗) − S (G) > 0. Let 
+
+G+ := {G | |G| < |G ∗|} . Choosing λ such that 0 < λ < min G∈ G+ η(G)  
+
+> |G ∗|−|G|
+
+we see that: 
+
+λ < min 
+
+> G∈ G+
+
+η(G)
+
+|G ∗| − |G| ⇐⇒ λ < η(G)
+
+|G ∗| − |G| ∀G ∈ G+
+
+⇐⇒ λ(|G ∗| − |G| ) < η(G) ∀G ∈ G+
+
+⇐⇒ 0 < η(G) + λ(|G| − |G ∗|) = S(G∗) − S (G) ∀G ∈ G+.Thus, every graph outside of the general directed Markov equivalence class of (G∗)I has a strictly lower score. 26 Algorithm D.1 Sampling Projection Vectors for Noise Estimation 
+
+Require: Measurement matrix A ∈ Rp×d, intervention family I satisfying condition 2, thresholds ϵsig > 0, δ > 0, target number of vectors m
+
+Ensure: Projection matrix T2 ∈ Rm×p 
+
+> 1:
+
+Initialize T2 ← [ ]  
+
+> 2:
+
+for i = 1, . . . , d do  
+
+> 3:
+
+Compute Mi ← A⊤−i ∈ R(d−1)×p 
+
+> 4:
+
+Compute SVD: Mi = UΣV⊤ 
+
+> 5:
+
+Extract basis Bi ∈ Rp×r from columns of V corresponding to zero singular values, where r = p − d + 1 
+
+> 6:
+
+while fewer than ⌊m/d⌋ vectors collected for node i do  
+
+> 7:
+
+Sample u ∼ N (0, Ir ) 
+
+> 8:
+
+Set t ← Biu 
+
+> 9:
+
+if |a⊤ 
+
+> i
+
+t| < ϵsig then ▷ weak signal  
+
+> 10:
+
+reject and continue  
+
+> 11:
+
+end if  
+
+> 12:
+
+Normalize: t ← t/∥t∥ 
+
+> 13:
+
+if ∃ (t′)⊙ ∈ T2 s.t. cos  t⊙, (t′)⊙ > 1 − δ then ▷ insufficient diversity  
+
+> 14:
+
+reject and continue  
+
+> 15:
+
+end if  
+
+> 16:
+
+Append (t⊙)⊤ to T2 
+
+> 17:
+
+end while  
+
+> 18:
+
+end for  
+
+> 19:
+
+return T 2
+
+# D Implementation Details 
+
+In this section we provide further technical details on the implementation of RECLAIM and the baselines. 
+
+## D.1 Projection Vector Sampling for Measurement Noise Estimation 
+
+The overall projection vector sampling algorithm for noise variance estimation is summa-rized in algorithm D.1. We start with an empty T2 matrix and iterating through each node in the latent graph. For each i ∈ [d], let Mi be the measurement matrix A excluding the i-th column. We then compute its singular value decomposition (SVD) and extract the columns of V matrix corresponding to zero singular values, denoted as Bi. These columns represent the basis vectors of the null space of Mi. A random vector u is then generated to obtain the projection matrix t = Biu. The vector t is appended to T2 if it provided sufficient signal and is sufficiently diverse from the existing projection vectors already in T2. The process concludes once we sample the required number of rows for T2. Theorem 4 guarantees that the above procedure would conclude and the results matrix T2 would be full (column) rank. 
+
+## D.2 Log-determinant of the Jacobian Computation 
+
+Computing the log-determinant of the Jacobian computation poses a significant challenge when evaluation the log-density of the latent variables. To overcome this issue, we exploit 27 the power-series expansion of log (1 − x) to obtain the following: log det J(id −U f )(X) = −
+
+> ∞
+
+# ∑
+
+> m=1
+
+1
+
+m Tr 
+
+n
+
+Jm  
+
+> Uf
+
+(X)
+
+o
+
+. (28) This brings the complexity of down to O(d2). Further improvement can be made by using 
+
+Hutchinson trace estimator (Hutchinson, 1989) Tr 
+
+n
+
+Jm  
+
+> Uf
+
+(X)
+
+o
+
+= EW
+
+h
+
+W⊤ Jm  
+
+> Uf
+
+(X)W
+
+i
+
+,where E[W] = 0 and E[WW ⊤] = I. The above estimator only depends on a vector-Jacobian product which can be efficiently computed using an auto-differentiation library (such as PyTorch), often reducing the complexity to O(d). In practice, the power series is truncated to a finite number of terms. This, however, introduces bias in the log-determinant of the Jacobian estimate. To improve on this, following Chen et al. (2019), the series cut-off n
+
+is randomly sampled, n ∼ pN , where pN is a distribution over natural numbers N. The individual terms in eq. (28) are then reweighted by the inverse probability of ending there. Finally, we have the following unbiased estimator: log det J(id −U f )(X) = −En,W
+
+" n
+
+# ∑
+
+> m=1
+
+W⊤ Jm  
+
+> Uf
+
+(X)W
+
+m · P(N ≥ n)
+
+#
+
+. (29) 
+
+## D.3 RECLAIM and Baselines Code Details 
+
+RECLAIM. Our framework was built using the Pytorch library in Python and the code is provided as a part of the supplementary materials. We follow the setup of Sethuraman et al. (2023), employing neural networks (NNs) with dependency masks parameterized by a Gumbel-softmax distribution. The log-determinant of the Jacobian is computed using a power series expansion combined with the Hutchinson trace estimator. To mitigate bias from truncating the power series expansion, the number of terms is sampled from a Poisson distribution, as detailed in section 3 and appendix D.2. The final objective is optimized using the Adam optimizer (Kingma and Ba, 2015). The learning rate in all our experiments was set to 10 −2. The neural network models used in our experiments contained one multi-layer perceptron layer and tanh activation. The graph sparsity regularization constant λ was set to 10 −3 for all the experiments. The models were trained and evaluated on NVIDIA RTX6000 GPUs. 
+
+Baselines. For NODAGS-Flow, we used the code provided by authors (Sethuraman et al., 2023) available at https://github.com/Genentech/nodags-flows . The default val-ues were set for the hyperparameters. For DCDI, we used the codebase provided by the authors (Brouillard et al., 2020), available at https://github.com/slachapelle/dcdi . The default hyperparameters were used while training and evaluating the model. For Anchored-CI, we implemented Algorithm 1 in (Saeed et al., 2020) using an implementation of PC algorithm available in CausalDag library in Python. 
+
+# E Additional Experiments 
+
+In all the experiments below, we fix d = 10, σmin = 0.3, and σmax = 0.6. For linear measurement noise process, the number of measurements was fixed to p = 15. 28 Varying number of cycles. We evaluate the sensitivity of RECLAIM to the number of cycles in the graph. The number of cycles was varied between 0 and 8 in steps of 2. The results are summarized in fig. 7. The two cyclic graph methods (RECLAIM and NODAGS-Flow) remain stable across the entire range of varying cycles, whereas, the DAG methods (Anchored-CI and DCDI) exhibit a decreasing trend for both the noise processes. Overall RECLAIM outperforms all the baselines.     
+
+> 02468
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Num. cycles
+> AUPRC
+
+GAN     
+
+> 02468
+> Num. cycles
+
+Linear Measurements 
+
+Varying Number of Cycles    
+
+> Anchored-CI DCDI NODAGS RECLAIM (SIR)
+
+Figure 7: Performance comparison with varying number of cycles in the latent variable graph. 
+
+Varying degree of nonlinearity. We evaluate the sensitivity of RECLAIM to the degree of nonlinearity of the latent data generation process. The latent variables are sampled from the following SCM: 
+
+X = ( 1 − β)W⊤ X + β tanh W⊤ X + Z,where β controls the degree on nonlinearity. β = 0 corresponds to fully linear SCM and 
+
+β = 1 corresponds to fully nonlinear SCM. The results are summarized in fig. 8. As seen from the figure, RECLAIM exhibits robustness to nonlinearity in the data and achieves the best performance when compared to the baselines for all values of β.    
+
+> 00.25 0.5 0.75 1
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Deg. of nonlinearity ( β)
+> AUPRC
+
+GAN     
+
+> 00.25 0.5 0.75 1
+> Deg. of nonlinearity ( β)
+
+Linear Measurements 
+
+Varying Degree of Nonlinearity ( β)   
+
+> Anchored-CI DCDI NODAGS RECLAIM (SIR)
+
+Figure 8: Performance comparison with varying degree of nonlinearity in the latent variable SCM. 29 Varying latent graph sparsity. We evaluate the sensitivity of RECLAIM to the sparsity of latent variable graph. The number of outgoing edge density of the latent variable graph was varied between 1 and 4. The results are summarized in fig. 9. RECLAIM remains robust with respect to the recovery performance even as the latent graphs become more dense. NODAGS-Flow exhibits a decreasing trend in AUPRC score, while the DAG methods consistently score below the cyclic methods.    
+
+> 1234
+> 0
+> 0.25
+> 0.5
+> 0.75
+> 1
+> Edge density
+> AUPRC
+
+GAN    
+
+> 1234
+> Edge density
+
+Linear Measurements 
+
+Varying Outgoing Edge Density    
+
+> Anchored-CI DCDI NODAGS RECLAIM (SIR)
+
+Figure 9: Performance comparison with varying latent graph sparsity. 30

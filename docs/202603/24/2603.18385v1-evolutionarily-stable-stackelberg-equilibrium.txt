@@ -1,0 +1,805 @@
+Title: Evolutionarily Stable Stackelberg Equilibrium
+
+URL Source: https://arxiv.org/pdf/2603.18385v1
+
+Published Time: Fri, 20 Mar 2026 00:33:59 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+# Evolutionarily Stable Stackelberg Equilibrium 
+
+Sam Ganzfried Ganzfried Research sam.ganzfried@gmail.com 
+
+Abstract — We present a new solution concept called evolu-tionarily stable Stackelberg equilibrium (SESS). We study the Stackelberg evolutionary game setting in which there is a single leading player and a symmetric population of followers. The leader selects an optimal mixed strategy, anticipating that the follower population plays an evolutionarily stable strategy (ESS) in the induced subgame and may satisfy additional ecological conditions. We consider both leader-optimal and follower-optimal selection among ESSs, which arise as special cases of our framework. Prior approaches to Stackelberg evolutionary games either define the follower response via evolutionary dynamics or assume rational best-response behavior, without explicitly enforcing stability against invasion by mutations. We present algorithms for computing SESS in discrete and continuous games, and validate the latter empirically. Our model applies naturally to biological settings; for example, in cancer treatment the leader represents the physician and the followers correspond to competing cancer cell phenotypes. 
+
+I. I NTRODUCTION 
+
+While Nash equilibrium has emerged as the standard solution concept in game theory, it is often criticized as being too weak: often games contain multiple Nash equilibria (sometimes even infinitely many), and we want to select one that satisfies other natural properties. For example, one popular concept that refines Nash equilibrium is evolution-arily stable strategy (ESS). A mixed strategy in a two-player symmetric game is an evolutionarily stable strategy if it is robust to being overtaken by a mutation strategy. Formally, 
+
+x∗ is an ESS if for every mixed strategy x that differs from 
+
+x∗, there exists ϵ0 = ϵ0(x) > 0 such that, for all ϵ ∈ (0 , ϵ 0),
+
+(1 −ϵ)u1(x, x∗)+ ϵu 1(x, x) < (1 −ϵ)u1(x∗, x∗)+ ϵu 1(x∗, x).
+
+From a biological perspective, we can interpret x∗ as a distri-bution among “normal” individuals within a population, and consider a mutation that makes use of strategy x, assuming that the proportion of the mutation in the population is ϵ.In an ESS, the expected payoff of the mutation is smaller than the expected payoff of a normal individual, and hence the proportion of mutations will decrease and eventually disappear over time, with the composition of the population returning to being mostly x∗. An ESS is therefore a mixed strategy that is immune to being overtaken by mutations. ESS was initially proposed by mathematical biologists mo-tivated by applications such as population dynamics (e.g., maintaining robustness to mutations within a population of humans or animals) [21], [20]. A common example game is the 2x2 game where strategies correspond to an “aggressive” Hawk or a “peaceful” Dove strategy. A paper has recently proposed a similar game in which an aggressive malignant cell competes with a passive normal cell for biological energy, which has applications to cancer eradication [6]. While Nash equilibrium is defined for general multiplayer games, ESS is traditionally defined specifically for two-player symmetric games. ESS is a refinement of Nash equilibrium. In particular, if x∗ is an ESS, then (x∗, x∗)
+
+(i.e., the strategy profile where both players play x∗) is a (symmetric) Nash equilibrium [19]. Of course the converse is not necessarily true (not every symmetric Nash equilibrium is an ESS), or else ESS would be a trivial refinement. In fact, ESS is not guaranteed to exist in games with more than two pure strategies per player (while Nash equilibrium is guaranteed to exist in all finite games). For example, while rock-paper-scissors has a mixed strategy Nash equilibrium (which puts equal weight on all three actions), it has no ESS [19] (that work considers a version where payoffs are 1 for a victory, 0 for loss, and 23 for a tie). There exists a polynomial-time algorithm for computing Nash equilibrium (NE) in two-player zero-sum games, while for two-player non-zero-sum and multiplayer games comput-ing an NE is PPAD-complete and it is widely conjectured that no efficient (polynomial-time) algorithm exists. However, several algorithms have been devised that perform well in practice. The problem of computing whether a game has an ESS was shown to be both NP-hard and CO-NP hard and also to be contained in ΣP 
+
+> 2
+
+(the class of decision problems that can be solved in nondeterministic polynomial time given access to an NP oracle) [7]. Subsequently it was shown that the exact complexity of this problem is that it is ΣP 
+
+> 2
+
+-complete [5], and even more challenging for more than two players [2]. Note that this result is for determining whether an ESS exists (as discussed above there exist games which have no ESS), not for the complexity of computing an ESS in games for which one exists. Thus, computing an ESS is significantly more difficult than computing an NE. Several approaches have been proposed for computing ESS in two-player games [14], [1], [4], [3], [23]. A normal-form game consists of a finite set of players 
+
+N = {1, . . . , n }, a finite set of pure strategies Si for each player i, and a real-valued utility for each player for each strategy vector (aka strategy profile ), ui : ×iSi → R. In a symmetric normal-form game , all strategy spaces Si are equal and the utility functions satisfy the following symmetry condition: for every player i ∈ N , pure strategy profile 
+
+(s1, . . . , s n) ∈ Sn, and permutation π of the players, 
+
+ui(s1, . . . , s n) = uπ(i)(sπ(1) , . . . , s π(n)).
+
+> arXiv:2603.18385v1 [cs.GT] 19 Mar 2026
+
+This allows us to remove the player index of the utility function and just write u(s1, . . . , s n), where it is implied that the utility is for player 1 (we can simply permute the players to obtain the utilities of the other players). We write ui for notational convenience, but note that only a single utility function must be specified which applies to all players. Let Σi denote the set of mixed strategies of player i
+
+(probability distributions over elements of Si). If players follow mixed strategy profile x = ( x(1) , . . . , x(n)), where 
+
+x(i) ∈ Σi, the expected payoff to player i is 
+
+ui(x(1) , . . . , x(n)) = X
+
+> s1,...,s n∈S
+
+x(1)  
+
+> s1
+
+· · · x(n) 
+
+> sn
+
+ui(s1, . . . , s n).
+
+We write ui(x) = ui(x(i), x(−i)), where x(−i) denotes the vector of strategies of all players except i. If all players follow the same mixed strategy x, then for all players i:
+
+ui(x) = ui(x, . . . , x) = X
+
+> s1,...,s n∈S
+
+xs1 · · · xsn ui(s1, . . . , s n).
+
+Definition 1: A mixed strategy profile x⋆ is a Nash equi-librium if for each player i ∈ N and for each mixed strategy 
+
+x(i) ∈ Σi: ui(x∗(i), x∗(−i)) ≥ ui(x(i), x∗(−i)).
+
+Definition 2: A mixed strategy profile x⋆ in a symmetric normal-form game in a symmetric Nash equilibrium if it is a Nash equilibrium and: x∗(1) = x∗(2) = . . . = x∗(n).
+
+Definition 3: A mixed strategy x⋆ ∈ Σ1 is evolutionarily stable in a symmetric normal-form game if for each mixed strategy x̸ = x⋆ exactly one of the following holds: 1) u1(x∗, x∗, . . . , x∗) > u 1(x, x∗, . . . , x∗),2) u1(x∗, x∗, . . . , x∗) = u1(x, x∗, . . . , x∗) and 
+
+u1(x∗, x, x∗, . . . , x∗) > u 1(x, x, x∗, . . . , x∗).It has been proven that every symmetric normal-form game has at least one symmetric Nash equilibrium [24]. It is clear from Definition 3 that every evolutionarily stable strategy in a symmetric normal-form game must be a sym-metric Nash equilibrium (SNE). Thus, a natural approach for ESS computation is to first compute SNE and then perform subsequent procedures to determine whether they are ESS. Now we present the Stackelberg evolutionary game set-ting. The leader’s set of pure strategies is M = {1, . . . , m }
+
+and the follower phenotypes are P = {1, . . . , n }. The leader’s utility function is given by AL ∈ Rm×n, where 
+
+AL(ℓ, i ) gives the payoff to the leader when the leader plays pure strategy ℓ ∈ M and the follower population state is phenotype i ∈ P . The leader’s expected utility when the leader plays mixed strategy σ and the follower plays mixed strategy x is UL(σ, x) = Pmℓ=1 
+
+Pni=1 σℓxiAL(ℓ, i ).
+
+The follower payoff tensor is AF ∈ Rm×n×n, where 
+
+AF(ℓ, i, j ) is the payoff (fitness) to a follower of phenotype 
+
+i ∈ P when the leader plays pure strategy ℓ ∈ M and the interacting follower has phenotype j ∈ P . For each fixed 
+
+ℓ ∈ M , AF(ℓ, ·, ·) is an n × n symmetric payoff matrix. After the leader commits to mixed strategy σ ∈ ∆( M),the induced follower payoff matrix is Bσ ∈ Rn×n with 
+
+Bσ = Pmℓ=1 σℓAF(ℓ, ·, ·). The follower population then plays a symmetric evolutionary game with payoff matrix Bσ .
+
+A population state x ∈ ∆( P) is admissible for σ iff it is an ESS of Bσ . Let E(σ) denote the set of ESSs of Bσ , and let gσ : ∆( P) → R denote the follower’s ESS selection function . Finally let G(σ) = arg max x∈E (σ) gσ (x).
+
+We now present our general definition for evolutionarily stable Stackelberg equilibrium (SESS) in Definition 4. We also define two natural special cases. In the first case, the followers play the ESS that is most beneficial to the leader. We refer to this as an optimistic evolutionarily stable Stack-elberg equilibrium (OSESS). In this case we have gσ (x) = 
+
+UL(σ, x). We also consider pessimistic evolutionarily stable Stackelberg equilibrium (PSESS), in which the followers play the ESS that is worst for the leader. While the followers are not rationally trying to harm the leader, we can view PSESS as SESS that is robust to worst-case evolutionary stability. For PSESS we have gσ (x) = −UL(σ, x). OSESS and PSESS are defined below in Definitions 5–6. For OSESS we have G(σ) = arg max x∈E (σ) UL(σ, x), and for PSESS 
+
+G(σ) = arg min x∈E (σ) UL(σ, x). SESS refines Stackelberg equilibrium by restricting the follower response to strategies that are evolutionarily stable in the induced population game. 
+
+Definition 4 (Evolutionarily Stable Stackelberg Equilibrium): 
+
+Given a selection correspondence G(σ) ⊆ E (σ), (σ∗, x∗)
+
+is an evolutionarily stable Stackelberg equilibrium if 
+
+σ∗ ∈ arg max 
+
+> σ∈∆( M)
+
+max  
+
+> x∈G (σ)
+
+UL(σ, x) and x∗ ∈ G (σ∗).
+
+Definition 5 (Optimistic SESS): A pair (σ∗, x∗) ∈
+
+∆( M) × ∆( P) is an optimistic evolutionarily stable Stackelberg equilibrium if 
+
+(σ∗, x∗) ∈ arg max  
+
+> σ∈∆( M),x∈E (σ)
+
+UL(σ, x).
+
+Definition 6 (Pessimistic SESS): A pair (σ∗, x∗) ∈
+
+∆( M) × ∆( P) is a pessimistic evolutionarily stable Stackelberg equilibrium if 
+
+σ∗ ∈ arg max 
+
+> σ∈∆( M)
+
+min  
+
+> x∈E (σ)
+
+UL(σ, x) and x∗ ∈ arg min 
+
+> x∈E (σ∗)
+
+UL(σ∗, x).
+
+II. C ONTINUOUS STACKELBERG –ESS We now extend the Stackelberg–ESS framework to con-tinuous Stackelberg evolutionary games, which arise natu-rally in biological and control applications such as cancer treatment. In this setting, the leader selects a continuous decision variable, while the followers correspond to an evolving population whose response is described by coupled ecological and evolutionary dynamics. Let M ⊆ Rd 
+
+> +
+
+denote the leader decision set (e.g., treatment doses or control parameters). For a given leader decision m ∈ M , the followers are described by a collection of continuous state variables, including population sizes and traits. We denote the follower outcome by z = ( x, u) ∈ Z ,where x ∈ Rn 
+
+> +
+
+represents population abundances and u ∈U ⊆ Rn represents trait or strategy variables. As prior work has done we will assume that U = [0 , 1] n. In the context of cancer treatment d denotes the number of drugs and n
+
+denotes the number of cancer cell phenotypes. The leader objective is given by a function Q : M × Z → R. For each m ∈ M , the leader induces an eco–evolutionary system governing the dynamics of (x, u).For a fixed leader decision m, we define the set of admissible follower responses E(m) ⊆ Z as the set of 
+
+eco–evolutionarily stable outcomes under m. Informally, a follower outcome z∗ = ( x∗, u∗) is admissible if it satisfies any required ecological equilibrium conditions and is stable against invasion by rare mutant phenotypes in the induced eco–evolutionary system. We assume throughout that E(m)
+
+is nonempty for the leader decisions under consideration. When multiple evolutionarily stable outcomes exist for the same leader decision, we model their selection via a corre-spondence G(m) ⊆ E (m).We now define continuous analogues of Stackelberg–ESS. 
+
+Definition 7 (Continuous Stackelberg–ESS): Let G(m) ⊆E(m) be a selection correspondence. A pair (m∗, z∗) ∈ M× Z is a continuous Stackelberg–ESS if 
+
+m∗ ∈ arg max 
+
+> m∈M
+
+max  
+
+> z∈G (m)
+
+Q(m, z) and z∗ ∈ G (m∗).
+
+Definition 8 (Optimistic continuous Stackelberg–ESS): 
+
+A pair (m∗, z∗) ∈ M × Z is an optimistic continuous Stackelberg–ESS if 
+
+(m∗, z∗) ∈ arg max  
+
+> m∈M ,z∈E (m)
+
+Q(m, z).
+
+Definition 9 (Pessimistic continuous Stackelberg–ESS): 
+
+A pair (m∗, z∗) ∈ M × Z is a pessimistic continuous Stackelberg–ESS if 
+
+m∗ ∈ arg max 
+
+> m∈M
+
+min  
+
+> z∈E (m)
+
+Q(m, z) and z∗ ∈ arg min 
+
+> z∈E (m∗)
+
+Q(m∗, z).
+
+First we present the Stackelberg evolutionary game for-mulation of cancer treatment from prior work [18]. In this formulation (Equation 1), the objective Q corresponds to the quality of life function that is maximized by the leader. For each cell type i, there is a fitness function Gi(ui, m, x)
+
+that the follower is trying to maximize. We assume that the dynamics of the population x are governed by ˙x = G(t)x.
+
+In order to ensure that we are in equilibrium of the ecological dynamics we must have that ˙xi = 0 for all i. Note that in this formulation the follower is playing a best response by maximizing the fitness function. By contrast, in Stackelberg-ESS we assume that the behavior of the cancer cells is determined by evolutionary stability conditions as opposed to explicit utility maximization. An algorithm for solving this problem has been presented that is based on a nonconvex quadratic program formulation [8]. This algorithm has been demonstrated to quickly compute a global optimal solution on a realistic example problem proposed by prior work [18]. 
+
+max  
+
+> m∗,u∗,x∗
+
+Q(m∗, u∗, x∗)
+
+s.t. ˙x∗ 
+
+> i
+
+= 0 , i = 1 , . . . , n, u∗ 
+
+> i
+
+∈ arg max  
+
+> ui∈[0 ,1]
+
+Gi(ui, m∗, x∗), i = 1 , . . . , n, 
+
+m∗ ≥ 0, x∗ ≥ 0, 0 ≤ u∗ ≤ 1.
+
+(1) The formulation for optimistic continuous Stackelberg-ESS is given by Equation 2. This formulation is similar to the previous one for standard Stackelberg equilibrium except that now instead of maximizing the fitness functions the follower ensures that their strategy is an ESS in the induced subgame given the leader is playing m∗. We will focus our attention on the problem of computing OSESS under this formulation, since it is perhaps the easiest case of SESS to solve since both players are aligned in maximizing Q. 
+
+max  
+
+> m∗,u∗,x∗
+
+Q(m∗, u∗, x∗)
+
+s.t. ˙x∗ 
+
+> i
+
+= 0 , i = 1 , . . . , n, 
+
+(x∗, u∗) ∈ E (m∗),
+
+m∗ ≥ 0, x∗ ≥ 0, 0 ≤ u∗ ≤ 1.
+
+(2) Equation 3 provides an equivalent reformulation of Equa-tion 2. Note that we use the continuous-trait definition of ESS for our setting [16], [25], [11] as opposed to the discrete ESS definition presented previously. Given fixed m,a resident state (x∗, u∗) is an ESS iff x∗ is an ecological equilibrium (i.e., ˙x∗ = 0) and no rare mutant can grow, i.e., 
+
+sup ui Gi(ui, m, x∗) ≤ 0 ∀i. Recall that ˙x = Gx . So the constraint ˙x∗ 
+
+> i
+
+= 0 is equivalent to Gi(u∗ 
+
+> i
+
+, m∗, x∗)x∗ 
+
+> i
+
+= 0 .
+
+Recall that (x∗, u∗) ∈ E (m) iff (x∗, u∗) is evolutionarily stable in the eco-evolutionary system induced by m. This is true iff for all i and ui a mutation to ui does not lead to positive fitness (growth rate), i.e., Gi(ui, m, x∗) ≤ 0.
+
+max  
+
+> m∗,u∗,x∗
+
+Q(m∗, u∗, x∗)
+
+s.t. x∗ 
+
+> i
+
+Gi(u∗ 
+
+> i
+
+, m∗, x∗) = 0 , i = 1 , . . . , n, Gi(ui, m∗, x∗) ≤ 0 ∀ui ∈ [0 , 1] , i = 1 , . . . , n, 
+
+m∗ ≥ 0, x∗ ≥ 0, 0 ≤ u∗ ≤ 1.
+
+(3) III. A LGORITHMS 
+
+We first present an algorithm for computing OSESS in normal-form games, followed by an algorithm for continuous-trait games. Pseudocode for the main algorithm in the normal-form setting is given in Algorithm 1. We com-pute an OSESS by enumerating candidate follower supports and for each support computing a Stackelberg equilibrium of the game where the follower is restricted to strategies with the given support. This is done by using the subroutine given in Algorithm 2. Given the Stackelberg equilibrium (σ, x),
+
+we next check whether x is an ESS in the subgame induced by the leader’s strategy σ. This is done in Algorithm 3. If the strategies do constitute an ESS, then we have found an evolutionarily stable Stackelberg equilibrium (SESS). We then calculate the objective σ⊤AL, and return the SESS with highest value as an OSESS. The algorithm can be easily adapted to output the first SESS found, all SESSs found, or an SESS that optimizes a different objective. The values used for all numerical tolerance parameters are given in Table I. Algorithm 2 computes a Stackelberg equilibrium strategy with given support T by solving a quadratically-constrained quadratic program (QCQP). The constraints xi ≥ ϵs ensure that the pure strategies in the support are played with positive probability. The objective ensures that the leader’s payoff is maximized, and the final two sets of constraints ensure that the follower is best-responding to the leader’s strategy. Our algorithm is implicitly assuming that the game is nondegen-erate and that there exists at least one Stackelberg equilib-rium for each follower support. This is a common assumption in equilibrium-finding algorithms [22], [12], [15], and has been studied recently in the context of ESS computation [10], [9]. If the game is degenerate with an infinite continuum of equilibria our algorithm will fail to find all of them, and therefore may fail to find all SESSs; however it may still find one. Algorithm 3 also involves solving a QCQP. In practice we will be solving nonconvex QCQPs with Gurobi’s solver, which can solve small problem instances quickly despite their computational complexity. The QCQP checks whether any mutant strategy y can successfully invade against a population following strategy x in the game induced by the leader’s strategy σ. The parameter ϵp allows for a small amount of numerical imprecision, and the final constraint ensures that y is numerically distinct from x by using numerical separation parameter δ. 
+
+Algorithm 1 COMPUTE DISCRETE OSESS 
+
+Require: Follower payoff tensor AF ∈ Rm×n×n
+
+Require: Leader payoff matrix AL ∈ Rm×n
+
+Require: Minimum support mass ϵs, ESS tolerances ϵp, δ 
+
+Ensure: OSESS (σ⋆, x⋆) 
+
+> 1:
+
+v⋆ ← −∞  
+
+> 2:
+
+(σ⋆, x⋆) ← (∅, ∅) 
+
+> 3:
+
+for all nonempty supports T ⊆ P do  
+
+> 4:
+
+(status, σ, x) ← SOLVE SES UPPORT (AF , AL, T, ϵ s) 
+
+> 5:
+
+if status = FEASIBLE then  
+
+> 6:
+
+if ISESS (AF , σ, x, ϵ p, δ ) then  
+
+> 7:
+
+v ← σ⊤ALx 
+
+> 8:
+
+if v > v ⋆ then  
+
+> 9:
+
+v⋆ ← v 
+
+> 10:
+
+(σ⋆, x⋆) ← (σ, x) 
+
+> 11:
+
+end if  
+
+> 12:
+
+end if  
+
+> 13:
+
+end if  
+
+> 14:
+
+end for  
+
+> 15:
+
+return (σ⋆, x⋆)
+
+Pseudocode for the main algorithm in continuous setting is given in Algorithm 4. The algorithm follows a generate-and-certify structure: first a candidate solution satisfying the KKT conditions of the invasion maximization problems is computed, and then a global optimization check verifies that no mutant phenotype can invade. The main subroutine Algorithm 5 generates a candidate OSESS by solving the op-timization problem presented in Equation 3. The formulation finds a solution that satisfies the KKT optimality conditions, though it is not guaranteed to be a globally optimal solution. To test if this candidate solution is globally optimal we perform the ex-post certification procedure described in Al-gorithm 6, using a numerical tolerance of ϵinv . We set ϵinv =10 −3, which is biologically negligible but significantly larger than Gurobi’s default tolerance of 10 −6. Note that if the 
+
+Algorithm 2 SOLVE SES UPPORT 
+
+Require: Follower payoff tensor AF ∈ Rm×n×n
+
+Require: Leader payoff matrix AL ∈ Rm×n
+
+Require: Support T ⊆ P , minimum support mass ϵs
+
+Ensure: (status, σ, x) 
+
+> 1:
+
+Solve the following optimization problem: 
+
+max  
+
+> σ,x,v
+
+σ⊤ALx
+
+s.t. σℓ ≥ 0, ∀ℓ ∈ M, 
+
+X
+
+> ℓ∈M
+
+σℓ = 1 ,
+
+xi ≥ ϵs, ∀i ∈ T, 
+
+xj = 0 , ∀j / ∈ T, 
+
+X
+
+> i∈P
+
+xi = 1 ,
+
+X
+
+> ℓ∈M
+
+X
+
+> k∈P
+
+σℓAF (ℓ, i, k )xk = v, ∀i ∈ T, 
+
+X
+
+> ℓ∈M
+
+X
+
+> k∈P
+
+σℓAF (ℓ, j, k )xk ≤ v, ∀j / ∈ T.  
+
+> 2:
+
+if the problem is feasible then  
+
+> 3:
+
+return (FEASIBLE , σ, x) 
+
+> 4:
+
+else  
+
+> 5:
+
+return (INFEASIBLE , ∅, ∅) 
+
+> 6:
+
+end if Algorithm 3 ISESS 
+
+Require: Follower payoff tensor AF ∈ Rm×n×n
+
+Require: Leader mixed strategy σ ∈ ∆( M )
+
+Require: Follower mixed strategy x ∈ ∆( P )
+
+Require: Tolerances ϵp, δ 
+
+Ensure: TRUE if x is an ESS of the induced follower game; otherwise FALSE  
+
+> 1:
+
+Define the induced follower payoff matrix B ∈ Rn×n:
+
+Bij ← X
+
+> ℓ∈M
+
+σℓAF (ℓ, i, j ), ∀i, j ∈ P.  
+
+> 2:
+
+v ← x⊤Bx 
+
+> 3:
+
+Solve the following optimization problem: 
+
+max  
+
+> y
+
+y⊤By − x⊤By
+
+s.t. yj ≥ 0, ∀j ∈ P, 
+
+X
+
+> j∈P
+
+yj = 1 ,
+
+y⊤Bx − v ≤ ϵp,
+
+∥y − x∥22 ≥ δ.  
+
+> 4:
+
+if the optimal objective value ≤ ϵp then  
+
+> 5:
+
+return TRUE  
+
+> 6:
+
+else  
+
+> 7:
+
+return FALSE  
+
+> 8:
+
+end if quality of life functions Gi are concave in ui then the KKT conditions are also sufficient. In our experiments we will use previously-studied Q and Gi functions, and the algorithm will involve solving nonconvex QCQPs. 
+
+Algorithm 4 COMPUTE CONTINUOUS OSESS 
+
+Require: Leader objective Q(m, u, x)
+
+Require: Fitness functions {Gi(ui, m, x)}ni=1 
+
+Require: Feasible set M, tolerance ϵinv 
+
+Ensure: OSESS (m⋆, u⋆, x⋆) if one is found  
+
+> 1:
+
+(m⋆, u⋆, x⋆) ← GEN OSESS (Q, {Gi}, M) 
+
+> 2:
+
+for i = 1 to n do  
+
+> 3:
+
+Gmax  
+
+> i
+
+← CERTIFY (i, m⋆, x⋆) 
+
+> 4:
+
+end for  
+
+> 5:
+
+if max i Gmax  
+
+> i
+
+≤ ϵinv then  
+
+> 6:
+
+return (m⋆, u⋆, x⋆) 
+
+> 7:
+
+else  
+
+> 8:
+
+return FAILURE  
+
+> 9:
+
+end if Algorithm 5 GEN OSESS 
+
+Require: Leader objective Q(m, u, x)
+
+Require: Fitness functions {Gi(ui, m, x)}ni=1 
+
+Require: Feasible set M
+
+Ensure: Candidate solution (m⋆, u⋆, x⋆) 
+
+> 1:
+
+Solve the following optimization problem: 
+
+max  
+
+> m,u,x,u′,λL,λU
+
+Q(m, u, x)
+
+s.t. xiGi(ui, m, x) = 0 , i = 1 , . . . , n, 
+
+m ∈ M , x ≥ 0, 0 ≤ u ≤ 1, 0 ≤ u′ ≤ 1,Gi(u′
+
+> i
+
+, m, x) ≤ 0, i = 1 , . . . , n, ∂G i
+
+∂u i
+
+(u′
+
+> i
+
+, m, x) + λLi − λUi = 0 , i = 1 , . . . , n, λLi u′ 
+
+> i
+
+= 0 , i = 1 , . . . , n, λUi (1 − u′
+
+> i
+
+) = 0 , i = 1 , . . . , n, λLi ≥ 0, λ Ui ≥ 0, i = 1 , . . . , n.  
+
+> 2:
+
+return optimal solution (m⋆, u⋆, x⋆)
+
+Algorithm 6 CERTIFY 
+
+Require: Phenotype index i ∈ { 1, . . . , n }
+
+Require: Fixed (m⋆, x⋆)
+
+Ensure: Gmax  
+
+> i
+> 1:
+
+Computing globally optimal solution: 
+
+max  
+
+> u
+
+Gi(u, m⋆, x⋆)
+
+s.t. 0 ≤ u ≤ 1 
+
+> 2:
+
+return optimal objective Gmax 
+
+> i
+
+IV. E XPERIMENTS 
+
+We experiment with our continuous algorithm on an evo-lutionary cancer game model previously studied [18]. Note      
+
+> Parameter Value
+> ϵs10 −4
+> ϵp10 −5
+> δ10 −2
+> ϵinv 10 −3
+> TABLE I TOLERANCE PARAMETER VALUES FOR THE ALGORITHMS .
+
+that prior work for this model has computed a Stackelberg equilibrium (SE), where the leader commits to a strategy that optimizes the quality of life function Q while the cancer cell phenotypes optimize their respective fitness functions 
+
+Gi (subject to the equilibrium conditions of the ecological dynamics being satisfied) [18], [8]. In contrast, we compute an OSESS in this game, which guarantees that the follower cancer cells are following an ESS in the game induced by the leader’s strategy and no mutant trait can have positive growth (while SE does not preclude existence of mutants with positive growth). This is fundamentally a different solution concept, so the players’ payoffs may increase or decrease. The model is instantiated by the following functional forms for the fitness functions Gi and quality of life function 
+
+Q. Note that the model presentation is slightly different between the paper [18] and the implementation in the code repository [17], and we will use the model from the code.                                                     
+
+> G0=rmax
+> 
+> 1−α00 x0+α01 x1+α02 x2
+> K
+> 
+> −d−m1
+> k1
+> −m2
+> k2
+> G1=rmax e−g1u1
+> 
+> 1−α10 x0+α11 x1+α12 x2
+> K
+> 
+> −d−m1
+> b1u1+k1
+> −m2
+> k2
+> G2=rmax e−g2u2
+> 
+> 1−α20 x0+α21 x1+α22 x2
+> K
+> 
+> −d−m1
+> k1
+> −m2
+> b2u2+k2
+> Q=Qmax −c
+> x0+x1+x2
+> K
+> 2
+> −w1m21−w2m22−r1u21−r2u22
+
+The model has several parameters, whose interpretations are summarized in Table II. Note that in the code additional parameters a0, a 1, a 2, a 3 are defined, with 
+
+
+
+α00 α01 α02 
+
+α10 α11 α12 
+
+α20 α21 α22 
+
+ =
+
+
+
+a0 a1 a1
+
+a2 a0 a3
+
+a2 a3 a0
+
+
+
+We ran experiments comparing the algorithm for comput-ing a Stackelberg equilibrium [8] to our new algorithm for computing OSESS on a problem instance using the same pa-rameter values that have been previously used [17], which are provided in Table III. Both approaches involve solving QC-QPs using Gurobi’s nonconvex mixed-integer quadratically-constrained programming (MIQCP) solver version 11.0.3 build v11.0.3rc0 [13] with Java version 14.0.2. Gurobi’s nonconvex MIQCP solver guarantees global optimality (up to a numerical tolerance). We used Gurobi’s default numerical tolerance value of 10 −6. We used Gurobi’s default values for all settings other than DualReductions which we set to 0 since we observed improved performance by disabling aggressive presolve reductions. We used an Intel Core i7-1065G7 processor with base clock speed of 1.30 GHz (and Parameter Interpretation 
+
+rmax Max cell growth rate 
+
+gi Cost of resistance strategy (cell type) iαij Interaction coefficient between cell types i and jK Carrying capacity 
+
+d Natural death rate 
+
+ki
+
+Innate resistance that may be present before drug exposure 
+
+bi
+
+Benefit of the evolved resistance trait in reducing therapy efficacy 
+
+Qmax Quality of life of a healthy patient 
+
+wi Toxicity of drug iri Effect of resistance rate of cell type ic Weight for impact of tumor burden vs. drug toxicity/treatment-induced resistance rate 
+
+> TABLE II INTERPRETATIONS OF MODEL PARAMETERS
+
+maximum turbo boost speed of up to 3.9 GHz) with 16 GB of RAM under 64-bit Windows 11 (8 logical cores/threads).                     
+
+> Parameter Value
+> rmax 0.45
+> g10.5
+> g20.5
+> a01
+> a10.15
+> a20.9
+> a30.9
+> K10,000
+> d0.01
+> k15
+> k25
+> b110
+> b210
+> Qmax 1
+> w10.5
+> w20.2
+> r10.4
+> r20.4
+> c0.5 TABLE III PARAMETER VALUES USED IN EXPERIMENTS
+
+The main results from our experiments are depicted in Table IV. Note that the optimal physician strategies ( m∗)vary slightly between the two solutions, and the optimal quality of life Q∗ is slightly higher for the OSESS solution than the SE solution. The SE algorithm ran significantly faster than the OSESS algorithm (around 2 seconds versus 2.2 minutes). Both algorithms are based on KKT necessary optimality conditions and require the application of ex-post 
+
+certification procedures to ensure global optimality. For both algorithms we recompute the values of Q and Gi exactly by calculating them directly from the solutions output from Gurobi (since the values of Q and Gi in the optimizations themselves contain numerical error). For the OSESS algo-rithm the certification procedure obtains Gmax  
+
+> 1
+
+= 7 .85 ×
+
+10 −5, Gmax  
+
+> 2
+
+= 1 .41 × 10 −4, which are both significantly below ϵinv = 10 −3, so we conclude that our solution is in fact an OSESS. As it turns out, running the same certification procedure on the Stackelberg equilibrium solution obtains 
+
+Gmax  
+
+> 1
+
+= 8 .00 × 10 −5, Gmax  
+
+> 2
+
+= 1 .42 × 10 −4, which are also both significantly below ϵinv = 10 −3. So for these particular game parameters it turns out that the SE solution obtained is also an OSESS, though this will not be the case in general.                    
+
+> Stackelberg Equilibrium OSESS
+> m∗
+> 10.4105 0.4003
+> m∗
+> 20.4680 0.4571
+> u∗
+> 10.2139 0.1827
+> u∗
+> 20.2856 0.2828
+> x∗
+> 05731.0481 5823.7239
+> x∗
+> 10.0087 9.5179
+> x∗
+> 2950.7623 946.4278
+> Q∗0.5978 0.6029 Runtime (seconds) 2.2070 134.6910 TABLE IV EXPERIMENTAL RESULTS FOR EVOLUTIONARY CANCER GAME
+
+V. C ONCLUSION 
+
+Stackelberg evolutionary games have emerged as a power-ful model for studying many types of biological interactions, including cancer therapy, fishery management, and pest con-trol [18]. In these games, a rational human leader first selects their strategy, then evolutionary followers select their strate-gies conditional on the leader’s strategy (possibly subject to ecological population equilibrium constraints). Prior work has assumed that the follower players act to maximize fitness functions Gi. In the resulting Stackelberg equilibrium, the leader and followers are simultaneously maximizing their re-spective objective functions. However, this solution does not guarantee that the follower strategy is resistant to invasion by rare mutants. To ensure evolutionary stability we must im-pose the condition that the fitness functions are nonpositive (subject to numerical tolerance) for all possible mutations so that their populations do not continue to grow. We introduced the new solution concept evolutionarily stable Stackelberg equilibrium (SESS) in which the leader is a rational utility maximizer, while the followers employ an evolutionarily stable strategy (ESS) that is resistant to invasion. In an SESS, the leader commits to a strategy that maximizes their objective assuming the followers will play an ESS in the subgame induced by the leader’s strategy. This imposes a stricter stability requirement on the follower strategy than standard Stackelberg equilibrium, which only requires best-response behavior without ensuring evolutionary stability. We define SESS both for discrete normal-form games, as well continuous-trait games, which arise naturally in biological and control applications such as cancer treatment. In our general formulation, the followers play any ESS in the subgame induced by the leader’s strategy. We also consider the special cases where the followers play the ESS that is most beneficial to the leader (OSESS) and the ESS that is worst for the leader (PSESS). OSESS is perhaps the easiest case of SESS to compute since in a sense all players are aligned in maximizing the leader’s payoff (subject to the followers playing an ESS), which simplifies the optimization to a single outer maximization problem. We present algorithms for computing OSESS in both the discrete and continuous settings. If we view the follower strategies as population frequencies, then our model is applicable to settings with a large number of follower players; e.g., there may be a large number of cancer cells where each cell has one of a small number of possible phenotypes. We implemented our OSESS algorithm on an evolutionary cancer game model that has been previously studied and demonstrated that its runtime is reasonable in practice. It is not surprising that OSESS computation takes longer than SE computation, since OSESS is essentially SE with additional stability constraints imposed and therefore involves solving a more challenging optimization problem. As it turns out, the Stackelberg equilibrium solution for this game ended up being an OSESS as well, though this is not guaranteed in general. This suggests that for larger games perhaps a good approach would be to first compute an SE, which is more tractable than SESS, and test whether it also satisfies evolutionary stability; if not then we can continue on to the more computationally expensive SESS algorithm. REFERENCES [1] Andris Abakuks. Conditions for evolutionarily stable strategies. 
+
+Journal of Applied Probability , 17(2):559–562, 1980. [2] Manon Blanc and Kristoffer Arnsfelt Hansen. Computational com-plexity of multi-player evolutionarily stable strategies. In International Computer Science Symposium in Russia (CSR 2021) , volume 12730 of Lecture Notes in Computer Science , pages 44–58. Springer, 2021. [3] I. M. Bomze. Detecting all evolutionarily stable strategies. Journal of Optimization Theory and Applications , 75:313–329, 11 1992. [4] Mark Broom and Jan Rycht´ aˇ r. Game-Theoretical Models in Biology .CRC Press, 2013. [5] Vincent Conitzer. The exact computational complexity of evolution-arily stable strategies. In Conference on Web and Internet Economics (WINE-13) , pages 96–108, 2013. [6] David Dingli, Francisco A. C. C. Chalub, Francisco C. Santos, Sven Van Segbroeck, and Jorge M. Pacheco. Cancer phenotype as the outcome of an evolutionary game between normal and malignant cells. 
+
+British Journal of Cancer , 101(7):1130–1136, 2009. [7] Kousha Etessami and Andreas Lochbihler. The computational com-plexity of evolutionarily stable strategies. International Journal of Game Theory , 37(1):93–113, 2008. [8] Sam Ganzfried. Computing Stackelberg equilibrium for cancer treat-ment. Games , 15(6), 2024. [9] Sam Ganzfried. Computing evolutionarily stable strategies in imperfect-information games, 2025. arXiv:2512.10279 [cs.GT]. [10] Sam Ganzfried. Computing evolutionarily stable strategies in multi-player games, 2025. arXiv:2511.20859 [cs.GT]. [11] Stefan A. H. Geritz, ´Eva Kisdi, G´ abor Mesz´ ena, and Johan A. J. Metz. Evolutionarily singular strategies and the adaptive growth and branching of the evolutionary tree. Evolutionary Ecology , 12(1):35– 57, 1998. [12] Srihari Govindan and Robert Wilson. A global Newton method to compute Nash equilibria. Journal of Economic Theory , 110:65–86, 2003. [13] Gurobi Optimization, LLC. Gurobi Optimizer Reference Manual, 2026. [14] John Haigh. Game theory and evolution. Advances in Applied Probability , 7(1):8–11, 1975. [15] P. Jean-Jacques Herings and Ronald Peeters. Homotopy methods to compute equilibria in game theory. Economic Theory , 42(1):119–156, 2010. [16] Josef Hofbauer and Karl Sigmund. Evolutionary Games and Popula-tion Dynamics . Cambridge University Press, Cambridge, UK, 1998. [17] Maria Kleshnina. https://github.com/kleshnina/ SEGopinion , 2023. [18] Maria Kleshnina, Sabrina Streipert, Joel Brown, and Kateˇ rina Staˇ nkov´ a. Game theory for managing evolving systems: Challenges and opportunities of including vector-valued strategies and life-history traits. Dynamic Games and Applications , 13:1–26, 2023. [19] Michael Maschler, Eilon Solan, and Shmuel Zamir. Game Theory .Cambridge University Press, 2013. [20] John Maynard Smith. Evolution and the Theory of Games . Cambridge University Press, Cambridge, UK, 1982. [21] John Maynard Smith and George R. Price. The logic of animal conflict. 
+
+Nature , 246:15–18, 1973. [22] Richard D. McKelvey and Andrew McLennan. Computation of equilibria in finite games. In H. Amann, D. Kendrick, and J. Rust, editors, Handbook of Computational Economics , volume 1, pages 87– 142. Elsevier, 1996. [23] John McNamara, James N. Webb, E. J. Collins, Tam´ as Sz´ ekely, and Alasdair I. Houston. A general technique for computing evolutionarily stable strategies based on errors in decision-making. Journal of Theoretical Biology , 189:211–225, 1997. [24] John Nash. Non-cooperative games. Annals of Mathematics ,54(2):286–295, 1951. [25] William H. Sandholm. Population Games and Evolutionary Dynamics .MIT Press, Cambridge, MA, 2010.

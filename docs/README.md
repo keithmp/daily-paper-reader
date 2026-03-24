@@ -6,72 +6,85 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-03-23
-- 运行时间：2026-03-23 20:03:40 UTC
+- 最新运行日期：2026-03-24
+- 运行时间：2026-03-24 19:57:58 UTC
 - 运行状态：成功
-- 本次总论文数：17
-- 精读区：4
+- 本次总论文数：21
+- 精读区：8
 - 速读区：13
 
 ### 今日简报（AI）
-今日深度解析 17 篇前沿成果，重点聚焦 AI 智能体驱动的基因发现与强化学习赋能的蛋白质设计。
-核心突破在于利用 AI 智能体小组重塑基因本体知识挖掘，并成功通过生成式模型实现
-- 详情：[/202603/23/README](/202603/23/README)
+今日聚焦 21 篇生物信息前沿进展，深度解析系统发育树的几何奥秘与基因交互的可解释性分析。
+重点推荐满分论文《Spectral Geometry and Heat Kernels》，以及利用 RAG 框架提升基因通路分析可信度的 GIP-RAG。
+建议关注几何数学在进化研究中的跨界应用，并探索大模型在虚拟细胞建模与生存分析中的落地潜力。
+- 详情：[/202603/24/README](/202603/24/README)
 
 ### 精读区论文标签
-1. [Revisiting Gene Ontology Knowledge Discovery with Hierarchical Feature Selection and Virtual Study Group of AI Agents](/202603/23/2603.20132v1-revisiting-gene-ontology-knowledge-discovery-with-hierarchical-feature-selection-and-virtual-study-group-of-ai-agents)  
+1. [Spectral Geometry and Heat Kernels on Phylogenetic Trees](/202603/24/2603.20922v1-spectral-geometry-and-heat-kernels-on-phylogenetic-trees)  
+   标签：评分：10.0/10、query:q3
+   evidence：系统发育树和演化动力学的谱分析框架
+2. [GIP-RAG: An Evidence-Grounded Retrieval-Augmented Framework for Interpretable Gene Interaction and Pathway Impact Analysis](/202603/24/2603.20321v1-gip-rag-an-evidence-grounded-retrieval-augmented-framework-for-interpretable-gene-interaction-and-pathway-impact-analysis)  
    标签：评分：9.0/10、query:q7
-   evidence：用于基因本体知识发现的AI智能体
-2. [Reinforcement-guided generative protein language models enable de novo design of highly diverse AAV capsids](/202603/23/2603.19473v1-reinforcement-guided-generative-protein-language-models-enable-de-novo-design-of-highly-diverse-aav-capsids)  
+   evidence：利用AI进行基因相互作用和通路分析
+3. [Evolutionary Dynamics of Variable Games in Structured Populations](/202603/24/2603.20603v1-evolutionary-dynamics-of-variable-games-in-structured-populations)  
+   标签：评分：9.0/10、query:q5
+   evidence：结构化种群中的演化动力学与自然选择
+4. [Evolutionarily Stable Stackelberg Equilibrium](/202603/24/2603.18385v1-evolutionarily-stable-stackelberg-equilibrium)  
+   标签：评分：8.0/10、query:q2
+   evidence：博弈论中的演化稳定策略与生态条件
+5. [Broad presence of ferromagnetism in bees and relationship to phylogeny, natural history, and sociality](/202603/24/2603.20312v1-broad-presence-of-ferromagnetism-in-bees-and-relationship-to-phylogeny-natural-history-and-sociality)  
+   标签：评分：8.0/10、query:q3
+   evidence：蜜蜂磁感受能力的系统发育模式与演化
+6. [G2DR: A Genotype-First Framework for Genetics-Informed Target Prioritization and Drug Repurposing](/202603/24/2603.20346v1-g2dr-a-genotype-first-framework-for-genetics-informed-target-prioritization-and-drug-repurposing)  
    标签：评分：8.0/10、query:q7
-   evidence：用于基因治疗载体设计的AI和蛋白质语言模型
-3. [RiboSphere: Learning Unified and Efficient Representations of RNA Structures](/202603/23/2603.19636v1-ribosphere-learning-unified-and-efficient-representations-of-rna-structures)  
+   evidence：利用AI和遗传信号进行靶点优先级排序的基因型优先框架
+7. [RECLAIM: Cyclic Causal Discovery Amid Measurement Noise](/202603/24/2603.20585v1-reclaim-cyclic-causal-discovery-amid-measurement-noise)  
    标签：评分：8.0/10、query:q7
-   evidence：AI驱动的RNA结构表示学习
-4. [Adapting a Pre-trained Single-Cell Foundation Model to Spatial Gene Expression Generation from Histology Images](/202603/23/2603.19766v1-adapting-a-pre-trained-single-cell-foundation-model-to-spatial-gene-expression-generation-from-histology-images)  
+   evidence：基因组学中循环调节网络的因果发现
+8. [Cross-Granularity Representations for Biological Sequences: Insights from ESM and BiGCARP](/202603/24/2603.20825v1-cross-granularity-representations-for-biological-sequences-insights-from-esm-and-bigcarp)  
    标签：评分：8.0/10、query:q7
-   evidence：利用单细胞基础模型进行空间基因表达生成
+   evidence：用于核苷酸和基因等生物序列的AI模型
 
 ### 速读区论文标签
-1. [HistoAtlas: A Pan-Cancer Morphology Atlas Linking Histomics to Molecular Programs and Clinical Outcomes](/202603/23/2603.16587v1-histoatlas-a-pan-cancer-morphology-atlas-linking-histomics-to-molecular-programs-and-clinical-outcomes)  
-   标签：评分：7.0/10、query:profile-1
-   evidence：将组织学特征与基因表达及体细胞突变联系起来
-2. [A two-step sequential approach for hyperparameter selection in finite context models](/202603/23/2603.19736v1-a-two-step-sequential-approach-for-hyperparameter-selection-in-finite-context-models)  
+1. [Beyond Expression Similarity: Contrastive Learning Recovers Functional Gene Associations from Protein Interaction Structure](/202603/24/2603.20955v1-beyond-expression-similarity-contrastive-learning-recovers-functional-gene-associations-from-protein-interaction-structure)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用对比学习恢复功能基因关联
+2. [CellFluxRL: Biologically-Constrained Virtual Cell Modeling via Reinforcement Learning](/202603/24/2603.21743v1-cellfluxrl-biologically-constrained-virtual-cell-modeling-via-reinforcement-learning)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用AI进行虚拟细胞建模与生物约束
+3. [Multimodal Survival Analysis with Locally Deployable Large Language Models](/202603/24/2603.22158v1-multimodal-survival-analysis-with-locally-deployable-large-language-models)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用基因组概况和LLM进行多模态生存分析
+4. [CAPSUL: A Comprehensive Human Protein Benchmark for Subcellular Localization](/202603/24/2603.18571v1-capsul-a-comprehensive-human-protein-benchmark-for-subcellular-localization)  
    标签：评分：7.0/10、query:q7
-   evidence：有限上下文模型用于DNA序列压缩
-3. [Stability analysis and long-time convergence of a partial differential equation model of two-phase ageing](/202603/23/2603.19814v1-stability-analysis-and-long-time-convergence-of-a-partial-differential-equation-model-of-two-phase-ageing)  
-   标签：评分：7.0/10、query:q5
-   evidence：野生种群两阶段衰老的偏微分方程模型
-4. [Starvation suppression in scale-free metabolic networks: Dynamical mean-field analysis of dense catalytic reaction networks](/202603/23/2603.19850v1-starvation-suppression-in-scale-free-metabolic-networks-dynamical-mean-field-analysis-of-dense-catalytic-reaction-networks)  
-   标签：评分：7.0/10、query:q2
-   evidence：代谢网络中的进化优势与突变稳健性
-5. [Open Biomedical Knowledge Graphs at Scale: Construction, Federation, and AI Agent Access with Samyama Graph Database](/202603/23/2603.15080v3-open-biomedical-knowledge-graphs-at-scale-construction-federation-and-ai-agent-access-with-samyama-graph-database)  
+   evidence：人类蛋白质亚细胞定位的AI基准测试
+5. [BVSIMC: Bayesian Variable Selection-Guided Inductive Matrix Completion for Improved and Interpretable Drug Discovery](/202603/24/2603.18957v1-bvsimc-bayesian-variable-selection-guided-inductive-matrix-completion-for-improved-and-interpretable-drug-discovery)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用基因组信息进行药物研发的AI/贝叶斯模型
+6. [Conditioning Protein Generation via Hopfield Pattern Multiplicity](/202603/24/2603.20115v1-conditioning-protein-generation-via-hopfield-pattern-multiplicity)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用AI进行蛋白质序列生成与功能子集调节
+7. [Fast and Scalable Cellwise-Robust Ensembles for High-Dimensional Data](/202603/24/2603.20940v1-fast-and-scalable-cellwise-robust-ensembles-for-high-dimensional-data)  
+   标签：评分：7.0/10、query:q7
+   evidence：基因组学中的高维数据分析
+8. [A harmonized benchmarking framework for implementation-aware evaluation of 46 polygenic risk score tools across binary and continuous phenotypes](/202603/24/2603.21201v1-a-harmonized-benchmarking-framework-for-implementation-aware-evaluation-of-46-polygenic-risk-score-tools-across-binary-and-continuous-phenotypes)  
+   标签：评分：7.0/10、query:q7
+   evidence：评估多基因风险评分工具的基准框架，涉及基因组数据
+9. [PPGL-Swarm: Integrated Multimodal Risk Stratification and Hereditary Syndrome Detection in Pheochromocytoma and Paraganglioma](/202603/24/2603.21700v1-ppgl-swarm-integrated-multimodal-risk-stratification-and-hereditary-syndrome-detection-in-pheochromocytoma-and-paraganglioma)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用AI检测肿瘤中的遗传综合征
+10. [Empowering Chemical Structures with Biological Insights for Scalable Phenotypic Virtual Screening](/202603/24/2603.15006v1-empowering-chemical-structures-with-biological-insights-for-scalable-phenotypic-virtual-screening)  
    标签：评分：6.0/10、query:q7
-   evidence：AI代理访问药物-基因相互作用知识图谱
-6. [A multiscale discrete-to-continuum framework for structured population models](/202603/23/2603.15217v2-a-multiscale-discrete-to-continuum-framework-for-structured-population-models)  
-   标签：评分：6.0/10、query:q5
-   evidence：结构化生物种群和性状变异的数学模型
-7. [Cuckoo-GPU: Accelerating Cuckoo Filters on Modern GPUs](/202603/23/2603.15486v1-cuckoo-gpu-accelerating-cuckoo-filters-on-modern-gpus)  
-   标签：评分：6.0/10、query:pangen
-   evidence：生物信息学数据结构的GPU加速
-8. [Biomedical active matter: Emergence and breakdown of collective functionalities](/202603/23/2603.15778v1-biomedical-active-matter-emergence-and-breakdown-of-collective-functionalities)  
-   标签：评分：6.0/10、query:q2
-   evidence：生命系统中的集体适应与演化
-9. [Agent-based imitation dynamics can yield efficiently compressed population-level vocabularies](/202603/23/2603.15903v1-agent-based-imitation-dynamics-can-yield-efficiently-compressed-population-level-vocabularies)  
-   标签：评分：6.0/10、query:q2
-   evidence：演化博弈论与群体动力学
-10. [Quantum Pattern Matching in Generalised Degenerate Strings](/202603/23/2603.16297v1-quantum-pattern-matching-in-generalised-degenerate-strings)  
-   标签：评分：6.0/10、query:pangen
-   evidence：基因组背景下的字符串匹配计算方法
-11. [A dynamic mechanism for prevalence of triangles in competitive networks](/202603/23/2603.17584v1-a-dynamic-mechanism-for-prevalence-of-triangles-in-competitive-networks)  
-   标签：评分：6.0/10、query:q5
-   evidence：具有竞争相互作用的Lotka-Volterra系统中物种的共存
-12. [Atomic Trajectory Modeling with State Space Models for Biomolecular Dynamics](/202603/23/2603.17633v1-atomic-trajectory-modeling-with-state-space-models-for-biomolecular-dynamics)  
+   evidence：利用AI进行生物分析和表型筛选
+11. [Protein Design with Agent Rosetta: A Case Study for Specialized Scientific Agents](/202603/24/2603.15952v1-protein-design-with-agent-rosetta-a-case-study-for-specialized-scientific-agents)  
    标签：评分：6.0/10、query:q7
-   evidence：利用AI进行生物分子动力学和轨迹建模
-13. [Myopic Best Response as a Double-Edged Mechanism in Networked Social Dilemmas with Individual Solutions](/202603/23/2603.18128v1-myopic-best-response-as-a-double-edged-mechanism-in-networked-social-dilemmas-with-individual-solutions)  
+   evidence：使用大语言模型智能体进行蛋白质设计和科学任务
+12. [Understanding Cell Fate Decisions with Temporal Attention](/202603/24/2603.16562v1-understanding-cell-fate-decisions-with-temporal-attention)  
+   标签：评分：6.0/10、query:q7
+   evidence：深度学习用于非遗传细胞命运预测
+13. [Mechanical cues for totipotency and the preneural state: embryo and cancer expanding the frontiers of developmental physics](/202603/24/2603.18293v1-mechanical-cues-for-totipotency-and-the-preneural-state-embryo-and-cancer-expanding-the-frontiers-of-developmental-physics)  
    标签：评分：6.0/10、query:q2
-   evidence：社会困境中的演化结果
+   evidence：从演化历史探讨动物神经系统出现的生物物理机制
 
 
 <div class="dpr-home-promo-card">
