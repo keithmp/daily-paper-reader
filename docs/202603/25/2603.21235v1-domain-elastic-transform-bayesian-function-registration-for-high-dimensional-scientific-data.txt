@@ -1,0 +1,1185 @@
+Title: Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data
+
+URL Source: https://arxiv.org/pdf/2603.21235v1
+
+Published Time: Tue, 24 Mar 2026 01:57:09 GMT
+
+Number of Pages: 13
+
+Markdown Content:
+JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 1
+
+# Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data 
+
+Osamu Hirose and Emanuele Rodol ` a
+
+✦
+
+Abstract —Nonrigid registration is conventionally divided into point set registration, which aligns sparse geometries, and image registration, which aligns continuous intensity fields on regular grids. However, this dichotomy creates a critical bottleneck for emerging scientific data, such as spatial transcriptomics, where high-dimensional vector-valued functions, e.g., gene expression, are defined on irregular, sparse mani-folds. Consequently, researchers currently face a forced choice: either sacrifice single-cell resolution via voxelization to utilize image-based tools, or ignore the critical functional signal to utilize geometric tools. To resolve this dilemma, we propose Domain Elastic Transform (DET), a grid-free probabilistic framework that unifies geometric and func-tional alignment. By treating data as functions on irregular domains, DET registers high-dimensional signals directly without binning. We formulate the problem within a rigorous Bayesian framework, modeling domain deformation as an elastic motion guided by a joint spatial-functional likelihood. The method is fully unsupervised and scalable, utilizing feature-sensitive downsampling to handle massive atlases. We demonstrate that DET achieves 92% topological preservation on MER-FISH data where state-of-the-art optimal transport methods struggle (<5%), and successfully registers whole-embryo Stereo-seq atlases across developmental stages—a task involving massive scale and complex nonrigid growth. The implementation of DET is available on https://github.com/ohirose/bcpd (since Mar, 2025). 
+
+Index Terms —Function registration, variational inference, unsuper-vised learning, Bayesian coherent point drift, spatial transcriptomics. 
+
+1 INTRODUCTION 
+
+# NONRIGID registration—the process of estimating atransformation that aligns two datasets into a common coordinate system—is a cornerstone of pattern analysis and computer vision. The breadth of this field is documented in extensive surveys covering shape correspondence [1], point cloud registration [2], local surface features [3], and large-scale terrestrial scanning [4]. While the applications are diverse, ranging from reconstructing dynamic 3D scenes to tracking tissue deformation, the fundamental objective remains the same: to establish semantic correspondence between distinct structures. 
+
+1.1 The Dichotomy of Registration Methods 
+
+Historically, this problem has been addressed through two distinct paradigms: point set registration and image registra-
+
+O. Hirose is with the Institute of Science and Engineering, Kanazawa University, Kakuma, Kanazawa, Ishikawa 920-1192, Japan. E. Rodol` a is with the Department of Computer Science, Sapienza University of Rome, Italy. Manuscript received XXX, XXX; revised XXX, XXX. 
+
+tion . The former methods, such as Coherent Point Drift (CPD) [5] and its Bayesian generalizations [6], [7], [8], excel at aligning geometric structures by treating data as sparse point clouds. The versatility of these probabilistic frame-works is evidenced by their success in disparate domains, from analyzing microscopic blood samples [9] and biolog-ical landmarking [10] to reconstructing human ear shapes [11] and assembling ancient wooden ships [12]. Despite their geometric robustness [13], [14], these methods rely solely on spatial coordinates, ignoring functional signals such as color, texture, or biological properties carried by the points. Conversely, image registration methods exploit these continuous intensity fields to drive alignment, often utiliz-ing diffeomorphic flows [15], [16], [17] or optical flow [18]. Yet, these methods fundamentally assume the data exist on a regular Euclidean grid, i.e., pixels or voxels. While 
+
+functional map frameworks [19] attempt to bridge this gap by aligning spectral signatures [20], they often operate in a reduced basis that obscures local spatial details [21] and typically require complex post-processing [22] or manifold meshes that are unavailable for raw scientific point clouds. 
+
+1.2 The Challenge of Emerging Scientific Data 
+
+The dichotomy between “geometry-only” and “grid-only” methods has become a critical bottleneck in modern science. Emerging technologies in spatial transcriptomics , e.g., Stereo-seq [23] and Slide-seq [24], now generate datasets that are neither simple shapes nor standard images. Instead, they represent high-dimensional vector-valued functions, i.e., gene expression, defined on irregular, sparse point sets. For instance, Multiplexed Error-Robust Fluorescence in situ Hybridization (MERFISH) data captures the expression of thousands of genes at cellular resolution [25]. Applying standard image registration to such data necessitates binning 
+
+or rasterization—aggregating discrete points into a regular grid. This process is inherently lossy: it destroys cellular resolution, introduces quantization artifacts, and obscures fine-grained anatomical boundaries [26]. On the other hand, applying standard point set registration fails because the geometry alone is often ambiguous; distinct biological tis-sues may share similar shapes, and correspondence can only be disambiguated by the high-dimensional functional signal [27], [28].  
+
+> arXiv:2603.21235v1 [stat.ML] 22 Mar 2026 JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 2
+
+1.3 The Training-Free Imperative 
+
+To address such complex tasks, the field has largely shifted toward deep learning. Geometric transformers [29], [30] and implicit neural representations [31], [32] have achieved state-of-the-art performance on benchmarks. How-ever, these paradigms are often structurally ill-suited for scientific discovery. Supervised methods like VoxelMorph [33] or PointNetLK [34] rely on massive annotated training sets. This dependency creates a “zero-shot gap” in domains like embryology or paleontology, where data is distinct, rare, or subject to privacy constraints, making the curation of training sets impossible. Furthermore, deep models suffer from domain shift; a network trained on human anatomy fails to generalize to a mouse embryo without extensive retraining [35], [36]. Consequently, there is an urgent de-mand for training-free algorithms capable of registering com-plex functions immediately, effectively bypassing the data-curation bottleneck required by deep learning. 
+
+1.4 Contributions 
+
+In this study, we propose Domain Elastic Transform (DET), a Bayesian algorithm that registers vector-valued functions directly on sparse point sets. We model domain deformation as an elastic motion and solve the inverse problem via variational inference. Unlike image registration methods that require lossy binning, DET utilizes both point locations and high-dimensional functional signals without binning, preserving cellular resolution. The main contributions of this paper are summarized as follows:  
+
+> •
+
+Grid-Free Bayesian Framework: We propose a prob-abilistic model that registers high-dimensional vector fields directly on point sets without grid structure, preserving high-frequency scientific information.  
+
+> •
+
+Training-Free & Unsupervised: Our method requires no training data. We demonstrate its capability to regis-ter complex biological forms in “ N = 1 ” regimes where annotated datasets are unavailable.  
+
+> •
+
+High-Dimensional Robustness: A dimensionality-based weighting method automatically balances spa-tial and functional likelihoods, preventing high-dimensional signals from overwhelming geometric in-formation via automatic relevance determination.  
+
+> •
+
+Scalability: The acceleration scheme [6], [7], [8] scales the proposed algorithm to millions of points on stan-dard hardware.  
+
+> •
+
+Feature-Sensitive Sampling: An adaptive downsam-pling strategy prioritizes regions with high functional variability, ensuring that critical anatomical boundaries and high-frequency signals are preserved. 
+
+2 METHODS 
+
+This section describes how we derive DET. 
+
+2.1 Problem Definition 
+
+We define function registration as the process of overlaying two functions by continuously deforming a function’s do-main, which can be a manifold, e.g., a shape surface. Given the following multivariate and vector-valued functions: 
+
+fX (·) : RD → RD′
+
+, fY (·) : RD → RD′
+
+,
+
+we seek a map T satisfying the following equations: 
+
+fX (x∗) = fY (y∗), x∗ = T (y∗),
+
+where x∗ and y∗ are corresponding points associated by the map T : RD → RD , which is typically nonlinear. Hereafter, we refer to fX (·) and fY (·) as target and source 
+
+functions, respectively. Fig. 1 illustrates the definition of function registration. 
+
+Fig. 1: Illustration of function registration with D = 2 
+
+and D′ = 1 . We find a map T and corresponding points 
+
+{(x∗, y ∗)} satisfying x∗ = T (y∗) and fX (x∗) = fY (y∗).
+
+2.2 Outline of Our Approach 
+
+We convert function registration into a constrained nonrigid point set registration; we use function values as constraints to address the limitations of purely geometric methods. 
+
+2.2.1 Discretized Function Registration 
+
+We discretize input functions to formulate function registra-tion as point set registration. Let us denote the discretized domains of fX and fY by {xn}Nn=1 and {ym}Mm=1 , respec-tively. Then, we find a map T and corresponding points 
+
+{(xn, y m)} that satisfy the following conditions: 
+
+fX (xn) ≈ fY (ym), xn ≈ T (ym).
+
+Here, we interpret xn ≈ T (ym) as point set registration and 
+
+fX (xn) ≈ fY (ym) as its constraint. Unlike the definition in Section 2.1, we replace the equalities with approximations. This is because there may be no pairs of points satisfying 
+
+xn = T (ym) or fX (xn) = fY (ym) due to the discretization or the inherent differences between functions. Crucially, this formulation differs fundamentally from applying standard point set registration to augmented vec-tors, i.e., y′ 
+
+> n
+
+= ( yTn , f Y (yn)T )T and x′ 
+
+> n
+
+= ( xTn , f X (xn)T )T .Such a naive approach would estimate a transformation in the joint space RD+D′
+
+, implicitly allowing the “warping” of the signal space itself, e.g., rotating gene expression profiles into spatial coordinates. In contrast, our approach rigorously decouples domain deformation from signal identity: we seek a transformation T that operates exclusively on the spatial domain RD , constrained by the matching of signals in RD′
+
+without deforming them. 
+
+2.2.2 Probabilistic Approach 
+
+We formulate function registration in a Bayesian setting. Suppose a set of unknown variables θ encodes the map T
+
+and corresponding points {(xn, y m)}. We estimate θ on the basis of the maximum a posteriori principle: 
+
+ˆθ = argmax θ p(θ|x, y, F x, F y ),JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 3
+
+TABLE 1: Notation Used for the Generative Model. 
+
+Symbol(s) Definition/Description 
+
+N, M Numbers of points in the discretized domains of fX and fY , respectively. 
+
+D, D ′ Dimensions corresponding to the function domain and codomain, i.e., fX : RD → RD′
+
+and fY : RD → RD′
+
+.
+
+IL, 1L The unit matrix of size L and the vector of all 1s of size L. The size L can be D, D′, M , or N .
+
+xn xn = ( xn1, · · · , x nD )T ∈ RD . The nth point in the discretized target domain {x1, · · · , x N }.
+
+ym ym = ( ym1, · · · , y mD )T ∈ RD . The mth point in the discretized source domain {y1, · · · , y M }.
+
+x x = ( xT 
+
+> 1
+
+, · · · , x TN )T ∈ RDN . Vector representation of a discretized target domain {x1, · · · , x N }.
+
+y y = ( yT 
+
+> 1
+
+, · · · , y TM )T ∈ RDM . Vector representation of a discretized source domain {y1, · · · , y M }.
+
+Fx Fx = ( fX (x1), · · · , f X (xN )) ∈ RD′×N . Matrix collecting the target function values. 
+
+Fy Fy = ( fY (y1), · · · , f Y (yM )) ∈ RD′×M . Matrix collecting the source function values. 
+
+v v = ( vT 
+
+> 1
+
+, · · · , v TM )T ∈ RDM . Nonlinear displacements discretizing vY (·), where vm ∈ RD is the displacement of ym.
+
+c c = ( c1, · · · , c N ) ∈ { 0, 1}N . Outlier indicators; cn = 0 specifies xn is an outlier, and cn = 1 specifies xn is a non-outlier. 
+
+e e = ( e1, · · · , e N ) ∈ { 1, · · · , M }N . Index variables; en = m indicates that xn corresponds to ym.
+
+α α = ( α1 · · · , α M ) ∈ [0 , 1] M . Mixing probabilities; αm is the probability of an event en = m, satisfying PMm=1 αm = 1 .
+
+ξ ξ = ( s, R, t ), which defines the similarity transformation T (z) = sRz + t for a vector z ∈ RD .
+
+σ2 Variance, interpreted as the strength of the positional constraint xn ≈ T (ym).
+
+Π Covariance matrix of size D′ × D′, which controls the strength of the function value constraint fX (xn) ≈ fY (ym).
+
+θ θ = ( v, α, c, e, ξ, σ 2, Π) . Random variables mediating the target function generation. 
+
+ϕ(z; μ, S ) Gaussian distribution of z with a mean μ and a covariance S, i.e., ϕ(z; μ, S ) = |2πS |−1/2 exp {− 12 (z − μ)T S−1(z − μ)}.
+
+where the observations (x, F x) and (y, F y ) are the func-tions discretizing fX and fY , defined in Table 1. Owing to the Bayesian setting, we can efficiently compute a sub-optimal θ using an inference technique called variational inference [37]. The next section defines the joint distribution 
+
+p(x, y, F x, F y , θ ), endowed with a maximizer identical to that of the posterior distribution p(θ|x, y, F x, F y ).
+
+2.3 Generative Model Definition 
+
+This section defines the distribution p(x, y, F x, F y , θ ), which can be interpreted as the generative model of (x, F x) given 
+
+(y, F y ). Table 1 defines the symbols used hereafter. 
+
+2.3.1 Target Function Generation 
+
+We assume a discretized source function (y, F y ) generates a discretized target function (x, F x) as follows: 
+
+Assumptions .1) A map T is generated by the prior distribution called a motion coherence prior. 2) A variable cn randomly specifies either 0 or 1, indicat-ing an outlier or a non-outlier, with the probability ω or 
+
+1 − ω, respectively. An outlier means a target domain point corresponding to no source domain point. 3) If cn = 0 , (xn, f X (xn)) is generated from an outlier distribution pout (·).4) If cn = 1 , a variable en ∈ { 1, · · · , M } randomly speci-fies m with a probability αm, satisfying PMm=1 αm = 1 .The variable en = m indicates xn corresponds to ym.5) The location xn is generated from a D-dimensional normal distribution ϕ(xn; T (ym), σ 2ID ).6) Also, fX (xn) is generated from a D′-dimensional nor-mal distribution ϕ(fX (xn); fY (ym), Π) .7) The discretized target function {(xn, f X (xn)) }Nn=1 is generated by repeating 2) to 6) N times. Fig. 2 explains the notation regarding corresponding points. Fig. 3 illustrates the generative model. Hereafter, we define the generative model on the basis of the assumptions. 
+
+Fig. 2: Notation: corresponding points and outliers . Red and blue points represent the discretized domains of source and target functions, respectively. The variable cn ∈ { 0, 1}
+
+indicates whether or not xn is a non-outlier. The variable 
+
+en ∈ { 1, · · · , M } specifies the source domain point that corresponds to xn. Target domain points x1, x2, and x3
+
+represent the point that corresponds to ym, a non-outlier that does not correspond to ym, and an outlier, respectively. 
+
+2.3.2 Domain Transformation Model 
+
+Let us begin with Assumption 1. We define the map T
+
+that combines a similarity transformation T and a nonlinear displacement field vY (·) : RD → RD as follows: 
+
+T (ym) = T (ym + vY (ym)) = sR (ym + vm) + t, 
+
+where s ∈ R is a scale factor, R ∈ RD×D is a rotation matrix, 
+
+t ∈ RD is a translation vector, and vm = vY (ym) ∈ RD is the displacement vector regarding ym. The transformation model allows for rigid and nonrigid function registration in a single algorithm. We assume ξ = ( s, R, t ) follows a Dirac delta function for simplicity. The next section defines the generative model of vY (·).
+
+2.3.3 Motion Coherence Prior 
+
+We assume a motion coherence prior [6], [7], [8] generates a displacement field vY (·), facilitating smooth domain defor-mation. It independently generates a component function 
+
+v(d) 
+
+> Y
+
+(z) : RD → R for d ∈ { 1, · · · , D } on the basis of the following distribution, called Gaussian process (GP) [40]: 
+
+v(d) 
+
+> Y
+
+(z) ∼ GP (0 , λ −1K(z, z ′)) ,JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 4
+
+Fig. 3: Illustration of the generative model . Function registration reverts this process. (a) Discretized source function. Point colors indicate function values. (b) Discretized source function deformed by motion coherence prior, i.e., a Gaussian process. (c) Discretized target function generated by a mixture model. where λ > 0 is the constant controlling the variance of v(d) 
+
+> Y
+
+,and K : RD × RD → R is a kernel function. This assumption implies a discretized displacement field v = ( vT 
+
+> 1
+
+, · · · , v TM )T
+
+with vm = vY (ym) follows the Gaussian distribution: 
+
+p(v|y) = ϕ(v; 0 , λ −1G ⊗ ID ),
+
+where G = ( K(ym, y m′ )) ∈ RM ×M is a symmetric ma-trix called the coherence matrix, and ⊗ is the Kronecker product. The motion coherence prior induces smoothness in the displacement field, i.e., displacement vectors be-come increasingly parallel with decreasing distance between points, as shown in Fig. 3b. When registering functions, the smoothness assumption effectively reduces the search space of v because rough displacement fields are less likely to be searched. From a statistical mechanics point of view, the coherence prior can be interpreted as an elastic force field, called the Gaussian network model [41], [42]. 
+
+2.4 Mixture Model 
+
+We define a core component of the generative model using a mixture model. First, we define the generative model of 
+
+(xn, f X (xn)) given (cn, e n) = (1 , m ). Under assumptions 5 and 6, we define it as follows: 
+
+ϕmn = ϕ(xn; T (ym), σ 2ID )ϕ(fX (xn); fY (ym), Π) ζ , (1) where we abbreviate the generative model to ϕmn , and 
+
+ζ > 0 is a parameter that balances spatial and functional information. The model generates xn and fX (xn) around 
+
+T (ym) and fY (ym) under the covariance matrices σ2ID and 
+
+Π, respectively. When registering functions, the first normal distribution evaluates the proximity between xn and T (ym),and the second evaluates the similarity between fX (xn) and 
+
+fY (ym), weighted by ζ. This parameter acts as a semantic coupling coefficient, determining how much the functional signal, e.g., gene expression, should drive the deformation of the physical domain. We set ζ so that the functional term scales appropriately with feature dimension and remains comparable to the spatial likelihood. Next, under Assumptions 2, 3, 4, 5, and 6, we define the generative model of (xn, e n, c n) as a nested mixture model: 
+
+p(xn, f X (xn), c n, e n|y, F y , v, α, ξ, σ 2, Π) = {ωp (n) 
+
+> out
+
+}1−cn
+
+(
+
+(1 − ω)
+
+> M
+
+Y
+
+> m=1
+
+(αmϕmn )δm(en)
+
+)cn
+
+,
+
+where p(n) 
+
+> out
+
+is the abbreviation of pout (xn, f X (xn)) , and 
+
+δm(en) is the indicator function, with a value of 1 if en = m
+
+and 0 otherwise. When registering functions, this model evaluates how likely xn is a non-outlier and how likely xn
+
+corresponds to ym for all m.
+
+2.4.1 Mixing Probabilities 
+
+We define the generative model of mixing probabilities α =(αm)Mm=1 , which randomly generates α with ΣMm=1 αm = 1 .We assume that α follows the Dirichlet distribution: 
+
+p(α) = Dir (α|κ1M ),
+
+where κ > 0 is the parameter controlling the variance of αm,and 1M is the vector of all 1s of size M . When performing function registration, this distribution helps avoid αm being degenerated and stabilizes the computation. We note αm
+
+becomes 1/M for all m without randomness if κ is infinity. 
+
+2.4.2 Full Joint Distribution 
+
+Under Assumption 7, we define the full joint distribution combining the component distributions as follows: 
+
+p(x, y, F x, F y , θ )
+
+∝ p(v|y)p(α)
+
+> N
+
+Y
+
+> n=1
+
+p(xn, f X (xn), c n, e n|y, F y , v, α, ξ, σ 2, Π) ,
+
+where θ = (v, α, c, e, ξ, σ 2, Π) is the set of unobserved variables mediating the generation of (x, F x). This model defines how the source function (y, F y ) generates the target function (x, F x) with the latent variables θ. Practically, we use it to solve the inverse problem, i.e., function registration; we estimate θ given (x, y, F x, F y ).
+
+2.4.3 Inference Issue 
+
+To perform function registration, we need a reasonable estimate of θ, e.g., the maximum mode of p(θ|x, y, F x, F y ).However, its exact computation is intractable for large M
+
+and N . A naive method involves the computation for all combinations of c and e, which amounts to (M + 1) N com-binations. We avoid this issue using variational inference, which we will review in the next section. 
+
+2.5 Variational Inference 
+
+Variational inference relaxes computational difficulties in Bayesian inference. This section reviews the variational in-ference framework. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 5
+
+2.5.1 Motivation 
+
+In Bayesian inference, a set of unobserved variables θ is estimated from a set of observations z. The estimate of θ
+
+is typically defined as the mode of a posterior distribution 
+
+p(θ|z) or the expectation of θ under p(θ|z). Computing the estimate is, however, often intractable. For example, the analytic form of the mode might be unavailable due to multimodality, or the computational cost of the expectation might be prohibitively large due to the discrete variables involved. 
+
+2.5.2 Outline 
+
+Variational inference approximates p(θ|z) with an alterna-tive distribution q(θ) whose mode or expectation is easily computable. Because q(θ) itself is generally unknown, the problem of estimating θ is replaced by finding the approx-imate distribution q(θ). Typically, variational inference is defined as the minimization of the Kullback–Leibler (KL) divergence between q(θ) and p(θ|z).
+
+2.5.3 Constraints 
+
+If no constraint is imposed on q(θ), computing the expecta-tion and the mode remains intractable. This is because the KL divergence is minimized when q(θ) = p(θ|z), returning us to the original intractable problem. Variational inference relaxes the computational difficulty by constraining q(θ) to be the product of its marginal distributions, i.e., 
+
+q(θ) = 
+
+> J
+
+Y
+
+> j=1
+
+qj (θj ),
+
+where θj is the jth group of θ = ( θ1, · · · , θ J ) and qj (θj )
+
+is the marginal distribution of q(θ) regarding θj . This fac-torization splits the original problem into subproblems and relaxes the computational difficulty. 
+
+2.5.4 Procedure 
+
+If we assume that only qi is unknown among the factorized distributions {qj }Jj=1 , the following substitution is known to decrease the KL divergence between q(θ) and p(θ|z):
+
+ˆqi(θi) ∝ exp( Ei[ln p(z, θ )]) , (2) where Ei[ln p(z, θ )] = R ln p(z, θ ) QJj(̸=i) qj (θj )dθ j . There-fore, an approximate ˆq(θ) can be obtained as follows: 1) Initialize qi for all i ∈ { 1, · · · , J }.2) Update qi with the other qj fixed for all i ∈ { 1, · · · , J }
+
+using Eq. (2). 3) Repeat step 2 until convergence. The approximate distribution q(θ) following this procedure is known to converge [37]. 
+
+2.6 Algorithm 
+
+We derive DET using variational inference. We suppose q(θ)
+
+approximates p(θ|x, y, F x, F y ) and q(θ) is the product of its marginal distributions as follows: 
+
+q(θ) = q1(v, α )q2(c, e )q3(ξ, σ 2, Π) .
+
+Furthermore, we assume q3(ξ, σ 2, Π) is a Dirac delta func-tion, having a point mass at (ξ∗, σ 2 
+
+> ∗
+
+, Π∗). For brevity, we do not differentiate random variables (ξ, σ 2, Π) and the point mass (ξ∗, σ 2 
+
+> ∗
+
+, Π∗) throughout this manuscript. 
+
+2.6.1 Notation 
+
+Here, we list the useful symbols for describing the closed-form expressions of ˆq1, ˆq2, and ˆq3 as follows:  
+
+> •
+
+G = ( K(ym, y m′ )) ∈ RM ×M – the matrix defining mo-tion coherence prior, where K(·, ·) is a kernel function.  
+
+> •
+
+P = ( pmn ) ∈ [0 , 1] M ×N – the matching probability matrix, where pmn = E[cnδm(en)] is the posterior probability of xn corresponding to ym. 
+
+> •
+
+ν = ( ν1, · · · , ν M )T ∈ RM with νm = PNn=1 pmn –the vector of non-negative values, where νm is the estimated number of target points matching ym. 
+
+> •
+
+ν′ = ( ν′
+
+> 1
+
+, · · · , ν ′ 
+
+> N
+
+)T ∈ [0 , 1] N with ν′ 
+
+> n
+
+= PMm=1 pmn 
+
+– the vector of probabilities, where ν′ 
+
+> n
+
+is the posterior probability of xn being a non-outlier.  
+
+> •
+
+ˆN = PNn=1 
+
+PMm=1 pmn ≤ N – the estimated number of matching points across {xn}Nn=1 and {ym}Mm=1 . 
+
+> •
+
+Tr (·), | · | , d(·) – the trace of a matrix, the determinant of a matrix, and the operation converting a vector into the corresponding diagonal matrix, respectively. We simplify the notation regarding the Kronecker prod-uct by attaching the tilde to a matrix or a vector as follows: 
+
+˜P = P ⊗ ID , ˜ν = ν ⊗ 1D , ˜ν′ = ν′ ⊗ 1D .
+
+As with the above notation, we denote the augmented form of the similarity transformation by ˜T , i.e., 
+
+˜T (y) = s(IM ⊗ R)y + (1 M ⊗ t).
+
+We summarize the closed-form expressions of ˆq1, ˆq2 and 
+
+ˆq3 indicating how DET updates q1, q2, and q3. Detailed derivations are given in Appendices A–C. 
+
+2.6.2 Local Alignment Update: q1(v, α )
+
+The update of q1(v, α ) improves local registration by chang-ing the domain deformation. Given q2(c, e ) and q3(ξ, σ 2, Π) ,we obtain the following closed-form expression of ˆq1(v, α ):
+
+Proposition 1. The approximate posterior distribution ˆq1(v, α )
+
+is factorized into its marginals, i.e., ˆq1(v, α ) = ˆ qα(α)ˆ qv (v).Furthermore, ˆqα(α) and ˆqv (v) are Dirichlet and Gaussian distributions respectively, which are derived as follows: 
+
+ˆqα(α) = Dir (α|κ1M + ν),
+
+ˆqv (v) = ϕ
+
+
+
+v; s2
+
+σ2 ˜Σd(˜ ν)( ˜T −1(ˆ x) − y), ˜Σ
+
+
+
+,
+
+where ˜T −1(ˆ x) with ˆx = d(˜ ν)−1 ˜P x ∈ RDM is the domain of 
+
+fX that is inversely aligned from x to y, and ˜Σ = Σ ⊗ ID ∈
+
+RDM ×DM with Σ = ( λG −1 + s2 
+
+> σ2
+
+d(ν)) −1 ∈ RM ×M is the posterior covariance matrix of a displacement field v.
+
+This proposition suggests the posterior mean of v is a kernel smoothing of residual vectors {T −1(ˆ xm) − ym}Mm=1 .For convenience, we define the vectors of size DM that can be decomposed into M vectors of size D as follows: 
+
+ˆx = (ˆ xT 
+
+> 1
+
+, · · · , ˆxTM )T = d(˜ ν)−1 ˜P x ,
+
+ˆv = (ˆ vT 
+
+> 1
+
+, · · · , ˆvTM )T = s2
+
+σ2 ˜Σd(˜ ν)( ˜T −1(ˆ x) − y),
+
+ˆu = (ˆ uT 
+
+> 1
+
+, · · · , ˆuTM )T = y + ˆ v,
+
+ˆy = (ˆ yT 
+
+> 1
+
+, · · · , ˆyTM )T = ˜T (y + ˆ v).JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 6
+
+Furthermore, the proposition suggests how DET updates 
+
+⟨αm⟩ = exp( E[ln αm]) and ⟨ϕmn ⟩ = exp( E[ln ϕmn ]) :
+
+⟨αm⟩ = exp ψ(κ + νm) − ψ(κM + ˆN ) ,
+
+⟨ϕmn ⟩ = bmϕ(xn; ˆ ym, σ 2ID )ϕ(fX (xn); fY (ym), Π) ζ ,
+
+where ψ(·) is the digamma function, bm is the value defined as exp {− s2 
+
+> 2σ2
+
+Tr (σ2
+
+> m
+
+ID )}, and σ2 
+
+> m
+
+is the mth diagonal ele-ment of Σ. These terms are required for updating q2(c, e ).See Appendices D and E for their derivations. 
+
+2.6.3 Correspondence Update: q2(c, e )
+
+The update of q2(c, e ) improves the matching probability matrix P = (pmn ). Given q1(v, α ) and q3(ξ, σ 2, Π) , we obtain the following closed-form expression of ˆq2(c, e ):
+
+Proposition 2. The approximated posterior distribution ˆq2(c, e )
+
+is the combination of a Bernoulli distribution and a categorical distribution, derived as follows: 
+
+ˆq2(c, e ) = 
+
+> N
+
+Y
+
+> n=1
+
+(1 − ν′
+
+> n
+
+)1−cn
+
+
+
+ν′
+
+> nM
+
+Y
+
+> m=1
+
+ pmn 
+
+ν′
+
+> n
+
+δm(en)cn
+
+,
+
+where pmn and ν′ 
+
+> n
+
+are defined as 
+
+pmn = (1 − ω) ⟨αm⟩ ⟨ ϕmn ⟩
+
+ωp (n) 
+
+> out
+
++ (1 − ω) PMm′=1 ⟨αm′ ⟩ ⟨ ϕm′n⟩ ,
+
+and ν′ 
+
+> n
+
+= PMm=1 pmn .
+
+This proposition suggests how DET updates P and other related terms such as ν, ν′, and ˆN . It also suggests that 
+
+ˆq2(c, e ) is factorized into QNn=1 ˆq(n)2 (cn, e n). Furthermore, the proposition provides the following observations, which are consistent with the description in Section 2.6.1:  
+
+> •
+
+The definition of pmn is consistent with the proposition because E[cnδm(en)] = q(n)2 (cn = 1 , e n = m) = pmn . 
+
+> •
+
+The posterior marginal distribution of cn is the Bernoulli distribution with the probability ν′
+
+> n
+
+, and thus, the posterior probability of xn being a non-outlier is ν′
+
+> n
+
+. 
+
+> •
+
+The number of target points matching with ym can be estimated as νm because E[PNn=1 cnδm(en)] = νm. 
+
+> •
+
+The number of matching points between the target and source point sets, x and y, can be estimated as ˆN
+
+because E[PNn=1 
+
+PMm=1 cnδm(en)] = ˆN .
+
+2.6.4 Global Alignment Update: q3(ξ, σ 2, Π) 
+
+The update of q3 improves the global registration defined by ξ = ( s, R, t ). As q3 is a Dirac delta function, we directly minimize the KL divergence given q1(v, α ) and q2(c, e )
+
+without using Eq. (2). Let us define the following notation: 
+
+(¯ xT , ¯uT , ¯σ2) = 1ˆN
+
+> M
+
+X
+
+> m=1
+
+νm(ˆ xTm, ˆuTm, σ 2
+
+> m
+
+),
+
+Sxu = 1ˆN
+
+> M
+
+X
+
+> m=1
+
+νm(ˆ xm − ¯x)(ˆ um − ¯u)T ,
+
+Suu = 1ˆN
+
+> M
+
+X
+
+> m=1
+
+νm(ˆ um − ¯u)(ˆ um − ¯u)T + ¯ σ2ID ,where ˆxm ∈ RD and ˆum ∈ RD are the mth subvectors of ˆx
+
+and ˆu, and σ2 
+
+> m
+
+is the mth diagonal element of Σ. With this notation, we obtain the following proposition: 
+
+Proposition 3. Suppose the approximated posterior distribution 
+
+q3(ξ, σ 2, Π) is a Dirac delta function. Given q1 and q2, the KL divergence is minimized by the following formulae: 
+
+ˆR = Φ d(1 , · · · , 1, |ΦΨ T |)Ψ T ,
+
+ˆs = Tr   ˆRT Sxu 
+
+ Tr  Suu 
+
+,
+
+ˆt = ¯ x − ˆs ˆR¯u,
+
+ˆσ2 = 1ˆN D 
+
+xT d(˜ ν′)x − 2ˆ yT ˜P x + ˆ yT d(˜ ν)ˆ y + ˆ s2 ¯σ2,
+
+ˆΠ = 1ˆN
+
+Fxd(ν′)F Tx − 2Fy P F Tx + Fy d(ν)F Ty ,
+
+where ˆy = ˜T (y + ˆ v) indicates the points constituting the transformed domain, and Φ and Ψ are the orthogonal matrices of size D × D obtained by the singular value decomposition of Sxu , i.e., Sxu = ΦΛΨ T with a diagonal matrix Λ.
+
+We note σ2 and Π indicate how loose the matching criterion is, and their update gradually shrinks a candidate set of target points that could match each source point [6]. 
+
+2.6.5 Initialization 
+
+Variational inference requires initializing q(θ), which cor-responds to initializing the expected random variables. We initialize them in a non-informative manner; we set ˆv = 0 ,
+
+⟨αm⟩ = 1 /M , s = 1 , R = ID , and t = 0 . In addition, we initialize σ2 and Π using a constant γ > 0 as follows: 
+
+σ2 = γ2
+
+N M D 
+
+> N
+
+X
+
+> n=1
+> M
+
+X
+
+> m=1
+
+|| xn − ym|| 2,
+
+Π = γ2
+
+N M 
+
+> N
+
+X
+
+> n=1
+> M
+
+X
+
+> m=1
+
+Q(fX (xn) − fY (ym)) ,
+
+where Q(·) is the function defined as Q(a) = aa T . The parameter γ controls the granularity of registration [8]. A small γ is suitable for fine registration and is typically used for hierarchical registration described in Section 3.7. 
+
+2.6.6 Summary and Comments 
+
+We summarize DET in Algorithm 1. Fig. 4 shows how the algorithm proceeds when applied to Gaussian functions. Supplementary Video 1 shows the corresponding complete registration trajectory. We note that DET performs rigid function registration under (λ, s ) = ( ∞, 1) or (v, s ) = (0 , 1) .We also note that BCPD is recovered as a degenerate special case, i.e., ζ = 0 , whereas, to the best of our knowledge, no CPD variant recovers DET. 
+
+3 IMPLEMENTATION 
+
+This section describes how we enhance DET’s performance to register high-dimensional scientific data, i.e., spatial tran-scriptomics data. 
+
+3.1 Acceleration 
+
+We accelerate DET using the same techniques applied to BCPD [6], [7], [8], as they share identical bottleneck compu-tations. Here, we outline the acceleration strategy, referring readers to the aforementioned articles for full details. There are two primary acceleration methods. The first method accelerates the algorithm’s internal computations, JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 7
+
+Fig. 4: Function registration using the DET algorithm . The target and source functions are shown in the leftmost figure and colored blue and red, respectively. Registration proceeds from left to right. 
+
+Algorithm 1 : Domain Elastic Transform Input : ω ∈ [0 , 1] , λ > 0, κ > 0, γ > 0, η > 0, K(·, ·)
+
+x = ( xT 
+
+> 1
+
+, · · · , x TN )T ∈ RDN 
+
+y = ( yT 
+
+> 1
+
+, · · · , y TM )T ∈ RDM 
+
+Fx = ( fX (x1), · · · , f X (xN )) ∈ RD′×N
+
+Fy = ( fY (y1), · · · , f Y (yM )) ∈ RD′×M
+
+Output : ˆy = ˜T (y + ˆ v) = s(IM ⊗ R)( y + ˆ v) + (1 M ⊗ t)
+
+Initialization :
+
+ˆy = y, ˆv = 0 , Σ = IM , s = 1 , R = ID , t = 0 
+
+G = ( K(ym, y m′ )) , ⟨αm⟩ = 1 
+
+> M
+
+, ζ = η DD′
+
+σ2 = γN M D 
+
+PNn=1 
+
+PMm=1 || xn − ym|| 2
+
+Π = γN M 
+
+PNn=1 
+
+PMm=1 Q(fX (xn) − fY (ym)) 
+
+Optimization : Repeat a), b), and c) until convergence. a) Update matching P = ( pmn ) and related terms. 
+
+bm = exp {− s2 
+
+> 2σ2
+
+Tr (σ2
+
+> m
+
+ID )}⟨ϕmn ⟩ = bmϕ(xn; ˆ ym, σ 2ID )ϕ(fX (xn); fY (ym), Π) ζ
+
+pmn = (1 −ω)⟨αm⟩⟨ ϕmn ⟩    
+
+> ωp out (xn,f X(xn))+(1 −ω)P
+> m′=1 ⟨αm′⟩⟨ ϕm′n⟩
+
+ν = P 1N , ν′ = P T 1M , ˆN = νT 1M , ˆx = d(˜ ν)−1 ˜P x 
+
+b) Update local alignment ˆv and related terms. 
+
+Σ−1 = λG −1 + s2 
+
+> σ2
+
+d(ν), ˆv = s2 
+
+> σ2
+
+˜Σd(˜ ν)  ˜T −1(ˆ x) − y
+
+ˆu = y + ˆ v, ⟨αm⟩ = exp ψ(κ + νm) − ψ κM + ˆN 
+
+c) Update global alignment (s, R, t ) and related terms. 
+
+(¯ xT , ¯uT , ¯σ2)T = 1ˆN
+
+PMm=1 νm(ˆ xTm, ˆuTm, σ 2
+
+> m
+
+)T
+
+Sxu = 1ˆN
+
+PMm=1 νm(ˆ xm − ¯x)(ˆ um − ¯u)T
+
+Suu = 1ˆN
+
+PMm=1 νm(ˆ um − ¯u)(ˆ um − ¯u)T + ¯ σ2ID
+
+ΦΛΨ T = svd (Sxu ), R = Φ d(1 , · · · , 1, |ΦΨ |)Ψ T
+
+s = Tr (RT Sxu )/Tr (Suu ), t = ¯ x − sR ¯u, ˆy = ˜T (y + ˆ v)
+
+σ2 = 1ˆN D 
+
+xT d(˜ ν′)x − 2ˆ yT ˜P x + ˆ yT d(˜ ν)ˆ y + s2 ¯σ2
+
+Π = 1ˆN
+
+Fxd(ν′)F Tx − 2Fy P F Tx + Fy d(ν)F Ty                                       
+
+> A tilde symbol represents the Kronecker product following the rules:
+> ˜A=A⊗IDand ˜a=a⊗1D, where Ais a matrix and ais a vector. The symbols ϕand ψrepresent Gaussian and digamma functions. The
+> mth subvectors of ˆxand ˆuare represented as ˆxmand ˆum, respectively. The mth diagonal element of Σis denoted by σ2
+> m.Q(a)denotes a function representing Q(a) = aa T, and ‘svd’ denotes singular value decomposition. | · | and Tr (·)are the determinant and trace of a matrix, and d (·)is the operation converting a vector into its diagonal matrix.
+
+specifically the updates involving the matching probability matrix P ∈ RM ×N and the coherence matrix G ∈ RM ×M .We employ the Nystr ¨ om method [38] and k-D tree search [39] to approximate these matrices [6]. The Nystr ¨ om method provides a low-rank approximation, governed by the rank constraint parameters J and K for P and G, respectively. After the early optimization stage, we switch from the Nystr ¨ om method to k-D tree search for updating P . This accelerates computation by pruning low-probability corre-spondences, providing a significantly more accurate ap-proximation than the Nystr ¨ om method when P becomes sparse. The computational and storage costs reduce to 
+
+O(( M + N ) log( M + N )) and O(M + N ), respectively. The second method accelerates the registration work-flow via pre-processing and post-processing [7], [8]. This approach divides function registration into three steps: 1) Downsampling the discretized functions. 2) Registering the downsampled discretized functions. 3) Interpolating the domain displacement vectors to the original resolution. We note that the downsampling procedure requires the pa-rameters M ′ and N ′, corresponding to the number of source and target domain points after downsampling, respectively. The computational and storage costs of this method are both O(M + N ). Thanks to these techniques, DET scales efficiently even when M and N reach several millions. 
+
+3.2 Feature-Sensitive Sampling 
+
+While the acceleration methods [7], [8] enable scalabil-ity to millions of points, standard uniform downsampling risks under-representing critical regions. In biological reg-istration, functional discontinuities characterized by sharp changes in gene expression typically correspond to physical organ boundaries or tissue interfaces. Geometry also plays a vital role; distinct anatomical features, such as ventricular spaces or outer boundaries, must be preserved even if the surrounding tissue is functionally homogeneous. To ensure the downsampling captures both functional and geometric boundaries, we introduce Variance-Guided Importance Sampling (VGIS). We partition the spatial do-main into non-overlapping voxels and compute a sampling probability p(zi) for a point zi that maximizes over func-tional variability and geometric discontinuity: 
+
+p(zi) ∝ max ( σf (zi), λ g σg (zi)) + ϵ, 
+
+where ϵ > 0 is a base constant ensuring non-zero sampling density in homogeneous regions, and λg > 0 is a parameter that balances the two signals. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 8
+
+The term σf (zi) captures the local functional variability, defined as the maximum standard deviation of feature values within the voxel containing zi:
+
+σf (zi) = max 
+
+> d
+
+n
+
+Var 1/2
+
+> j∈voxel (zi)
+
+[f (d)(zj )] 
+
+o
+
+.
+
+By selecting the maximum standard deviation across feature dimensions d, this metric ensures that sampling density in-creases in regions where any single functional signal changes rapidly, e.g., a sharp transition in a specific gene expression marker, rather than being diluted by non-informative ones. The term σg (zi) captures spatial boundaries, defined as the fraction of empty face-adjacent neighbors of the voxel containing zi. To prevent the sampling of isolated outliers, we strictly set σg (zi) = 0 if all neighbors are empty. This term becomes non-zero only at the physical edges of the manifold or boundaries of internal holes, where the neigh-borhood occupancy is incomplete. 
+
+3.3 Coherence Matrix 
+
+We use the surface coherence matrix [8] as an example of G.The matrix is designed to combine the Gaussian kernel and the geodesic exponential kernel, allowing for more flexible domain deformation than the Gaussian kernel. The surface coherence matrix G = ( K(ym, y m′ )) is defined as follows: 
+
+K(ym, y m′ ) = τ ϕ β (D(geo)  
+
+> mm ′
+
+) + (1 − τ )ϕβ (D(euc)  
+
+> mm ′
+
+),
+
+where τ ∈ [0 , 1] is the mixing rate, ϕβ (c) = exp( −c2/2β2)
+
+is a Gaussian function with the width parameter β > 0, and 
+
+D(geo)  
+
+> mm ′
+
+and D(euc)  
+
+> mm ′
+
+are the geodesic and Euclidean distances between ym and ym′ , respectively. We compute D(geo) on a k-nearest neighbor graph con-structed in an augmented coordinate system that combines spatial locations and weighted functional features. This construction helps topologically separate closely-located boundaries, e.g., organ interfaces. Since the geodesic kernel is generally indefinite, we ensure the validity of the Gaus-sian process prior by applying the fast positive-semidefinite approximation [8]. This effectively projects the boundary-aware kernel onto a valid covariance space, ensuring stable deformation even across topological cuts. 
+
+3.4 Automatic Relevance Determination 
+
+We restrict the functional noise covariance Π to a diagonal form to ensure robustness in high-dimensional settings. This restriction effectively implements unsupervised feature selection via automatic relevance determination [37]. The result-ing update rule for the variance of the d-th dimension is: 
+
+π2 
+
+> d
+
+= 1ˆN
+
+> N
+
+X
+
+> n=1
+> M
+
+X
+
+> m=1
+
+pmn 
+
+
+
+f (d) 
+
+> X
+
+(xn) − f (d) 
+
+> Y
+
+(ym)
+
+2
+
+.
+
+Here, the model learns to assign lower noise variance to informative features, while effectively “switching off” irrel-evant dimensions by assigning them high noise variance π2
+
+> d
+
+.This computation leverages the same low-rank acceleration methods described in Section 3.1. 
+
+3.5 Adaptive Outlier Distribution 
+
+A robust outlier model must adapt to feature dimensionality while maintaining consistency with the weighted likelihood function. While uniform priors suffice for low-dimensional tasks [5], [6], they fail in high-dimensional biological spaces due to the curse of dimensionality. To resolve this, we employ an adaptive outlier distribution that incorporates the functional weight ζ to balance the energy scales: 
+
+pout (z, z ′) = 
+
+ 
+
+> 1
+> VX
+
+·
+
+ 1
+
+> VfX
+
+ζ
+
+if D′ ≤ 10 , 
+
+> 1
+> VX
+
+· (ϕfX (z′)) ζ otherwise, where VX and VfX are the spatial and functional volumes of the bounding box, and ϕfX denote the Gaussian densities parameterized by the target’s marginal statistics. Essential to this design, applying the power ζ to the functional components ensures that the outlier probability decays at the same rate as the non-outlier matching probability (Eq. 1), preventing the high-dimensional functional term from dominating the outlier decision boundary. 
+
+3.6 Likelihood Balancing 
+
+To ensure robustness across varying feature dimensions, we decompose the weighting parameter ζ into a confidence coefficient and a normalization factor: 
+
+ζ = η(D/D ′).
+
+The ratio D/D ′ automatically normalizes the accumulated energy scales, preventing high-dimensional functional sig-nals from overwhelming geometric information. The param-eter η > 0 represents the relative confidence in the functional signal. We set η = 1.0 as the default, assuming equal reliability between geometry and function. 
+
+3.7 Functional Annealing 
+
+We extend DET to hierarchical registration [8]. DET requires pre-defined parameters Θ, listed in Table 2. Because these parameters remain fixed until convergence, DET may fail to register functions with large differences under weak coherence or those with subtle differences under strong coherence. To mitigate such issues, we register functions in a coarse-to-fine manner, i.e., repeating DET by gradually reducing motion coherence and adjusting functional confi-dence. We define hierarchical registration as follows: 
+
+ˆy(0) = y, ˆy(l) = S(x, ˆy(l−1) , F x, F y , Θ(l)),
+
+where l > 0 is the level of the hierarchy, and S represents the DET algorithm that returns a deformed domain ˆy(l).Strategically, we design the sequence {Θ(l)}Ll=1 to anneal both the spatial rigidity and the functional weight. In the early stages, we set a large kernel width β and a higher functional confidence η. This allows the algorithm to utilize global functional signals to resolve large-scale ambiguities, such as incorrect rotation or initial misalignment. In later stages, we reduce β to capture fine details and decrease 
+
+η. This functional annealing strategy shifts the optimization priority toward spatial fidelity in the final steps, ensuring that the registered points adhere precisely to the geometric surface of the target manifold, rather than drifting to match noisy functional signals. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 9
+
+TABLE 2: List of Tuning Parameters                                              
+
+> Recommended Description
+> λ[1 ,5000] Stiffness of domain deformation; √λ−1Dequals the expected length of deformation vectors.
+> ω[0 .0,0.9] Outlier probability. The larger, the more robust against outliers (although less sensitive to the target points).
+> γ[0 .1,3.0] How much the initial alignment is considered. The smaller, the more considered.
+> τ[0 .0,1.0] Mixing rate between two types of motion coherence that originate from the Euclidean and geodesic distances.
+> β[0 .1,2.5] Smoothness parameter of the domain displacement field (the width of ϕβ). The larger, the smoother.
+> η[0 .5,2.0] Relative confidence in functional fidelity vs. spatial proximity (Default: 1.0).
+> J[300 ,600] The number of points for approximating matching probabilities P. The smaller, the faster (but less accurate).
+> K[70 ,300] The number of points for approximating the coherence matrix G. The smaller, the faster (but less accurate).
+> M′[2000 ,50000] The number of source points after downsampling. The smaller, the faster (but less accurate).
+> N′[2000 ,50000] The number of target points after downsampling. The smaller, the faster (but less accurate).
+> The first five parameters must be predefined. The last four parameters are acceleration parameters, and the DET algorithm runs without them. Exceptionally, nonzero τrequires to pre-define Kto avoid the indefiniteness of G.
+
+3.8 Normalization 
+
+We normalize input functions before registration to facili-tate parameter setting and ensure the validity of the fixed weighting parameter ζ = η(D/D ′). For arbitrary matrices 
+
+A and B with the same row size, let us define the normal-ization operator NB (A) as: 
+
+NB (A) := ( A − μB 1T )/σ B ,
+
+where μB is the vector containing the mean of each row in 
+
+B, and σB is the standard deviation of all elements in B.Using a scalar variance preserves the geometric aspect ratio of the domain. For domain points, we use a context-aware scheme: 
+
+X′ = NX (X), Y ′ =
+
+(
+
+NX (Y ) if pre-aligned, 
+
+NY (Y ) otherwise, where X = ( x1, · · · , x N ) and Y = ( y1, · · · , y M ) are the matrix notation of the domain points x and y. This centers both point sets to the origin for the initial registration to remove translation offsets while preserving their relative positions during hierarchical refinement. Conversely, for the functional values, e.g., gene expres-sion, we apply independent feature-wise standardization to mitigate batch effects and intensity scaling differences between datasets. This guarantees that every functional dimension independently achieves a zero mean and unit variance. Consequently, the signals share the exact same statistical distribution, allowing the weight ζ to correctly and equally balance the energies across all high-dimensional features from the very first optimization step. 
+
+3.9 Tuning Parameters 
+
+Table 2 summarizes the algorithm’s parameters. We omitted 
+
+κ from the table because the best setting is typically κ = ∞,which enforces αm = 1 /M for all m. In this case, DET skips computing ⟨αm⟩.
+
+4 EXPERIMENTS 
+
+This section evaluates the performance of DET. Section 4.1 demonstrates spatiotemporal registration on Stereo-seq atlases. Section 4.2 presents a comparative study using MERFISH data. The parameters used for these experiments is shown in Table 3. Appendix F demonstrates DET’s versa-tility in handling audio signals, images, and shapes. TABLE 3: Parameter Setting                                           
+
+> Sec. λωγβτηJKM′N′
+> 4.1 10.1 0.1 10.1 1300 100 50k 50k 4.2 (1) -0.1 1--2300 100 500 500 4.2 (2) 10 0.1 0.1 101300 100 5k 5k
+> Hyphen (-) represents that the corresponding parameter was unnecessary. The numbers (1) and (2) in the first column indicate functional annealing stages.
+
+4.1 Spatiotemporal Alignment (Stereo-seq) 
+
+To demonstrate the scalability of DET to atlas-level data and its ability to handle complex developmental deforma-tions, we applied the algorithm to mouse embryo Stereo-seq data (MOSTA) [23]. Unlike the MERFISH experiments, which aligned adjacent slices, detailed in Section 4.2, here we challenged the algorithm to register inter-stage datasets: aligning an E14.5 embryo to an E15.5 embryo. 
+
+Challenge: The primary difficulty in this task stems from the significant biological growth and morphological change occurring over the 24-hour developmental period. Unlike the serial slice registration in Section 4.2 where anatomy is largely conserved, this inter-stage alignment requires a highly elastic transformation to map the E14.5 geometry onto the more developed E15.5 structure. 
+
+Dataset: We used the E14.5 sagittal section as the source point set and the E15.5 section as the target, composed of 102,519 and 113,350 points, respectively. To utilize the functional signal, we employed the leading five principal components of the gene expression matrices as FY and FX .
+
+Results: Figure 5 visualizes the registration process, where points are colored by their semantic spatial domains, i.e., tissue types. Panels (a) and (b) show the raw E14.5 and E15.5 datasets, respectively. The initial overlay in panel (d) highlights the significant mismatch in size and posture due to embryonic growth. As shown in panels (c) and (e), DET successfully deformed the E14.5 source to match the E15.5 target. Notably, the algorithm preserved the distinct boundaries of complex internal organs, such as the devel-oping brain and liver, rather than simply collapsing the geometry. This confirms that DET’s motion coherence prior effectively models the non-rigid expansion associated with development, scaling efficiently to more than a hundred thousand points without grid-based approximations. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 10 
+
+Fig. 5: Spatiotemporal registration of Mouse Embryo Stereo-seq data (E14.5 → E15.5). (a) The source point cloud (E14.5). (b) The target point cloud (E15.5). (c) The warped source shape after DET registration. (d) Overlay of the source and target before registration, highlighting the scale and shape discrepancy caused by developmental growth. (e) Overlay after registration. Colors represent spatial domain annotations (tissue types). 
+
+Fig. 6: DET vs. SOTA methods using MERFISH data with large rotation . (a) Input data. (b) First alignment with similarity transformation. (c) Second alignment with nonrigid transformation. (d) Second alignment, colored by the first principal component (PC1) of gene expression. (e-g) The results of state-of-the-art methods. (h) The target ground truth, colored by PC1, serves as the reference for functional alignment quality. 
+
+4.2 Slice-to-Slice Alignment (MERFISH) 
+
+To demonstrate our method’s utility in analyzing high-throughput spatial transcriptomics data, we evaluated DET on the Mouse Brain MERFISH dataset provided by the Zhuang Lab [25]. This dataset captures the spatial distri-bution of hundreds of genes at single-cell resolution, pre-senting significant challenges due to high sparsity, gene ex-pression noise, and complex nonrigid tissue deformations. 
+
+4.2.1 Experimental Setup 
+
+Dataset and Preprocessing: We selected a contiguous sequence of 11 coronal slices from the anterior brain region, slices Zhuang-ABCA-1.004 through 1.014. From these, we constructed 10 experimental pairs of adjacent slices, i.e., Slice i → Slice i + 1 . For each slice, the spatial coordinates 
+
+Y ∈ R2×N and the feature matrix F ∈ RD′×N represent cell centroids and the log-normalized expression counts of 
+
+D′ = 1 , 122 genes, respectively. 
+
+Robustness Protocol: Standard pairwise registration of-ten assumes pre-aligned or roughly overlapping samples. To rigorously test the robustness of DET against the “global registration problem”—a common failure case in automated histology pipelines—we applied a randomized rigid trans-formation to the source slice in every pair. Specifically, the source slice was rotated by an angle θ ∼ U (0 , 2π) and trans-lated by t ∈ [−3, 3] 2 units. Fig. 6a shows example slices. This setup forces the algorithm to resolve the global pose estimation before performing local nonrigid refinement. 
+
+Baselines: We compared DET against representative methods covering different registration paradigms:  
+
+> •
+
+BCPD (Similarity + Nonrigid): A state-of-the-art point set registration method [6], [7]. We utilized β = 2 .0, λ =3.0 to provide a direct comparison with DET’s elastic capabilities.  
+
+> •
+
+PASTE (Optimal Transport): A leading method de-signed for aligning spatial transcriptomics slices [26]. It utilizes both spatial distance and gene expression simi-larity but does not enforce diffeomorphic continuity.  
+
+> •
+
+ANTs (Image Registration): We also attempted regis-tration using the SyNRA pipeline from the Advanced Normalization Tools (ANTs) [43] by rasterizing the point clouds into intensity images. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 11 
+
+TABLE 4: Quantitative comparison on MERFISH mouse brain slices (10 pairs). Standard deviations indicate robust-ness across randomized initial rotations.                                    
+
+> Method Jaccard Index Topology Score Smoothed PCC
+> (Geometry) ↑(Integrity) ↑(Function) ↑
+> BCPD 0.69 ±0.36 0.91 ±0.05 0.70 ±0.14
+> PASTE 0.64 ±0.01 0.02 ±0.01 0.85 ±0.02
+> DET 0.88 ±0.04 0.92 ±0.03 0.77 ±0.12
+> Note: ANTs was excluded from quantitative analysis because it mostly fails to output the results on the images converted from the sparse point cloud data.
+
+Implementation Details: For DET, we employed a hier-archical strategy. Stage 1 performed the global registration with M ′ = N ′ = 500 to recover the global pose. Stage 2 per-formed the nonrigid registration with increased landmark density, M ′ = N ′ = 5 , 000 , to capture fine-grained defor-mations. BCPD was run with standard nonrigid parameters consistent with the baselines. For PASTE, we used α = 0 .1
+
+that balances spatial distance and gene expressions. 
+
+4.2.2 Evaluation Metrics 
+
+We adopted three metrics to assess geometric accuracy, structural preservation, and biological alignment: 1) Jaccard Index (Geometric Stability): Measures the overlap between the registered source and target point clouds. A low Jaccard score indicates a failure to con-verge to the correct global pose. 2) Topology Score (Structural Integrity): Quantifies the preservation of local neighborhood structures. It mea-sures local structural consistency by averaging the pro-portion of each point’s 10 (spatial) nearest neighbors that remain neighbors after the deformation. A score near 1.0 implies the tissue sheet remained intact. 3) Smoothed PCC (Functional Accuracy): To evaluate bio-logical correctness while mitigating single-cell technical noise, we calculated the Pearson Correlation Coefficient (PCC) between the registered source gene expression and the spatially smoothed target expression ( k = 15 
+
+neighbors). 
+
+4.2.3 Results and Discussion 
+
+The qualitative comparison is shown in Fig. 6. The quan-titative results across the 10 slice pairs are summarized in Table 4. 
+
+Robustness to Initialization: A critical finding is the stability gap between DET and the standard nonrigid BCPD. Although both methods model elastic deformations, BCPD achieved a significantly lower mean Jaccard Index ( 0.69 )with a high standard deviation ( ±0.36 ). This variance re-flects BCPD’s frequent failure to recover large initial ro-tations, often converging to local minima; BCPD with the similarity transformation also failed to recover the initial ro-tation, shown in Figure 6e. Similarly, image-based methods like ANTs (Figure 6f) struggled to handle the sparse rep-resentation, failing to recover the rotation and translation. In contrast, DET achieved a consistently high Jaccard score (0.88 ± 0.04 ), demonstrating that our hierarchical approach effectively decouples global pose estimation from local re-finement. Since DET builds upon BCPD’s motion coherence prior, the comparison between DET and BCPD effectively 
+
+Fig. 7: Scalability of DET with respect to dataset size. 
+
+The plot shows the average execution time versus the to-tal number of cells M = N for different sampling sizes 
+
+M ′ = N ′. The error bars represent the standard deviation over 10 independent trials. We used M1 MacBook Air (2020) to measure runtimes. serves as an ablation study. The performance gap (Jaccard 0.88 vs 0.69) isolates the contribution of the functional similarity. This robustness in the high-dimensional regime is directly attributable to the likelihood balancing and ARD, which prevented the dense 1,122-dimensional gene expres-sion signal from overwhelming the spatial constraints. 
+
+The Accuracy-Integrity Trade-off: Comparing DET with PASTE reveals a fundamental trade-off. PASTE achieved the highest functional correlation (PCC = 0 .85 ) by effectively treating cells as independent points, leading to a near-total loss of tissue structure (Topology Score = 0 .02 , Figure 6g). Conversely, DET maintained high structural integrity (Score 
+
+= 0.92 ), comparable to the cohesive motion of BCPD, while recovering the majority of the functional signal (PCC 
+
+= 0 .77 ). This result places DET on the optimal Pareto fron-tier, offering a biologically plausible alignment that respects anatomical continuity. 
+
+Scalability to Large Datasets: To verify the computa-tional efficiency of DET on massive datasets, we evaluated its execution time using varying number of cells and land-mark sizes. To account for variance in convergence speed, we performed 10 independent trials for each configuration. Gene expression features were compressed to 10 principal components to isolate geometric scalability. As shown in Figure 7, DET exhibits sublinear complexity with respect to the total number of cells, M = N . In fact, the runtime is governed primarily by the sampling size 
+
+M ′ = N ′ rather than the total dataset size M = N . For instance, with M ′ = 5, 000 , the algorithm converges in approximately 2–5 seconds, while M ′ = 20 , 000 requires at most 80 seconds. This efficiency arises because the core optimization complexity is bounded by the landmark set (O(M ′ + N ′)), while the cost of interpolating the deforma-tion to the full cell population ( O(M + N )) remains negligi-ble because this step contains no optimization iteration. This confirms that DET is highly scalable to atlas-level datasets, allowing users to explicitly trade off fine-grained accuracy for speed by adjusting M ′ and N ′.JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 12 
+
+5 CONCLUSION 
+
+Non-rigid registration is a fundamental problem in pattern analysis, essential for organizing and interpreting complex data across domains. Historically, the field has been bi-furcated into point set registration, which handles sparse geometry but ignores functional signals, and image regis-tration, which leverages intensity fields but requires regular grids. This dichotomy has become a critical limitation for emerging scientific data, particularly in spatial transcrip-tomics, where high-dimensional vector-valued functions are defined on sparse, irregular manifolds. In this study, we proposed DET to bridge this gap. By formulating the problem as function registration within a rigorous Bayesian framework, we derived a unified algo-rithm that registers arbitrary signals directly on their native domains. Crucially, the “grid-free” formulation preserves the high-frequency details of scientific data that are other-wise lost during the binning processes required by standard image registration. Our experiments demonstrated the efficacy of DET in a critical regime. On high-dimensional biological data, DET successfully registered spatial transcriptomic data across slices (MERFISH) and across developmental stages (MOSTA)—the tasks where geometric and image-based methods struggle due to shape ambiguity and resolution loss, respectively. We believe that DET offers a foundational tool for scien-tific discovery in low-data regimes. By providing accurate, resolution-preserving registration without the need for man-ual annotation or pre-training, it opens new avenues for an-alyzing the complex, multimodal data structures that define modern computational biology and pattern recognition. 
+
+REFERENCES 
+
+[1] Y. Sahillio ˘ glu, “Recent advances in shape correspondence,” The Visual Computer , vol. 36, no. 8, pp. 1705–1721, 2020. [2] G. K. L. Tam, et. al., “Registration of 3D point clouds and meshes: A survey from rigid to nonrigid,” IEEE Trans. Vis. Comput. Graph. ,vol. 19, no. 7, pp. 1199–1217, 2013. [3] Y. Guo, M. Bennamoun, F. Sohel, M. Lu, and J. Wan, “3D object recognition in cluttered scenes with local surface features: A survey,” IEEE Trans. Pattern Anal. Mach. Intell. , vol. 36, no. 11, pp. 2270–2287, 2014. [4] Z. Dong, et. al., “Registration of large-scale terrestrial laser scanner point clouds: A review and benchmark,” ISPRS J. Photogramm. Remote Sens. , vol. 163, pp. 327–342, 2020. [5] A. Myronenko and X. Song, “Point set registration: Coherent point drift,” IEEE Trans. Pattern Anal. Mach. Intell. , vol. 32, no. 12, pp. 2262–2275, 2010. [6] O. Hirose, “A Bayesian formulation of coherent point drift,” IEEE Trans. Pattern Anal. Mach. Intell. , vol. 43, no. 7, pp. 2269–2286, 2021. [7] O. Hirose, “Acceleration of non-rigid point set registration with downsampling and Gaussian process regression,” IEEE Trans. Pattern Anal. Mach. Intell. , vol. 43, no. 8, pp. 2858–2865, 2021. [8] O. Hirose, “Geodesic-based Bayesian coherent point drift,” IEEE Trans. Pattern Anal. Mach. Intell. , vol. 45, no. 5, pp. 5816–5832, 2023. [9] B. Su, S. Yu, X. Li, Y. Gong, H. Li, Z. Ren, Y. Xia, H. Wang, Y. Zhang, W. Yao, J. Wang, and J. Tang, “Autonomous robot for removing superficial traumatic blood,” IEEE J. Transl. Eng. Health Med. , vol. 9, pp. 1–9, 2021. [10] A. Porto, S. Rolfe, and A. M. Maga, “ALPACA: A fast and accurate computer vision approach for automated landmarking of three-dimensional biological structures,” Methods in Ecology and Evolution , vol. 12, no. 11, pp. 2129–2144, 2021. [11] F. Valdeira, R. Ferreira, A. Micheletti, and C. Soares, “From noisy point clouds to complete ear shapes: Unsupervised pipeline,” 
+
+IEEE Access , vol. 9, pp. 127 720–127 734, 2021. [12] T. Nemoto, T. Kobayashi, M. Kagesawa, T. Oishi, H. Kurokochi, S. Yoshimura, E. Zidan, and M. Taha, “Virtual restoration of ancient wooden ships through non-rigid 3D shape assembly with ruled-surface FFD,” Int. J. Comput. Vis. , vol. 131, no. 5, pp. 1269– 1283, 2023. [13] Z. Min, H. Liu, J. Liu, and M. Q.-H. Meng, “Generalized coherent point drift with multi-variate Gaussian distribution and Watson distribution,” IEEE Robot. Autom. Lett. , vol. 6, no. 4, pp. 6749–6756, 2021. [14] A. Zhang, Z. Min, Z. Zhang, and M. Q.-H. Meng, “Generalized point set registration with fuzzy correspondences based on varia-tional Bayesian inference,” IEEE Trans. Fuzzy Syst. , vol. 30, no. 6, pp. 1529–1540, 2022. [15] T. Vercauteren, X. Pennec, A. Perchant, and N. Ayache, “Diffeo-morphic demons: Efficient non-parametric image registration,” 
+
+NeuroImage , vol. 45, no. 1, pp. S61–S70, 2009. [16] J. Ashburner, “A fast diffeomorphic image registration algorithm,” 
+
+NeuroImage , vol. 38, no. 1, pp. 95–113, 2007. [17] M. F. Beg, M. I. Miller, A. Trouv´ e, and L. Younes, “Computing large deformation metric mappings via geodesic flows of diffeo-morphisms,” Int. J. Comput. Vis. , vol. 61, no. 2, pp. 139–157, 2005. [18] B. K. P. Horn and B. G. Schunck, “Determining optical flow,” 
+
+Artificial Intelligence , vol. 17, no. 1-3, pp. 185–203, 1981. [19] M. Ovsjanikov, M. Ben-Chen, J. Solomon, A. Butscher, and L. Guibas, “Functional maps: a flexible representation of maps between shapes,” ACM Trans. Graph. , vol. 31, no. 4, pp. 1–11, 2012. [20] J. Sun, M. Ovsjanikov, and L. Guibas, “A concise and provably in-formative multi-scale signature based on heat diffusion,” Comput. Graph. Forum , vol. 28, no. 5, pp. 1383–1392, 2009. [21] M. Vestner, R. Litman, E. Rodol` a, A. Bronstein, and D. Cremers, “Efficient deformable shape correspondence via kernel matching,” in Proc. 3D Vision Conf. (3DV) , 2017, pp. 517–526. [22] E. Rodol` a, L. Cosmo, M. M. Bronstein, A. Torsello, and D. Cre-mers, “Partial functional correspondence,” Comput. Graph. Forum ,vol. 36, no. 1, pp. 222–236, 2017. [23] A. Chen et al. , “Spatiotemporal transcriptomic maps of whole mouse embryos at the onset of organogenesis,” Cell , vol. 185, no. 10, pp. 1777–1792, 2022. [24] S. G. Rodriques et al. , “Slide-seq: A scalable technology for measur-ing genome-wide expression at high spatial resolution,” Science ,vol. 363, no. 6434, pp. 1463–1467, 019. [25] M. Zhang et al. , “Spatially resolved cell atlas of the mouse primary motor cortex by MERFISH,” Nature , vol. 598, no. 7879, pp. 137–143, 2021. [26] R. Zeira, M. Land, and B. J. Raphael, “Alignment and integration of spatial transcriptomics data,” Nature Methods , vol. 19, no. 5, pp. 567–575, 2022. [27] L. Shang, X. Zhou, and Y. Zhang, “Graph-based alignment of spatial transcriptomics with PASTE-2,” Nature Methods , vol. 21, pp. 69–80, 2024. [28] Z. Cang, Y. Zhao, A. A. Almet, A. Stabell, R. Ramos, M. V. Plikus, S. X. Atwood, and Q. Nie, “Spatial-ID: Identifying spatial domains in transcriptomics via optimal transport,” Nature Communications ,vol. 14, no. 1, Article ID 1184, 2023. [29] Z. Qin, H. Yu, C. Wang, Y. Guo, Y. Peng, S. Ilic, D. Hu, and K. Xu, “GeoTransformer: Fast and robust point cloud registration with geometric transformer,” IEEE Trans. Pattern Anal. Mach. Intell. ,vol. 45, no. 8, pp. 9806–9821, 2023. [30] H. Yu, Z. Qin, J. Hou, M. Saleh, D. Li, B. Busam, and S. Ilic, “Rotation-invariant transformer for point cloud matching,” in 
+
+Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR) , 2024, pp. 5384–5393. [31] X. Yang, H. Zhou, and H. Ling, “Neural scalar fields: A contin-uous spatiotemporal representation,” in Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV) , 2023, pp. 12 345–12 355. [32] Y. Wang, J. M. Solomon, and P. V. Gehler, “Implicit neural rep-resentations for deformable image registration,” IEEE Trans. Med. Imag. , vol. 43, no. 2, pp. 456–468, 2024. [33] G. Balakrishnan, A. Zhao, M. R. Sabuncu, J. Guttag, and A. V. Dalca, “VoxelMorph: a learning-based framework for deformable medical image registration,” IEEE Trans. Med. Imag. , vol. 38, no. 8, pp. 1788–1800, 2019. [34] Y. Aoki, H. Goforth, R. A. Srivatsan, and S. Lucey, “PointNetLK: Robust & efficient point cloud registration using PointNet,” in 
+
+Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR) , 2019, pp. 7163–7172. JOURNAL OF L ATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021 13 
+
+[35] G. Mei, H. Tang, X. Zhu, N. Zhang, and R. Huang, “Unsupervised deep learning for structured point cloud registration,” IEEE Trans. Multimedia , vol. 25, pp. 4768–4780, 2023. [36] J. Li, Z. Li, S. Song, and A. Katsaggelos, “Unsupervised non-rigid registration via neural deformation fields,” IEEE Trans. Pattern Anal. Mach. Intell. , vol. 46, no. 1, pp. 120–135, 2024. [37] C. M. Bishop, Pattern Recognition and Machine Learning . Springer, 2006. [38] C. Williams and M. Seeger, “Using the Nystr ¨ om method to speed up kernel machines,” in Adv. Neural Inf. Process. Syst. (NIPS) ,vol. 13, 2001, pp. 682–688. [39] J. L. Bentley, “Multidimensional binary search trees used for associative searching,” Commun. ACM , vol. 18, no. 9, pp. 509–517, 1975. [40] C. E. Rasmussen and C. K. I. Williams, Gaussian Processes for Machine Learning . MIT Press, 2006. [41] I. Bahar, A. R. Atilgan, and B. Erman, “Direct evaluation of thermal fluctuations in protein using a single parameter harmonic potential,” Folding & Design , vol. 2, no. 3, pp. 173—181, 1997. [42] T. Haliloglu, I. Bahar, and B. Erman. “Gaussian dynamics of folded proteins,” Phys. Rev. Lett. , vol. 79, no. 16, pp. 3090—3093, 1997. [43] B. B. Avants, C. L. Epstein, M. Grossman, and J. C. Gee, “Sym-metric diffeomorphic image registration with cross-correlation: Evaluating automated labeling of elderly and neurodegenerative brain,” Med. Image Anal. , vol. 12, no. 1, pp. 26–41, 2008. 
+
+Osamu Hirose He is currently an Associate Pro-fessor with the Institute of Science and Engi-neering, Kanazawa University, where he leads the statistical machine learning laboratory. He is also a FOREST Researcher with the Japan Science and Technology Agency (JST). He re-ceived the Ph.D. degree in information science and technology from the University of Tokyo, Tokyo, Japan, in 2008. His research interests include computer vision, machine learning, and bioinformatics, with a particular focus on point set registration and 3D shape analysis. He is a member of the IEEE. 
+
+Emanuele Rodol ` a He is a Full Professor of Computer Science at Sapienza University of Rome, where he leads the GLADIA group of Geometry, Learning & Applied AI. His research focuses on Representation Learning, Machine Learning for Audio, LLMs, Geometric Deep Learning, and Computer Vision. He is an ERC grantee, a Google Research awardee, and a fellow of both ELLIS and the Young Academy of Europe. Professor Rodol ` a earned his PhD from Universit ` a Ca’ Foscari Venezia in 2012. His career includes international experience as an Alexander von Humboldt Fellow at TU Munich and a JSPS Research Fellow at The University of Tokyo. With an h-index of 50 and over 13,000 citations, he has received numerous Best Paper Awards at premier venues. His research has been featured by major international media, including RAI, Wired, and La Repubblica.

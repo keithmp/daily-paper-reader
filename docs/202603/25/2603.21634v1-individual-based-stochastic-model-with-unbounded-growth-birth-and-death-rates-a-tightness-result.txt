@@ -1,0 +1,6207 @@
+Title: Individual-based stochastic model with unbounded growth, birth and death rates: a tightness result
+
+URL Source: https://arxiv.org/pdf/2603.21634v1
+
+Published Time: Tue, 24 Mar 2026 01:53:28 GMT
+
+Number of Pages: 52
+
+Markdown Content:
+# Individual-based stochastic model with unbounded growth, birth and death rates: a tightness result 
+
+## Virgile Brodu ∗
+
+## March 24, 2026 
+
+Abstract 
+
+We study population dynamics through a general growth/degrowth-fragmentation process, with resource consumption and unbounded growth/degrowth, birth and death rates. Our model is structured in a positive trait called energy (which is a proxy for any biological parameter such as size, age, mass, protein quantity...), and the jump rates of the process can be arbitrarily high depending on individual energies, which has not been considered yet in the literature. After a preliminary study to construct well-defined objects (which is necessary contrary to similar works, because of the explosion of individual rates), we consider a classical sequence of renormalizations of the underlying process and obtain a tightness result for the associated laws in large-population asymptotics. We characterize the accumulation points of this sequence as solutions of an integro-differential system of equations, which proves the existence of measure solutions to this system. Furthermore, if such a measure solution is unique, then our tightness result becomes a convergence result towards this unique process. We illustrate our work with the case of allometric rates ( i.e. 
+
+they are assumed to be power functions) and eventually present numerical simulations in this allometric setting. 
+
+Keywords: individual-based model, Jumping Markov Process, large-population asymptotics, martin-gale problem, measure-valued process, tightness, unbounded jump rates. 
+
+# 1 Introduction 
+
+We propose a general framework to study a population, with competition between individuals through resource consumption, and design a stochastic individual-based model. We gather all individual tra-jectories into a measure-valued population process. This work is in line with a rich literature about similar individual-based models, originating with [FM04], followed by [CFM08] with mutations, adding an age structure in [Tra08], an interaction with resources in [CF15], and a diffusion term in [Tch24]. The main contribution of all these papers is a convergence result in large-population asymptotics, for a suitable renormalization of the underlying stochastic processes, towards the solution μ∗ to an integro-differential system of equations, which is deterministic conditionally to the initial condition (see the original Theorem 5.3. in [FM04], or the recent Theorem 2.1. and Theorem 3.2. in [Tch24]). The main result of our article is Theorem 4.1, which is a tightness result similar to these convergences established in the literature. One common feature between previous papers is that growth, birth and death rates are bounded, and μ∗ integrates bounded functions. Our work goes beyond these previous results for the following reasons. First, our jump rates are not necessarily bounded, which adds potential prob-lems of explosion of individual energy or population size in finite time, and technical difficulties in the proofs, but allows more general and biologically relevant models. We develop the case of allometric 
+
+scalings ( i.e. the jump rates are power functions), which seem to be a key ingredient for modelling the behavior of species [Pet86, BGA +04, MM19, BBCF25], in Section 5. Then, any accumulation point, 
+
+> ∗Universit´ e de Lorraine, Inria, IECL, F-54000 Nancy, France
+
+1
+
+> arXiv:2603.21634v1 [math.PR] 23 Mar 2026
+
+still denoted as μ∗, integrates a broader set of functions, not necessarily bounded (see Lemma 6.2). Hence, our work could be adapted to generalize existing results on growth-fragmentation models such as [Tra08] or [CF15]. We make a specific choice for the fragmentation modelling: every offspring in the population ap-pears with energy x0 > 0, which is a fixed parameter of the model. The introduction of this parameter is linked to the biological motivation of this work, presented in [BBCF25], where we make x0 vary to obtain necessary conditions for our model to be biologically relevant with allometric functional param-eters. On the contrary, in the present article, x0 is fixed once and for all. Our work could certainly be extended to other various fragmentation patterns, like binary fission [DHKR15], conservative and symmetrical division kernels [CCF16], or self-similar splitting densities [LW07]. Individual trajectories depend on the evolution of the resource over time, which in turn depends on individual energies. Thus, we study a process ( μt, R t)t≥0, where μ is a finite point measure rep-resenting the state of the population, and R ∈ [0 , R max ] the amount of resources ( Rmax > 0 being a parameter of the model). This measure-valued process is constructed with Poisson point measures and is piecewise deterministic. Compared to other existing models [Tra08, CF15], due to the choice of unbounded jump rates in our case, additional work is necessary to ensure that the process is well defined for every t ≥ 0. Then, we introduce a sequence of renormalized processes ( μKt , R Kt )t≥0 con-structed with the same procedure. The parameter K is a scaling parameter representing the number of individuals in the population at time 0. We want to understand the behavior of our model in a large population asymptotic, when the parameter K goes to + ∞. Importantly, unlike previous work on similar renormalizations of individual-based models [FM04, CFM08, Tra08, CF15, Tch24], we have to add an additional assumption, due to the fact that our rates are unbounded. Precisely, we assume that there exists a “Lyapunov-type” smooth and non-decreasing function ω, associated with the func-tional parameters of the model (see the upcoming ( H2 ) in Theorem 1.1). This will allow us to control stochastic integrals associated to our renormalized processes, and have two important consequences. First, we can prove martingale properties for our processes (see Proposition 3.3), which is a key in-gredient of the proof in Section 6. Then, we can control the expectation of the population size at any time uniformly on K (see Proposition 3.4). Provided that such a function ω exists, we endow the set of measures integrating the function ω with a weighted topology which is not standard. We call it the ω-weak topology, and write ( Mω (R∗
+
+> +
+
+), w) for the associated topological space (see Section 4 and Appendix B.2 in [Bro25] for details). Let us give immediately a taste of our main result with as least technical details as possible. In the following, b(x) is the birth rate for an individual with energy x, and similarly d(x) is the death rate. The functions b and d are non-negative. The function g : ( x, R ) 7 → g(x, R ) accounts for the in-stantaneous rate of growth or degrowth for an individual with energy x and resources R. The function 
+
+ρ : ( R, μ ) 7 → ρ(R, μ ) is the instantaneous rate of increase or decrease of resources R consumed by the population μ. The functions g and ρ can change sign, depending on the resources R and the state of the individual/population. For more details about the previous functional parameters, we refer the reader to Section 2.1. In the following, we write ⟨μ, φ ⟩ := 
+
+Z
+
+> R∗
+> +
+
+φ(x)d μ(x) for every μ ∈ M ω (R∗
+
+> +
+
+) and 
+
+φ measurable. A simplified summarization of our tightness result reads as follow: 
+
+Theorem 1.1. First, we assume that 
+
+(H0 ) ∀x > 0, g(x, 0) < 0 < g (x, R max ),
+
+(H1 ) ∀x > 0,
+
+Z x
+
+> 0
+
+d(t)
+
+g(t, 0) dt = −∞ .Then, we assume that there exists a weight function ω such that 
+
+2(H2 ) ω ∈ C 1(R∗
+
+> +
+
+) is positive, non-decreasing, Lipschitz continuous on (1 , +∞), and 
+
+(a) ∃cg > 0, ∀x > 0, sup R∈[0 ,R max ] |g(x, R )| ≤ cg ω(x),
+
+(b) ∃cb > 0, ∀x > 1, b(x) ≤ cbω(x),
+
+(c) ∃cd > 0, ∀x > 0, d(x)ω(x) ≤ cd.Finally, we assume that the sequence 
+
+ μKt , R Kt
+
+
+
+> t≥0
+
+
+
+> K∈N∗
+
+of renormalized processes (formally defined in Section 3) is such that 
+
+(H3 ) there exists a random variable μ∗ 
+
+> 0
+
+∈ M ω (R∗
+
+> +
+
+) such that (μK 
+
+> 0
+
+)K∈N∗ converges in law towards μ∗
+
+> 0
+
+in (Mω (R∗
+
+> +
+
+), w) ,
+
+(H4 ) there exists p > 1 such that 
+
+sup 
+
+> K∈N∗
+
+E
+
+
+
+μK 
+
+> 0
+
+, 1 + Id + ω p
+
+< +∞.
+
+Under (H0 ), (H1 ), (H2 ), (H3 ), (H4 ), for all T ≥ 0, the sequence 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+is tight in the Skorokhod space D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) . Any of its accumulation point (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ]
+
+is a continuous process and verifies almost surely, for all t ∈ [0 , T ],
+
+R∗ 
+
+> t
+
+= R∗ 
+
+> 0
+
++
+
+Z t
+
+> 0
+
+ρ(R∗ 
+
+> s
+
+, μ ∗ 
+
+> s
+
+)d s, (1) 
+
+and for every φ : ( t, x ) 7 → φ(t, x ) =: φt(x) smooth enough and dominated by ω,
+
+⟨μ∗ 
+
+> t
+
+, φ t⟩ = ⟨μ∗
+
+> 0
+
+, φ 0⟩ +
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+
+
+∂1φ(s, x ) + g(x, R ∗ 
+
+> s
+
+)∂2φ(s, x )+ b(x)( φs(x0) + φs(x − x0) − φs(x)) − d(x)φs(x)
+
+
+
+μ∗ 
+
+> s
+
+(d x)d s, (2) 
+
+where ∂1, respectively ∂2, are the partial derivatives with respect to the first, respectively second, vari-able. 
+
+Assumptions ( H0 ) and ( H1 ) are part of the model, and necessary for the good definition of individual trajectories (see Section 2.3). Then, Assumption ( H2 ) is necessary to obtain martingale properties for our processes (see Section 3.2). Note that the case of bounded rates is included in Theorem 1.1, simply by choosing ω ≡ 1. Finally, Assumptions ( H3 ) and ( H4 ) are classical assumptions to prove this kind of tightness result (see the original Assumption C1.1 in [FM04], or Assumption 4 in [Tra08]), but adapted here to our setting with the weight function ω. Our main result, which is Theorem 4.1 in Section 4, will be stronger than Theorem 1.1, because it relies on weaker, though more complex, assumptions on the weight function ω. Assumption ( H2 ) will thus replaced by the combination of Assumption 2.9 and Assumption 4.1. Note that the limiting system (1)-(2) is very similar to those obtained in previous works (see for example Theorem 5.2 in [CF15]), but with two main differences. First, Equation (2) is not only valid for bounded functions, but for functions dominated by ω, which can be unbounded (see Figure 1). Then, the term multiplied by b(x) in Equation (2) can be interpreted as a birth term, and is naturally adapted to our specific fragmentation modelling with parameter x0.To the best of our knowledge, this is the first tightness result with unbounded rates for this kind of individual-based model. The sketch of the proof follows the procedure initially proposed by Fournier and M´ el´ eard [FM04], but at each step, we encounter additional difficulties due to the interaction with the resource and unbounded rates. In particular, we extend results of Roelly [Roe86] in Theorem 6.1, and M´ el´ eard-Roelly [MR93] in Theorem 6.2 to work with the ω-weak topology. 3In Section 2.1 and 2.2, we construct the process ( μt, R t)t. In Section 2.3 and 2.4, we provide as-sumptions under which this process is well-defined for every t ≥ 0. We also introduce the weight function ω. In Section 2.5, we show martingale properties of the process. In Section 3, we introduce the sequence of renormalized processes ( μKt , R Kt )t∈[0 ,T ]. We present our main result in Theorem 4.1 of Section 4, along with possible extensions of this result and conjectures in Section 4.2. In particular, if there exists a unique solution to the system (1)-(2), then our tightness result becomes a convergence result. The uniqueness of the limiting process in the case of bounded rates is well-known (see Propo-sition II.5.7. in [Bro25]). It remains an open question to know if we can tackle more general cases with unbounded rates, and we provide some directions of research in Section 4.2.1. In Section 5, we illustrate our results, both theoretically and numerically, with power functions for the jump rates. As far as individual-based models are concerned, this so-called allometric setting has not been studied yet, except for our previous model with constant resources in [BBCF25]. Finally, the proof of Theorem 4.1 is developed in Section 6. In Appendix A, we provide the proofs of intermediate results, including Theorem 6.1 and Theorem 6.2; and in Appendix B, we give our simulation parameters and algorithms for Section 5. Note that we will also refer extensively to [Bro25] for technical, but classical details. 
+
+# 2 Definitions and assumptions 
+
+First, in Section 2.1, we define individual dynamics, i.e. deterministic metabolism and resource con-sumption, and random birth or death events. Then, in Section 2.2, we introduce notations to gather all the individual flows and resource dynamics into one deterministic flow between random jumps. Then, we provide an algorithmic construction of the process ( μt, R t)t with Poisson point measures, valid up to a stopping time accounting for two possible problematic events. The first one is the possibility for individual trajectories to reach 0 or + ∞ in finite time between random jumps, and the second one is the possible accumulation of jump times at the population level. In Section 2.3, we provide an as-sumption to address the first problematic event. Then, in Section 2.4, we resolve the second problem, by giving a general setting under which the population process is almost surely well-defined for t ∈ R+.Once this is done, in Section 2.5, we show martingale properties for the process ( μt, R t)t≥0.
+
+## 2.1 Individual and resource dynamics 
+
+In this section, we introduce the functional parameters and main mechanisms of our model at the individual level, but note that the formal construction of the population process is done in Section 2.2. To distinguish between individuals, we define the set of indices as 
+
+U := [
+
+> n∈N
+
+(N∗)n+1 .
+
+Over time, every individual in the population will have an index of the form u := u1...u n+1 with some 
+
+n ≥ 0, and some positive integers u1, ..., u n. At time t ≥ 0, an alive individual indexed by u in the population is characterized by a trait called energy and written ξut ∈ R∗ 
+
+> +
+
+∪ { ∂}, where ∂ is a cemetery state. Every individual compete for a fluctuating stock of resources Rt ∈ R+, can die and reach the cemetery state ∂, and can reproduce several times during its life. When a birth occurs, we add an individual to the population, with a new index in U. In the population, at time t ≥ 0, we denote as Vt
+
+the set of alive individuals at this time ( i.e. whose energy is not ∂ at time t). Every alive individual 
+
+u ∈ Vt is represented by a Dirac mass at ξut . Thus, we will define the population process μt as a point measure given at time t by 
+
+μt := X
+
+> u∈Vt
+
+δξut . (3) 4An individual trajectory is deterministic between some random jump times, corresponding to birth or death events. 
+
+Birth 
+
+For t ≥ 0, an individual indexed by u ∈ Vt− with energy ξut− ∈ R∗ 
+
+> +
+
+gives birth to a single off-spring at rate b(ξut−). This individual transfers a constant amount of energy x0 to the offspring. The energy of the individual goes from ξut− to ξut := ξut− − x0. The point measure then jumps to 
+
+μt := μt− − δξut− + δξut−−x0 + δx0 . If the parent has the label u := u1...u n and this is the k-th birth jump for this parent for k ≥ 1, the index of the offspring is uk := u1...u nk. Then, we set Vt := Vt− ∪ { uk }.
+
+ξut−
+
+x0
+
+ξut− − x0
+
+We assume that the birth rate b is equal to 0 for every x ≤ x0, so that no individual with negative energy appears during a birth event. Also, we assume that b is non-negative and continuous for x > x 0.
+
+Death 
+
+For t ≥ 0, an individual indexed by u ∈ Vt− with energy ξut− ∈ R∗ 
+
+> +
+
+dies at positive and continu-ous rate d(ξut−). Then, the individual process jumps to ξut := ∂ and we set ξus := ∂ for every s ≥ t.The point measure jumps to μt := μt− − δξut− , and we set Vt := Vt− \ { u}.
+
+Energy loss and resource consumption 
+
+1. For t ≥ 0, an individual u ∈ Vt with energy ξut ∈ R∗ 
+
+> +
+
+loses energy over time, at non-negative and 
+
+C1(R∗
+
+> +
+
+) rate ℓ(ξut ). We are interested in situations where ℓ is a positive function ( i.e. we consider a true growth/degrowth-fragmentation model with possibly decreasing energies over time) to model the metabolic rate of individuals [BGA +04, BBCF25]. However, note that we also allow 
+
+ℓ ≡ 0, so that our model can be adapted to generalize previous growth-fragmentation models where individual traits are only increasing [Tra08, CF15]. 2. In order to balance this energy loss, this individual consumes the resource at rate f (ξut , R t). Importantly, we suppose that f is of the form f (ξ, R ) := ϕ(R)ψ(ξ), where ψ is a C1(R∗
+
+> +
+
+) positive function. Also, we assume that ϕ is a C1(R+) non-decreasing function on R+, verifying ϕ(0) = 0 and lim x→+∞ ϕ(x) = 1. Finally, we suppose that ϕ is Lipschitz continuous on R+, meaning that 
+
+∃k > 0, ∀R1, R 2 ≥ 0, ∀x > 0, |f (x, R 1) − f (x, R 2)| ≤ k|R1 − R2|ψ(x). (4) Thus, between two random jump times (due to birth or death events), the energy evolves according to the following equation: dξut
+
+dt = f (ξut , R t) − ℓ(ξut ) =: g(ξut , R t). (5) Remark that g : ( x, R ) 7 → g(x, R ) is C1,1(R∗ 
+
+> +
+
+× R+), meaning that it is differentiable with continuous derivatives in both its variables. Also, one can replace f by g in (4). It is possible that at some time 
+
+t ≥ 0, ξut reaches either 0 or + ∞ (vanishing energy or explosion of (5) in finite time before a jump event). We will make assumptions in Section 2.3 to avoid this situation almost surely. For now, if this happens at some time t, we adopt the convention ξws := ∂ for every s ≥ t and w ∈ Vt−. Also, 5we set the point measure to μs := 0 for all s ≥ t, and Vs := ∅ for s ≥ t. Finally, for any t ≥ 0 and 
+
+u ∈ U , if u / ∈ Vt, we set ξut := ∂ (in particular, individuals that are not born yet at time t have energy ∂). 
+
+Resource dynamics 
+
+Let χ > 1, Rmax > 0 and ς ∈ C 1(R+), such that ς(0) ≥ 0 and ς(R) < 0 if R ≥ Rmax . Between random jumps, the quantity of resource Rt ∈ R+ satisfies the following equation dRt
+
+dt = ρ(μt, R t) := ς(Rt) − χ
+
+Z
+
+> R∗
+> +
+
+f (x, R t)μt(d x). (6) The function ρ is well-defined on MP (R∗
+
+> +
+
+) × R+, where MP (R∗
+
+> +
+
+) is the space of finite point measures on R∗
+
+> +
+
+. Equation (6) means that in the absence of individuals in the population, the amount of resource eventually stabilizes at some Req ∈ [0 , R max ]. For the renewal function ς, one can think for example of a logistic growth R ≥ 0 7 → R(Req − R) with Req ≤ Rmax . This is a classical assumption in literature for biotic resources [BLLD11, YKR18, FBC21]. Another example is the case of a chemostat, where we can take ς : R ≥ 0 7 → D(Rin − R), with a dilution rate D > 0, and the constant Rin ≤ Rmax can be interpreted as an abiotic nutrient flow in the chemostat [CF15]. The coefficient χ can be interpreted as the inverse of the conversion efficiency. The ratio 1 /χ < 1 represents the proportion of resource consumed by individuals effectively converted to energy. We suppose that χ is a constant, which is a usual assumption in literature [LL05], even if in [FBC21], the authors make χ depend on individual energy over time. The integral quantity represents the speed at which the whole population consumes the resource at time t. This non-linear term is an indirect source of competition between individuals. If we choose an initial condition R0 ∈ [0 , R max ], Equation (6) enforces that Rt ∈ [0 , R max ] for ev-ery t ≥ 0, as long as 
+
+Z
+
+> R∗
+> +
+
+ψ(x)μt(d x) < +∞ (in particular, this is the case if μt ∈ M P (R∗
+
+> +
+
+)). Moreover, if R0 > R max , even with no individuals in the population, the resource will decrease to Rmax . Hence, without loss of generality, we assume that R0 ∈ [0 , R max ]. Also, we make the following assumption. 
+
+Assumption 2.1. ∀x > 0 g(x, R max ) > 0.
+
+If Assumption 2.1 is not verified, as ϕ is non-decreasing, we obtain 
+
+∃M > 0, ∀x ≤ M, ∀R ∈ [0 , R max ] g(x, R ) ≤ 0.
+
+Considering (5), this means that if the initial energy of an individual is in (0 , M ], then it will remain in this compact set over time. In other terms, if Assumption 2.1 is not verified, we impose an apriori upper bound on the maximal energy in our model. Similar mass-structured models where the maximal mass M of an individual is deterministically bounded are already developed in previous works [CF15, CCF16]. Although observed living species obviously have bounded masses, we want to design a model where this bound is not artificially imposed by the model, but results from interaction with a limiting resource. This is why in our setting, we allow individual energies to increase indefinitely, at least if there are sufficient resources ( i.e. with Rmax resources are available), which is expressed in Assumption 2.1. In all the rest of this article, we implicitly work under Assumption 2.1. Note that if 
+
+ℓ is a positive function, Assumption 2.1 corresponds to Assumption ( H0 ) in Theorem 1.1. 
+
+Lemma 2.2. Assumption 2.1 implies that 
+
+ϕ(Rmax ) > 0 and ∀x > 0, ψ (x) > ℓ (x).
+
+Proof . This is straightforward from our assumptions on ψ, ϕ and ℓ.62.2 Algorithmic construction of the process with Poisson point measures 
+
+2.2.1 Deterministic flow between random jumps 
+
+We begin with the definition of the deterministic flow associated to individual energies and the amount of resources between random jumps. We provide U with the lexicographical order, denoted as ≺, and consider a finite subset V ⊆ U of cardinality |V | ∈ N. It means that there exists u1 ≺ ... ≺ u|V |
+
+elements of U, such that V = {u1, ..., u |V |}, with V = ∅ if |V | = 0. Let us fix an initial condition 
+
+R0 ∈ [0 , R max ] and ( ξuj 
+
+> 0
+
+)1≤j≤| V | ∈  R∗
+
+> +
+
+|V | individual energies indexed by V . In the following, we will lighten this notation into Ξ 0 := ( ξu 
+
+> 0
+
+)u∈V . We write  (Xut (Ξ 0, R 0)) u∈V , X ℜ 
+
+> t
+
+(Ξ 0, R 0) for a solution to the system of |V | + 1 coupled equations dXℜ 
+
+> t
+
+(Ξ 0, R 0)dt = ρ X
+
+> u∈V
+
+δXut (Ξ 0,R 0), X ℜ 
+
+> t
+
+(Ξ 0, R 0)
+
+!
+
+, (7) dXut (Ξ 0, R 0)dt = g(Xut (Ξ 0, R 0), X ℜ 
+
+> t
+
+(Ξ 0, R 0)) for u ∈ V, (8) with initial condition at time 0 
+
+Xℜ 
+
+> 0
+
+(Ξ 0, R 0) = R0,Xu 
+
+> 0
+
+(Ξ 0, R 0) = ξu 
+
+> 0
+
+for u ∈ V. 
+
+Proposition 2.3. Let V ⊆ U be finite and (( ξu 
+
+> 0
+
+)u∈V , R 0) ∈ (R∗
+
+> +
+
+)|V | × [0 , R max ]. Then, there exists a neighborhood O ⊆ (R∗
+
+> +
+
+)|V | × [0 , R max ] of (( ξu 
+
+> 0
+
+)u∈V , R 0), and a neighborhood J ⊆ R+ of 0, such that 1. For every (( ξu)u∈V , R ) ∈ O, there exists a unique local solution with values in (R∗
+
+> +
+
+)|V | × [0 , R max ]
+
+to the system of coupled equations (7) -(8) , starting from (( ξu)u∈V , R ) at time 0. This solution is at least defined on J, and denoted as  (Xut (Ξ , R )) u∈V , X ℜ 
+
+> t
+
+(Ξ , R ), with Ξ := ( ξu)u∈V .2. The function (t, (ξu)u∈V , R ) ∈ J × O 7 →  (Xut (Ξ , R )) u∈V , X ℜ 
+
+> t
+
+(Ξ , R ) is C1,1(J × O), and C2 in the variable t.
+
+Proof . As ς ∈ C 1(R+), and f , g are C1,1(R∗ 
+
+> +
+
+×R+), classical arguments entails the result (see Corollaire II.2. and Th´ eor` eme II.10. in Chapter X of [ZQ96]). 
+
+Remark: The previous objects do not depend on the set of indices V . We use these notations to be able to identify any individual by an index and keep track of its energy over time, in the upcoming construction of our population process. We introduce texp (Ξ 0, R 0) ∈ (0 , +∞] the maximal time of existence of the solution to (7)-(8) starting from (Ξ 0, R 0) at time 0 highlighted in Proposition 2.3. The deterministic time texp (Ξ 0, R 0) is finite, if and only if one of the Xut (Ξ 0, R 0) reaches 0 or + ∞ in finite time. Finally, we define a flow X with a measure-valued first component, to be able to use it in the upcoming definition of the stochastic measure-valued process ( μt, R t)t. Suppose that μ0 ∈ M P (R∗
+
+> +
+
+) is such that 
+
+μ0 = X
+
+> u∈V
+
+δξu 
+
+> 0
+
+,
+
+with μ0 = 0 if V = ∅. Then, in the following, we write texp (μ0, R 0) := texp (Ξ 0, R 0), and this does not depend on the set of indices V . Also, for t ∈ [0 , t exp (μ0, R 0)), we define 
+
+Xt(μ0, R 0) := 
+
+ P
+
+> u∈V
+
+δXut (Ξ 0,R 0), X ℜ 
+
+> t
+
+(Ξ 0, R 0)
+
+
+
+,
+
+7and this again does not depend on the indexing by V . Finally, we adopt the convention Xt(μ0, R 0) := (0 , 0) for every t ≥ texp (μ0, R 0). We thus have defined the deterministic flow with measure-valued first component 
+
+X : MP (R∗
+
+> +
+
+) × R+ × R+ → MP (R∗
+
+> +
+
+) × R+
+
+(μ, R, t ) 7 → Xt(μ, R ).
+
+In the following, for μ measure on R∗ 
+
+> +
+
+and f measurable from R∗ 
+
+> +
+
+to R, we write 
+
+⟨μ, f ⟩ := 
+
+Z
+
+> R∗
+> +
+
+f dμ. 
+
+2.2.2 Algorithmic construction of the process 
+
+First, we define individual energies (( ξut )u∈U )t, the set of alive individuals ( Vt)t and the amount of resources ( Rt)t inductively, by constructing a sequence of successive random jump times ( Jn)n≥0,between which the dynamics are deterministic (note immediately that our construction will then be valid only up to time sup n∈N Jn). Then, we gather individual processes into a measure-valued pro-cess ( μt)t. Between two jump times, the process ( μt, R t)t will be deterministic and will follow the flow with measure-valued first component X defined in Section 2.2.1. We consider N (d s, du, dh) and 
+
+N ′(d s, du, dh) two independent Poisson point measures on R+ ×U × R∗
+
+> +
+
+, with intensity d s×n(d u)×dh,with n(d u) := P 
+
+> w∈U
+
+δw(d u). The support of N , respectively N ′, on R+ × U × R∗ 
+
+> +
+
+is a count-able random set, denoted as supp( N ), respectively supp( N ′). This is a random variable verifying 
+
+N (d s, du, dh) = P  
+
+> (s,u,h )∈supp( N)
+
+δ(s,u,h ), respectively the same equation with N ′.For the initial condition, let ( μ0, R 0) be a random variable taking values in MP (R∗
+
+> +
+
+) × [0 , R max ]. We define N0 := ⟨μ0, 1⟩ the initial number of individuals, V0 := {1, ..., N 0} ⊆ U , and Ξ 0 := ( ξu 
+
+> 0
+
+)u∈V0
+
+the initial individual energies. Thus, we index alive individuals at time 0 so that μ0 := P 
+
+> u∈V0
+
+δξu 
+
+> 0
+
+.
+
+Also, for u / ∈ V0, we set ξu 
+
+> 0
+
+:= ∂. The Poisson point measures N and N ′ are independent from ( μ0, R 0). The canonical filtration associated to ( μ0, R 0), N and N ′ is ( Ft)t≥0.We now define the sequence ( Jn)n∈N of successive jump times of the population process. First, we set 
+
+J0 := 0, and then suppose that our process is described until some time Jn < +∞ with n ≥ 0. At time Jn, there exists a finite VJn ⊆ U , associated to individual energies Ξ Jn := ( ξuJn )u∈VJn . With the convention inf( ∅) = + ∞, we define 
+
+Jbn+1 := inf {t ∈ (Jn, J n + texp (Ξ Jn , R Jn )) , (t, u, h ) ∈ supp( N ),u ∈ VJn , h ≤ b  Xut−Jn (Ξ Jn , R Jn )},Jdn+1 := inf {t ∈ (Jn, J n + texp (Ξ Jn , R Jn )) , (t, u, h ) ∈ supp( N ′),u ∈ VJn , h ≤ d  Xut−Jn (Ξ Jn , R Jn )}.
+
+First if Jn + texp (Ξ Jn , R Jn ) = Jbn+1 ∧ Jdn+1 = + ∞, it means that there are no jumps anymore, and no explosion of the solution to (7)-(8) starting from (Ξ Jn , R Jn ). Then, we set Jn+1 = + ∞, and for 
+
+t ≥ Jn, Vt = VJn . Concerning individual energies, for t ≥ Jn, if u / ∈ VJn , then ξut = ∂, and 
+
+ (ξut )u∈VJn , R t
+
+ =  (Xut−Jn (Ξ Jn , R Jn )) u∈VJn , X ℜ 
+
+> t−Jn
+
+(Ξ Jn , R Jn ) .
+
+Else if Jn + texp (Ξ Jn , R Jn ) < J bn+1 ∧ Jdn+1 = + ∞, it means that one or several individual energies reach 0 or + ∞ at time Jn + texp (Ξ Jn , R Jn ) (which is an event that we will avoid almost surely in Section 2.3). Then, we set Jn+1 = Jn + texp (Ξ Jn , R Jn ), and for t ∈ (Jn, J n+1 ), we set Vt = VJn and if 
+
+u / ∈ VJn , then ξut = ∂. In addition, for t ∈ (Jn, J n+1 ), we set 
+
+ (ξut )u∈VJn , R t
+
+ =  (Xut−Jn (Ξ Jn , R Jn )) u∈VJn , X ℜ 
+
+> t−Jn
+
+(Ξ Jn , R Jn ) .
+
+8Next, we set VJn+1 = ∅, RJn+1 = RJn+1 − and for u ∈ U , ξuJn+1 = ∂. Remark that with these conventions, we necessarily get back to the first case described above for the definition of Jn+2 (so 
+
+Jn+2 = + ∞), and eventually obtain that for all t ≥ Jn+1 , Vt = ∅ and for u ∈ U , ξut = ∂.Finally, if Jbn+1 ∧ Jdn+1 < J n + texp (Ξ Jn , R Jn ), it means that one birth or death event occurs. By property of Poisson point measures, we almost surely have Jbn+1 ̸ = Jdn+1 , and the infimum in the defi-nition of Jbn+1 or Jdn+1 is reached at a single element ( t, u, h ) ∈ supp( N ) or supp( N ′). We distinguish again between two cases. 
+
+• First if Jbn+1 < J dn+1 , it means that one birth event occurs. This event concerns an individual indexed by some w ∈ VJn . Then, we set Jn+1 = Jbn+1 , and for all t ∈ [Jn, J n+1 ), Vt = VJn .Concerning individual energies, if u / ∈ VJn , we set ξut = ∂ and 
+
+ (ξut )u∈VJn , R t
+
+ =  (Xut−Jn (Ξ Jn , R Jn )) u∈VJn , X ℜ 
+
+> t−Jn
+
+(Ξ Jn , R Jn ) .
+
+Then, at time Jn+1 , a new individual appears in the population. We set VJn+1 = VJn ∪ { wk },where k−1 is the number of offspring individual w already produced ( i.e. the cardinality of the set 
+
+{(t, u, h ) ∈ supp( N ), u = w, ∃ 1 ≤ m ≤ n, J bm = t}). We also set ξwk Jn+1 = x0, ξwJn+1 = ξwJn+1 − −x0
+
+and ξuJn+1 = ξuJn+1 − for u ∈ U \ { w, wk }. Finally, RJn+1 = RJn+1 −.
+
+• Else if Jdn+1 < J bn+1 , it means that a death event occurs. This event concerns an individual indexed by some w ∈ VJn . Then, we set Jn+1 = Jdn+1 , and for all t ∈ [Jn, J n+1 ), Vt = VJn .Concerning individual energies, if u / ∈ VJn , we set ξut = ∂ and 
+
+ (ξut )u∈VJn , R t
+
+ =  (Xut−Jn (Ξ Jn , R Jn )) u∈VJn , X ℜ 
+
+> t−Jn
+
+(Ξ Jn , R Jn ) .
+
+Then, at time Jn+1 , individual w disappears from the population. We set VJn+1 = VJn \ { w}.We also set ξwJn+1 = ∂ and ξuJn+1 = ξuJn+1 − for u ∈ U \ { w}. Finally, RJn+1 = RJn+1 −.By convention, for all n ∈ N, Jbn+1 = Jdn+1 = Jn+1 = + ∞ if Jn = + ∞. The sequence ( Jn)n∈N∗ is non-decreasing, so we can define J∞ := lim n→+∞ Jn. Eventually, for every t ∈ [0 , J ∞), we define μt
+
+as in (3), with μt = 0 if Vt = ∅. We verify immediately that, if no individual energy reaches 0 or explodes, for all n ∈ N, for all t ∈ [Jn, J n+1 ), μt coincide with the deterministic flow Xt−Jn (μJn , R Jn ), and is modified at any jump time according to the rules given in Section 2.1. Note that μt (as well as the ( ξut )u∈U , Vt and Rt) is well-defined only for t ∈ [0 , J ∞), with J∞ possibly finite or infinite. For all 
+
+t ∈ [0 , J ∞), Vt is the set containing the indices of alive individuals at time t (if u / ∈ Vt, then ξut = ∂;and if u ∈ Vt, then ξut ∈ R∗
+
+> +
+
+). The previously described update rules of the set Vt at each jump event make it adapted with respect to the filtration ( Ft)t. In the following, we want to avoid almost surely the following situations: 
+
+Situation 1 One of the individual energy vanishes/explodes. 
+
+Situation 2 There is an accumulation of jump times. We define 
+
+τexp := inf {Jn, J n+1 = Jn + texp (Ξ Jn , R Jn ) < +∞} ,
+
+with the convention inf( ∅) = + ∞. To avoid Situation 1, respectively Situation 2, we need to ensure that almost surely, τexp = + ∞, respectively J∞ = + ∞. In Section 2.3, we give an assumption under which τexp = + ∞ holds true almost surely. In Section 2.4, we work under the assumption of Section 2.3, and we define a general setting under which J∞ = + ∞ holds true almost surely. 92.2.3 Classical writing of the process on [0 , J ∞ ∧ τexp )Before time τexp , individual energies never vanish or explode, hence the global jump rate of the pop-ulation is finite at any time in [0 , J ∞ ∧ τexp ). Thus, for every Jn < τ exp , the next jump time Jn+1 
+
+is either + ∞ or a birth/death jump in the inductive construction of Section 2.2.2. Hence, for every 
+
+t ∈ [0 , J ∞ ∧ τexp ), we can write, with the convention on the flow X in mind, (μt, R t) = Xt(μ0, R 0)+
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤b(ξus−)}[Xt−s(μs− + δx0 + δξus−−x0 − δξus− , R s)
+
+− Xt−s(μs−, R s)] N (d s, du, dh)+
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤d(ξus−)}[Xt−s(μs− − δξus− , R s)
+
+− Xt−s(μs−, R s)] N ′(d s, du, dh).
+
+This formal writing is classical in the literature (Definition 2.4. in [Tra08], Section 4.1 in [CF15]), and should be understood as a telescopic sum. First, individual energies and resources evolve determinis-tically, following the flow Xt(μ0, R 0). Then, at each birth or death event, we erase the current flow and replace it with a new flow, modified according to our birth and death rules. 
+
+## 2.3 Assumption for non vanishing/exploding individual energies 
+
+In this section, we provide a framework under which τexp = + ∞ almost surely. Recall that this event occurs if no individual energy reaches 0 or + ∞ in finite time. First, without further assumption, we will show that interaction with limiting resources prevents individual energies from reaching + ∞ in finite time. Then, we will introduce an additional assumption to prevent individual energies from reaching 0 in finite time (see Assumption 2.6). We begin with a classical result, associated to the writing of the process in Section 2.2.3 as a telescopic sum (see for example Proposition 4.1 in [CF15]), and introduce some notations for this purpose. Let φ : ( t, x ) 7 → φt(x) be a C1,1(R+ ×R∗
+
+> +
+
+) function, which means that it is differentiable with continuous derivatives in both its variables. Recall that we write ∂1φ, respectively ∂2φ, for the first, respectively second partial derivative, and also for every t ≥ 0 we define Φt : ( R, x ) ∈ R+ × R∗ 
+
+> +
+
+7 → ∂1φ(t, x ) + g(x, R )∂2φ(t, x ). (9) Note that Φ depends on φ, but to lighten the notations, we choose to write it this way in all the rest of this article. The notation Φ will always be related to the definition in (9) with a function φ we work with without ambiguity. 
+
+Lemma 2.4. Let φ ∈ C 1,1(R+ × R∗
+
+> +
+
+), and F ∈ C 1,1([0 , R max ] × R). The process defined in Section 2.2.2 
+
+10 verifies that, for all t ∈ [0 , J ∞ ∧ τexp ),
+
+F (Rt, ⟨μt, φ t⟩) = F (R0, ⟨μ0, φ 0⟩)+
+
+Z t
+
+> 0
+
+
+
+ρ(μs, R s)∂1F (Rs, ⟨μs, φ s⟩) + ⟨μs, Φs(Rs, . )⟩∂2F (Rs, ⟨μs, φ s⟩)
+
+
+
+ds
+
++
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤b(ξus−)}
+
+
+
+F (Rs, ⟨μs− + δx0 + δξus−−x0 − δξus− , φ s⟩)
+
+− F (Rs, ⟨μs−, φ s⟩)
+
+
+
+N (d s, du, dh)+
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤d(ξus−)}
+
+
+
+F (Rs, ⟨μs− − δξus− , φ s⟩)
+
+− F (Rs, ⟨μs−, φ s⟩)
+
+
+
+N ′(d s, du, dh),
+
+with Φ associated to φ as in (9) .
+
+Proof . This is a classical result for a process written like in Section 2.2.3, valid pathwisely until the random time J∞ ∧ τexp , because our process is a finite variation process (see Definition page 39 in [Pro05]) with right-continuous sample paths on this time window. We use Itˆ o’s formula (Theorem 31 page 78 in [Pro05]) and a classical decomposition of ⟨μt, φ t⟩ (see for example Proposition 4.1 in [CF15]). For a detailed proof, we refer the reader to Lemma II.1.10. in [Bro25]. In the following, for t ∈ [0 , J ∞ ∧ τexp ), we define Et := ⟨μt, Id ⟩ the total energy of the population at time t. In the dynamics described in (6), as ς is C1, the speed of renewal of Rt is upper bounded by 
+
+|| ς|| ∞,[0 ,R max ] < +∞, for every t ≥ 0. This resource renewal is the only income of biomass into the system described by ( μt, R t)t, so this shall give us a control on the total biomass of the system. 
+
+Proposition 2.5. The process defined in Section 2.2.2 verifies that 
+
+∀t ∈ [0 , J ∞ ∧ τexp ), Rt + Et ≤ R0 + E0 + t|| ς|| ∞,[0 ,R max ] < +∞. (10) 
+
+Proof . Let t ∈ [0 , J ∞ ∧ τexp ), by Lemma 2.4 applied to F : ( r, x ) 7 → r + x and φ : ( t, x ) 7 → x, we have 
+
+Rt + Et = R0 + E0 +
+
+Z t
+
+> 0
+
+
+
+ρ(μs, R s) + ⟨μs, Φs(Rs, . )⟩
+
+
+
+ds
+
+−
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤d(ξus−)}ξus−N ′(d s, du, dh)
+
+≤ R0 + E0 +
+
+Z t
+
+> 0
+
+ς(Rs)d s, 
+
+which concludes. Note that we used in particular the fact that the constant χ in the definition (6) of 
+
+ρ is larger than 1. This control of the total biomass of the system entails that individual energies almost surely do not explode in finite time. In order to gather all our intermediate results into the upcoming Proposition 2.7, we now introduce an assumption to prevent individual energies from reaching 0 in finite time. We adopt the convention that for any x > 0, if ℓ(x) = 0, then dℓ (x) = + ∞.
+
+Assumption 2.6 (Individual energy avoids 0 ). For all x > 0,
+
+Z x
+
+> 0
+
+dℓ (y)d y = + ∞.
+
+11 The only random event that allows to avoid 0 is a death, and there is no energy gain in the worst possible case, which is R = 0. Hence, it is natural to compare the death rate d and the energy loss ℓ in a neighborhood of 0. Assumption 2.6 expresses as an integral condition that the death rate d should dominate the energy loss ℓ near 0. Note that if ℓ is a positive function, Assumption 2.6 corresponds to Assumption ( H1 ) in Theorem 1.1. 
+
+Proposition 2.7. Under Assumption 2.6, the process defined in Section 2.2.2 verifies 
+
+(J1 = + ∞) or (J1 < t exp (μ0, R 0)) .
+
+The proof of Proposition 2.7 can be found in Appendix A.1. We conclude with the following corollary, using Markov property. 
+
+Corollary 2.8. Under Assumption 2.6, the process defined in Section 2.2.2 verifies τexp = + ∞ almost surely. 
+
+Proof . By definition of τexp and construction of the process, it suffices to show that for every n ∈ N,we almost surely have (Jn+1 = + ∞) or (Jn+1 < J n + texp (μJn , R Jn ) < +∞).
+
+Let us fix n ∈ N and work in the following conditionnally to the event {Jn + texp (μJn , R Jn ) < +∞} ∩ {Jn+1 < +∞} . We aim to show that Jn+1 < J n + texp (μJn , R Jn ) almost surely. We define (˜ μ0, ˜R0) a random variable with same law as ( μJn , R Jn ), and (˜ μt, ˜Rt)t a process starting from the random initial condition (˜ μ0, ˜R0) and constructed with the algorithmic procedure described in Section 2.2.2. The jump times with indices 0 and 1 associated to (˜ μt, ˜Rt)t are naturally written ˜J0 and ˜J1, and note that by construction, ˜J0 := 0. Under the event {Jn+1 < +∞} , from the strong Markov property for Poisson point processes (see Example 10.4(a) in [DVJ07]), the law of Jn + texp (μJn , R Jn ) − Jn+1 conditionnally to {Jn +texp (μJn , R Jn ) < +∞} and FJn is equal to the law of ˜J0 +texp (˜ μ0, ˜R0)− ˜J1 = texp (˜ μ0, ˜R0)− ˜J1,which concludes thanks to Proposition 2.7. 
+
+## 2.4 Assumption for a well-defined population process (μt)t for every t ≥ 0
+
+At this step, thanks to Assumption 2.6, we have τexp = + ∞ almost surely (it is Corollary 2.8), and we work under this event. The process ( μt, R t)t is still well-defined only on [0 , J ∞), with J∞ possibly finite, i.e. there is a possible accumulation of jump times. In Section 2.4.1, we assume the existence of an appropriate weight function ω. Then, using this weight function, we give in Section 2.4.2 a setting under which almost surely, J∞ = + ∞. We will even obtain in Proposition 2.12 a stronger result, which implies in particular that the expectation of the population size is finite for every t ≥ 0. 
+
+2.4.1 Definition of the weight function ω
+
+We define a weight function ω adapted to the functional parameters b, d, ϕ and ψ for two reasons. First, if such a weight function exists, we shall prove in Section 2.4.2 that ( μt)t is well-defined on 
+
+R+. Then, we will obtain in Section 2.5 important martingale properties for our process. We write 
+
+ℏ : x ∈ R+ 7 → x + x2, and g : x > 0 7 → sup R∈[0 ,R max ] |g(x, R )|. Note that for x > 0, g(x) = max( ℓ(x), ϕ (Rmax )ψ(x) − ℓ(x)). 
+
+Assumption 2.9 (Existence of an appropriate weight function ). There exists ω ∈ C 1(R∗
+
+> +
+
+)
+
+positive and non-decreasing such that 
+
+• ∃Cg > 0, ∀x > 0, g(x)(1 + ω′(x)) ≤ Cg (1 + x + ω(x)) ,
+
+• ∃Cb > 0, ∀x > 0, b(x)(1 + ℏ (|ω(x0) + ω(x − x0) − ω(x)|)) ≤ Cb(1 + x + ω(x)) ,
+
+12 • ∃Cd > 0, ∀x > 0, d(x)ℏ(ω(x)) ≤ Cd(1 + x + ω(x)) .
+
+Remark: Recall that b ≡ 0 on (0 , x 0], so if ω is Lipschitz continuous on (1 , +∞) (which is equivalent to ω′ bounded on (1 , +∞), and entails that x > 1 7 → ω(x)/x is bounded on a neighborhood of + ∞), the second point of Assumption 2.9 is equivalent to the lighter assumption 
+
+∃Cb > 0, ∀x > 1, b(x) ≤ Cb(1 + x). (11) Thus, we let the reader check that if ( H2 ) in Theorem 1.1 is verified, then Assumption 2.9 holds true. Assumption ( H2 ) is way more readable, though more restrictive on ω. We believe, although it is not proven in this paper, that Assumption 2.9 on ω is sharp in our framework, in the sense that it is necessary and sufficient to obtain martingale properties for our process with the usual techniques developed originally in [FM04]. In general, proving the existence of a weight function ω verifying As-sumption 2.9 could be a difficult problem, similar to the search for Lyapunov functions associated to the extended generator of a Feller process (see for example condition (CD2) in Section 4.1. of [MT93], or Assumption (E) in Section 2 of [CV23]). We present in Section 5.1 an allometric setting with unbounded functional parameters, where jump rates are power functions, and prove that there exists weight functions ω verifying Assumption 2.9 in this specific context. It is of order xκ1 , respectively xκ2 , in a neighborhood of 0, respectively + ∞, with 0 ≤ κ1 ≤ κ2 ≤ 1. The typical shape of the weight function ω in this setting is shown on Figure 1. 0 1 2 3 401234
+
+ω
+
+Id 
+
+Figure 1: Possible shape of the weight function ω with an allometric choice of parameters. Notice that in general, the third point of Assumption 2.9 implies that dω should be bounded in a neighborhood of 0. Hence, if d(x) −−−→ 
+
+> x→0
+
++∞, which can be a biological assumption for the death rate d, then ω(x) −−−→ 
+
+> x→0
+
+0 as shown on Figure 1. We will discuss in Section 4 how this impacts the interpretation of the tightness result in Theorem 4.1. 
+
+Lemma 2.10. Assumption 2.9 is equivalent to the combination of the following properties. First, 
+
+ω ∈ C 1(R∗
+
+> +
+
+), is positive and non-decreasing, and then 
+
+∃ω1 > 0, ∀x > 0,g(x)(1 + ω′(x)) + b(x) (1 + |ω(x0) + ω(x − x0) − ω(x)|) + d(x)ω(x) ≤ ω1(1 + x + ω(x)) , (12) 
+
+and 
+
+∃ω2 > 0, ∀x > 0, b(x)( ω(x0) + ω(x − x0) − ω(x)) 2 + d(x)ω2(x) ≤ ω2(1 + x + ω(x)) . (13) 13 Proof . The fact that Assumption 2.9 implies (12) and (13) is immediate. We can take ω1 = Cg +
+
+Cb + Cd and ω2 = Cb + Cd. Conversely, if (12) and (13) hold true, we can take Cg = ω1 and 
+
+Cb = Cd = ω1 + ω2.
+
+Remark: Lemma 2.10 gives us an insight on why Assumption 2.9 is interesting to obtain martingale properties for our process. Equation (12) shall provide a control for the stochastic integrals appearing in the decomposition of ⟨μt, φ t⟩, using Lemma 2.4 with F : ( r, x ) 7 → x. Also, (13) is meant to control the quadratic variation of the martingale part of these stochastic integrals (see Corollary 2.15 in Section 2.5). 
+
+2.4.2 Proof of the non-accumulation of jump times 
+
+For t ∈ [0 , J ∞), we define Nt := ⟨μt, 1⟩. It represents the number of individuals in the population at time t. We also define Ω t := ⟨μt, ω ⟩, and for M > 0, we introduce the stopping time 
+
+τM := inf {t ∈ [0 , J ∞), E t + Nt + Ω t ≥ M } ,
+
+with the convention inf( ∅) = + ∞. Finally, for any positive function w on R∗
+
+> +
+
+, we write φ ∈ Bw(R∗
+
+> +
+
+), if φw is a bounded function on R∗
+
+> +
+
+.
+
+Definition 2.11 (General setting ). In the following, we denote as ‘the general setting’, the frame-work gathering the dynamics described in Sections 2.1 and 2.2, Assumptions 2.6 and 2.9, and the additional assumption 
+
+E(E0 + N0 + Ω 0) < +∞.
+
+We are now ready to give the main result of this section. 
+
+Proposition 2.12. Under the general setting, we almost surely have 
+
+τM −−−−−→  
+
+> M→+∞
+
++∞. (14) 
+
+Then, for all T ≥ 0,
+
+E sup  
+
+> t∈[0 ,T ∧J∞)
+
+(Et + Nt + Ω t)
+
+!
+
+< +∞. (15) 
+
+This immediately implies that for every φ ∈ B1+Id+ ω (R∗
+
+> +
+
+), we have 
+
+E sup  
+
+> t∈[0 ,T ∧J∞)
+
+|⟨ μt, φ ⟩| 
+
+!
+
+< +∞.
+
+The proof of Proposition 2.12 can be found in Appendix A.2. It uses classical arguments, adapted to our general setting with the weight function ω.
+
+Corollary 2.13. Under the general setting, the process (μt)t is almost surely well-defined for every 
+
+t ≥ 0, i.e. P(τexp ∧ J∞ = + ∞) = 1 .
+
+Proof . This is a direct adaptation of the proof of point (i) of Theorem 3.1 in [FM04], using (14). 
+
+Remark: It is possible to obtain the conclusion of Corollary 2.13 by replacing Assumption 2.9 with (11), using Proposition 2.5 and classical arguments as in the proof of point (i) in Theorem 3.1 in [FM04]. One can then wonder why we work under Assumption 2.9 instead of (11), which does not involve an additional weight function ω. What makes Assumption 2.9 necessary in our work is that we also need martingale properties for our process (see Corollary 2.15) to obtain the tightness result in Theorem 4.1. 14 2.5 Martingale properties 
+
+In this section, we work under the general setting, so the process ( μt, R t)t≥0 is almost surely well-defined thanks to Corollary 2.13. We write F for the set of functions of the form Fφ : ( μ, r ) ∈MP (R∗
+
+> +
+
+)×[0 , R max ] 7 → F (r, ⟨μ, φ ⟩) ∈ R, with F : ( r, x ) 7 → F (r, x ) in C1,1([0 , R max ]×R) and φ ∈ C 1(R∗
+
+> +
+
+). For such a function, we write ∂1Fφ(μ, r ) := ∂1F (r, ⟨μ, φ ⟩) and ∂2Fφ(μ, r ) := ∂2F (r, ⟨μ, φ ⟩). Finally, for F ∈ C 1,1([0 , R max ] × R) and φ ∈ C 1,1(R+ × R∗
+
+> +
+
+) (so that for all t ≥ 0, Fφt is well-defined in F), we define 
+
+MF,φ,t := Fφt (Rt, μ t) − Fφ0 (R0, μ 0)
+
+−
+
+Z t
+
+> 0
+
+ρ(μs, R s)∂1Fφs (Rs, μ s) + ⟨μs, Φs(Rs, . )⟩∂2Fφs (Rs, μ s)d s
+
+−
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+Fφs (Rs, μ s + δx0 + δx−x0 − δx) − Fφs (Rs, μ s)
+
+
+
+μs(d x)d s
+
+−
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)
+
+
+
+Fφs (Rs, μ s − δx) − Fφs (Rs, μ s)
+
+
+
+μs(d x)d s, (16) with Φ associated to φ as in (9). The process ( MF,φ,t )t≥0 is almost surely well-defined under the general setting by Lemma 2.4 and Corollary 2.13. In the following, quadratic variations of square-integrable martingales are predictable quadratic variation defined as in Theorem 4.2. in [JS +87]. Also, we write eN and fN ′ for the compensated measures associated with the Poisson point measures N and 
+
+N ′ (i.e. eN (d s, du, dh) := N (d s, du, dh) − dsdudh, and the same definition with N ′). 
+
+Proposition 2.14. Under the general setting, let F ∈ C 1,1([0 , R max ] × R) and φ ∈ C 1,1(R+ × R∗
+
+> +
+
+).
+
+(i) Assume that for all t ≥ 0,
+
+E
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x) Fφs (Rs, μ s + δx0 + δx−x0 − δx) − Fφs (Rs, μ s) μs(d x)d s
+
+!
+
+< +∞,
+
+and 
+
+E
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x) Fφs (Rs, μ s − δx) − Fφs (Rs, μ s) μs(d x)d s
+
+!
+
+< +∞.
+
+Then (MF,φ,t )t≥0 is a (Ft)t≥0-martingale. 
+
+(ii) Suppose in addition that for all t ≥ 0,
+
+E
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+Fφs (Rs, μ s + δx0 + δx−x0 − δx) − Fφs (Rs, μ s)
+
+2
+
+μs(d x)d s
+
+!
+
+< +∞,
+
+and 
+
+E
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)
+
+
+
+Fφs (Rs, μ s − δx) − Fφs (Rs, μ s)
+
+2
+
+μs(d x)d s
+
+!
+
+< +∞.
+
+Then (MF,φ,t )t≥0 is a square-integrable martingale, with predictable quadratic variation given for all t ≥ 0 by 
+
+⟨MF,φ ⟩t := 
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+Fφs (Rs, μ s + δx0 + δx−x0 − δx) − Fφs (Rs, μ s)
+
+2
+
+μs(d x)d s
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)
+
+
+
+Fφs (Rs, μ s − δx) − Fφs (Rs, μ s)
+
+2
+
+μs(d x)d s
+
+15 Proof . We observe from Lemma 2.4 that 
+
+MF,φ,t =
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤b(ξus−)}
+
+
+
+F (Rs, ⟨μs− + δx0 + δξus−−x0 − δξus− , φ s⟩)
+
+− F (Rs, ⟨μs−, φ s⟩)
+
+eN (d s, du, dh)+
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤d(ξus−)}
+
+
+
+F (Rs, ⟨μs− − δξus− , φ s⟩)
+
+− F (Rs, ⟨μs−, φ s⟩)
+
+fN ′(d s, du, dh).
+
+Then, Proposition 2.14 follows from classical results from Ikeda and Watanabe on stochastic integrals with respect to Poisson point measures (see p.62 in [IW14]). In the following, we define C1,1 
+
+> ω
+
+(R+ × R∗
+
+> +
+
+) the set of functions φ ∈ C 1,1(R+ × R∗
+
+> +
+
+) such that φ : ( t, x ) 7 →
+
+ω(x) or 
+
+∃C > 0, ∀x > 0, sup 
+
+> t∈R+
+
+
+
+|φ(t, x )| + |∂1φ(t, x )| ω(x)1 + x + ω(x) + |∂2φ(t, x )|ω(x)
+
+
+
+≤ Cω (x).
+
+Note that the function φ : ( t, x ) 7 → ω(x) does not necessarily verify the previous condition (in particular, 
+
+ω′ is not necessarily bounded). However, we include this specific function in C1,1 
+
+> ω
+
+(R+ × R∗
+
+> +
+
+), because we need to be able to apply the following results to this function for the proof of Theorem 4.1. 
+
+Corollary 2.15. Under the general setting, let φ ∈ C 1,1 
+
+> ω
+
+(R+ × R∗
+
+> +
+
+). Then the process (⟨μt, φ t⟩)t≥0 is a semi-martingale, with for all t ≥ 0, a finite variation part given by 
+
+Vφ,t := ⟨μ0, φ 0⟩ +
+
+Z t
+
+> 0
+
+⟨μs, Φs(Rs, . )⟩ds −
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)φs(x)μs(d x)d s
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+φs(x0) + φs(x − x0) − φs(x)
+
+
+
+μs(d x)d s, 
+
+with Φ associated to φ as in (9) , and a square-integrable martingale part ♡φ,t := ⟨μt, φ t⟩ − Vφ,t whose predictable quadratic variation is given by 
+
+⟨♡ φ⟩t =
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+φs(x0) + φs(x − x0) − φs(x)
+
+2
+
+μs(d x)d s +
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)φ2
+
+> s
+
+(x)μs(d x)d s. 
+
+Proof . We apply Proposition 2.14 to F : ( R, x ) ∈ [0 , R max ]×R 7 → x and φ. We let the reader verify that we can do so, thanks to the assumption φ ∈ C 1,1 
+
+> ω
+
+(R∗
+
+> +
+
+) (in particular, if φ̸ = ω, we use the fact that there exists a constant C > 0 such that |∂2φ(t, x )| < C for every t ≥ 0, x > 0, so |φs(x − x0) − φs(x)| ≤ Cx 0
+
+for every s ∈ [0 , t ] and x > 0), Lemma 2.10 and finally Proposition 2.12. 
+
+Remark: At this step, one can show that ( μt, R t)t≥0 is a Jumping Markov Process (JMP). This particular type of Feller process was initially introduced by Davis [Dav84] for Rn-valued processes, and called Piecewise Deterministic Markov Processes (PDMP). Then, Jacod and Skorokhod introduced in [JS96] the general definition of a JMP, adapted to our measure-valued setting. We can further characterize the Feller process ( μt, R t)t≥0 via its extended generator (see p.45 in [JS96]), and refer the reader to Proposition II.1.20. in [Bro25] for details. 16 3 Renormalization of the process 
+
+In this section, we work under Assumptions 2.6 and 2.9. In Section 3.1, we define a sequence  μKt , R Kt
+
+
+
+> t≥0
+
+ 
+
+> K∈N∗
+
+, where every process  μKt , R Kt
+
+ 
+
+> t≥0
+
+is a renormalization of the initial process (μt, R t)t≥0 defined in Section 2.2, and K is a scaling parameter representing the population size at time 0, meant to diverge towards + ∞. In Section 3.2, we use the results of Section 2 to obtain martingale and control properties for the renormalized process ( μKt , R Kt )t≥0.
+
+## 3.1 Definition of the renormalized process 
+
+We follow a classical procedure, first described in [FM04], and then reproduced in many articles [CFM08, Tra08, CF15, Tch24]. First, for every K ∈ N∗, we will define an auxiliary process ( νKt , R Kt )t≥0,following the exact same construction as in Section 2.2, but with an inverse conversion efficiency 
+
+χK := χ/K . Thus, all the results of Section 2 will apply to ( νKt , R Kt )t≥0, simply replacing χ with χK .We begin with the definition of the renormalized deterministic flow followed by individual energies between jumps. We consider an initial condition ( νK 
+
+> 0
+
+, R 0) ∈ M P (R∗
+
+> +
+
+) × [0 , R max ] at time 0, which means that there exists N ∈ N and ( ξu,K  
+
+> 0
+
+)1≤u≤N in ( R∗
+
+> +
+
+)N such that 
+
+νK 
+
+> 0
+
+:= 
+
+> N
+
+X
+
+> u=1
+
+δξu,K 
+
+> 0
+
+,
+
+where νK 
+
+> 0
+
+= 0 if N = 0. We write 
+
+
+
+(Xu,K t (νK 
+
+> 0
+
+, R 0)) 1≤u≤N , X ℜ,K t (νK 
+
+> 0
+
+, R 0)
+
+
+
+for a solution to the system of N + 1 coupled equations dXℜ,K t (νK 
+
+> 0
+
+, R 0)dt = ς(Xℜ,K t (νK 
+
+> 0
+
+, R 0)) − χK
+
+Z
+
+> R∗
+> +
+
+f (x, X ℜ,K t (νK 
+
+> 0
+
+, R 0))˜ νKt (d x), (17) dXu,K t (νK 
+
+> 0
+
+, R 0)dt = g(Xu,K t (νK 
+
+> 0
+
+, R 0), X ℜ,K t (νK 
+
+> 0
+
+, R 0)) for 1 ≤ u ≤ N, (18) where ˜ νKt := PNi=1 δXu,K t (νK 
+
+> 0,R 0)
+
+, and with initial condition at time 0 
+
+Xℜ,K  
+
+> 0
+
+(νK 
+
+> 0
+
+, R 0) = R0,Xu,K  
+
+> 0
+
+(νK 
+
+> 0
+
+, R 0) = ξu,K  
+
+> 0
+
+for 1 ≤ u ≤ N. 
+
+Note that the system of equations (17)-(18) is similar to (7)-(8), where we only replace χ by χ/K .With the same arguments as in Proposition 2.3, we can define for t in a neighborhood of 0, denoted as [0 , t K
+
+> exp
+
+(νK 
+
+> 0
+
+, R 0)) the renormalized flow 
+
+XKt (νK 
+
+> 0
+
+, R 0) := 
+
+ NP
+
+> u=1
+
+δXu,K t (νK 
+
+> 0,R 0)
+
+, X ℜ,K t (νK 
+
+> 0
+
+, R 0)
+
+
+
+,
+
+and it benefits from the same regularity properties as X of Section 2.2. We also adopt the convention depicted in the remark after Corollary 2.8 to make sense of the previous notation for t ≥ tK
+
+> exp
+
+(νK 
+
+> 0
+
+, R 0). 
+
+Definition 3.1 (Renormalized process ). Let R0 ∈ [0 , R max ] be a random variable. Let (νK 
+
+> 0
+
+)K≥1
+
+be a sequence of random variables in MP (R∗
+
+> +
+
+), such that 
+
+sup 
+
+> K≥1
+
+ 1
+
+K E  ⟨νK 
+
+> 0
+
+, 1 + Id + ω⟩ 
+
+< +∞. (19) 
+
+We use the Poisson point measures N and N ′ of Section 2.2, independent from R0 and (νK 
+
+> 0
+
+)K≥1. For every K ≥ 1, the renormalized process (μKt , R Kt )t≥0 with initial condition (μK 
+
+> 0
+
+, R 0), is given for every 
+
+t ≥ 0 by μKt := νKt
+
+K and 
+
+17 (νKt , R Kt ) = XKt (νK 
+
+> 0
+
+, R 0)+
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈V Ks−}1{h≤b(ξu,K s− )}[XKt−s(νKs− + δx0 + δξu,K s− −x0 − δξu,K s−
+
+, R Ks )
+
+− XKt−s(νKs−, R Ks )] N (d s, du, dh)+
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈V Ks−}1{h≤d(ξu,K s− )}[XKt−s(νKs− − δξu,K s−
+
+, R Ks )
+
+− XKt−s(νKs−, R Ks )] N ′(d s, du, dh),
+
+where for all t ≥ 0, V Kt is the set containing alive individuals at time t, and ξu,K t are individual energies, defined and actualized over time with the same conventions as in Section 2.2, simply replacing the flow 
+
+X by XK .
+
+Under Assumptions 2.6 and 2.9, from Corollary 2.13, for every K ∈ N∗, the renormalized process (μKt , R Kt )t≥0 is almost surely well-defined, i.e. individual energies do not vanish/explode and there is no accumulation of jumps in finite time. Our motivation is to keep the same amount of resources and temporal dynamics, but to consider population sizes going to + ∞. Intuitively, the way we proceed is to make every individual in the population smaller, and the interaction between individuals via resource consumption proportional to their typical size. The parameter 1 /K represents the amount of resource consumed by a single individual, and modelling a population of K such individuals leads us back to the temporal dynamics of Section 2.2. 
+
+Definition 3.2 (Renormalized setting ). In the following, we denote as ‘the renormalized setting’, the framework refering to the previous renormalization. Hence, we work with Assumptions 2.6, 2.9, and the condition (19) .
+
+Remark: Note that for any K ≥ 1, Assumptions 2.6 and 2.9 do not depend on K. In particular, we work with a fixed weight function ω that does not depend on K, and verifies Assumption 2.9. Moreover, the renormalized setting implies the general setting (the construction of Section 2.2 accounts for the case K = 1). 
+
+## 3.2 Properties of the renormalized process 
+
+Most of the results of Section 2 can be adapted to the study of the renormalized processes. For example, we recover martingale properties. In the following, we naturally write N Kt := ⟨μKt , 1⟩, EKt := ⟨μKt , Id ⟩
+
+and Ω Kt := ⟨μKt , ω ⟩ for t ≥ 0 and K ∈ N∗.
+
+Proposition 3.3. Under the renormalized setting, let φ ∈ C 1,1 
+
+> ω
+
+(R+ × R∗
+
+> +
+
+) and K ∈ N∗. Then the process (⟨μKt , φ t⟩)t≥0 is a semi-martingale, with for all t ≥ 0, a finite variation part given by 
+
+V Kφ,t := ⟨μK 
+
+> 0
+
+, φ 0⟩ +
+
+Z t
+
+> 0
+
+⟨μKs , Φs(RKs , . )⟩ds −
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)φs(x)μKs (d x)d s
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+φs(x0) + φs(x − x0) − φs(x)
+
+
+
+μKs (d x)d s, 
+
+with Φ associated to φ as in (9) , and a square-integrable martingale part ♡Kφ,t := ⟨μKt , φ t⟩ − V Kφ,t whose predictable quadratic variation is given by 
+
+⟨♡ Kφ ⟩t = 1
+
+K
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+b(x)
+
+
+
+φs(x0) + φs(x − x0) − φs(x)
+
+2
+
+μKs (d x)d s
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+d(x)φ2
+
+> s
+
+(x)μKs (d x)d s
+
+!
+
+.
+
+18 We do not develop here the proof of Proposition 3.3, since it is similar to the proofs in Section 2, and refer the reader to Proposition II.2.5. in [Bro25]. We go further with properties that holds true uniformly in K, which will be useful in Section 6 for the proof of Theorem 4.1. 
+
+Proposition 3.4. Let p ≥ 1, and under the renormalized setting, assume in addition that 
+
+sup 
+
+> K∈N∗
+
+E
+
+ EK 
+
+> 0
+
++ N K 
+
+> 0
+
++ Ω K
+
+> 0
+
+p
+
+< +∞. (20) 
+
+Then, for all T ≥ 0, we have 
+
+sup 
+
+> K∈N∗
+
+E sup  
+
+> t∈[0 ,T ]
+
+ EKt + N Kt + Ω Kt
+
+p
+
+!
+
+< +∞.
+
+This immediately implies that for every φ ∈ B1+Id+ ω (R∗
+
+> +
+
+), we have 
+
+sup 
+
+> K∈N∗
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μKt , φ ⟩ p
+
+!
+
+< +∞.
+
+The proof of Proposition 3.4 can be found in Appendix A.3. 
+
+Corollary 3.5. Under the renormalized setting, let φ ∈ C 1,1 
+
+> ω
+
+(R∗
+
+> +
+
+) and K ∈ N∗. Assume that there exists p > 1 such that (20) holds true. Then, for all t ≥ 0, the family of square-integrable martingales  ♡Kφ,t 
+
+ 
+
+> K∈N∗
+
+defined in Proposition 3.3 is uniformly integrable. 
+
+Proof . This follows from Lemma 2.10, Proposition 3.3, Proposition 3.4 applied to φ and p, and Proposition 2.2 p.494 in [EK86]. 
+
+# 4 Main results and conjectures 
+
+In Section 4.1, we give our main tightness result in Theorem 4.1, and the sketch of its proof. Then in Section 4.2, we present two lines of research to extend Theorem 4.1. 
+
+## 4.1 Main theorem and sketch of the proof 
+
+We begin with preliminary definitions and consider a function w : R∗ 
+
+> +
+
+→ R∗
+
+> +
+
+. We write Mw(R∗
+
+> +
+
+) for the set of positive measures μ on R∗ 
+
+> +
+
+such that ⟨μ, w ⟩ < +∞. In particular, MP (R∗
+
+> +
+
+) ⊆ M w(R∗
+
+> +
+
+). We define Cc(R∗
+
+> +
+
+) the space of continous functions with compact support, and Cw(R∗
+
+> +
+
+) the space of contin-uous functions f such that f ∈ Bw(R∗
+
+> +
+
+). The vague, respectively w-weak, topology on Mw(R∗
+
+> +
+
+) is the finest topology for which the applications μ 7 → ⟨ μ, f ⟩ are continous, with f in Cc(R∗
+
+> +
+
+), respectively in 
+
+Cw(R∗
+
+> +
+
+). We write ( Mw(R∗
+
+> +
+
+), v ), respectively ( Mw(R∗
+
+> +
+
+), w), when we endow Mw(R∗
+
+> +
+
+) with the vague topology, respectively the w-weak topology. The latter notation is not standard in the literature and can be seen as a weighted version of the usual weak topology, which corresponds to the case w ≡ 1. We introduce it because in Theorem 4.1, our processes will take values in such weigthed spaces of measures. The w-weak topology is always finer than the vague topology, but depending on the weight function w, it is not necessarily comparable to the usual weak topology. With classical techniques, we show that both spaces ( Mw(R∗
+
+> +
+
+), v ) and (Mw(R∗
+
+> +
+
+), w) are Polish spaces (see Appendix B.2.1 in [Bro25]). We naturally endow [0 , R max ] with the usual topology, and ( Mw(R∗
+
+> +
+
+), v ) × [0 , R max ] or ( Mw(R∗
+
+> +
+
+), w) × [0 , R max ] with the product topology, and these are again Polish spaces. 19 For i = v or w, we write D([0 , T ], (Mw(R∗
+
+> +
+
+), i ) × [0 , R max ]) for the space of c` adl` ag functions from [0 , T ] to ( Mw(R∗
+
+> +
+
+), i ) × [0 , R max ], and C([0 , T ], (Mw(R∗
+
+> +
+
+), i ) × [0 , R max ]) for continuous ones. These spaces are endowed with the usual Skorokhod topology, hence are Polish spaces (Theorem 5.6 p.121 in [EK86]). Finally, for every T ≥ 0, we define C1,1 
+
+> ω,T
+
+(R+ × R∗
+
+> +
+
+) the set of functions φ ∈ C 1,1(R+ × R∗
+
+> +
+
+)such that 
+
+∃C > 0, ∀x > 0, sup  
+
+> t∈[0 ,T ]
+
+
+
+|φ(t, x )| (1 + d(x)) + |∂1φ(t, x )| + |∂2φ(t, x )|ω(x)
+
+
+
+≤ Cω (x).
+
+For technical reasons, just before stating our main theorem, we formulate the following additional assumption. We will use it in particular in Section 6.4. 
+
+Assumption 4.1. There exists η ∈ (0 , 1) such that the functions ω (weight function), b (birth rate) and g (maximal speed of energy gain) verify - ∃˜cb > 0, ∀x > 1, b(x) ≤ ˜cb(ϖ(x) + ω(x)) ,- ∃˜cg > 0, ∀x > 0, g(x) ≤ ˜cg (ϖ(x) + ω(x)) ,where ϖ : x > 0 7 → (x − x0)1−η 1x−x0>0. In addition, we ask for 1/ω to be bounded in a neighborhood of +∞.
+
+Remark: Assumption 4.1 may look redundant with Assumption 2.9. We believe, although it is still a conjecture, that it is possible to obtain Theorem 4.1 without Assumption 4.1. This is discussed in Section 4.2.2. Also, note that ( H2 ) in Theorem 1.1 implies Assumption 4.1. 
+
+Theorem 4.1. We work under the renormalized setting and Assumption 4.1. Let 
+
+ μKt , R Kt
+
+
+
+> t≥0
+
+
+
+> K∈N∗
+
+the sequence of renormalized processes defined in Section 3 be such that (H3 ) and (H4 ) hold true. Then, for all T ≥ 0,
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+is tight in D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) . Any of its accumulation point (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] is in C([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) ; and for all t ∈ [0 , T ], for every φ ∈ C 1,1 
+
+> ω,T
+
+(R+ × R∗
+
+> +
+
+), it verifies almost surely (1) and (2) .
+
+On the one hand, the tightness result of Theorem 4.1 is an important contribution to the study of individual-based models as in Section 2.2 with unbounded growth, birth and/or death rates. In the literature, when the previously mentioned rates are bounded, one of the main technical point of the proof is to provide uniform (on K and t ∈ [0 , T ]) bounds and martingale properties for quantities of the form ⟨μKt , 1⟩. With Proposition 3.3 in mind, one can relate ⟨μKt , 1⟩ and quantities of the form ⟨μKt , b ⟩
+
+and ⟨μKt , d ⟩. When rates are bounded, ⟨μKt , b ⟩ and ⟨μKt , d ⟩ are themselves controlled by C⟨μKt , 1⟩ with a constant C > 0. One classically deduces a functional equation verified by ⟨μKt , 1⟩ and concludes with Gronwall lemma. It is then possible to make sense of limiting quantities of the form ⟨μ∗ 
+
+> t
+
+, b ⟩ and 
+
+⟨μ∗ 
+
+> t
+
+, d ⟩. With unbounded rates, the previous technique does not work anymore, and it is even possible that for t ∈ [0 , T ], quantities of the form ⟨μ∗ 
+
+> t
+
+, b ⟩ and ⟨μ∗ 
+
+> t
+
+, d ⟩ are infinite. Hence, instead of controlling quantities of the form ⟨μKt , 1⟩, we search for a function ω such that ⟨μKt , ω ⟩ is related to ⟨μKt , bω ⟩ and 
+
+⟨μKt , dω ⟩, and the latter quantities are themselves controlled by C⟨μKt , ω ⟩ with a constant C > 0. Also, we want to be able to define ⟨μ∗ 
+
+> t
+
+, bω ⟩ and ⟨μ∗ 
+
+> t
+
+, dω ⟩ as finite quantities. The constraints that have to be verified by ω are expressed in Assumptions 2.9 and 4.1. We thus work in a weighted space with respect to the function ω and apply the same procedure as in the classical case. We recover a classical result of tightness for measure-valued processes, initiated in [FM04], but without a priori bounds on the growth, birth and/or death rates. On the other hand, there is a price to pay to obtain this general tightness result. It holds true only in the weighted space D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]), with a weight function ω verifying As-sumptions 2.9 and 4.1. In particular, if d(x) −−−→ 
+
+> x→0
+
++∞, then ω(x) −−−→ 
+
+> x→0
+
+0. For biological reasons, 20 this is the typical case we want to investigate if we think of an unbounded death rate (the Metabolic Theory of Ecology assumes a death rate of the form x > 0 7 → x−δ with δ > 0 [MM19]). The tightness result of Theorem 4.1 is weaker ‘near 0’ than a tightness in D([0 , T ], (M1(R∗
+
+> +
+
+), w) ×[0 , R max ]) ( i.e. with the usual weak topology on M1(R∗
+
+> +
+
+)), in the sense that Equation (2) is not valid for φ ≡ 1, because this function does not converge to 0 at 0. Still, it is possible that ω(x) −−−−−→ 
+
+> x→+∞
+
++∞ (see Section 5 for a specific example), so that the tightness result of Theorem 4.1 is stronger ‘near + ∞’ than a tightness with the usual weak topology on M1(R∗
+
+> +
+
+), in the sense that Equation (2) is valid for functions φ going to + ∞ near + ∞.Finally, remark that for a given initial condition μ∗
+
+> 0
+
+, Equations (1) and (2) are the weak formula-tion of a PDE system, and Theorem 4.1 provides the existence of measure solutions to this problem. The reader can already consider the system (23), (24), (25) to have a clearer idea of the kind of deter-ministic PDE we obtain when there exists functions solution. 
+
+Sketch of the proof of Theorem 4.1 :In the following, we work under the assumptions of Theorem 4.1 and fix T ≥ 0. For any K ∈
+
+N∗, we write L K for the law of the process 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+. Every L K is a probability measure on D([0 , T ], Mω (R∗
+
+> +
+
+) × [0 , R max ]). Note that L K does not depend on the choice of the topology on Mω (R∗
+
+> +
+
+), if we choose among the vague topology or the ω-weak topology (see Lemma B.2.10. in [Bro25]). Our aim in the following proof is first to prove the tightness of ( L K )K∈N∗ in 
+
+D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]), and then to characterize any accumulation point with (1)-(2). We divide the proof in four steps. 
+
+• First, in Section 6.1, we show that ( L K )K∈N∗ is tight in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]). Remark that Mω (R∗
+
+> +
+
+) is endowed with the vague topology at this step. We extend a criterion of Roelly [Roe86] to our weighted space of measures (see Theorem 6.1), which reduces the problem to proving the tightness of a sequence in D([0 , T ], R). To do so, we use a criterion of Aldous and Rebolledo [JM86] and Proposition 3.3. 
+
+• In Section 6.2, we prove that any limit of a subsequence of 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+converging in law in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]) is in C([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) (note that the limit is continuous for Mω (R∗
+
+> +
+
+) endowed with the ω-weak topology). We adapt the reasoning of Step 2 in Section 5 of [JMW11] to our weighted setting. 
+
+• Thanks to the continuity of any accumulation point, in Section 6.3, we extend a result of M´ el´ eard and Roelly [MR93] to our weighted space of measures (see Theorem 6.2), and prove that ( L K )K∈N∗ is tight in D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]). In particular, we use the previous step to control the finite variation and martingale parts of ⟨μKt , ω ⟩ for K ≥ 1 and t ∈ [0 , T ]. 
+
+• Finally in Section 6.4, we characterize the limit ( μ∗, R ∗) of any converging subsequence of our process in D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]), still written ( μK , R K )K≥1, with Equations (1) and (2). It is precisely at this step that we use the additional Assumption 4.1, to be able to control, uniformly on K ≥ 1 and t ∈ [0 , T ], quantities of the form E  ⟨μKt − μ∗ 
+
+> t
+
+, b + g⟩.
+
+## 4.2 Possible extensions of Theorem 4.1 
+
+First in Section 4.2.1, we present the difficulties encountered for showing that there exists a unique measure solution to the system (1)-(2). If this uniqueness holds true, the tightness result of Theorem 4.1 is in fact a convergence in law towards the unique limit identified by (1)-(2). Then in Section 4.2.2, 21 we conjecture an extension of Theorem 4.1 to a tightness result in a broader set of measure-valued processes, with additional regularity and control assumptions on the solutions to (1)-(2). 
+
+4.2.1 Uniqueness of a solution to (1) -(2) Classical results depicted in the literature (Theorem 5.3. in [FM04], Corollary 3.3. in [Tra08], The-orem 5.2 in [CF15]) establish convergence in law towards a deterministic limit (conditionally to the initial condition μ∗
+
+> 0
+
+) and not only tightness of sequences of renormalizations as the one described in Section 3.1. They use a compactness-uniqueness argument summarized as follows. The law of an accumulation point of  (μKt , R Kt )t∈[0 ,T ]
+
+ 
+
+> K∈N∗
+
+in D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) is always a mixture between the law of μ∗ 
+
+> 0
+
+and the law of solutions to (1)-(2). Now if for any fixed μ∗
+
+> 0
+
+, a solution to (1)-(2) is unique, then the law of such an accumulation point is unique conditionally to μ∗
+
+> 0
+
+, and our tightness result becomes a convergence result towards this unique limit. We refer the reader to Proposition II.5.7. in [Bro25] for a proof of this uniqueness result in the case of bounded rates. We encountered two main difficulties in the general case with unbounded rates. - First, the deterministic flow describing the evolution of individual energies and the resource (see again Section 2.2.1) may only be locally well-defined. This is because with a possibly unbounded growth rate g, this flow can explode or reach 0 in finite time. Hence, we cannot control pathwisely our random trajectories for any time t ≥ 0, by a straightforward comparison with this deterministic flow. We only have a result in expectation in Proposition 3.4. - Then, the usual technique to obtain uniqueness is to pick two solutions μt and μ′ 
+
+> t
+
+to (1)-(2) with the same initial condition, and to show that |⟨ μ′ 
+
+> t
+
+− μt, φ ⟩| = 0 for any t ≥ 0 and φ in a broad enough set of test functions (see again the proof of Proposition II.5.7. in [Bro25]). A technical step is to provide an upper bound for |⟨ μ′ 
+
+> t
+
+− μt, φ ⟩| with integral terms, where integrands are functions that verify the same bounds as φ up to a multiplicative constant, in order to use Gronwall lemma. The main difficulty here is precisely to check that the integrands verify the same constraints as φ, because they depend themselves on φ and the previously mentioned deterministic flow. It is still an open question to know if one can find appropriate conditions on 
+
+φ and/or its derivatives, that we are able to recover for the previously mentioned integrands. For the previously mentioned reasons, our feeling is that the classical proof of uniqueness in the case of bounded rates (the original argument comes from Step 3. in the proof of Theorem 5.3. in [FM04]) can hardly be extended to more general cases. Hopefully, there are other ways to proceed, and we still conjecture that this uniqueness result should hold true in our setting. For example, we could certainly adapt the work of [LW07] to obtain a uniqueness result in the case where birth and death rates are power functions with non-negative exponents, and the growth rate is a power function with an exponent 0 ≤ τ ≤ 1 (see Theorem 1.2. in [LW07]). Finally, for biological reasons depicted in [BBCF25], we are particularly interested in a death rate which is a power function with a negative exponent. Obtaining a uniqueness result in that setting is left for future work. 
+
+4.2.2 Extension of Theorem 4.1 with additional assumptions 
+
+We aim for a stronger conclusion where we do not use Assumption 4.1, and the tightness holds true in the broader Skorokhod space D([0 , T ], (M1+Id+ ω (R∗
+
+> +
+
+), w) × [0 , R max ]). This replaces ω with 1 + Id + ω,thus is an amelioration of Theorem 4.1, only if ω is dominated by 1 + Id in a neighborhood of 0 or +∞. This will be the case in the allometric example presented in Section 5 (see also Figure 1). 
+
+Conjecture 4.2. We work under the assumptions of Theorem 4.1 without Assumption 4.1, but assume in addition that the sequence (μK 
+
+> 0
+
+)K∈N∗ converges in law towards μ∗ 
+
+> 0
+
+in (M1+Id+ ω (R∗
+
+> +
+
+), w) . Then, for all T ≥ 0, the sequence 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+is tight in D([0 , T ], (M1+Id+ ω (R∗
+
+> +
+
+), w) × [0 , R max ]) .
+
+22 Remark: We can show that if the death rate d is bounded, then Conjecture 4.2 holds true (see Lemma II.5.11. in [Bro25]). In particular, for any accumulation point μ∗, Equation (2) is valid for 
+
+φ : ( t, x ) 7 → x, i.e. we have an explicit expression of ⟨μ∗ 
+
+> t
+
+, Id ⟩ for t ∈ [0 , T ] (in the case of a mass-structured model, this represents the total biomass for the limiting system described by μ∗ at time t). If we adapt our setting to recover existing individual-based models with bounded rates, such as [Tra08] or [CF15], we thus extend their results. Indeed, previous papers were only able to compute numerically 
+
+⟨μ∗ 
+
+> t
+
+, Id ⟩ for any t ≥ 0, as the limit of quantities of the form ⟨μ∗ 
+
+> t
+
+, φ ⟩ with compactly supported functions 
+
+φ.Now if the death rate d is unbounded, we propose an approach to prove Conjecture 4.2. If we fix 
+
+T ≥ 0 and an accumulation point ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] of the sequence of renormalized processes of Sec-tion 3.1, we write for t ∈ [0 , T ], 
+
+βt := 
+
+Z t
+
+> 0
+
+⟨μ∗ 
+
+> s
+
+, d × (1 + Id) ⟩ds. 
+
+Note that this quantity is possibly finite or infinite. 
+
+Proposition 4.2. We work under the assumptions of Theorem 4.1 without Assumption 4.1, but as-sume in addition that 
+
+(i) the sequence (μK 
+
+> 0
+
+)K∈N∗ converges in law towards μ∗ 
+
+> 0
+
+in (M1+Id+ ω (R∗
+
+> +
+
+), w) ,
+
+(ii ) for any accumulation point μ∗, we have: ∀t ∈ [0 , T ], βt < +∞,
+
+(iii ) any accumulation point (μ∗ 
+
+> t
+
+)t∈[0 ,T ] is in C([0 , T ], (M1+Id+ ω (R∗
+
+> +
+
+), w)) .Then, the conclusion of Conjecture 4.2 holds true. 
+
+The proof of Proposition 4.2 can be found in Section II.5.3 of [Bro25] (see Theorem II.5.3.). Note that conditionally to the initial condition μ∗
+
+> 0
+
+, the additional assumptions we introduce in Proposition 4.2 depend only on the limit μ∗, which is characterized by (1)-(2). Hence, we transposed our probabilistic questioning into the study of the deterministic solutions to the weak formulation of a PDE system. To show Conjecture 4.2, it suffices to show that solutions to (1)-(2) verify the conclusions of points ( ii )and ( iii ). This could be settled with a deterministic approach, which is not our area of expertise. 
+
+# 5 Application to allometric functional parameters 
+
+In this section, to illustrate the general results of Section 4, we introduce a specific setting with allometric functional parameters ( i.e. the jump rates are power functions). For more details about the biological motivation behind this example, see [BBCF25]. We first show in Section 5.1 that this allometric case falls within the framework of the general setting depicted in Section 2 (in particular, we prove that there exists a weight function ω verifying Assumptions 2.9 and 4.1 when the functional parameters of our model are allometric). Thus, the tightness result of Theorem 4.1 is valid in this allometric case, and we then provide numerical illustrations in Section 5.2. 
+
+## 5.1 Allometric setting 
+
+To the best of our knowledge, the following setting has not been studied with an individual-based approach so far, except for the model with constant resources in [BBCF25]. In the following, we will refer to it as the ‘allometric setting’. For every x > 0 and R ≥ 0, we set: 1. ℓ(x) := Cαxα,2. b(x) := 1x>x 0 Cβ xβ ,23 3. f (x, R ) := ϕ(R)Cγ xγ (i.e. ψ(x) = Cγ xγ ), 4. d(x) := Cδ xδ ,with α, β, γ, δ ∈ R and ( Cα, C β , C γ , C δ ) ∈ R∗
+
+> +
+
+. If f and g are two functions on R∗ 
+
+> +
+
+with g positive, we write f ⊜0 g, respectively f ⊜∞ g, if f (x) = g(x) on a neighborhood of 0, respectively a neighborhood of + ∞.
+
+Definition 5.1 (Allometric form ). We say that ω ∈ C 1(R∗
+
+> +
+
+) has an allometric form if there exists 
+
+0 ≤ κ1 ≤ κ2 with - ∃C1 > 0, ω(x) ⊜0 C1xκ1 ,- ∃C2 > 0, ω(x) ⊜∞ C2xκ2 .Remark that in that case, ω is non-decreasing. 
+
+We verify easily that we can construct such functions for any 0 ≤ κ1 ≤ κ2. In the upcoming lemmas, we investigate under which conditions on the allometric coefficients we verify Assumptions 2.1, 2.6 and 4.1 with a weight function ω with an allometric form. 
+
+Lemma 5.2. Under the allometric setting, we have 
+
+(Assumptions 2.1 and 2.6 ) ⇔ (δ ≤ α − 1, γ = α and Cγ > C α).
+
+Proof . Under the allometric setting, we have 
+
+∀x > 0, ψ(x) − ℓ(x) = Cγ xγ − Cαxα,
+
+so Lemma 2.2 implies that γ = α and Cγ > C α, and we verify that conversely, this implies Assump-tion 2.1. Assumption 2.6 is also immediately equivalent to δ ≤ α − 1. 
+
+Lemma 5.3. Under the allometric setting, under Assumptions 2.1 and 2.6, suppose that the weight function ω has an allometric form with 0 ≤ κ1 ≤ κ2.- If δ < −1, then Assumption 2.9 is equivalent to 
+
+κ1 = κ2 = −δ, α ∈ [0 , 1] and β ≤ 2 + δ;
+
+- If −1 ≤ δ ≤ 0, then Assumption 2.9 is equivalent to 
+
+−δ ≤ κ1 ≤ κ2 ≤ 1 − δ
+
+2 ≤ 1, α ∈ [0 , 1] , and β ≤ 1.
+
+- If δ > 0, then Assumption 2.9 cannot be verified. These constraints on the allometic coefficients are illustrated on Figure 2 and Figure 3. 
+
+Proof . By Lemma 5.2, we work with δ ≤ α − 1, γ = α and Cγ > C α, and an allometric form for 
+
+ω with 0 ≤ κ1 ≤ κ2. First, we suppose that Assumption 2.9 holds true. If we consider the different points of Assumption 2.9, it suffices to study the associated inequalities on a neighborhood of 0 and on a neighborhood of + ∞, since all the considered functions are continuous. Under the allometric setting, the third point of Assumption 2.9 gives 
+
+∀x > 0, Cδ xδ (ω(x) + ω2(x)) ≤ Cd (1 + x + ω(x)) . (21) Considering x → 0, respectively x → +∞, and an allometric form for ω, we obtain that (21) implies that −δ ≤ κ1, respectively that 2 κ2 + δ ≤ max(1 , κ 2). First if κ2 > 1, then we necessarily have 24 1 < −δ = κ1 = κ2. Else, we verify that we have −δ ≤ κ1 ≤ κ2 ≤ 1 − δ
+
+2 ≤ 1. Then, the first point of Assumption 2.9 gives 
+
+∀x > 0, max( ϕ(Rmax )Cγ − Cα, C α)xα(1 + ω′(x)) ≤ Cg (1 + x + ω(x)) . (22) Considering x → 0 and x → +∞, we verify that (22) implies that 0 ≤ α ≤ max(1 , κ 2). In particular, we obtain that Assumption 2.9 cannot be verified if δ > 0 (because in that case, we would have 0 > −δ ≥ 1 − α ≥ 0). Also, if we suppose by contradiction that α > 1 (so κ2 > 1), then considering (22) when x → +∞, we would have α + κ2 − 1 ≤ max(1 , κ 2) = κ2 so α ≤ 1 which is a contradiction. Hence, we always have α ∈ [0 , 1]. Finally, we consider the second point of Assumption 2.9. First if 
+
+−1 ≤ δ ≤ 0, then ω is Lipschitz continuous on (1 , +∞) by the previous work (because κ2 ≤ 1), so the second point of Assumption 2.9 is equivalent to (11), which entails β ≤ 1. Else if δ < −1, we verify that the left-hand side in the second point of Assumption 2.9 is of order xβ−2δ−2 in a neighborhood of + ∞, and the right-hand side is of order x−δ , hence we necessarily have β ≤ 2 + δ. The converse implications in Lemma 5.2 are straightforward verifications. 
+
+Remark: Note that if we want to pick a weight function that has an allometric form with 0 ≤ κ1 ≤ κ2,we restrict ourselves to the case α ∈ [0 , 1]. If we want to consider for example the case β + 1 = δ + 1 = 
+
+α = γ = 3 /4 supported by the Metabolic Theory of Ecology [SDF08], we can pick κ1 = 1 /4 and 
+
+κ2 = 5 /8 according to Lemma 5.3 (and this is the best choice in the sense that we cannot choose another weight function that has an allometric form and dominates this particular weight near 0 or +∞). Obviously, we investigated here only a precise form of the weight function ω, other choices may be possible to be less restrictive in the case β + 1 = δ + 1 = α = 3 /4, or to study for example the case 
+
+α < 0. We leave this for future work. 0 δ
+
+β
+
+−11
+
+−1Figure 2: Visual representation of the constraints on δ and β in Lemma 5.3, with γ = α ∈ [0 , 1] (we took α = 0 on this figure). The admissible coefficients ( δ, β ) are those in the green hatched area, and verify one of the two following conditions: ( i) ( δ < −1 and β ≤ 2 + δ); ( ii ) ( −1 ≤ δ ≤ 0 and β ≤ 1). Remark that the green area always contains the particular case β = δ = α − 1 = γ − 1 highlighted by the Metabolic Theory of Ecology, represented by a green dot on the figure. 25 0 δ
+
+κ1
+
+−1
+
+1
+
+1/2
+
+Figure 3: Visual representation of the constraints on κ1 in Lemma 5.3, depending on the value of δ (we took α = 1 on this figure). This represents the fact that if δ < −1, then κ1 = −δ, and if −1 ≤ δ ≤ 0, then −δ ≤ κ1 ≤ (1 − δ)/2. Note that κ2 verifies the same conditions in Lemma 5.3, so that this graph is also valid to visualize the constraints on κ2. To sum up, if we want to pick an admissible triplet (δ, κ 1, κ 2), we first choose ( δ, κ 1) on the green line or in the green hatched area. Then, the remaining possible values for κ2 are such that the two following conditions hold true: κ2 ≥ κ1, and ( δ, κ 2) is also on the green line or in the green hatched area. 
+
+Lemma 5.4. Under the allometric setting, suppose that the weight function ω has an allometric form with 0 ≤ κ1 ≤ κ2. Then, Assumption 4.1 is equivalent to 
+
+∃η ∈ (0 , 1) , κ1 ≤ α ≤ max( κ2, 1 − η) and β ≤ max( κ2, 1 − η).
+
+Proof . This is an immediate verification (in particular, if ω has an allometric form, the fact that 1 /ω 
+
+is bounded near + ∞ is automatically verified). Eventually, if we want to apply Theorem 4.1 under the allometric setting, we thus have to gather all the restrictive assumptions of Lemmas 5.2, 5.3 and 5.4. For example, if we fix β = δ = α − 1 (this is motivated by Theorem 2. in Section 3.1. of [BBCF25]), this gives the following constraints on κ1 and 
+
+κ2:- 0 ≤ 1 − α ≤ κ1 ≤ κ2 ≤ 1 − α
+
+2 < 1, - κ1 ≤ α < 1, which implies with the previous point that α ∈ [1 /2, 1). 
+
+## 5.2 Numerical illustration of Theorem 4.1 under the allometric setting 
+
+In this section, we illustrate numerically the tightness result of Theorem 4.1 under the allometric setting. We consider a deterministic solution ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] to the system (1)-(2) with initial condition 
+
+μ∗
+
+> 0
+
+, and make the following assumption. 
+
+Assumption 5.5. For every t ∈ [0 , T ], μ∗ 
+
+> t
+
+admits an integrable density ut ∈ C 1(R∗ 
+
+> +
+
+\{ x0}) with respect to Lebesgue measure, such that - for all t ∈ [0 , T ], the function x ∈ R∗ 
+
+> +
+
+\ { x0} 7 → ut(x) =: u(t, x ) is C1,- for all t ∈ [0 , T ], the limits ut(x0+) and ut(x0−) exist and are finite, 
+
+26 - for all x ∈ R∗
+
+> +
+
+, the function t ∈ [0 , T ] 7 → ut(x) is C1,- there exists a locally integrable function F on R∗
+
+> +
+
+, such that for all t ∈ [0 , T ], for all x > 0,
+
+|∂1u(t, x )| ≤ F (x).
+
+We conjecture that Assumption 5.5 holds true under our setting, and refer to Proposition III.1.3. in [Bro25] for a line of research. With the notations of Section 2.1 and Assumption 5.5, we let the reader check that we can rewrite the weak formulation (1)-(2) into a classical PDE system with function solutions. Namely, ( ut, R ∗ 
+
+> t
+
+)t should verify, for every t ∈ (0 , T ] and x ∈ R∗ 
+
+> +
+
+\ { x0},
+
+∂tut(x) + ∂x
+
+
+
+g(x, R ∗ 
+
+> t
+
+)ut(x)
+
+
+
+= b(x + x0)ut(x + x0) − (b(x) + d(x)) ut(x), (23) where ∂x, respectively ∂t is the partial derivative with respect to the variable x, respectively t, and dR∗
+
+> t
+
+dt = ς(R∗ 
+
+> t
+
+) − χ
+
+Z
+
+> R∗
+> +
+
+f (x, R ∗ 
+
+> t
+
+)ut(x)d x, (24) so that in particular t 7 → R∗ 
+
+> t
+
+is C1 on [0 , T ]. We also have the boundary condition 
+
+Z
+
+> R∗
+> +
+
+b(y)ut(y)d y =
+
+
+
+ut(x0+) − ut(x0−)
+
+
+
+g(x0, R ∗ 
+
+> t
+
+), (25) and the initial condition u0 at time t = 0. In the following, we simulate the stochastic process ( μKt , R Kt )t≥0 of Section 3 for different values of K ≥ 1, and denote it as the individual-based model , or simply IBM. We will also simulate the PDE system (23), (24), (25), and denote this deterministic model as the PDE model in the following. Both IBM and PDE model are implemented with Python , under the allometric setting of Section 5.1, and for the renewal of the resource, we place ourselves in a chemostat setting (see [CF15]). We specify our simulation parameters in Appendix B.1 and describe our algorithms in Appendix B.2. As in Section 6 of [CF15], we compare simulations of the IBM and the PDE model in three different regimes. 1. Small population size, with K = 100; 2. Medium population size, with K = 1000; 3. Large population size, with K = 10000. For each of these regimes, we start from the same initial condition u0 depicted on Figure 6 in Ap-pendix B.1 and simulate 100 independent runs of the IBM. The convergence of the IBM towards the PDE model is illustrated on Figure 4, where we present the evolution of the population size, the total energy of the population, and the amount of resources over time for t ∈ [0 , 200]. The fact that the limit is apparently unique motivates the discussion of Section 4.2.1. We also represent a phase portrait energy/resource on this time window. Remark that we illustrate the convergence of ⟨μKt , 1⟩ (popula-tion size) and ⟨μKt , Id ⟩ (total energy), where 1 + Id is not dominated by ω, and this is motivated by Conjecture 4.2. These simulation results are very similar to those obtained in Section 6 in [CF15], but the main difference is the deviations of the IBM from the PDE in terms of total energy, that we observe on the second line of Figure 4. As time increases, it seems that the variability of the IBM trajectories around the PDE also increases, even if this phenomenon has less impact as K goes to + ∞
+
+by our tightness result. This variability comes precisely from the main new contribution of our work compared to existing literature, which is the fact that the individual growth rate are not bounded, so individual energies can increase very fast. 27 Then on Figure 5, at times t = 0, 20 and 160, we show a numerical approximation of the renormalized energy distribution ˜ ut : x > 0 7 → ut(x)
+
+R +∞ 
+
+> 0
+
+ut(y)d y , where ( t, x ) 7 → ut(x) is solution to the PDE system (23), (24), (25) with initial condition u0. On this curve, we superimpose renormalized histograms of the empirical energy distribution in the population for 100 independent IBM simulations, taken at the same times t to illustrate again the convergence result of Theorem 4.1. We observe numerically that for every t > 0, the density x 7 → ut(x) is discontinuous at x0, as expressed in the boundary condition (25). Furthermore, the density is rapidly (we can observe this phenomenon from t = 5) concentrated on a precise energy window and has a bimodal shape, with a peak near x0 and another one near 0, which seems natural with our birth rule in mind. The density decreases very fast to 0 after x0 and seems to stabilize after time t = 150. Finally, our main observation is that the system seems to reach a non-trivial equilibrium, different from ( Rin , 0) (extinction of the population). 
+
+# 6 Proof of Theorem 4.1 
+
+We follow the sketch of the proof highlighted in Section 4. 
+
+## 6.1 Proof of the tightness of  L K  
+
+> K∈N∗
+
+## in D([0 , T ], (Mω(R∗
+
+> +
+
+## ), v ) × [0 , R max ]) 
+
+First, we prove the tightness of  L Kμ
+
+ 
+
+> K∈N∗
+
+, where for K ∈ N∗, L Kμ is the law of ( μKt )t∈[0 ,T ]. We give the following criterion of tightness in D([0 , T ], (Mω (R∗
+
+> +
+
+), v )), which is an extension of Theorem 2.1 in [Roe86] to weighted spaces of measures. For every f ∈ Bω (R∗
+
+> +
+
+), we define the projection 
+
+πf : D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) −→ D([0 , T ], R)(μt)t∈[0 ,T ] 7 −→ (⟨μt, f ⟩)t∈[0 ,T ].
+
+Also, we write f ∈ C 0(R∗
+
+> +
+
+), if f is continous, f (x) −−−→ 
+
+> x→0
+
+0 and f (x) −−−−−→ 
+
+> x→+∞
+
+0. 
+
+Theorem 6.1. Let T ≥ 0,  P K  
+
+> K∈N
+
+be a sequence of probability measures on D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) ,and D be a dense countable subset of C0(R∗
+
+> +
+
+) for the topology of uniform convergence. Assume that for all f ∈ D ∪ { ω},  πf ∗ P K  
+
+> K∈N
+
+is a tight sequence of probability measures on D([0 , T ], R), where 
+
+πf ∗ P K is the usual pushforward of P K by πf . Then  P K  
+
+> K∈N
+
+is tight on D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) .
+
+We prove Theorem 6.1 in Appendix A.4. It is well-known that there exists a countable set D ⊆ C ∞ 
+
+> c
+
+(R∗
+
+> +
+
+), such that D is dense in C0(R∗
+
+> +
+
+) for the topology of uniform convergence (see Lemma II.4.1. in [Bro25]). Thus, thanks to Theorem 6.1, it suffices to show that for all φ ∈ C ∞ 
+
+> c
+
+(R∗
+
+> +
+
+) ∪ { ω},  πφ ∗ L Kμ
+
+ 
+
+> K∈N
+
+is a tight sequence of probability measures on D([0 , T ], R). Let φ be such a function, and note that in particular, φ ∈ Bω (R∗
+
+> +
+
+) and φ is bounded. Then by Proposition 3.3, applied to ( t, x ) 7 → φ(x), for 
+
+t ∈ [0 , T ], we have the semi-martingale decomposition 
+
+⟨μKt , φ ⟩ = V Kφ,t + ♡Kφ,t ,
+
+where ( ♡Kφ,t )t≥0 is a square-integrable martingale. The tightness of  πφ ∗ L Kμ
+
+ 
+
+> K∈N
+
+in D([0 , T ], R) is proven thanks to a criterion from Aldous and Rebolledo ([JM86], Corollary 2.3.3). It suffices to show that 1. For every t ∈ [0 , T ], the sequence of laws of ( ⟨μKt , φ ⟩)K≥1 is tight in R.2. For every t ∈ [0 , T ], for every ε > 0, for every η > 0, there exists δ > 0 and K0 ≥ 1, such that for 28 0 50 100 150 200 
+
+Time t    
+
+> 200 400 600 800
+> Population size
+> IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 2000 4000 6000 8000
+> Population size
+> IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 20000 40000 60000 80000
+> Population size
+> IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 0200 400 600 800
+> Total energy
+> IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 02000 4000 6000 8000
+> Total energy
+> IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 020000 40000 60000 80000
+> Total energy
+> IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 1.01.21.4
+> Amount of resources  IBM PDE Mean of IBM 050 100 150 200
+
+Time t    
+
+> 1.01.11.21.31.41.5
+> Amount of resources  IBM PDE Mean of IBM 050 100 150 200
+
+Time t     
+
+> 1.01.11.21.31.41.5
+> Amount of resources  IBM PDE Mean of IBM 1.01.11.21.31.41.5
+
+Amount of resources 
+
+> 400 600 800
+> Total energy
+> IBM PDE Mean of IBM
+
+(a) K = 100 1.0 1.1 1.2 1.3 1.4 1.5
+
+Amount of resources  
+
+> 3000 4000 5000 6000
+> Total energy
+> IBM PDE Mean of IBM
+
+(b) K = 1000 1.0 1.1 1.2 1.3 1.4 1.5
+
+Amount of resources  
+
+> 30000 40000 50000 60000
+> Total energy
+> IBM PDE Mean of IBM
+
+(c) K = 10000 
+
+Figure 4: From the first row to the third row, time evolutions of N Kt , EKt and RKt (in blue), respectively 
+
+N ∗
+
+t := ⟨μ∗
+
+t , 1⟩, E∗
+
+t := ⟨μ∗
+
+t , Id ⟩ and R∗
+
+t (in red), representing the population size, the total energy of the population and the amount of resources, and associated respectively with the trajectories of 100 independent IBM simulations (in blue) and the numerical resolution of the PDE system (23), (24), (25) with initial condition u0 (in red). The fourth row presents the energy/resource phase portrait. The green dotted curve is the mean value of the stochastic simulations in blue. These graphs are presented for small (left), medium (middle) and large (right) initial population sizes. On the third row, the dotted black line locates the value Req assumed to be an equilibrium for the amount of resource. every sequence of stopping times ( SK , T K )K∈N∗ such that SK ≤ TK ≤ t for all K ∈ N∗, we have sup 
+
+K≥K0
+
+P
+
+
+
+|⟨♡ Kφ ⟩TK − ⟨♡ Kφ ⟩SK | ≥ η, T K ≤ SK + δ
+
+
+
+≤ ε, (26) sup 
+
+K≥K0
+
+P
+
+
+
+|V Kφ,T K − V Kφ,S K | ≥ η, T K ≤ SK + δ
+
+
+
+≤ ε. (27) 29 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 0.0 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 0.0 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 0.0 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 20.0 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 20.0 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 20.0 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 160.0 (a) K = 100 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 160.0 (b) K = 1000 0 1 2 3 4 5
+
+Energy x
+
+Density at time t = 160.0 (c) K = 10000 
+
+Figure 5: Energy distribution on the energy window [0 , 5] at time t = 0 (above), 20 (middle) and 160 (bottom) for small (left), medium (middle) and large (right) initial population sizes. The red curve represents the renormalized energy distribution ˜ ut(.) for the corresponding value of t. The blue histogram represent the empirical energy distribution of individuals for 100 independent runs of IBM. The number of bins for the histograms is adapted to population sizes on each subfigure. First, we use Markov inequality to obtain, for any t ∈ [0 , T ], M > 0, K ∈ N∗,
+
+P(|⟨ μKt , φ ⟩| ≥ M ) ≤ 1
+
+M E(|⟨ μKt , φ ⟩| )
+
+≤ 1
+
+M sup 
+
+> K∈N∗
+
+E( sup  
+
+> t∈[0 ,T ]
+
+|⟨ μKt , φ ⟩| ).
+
+Remark that φ ∈ Bω (R∗
+
+> +
+
+), so Proposition 3.4 with p = 1 entails that the sequence of laws of (⟨μKt , φ ⟩)K≥1 is tight in R. Then, we fix t ∈ [0 , T ], δ > 0 and ( SK , T K )K∈N∗ a sequence of stop-ping times such that SK ≤ TK ≤ t for all K ∈ N∗. By Lemma 2.10, Proposition 3.3, and using the 30 fact that φ ∈ C ∞ 
+
+> c
+
+(R∗
+
+> +
+
+) ∪ { ω}, so φ is bounded or φ = ω, there exists a constant C > 0 such that for 
+
+K ≥ 1, 
+
+E  |⟨♡ Kφ ⟩TK − ⟨♡ Kφ ⟩SK |1{| TK −SK |≤ δ}
+
+
+
+= 1
+
+K E
+
+
+
+1{| TK −SK |≤ δ}
+
+Z TK
+
+> SK
+
+Z
+
+> R∗
+> +
+
+
+
+b(x)
+
+
+
+φ(x0) + φ(x − x0) − φ(x)
+
+2
+
++ d(x)φ2(x)
+
+
+
+μKs (d x)d s
+
+
+
+≤ CK E 1{| TK −SK |≤ δ}
+
+Z TK
+
+> SK
+
+μKs , 1 + Id + ω ds
+
+!
+
+≤ CK δ sup 
+
+> K∈N∗
+
+E sup  
+
+> t∈[0 ,T ]
+
+ EKt + N Kt + Ω Kt
+
+!
+
+.
+
+By Proposition 3.4 with p = 1 and using Markov inequality, for every ε > 0 and η > 0, we can thus find 
+
+δ and K0 such that (26) holds true uniformly on the choice of the sequence ( SK , T K )K∈N∗ . Similarly, we use Lemma 2.10, Proposition 3.3, the fact that φ ∈ C ∞ 
+
+> c
+
+(R∗
+
+> +
+
+) ∪ { ω}, so φ and φ′ are bounded and 
+
+φ ∈ Bω (R∗
+
+> +
+
+), or φ ≡ ω, to assess that 
+
+E  |V Kφ,T K − V Kφ,S K |1{| TK −SK |≤ δ}
+
+
+
+≤ E
+
+
+
+1{| TK −SK |≤ δ}
+
+Z TK
+
+> SK
+
+Z
+
+> R∗
+> +
+
+
+
+g(x)|φ′(x)| + d(x)|φ(x)|
+
++ b(x) φ(x0) + φ(x − x0) − φ(x)
+
+
+
+μKs (d x)d s
+
+
+
+≤ ω1E
+
+
+
+1{| TK −SK |≤ δ}
+
+Z TK
+
+> SK
+
+Z
+
+> R∗
+> +
+
+
+
+1 + x + ω(x)
+
+
+
+μKs (d x)d s
+
+
+
+≤ ω1δ sup 
+
+> K∈N∗
+
+E sup  
+
+> t∈[0 ,T ]
+
+ EKt + N Kt + Ω Kt
+
+!
+
+,
+
+and we conclude in the same manner. Now, let us show the tightness of  L KR
+
+ 
+
+> K∈N∗
+
+, where for 
+
+K ∈ N∗, L KR is the law of ( RKt )t∈[0 ,T ]. We use a simpler criterion of Aldous, without decomposing 
+
+RKt into a finite variation part and a martingale part. First, for every t ≥ 0, for every K ∈ N∗, then 
+
+RKt ∈ [0 , R max ], so for every t ∈ [0 , T ], ( RKt )K≥1 is tight in R. Then from Theorem 16.10. in [Bil99], it suffices to show that for every t ∈ [0 , T ], for every ε > 0, for every η > 0, there exists δ > 0 and K0 ≥ 1, such that for every sequence of stopping times ( SK , T K )K∈N∗ with SK ≤ TK ≤ t for all K ∈ N∗, we have sup 
+
+> K≥K0
+
+P  |RKTK − RKSK | ≥ η, T K ≤ SK + δ ≤ ε. 
+
+Let us fix t ∈ [0 , T ], δ > 0, K ≥ 1 and a sequence of stopping times as defined previously, then we 31 have by (6) that 
+
+E  |RKTK − RKSK |1{TK ≤SK +δ}
+
+
+
+= E
+
+ Z TK
+
+> SK
+
+ς(RKs ) − χ⟨μKs , f (., R Ks )⟩ds 1{TK ≤SK +δ}
+
+
+
+≤ δ|| ς|| ∞,[0 ,R max ] + E χ
+
+Z TK
+
+> SK
+
+⟨μKs , g ⟩ds 1{TK ≤SK +δ}
+
+!
+
+≤ δ || ς|| ∞,[0 ,R max ] + χC g sup 
+
+> K∈N∗
+
+E sup  
+
+> t∈[0 ,T ]
+
+ EKt + N Kt + Ω Kt
+
+!! 
+
+,
+
+where we used the fact that for every R ≥ 0 and x > 0, |f (x, R )| ≤ g(x) and Assumption 2.9. This concludes by Markov inequality and Proposition 3.4 with p = 1. At this step, we have shown the tightness of  L K  
+
+> K∈N∗
+
+in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]). Then, we can use Prokhorov theorem, because D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]) is metrizable (see Theorem 5.1. in [Bil99]). This theorem states that we can extract a subsequence, still denoted as 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+for the sake of simplicity, that converges in law towards some ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]). 
+
+## 6.2 Continuity of accumulation points 
+
+In this section, we show the continuity of the limit ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] highlighted at the end of Section 6.1, which is essential in the use of Theorem 6.2 in Section 6.3, and in the characterization of the limit in Section 6.4. We follow Step 2 in Section 5 of [JMW11] and begin with the continuity with respect to the topology of vague convergence. 
+
+Lemma 6.1. We work under the assumptions of Theorem 4.1. Then, any limit (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] of a subsequence of 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+converging in law in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]) is in 
+
+C([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]) .
+
+Proof . For the sake of simplicity, we write again 
+
+
+
+(μKt , R Kt )t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+for the converging subse-quence. We begin with the continuity of ( μ∗ 
+
+> t
+
+)t∈[0 ,T ]. By a simple adaptation of Theorem 10.2 p.148 in [EK86] to our weighted context, it suffices to show that almost surely, sup  
+
+> t∈[0 ,T ]
+
+dωP (μKt , μ Kt−) −−−−−→ 
+
+> K→+∞
+
+0,
+
+where d ωP is the ω-Prokhorov distance defined in Definition A.3. By Lemma B.2.5 in [Bro25], we can replace the ω-Prokhorov distance in the previous convergence by the ω-Fortet-Mourier distance dω
+
+> FM
+
+,defined for every μ, ν ∈ M ω (R∗
+
+> +
+
+) by 
+
+dω
+
+> FM
+
+(μ, ν ) := sup 
+
+> φ∈D
+
+|⟨ μ − ν, φ ⟩| ,
+
+where D := ( φn)n∈N is a countable and dense subset of the set φ ∈ C ∞ 
+
+> c
+
+(R∗
+
+> +
+
+), || φ/ω || ∞ ≤ 1, || φ′|| ∞ ≤ 1
+
+for the topology of uniform convergence (which exists by Lemma II.4.1 in [Bro25]). Thus, to conclude, it suffices to show that almost surely sup  
+
+> t∈[0 ,T ]
+
+dω
+
+> FM
+
+(μKt , μ Kt−) = sup  
+
+> t∈[0 ,T ]
+
+sup 
+
+> n∈N
+
+|⟨ μKt − μKt−, φ n⟩| = sup 
+
+> n∈N
+
+sup  
+
+> t∈[0 ,T ]
+
+|⟨ μKt − μKt−, φ n⟩| − −−−−→ 
+
+> K→+∞
+
+0.
+
+Without loss of generality, we can prove that this convergence holds true in L1, because this implies almost sure convergence up to extraction, and our argument using Theorem 10.2 p.148 in [EK86] 32 remains true up to extracting a new subsequence that still converges in law towards ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] in 
+
+D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]). Furthermore, for K ≥ 1 and n ≥ 0, we have the domination sup  
+
+> t∈[0 ,T ]
+
+|⟨ μKt − μKt−, φ n⟩| ≤ 2 sup  
+
+> t∈[0 ,T ]
+
+ΩKt .
+
+The right-hand side above does not depend on n, and its expectation is bounded uniformly on K by Proposition 3.4 with p = 1. Hence, by this domination argument, it suffices to show that 
+
+E sup 
+
+> n∈N
+
+sup  
+
+> t∈[0 ,T ]
+
+|⟨ μKt − μKt−, φ n⟩| 
+
+!
+
+= sup 
+
+> n∈N
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μKt − μKt−, φ n⟩
+
+!
+
+−−−−−→ 
+
+> K→+∞
+
+0.
+
+Let us consider any φ ∈ C ∞ 
+
+> c
+
+(R∗
+
+> +
+
+) with || φ/ω || ∞ ≤ 1 and || φ′|| ∞ ≤ 1. For t ∈ [0 , T ] and K ≥ 1, we have from the decomposition of Proposition 3.3 that 
+
+⟨μKt − μKt−, φ ⟩ = V Kφ,t − V Kφ,t − + ♡Kφ,t − ♡ Kφ,t − = ♡Kφ,t − ♡ Kφ,t −,
+
+because t ∈ [0 , T ] 7 → V Kφ,t is continuous. Hence, we obtain sup  
+
+> t∈[0 ,T ]
+
+|⟨ μKt − μKt−, φ ⟩| ≤ 2 sup  
+
+> t∈[0 ,T ]
+
+♡Kφ,t .
+
+Then, we use Doob maximal inequality for square-integrable martingales to obtain 
+
+E sup  
+
+> t∈[0 ,T ]
+
+♡Kφ,t 
+
+!
+
+≤ 4E
+
+
+
+♡Kφ T
+
+
+
+≤ 4( Cb(ω(x0) + x0)2 + Cd)
+
+K E  EKT + N KT + Ω KT
+
+ ,
+
+by Proposition 3.3, the fact that || φ/ω || ∞ ≤ 1 and || φ′|| ∞ ≤ 1, and Assumption 2.9 (in particular, we use (13) in Lemma 2.10). This upper bound is uniform on φ and converges to 0 when K → +∞
+
+thanks to Proposition 3.4 with p = 1, which concludes for the continuity of ( μ∗ 
+
+> t
+
+)t∈[0 ,T ]. Finally, we use again Theorem 10.2 p.148 in [EK86] for the continuity of ( R∗ 
+
+> t
+
+)t∈[0 ,T ], and it suffices to show that sup  
+
+> t∈[0 ,T ]
+
+RKt − RKt− −−−−−→ 
+
+> K→+∞
+
+0,
+
+which is immediate because every ( RKt )t∈[0 ,T ] is continuous by construction. 
+
+Remark: In the previous proof, note that we need to use the ω-Fortet-Mourier distance instead of the total variation distance, which is classically used in similar contexts (see Lemma 5.7 in [CF15]). This is essentially because we need to control quantities of the form |⟨ μKt − μKt−, φ ⟩| , where φ is not necessarily bounded, but only dominated by ω.Now, we want to show the continuity of any accumulation point with respect to the ω-weak topology. We begin with a preliminary result. 
+
+Lemma 6.2. We work under the assumptions of Theorem 4.1 and consider a subsequence of the se-quence 
+
+ μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+ 
+
+> K∈N∗
+
+that converges in law towards (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mω (R∗
+
+> +
+
+), v )×
+
+[0 , R max ]) . Let φ : ( t, x ) ∈ R+ × R∗ 
+
+> +
+
+7 → φt(x) be continuous and such that 
+
+∃C > 0, ∀x > 0, sup  
+
+> t∈[0 ,T ]
+
+|φt(x)| ≤ C(1 + x + ω(x)) .
+
+Then, we have 
+
+E sup  
+
+> t∈[0 ,T ]
+
+|⟨ μ∗ 
+
+> t
+
+, φ t⟩| 
+
+!
+
+< +∞.
+
+33 Proof . Let T ≥ 0, for the sake of simplicity, we still denote as 
+
+ μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+the converging subsequence in the assumptions of Lemma 6.2. Without loss of generality, we will show that 
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μ∗ 
+
+> t
+
+, 1 + Id + ω⟩
+
+!
+
+< +∞.
+
+There exists an increasing sequence ( φn)n∈N of C∞ 
+
+> c
+
+(R∗
+
+> +
+
+) non-negative functions that converges simply towards 1 + Id + ω, so that by monotone convergence, for every t ∈ [0 , T ], 
+
+⟨μ∗ 
+
+> t
+
+, 1 + Id + ω⟩ = lim 
+
+> n→+∞
+
+⟨μ∗ 
+
+> t
+
+, φ n⟩ and ∀x > 0, sup 
+
+> n∈N
+
+φn(x) ≤ 1 + x + ω(x).
+
+Thanks to Lemma 6.1 and Proposition 2.4 p.303 in [JS +87], the mapping μ 7 → sup t∈[0 ,T ]⟨μt, φ n⟩ is continuous on D([0 , T ], (Mω (R∗
+
+> +
+
+), v )). Hence, for every n ∈ N and t ∈ [0 , T ], we have almost surely sup t∈[0 ,T ]⟨μ∗ 
+
+> t
+
+, φ n⟩ = lim  
+
+> K→+∞
+
+sup t∈[0 ,T ]⟨μKt , φ n⟩, and thanks to Corollary 3.5, the family of random variables sup  
+
+> t∈[0 ,T ]
+
+⟨μKt , φ n⟩
+
+!
+
+> K∈N∗
+
+is uniformly integrable. Thus, we obtain 
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μ∗ 
+
+> t
+
+, φ n⟩
+
+!
+
+= lim  
+
+> K→+∞
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μKt , φ n⟩
+
+!
+
+≤ sup 
+
+> K≥1
+
+E sup  
+
+> t∈[0 ,T ]
+
+ EKt + N Kt + Ω Kt
+
+!
+
+.
+
+We conclude by monotone convergence applied to the left-hand-side above, and Proposition 3.4 with 
+
+p = 1 for the right-hand-side. 
+
+Corollary 6.3. We work under the assumptions of Theorem 4.1. Then, any limit (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] of a subsequence of 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+converging in law in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]) is in 
+
+C([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) .
+
+Proof . It suffices to show that for every continuous function φ ∈ Bω (R∗
+
+> +
+
+) and t ∈ [0 , T ], we have almost surely 
+
+⟨μ∗ 
+
+> t
+
+− μ∗
+
+> t−
+
+, φ ⟩ = 0 .
+
+We fix such a function φ, and without loss of generality, we will show that 
+
+E(|⟨ μ∗ 
+
+> t
+
+− μ∗
+
+> t−
+
+, φ ⟩| ) = 0 .
+
+We use an approximation argument: there exists a sequence ( φn)n∈N of C∞ 
+
+> c
+
+(R∗
+
+> +
+
+) functions that con-verges simply towards φ. Thanks to Lemma 6.2, we can use dominated convergence to obtain 
+
+E(|⟨ μ∗ 
+
+> t
+
+− μ∗
+
+> t−
+
+, φ ⟩| ) = lim  
+
+> n→+∞
+
+E(|⟨ μ∗ 
+
+> t
+
+− μ∗
+
+> t−
+
+, φ n⟩| ) = 0 ,
+
+where the last equality comes from Lemma 6.1. 
+
+## 6.3 Proof of the tightness of  L K  
+
+> K∈N∗
+
+## in D([0 , T ], (Mω(R∗
+
+> +
+
+## ), w) × [0 , R max ]) 
+
+Considering Section 6.1, it suffices to prove the tightness of  L Kμ
+
+ 
+
+> K∈N∗
+
+in D([0 , T ], (Mω (R∗
+
+> +
+
+), w)). To this end, we extend Th´ eor` eme 3. in [MR93] to weighted spaces of measures. 
+
+Theorem 6.2. Let w be any positive and continuous function on R∗
+
+> +
+
+, (( νKt )t∈[0 ,T ])K∈N be a sequence of processes in D([0 , T ], (Mw(R∗
+
+> +
+
+), w) and (ν∗ 
+
+> t
+
+)t∈[0 ,T ] a process in the space C([0 , T ], (Mw(R∗
+
+> +
+
+), w)) .Then, the following assertions are equivalent 
+
+34 (i) (( νKt )t∈[0 ,T ])K∈N converges in law towards (ν∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mw(R∗
+
+> +
+
+), w)) .
+
+(ii) (( νKt )t∈[0 ,T ])K∈N converges in law towards (ν∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mw(R∗
+
+> +
+
+), v )) , and the sequence 
+
+(( ⟨νKt , w ⟩)t∈[0 ,T ])K∈N converges in law towards (⟨ν∗ 
+
+> t
+
+, w ⟩)t∈[0 ,T ] in D([0 , T ], R).
+
+We provide the proof of this result in Appendix A.5, and use it in the following with the converging subsequence still denoted as ( μK )K≥1 constructed in Section 6.1, its limit μ∗ and w ≡ ω. Note that we could also have formulated Theorem 6.2 in terms of tightness of the sequences instead of conver-gence. We proved in Section 6.1, using Aldous and Rebolledo criterion, that (( ⟨μKt , ω ⟩)t∈[0 ,T ])K∈N is tight in D([0 , T ], R). Hence, also from Section 6.1, extracting again if necessary and using Prokhorov theorem, we can find a subsequence of 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+that converges in law towards some (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mω (R∗
+
+> +
+
+), v ) × [0 , R max ]), such that (( ⟨μKt , ω ⟩)t∈[0 ,T ])K∈N converges in law towards some ( x∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], R). By Corollary 6.3, we also know that these limits are contin-uous. Hence, to use Theorem 6.2 and conclude this section, it remains to show that ( x∗ 
+
+> t
+
+)t∈[0 ,T ] and (⟨μ∗ 
+
+> t
+
+, ω ⟩)t∈[0 ,T ] have same law. Using Skorokhod representation theorem (Theorem 6.7. p.70 in [Bil99]) if necessary, we assume that the previous convergences hold true almost surely. By a straightforward approximation argument by test functions as in the proof of Theorem 6.2 in Appendix A.5, we then obtain almost surely 
+
+∀t ∈ [0 , T ], x∗ 
+
+> t
+
+≥ ⟨ μ∗ 
+
+> t
+
+, ω ⟩.
+
+Furthermore, if ( φn)n∈N is a sequence of C∞ 
+
+> c
+
+(R∗
+
+> +
+
+) positive functions that converges pointwise to ω such that φn ≤ ω for n ∈ N, we obtain that for every t ∈ [0 , T ]
+
+E (x∗ 
+
+> t
+
+− ⟨ μ∗ 
+
+> t
+
+, ω ⟩) = E
+
+
+
+lim  
+
+> K→+∞
+
+lim 
+
+> n→+∞
+
+ ⟨μKt , φ n⟩ − ⟨ μ∗ 
+
+> t
+
+, φ n⟩
+
+≤ lim  
+
+> K→+∞
+
+lim  
+
+> n→+∞
+
+E  ⟨μKt , φ n⟩ − ⟨ μ∗ 
+
+> t
+
+, φ n⟩
+
+= lim  
+
+> n→+∞
+
+lim  
+
+> K→+∞
+
+E  ⟨μKt , φ n⟩ − ⟨ μ∗ 
+
+> t
+
+, φ n⟩ = 0 ,
+
+where we first used the convergence of (( ⟨μKt , ω ⟩)t∈[0 ,T ])K∈N towards ( x∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], R), then Fatou lemma, followed by a domination argument (because every φn is dominated by ω and we have the uniform control in K of Proposition 3.4 with p = 1), and finally used the convergence of   μKt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+towards ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) and domination by ω again. Hence, for every t ∈ [0 , T ], we obtain almost surely x∗ 
+
+> t
+
+= ⟨μ∗ 
+
+> t
+
+, ω ⟩, which concludes. 
+
+## 6.4 Characterization of accumulation points 
+
+We fix T ≥ 0, and continue to write  (μKt , R Kt )t∈[0 ,T ]
+
+ 
+
+> K∈N∗
+
+for a subsequence converging in law in 
+
+D([0 , T ], (Mω (R∗
+
+> +
+
+), w) ×[0 , R max ]) towards some ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ]. We fix these notations in the following. The aim of this section is to prove the upcoming Proposition 6.6, which characterizes the law of the limit ( μ∗, R ∗). We begin with preliminary results using Assumption 4.1. 
+
+Proposition 6.4. We work under the assumptions of Theorem 4.1. Then, the following convergence in law in the space D([0 , T ], R) holds true 
+
+ ⟨μKt , ϖ ⟩  
+
+> t∈[0 ,T ]
+
+−−−−−−→ 
+
+> K−→ +∞
+
+(⟨μ∗ 
+
+> t
+
+, ϖ ⟩)t∈[0 ,T ] .
+
+As a consequence, using the results of Section 6.1 and Theorem 6.1 again, we obtain that the process  (μKt , R Kt )t∈[0 ,T ]
+
+ 
+
+> K∈N∗
+
+converges in law in D([0 , T ], (Mϖ+ω (R∗
+
+> +
+
+), v) ×[0 , R max ]) towards (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ].
+
+35 Proof . Using the Skorokhod representation theorem, we assume that the convergence of the sequence   μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+towards ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) is almost sure in the following. We then aim to show that 
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μKt − μ∗ 
+
+> t
+
+, ϖ ⟩
+
+!
+
+−−−−−−→ 
+
+> K−→ +∞
+
+0.
+
+We consider M > 0 and for t ∈ [0 , T ], K ≥ 1, we write 
+
+⟨μKt , ϖ ⟩ = μKt , ϖ 1{ϖ≤M ω } + μKt , ϖ 1{ϖ>M ω } .
+
+Hence, we have, as ϖ is non-negative, 
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μKt − μ∗ 
+
+> t
+
+, ϖ ⟩
+
+!
+
+≤ E sup  
+
+> t∈[0 ,T ]
+
+| μKt − μ∗ 
+
+> t
+
+, ϖ 1{ϖ≤M ω } |
+
+!
+
++ E sup  
+
+> t∈[0 ,T ]
+
+μ∗ 
+
+> t
+
+, ϖ 1{ϖ>M ω }
+
+!
+
++ sup 
+
+> K≥1
+
+E sup  
+
+> t∈[0 ,T ]
+
+μKt , ϖ 1{ϖ>M ω }
+
+!
+
+. (28) Let us focus on the integrand of the right-most term for a fixed t ∈ [0 , T ] and use H¨ older inequality with p := 11−η and q := 1 /η to obtain 
+
+μKt , ϖ 1{ϖ>M ω } =
+
+D
+
+μKt , ϖω1/q ω1/q 1{ϖ>M ω }
+
+E
+
+≤
+
+
+
+μKt , ϖp
+
+ωp/q 
+
+1/p 
+
+× μKt , ω 1{ϖ>M ω }
+
+> 1/q
+
+Then, by Assumption 4.1, 1 /ω is bounded on a neighborhood of + ∞. This associated to the facts that p/q > 0, ω is continuous and ϖ ≡ 0 on (0 , x 0) entails that there exists a constant C > 0 with 
+
+ϖp(x)
+
+ωp/q (x) ≤ Cx for every x > 0 (we also use the definition of ϖ in Assumption 4.1). Also, there exists a constant C′ > 0 such that ω1{ϖ>M ω } ≤ ϖ/M ≤ C′ × Id /M and 1 /p + 1 /q = 1, so we finally obtain 
+
+μKt , ϖ 1{ϖ>M ω } ≤ C′C1/p 
+
+M 1/q μKt , Id .
+
+Remark that we obtain the exact same bound, replacing K with ∗, so that 
+
+E sup  
+
+> t∈[0 ,T ]
+
+μ∗ 
+
+> t
+
+, ϖ 1{ϖ>M ω }
+
+!
+
++ sup 
+
+> K≥1
+
+E sup  
+
+> t∈[0 ,T ]
+
+μKt , ϖ 1{ϖ>M ω }
+
+!
+
+≤ C′C1/p 
+
+M 1/q 
+
+
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μ∗ 
+
+> t
+
+, Id ⟩
+
+!
+
++ sup 
+
+> K≥1
+
+E sup  
+
+> t∈[0 ,T ]
+
+μKt , Id 
+
+! 
+
+, (29) which converges to 0 when M −→ +∞ thanks to Proposition 3.4 with p = 1 and Lemma 6.2. In the following, we thus fix ε > 0 and M0 > 0 such that (29) < ε/ 2. The function x > 0 7 → ϖ(x)1{ϖ≤M0ω} is positive and dominated by M0ω. Hence, by the almost sure convergence of 
+
+  μKt , R Kt
+
+ 
+
+> t∈[0 ,T ]
+
+
+
+> K∈N∗
+
+towards ( μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]), we obtain 
+
+E sup  
+
+> t∈[0 ,T ]
+
+| μKt − μ∗ 
+
+> t
+
+, ϖ 1{ϖ≤M0ω} |
+
+!
+
+−−−−−−→ 
+
+> K−→ +∞
+
+0,
+
+36 so that there exists by (28) some K0 ≥ 1 such that for K ≥ K0,
+
+E sup  
+
+> t∈[0 ,T ]
+
+⟨μKt − μ∗ 
+
+> t
+
+, ϖ ⟩
+
+!
+
+≤ ε, 
+
+which ends the proof since this is valid for every ε > 0. In the following, we write Cϖ+ω ([0 , T ] × R∗
+
+> +
+
+) for the set of continous functions on [0 , T ] × R∗ 
+
+> +
+
+such that 
+
+∃C > 0, ∀s ∈ [0 , T ], ∀x > 0 |φs(x)| ≤ C(ϖ(x) + ω(x)) .
+
+The following lemma present classical results that follows from Proposition 6.4 and holds true in a general context (see Problem 26. p.153 in [EK86] or Proposition 2.4 p.303 in [JS +87]). The reader may also refer to Lemmas II.4.3 and II.4.4 in [Bro25] for a proof in a slightly different context. 
+
+Lemma 6.5. Let t ∈ [0 , T ], φ ∈ C ϖ+ω ([0 , T ] × R∗
+
+> +
+
+) and ϕ continuous on [0 , R max ], then 
+
+sup  
+
+> t∈[0 ,T ]
+
+|⟨ μKt − μ∗ 
+
+> t
+
+, φ s⟩| − −−−−−→ 
+
+> K−→ +∞
+
+0,
+
+and 
+
+Z t
+
+> 0
+
+ϕ(RKs )⟨μKs , φ s⟩ds −−−−−−→
+
+> K−→ +∞
+
+Z t
+
+> 0
+
+ϕ(R∗ 
+
+> s
+
+)⟨μ∗ 
+
+> s
+
+, φ s⟩ds. 
+
+In the following, for every φ ∈ C 1,1 
+
+> ω,T
+
+(R+ × R∗
+
+> +
+
+), for every ν ∈ D([0 , T ], (Mω (R∗
+
+> +
+
+), w)), and for every 
+
+t ∈ [0 , T ], we define Ψt(ν) := ⟨νt, φ t⟩ − ⟨ ν0, φ 0⟩ − 
+
+Z t
+
+> 0
+
+Z
+
+> R∗
+> +
+
+
+
+Φs(Rνs , x )+ b(x)( φs(x0) + φs(x − x0) − φs(x)) − d(x)φs(x)
+
+
+
+νs(d x)d s, 
+
+with Φ associated to φ as in (9), and Rν defined by Rν 
+
+> 0
+
+= R0 and for t ∈ [0 , T ], dRνt
+
+dt = ρ(Rνt , ν t). (30) We are now ready to state the main result of this section. 
+
+Proposition 6.6. Under the renormalized setting, let T ≥ 0 and  (μKt , R Kt )t∈[0 ,T ]
+
+ 
+
+> K∈N∗
+
+be a subse-quence of our renormalized sequence of processes, converging in law towards (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] in the space 
+
+D([0 , T ], (Mω (R∗
+
+> +
+
+), w) × [0 , R max ]) . Then, almost surely, for every t ∈ [0 , T ] and φ ∈ C 1,1 
+
+> ω,T
+
+(R+ × R∗
+
+> +
+
+),
+
+Ψt(μ∗) = 0 .
+
+Furthermore, R∗ = Rμ∗
+
+almost surely, with Rμ∗
+
+defined as in (30) . We thus conclude that almost surely, (μ∗ 
+
+> t
+
+, R ∗ 
+
+> t
+
+)t∈[0 ,T ] verifies Equations (1) and (2) .
+
+Proof . Let us fix φ ∈ C 1,1 
+
+> ω,T
+
+(R+ × R∗
+
+> +
+
+), K ∈ N∗. We verify that we can always define a function ˜φ ∈ C 1,1 
+
+> ω
+
+(R+ × R∗
+
+> +
+
+) with ˜ φ ≡ φ on [0 , T ] × R∗
+
+> +
+
+. The results of Proposition 3.3 are then valid for ˜ φt for 
+
+t ≥ 0, hence for φt for any t ∈ [0 , T ]. In the following, we fix t ∈ [0 , T ] and to simplify the notations, we write φ instead of ˜ φ. We divide the proof in three steps. First, we reduce the problem of showing that Ψ t(μ∗) = 0 almost surely to proving that (Ψ t(μK )) K∈N∗ converges in law towards Ψ t(μ∗) in R.Then, we prove the convergence in law of (Ψ t(μK )) K∈N∗ towards a randow variable defined in the same manner as Ψ t(μ∗), but replacing Rμ∗
+
+with R∗. Finally, we prove that almost surely, R∗ = Rμ∗
+
+,which concludes the proof. 37 Step 1: Reduction of the problem of showing that Ψt(μ∗) = 0 almost surely 
+
+We consider Ψ t(μK ) = ♡Kφ,t defined in Proposition 3.3. By Proposition 3.3 applied to φ, by as-sumptions on φ and by Lemma 2.10, there exists a constant C > 0 such that 
+
+E(|Ψt(μK )|2) = E(|♡ Kφ,t |2) = E(⟨♡ Kφ ⟩t) ≤ CK sup 
+
+> K∈N∗
+
+E sup  
+
+> t∈[0 ,T ]
+
+(EKt + N Kt + Ω Kt )
+
+!
+
+,
+
+which entails with Proposition 3.4 with p = 1 that E(|Ψt(μK )|) −−−−−→ 
+
+> K→+∞
+
+0, because E(|Ψt(μK )|)2 ≤
+
+E(|Ψt(μK )|2) by Jensen inequality. Hence, it suffices to show that E(|Ψt(μK )|) −−−−−→ 
+
+> K→+∞
+
+E(|Ψt(μ∗)|) to conclude that Ψ t(μ∗) = 0 almost surely. By Corollary 3.5, the family of square-integrable martingales  Ψt(μK ) 
+
+> K∈N∗
+
+is uniformly integrable. Then, by Proposition 2.3 p.494 in [EK86], it suffices to show that (Ψ t(μK )) K∈N∗ converges in law towards Ψ t(μ∗) in R.
+
+Step 2: Convergence in law of (Ψ t(μK )) K∈N∗ towards Ψt(μ∗)By definition, RμK
+
+coincide with RK and we write Ψt(μK ) = ⟨μKt , φ t⟩ − ⟨ μK 
+
+> 0
+
+, φ 0⟩ − 
+
+Z t
+
+> 0
+
+ϕ  RKs
+
+ ⟨μKs , ψ (.)∂2φ(s, . )⟩ds
+
++
+
+Z t
+
+> 0
+
+
+
+μKs , d (x)φs(x) − b(x)
+
+
+
+φs(x0) + φs(x − x0) − φs(x)
+
+
+
+− ∂1φ(s, x ) + ℓ(x)∂2φ(s, x )
+
+
+
+ds, 
+
+with ϕ, ψ and ℓ defined in Section 2.1, related to respectively the functional response, the growth rate and the metabolic rate. Then, for s ∈ [0 , T ] and x > 0, let us define 
+
+℧φ,s (x) := d(x)φs(x) − b(x)
+
+
+
+φs(x0) + φs(x − x0) − φs(x)
+
+
+
+− ∂1φ(s, x ) + ℓ(x)∂2φ(s, x ),
+
+which is well-defined because b ≡ 0 on (0 , x 0), and we obtain Ψt(μK ) = ⟨μKt , φ t⟩ − ⟨ μK 
+
+> 0
+
+, φ 0⟩ +
+
+Z t
+
+> 0
+
+⟨μKs , ℧φ,s ⟩ds −
+
+Z t
+
+> 0
+
+ϕ  RKs
+
+ ⟨μKs , ψ (.)∂2φ(s, . )⟩ds, (31) First, by Corollary 6.3, the limit ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] is in C([0 , T ], (Mω (R∗
+
+> +
+
+), w)). Hence, from Theorem 7.8 p.131 in [EK86], and because  (μKt )t∈[0 ,T ]
+
+ 
+
+> K∈N∗
+
+converges in law towards ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] in the space 
+
+D([0 , T ], (Mω (R∗
+
+> +
+
+), w)), we have that for every t ∈ [0 , T ], the marginal distribution ( μKt )K∈N∗ converges in law towards δμ∗ 
+
+> t
+
+in ( Mω (R∗
+
+> +
+
+), w). By definition of the ω-weak topology (which makes every μ ∈Mω (R∗
+
+> +
+
+) 7 → ⟨ μ, φ ⟩ continuous if φ ∈ Bω (R∗
+
+> +
+
+) is continuous) and assumption on φ, we obtain that 
+
+ ⟨μKt , φ t⟩ − ⟨ μK 
+
+> 0
+
+, φ 0⟩ 
+
+> K∈N∗
+
+converges in law towards ⟨μ∗ 
+
+> t
+
+, φ t⟩ − ⟨ μ∗
+
+> 0
+
+, φ 0⟩ in R.Then, with the assumption φ ∈ C 1,1 
+
+> ω,T
+
+(R+ ×R∗
+
+> +
+
+), Assumption 2.9 and the additional Assumption 4.1, we verify that ℧φ ∈ C ϖ+ω ([0 , T ] × R∗
+
+> +
+
+) (in particular, we use the fact that ∂2φ(s, . ) is bounded, uniformly on s ∈ [0 , T ], to control the term φs(x−x0)−φs(x); and also the fact that dφ s/ω is bounded, uniformly on s ∈ [0 , T ]). Hence, by Lemma 6.5 applied to ℧φ and ϕ ≡ 1, we obtain that 
+
+Z t
+
+> 0
+
+⟨μKs , ℧φ,s ⟩ds
+
+
+
+> K∈N∗
+
+converges in law towards 
+
+Z t
+
+> 0
+
+⟨μ∗ 
+
+> s
+
+, ℧φ,s ⟩ds in R.Finally, by assumption on φ and Assumption 4.1, we verify that ( t, x ) 7 → ψ(x)∂2φ(t, x ) ∈ C ϖ+ω ([0 , T ]×
+
+R∗
+
+> +
+
+), and the function ϕ is continuous on [0 , R max ] by assumption (see again Section 2.1 for the definition of the functions ψ and ϕ). By Lemma 6.5, we obtain that 38 Z t
+
+> 0
+
+ϕ  RKs
+
+ ⟨μKs , ψ (.)∂2φ(s, . )⟩ds converges in law towards 
+
+Z t
+
+> 0
+
+ϕ (R∗ 
+
+> s
+
+) ⟨μ∗ 
+
+> s
+
+, ψ (.)∂2φ(s, . )⟩ds.Hence, to conclude the whole proof, it suffices to show that ( R∗ 
+
+> t
+
+)t∈[0 ,T ] and ( Rμ∗ 
+
+> t
+
+)t∈[0 ,T ] are equal almost surely. 
+
+Step 3: Proof of R∗ = Rμ∗
+
+almost surely 
+
+For every ν ∈ D([0 , T ], (Mω (R∗
+
+> +
+
+), w), Rν is entirely determined by ν with (30). Indeed, there exists a function R : D([0 , T ], (Mω (R∗
+
+> +
+
+), w) 7 → C ([0 , T ], [0 , R max ]) such that R(ν) = Rν , and it is precisely given for t ∈ [0 , T ] by the functional equation 
+
+R(ν)t = R0 +
+
+Z t
+
+> 0
+
+
+
+ς(R(ν)s) − χ⟨νs, f (., R(ν)s)⟩
+
+
+
+ds. 
+
+Let us first prove that R is continuous at every ν := ( νs)s∈[0 ,T ] ∈ C ([0 , T ], (Mω (R∗
+
+> +
+
+), w)). We fix such 
+
+ν and a sequence (( νKs )s∈[0 ,T ])K≥1 that converges towards ν in the space D([0 , T ], (Mω (R∗
+
+> +
+
+), w)), and we aim to show that sup  
+
+> t∈[0 ,T ]
+
+R(νK )t − R (ν)t −−−−−→ 
+
+> K→+∞
+
+0. For t ∈ [0 , T ] and K ≥ 1, we compute 
+
+|R (νK )t − R (ν)t|
+
+=
+
+Z t
+
+> 0
+
+
+
+ς(R(νK )s) − ς(R(ν)s) − χ  ϕ(R(νK )s)⟨νKs , ψ ⟩ − ϕ(R(ν)s)⟨νs, ψ ⟩ 
+
+ds
+
+≤ || ς′|| ∞,[0 ,R max ]
+
+Z t
+
+> 0
+
+|R (νK )s − R (ν)s|ds + χ
+
+Z t
+
+> 0
+
+ϕ(R(νK )s) − ϕ(R(ν)s) ⟨νKs , ψ ⟩ds
+
++ χ|| ϕ|| ∞,[0 ,R max ]
+
+Z t
+
+> 0
+
+⟨νKs − νs, ψ ⟩ ds
+
+≤
+
+
+
+|| ς′|| ∞,[0 ,R max ] + χkT sup 
+
+> K≥1
+
+sup  
+
+> u∈[0 ,T ]
+
+ EKu + N Ku + Ω Ku
+
+ Z T
+
+> 0
+
+sup  
+
+> τ∈[0 ,s ]
+
+|R (νK )τ − R (ν)τ |ds
+
++ χ|| ϕ|| ∞,[0 ,R max ]T sup  
+
+> s∈[0 ,T ]
+
+⟨νKs − νs, ψ ⟩ ,
+
+where we used the fact that ϕ is Lipschitz continuous (see (4)), that ψ ≤ g and Assumption 2.9. Then, by Proposition 3.4 with p = 1, the previous upper bound is almost surely finite and independent of t
+
+so it is an upper bound for sup 
+
+> s∈[0 ,t ]
+
+R(νK )s − R (ν)s and by Gronwall’s lemma, there exists a constant 
+
+C′ > 0 such that sup  
+
+> t∈[0 ,T ]
+
+|R (νK )t − R (ν)t| ≤ χ|| ϕ|| ∞,[0 ,R max ]T sup  
+
+> s∈[0 ,T ]
+
+⟨νKs − νs, ψ ⟩ eC′T .
+
+By Assumption 4.1 and because ψ ≤ g, then ( t, x ) 7 → ψ(x) ∈ C ϖ+ω ([0 , T ] × R∗
+
+> +
+
+). By Lemma 6.5 (replacing μK with νK and μ∗ with ν since they verify the same assumptions), this ends the proof of the fact that R is continuous at every ν continuous. Now, let us get back to the proof that R∗ = Rμ∗
+
+almost surely. We consider ( φn)n∈N a sequence of C∞ 
+
+> c
+
+(R) positive functions that converges pointwise towards 1{0} and such that φn(0) = 1 for every n ≥ 0. By the mapping theorem and convergence in law of ( μK , R K )K≥1 towards ( μ∗, R ∗), we have that for every n ∈ N, for every t ∈ [0 , T ], lim  
+
+> K→+∞
+
+E
+
+
+
+φn
+
+
+
+RKt − RμK
+
+> t
+
+ 
+
+= lim  
+
+> K→+∞
+
+E  φn
+
+ RKt − R  μKt
+
+ = E
+
+
+
+φn
+
+
+
+R∗ 
+
+> t
+
+− Rμ∗
+
+> t
+
+ 
+
+. (32) On the one hand, for every K ≥ 1, we have by definition that RK = RμK
+
+so that the left-most term in (32) is constant equal to 1. On the other hand, taking the limit n → +∞ in the right-most term 39 gives E
+
+
+
+1{0}
+
+
+
+R∗ 
+
+> t
+
+− Rμ∗
+
+> t
+
+ 
+
+(dominated convergence holds trivially because everything is bounded), so we conclude that for every t ∈ [0 , T ], we almost surely have R∗ 
+
+> t
+
+= Rμ∗ 
+
+> t
+
+, which concludes thanks to the continuity of the considered functions. 
+
+Acknowledgments. The author would like to thank the members of the Inria team SIMBA (Sta-tistical Inference and Modeling for Biological Applications) for valuable discussions around this work, and especially among them Nicolas Champagnat and Coralie Fritsch. Also, Sylvain Billiard should be mentioned for his active participation to the biological motivation of this work. 
+
+Funding. This work was partially supported by the Chaire “Mod´ elisation Math´ ematique et Bio-diversit´ e” of VEOLIA Environment, ´Ecole Polytechnique, Mus´ eum National d’Histoire Naturelle and Fondation X, and by the European Union (ERC, SINGER, 101054787). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council. Neither the European Union nor the granting authority can be held responsible for them. 
+
+# Appendices 
+
+# A Proofs of intermediate results 
+
+## A.1 Proof of Proposition 2.7 
+
+In all the following proof, we suppose by contradiction that P(texp (μ0, R 0) ≤ J1 < +∞) > 0, and work under this event. Importantly, this implies that until time texp (μ0, R 0), there are no random birth or death jumps in the population, so the process ( μt)t is well-defined and deterministic on [0 , t exp (μ0, R 0)). Thus, under the event {texp (μ0, R 0) ≤ J1 < +∞} , we have V0̸ = ∅ (otherwise texp (μ0, R 0) = + ∞)and for every u ∈ V0 and s < t exp (μ0, R 0), we have ξus = Xus (Ξ 0, R 0) with the notations of Section 2.2. We assess that one of the two following situations occurs: (i) ∃u ∈ V0, ξus −−−−−−−−−→ 
+
+> s→texp (μ0,R 0)
+
++∞,
+
+(ii) ∃u ∈ V0, ξus −−−−−−−−−→ 
+
+> s→texp (μ0,R 0)
+
+0.
+
+Indeed, if (i) and (ii) are not verified, then by definition, we would necessarily have texp (μ0, R 0) = + ∞.First, suppose that there exists u ∈ V0 such that (i) is verified. We let the reader check that the same decomposition as in Lemma 2.4 holds true for every s ∈ [0 , t exp (μ0, R 0)), so that we can use (10) for every such s. In that case, we would have 
+
+∀s < t exp (μ0, R 0), ξus ≤ Es ≤ R0 + E0 + s|| ς|| ∞,[0 ,R max ] ≤ R0 + E0 + texp (μ0, R 0)|| ς|| ∞,[0 ,R max ] < +∞,
+
+which contradicts (i) by letting s → texp (μ0, R 0). Else, suppose that u ∈ V0 is such that (ii) is verified. By construction of our process with Pois-son point measures, under the event {texp (μ0, R 0) ≤ J1 < +∞} , we have on the one hand that 
+
+Z texp (μ0,R 0)0
+
+X
+
+> u∈V0
+
+(b + d)( ξus )
+
+!
+
+ds < +∞. (33) Indeed, before time texp (μ0, R 0), individual energies ξus follow the deterministic flows Xu. (Ξ 0, R 0), so the previous integral is a deterministic quantity. If the previous integral was infinite, the first jump 40 time J1 given by the Poisson point measures N and N ′ would follow an inhomogeneous exponential law, and we would have 
+
+P(J1 < t exp (μ0, R 0)) = 1 − exp 
+
+Z texp (μ0,R 0)0
+
+X
+
+> u∈V0
+
+(b + d)( ξus )
+
+!
+
+ds
+
+!
+
+= 1 .
+
+On the other hand, we write 
+
+Z texp (μ0,R 0)0
+
+d(ξus )d s ≥
+
+Z texp (μ0,R 0)0
+
+d(ξus )1{g(ξus ,R s)<0}ds. 
+
+By (ii) and considering (5), there exists a sequence ( On)n∈N of disjoint open intervals such that 
+
+{s ∈ (0 , t exp (μ0, R 0)) , g (ξus , R s) < 0} = G
+
+> n∈N
+
+On and (0 , ξ u 
+
+> 0
+
+) ⊆ { ξus , s ∈ G
+
+> n∈N
+
+On}. (34) For every n ∈ N, from (5), s 7 → ξus is a decreasing bijection from On to ξu(On), and we write ˜ξu for its inverse function. We perform the change of variables w = ξus on each interval On to obtain 
+
+Z texp (μ0,R 0)0
+
+d(ξus )d s ≥ X
+
+> n∈N
+
+Z
+
+> On
+
+d(ξus )d s = X
+
+> n∈N
+
+Z
+
+> ξu(On)
+
+d(w)
+
+−g(w, R ˜ξuw
+
+) dw ≥
+
+Z ξu
+
+> 0
+> 0
+
+dℓ (w)d w, 
+
+because of (34), and R 7 → g(x, R ) is non-decreasing for every x > 0. By (33), the left-most integral is finite, which contradicts the fact that the right-most integral is infinite with Assumption 2.6, and this ends the proof. 
+
+## A.2 Proof of Proposition 2.12 
+
+Let M > 0 and T ≥ 0. We apply Lemma 2.4 to φ : ( t, x ) 7 → 1 + ω(x) and F : ( r, x ) 7 → x, and use Proposition 2.5 to obtain for every 0 ≤ t < T ∧ τM ∧ J∞,
+
+Et + Nt + Ω t ≤ R0 + E0 + t|| ς|| ∞,[0 ,R max ] + N0 + Ω 0 +
+
+Z t
+
+> 0
+
+⟨μs, g (., R s)ω′⟩ds
+
++
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤b(ξus−)}
+
+
+
+1 + ω(x0) + ω(ξus− − x0) − ω(ξus−)
+
+
+
+N (d s, du, dh)
+
+−
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈Vs−}1{h≤d(ξus−)}
+
+
+
+1 + ω(ξus−)
+
+
+
+N ′(d s, du, dh)
+
+≤ Rmax + E0 + N0 + Ω 0 + T || ς|| ∞,[0 ,R max ] +
+
+Z T
+
+> 0
+
+⟨μs, gω ′⟩1{s<τ M ∧J∞}ds
+
++
+
+Z T
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{s<τ M ∧J∞}1{u∈Vs−}1{h≤b(ξus−)}
+
+
+
+1 + |ω(x0) + ω(ξus− − x0) − ω(ξus−)|
+
+
+
+N (d s, du, dh).
+
+We can take the supremum of the left-hand side over t ∈ [0 , T ∧ τM ∧ J∞). Then, we take expectations and apply Fubini theorem, which is valid since all integrands are positive. Also, all the expectations are finite thanks to the first and second points of Assumption 2.9 and by definition of τM , so we have a 41 true semi-martingale decomposition of the integrated term against the Poisson point measure N . We obtain 
+
+E
+
+
+
+sup   
+
+> t∈[0 ,T ∧τM∧J∞)
+
+(Et + Nt + Ω t)
+
+
+
+≤ Rmax + E(E0 + N0 + Ω 0) + T || ς|| ∞,[0 ,R max ]
+
++ ( Cg + Cb)
+
+Z T
+
+> 0
+
+E  (Es + Ns + Ω s)1{s<τ M ∧J∞}
+
+ ds
+
+≤ Rmax + E(E0 + N0 + Ω 0) + T || ς|| ∞,[0 ,R max ]
+
++ ( Cg + Cb)
+
+Z T
+
+> 0
+
+E sup   
+
+> τ∈[0 ,s ∧τM∧J∞)
+
+(Eτ + Nτ + Ω τ )
+
+!
+
+ds
+
+By Gronwall lemma, we then have 
+
+E sup   
+
+> t∈[0 ,T ∧τM∧J∞)
+
+(Et + Nt + Ω t)
+
+!
+
+≤
+
+
+
+Rmax + E(E0 + N0 + Ω 0) + T || ς|| ∞,[0 ,R max ]
+
+
+
+e(Cg +Cb)T . (35) Now, as ( τM )M ∈N∗ is a non-decreasing sequence, to prove (14), it suffices to show that for all T ≥ 0, 
+
+P(τM ≤ T ) −−−−−→  
+
+> M→+∞
+
+0. Because E(E0 + N0 + Ω 0) < +∞, this follows from (35) and 
+
+P(τM ≤ T ) ≤ P sup   
+
+> t∈[0 ,T ∧τM∧J∞)
+
+(Et + Nt + Ω t) ≥ M
+
+!
+
+≤ 1
+
+M E sup   
+
+> t∈[0 ,T ∧τM∧J∞)
+
+(Et + Nt + Ω t)
+
+!
+
+.
+
+Finally, to obtain (15), we use (14) and apply Fatou lemma to obtain 
+
+E sup  
+
+> t∈[0 ,T ∧J∞)
+
+(Et + Nt + Ω t)
+
+!
+
+≤ lim  
+
+> M→+∞
+
+E sup   
+
+> t∈[0 ,T ∧τM∧J∞)
+
+(Et + Nt + Ω t)
+
+!
+
+,
+
+which ends the proof by (35). 
+
+## A.3 Proof of Proposition 3.4 
+
+Lemma A.1. Let φ ∈ C 1,1(R+ × R∗
+
+> +
+
+), and F ∈ C 1,1([0 , R in ] × R). Under Assumptions 2.6 and 2.9, we have almost surely, for all K ∈ N∗, t ≥ 0,
+
+F (RKt , ⟨μKt , φ t⟩) = F (R0, ⟨μK 
+
+> 0
+
+, φ 0⟩)+
+
+Z t
+
+> 0
+
+ρ(μKs , R Ks )∂1F (RKs , ⟨μKs , φ s⟩)+ ⟨μKs , Φs(RKs , . )⟩∂2F (RKs , ⟨μKs , φ s⟩)d s
+
++
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈V Ks−}1{h≤b(ξu,K s− )}
+
+
+
+F (RKs , ⟨μKs− + 1
+
+K
+
+
+
+δx0 + δξu,K s− −x0 − δξu,K s−
+
+
+
+, φ s⟩)
+
+− F (RKs , ⟨μKs−, φ s⟩)
+
+
+
+N (d s, du, dh)42 +
+
+Z t
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈V Ks−}1{h≤d(ξu,K s− )}
+
+
+
+F (RKs , ⟨μKs− − 1
+
+K δξu,K s−
+
+, φ s⟩)
+
+− F (RKs , ⟨μKs−, φ s⟩)
+
+
+
+N ′(d s, du, dh),
+
+with Φ associated to φ as in (9) .
+
+Proof . For K ∈ N∗ and t ≥ 0, it suffices to remark that 
+
+F (RKt , ⟨μKt , φ t⟩) = F
+
+
+
+RKt , ⟨νKt , 1
+
+K φt⟩
+
+
+
+,
+
+and to apply Lemma 2.4. Note in particular that we recover the function ρ because we pick the appropriate renormalization of the parameter χ in (7). The decomposition is almost surely valid for every t ≥ 0 thanks to Corollary 2.13. Now for the proof of Proposition 3.4, we fix T ≥ 0, K ≥ 1, and apply Lemma A.1 to F : ( r, x ) 7 →
+
+xp1{x> 0} (which is non-negative, non-decreasing on the variable x and C1,1([0 , R max ] × R) because 
+
+p ≥ 1) and φ : ( t, x ) 7 → 1 + x + ω(x), to obtain for every t ∈ [0 , T ], 
+
+ EKt + N Kt + Ω Kt
+
+p ≤  EK 
+
+> 0
+
++ N K 
+
+> 0
+
++ Ω K
+
+> 0
+
+p + pC g
+
+Z T
+
+> 0
+
+ EKs + N Ks + Ω Ks
+
+p ds
+
++
+
+Z T
+
+> 0
+
+Z
+
+> U× R∗
+> +
+
+1{u∈V Ks−}1{h≤b(ξu,K s− )}
+
+ 
+
+EKs− + N Ks− + Ω Ks− + 1 + ω(x0)
+
+K
+
+p
+
+−  EKs− + N Ks− + Ω Ks−
+
+p
+
+
+
+N (d s, du, dh).
+
+We used the fact that ω is positive and non-decreasing, the first point of Assumption 2.9 and the fact that F is non-decreasing on the variable x (so that the integral against N ′ is non-positive). For M > 0, as in Proposition 2.12, we define the stopping times 
+
+τ KM := inf t ≥ 0, E Kt + N Kt + Ω Kt ≥ M ,
+
+with the convention inf( ∅) = + ∞. We consider the supremum over [0 , T ∧ τ KM ] of  EKt + N Kt + Ω Kt
+
+p
+
+and then take expectations. In particular, we verify that integrals against N are true semi-martingales thanks to the definition of the stopping time τ KM , and all the expectations are well-defined and finite until this stopping time. We also use the fact that there exists Cp,x 0 > 0 such that for every y > 0, 
+
+
+
+y + 1 + ω(x0)
+
+K
+
+p
+
+− yp ≤ Cp,x 0
+
+K (1 + yp−1).
+
+We apply Fubini theorem because all the integrands are positive and this leads to 
+
+E
+
+
+
+sup    
+
+> t∈[0 ,T ∧τKM]
+
+ EKt + N Kt + Ω Kt
+
+p
+
+
+
+≤ E
+
+ EK 
+
+> 0
+
++ N K 
+
+> 0
+
++ Ω K
+
+> 0
+
+p
+
++ pC g
+
+Z T ∧τ KM
+
+> 0
+
+E
+
+ EKs + N Ks + Ω Ks
+
+p
+
+ds
+
++ Cp,x 0 Cb
+
+Z T ∧τ KM
+
+> 0
+
+E
+
+
+
+EKs− + N Ks− + Ω Ks− +  EKs− + N Ks− + Ω Ks−
+
+p
+
+ds, 
+
+43 where we used the second point of Assumption 2.9, and in particular the fact that it implies b ≤
+
+Cb(1 + Id + ω). Finally, we use the fact that for x ≥ 0, x + xp ≤ 2(1 + xp) to obtain 
+
+E
+
+
+
+sup    
+
+> t∈[0 ,T ∧τKM]
+
+ EKt + N Kt + Ω Kt
+
+p
+
+
+
+≤ E
+
+ EK 
+
+> 0
+
++ N K 
+
+> 0
+
++ Ω K
+
+> 0
+
+p
+
++ 2 T C p,x 0 Cb
+
++ ( pC g + 2 Cp,x 0 Cb)
+
+Z T
+
+> 0
+
+E sup   
+
+> u∈[0 ,s ∧τKM]
+
+ EKu + N Ku + Ω Ku
+
+p
+
+!
+
+ds. 
+
+We conclude with Gronwall lemma that 
+
+E
+
+
+
+sup    
+
+> t∈[0 ,T ∧τKM]
+
+ EKt + N Kt + Ω Kt
+
+p
+
+
+
+≤
+
+
+
+E
+
+ EK 
+
+> 0
+
++ N K 
+
+> 0
+
++ Ω K
+
+> 0
+
+p
+
++ 2 T C p,x 0 Cb
+
+
+
+e(pC g +2 Cp,x 0 Cb)T .
+
+By (20), this upper bound is finite, uniformly on K, and does not depend on M . By the same arguments as in the proof of Proposition 2.12, the sequence τ KM goes to + ∞ when M → +∞, and this ends the proof. 
+
+## A.4 Proof of Theorem 6.1 
+
+We reorganize the structure of the proof of Theorem 2.1 in [Roe86]. A slight difference lies in the char-acterization of relatively compact sets in ( Mω (R∗
+
+> +
+
+), v ) compared to the case ( M1(R∗
+
+> +
+
+), v ) treated in [Roe86]. Let ε > 0, our goal is to show that there exists C relatively compact in D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) such that for all K ∈ N, P K (C) ≥ 1 − ε.First, let us enumerate the elements of the countable set D ∪ { ω} as ( fk)k∈N, with f0 = ω. For every k ∈ N, by assumption, ( πfk ∗ P K )K∈N is a tight sequence of probability measures on D([0 , T ], R), so there exists a compact set Ck ⊆ D([0 , T ], R) such that for every K ∈ N, ( πfk ∗P K )( Ck) ≥ 1−ε/ 2k+1 .We define 
+
+C := \
+
+> k∈N
+
+π−1 
+
+> fk
+
+(Ck),
+
+which immediately verifies by construction, for every K ∈ N,
+
+P K (C) = 1 − P K [
+
+> k∈N
+
+
+
+π−1 
+
+> fk
+
+(Ck)
+
+c
+
+!
+
+≥ 1 − X
+
+> k∈N
+
+ 1 − (πfk ∗ P K )( Ck) ≥ 1 − ε. 
+
+Let us show that C is relatively compact in D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) to conclude. We begin with a preliminary definition. 
+
+Definition A.2. For δ > 0, we write Πδ for the set of all finite partitions 0 = t0 < ... < t k = T
+
+of [0 , T ], of any size k and verifying min 1≤i≤k(ti − ti−1) > δ . Let (X, d ) be a metric space, then the 
+
+δ-c` adl` ag modulus of continuity of any function f ∈ D([0 , T ], (X, d )) is 
+
+wδ,d (f ) := inf  
+
+> (ti)0≤i≤k∈Πδ
+
+sup 
+
+> 1≤i≤k
+
+sup 
+
+> (s,t )∈[ti−1,t i)
+
+d(f (s), f (t)) .
+
+The space D([0 , T ], (Mω (R∗
+
+> +
+
+), v )) is complete (see Proposition B.2.1. in [Bro25] and Theorem 5.6 p.121 in [EK86]), so we can use Theorem 6.3 p.123 in [EK86] to assess that C is relatively compact, if and only if 44 ∀t ∈ [0 , T ] ∩ Q, {μt, μ ∈ C} is relatively compact in ( Mω (R∗
+
+> +
+
+), v ), and lim  
+
+> δ→0
+
+sup 
+
+> μ∈C
+
+wδ,d v (μ) = 0 . (36) First, we have the inclusion C ⊆ π−1 
+
+> ω
+
+(C0), which implies that there exists a constant M > 0, such that for every t ∈ [0 , T ], for every μ ∈ C, ⟨μt, ω ⟩ ≤ M . For every t ∈ [0 , T ], the subset {μt, μ ∈ C} is thus relatively compact in ( Mω (R∗
+
+> +
+
+), v ) (it is included in the set {ν, ⟨ν, ω ⟩ ≤ M }, which is compact by the Banach-Alaoglu theorem). Let us finally show (36). The set D is by assumption a dense countable subset of C0(R∗
+
+> +
+
+) for the topology of uniform convergence. The set C0(R∗
+
+> +
+
+) is composed of bounded continuous functions, and is an algebra that separates points, thus it is a separating class of functions for ( Mω (R∗
+
+> +
+
+), v ) (Theorem 4.5 in [EK86]). In particular, D = ( fk)k∈N∗ is dense in a convergence determining set, so by Theorem 2.4. p.9 in [Kur81], to show (36), it suffices to show that for every 
+
+k ∈ N∗,lim  
+
+> δ→0
+
+sup 
+
+> μ∈C
+
+wδ,d (⟨μ, f k⟩) = 0 ,
+
+where d is the usual distance on R. For every k ∈ N, Ck is compact in D([0 , T ], R), hence by Theorem 6.3 p.123 in [EK86] again, lim  
+
+> δ→0
+
+sup 
+
+> ϕ∈Ck
+
+wδ,d (ϕ) = 0 .
+
+For every k ∈ N, we have the inclusion C ⊆ π−1 
+
+> fk
+
+(Ck), so finally lim  
+
+> δ→0
+
+sup 
+
+> μ∈C
+
+wδ,d (⟨μ, f k⟩) ≤ lim  
+
+> δ→0
+
+sup   
+
+> μ∈π−1
+> fk(Ck)
+
+wδ,d (⟨μ, f k⟩) ≤ lim  
+
+> δ→0
+
+sup 
+
+> ϕ∈Ck
+
+wδ,d (ϕ) = 0 ,
+
+which entails (36) and ends the proof. 
+
+## A.5 Proof of Theorem 6.2 
+
+We follow the same structure of proof as in [MR93]. First, we introduce some notations and show a deterministic result. 
+
+Definition A.3. The Prokhorov distance is defined for every μ, ν ∈ M1(R∗
+
+> +
+
+) by 
+
+d1 
+
+> P
+
+(μ, ν ) := inf {ε > 0, ∀A ∈ B (R∗
+
+> +
+
+), μ (A) ≤ ν(Aε) + ε, ν (A) ≤ μ(Aε) + ε},
+
+where B(R∗
+
+> +
+
+) is the usual Borel σ-algebra on R∗
+
+> +
+
+, and Aε := {y ∈ R∗
+
+> +
+
+, inf x∈A |x − y| < ε }. For any positive function w, we extend this definition to the w-Prokhorov distance dwP , defined for every 
+
+μ, ν ∈ M w(R∗
+
+> +
+
+) by 
+
+dwP (μ, ν ) := d1 
+
+> P
+
+(w ∗ μ, w ∗ ν),
+
+where w ∗ μ is the usual pushforward of μ by w (i.e. for every measurable function f , ⟨w ∗ μ, f ⟩ := 
+
+⟨μ, wf ⟩). 
+
+The w-Prokhorov distance metrizes the space ( Mw(R∗
+
+> +
+
+), w) (see Proposition B.2.2 in [Bro25]). Also, it is well-known that ( M1(R∗
+
+> +
+
+), v ) is metrizable by a distance d1 
+
+> v
+
+(see Proposition B.2.1 in [Bro25]), and from this base case, we define the distance dwv , for every μ, ν ∈ M w(R∗
+
+> +
+
+) by 
+
+dwv (μ, ν ) := d1 
+
+> v
+
+(w ∗ μ, w ∗ ν).
+
+45 Lemma A.4. Let w be a positive function on R∗
+
+> +
+
+, (νn)n∈N and ν elements of Mw(R∗
+
+> +
+
+). Then, 
+
+dwP (νn, ν ) −−−−−→ 
+
+> n→+∞
+
+0, if and only if 
+
+
+
+dwv (νn, ν ) −−−−−→ 
+
+> n→+∞
+
+0 and |⟨ νn − ν, w ⟩| − −−−−→ 
+
+> n→+∞
+
+0.
+
+
+
+Proof . The direct implication is straightforward, we show the converse implication. Let ε > 0 and 
+
+f ∈ C w(R∗
+
+> +
+
+), so there exists a constant C > 0 such that |f | ≤ Cw . Also, we consider ( ζp)p∈N an increasing sequence of positive functions in C∞ 
+
+> c
+
+(R∗
+
+> +
+
+) that converges pointwise towards the constant function equal to 1 on R∗
+
+> +
+
+. First, we write, for any p ∈ N,
+
+|⟨ νn, f ⟩ − ⟨ ν, f ⟩| ≤ |⟨ νn, f ζ p⟩ − ⟨ ν, f ζ p⟩| + |⟨ νn, f (1 − ζp)⟩| + |⟨ ν, f (1 − ζp)⟩| ≤ |⟨ νn, f ζ p⟩ − ⟨ ν, f ζ p⟩| + C
+
+
+
+⟨νn, w (1 − ζp)⟩ + ⟨ν, w (1 − ζp)⟩
+
+
+
+.
+
+By dominated convergence, ⟨ν, w (1 − ζp)⟩ converges to 0 when p goes to + ∞. Let us fix p0 ∈ N such that ⟨ν, w (1 − ζp0 )⟩ ≤ ε. Then, we can write for any n ∈ N,
+
+⟨νn, w (1 − ζp0 )⟩ = ⟨νn, w ⟩ − ⟨ νn, wζ p0 ⟩,
+
+which converges to ⟨ν, w (1 − ζp0 )⟩ when n goes to + ∞ by assumption. Thus, there exists n0 ∈ N such that for every n ≥ n0, ⟨νn, w (1 − ζp0 )⟩ ≤ 2ε. Finally, by vague convergence, the term |⟨ νn, f ζ p0 ⟩ − ⟨ν, f ζ p0 ⟩| converges to 0 when n goes to + ∞. To conclude, for every ε > 0, we can find n1 ∈ N such that for every n ≥ n1, |⟨ νn, f ⟩ − ⟨ ν, f ⟩| ≤ (1 + 3 C)ε, so that |⟨ νn, f ⟩ − ⟨ ν, f ⟩| − −−−−→ 
+
+> n→+∞
+
+0. This is valid for any f ∈ C w(R∗
+
+> +
+
+), which ends the proof. 
+
+Definition A.5. For w positive function on R∗
+
+> +
+
+, we define the distance ðw on Mw(R∗
+
+> +
+
+) by 
+
+∀(μ, ν ) ∈ M w(R∗
+
+> +
+
+), ðw(μ, ν ) := dwv (μ, ν ) + |⟨ μ − ν, w ⟩| .
+
+We verify immediately thanks to Lemma A.4 that the distances ðw and dwP are topologically equivalent on Mw(R∗
+
+> +
+
+). Let us continue with a probabilistic result. 
+
+Proposition A.6. Let w be a positive function on R∗
+
+> +
+
+, (νn)n∈N and ν random variables in Mw(R∗
+
+> +
+
+).Then, (νn)n∈N converges in law towards ν in (Mw(R∗
+
+> +
+
+), d wP ), if and only if (νn)n∈N converges in law towards ν in (Mw(R∗
+
+> +
+
+), d wv ) and (⟨νn, w ⟩)n∈N converges in law towards ⟨ν, w ⟩ in R.
+
+Proof . The direct implication is straightforward, we show the converse implication. First, by conver-gence of the marginal distributions, the sequence of laws of ( νn, ⟨νn, w ⟩)n∈N is tight in ( Mw(R∗
+
+> +
+
+), d wv )×
+
+R. By Prokhorov theorem, any subsequence of ( νn, ⟨νn, w ⟩)n∈N admits a subsequence converging in law in ( Mw(R∗
+
+> +
+
+), d wv ) × R, towards a random variable that we denote as ( ν′, x ′). Furthermore, by convergence of the marginal distributions, ν′, respectively x′, has same law as ν, respectively ⟨ν, w ⟩.Our main goal is to show that for any such converging subsequence (still denoted as ( νn, ⟨νn, w ⟩)n∈N), the law of the limiting couple ( ν′, x ′) is unique and equal to the law of the couple ( ν, ⟨ν, w ⟩). Note that the technical part of this proof is to show the equality in law as couples, and not only for the marginal distributions. By the Skorokhod representation theorem (Theorem 6.7. p.70 in [Bil99]), there exists a probability space Ω and random variables ( μn, x n)n∈N and ( μ, x ) defined on Ω with values in 
+
+Mw(R∗
+
+> +
+
+) × R, such that 
+
+• ∀n ∈ N, ( μn, x n) and ( νn, ⟨νn, w ⟩) have same law; 
+
+• (μ, x ) and ( ν′, x ′) have same law, so μ and x have respectively same law as ν′ and x′, thus respectively same law as ν and ⟨ν, w ⟩;46 • (μn, x n)n∈N converges almost surely towards ( μ, x ) in ( Mw(R∗
+
+> +
+
+), d wv ) × R.First, we have for n ∈ N, by the previous equalities in law, 
+
+E(1{0}(xn − ⟨ μn, w ⟩)) = E(1{0}(⟨νn, w ⟩ − ⟨ νn, w ⟩)) = 1 ,
+
+so xn is almost surely equal to ⟨μn, w ⟩ for every n ∈ N. Then, let ( ζp)p∈N an increasing sequence of positive functions in C∞ 
+
+> c
+
+(R∗
+
+> +
+
+) that converges pointwise towards the constant function equal to 1 on R∗
+
+> +
+
+,and write almost surely, for every p ∈ N,
+
+x = lim  
+
+> n→+∞
+
+xn = lim 
+
+> n→+∞
+
+⟨μn, w ⟩ ≥ lim 
+
+> n→+∞
+
+⟨μn, wζ p⟩ = ⟨μ, wζ p⟩,
+
+so by monotone convergence, x ≥ ⟨ μ, w ⟩. Also, we have 
+
+E(x − ⟨ μ, w ⟩) = E(⟨ν, w ⟩ − ⟨ ν, w ⟩) = 0 ,
+
+so finally x is almost surely equal to ⟨μ, w ⟩. Hence, by the third point above, the previous almost sure equalities, and Lemma A.4, ( μn)n∈N converges almost surely towards μ in ( Mw(R∗
+
+> +
+
+), d wP ). By the previous equalities in law, we obtain that ( νn)n∈N converges in law towards ν in ( Mw(R∗
+
+> +
+
+), d wP ). We thus have shown that every subsequence of ( νn)n∈N admits a subsequence converging in law in (Mw(R∗
+
+> +
+
+), d wP ) towards ν, which concludes. 
+
+Proof of Theorem 6.2: 
+
+First, we can choose the distance dwv to metrize ( Mw(R∗
+
+> +
+
+), v ); and we can choose the distance ðw to metrize ( Mw(R∗
+
+> +
+
+), w), and use Proposition A.6 with dwP replaced by ðw. This is justified by the fact that for every T > 0, the associated Skorokhod distances are topologically equivalent on D([0 , T ], Mw(R∗
+
+> +
+
+)) (see Lemma B.2.9 in [Bro25]). The fact that (i) implies (ii) in Theorem 6.2 is straightforward, so we focus on the converse implication. First, the limiting process ( ν∗ 
+
+> t
+
+)t∈[0 ,T ] is in C([0 , T ], (Mw(R∗
+
+> +
+
+), w)), hence the sequence (( νKt )t∈[0 ,T ])K∈N and (( ⟨νKt , w ⟩)t∈[0 ,T ])K∈N are C-tight (Definition 3.25 p.351 in [JS +87]) in the space D([0 , T ], (Mw(R∗
+
+> +
+
+), v )) and the space D([0 , T ], R). By Corollary 3.33 p.353 in [JS +87], the sequence (( νKt , ⟨νKt , w ⟩)t∈[0 ,T ])K∈N is C-tight in D([0 , T ], (Mw(R∗
+
+> +
+
+), v ) × R). The structure of the proof is then essentially the same as in Proposition A.6. By Prokhorov theorem, any subsequence of (( νKt , ⟨νKt , w ⟩)t∈[0 ,T ])K∈N admits a subsequence converg-ing in law in D([0 , T ], (Mw(R∗
+
+> +
+
+), v ) × R), towards a random variable that we denote as ( ν′
+
+> t
+
+, x ′
+
+> t
+
+)t∈[0 ,T ],and which is almost surely continuous. Furthermore, by convergence of the marginal distributions, (ν′
+
+> t
+
+)t∈[0 ,T ], respectively ( x′
+
+> t
+
+)t∈[0 ,T ], has same law as ( ν∗ 
+
+> t
+
+)t∈[0 ,T ], respectively ( ⟨ν∗ 
+
+> t
+
+, w ⟩)t∈[0 ,T ]. By the Skorokhod representation theorem (Theorem 6.7. p.70 in [Bil99]), there exists a probability space Ω and random variables (( μKt , x Kt )t∈[0 ,T ])K∈N and ( μ∗ 
+
+> t
+
+, x ∗ 
+
+> t
+
+)t∈[0 ,T ], defined on Ω with values in the spaces 
+
+D([0 , T ], (Mw(R∗
+
+> +
+
+), w) × R) and C([0 , T ], (Mw(R∗
+
+> +
+
+), w) × R), such that 
+
+• ∀K ∈ N, ( μKt , x Kt )t∈[0 ,T ] and ( νKt , ⟨νKt , w ⟩)t∈[0 ,T ] have same law. In particular, ( μKt , x Kt )t∈[0 ,T ]
+
+is almost surely with values in D([0 , T ], (Mw(R∗
+
+> +
+
+), w) × R). 
+
+• (μ∗ 
+
+> t
+
+, x ∗ 
+
+> t
+
+)t∈[0 ,T ] and ( ν′
+
+> t
+
+, x ′
+
+> t
+
+)t∈[0 ,T ] have same law, so in particular ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] and ( x∗ 
+
+> t
+
+)t∈[0 ,T ] have re-spectively same law as ( ν′
+
+> t
+
+)t∈[0 ,T ] and ( x′
+
+> t
+
+)t∈[0 ,T ], thus same law as ( ν∗ 
+
+> t
+
+)t∈[0 ,T ] and ( ⟨ν∗ 
+
+> t
+
+, w ⟩)t∈[0 ,T ].Also, ( μ∗ 
+
+> t
+
+, x ∗ 
+
+> t
+
+)t∈[0 ,T ] is almost surely continuous. 
+
+• (( μKt , x Kt )t∈[0 ,T ])K∈N converges almost surely towards ( μ∗ 
+
+> t
+
+, x ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mw(R∗
+
+> +
+
+), v ) ×
+
+R). By Lemma B.2.8 in [Bro25], (( μKt , x Kt )t∈[0 ,T ])K∈N converges almost surely uniformly towards ( μ∗ 
+
+> t
+
+, x ∗ 
+
+> t
+
+)t∈[0 ,T ]
+
+in D([0 , T ], (Mw(R∗
+
+> +
+
+), v ) × R). Thus, we can write almost surely lim  
+
+> n→+∞
+
+sup  
+
+> t∈[0 ,T ]
+
+dv (μKt , μ ∗ 
+
+> t
+
+) = 0 (37) lim  
+
+> n→+∞
+
+sup  
+
+> t∈[0 ,T ]
+
+|xKt − x∗ 
+
+> t
+
+| = 0 . (38) 47 In the following, let us show that almost surely, sup  
+
+> t∈[0 ,T ]
+
+|xKt − ⟨ μKt , w ⟩| = sup  
+
+> t∈[0 ,T ]
+
+|x∗ 
+
+> t
+
+− ⟨ μ∗ 
+
+> t
+
+, w ⟩)| = 0 . (39) First, by the previous equalities in law and because f ∈ D([0 , T ], R) 7 → sup t∈[0 ,T ] |f (t)| is well-defined and measurable, we have 
+
+E 1{0} sup  
+
+> t∈[0 ,T ]
+
+|xKt − ⟨ μKt , w ⟩| 
+
+!! 
+
+= E 1{0} sup  
+
+> t∈[0 ,T ]
+
+|⟨ νKt , w ⟩ − ⟨ νKt , w ⟩| 
+
+!! 
+
+= 1 ,
+
+so almost surely sup t∈[0 ,T ] |xKt − ⟨ μKt , w ⟩| = 0. Also, for any t ∈ [0 , T ] fixed, we can use the same argument as in the proof of Proposition A.6 to show that almost surely x∗ 
+
+> t
+
+= ⟨μ∗ 
+
+> t
+
+, w ⟩. Hence, almost surely, sup  
+
+> t∈[0 ,T ]∩Q
+
+|x∗ 
+
+> t
+
+− ⟨ μ∗ 
+
+> t
+
+, w ⟩| = 0 ,
+
+and t ∈ [0 , T ] 7 → | x∗ 
+
+> t
+
+− ⟨ μ∗ 
+
+> t
+
+, w ⟩| is almost surely a continuous function, hence we obtain (39). From (37), (38) and (39), and by definition of ðw, we obtain that almost surely lim  
+
+> n→+∞
+
+sup  
+
+> t∈[0 ,T ]
+
+ðw(μKt , μ ∗ 
+
+> t
+
+) = 0 .
+
+In particular, this implies that (( μKt )t∈[0 ,T ])K∈N converges almost surely (and this convergence is even uniform on [0 , T ]) towards ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] in D([0 , T ], (Mw(R∗
+
+> +
+
+), w)), which concludes thanks to the equality in law between ( μKt )t∈[0 ,T ] and ( νKt )t∈[0 ,T ] for all K ∈ N, and between ( μ∗ 
+
+> t
+
+)t∈[0 ,T ] and ( ν∗ 
+
+> t
+
+)t∈[0 ,T ].
+
+# B Simulation parameters and algorithms 
+
+## B.1 Simulation parameters 
+
+For x > 0 and R ≥ 0, we set: 1. ℓ(x) := Cαxα,2. b(x) := 1x>x 0 Cβ xβ ,3. f (x, R ) := Rκ + R Cγ xγ (i.e. ϕ(R) = Rκ + R and ψ(x) = Cγ xγ ), 4. d(x) := Cδ xδ ,5. ς(R) := D(Rin − R),
+
+where the different parameters are specified in Table 1. Also, we fix a value for the conversion efficiency coefficient χ > 1 appearing in (6). We choose a deterministic initial condition for the resources 
+
+R0 ∈ [0 , R max ]. For the initial state of the population, we pick K random individual energies, chosen independently and according to an initial distribution with compact support denoted as [ xmin , x max ], and absolutely continuous with respect to Lebesgue measure, with a density u0 shown on Figure 6, which is given by 
+
+∀x > 0, u0(x) := C
+
+ (x − xmin )( xmax − x)(xmax − xmin )2
+
+5
+
+1x∈[xmin ,x max ],
+
+with a constant C > 0 being such that R
+
+> R∗
+> +
+
+u0(x)d x = 1, and parameters specified in Table 1. We simulate the IBM and the PDE model during a time T > 0. Under the allometric setting with 
+
+α ∈ (0 , 1), for t ∈ [0 , T ], we can upper bound the maximal energy an individual can reach by the solution of 48 0 1 2 3 4 5 6 
+
+> Energy x
+> 0.00.10.20.30.40.50.6
+> Density  u0(x)
+
+Figure 6: Initial density u0(.)
+
+ f ′(t) = ( ϕ(Rmax )Cγ − Cα)f α(t),f (0) = xmax 
+
+taken at time T , where Rmax > 0 is defined in 2.1. This upper bound is precisely given by 
+
+MT := 
+
+
+
+x1−α 
+
+> max
+
++ (1 − α)( ϕ(Rmax )Cγ − Cα)T
+
+ 11−α
+
+. (40) Hence, we work on the fixed energy window [0 , M T ] for the construction of our algorithms in Ap-pendix B.2. The set of parameters of Table 1 corresponds to the allometric setting supported by the Metabolic Theory of Ecology [BGA +04, MM19]. Parameter Value 
+
+α 0.75 
+
+γ 0.75 
+
+β -0.25 
+
+δ -0.25 
+
+Cα 1
+
+Cγ 2
+
+Cβ 0.1 
+
+Cδ 0.05 
+
+κ 5
+
+D 0.275 Parameter Value 
+
+Rin 2
+
+Rmax 2
+
+χ 200 
+
+K 100, 1000 or 10000 
+
+x0 1
+
+R0 1
+
+xmin 1
+
+xmax 5
+
+T 200 
+
+MT 208688 Table 1: Simulation parameters. 
+
+## B.2 Algorithms for the IBM and the PDE model 
+
+B.2.1 Algorithm for the IBM 
+
+We approximate the IBM with a Gillespie algorithm [Gil76]. We introduce two parameters b, d > 0, and recall the structure of one step of this classical algorithm in Section III.3.1 of [Bro25]. Importantly, note that contrary to existing simulations in the literature (see Section 2.2 in [CF15]), we have unbounded jump rates, so we need to justify that our algorithm approximates well the IBM ( i.e. that the artificial upper bounds b and d chosen for birth and death rates are sufficiently high). We refer to the discussion of Section III.3 in [Bro25] and work with parameters d = 2 .10 4 and b = 0 .1. 49 B.2.2 Algorithm for the PDE model 
+
+We use a finite differences scheme of order 1 to approximate the transport term in (23). To simulate the temporal evolution of the system, we simply use a classical Euler scheme. There is a numerical approximation due to these low order schemes, especially in the context of unbounded growth, birth and death rates. Nevertheless, in this article, our goal is not to go deep in the optimization of our algorithm, nor to give a mathematical proof of the convergence of our numerical scheme. Still, we refer to Section III.4.1.2 in [Bro25] for the difficulties we encountered in the calibration of the energy discretization grid. Indeed, we propose a specific choice of energy discretization (see Section III.4.1 in [Bro25] for details) adapted to our birth dynamics, inspired by usual strategies depicted in the literature [BDG19, RT24]. 
+
+# References 
+
+[BBCF25] S. Billiard, V. Brodu, N. Champagnat, and C. Fritsch. An individual-based stochastic model reveals strong constraints on allometric relationships with minimal metabolic and ecological assumptions. 2025. ArXiv preprint, https://arxiv.org/abs/2501.12257 .[BDG19] E. Bernard, M. Doumic, and P. Gabriel. Cyclic asymptotic behaviour of a population reproducing by fission into two equal parts. Kinetic and Related Models , 12(3):551–571, 2019. [BGA +04] J. Brown, J. Gillooly, A. Allen, V. Savage, and G. West. Toward a metabolic theory of ecology. Ecology , 2004. [Bil99] P. Billingsley. Convergence of Probability Measures, Second Edition . Wiley Series in Prob-ability and Statistics, 1999. [BLLD11] A. Br¨ annstr¨ om, N. Loeuille, M. Loreau, and U. Dieckmann. Emergence and maintenance of biodiversity in an evolutionary food-web model. Theoretical Ecology , 4(4):467–478, 2011. [Bro25] V. Brodu. Mod` eles stochastiques individu-centr´ es avec des dynamiques allom´ etriques : branchement, convergence, simulations num´ eriques. PhD thesis, Universit´ e de Lorraine, August 2025. https://iecl.univ-lorraine.fr/wp-content/uploads/2022/09/these. pdf .[CCF16] F. Campillo, N. Champagnat, and C. Fritsch. Links between deterministic and stochastic approaches for invasion in growth-fragmentation-death models. Journal of Mathematical Biology , 73(6-7):1781–1821, 2016. [CF15] F. Campillo and C. Fritsch. Weak convergence of a mass-structured individual-based model. 
+
+Applied Mathematics & Optimization , 72:37–73, 2015. [CFM08] N. Champagnat, R. Ferri` ere, and S. M´ el´ eard. Individual-based probabilistic models of adaptive evolution and various scaling approximations. In Seminar on Stochastic Analysis, Random Fields and Applications V: Centro Stefano Franscini, Ascona, May 2005 , pages 75–113. Springer, 2008. [CV23] N. Champagnat and D. Villemonais. General criteria for the study of quasi-stationarity. 
+
+Electronic Journal of Probability , 28:1–84, 2023. [Dav84] M.H.A. Davis. Piecewise-deterministic markov processes: A general class of non-diffusion stochastic models. Journal of the Royal Statistical Society: Series B (Methodological) ,46(3):353–376, 1984. 50 [DHKR15] M. Doumic, M. Hoffmann, N. Krell, and L. Robert. Statistical estimation of a growth-fragmentation model observed on a genealogical tree. Bernoulli , 21(3):1760 – 1799, 2015. [DVJ07] D.J. Daley and D. Vere-Jones. An introduction to the theory of point processes: volume II: general theory and structure . Springer Science & Business Media, 2007. [EK86] S. Ethier and T. Kurtz. Markov Processes Characterization and Convergence . Wiley Series in Probability and Statistics. John Wiley and Sons, 1986. [FBC21] C. Fritsch, S. Billiard, and N. Champagnat. Identifying conversion efficiency as a key mech-anism underlying food webs evolution : a step forward, or backward ? Oikos , 130(6):904– 930, 2021. [FM04] N. Fournier and S. M´ el´ eard. A microscopic probabilistic description of a locally regu-lated population and macroscopic approximations. The Annals of Applied Probability ,14(4):1880–1919, 2004. [Gil76] D.T. Gillespie. A general method for numerically simulating the stochastic time evolution of coupled chemical reactions. Journal of Computational Physics , 22(4):403–434, 1976. [IW14] N. Ikeda and S. Watanabe. Stochastic differential equations and diffusion processes , vol-ume 24. Elsevier, 2014. [JM86] A. Joffe and M. M´ etivier. Weak convergence of sequences of semimartingales with appli-cations to multitype branching processes. Advances in Applied Probability , 18(1):20–65, 1986. [JMW11] B. Jourdain, S. M´ el´ eard, and W. Woyczynski. L´ evy flights in evolutionary ecology. Journal of Mathematical Biology , page 31, 2011. [JS +87] J. Jacod, A.N. Shiryaev, et al. Limit theorems for stochastic processes. Springer Book Archive-Mathematics , 1987. [JS96] J. Jacod and A.V. Skorokhod. Jumping markov processes. Annales de l’IHP Probabilit´ es et statistiques , 32(1):11–67, 1996. [Kur81] T.G. Kurtz. Approximation of population processes . SIAM, 1981. [LL05] N. Loeuille and M. Loreau. Evolutionary emergence of size-structured food webs. Proceed-ings of the National Academy of Sciences , 102(16):5761–5766, 2005. [LW07] P. Lauren¸ cot and C. Walker. Well-posedness for a model of prion proliferation dynamics. 
+
+Journal of Evolution Equations , 7(2):241–264, 2007. [MM19] M. Malerba and D. Marshall. Size-abundance rules? evolution changes scaling relationships between size, metabolism and demography. Ecology Letters , 2019. [MR93] S. M´ el´ eard and S. Roelly. Sur les convergences ´ etroite ou vague de processus ` a valeurs mesures. Comptes rendus de l’Acad´ emie des sciences. S´ erie 1, Math´ ematique , 317(8):785– 788, 1993. [MT93] S.P. Meyn and R.L. Tweedie. Stability of markovian processes iii: Foster–lyapunov criteria for continuous-time processes. Advances in Applied Probability , 25(3):518–548, 1993. [Pet86] R.H. Peters. The Ecological Implications of Body Size . Cambridge Studies in Ecology. Cambridge University Press, 1986. [Pro05] P. Protter. Stochastic differential equations . Springer, 2005. 51 [Roe86] S. Roelly. A criterion of convergence of measure-valued processes : Application to measure branching processes. Stochastics , 17:43–65, 1986. [RT24] A. Rat and M. Tournus. Growth-fragmentation model for a population presenting hetero-geneity in growth rate: Malthus parameter and long-time behavior. Kinetic and Related Models , 17(4):533–576, 2024. [SDF08] V. Savage, E. Deeds, and W. Fontana. Sizing up allometric scaling theory. PLOS Compu-tational Biology , 4(9):1–17, 09 2008. [Tch24] J. Tchouanti. Well posedness and stochastic derivation of a diffusion-growth-fragmentation equation in a chemostat. Stochastics and Partial Differential Equations: Analysis and Computations , 12(1):466–524, 2024. [Tra08] V.C. Tran. Large population limit and time behaviour of a stochastic particle model describing an age-structured population. ESAIM: PS , 12:345–386, 2008. [YKR18] J.D. Yeakel, C.P. Kempes, and S. Redner. Dynamics of starvation and recovery predict extinction risk and both damuth’s law and cope’s rule. Nature communications , 9(1):657, 2018. [ZQ96] C. Zuily and H. Queff´ elec. ´El´ ements d’analyse pour l’agr´ egation . Masson, 1996. 52

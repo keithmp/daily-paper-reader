@@ -1,0 +1,670 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-25T19:50:04.001897+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 3,
+    "deep_cap": 8,
+    "deep_selected": 3,
+    "quick_candidates": 17,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.23361v1",
+      "title": "Central Dogma Transformer III: Interpretable AI Across DNA, RNA, and Protein",
+      "abstract": "Biological AI models increasingly predict complex cellular responses, yet their learned representations remain disconnected from the molecular processes they aim to capture. We present CDT-III, which extends mechanism-oriented AI across the full central dogma: DNA, RNA, and protein. Its two-stage Virtual Cell Embedder architecture mirrors the spatial compartmentalization of the cell: VCE-N models transcription in the nucleus and VCE-C models translation in the cytosol. On five held-out genes, CDT-III achieves per-gene RNA r=0.843 and protein r=0.969. Adding protein prediction improves RNA performance (r=0.804 to 0.843), demonstrating that downstream tasks regularize upstream representations. Protein supervision sharpens DNA-level interpretability, increasing CTCF enrichment by 30%. Applied to in silico CD52 knockdown approximating Alemtuzumab, the model predicts 29/29 protein changes correctly and rediscovers 5 of 7 known clinical side effects without clinical data. Gradient-based side effect profiling requires only unperturbed baseline data (r=0.939), enabling screening of all 2,361 genes without new experiments.",
+      "authors": [
+        "Nobuyuki Ota"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-24T15:57:23+00:00",
+      "link": "https://arxiv.org/pdf/2603.23361v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Interpretable AI across DNA, RNA, and protein for genomic research",
+      "llm_evidence_cn": "跨DNA、RNA和蛋白质的可解释AI基因组研究",
+      "llm_evidence": "跨DNA、RNA和蛋白质的可解释AI基因组研究",
+      "canonical_evidence": "跨DNA、RNA和蛋白质的可解释AI基因组研究",
+      "llm_tldr_en": "Introduces CDT-III, an AI model mirroring the central dogma to predict cellular responses from DNA to protein.",
+      "llm_tldr_cn": "引入CDT-III模型，模拟中心法则以预测从DNA到蛋白质的细胞反应。",
+      "llm_tldr": "引入CDT-III模型，模拟中心法则以预测从DNA到蛋白质的细胞反应。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.22330v1",
+      "title": "Fair splits flip the leaderboard: CHANRG reveals limited generalization in RNA secondary-structure prediction",
+      "abstract": "Accurate prediction of RNA secondary structure underpins transcriptome annotation, mechanistic analysis of non-coding RNAs, and RNA therapeutic design. Recent gains from deep learning and RNA foundation models are difficult to interpret because current benchmarks may overestimate generalization across RNA families. We present the Comprehensive Hierarchical Annotation of Non-coding RNA Groups (CHANRG), a benchmark of 170{,}083 structurally non-redundant RNAs curated from more than 10 million sequences in Rfam~15.0 using structure-aware deduplication, genome-aware split design and multiscale structural evaluation. Across 29 predictors, foundation-model methods achieved the highest held-out accuracy but lost most of that advantage out of distribution, whereas structured decoders and direct neural predictors remained markedly more robust. This gap persisted after controlling for sequence length and reflected both loss of structural coverage and incorrect higher-order wiring. Together, CHANRG and a padding-free, symmetry-aware evaluation stack provide a stricter and batch-invariant framework for developing RNA structure predictors with demonstrable out-of-distribution robustness.",
+      "authors": [
+        "Zhiyuan Chen",
+        "Zhenfeng Deng",
+        "Pan Deng",
+        "Yue Liao",
+        "Xiu Su",
+        "Peng Ye",
+        "Xihui Liu"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cs.LG"
+      ],
+      "published": "2026-03-20T20:18:08+00:00",
+      "link": "https://arxiv.org/pdf/2603.22330v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for RNA secondary structure prediction and genome-aware evaluation",
+      "llm_evidence_cn": "利用AI进行RNA二级结构预测及基因组感知评估",
+      "llm_evidence": "利用AI进行RNA二级结构预测及基因组感知评估",
+      "canonical_evidence": "利用AI进行RNA二级结构预测及基因组感知评估",
+      "llm_tldr_en": "CHANRG is a large-scale benchmark for evaluating RNA secondary structure prediction using genome-aware splits.",
+      "llm_tldr_cn": "CHANRG是一个大规模基准测试，利用基因组感知划分来评估RNA二级结构预测模型的泛化能力。",
+      "llm_tldr": "CHANRG是一个大规模基准测试，利用基因组感知划分来评估RNA二级结构预测模型的泛化能力。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.22821v1",
+      "title": "Cross-Slice Knowledge Transfer via Masked Multi-Modal Heterogeneous Graph Contrastive Learning for Spatial Gene Expression Inference",
+      "abstract": "While spatial transcriptomics (ST) has advanced our understanding of gene expression in tissue context, its high experimental cost limits its large-scale application. Predicting ST from pathology images is a promising, cost-effective alternative, but existing methods struggle to capture complex cross-slide spatial relationships. To address the challenge, we propose SpaHGC, a multi-modal heterogeneous graph-based model that captures both intra-slice and inter-slice spot-spot relationships from histology images. It integrates local spatial context within the target slide and cross-slide similarities computed from image embeddings extracted by a pathology foundation model. These embeddings enable inter-slice knowledge transfer, and SpaHGC further incorporates Masked Graph Contrastive Learning to enhance feature representation and transfer spatial gene expression knowledge from reference to target slides, enabling it to model complex spatial dependencies and significantly improve prediction accuracy. We conducted comprehensive benchmarking on seven matched histology-ST datasets from different platforms, tissues, and cancer subtypes. The results demonstrate that SpaHGC significantly outperforms the existing nine state-of-the-art methods across all evaluation metrics. Additionally, the predictions are significantly enriched in multiple cancer-related pathways, thereby highlighting its strong biological relevance and application potential.",
+      "authors": [
+        "Zhiceng Shi",
+        "Changmiao Wang",
+        "Jun Wan",
+        "Wenwen Min"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-24T05:49:00+00:00",
+      "link": "https://arxiv.org/pdf/2603.22821v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for spatial gene expression inference",
+      "llm_evidence_cn": "利用AI进行空间基因表达推断",
+      "llm_evidence": "利用AI进行空间基因表达推断",
+      "canonical_evidence": "利用AI进行空间基因表达推断",
+      "llm_tldr_en": "Proposes a graph-based AI model to infer spatial gene expression from histology images cost-effectively.",
+      "llm_tldr_cn": "提出了一种基于图的AI模型，用于从组织学图像中经济地推断空间基因表达。",
+      "llm_tldr": "提出了一种基于图的AI模型，用于从组织学图像中经济地推断空间基因表达。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.19341v1",
+      "title": "Assessing 3D tree model quality and species classification using imbalance indices",
+      "abstract": "We investigate the use of additional 3D and phylogenetic non-3D tree balance indices for analyzing and monitoring forests using an exemplary \"virtual forest\" dataset from the Wytham Woods, Oxford, UK. This study assesses 3D model quality, species classification performance, and the relevance of these indices. Our study shows that indices stemming from the study of ancestry trees of species can be successfully applied to 3D models of organic trees and, accompanied with recently introduced 3D imbalance indices, offer a complementary perspective on 3D tree models and improve the detection of deviations. Their computational efficiency combined with the simple and reproducible workflow presented in this manuscript form a computationally feasible quality control step in the 3D model construction.   Species classification models reached an estimated accuracy of up to 81.8% and allowed to make confident species predictions for a large portion of the unlabeled trees in the dataset. While conventional tree metrics can already provide strong predictive performance, the addition of filtered 3D and non-3D statistics improved results consistently, particularly for minority species classes.   Alongside this manuscript, we provide updated functionality in the R package treeDbalance to include the necessary functionalities and release the derived index datasets and species predictions.",
+      "authors": [
+        "Sophie J. Kersting",
+        "Mareike Fischer"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "math.CO"
+      ],
+      "published": "2026-03-19T12:15:09+00:00",
+      "link": "https://arxiv.org/pdf/2603.19341v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "phylogenetic tree balance indices applied to 3D models",
+      "llm_evidence_cn": "将系统发育树平衡指数应用于3D模型",
+      "llm_evidence": "将系统发育树平衡指数应用于3D模型",
+      "canonical_evidence": "将系统发育树平衡指数应用于3D模型",
+      "llm_tldr_en": "Applies phylogenetic ancestry tree indices to evaluate 3D tree models and species classification.",
+      "llm_tldr_cn": "应用系统发育祖先树指数来评估3D树木模型和物种分类。",
+      "llm_tldr": "应用系统发育祖先树指数来评估3D树木模型和物种分类。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.18471v1",
+      "title": "A Faster Deterministic Algorithm for Kidney Exchange via Representative Set",
+      "abstract": "The Kidney Exchange Problem is a prominent challenge in healthcare and economics, arising in the context of organ transplantation. It has been extensively studied in artificial intelligence and optimization. In a kidney exchange, a set of donor-recipient pairs and altruistic donors are considered, with the goal of identifying a sequence of exchange -- comprising cycles or chains starting from altruistic donors -- such that each donor provides a kidney to the compatible recipient in the next donor-recipient pair. Due to constraints in medical resources, some limits are often imposed on the lengths of these cycles and chains. These exchanges create a network of transplants aimed at maximizing the total number, $t$, of successful transplants. Recently, this problem was deterministically solved in $O^*(14.34^t)$ time (IJCAI 2024). In this paper, we introduce the representative set technique for the Kidney Exchange Problem, showing that the problem can be deterministically solved in $O^*(6.855^t)$ time.",
+      "authors": [
+        "Kangyi Tian",
+        "Mingyu Xiao"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-03-19T04:07:23+00:00",
+      "link": "https://arxiv.org/pdf/2603.18471v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "algorithm for kidney exchange optimization in organ transplantation",
+      "llm_evidence_cn": "器官移植中肾脏交换优化的确定性算法",
+      "llm_evidence": "器官移植中肾脏交换优化的确定性算法",
+      "canonical_evidence": "器官移植中肾脏交换优化的确定性算法",
+      "llm_tldr_en": "Develops a faster deterministic algorithm for the Kidney Exchange Problem to maximize successful transplants.",
+      "llm_tldr_cn": "开发了一种更快的确定性算法，用于解决肾脏交换问题以最大化移植成功数量。",
+      "llm_tldr": "开发了一种更快的确定性算法，用于解决肾脏交换问题以最大化移植成功数量。",
+      "llm_tags": [
+        "query:xeno"
+      ],
+      "matched_query_tag": "query:xeno",
+      "matched_query_text": "Xenotransplantation research and clinical trials",
+      "matched_requirement_id": "req-21",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.20707v1",
+      "title": "Coexistence coalitions in propagule disperser quasi-communities",
+      "abstract": "Many natural ecosystems harbor large numbers of coexisting species competing for far fewer distinct resources, in apparent defiance of the competitive exclusion principle. Various mechanisms have been proposed to explain this apparent paradox, among the most prominent being competition--colonization trade-offs, environmental heterogeneity, and ecological neutrality. We develop a unified stochastic model class that combines all three coexistence narratives in the context of propagule disperser communities and show that this setting encompasses several important classical models. We then prove a general theorem on coexistence at macroscopic equilibria and provide an algorithm that determines equilibrium coalitions solely from readily available matrix spectra, thereby bypassing the costly computation of exact equilibrium states. Using illustrative examples, we demonstrate the potential of this approach for quantifying the relative merits of different coexistence narratives and for studying their synergistic effects.",
+      "authors": [
+        "Leonardo Aguirre",
+        "José A. Capitán",
+        "David Alonso"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-03-21T08:06:57+00:00",
+      "link": "https://arxiv.org/pdf/2603.20707v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "coexistence mechanisms in species communities and ecological neutrality",
+      "llm_evidence_cn": "物种群落中的共存机制与生态中性",
+      "llm_evidence": "物种群落中的共存机制与生态中性",
+      "canonical_evidence": "物种群落中的共存机制与生态中性",
+      "llm_tldr_en": "Develops a stochastic model to explain species coexistence in ecosystems despite resource competition.",
+      "llm_tldr_cn": "开发了一个随机模型来解释生态系统中物种在资源竞争下的共存机制。",
+      "llm_tldr": "开发了一个随机模型来解释生态系统中物种在资源竞争下的共存机制。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.19320v1",
+      "title": "Analytically tractable model of synaptic crowding explains emergent small-world structure and network dynamics",
+      "abstract": "Neural circuits must balance local connectivity constraints against the need for global integration. Here we introduce a minimal wiring rule motivated by synaptic crowding: as a neuron accumulates incoming connections, each additional synapse becomes progressively harder to form. This single-parameter model admits an exact finite-size solution for the induced in-degree distribution and yields simple scaling laws: mean connectivity grows only logarithmically with network size while variance remains bounded -- consistent with homeostatic regulation of synaptic density. When candidates are encountered in order of spatial proximity, the crowding rule produces a broad, approximately power-law distribution of connection lengths without prescribing any explicit distance-dependent wiring law; combined with shortcut rewiring, this yields networks with small-world characteristics. We further show that the induced degree statistics largely determine attractor basin boundaries in threshold network dynamics, while local clustering primarily modulates the prevalence of long-lived non-absorbing outcomes near these boundaries. The model provides testable predictions linking local developmental constraints to macroscopic network organization and dynamics.",
+      "authors": [
+        "Makoto Fukushima"
+      ],
+      "primary_category": "q-bio.NC",
+      "categories": [
+        "q-bio.NC",
+        "cond-mat.dis-nn",
+        "cs.NE",
+        "cs.SI"
+      ],
+      "published": "2026-03-16T21:49:24+00:00",
+      "link": "https://arxiv.org/pdf/2603.19320v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolutionary mechanisms of neural circuit connectivity and network dynamics",
+      "llm_evidence_cn": "神经回路连接与网络动力学的演化机制",
+      "llm_evidence": "神经回路连接与网络动力学的演化机制",
+      "canonical_evidence": "神经回路连接与网络动力学的演化机制",
+      "llm_tldr_en": "Models the emergent structure of neural networks based on synaptic crowding and wiring rules.",
+      "llm_tldr_cn": "基于突触拥挤和布线规则模拟了神经网络结构的涌现。",
+      "llm_tldr": "基于突触拥挤和布线规则模拟了神经网络结构的涌现。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.21235v1",
+      "title": "Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data",
+      "abstract": "Nonrigid registration is conventionally divided into point set registration, which aligns sparse geometries, and image registration, which aligns continuous intensity fields on regular grids. However, this dichotomy creates a critical bottleneck for emerging scientific data, such as spatial transcriptomics, where high-dimensional vector-valued functions, e.g., gene expression, are defined on irregular, sparse manifolds. Consequently, researchers currently face a forced choice: either sacrifice single-cell resolution via voxelization to utilize image-based tools, or ignore the critical functional signal to utilize geometric tools. To resolve this dilemma, we propose Domain Elastic Transform (DET), a grid-free probabilistic framework that unifies geometric and functional alignment. By treating data as functions on irregular domains, DET registers high-dimensional signals directly without binning. We formulate the problem within a rigorous Bayesian framework, modeling domain deformation as an elastic motion guided by a joint spatial-functional likelihood. The method is fully unsupervised and scalable, utilizing feature-sensitive downsampling to handle massive atlases. We demonstrate that DET achieves 92\\% topological preservation on MERFISH data where state-of-the-art optimal transport methods struggle ($<$5\\%), and successfully registers whole-embryo Stereo-seq atlases across developmental stages -- a task involving massive scale and complex nonrigid growth. The implementation of DET is available on {https://github.com/ohirose/bcpd} (since Mar, 2025).",
+      "authors": [
+        "Osamu Hirose",
+        "Emanuele Rodola"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-03-22T13:47:29+00:00",
+      "link": "https://arxiv.org/pdf/2603.21235v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "spatial transcriptomics and gene expression",
+      "llm_evidence_cn": "空间转录组学与基因表达",
+      "llm_evidence": "空间转录组学与基因表达",
+      "canonical_evidence": "空间转录组学与基因表达",
+      "llm_tldr_en": "A Bayesian framework for registering high-dimensional scientific data like spatial transcriptomics.",
+      "llm_tldr_cn": "一种用于配准空间转录组学等高维科学数据的贝叶斯框架。",
+      "llm_tldr": "一种用于配准空间转录组学等高维科学数据的贝叶斯框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.20934v1",
+      "title": "MOELIGA: a multi-objective evolutionary approach for feature selection with local improvement",
+      "abstract": "Selecting the most relevant or informative features is a key issue in actual machine learning problems. Since an exhaustive search is not feasible even for a moderate number of features, an intelligent search strategy must be employed for finding an optimal subset, which implies considering how features interact with each other in promoting class separability. Balancing feature subset size and classification accuracy constitutes a multi-objective optimization challenge. Here we propose MOELIGA, a multi-objective genetic algorithm incorporating an evolutionary local improvement strategy that evolves subordinate populations to refine feature subsets. MOELIGA employs a crowding-based fitness sharing mechanism and a sigmoid transformation to enhance diversity and guide compactness, alongside a geometry-based objective promoting classifier independence. Experimental evaluation on 14 diverse datasets demonstrates MOELIGA's ability to identify smaller feature subsets with superior or comparable classification performance relative to 11 state-of-the-art methods. These findings suggest MOELIGA effectively addresses the accuracy-dimensionality trade-off, offering a robust and adaptable approach for multi-objective feature selection in complex, high-dimensional scenarios.",
+      "authors": [
+        "Leandro Vignolo",
+        "Matias Gerard"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE",
+        "cs.LG"
+      ],
+      "published": "2026-03-21T20:27:32+00:00",
+      "link": "https://arxiv.org/pdf/2603.20934v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolutionary approach for feature selection",
+      "llm_evidence_cn": "用于特征选择的进化方法",
+      "llm_evidence": "用于特征选择的进化方法",
+      "canonical_evidence": "用于特征选择的进化方法",
+      "llm_tldr_en": "A multi-objective genetic algorithm for feature selection using evolutionary local improvement.",
+      "llm_tldr_cn": "一种利用进化局部改进策略进行特征选择的多目标遗传算法。",
+      "llm_tldr": "一种利用进化局部改进策略进行特征选择的多目标遗传算法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.21634v1",
+      "title": "Individual-based stochastic model with unbounded growth, birth and death rates: a tightness result",
+      "abstract": "We study population dynamics through a general growth/degrowth-fragmentation process, with resource consumption and unbounded growth/degrowth, birth and death rates. Our model is structured in a positive trait called energy (which is a proxy for any biological parameter such as size, age, mass, protein quantity...), and the jump rates of the process can be arbitrarily high depending on individual energies, which has not been considered yet in the literature. After a preliminary study to construct well-defined objects (which is necessary contrary to similar works, because of the explosion of individual rates), we consider a classical sequence of renormalizations of the underlying process and obtain a tightness result for the associated laws in large-population asymptotics. We characterize the accumulation points of this sequence as solutions of an integro-differential system of equations, which proves the existence of measure solutions to this system. Furthermore, if such a measure solution is unique, then our tightness result becomes a convergence result towards this unique process. We illustrate our work with the case of allometric rates (i.e. they are assumed to be power functions) and eventually present numerical simulations in this allometric setting.",
+      "authors": [
+        "Virgile Brodu"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR",
+        "q-bio.PE"
+      ],
+      "published": "2026-03-23T06:57:51+00:00",
+      "link": "https://arxiv.org/pdf/2603.21634v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "population dynamics with growth, birth, and death rates",
+      "llm_evidence_cn": "包含增长、出生和死亡率的种群动态",
+      "llm_evidence": "包含增长、出生和死亡率的种群动态",
+      "canonical_evidence": "包含增长、出生和死亡率的种群动态",
+      "llm_tldr_en": "Analyzes a stochastic model for population dynamics with energy-structured traits.",
+      "llm_tldr_cn": "分析了一种具有能量结构特征的种群动态随机模型。",
+      "llm_tldr": "分析了一种具有能量结构特征的种群动态随机模型。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.21503v1",
+      "title": "Persistent local Laplacian prediction of protein-ligand binding affinities",
+      "abstract": "Accurate prediction of protein-ligand binding affinity remains a central challenge in structure-based drug discovery. The effectiveness of machine learning models critically depends on the quality of molecular descriptors, for which advanced mathematical frameworks provide powerful tools. In this work, we employ a novel mathematical theory, termed the persistent local Laplacian (PLL), to construct molecular descriptors that capture localized geometric and topological features of biomolecular structures. The PLL framework addresses key limitations of traditional topological data analysis methods, such as persistent homology and the persistent Laplacian, which are often insensitive to local structural variations, while maintaining high computational efficiency. The resulting molecular descriptors are integrated with advanced machine learning algorithms to develop accurate predictive models for protein-ligand binding affinity. The proposed models are systematically evaluated on three well-established benchmark datasets, demonstrating consistently strong and competitive predictive performance. Computational results show that the PLL-based models outperform existing approaches, highlighting their potential as a powerful tool for drug discovery, protein engineering, and broader applications in science and engineering.",
+      "authors": [
+        "Jian Liu",
+        "Hongsong Feng"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM"
+      ],
+      "published": "2026-03-23T02:50:31+00:00",
+      "link": "https://arxiv.org/pdf/2603.21503v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI and mathematical frameworks for biomolecular structures",
+      "llm_evidence_cn": "用于生物分子结构的AI与数学框架",
+      "llm_evidence": "用于生物分子结构的AI与数学框架",
+      "canonical_evidence": "用于生物分子结构的AI与数学框架",
+      "llm_tldr_en": "Uses persistent local Laplacian to improve protein-ligand binding affinity prediction in drug discovery.",
+      "llm_tldr_cn": "利用持久局部拉普拉斯算子改进药物研发中的蛋白质-配体结合亲和力预测。",
+      "llm_tldr": "利用持久局部拉普拉斯算子改进药物研发中的蛋白质-配体结合亲和力预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.21743v2",
+      "title": "CellFluxRL: Biologically-Constrained Virtual Cell Modeling via Reinforcement Learning",
+      "abstract": "Building virtual cells with generative models to simulate cellular behavior in silico is emerging as a promising paradigm for accelerating drug discovery. However, prior image-based generative approaches can produce implausible cell images that violate basic physical and biological constraints. To address this, we propose to post-train virtual cell models with reinforcement learning (RL), leveraging biologically meaningful evaluators as reward functions. We design seven rewards spanning three categories-biological function, structural validity, and morphological correctness-and optimize the state-of-the-art CellFlux model to yield CellFluxRL. CellFluxRL consistently improves over CellFlux across all rewards, with further performance boosts from test-time scaling. Overall, our results present a virtual cell modeling framework that enforces physically-based constraints through RL, advancing beyond \"visually realistic\" generations towards \"biologically meaningful\" ones.",
+      "authors": [
+        "Dongxia Wu",
+        "Shiye Su",
+        "Yuhui Zhang",
+        "Elaine Sui",
+        "Emma Lundberg",
+        "Emily B. Fox",
+        "Serena Yeung-Levy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-23T09:33:18+00:00",
+      "link": "https://arxiv.org/pdf/2603.21743v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Reinforcement learning for biologically-constrained virtual cell modeling",
+      "llm_evidence_cn": "利用强化学习进行符合生物学约束的虚拟细胞建模",
+      "llm_evidence": "利用强化学习进行符合生物学约束的虚拟细胞建模",
+      "canonical_evidence": "利用强化学习进行符合生物学约束的虚拟细胞建模",
+      "llm_tldr_en": "Applies RL to optimize virtual cell models ensuring biological function and structural validity.",
+      "llm_tldr_cn": "应用强化学习优化虚拟细胞模型，确保其符合生物功能和结构有效性。",
+      "llm_tldr": "应用强化学习优化虚拟细胞模型，确保其符合生物功能和结构有效性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.22269v1",
+      "title": "Computational modeling of RNA-protein binding interactions under an external force",
+      "abstract": "RNA binding proteins play a crucial role in post-transcriptional gene regulation by controlling the transport, processing, and translation of their target RNAs. Post-transcriptional gene regulation leads to the differential expression of genetic material and loss of regulation or over-regulation relates to a large range of cancers and diseases - many of which have directly been associated with RNA binding proteins and their target RNAs. To understand RNA, RNA binding proteins, and how they function in gene expression, it is essential to characterize how RNA binding proteins interact with their target RNAs. Here, we aim to assess the potential for single molecule force spectroscopy experiments to be used in the characterization of RNA-protein binding by investigating to what extent a change of extension due to RNA-protein binding is experimentally measurable and what aspects of the interaction can be deduced from such measurements. We predict the effect of protein binding on RNA force extension measurements via the open-source ViennaRNA package, which we have modified to simultaneously consider an external force, protein binding, and RNA secondary structure. From this work, we see protein concentration-dependent responses to external forces with discernable differences in predicted extensions around biologically relevant concentrations and a connection to protein binding domain geometry for several RNA binding proteins.",
+      "authors": [
+        "Danielle Wampler",
+        "Ralf Bundschuh"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM"
+      ],
+      "published": "2026-03-23T17:54:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.22269v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Computational modeling of RNA-protein interactions in gene regulation",
+      "llm_evidence_cn": "基因调节中RNA-蛋白质相互作用的计算模拟",
+      "llm_evidence": "基因调节中RNA-蛋白质相互作用的计算模拟",
+      "canonical_evidence": "基因调节中RNA-蛋白质相互作用的计算模拟",
+      "llm_tldr_en": "Models RNA-protein binding to understand post-transcriptional gene regulation and its role in diseases.",
+      "llm_tldr_cn": "模拟RNA-蛋白质结合，以了解转录后基因调节及其在疾病中的作用。",
+      "llm_tldr": "模拟RNA-蛋白质结合，以了解转录后基因调节及其在疾病中的作用。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.22369v1",
+      "title": "SynLeaF: A Dual-Stage Multimodal Fusion Framework for Synthetic Lethality Prediction Across Pan- and Single-Cancer Contexts",
+      "abstract": "Accurate prediction of synthetic lethality (SL) is important for guiding the development of cancer drugs and therapies. SL prediction faces significant challenges in the effective fusion of heterogeneous multi-source data. Existing multimodal methods often suffer from \"modality laziness\" due to disparate convergence speeds, which hinders the exploitation of complementary information. This is also one reason why most existing SL prediction models cannot perform well on both pan-cancer and single-cancer SL pair prediction. In this study, we propose SynLeaF, a dual-stage multimodal fusion framework for SL prediction across pan- and single-cancer contexts. The framework employs a VAE-based cross-encoder with a product of experts mechanism to fuse four omics data types (gene expression, mutation, methylation, and CNV), while simultaneously utilizing a relational graph convolutional network to capture structured gene representations from biomedical knowledge graphs. To mitigate modality laziness, SynLeaF introduces a dual-stage training mechanism employing featurelevel knowledge distillation with adaptive uni-modal teacher and ensemble strategies. In extensive experiments across eight specific cancer types and a pancancer dataset, SynLeaF achieves superior performance in 17 out of 19 scenarios. Ablation studies and gradient analyses further validate the critical contributions of the proposed fusion and distillation mechanisms to model robustness and generalization. To facilitate community use, a web server is available at https://synleaf.bioinformatics-lilab.cn.",
+      "authors": [
+        "Zheming Xing",
+        "Siyuan Zhou",
+        "Ruinan Wang",
+        "Rui Han",
+        "Shiming Zhang",
+        "Shiqu Chen",
+        "Yurui Huang",
+        "Jiahao Ma",
+        "Yifan Chen",
+        "Xuan Wang",
+        "Yadong Wang",
+        "Junyi Li"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-03-23T05:55:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.22369v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based multimodal fusion for synthetic lethality prediction in cancer genomics",
+      "llm_evidence_cn": "基于AI的多模态融合用于癌症基因组合成致死预测",
+      "llm_evidence": "基于AI的多模态融合用于癌症基因组合成致死预测",
+      "canonical_evidence": "基于AI的多模态融合用于癌症基因组合成致死预测",
+      "llm_tldr_en": "SynLeaF uses multimodal fusion to predict synthetic lethality across pan-cancer contexts for drug development.",
+      "llm_tldr_cn": "SynLeaF利用多模态融合预测泛癌症背景下的合成致死，助力药物开发。",
+      "llm_tldr": "SynLeaF利用多模态融合预测泛癌症背景下的合成致死，助力药物开发。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.22612v1",
+      "title": "BioShield: A Context-Aware Firewall for Securing Bio-LLMs",
+      "abstract": "The rapid advancement of Large Language Models (LLMs) in biological research has significantly lowered the barrier to accessing complex bioinformatics knowledge, ex perimental design strategies, and analytical workflows. While these capabilities accelerate innovation, they also introduce serious dual-use risks, as Bio-LLMs can be exploited to generate harmful biological insights under the guise of legitimate research queries. Existing safeguards, such as static prompt filtering and policy-based restrictions, are insufficient when LLMs are embedded within dynamic biological workflows and application-layer systems. In this paper, we present BioShield, a context-aware application-level firewall designed to secure Bio LLMs against dual-use attacks. At the core of BioShield is a domain-specific prompt scanner that performs contextual risk analysis of incoming queries. The scanner leverages a harmful scoring mechanism tailored to biological dual-use threat cat egories to identify prompts that attempt to conceal malicious intent within seemingly benign research requests. Queries ex ceeding a predefined risk threshold are blocked before reaching the model, effectively preventing unsafe knowledge generation at the source. In addition to pre-generation protection, BioShield deploys a post-generation output verification module that inspects model responses for actionable or weaponizable biological content. If an unsafe response is detected, the system triggers controlled regeneration under strengthened safety constraints. By combining contextual prompt scanning with response-level validation, BioShield provides a layered defense framework specifically designed for bio-domain LLM deployments. Our framework advances cyberbiosecurity by formalizing dual-use threat detection in Bio-LLMs and proposing a structured mitigation strategy for secure, responsible AI driven biological research.",
+      "authors": [
+        "Protiva Das",
+        "Sovon Chakraborty",
+        "Sidhant Narula",
+        "Lucas Potter",
+        "Xavier-Lewis Palmer",
+        "Pratip Rana",
+        "Daniel Takabi",
+        "Mohammad Ghasemigol"
+      ],
+      "primary_category": "cs.CR",
+      "categories": [
+        "cs.CR",
+        "cs.HC"
+      ],
+      "published": "2026-03-23T22:18:54+00:00",
+      "link": "https://arxiv.org/pdf/2603.22612v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "securing Bio-LLMs in biological research workflows",
+      "llm_evidence_cn": "在生物研究工作流中保护生物大语言模型",
+      "llm_evidence": "在生物研究工作流中保护生物大语言模型",
+      "canonical_evidence": "在生物研究工作流中保护生物大语言模型",
+      "llm_tldr_en": "Proposes a context-aware firewall to prevent dual-use risks in AI-driven biological and genomic research.",
+      "llm_tldr_cn": "提出了一种上下文感知防火墙，以防止 AI 驱动的生物和基因组研究中的双重用途风险。",
+      "llm_tldr": "提出了一种上下文感知防火墙，以防止 AI 驱动的生物和基因组研究中的双重用途风险。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.22477v1",
+      "title": "Subspace Tensor Orthogonal Rotation Model (STORM) for Batch Alignment, Cell Type Deconvolution, and Gene Imputation in Spatial Transcriptomic Data",
+      "abstract": "Spatial transcriptomics data analysis integrates cellular transcriptional activity with spatial coordinates to identify spatial domains, infer cell-type dynamics, and characterize gene expression patterns within tissues. Despite recent advances, significant challenges remain, including the treatment of batch effects, the handling of mixed cell-type signals, and the imputation of poorly measured or missing gene expression. This work addresses these challenges by introducing a novel Subspace Tensor Orthogonal Rotation Model (STORM) that aligns multiple slices which vary in their spatial dimensions and geometry by considering them at the level of physical patterns or microenvironments. To this end, STORM presents an irregular tensor factorization technique for decomposing a collection of gene expression matrices and integrating them into a shared latent space for downstream analysis. In contrast to black-box deep learning approaches, the proposed model is inherently interpretable. Numerical experiments demonstrate state-of-the-art performance in vertical and horizontal batch integration, cell-type deconvolution, and unmeasured gene imputation for spatial transcriptomics data.",
+      "authors": [
+        "Sean Cottrell",
+        "Guo-Wei Wei",
+        "Longxiu Huang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-03-23T18:45:12+00:00",
+      "link": "https://arxiv.org/pdf/2603.22477v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven model for gene imputation and spatial transcriptomic data analysis",
+      "llm_evidence_cn": "用于基因插补和空间转录组数据分析的AI驱动模型",
+      "llm_evidence": "用于基因插补和空间转录组数据分析的AI驱动模型",
+      "canonical_evidence": "用于基因插补和空间转录组数据分析的AI驱动模型",
+      "llm_tldr_en": "Proposes STORM for batch alignment and gene imputation in spatial transcriptomics to characterize expression patterns.",
+      "llm_tldr_cn": "提出STORM模型用于空间转录组的批次校正和基因插补，以表征表达模式。",
+      "llm_tldr": "提出STORM模型用于空间转录组的批次校正和基因插补，以表征表达模式。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
