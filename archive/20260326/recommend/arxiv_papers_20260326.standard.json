@@ -1,0 +1,565 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-26T19:53:22.346005+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 21,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2603.19808v1",
+      "title": "Two-Time-Scale Learning Dynamics: A Population View of Neural Network Training",
+      "abstract": "Population-based learning paradigms, including evolutionary strategies, Population-Based Training (PBT), and recent model-merging methods, combine fast within-model optimisation with slower population-level adaptation. Despite their empirical success, a general mathematical description of the resulting collective training dynamics remains incomplete. We introduce a theoretical framework for neural network training based on two-time-scale population dynamics. We model a population of neural networks as an interacting agent system in which network parameters evolve through fast noisy gradient updates of SGD/Langevin type, while hyperparameters evolve through slower selection--mutation dynamics. We prove the large-population limit for the joint distribution of parameters and hyperparameters and, under strong time-scale separation, derive a selection--mutation equation for the hyperparameter density. For each fixed hyperparameter, the fast parameter dynamics relaxes to a Boltzmann--Gibbs measure, inducing an effective fitness for the slow evolution. The averaged dynamics connects population-based learning with bilevel optimisation and classical replicator--mutator models, yields conditions under which the population mean moves toward the fittest hyperparameter, and clarifies the role of noise and diversity in balancing optimisation and exploration. Numerical experiments illustrate both the large-population regime and the reduced two-time-scale dynamics, and indicate that access to the effective fitness, either in closed form or through population-level estimation, can improve population-level updates.",
+      "authors": [
+        "Giacomo Borghi",
+        "Hyesung Im",
+        "Lorenzo Pareschi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "math.AP",
+        "stat.ML"
+      ],
+      "published": "2026-03-20T09:48:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.19808v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary strategies and selection-mutation dynamics",
+      "llm_evidence_cn": "进化策略与选择-突变动力学",
+      "llm_evidence": "进化策略与选择-突变动力学",
+      "canonical_evidence": "进化策略与选择-突变动力学",
+      "llm_tldr_en": "Models neural network training using two-time-scale population and selection-mutation dynamics.",
+      "llm_tldr_cn": "利用双时间尺度种群动力学和选择-突变动力学对神经网络训练进行建模。",
+      "llm_tldr": "利用双时间尺度种群动力学和选择-突变动力学对神经网络训练进行建模。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.18385v2",
+      "title": "Evolutionarily Stable Stackelberg Equilibrium",
+      "abstract": "We present a new solution concept called evolutionarily stable Stackelberg equilibrium (SESS). We study the Stackelberg evolutionary game setting in which there is a single leading player and a symmetric population of followers. The leader selects an optimal mixed strategy, anticipating that the follower population plays an evolutionarily stable strategy (ESS) in the induced subgame and may satisfy additional ecological conditions. We consider both leader-optimal and follower-optimal selection among ESSs, which arise as special cases of our framework. Prior approaches to Stackelberg evolutionary games either define the follower response via evolutionary dynamics or assume rational best-response behavior, without explicitly enforcing stability against invasion by mutations. We present algorithms for computing SESS in discrete and continuous games, and validate the latter empirically. Our model applies naturally to biological settings; for example, in cancer treatment the leader represents the physician and the followers correspond to competing cancer cell phenotypes.",
+      "authors": [
+        "Sam Ganzfried"
+      ],
+      "primary_category": "cs.GT",
+      "categories": [
+        "cs.GT",
+        "cs.AI",
+        "cs.MA",
+        "econ.TH",
+        "q-bio.PE"
+      ],
+      "published": "2026-03-19T01:06:10+00:00",
+      "link": "https://arxiv.org/pdf/2603.18385v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolutionarily stable strategy (ESS) and evolutionary dynamics",
+      "llm_evidence_cn": "演化稳定策略 (ESS) 与演化动力学",
+      "llm_evidence": "演化稳定策略 (ESS) 与演化动力学",
+      "canonical_evidence": "演化稳定策略 (ESS) 与演化动力学",
+      "llm_tldr_en": "Introduces a new equilibrium concept for Stackelberg games based on evolutionary stability against mutations.",
+      "llm_tldr_cn": "基于抗突变演化稳定性，为斯塔克尔伯格博弈提出了一种新的平衡概念。",
+      "llm_tldr": "基于抗突变演化稳定性，为斯塔克尔伯格博弈提出了一种新的平衡概念。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.19817v1",
+      "title": "GDEGAN: Gaussian Dynamic Equivariant Graph Attention Network for Ligand Binding Site Prediction",
+      "abstract": "Accurate prediction of binding sites of a given protein, to which ligands can bind, is a critical step in structure-based computational drug discovery. Recently, Equivariant Graph Neural Networks (GNNs) have emerged as a powerful paradigm for binding site identification methods due to the large-scale availability of 3D structures of proteins via protein databases and AlphaFold predictions. The state-of-the-art equivariant GNN methods implement dot product attention, disregarding the variation in the chemical and geometric properties of the neighboring residues. To capture this variation, we propose GDEGAN (Gaussian Dynamic Equivariant Graph Attention Network), which replaces dot-product attention with adaptive kernels that recognize binding sites. The proposed attention mechanism captures variation in neighboring residues using statistics of their characteristic local feature distributions. Our mechanism dynamically computes neighborhood statistics at each layer, using local variance as an adaptive bandwidth parameter with learnable per-head temperatures, enabling each protein region to determine its own context-specific importance. GDEGAN outperforms existing methods with relative improvements of 37-66% in DCC and 7-19% DCA success rates across COACH420, HOLO4k, and PDBBind2020 datasets. These advances have direct application in accelerating protein-ligand docking by identifying potential binding sites for therapeutic target identification.",
+      "authors": [
+        "Animesh",
+        "Plaban Kumar Bhowmick",
+        "Pralay Mitra"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-20T10:04:10+00:00",
+      "link": "https://arxiv.org/pdf/2603.19817v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven protein structure and binding site prediction",
+      "llm_evidence_cn": "利用AI进行蛋白质结构和结合位点预测",
+      "llm_evidence": "利用AI进行蛋白质结构和结合位点预测",
+      "canonical_evidence": "利用AI进行蛋白质结构和结合位点预测",
+      "llm_tldr_en": "Proposes GDEGAN to improve protein-ligand binding site prediction using equivariant graph neural networks.",
+      "llm_tldr_cn": "提出GDEGAN，利用等变图神经网络改进蛋白质-配体结合位点预测。",
+      "llm_tldr": "提出GDEGAN，利用等变图神经网络改进蛋白质-配体结合位点预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.18397v1",
+      "title": "FlowMS: Flow Matching for De Novo Structure Elucidation from Mass Spectra",
+      "abstract": "Mass spectrometry (MS) stands as a cornerstone analytical technique for molecular identification, yet de novo structure elucidation from spectra remains challenging due to the combinatorial complexity of chemical space and the inherent ambiguity of spectral fragmentation patterns. Recent deep learning approaches, including autoregressive sequence models, scaffold-based methods, and graph diffusion models, have made progress. However, diffusion-based generation for this task remains computationally demanding. Meanwhile, discrete flow matching, which has shown strong performance for graph generation, has not yet been explored for spectrum-conditioned structure elucidation. In this work, we introduce FlowMS, the first discrete flow matching framework for spectrum-conditioned de novo molecular generation. FlowMS generates molecular graphs through iterative refinement in probability space, enforcing chemical formula constraints while conditioning on spectral embeddings from a pretrained formula transformer encoder. Notably, it achieves state-of-the-art performance on 5 out of 6 metrics on the NPLIB1 benchmark: 9.15% top-1 accuracy (9.7% relative improvement over DiffMS) and 7.96 top-10 MCES (4.2% improvement over MS-BART). We also visualize the generated molecules, which further demonstrate that FlowMS produces structurally plausible candidates closely resembling ground truth structures. These results establish discrete flow matching as a promising paradigm for mass spectrometry-based structure elucidation in metabolomics and natural product discovery.",
+      "authors": [
+        "Jianan Nie",
+        "Peng Gao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-19T01:41:52+00:00",
+      "link": "https://arxiv.org/pdf/2603.18397v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven de novo structure elucidation from mass spectra",
+      "llm_evidence_cn": "利用AI从质谱中进行从头结构阐明",
+      "llm_evidence": "利用AI从质谱中进行从头结构阐明",
+      "canonical_evidence": "利用AI从质谱中进行从头结构阐明",
+      "llm_tldr_en": "FlowMS uses discrete flow matching for spectrum-conditioned molecular structure elucidation.",
+      "llm_tldr_cn": "FlowMS利用离散流匹配技术，根据质谱信息进行分子结构阐明。",
+      "llm_tldr": "FlowMS利用离散流匹配技术，根据质谱信息进行分子结构阐明。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.22053v1",
+      "title": "AnimalCLAP: Taxonomy-Aware Language-Audio Pretraining for Species Recognition and Trait Inference",
+      "abstract": "Animal vocalizations provide crucial insights for wildlife assessment, particularly in complex environments such as forests, aiding species identification and ecological monitoring. Recent advances in deep learning have enabled automatic species classification from their vocalizations. However, classifying species unseen during training remains challenging. To address this limitation, we introduce AnimalCLAP, a taxonomy-aware language-audio framework comprising a new dataset and model that incorporate hierarchical biological information. Specifically, our vocalization dataset consists of 4,225 hours of recordings covering 6,823 species, annotated with 22 ecological traits. The AnimalCLAP model is trained on this dataset to align audio and textual representations using taxonomic structures, improving the recognition of unseen species. We demonstrate that our proposed model effectively infers ecological and biological attributes of species directly from their vocalizations, achieving superior performance compared to CLAP. Our dataset, code, and models will be publicly available at https://dahlian00.github.io/AnimalCLAP_Page/.",
+      "authors": [
+        "Risa Shinoda",
+        "Kaede Shiohara",
+        "Nakamasa Inoue",
+        "Hiroaki Santo",
+        "Fumio Okura"
+      ],
+      "primary_category": "cs.SD",
+      "categories": [
+        "cs.SD",
+        "cs.LG"
+      ],
+      "published": "2026-03-23T14:53:02+00:00",
+      "link": "https://arxiv.org/pdf/2603.22053v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "taxonomy-aware species recognition and hierarchical biological information",
+      "llm_evidence_cn": "分类学感知的物种识别与层级生物信息",
+      "llm_evidence": "分类学感知的物种识别与层级生物信息",
+      "canonical_evidence": "分类学感知的物种识别与层级生物信息",
+      "llm_tldr_en": "Uses AI and taxonomy to improve species recognition and ecological trait inference from audio.",
+      "llm_tldr_cn": "利用AI和分类学信息改进音频中的物种识别和生态特征推断。",
+      "llm_tldr": "利用AI和分类学信息改进音频中的物种识别和生态特征推断。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.19808v2",
+      "title": "Two-Time-Scale Learning Dynamics: A Population View of Neural Network Training",
+      "abstract": "Population-based learning paradigms, including evolutionary strategies, Population-Based Training (PBT), and recent model-merging methods, combine fast within-model optimisation with slower population-level adaptation. Despite their empirical success, a general mathematical description of the resulting collective training dynamics remains incomplete. We introduce a theoretical framework for neural network training based on two-time-scale population dynamics. We model a population of neural networks as an interacting agent system in which network parameters evolve through fast noisy gradient updates of SGD/Langevin type, while hyperparameters evolve through slower selection--mutation dynamics. We prove the large-population limit for the joint distribution of parameters and hyperparameters and, under strong time-scale separation, derive a selection--mutation equation for the hyperparameter density. For each fixed hyperparameter, the fast parameter dynamics relaxes to a Boltzmann--Gibbs measure, inducing an effective fitness for the slow evolution. The averaged dynamics connects population-based learning with bilevel optimisation and classical replicator--mutator models, yields conditions under which the population mean moves toward the fittest hyperparameter, and clarifies the role of noise and diversity in balancing optimisation and exploration. Numerical experiments illustrate both the large-population regime and the reduced two-time-scale dynamics, and indicate that access to the effective fitness, either in closed form or through population-level estimation, can improve population-level updates.",
+      "authors": [
+        "Giacomo Borghi",
+        "Hyesung Im",
+        "Lorenzo Pareschi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "math.AP",
+        "stat.ML"
+      ],
+      "published": "2026-03-20T09:48:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.19808v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Population-level adaptation and selection-mutation dynamics in neural networks",
+      "llm_evidence_cn": "神经网络中的群体水平适应与选择-突变动态",
+      "llm_evidence": "神经网络中的群体水平适应与选择-突变动态",
+      "canonical_evidence": "神经网络中的群体水平适应与选择-突变动态",
+      "llm_tldr_en": "Models neural network training using two-time-scale population dynamics and selection-mutation.",
+      "llm_tldr_cn": "利用双时间尺度群体动态和选择-突变机制对神经网络训练进行建模。",
+      "llm_tldr": "利用双时间尺度群体动态和选择-突变机制对神经网络训练进行建模。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.22564v1",
+      "title": "MIOFlow 2.0: A unified framework for inferring cellular stochastic dynamics from single cell and spatial transcriptomics data",
+      "abstract": "Understanding cellular trajectories via time-resolved single-cell transcriptomics is vital for studying development, regeneration, and disease. A key challenge is inferring continuous trajectories from discrete snapshots. Biological complexity stems from stochastic cell fate decisions, temporal proliferation changes, and spatial environmental influences. Current methods often use deterministic interpolations treating cells in isolation, failing to capture the probabilistic branching, population shifts, and niche-dependent signaling driving real biological processes.   We introduce Manifold Interpolating Optimal-Transport Flow (MIOFlow) 2.0. This framework learns biologically informed cellular trajectories by integrating manifold learning, optimal transport, and neural differential equations. It models three core processes: (1) stochasticity and branching via Neural Stochastic Differential Equations; (2) non-conservative population changes using a learned growth-rate model initialized with unbalanced optimal transport; and (3) environmental influence through a joint latent space unifying gene expression with spatial features like local cell type composition and signaling.   By operating in a PHATE-distance matching autoencoder latent space, MIOFlow 2.0 ensures trajectories respect the data's intrinsic geometry. Empirical comparisons show expressive trajectory learning via neural differential equations outperforms existing generative models, including simulation-free flow matching. Validated on synthetic datasets, embryoid body differentiation, and spatially resolved axolotl brain regeneration, MIOFlow 2.0 improves trajectory accuracy and reveals hidden drivers of cellular transitions, like specific signaling niches. MIOFlow 2.0 thus bridges single-cell and spatial transcriptomics to uncover tissue-scale trajectories.",
+      "authors": [
+        "Xingzhi Sun",
+        "João Felipe Rocha",
+        "Brett Phelan",
+        "Dhananjay Bhaskar",
+        "Guillaume Huguet",
+        "Yanlei Zhang",
+        "D. S. Magruder",
+        "Alexander Tong",
+        "Ke Xu",
+        "Oluwadamilola Fasina",
+        "Mark Gerstein",
+        "Guy Wolf",
+        "Natalia Ivanova",
+        "Christine L. Chaffer",
+        "Smita Krishnaswamy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-23T20:49:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.22564v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI framework for inferring cellular dynamics from transcriptomics",
+      "llm_evidence_cn": "利用AI框架从转录组数据推断细胞动力学",
+      "llm_evidence": "利用AI框架从转录组数据推断细胞动力学",
+      "canonical_evidence": "利用AI框架从转录组数据推断细胞动力学",
+      "llm_tldr_en": "MIOFlow 2.0 uses optimal transport to infer continuous cellular trajectories from single-cell and spatial data.",
+      "llm_tldr_cn": "MIOFlow 2.0利用最优传输理论从单细胞和空间数据中推断连续的细胞轨迹。",
+      "llm_tldr": "MIOFlow 2.0利用最优传输理论从单细胞和空间数据中推断连续的细胞轨迹。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.20844v1",
+      "title": "A scalable Bayesian functional factor model for high-dimensional longitudinal molecular data",
+      "abstract": "Large-scale longitudinal molecular profiling is now firmly established in biomedical research, prompted by the need to uncover coordinated biomarker trajectories reflecting the dynamics of underlying biological mechanisms and characterise patient heterogeneity in disease progression. While a range of statistical tools exist for either longitudinal modelling or high-dimensional analysis, there is no unified framework tailored to address these questions jointly. Motivated by a longitudinal COVID-19 study conducted in Cambridge hospitals, we propose a Bayesian functional factor model to address this gap. The framework combines latent factor modelling with functional principal component analysis to represent shared temporal programmes across subsets of variables while capturing individual variation through low-dimensional functional scores. We specify sparsity-inducing priors that yield interpretable factor structure and allow the effective number of factors to be inferred via overspecification. An annealed variational algorithm ensures efficient joint posterior inference at scale. The approach achieves accurate recovery of temporal structure in simulations with up to 20 000 variables. Application to the COVID-19 data reveals clinically meaningful heterogeneity in recovery dynamics through interpretable subject-level scores capturing coordinated inflammatory and immune-response pathway activity. The methodology is implemented in the R package bayesSYNC.",
+      "authors": [
+        "Salima Jaoua",
+        "Daniel Temko",
+        "Hélène Ruffieux"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-03-21T15:00:18+00:00",
+      "link": "https://arxiv.org/pdf/2603.20844v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Bayesian model for high-dimensional longitudinal molecular data and biological mechanisms",
+      "llm_evidence_cn": "用于高维纵向分子数据和生物机制的贝叶斯模型",
+      "llm_evidence": "用于高维纵向分子数据和生物机制的贝叶斯模型",
+      "canonical_evidence": "用于高维纵向分子数据和生物机制的贝叶斯模型",
+      "llm_tldr_en": "A Bayesian functional factor model to analyze dynamics of biological mechanisms in molecular data.",
+      "llm_tldr_cn": "一种用于分析分子数据中生物机制动态的贝叶斯功能因子模型。",
+      "llm_tldr": "一种用于分析分子数据中生物机制动态的贝叶斯功能因子模型。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.24265v1",
+      "title": "DeepDTF: Dual-Branch Transformer Fusion for Multi-Omics Anticancer Drug Response Prediction",
+      "abstract": "Cancer drug response varies widely across tumors due to multi-layer molecular heterogeneity, motivating computational decision support for precision oncology. Despite recent progress in deep CDR models, robust alignment between high-dimensional multi-omics and chemically structured drugs remains challenging due to cross-modal misalignment and limited inductive bias. We present DeepDTF, an end-to-end dual-branch Transformer fusion framework for joint log(IC50) regression and drug sensitivity classification. The cell-line branch uses modality-specific encoders for multi-omics profiles with Transformer blocks to capture long-range dependencies, while the drug branch represents compounds as molecular graphs and encodes them with a GNN-Transformer to integrate local topology with global context. Omics and drug representations are fused by a Transformer-based module that models cross-modal interactions and mitigates feature misalignment. On public pharmacogenomic benchmarks under 5-fold cold-start cell-line evaluation, DeepDTF consistently outperforms strong baselines across omics settings, achieving up to RMSE=1.248, R^2=0.875, and AUC=0.987 with full multi-omics inputs, while reducing classification error (1-ACC) by 9.5%. Beyond accuracy, DeepDTF provides biologically grounded explanations via SHAP-based gene attributions and pathway enrichment with pre-ranked GSEA.",
+      "authors": [
+        "Yuhan Zhao",
+        "Jacob Tennant",
+        "James Yang",
+        "Zhishan Guo",
+        "Young Whang",
+        "Ning Sui"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-25T12:58:07+00:00",
+      "link": "https://arxiv.org/pdf/2603.24265v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for multi-omics profiles and drug response",
+      "llm_evidence_cn": "利用AI处理多组学数据与药物反应",
+      "llm_evidence": "利用AI处理多组学数据与药物反应",
+      "canonical_evidence": "利用AI处理多组学数据与药物反应",
+      "llm_tldr_en": "A Transformer framework for predicting anticancer drug response using high-dimensional multi-omics data.",
+      "llm_tldr_cn": "一种利用高维多组学数据预测抗癌药物反应的Transformer融合框架。",
+      "llm_tldr": "一种利用高维多组学数据预测抗癌药物反应的Transformer融合框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.20856v1",
+      "title": "Ensemble of Small Classifiers For Imbalanced White Blood Cell Classification",
+      "abstract": "Automating white blood cell classification for diagnosis of leukaemia is a promising alternative to time-consuming and resource-intensive examination of cells by expert pathologists. However, designing robust algorithms for classification of rare cell types remains challenging due to variations in staining, scanning and inter-patient heterogeneity. We propose a lightweight ensemble approach for classification of cells during Haematopoiesis, with a focus on the biology of Granulopoiesis, Monocytopoiesis and Lymphopoiesis. Through dataset expansion to alleviate some class imbalance, we demonstrate that a simple ensemble of lightweight pretrained SwinV2-Tiny, DinoBloom-Small and ConvNeXT-V2-Tiny models achieves excellent performance on this challenging dataset. We train 3 instantiations of each architecture in a stratified 3-fold cross-validation framework; for an input image, we forward-pass through all 9 models and aggregate through logit averaging. We further reason on the weaknesses of our model in confusing similar-looking myelocytes in granulopoiesis and lymphocytes in lymphopoiesis. Code: https://gitlab.com/siddharthsrivastava/wbc-bench-2026.",
+      "authors": [
+        "Siddharth Srivastava",
+        "Adam Smith",
+        "Scott Brooks",
+        "Jack Bacon",
+        "Till Bretschneider"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-03-21T15:24:52+00:00",
+      "link": "https://arxiv.org/pdf/2603.20856v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI ensemble for white blood cell classification and hematopoiesis biology",
+      "llm_evidence_cn": "用于白细胞分类和造血生物学的AI集成模型",
+      "llm_evidence": "用于白细胞分类和造血生物学的AI集成模型",
+      "canonical_evidence": "用于白细胞分类和造血生物学的AI集成模型",
+      "llm_tldr_en": "Proposes a lightweight ensemble for classifying white blood cells during hematopoiesis.",
+      "llm_tldr_cn": "提出了一种轻量级集成方法，用于造血过程中的白细胞分类诊断。",
+      "llm_tldr": "提出了一种轻量级集成方法，用于造血过程中的白细胞分类诊断。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.21890v1",
+      "title": "$π$-Girsanov: A Generalized Method to Construct Markov State Models from Non-Equilibrium and Multiensemble Biased Simulations",
+      "abstract": "We introduce $π$-Girsanov, a new method for constructing Markov state models from biased enhanced-sampling molecular dynamics simulations based on Girsanov reweighting. The key idea behind this new method is to separate the reweighting stationary density from the reweighting of the correlation function. We evaluate the effectiveness of this approach on several analytical potentials and on a model biomolecular system, comparing its performance with the original method. Our results show that $π$-Girsanov not only improves the estimation in a single-ensemble setting, but also resolves key challenges in estimating transition matrices from multiensemble and non-equilibrium biased trajectories. Overall, $π$-Girsanov represents a substantial advance in kinetic reweighting, strengthening the connection between enhanced sampling techniques and Markov state modeling.",
+      "authors": [
+        "Mingyuan Zhang",
+        "Yong Wang",
+        "Bettina G. Keller",
+        "Hao Wu"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph"
+      ],
+      "published": "2026-03-23T12:16:06+00:00",
+      "link": "https://arxiv.org/pdf/2603.21890v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Markov state models for biomolecular systems",
+      "llm_evidence_cn": "生物分子系统的马尔可夫状态模型",
+      "llm_evidence": "生物分子系统的马尔可夫状态模型",
+      "canonical_evidence": "生物分子系统的马尔可夫状态模型",
+      "llm_tldr_en": "Introduces a method to construct Markov state models from biased molecular dynamics simulations.",
+      "llm_tldr_cn": "提出了一种从偏置分子动力学模拟中构建马尔可夫状态模型的新方法。",
+      "llm_tldr": "提出了一种从偏置分子动力学模拟中构建马尔可夫状态模型的新方法。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.21952v1",
+      "title": "Parsimonious Subset Selection for Generalized Linear Models with Biomedical Applications",
+      "abstract": "High-dimensional biomedical studies require models that are simultaneously accurate, sparse, and interpretable, yet exact best subset selection for generalized linear models is computationally intractable. We develop a scalable method that combines a continuous Boolean relaxation of the subset problem with a Frank--Wolfe algorithm driven by envelope gradients. The resulting method, which we refer to as COMBSS-GLM, is simple to implement, requires one penalized generalized linear model fit per iteration, and produces sparse models along a model-size path. Theoretically, we identify a curvature-based parameter regime in which the relaxed objective is concave in the selection weights, implying that global minimizers occur at binary corners. Empirically, in logistic and multinomial simulations across low- and high-dimensional correlated settings, the proposed method consistently improves variable-selection quality relative to established penalised likelihood competitors while maintaining strong predictive performance. In biomedical applications, it recovers established loci in a binary-outcome rice genome-wide association study and achieves perfect multiclass test accuracy on the Khan SRBCT cancer dataset using a small subset of genes. Open-source implementations are available in R at https://github.com/benoit-liquet/COMBSS-GLM-R and in Python at https://github.com/saratmoka/COMBSS-GLM-Python.",
+      "authors": [
+        "Anant Mathur",
+        "Benoit Liquet",
+        "Samuel Muller",
+        "Sarat Moka"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.CO"
+      ],
+      "published": "2026-03-23T13:09:57+00:00",
+      "link": "https://arxiv.org/pdf/2603.21952v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "computational methods for high-dimensional biomedical studies",
+      "llm_evidence_cn": "高维生物医学研究的计算方法",
+      "llm_evidence": "高维生物医学研究的计算方法",
+      "canonical_evidence": "高维生物医学研究的计算方法",
+      "llm_tldr_en": "Develops a scalable subset selection method for interpretable models in biomedical applications.",
+      "llm_tldr_cn": "开发了一种可扩展的子集选择方法，用于生物医学应用中的可解释模型。",
+      "llm_tldr": "开发了一种可扩展的子集选择方法，用于生物医学应用中的可解释模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.22018v1",
+      "title": "Do Papers Match Code? A Benchmark and Framework for Paper-Code Consistency Detection in Bioinformatics Software",
+      "abstract": "Ensuring consistency between research papers and their corresponding software implementations is fundamental to software reliability and scientific reproducibility. However, this problem remains underexplored, particularly in the domain of bioinformatics, where discrepancies between methodological descriptions in papers and their actual code implementations are prevalent. To address this gap, this paper introduces a new task, namely paper-code consistency detection, and curates a collection of 48 bioinformatics software projects along with their associated publications. We systematically align sentence-level algorithmic descriptions from papers with function-level code snippets. Combined with expert annotations and a hybrid negative sampling strategy, we construct the first benchmark dataset in the bioinformatics domain tailored to this task, termed BioCon. Based on this benchmark, we further propose a cross-modal consistency detection framework designed to model the semantic relationships between natural language descriptions and code implementations. The framework adopts a unified input representation and leverages pre-trained models to capture deep semantic alignment between papers and code. To mitigate the effects of class imbalance and hard samples, we incorporate a weighted focal loss to enhance model robustness. Experimental results demonstrate that our framework effectively identifies consistency between papers and code in bioinformatics, achieving an accuracy of 0.9056 and an F1 score of 0.8011. Overall, this study opens a new research direction for paper-code consistency analysis and lays the foundation for automated reproducibility assessment and cross-modal understanding in scientific software.",
+      "authors": [
+        "Tianxiang Xu",
+        "Xiaoyan Zhu",
+        "Xin Lai",
+        "Sizhe Dang",
+        "Xin Lian",
+        "Hangyu Cheng",
+        "Jiayin Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.SE"
+      ],
+      "published": "2026-03-23T14:28:14+00:00",
+      "link": "https://arxiv.org/pdf/2603.22018v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "bioinformatics software and methodological consistency",
+      "llm_evidence_cn": "生物信息学软件与方法论一致性",
+      "llm_evidence": "生物信息学软件与方法论一致性",
+      "canonical_evidence": "生物信息学软件与方法论一致性",
+      "llm_tldr_en": "Introduces a benchmark for detecting consistency between bioinformatics papers and their code implementations.",
+      "llm_tldr_cn": "引入了一个基准，用于检测生物信息学论文与其代码实现之间的一致性。",
+      "llm_tldr": "引入了一个基准，用于检测生物信息学论文与其代码实现之间的一致性。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

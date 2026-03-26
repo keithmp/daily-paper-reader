@@ -6,70 +6,62 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-03-25
-- 运行时间：2026-03-25 19:51:57 UTC
+- 最新运行日期：2026-03-26
+- 运行时间：2026-03-26 19:54:32 UTC
 - 运行状态：成功
-- 本次总论文数：16
-- 精读区：3
+- 本次总论文数：13
+- 精读区：0
 - 速读区：13
 
 ### 今日简报（AI）
-今日深度复盘 16 篇论文，重点聚焦 Central Dogma Transformer III 在 DNA、RNA 与蛋白质跨领域的可解释性突破。
-核心结论指出，公平的数据集划分揭示了现有 RNA 结构预测模型泛化能力的严重不足，直接改写了行业技术榜单。
-建议优先研读多组学 AI 融合架构，并在应用生物信息预测工具时警惕数据划分导致的性能虚高。
-- 详情：[/202603/25/README](/202603/25/README)
+今日速览 13 篇前沿论文，涵盖神经网络训练动力学、生物配体预测及跨模态动物识别等领域。
+重点关注结合分类学的 AnimalCLAP 音频预训练模型，以及利用高斯动态等变图网络（GDEGAN）提升配体结合位点预测的精度。
+建议对 AI for Science 或生物声学感兴趣的读者深入探索等变图网络与多模态学习的最新应用。
+- 详情：[/202603/26/README](/202603/26/README)
 
 ### 精读区论文标签
-1. [Central Dogma Transformer III: Interpretable AI Across DNA, RNA, and Protein](/202603/25/2603.23361v1-central-dogma-transformer-iii-interpretable-ai-across-dna-rna-and-protein)  
-   标签：评分：9.0/10、query:q7
-   evidence：跨DNA、RNA和蛋白质的可解释AI基因组研究
-2. [Fair splits flip the leaderboard: CHANRG reveals limited generalization in RNA secondary-structure prediction](/202603/25/2603.22330v1-fair-splits-flip-the-leaderboard-chanrg-reveals-limited-generalization-in-rna-secondary-structure-prediction)  
-   标签：评分：8.0/10、query:profile-1
-   evidence：利用AI进行RNA二级结构预测及基因组感知评估
-3. [Cross-Slice Knowledge Transfer via Masked Multi-Modal Heterogeneous Graph Contrastive Learning for Spatial Gene Expression Inference](/202603/25/2603.22821v1-cross-slice-knowledge-transfer-via-masked-multi-modal-heterogeneous-graph-contrastive-learning-for-spatial-gene-expression-inference)  
-   标签：评分：8.0/10、query:q7
-   evidence：利用AI进行空间基因表达推断
+- 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Assessing 3D tree model quality and species classification using imbalance indices](/202603/25/2603.19341v1-assessing-3d-tree-model-quality-and-species-classification-using-imbalance-indices)  
-   标签：评分：7.0/10、query:q3
-   evidence：将系统发育树平衡指数应用于3D模型
-2. [Coexistence coalitions in propagule disperser quasi-communities](/202603/25/2603.20707v1-coexistence-coalitions-in-propagule-disperser-quasi-communities)  
+1. [Two-Time-Scale Learning Dynamics: A Population View of Neural Network Training](/202603/26/2603.19808v1-two-time-scale-learning-dynamics-a-population-view-of-neural-network-training)  
    标签：评分：7.0/10、query:q5
-   evidence：物种群落中的共存机制与生态中性
-3. [Domain Elastic Transform: Bayesian Function Registration for High-Dimensional Scientific Data](/202603/25/2603.21235v1-domain-elastic-transform-bayesian-function-registration-for-high-dimensional-scientific-data)  
+   evidence：进化策略与选择-突变动力学
+2. [GDEGAN: Gaussian Dynamic Equivariant Graph Attention Network for Ligand Binding Site Prediction](/202603/26/2603.19817v1-gdegan-gaussian-dynamic-equivariant-graph-attention-network-for-ligand-binding-site-prediction)  
    标签：评分：7.0/10、query:q7
-   evidence：空间转录组学与基因表达
-4. [Individual-based stochastic model with unbounded growth, birth and death rates: a tightness result](/202603/25/2603.21634v1-individual-based-stochastic-model-with-unbounded-growth-birth-and-death-rates-a-tightness-result)  
-   标签：评分：7.0/10、query:q5
-   evidence：包含增长、出生和死亡率的种群动态
-5. [CellFluxRL: Biologically-Constrained Virtual Cell Modeling via Reinforcement Learning](/202603/25/2603.21743v2-cellfluxrl-biologically-constrained-virtual-cell-modeling-via-reinforcement-learning)  
+   evidence：利用AI进行蛋白质结构和结合位点预测
+3. [AnimalCLAP: Taxonomy-Aware Language-Audio Pretraining for Species Recognition and Trait Inference](/202603/26/2603.22053v1-animalclap-taxonomy-aware-language-audio-pretraining-for-species-recognition-and-trait-inference)  
+   标签：评分：7.0/10、query:profile-1
+   evidence：分类学感知的物种识别与层级生物信息
+4. [MIOFlow 2.0: A unified framework for inferring cellular stochastic dynamics from single cell and spatial transcriptomics data](/202603/26/2603.22564v1-mioflow-20-a-unified-framework-for-inferring-cellular-stochastic-dynamics-from-single-cell-and-spatial-transcriptomics-data)  
    标签：评分：7.0/10、query:q7
-   evidence：利用强化学习进行符合生物学约束的虚拟细胞建模
-6. [SynLeaF: A Dual-Stage Multimodal Fusion Framework for Synthetic Lethality Prediction Across Pan- and Single-Cancer Contexts](/202603/25/2603.22369v1-synleaf-a-dual-stage-multimodal-fusion-framework-for-synthetic-lethality-prediction-across-pan--and-single-cancer-contexts)  
+   evidence：利用AI框架从转录组数据推断细胞动力学
+5. [DeepDTF: Dual-Branch Transformer Fusion for Multi-Omics Anticancer Drug Response Prediction](/202603/26/2603.24265v1-deepdtf-dual-branch-transformer-fusion-for-multi-omics-anticancer-drug-response-prediction)  
    标签：评分：7.0/10、query:q7
-   evidence：基于AI的多模态融合用于癌症基因组合成致死预测
-7. [Subspace Tensor Orthogonal Rotation Model (STORM) for Batch Alignment, Cell Type Deconvolution, and Gene Imputation in Spatial Transcriptomic Data](/202603/25/2603.22477v1-subspace-tensor-orthogonal-rotation-model-storm-for-batch-alignment-cell-type-deconvolution-and-gene-imputation-in-spatial-transcriptomic-data)  
-   标签：评分：7.0/10、query:q7
-   evidence：用于基因插补和空间转录组数据分析的AI驱动模型
-8. [A Faster Deterministic Algorithm for Kidney Exchange via Representative Set](/202603/25/2603.18471v1-a-faster-deterministic-algorithm-for-kidney-exchange-via-representative-set)  
-   标签：评分：6.0/10、query:xeno
-   evidence：器官移植中肾脏交换优化的确定性算法
-9. [Analytically tractable model of synaptic crowding explains emergent small-world structure and network dynamics](/202603/25/2603.19320v1-analytically-tractable-model-of-synaptic-crowding-explains-emergent-small-world-structure-and-network-dynamics)  
+   evidence：利用AI处理多组学数据与药物反应
+6. [Evolutionarily Stable Stackelberg Equilibrium](/202603/26/2603.18385v2-evolutionarily-stable-stackelberg-equilibrium)  
    标签：评分：6.0/10、query:q2
-   evidence：神经回路连接与网络动力学的演化机制
-10. [MOELIGA: a multi-objective evolutionary approach for feature selection with local improvement](/202603/25/2603.20934v1-moeliga-a-multi-objective-evolutionary-approach-for-feature-selection-with-local-improvement)  
+   evidence：演化稳定策略 (ESS) 与演化动力学
+7. [FlowMS: Flow Matching for De Novo Structure Elucidation from Mass Spectra](/202603/26/2603.18397v1-flowms-flow-matching-for-de-novo-structure-elucidation-from-mass-spectra)  
    标签：评分：6.0/10、query:q7
-   evidence：用于特征选择的进化方法
-11. [Persistent local Laplacian prediction of protein-ligand binding affinities](/202603/25/2603.21503v1-persistent-local-laplacian-prediction-of-protein-ligand-binding-affinities)  
+   evidence：利用AI从质谱中进行从头结构阐明
+8. [Two-Time-Scale Learning Dynamics: A Population View of Neural Network Training](/202603/26/2603.19808v2-two-time-scale-learning-dynamics-a-population-view-of-neural-network-training)  
+   标签：评分：6.0/10、query:q5
+   evidence：神经网络中的群体水平适应与选择-突变动态
+9. [A scalable Bayesian functional factor model for high-dimensional longitudinal molecular data](/202603/26/2603.20844v1-a-scalable-bayesian-functional-factor-model-for-high-dimensional-longitudinal-molecular-data)  
+   标签：评分：6.0/10、query:profile-1
+   evidence：用于高维纵向分子数据和生物机制的贝叶斯模型
+10. [Ensemble of Small Classifiers For Imbalanced White Blood Cell Classification](/202603/26/2603.20856v1-ensemble-of-small-classifiers-for-imbalanced-white-blood-cell-classification)  
    标签：评分：6.0/10、query:q7
-   evidence：用于生物分子结构的AI与数学框架
-12. [Computational modeling of RNA-protein binding interactions under an external force](/202603/25/2603.22269v1-computational-modeling-of-rna-protein-binding-interactions-under-an-external-force)  
+   evidence：用于白细胞分类和造血生物学的AI集成模型
+11. [$π$-Girsanov: A Generalized Method to Construct Markov State Models from Non-Equilibrium and Multiensemble Biased Simulations](/202603/26/2603.21890v1--girsanov-a-generalized-method-to-construct-markov-state-models-from-non-equilibrium-and-multiensemble-biased-simulations)  
    标签：评分：6.0/10、query:q10
-   evidence：基因调节中RNA-蛋白质相互作用的计算模拟
-13. [BioShield: A Context-Aware Firewall for Securing Bio-LLMs](/202603/25/2603.22612v1-bioshield-a-context-aware-firewall-for-securing-bio-llms)  
+   evidence：生物分子系统的马尔可夫状态模型
+12. [Parsimonious Subset Selection for Generalized Linear Models with Biomedical Applications](/202603/26/2603.21952v1-parsimonious-subset-selection-for-generalized-linear-models-with-biomedical-applications)  
    标签：评分：6.0/10、query:q7
-   evidence：在生物研究工作流中保护生物大语言模型
+   evidence：高维生物医学研究的计算方法
+13. [Do Papers Match Code? A Benchmark and Framework for Paper-Code Consistency Detection in Bioinformatics Software](/202603/26/2603.22018v1-do-papers-match-code-a-benchmark-and-framework-for-paper-code-consistency-detection-in-bioinformatics-software)  
+   标签：评分：6.0/10、query:profile-1
+   evidence：生物信息学软件与方法论一致性
 
 
 <div class="dpr-home-promo-card">

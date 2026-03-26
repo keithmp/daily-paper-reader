@@ -1,0 +1,977 @@
+Title: GDEGAN: Gaussian Dynamic Equivariant Graph Attention Network for Ligand Binding Site Prediction
+
+URL Source: https://arxiv.org/pdf/2603.19817v1
+
+Published Time: Mon, 23 Mar 2026 00:43:41 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# GDEGAN: Gaussian Dynamic Equivariant Graph Attention Network for Ligand Binding Site Prediction 
+
+Animesh 1 Plaban Kumar Bhowmick 1 Pralay Mitra 2
+
+## Abstract 
+
+Accurate prediction of binding sites of a given pro-tein, to which ligands can bind, is a critical step in structure-based computational drug discovery. Recently, Equivariant Graph Neural Networks (GNNs) have emerged as a powerful paradigm for binding site identification methods due to the large-scale availability of 3D structures of pro-teins via protein databases and AlphaFold pre-dictions. The state-of-the-art equivariant GNN methods implement dot product attention, dis-regarding the variation in the chemical and ge-ometric properties of the neighboring residues. To capture this variation, we propose GDEGAN (Gaussian Dynamic Equivariant Graph Attention Network), which replaces dot-product attention with adaptive kernels that recognize binding sites. The proposed attention mechanism captures vari-ation in neighboring residues using statistics of their characteristic local feature distributions. Our mechanism dynamically computes neighborhood statistics at each layer, using local variance as an adaptive bandwidth parameter with learnable per-head temperatures, enabling each protein region to determine its own context-specific importance. GDEGAN outperforms existing methods with rel-ative improvements of 37-66% in DCC and 7-19% DCA success rates across COACH420, HOLO4k, and PDBBind2020 datasets. These advances have direct application in accelerating protein-ligand docking by identifying potential binding sites for therapeutic target identification. 
+
+## 1. Introduction 
+
+The functional behavior of proteins is governed mainly by their interaction with other molecules to modulate their func-
+
+> 1
+
+Department of Artificial Intelligence, Indian Institute of Tech-nology, Kharagpur, India 2Department of Computer Science, In-dian Institute of Technology, Kharagpur, India. Correspondence to: Animesh <animesh.sachan24794@kgpian.iitkgp.ac.in >.
+
+Preprint. March 23, 2026. 
+
+tion, such as small-molecule ligands (Du et al., 2016). These interactions are precise, occurring at well-defined geometric and chemical regions on the protein surface known as bind-ing sites or pockets. Precisely predicting potential binding sites based on a protein’s 3D structure is a foundational challenge in rational drug design (Zheng et al., 2013) and structural biology (Schomburg et al., 2014). The success of models like AlphaFold (Jumper et al., 2021; Abramson et al., 2024) in accurately predicting protein 3D structures has significantly advanced the capabilities of structure-based drug design methodologies (Tunyasuvunakool et al., 2021; Sadybekov & Katritch, 2023). Within this field, it is crucial to differentiate between two complementary computational tasks. The first, protein-ligand binding sites identification from 3D structures of proteins, is the fundamental challenge of discovering surface pockets capable of binding novel or unknown ligands. This is particularly vital for the majority of proteins with no known ligands or binding partners. The second, docking (Zhang et al., 2023; St ¨ark et al., 2022; Lu et al., 2022) builds upon this by predicting the precise bind-ing pose and orientation of a known ligand within a target site. While historically these have been formidable chal-lenges, both have recently seen significant progress driven by the application of geometric deep learning (St ¨ark et al., 2022; Cai et al., 2024; Lu et al., 2022; Zhang et al., 2023; Hussein et al., 2015; Gainza et al., 2020; M ´endez-Lucio et al., 2021; Ganea et al., 2022; Satorras et al., 2021; Zhang et al., 2024; Sch ¨utt et al., 2018), leading to powerful new tools for drug discovery. Additionally, a complementary line of research focuses on binding affinity prediction for known protein-ligand pairs (Somnath et al., 2021; Cai et al., 2024), which ranks the strength of interactions rather than identifying binding locations. 
+
+Ligand Binding Site (LBS) Identification. Over the years, various computational methods from classical ma-chine learning to deep learning have been successfully em-ployed for LBS identification, combining proteins’ physical, chemical and geometric information. Earlier approaches, in-cluding P2Rank (Kriv ´ak & Hoksza, 2018), a random-forest based technique that utilized protein surface information, and Fpocket (Le Guilloux et al., 2009), which depended on Voronoi tessellation and alpha spheres (Liang et al., 1998b) for efficacy, are constrained by the limited expressivity of 1
+
+> arXiv:2603.19817v1 [cs.LG] 20 Mar 2026 GDEGAN for Ligand Binding Site Prediction
+
+protein representation. Early applications of deep learning to this problem, pioneered by Convolution Neural Networks (CNNs) (LeCun et al., 2002), led to various methods in-cluding DeepSite (Jim ´enez et al., 2017), DeepPocket (Ag-garwal et al., 2021) and DeepSurf (Mylonas et al., 2021) treating proteins as 3D volumetric data and applying 3D CNNs to predict binding regions. However, these voxel-based approaches under-perform due to their fundamental misalignment with the irregular, sparse nature of protein structures. More importantly, they are sensitive to the pro-tein’s orientation in 3D space (Zhang et al., 2024). These limitations motivated representing proteins more naturally as graphs, where the atoms or residues serve as nodes and the interactions between them are the edges. This perspec-tive is perfectly suited for Graph Neural Networks (GNNs), and in particular, equivariant GNNs (Satorras et al., 2021), which have become the standard for 3D geometric deep learning. By design, these models respect the rotational and translational symmetries of the physical world, directly addressing the key failure of CNNs. Consequently, modern methods like EquiPocket (Zhang et al., 2024), which utilize EGNN (Satorras et al., 2021) as backbone, have proven to be powerful for LBS identification. 
+
+Equivariant Graph Neural Networks. Equivariant graph neural networks have progressed in two directions: scalarization-based models (Satorras et al., 2021; Sch ¨utt et al., 2018; 2021; Du et al., 2023) and high-degree steerable models (Batzner et al., 2022; Batatia et al., 2022; Musaelian et al., 2023; Qiao et al., 2022; Liao & Smidt, 2023; Liao et al., 2024). The scalarization-based models function by transforming 3D data, such as coordinates, into scalar char-acteristics (e.g., distance), hence enhancing computational efficiency and scalability. Nonetheless, their expressivity is constrained in contexts such as protein data modeling, where the comprehension of symmetry and spatial rela-tionships is essential for capturing geometric patterns. In contrast, high-degree steerable models operate directly on rich geometric features (irreducible representations) via the Clebsch-Gordan product, preserving essential spatial rela-tionships. Despite their robust theoretical foundation and superior performance, they are computationally intensive, particularly for larger graphs such as proteins (Cen et al., 2024). GotenNet (Aykent & Xia, 2025) presents a solu-tion that balances expressiveness and computing efficiency by implementing a spherical-scalarization model. Building on this, we adopt GotenNet (Aykent & Xia, 2025) as the backbone for our model, applying its efficient framework for processing higher-degree features to the protein-ligand binding site identification task. 
+
+Yet even Equivariant GNNs applied to proteins exhibit a critical limitation. While recent E(3)-equivariant methods, such as EquiPocket, the current state-of-the-art (Zhang et al., 2024) method, have significantly advanced ligand binding site identification. Their message-passing frameworks are inherently based on a static, context-agnostic attention mech-anism known as dot-product attention or self-attention, for-mally expressed as αij ∝ exp (f (hi, h j )) , where f quan-tifies similarity. These methods employ a globally fixed similarity metric to assess inter-atomic importance, which is fundamentally misaligned with the nature of proteins, as they are characterized by extreme structural and chemical heterogeneity. 
+
+Our Approach. Our approach exploits the key insight that binding sites often appear as statistically distinct, tightly clustered regions compared to the rest of the protein surface. Inspired by recent work in probabilistic attention for non-geometric modalities (Ioannides et al., 2024), we introduce Gaussian Dynamic Attention (GDA), which replaces dot-product attention with dynamic, context-aware statistical fitting. Our proposed model GDEGAN, computes atten-tion scores by measuring how statistically probable a neigh-boring atom’s features are, given a Gaussian distribution defined by the target atom’s local neighborhood. By dy-namically computing the mean and variance of each atom’s local environment at every layer, our attention mechanism becomes inherently adaptive. This adaptation to the emer-gent local geometry of the protein graphs provides a more powerful and physically grounded inductive bias, enabling the model to learn more robust representations of complex protein structures. 
+
+Contributions. In this work, we aim to improve on finding the most probable binding candidates for LBS identification task by assigning dynamic and context-aware attention. To this end, we make the following contributions: • We introduce Gaussian Dynamic Attention mechanism that characterizes each atom’s neighborhood using learnable Gaussian parameters. This design preserves E(3)-equivariance by computing attention from invari-ant local statistics. • We establish that high-degree steerable equivariant rep-resentations and Gaussian Dynamic Attention, through their interplay, capture the geometric heterogeneity of protein-ligand binding sites more effectively, en-abling precise discrimination between binding and non-binding regions. • We demonstrate through extensive experiments that our proposed GDEGAN surpasses state-of-the-art methods on multiple benchmarks and achieves a significant im-provement in inference speed, validating the efficacy and efficiency of our adaptive attention design. 2GDEGAN for Ligand Binding Site Prediction 
+
+## 2. Preliminaries 
+
+Protein Graph Representation. We represent a protein structure as a geometric graph G = ( V, E, P), where V
+
+denotes the set of N residues, E denotes edges between spatially proximate residues, and P = {pi ∈ R3}Ni=1 
+
+represents the 3D coordinates of Cα atoms. Each node 
+
+vi ∈ V is characterized by it’s scaler features hi ∈ Rnd
+
+and equivariant features ˜X(l) ∈ R(2 l+1) ×hd of degree 
+
+l ∈ { 1, ..., L max }. Edges connect residues within a spa-tial cutoff: E = {(i, j ) : ∥pi − pj ∥ < r c, i ̸ = j}, where rc
+
+is set to 10 ˚A for capturing relevant interactions and nd is initial node feature dimension and hd denotes node embed-ding hidden dimensions. To initialize node features, we use pre-trained ESM-2 embeddings hi ∈ Rnd , which are then projected to hd dimension using learned transformations. These embeddings capture sequence context and evolution-ary patterns needed to identify binding sites. Nodes are labeled binding ( yi = 1 ) or non-binding ( yi = 0 ) based on closeness to ligand atoms during training detailed on Appendices A.1 and A.2. 
+
+Equivariant Geometric Tensors Here, we describe dif-ferent representations for both scalars and tensors. Tensor representations are initialized using spherical harmonics to capture spatial information from rank 0 to Lmax . Edge ge-ometry is encoded via spherical harmonics: ˜r(l) 
+
+> ij
+
+= Y (l)(ˆ rij )
+
+where ˆrij = ( pi − pj )/∥pi − pj ∥2 is the unit vector and 
+
+Y (l) : S2 → R2l+1 denotes the degree-l spherical harmon-ics that map the unit sphere to a (2 l + 1) dimensional vector. These basis functions enable the network to process geomet-ric information while preserving equivariance. For l = 0 ,
+
+˜r(0)  
+
+> ij
+
+: scalar invariants; l = 1 , ˜r(1)  
+
+> ij
+
+: directional vectors; 
+
+l = 2 , ˜r(2)  
+
+> ij
+
+: quadrupole moments. Where, ˜rlij is initialized based on their relative positions pi and pj of nodes i and 
+
+j in increasing order of geometric complexity, specifically 
+
+˜rij = {˜r(0) , ˜r(1) , ..., ˜r(Lmax )} and ˜. represents the steer-able features. Node features comprise of invariant scalars 
+
+h ∈ Rnd and equivariant high degree steerable features ˜X(l).These features transform predictably under E(3) operations (we provide formal definitions of E(3)-equivariance and invariance in Appendix B), with scalars remaining invari-ant and steerable features transforming according to their degree l.
+
+Task Formulation. Given a geometric protein graph G =(V, E, P), we formulate the task as learning an equivariant model f (G, y ) to predict the binding probabilities ˆyi ∈ [0 , 1] 
+
+for each residue vi ∈ V .
+
+## 3. GDEGAN: Gaussian Dynamic Equivariant Graph Attention Network 
+
+The key observation motivating our approach is that bind-ing sites exhibit different geometric patterns, with varying curvature and chemical properties. Standard dot-product attention (Aykent & Xia, 2025; Zhang et al., 2024) applies uniform similarity metrics to atomic neighborhoods con-straining its efficacy in predicting protein-ligand binding sites, where geometric heterogeneity plays a crucial role. We address this through three components: geometry-aware protein embeddings that combine evolutionary and struc-tural information, Gaussian Dynamic Attention (statistical attention) that adapts to local variance, and directed supervi-sion. The complete architecture is illustrated in Figure 1. 
+
+3.1. Geometry-Aware Protein Embeddings 
+
+Unlike standard molecular GNNs that rely solely on atomic properties, our approach leverages pre-trained protein repre-sentations while incorporating spatial relationships through geometric information, allowing efficient message passing for both nodes and edges. Given pre-computed ESM-2 (Lin et al., 2022) embeddings for each residue hi ∈ Rnd , we construct initial node features through a two-stage process that combines evolutionary information with local structural context. We use ESM-2 (Lin et al., 2022) embeddings as they provide with sequential information orthogonal to our geometric processing, unlike structure aware alternatives like ProstT5 (Heinzinger et al., 2024) that would create geometric features redundancy (Mallet et al., 2025). 
+
+Neighborhood-Aware Message Aggregation. For each residue i, we aggregate information from spatial neighbors: 
+
+mi = X 
+
+> j∈N (i)
+
+Wa(hj ) ◦
+
+
+
+ϕ(˜ r(0)  
+
+> ij
+
+)Wrbf 
+
+
+
+◦ φ(˜ r(0)  
+
+> ij
+
+) (1) where N (i) = {j : ∥pi − pj ∥ < r c, j ̸ = i} defines the spatial neighborhood, ϕ : R → RK represents K radial basis functions encoding distances, Wrbf ∈ RK×hd projects RBF features, Wa ∈ Rnd×hd projects node evolutionary features, ◦ denotes element-wise product and φ(˜ r(0)  
+
+> ij
+
+) is a smooth cutoff function ensuring differentiability. 
+
+Context-Enriched Feature Construction. The final node node features combining self and neighborhood informa-tion: 
+
+h(0)  
+
+> i
+
+= Wu (σ (LN [Wh(hi∥mi)] Wd)) (2) where ∥ denotes concatenation, LN is layer normaliza-tion for training stability, σ is the activation function, and 
+
+Wh, Wd, Wu are learned projections. This formulation enables each residue to incorporate both its evolutionary signature and local structural environment. 
+
+Geometry-Aware Edge Scaler Features. Edge scaler fea-tures are initialized to capture pairwise relationships en-hanced by spatial information: 
+
+t(0)  
+
+> ij
+
+= ( h(0)  
+
+> i
+
++ h(0)  
+
+> j
+
+) ◦
+
+
+
+ϕ(˜ r(0)  
+
+> ij
+
+)We
+
+
+
+(3) 3GDEGAN for Ligand Binding Site Prediction GDA 
+
+> ESM-2
+> Protein
+> Sequence
+> 3D
+> Coordinates
+> Protein aware
+> structural Embeddings
+> GAGDTA
+> Prediction Head
+> Gaussian Dynamic
+> Attention
+> Learnable temperature
+> HTR
+> LN
+> LN
+> Split
+> Agg.
+> Agg.
+> GAGDTA
+> o
+> o
+> Soft.
+
+Figure 1. GDEGAN architecture for protein ligand binding site identification. Left: Overview of the GDEGAN framework showing the integration of protein-specific ESM-2 embeddings with geometric processing through L layers of Gaussian Dynamic Attention. Right: 
+
+Detailed view of the Gaussian Dynamic Attention (GDA) module. In this ⊕, · and ◦ denotes addition, dot product and element-wise product respectively. HTR is inherited from GotenNet (Aykent & Xia, 2025). Soft. stands for Softmax, Agg. for Aggregation. 
+
+This symmetric formulation guarantees that tij = tji , pre-serving consistency in undirected protein graphs while in-tegrating distance-dependent modulation via RBF-encoded spatial characteristics. Here, t(0)  
+
+> ij
+
+∈ Red represents the edge features of dimension ed, and We denotes a learned transformation matrix. 
+
+High Degree Equivariant Steerable features Initializa-tion. These high degree steerable features that capture com-plex geometric information are initialized as 0 initially and are updated during attention aware feature update module, which will be discussed in the later section. 
+
+˜X(l),(0)  
+
+> i
+
+= 0 ∈ R(2 l+1) ×hd , ∀l ∈ { 1, ..., L max } (4) 
+
+3.2. Geometry Aware Gaussian Dynamic Tensor Attention 
+
+Unlike standard dot-product attention that treats all nodes uniformly, protein binding sites exhibit distinct geometric and chemical patterns: binding pockets are characterized by clustered residues with specific spatial arrangements, while other surface regions show more dispersed distribu-tions (Kriv ´ak & Hoksza, 2018). We hypothesize that high local chemical diversity translates to a high variance in a learned feature space of the surrounding residue. Therefore, local feature variance acts as a reliable signal for identifying functionally significant transition areas. This hypothesis is grounded in prior observations that binding pockets exhibit geometric and chemical heterogeneity (Liang et al., 1998a), a property implicitly exploited by successful classical meth-ods like P2Rank (Kriv ´ak & Hoksza, 2018) through chemical diversity descriptors (detailed analysis in Appendix F). Our Gaussian Dynamic Attention exploits this inherent hetero-geneity by computing local neighborhood statistics (μi, σ 2 
+
+> i
+
+)
+
+from the ESM-2 features hi, enabling adaptive attention that responds to the local geometric context. The variance 
+
+σ2 
+
+> i
+
+modulates attention weights: high variance amplifies attention to capture complex binding site boundaries, while lower variance reduces unnecessary focus. Further, it is enhanced by incorporating spatial information. Specifically, for each residue i, with neighborhood N (i) we compute: 
+
+μi = 1
+
+|N (i)|
+
+X 
+
+> j∈N (i)
+
+hj (5) 
+
+(σi)2 = 1
+
+|N (i)|
+
+X 
+
+> j∈N (i)
+
+(hj − μi)2 (6) 
+
+dscaled  
+
+> ij
+
+= hj − hi
+
+pσ2 
+
+> i
+
++ ϵ (7) These statistics provide a distributional summary of the lo-cal neighborhood, capturing both the central tendency and spread of features. Where dij is dimension wise normaliza-tion, with stability factor ϵ (Appendix E for detailed training stability analysis). 4GDEGAN for Ligand Binding Site Prediction 
+
+Learnable Gaussian Parameters. We introduce H learn-able variance parameter ξ that controls the temperature of attention for each of the H attention heads. This parameter adaptively modulates the sensitivity of attention to feature differences, allowing each head to specialize in different scales of molecular interactions. For molecular graphs, we compute the Gaussian attention score directly from pairwise node differences: 
+
+αij =exp 
+
+
+
+− (∥dscaled  
+
+> ij ∥2)2
+> 2ξ
+
+P  
+
+> k∈N (i)
+
+exp 
+
+
+
+− (∥dscaled  
+
+> ik ∥2)2
+> 2ξ
+
+ (8) where ∥dscaled  
+
+> ij
+
+∥2 is the L2 norm of the variance-normalized feature differences. 
+
+3.3. Feature Updates and Hierarchical Refinement Attention-Weighted Message Passing. To combine gaus-sian dynamic attention with equivariant features we follow GotenNet (Aykent & Xia, 2025) framework for updating both scalar and steerable features. Given attention scores 
+
+αij from equation 8 we compute attention-weighted mes-sages and combine them with geometric encoding and then splits into S components: 
+
+oij = αij · γv (hj ) + ( tij Wrs ) ◦ γs(hj ) ◦ φ(˜ r(0)  
+
+> ij
+
+) (9) 
+
+{osij , {od, (l) 
+
+> ij
+
+}Lmax  
+
+> l=1
+
+, {ot, (l) 
+
+> ij
+
+}Lmax  
+
+> l=1
+
+} = split (oij , h d) (10) Here γv , γ s : Rhd → RS·hd are MLPs and Wrs ∈
+
+Red×(S·hd) is a learnable weight matrix. S is multiplying factor to generate different coefficients for different l values calculated as 1 + 2 × Lmax . Finally, features are updated maintaining equivariance: 
+
+∆hi = ⊕j∈N (i)(osij ) (11) 
+
+∆ ˜X(l) 
+
+> i
+
+= ⊕j∈N (i)
+
+h
+
+od, (l) 
+
+> ij
+
+◦ ˜r(l) 
+
+> ij
+
++ ot, (l) 
+
+> ij
+
+◦ ˜X(l)
+
+> j
+
+i
+
+(12) Here, each degree l ∈ [1 , L max ] contributes its own compo-nent and representations of residues are updated as follows: 
+
+hi ← hi + ∆ hi, ˜X(l) 
+
+> i
+
+← ˜X(l) 
+
+> i
+
++ ∆ ˜X(l) 
+
+> i
+
+(13) By replacing uniform dot-product attention with geometry-aware Gaussian attention that adapt to local feature dis-tributions, GDA enables precise discrimination between binding pockets and surface regions. This adaptive mech-anism proves particularly effective for ligand binding site prediction, where the inherent heterogeneity of protein sur-faces from tightly clustered binding pockets to dispersed surface residues demands context-aware attention patterns, as demonstrated in our experiments Section 4. 
+
+Edge refinement and Channel Mixing Following the GAGDTA layer, we adopt GotenNet (Aykent & Xia, 2025) hierarchical tensor refinement (HTR) and equivariant feed-forward (EQFF) modules with minimal modifications to maintain architectural consistency. To summarize: Edge features are refined using inner products of high-degree steerable features: 
+
+wij = Agg Lmax  
+
+> l=1
+
+⟨ ˜X(l) 
+
+> i
+
+Wq , ˜X(l) 
+
+> j
+
+W(l) 
+
+> k
+
+⟩ (14) 
+
+tij ← tij + γw(wij ) ◦ γt(tij ) (15) where wij is aggregated similarity between node i and j,
+
+Wq , Wk ∈ Red×ed are tensor projection matrices where, 
+
+Wq is shared across degree l ∈ [1 , ..L max ] and W(l) 
+
+> k
+
+is degree specific. γw : Red → Red and γt : Red → Red are MLPs. This refinement enriches edge representations with geomet-ric information extracted from steerable features, enhancing the model’s ability to capture spatial relationships between binding and non-binding residues. Finally, EQFF enables efficient channel wise interaction while preserving equivari-ance: EQFF (h, ˜X(l)) = 
+
+
+
+(h + m1)|| ( ˜X(l) + m2 ◦ ˜X(l)Wv )
+
+
+
+(16) where (m1, m 2) = split (γm(( ∥ ˜X(l)Wv ∥2)|| h)) are modu-lation factors computed from feature norms. Wv is learn-able weight matrices, ∥ · ∥ 2 denotes L2 norm and γm is and MLP. 
+
+3.4. Theoretical Properties of GDEGAN 
+
+We analyze the equivariance properties of GDEGAN under our architectural modifications. While the backbone Goten-Net (Aykent & Xia, 2025) architecture is E(3)-equivariant, the introduction of ESM-embeddings (Lin et al., 2022) as node features, we establish the following: 
+
+Proposition 3.1 (From E(3) to SE (3) Equivariance with Invariant Node Features) . The E(3) equivariance breaks af-ter the introduction of ESM-embeddings because, now node features do not encode chirality information. Therefore, the network maintains SE (3) equivariance but loses reflection equivariance. Proof in Appendix C.1. 
+
+Proposition 3.2 (GDA Preserves SE (3) Equivariance) . The Gaussian Dynamic Attention mechanism, when applied to invariant scalar features from ESM-embeddings, preserves the SE (3) equivariance of the message-passing framework. Proof in Appendix C.2. Remark 3.3 . The loss of reflection equivariance E(3) →
+
+SE (3) occurs at the input level through ESM embeddings, not through the attention mechanism itself. 5GDEGAN for Ligand Binding Site Prediction 
+
+Remark 3.4 (Parameter and Computational Efficiency) . The Gaussian Dynamic Attention requires only O(H) learn-able parameters complexity, in contrast to the O(d2) for standard dot-product attention’s key-query projection. Cal-culating neighborhood statistics incurs merely O(|N (i)|d)
+
+operations per node, which is insignificant relative to the 
+
+O(|N (i)|d2) for conventional dot-product attention. This results in O(d)-fold reduction in computational complex-ity with negligible parameter overhead and a significant decrease in inference time, as shown in Appendix Table 3. 
+
+3.5. Training Objective 
+
+We formulate binding site prediction as a multi-task learning problem that jointly optimizes localization accuracy and geometric understanding of protein-ligand interactions. For binding site identification, a node-level prediction task, we compute ˆyi = Sigmoid (MLP (h(L) 
+
+> i
+
+)) and use Dice Loss 
+
+LDice (Aggarwal et al., 2021; Zhang et al., 2024) to address inherent class imbalance, where ˆyi denotes the predicted binding probability after L layers. 
+
+Auxiliary Directional Loss. To enhance geometric un-derstanding, we extract directional information from the learned equivariant features and supervise it with ground truth ligand directions. The l = 1 steerable features 
+
+˜X(1)  
+
+> i
+
+∈ R3×hd inherently encode directional information. We extract predicted directions as: ˆdi = ˜X(1)   
+
+> ichannel
+> ∥˜X(1)
+> ichannel ∥2+ϵ
+
+.Here, ¯X(1)  
+
+> ichannel
+
+= 1
+
+> hd
+
+Phd 
+
+> k=1
+
+˜X(1)  
+
+> i,k
+
+∈ R3 averages across feature channels to obtain a single direction vector. The ground truth direction dtrue  
+
+> i
+
+points from residue i to the near-est ligand heavy atom: dtrue  
+
+> i
+
+= p∗ 
+
+> lig −pi
+> ∥p∗
+> lig −pi∥2
+
+, where p∗ 
+
+> lig
+
+=arg min p∈L ∥p − pi∥2. Here, L denotes the set of lig-and atom positions. We compute directional loss LDir us-ing cosine similarity between true and predicted directions. Hence, the training objective of our GDEGAN becomes 
+
+L = LDice + LDir .
+
+## 4. Experiments 
+
+4.1. Datasets and Baseline Methods Compared 
+
+We utilize the datasets benchmark settings of EquiPocket (Zhang et al., 2024) for LBS identification. scPDB (De-saphy et al., 2015) is the widely used dataset for training and validation, which contains the proteins’ 3D structures and ligands. PDBbind2020 (Wang et al., 2004), COACH420 
+
+and HOLO4K (Kriv ´ak & Hoksza, 2018) are three diverse datasets used to evaluate our method. The detailed discus-sion on datasets can be found in Appendix D.1. We compare GDEGAN with several categories of methods, as seen in Table 1, with further information provided in Appendix D.2. 
+
+4.2. Evaluation Metrics 
+
+We evaluate using standard metrics: DCC (Distance from Center to Center), DCA (Distance to Closest Atom), and 
+
+Failure rate for LBS identification, detailed in Appendix D.3. Predictions are successful when DCC or DCA < 4 ˚A. During inference on novel proteins where the number of binding pockets are unknown, we employ mean-shift clus-tering (Comaniciu & Meer, 2002) on high-scoring residues (ˆyi > τ ) following (Kriv ´ak & Hoksza, 2018) to automati-cally identify multiple binding pockets. 
+
+4.3. Implementation Details 
+
+We use 4 layers with hidden dimension 128, Lmax = 2 for steerable features, and 8 attention heads. Models are trained for 100 epochs with AdamW optimizer. More details are provided in Appendix G. 
+
+4.4. Results and Attention Patters Analysis 
+
+The experimental results shown in Table 1 indicate sub-stantial improvements across all benchmarks. GDEGAN attains the highest DCC success rate across all test datasets, with significant enhancements of 37.1%, 66.17%, and 23.8% over EquiPocket’s DCC success rate for COACH420, HOLO4k, and PDBbind2020, respectively. For DCA met-rics, we achieve enhancements of 7.7%, 19.0%, and 14.5% compared Equipocket’s DCA. GDEGAN decreases the fail-ure rate to 3.2%, in contrast to 5.1% for EquiPocket and 4.9% for GotenNet. Figure 2 illustrates the visualization of both predictions: the centroid and probable binding site candidates from our model. The comparison of inference speeds for our method is presented in Appendix D.4. True Center 
+
+> [29.175, 16.424,
+> - 1.952]
+> Predicted Center
+> [28.720, 14.130,
+> - 1.129]
+
+Figure 2. Visualization of Protein ‘PDB:1u72(A)’. Left: Model prediction (red) vs true center (green) with coordinates. Right: 
+
+Predicted residues: True Positive (green), False Positive (red), False Negative (blue). 
+
+We visualize learned attention patterns for both Gaussian dynamic attention (GDEGAN) and dot product attention (GotenNet) as shown in Figure 3. The binding site at-tention sub-matrix on the left of GDEGAN shows higher 6GDEGAN for Ligand Binding Site Prediction 
+
+Table 1. Experimental results of baseline models and our framework measured by DCC and DCA success rates a. The table presents comparative results across three benchmark datasets. Bold values indicate the best performance in each metric. 
+
+Methods Param (M) Failure rate ↓
+
+COACH420 HOLO4K k PDBbind2020 DCC ↑ DCA ↑ DCC ↑ DCA ↑ DCC ↑ DCA ↑
+
+Fpocket b \ 0.000 0.228 0.444 0.192 0.457 0.253 0.371 P2rank b \ 0.000 0.366 0.628 0.314 0.621 0.503 0.677 DeepSite b 1.00 \ \ 0.564 \ 0.456 \ \
+
+Kalasanty b 70.6 0.120 0.335 0.636 0.244 0.515 0.416 0.625 DeepSurf b 33.1 0.054 0.386 0.658 0.289 0.635 0.510 0.708 RecurPocket b 21.2 0.075 0.354 0.593 0.277 0.616 0.492 0.663 GAT b 0.03 0.110 0.039(0.005) 0.130(0.009) 0.036(0.003) 0.110(0.010) 0.018(0.001) 0.088(0.011) GCN b 0.06 0.163 0.049(0.001) 0.139(0.010) 0.044(0.003) 0.174(0.003) 0.018(0.001) 0.070(0.002) GCN2 b 0.11 0.466 0.042(0.098) 0.131(0.017) 0.051(0.004) 0.163(0.008) 0.023(0.007) 0.089(0.013) SchNet b 0.49 0.140 0.168(0.019) 0.444(0.020) 0.192(0.005) 0.501(0.004) 0.263(0.003) 0.457(0.004) Egnn b 0.41 0.270 0.156(0.017) 0.361(0.020) 0.127(0.005) 0.406(0.004) 0.143(0.007) 0.302(0.006) EquiPocket b 1.70 0.051 0.423(0.014) 0.656(0.007) 0.337(0.006) 0.662(0.007) 0.545(0.010) 0.721(0.004) GotenNet 2.20 0.049 0.464(0.007) 0.624(0.014) 0.454(0.001) 0.691(0.005) 0.553(0.008) 0.705(0.007) 
+
+GDEGAN 1.90 0.032 0.580(0.008) 0.707(0.009) 0.560(0.013) 0.788(0.011) 0.675(0.010) 0.826(0.011)  
+
+> 1a
+
+The standard deviation is indicated in brackets. b Results from the EquiPocket (Zhang et al., 2024) paper. k holo4k contains multi chains and complex with multiple copies, presenting a strong distribution shift. 
+
+Table 2. Ablation Study.                                                                       
+
+> Methods EQ cADL dESM eCOACH420 HOLO4K PDBbind2020 DCC ↑DCA ↑DCC ↑DCA ↑DCC ↑DCA ↑
+> GotenNet E(3) No No 0.454(0.007) 0.624(0.014) 0.464(0.001) 0.691(0.005) 0.553(0.008) 0.705(0.007) GotenNet+ADL E(3) Yes No 0.485(0.004) 0.642(0.011) 0.468(0.004) 0.732(0.004) 0.592(0.010) 0.748(0.003) GotenNet+ESM SE (3) No Yes 0.543(0.008) 0.693(0.006) 0.520(0.011) 0.753(0.004) 0.637(0.005) 0.760(0.004) GotenNet(full) SE (3) Yes Yes 0.556(0.002) 0.703(0.005) 0.529(0.011) 0.749(0.006) 0.649(0.005) 0.801(0.014)
+> GDEGAN+ESM SE (3) No Yes 0.572(0.001) 0.702(0.002) 0.532(0.010) 0.769(0.006) 0.652(0.010) 0.810(0.011)
+> GDEGAN(full) SE (3) Yes Yes 0.580(0.008) 0.707(0.009) 0.560(0.013) 0.788(0.011) 0.675(0.010) 0.826(0.011)
+> 1cEquivariance of the Model. dAuxiliary Directional Loss. eNode Features generated through ESM-2 (Lin et al., 2022). GotenNet computes dot-product attention while GDEGAN computes gaussian dynamic attention.
+
+values on binding site residues (darker red) and relevant neighbors (dark yellow), suggesting strong local cluster-ing, which demonstrates the adaptive nature of the method. We quantitatively validate this adaptive behavior by our variance analysis (Appendix F), where we demonstrate that binding sites exhibit significantly higher learned vari-ance ( σ2 
+
+> i
+
+= 1 .41 ± 0.52 ) compared to non-binding regions (σ2 
+
+> i
+
+= 0 .75 ± 0.35 , p < 0.001 ). Meanwhile, the attention sub-matrix on the left of GotenNet shows a typical pattern of dot product attention capturing binding sites, but with less concentration on relevant neighbors. The attention val-ues with reduced peak magnitudes in GDEGAN indicate optimal allocation of attention instead of indiscriminate dis-tribution. 
+
+4.5. Ablation Study 
+
+Table 2 presents the component-wise ablation results. Using ESM embeddings (GotenNet+ESM) instead of atomic num-bers embeddings (GotenNet) improves the results by 15.61% DCC and 9.27% DCA averaged across datasets, indicating evolutionary information helps capture better binding re-gions than a purely geometric approach. Gaussian attention (GDEGAN+ESM) improves the results over dot-product at-tention (GotenNet+ESM) by 3.33% DCC and 3.32% DCA and both the techniques (full) with auxiliary directional loss as directional supervision further improves the results by an average of 2% DCC and 3.5% DCA respectively averaged across datasets. This improvement demonstrates the syn-ergy between GDA and steerable features: high-degree rep-resentations ( l ∈ { 1, 2}) encode how geometric information transforms under rotations, while GDA determines which 
+
+neighbors are relevant through variance-adaptive weighting. Neither alone captures binding site heterogeneity as effec-tively as their combination. Critically, on the more struc-turally diverse HOLO4K dataset, GDEGAN(full) achieves a 2.4% DCC improvement over GotenNet(full), compared to 7GDEGAN for Ligand Binding Site Prediction Attention Pattern (GDEGAN)  Attention Pattern (GotenNet(full)) 
+
+Figure 3. Attention Patters Visualizations of Protein ‘PDB:3c2f(A)’. Left: On the left we show the attention patterns of GDEGAN, and on the Right: attention patterns of GotenNet(full). 3 4 5 6
+
+> Number of Layers
+> 0.0
+> 0.5
+> 1.0
+> 1.5
+> 2.0
+> 2.5
+> 3.0
+> Model Parameters (M)
+> Model Parameters
+> Average DCC
+> 0.56
+> 0.57
+> 0.58
+> 0.59
+> 0.60
+> 0.61
+> Average DCC
+
+(a) Model Depth vs. Performance 10 20 30 40 50  
+
+> Training Epoch
+> 1.5
+> 1.6
+> 1.7
+> 1.8
+> 1.9
+> 2.0
+> 2.1
+> 2.2
+> Temperature ( )
+> Mean Temperature
+> ± Std Dev (Head Diversity)
+
+(b) Temperature Evolution H1 H2 H3 H4 H5 H6 H7 H8  
+
+> Attention Head
+> 1.6
+> 1.8
+> 2.0
+> 2.2
+> Temperature ( )
+> Individual Heads
+> Mean: 1.83
+
+(c) Final Temperature Distribution 
+
+Figure 4. Ablation analysis. (a) Model depth analysis showing performance peaks at 4 layers with increased parameters leading to oversmoothing. (b) Temperature evolution across training epochs averaged across multiple runs with mean and standard deviation. (c) 
+
+Learned temperatures distribution across 8 attention heads (best model). 
+
+only 1.5% on the more homogeneous COACH420 dataset, demonstrating that statistical adaptation provides greater benefits as structural heterogeneity increases. Notably, ESM features provide the largest enhancement, Gaussian atten-tion’s contribution grows with data complexity, validating our hypothesis that adaptive statistical kernels better handle protein heterogeneity than uniform similarity measures. Fig-ure 4a shows performance peaks at 4 layers and degrades with depth. Our GDA explicitly computes σ2 
+
+> i
+
+at each layer, providing direct inductive bias. Furthermore, the learn-able temperatures distribution during training for multiple runs (mean: 2.03 →1.826, Figure 4b with heads specializ-ing into low-ξ (≈1.4561, selective) and high-ξ (≈2.3181, inclusive) groups (Figure 4c), increasing diversity 5.6 ×
+
+(std: 0.059 →0.330). This multi-scale specialization, en-ables adaptive pattern recognition for diverse binding site geometries. 
+
+## 5. Conclusion and Limitations 
+
+We introduced Gaussian Dynamic Attention (GDA), a novel attention mechanism that exploits local feature variance to identify protein-ligand binding sites. Unlike standard dot-product attention that applies uniform similarity metrics, GDA dynamically computes neighborhood statistics, en-abling context-aware attention that adapts to the inherent heterogeneity of protein surfaces. Our method achieves 37-66% improvement in DCC and 7-19% in DCA over state-of-the-art methods, while being 19.5 × faster than EquiPocket (Zhang et al., 2024) through residue-level processing. Our method is proposed to find the binding center by predict-ing probable binding site candidates instead of performing docking, a logical progression is to utilize our predictions to limit the docking search space. Even though the training data is limited in size and data points have well-defined pockets with a single ligand, our approach can generalize better. Our method would benefit more from training on more diverse data points with multi-ligand interacting pock-ets. Given that GDEGAN predicts binding sites, future research should methodically assess whether our statisti-cal attention scores indicate ligand binding locations and predict binding affinity based on local feature coherence. 8GDEGAN for Ligand Binding Site Prediction 
+
+## Impact Statement 
+
+This work aims to advance computational drug discovery by improving the identification of protein-ligand binding sites. Accurate binding site prediction can accelerate therapeutic development for diseases with unmet medical needs, po-tentially reducing drug discovery costs and timelines. Our method processes only protein structures and does not in-volve human subjects, personal data, or dual-use concerns. We anticipate the primary impact to be beneficial, enabling researchers to more efficiently identify druggable targets. 
+
+## References 
+
+Abramson, J., Adler, J., Dunger, J., Evans, R., Green, T., Pritzel, A., Ronneberger, O., Willmore, L., Ballard, A. J., Bambrick, J., et al. Accurate structure prediction of biomolecular interactions with alphafold 3. Nature , 630 (8016):493–500, 2024. Aggarwal, R., Gupta, A., Chelur, V., Jawahar, C., and Priyakumar, U. D. Deeppocket: ligand binding site de-tection and segmentation using 3d convolutional neural networks. Journal of Chemical Information and Model-ing , 62(21):5069–5079, 2021. Aykent, S. and Xia, T. Gotennet: Rethinking efficient 3d equivariant graph neural networks. In The Thirteenth International Conference on Learning Representations ,2025. Batatia, I., Kovacs, D. P., Simm, G., Ortner, C., and Cs ´anyi, G. Mace: Higher order equivariant message passing neural networks for fast and accurate force fields. Ad-vances in neural information processing systems , 35: 11423–11436, 2022. Batzner, S., Musaelian, A., Sun, L., Geiger, M., Mailoa, J. P., Kornbluth, M., Molinari, N., Smidt, T. E., and Kozinsky, B. E(3)-equivariant graph neural networks for data-efficient and accurate interatomic potentials. Nature communications , 13(1):2453, 2022. Cai, H., Zhang, Z., Wang, M., Zhong, B., Li, Q., Zhong, Y., Wu, Y., Ying, T., and Tang, J. Pretrainable geometric graph neural network for antibody affinity maturation. 
+
+Nature communications , 15(1):7785, 2024. Cen, J., Li, A., Lin, N., Ren, Y., Wang, Z., and Huang, W. Are high-degree representations really unnecessary in equivariant graph neural networks? Advances in Neural Information Processing Systems , 37:26238–26266, 2024. Chen, M., Wei, Z., Huang, Z., Ding, B., and Li, Y. Simple and deep graph convolutional networks. In International conference on machine learning , pp. 1725–1735. PMLR, 2020. Comaniciu, D. and Meer, P. Mean shift: A robust approach toward feature space analysis. IEEE Transactions on pattern analysis and machine intelligence , 24(5):603– 619, 2002. Desaphy, J., Bret, G., Rognan, D., and Kellenberger, E. sc-pdb: a 3d-database of ligandable binding sites—10 years on. Nucleic acids research , 43(D1):D399–D404, 2015. Du, X., Li, Y., Xia, Y.-L., Ai, S.-M., Liang, J., Sang, P., Ji, X.-L., and Liu, S.-Q. Insights into protein-ligand interac-tions: mechanisms, models, and methods. International journal of molecular sciences , 17(2):144, 2016. Du, Y., Wang, L., Feng, D., Wang, G., Ji, S., Gomes, C. P., Ma, Z.-M., et al. A new perspective on building effi-cient and expressive 3d equivariant graph neural networks. 
+
+Advances in neural information processing systems , 36: 66647–66674, 2023. Gainza, P., Sverrisson, F., Monti, F., Rodola, E., Boscaini, D., Bronstein, M. M., and Correia, B. E. Deciphering interaction fingerprints from protein molecular surfaces using geometric deep learning. Nature methods , 17(2): 184–192, 2020. Ganea, O.-E., Huang, X., Bunne, C., Bian, Y., Barzilay, R., Jaakkola, T. S., and Krause, A. Independent SE(3)-equivariant models for end-to-end rigid protein docking. In International Conference on Learning Representations ,2022. Heinzinger, M., Weissenow, K., Sanchez, J., Henkel, A., Mirdita, M., Steinegger, M., and Rost, B. Bilingual lan-guage model for protein sequence and structure. NAR Genomics and Bioinformatics , 6(4):lqae150, 11 2024. Hussein, H. A., Borrel, A., Geneix, C., Petitjean, M., Regad, L., and Camproux, A.-C. Pockdrug-server: a new web server for predicting pocket druggability on holo and apo proteins. Nucleic acids research , 43(W1):W436–W442, 2015. Ioannides, G., Chadha, A., and Elkins, A. Gaussian adaptive attention is all you need: Robust contextual representa-tions across multiple modalities, 2024. Jeevan, K., Palistha, S., Tayara, H., and Chong, K. T. Pures-netv2. 0: a deep learning model leveraging sparse rep-resentation for improved ligand binding site prediction. 
+
+Journal of Cheminformatics , 16(1):66, 2024. Jim ´enez, J., Doerr, S., Mart ´ınez-Rosell, G., Rose, A. S., and De Fabritiis, G. Deepsite: protein-binding site predictor using 3d-convolutional neural networks. Bioinformatics ,33(19):3036–3042, 2017. 9GDEGAN for Ligand Binding Site Prediction 
+
+Jumper, J., Evans, R., Pritzel, A., Green, T., Figurnov, M., Ronneberger, O., Tunyasuvunakool, K., Bates, R., ˇZ´ıdek, A., Potapenko, A., et al. Highly accurate protein structure prediction with alphafold. nature , 596(7873):583–589, 2021. Kipf, T. N. and Welling, M. Semi-supervised classifica-tion with graph convolutional networks. In International Conference on Learning Representations , 2017. Kriv ´ak, R. and Hoksza, D. P2rank: machine learning based tool for rapid and accurate prediction of ligand binding sites from protein structure. Journal of cheminformatics ,10(1):39, 2018. Le Guilloux, V., Schmidtke, P., and Tuffery, P. Fpocket: an open source platform for ligand pocket detection. BMC bioinformatics , 10(1):168, 2009. LeCun, Y., Bottou, L., Bengio, Y., and Haffner, P. Gradient-based learning applied to document recognition. Proceed-ings of the IEEE , 86(11):2278–2324, 2002. Li, P., Cao, B., Tu, S., and Xu, L. Recurpocket: recurrent lmser network with gating mechanism for protein binding site detection. In 2022 IEEE international conference on bioinformatics and biomedicine (BIBM) , pp. 334–339. IEEE, 2022. Liang, J., Woodward, C., and Edelsbrunner, H. Anatomy of protein pockets and cavities: measurement of binding site geometry and implications for ligand design. Protein science , 7(9):1884–1897, 1998a. Liang, J., Woodward, C., and Edelsbrunner, H. Anatomy of protein pockets and cavities: measurement of binding site geometry and implications for ligand design. Protein science , 7(9):1884–1897, 1998b. Liao, Y.-L. and Smidt, T. Equiformer: Equivariant graph attention transformer for 3d atomistic graphs. In The Eleventh International Conference on Learning Repre-sentations , 2023. Liao, Y.-L., Wood, B. M., Das, A., and Smidt, T. Equiformerv2: Improved equivariant transformer for scal-ing to higher-degree representations. In The Twelfth Inter-national Conference on Learning Representations , 2024. Lin, Z., Akin, H., Rao, R., Hie, B., Zhu, Z., Lu, W., Smetanin, N., dos Santos Costa, A., Fazel-Zarandi, M., Sercu, T., Candido, S., et al. Language models of pro-tein sequences at the scale of evolution enable accurate structure prediction. bioRxiv , 2022. Loshchilov, I. and Hutter, F. Decoupled weight decay reg-ularization. In International Conference on Learning Representations , 2019. Lu, W., Wu, Q., Zhang, J., Rao, J., Li, C., and Zheng, S. Tankbind: Trigonometry-aware neural networks for drug-protein binding structure prediction. Advances in neural information processing systems , 35:7236–7249, 2022. Mallet, V., Miao, Y., Attaiki, S., Correia, B., and Ovsjanikov, M. Atomsurf: Surface representation for learning on pro-tein structures. In The Thirteenth International Confer-ence on Learning Representations , 2025. M ´endez-Lucio, O., Ahmad, M., del Rio-Chanona, E. A., and Wegner, J. K. A geometric deep learning approach to predict binding conformations of bioactive molecules. 
+
+Nature Machine Intelligence , 3(12):1033–1039, 2021. Musaelian, A., Batzner, S., Johansson, A., Sun, L., Owen, C. J., Kornbluth, M., and Kozinsky, B. Learning local equivariant representations for large-scale atomistic dy-namics. Nature Communications , 14(1):579, 2023. Mylonas, S. K., Axenopoulos, A., and Daras, P. Deepsurf: a surface-based deep learning approach for the prediction of ligand binding sites on proteins. Bioinformatics , 37 (12):1681–1690, 2021. Qiao, Z., Christensen, A. S., Welborn, M., Manby, F. R., Anandkumar, A., and Miller III, T. F. Informing geo-metric deep learning with electronic interactions to accel-erate quantum chemistry. Proceedings of the National Academy of Sciences , 119(31):e2205221119, 2022. Sadybekov, A. V. and Katritch, V. Computational ap-proaches streamlining drug discovery. Nature , 616(7958): 673–685, 2023. Satorras, V. G., Hoogeboom, E., and Welling, M. E(n) equiv-ariant graph neural networks. In International conference on machine learning , pp. 9323–9332. PMLR, 2021. Schomburg, K. T., Bietz, S., Briem, H., Henzler, A. M., Urbaczek, S., and Rarey, M. Facing the challenges of structure-based target prediction by inverse virtual screen-ing. Journal of chemical information and modeling , 54 (6):1676–1686, 2014. Sch ¨utt, K., Unke, O., and Gastegger, M. Equivariant mes-sage passing for the prediction of tensorial properties and molecular spectra. In International conference on machine learning , pp. 9377–9388. PMLR, 2021. Sch ¨utt, K. T., Sauceda, H. E., Kindermans, P.-J., Tkatchenko, A., and M ¨uller, K.-R. Schnet-a deep learn-ing architecture for molecules and materials. The Journal of chemical physics , 148(24), 2018. Somnath, V. R., Bunne, C., and Krause, A. Multi-scale representation learning on proteins. Advances in Neural Information Processing Systems , 34:25244–25255, 2021. 10 GDEGAN for Ligand Binding Site Prediction 
+
+St ¨ark, H., Ganea, O., Pattanaik, L., Barzilay, R., and Jaakkola, T. Equibind: Geometric deep learning for drug binding structure prediction. In International conference on machine learning , pp. 20503–20521. PMLR, 2022. Stepniewska-Dziubinska, M. M., Zielenkiewicz, P., and Siedlecki, P. Improving detection of protein-ligand bind-ing sites with 3d segmentation. Scientific reports , 10(1): 5035, 2020. Tosco, P., Stiefl, N., and Landrum, G. Bringing the mmff force field to the rdkit: implementation and validation. 
+
+Journal of cheminformatics , 6(1):37, 2014. Tunyasuvunakool, K., Adler, J., Wu, Z., Green, T., Zielinski, M., ˇZ´ıdek, A., Bridgland, A., Cowie, A., Meyer, C., Lay-don, A., et al. Highly accurate protein structure prediction for the human proteome. Nature , 596(7873):590–596, 2021. Veli ˇckovi ´c, P., Cucurull, G., Casanova, A., Romero, A., Li `o, P., and Bengio, Y. Graph attention networks. In 
+
+International Conference on Learning Representations ,2018. Wang, R., Fang, X., Lu, Y., and Wang, S. The pdbbind database: Collection of binding affinities for protein- lig-and complexes with known three-dimensional structures. 
+
+Journal of medicinal chemistry , 47(12):2977–2980, 2004. Zhang, Y., Cai, H., Shi, C., and Tang, J. E3bind: An end-to-end equivariant network for protein-ligand docking. In The Eleventh International Conference on Learning Representations , 2023. Zhang, Y., Wei, Z., Yuan, Y., Li, C., and Huang, W. Equipocket: an e(3)-equivariant geometric graph neural network for ligand binding site prediction. In Proceed-ings of the 41st International Conference on Machine Learning , ICML’24. JMLR.org, 2024. Zheng, X., Gan, L., Wang, E., and Wang, J. Pocket-based drug design: exploring pocket space. The AAPS journal ,15(1):228–241, 2013. 11 GDEGAN for Ligand Binding Site Prediction 
+
+## A. Geometric Graph Formulation and Binding Site Representations 
+
+A.1. Representation of Proteins 
+
+The 3D structure of a protein is defined by the spatial coordinates of atoms associated with every amino acid, organized according to its amino acid sequence. For computational efficiency and biological relevance in detecting probable binding site candidates, we represent each amino acid residue by its Cα atom position pi ∈ R3, which provides a stable backbone reference point consistent across all amino acid types. We formalize a protein structure as a geometric graph G = ( V, E)
+
+that captures both topological and spatial information necessary for binding site identification. Nodes in the geometric graph 
+
+V = {(pi, h i)}Ni=1 represent residue-feature pairs. The edges are established from each residue i to all residues j within a cutoff radius: E = {(i, j ) : ∥pi − pj ∥ < r c, i ̸ = j}, where we set rc = 10 ˚A based on typical interaction distances in protein binding sites following (Zhang et al., 2024). Rather than encoding raw physicochemical properties, we leverage learned representations that capture both evolutionary conservation and structural context. Specifically, for each residue 
+
+i, we extract a feature vector hi ∈ Rd from the pretrained ESM-2 (Lin et al., 2022) model, which encodes evolutionary information and sequence context. 
+
+A.2. Binding Site Definition and Representation. 
+
+Protein binding sites are the critical regions where ligands, or other molecules interact with proteins in the biological process. We define binding sites based on proximity to known ligand positions from crystal structures, surrounded by the atoms of the protein. A residue is classified as belonging to the binding site when any of its constituent atoms lies within a threshold distance dbind from any ligand atom. Formally, a residue i is considered part of a binding site as: 
+
+yi =
+
+(
+
+1 if min a∈A i,b ∈L ∥pa − pb∥ < d bind 
+
+0 otherwise (17) where Ai represents all atoms of residue i, L represents all ligand atoms. dbind represents the binding distance threshold taken as 4 ˚A following (Zhang et al., 2024; Kriv´ ak & Hoksza, 2018; Jim´ enez et al., 2017). 
+
+## B. Equivariance and Invariance. 
+
+In 3D geometric learning, the symmetry of physical laws necessitates that models adhere to the Euclidean group E(3), which includes rotations, reflections, and translations. A function f is E(3)-equivariant if for rotation/reflection R ∈ O(3) and translation t ∈ R3, it satisfies f (g · P, h ) = g · f (P, h ), where g · P = RP + t denotes the group action on positions 
+
+P, and invariant features h. Invariant functions satisfy: f (g · P, h ) = f (P, h ), producing unchanged outputs for scalar quantities. 
+
+## C. Proofs 
+
+C.1. Proof of Proposition 3.1 
+
+Proof. Considering the GDEGAN architecture with ESM embeddings as node features. We show that the network maintains SE(3) but not E(3) equivariance. 
+
+ESM embeddings are invariant scalars. ESM embeddings hi ∈ Rnd encode amino acid sequence information and evolutionary patterns. These are scalar features that do not transform under any spatial transformation. For any transformation 
+
+g = ( R, t) where R ∈ SO (3) (rotation) and t ∈ R3 (translation): 
+
+h′ 
+
+> i
+
+= hi ∀g ∈ SE (3) (18) 
+
+Loss of reflection equivariance. Consider a chiral molecule M and its mirror image M′ obtained by reflection P . Both have identical ESM embeddings: hi = h′ 
+
+> i
+
+(same amino acid sequence) and identical pairwise distances: ∥xi − xj ∥ = ∥x′ 
+
+> i
+
+− x′ 
+
+> j
+
+∥,but different chirality. Since the network cannot distinguish between M and M′ based on invariant features alone, it cannot be equivariant under reflections. 12 GDEGAN for Ligand Binding Site Prediction 
+
+C.2. Proof of Gaussian Dynamic Attention Equivariance 3.2 
+
+Here we prove that our Gaussian Dynamic Attention mechanism maintains SE(3) equivariance: C.2.1. G AUSSIAN ATTENTION MECHANISM 
+
+Our Gaussian attention computes attention weights as: 
+
+dscaled  
+
+> ij
+
+= hj − hi
+
+pσ2 
+
+> i
+
++ ϵ (19) 
+
+αij =exp 
+
+
+
+− (∥dscaled  
+
+> ij ∥2)2
+> 2ξ
+
+P  
+
+> k∈N (i)
+
+exp 
+
+
+
+− (∥dscaled  
+
+> ik ∥2)2
+> 2ξ
+
+ (20) where hi, h j ∈ Rnd are invariant scalar features from ESM embeddings, σ2 
+
+> i
+
+is the neighborhood variance, and ξ is the learnable temperature. C.2.2. P ROOF OF SE(3) E QUIVARIANCE 
+
+Proof. Invariance of scalar features. The ESM embeddings hi are invariant under SE(3) transformations, because they encode sequential and evolutionary information, not geometric co-ordinates: 
+
+g(hi) = hi (21) 
+
+Invariance of attention weights. Since hi and hj are invariant: 
+
+∥g(hj ) − g(hi)∥2 = ∥hj − hi∥2 (22) The neighborhood variance σ2 
+
+> i
+
+computed from invariant features is also invariant: 
+
+σ2 
+
+> i
+
+= 1
+
+|N (i)|
+
+X 
+
+> k∈N (i)
+
+∥hk − μi∥2 (23) where μi is the neighborhood mean. Under g ∈ SE (3) , both remain unchanged. Therefore: 
+
+αgij = exp − (∥dscaled  
+
+> ij
+
+∥2)2
+
+2ξ
+
+!
+
+= αij (24) Hence, Gaussian Dynamic Attention mechanism preserves SE(3) equivariance by maintaining invariant attention weights while allowing equivariant features to transform appropriately under rotations. The scalar nature of ESM embeddings ensures that reflection equivariance is not required, reducing E(3) to SE (3) as stated in Proposition 3.1. 
+
+## D. Experiments 
+
+D.1. Datasets scPDB (Desaphy et al., 2015) comprises 17,594 protein-ligand complex structures from the 2017 release, representing 4,782 unique proteins and 6,326 ligands. We used the most frequently used dataset for LBS identification (Stepniewska-Dziubinska et al., 2020; Jeevan et al., 2024) for training and validation, with a split of 90 : 10 . Final dataset was preprocessed using the steps described in EquiPocket (Zhang et al., 2024). PDBbind2020 (Wang et al., 2004) contains experimentally determined binding affinity data paired with structural information. We utilize the refined subset as per (Zhang et al., 2024), consisting of 5,316 complexes selected for structural quality from the larger general set of 14,127 complexes. The refined set enforces strict quality criteria, including resolution better than 2.5 ˚A and complete ligand electron density. COACH420 and HOLO4K 
+
+serve as independent test sets following (Kriv ´ak & Hoksza, 2018). COACH420 contains 420 protein-ligand complexes 13 GDEGAN for Ligand Binding Site Prediction 
+
+with diverse binding site architectures, while HOLO4K comprises 4,288 structures. Both datasets use the M LIG subsets following (Aggarwal et al., 2021; Jim ´enez et al., 2017) containing biologically relevant ligands as defined by the original curation. Notably, HOLO4K presents significant distribution shift challenges as it contains numerous multi-chain assemblies and oligomeric proteins absent from typical training sets. We have split the HOLO4K dataset into per-chain components and aggregated the predictions in our evaluated results. For all datasets, we exclude solvent molecules and apply standard preprocessing, such as removing hydrogen atoms. Structures with missing coordinates or ambiguous ligand positions are filtered during preprocessing using rDkit (Tosco et al., 2014). 
+
+D.2. Baseline Methods Compared 
+
+We compare GDEGAN with different categories of methods proposed for LBS identification. Traditional Machine Learning-based: Fpocket (Le Guilloux et al., 2009), and P2rank (Kriv ´ak & Hoksza, 2018). CNN-based: DeepSite (Aggarwal et al., 2021), Kalasanty (Stepniewska-Dziubinska et al., 2020), and RecurPocket (Li et al., 2022). Topological Graph-based: GAT (Veli ˇckovi ´c et al., 2018), GCN (Kipf & Welling, 2017), and GCN2 (Chen et al., 2020). Spatial Graph-based: SchNet (Sch ¨utt et al., 2018), EGNN (Satorras et al., 2021), and Equipocket (Zhang et al., 2024). High-degree steerable method: GotenNet (Aykent & Xia, 2025). 
+
+D.3. Evaluation Metrics DCC (Distance from Center to Center). For each predicted binding site center ˆpi and true binding site center pj , DCC measures the Euclidean distance between centers: DCC = ∥ˆpi − pligand ∥2 (25) where ˆpi ∈ R3 represents the i-th predicted center and pj ∈ R3 the j-th ground truth center. 
+
+DCA(Distance to Closest Atom). This metric evaluates whether predictions are within the actual binding region by measuring the minimum Euclidean distance from a predicted center to any ligand atom: DCA = min  
+
+> b∈L
+
+∥ˆpi − pb∥2 (26) where L represents all ligand atoms. For both metrics predictions are considered successful if they are within a standard threshold τ , which in this case we have taken as 4 ˚A following (Aggarwal et al., 2021; Le Guilloux et al., 2009; Mylonas et al., 2021; Zhang et al., 2024). Success Rate DCC/DCA = |{ Predicted sites | DCC/DCA < τ }| |{ True sites }| (27) Failure Rate = |{ Proteins | | predicted centers | = 0 }| |{ Proteins }| (28) where | · | denotes set cardinality and τ = 4 ˚A is the standard threshold for successful prediction. We have used DCC/DCA success rate and Failure rate as the evaluation metrics to compare from the sate-of-the-art methods. 
+
+D.4. Computational Efficiency Analysis 
+
+We evaluate the inference speed on 100 proteins for each model and present the duration in seconds (s) in Table 3. GDEGAN demonstrates substantial enhancements, with inference time about 1.9 seconds, in contrast to GotenNet’s 4.12 seconds and Equipocket’s 37 seconds. 
+
+## E. Training Stability Analysis 
+
+We have conducted a comprehensive stability analysis comparing GDEGAN and GotelNet(full) across training epochs until training converges from early-stopping criteria. The empirical evidence from the training and validation loss shows that (σi)2 term in our GDEGAN not only maintains the stability but also improves training convergence compared to 14 GDEGAN for Ligand Binding Site Prediction 
+
+Table 3. Inference time comparison across methods.                       
+
+> Method Time (s/100 proteins) Speedup Type GDEGAN (Ours) 1.90 19.5× Reside Level Nodes GotenNet 4.12 9.0× Reside Level Nodes EquiPocket p37.00 1.0× Atom Level Nodes Fpocket p23.00 1.6× Geometry Based Kalasanty p86.00 0.4× 3D-CNN Based DeepSurf p641.00 0.06× 3D-CNN Based
+> p
+
+Results from the EquiPocket (Zhang et al., 2024) paper. 
+
+GotenNet(full). GDEGAN demonstrates 5.3% lower training loss variance (.0179 vs .0189) compared to GotenNet(full), indicating more stable gradient flow despite (σi)2 computation. Throughout training we observed monotonic convergence without divergence or oscillations. Figure 5 shows training and validation plots until 50 epochs consistent with our early stopping criterion that selects the best model. Interestingly, while GDEGAN slightly higher validation loss, it achieves better test performance as indicated in Table 2. This validation-test gap indicates that our method learns the right features for binding site localization rather than overfitting to loss minimization. 0 10 20 30 40 50 
+
+Epoch 
+
+> 0.2
+> 0.4
+> 0.6
+> 0.8
+> 1.0
+> 1.2
+> Training Loss
+
+(a) Training Loss Convergence      
+
+> GDEGAN
+> GotenNet(full)
+> 010 20 30 40 50
+
+Epoch 
+
+> 0.500
+> 0.525
+> 0.550
+> 0.575
+> 0.600
+> 0.625
+> 0.650
+> 0.675
+> Validation Loss
+
+(b) Validation Loss Convergence 
+
+> GDEGAN
+> GotenNet(full)
+
+Figure 5. Training and Validation loss curve. Left: On the left (a) we show training loss convergence, and on the Right: (b) validation loss convergence. 
+
+## F. Dependency between Variance and Binding Sites 
+
+We hypothesize that the binding site exhibits high variance in local structure. To validate our hypothesis we conducted a comprehensive dependency analysis between feature variance and binding sites on the validation set. This analysis directly evaluates whether the learned neighborhood variance (σ2 
+
+> i
+
+) computed by our Gaussian Dynamic Attention mechanism correlates with ground-truth binding site locations. We extracted the learned neighborhood variance σ2 
+
+> i
+
+from the final Gaussian dynamic attention layer of our trained GDEGAN model on the validation set, comprising 205,791 residues (11,107 binding sites, 194,684 non-binding residues). The validation set represents 10% of the scPDB training data, ensuring independent evaluation. We conducted multiple statistical tests to comprehensively evaluate the variance-binding relationship. Multiple correlation tests presented in Table 4 and a box-plot in Figure 6 confirm a strong positive relationship between 15 GDEGAN for Ligand Binding Site Prediction  
+
+> Table 4. Statistical Analysis of Variance-Binding Site Correlation
+
+Metric Value p-value 
+
+Correlation Coefficients 
+
+Pearson correlation ( r) 0.3865 <0.001 Spearman correlation ( ρ) 0.2900 <0.001 Point-biserial correlation 0.3865 <0.001 
+
+Hypothesis Tests 
+
+Mann-Whitney U statistic 1.88 × 10 9 <0.001 Independent t-test ( t) 190.10 <0.001 
+
+Effect Size 
+
+Cohen’s d 1.8545 –
+
+Descriptive Statistics 
+
+Binding residues (mean ± SD) 1.412 ± 0.522 –Non-binding residues (mean ± SD) 0.747 ± 0.347 –Ratio (binding/non-binding) 1.89 × –variance and binding sites: Pearson correlation r = 0 .3865 (p < 0.001 ) for linear association, Spearman ρ = 0 .2900 
+
+(p < 0.001 ) for monotonic relationships, and point-biserial r = 0 .3865 (p < 0.001 ) for continuous-binary pairs. The very large effect size (Cohen’s d = 1 .8545 , far exceeding the conventional threshold of d = 0 .8 for “large”) indicates this difference is not only statistically significant but also practically meaningful, demonstrating that variance provides strong discriminative power for binding site identification. 
+
+## G. Training and Hyper-Parameters Selection 
+
+We used 4 layers of GDEGAN with hidden dimensions as 128 throughout the model, Lmax = 2 for steerable features, attention heads as 8, and edge spatial cutoff rc is set to 10 ˚A . We trained our model using the AdamW Optimizer (Loshchilov & Hutter, 2019) for 100 epochs, selecting the best checkpoints based on the validation set. LayerNorm, TensorLayerNorm and Dropouts (Aykent & Xia, 2025) were applied in each layer with SiLU activation. The learning rate was initially set to 
+
+0.0005 with Cosine Scheduler and weight decay with value 0.05 . We trained our model on NVIDIA H 100 NVL GPU with a batch size of 16 . Hyperparameters for training as outlined in Table 5, are selected based on the validation data, which comprises 10% of the training dataset. These hyperparameters can be employed to ensure reproducibility. We will release the full code based on the acceptance of the work. 
+
+## H. Hyperparameter Sensitivity Analysis 
+
+In Table 6 we present the performance of GDEGAN for different message passing layer, to perform hyperparameter sensitivity analysis. Consistent with prior observations in equivariant GNNs (Zhang et al., 2024), we find that excessive message passing leads to oversmoothing—neighboring nodes become increasingly similar, losing discriminative power. For GDEGAN, performance peaks at 4 layers (Average DCC=0.6050) and degrades with deeper architectures (5 layers: 0.588, 6 layers: 0.583), despite each additional layer adding nearly 20% more parameters. 16 GDEGAN for Ligand Binding Site Prediction  
+
+> Table 5. Hyperparameter selection and reproducibility details.
+
+Hyperparameter Search Space 
+
+Learning Rate {0.003, 0.0003, 0.0005 }
+
+Minimum Learning Rate 1e-6 
+
+Batch Size {8, 16 , 32 }
+
+Optimizer {Adam, AdamW }
+
+Learning rate scheduler Cosine Annealing Warm Restarts 
+
+Warmup Epochs 10 
+
+Maximum Epochs 100 
+
+Early Stopping Patience 30 
+
+Gradient clipping {10, 15 }
+
+Weight Decay {0.01, 0.05 }
+
+Dropout Rate {0.1, 0.2, 0.5 }
+
+Node hidden dimension 128 
+
+Edge dimension (ed) 128 
+
+Edge refinement dimension 128 
+
+Lmax 2
+
+Number of Layers {3, 4, 5, 6 }
+
+Number of RBFs 32 
+
+Maximum number of neighbors 32 
+
+Number of attention heads {4, 8}
+
+Activation Function {ReLU, SiLU }
+
+τ 0.5  
+
+> Table 6. Performance of GDEGAN for varying number of message passing layers. All the other parameters were kept same to ensure fair comparison.
+
+layers Param (M) COACH420 HOLO4K PDBbind2020 DCC ↑ DCA ↑ DCC ↑ DCA ↑ DCC ↑ DCA ↑
+
+3 1.50 0.528(0.002) 0.673(0.010) 0.534(0.002) 0.731(0.009) 0.643(0.005) 0.777(0.002) 
+
+4 (default) 1.90 0.580(0.008) 0.707(0.009) 0.560(0.013) 0.788(0.011) 0.675(0.010) 0.826(0.011) 
+
+5 2.30 0.564(0.002) 0.680(0.010) 0.544(0.003) 0.751(0.008) 0.658(0.004) 0.800(0.010) 6 2.70 0.550(0.005) 0.681(0.004) 0.541(0.002) 0.749(0.012) 0.660(0.010) 0.800(0.017) 
+
+17 GDEGAN for Ligand Binding Site Prediction Non-binding Binding 
+
+> 0
+> 1
+> 2
+> 3
+> 4
+> Learned Neighborhood Variance (  ²)
+> p < 0.001
+> Cohen's d = 1.854
+
+Variance Distribution: Binding vs Non-binding Residues 
+
+Figure 6. Variance Distribution: Binding vs Non-binding Residues. Box plot comparing learned neighborhood variance ( σ2 
+
+> i
+
+) between binding (red, n = 11 ,107 ) and non-binding (blue, n = 194 ,684 ) residues on the validation set. 
+
+18
