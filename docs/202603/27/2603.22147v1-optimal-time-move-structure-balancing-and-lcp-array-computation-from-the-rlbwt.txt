@@ -1,0 +1,610 @@
+Title: Optimal-Time Move Structure Balancing and LCP Array Computation from the RLBWT
+
+URL Source: https://arxiv.org/pdf/2603.22147v1
+
+Published Time: Tue, 24 Mar 2026 02:37:03 GMT
+
+Number of Pages: 15
+
+Markdown Content:
+# Optimal-Time Move Structure Balancing and LCP Array Computation from the RLBWT 
+
+# Nathaniel K. Brown ∗ # 
+
+Department of Computer Science, Johns Hopkins University, Baltimore, MD, USA 
+
+# Ahsan Sanaullah ∗ #
+
+Department of Computer Science, University of Central Florida, Orlando, FL, USA 
+
+# Shaojie Zhang # 
+
+Department of Computer Science, University of Central Florida, Orlando, FL, USA 
+
+# Ben Langmead # 
+
+Department of Computer Science, Johns Hopkins University, Baltimore, MD, USA 
+
+Abstract 
+
+On repetitive text collections of size n, the Burrows-Wheeler Transform ( BWT ) tends to have relatively fewer runs r in its run-length encoded BWT ( RLBWT ). This motivates many RLBWT -related algorithms and data structures that can be designed in compressed O(r)-space. These approaches often use the RLBWT -derived permutations LF , FL , ϕ , and ϕ−1, which can be represented using a move structure to obtain optimal O(1) -time for each permutation step in O(r)-space. They are then used to construct compressed space text indexes supporting efficient pattern matching queries. However, move structure construction in O(r)-space requires an O(r log r)-time balancing stage. The longest common prefix array ( LCP ) of a text collection is used to support pattern matching queries and data structure construction. Recently, it was shown how to compute the LCP array in 
+
+O(n + r log r)-time and O(r) additional space from an RLBWT . However, the bottleneck remains the O(r log r)-time move structure balancing stage. In this paper, we describe an optimal O(r)-time and space algorithm to balance a move structure. This result is then applied to LCP construction from an RLBWT to obtain an optimal O(n)-time algorithm in O(r)-space in addition to the output, which implies an optimal-time algorithm for LCP array enumeration in compressed O(r)-space. 
+
+2012 ACM Subject Classification Theory of computation → Data structures design and analysis; Theory of computation → Data compression 
+
+Keywords and phrases Burrows-Wheeler Transform, Move Structure, Longest Common Prefix Array 
+
+Funding Nathaniel K. Brown ∗: [NSERC PGS-D and NIH grant R01HG011392] 
+
+Ahsan Sanaullah ∗: [NIH grant R01HG010086] 
+
+Shaojie Zhang : [NIH grant R01HG010086] 
+
+Ben Langmead : [NIH grant R01HG011392]  
+
+> ∗
+
+Authors contributed equally. 
+
+> arXiv:2603.22147v1 [cs.DS] 23 Mar 2026
+
+Brown, Sanaullah, Zhang, and Langmead 1
+
+# 1 Introduction 
+
+The Burrows-Wheeler Transform (BWT ) forms the basis of many efficient algorithms and applications in text compression, indexing, and pattern matching. When computed over a repetitive text collection, its run-length encoded BWT (RLBWT) contains relatively fewer runs r. Hence, many techniques have been developed in compressed O(r)-space [8, 13] which often grows sublinearily with respect to n. This is true for collections of DNA sequencing data, and thus the RLBWT is often used for applications in genomics. Indeed, the length of the text can reach the order of trillions on pangenome sized collections [11, 15, 19, 20] and thus RLBWT -based data structures are commonly used. Indexes built on repetitive texts rely on the RLBWT -based permutations LF , FL , ϕ and 
+
+ϕ−1 to perform efficient pattern matching queries. Nishimoto and Tabei’s [13] move structure 
+
+is able to represent these queries in O(r)-space while obtaining optimal O(1) query time for a single permutation step. Recently, Sanaullah et al. [15] showed how to compute the longest common prefix array (LCP ) from an RLBWT in O(n + r log r)-time and O(r)-space using move structures for these permutations. Their technique, which has many applications to matching algorithms and data structure construction, depends on the optimal-time guarantees of a single move query to achieve their time complexity. However, move structures require a balancing step to obtain constant-time queries. The best algorithm by Bertram, Fischer, and Nalbach [4] balances a move structure in O(r log r)-time and O(r)-space. Indeed, the O(r log r)-time factor in Sanaullah et al.’s [15] method is the result of balancing. Therefore, we present the first optimal O(r)-time and space move structure balancing algorithm. By analyzing Sanaullah et al.’s [15] approach with our improved construction, we also give the first optimal O(n)-time algorithm to compute the LCP array from the RLBWT in O(r)-space in addition to the output. These advancements improve the runtime of any application involving move structure balancing and LCP enumeration from an RLBWT .
+
+# 2 Preliminaries 2.1 Notation 
+
+An array A of |A| = n elements is represented as A[0 ..n − 1] . A predecessor query on an array/set is defined as A.pred (x) = max {y ∈ A | y ≤ x} and a successor query A.succ (x) = min {y ∈ A | y > x }. Over a set of distinct elements, j = A.rank (x) refers to the index of 
+
+y = A.pred (x) in sorted order and we use the notation A[j] = y to access this value. A
+
+string S[0 ..n − 1] is an array of symbols from an ordered alphabet Σ with |Σ| = σ. Let S[i..j ]
+
+represent the substring S[i] . . . S [j]. A prefix of S is a substring S[0 ..j ], where a suffix is some substring S[i..n − 1] . Let lcp (S1, S 2) denote the length of the longest common prefix between strings S1 and S2. A text T [0 ..n − 1] is assumed to be terminated by the special symbol $ /∈ Σ of least order so that suffix comparisons are well defined. We use the word RAM model, assuming machine words of size W = Θ( log n) with basic arithmetic and logical bit operations in O(1) -time. 
+
+# 2.2 Suffix Array and Burrows-Wheeler Transform 
+
+The suffix array (SA ) of a text T [0 ..n − 1] is SA [0 ..n − 1] such that SA [i] is the starting position of the ith lexicographically smallest suffix of T . The inverse suffix array (ISA) is its inverse such that ISA [i] is the lexicographic rank of the ith suffix in T . The Burrows-2 Optimal-Time Balancing and LCP from RLBWT 
+
+Wheeler Transform (BWT ) [7] is a permutation BWT [0 ..n − 1] of a text T [0 ..n − 1] such that BWT [i] = T [( SA [i] − 1) mod n]. The BWT is reversible by using the last-to-first (LF )mapping LF (i), a permutation over [0 , n − 1] satisfying SA [ LF (i)] = ( SA [i] − 1) mod n. The 
+
+first-to-last (FL ) mapping is its inverse satisfying SA [ FL (i)] = ( SA [i] + 1) mod n. Let r be the number of maximal equal character runs of the BWT . The run-length encoded BWT 
+
+(RLBWT ) is an array RLBWT [0 ..r − 1] of tuples where RLBWT [i].c is the character of the 
+
+ith BWT run and RLBWT[ i].ℓ its length. The permutation ϕ over [0 , n − 1] is defined such that ϕ( SA [i]) = SA [( i − 1) mod n],returning the SA value for the suffix of preceding lexicographic rank. Its inverse ϕ−1 is defined symmetrically such that ϕ−1(SA [i]) = SA [( i + 1) mod n]. The longest common prefix array 
+
+(LCP ) stores the lcp between lexicographically adjacent suffixes in T [0 ..n −1] , i.e., LCP [0 ..n −1] 
+
+such that LCP [0] = 0 and LCP [i] = lcp (T [ SA [i − 1] ..n − 1] , T [ SA [i]..n − 1]) for i > 0. The 
+
+permuted LCP array (PLCP ) reorders the LCP array such that PLCP [i] = LCP [ ISA [i]] . An 
+
+irreducible LCP is an LCP [i] where i is the start of a BWT run, and an irreducible PLCP is its equivalent PLCP [ SA [i]] . We refer to the arrays of irreducible LCP and PLCP values as 
+
+LCP +[0 ..r − 1] and PLCP +[0 ..r − 1] respectively. A known property of the PLCP array is that if PLCP [i] is reducible, then PLCP [i] = PLCP [i − 1] − 1 [9]. Let I = { i ∈ [0 , n ) | PLCP [i] is irreducible }. Letting j = I.rank (i),this implies PLCP[ i] = PLCP +[j] − (i − I[j]) [8]. 
+
+▶ Corollary 1. Let I = { i ∈ [0 , n ) | PLCP [i] is irreducible }. Then where j = I.rank (i),
+
+PLCP[ i] = PLCP +[j] − (i − I[j]) 
+
+# 2.3 Move Structure 
+
+For a permutation π over {0, . . . , n − 1}, let P be the set of r distinct positions such that either i = 0 or π(i − 1) ̸ = π(i) − 1. For simplicity, let P [r] = n so that the domain of the permutation is captured by P . This defines a disjoint set of intervals, where, for any 
+
+j ∈ P , the jth input interval with length ℓ = P [j + 1] − P [j] is defined as [P [j], P [j + 1]) .By definition of P , input intervals permute contiguously such that if position i belongs to the jth interval then π(i) can be computed as π(i) = π(P [j]) + ( i − P [j]) . However, finding which interval a given i belongs to would require a predecessor query on P and hence ω(1) 
+
+query time [2]. If we assume that we know i and the rank of its predecessor in P , i.e its input interval, then Nishimoto and Tabei’s move structure [13] computes π(i) and the rank of its predecessor in P in O(r)-space and O(1) -time. Let Pπ = {π(i) | ∀ i ∈ P [0 ..r − 1] }. Then, knowing i
+
+belongs to interval j, we can easily compute π(i) = Pπ [j] + ( i − P [j]) . However, to return the interval of π(i) without a rank query, they store Prank (π) = {P.rank (π(i)) | ∀ i ∈ P [0 ..r − 1] };intuitively, the input interval containing Pπ [j]. Since π(i) ≥ Pπ [j], we perform a linear scan of P starting from position Prank (π)[j] until we find the largest rank j′ such that P [j′] ≤ π(i)
+
+to return the input interval containing π(i). This computation is referred to as a move query .Nishimoto and Tabei [13] explained how to balance the input intervals by splitting some of them such that the worst case scan was bounded, obtaining O(1) -time and O(r)-space to compute a move query. Bertram, Fischer and Nalbach [4] described an O(r log r)-time and 
+
+O(r)-space balancing algorithm. Recently, Brown and Langmead [6] showed an alternative splitting regime called length capping which constructs in O(r)-time and O(r)-space a move structure achieving average O(1) -time queries. While useful for applications where queries can be amortized over n consecutive steps, such as when their permutations are formed from a single cycle, regular move structure balancing and the O(r log r)-time construction factor Brown, Sanaullah, Zhang, and Langmead 3
+
+is required to obtain an optimal guarantee for less ideal access patterns. Move structures were created for use with RLBWT based permutations LF and ϕ as well as their respective inverses FL and ϕ−1. As such, they can be represented in space proportional to the number of BWT runs [13]. A particularly useful relationship exists between 
+
+ϕ intervals and irreducible PLCP values [8]. The jth input interval of ϕ, [P [j], P [j + 1]) ,is such that PLCP [P [j]] is irreducible and corresponds to PLCP +[j]. Otherwise, for any 
+
+i ∈ (P [j], P [j + 1]) , PLCP [i] is reducible. Thus, given PLCP + alongside a ϕ/ϕ−1 move structure, we can output PLCP [i] with respect to our current position i in the permutation using Corollary 1 in O(1) -time [16, 18]. 
+
+# 2.4 LCP Array Computation 2.4.1 LCP Array from SA 
+
+The first algorithm computing the LCP array from BWT or SA in optimal O(n)-time was an O(n)-space approach by Kasai et al. [10] using SA [0 ..n − 1] , ISA [0 ..n − 1] , and T [0 ..n − 1] .From i = 0 → n − 1 it compares suffix T [i..n − 1] with its lexicographically preceding suffix (the suffix starting at j = SA [( ISA [i] − 1) mod n]). The suffixes T [i..n − 1] and T [j..n − 1] 
+
+are compared symbol by symbol until a mismatch occurs at T [i + ℓ + 1] ̸ = T [j + ℓ + 1] 
+
+at which point we set LCP [ ISA [i]] = ℓ. The key insight is that if ℓ > 1 symbols match at iteration i, then at least ℓ − 1 symbols match in iteration i + 1 .Consider that, if ℓ > 1, then for j = SA [( ISA [i] − 1) mod n], T [i..n − 1] = cwu and 
+
+T [j..n − 1] = cwv have a shared prefix cw of length ℓ where c is a single symbol and 
+
+u̸ = v. Since T [j..n − 1] is the lexicographic predecessor of T [i..n − 1] , it follows that 
+
+T [j + 1 ..n − 1] = wv is lexicographically smaller than T [i + 1 ..n − 1] = wu . By property of the suffix array, the lexicographically smallest suffix with the largest shared prefix for any suffix is its predecessor. Therefore, T [i + 1 ..n − 1] shares a matching prefix of length at least 
+
+ℓ − 1, the string w, with its lexicographic predecessor since there exists a lexicographically smaller suffix matching this length. Thus, we can safely skip ℓ − 1 comparisons in iteration 
+
+i + 1 when LCP [ ISA [i]] = ℓ. A consequence of this insight is that comparisons of equal symbols occur at most n times (since each one increments ℓ and i + ℓ is non-decreasing from 
+
+0 → n − 1) and character comparisons of non-equal symbols occur at most n times (since each one increments i). Therefore at most 2n symbol comparisons occur, implying an overall 
+
+O(n)-time algorithm. Notice that the access pattern to LCP is not sequential, and further that j = SA [( ISA [i]−1) mod n] can be replaced with j = ϕ(i). The ϕ algorithm by Kärkkäinen, Manzini, and Puglisi [9] is a variant of the algorithm of Kasai et al. [10] which constructs the PLCP array first using ϕ. This allows them to omit ISA by taking as input T [0 ..n − 1] and SA [0 ..n − 1] 
+
+and constructing ϕ[0 ..n − 1] . Using j = ϕ(i) they make the same comparisons as prior, but now set PLCP [i] = ℓ sequentially as i is incremented. The final LCP array is then computed using the fact that LCP[ i] = PLCP[SA[ i]] .
+
+# 2.4.2 LCP Array from BWT 
+
+The above algorithms all rely on random access to the text T ; when stored in memory to achieve constant time, this requires n log σ bits. Beller et al. [3] introduced the first method to compute LCP from BWT or SA which attempts to use smaller working space, achieving 
+
+O(n) additional bits and O(n log σ)-time. They avoid random access to T by working over a 
+
+BWT and its wavelet tree. Prezza and Rosone [14] achieved o(n) bits of additional space by combining the approach of Beller et al. [3] with Belazzougui et al.’s [1] suffix tree interval 4 Optimal-Time Balancing and LCP from RLBWT 
+
+enumeration algorithm. Although this does not require random access to T , it does require wavelet tree queries and the extra O(log σ)-time factor. Further, although compact, their space bound is not in terms of r which may be desired for large repetitive texts. Recently, Sanaullah et al. [15] showed how to compute the LCP array from the RLBWT 
+
+in O(n + r log r)-time and O(r)-space. First, they utilize that only irreducible PLCP values are needed; when sampled alongside a ϕ/ϕ−1 move structure, the remaining PLCP values can be recovered. Second, given the recent development of move structures, they show how to simulate random access to T as required in the ϕ algorithm by using a move structure for 
+
+FL . However, since a single step of the algorithm requires comparing the symbols T [i + ℓ]
+
+and T [j + ℓ], where j = ϕ(i), it is not obvious how to find the correct position k = ISA [j + ℓ]
+
+to perform FL queries without full access to ISA . Their key insight is that with a proper sampling of ISA values in O(r)-space, they can apply the ϕ algorithm using a move structure for FL in O(n)-time and O(r)-space space to compute the irreducible PLCP values. However, the overall time complexity of this approach inherits the O(r log r)-time con-struction of move structure balancing, resulting in O(n+r log r)-time and O(r)-space working space to compute the LCP array from an RLBWT . Although length capping [6] has shown that certain RLBWT operations involving O(n) consecutive move queries, such as suffix array enumeration and BWT inversion, can be done in optimal-time without balancing, the 
+
+ϕ algorithm is not one of them. Therefore, to achieve optimal time complexity using these approaches, we need a move structure balancing algorithm taking linear-time. 
+
+# 3 Move Structure Balancing 3.1 Original Result 
+
+In this section, we describe move structure balancing in detail. First, recall the definitions of Section 2.3: 
+
+▶ Definition 2. Given a permutation π over {0, . . . , n − 1}, let P be the set of r distinct positions such that either i = 0 or π(i − 1) ̸ = π(i) − 1, extended with P [r] = n. Then P
+
+defines the set of input intervals of π where [P [j], P [j + 1]) is the jth input interval. 
+
+▶ Definition 3. For P with respect to a permutation π, then Pπ = {π(i) | ∀ i ∈ P [0 ..r − 1] }
+
+and Prank (π) = {P.rank (π(i)) | ∀ i ∈ P [0 ..r − 1] }.
+
+▶ Definition 4. For a permutation π over {0, . . . , n − 1} represented by the input intervals 
+
+P [0 ..r ], a move query takes a position i ∈ [0 , n ) and rank j ∈ [0 , r ) of its predecessor in P ,and returns π(i) and the rank j′ = P.rank (π(i)) of its predecessor in P .
+
+The worst case time complexity of a move query depends on the number of input intervals which intersect with the output interval mapped to by the move query. Let Q be the sorted positions of Pπ : since input intervals are disjoint and π is a permutation, the output intervals in Q are also disjoint. The move query time for some i ∈ [P [j], P [j + 1]) in the jth input interval corresponding to output interval k is O(| (Q[k], i − P [j] + 1) ∩ P |). Therefore, the worst case time complexity of a move query as stated is O(r). Nishimoto and Tabei [13] explained how to balance the move structure intervals to obtain O(1) query time in O(r)-space by computing a new P ′ ⊇ P . Brown, Gagie, and Rossi [5] parameterized their result for a fixed parameter α, providing a time/space trade off. These results are summarized in Theorem 6. Brown, Sanaullah, Zhang, and Langmead 5
+
+▶ Definition 5. For P and Pπ with respect to arbitrary π, let Q be the sorted elements of Pπ
+
+extended with Q[r] = n. Then Q defines the set of output intervals of π where [Q[k], Q [k + 1]) 
+
+is the kth output interval. 
+
+▶ Theorem 6 (Nishimoto and Tabei [13]; Brown, Gagie, and Rossi [5]) . Let π be a permutation on {0, . . . , n − 1} with r input intervals P and corresponding output intervals Q as defined by Definitions 2 and 5. Then for any integer α ≥ 2 we can construct P ′ ⊇ P and Q′ ⊇ Q such that if qs, q e ∈ Q′ and qs is the predecessor of qe in Q′ then |(qs, q e) ∩ P ′| < 2α. Further, 
+
+|P ′| = |Q′| ≤ α·rα−1 ; at most rα−1 new intervals are added with respect to P, Q .
+
+▶ Definition 7. A move structure is balanced if its input intervals P ′ and output intervals 
+
+Q′ are such that if qs, q e ∈ Q′ and qs is the predecessor of qe in Q′ then |(qs, q e) ∩ P ′| ∈ O(1) 
+
+and hence the move query of Definition 4 is worst case O(1) -time. 
+
+With respect to some permutation π, let τ be the permutation mapping in interval space such that if Pπ [j] = Q[k] then τ (j) = k. The process of balancing involves iterating until P ′ does not contain a heavy output interval [qs, q e) of weight greater than 2α, i.e. 
+
+|(qs, q e) ∩ P ′| > 2α. For a heavy output interval k, balancing selects the (α + 1) largest element x in (qs, q e) ∩ P ′ and splits the output intervals into [qs, x ) and [x, q e). For the corresponding input interval [ps, p e) at j = τ −1(k), we make the equivalent split of P ′ with 
+
+x′ = ps + ( x − qs) into [ps, x ′) and [x′, p e). However, to check if this split has caused a heavy output interval, we must find p′ 
+
+> s
+
+= Q′.pred (x′) and p′ 
+
+> e
+
+= Q′.succ (x′) and check the weight 
+
+|(p′
+
+> s
+
+, p ′
+
+> e
+
+) ∩ P ′|.
+
+▶ Definition 8. The weight of an output interval [qs, q e) with respect to any integer α > 2 is 
+
+w = |(qs, q e) ∩ P ′|. An output interval is heavy if w > 2α.
+
+▶ Definition 9. The permutation τ : [0 , r ) → [0 , r ) with respect to a permutation π is such that if Pπ [j] = Q[k] then τ (j) = k.
+
+Where P ′, P ′ 
+
+> π
+
+and P ′ 
+
+> rank (π)
+
+are the components of some balanced move structure for permutation π, let the overall data structure be represented as Mπ . Given P , Pπ , and τ ,Bertram, Fischer, and Nalbach [4] gave a practically optimized algorithm to balance and return some Mπ . They represent P and Q in balanced search trees and identify heavy output intervals working left to right over Q (from smallest to largest element). If an insertion in 
+
+P creates a heavy interval within the range of intervals already balanced by the algorithm, then recursive calls are made until balance is restored. There are O(r) balancing steps by Theorem 6, each requiring O( log r)-time insert, predecessor, and successor queries of the search tree; this results in an O(r log r)-time and O(r)-space algorithm [4]. 
+
+▶ Definition 10. For a permutation π with r input intervals, a balanced move structure (Definition 7) which computes the move query of Definition 4 in O(1) -time and O(r)-space is represented as Mπ . Let Mπ .move (i, j ) return the resulting (π(i), j ′) of a move query. 
+
+▶ Theorem 11 (Bertram, Fischer, and Nalbach [4]) . Given P , Pπ and τ of a permutation π
+
+with r input intervals, a balanced move structure representation Mπ can be constructed in 
+
+O(r log r)-time and O(r)-space. 
+
+# 3.2 Optimal-Time Balancing 
+
+We now present an optimal-time move structure balancing algorithm, similar to that of Bertram, Fischer, and Nalbach [4], but with two key differences. First, we maintain linked 6 Optimal-Time Balancing and LCP from RLBWT 
+
+lists instead of balanced search trees to support balancing operations while replacing explicit predecessor queries. Second, our algorithm balances both π and π−1 simultaneously, whereas previous methods balanced only π. This achieves optimal O(r)-time in O(r)-space, improving on the O(r log r)-time and O(r)-space balancing of of Bertram, Fischer, and Nalbach [4]. 
+
+# 3.2.1 Linked Lists 
+
+We maintain two linked lists with respect to a permutation π: P, representing the input intervals P , and Q, representing the output intervals Q. Mappings between input and output intervals are described by τ and τ −1. Finally, predecessors of starting positions of intervals are maintained to emulate operations of past methods. The components of P and Q are defined explicitly in Definition 12. 
+
+▶ Definition 12. The linked lists P and Q are initialized to r nodes such that the jth node p ∈ P contains: 
+
+p.next pointing to the node corresponding to the (j + 1) th input interval. 
+
+p.idx = P [j].
+
+p.τ pointing to the node corresponding to τ (j) in Q.
+
+p.pred Q pointing to the output interval k = Q.rank (p.idx ) in Q.and the kth node q ∈ Q contains 
+
+q.next pointing to the node corresponding to the (k + 1) th output interval. 
+
+q.idx = Q[k].
+
+q.τ −1 pointing to the the node corresponding to τ −1(k) in P.
+
+q.pred P pointing to the input interval j = P.rank (q.idx ) in P.
+
+First, we show that P and Q can be obtained from P, P π , and τ in O(r)-time and space (Lemma 15). Note that P, P π , and τ are exactly the input specified in Theorem 11. 
+
+▶ Lemma 13. Given τ [0 ..r − 1] , we can construct τ −1[0 ..r − 1] in O(r)-time and space. 
+
+▶ Lemma 14. Given Pπ and τ −1, we can find Q in O(r)-time and space. 
+
+Proof. Set Q[k] = Pπ [τ −1(k)] for all k ∈ [0 , r ). Finally, set Q[r] = P [r] = n. ■▶ Lemma 15. Given P , Pπ and τ , P and Q can be initialized in O(r)-time and space. 
+
+Proof. First, τ −1 and Q are obtained according to Lemmas 13 and 14. We initialize P and 
+
+Q by copying associated information from P and Q, using O(r)-space random access arrays to set τ and τ −1 fields. Finally, in order to compute p.pred Q and q.pred P , a two finger walk can be performed from the beginning of P and Q prioritizing the interval with the minimum starting position at each step to derive each node’s respective predecessor pointer. ■
+
+# 3.2.2 Algorithm Description 
+
+We proceed similarly to the balance-on-the-fly approach of Bertram, Fischer, and Nalbach [4], iterating left to right over the intervals. Heavy intervals are balanced during this scan, or when they are created by an insertion into an already-balanced portion of the intervals. However, since we balance left to right in both P and Q simultaneously, we maintain the 
+
+balanced-up-to parameter t ∈ [0 , n ] initialized to 0 and incremented during balancing until we finish. This maintains the invariant that any intervals in P or Q starting before t must not be heavy up to either the end of their ranges or the position t.Brown, Sanaullah, Zhang, and Langmead 7
+
+▶ Definition 16. Assume the balanced-up-to parameter is t. Then for arbitrary p ∈ P , if 
+
+p.idx < t , then | (p.idx, min( t, p.next.idx )) ∩ Q| ≤ 2α. Similarly, for arbitrary q ∈ Q , if 
+
+q.idx < t , then | (q.idx, min( t, p.next.idx )) ∩ P | ≤ 2α.
+
+We maintain pointers to pt ∈ P and qt ∈ Q which are the respective input and output intervals containing the current t. At each iteration, we select either pt or qt to balance, choosing the one with the minimum starting position. If tied, we choose the longer interval to balance, or proceed if they have the same length since by definition they must both be balanced. Then, we begin a balancing step by making the corresponding insertion using τ or 
+
+τ −1 and recurse if necessary as in Section 3.1. We explain how to update t later, but note that we always increase it upon completion of an iteration. The intuition behind balancing in both directions is that we can obtain O(1) -time maintenance of predecessor pointers if the corresponding insertion using τ or τ −1 is at a position less than t. Otherwise, when inserting at a position greater than or equal to t, we maintain all pointers except predecessors. However, our left to right scan of the intervals can amend these as we reach them, since updating pt and qt requires following next pointers from the current nodes. During this update, we can recover predecessor information similar to the initialization of Lemma 15. Thus, we also maintain the invariant that our predecessor pointers up to and including pt and qt are always maintained. 
+
+▶ Definition 17. Assume pt ∈ P and qt ∈ Q are the respective nodes containing t. Then for arbitrary p ∈ P , if p.idx ≤ t, then p.pred Q is correctly maintained. Similarly, for arbitrary 
+
+q ∈ Q , if q.idx ≤ t, then q.pred P is correctly maintained. 
+
+We must show that we can perform the necessary balancing step as outlined in Section 3.1 using our linked lists while maintaining P and Q pointers and the balanced-up-to invariant. Assume we are at some step in the iteration and w.l.o.g. that we choose to balance qt ∈ Q .That is, we perform the inverse operation if selecting pt ∈ P where the same arguments hold. First, we show how to perform the balancing operation and any recursive steps necessary to maintain the invariants with t in O(1) -time per step. Then, we show how to update t, qt
+
+and pt such that predecessor information is maintained and the invariants hold. 
+
+# 3.2.3 Balancing Step 
+
+Let qs = qt.idx and qe = qt.next.idx . We compute the weight |(qs, q e) ∩ P | by accessing 
+
+p′ = qt.pred P and iterating over p′.idx using p′ = p′.next until we reach p′.idx ≥ qe or the weight exceeds 2α; this takes O(α)-time. If the output interval is heavy, we recover the (α + 1) 
+
+largest element x in (qs, q e) ∩ P during this scan. Then, we insert node qx corresponding to [x, q e) into Q and update next pointers while setting qx.idx = x. Let p = q.τ −1 with 
+
+ps = p.idx , pe = p.next.idx , and x′ = ps + ( x − qs). We insert node px′ corresponding to 
+
+[x′, p e) into P and update next pointers. Finally, we set px′ .idx = x′ and can now update the τ pointers with qx.τ −1 = px′ and px′ .τ = qx. These operations are O(1) -time in total. If x′ ≥ t, then we are finished balancing and the invariant of Definition 16 is maintained. If 
+
+x′ < t , then we must also update the px′ .pred Q pointer and check if balancing is maintained. Since px′ .idx = x′ < t , then ps < t and by the invariant of Definition 17 we can use the predecessor pointer to let q′ = p.pred Q. Since the invariant of Definition 16 holds, 
+
+|(ps, p e) ∩ Q)| ≤ 2α + 1 , potentially adding an additional weight by way of new insertion to P . Thus, we can perform an O(α)-time scan using q′ = q′.next until we find the largest 
+
+q′.idx ≤ x′ is O(α)-time, after which we set px′ .pred Q = q′. The same argument implies that we can continue iterating using q′ = q′.next where x′ ≤ q′.idx < p e to update their predecessor pointers q′.pred P = px′ where necessary in O(α)-time. 8 Optimal-Time Balancing and LCP from RLBWT 
+
+Overall, these balancing operations for a single step are all O(α)-time. Further, we identify whether recursion on qr = p.pred Q is required for balancing by checking if it is heavy during an O(α)-time scan over nodes in P. Since recursive work to maintain invariants is identical to above, each step takes O(α)-time; we continue with recursive steps whenever 
+
+x′ < t until balanced is maintained, or we stop whenever some insertion is at position x′ ≥ t.
+
+▶ Lemma 18. Assume w.l.o.g. we are balancing qt, then we can maintain the invariants of Definitions 16 and 17 up to the current t in O(α) = O(1) -time per interval inserted. 
+
+# 3.2.4 Update Step 
+
+We now show how to update t, pt and qt while maintaining the invariants. Assume w.l.o.g. that we chose to balance qt and it was heavy. Then if qs ≤ x′ < x , i.e. we ended with a split in the recently balanced interval [qs, x ), then it can have weight at most α + 1 ≤ 2α by definition of x and hence it is still balanced. If x′ ≤ qs then the balancing invariant is trivially maintained; therefore, we set t = x and the balancing invariant is maintained in Q. Consider whether balancing-up-to t in P is preserved in the balancing case. If qt.idx < p t.idx then any interval p ∈ [qs, x ) ∩ Q must be balanced; they are contained wholly within an output interval and thus they all have no weight. If qt.idx = pt.idx and qt.next.idx > p t.next.idx 
+
+then similar reasoning holds. The case where qt.idx = pt.idx and qt.next.idx = pt.next.idx 
+
+would not occur since by definition qt would not have been heavy. If qt was not heavy, then we simply set t = qt.next.idx = qe. If qt.idx < p t.idx , then any interval p ∈ [qs, q e) ∩ Q must be balanced up to qe; either they are contained wholly within 
+
+qt and have no weight, or it is the interval intersecting qe which must have no weight up to position t = qe. The same reasoning for qt.idx = pt.idx and qt.next.idx > p t.next.idx 
+
+holds. Finally, if qt.idx = pt.idx and qt.next.idx = pt.next.idx then both intervals must be balanced, and thus the invariant of Definition 16 is maintained. Whether heavy or not, we then iterate qt to the next position with q′
+
+> t
+
+.idx ≥ t and similarly for pt to the next position with p′
+
+> t
+
+.idx ≥ t. By using a two finger walking approach to follow these next pointers in P or Q respectively by minimum starting position, their predecessor information can be verified and set concurrently during this scan. Upon finding the new qt
+
+and pt in this manner, the invariant of Definition 17 is maintained for our updated t.
+
+▶ Lemma 19. Assume w.l.o.g. we are balancing qt, then we can update t, qt and pt after recursive balancing finishes such that we can maintain the invariants of Definitions 16 and 17. 
+
+# 3.2.5 Correctness and Complexity 
+
+First, notice that updating qt and pt is linear in the final size of P and Q after the algorithm finishes. Since we maintain the balancing invariant at all steps, we also ensure that input and output intervals are balanced upon completion. 
+
+▶ Lemma 20. Let r′ = |P| = |Q| be the number of intervals after the algorithm finishes with t = n. Then the overall procedure is O(r′)-time and O(r′)-space such that no interval is heavy for any integer α > 2 per Definition 7 with respect to π or π−1.
+
+Proof. Each balancing step is O(α)-time by Lemma 18. The number of recursive steps is at most O(r′) since each one itself introduces at most one interval to both P and Q. Hence, updating pt and qt accesses at most O(r′) nodes, where updating predecessor pointers is done concurrently and does not affect the time complexity. All these operations maintain the invariants of Definitions 16 and 17 by Lemmas 18 and 19, and hence all intervals are balanced Brown, Sanaullah, Zhang, and Langmead 9
+
+with respect to π or π−1 after finishing. Finally, since space is bound by the number of nodes in P and Q, the entire procedure is O(r′)-time and O(r′)-space. ■
+
+It remains to be shown that the algorithm results in a number of intervals r′ ∈ O(r).Consider that balancing an interval in Q cannot create a heavy interval in P , and vice versa. It follows that our procedure results in O(r) intervals and thus we achieve an O(r)-time and 
+
+O(r)-space balancing algorithm for any integer α ≥ 2.
+
+▶ Lemma 21. Balancing P and Q with |P | = |Q| = r with any integer α ≥ 2 simultaneously using our algorithm does not create extra balancing steps. Where balancing P and Q
+
+independently results in at most rα−1 additional intervals each by Theorem 6, then the simultaneous procedure results in at most 2rα−1 intervals. 
+
+Proof. Assume w.l.o.g. that we balance an arbitrary interval q ∈ Q at some step; we show that balancing q never increases weight of any interval in P . The first insertion point x into Q
+
+is such that by definition x ∈ P . Therefore, if p′ 
+
+> e
+
+is the successor of x in P then x / ∈ (x, p e) and thus the weight of [x, p e) is unchanged. Similarly, let ps ∈ P be the predecessor and pe ∈ P
+
+be the successor of insertion point x′ in P . Then inserting at x′ results in two new intervals 
+
+[ps, x ′) and [x′, p e). Letting w = |(ps, p e) ∩ Q|, then we have |(ps, x ′) ∩ Q| + |(x′, p e) ∩ Q| ≤ w.Hence, neither of the two split intervals in P can have increased weight. This argument holds in the other direction when balancing an interval in P with respect to heaviness in Q, and it follows that balancing simultaneously does not require more balancing steps then balancing both P and Q independently using Theorem 11. This implies at most 2rα−1 new intervals. ■▶ Theorem 22. For a permutation π with r input intervals, then given P , Pπ and τ its balanced move structure representation Mπ can be constructed in O(r)-time and O(r)-space. 
+
+Proof. We initialize P and Q from Definition 12 in O(r)-time and space by Lemma 15. Our algorithm balances in Q in O(r)-time and space by Lemma 20 and Lemma 21. We then extract 
+
+P ′ = {p.idx | ∀ p ∈ P} , P ′ 
+
+> π
+
+= {p.τ.idx | ∀ p ∈ P} , and P ′ 
+
+> rank (π)
+
+= {p.τ.pred P | ∀ p ∈ P} 
+
+in O(r)-time and space. Let Q′ = {q.idx | ∀ q ∈ Q} . Since the algorithm finishes and maintains the invariant of Definition 16 with respect to any integer α > 2, we know if 
+
+qs, q e ∈ Q′ and qe is the predecessor of qe in Q′ then |(qs, q e) ∩ P ′| < 2α. Further, we know |P ′|, |P ′ 
+
+> π
+
+|, |P ′
+
+> rank (π)
+
+| ∈ O(r) by Lemma 21. Hence, we return Mπ in O(r)-time and 
+
+O(r)-space. ■▶ Corollary 23. For a permutation π with r input intervals, then given P , Pπ and τ its balanced move structure representation for its inverse Mπ−1 can be constructed in O(r)-time and O(r)-space. 
+
+Proof. We extract Q′ = {q.idx | ∀ q ∈ Q} , Q′ 
+
+> π−1
+
+= {q.τ −1.idx | ∀ q ∈ Q} , and Q′ 
+
+> rank (π−1)
+
+=
+
+{q.τ −1.pred Q | ∀ q ∈ Q} analogous to Theorem 22. Since the algorithm balances in both directions, we satisfy that the move structure Mπ−1 is balanced. ■
+
+# 4 LCP Array from RLBWT 4.1 Original Result 
+
+To analyze improvements made with our linear-time balancing algorithm, we expand upon the specifics of Sanaullah et al.’s [15] O(n + r log r)-time and O(r) working space algorithm to construct the LCP array from the RLBWT .10 Optimal-Time Balancing and LCP from RLBWT 
+
+# 4.1.1 RLBWT Permutations 
+
+To build a move structure for a permutation π, we require its corresponding P , Pπ , and τ
+
+following the definitions of input intervals in Section 3. Fortunately, we can obtain these efficiently for LF and ϕ as well as their inverses. 
+
+▶ Lemma 24. Given RLBWT [0 ..r − 1] , then P , Pπ and τ with respect to LF or its inverse 
+
+FL can be constructed in O(r)-time and O(r)-space [13]. 
+
+▶ Lemma 25. Given RLBWT [0 ..r − 1] corresponding to BWT [0 ..n − 1] , then P , Pπ and τ
+
+with respect to ϕ or its inverse ϕ−1 can be constructed in O(n)-time and O(r)-space [6, 15]. 
+
+# 4.1.2 Modified ϕ Algorithm 
+
+A key difference from the ϕ algorithm of Kärkkäinen, Manzini, and Puglisi [9] is that Sanaullah et al. [15] only need to compute the irreducible PLCP array, PLCP +[0 ..r − 1] . Thus, they only compute ϕ(i) when position i corresponds to an irreducible PLCP [i]. Notice that these positions are the same as the input interval starts P with respect to the permutation ϕ, and thus we can compute I = { i ∈ [0 , n ) | PLCP [i] is irreducible } in O(n)-time and O(r)-space. As such, the modified ϕ algorithm iterates over k = 0 → r − 1 setting i = I[k] at the start of each iteration. The amount of work is equivalent to the ϕ algorithm, since this is equal to iterating over i = 0 → n − 1 and filling only irreducible positions. To update ℓ > 0 for a new iteration k, we set ℓ = ℓ − (i − I[k − 1]) to account for skipped reducible PLCP positions. 
+
+▶ Lemma 26. Given RLBWT [0 ..r − 1] corresponding to BWT [0 ..n − 1] , we can construct 
+
+I = { i ∈ [0 , n ) | PLCP[ i] is irreducible } in O(n)-time and O(r)-space by Lemma 25. 
+
+At iteration k with some updated ℓ and i, we must compute j = ϕ(i) to compare the suffixes from T [i + ℓ..n − 1] and T [j + ℓ..n − 1] . Notice that Pπ with respect to ϕ gives the permutation mapping for any irreducible PLCP position in I and thus we can construct 
+
+ϕ+ = {ϕ(i) | ∀ i ∈ I} in O(n)-time and O(r)-space. Then, we compute j = ϕ(i) = ϕ+[k] with 
+
+ϕ+. The algorithm proceeds by performing the same symbol comparisons as the ϕ algorithm, incrementing ℓ with each match. When a mismatch occurs, we set PLCP +[k] = ℓ.
+
+▶ Lemma 27. Given RLBWT [0 ..r − 1] corresponding to BWT [0 ..n − 1] , we can construct 
+
+ϕ+ = {ϕ(i) | ∀ i ∈ I} in O(n)-time and O(r)-space by Lemmas 25 and 26. 
+
+# 4.1.3 Simulating Random Access to Text 
+
+However, to replace random access to T , Sanaullah et al. [15] construct a move structure for 
+
+FL , MF L , in O(r + r log r)-time and O(r)-space. Let us also store the BWT character of LF 
+
+intervals permuted to their corresponding FL intervals, such that RF = {BWT [ LF (i)] | ∀ i ∈
+
+P ′} where P ′ is the set of balanced input intervals with respect to MFL . Informally, these are the characters of the RLBWT (and characters at split points from balancing) as ordered by their permutation into the first column of the Burrows-Wheeler Matrix (BWM). A character of the text T [x] = RF [y] if y = P ′.rank ( ISA [x]) and thus we can extract characters of the text while using MF L move queries through access with positional ranks. 
+
+▶ Lemma 28. Given RLBWT [0 ..r − 1] , then MF L can be constructed in O(r log r)-time and O(r)-space by Lemma 24 and Theorem 11. 
+
+▶ Lemma 29. Given RLBWT [0 ..r − 1] and MF L , then RF = {BWT [ LF (i)] | ∀ i ∈ P ′} can be constructed in O(r)-time and O(r)-space [13, 15]. Brown, Sanaullah, Zhang, and Langmead 11 
+
+We do not have access to ISA nor rank queries, so we need another method to find the correct position and interval in MF L for text comparison. Let si be initialized to 
+
+si = ISA [0] = FL (0) and ti be its rank in MF L . Then we can use these values to maintain 
+
+si = ISA [i + ℓ] while accessing T [i + ℓ] = RF [ti] by setting (si, t i) = MF L .move (si, t i) each time we extend ℓ forward, which we do at most n times. Since our move structure is balanced, overall this takes O(n)-time. However, the value j changes at each iteration and thus we cannot maintain coordinates in MF L for T [j + ℓ] simply using consecutive move queries; indeed, this is where length capping cannot be applied to the algorithm [6]. To support random access into the text when j is updated, consider sampling every nr
+
+ISA values such that 
+
+ISA n/r = {ISA[ k · ⌈ n/r ⌉] | ∀ k ∈ [0 , r )] }.
+
+Where P ′ is with respect to MF L , let ISA FL = {(j, P ′.rank (j)) | ∀ j ∈ ISA n/r } be such that 
+
+ISA FL [k] stores the pair ISA n/r [k] and the rank of its predecessor in MF L . Then if we need to access T [j + ℓ] we can lookup its predecessor sample location k′ = ( j + ℓ)/ ⌈ nr
+
+⌉ using integer division, lookup the coordinates (sj , t j ) = ISA F L [k′] in MF L and then compute ∆ = ((j + ℓ) mod ⌈ nr
+
+⌉) move queries to find the correct (s′ 
+
+> j
+
+, t ′ 
+
+> j
+
+) corresponding to s′ 
+
+> j
+
+= ISA [j + ℓ].This requires at most ⌈ nr
+
+⌉ steps due to the sampling scheme, and further, since we only require random access r times when we update j at irreducible PLCP positions, we require at most ⌈ nr
+
+⌉ · r ∈ O(n) steps to simulate random access across the algorithm. Again, thanks to move structure balancing, overall this is O(n)-time. We can build ISA F L itself by using 
+
+MF L to enumerate the suffix array in text order and sample in O(n)-time [15]. 
+
+▶ Lemma 30. Given MF L with corresponding balanced input intervals P ′, then we can compute ISA n/r = {ISA [i · ⌈ n/r ⌉] | ∀ i ∈ [0 , r )] } and ISA FL = {(j, P ′.rank (j)) | ∀ j ∈ ISA n/r }
+
+in O(n)-time and O(r)-space [15]. 
+
+# 4.1.4 Algorithm Complexity 
+
+Once PLCP + is constructed, one can use a move structure for ϕ (or, alternatively, ϕ−1)
+
+along with Corollary 1 to fill the values in LCP order from i = n − 1 → 0 [15]. Notice that for the FL move structure, we required worst case guarantees provided from balancing. The 
+
+O(r log r) factor is inherited from balancing in Lemma 28 with Theorem 11. 
+
+▶ Theorem 31 (Sanaullah et al. [15]) . Given RLBWT [0 ..r −1] corresponding to BWT [0 ..n −1] ,we can compute the irreducible PLCP array PLCP +[0 ..r − 1] in O(n + r log r)-time and 
+
+O(r)-space. 
+
+Proof. We construct I and ϕ+ in O(n)-time and O(r)-space by Lemmas 26 and 27. We then construct MF L in O(r log r)-time and O(r)-space per Lemma 28. Finally, we construct in 
+
+O(r)-space: RF in O(r)-time using Lemma 29, and ISA FL in O(n)-time using Lemma 30. These are used to perform the modification of Kärkkäinen, Manzini, and Puglisi’s [9] ϕ
+
+algorithm in O(n)-time. Overall, this results in O(n + r log r)-time and O(r)-space. ■▶ Theorem 32 (Sanaullah et al. [15]) . Given RLBWT [0 ..r −1] corresponding to BWT [0 ..n −1] ,we can construct LCP[0 ..n − 1] in O(n + r log r)-time and O(r) additional working space. 
+
+Proof. We apply the result of Theorem 31 in O(n + r log r)-time and O(r)-space. Then, we build a length capped move structure for ϕ−1 in O(n)-time and O(r)-space [6]. From Corol-lary 1, this allows us enumerate from i = n − 1 → 0 each value LCP [i] = PLCP [ SA [i]] in O(n)
+
+total time and O(r) additional working space. [15]. Overall, this gives an O(n + r log r)-time algorithm using O(r) additional space to the output. ■12 Optimal-Time Balancing and LCP from RLBWT 
+
+# 4.2 Optimal-Time Construction 
+
+Given our careful analysis of the LCP computation algorithm of Sanaullah et al. [15], the 
+
+O(r log r) factor is solely due to constructing a balanced move structure for FL . By applying the results of Section 3, namely Theorem 22, we achieve an optimal O(n)-time algorithm to compute LCP[0 ..n − 1] from RLBWT[0 ..r − 1] in O(r) additional space to the output. 
+
+▶ Lemma 33. Given RLBWT[0 ..r − 1] , then MLF or MF L can be constructed in optimal 
+
+O(r)-time and O(r)-space by Lemma 24 and Theorem 22. 
+
+▶ Lemma 34. Given RLBWT [0 ..r − 1] , then Mϕ or Mϕ−1 can be constructed in O(n)-time and O(r)-space by Lemma 25 and Theorem 22. 
+
+▶ Theorem 35. Given RLBWT [0 ..r − 1] corresponding to BWT [0 ..n − 1] , we can compute the irreducible PLCP array PLCP +[0 ..r − 1] in O(n)-time and O(r)-space. 
+
+▶ Theorem 36. Given RLBWT [0 ..r − 1] corresponding to BWT [0 ..n − 1] , we can construct 
+
+LCP[0 ..n − 1] in optimal O(n)-time and O(r) additional working space. 
+
+# 5 Conclusion 
+
+We have described the first optimal O(r)-time and O(r)-space move structure balancing algorithm. This improves on the previous best approach by Bertram, Fischer, and Nal-bach [4] using O(r log r)-time and O(r)-space complexity. As a result of combining the improved balancing complexity with the approach of Sanaullah et al. [15], we obtain the first optimal O(n)-time LCP computation algorithm from an RLBWT in O(r) additional space. Additionally, from an RLBWT , we obtain in O(r)-space: Optimal O(r)-time construction of balanced move structures for LF and FL ,
+
+O(n)-time construction of balanced move structures for ϕ and ϕ−1,and an optimal O(n)-time algorithm for enumerating the LCP array. Since the balancing algorithm described here balances with respect to both π and its inverse π−1, a natural followup is to collapse both into a single move structure. That is, we store the interval starts in P ∪ Q. We call this an invertible move structure . Supporting move queries in both directions currently requires two move structures with O(r)-space additional satellite data for coordinate conversions. Possible benefits of the invertible move structure include common coordinates for π and π−1 move queries without satellite data, computing both π and its inverse in constant time, and removing the need for the “offset field” [5] in practical implementations. We leave detailed investigation as future work. A possible application of LCP computation from the RLBWT is Shivakumar and Lang-mead’s [17] mumemto tool which computes maximal match queries with respect to a collection of sequences. Given an RLBWT , its remaining bottleneck was LCP enumeration [6], where we stream the output rather than save the entire LCP array. Our improvements provide an 
+
+O(n)-time and O(r)-space algorithm for mumemto which may be of practical interest. Finally, the current best known result for construction of the RLBWT from a given text in O(r)-space is Nishimoto, Kanda, and Tabei’s [12] O(n + r log r)-time algorithm. Therefore, the construction of move structures computing LF , FL , ϕ, ϕ −1 in O(r)-space from the text remains O(n + r log r)-time. This work removes the move structure balancing bottleneck from this time bound. Now, the only remaining obstacle to lowering these time complexities is improving upon the result for RLBWT construction in O(r)-space, or computing the 
+
+RLBWT with another compressed space algorithm using some parameter other than r.Brown, Sanaullah, Zhang, and Langmead 13 
+
+References 
+
+1 Djamal Belazzougui. Linear time construction of compressed text indices in compact space. In Proceedings of the forty-sixth Annual ACM Symposium on Theory of Computing , pages 148–193, 2014. 
+
+2 Djamal Belazzougui and Gonzalo Navarro. Optimal lower and upper bounds for representing sequences. ACM Transactions on Algorithms (TALG) , 11(4):1–21, 2015. 
+
+3 Timo Beller, Simon Gog, Enno Ohlebusch, and Thomas Schnattinger. Computing the longest common prefix array based on the Burrows–Wheeler transform. Journal of Discrete Algorithms ,18:22–31, 2013. 
+
+4 Nico Bertram, Johannes Fischer, and Lukas Nalbach. Move-r: Optimizing the r-index. In 
+
+22nd International Symposium on Experimental Algorithms (SEA 2024) , pages 1–1. Schloss Dagstuhl–Leibniz-Zentrum für Informatik, 2024. 
+
+5 Nathaniel K. Brown, Travis Gagie, and Massimiliano Rossi. RLBWT Tricks. In Christian Schulz and Bora Uçar, editors, 20th International Symposium on Experimental Algorithms (SEA 2022) , volume 233 of Leibniz International Proceedings in Informatics (LIPIcs) , pages 16:1–16:16, Dagstuhl, Germany, 2022. Schloss Dagstuhl – Leibniz-Zentrum für Informatik. 
+
+6 Nathaniel K. Brown and Ben Langmead. Bounding the Average Move Structure Query for Faster and Smaller RLBWT Permutations, 2026. URL: https://arxiv.org/abs/2602.11029 .
+
+7 Michael Burrows and David J Wheeler. A Block-sorting Lossless Data Compression Algorithm. 
+
+Digital Equipment Corporation , 1994. 
+
+8 Travis Gagie, Gonzalo Navarro, and Nicola Prezza. Fully functional suffix trees and optimal text searching in BWT-runs bounded space. Journal of the ACM (JACM) , 67(1):1–54, 2020. 
+
+9 Juha Kärkkäinen, Giovanni Manzini, and Simon J Puglisi. Permuted longest-common-prefix array. In Annual Symposium on Combinatorial Pattern Matching , pages 181–192. Springer, 2009. 
+
+10 Toru Kasai, Gunho Lee, Hiroki Arimura, Setsuo Arikawa, and Kunsoo Park. Linear-time longest-common-prefix computation in suffix arrays and its applications. In Annual Symposium on Combinatorial Pattern Matching , pages 181–192. Springer, 2001. 
+
+11 Heng Li. BWT construction and search at the terabase scale. Bioinformatics , 40(12):btae717, 11 2024. 
+
+12 Takaaki Nishimoto, Shunsuke Kanda, and Yasuo Tabei. An Optimal-Time RLBWT Con-struction in BWT-Runs Bounded Space. In 49th International Colloquium on Automata, Languages, and Programming (ICALP 2022) , pages 99–1. Schloss Dagstuhl–Leibniz-Zentrum für Informatik, 2022. 
+
+13 Takaaki Nishimoto and Yasuo Tabei. Optimal-Time Queries on BWT-Runs Compressed Indexes. In 48th International Colloquium on Automata, Languages, and Programming (ICALP 2021) , pages 101–1. Schloss Dagstuhl–Leibniz-Zentrum für Informatik, 2021. 
+
+14 N Prezza, G Rosone, et al. Space-efficient computation of the LCP array from the Burrows-Wheeler transform. In 30th Annual Symposium on Combinatorial Pattern Matching, CPM 2019, Leibniz International Proceedings in Informatics, LIPIcs , volume 128, pages 1–18. LIPIcs, 2019. 
+
+15 Ahsan Sanaullah, Nathaniel K. Brown, Pramesh Shakya, Arun Deegutla, Ardalan Naseri, Ben Langmead, Degui Zhi, and Shaojie Zhang. RLBWT-Based LCP Computation in Compressed Space for Terabase-Scale Pangenome Analysis. bioRxiv , 2026. URL: https://www.biorxiv. org/content/early/2026/01/25/2026.01.23.701410 .
+
+16 Ahsan Sanaullah, Degui Zhi, and Shaojie Zhang. An Efficient Data Structure and Algorithm for Long-Match Query in Run-Length Compressed BWT. In Broňa Brejová and Rob Patro, editors, 25th International Conference on Algorithms for Bioinformatics (WABI 2025) , volume 344 of Leibniz International Proceedings in Informatics (LIPIcs) , pages 17:1–17:25, Dagstuhl, Germany, 2025. Schloss Dagstuhl – Leibniz-Zentrum für Informatik. 
+
+17 Vikram S Shivakumar and Ben Langmead. Mumemto: efficient maximal matching across pangenomes. Genome Biology , 26(1):169, 2025. 14 Optimal-Time Balancing and LCP from RLBWT 
+
+18 Igor Tatarnikov, Ardavan Shahrabi Farahani, Sana Kashgouli, and Travis Gagie. MONI Can Find k-MEMs. In Laurent Bulteau and Zsuzsanna Lipták, editors, 34th Annual Symposium on Combinatorial Pattern Matching (CPM 2023) , volume 259 of Leibniz International Proceedings in Informatics (LIPIcs) , pages 26:1–26:14, Dagstuhl, Germany, 2023. Schloss Dagstuhl – Leibniz-Zentrum für Informatik. 
+
+19 Mohsen Zakeri, Nathaniel K Brown, Omar Y Ahmed, Travis Gagie, and Ben Langmead. Movi: a fast and cache-efficient full-text pangenome index. Iscience , 27(12), 2024. 
+
+20 Mohsen Zakeri, Nathaniel K. Brown, Travis Gagie, and Ben Langmead. Movi 2: Fast and Space-Efficient Queries on Pangenomes. bioRxiv , 2025. doi:10.1101/2025.10.16.682873 .

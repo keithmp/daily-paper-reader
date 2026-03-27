@@ -1,0 +1,898 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-27T19:39:05.879117+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 10,
+    "deep_cap": 8,
+    "deep_selected": 8,
+    "quick_candidates": 19,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.23361v2",
+      "title": "Central Dogma Transformer III: Interpretable AI Across DNA, RNA, and Protein",
+      "abstract": "Biological AI models increasingly predict complex cellular responses, yet their learned representations remain disconnected from the   molecular processes they aim to capture. We present CDT-III, which extends mechanism-oriented AI across the full central dogma: DNA, RNA, and   protein. Its two-stage Virtual Cell Embedder architecture mirrors the spatial compartmentalization of the cell: VCE-N models transcription in   the nucleus and VCE-C models translation in the cytosol. On five held-out genes, CDT-III achieves per-gene RNA r=0.843 and protein r=0.969.   Adding protein prediction improves RNA performance (r=0.804 to 0.843), demonstrating that downstream tasks regularize upstream   representations. Protein supervision sharpens DNA-level interpretability, increasing CTCF enrichment by 30%. Analysis of experimentally   measured mRNA and protein responses reveals that the majority of genes with observable mRNA changes show opposite protein-level changes (66.7%   at |log2FC|>0.01, rising to 87.5% at |log2FC|>0.02), exposing a fundamental limitation of RNA-only perturbation models. Despite this   pervasive direction discordance, CDT-III correctly predicts both mRNA and protein responses. Applied to in silico CD52 knockdown approximating   Alemtuzumab, the model predicts 29/29 protein changes correctly and rediscovers 5 of 7 known clinical side effects without clinical data.   Gradient-based side effect profiling requires only unperturbed baseline data (r=0.939), enabling screening of all 2,361 genes without new   experiments.",
+      "authors": [
+        "Nobuyuki Ota"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-24T15:57:23+00:00",
+      "link": "https://arxiv.org/pdf/2603.23361v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "interpretable AI across DNA, RNA, and protein for genomics",
+      "llm_evidence_cn": "跨DNA、RNA和蛋白质的可解释基因组学AI",
+      "llm_evidence": "跨DNA、RNA和蛋白质的可解释基因组学AI",
+      "canonical_evidence": "跨DNA、RNA和蛋白质的可解释基因组学AI",
+      "llm_tldr_en": "A Transformer model that mirrors the central dogma to predict cellular responses across DNA, RNA, and proteins.",
+      "llm_tldr_cn": "一种模拟中心法则的Transformer模型，用于预测跨DNA、RNA和蛋白质的细胞反应。",
+      "llm_tldr": "一种模拟中心法则的Transformer模型，用于预测跨DNA、RNA和蛋白质的细胞反应。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.25628v1",
+      "title": "Modeling the mutational dynamics of very short tandem repeats",
+      "abstract": "Short tandem repeats (STRs) are low-entropy regions in the genome, consisting of a short (1-6 bp) unit that is consecutively repeated multiple times. They are known for high mutational instability, due to so-called stutter-mutations, in which the number of units in the run increases or descreases. In particular, STRs with repeat unit length of 1-2 bp are prone to mutate even within several cell divisions. The extremely rapid accumulation of variation makes them interesting phylogenetic markers for retrospective single-cell lineage reconstruction. Here we model their mutational dynamics at the level of individual repeat unit type and then aggregate length variations over many STR loci with the aim of obtaining a very fast ``molecular clock''. We calibrate our model based on several datasets with known lineage structure prepared from cultured cells. We find that the mutational dynamics of STRs are reasonably consistent for a given cell line, but vary among different ones. This suggests that the dynamics are not entirely explained by mutations in caretaker genes, rather, various other factors play a role -- possibly tissue origin and differentiation state. Further data and research is necessary to asses their relative effects.",
+      "authors": [
+        "Amos Onn",
+        "Tzipy Marx",
+        "Liming Tao",
+        "Tamir Biezuner",
+        "Ehud Shapiro",
+        "Christoph A. Klein",
+        "Peter F. Stadler"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "q-bio.GN"
+      ],
+      "published": "2026-03-26T16:40:51+00:00",
+      "link": "https://arxiv.org/pdf/2603.25628v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Mutational dynamics of short tandem repeats as phylogenetic markers and molecular clocks",
+      "llm_evidence_cn": "短串联重复序列作为系统发育标记和分子钟的突变动力学",
+      "llm_evidence": "短串联重复序列作为系统发育标记和分子钟的突变动力学",
+      "canonical_evidence": "短串联重复序列作为系统发育标记和分子钟的突变动力学",
+      "llm_tldr_en": "Models mutational dynamics of STRs to create a fast molecular clock for lineage reconstruction.",
+      "llm_tldr_cn": "模拟短串联重复序列的突变动力学，为谱系重建建立快速分子钟。",
+      "llm_tldr": "模拟短串联重复序列的突变动力学，为谱系重建建立快速分子钟。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.24882v1",
+      "title": "AutoCSF: Provably Space-Efficient Indexing of Skewed Key-Value Workloads via Filter-Augmented Compressed Static Functions",
+      "abstract": "We study the problem of building space-efficient, in-memory indexes for massive key-value datasets with highly skewed value distributions. This challenge arises in many data-intensive domains and is particularly acute in computational genomics, where $k$-mer count tables can contain billions of entries dominated by a single frequent value. While recent work has proposed to address this problem by augmenting compressed static functions (CSFs) with pre-filters, existing approaches rely on complex heuristics and lack formal guarantees. In this paper, we introduce a principled algorithm, called AutoCSF, for combining CSFs with pre-filtering to provably handle skewed distributions with near-optimal space usage. We improve upon prior CSF pre-filtering constructions by (1) deriving a mathematically rigorous decision criterion for when filter augmentation is beneficial; (2) presenting a general algorithmic framework for integrating CSFs with modern set membership data structures beyond the classic Bloom filter; and (3) establishing theoretical guarantees on the overall space usage of the resulting indexes. Our open-source implementation of AutoCSF demonstrates space savings over baseline methods while maintaining low query latency.",
+      "authors": [
+        "David Torres Ramos",
+        "Vihan Lakshman",
+        "Chen Luo",
+        "Todd Treangen",
+        "Benjamin Coleman"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS",
+        "cs.DB"
+      ],
+      "published": "2026-03-25T23:55:30+00:00",
+      "link": "https://arxiv.org/pdf/2603.24882v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Computational methods for k-mer indexing in genomics",
+      "llm_evidence_cn": "基因组学中k-mer索引的计算方法",
+      "llm_evidence": "基因组学中k-mer索引的计算方法",
+      "canonical_evidence": "基因组学中k-mer索引的计算方法",
+      "llm_tldr_en": "Presents AutoCSF for space-efficient indexing of massive genomic datasets with skewed distributions.",
+      "llm_tldr_cn": "提出AutoCSF算法，用于高效索引具有偏态分布的大规模基因组数据集。",
+      "llm_tldr": "提出AutoCSF算法，用于高效索引具有偏态分布的大规模基因组数据集。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.25524v1",
+      "title": "CHIRP dataset: towards long-term, individual-level, behavioral monitoring of bird populations in the wild",
+      "abstract": "Long-term behavioral monitoring of individual animals is crucial for studying behavioral changes that occur over different time scales, especially for conservation and evolutionary biology. Computer vision methods have proven to benefit biodiversity monitoring, but automated behavior monitoring in wild populations remains challenging. This stems from the lack of datasets that cover a range of computer vision tasks necessary to extract biologically meaningful measurements of individual animals. Here, we introduce such a dataset (CHIRP) with a new method (CORVID) for individual re-identification of wild birds. The CHIRP (Combining beHaviour, Individual Re-identification and Postures) dataset is curated from a long-term population of wild Siberian jays studied in Swedish Lapland, supporting re-identification (re-id), action recognition, 2D keypoint estimation, object detection, and instance segmentation. In addition to traditional task-specific benchmarking, we introduce application-specific benchmarking with biologically relevant metrics (feeding rates, co-occurrence rates) to evaluate the performance of models in real-world use cases. Finally, we present CORVID (COlouR-based Video re-ID), a novel pipeline for individual identification of birds based on the segmentation and classification of colored leg rings, a widespread approach for visual identification of individual birds. CORVID offers a probability-based id tracking method by matching the detected combination of color rings with a database. We use application-specific benchmarking to show that CORVID outperforms state-of-the-art re-id methods. We hope this work offers the community a blueprint for curating real-world datasets from ethically approved biological studies to bridge the gap between computer vision research and biological applications.",
+      "authors": [
+        "Alex Hoi Hang Chan",
+        "Neha Singhal",
+        "Onur Kocahan",
+        "Andrea Meltzer",
+        "Saverio Lubrano",
+        "Miyako H. Warrington",
+        "Michel Griesser",
+        "Fumihiro Kano",
+        "Hemal Naik"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-03-26T14:57:31+00:00",
+      "link": "https://arxiv.org/pdf/2603.25524v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "behavioral monitoring for evolutionary biology",
+      "llm_evidence_cn": "用于演化生物学的行为监测",
+      "llm_evidence": "用于演化生物学的行为监测",
+      "canonical_evidence": "用于演化生物学的行为监测",
+      "llm_tldr_en": "Introduces CHIRP dataset and CORVID method for individual bird re-identification in evolutionary studies.",
+      "llm_tldr_cn": "介绍了用于演化研究中野生鸟类个体识别的 CHIRP 数据集和 CORVID 方法。",
+      "llm_tldr": "介绍了用于演化研究中野生鸟类个体识别的 CHIRP 数据集和 CORVID 方法。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.24745v1",
+      "title": "Learning relationships in epidemiological data using graph neural networks",
+      "abstract": "When designing control strategies for an infectious disease it is critical to identify the key pathways of transmission. Data on infected hosts - when they were born, where they lived and with whom they interacted - can help infer sources of infection and transmission clusters. However such data are generally not powerful enough to identify infector-infectee pairs with any certainty.   Whole-genome sequencing data of the underlying pathogen, on the other hand, can serve as a powerful adjoint to these data as they can be used to estimate a time to a most recent common ancestor between two infected hosts. and in turn their relative proximity in the transmission tree. A statistical model that explains the genetic distance between different host pathogens and associated risk factors can therefore inform key risk factors for transmission itself.   We show how graph neural networks (GNNs) are a powerful and natural modelling architecture for such a problem. By treating the epidemiological dataset as a graph where infected hosts are nodes and edges are weighted by the genetic distance between different host pairs, we show how a GNN can be fit to predict the genetic distance between known hosts and new, unsequenced hosts. Comparisons with other established approaches show that GNNs have useful performance advantages albeit with greater computational cost.",
+      "authors": [
+        "Anthony J Wood",
+        "Aeron R Sanchez",
+        "Rowland R Kao"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-03-25T19:09:47+00:00",
+      "link": "https://arxiv.org/pdf/2603.24745v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Whole-genome sequencing and transmission trees to estimate common ancestors",
+      "llm_evidence_cn": "全基因组测序和传播树用于估计共同祖先",
+      "llm_evidence": "全基因组测序和传播树用于估计共同祖先",
+      "canonical_evidence": "全基因组测序和传播树用于估计共同祖先",
+      "llm_tldr_en": "Uses GNNs and genomic data to infer transmission pathways and common ancestors in epidemiological data.",
+      "llm_tldr_cn": "利用图神经网络和基因组数据推断流行病学数据中的传播途径和共同祖先。",
+      "llm_tldr": "利用图神经网络和基因组数据推断流行病学数据中的传播途径和共同祖先。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.25417v1",
+      "title": "Fast Iteration of Spaced k-mers",
+      "abstract": "We present efficient approaches for extracting spaced k-mers from nucleotide sequences. They are based on bit manipulation instructions at CPU level, making them both simpler to implement and up to an order of magnitude faster than existing methods. We further evaluate common pitfalls in k-mer processing, which can cause major inefficiencies. Combined, our approaches allow the utilization of spaced k-mers in high-performance bioinformatics applications without major performance degradation, offering a throughput of up to 750MB of sequence data per second per core.   Availability: The implementation in C++20 is published under the MIT license, and freely available at https://github.com/lczech/fisk",
+      "authors": [
+        "Lucas Czech"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.DS"
+      ],
+      "published": "2026-03-26T13:10:41+00:00",
+      "link": "https://arxiv.org/pdf/2603.25417v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "efficient extraction of spaced k-mers from nucleotide sequences",
+      "llm_evidence_cn": "从核苷酸序列中高效提取间隔k-mer",
+      "llm_evidence": "从核苷酸序列中高效提取间隔k-mer",
+      "canonical_evidence": "从核苷酸序列中高效提取间隔k-mer",
+      "llm_tldr_en": "Presents a high-performance method for k-mer extraction, crucial for pangenome and sequence analysis.",
+      "llm_tldr_cn": "提出一种高性能k-mer提取方法，对泛基因组和序列分析至关重要。",
+      "llm_tldr": "提出一种高性能k-mer提取方法，对泛基因组和序列分析至关重要。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.24783v1",
+      "title": "Causal Discovery on Dependent Mixed Data with Applications to Gene Regulatory Network Inference",
+      "abstract": "Causal discovery aims to infer causal relationships among variables from observational data, typically represented by a directed acyclic graph (DAG). Most existing methods assume independent and identically distributed observations, an assumption often violated in modern applications. In addition, many datasets contain a mixture of continuous and discrete variables, which further complicates causal modeling when dependence across samples is present. To address these challenges, we propose a de-correlation framework for causal discovery from dependent mixed data. Our approach formulates a structural equation model with latent variables that accommodates both continuous and discrete variables while allowing correlated Gaussian errors across units. We estimate the dependence structure among samples via a pairwise maximum likelihood estimator for the covariance matrix and develop an EM algorithm to impute latent variables underlying discrete observations. A de-correlation transformation of the recovered latent data enables the use of standard causal discovery algorithms to learn the underlying causal graph. Simulation studies demonstrate that the proposed method substantially improves causal graph recovery compared with applying standard methods directly to the original dependent data. We apply our approach to single-cell RNA sequencing data to infer gene regulatory networks governing embryonic stem cell differentiation. The inferred regulatory networks show significantly improved predictive likelihood on test data, and many high-confidence edges are supported by known regulatory interactions reported in the literature.",
+      "authors": [
+        "Alex Chen",
+        "Qing Zhou"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "q-bio.GN",
+        "stat.AP"
+      ],
+      "published": "2026-03-25T19:57:07+00:00",
+      "link": "https://arxiv.org/pdf/2603.24783v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "causal discovery applied to gene regulatory network inference",
+      "llm_evidence_cn": "应用于基因调控网络推断的因果发现方法",
+      "llm_evidence": "应用于基因调控网络推断的因果发现方法",
+      "canonical_evidence": "应用于基因调控网络推断的因果发现方法",
+      "llm_tldr_en": "Develops a causal discovery framework for mixed data with applications in gene regulatory networks.",
+      "llm_tldr_cn": "开发了一种适用于混合数据的因果发现框架，并应用于基因调控网络的推断。",
+      "llm_tldr": "开发了一种适用于混合数据的因果发现框架，并应用于基因调控网络的推断。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.24922v1",
+      "title": "Robust Multicenter CT Radiogenomics for Dual EGFR and KRAS Prediction in Lung Cancer with Stability-Aware Modeling and SHAP Interpretation",
+      "abstract": "Accurate identification of EGFR and KRAS mutations is essential for precision therapy in non-small cell lung cancer (NSCLC), but tissue genotyping is invasive and may not capture tumor heterogeneity. CT-based radiogenomics offers a noninvasive alternative, although generalization across centers remains challenging. We benchmarked handcrafted radiomics features (HRF), deep feature representations (DFR), and their fusion for three-class mutation prediction (wild-type, KRAS-mutant, and EGFR-mutant) with external testing. We curated 1,023 thoracic CT scans from 12 public datasets across more than 20 centers, including 136 patients with EGFR/KRAS labels. IBSI-compliant HRFs were extracted with standardized preprocessing, and DFRs were derived using PySERA. HRF-only, DFR-only, and fused HRF+DFR pipelines were evaluated using five-fold cross-validation and external testing. A semi-supervised pseudo-labeling strategy leveraged unlabeled CT scans, and SHAP supported interpretability. In external testing, HRF-based models generalized best, achieving AUC 0.77 +/- 0.07 and accuracy 0.77 +/- 0.00. DFR-based models showed a larger drop from cross-validation to external testing, with best external AUC around 0.57 +/- 0.05. Fusion improved robustness over DFR-only models but did not consistently outperform HRFs. SHAP identified morphology- and heterogeneity-related radiomic phenotypes as key predictors. Standardized handcrafted radiomics within a multicenter semi-supervised framework may provide a generalizable and interpretable approach for CT-based EGFR/KRAS stratification.",
+      "authors": [
+        "Somayeh Sadat Mehrnia",
+        "Fatemeh Razavi",
+        "Helia Abedini",
+        "Niloofar Rahimi",
+        "Arman Rahmi",
+        "Mohammad Salmanpour"
+      ],
+      "primary_category": "physics.med-ph",
+      "categories": [
+        "physics.med-ph"
+      ],
+      "published": "2026-03-26T01:23:14+00:00",
+      "link": "https://arxiv.org/pdf/2603.24922v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "radiogenomics for predicting genetic mutations using AI",
+      "llm_evidence_cn": "利用AI进行影像基因组学研究以预测基因突变",
+      "llm_evidence": "利用AI进行影像基因组学研究以预测基因突变",
+      "canonical_evidence": "利用AI进行影像基因组学研究以预测基因突变",
+      "llm_tldr_en": "Uses AI and radiogenomics to noninvasively predict EGFR and KRAS mutations in lung cancer.",
+      "llm_tldr_cn": "利用AI和影像基因组学技术非侵入性地预测肺癌中的EGFR和KRAS基因突变。",
+      "llm_tldr": "利用AI和影像基因组学技术非侵入性地预测肺癌中的EGFR和KRAS基因突变。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.25240v1",
+      "title": "Lingshu-Cell: A generative cellular world model for transcriptome modeling toward virtual cells",
+      "abstract": "Modeling cellular states and predicting their responses to perturbations are central challenges in computational biology and the development of virtual cells. Existing foundation models for single-cell transcriptomics provide powerful static representations, but they do not explicitly model the distribution of cellular states for generative simulation. Here, we introduce Lingshu-Cell, a masked discrete diffusion model that learns transcriptomic state distributions and supports conditional simulation under perturbation. By operating directly in a discrete token space that is compatible with the sparse, non-sequential nature of single-cell transcriptomic data, Lingshu-Cell captures complex transcriptome-wide expression dependencies across approximately 18,000 genes without relying on prior gene selection, such as filtering by high variability or ranking by expression level. Across diverse tissues and species, Lingshu-Cell accurately reproduces transcriptomic distributions, marker-gene expression patterns and cell-subtype proportions, demonstrating its ability to capture complex cellular heterogeneity. Moreover, by jointly embedding cell type or donor identity with perturbation, Lingshu-Cell can predict whole-transcriptome expression changes for novel combinations of identity and perturbation. It achieves leading performance on the Virtual Cell Challenge H1 genetic perturbation benchmark and in predicting cytokine-induced responses in human PBMCs. Together, these results establish Lingshu-Cell as a flexible cellular world model for in silico simulation of cell states and perturbation responses, laying the foundation for a new paradigm in biological discovery and perturbation screening.",
+      "authors": [
+        "Han Zhang",
+        "Guo-Hua Yuan",
+        "Chaohao Yuan",
+        "Tingyang Xu",
+        "Tian Bian",
+        "Hong Cheng",
+        "Wenbing Huang",
+        "Deli Zhao",
+        "Yu Rong"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-03-26T09:46:27+00:00",
+      "link": "https://arxiv.org/pdf/2603.25240v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Generative AI model for single-cell transcriptome modeling and virtual cells",
+      "llm_evidence_cn": "用于单细胞转录组建模和虚拟细胞的生成式AI模型",
+      "llm_evidence": "用于单细胞转录组建模和虚拟细胞的生成式AI模型",
+      "canonical_evidence": "用于单细胞转录组建模和虚拟细胞的生成式AI模型",
+      "llm_tldr_en": "A diffusion model for simulating cellular states and transcriptomic responses to perturbations.",
+      "llm_tldr_cn": "一种用于模拟细胞状态及转录组对扰动反应的离散扩散模型。",
+      "llm_tldr": "一种用于模拟细胞状态及转录组对扰动反应的离散扩散模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.22675v1",
+      "title": "Vision-based Deep Learning Analysis of Unordered Biomedical Tabular Datasets via Optimal Spatial Cartography",
+      "abstract": "Tabular data are central to biomedical research, from liquid biopsy and bulk and single-cell transcriptomics to electronic health records and phenotypic profiling. Unlike images or sequences, however, tabular datasets lack intrinsic spatial organization: features are treated as unordered dimensions, and their relationships must be inferred implicitly by the model. This limits the ability of vision architectures to exploit local structure and higher-order feature interactions in non-spatial biomedical data. Here we introduce Dynamic Feature Mapping (Dynomap), an end-to-end deep learning framework that learns a task-optimized spatial topology of features directly from data. Dynomap jointly optimizes feature placement and prediction through a fully differentiable rendering mechanism, without relying on heuristics, predefined groupings, or external priors. By transforming high-dimensional tabular vectors into learned feature maps, Dynomap enables vision-based models to operate effectively on unordered biomedical inputs. Across multiple clinical and biological datasets, Dynomap consistently outperformed classical machine learning, modern deep tabular models, and existing vector-to-image approaches. In liquid biopsy data, Dynomap organized clinically relevant gene signatures into coherent spatial patterns and improved multiclass cancer subtype prediction accuracy by up to 18%. In a Parkinson disease voice dataset, it clustered disease-associated acoustic descriptors and improved accuracy by up to 8%. Similar gains and interpretable feature organization were observed in additional biomedical datasets. These results establish Dynomap as a general strategy for bridging tabular and vision-based deep learning and for uncovering structured, clinically relevant patterns in high-dimensional biomedical data.",
+      "authors": [
+        "Sakib Mostafa",
+        "Tarik Massoud",
+        "Maximilian Diehn",
+        "Lei Xing",
+        "Md Tauhidul Islam"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-24T00:49:55+00:00",
+      "link": "https://arxiv.org/pdf/2603.22675v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI analysis of transcriptomics and biomedical tabular data",
+      "llm_evidence_cn": "利用AI分析转录组学和生物医学表格数据",
+      "llm_evidence": "利用AI分析转录组学和生物医学表格数据",
+      "canonical_evidence": "利用AI分析转录组学和生物医学表格数据",
+      "llm_tldr_en": "Introduces Dynomap, a deep learning framework for analyzing unordered biomedical data like transcriptomics.",
+      "llm_tldr_cn": "介绍了Dynomap，一个用于分析转录组学等无序生物医学数据的深度学习框架。",
+      "llm_tldr": "介绍了Dynomap，一个用于分析转录组学等无序生物医学数据的深度学习框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.18256v1",
+      "title": "MolRGen: A Training and Evaluation Setting for De Novo Molecular Generation with Reasonning Models",
+      "abstract": "Recent advances in reasoning-based large language models (LLMs) have demonstrated substantial improvements in complex problem-solving tasks. Motivated by these advances, several works have explored the application of reasoning LLMs to drug discovery and molecular design. However, most existing approaches either focus on evaluation or rely on training setups that require ground-truth labels, such as molecule pairs with known property modifications. Such supervision is unavailable in \\textit{de novo} molecular generation, where the objective is to generate novel molecules that optimize a desirability score without prior knowledge of high-scoring candidates. To bridge this gap, we introduce MolRGen, a large-scale benchmark and dataset for training and evaluating reasoning-based LLMs on \\textit{de novo} molecular generation. Our contributions are threefold. First, we propose a setting to evaluate and train models for \\textit{de novo} molecular generation and property prediction. Second, we introduce a novel diversity-aware top-$k$ score that captures both the quality and diversity of generated molecules. Third, we show our setting can be used to train LLMs for molecular generation, training a 24B LLM with reinforcement learning, and we provide a detailed analysis of its performance and limitations.",
+      "authors": [
+        "Philippe Formont",
+        "Maxime Darrin",
+        "Ismail Ben Ayed",
+        "Pablo Piantanida"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-18T20:21:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.18256v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for drug discovery and molecular design",
+      "llm_evidence_cn": "利用AI进行药物发现和分子设计",
+      "llm_evidence": "利用AI进行药物发现和分子设计",
+      "canonical_evidence": "利用AI进行药物发现和分子设计",
+      "llm_tldr_en": "Proposes a benchmark for de novo molecular generation using reasoning-based large language models.",
+      "llm_tldr_cn": "提出了一个使用基于推理的大语言模型进行从头分子生成的基准测试。",
+      "llm_tldr": "提出了一个使用基于推理的大语言模型进行从头分子生成的基准测试。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.25561v1",
+      "title": "An Integrative Genome-Scale Metabolic Modeling and Machine Learning Framework for Predicting and Optimizing Biofuel-Relevant Biomass Production in Saccharomyces cerevisiae",
+      "abstract": "Saccharomyces cerevisiae is a cornerstone organism in industrial biotechnology, valued for its genetic tractability and robust fermentative capacity. Accurately predicting biomass flux across diverse environmental and genetic perturbations remains a significant challenge for rational strain design. We present a computational framework combining the Yeast9 genome-scale metabolic model with machine learning and optimization to predict, interpret, and enhance biomass flux. Flux balance analysis generated 2,000 flux profiles by varying glucose, oxygen, and ammonium uptake rates. Random Forest and XGBoost regressors achieved R2 of 0.99989 and 0.9990, respectively. A variational autoencoder revealed four distinct metabolic clusters, and SHAP analysis identified glycolysis, the TCA cycle, and lipid biosynthesis as key biomass determinants. In silico overexpression achieved a biomass flux of 0.979 gDW/hr, while Bayesian optimization of nutrient constraints produced a 12-fold increase (0.0858 to 1.041 gDW/hr). A generative adversarial network proposed stoichiometrically feasible novel flux configurations. This framework demonstrates how genome-scale simulation, interpretable ML, and generative modeling can advance yeast metabolic engineering.",
+      "authors": [
+        "Neha K. Nair",
+        "Aaron D'Souza"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-26T15:32:16+00:00",
+      "link": "https://arxiv.org/pdf/2603.25561v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Genome-scale metabolic modeling and machine learning for yeast",
+      "llm_evidence_cn": "利用机器学习进行酵母基因组规模代谢建模",
+      "llm_evidence": "利用机器学习进行酵母基因组规模代谢建模",
+      "canonical_evidence": "利用机器学习进行酵母基因组规模代谢建模",
+      "llm_tldr_en": "Combines metabolic modeling and machine learning to predict and optimize biomass production in yeast.",
+      "llm_tldr_cn": "结合代谢建模与机器学习，预测并优化酵母的生物量生产。",
+      "llm_tldr": "结合代谢建模与机器学习，预测并优化酵母的生物量生产。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.23583v1",
+      "title": "ZeroFold: Protein-RNA Binding Affinity Predictions from Pre-Structural Embeddings",
+      "abstract": "The accurate prediction of protein-RNA binding affinity remains an unsolved problem in structural biology, limiting opportunities in understanding gene regulation and designing RNA-targeting therapeutics. A central obstacle is the structural flexibility of RNA, as, unlike proteins, RNA molecules exist as dynamic conformational ensembles. Thus, committing to a single predicted structure discards information relevant to binding. Here, we show that this obstacle can be addressed by extracting pre-structural embeddings, which are intermediate representations from a biomolecular foundation model captured before the structure decoding step. Pre-structural embeddings implicitly encode conformational ensemble information without requiring predicted structures. We build ZeroFold, a transformer-based model that combines pre-structural embeddings from Boltz-2 for both protein and RNA molecules through a cross-modal attention mechanism to predict binding affinity directly from sequence. To support training and evaluation, we construct PRADB, a curated dataset of 2,621 unique protein-RNA pairs with experimentally measured affinities drawn from four complementary databases. On a held-out test set constructed with 40% sequence identity thresholds, ZeroFold achieves a Spearman correlation of 0.65, a value approaching the ceiling imposed by experimental measurement noise. Under progressively fairer evaluation conditions that control for training-set overlap, ZeroFold compares favourably with respect to leading structure-based and leading sequence-based predictors, with the performance gap widening as sequence similarity to competitor training data is reduced. These results illustrate how pre-structural embeddings offer a representation strategy for flexible biomolecules, opening a route to affinity prediction for protein-RNA pairs for which no structural data exist.",
+      "authors": [
+        "Josef Hanke",
+        "Sebastian Pujalte Ojeda",
+        "Shengyu Zhang",
+        "Werngard Czechtizky",
+        "Leonardo De Maria",
+        "Michele Vendruscolo"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cs.LG"
+      ],
+      "published": "2026-03-24T15:14:44+00:00",
+      "link": "https://arxiv.org/pdf/2603.23583v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for gene regulation and protein-RNA binding affinity",
+      "llm_evidence_cn": "利用AI研究基因调节和蛋白质-RNA结合亲和力",
+      "llm_evidence": "利用AI研究基因调节和蛋白质-RNA结合亲和力",
+      "canonical_evidence": "利用AI研究基因调节和蛋白质-RNA结合亲和力",
+      "llm_tldr_en": "Predicts protein-RNA binding affinity using pre-structural embeddings from biomolecular foundation models.",
+      "llm_tldr_cn": "利用生物分子基础模型的预结构嵌入预测蛋白质-RNA的结合亲和力。",
+      "llm_tldr": "利用生物分子基础模型的预结构嵌入预测蛋白质-RNA的结合亲和力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.20509v1",
+      "title": "Lessons and Open Questions from a Unified Study of Camera-Trap Species Recognition Over Time",
+      "abstract": "Camera traps are vital for large-scale biodiversity monitoring, yet accurate automated analysis remains challenging due to diverse deployment environments. While the computer vision community has mostly framed this challenge as cross-domain generalization, this perspective overlooks a primary challenge faced by ecological practitioners: maintaining reliable recognition at the fixed site over time, where the dynamic nature of ecosystems introduces profound temporal shifts in both background and animal distributions. To bridge this gap, we present the first unified study of camera-trap species recognition over time. We introduce a realistic benchmark comprising 546 camera traps with a streaming protocol that evaluates models over chronologically ordered intervals. Our end-user-centric study yields four key findings. (1) Biological foundation models (e.g., BioCLIP 2) underperform at numerous sites even in initial intervals, underscoring the necessity of site-specific adaptation. (2) Adaptation is challenging under realistic evaluation: when models are updated using past data and evaluated on future intervals (mirrors real deployment lifecycles), naive adaptation can even degrade below zero-shot performance. (3) We identify two drivers of this difficulty: severe class imbalance and pronounced temporal shift in both species distribution and backgrounds between consecutive intervals. (4) We find that effective integration of model-update and post-processing techniques can largely improve accuracy, though a gap from the upper bounds remains. Finally, we highlight critical open questions, such as predicting when zero-shot models will succeed at a new site and determining whether/when model updates are necessary. Our benchmark and analysis provide actionable deployment guidelines for ecological practitioners while establishing new directions for future research in vision and machine learning.",
+      "authors": [
+        "Sooyoung Jeon",
+        "Hongjie Tian",
+        "Lemeng Wang",
+        "Zheda Mai",
+        "Vidhi Bakshi",
+        "Jiacheng Hou",
+        "Ping Zhang",
+        "Arpita Chowdhury",
+        "Jianyang Gu",
+        "Wei-Lun Chao"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-20T21:24:26+00:00",
+      "link": "https://arxiv.org/pdf/2603.20509v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for biodiversity monitoring and species recognition",
+      "llm_evidence_cn": "用于生物多样性监测和物种识别的AI",
+      "llm_evidence": "用于生物多样性监测和物种识别的AI",
+      "canonical_evidence": "用于生物多样性监测和物种识别的AI",
+      "llm_tldr_en": "Presents a benchmark for camera-trap species recognition to improve automated biodiversity monitoring over time.",
+      "llm_tldr_cn": "提出了红外相机物种识别基准，以改进随时间变化的自动化生物多样性监测。",
+      "llm_tldr": "提出了红外相机物种识别基准，以改进随时间变化的自动化生物多样性监测。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.23883v1",
+      "title": "BioVITA: Biological Dataset, Model, and Benchmark for Visual-Textual-Acoustic Alignment",
+      "abstract": "Understanding animal species from multimodal data poses an emerging challenge at the intersection of computer vision and ecology. While recent biological models, such as BioCLIP, have demonstrated strong alignment between images and textual taxonomic information for species identification, the integration of the audio modality remains an open problem. We propose BioVITA, a novel visual-textual-acoustic alignment framework for biological applications. BioVITA involves (i) a training dataset, (ii) a representation model, and (iii) a retrieval benchmark. First, we construct a large-scale training dataset comprising 1.3 million audio clips and 2.3 million images, covering 14,133 species annotated with 34 ecological trait labels. Second, building upon BioCLIP2, we introduce a two-stage training framework to effectively align audio representations with visual and textual representations. Third, we develop a cross-modal retrieval benchmark that covers all possible directional retrieval across the three modalities (i.e., image-to-audio, audio-to-text, text-to-image, and their reverse directions), with three taxonomic levels: Family, Genus, and Species. Extensive experiments demonstrate that our model learns a unified representation space that captures species-level semantics beyond taxonomy, advancing multimodal biodiversity understanding. The project page is available at: https://dahlian00.github.io/BioVITA_Page/",
+      "authors": [
+        "Risa Shinoda",
+        "Kaede Shiohara",
+        "Nakamasa Inoue",
+        "Kuniaki Saito",
+        "Hiroaki Santo",
+        "Fumio Okura"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-25T03:15:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.23883v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based species identification and ecological trait alignment",
+      "llm_evidence_cn": "基于AI的物种识别与生态特征对齐",
+      "llm_evidence": "基于AI的物种识别与生态特征对齐",
+      "canonical_evidence": "基于AI的物种识别与生态特征对齐",
+      "llm_tldr_en": "Introduces a multimodal alignment framework for species identification using visual, textual, and acoustic data.",
+      "llm_tldr_cn": "引入了一个利用视觉、文本和声学数据进行物种识别的多模态对齐框架。",
+      "llm_tldr": "引入了一个利用视觉、文本和声学数据进行物种识别的多模态对齐框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.20910v1",
+      "title": "LLM-ODE: Data-driven Discovery of Dynamical Systems with Large Language Models",
+      "abstract": "Discovering the governing equations of dynamical systems is a central problem across many scientific disciplines. As experimental data become increasingly available, automated equation discovery methods offer a promising data-driven approach to accelerate scientific discovery. Among these methods, genetic programming (GP) has been widely adopted due to its flexibility and interpretability. However, GP-based approaches often suffer from inefficient exploration of the symbolic search space, leading to slow convergence and suboptimal solutions. To address these limitations, we propose LLM-ODE, a large language model-aided model discovery framework that guides symbolic evolution using patterns extracted from elite candidate equations. By leveraging the generative prior of large language models, LLM-ODE produces more informed search trajectories while preserving the exploratory strengths of evolutionary algorithms. Empirical results on 91 dynamical systems show that LLM-ODE variants consistently outperform classical GP methods in terms of search efficiency and Pareto-front quality. Overall, our results demonstrate that LLM-ODE improves both efficiency and accuracy over traditional GP-based discovery and offers greater scalability to higher-dimensional systems compared to linear and Transformer-only model discovery methods.",
+      "authors": [
+        "Amirmohammad Ziaei Bideh",
+        "Jonathan Gryak"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-21T18:46:38+00:00",
+      "link": "https://arxiv.org/pdf/2603.20910v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-aided symbolic evolution for dynamical systems",
+      "llm_evidence_cn": "AI辅助的动力系统符号演化",
+      "llm_evidence": "AI辅助的动力系统符号演化",
+      "canonical_evidence": "AI辅助的动力系统符号演化",
+      "llm_tldr_en": "Proposes LLM-ODE to guide symbolic evolution for discovering governing equations of dynamical systems.",
+      "llm_tldr_cn": "提出了LLM-ODE，引导符号演化以发现动力系统的控制方程。",
+      "llm_tldr": "提出了LLM-ODE，引导符号演化以发现动力系统的控制方程。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.24626v1",
+      "title": "A Large-Scale Comparative Analysis of Imputation Methods for Single-Cell RNA Sequencing Data",
+      "abstract": "Single-cell RNA sequencing (scRNA-seq) is inherently affected by sparsity caused by dropout events, in which expressed genes are recorded as zeros due to technical limitations. These artifacts distort gene expression distributions and can compromise downstream analyses. Numerous imputation methods have been proposed to address this, and these methods encompass a wide range of approaches from traditional statistical models to recently developed deep learning (DL)-based methods. However, their comparative performance remains unclear, as existing benchmarking studies typically evaluate only a limited subset of methods, datasets, and downstream analytical tasks. Here, we present a comprehensive benchmark of 15 scRNA-seq imputation methods spanning 7 methodological categories, including traditional and modern DL-based methods. These methods are evaluated across 30 datasets sourced from 10 experimental protocols and assessed in terms of 6 downstream analytical tasks. Our results show that traditional imputation methods, such as model-based, smoothing-based, and low-rank matrix-based methods, generally outperform DL-based methods, such as diffusion-based, GAN-based, GNN-based, and autoencoder-based methods. In addition, strong performance in numerical gene expression recovery does not necessarily translate into improved biological interpretability in downstream analyses. Furthermore, the performance of imputation methods varies substantially across datasets, protocols, and downstream analytical tasks, and no single method consistently outperforms others across all evaluation scenarios. Together, our results provide practical guidance for selecting imputation methods tailored to specific analytical objectives and highlight the importance of task-specific evaluation when assessing imputation performance in scRNA-seq data analysis.",
+      "authors": [
+        "Yuichiro Iwashita",
+        "Ahtisham Fazeel Abbasi",
+        "Muhammad Nabeel Asim",
+        "Andreas Dengel"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-03-25T02:46:51+00:00",
+      "link": "https://arxiv.org/pdf/2603.24626v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI and deep learning for gene expression analysis",
+      "llm_evidence_cn": "利用AI和深度学习进行基因表达分析",
+      "llm_evidence": "利用AI和深度学习进行基因表达分析",
+      "canonical_evidence": "利用AI和深度学习进行基因表达分析",
+      "llm_tldr_en": "A large-scale benchmark of imputation methods for single-cell RNA sequencing data.",
+      "llm_tldr_cn": "对单细胞RNA测序数据插补方法的大规模基准测试。",
+      "llm_tldr": "对单细胞RNA测序数据插补方法的大规模基准测试。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.22147v1",
+      "title": "Optimal-Time Move Structure Balancing and LCP Array Computation from the RLBWT",
+      "abstract": "On repetitive text collections of size $n$, the Burrows-Wheeler Transform (BWT) tends to have relatively fewer runs $r$ in its run-length encoded BWT (RLBWT). This motivates many RLBWT-related algorithms and data structures that can be designed in compressed $O(r)$-space. These approaches often use the RLBWT-derived permutations LF, FL, $φ$, and $φ^{-1}$, which can be represented using a move structure to obtain optimal $O(1)$-time for each permutation step in $O(r)$-space. They are then used to construct compressed space text indexes supporting efficient pattern matching queries. However, move structure construction in $O(r)$-space requires an $O(r \\log r)$-time balancing stage.   The longest common prefix array (LCP) of a text collection is used to support pattern matching queries and data structure construction. Recently, it was shown how to compute the LCP array in $O(n + r \\log r)$-time and $O(r)$ additional space from an RLBWT. However, the bottleneck remains the $O(r \\log r)$-time move structure balancing stage. In this paper, we describe an optimal $O(r)$-time and space algorithm to balance a move structure. This result is then applied to LCP construction from an RLBWT to obtain an optimal $O(n)$-time algorithm in $O(r)$-space in addition to the output, which implies an optimal-time algorithm for LCP array enumeration in compressed $O(r)$-space.",
+      "authors": [
+        "Nathaniel K. Brown",
+        "Ahsan Sanaullah",
+        "Shaojie Zhang",
+        "Ben Langmead"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-03-23T16:12:19+00:00",
+      "link": "https://arxiv.org/pdf/2603.22147v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "RLBWT and LCP array computation for repetitive text collections",
+      "llm_evidence_cn": "针对重复文本集的RLBWT和LCP数组计算",
+      "llm_evidence": "针对重复文本集的RLBWT和LCP数组计算",
+      "canonical_evidence": "针对重复文本集的RLBWT和LCP数组计算",
+      "llm_tldr_en": "Optimizes data structures for repetitive text, which is a core computational task in pangenome indexing.",
+      "llm_tldr_cn": "优化重复文本的数据结构，这是泛基因组索引中的核心计算任务。",
+      "llm_tldr": "优化重复文本的数据结构，这是泛基因组索引中的核心计算任务。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.24643v1",
+      "title": "A capture-recapture hidden Markov model framework for register-based inference of population size and dynamics",
+      "abstract": "Accurate inference on population dynamics, such as migration and changes in population size, is essential for policymaking, resource allocation and demographic research. Traditional censuses are expensive, infrequent and not timely, leading many countries to adopt register-based approaches to replace or complement them. A primary challenge is that such registers are incomplete: even when individuals are present, their activities may not generate records in specific registers, resulting in false negative observation error. Conversely, some registers arise from administrative or household-level processes, so that individuals may appear in registers despite being absent, leading to false positive observation error. Existing approaches often either rely on ad-hoc decisions that ignore one or both error types, offer inference on population snapshots but not dynamics, or are computationally too slow for practical use. We propose a scalable framework for inferring population size and dynamics from register data, building on Cormack-Jolly-Seber type capture-recapture models formulated as hidden Markov models. Inference is carried out using maximum likelihood estimation, with uncertainty quantified via the Bag of Little Bootstraps. The model accounts for temporary emigration, incorporates an arbitrary number of possibly interacting registers subject to both error types, and allows observation probabilities to vary with individual characteristics and unobservable heterogeneity. We illustrate the approach using Swedish population registers, where overcoverage - individuals registered as living in the country although they are no longer present - provides a motivating example. The application yields new insights into population dynamics and individual trajectories.",
+      "authors": [
+        "Lucy Y Brown",
+        "Eleni Matechou",
+        "Bruno Santos",
+        "Eleonora Mussino"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-03-25T12:59:46+00:00",
+      "link": "https://arxiv.org/pdf/2603.24643v1",
+      "tags": [
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "inference of population size and dynamics using Markov models",
+      "llm_evidence_cn": "使用马尔可夫模型推断种群规模和动态",
+      "llm_evidence": "使用马尔可夫模型推断种群规模和动态",
+      "canonical_evidence": "使用马尔可夫模型推断种群规模和动态",
+      "llm_tldr_en": "A hidden Markov model framework for inferring population dynamics from incomplete register data.",
+      "llm_tldr_cn": "一种用于从不完整登记数据中推断种群动态的隐马尔可夫模型框架。",
+      "llm_tldr": "一种用于从不完整登记数据中推断种群动态的隐马尔可夫模型框架。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.25247v1",
+      "title": "FEAST: Fully Connected Expressive Attention for Spatial Transcriptomics",
+      "abstract": "Spatial Transcriptomics (ST) provides spatially-resolved gene expression, offering crucial insights into tissue architecture and complex diseases. However, its prohibitive cost limits widespread adoption, leading to significant attention on inferring spatial gene expression from readily available whole slide images. While graph neural networks have been proposed to model interactions between tissue regions, their reliance on pre-defined sparse graphs prevents them from considering potentially interacting spot pairs, resulting in a structural limitation in capturing complex biological relationships. To address this, we propose FEAST (Fully connected Expressive Attention for Spatial Transcriptomics), an attention-based framework that models the tissue as a fully connected graph, enabling the consideration of all pairwise interactions. To better reflect biological interactions, we introduce negative-aware attention, which models both excitatory and inhibitory interactions, capturing essential negative relationships that standard attention often overlooks. Furthermore, to mitigate the information loss from truncated or ignored context in standard spot image extraction, we introduce an off-grid sampling strategy that gathers additional images from intermediate regions, allowing the model to capture a richer morphological context. Experiments on public ST datasets show that FEAST surpasses state-of-the-art methods in gene expression prediction while providing biologically plausible attention maps that clarify positive and negative interactions. Our code is available at https://github.com/starforTJ/ FEAST.",
+      "authors": [
+        "Taejin Jeong",
+        "Joohyeok Kim",
+        "Jinyeong Kim",
+        "Chanyoung Kim",
+        "Seong Jae Hwang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-03-26T09:51:06+00:00",
+      "link": "https://arxiv.org/pdf/2603.25247v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI framework for spatial transcriptomics and gene expression",
+      "llm_evidence_cn": "用于空间转录组学和基因表达的AI框架",
+      "llm_evidence": "用于空间转录组学和基因表达的AI框架",
+      "canonical_evidence": "用于空间转录组学和基因表达的AI框架",
+      "llm_tldr_en": "Introduces FEAST, an attention-based framework for inferring spatial gene expression from tissue images.",
+      "llm_tldr_cn": "提出FEAST框架，利用注意力机制从组织图像中推断空间基因表达。",
+      "llm_tldr": "提出FEAST框架，利用注意力机制从组织图像中推断空间基因表达。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.25573v1",
+      "title": "Hierarchy-Guided Multimodal Representation Learning for Taxonomic Inference",
+      "abstract": "Accurate biodiversity identification from large-scale field data is a foundational problem with direct impact on ecology, conservation, and environmental monitoring. In practice, the core task is taxonomic prediction - inferring order, family, genus, or species from imperfect inputs such as specimen images, DNA barcodes, or both. Existing multimodal methods often treat taxonomy as a flat label space and therefore fail to encode the hierarchical structure of biological classification, which is critical for robustness under noise and missing modalities. We present two end-to-end variants for hierarchy-aware multimodal learning: CLiBD-HiR, which introduces Hierarchical Information Regularization (HiR) to shape embedding geometry across taxonomic levels, yielding structured and noise-robust representations; and CLiBD-HiR-Fuse, which additionally trains a lightweight fusion predictor that supports image-only, DNA-only, or joint inference and is resilient to modality corruption. Across large-scale biodiversity benchmarks, our approach improves taxonomic classification accuracy by over 14 percent compared to strong multimodal baselines, with particularly large gains under partial and corrupted DNA conditions. These results highlight that explicitly encoding biological hierarchy, together with flexible fusion, is key for practical biodiversity foundation models.",
+      "authors": [
+        "Sk Miraj Ahmed",
+        "Xi Yu",
+        "Yunqi Li",
+        "Yuewei Lin",
+        "Wei Xu"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-03-26T15:47:03+00:00",
+      "link": "https://arxiv.org/pdf/2603.25573v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "taxonomic inference from DNA barcodes and specimen images",
+      "llm_evidence_cn": "利用DNA条形码和样本图像进行分类推理",
+      "llm_evidence": "利用DNA条形码和样本图像进行分类推理",
+      "canonical_evidence": "利用DNA条形码和样本图像进行分类推理",
+      "llm_tldr_en": "A multimodal learning method for taxonomic prediction using DNA barcodes and hierarchical biological structures.",
+      "llm_tldr_cn": "一种利用DNA条形码和层次化生物结构进行分类预测的多模态学习方法。",
+      "llm_tldr": "一种利用DNA条形码和层次化生物结构进行分类预测的多模态学习方法。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
