@@ -1,0 +1,464 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-28T20:02:32.838833+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 1,
+    "deep_cap": 8,
+    "deep_selected": 1,
+    "quick_candidates": 9,
+    "quick_skim_target": 13,
+    "quick_selected": 9
+  },
+  "deep_dive": [
+    {
+      "id": "2603.20420v1",
+      "title": "CERN: Correcting Errors in Raw Nanopore Signals Using Hidden Markov Models",
+      "abstract": "Nanopore sequencing can read substantially longer sequences of nucleic acid molecules than other sequencing methods, which has led to advances in genomic analysis such as the gapless human genome assembly. By analyzing the raw electrical signal reads that nanopore sequencing generates from molecules, existing works can map these reads without translating them into DNA characters (i.e., basecalling), allowing for quick and efficient analysis of sequencing data. However, raw signals often contain errors due to noise and mistakes when processing them, which limits the overall accuracy of raw signal analysis.   Our goal in this work is to detect and correct errors in raw signals to improve the accuracy of raw signal analyses. To this end, we propose CERN, a mechanism that trains and utilizes a Hidden Markov Model (HMM) to accurately correct signal errors. Our extensive evaluation on various datasets including E. coli, Fruit Fly, and Human genomes shows that CERN 1) consistently improves the overall mapping accuracy of the underlying raw signal analysis tools, 2) minimizes the burden on segmentation algorithm optimization with newer nanopore chemistries, and 3) functions without causing substantial computational overhead. We conclude that CERN provides an effective mechanism to systematically identify and correct the errors in raw nanopore signals before further analysis, which can enable the development of a new class of error correction mechanisms purely designed for raw nanopore signals.   CERN is available at https://github.com/STORMgroup/CERN. We also provide the scripts to fully reproduce our results on our GitHub page.",
+      "authors": [
+        "Simon Ambrozak",
+        "Ulysse McConnell",
+        "Bhargav Srinivasan",
+        "Burak Ozkan",
+        "Can Firtina"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-20T18:41:07+00:00",
+      "link": "https://arxiv.org/pdf/2603.20420v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI-based error correction in nanopore genomic sequencing signals",
+      "llm_evidence_cn": "利用AI/HMM对纳米孔基因组测序信号进行纠错",
+      "llm_evidence": "利用AI/HMM对纳米孔基因组测序信号进行纠错",
+      "canonical_evidence": "利用AI/HMM对纳米孔基因组测序信号进行纠错",
+      "llm_tldr_en": "CERN uses Hidden Markov Models to correct errors in raw nanopore signals for more accurate genomic analysis.",
+      "llm_tldr_cn": "CERN利用隐马尔可夫模型纠正纳米孔原始信号错误，提高基因组分析的准确性。",
+      "llm_tldr": "CERN利用隐马尔可夫模型纠正纳米孔原始信号错误，提高基因组分析的准确性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.25062v1",
+      "title": "SIGMA: Structure-Invariant Generative Molecular Alignment for Chemical Language Models via Autoregressive Contrastive Learning",
+      "abstract": "Linearized string representations serve as the foundation of scalable autoregressive molecular generation; however, they introduce a fundamental modality mismatch where a single molecular graph maps to multiple distinct sequences. This ambiguity leads to \\textit{trajectory divergence}, where the latent representations of structurally equivalent partial graphs drift apart due to differences in linearization history. To resolve this without abandoning the efficient string formulation, we propose Structure-Invariant Generative Molecular Alignment (SIGMA). Rather than altering the linear representation, SIGMA enables the model to strictly recognize geometric symmetries via a token-level contrastive objective, which explicitly aligns the latent states of prefixes that share identical suffixes. Furthermore, we introduce Isomorphic Beam Search (IsoBeam) to eliminate isomorphic redundancy during inference by dynamically pruning equivalent paths. Empirical evaluations on standard benchmarks demonstrate that SIGMA bridges the gap between sequence scalability and graph fidelity, yielding superior sample efficiency and structural diversity in multi-parameter optimization compared to strong baselines.",
+      "authors": [
+        "Xinyu Wang",
+        "Fei Dou",
+        "Jinbo Bi",
+        "Minghu Song"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-26T05:55:17+00:00",
+      "link": "https://arxiv.org/pdf/2603.25062v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for molecular generation and chemical language models",
+      "llm_evidence_cn": "利用AI进行分子生成和化学语言模型研究",
+      "llm_evidence": "利用AI进行分子生成和化学语言模型研究",
+      "canonical_evidence": "利用AI进行分子生成和化学语言模型研究",
+      "llm_tldr_en": "A contrastive learning method to ensure structure invariance in molecular string representations.",
+      "llm_tldr_cn": "一种通过对比学习确保分子字符串表示结构不变性的方法。",
+      "llm_tldr": "一种通过对比学习确保分子字符串表示结构不变性的方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.21717v1",
+      "title": "Uncertainty Quantification for Distribution-to-Distribution Flow Matching in Scientific Imaging",
+      "abstract": "Distribution-to-distribution generative models support scientific imaging tasks ranging from modeling cellular perturbation responses to translating medical images across conditions. Trustworthy generation requires both reliability (generalization across labs, devices, and experimental conditions) and accountability (detecting out-of-distribution cases where predictions may be unreliable). Uncertainty quantification (UQ) based approaches serve as promising candidates for these tasks, yet UQ for distribution-to-distribution generative models remains underexplored. We present a unified UQ framework, Bayesian Stochastic Flow Matching (BSFM), that disentangles aleatoric and epistemic uncertainty. The Stochastic Flow Matching (SFM) component augments deterministic flows with a diffusion term to improve model generalization to unseen scenarios. For UQ, we develop a scalable Bayesian approach -- MCD-Antithetic -- that combines Monte Carlo Dropout with sample-efficient antithetic sampling to produce effective anomaly scores for out-of-distribution detection. Experiments on cellular imaging (BBBC021, JUMP) and brain fMRI (Theory of Mind) across diverse scenarios show that SFM improves reliability while MCD-Antithetic enhances accountability.",
+      "authors": [
+        "Dongxia Wu",
+        "Yuhui Zhang",
+        "Serena Yeung-Levy",
+        "Emma Lundberg",
+        "Emily B. Fox"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-23T09:01:02+00:00",
+      "link": "https://arxiv.org/pdf/2603.21717v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI modeling of cellular perturbation responses",
+      "llm_evidence_cn": "利用AI模拟细胞扰动反应",
+      "llm_evidence": "利用AI模拟细胞扰动反应",
+      "canonical_evidence": "利用AI模拟细胞扰动反应",
+      "llm_tldr_en": "A Bayesian framework for uncertainty quantification in generative models for scientific imaging.",
+      "llm_tldr_cn": "一种用于科学成像生成模型不确定性量化的贝叶斯框架。",
+      "llm_tldr": "一种用于科学成像生成模型不确定性量化的贝叶斯框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.21717v2",
+      "title": "Uncertainty Quantification for Distribution-to-Distribution Flow Matching in Scientific Imaging",
+      "abstract": "Distribution-to-distribution generative models support scientific imaging tasks ranging from modeling cellular perturbation responses to translating medical images across conditions. Trustworthy generation requires both reliability (generalization across labs, devices, and experimental conditions) and accountability (detecting out-of-distribution cases where predictions may be unreliable). Uncertainty quantification (UQ) based approaches serve as promising candidates for these tasks, yet UQ for distribution-to-distribution generative models remains underexplored. We present a unified UQ framework, Bayesian Stochastic Flow Matching (BSFM), that disentangles aleatoric and epistemic uncertainty. The Stochastic Flow Matching (SFM) component augments deterministic flows with a diffusion term to improve model generalization to unseen scenarios. For UQ, we develop a scalable Bayesian approach -- MCD-Antithetic -- that combines Monte Carlo Dropout with sample-efficient antithetic sampling to produce effective anomaly scores for out-of-distribution detection. Experiments on cellular imaging (BBBC021, JUMP) and brain fMRI (Theory of Mind) across diverse scenarios show that SFM improves reliability while MCD-Antithetic enhances accountability.",
+      "authors": [
+        "Dongxia Wu",
+        "Yuhui Zhang",
+        "Serena Yeung-Levy",
+        "Emma Lundberg",
+        "Emily B. Fox"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-23T09:01:02+00:00",
+      "link": "https://arxiv.org/pdf/2603.21717v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for modeling cellular perturbation responses",
+      "llm_evidence_cn": "用于模拟细胞扰动反应的AI",
+      "llm_evidence": "用于模拟细胞扰动反应的AI",
+      "canonical_evidence": "用于模拟细胞扰动反应的AI",
+      "llm_tldr_en": "Introduces a UQ framework for generative models in scientific imaging and cellular response modeling.",
+      "llm_tldr_cn": "为科学成像和细胞反应建模中的生成模型引入了不确定性量化框架。",
+      "llm_tldr": "为科学成像和细胞反应建模中的生成模型引入了不确定性量化框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.23031v1",
+      "title": "Accelerating Maximum Common Subgraph Computation by Exploiting Symmetries",
+      "abstract": "The Maximum Common Subgraph (MCS) problem plays a key role in many applications, including cheminformatics, bioinformatics, and pattern recognition, where it is used to identify the largest shared substructure between two graphs. Although symmetry exploitation is a powerful means of reducing search space in combinatorial optimization, its potential in MCS algorithms has remained largely underexplored due to the challenges of detecting and integrating symmetries effectively. Existing approaches, such as RRSplit, partially address symmetry through vertex-equivalence reasoning on the variable graph, but symmetries in the value graph remain unexploited. In this work, we introduce a complete dual-symmetry breaking framework that simultaneously handles symmetries in both variable and value graphs. Our method identifies and exploits modular symmetries based on local neighborhood structures, allowing the algorithm to prune isomorphic subtrees during search while rigorously preserving optimality. Extensive experiments on standard MCS benchmarks show that our approach substantially outperforms the state-of-the-art RRSplit algorithm, solving more instances with significant reductions in both computation time and search space. These results highlight the practical effectiveness of comprehensive symmetry-aware pruning for accelerating exact MCS computation.",
+      "authors": [
+        "Buddhi Kothalawala",
+        "Henning Koehler",
+        "Muhammad Farhan"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-03-24T10:10:27+00:00",
+      "link": "https://arxiv.org/pdf/2603.23031v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Maximum Common Subgraph in bioinformatics",
+      "llm_evidence_cn": "生物信息学中的最大公共子图",
+      "llm_evidence": "生物信息学中的最大公共子图",
+      "canonical_evidence": "生物信息学中的最大公共子图",
+      "llm_tldr_en": "Accelerates Maximum Common Subgraph computation, useful for identifying shared structures in bioinformatics.",
+      "llm_tldr_cn": "加速最大公共子图计算，可用于生物信息学中的共享结构识别。",
+      "llm_tldr": "加速最大公共子图计算，可用于生物信息学中的共享结构识别。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.23736v1",
+      "title": "Wasserstein Parallel Transport for Predicting the Dynamics of Statistical Systems",
+      "abstract": "Many scientific systems, such as cellular populations or economic cohorts, are naturally described by probability distributions that evolve over time. Predicting how such a system would have evolved under different forces or initial conditions is fundamental to causal inference, domain adaptation, and counterfactual prediction. However, the space of distributions often lacks the vector space structure on which classical methods rely. To address this, we introduce a general notion of parallel dynamics at a distributional level. We base this principle on parallel transport of tangent dynamics along optimal transport geodesics and call it ``Wasserstein Parallel Trends''. By replacing the vector subtraction of classic methods with geodesic parallel transport, we can provide counterfactual comparisons of distributional dynamics in applications such as causal inference, domain adaptation, and batch-effect correction in experimental settings. The main mathematical contribution is a novel notion of fanning scheme on the Wasserstein manifold that allows us to efficiently approximate parallel transport along geodesics while also providing the first theoretical guarantees for parallel transport in the Wasserstein space. We also show that Wasserstein Parallel Trends recovers the classic parallel trends assumption for averages as a special case and derive closed-form parallel transport for Gaussian measures. We deploy the method on synthetic data and two single-cell RNA sequencing datasets to impute gene-expression dynamics across biological systems.",
+      "authors": [
+        "Tristan Luca Saidi",
+        "Gonzalo Mena",
+        "Larry Wasserman",
+        "Florian Gunsilius"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG",
+        "math.PR",
+        "math.ST"
+      ],
+      "published": "2026-03-24T21:45:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.23736v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "predicting dynamics of cellular populations over time",
+      "llm_evidence_cn": "预测细胞群体随时间变化的动态",
+      "llm_evidence": "预测细胞群体随时间变化的动态",
+      "canonical_evidence": "预测细胞群体随时间变化的动态",
+      "llm_tldr_en": "Introduces Wasserstein Parallel Transport to predict the evolution of statistical systems like cellular populations.",
+      "llm_tldr_cn": "引入沃瑟斯坦平行输运理论，用于预测细胞群体等统计系统的演化动态。",
+      "llm_tldr": "引入沃瑟斯坦平行输运理论，用于预测细胞群体等统计系统的演化动态。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.23849v1",
+      "title": "VILLA: Versatile Information Retrieval From Scientific Literature Using Large LAnguage Models",
+      "abstract": "The lack of high-quality ground truth datasets to train machine learning (ML) models impedes the potential of artificial intelligence (AI) for science research. Scientific information extraction (SIE) from the literature using LLMs is emerging as a powerful approach to automate the creation of these datasets. However, existing LLM-based approaches and benchmarking studies for SIE focus on broad topics such as biomedicine and chemistry, are limited to choice-based tasks, and focus on extracting information from short and well-formatted text. The potential of SIE methods in complex, open-ended tasks is considerably under-explored. In this study, we used a domain that has been virtually ignored in SIE, namely virology, to address these research gaps. We design a unique, open-ended SIE task of extracting mutations in a given virus that modify its interaction with the host. We develop a new, multi-step retrieval augmented generation (RAG) framework called VILLA for SIE. In parallel, we curate a novel dataset of 629 mutations in ten influenza A virus proteins obtained from 239 scientific publications to serve as ground truth for the mutation extraction task. Finally, we demonstrate VILLA's superior performance using a novel and comprehensive evaluation and comparison with vanilla RAG and other state-of-the art RAG- and agent-based tools for SIE.",
+      "authors": [
+        "Blessy Antony",
+        "Amartya Dutta",
+        "Sneha Aggarwal",
+        "Vasu Gatne",
+        "Ozan Gökdemir",
+        "Samantha Grimes",
+        "Adam Lauring",
+        "Brian R. Wasik",
+        "Anuj Karpatne",
+        "T. M. Murali"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-03-25T02:15:58+00:00",
+      "link": "https://arxiv.org/pdf/2603.23849v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for scientific information extraction from literature",
+      "llm_evidence_cn": "利用AI从文献中提取科学信息",
+      "llm_evidence": "利用AI从文献中提取科学信息",
+      "canonical_evidence": "利用AI从文献中提取科学信息",
+      "llm_tldr_en": "VILLA uses LLMs to automate scientific information extraction, potentially aiding genomics research.",
+      "llm_tldr_cn": "VILLA利用大语言模型自动化科学信息提取，可能有助于基因组学研究。",
+      "llm_tldr": "VILLA利用大语言模型自动化科学信息提取，可能有助于基因组学研究。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.23961v1",
+      "title": "GRMLR: Knowledge-Enhanced Small-Data Learning for Deep-Sea Cold Seep Stage Inference",
+      "abstract": "Deep-sea cold seep stage assessment has traditionally relied on costly, high-risk manned submersible operations and visual surveys of macrofauna. Although microbial communities provide a promising and more cost-effective alternative, reliable inference remains challenging because the available deep-sea dataset is extremely small ($n = 13$) relative to the microbial feature dimension ($p = 26$), making purely data-driven models highly prone to overfitting. To address this, we propose a knowledge-enhanced classification framework that incorporates an ecological knowledge graph as a structural prior. By fusing macro-microbe coupling and microbial co-occurrence patterns, the framework internalizes established ecological logic into a \\underline{\\textbf{G}}raph-\\underline{\\textbf{R}}egularized \\underline{\\textbf{M}}ultinomial \\underline{\\textbf{L}}ogistic \\underline{\\textbf{R}}egression (GRMLR) model, effectively constraining the feature space through a manifold penalty to ensure biologically consistent classification. Importantly, the framework removes the need for macrofauna observations at inference time: macro-microbe associations are used only to guide training, whereas prediction relies solely on microbial abundance profiles. Experimental results demonstrate that our approach significantly outperforms standard baselines, highlighting its potential as a robust and scalable framework for deep-sea ecological assessment.",
+      "authors": [
+        "Chenxu Zhou",
+        "Zelin Liu",
+        "Rui Cai",
+        "Houlin Gong",
+        "Yikang Yu",
+        "Jia Zeng",
+        "Yanru Pei",
+        "Liang Zhang",
+        "Weishu Zhao",
+        "Xiaofeng Gao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-03-25T05:46:59+00:00",
+      "link": "https://arxiv.org/pdf/2603.23961v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven inference of microbial communities and ecological stages",
+      "llm_evidence_cn": "利用AI进行微生物群落和生态阶段的推理",
+      "llm_evidence": "利用AI进行微生物群落和生态阶段的推理",
+      "canonical_evidence": "利用AI进行微生物群落和生态阶段的推理",
+      "llm_tldr_en": "A knowledge-enhanced framework for inferring deep-sea cold seep stages using microbial community data.",
+      "llm_tldr_cn": "一种利用微生物群落数据推断深海冷泉阶段的知识增强型框架。",
+      "llm_tldr": "一种利用微生物群落数据推断深海冷泉阶段的知识增强型框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.24480v1",
+      "title": "Positive-First Most Ambiguous: A Simple Active Learning Criterion for Interactive Retrieval of Rare Categories",
+      "abstract": "Real-world fine-grained visual retrieval often requires discovering a rare concept from large unlabeled collections with minimal supervision. This is especially critical in biodiversity monitoring, ecological studies, and long-tailed visual domains, where the target may represent only a tiny fraction of the data, creating highly imbalanced binary problems. Interactive retrieval with relevance feedback offers a practical solution: starting from a small query, the system selects candidates for binary user annotation and iteratively refines a lightweight classifier. While Active Learning (AL) is commonly used to guide selection, conventional AL assumes symmetric class priors and large annotation budgets, limiting effectiveness in imbalanced, low-budget, low-latency settings. We introduce Positive-First Most Ambiguous (PF-MA), a simple yet effective AL criterion that explicitly addresses the class imbalance asymmetry: it prioritizes near-boundary samples while favoring likely positives, enabling rapid discovery of subtle visual categories while maintaining informativeness. Unlike standard methods that oversample negatives, PF-MA consistently returns small batches with a high proportion of relevant samples, improving early retrieval and user satisfaction. To capture retrieval diversity, we also propose a class coverage metric that measures how well selected positives span the visual variability of the target class. Experiments on long-tailed datasets, including fine-grained botanical data, demonstrate that PF-MA consistently outperforms strong baselines in both coverage and classifier performance, across varying class sizes and descriptors. Our results highlight that aligning AL with the asymmetric and user-centric objectives of interactive fine-grained retrieval enables simple yet powerful solutions for retrieving rare and visually subtle categories in realistic human-in-the-loop settings.",
+      "authors": [
+        "Kawtar Zaher",
+        "Olivier Buisson",
+        "Alexis Joly"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.HC",
+        "cs.IR"
+      ],
+      "published": "2026-03-25T16:22:26+00:00",
+      "link": "https://arxiv.org/pdf/2603.24480v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Active learning for biodiversity monitoring and rare category retrieval",
+      "llm_evidence_cn": "用于生物多样性监测和稀有类别检索的主动学习",
+      "llm_evidence": "用于生物多样性监测和稀有类别检索的主动学习",
+      "canonical_evidence": "用于生物多样性监测和稀有类别检索的主动学习",
+      "llm_tldr_en": "Proposes an active learning method for fine-grained visual retrieval in biodiversity and ecological studies.",
+      "llm_tldr_cn": "提出一种主动学习方法，用于生物多样性和生态研究中的细粒度视觉检索。",
+      "llm_tldr": "提出一种主动学习方法，用于生物多样性和生态研究中的细粒度视觉检索。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.24517v1",
+      "title": "AVO: Agentic Variation Operators for Autonomous Evolutionary Search",
+      "abstract": "Agentic Variation Operators (AVO) are a new family of evolutionary variation operators that replace the fixed mutation, crossover, and hand-designed heuristics of classical evolutionary search with autonomous coding agents. Rather than confining a language model to candidate generation within a prescribed pipeline, AVO instantiates variation as a self-directed agent loop that can consult the current lineage, a domain-specific knowledge base, and execution feedback to propose, repair, critique, and verify implementation edits. We evaluate AVO on attention, among the most aggressively optimized kernel targets in AI, on NVIDIA Blackwell (B200) GPUs. Over 7 days of continuous autonomous evolution on multi-head attention, AVO discovers kernels that outperform cuDNN by up to 3.5% and FlashAttention-4 by up to 10.5% across the evaluated configurations. The discovered optimizations transfer readily to grouped-query attention, requiring only 30 minutes of additional autonomous adaptation and yielding gains of up to 7.0% over cuDNN and 9.3% over FlashAttention-4. Together, these results show that agentic variation operators move beyond prior LLM-in-the-loop evolutionary pipelines by elevating the agent from candidate generator to variation operator, and can discover performance-critical micro-architectural optimizations that produce kernels surpassing state-of-the-art expert-engineered attention implementations on today's most advanced GPU hardware.",
+      "authors": [
+        "Terry Chen",
+        "Zhifan Ye",
+        "Bing Xu",
+        "Zihao Ye",
+        "Timmy Liu",
+        "Ali Hassani",
+        "Tianqi Chen",
+        "Andrew Kerr",
+        "Haicheng Wu",
+        "Yang Xu",
+        "Yu-Jung Chen",
+        "Hanfeng Chen",
+        "Aditya Kane",
+        "Ronny Krashinsky",
+        "Ming-Yu Liu",
+        "Vinod Grover",
+        "Luis Ceze",
+        "Roger Bringmann",
+        "John Tran",
+        "Wei Liu",
+        "Fung Xie",
+        "Michael Lightstone",
+        "Humphrey Shi"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-25T16:55:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.24517v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agents for autonomous evolutionary search",
+      "llm_evidence_cn": "用于自主演化搜索的AI智能体",
+      "llm_evidence": "用于自主演化搜索的AI智能体",
+      "canonical_evidence": "用于自主演化搜索的AI智能体",
+      "llm_tldr_en": "Introduces agentic variation operators using LLMs to replace fixed heuristics in evolutionary search.",
+      "llm_tldr_cn": "引入了利用大模型替代传统演化搜索中固定启发式方法的智能变异算子。",
+      "llm_tldr": "引入了利用大模型替代传统演化搜索中固定启发式方法的智能变异算子。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
