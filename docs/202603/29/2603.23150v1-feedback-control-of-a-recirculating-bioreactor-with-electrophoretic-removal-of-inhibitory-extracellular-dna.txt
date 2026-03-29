@@ -1,0 +1,395 @@
+Title: Feedback Control of a Recirculating Bioreactor with Electrophoretic Removal of Inhibitory Extracellular DNA
+
+URL Source: https://arxiv.org/pdf/2603.23150v1
+
+Published Time: Wed, 25 Mar 2026 01:10:04 GMT
+
+Number of Pages: 7
+
+Markdown Content:
+Article 25 March 2026 
+
+# Feedback Control of a Recirculating Bioreactor with Electrophoretic Removal of Inhibitory Extracellular DNA 
+
+Antonio Spallone 1,2,3, Davide Fiore 4, Fabrizio Cartenì 3, Mario di Bernardo 1,5     
+
+> 1Department of Electrical Engineering and Information Technology, University of Naples Federico II, Naples, Italy. {antonio.spallone, mario.dibernardo}@unina.it 2Department of Electrical and Information Engineering, Polytechnic of Bari, Bari, Italy 3Department of Agricultural Sciences, University of Naples Federico II, Naples, Italy. fabrizio.carteni@unina.it
+> 4Department of Mathematics and Applications “R. Caccioppoli,” University of Naples Federico II, Naples, Italy. davide.fiore@unina.it 5Scuola Superiore Meridionale, Naples, Italy
+
+Abstract. Extracellular DNA accumulation in recirculating bio-processes inhibits microbial growth and reduces productivity. We consider a continuous bioreactor with a recirculating loop and an electrophoretic filtration unit for selective DNA removal, and develop a feedback control framework combining online state and parameter estimation via an Unscented Kalman Filter with two control strategies: an adaptive Model Predictive Controller that jointly optimizes dilution rate and filtration activation, and a simpler bang–bang filtration policy with lookup-table dilution rate selection. Closed-loop simulations under nominal and per-turbed conditions show that the MPC strategy achieves signifi-cantly higher cumulative profit while keeping DNA concentration below the inhibition threshold. 
+
+## 1 Introduction 
+
+Continuous bioprocesses based on chemostat operation are widely adopted in biomanufacturing because they enable near steady-state operation with stable productivity and product qual-ity [1, 2]. However, classical chemostat operation requires a con-tinuous supply of fresh medium and a continuous discharge of culture broth. Increasingly strict environmental regulations and circular-economy policies have pushed industrial bioprocesses to-ward reduced-discharge or recirculating configurations [3, 4, 5]. While recirculation can significantly reduce water consumption and effluent generation, it may also cause the accumulation of in-hibitory compounds in the culture medium, leading to reduced productivity [6, 7]. In particular, extracellular DNA released during microbial growth has recently been identified as a potent inhibitor of cell proliferation when its concentration exceeds a critical threshold [8, 9]. To mitigate this effect, we consider the integration of an electrophoretic filtration module that exploits the strong electric charge of DNA molecules to selectively remove them from the recirculating stream [10]. Although the filtration device is currently under experimental validation, in this work we assume its availability and focus on the design of a control frame-work that jointly regulates the dilution rate and the activation of the filtration unit to maximize the economic performance of the bioprocess. We develop two feedback control strategies and compare their performance. The first combines online state and parameter esti-mation via an Unscented Kalman Filter (UKF) with an adaptive Model Predictive Controller (MPC) that optimizes the control inputs over a receding horizon. The second is a simpler policy pairing bang–bang regulation of the filtration unit with a lookup-table selection of the dilution rate, also driven by UKF estimates. Both strategies are validated through closed-loop simulations of the nonlinear process model under nominal and perturbed param-eter conditions, and compared in terms of cumulative economic profit. To the best of the authors’ knowledge, this is the first work to address the feedback control of a bioreactor in which extracellular DNA accumulation acts as a growth inhibitor and is actively re-moved through electrophoretic filtration. While model predictive control of bioreactors has been extensively studied in the litera-ture [11], and the inhibitory role of extracellular DNA has been recently characterized experimentally [8, 9], the integration of these two aspects into a unified estimation and control framework is novel. In particular, the joint online estimation of states and kinetic parameters enables the adaptive controller to compensate for the significant parametric uncertainty that characterizes bio-logical systems, without requiring accurate prior knowledge of the growth kinetics. 
+
+## 2 Problem formulation 
+
+We consider a perfectly mixed chemostat bioreactor with a recir-culation loop and an electrophoretic filtration unit, as illustrated in Fig. 1. The mathematical model describes the growth of a microbial population inside the reactor [12, 13], with additional mechanisms accounting for extracellular DNA accumulation and its removal through the filtration unit. The system dynamics are 
+
+1
+
+> arXiv:2603.23150v1 [eess.SY] 24 Mar 2026 +
+> separator
+> +
+
+Figure 1: Schematic representation of the bioreactor with a re-circulating loop (on the left) and an electrophoretic filtration unit (on the right). given by 
+
+¤𝑏 = 𝜇 (𝑠, 𝑥 )𝑏 − 𝐷 (𝑡 )𝑏, 
+
+¤𝑠 = − 1
+
+𝑌 𝜇 (𝑠, 𝑥 )𝑏 + 𝐷 (𝑡 )( 𝑠 𝑖𝑛 − 𝑠 ),
+
+¤𝑥 = 𝑐 𝜇 (𝑠, 𝑥 )𝑏 − ( 𝐷 (𝑡 ) − 𝐷 𝑟 𝑒𝑐 (𝑡 )) 𝑥 − 𝛿 (𝑡 )𝐷 𝑓 𝛼𝑥, 
+
+(2.1) where 𝑏 (𝑡 ) ∈ R≥0 is the biomass concentration [𝑔𝐿 −1], 𝑠 (𝑡 ) ∈ [0, 𝑠 in ] is the substrate concentration [𝑔𝐿 −1], and 𝑥 (𝑡 ) ∈ R≥0 is the concentration of extracellular DNA released during growth 
+
+[𝑛𝑔𝜇𝐿 −1]. The constant 𝑠 in denotes the substrate concentration in the inlet flow. The function 𝜇 (𝑠, 𝑥 ) is the specific growth rate of the micro-bial population, assumed here to be Saccharomyces cerevisiae ,which, in the absence of inhibition, follows standard Monod ki-netics. To account for the inhibitory effect of extracellular DNA accumulation, the growth rate is defined as 
+
+𝜇 (𝑠, 𝑥 ) = 𝜇 max 
+
+𝑠 𝐾 𝑠 + 𝑠 
+
+
+
+1 − 𝑥 𝑥 crit 
+
+
+
+, (2.2) where 𝜇 max > 0 is the maximum specific growth rate, 𝐾 𝑠 > 0 is the Monod half-saturation constant, and 𝑥 crit > 0 is the critical DNA concentration at which growth is completely inhibited. The parameter 𝑌 > 0 is the biomass yield coefficient and 𝑐 > 0 is the rate of extracellular DNA production per unit biomass growth. The reactor operates with partial recirculation of the outlet stream, hence the total dilution rate 𝐷 (𝑡 ) is decomposed as 
+
+𝐷 (𝑡 ) = 𝐷 𝑟 𝑒𝑐 (𝑡 ) + 𝐷 𝐻 (𝑡 ), (2.3) where 𝐷 rec (𝑡 ) is the recirculated fraction and 𝐷 𝐻 (𝑡 ) is a con-centrated make-up stream with substrate concentration 𝑠 𝐻 . The 0 10 20 30 40            
+
+> t(h)
+> 010 20 30
+> b (g L !1)010 20 30 40
+> t(h)
+> 050 100 150
+> s (g L !1)010 20 30 40
+> t(h)
+> 00.1 0.2 0.3 0.4 0.5
+> x (ng  7L!1)
+
+Figure 2: Model fit against experimental data for biomass 𝑏 ,substrate 𝑠 , and extracellular DNA 𝑥 .make-up stream compensates for nutrient depletion in the recir-culated liquid so that the effective inlet concentration equals 𝑠 in .This mass-balance constraint yields 
+
+𝐷 𝑟 𝑒𝑐 (𝑡 )𝑠 (𝑡 ) + 𝐷 𝐻 (𝑡 )𝑠 𝐻 = 𝐷 (𝑡 )𝑠 𝑖𝑛 . (2.4) Solving for the recirculation rate gives 
+
+𝐷 𝑟 𝑒𝑐 (𝑡 ) = 𝐷 (𝑡 )( 𝑠 𝑖𝑛 − 𝑠 𝐻 )
+
+𝑠 (𝑡 ) − 𝑠 𝐻 
+
+. (2.5) Note that (2.5) becomes singular when 𝑠 (𝑡 ) = 𝑠 𝐻 . In the oper-ating regime considered here, 𝑠 𝐻 ≫ 𝑠 in so that 𝑠 (𝑡 ) < 𝑠 in < 𝑠 𝐻 
+
+holds throughout, and the singularity is never reached. Moreover, under these assumptions 𝐷 rec ≤ 𝐷 .Extracellular DNA is selectively removed by the elec-trophoretic filtration unit installed in the recirculation loop. The binary variable 𝛿 (𝑡 ) ∈ {0, 1} models filter activation: when 
+
+𝛿 (𝑡 ) = 1, DNA is removed at rate 𝐷 𝑓 𝛼 𝑥 , where 𝐷 𝑓 is the filtration flow rate and 𝛼 ∈ ( 0, 1] is the filtration efficiency. The control input vector is therefore 𝑢 (𝑡 ) = [𝐷 (𝑡 ) 𝛿 (𝑡 )] ⊤,subject to the constraints 0 ≤ 𝐷 (𝑡 ) ≤ 𝐷 max . and 𝛿 (𝑡 ) ∈ { 0, 1}.
+
+2.1 Parameter identification 
+
+The kinetic parameters were identified from experimental datasets describing aerobic growth of Saccharomyces cerevisiae in fed-batch conditions, reported in [8, 14]. Since the available data correspond to fed-batch operation, the model (2.1) was reduced to its classical chemostat formulation by setting 𝐷 rec = 0 and 
+
+𝛿 = 0. Parameter estimation was performed by nonlinear least squares, minimizing the discrepancy between model predictions and experimental measurements of biomass, substrate, and ex-tracellular DNA concentrations. The resulting parameter values and their confidence intervals are summarized in Table 1, and the fitting results are shown in Fig. 2. The inhibition threshold 𝑥 crit was obtained from prior experi-ments on extracellular DNA effects in microbial systems, while the filtration efficiency 𝛼 was estimated from preliminary tests on a prototype of the electrophoretic filter. We remark that the confidence intervals in Table 1 reflect the precision of the least-squares fit. In practice, biological systems exhibit significantly larger variability due to strain differences and environmental con-ditions; this motivates the ±15% perturbation range adopted in the robustness analysis of Section 5. 
+
+> 2
+
+2.2 Problem Statement 
+
+Given the system (2.1), the objective is to design the control inputs 
+
+𝐷 (𝑡 ) and 𝛿 (𝑡 ) to maximize the net economic profit generated by the reactor over a finite horizon [0, 𝑡 𝑓 ]. Revenue is produced by biomass in the outflow, while activation of the filtration unit incurs an operating cost due to electrical energy consumption. Letting 𝑝 𝑏 denote the biomass market value ($/kg) and 𝑐 𝑓 the filtration cost per unit processed volume ($/L), the instantaneous profit is 
+
+Π(𝑡 ) = 𝑝 𝑏 𝐷 (𝑡 ) 𝑏 (𝑡 ) − 𝑐 𝑓 𝛿 (𝑡 ) 𝐷 𝑓 . (2.6) Normalizing by 𝑝 𝑏 , the optimal control problem becomes 
+
+max    
+
+> 𝐷 (·) , 𝛿 (·)
+
+𝐽 𝜆 (𝐷, 𝛿 ) =
+
+∫ 𝑡 𝑓 
+
+> 0
+
+h
+
+𝐷 (𝑡 ) 𝑏 (𝑡 ) − 𝜆 𝛿 (𝑡 ) 𝐷 𝑓 
+
+i
+
+d𝑡, (2.7) subject to the dynamics (2.1) and the input constraints, where 
+
+𝜆 = 𝑐 𝑓 /𝑝 𝑏 is the cost-to-price ratio. This formulation encodes a fundamental trade-off: increasing the dilution rate raises biomass harvesting but may lead to washout, while activating the filter pre-vents DNA-induced growth inhibition but reduces profit through its operating cost. The parameter 𝜆 has been set to 2.4, based on industrial yeast market data and preliminary experimental estimates of the en-ergy consumption of the electrophoretic filtration module under development. 
+
+## 3 Online state and parameter estimation 
+
+In practical operation the kinetic parameters of the bioreactor are uncertain and may vary due to environmental conditions, strain variability, or modelling approximations. Accurate knowledge of these parameters is essential for the model-based control strategy presented in Section 4. For this reason, the system states and se-lected kinetic parameters are estimated online using an Unscented Kalman Filter (UKF) [15, 16]. To this end, we augment the state variables of system (2.1) with the uncertain kinetic parameters: 
+
+𝑧 = [𝑏, 𝑠, 𝑥, 𝜃 ]⊤, with 𝜃 = [𝜇 max , 𝐾 𝑠 , 𝑐, 𝑌 ]⊤. (3.1) Table 1: Model parameters and their assigned values.                                      
+
+> Parameter Value CI Units
+> 𝜇 max 0.466 ±3.74% h−1
+> 𝐾 𝑠 0.02285 ±1.25% g L −1
+> 𝑐 0.01404 ±2.93% g L −1
+> 𝑌 0.2779 ±0.52% –
+> 𝛼 0.72 ––
+> 𝐷 max 0.6 –h−1
+> 𝑥 crit 0.48 –ng 𝜇 L−1
+> 𝐷 𝑓 0.4 –h−1
+> 𝑠 𝑖𝑛 20 –gL−1
+> 𝑠 𝐻 200 –gL−1
+
+The inhibition threshold 𝑥 crit and the filtration efficiency 𝛼 are assumed known and constant. The augmented system takes the form 
+
+¤𝑧 (𝑡 ) =
+
+ 𝑓 (𝜉 (𝑡 ), 𝑢 (𝑡 ), 𝜃 ) + 𝑤 𝜉 (𝑡 )
+
+𝑤 𝜃 (𝑡 )
+
+
+
+(3.2) where 𝜉 = [𝑏 𝑠 𝑥 ]⊤, 𝑤 𝜉 (𝑡 ) accounts for modeling uncertainties, and 𝑤 𝜃 (𝑡 ) is the process noise associated with the parameter dynamics [17, 18]. Measurements are obtained at discrete sampling instants 𝑡 𝑘 .The measured output is 𝑦 𝑘 = 𝐻 𝑘 𝜉 𝑘 + 𝑣 𝑘 , where 𝑣 𝑘 is the mea-surement noise. In the sensing configuration considered here, biomass and substrate concentrations are measured at every sam-pling instant, while extracellular DNA is available only at sparse intervals. The measurement matrix is accordingly 
+
+𝐻 𝑘 =
+
+1 0 00 1 0
+
+
+
+, 𝑘 ∉ K𝑥 , or 
+
+
+
+1 0 00 1 00 0 1
+
+
+
+, 𝑘 ∈ K 𝑥 , (3.3) where K𝑥 denotes the set of sampling instants at which the DNA concentration measurement is available. 
+
+3.1 Augmented system observability 
+
+Identifiability of the parameter vector 𝜃 jointly with the system states depends on the observability properties of the augmented nonlinear system (3.2). We assess local weak observability using the nonlinear observability rank condition introduced by Her-mann and Krener [19]. Let O( 𝑧 ) denote the observability matrix obtained by stacking the gradients of the output map and its suc-cessive Lie derivatives along the system dynamics. To evaluate identifiability under realistic sensing conditions, we consider the worst-case measurement configuration in which only biomass and substrate are measured ( 𝑘 ∉ K𝑥 for all 𝑘 ), so that the DNA concentration 𝑥 is treated as an unmeasured state. The rank condition rank  O( 𝑧 ∗) = dim (𝑧 ) was assessed by evaluating the observability matrix along representative tra-jectories spanning the admissible operating region. The resulting analysis, supported by symbolic and numerical computations, in-dicates that the augmented system satisfies the local observability condition over the considered domain. The preceding analysis motivates the following result. 
+
+Proposition 1 (Local observability) . Consider the augmented system (3.2) with output 𝑦 𝑘 = 𝐻 𝑘 𝜉 𝑘 , where only 𝑏 and 𝑠 are measured. Suppose that: 1. the control input 𝐷 (𝑡 ) is persistently exciting, i.e., ∫ +∞  
+
+> 0
+
+𝐷 (𝜏 ) d𝜏 = +∞ ;2. the concentrations satisfy 𝑏 (𝑡 ) > 0 and 𝑠 (𝑡 ) > 0 for all 𝑡 ≥ 0.Then the augmented system is locally weakly observable in the sense of Hermann–Krener [19] throughout the admissible oper-ating region, and the parameter vector 𝜃 is locally identifiable from the available measurements. 
+
+> 3
+
+Proof. We apply the observability rank condition of Hermann and Krener [19]. Consider the deterministic augmented state 𝑧 =
+
+[𝑏, 𝑠, 𝑥, 𝜇 max , 𝐾 𝑠 , 𝑐, 𝑌 ]⊤ ∈ R7 with drift vector field 𝑓 𝑎 (𝑧, 𝑢 )
+
+obtained from (2.1) by appending trivial parameter dynamics 
+
+¤𝜃 = 0. The two measured outputs are ℎ1 (𝑧 ) = 𝑏 and ℎ2 (𝑧 ) = 𝑠 .We must show that the observability codistribution, generated by the differentials of the outputs and their iterated Lie derivatives along 𝑓 𝑎 , has rank 7 at every point in the admissible operating region. 
+
+Step 1 (Zeroth-order). The differentials dℎ1 = d𝑏 and dℎ2 = d𝑠 
+
+are linearly independent, yielding rank 2.
+
+Step 2 (First Lie derivative of ℎ1). Since 𝐿 𝑓 𝑎 ℎ1 = ¤𝑏 =
+
+𝜇 (𝑠, 𝑥 ) 𝑏 − 𝐷 𝑏 , we have 
+
+𝜕 (𝐿 𝑓 𝑎 ℎ1)
+
+𝜕𝑥 = − 𝜇 max 𝑠 
+
+(𝐾 𝑠 + 𝑠 ) 𝑥 crit 
+
+𝑏 ≠ 0, (3.4) whenever 𝑏 > 0 and 𝑠 > 0. Hence d(𝐿 𝑓 𝑎 ℎ1) has a nonzero component along d𝑥 , which is independent of {d𝑏, d𝑠 }. The rank increases to 3.
+
+Step 3 (First Lie derivative of ℎ2). From 𝐿 𝑓 𝑎 ℎ2 = ¤𝑠 =
+
+− 1 
+
+> 𝑌
+
+𝜇 (𝑠, 𝑥 ) 𝑏 + 𝐷 (𝑠 in − 𝑠 ), the partial derivative with respect to the yield coefficient is 
+
+𝜕 (𝐿 𝑓 𝑎 ℎ2)
+
+𝜕𝑌 = 𝜇 max 𝑠 (𝑥 crit − 𝑥 )
+
+𝑌 2 𝑥 crit (𝐾 𝑠 + 𝑠 ) 𝑏 ≠ 0, (3.5) under the standing assumptions and 𝑥 < 𝑥 crit . Since 𝑌 does not appear in 𝐿 𝑓 𝑎 ℎ1, the differential d(𝐿 𝑓 𝑎 ℎ2) introduces a com-ponent along d𝑌 that is independent of the previously obtained codirections, raising the rank to 4.
+
+Step 4 (Second Lie derivatives). The parameter 𝑐 governs extracellular DNA production and does not appear in the zeroth-or first-order Lie derivatives, since ¤𝑏 and ¤𝑠 do not depend on 𝑐 
+
+directly. It enters through the DNA dynamics ¤𝑥 = 𝑐 𝜇 𝑏 − · · · , so that algebraic manipulation gives 
+
+𝜕 (𝐿 2 
+
+> 𝑓 𝑎
+
+ℎ1)
+
+𝜕𝑐 = − 𝜇 2max 𝑠 2 (𝑥 crit − 𝑥 )
+
+𝑥 2crit (𝐾 𝑠 + 𝑠 )2 𝑏 2 ≠ 0. (3.6) This is independent of all previously obtained codirections, so 
+
+d(𝐿 2 
+
+> 𝑓 𝑎
+
+ℎ1) raises the rank to 5. This proves analytically that the first five rows of O( 𝑧 ) form a set of linearly independent rows, so that the observability matrix is at least of rank 5. From this point on, the differentials of higher-order Lie deriva-tives yield increasingly lengthy algebraic expressions in the state and parameter variables, making a closed-form proof of linear in-dependence impractical within the paper. We therefore completed the rank analysis computationally: the Lie derivatives 𝐿 𝑘 𝑓 𝑎 ℎ1 and 
+
+𝐿 𝑘 𝑓 𝑎 ℎ2 were computed symbolically up to order 𝑘 = 4 using the Matlab Symbolic Math Toolbox, and the resulting 10 × 7
+
+observability matrix O( 𝑧 ) was evaluated at 10 8 randomly sam-pled operating points spanning the admissible parameter and state ranges. In all cases, rank O( 𝑧 ) = 7 = dim (𝑧 ).
+
+3.2 Numerical validation of the UKF 
+
+The estimation performance of the UKF was evaluated through a Monte Carlo campaign consisting of 40 simulations. In each run, the true plant parameters were sampled uniformly within ±15% 
+
+of their nominal values (Table 1), while the UKF was initialized at the nominal values. The dilution rate was held constant at 
+
+𝐷 = 0.2 h−1 and the filter was kept active ( 𝛿 = 1). Biomass and substrate were measured at every sampling instant; extracellular DNA was measured every 6 hours. The estimation accuracy was quantified through the root mean square error (RMSE). that is, RMSE 𝑞 =√︃ 1
+
+> 𝑁
+
+Í𝑁 𝑘 =1 (𝑞 𝑘 − ˆ𝑞 𝑘 )2,evaluated after both the plant and the observer reached steady state to exclude the initial transient. Across all runs, the mean and standard deviation of the RMSE were on the order of 10 −3
+
+for the kinetic parameters and below 10 −2 for the states. The observer converged in approximately 4 hours on average, while the plant states reached steady state after about 18 hours. These results confirm the practical identifiability of the augmented sys-tem and support the use of the UKF estimates within the control architecture described next. 
+
+## 4 Control Design 
+
+To address the control problem formulated in Section 2.2, we design a feedback control architecture that jointly regulates the dilution rate 𝐷 and the activation of the electrophoretic filtration unit 𝛿 , based on the state and parameter estimates provided online by the UKF described in Section 3. Two strategies are considered: an adaptive Model Predictive Controller (UKF+MPC), which op-timizes the control inputs online using the current parameter esti-mates, and a simpler policy (UKF+lookup) combining bang-bang regulation of the filtration unit with a lookup-table selection of the dilution rate computed offline. The latter serves as a com-putationally inexpensive baseline that does not require solving an optimization problem at each sampling instant, making it suit-able for applications where real-time computational resources are limited. 
+
+4.1 UKF+MPC 
+
+At each sampling instant 𝑘 , the UKF provides the joint estimate 
+
+ˆ𝑧 𝑘 = [ ˆ𝜉 𝑘 , ˆ𝜃 𝑘 ]⊤. The controller uses the current parameter esti-mate ˆ𝜃 𝑘 to predict the evolution of system (2.1): starting from the initial condition ¯𝜉 𝑘 | 𝑘 = ˆ𝜉 𝑘 , the predicted state evolves according to 
+
+¯𝜉 𝑘 +𝑖 +1| 𝑘 = 𝐹 ( ¯𝜉 𝑘 +𝑖 | 𝑘 , 𝑢 𝑘 +𝑖 | 𝑘 , ˆ𝜃 𝑘 ), 𝑖 = 0, . . . , 𝑁 − 1, (4.1) where 𝐹 denotes a single-step integration of the continuous-time dynamics (2.1) over the sampling interval 𝑇 𝑠 . Given a prediction horizon 𝑁 , the adaptive MPC computes the control sequence by solving 
+
+max    
+
+> 𝑢 𝑘 |𝑘 ,...,𝑢 𝑘 +𝑁 −1|𝑘
+> 𝑁 −1
+
+∑︁ 
+
+> 𝑖 =0
+
+Π( ¯𝜉 𝑘 +𝑖 | 𝑘 , 𝑢 𝑘 +𝑖 | 𝑘 ) (4.2) 
+
+> 4
+
+subject to (4.1) and 
+
+0 ≤ 𝐷 𝑘 +𝑖 | 𝑘 ≤ 𝐷 max , (4.3) 
+
+𝛿 𝑘 +𝑖 | 𝑘 ∈ { 0, 1}, (4.4) 
+
+¯𝜉 𝑘 +𝑖 | 𝑘 ≥ 0, (4.5) for 𝑖 = 0, . . . , 𝑁 − 1. The presence of the binary variable 𝛿 
+
+makes (4.2)–(4.5) a mixed-integer nonlinear program. Given the short prediction horizon ( 𝑁 = 10 ) and the single binary variable per step, the problem remains computationally tractable at the sampling rate considered ( 𝑇 𝑠 = 0.75 h). Only the first element of the optimal sequence is applied to the process, i.e., 𝑢 𝑘 = 𝑢 ★𝑘 | 𝑘 , following the standard receding-horizon strategy. 
+
+4.2 UKF+lookup 
+
+As a simpler alternative to the MPC strategy, we consider a control policy that combines bang–bang regulation of the filtration unit with a lookup-table selection of the dilution rate. The activation of the filtration module is governed by a hysteresis-based bang–bang controller designed to keep the DNA concentration within a safe operating range: 
+
+𝛿 𝑘 =
+
+
+
+1, ˆ𝑥 𝑘 ≥ 𝑥 on ,
+
+0, ˆ𝑥 𝑘 ≤ 𝑥 off ,𝛿 𝑘 −1, otherwise ,
+
+(4.6) where ˆ𝑥 𝑘 is the DNA concentration estimate provided by the UKF, and the switching thresholds are set to 𝑥 on = 0.4 𝑥 crit and 
+
+𝑥 off = 0.3 𝑥 crit . The hysteresis band avoids chattering that would result from a simple threshold policy. The upper threshold 𝑥 on 
+
+is chosen conservatively at 40% of the critical concentration to provide a sufficient safety margin against growth inhibition. The dilution rate is determined through a lookup table com-puted offline. A database of 𝑁 = 1000 parameter realizations 
+
+𝜃 (𝑖 ) = [𝜇 (𝑖 )
+
+> max
+
+, 𝐾 (𝑖 ) 
+
+> 𝑠
+
+, 𝑐 (𝑖 ) , 𝑌 (𝑖 ) ], 𝑖 = 1, . . . , 𝑁 , is generated by uniform sampling within the admissible parameter ranges. For each realization, the optimal dilution rate is obtained by maxi-mizing the steady-state biomass productivity under a worst-case assumption on the DNA level, consistent with the upper switching threshold (4.6): 
+
+𝐷 ★(𝑖 ) = arg max  
+
+> 𝐷
+
+𝐷 𝑏 ss (𝐷 ; 𝜃 (𝑖 ) , 𝑥 = 𝑥 on ), (4.7) where 𝑏 ss (𝐷 ; 𝜃 (𝑖 ) , 𝑥 ) denotes the steady-state biomass concentra-tion of model (2.1) corresponding to dilution rate 𝐷 , parameter vector 𝜃 (𝑖 ) , and DNA level 𝑥 .During online operation, the UKF provides parameter esti-mates ˆ𝜃 𝑘 at each sampling instant. The controller selects the closest entry in the database using a nearest-neighbour rule with normalized Euclidean distance, 
+
+𝑖 ★ = arg min 
+
+> 𝑖
+
+ˆ𝜃 𝑘 − 𝜃 (𝑖 )
+
+𝜃 nom 
+
+, (4.8) where 𝜃 nom denotes the vector of nominal parameter values, and applies the corresponding dilution rate 𝐷 𝑘 = 𝐷 ★(𝑖 ★ ) .
+
+## 5 Simulation results 
+
+The two control strategies are compared through closed-loop sim-ulations of the nonlinear process model (2.1). The evaluation proceeds in two stages: first the controllers are validated under nominal parameter conditions, then under parametric uncertainty obtained by perturbing the kinetic parameters within ±15% of their nominal values. In both cases, the comparison focuses on the dynamic evolution of the process states and on the cumulative economic profit (2.7). Both controllers operate with a sampling time of 𝑇 𝑠 = 0.75 h. For the MPC strategy, the prediction horizon is set to 𝑁 = 10 steps, corresponding to 7.5 h. 
+
+5.1 Nominal closed-loop performance 
+
+We first compare the two strategies when the plant parameters coincide with their nominal values, simulating the process in closed-loop over a horizon of 30 h. Figure 3a shows the evo-lution of the main process variables. Both strategies maintain the DNA concentration well below the critical threshold 𝑥 crit , but their transient behaviour differs significantly. The UKF+MPC controller drives the biomass to its steady-state value in approxi-mately 10 h, reaching the high-productivity operating region sub-stantially faster than the lookup-based controller, which is con-strained by its offline-computed dilution rate. The corresponding control inputs are shown in Fig. 3b. The lookup controller applies a nearly constant dilution rate from the precomputed table, activating the filtration unit only when the DNA concentration approaches the upper hysteresis threshold. In contrast, the MPC continuously adapts both the dilution rate and the filter activation based on the current state and parame-ter estimates, resulting in a more dynamic control profile with frequent adjustments. The effect of these different control policies is reflected in the economic performance reported in Fig. 3c. The cumulative profit obtained with the adaptive UKF+MPC controller is signifi-cantly higher than that achieved by the lookup-based strategy. In particular, the final cumulative gain achieved by the UKF+MPC controller is 26 .7, while the UKF+lookup strategy reaches 17 .0.This corresponds to an improvement of approximately 36% in economic performance. 
+
+5.2 Robustness to parameter uncertainty 
+
+The robustness of the two strategies was assessed by generating 
+
+20 parameter sets, each obtained by sampling 𝜇 max , 𝐾 𝑠 , 𝑐 , and 
+
+𝑌 uniformly within ±15% of their nominal values. For each scenario, the plant was simulated using the perturbed parameters while both controllers operated in closed loop with UKF-based online estimation. Identical initial conditions were used for the two strategies to ensure a fair comparison. Table 2 summarizes the performance indicators across all sce-narios. The UKF+MPC controller consistently achieved higher cumulative profit than the lookup-based strategy. In particular, the final cumulative gain obtained with the UKF+MPC controller 
+
+> 5
+
+(a) Process states (b) Control inputs (c) Cumulative gain 𝐽 defined in (2.7). 
+
+Figure 3: Closed-loop comparison between the UKF+MPC (solid blue lines) and the UKF+lookup (dashed orange lines strategies under nominal parameter conditions. Table 2: Performance comparison under parametric uncertainty (±15% ). Values are reported as mean ± standard deviation over 
+
+20 scenarios.                                  
+
+> Metric UKF+MPC UKF+Lookup Final cumulative gain 30 .55 ±5.50 18 .01 ±5.14
+> Final biomass [g L −1]5.55 ±0.48 5.68 ±0.45
+> Maximum toxin [ng 𝜇 L−1]0.189 ±0.030 0.246 ±0.058
+> Mean dilution rate [h −1]0.246 ±0.037 0.248 ±0.019
+> Filter activation fraction 0.30 ±0.08 0.14 ±0.05
+
+was 30 .55 ± 5.50 , compared to 18 .01 ± 5.14 for the UKF+lookup controller. This corresponds to an average improvement of 
+
+76 .6% in economic performance, with improvements ranging from 69 .2% to 102 .6% depending on the parameter values. Notably, the two strategies achieved similar final biomass con-centrations ( 5.55 ±0.48 g L −1 for UKF+MPC vs. 5.68 ±0.45 g L −1
+
+for UKF+lookup), indicating that the MPC advantage stems from more efficient transient operation rather than from a higher steady-state biomass. The DNA concentration remained safely below the critical threshold in all scenarios, with lower peak values un-der MPC ( 0.189 ± 0.030 ng 𝜇 L−1) than under the lookup policy (0.246 ± 0.058 ng 𝜇 L−1). The average dilution rates were comparable ( 0.246 h−1 for MPC vs. 0.248 h−1 for lookup), but the MPC strategy activated the filtration unit more frequently (mean activation fraction 0.30 
+
+vs. 0.14 ). This suggests that the MPC achieves its economic ad-vantage by making more aggressive and timely use of filtration, thereby allowing the biomass to grow faster during transients without risking DNA-induced inhibition. 
+
+## 6 Conclusions 
+
+We addressed the feedback control of a continuous bioreactor in which extracellular DNA accumulates in the recirculating medium and inhibits microbial growth. An electrophoretic filtra-tion unit integrated into the recirculation loop selectively removes DNA, and two control strategies were developed: an adaptive UKF+MPC scheme and a simpler UKF+lookup policy combin-ing bang–bang filtration with offline dilution rate selection. Both strategies kept DNA below the critical inhibition threshold, but the MPC consistently achieved higher cumulative profit through more efficient transient operation and more aggressive use of filtration. The lookup-based controller remains viable when real-time computational resources are limited. Future work will target experimental validation on a laboratory-scale bioreactor and ex-tension of the MPC formulation to include additional constraints such as nutrient consumption limits and minimum biomass pro-ductivity guarantees. 
+
+## Acknowledgements 
+
+> The authors thank Prof. S. Mazzoleni and Prof. F. Giannino (Dept. of Agricultural Sciences, University of Naples Federico II) for discussions on inhibitory extra-cellular DNA modelling. AS acknowledges partial PhD support from NOSELF s.r.l. AI-assisted tools were used for manuscript revision and grammar checking.
+
+## Funding 
+
+> Project co-funded by the European Union – Next Generation EU - under the National Recovery and Resilience Plan (NRRP), Mission 4 Component 2, Invest-ment 3.3 – Decree no. 630 (24th April 2024) of Italian Ministry of University and Research; Concession Decree no. 1956 del 05th December 2024 adopted by the Italian Ministry of University and Research, CUP D93D24000270003, within the national PhD Programme in Autonomous Systems (XL cycle), and NO SELF s.r.l.
+
+## References                                   
+
+> [1] M. Meena, G. Yadav, P. Sonigra, and M. Shah, “A comprehensive review on application of bioreactor for industrial wastewater treatment,” Letters in Applied Microbiology , vol. 74, no. 2, p. 131–158, Sep. 2021. [Online]. Available: http://dx.doi.org/10.1111/lam.13557 [2] B. Partopour and D. Pollard, “Advancing biopharmaceutical manufacturing: economic and sustainability assessment of end-to-end continuous production of monoclonal antibodies,” Trends in Biotechnology ,vol. 43, no. 2, p. 462–475, Feb. 2025. [Online]. Available: http://dx.doi.org/10.1016/j.tibtech.2024.10.007 [3] B. Whitford, D. Jones, and S. Kinnane, “Biomanufacturing design: reducing the environmental burden,” Current Opinion in Biotechnology ,
+> 6
+
+vol. 76, p. 102717, Aug. 2022. [Online]. Available: http: //dx.doi.org/10.1016/j.copbio.2022.102717 [4] E. Fernandes and R. Cunha Marques, “Review of water reuse from a circular economy perspective,” Water , vol. 15, no. 5, p. 848, Feb. 2023. [Online]. Available: http://dx.doi.org/10.3390/w15050848 [5] A. Klok, C. Dieperink, and T. Rötscheid, “Governance on point? an assessment of the permitting, supervision and enforcement processes for point source discharges in the netherlands,” Water , vol. 18, no. 1, p. 27, Dec. 2025. [Online]. Available: http://dx.doi.org/10.3390/w18010027 [6] T. Hsiao, C. E. Glatz, and B. A. Glatz, “Broth recycle in a yeast fermentation,” Biotechnology and Bioengineering , vol. 44, no. 10, p. 1228–1234, Nov. 1994. [Online]. Available: http: //dx.doi.org/10.1002/bit.260441010 [7] A. P. Borole, J. R. Mielenz, T. A. Vishnivetskaya, and C. Y. Hamilton, “Controlling accumulation of fermentation inhibitors in biorefinery recycle water using microbial fuel cells,” Biotechnology for Biofuels , vol. 2, no. 1, p. 7, 2009. [Online]. Available: http://dx.doi.org/10.1186/1754-6834-2-7 [8] E. de Alteriis et al. , “Extracellular dna secreted in yeast cultures is metabolism-specific and inhibits cell proliferation,” Microbial Cell ,vol. 10, no. 12, p. 277–295, Dec. 2023. [Online]. Available: http://dx.doi.org/10.15698/mic2023.12.810 [9] S. Mazzoleni et al. , “Inhibitory effects of extracellular self-dna: a general biological process?” New Phytologist , vol. 206, no. 1, p. 127–132, Jan. 2015. [Online]. Available: http://dx.doi.org/10.1111/nph.13306 [10] S. Mazzoleni, “Composition comprising nucleic acids of parasitic, pathogenic or weed biological systems for inhibiting and/or controlling the growth of said systems,” May 2014, pCT International Application PCT/IT2013/000193. [11] S. Ramaswamy, T. Cutright, and H. Qammar, “Control of a continuous bioreactor using model predictive control,” Process Biochemistry ,vol. 40, no. 8, p. 2763–2770, Jul. 2005. [Online]. Available: http://dx.doi.org/10.1016/j.procbio.2004.12.019 [12] H. L. Smith and P. Waltman, The Theory of the Chemostat: Dynamics of Microbial Competition . Cambridge University Press, Jan. 1995. [Online]. Available: http://dx.doi.org/10.1017/CBO9780511530043 [13] J. Monod, “The growth of bacterial cultures,” Annual Review of Microbiology , vol. 3, no. 1, p. 371–394, Oct. 1949. [Online]. Available: http://dx.doi.org/10.1146/annurev.mi.03.100149.002103 [14] S. Mazzoleni et al. , “A novel process-based model of microbial growth: self-inhibition in saccharomyces cerevisiae aerobic fed-batch cultures,” 
+
+Microbial Cell Factories , vol. 14, no. 1, Jul. 2015. [Online]. Available: http://dx.doi.org/10.1186/s12934-015-0295-4 [15] S. J. Julier and J. K. Uhlmann, “New extension of the kalman filter to nonlinear systems,” in Signal Processing, Sensor Fusion, and Target Recognition VI , I. Kadar, Ed., vol. 3068. SPIE, Jul. 1997, p. 182. [Online]. Available: http://dx.doi.org/10.1117/12.280797 [16] E. Wan and R. Van Der Merwe, “The unscented kalman filter for nonlinear estimation,” in Proceedings of the IEEE 2000 Adaptive Systems for Signal Processing, Communications, and Control Symposium (Cat. No.00EX373) , ser. ASSPCC-00. IEEE, 2000, p. 153–158. [Online]. Available: http://dx.doi.org/10.1109/ASSPCC.2000.882463 [17] R. Kandepu, B. Foss, and L. Imsland, “Applying the unscented kalman filter for nonlinear state estimation,” Journal of Process Control , vol. 18, no. 7–8, p. 753–768, Aug. 2008. [Online]. Available: http://dx.doi.org/10.1016/j.jprocont.2007.11.004 [18] J. H. Gove and D. Y. Hollinger, “Application of a dual unscented kalman filter for simultaneous state and parameter estimation in problems of surface-atmosphere exchange,” Journal of Geophysical Research: Atmospheres , vol. 111, no. D8, Apr. 2006. [Online]. Available: http://dx.doi.org/10.1029/2005JD006021 [19] R. Hermann and A. Krener, “Nonlinear controllability and observability,” 
+
+IEEE Transactions on Automatic Control , vol. 22, no. 5, p. 728–740, Oct. 1977. [Online]. Available: http://dx.doi.org/10.1109/TAC.1977.1101601
