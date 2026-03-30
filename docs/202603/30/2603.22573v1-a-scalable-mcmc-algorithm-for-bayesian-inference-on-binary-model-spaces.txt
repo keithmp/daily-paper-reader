@@ -1,0 +1,1520 @@
+Title: A Scalable MCMC Algorithm for Bayesian Inference on Binary Model Spaces
+
+URL Source: https://arxiv.org/pdf/2603.22573v1
+
+Published Time: Wed, 25 Mar 2026 00:23:27 GMT
+
+Number of Pages: 43
+
+Markdown Content:
+Bayesian Analysis (2026) TBA , Number TBA, pp. 1 
+
+# A Scalable MCMC Algorithm for Bayesian Inference on Binary Model Spaces 
+
+Lucas Vogels ∗ , Reza Mohammadi ∗ , Marit Schoonhoven ∗
+
+Sinan Yıldırım † and Ş. İlker Birbil ∗
+
+Abstract. This article considers Bayesian model inference on binary model spaces. Binary model spaces are used by a large class of models that include graphical models, variable selection, mixture distributions, and decision trees. Traditional strategies in this field, such as reversible jump or birth-death MCMC algorithms, are still popular, despite suffering from a slow exploration of the model space. In this article, we propose an alternative: the Multiple Jump MCMC algorithm. The algorithm is simple, rejection-free, and remarkably fast. When applied to undi-rected Gaussian graphical models, it is 100 to 200 times faster than the state-of-the art, solving models with 500 , 000 parameters in less than a minute. We provide theorems showing how accurately our algorithm targets the posterior, and we apply our framework to Gaussian graphical models, Ising models and variable se-lection, but note that it applies to most Bayesian posterior inference on binary model spaces. 
+
+MSC2020 subject classifications: Primary 62F15, 60J10; secondary 60J27. 
+
+Keywords: Bayesian model inference, MCMC sampling, variable selection, graphical models. 
+
+# 1 Introduction 
+
+This article introduces a new MCMC algorithm for Bayesian model inference on binary model spaces. That is, we consider a set of candidate models, each with an associated parameter vector, and quantify the posterior for each model. We assume that each candidate model can be represented by a binary vector. This set-up is used by a large class of Bayesian model inference problems, including variable selection (Tadesse and Vannucci, 2021), mixture distributions (Stephens, 2000), regression trees (Mohammadi et al., 2020) and graphical models. Examples of graphical models include undirected Gaussian graphical models (Vogels et al., 2024), Ising models (Marsman et al., 2022) or mixed graphical models (Wang et al., 2023). On binary model spaces (and on general model spaces) Markov chain Monte Carlo (MCMC) methods are a popular tool for Bayesian model inference. These methods often circumvent the computation of normalizing constants and are suitable for exploring larger model spaces. MCMC methods design a Markov chain that converges to the posterior distribution. When the Markov chain is run long enough, the states in the tail of the Markov chain correspond to samples from the posterior. 
+
+arXiv: XXXXX 
+
+> ∗
+
+Amsterdam Business School, University of Amsterdam, l.f.o.vogels@uva.nl; a.mohammadi@uva.nl 
+
+> †
+
+Industrial Engineering, Sabanci University 
+
+© 2026 International Society for Bayesian Analysis 
+
+> arXiv:2603.22573v1 [stat.ME] 23 Mar 2026
+
+2 Scalable MCMC algorithm for Bayesian inference 
+
+MCMC methods generally focus on uncovering the joint posterior, i.e. the posterior distribution of both the model and the associated parameters. When the associated parameter vectors have different dimensions, these MCMC methods are also referred as trans-dimensional. They exist in discrete-time (Green, 1995) or continuous-time (Mo-hammadi and Wit, 2015). Alternatively, one can integrate out the parameter vector and focus instead on the marginal posterior. This strategy creates an MCMC solely over the model space, see Madigan and York (1995) for a discrete-time example and Mohammadi et al. (2024) for a continuous-time example. Both trans-dimensional and marginal methods are either reversible or non-reversible. Reversible methods depend on a condition called detailed balance, which states that ev-ery move must balance with its reverse move. The detailed balance condition is more than is needed to prove convergence, but a convenient restriction to impose. Popular examples of reversible algorithms are the Reversible Jump MCMC (Green, 1995) and the Metropolis-Adjusted Langevin Algorithm (Besag, 1994; Schreck et al., 2013). Both techniques, however, depend on an accept/reject step in which proposed moves can be rejected, thereby wasting computational power. Birth-death (BD) algorithms are a pop-ular reversible alternative. They operate in continuous time and explore the parameter space using repeated births and/or deaths, making them rejection-free. Recent exam-ples of BD algorithms for Bayesian model inference include Gaussian graphical models (Mohammadi et al., 2024) and Gaussian directed acyclic graphical models (Jennings and Corcoran, 2016). Despite being rejection-free, BD methods still suffer from poor mixing, because they only allow local moves. Alternatively, non-reversible algorithms relax the detailed balance condition and em-ploy different techniques to establish convergence to the stationary distribution. They enjoy better mixing properties and therefore explore large parameter spaces. In discrete time, a popular non-reversible MCMC strategy involves the idea of “lifting" (Sher-lock and Thiery, 2021; Gagnon and Doucet, 2020). In continuous-time, popular non-reversible algorithms are the Zig-Zag algorithm (Bierkens et al., 2016) and the Bouncy Particle Sampler (Bouchard-Côté et al., 2018). Although both the Zig-Zag algorithm and the Bouncy Particle Sampler depend on differentiable parameter spaces, adapta-tions exists that allow for their application to binary model spaces, see for example (Bierkens et al., 2022; Chevallier et al., 2023). Despite better mixing properties, non-reversible algorithms still either require an accept/reject step or depend on local moves. The starting point of our work is a reversible BD algorithm. We show that with a sim-ple trick, we can transform such a process into a discrete-time MCMC algorithm that we call the Multiple Jump MCMC (MJ-MCMC) algorithm. Our algorithm is non-reversible and targets the marginal posterior. Unlike traditional accept/reject approaches, our al-gorithm is rejection-free, and unlike BD processes, our algorithm allows global updates. In fact, the MJ-MCMC algorithm can traverse the entire model space in a single it-eration. It is therefore exceptionally scalable, while maintaining high-quality inference. When applied to the field of undirected Gaussian graphical models (GGMs), our algo-rithm is 100 to 200 times faster than the state-of-the-art, solving 1000 -node problems (i.e. 2499500 potential models) in under 30 seconds on a standard desktop. We apply our approach to undirected GGMs, Ising models, and Bayesian variable selection, but we L. Vogels et al. 3note that the applicability of our work reaches beyond those examples. In fact, it can be applied to most Bayesian posterior inference on binary model spaces. The outline of this article is as follows: Section 2 introduces the preliminaries of Bayesian model inference. We present our algorithm and a theoretical analysis in Section 3. We show how our work can be applied to undirected Gaussian graphical models, Bayesian variable selection, and Ising models in Section 4. We show the scalability of our work in a simulation study (Section 5.1) and a real-life data application (Section 5.2). We conclude and give directions for future research in Section 6. 
+
+# 2 Preliminaries 
+
+Binary model spaces: We consider unknown binary vectors m = ( m1, . . . , m k) ∈M := {0, 1}k for some integer k ≥ 1. That is, mi ∈ { 0, 1} for all i = 1 , . . . , k and M
+
+has l := 2 k elements. We will refer to m as a model and to M as the model space. With every model m ∈ M , we associate a parameter vector θm in a parameter space Θm.
+
+Bayesian model selection: We assume that m comes from a distribution p(m) — the model prior — and that θm comes from a distribution p(θm | m) — the prior on the parameter vector given the model. Given m and θm, we now observe a data vector 
+
+y from a distribution p(y | m, θ m) — the likelihood. We can now formulate the joint posterior 
+
+p(m, θ m | y) = p(y | m, θ m)p(θm | m)p(m)
+
+p(y) . (1) Here, p(y) := ∑
+
+> m
+
+∫ 
+
+> Θm
+
+p(y | m, θ m)p(θm | m)p(m)d θm is the normalizing constant. In many applications, one is more interested in the models m than in the associated parameters θm. In that case, it makes sense to integrate out the model parameters to obtain the marginal likelihood 
+
+p(y | m) = 
+
+∫
+
+> θm∈Θm
+
+p(y | m, θ m)p(θm | m) d θm.
+
+The marginal likelihood is often referred to as the model evidence. The integral is some-times available in closed-form – mostly when selecting appropriate parameter priors 
+
+p(θm | m). In most cases, however, the marginal likelihood needs to be approximated. Traditionally, the Bayesian Information Criterion (Schwarz, 1978) and the Laplace method (Tierney and Kadane, 1986) are popular choices for this approximation. Re-cently, the pseudo-likelihood (Besag, 1975) has attracted renewed interest (Mohammadi et al., 2024; Marsman et al., 2022). With the marginal likelihood, one can formulate the model posterior 
+
+p(m | y) = p(y | m)p(m)
+
+p(y) . (2) Bayesian model inference aims to understand either the joint posterior (1) or the model posterior (2). In many cases this is challenging due to the normalizing constant p(y).4 Scalable MCMC algorithm for Bayesian inference 
+
+But even if the normalizing constant is available in closed form, computing the posterior for all m ∈ M is infeasible when the model space M is too large. This is where MCMC methods come in useful. They circumvent the computation of the normalizing constant and are likely to compute the posterior only for those models that have a higher posterior probability. Moreover, MCMC methods come with a convenient property: they provide inference not only on the posterior, but also on any characteristic of the posterior. For example, the posterior probability that mi = 1 
+
+for any i = 1 , . . . , k , or the posterior probability that θm ∈ A, for any set A ⊆ Θm.MCMC methods come in two flavors: discrete-time MCMC methods and continuous-time MCMC methods. 
+
+Discrete-time Markov chains (DTMC): A time-homogeneous DTMC is defined by the l × l row-stochastic transition probability matrix P with elements P (m, m ′) for all 
+
+m, m ′ ∈ M , where ∑ 
+
+> m′
+
+P (m, m ′) = 1 . A DTMC explores the model space M, each time moving from a model m(s) to a new model m(s+1) with probability P (m(s), m (s+1) ). A DTMC spends exactly one unit of time in each model before moving on to the next (with possible self-transitions). Hence, the classifier “discrete time”. Under the right conditions, the chain {m(s)} converges to a limiting distribution, denoted by π(m).These conditions are irreducibility, aperiodicity, and the balance condition (Tierney, 1994, Theorem 1). The balance condition is typically replaced by the detailed balance condition with respect to π(m), that is, 
+
+π(m)P (m, m ′) = π(m′)P (m′, m ) ∀m, m ′ ∈ M . (3) An MCMC chain that has detailed balance is called reversible. Though detailed bal-ance is more restrictive than the general balance condition, it is typically convenient to impose. DTMCs are useful for Bayesian posterior inference, because one can set P such that the detailed balance condition (3) holds with respect to the model posterior p(m | y).The resulting limiting distribution π(m) then equals the posterior distribution p(m | y)
+
+in (2), and the Markov chain samples (m(1) , m (2) , . . . ), then converge to samples from 
+
+p(m | y). The Metropolis-Hastings algorithm by Hastings (1970) and the Gibbs sampler by Geman and Geman (1984) are two well-known examples of DTMCs where P satisfies the detailed balance conditions. 
+
+Continuous-time Markov chains (CTMC): A CTMC is defined by the l×l rate matrix 
+
+Q with elements Q(m, m ′) for all m, m ′ ∈ M . A CTMC explores the parameter space 
+
+M, each time moving from a state m to a new state according to the following process. It samples, for every m′̸ = m, a value from an exponential distribution with rate Q(m, m ′).The chain then moves to the state m′ that corresponds to the lowest sampled value. This value is called the waiting time and represents the time the chain spends in each state before moving to the next. The waiting time is continuous and different for each state, hence the classifier “continuous time”. Again, the detailed balance condition with respect to π(m) is a convenient tool to design such a CTMC. It is expressed as 
+
+π(m)Q(m, m ′) = π(m′)Q(m′, m ) ∀m, m ′ ∈ M . (4) L. Vogels et al. 5Note the similarity between (3) and (4). Like a DTMC, we can design the rate matrix 
+
+Q such that detailed balance (4) holds with respect to the model posterior p(m | y) in (2). The resulting limiting distribution π(m) then equals p(m | y). Running the CTMC long enough will then result in approximate samples from the posterior distribution. Often, the size of the parameter space M is too large and computing the rate 
+
+Q(m, m ′) for all m, m ′ ∈ M is computationally infeasible. This is where so-called birth-death (BD) processes come in. BD processes are a class of CTMCs that set all rates 
+
+Q(m, m ′) to zero, except when m and m′ are “neighbors”. Two states m = ( m1, . . . , m k)
+
+and m′ = ( m′
+
+> 1
+
+, . . . , m ′
+
+> k
+
+) are neighbors when they differ in only one element i ∈ { 1, . . . , k }.Let the vector mi denote the state that differs from m only in the ith element. Note that, since we deal with a binary model space, mii = 1 − mi. For a BD process, the detailed balance condition (4) therefore simplifies to 
+
+π(m)Q(m, m i) = π(mi)Q(mi, m ) ∀m ∈ M , i = 1 , . . . , k. (5) A practical rejection-free birth-death sampler can be created as formalized in the following lemma. 
+
+Lemma 2.1. Let M = {0, 1}k be a binary model space. A CTMC with rates 
+
+Q(m, m ′) = 
+
+{
+
+qi(m), if m′ = mi for some i ∈ { 1, · · · , k };0, otherwise , (6) 
+
+with 
+
+qi(m) = min 
+
+{
+
+1, p(mi | y)
+
+p(m | y)
+
+}
+
+, (7) 
+
+has the posterior p(m | y) as its invariant distribution. Proof. Using the rates (6), the detailed balance conditions (5) hold with respect to the model posterior p(m | y). Hence, p(m | y) is the invariant distribution of the CTMC. This BD process yields a simple but efficient algorithm. The main computational burden at each iteration is the computation of the k rates qi(m). However, these rates can be computed in parallel. The MCMC chain will change exactly one element of the model m at each iteration, thereby offering a rejection-free alternative to the Metropolis-Hastings approach. It is successfully applied to undirected GGMs (Mohammadi et al., 2024) and to directed acyclic graphs (Jennings and Corcoran, 2016). Moreover, Chen (2023)[Section 3.4] presents a framework containing the same idea and applies it to a low-scale Ising model. 
+
+Bayes factor: The ratio in (7) can be written as: 
+
+p(m′ | y)
+
+p(m | y) = p(y | m′)
+
+p(y | m)
+
+p(m′)
+
+p(m) .6 Scalable MCMC algorithm for Bayesian inference 
+
+The first ratio on the right-hand side, p(y|m′) 
+
+> p(y|m)
+
+, is called the Bayes factor. It quantifies the evidence in favor of one model m′ over another model m. Like the marginal likelihood, the Bayes factor is rarely available in closed form; however, accurate closed-form approx-imations have appeared in many applications, including undirected Gaussian graphical models (Leppä-aho et al., 2017), directed Gaussian graphical models (Consonni and Rocca, 2012), Ising models (Marsman et al., 2022), and Bayesian variable selection (Chipman et al., 2001). 
+
+# 3 Proposed Approach 
+
+A single iteration of the BD algorithm in Lemma 2.1 is computationally feasible, because most rates are set to zero. However, the BD algorithm still struggles with large model spaces, because it updates just one element per iteration. Modern applications often treat models containing as many as one million elements, in which a BD algorithm needs millions of MCMC iterations leading to computation and memory-related issues. This is why we now present an extension of the birth-death algorithm. This extension creates a discrete-time Markov chain with superior mixing qualities. In fact, the new DTMC can cross the entire model space in a single iteration. We first present the algorithm, and show that it has two variants. Then, we provide a theorem for each variant, showing how accurately each variant targets the posterior distribution p(m | y).We end this section with some additional remarks. Our algorithm provides samples from the marginal posterior (2), but we show that with a simple extension it can generate samples from the joint posterior (1) too. 
+
+## 3.1 Our algorithm 
+
+Consider a BD process with rates Q(m, m ′) whose invariant distribution π(m) is the posterior distribution p(m | y) or an approximation thereof; see Lemma 2.1 for an example of such a BD process. Our algorithm is a DTMC, derived from this BD process as follows. Let ε1, ε 2, . . . , be a user-defined sequence with εs ∈ (0 , 1) for s = 1 , 2, . . . .Also, for m ∈ M and i ∈ { 1, . . . , k }, let qi(m) := Q(m, m i) ∈ (0 , 1] . Suppose that in iteration s, the DTMC is in some state m ∈ M . The DTMC moves to the next state by flipping its ith element with a probability of qi(m)εs, independently for each 
+
+i = 1 , . . . , k . Hence, for arbitrary m, m ′ ∈ M , the transition probability at iteration s
+
+is given by 
+
+Pεs (m, m ′) = ∏
+
+> i∈Hm,m ′
+
+qi(m)εs
+
+∏
+
+> i̸∈ Hm,m ′
+
+(1 − qi(m)εs), (8) where Hm,m ′ ⊆ { 1, . . . , k } is the set of elements in which m and m′ differ. Note that the transition probability matrix Pεs (m, m ′) is well-defined for any εs ∈ (0 , 1) : we have 
+
+Pεs (m, m ′) > 0 for all m, m ′ ∈ M and ∑ 
+
+> m′
+
+Pεs (m, m ′) = 1 for all m ∈ M . The latter can be verified by observing that moving from a state m to a new state m′ is equivalent to flipping k different coins, each with a success probability of qi(m)εs, i = 1 , . . . , k .Hence, the sum of all the possible combinations of coin flips will sum to one. L. Vogels et al. 7Algorithm 1 provides the pseudo-code of our proposed approach. As previously stated, Algorithm 1 takes an existing BD process as a starting point, and creates a new DTMC that explores the parameter space M faster. This is because it can update multiple elements in a single iteration. In fact, it can traverse the entire parameter space in a single iteration, because Pεs (m, m ′) > 0 provided that π(m′) > 0 for any 
+
+m, m ′ ∈ M . In each state, the size of a jump depends on the posterior probability of that state. Hence, we expect that the algorithm makes large jumps initially, but once it reaches an area with a high posterior probability, the jump size decreases, and the chain stabilizes. 
+
+Algorithm 1: Multiple Jump MCMC (MJ-MCMC) 
+
+Input: Data y, an initial model m(1) and a sequence ε1, ε 2, . . . , ε S 
+
+> 1
+
+for s = 1 , . . . , S do  
+
+> 2
+
+Calculate in parallel the rates qi(m(s)) for all i = 1 , . . . , k using (6);  
+
+> 3
+
+Create m(s+1) by changing each element m(s) 
+
+> i
+
+of m(s) with probability 
+
+qi(m(s))εs;
+
+Output: Samples (m(1) , . . . , m (S))
+
+Although it is relatively straightforward to see that Algorithm 1 explores the space 
+
+M fast, it is less obvious to assess how accurately the samples (m(1) , . . . , m (S)) target the posterior distribution p(m | y). Section 3.2 studies the theoretical properties of Al-gorithm 1 concerning its accuracy. To that end, we consider two variants in terms of the sequence {εs}s≥1. One variant uses a constant εs = ε, s = 1 , 2, . . . , which results in a homogeneous DTMC. A second variant is to construct {εs}s≥1 as a decaying se-quence, resulting in an inhomogeneous DTMC. Those two variants will be investigated separately. 
+
+## 3.2 Theoretical analysis 
+
+We investigate the behavior of the proposed algorithm. Recall that the DTMC of the algorithm is built upon the BD process with rate matrix Q that has π as its invariant distribution. In what follows, we will refer to this BD process as (X(t)) t≥0. We provide a theorem for both the homogeneous and inhomogeneous variant of Algorithm 1. 8 Scalable MCMC algorithm for Bayesian inference 
+
+Homogeneous case: In the first case, we have εs = ε ∈ (0 , 1) for all s ≥ 1. To con-cretize the discussion, we need some definitions. Let {M (s) 
+
+> ε
+
+}s≥0 be the DTMC generated by Algorithm 1 with constant ε. Moreover, define the following quantities regarding 
+
+(X(t)) t≥0 and {M (s) 
+
+> ε
+
+}s≥1.
+
+• Define the continuous-valued waiting time Wm as the random time the process 
+
+(X(t)) t≥0 spends in state m until it jumps to a new state, 
+
+• Define the discrete-valued waiting time W εm as the random number of time steps 
+
+the process {M (s) 
+
+> ε
+
+}s≥1 spends in state m until it jumps to a new state, 
+
+• Define the jump probability ˜P (m, m ′) (resp. ˜Pε(m, m ′)) as the probability that the process (X(t)) t≥0 (resp. {M (s) 
+
+> ε
+
+}s≥0) jumps from m to m′ conditional on the event that a transition occurs. Theorem 3.1 below states several facts about the asymptotics of {M (s) 
+
+> ε
+
+}s≥0 both in ε
+
+and in time. 
+
+Theorem 3.1 (Homogeneous DTMC) . Let π be the limiting distribution of the BD process (X(t)) t≥0 and π(m) > 0 for all m ∈ M . Let πε be the stationary distribution of 
+
+{M (s) 
+
+> ε
+
+}s≥1. We have the following results: (i) πε is the limiting distribution (in time) of {M (s) 
+
+> ε
+
+}s≥1.(ii) If the BD process is reversible, || πε − π|| = O(ε) for any vector norm || · || .(iii) For all states m ∈ M , we have 
+
+εW εm
+
+> d
+
+→ Wm as ε → 0,
+
+that is, the waiting times of (M (s) 
+
+> ε
+
+)s≥0, scaled by ε, converge, in distribution, to the waiting times of (X(t)) t≥0.(iv) For all m, m ′ ∈ M , we have 
+
+lim 
+
+> ε→0
+
+˜Pε(m, m ′) = ˜P (m, m ′).
+
+that is, the jump probabilities of {M (s) 
+
+> ε
+
+}s≥0 converge to the jump probabilities of 
+
+(X(t)) t≥0.
+
+Theorem 3.1 (i) and (ii), show that, as ε → 0, the limiting distribution of the DTMC of Algorithm 1 converges to π, the limiting distribution of the BD process. The convergence of (time-scaled) waiting times and jump probabilities, as shown in (iii) and (iv), shows that, as ε gets smaller, Algorithm 1 behaves more similarly to the BD process; however, at the expense of slowing down. Selecting ε is therefore a trade-off between computational efficiency and accuracy. A higher value of ε directly results in L. Vogels et al. 9better mixing, since the probability that the element i flips equals qi(m)ε. However, lower values of ε result in more proximity to the original BD process. Ultimately, the choice of ε depends on the desired qualities of the resulting MCMC algorithm. In Section 5.1, we compare the performance of Algorithm 1 with different values of constant ε in the case of Gaussian graphical models. 
+
+Inhomogeneous case: The next theorem treats the inhomogeneous case. Let {M (s)}s≥0
+
+be the DTMC created by the transition probabilities (8) and with {εs}s≥0. We show that the limiting distribution of {M (s)}s≥0 is the same as the invariant distribution π
+
+of the BD process, provided that the sequence {εs}s≥1 vanishes and its sum diverges. A proof of Theorem 3.2 is given in Supplementary Material A.3. 
+
+Theorem 3.2 (Inhomogeneous DTMC) . Consider a discrete-time MCMC over a binary model space M = {0, 1}k with transition probabilities (8) , where qi(m) are the rates of a birth-death process, for all m ∈ M and i = 1 , · · · , k . Moreover, assume that this birth-death process is irreducible and reversible. If the sequence {εs}s≥1 satisfies 
+
+lim  
+
+> s→∞
+
+εs = 0 (decay) and 
+
+> ∞
+
+∑
+
+> s=1
+
+εs = ∞ (divergence) , (9) 
+
+then the birth-death process and the DTMC have the same limiting distribution. 
+
+Theorem 3.2 requires decay and divergence of {εs}s≥1. That still leaves a wide variety of sequences to choose from. As in the homogeneous case, the choice of {εs}s≥1 presents a trade-off between computational efficiency and accuracy of the algorithm. A slowly decaying sequence (e.g., εs = 1 / ln( s + 2) ) mixes fast, but the chain might visit states with low posterior probability, resulting in poor accuracy. A quickly decaying sequence (e.g., εs = 1 /(s ln s)) may behave similarly to the original BD process – accurate, but slow. Regardless of the chosen sequence, the consequences of Theorem 3.2 are striking. It proves that the DTMC defined by transition probabilities (8) has the same limiting distribution as the original birth-death process, namely π, but without the slow element-by-element updates. The DTMC, therefore, achieves the same quality of inference as the BD process with a remarkable reduction in computational cost. We demonstrate this claim with our thorough experiments (Section 5.1) and an application in practice (Section 5.2). 
+
+## 3.3 Additional discussion and results 
+
+This section builds on Theorem 3.1 and Theorem 3.2 to present some corollaries and remarks. 
+
+A notable quirk of Algorithm 1: At every iteration s, our DTMC can jump to any state m′ with positive posterior probability, since Pεs (m, m ′) > 0 whenever π(m′) > 0.This comes with the evident advantage of excellent mixing. However, it also yields a 10 Scalable MCMC algorithm for Bayesian inference 
+
+noteworthy observation: our DTMC can visit states m′ with very low posterior proba-bility, particularly for larger εs. Imagine for example the simple two-dimensional model space M = {0, 1}2 and suppose that the posterior probabilities are π(1 , 1) = 0 .01 , and 
+
+π(0 , 0) = π(0 , 1) = π(1 , 0) = 0 .33 . An MCMC algorithm targeting π should therefore rarely visit the state (1 , 1) . For example, the transition rates to (1 , 1) of the BD process in Lemma 2.1 are Q((0 , 0) , (1 , 1)) = 0 and Q((0 , 1) , (1 , 1)) = Q((1 , 0) , (1 , 1)) = 0 .03 .Our DTMC, however, is more likely to visit such a state, especially for higher εs.For example, when in state (0 , 0) and when εs = 0 .9, our DTMC has a chance of 
+
+Pεs ((0 , 0) , (1 , 1)) = ε2 
+
+> s
+
+= 0 .81 of moving from (0 , 0) to (1 , 1) . At first glance, this might seem problematic. However, note that Theorem 3.1 suggests a small value for the con-stant ε and Theorem 3.2 requires lim s →∞ εs = 0 . These conditions ensure that, in the long run, jumps to states with low posterior probabilities become infrequent, and that the DTMC’s limiting distribution will get arbitrarily close to that of the BD process. 
+
+An exact (and slower) algorithm: One could modify Algorithm 1 with constant ε
+
+to obtain an alternative (but slower) MCMC algorithm that exactly targets π. This alternative MCMC algorithm is an MH algorithm that uses Pεs (m, m ′) (8) to propose a new model m′ from the current state m. This proposed model m′ can then be accepted with a probability of 
+
+α(m, m ′) := min 
+
+{
+
+1, π(m′)Pεs (m′, m )
+
+π(m)Pεs (m, m ′)
+
+}
+
+,
+
+or rejected otherwise. While the accept/reject step renders the algorithm exact, it slows it down, as a drawback. 
+
+A special case of convergence: With homogeneous transition probabilities (i.e. εs =
+
+ε), the limiting distribution of Algorithm 1 converges to the invariant distribution of the BD process as ε → 0. There is a special case of Bayesian model inference, however, where both limiting distributions are the same for any ε ∈ (0 , 1) . This special case requires the model posterior to be factorizable, i.e., we require 
+
+p(m | y) = 
+
+> k
+
+∏
+
+> i=1
+
+p(mi | y). (10) We can now state this result formally using the following lemma, a proof of which is given in Supplementary Material A.4. 
+
+Lemma 3.3. Consider a binary model space {0, 1}k and a factorizable posterior p(m |
+
+y), as in (10) . Consider a BD process as in Lemma 2.1 with rates qi(m). Moreover, consider a homogeneous, discrete-time MCMC with transition probabilities (8) , with 
+
+εs = ε ∈ (0 , 1) for all s, and where qi(m) are the rates of the BD process. Then, for any 
+
+ε ∈ (0 , 1) the DTMC has the same invariant distribution as the BD process. 
+
+Lemma 3.3 provides intuition to the workings of Algorithm 1. The factorizable poste-rior ensures that the elements m1, · · · , m k are independent. This element-wise posterior L. Vogels et al. 11 independence is exactly why the homogeneous variant of Algorithm 1 works for all 
+
+ε ∈ (0 , 1) , since Algorithm 1 updates the elements mi independent of each other. In most cases, however, posteriors are not factorizable. That is why, in the general case, we need either the condition ε → 0 (Theorem 3.1) or both decay and divergence condi-tions (Theorem 3.2). 
+
+Extension to joint posterior: So far, we have presented an extension to the BD process (Lemma 2.1) that creates a superior DTMC (Algorithm 1). Both the BD process and our DTMC are suitable for inference on the model posterior (2), but not to learn the parameters θm associated with each model. That is, the algorithms are not immediately applicable for inference on the joint posterior (1). The step to joint inference, however, is not large. In fact, the next lemma presents a straightforward strategy to use the samples 
+
+(m(1) , . . . , m (S)) from Algorithm 1 to obtain samples (( m(1) , θ (1)  
+
+> m
+
+), . . . , (m(S), θ (S) 
+
+> m
+
+) from the joint posterior (1). 
+
+Lemma 3.4. Let m(1) , m (2) , . . . be the states of a discrete-time Markov chain with limit-ing distribution π(m). If we now sample the parameter vectors θ(1) , θ (2) , . . . from a distri-bution π(θ | m(s)) for all s = 1 , 2, .. . Then, the resulting samples (m(1) , θ (1) ), (m(2) , θ (2) ), . . . 
+
+are samples from a Markov chain with limiting distribution π(m)π(θ | m)
+
+Proof. Let μs(m) denote the probability that the Markov chain with states m(1) , m (2) , . . . 
+
+is in state m at iteration s. We have lim s→∞ μs(m) = π(m). Let μs(m, θ ) denote the probability that the Markov chain with states (m(1) , θ (1) ), (m(2) , θ (2) ), . . . , is in state 
+
+(m, θ ) in iteration s. Then, we obtain 
+
+lim  
+
+> s→∞
+
+μs(m, θ ) = lim  
+
+> s→∞
+
+μs(m)π(θ | m) = π(m)π(θ | m).
+
+Hence, the limiting distribution of the Markov chain with states (m(1) , θ (1) ), (m(2) , θ (2) ), . . . 
+
+is π(m)π(θ | m).If π(m) = p(m | y) and π(θ | m) = p(θ | m, y ), then the Markov chain with states 
+
+(m(1) , θ (1) ), (m(2) , θ (2) ), . . . has limiting distribution π(m)π(θ | m) = p(m | y)p(θ |
+
+m, y ) = p(θ, m | y), which is exactly the required joint posterior. 
+
+# 4 Applications 
+
+Algorithm 1 can be used for Bayesian model inference on problems with a binary model space. This section presents a well-known example: undirected Gaussian graphical mod-els. In Supplementary Material B, we also apply our approach to Bayesian variable selection and Ising models. For each application, the path to construct our Multiple Jump algorithm is the same: we formulate the model posterior (2) and specify the rates 
+
+qi(m) := Q(m, m i) for the BD process in Lemma 2.1. Using these rates in Algorithm 1 will give the desired algorithm. 12 Scalable MCMC algorithm for Bayesian inference 
+
+## 4.1 Undirected Gaussian graphical models 
+
+This subsection treats undirected Gaussian graphical models (GGMs). In fact, the BD process in Lemma 2.1 is already proposed by Mohammadi et al. (2024). This subsection reviews those existing results and presents our algorithm as an extension of this BD process. 
+
+Preliminaries: GGMs assume that the data y come from a multivariate normal distri-bution. More precisely, y is an n × p matrix containing n observations of the variables 
+
+Y1, . . . , Y p. These variables follow a multivariate normal distribution with unknown p×p
+
+covariance matrix Σ and unknown precision matrix K := Σ −1. The matrix K, with el-ements kij , encodes the conditional dependency between any two variables Yi and Yj ,because 
+
+kij = 0 ⇐⇒ Yi and Yj are conditionally independent .
+
+These conditional (in)dependence relationships can be depicted in a graph G with p
+
+nodes corresponding to Y1, . . . , Y p. An undirected edge (i, j ) is included if and only if the variables Yi and Yj are conditionally dependent. We are interested in the graph G
+
+that could have generated these data y. Bayesian inference focuses on uncovering the posterior distribution of this graph. That is, 
+
+p(G | y) = p(y | G)p(G)
+
+p(y) .
+
+If we denote the presence of an edge with a 1 and the absence of an edge with a 0, we can encode every graph as binary vector of length k = p(p − 1) /2. The graphs G are therefore binary “models”, and the space of all p × p graphs is a binary model space. The precision matrix K is the model-associated parameter. Given a graph G, the prior on the precision matrix is denoted by p(K | G). Popular choices include the G-wishart prior (Roverato, 2002) or the spike-and-slab prior (Wang, 2015). See Vogels et al. (2024) for a comprehensive review on Bayesian structure learning in GGMs. 
+
+BD process: Let G and Ge be two graphs that differ only in the edge e = ( i, j ). Under the G-Wishart prior, an approximation of the Bayes factor between G and Ge exists (Leppä-aho et al., 2017). It is given by 
+
+p(y | Ge)
+
+p(y | G) ≈ ˆp(y | Ge)ˆp(y | G) := p(yi | ynb (i,G e))p(yj | ynb (j,G e))
+
+p(yi | ynb (i,G ))p(yj | ynb (j,G )) , (11) where yh is a vector containing the n observations of variable h, nb (h, G ) refers to the set of neighbors of node h with respect to G and yA is the sub-matrix of y corresponding to the nodes that are in a set A. This approximation is remarkably fast, because it only requires the evaluation of the four terms p(yh | ynb (h,G )), each of which can be obtained quickly using another approximation (Leppä-aho et al., 2017)[Equation 9]. Mohammadi et al. (2024) use equation (11) to design a BD process as described in Lemma 2.1 with rates L. Vogels et al. 13 
+
+Q(G, G ′) = 
+
+{
+
+qe(G), if G′ = Ge for some edge e;0, otherwise, where 
+
+qe(G) := min 
+
+(
+
+1, ˆp(y | Ge)ˆp(y | G)
+
+p(Ge)
+
+p(G)
+
+)
+
+(12) The algorithm of Mohammadi et al. (2024) outperforms other state-of-the art algo-rithms, but still takes more than an hour to solve 1000 -variable problems (see Section 5.1), mostly because the algorithm – being a BD process – updates only one edge per iteration. 
+
+Our algorithm: Our work allows us to extend the BD process of Mohammadi et al. (2024) to a DTMC that does allow multiple edge updates per iteration. Our DTMC will have transition probabilities (8) with qe(G) as in (12). By Theorem 3.2, the DTMC has the same limiting distribution as the BD process, provided that the sequence {εs}s≥1
+
+satisfies (9). Moreover, due to Lemma 3.4, if we sample precision matrices K(s) from 
+
+p(K | G(s), y ) for s = 1 , . . . , S , the resulting samples (G(1) , K (1) ), . . . , (G(S), K (S)) are samples from the joint posterior p(K, G | y). We tested our approach in a simulation study (Section 5.1) and on real-life data (Section 5.2). 
+
+# 5 Numerical Experiments 
+
+This section demonstrates the performance of the MJ-MCMC approach in practice. We apply our algorithm to the field of undirected Gaussian graphical models, using a simulation study (Section 5.1) and a real-life data set (Section 5.2). 
+
+## 5.1 Simulation study 
+
+This section highlights the scalability of our approach in a simulation setting. We com-pare our approach (Algorithm 1) to the state-of-the-art algorithm in Bayesian structure learning in Gaussian graphical models: the BD-MPL algorithm (Mohammadi et al., 2024), which is up to 10 times faster than the competing algorithms on large-scale in-stances ( p = 1000 ). We test our algorithm with homogeneous transition probabilities, using ε ∈ { 0.001 , 0.01 , 0.3, 0.7, 0.95 }, and inhomogeneous transition probabilities (8) where we use the slowly and quickly decaying sequences 
+
+εs = 0 .3 1log 10 (s + 9) for s = 1 , . . . , 500 and εs = 0 .3
+
+( 1
+
+s log 2(s + 1) 
+
+)0.4
+
+for s = 1 , . . . , 40000 ,
+
+(13) respectively. Figure 1 shows both sequences. We report our results on an instance with 
+
+p = 1000 variables, n = 400 observations, and edge density of 0.2% . This edge density might seem low, but note that under this density nodes are connected to two other nodes 14 Scalable MCMC algorithm for Bayesian inference 
+
+Figure 1: The decay during the first 500 iterations for a quickly (red) and slowly (black) decaying sequence. 
+
+on average. The experiments were repeated eight times. Other simulation settings are described in Supplementary Material C. For each algorithm, we use the generated Markov Chain to calculate the posterior edge inclusion probability. This value represents the probability that, given the data, an edge (i, j ) is included in the graph. We then assess the quality of these edge inclusion probabilities using the AUC-PR, i.e., the area under the precision-recall curve. The AUC-PR ranges from zero (worst) to one (best). 
+
+Figure 2: AUC-PR scores over running time for the BD-MPL algorithm as well as for our approach with homogeneous and inhomogeneous transition probabilities. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 400 observations, and edge density of 0.2% .
+
+Figure 2 contains the results. It leads to three main conclusions: First, our approach L. Vogels et al. 15 is remarkably fast. In the homogeneous case for εs ∈ { 0.3, 0.7, 0.95 }, our approach solves 1000 -variable problems in under 30 seconds. That is around 100 to 200 times faster than the state-of-the-art BD-MPL algorithm. In the inhomogeneous case, the quickly and the slowly decaying sequences are even faster. Second, for small values of 
+
+ε, i.e. ε ∈ { 0.001 , 0.01 } our approach slows down and starts behaving like the BD-MPL algorithm. This is in line with Theorem 3.1. Third, higher values of ε do not lead to worse accuracy. On the contrary, all values of ε as well as the quickly and the slowly decaying sequences lead to similar AUC-PR values. Lemma 3.3 might provide a reason for this surprising result. Using the G-wishart prior, the resulting posterior is not factorizable as in (10). However, for large values of p and for sparse instances, we hypothesize that it does behave approximately factorizable. In line with Lemma 3.3, this ensures that the limiting distribution of Algorithm 1 is similar to that of the BD-MPL approach for all values of ε. This hypothesis is supported by Figures S9-S16 in Supplemenary Material C.3 and C.4. These figures show that, in denser cases, high values of ε (e.g. ε = 0 .75 )do in fact lead to worse accuracy. This section only included one instance and one metric. In Supplementary Material C we provide results for different metrics, for a small and large number of observations, and for sparse and dense graphs. These supplementary results tell the same story: across metrics and across instances, Algorithm 1 reduces computational efficiency without sacrificing accuracy. 
+
+## 5.2 Real-life data 
+
+The simulation study shows that our approach offers a significant reduction in computa-tion time compared to the state-of-the-art. This section will show that this also holds for real-life data. Specifically, we will test Algorithm 1 on a dataset with p = 623 variables and n = 653 observations, and show that we obtain the same quality of inference as the state-of-the-art MPL-BD algorithm (Mohammadi et al., 2024), but up to 10 times as fast. The data set in question is the GSE15907 microarray dataset from Painter et al. (2011) and Desch et al. (2011), comprising gene expression data from 24,922 genes in 653 mouse immune cells, obtained from the Immunological Genome Project (Heng et al., 2008). Studying the conditional dependency structure among genes is important as it hints at how genes in immune cells work together to produce proteins impacting the body’s response to diseases. Understanding these mechanisms is essential to improve disease treatment strategies. The dataset was used in the context of Bayesian inference in GGMs before by both Chandra et al. (2024) and Mohammadi et al. (2024). For data preparation, we follow the steps of Chandra et al. (2024). That is, we apply a log 2 transformation to avoid heteroskedasticity, and we only keep the 2.5% of genes with the highest variance. The final dataset, therefore, contains p = 2 .5% × 24922 = 623 
+
+genes. Each of the n = 653 observations corresponds to an immune cell. Cells belonging to the same cell type have similar gene expression profiles, whereas cells belonging to different cell types behave very differently. We therefore center, for each gene, the 16 Scalable MCMC algorithm for Bayesian inference 
+
+observations within each cell type. 1 This also ensures that each variable has a zero mean. Lastly, we transform the data in line with (Liu et al., 2009). This transformation ensures that each marginal distribution can be assumed to be a Gaussian with unit variance. We use the Bernoulli prior for the graph with a prior edge inclusion probability of 0.01 , based on the results of Chandra et al. (2024). We will run Algorithm 1 with homogeneous transition probabilities ε ∈ { 0.001 , 0.01 , 0.3, 0.6, 0.9} and inhomogeneous transition probabilities, where we use the slowly and quickly decaying sequences (13). We compare the performance of our algorithm with the MPL-BD algorithm by Mohammadi et al. (2024). Our algorithm provides the same quality of Bayesian inference as the BD-MPL al-gorithm. Figure 3 provides a scatterplot comparing the estimated edge inclusion proba-bilities of Algorithm 1 ( ε = 0 .3) with those of the BD-MPL algorithm. Almost all dots are close to the red diagonal line, indicating that the inference of our algorithm is very similar to that of the BD-MPL algorithm. Similar results apply for other values of ε,including the slowly and quickly decaying sequences. In fact, for every ε, the correla-tion coefficient between the edge inclusion probabilities of Algorithm 1 and those of the BD-MPL algorithm is higher than 0.988 and the average absolute difference smaller than 0.004 . An exception is ε = 0 .9, in which case the MJ-MCMC algorithm jumps uncontrollably and ends up at a different target distribution altogether. 
+
+Figure 3: Scatterplot comparing the edge inclusion probabilities of the BD-MPL algo-rithm with our MJ-MCMC algorithm with ε = 0 .3.
+
+Figure 4 shows the total running time and total MCMC iterations required for each algorithm. The MJ-MCMC algorithm is up to 10 times faster than the BD-MPL algorithm, and requires up to 600 times fewer MCMC iterations. In line with Theorem 3.1, we observe that as ε → 0, our algorithm becomes slower and starts behaving like 
+
+> 1Mohammadi et al. (2024) skip this step. The posterior they report is therefore denser than ours
+
+L. Vogels et al. 17 the BD-MPL algorithm. To create Figure 4, we run each algorithm until a stopping criterion is met. To determine this criterion, we first run the BD-MPL algorithm for four million MCMC iterations, more than sufficient for convergence. Next, we run each algorithm until the resulting edge inclusion probabilities have a Pearson correlation of 
+
+0.98 with those of the BD-MPL algorithm. At that point, we report the total running time and MCMC iterations. Note that, when ε = 0 .9, this point is never reached and is therefore noted with a NA in Figure 4. 
+
+Figure 4: The running time (left) and required MCMC iterations (right) of the BD-MPL algorithm compared to Algorithm 1 for different values of εs, on the mice gene dataset with p = 623 .
+
+# 6 Conclusion 
+
+This work introduces an algorithm for Bayesian model inference on binary model spaces. We take a BD process as a starting point and show that a simple extension creates a new DTMC. Under conditions this DTMC has the same limiting distribution as the BD process. However, it can cross the entire model space in a single iteration, leading to remarkable computational efficiency. When applied to Gaussian graphical models, our algorithm is up to 200 times as fast as the state-of-the art. We show that our framework can be applied to Ising models and variable selection too. There are several ways in which future work can build on this article. First, more simulations are needed to highlight the strengths and weaknesses of our approach. We showed how our algorithm performs in a simulation study and on real-life data. However, it remains unclear how our algorithm performs on instances where 
+
+n ≫ p, instances with more than 1, 000 variables or very dense instances. Moreover, Supplementary Material B.1 and B.2 promise a reduction in computation time for vari-able selection and Ising models, respectively. Simulation studies are needed to check whether this promise can be fulfilled. Secondly, our framework can be applied beyond the examples given in this paper. Starting with other binary models, such as mixed graphical models (Florez et al., 2025), decision trees (Mohammadi et al., 2020), or directed graphical models. Moreover, every 18 Scalable MCMC algorithm for Bayesian inference 
+
+discrete model space can be written as a binary model space with a constraint. This opens up the possibility to apply our work to Bayesian inference on discrete model spaces. Lastly, Chen (2023)[Section 4.4] show that an algorithm designed for a discrete state space can be extended to work on a continuous state space. A similar extension could apply our framework to continuous model spaces. Thirdly, our framework can be extended for inference on the joint posterior. Algo-rithm 1 focuses on inference on the model posterior (2). There are two ways to realize this extension. First, we can follow Lemma 3.4 and sample the model-associated param-eters after running Algorithm 1. Simulations are needed to show whether this works in practice. Alternatively, we can take a BD process on the joint space as a starting point (e.g. Mohammadi and Wit (2015)), and tweak Algorithm 1 to extend this to a superior DTMC on the joint space. A theoretical analysis and simulation study is needed to assess this strategy. Fourthly, further reductions in computational time are possible. One such strategy could be to update only a subset of the rates at each iteration. Chen (2023)[Section 4.2] proposes this strategy in a similar set-up, and shows its potential to reduce com-putational costs. Alternatively, we can achieve higher efficiency by calculating the rates using only a subset of the observations, as in Welling and Teh (2011). Lastly, there is a lot of room for more theoretical guarantees. Although Theorem 3.1 and 3.2 shed light on the accuracy of the algorithm in terms of the proximity (or convergence) to the posterior distribution, we provide no results on the rate of this proximity (convergence). Moreover, Andrieu and Roberts (2009) show that an unbiased estimate of the likelihood is enough to design a Metropolis-Hastings algorithm that targets the exact posterior. There is potential to extend this result to a BD process and to the framework discussed in this article. 
+
+> Acknowledgments Funding
+
+# Supplementary Material 
+
+Supplement A.1. . Preliminary lemmas used in the proofs of Theorems 3.1 and 3.2 
+
+Supplement A.2 . The proof of Theorem 3.1 
+
+Supplement A.3 . The proof of Theorem 3.2 
+
+Supplement A.4 . The proof of Lemma 3.3 
+
+Supplement B.1 . The application of MJ-MCMC to Bayesian variable selection 
+
+Supplement B.2 . The application of MJ-MCMC to structure selection in Ising models L. Vogels et al. 19 
+
+Supplement C . A detailed description of all instances, settings, metrics, and results of the simulation study of Section 5.1. 
+
+Code . All code used to create the figures of this article is available on https://github. com/lucasvogels33/A-Scalable-MCMC-Algorithm-For-Bayesian-Inference-on-Binary-Model-Spaces 
+
+# References 
+
+Andrieu, C. and Roberts, G. (2009). “The pseudo-marginal approach for effcient Monte Carlo computations.” The Annals of Statistics , 37(2): 697–725. 18 Besag, J. (1975). “Statistical Analysis of Non-Lattice Data.” Journal of the Royal Statistical Society. Series D (The Statistician) , 24(3): 179–195. 3 Besag, J. (1994). “A comment on “Representations of Knowledge in Complex Sys-tems” by Grenander and Miller.” Journal of the Royal Statistical Society: Series B (Methodological) , 56(4): 549–581. 2 Bierkens, J., Fearnhead, P., and Roberts, G. (2016). “The Zig-Zag Process and Super-Efficient Sampling for Bayesian Analysis of Big Data.” Annals of Statistics , 47(3): 1288–1320. 2 Bierkens, J., Grazzi, S., Meulen, F. v. d., and Schauer, M. (2022). “Sticky PDMP samplers for sparse and local inference problems.” Statistics and Computing , 33(1): 8. 2 Bouchard-Côté, A., Vollmer, S. J., and Doucet, A. (2018). “The Bouncy Particle Sam-pler: A Nonreversible Rejection-Free Markov Chain Monte Carlo Method.” Journal of the American Statistical Association , 113(522): 855–867. 2 Chandra, N. K., Müller, P., and Sarkar, A. (2024). “Bayesian Scalable Precision Factor Analysis for Gaussian Graphical Models.” Bayesian Analysis Advance Publication ,1(1): 1–29. 15, 16 Chen, S. (2023). “Rejection-Free and Partial Neighbor Search MCMC Algorithms.” Phd thesis, University of Toronto, Toronto, Canada. 5, 18 Chevallier, A., Fearnhead, P., and Sutton, M. (2023). “Reversible Jump PDMP Samplers for Variable Selection.” Journal of the American Statistical Association , 118(544): 2915–2927. 2 Chipman, H., George, E., and McCulloch, R. (2001). “The Practical Implementation of Bayesian Model Selection.” Model Selection IMS Lecture Notes -Monograph Series ,38. 6 Consonni, G. and Rocca, L. L. (2012). “Objective Bayes Factors for Gaussian Directed Acyclic Graphical Models.” Scandinavian Journal of Statistics , 39(4): 743–756. 6 Desch, A., Randolph, G., Murphy, K., Kedl, R., Lahoud, M., Caminschi, I., Short-man, K., Henson, P., and Jakubzick, C. (2011). “CD103+ pulmonary dendritic cells 20 Scalable MCMC algorithm for Bayesian inference 
+
+preferentially acquire and present apoptotic cell-associated antigen.” The Journal of Experimental Medicine , 208(9): 1789–97. 15 Florez, M., Gottard, A., McAdams, C., Guindani, M., and Vannucci, M. (2025). “A Bayesian Approach for Inference on Mixed Graphical Models.” Bayesian Analysis Advance Publication , 1–28. 17 Gagnon, P. and Doucet, A. (2020). “Nonreversible Jump Algorithms for Bayesian Nested Model Selection.” Journal of Computational and Graphical Statistics , 30(2): 312–323. 2Geman, S. and Geman, D. (1984). “Stochastic Relaxation, Gibbs Distributions, and the Bayesian Restoration of Images.” IEEE Transactions on Pattern Analysis and Machine Intelligence , PAMI-6(6): 721–741. 4 Green, P. J. (1995). “Reversible Jump Markov Chain Monte Carlo Computation and Bayesian Model Determination.” Biometrika , 82(4): 711–732. 2 Hastings, W. K. (1970). “Monte Carlo sampling methods using Markov chains and their applications.” Biometrika , 57(1): 97–109. 4 Heng, T., Painter, M., Elpek, K., Lukacs-Kornek, V., Mauermann, N., Turley, S., Koller, D., Kim, F., Wagers, A., Asinovski, N., Davis, S., Fassett, M., Feuerer, M., Gray, D., Haxhinasto, S., Hill, J., Hyatt, G., Laplace, C., Leatherbee, K., and Kang, J. (2008). “The immunological genome project: Networks of gene expression in immune cells.” 
+
+Nature Immunology , 9(10): 1091–1094. 15 Jennings, D. and Corcoran, J. (2016). “A Birth and Death Process for Bayesian Network Structure Inference.” Probability in the Engineering and Informational Sciences , 32: 615–625. 2, 5 Leppä-aho, J., Pensar, J., Roos, T., and Corander, J. (2017). “Learning Gaussian graphical models with fractional marginal pseudo-likelihood.” International Journal of Approximate Reasoning , 83: 21–42. 6, 12 Liu, H., Lafferty, J., and Wasserman, L. (2009). “The nonparanormal: semiparametric estimation of high dimensional undirected graphs.” Journal of Machine Learning Research , 10(80): 2295–2328. 16 Madigan, D. and York, J. (1995). “Bayesian Graphical Models for Discrete Data.” 
+
+International Statistical Review , 63(2): 215–232. 2 Marsman, M., Huth, K., Waldorp, L., and Ntzoufras, I. (2022). “Objective Bayesian Edge Screening and Structure Selection for Ising Networks.” Psychometrika , 87(1): 47–82. 1, 3, 6 Mohammadi, A. and Wit, E. C. (2015). “Bayesian Structure Learning in Sparse Gaus-sian Graphical Models.” Bayesian Analysis , 10(1): 109 – 138. 2, 18 Mohammadi, R., Pratola, M., and Kaptein, M. (2020). “Continuous-Time Birth-Death MCMC for Bayesian Regression Tree Models.” Journal of Machine Learning Research ,21(201): 1–26. 1, 17 L. Vogels et al. 21 Mohammadi, R., Schoonhoven, M., Vogels, L., and Birbil, S. I. (2024). “Scalable Bayesian Structure Learning for Gaussian Graphical Models Using Marginal Pseudo-Likelihood.” Bayesian Analysis Advance Publication , 1–31. 2, 3, 5, 12, 13, 15, 16 Painter, M., Davis, S., Hardy, R., Mathis, D., and Benoist, C. (2011). “Transcriptomes of the B and T lineages compared by multiplatform microarray profiling.” The Journal of Immunology , 186(5): 3047–3057. 15 Roverato, A. (2002). “Hyper inverse Wishart distribution for non-decomposable graphs and its application to Bayesian inference for Gaussian graphical models.” Scandina-vian Journal of Statistics , 29(3): 391–411. 12 Schreck, A., Fort, G., Le Corff, S., and Moulines, E. (2013). “A Shrinkage-Thresholding Metropolis Adjusted Langevin Algorithm for Bayesian Variable Selection.” IEEE Journal of Selected Topics in Signal Processing , 10(2): 366–375. 2 Schwarz, G. (1978). “Estimating the Dimension of a Model.” The Annals of Statistics ,6(2): 461–464. 3 Sherlock, C. and Thiery, A. H. (2021). “A discrete bouncy particle sampler.” Biometrika ,109(2): 335–349. 2 Stephens, M. (2000). “Bayesian analysis of mixture models with an unknown number of components—an alternative to reversible jump methods.” The Annals of Statistics ,28(1): 40 – 74. 1 Tadesse, M. and Vannucci, M. (2021). Handbook of Bayesian Variable Selection . New York: Chapman and Hall/CRC. 1 Tierney, L. (1994). “Markov Chains for Exploring Posterior Distributions.” The Annals of Statistics , 22(4): 1701–1728. 4 Tierney, L. and Kadane, J. B. (1986). “Accurate Approximations for Posterior Moments and Marginal Densities.” Journal of the American Statistical Association , 81(393): 82–86. 3 Vogels, L., Mohammadi, R., Schoonhoven, M., and Birbil, Ş. İ. (2024). “Bayesian struc-ture learning in undirected Gaussian graphical models: Literature review with em-pirical comparison.” Journal of the American Statistical Association , 119(548): 3164– 3182. 1, 12 Wang, H. (2015). “Scaling it up: Stochastic search structure learning in graphical mod-els.” Bayesian Analysis , 10(2): 351–377. 12 Wang, N., Massam, H., Gao, X., and Briollais, L. (2023). “The scalable birth–death MCMC algorithm for mixed graphical model learning with application to genomic data integration.” The Annals of Applied Statistics , 17(3): 1958 – 1983. 1 Welling, M. and Teh, Y. (2011). “Bayesian Learning via Stochastic Gradient Langevin Dynamics.” Proceedings of the 28th International Conference on Machine Learning, ICML 2011 , 681–688. 18 Supplementary Material for A Scalable MCMC Algorithm for Bayesian Inference on Binary Model Spaces 
+
+# A Proofs of the theoretical results in Section 3 
+
+## A.1 Preliminary Lemmas 
+
+Recall that Q is the rate matrix of the BD process with transition rates qi(m) and limiting distribution π, with π(m) > 0 for all m ∈ M . Moreover, let Pε denote the transition probability matrix corresponding to the homogeneous DTMC generated by Algorithm 1 in Section 3.1. That is, Pε is the matrix with entries Pε(m, m ′) defined in Equation (8), with εs = ε. The following lemmas will be used in the proofs of Theorems 3.1 and 3.2. 
+
+Lemma S1. For any ε > 0, we have 
+
+Pε = I + εQ + Eε, (S1) 
+
+where Eε is an error matrix with entries of order O(ε2).Proof. First, for m ∈ M , we have 
+
+Pε(m, m ) = 
+
+> k
+
+∏
+
+> i=1
+
+(1 − Q(m, m i)ε)= 1 − ε
+
+> k
+
+∑
+
+> i=1
+
+Q(m, m i) + O(ε2)= 1 + εQ (m, m ) + O(ε2). (S2) where we use the Taylor expansion of the product term, and in the last line, we use the fact that Q(m, m ) = − ∑ki=1 Q(m, m i). Next, for model pairs (m, m i) for any i =1, . . . , k , we have 
+
+Pε(m, m i) = Q(m, m i)ε
+
+> k
+
+∏ 
+
+> j̸=i
+
+(1 − Q(m, m j )ε)= Q(m, m i)ε
+
+1 − ε ∑ 
+
+> j̸=i
+
+Q(m, m j ) + O(ε2)
+
+
+
+> arXiv: XXXXX
+
+2 Scalable MCMC algorithm for Bayesian inference 
+
+= εQ (m, m i) + O(ε2). (S3) Lastly, for other model pairs (m, m ′), we use the fact that Q(m, m ′) = 0. We then have 
+
+Pε(m, m ′) = O(ε2) = εQ (m, m ′) + O(ε2). (S4) Combining (S2)-(S4), we obtain (S1). For two l-dimensional vectors x, x ′ with elements x(m) and x′(m), m ∈ M , let us define ⟨x, x ′⟩π := ∑ 
+
+> m
+
+x(m)x′(m)π(m). Let || x|| 22,π = ⟨x, x ⟩π . Note that this norm is well-defined since π(m) > 0 for all m ∈ M , which is ensured by the irreducibility of the chain Q and the finiteness of M.
+
+Lemma S2. If Q is reversible with regard to π, there exist constants β > 0 and ε∗ > 0
+
+such that for all ε < ε ∗, and any row vector e ∈ R1×l with ∑li=1 ei = 0 , we have 
+
+|| e(I + εQ )|| 2,π ≤ (1 − εβ )|| e|| 2,π . (S5) 
+
+Proof. This is a known result, and, in a more general form, is referred to as the Poincaré inequality. For completeness, and because a step-by-step proof is missing in the litera-ture, we provide the proof here. First, we observe three critical facts about the matrix ̂
+
+Pε := I + εQ .
+
+• Let 0 = β1 > β 2 ≥ β3 ≥ . . . be the eigenvalues of Q, where β1 = 0 is ensured by the fact that Q is a valid rate matrix and β2 < 0 is guaranteed by the fact that 
+
+Q is convergent. Then, for ε > 0, the matrix ̂ Pε has eigenvalues λi := 1 + εβ i,for i = 1 , . . . , k , with the same set of eigenvectors, which we denote by vi. In particular, the largest eigenvalues of ̂ Pε is λ1 := 1 with corresponding eigenvector 
+
+v1 := 1. Moreover, the second largest eigenvalue of ̂ Pε is λ2 := 1 + β2ε.
+
+• There exists an ε∗ 
+
+> 1
+
+> 0 such that for all ε < ε ∗ 
+
+> 1
+
+the matrix ̂ Pε is a valid transition probability matrix that is reversible with respect to π. The reversibility is inherited from the reversibility of Q. Since ̂ Pε is reversible with respect to π, the eigenvectors 
+
+vi form an orthonormal basis with inner product ⟨· , ·⟩ π . That is, ⟨vi, v i⟩π = 1 ,
+
+⟨vi, v j ⟩π = 0 for all i̸ = j, and any vector f can be written as f = ∑li=1 civi with 
+
+ci := ⟨f, v i⟩π ∈ R.
+
+• Furthermore, pick some ε∗ 
+
+> 2
+
+< −1/β 2 and let ε∗ = min {ε∗
+
+> 1
+
+, ε ∗
+
+> 2
+
+}. Then, for any 
+
+ε < ε ∗,̂ Pε is a valid transition probability matrix whose second eigenvalue λ2 =1 + εβ 2 ∈ (0 , 1) .Take any ε < ε ∗ and let f = ∑li=1 civi be such that c1 := ⟨f, 1⟩π = 0 . We have 
+
+f̂ Pε =
+
+> l
+
+∑
+
+> i=1
+
+civî Pε =
+
+> l
+
+∑
+
+> i=1
+
+ciλivi =
+
+> l
+
+∑
+
+> i=2
+
+ciλivi.3Therefore, we have 
+
+|| f̂ Pε|| 22,π = ⟨f̂ Pε, f ̂ Pε⟩π
+
+=
+
+〈 l∑
+
+> i=2
+
+ciλivi,
+
+> l
+
+∑
+
+> j=2
+
+cj λj vj
+
+〉
+
+> π
+
+=
+
+> l
+
+∑
+
+> i=2
+> l
+
+∑
+
+> j=2
+
+ciλicj λj ⟨vi, v j ⟩π
+
+=
+
+> l
+
+∑
+
+> i=2
+
+c2 
+
+> i
+
+λ2
+
+> i
+
+≤ λ22
+
+> l
+
+∑
+
+> i=2
+
+c2 
+
+> i
+
+= λ22|| f || 22,π .
+
+Since λ2 ∈ (0 , 1) , taking square roots gives 
+
+|| f̂ Pε|| 2,π ≤ λ2|| f || 2,π = (1 + β2ε)|| f || 2,π . (S6) Let π−1 denote the vector with entries 1 
+
+> π(m)
+
+. For two vectors x and x′ with entries x(m)
+
+and x(m′), let x ◦ x′ denote the Hadamard product, with with entries x(m)x(m′). Note that we have ⟨π−1 ◦ e, 1⟩π = 0 and that, therefore, (S6) holds for f = π−1 ◦ e. Let 
+
+Dx denote the diagonal matrix with diagonal entries x(m), and let || · || op denote the matrix operator norm corresponding to the || · || 2,π vector norm. For a matrix A, we have || (x ◦ x′)A|| 2,π ≤ || Dx|| op || x′A|| 2,π . We have 
+
+|| êPε|| 2,π = || (π ◦ π−1 ◦ e)̂ Pε|| 2,π 
+
+≤ || π−1 ◦ e)̂ Pε|| 2,π || Dπ || op 
+
+≤ (1 + β2ε)|| π−1 ◦ e|| 2,π || Dπ || op 
+
+≤ (1 + β2ε)|| e|| 2,π || Dπ−1 || op || Dπ || op 
+
+≤ (1 + β2ε)|| e|| 2,π || Dπ−1 Dπ || op 
+
+= (1 + β2ε)|| e|| 2,π .
+
+Finally, let β = −β2 > 0. This concludes the proof. 
+
+## A.2 Proof of Theorem 3.1 
+
+We prove the claims (i)-(iv) in order. (i) Since π(m) > 0 for all m ∈ M , the BD process is irreducible. Adding the fact that 
+
+M is finite-space, we conclude that {M (s) 
+
+> ε
+
+}s≥1 is irreducible and aperiodic. Hence, the stationary distribution πε is unique and equal to the limiting distribution. 4 Scalable MCMC algorithm for Bayesian inference 
+
+(ii) By Lemma S1, we have 
+
+Pε = I + εQ + Eε, (S7) where Eε = O(ε2). Next, let eε := πε − π denote the error vector. Using πQ = 0 ,and πε = πεPε, and Equation (S1), we have 
+
+eε = πε − π
+
+= πεPε − π
+
+= ( π + eε)( I + εQ + Eε) − π
+
+= π + επQ + πE ε + eε + εe εQ + eεEε − π
+
+= eε(I + εQ ) + ( π + eε)Eε. (S8) Applying the triangular inequality on (S8), we have 
+
+|| eε|| 2,π ≤ || eε(I + εQ )|| 2,π + || (π + eε)Eε|| 2,π (S9) Since the elements of eε sum to 0, by Lemma S2, there exists a β > 0 and an 
+
+ε∗ > 0 such that for all ε < ε ∗, we have 
+
+|| eε(I + εQ )|| 2,π ≤ (1 − εβ )|| eε|| 2,π . (S10) For the second term in (S9), since Es is a matrix with entries of order O(ε2), we have that 
+
+|| (π + eε)Es|| 2,π ≤ Cε 2, (S11) for some constant C > 0. Substituting (S10) and (S11) into (S9), we have 
+
+|| eε|| 2,π ≤ (1 − εβ )|| eε|| 2,π + Cε 2, (S12) for some β > 0, C > 0 and all ε < ε ∗. Rewriting (S12), we get 
+
+|| eε|| 2,π ≤ Cε β . (S13) Since any two vector norms on a finite space are equivalent, there exists, for any vector norm || · || , a constant A > 0, such that 
+
+|| eε|| ≤ A|| eε|| 2,π ≤ AC β ε. (S14) Hence || eε|| = O(ε).(iii) For the CTMC (X(t)) t≥0, the waiting time Wm in state m follows an exponen-tial distribution with rate λ(m) := ∑ki=1 qi(m). It therefore has the following cumulative distribution function: 
+
+Pr( W (m) ≤ u) = 1 − e−λ(m)u.5For the DTMC in Algorithm 1 with fixed εs = ε, first note that the rejection (self-transition) probability in state m is 
+
+rε(m) := Pε(m, m ) = 
+
+> k
+
+∏
+
+> i=1
+
+(1 − qi(m)ε).
+
+Hence, for the waiting times, we have 
+
+Pr( εW εm ≤ u) = Pr( W εm ≤ u/ε ) = 1 − rε(m)⌊u/ε ⌋, u ≥ 0.
+
+In the limit, this cumulative distribution function (cdf) converges to the cdf of the CTMC. That is, 
+
+lim  
+
+> ε→0
+
+Pr( εW εm ≤ u) = 1 − e−λ(m)u. (S15) To see that (S15) holds, we write 
+
+lim 
+
+> ε→0
+
+⌊ uε
+
+⌋
+
+rε(m) = lim 
+
+> ε→0
+
+uε ln rε(m) + lim  
+
+> ε→0
+
+O(ε) ln rε(m)= lim 
+
+> ε→0
+
+u ln rε(m)
+
+ε + 0 = lim ε→0 u ∑ki=1 
+
+> −qi(m)1−qi(m)ε
+
+1= −u
+
+> k
+
+∑
+
+> i=1
+
+qi(m) = −uλ (m),
+
+where the first line is due to u/ε − ⌊ u/ε ⌋ = O(ε), the second line is because the second term converges to zero, and the third line is due to the L’Hopital rule. Hence, 
+
+lim  
+
+> ε→0
+
+P(εW εm ≤ u) = 1 − lim  
+
+> ε→0
+
+rε(m)⌊u/ε ⌋
+
+= 1 − lim  
+
+> ε→0
+
+exp 
+
+{⌊ uε
+
+⌋
+
+ln rε(m)
+
+}
+
+= 1 − exp 
+
+{
+
+lim 
+
+> ε→0
+
+⌊ uε
+
+⌋
+
+ln rε(m)
+
+}
+
+= 1 − e−uλ (m).
+
+Therefore, as ε → 0, the (scaled) waiting time εW εm converges in distribution to an exponential random variable with rate λ(m), which is exactly the distribution of the waiting time of the birth-death CTMC. (iv) For the CTMC, the chain moves to a new state m′ with a probability 
+
+˜P (m, m ′) = 
+
+{ qi(m) 
+
+> λ(m)
+
+, if m′ = mi for some i ∈ { 1, . . . , k };0, otherwise .6 Scalable MCMC algorithm for Bayesian inference 
+
+Assume now that our DTMC is in state m after s iterations. That is, m(s) = m.Given that our chain moves to new state m(s+1) ̸ = m, the probability that this new state is m′ is 
+
+˜Pε(m, m ′) := Pr[ m(s+1) = m′ | m(s) = m, m (s+1) ̸ = m(s)]= Pr( m(s+1) = m′ | m(s) = m)Pr( m(s+1) ̸ = m | m(s) = m]= Pε(m, m ′)1 − rε(m) .
+
+We consider two cases: m′ ∈ { m1, . . . , m k} and m′̸ ∈ { m1, . . . , m k}. For the first case, where m = mi for some i ∈ { 1, . . . , k }, we have 
+
+˜Pε(m, m i) = εq i(m) ∏ 
+
+> j̸=i
+
+(1 − εq j (m)) 1 − ∏kj=1 (1 − εq j (m)) = εq i(m)1 − ∏kj=1 (1 − εq j (m)) 
+
+∏ 
+
+> j̸=i
+
+(1 − εq j (m)) .
+
+Note that lim ε→0
+
+∏ 
+
+> j̸=i
+
+(1 − εq j (m)) = 1 . Moreover, by the L’Hopital rule, the other factor converges to 
+
+lim 
+
+> ε→0
+
+εq i(m)1 − ∏kj=1 (1 − εq j (m)) = qi(m)lim ε→0
+
+∑kj=1 qj (m) ∏  
+
+> l̸=j
+
+(1 − εq l(m)) = qi(m)
+
+∑kj=1 qj (m) .
+
+Hence, 
+
+lim 
+
+> ε→0
+
+˜Pε(m, m i) = lim 
+
+> ε→0
+
+Pε(m, m i)1 − rε(m) = qi(m)
+
+∑kj=1 qj (m) = qi(m)
+
+λ(m) = ˜P (m, m i).
+
+The proof for the second case, where m′̸ ∈ { m1, . . . , m k}, follows naturally. Note that the probability that the chain moves from a state m to a neighboring state converges as 
+
+lim 
+
+> ε→0
+> k
+
+∑
+
+> i=1
+
+˜Pε(m, m i) = 
+
+> k
+
+∑
+
+> i=1
+
+qi(m)
+
+λ(m) = 1 .
+
+Hence, when m′̸ ∈ { m1, . . . , m k}, m′ is not a neighbor of m and ˜Pε(m → m′) = 0 = ˜P (m → m′).
+
+## A.3 Proof of Theorem 3.2 
+
+As before, let l := 2 k. For s = 1 , 2, . . . , let Ps denote the transition probability matrix at iterations s of our DTMC. That is, Ps is the l × l matrix with elements Pεs (m, m ′)
+
+given by Equation 8 of the main document. Let μ0 be the initial distribution of our DTMC and let μs denote be the probability distribution at iteration s. That is, 
+
+μs := μ0P1P2 . . . P s s ≥ 0. (S16) 7Our reversible BD process has invariant distribution π and an l × l rate matrix Q.This proof will show that the inhomogenous DTMC has the same limiting distribution as the BD process, as long as lim s→∞ εs = 0 and ∑∞ 
+
+> s=1
+
+εs = ∞. That is, we will show that 
+
+lim  
+
+> s→∞
+
+|| μs − π|| = 0 , (S17) where || · || can be any vector norm. Note that we denote both μs and π as l-dimensional vectors with elements μs(m) and π(m) respectively. Lastly, define the l2(π)-norm of a vector x = ( x(1) , . . . , x (l)) as ∥x∥2,π = (∑  
+
+> i
+
+x(i)2π(i))1/2. Note that this norm is well-defined since π(m) > 0 for all m ∈ M , which is ensured by the irreducibility of the chain Q and the finiteness of M.We will now prove Theorem 3.2 1. Writing the DTMC as a function of the BD process: First, by Lemma S1, we can write 
+
+Ps = I + εsQ + Es, (S18) where Es is an error matrix with entries of order O(ε2
+
+> s
+
+).2. Evolution of the error term: Let es := μs − π denote the error vector at iteration s. Using πQ = 0 , μs+1 = μsPs, and Equation (S18), we have 
+
+es+1 = μs+1 − π
+
+= μsPs − π
+
+= ( π + es)( I + εsQ + Es) − π
+
+= π + εsπQ + πE s + es + εsesQ + esEs − π
+
+= es(I + εsQ) + ( π + es)Es. (S19) 3. Bounding of the error term: Applying the triangular inequality on (S19), we have 
+
+|| es+1 || 2,π ≤ || es(I + εsQ)|| 2,π + || (π + es)Es|| 2,π (S20) Since es sums to 0, by Lemma S2, there exists an s∗ > 0, such that for all s ≥ s∗,there exists a β > 0 such that 
+
+|| es(I + εQ )|| 2,π ≤ (1 − εβ )|| es|| 2,π . (S21) The existence of s∗ is guaranteed by the condition that εs → 0. For the second term in (S20), since Es is a matrix with entries of order O(ε2
+
+> s
+
+), we have that 
+
+|| (π + es)Es|| 2,π ≤ Cε 2
+
+> s
+
+, (S22) for some constant C > 0. Hence, there exists an s∗ > 0 and β > 0, such that for all s ≥ s∗, we have 
+
+|| es+1 || 2,π ≤ (1 − εsβ)|| es|| 2,π + Cε 2
+
+> s
+
+. (S23) for some β, C > 0 and all s > s ∗.8 Scalable MCMC algorithm for Bayesian inference 
+
+4. Unwinding recurrence: We now analyze the recurrence relation 
+
+rs+1 ≤ (1 − βε s)rs + Cε 2
+
+> s
+
+, (S24) where rs := || es|| 2,π . We will show that this recurrence relation, together with the decay and divergence in the sequence {εs}s≥1, implies that lim s→∞ rs = 0 .Let δ ∈ (0 , r 0) be an arbitrary number. Since εs → 0, we know that there exists an s′ > s ∗, such that for all s ≥ s′, we have εs < δβ C , and therefore 
+
+Cε 2 
+
+> s
+
+< δβε s for all s ≥ s′. (S25) We can combine Equation (S24) and (S25) to obtain 
+
+rs+1 < (1 − βε s)rs + δβε s for all s ≥ s′. (S26) Now, imagine another sequence {zs}s≥s′ that has zs′ = rs′ , and 
+
+zs+1 = (1 − βε s)zs + δβε s for all s ≥ s′. (S27) We therefore have rs < z s for all s > s ′. Moreover, note that we can write 
+
+zs+1 − δ = (1 − βε s)( zs − δ) for all s ≥ s′. (S28) Therefore, we can use the recursive product to write 
+
+zs − δ = ( zs′ − δ)
+
+> s−1
+
+∏
+
+> i=s′
+
+(1 − βε s) for all s ≥ s′. (S29) Since βε s ∈ (0 , 1) , We then obtain a bound on zs by 
+
+zs = δ + ( zs′ − δ)
+
+> s−1
+
+∏
+
+> i=s′
+
+(1 − βε s) (S30) 
+
+≤ δ + ( zs′ − δ)
+
+> s−1
+
+∏
+
+> i=s′
+
+e−βε s (S31) 
+
+= δ + ( zs′ − δ) exp 
+
+(
+
+−β
+
+> s−1
+
+∑
+
+> i=s′
+
+εs
+
+)
+
+. (S32) Since ∑∞ 
+
+> i=s′
+
+εs = ∞, we have 
+
+lim  
+
+> s→∞
+
+|| μs − π|| 2,π = lim  
+
+> s→∞
+
+|| es|| 2,π = lim  
+
+> s→∞
+
+rs < lim  
+
+> s→∞
+
+zs ≤ δ, (S33) but since δ > 0 can be arbitrarily small, we obtain lim s→∞ || μs − π|| 2,π = 0 .5. Concluding : Since any two vector norms on a finite vector space are equivalent, we have that lim s→∞ || μs − π|| = 0 for any vector norm || · || .9
+
+## A.4 Proof of Lemma 3.3 
+
+We assume that the posterior is factorizable as in Equation 10. Consider the BD process with rates 
+
+qi(m) = min(1 , p(m | y)
+
+p(m | y) )
+
+and invariant distribution π(m) = p(m | y). Consider also the homogeneous DTMC with transition probabilities 
+
+Pε(m, m ′) = ∏
+
+> i∈Hm,m ′
+
+qi(m)ε ∏
+
+> i̸∈ Hm,m ′
+
+(1 − qi(m)ε),
+
+for some ε ∈ (0 , 1) . Here Hm,m ′ = {i1, . . . , i r } ⊆ { 1, . . . , k } is the set of elements in which models m and m′ differ. We will show that, for any ε ∈ (0 , 1) , the DTMC will also have π(m) as its invariant distribution. 1. Rate equivalence: In this step we show that 
+
+qi(m) = qi(m′) for all m, m ′ with mi = m′
+
+> i
+
+. (S34) We have 
+
+p(mi | y)
+
+p(m | y) =
+
+∏ki=1 p(mii | y)
+
+∏ki=1 p(mi | y)= p(mii | y)
+
+p(mi | y)= p(1 − mi | y)
+
+p(mi | y)
+
+Hence the rate qi(m) only depends on mi. Hence Equation S34 holds. 2. Detailed balance: Let m, m ′ be arbitrary models. For all i̸ ∈ H, we have mi =
+
+m′
+
+> i
+
+, and hence qi(m) = qi(m′), and therefore 
+
+∏
+
+> i̸∈ H
+
+(1 − qi(m)ε) = ∏
+
+> i̸∈ H
+
+(1 − qi(m′)ε). (S35) For all i ∈ H, we have mi = m′ii , and hence qi(m) = qi(m′i). Therefore, we have 
+
+π(m) ∏
+
+> i∈H
+
+qi(m)ε = π(m′) ∏
+
+> i∈H
+
+qi(m′)ε, (S36) because 
+
+π(m) ∏
+
+> i∈H
+
+qi(m)ε = εr π(m)qi1 (m)qi2 (m) . . . q ir (m)= εr π(m)qi1 (m)qi2 (mi1 ) . . . q ir (mi1i2...i r−1 )10 Scalable MCMC algorithm for Bayesian inference 
+
+= εr qi1 (mi1 )qi2 (mi1i2 ) . . . q ir (mi1i2...i r )π(mi1i2...i r )= εr qi1 (m′)qi2 (m′) . . . q ir (m′)π(m′)= π(m′) ∏
+
+> i∈H
+
+qi(m′)ε
+
+Here, in the 3rd equality, we use that π(m)qi(m) = π(mi)qi(mi) for all i = 1 , · · · , k 
+
+and all m ∈ M . Now, combining (S35) and (S36) gives the required detailed balance: 
+
+π(m)Pε(m → m′) = π(m′)Pε(m′ → m).
+
+We conclude that π(m) is also the invariant distribution for the DTMC. 
+
+# B Applications 
+
+In Section 4.1 of the main article we apply our work to undirected Gaussian graphi-cal models. Here, we also apply our approach to Bayesian variable selection and Ising models. For each application, the path to construct our Multiple Jump algorithm is the same: we formulate the model posterior and specify the rates qi(m) := Q(m, m i) for the BD process in Lemma 2.1 of the main article. Using these rates in Algorithm 1 will give the desired algorithm. 
+
+## B.1 Bayesian variable selection 
+
+This subsection applies our work to Bayesian variable selection. Variable selection – also referred to as feature selection – aims to find a subset of variables that best explains an outcome of interest. We treat here the most fundamental form of variable selection: the multiple linear regression. Literature has suggested many approaches for this problem. Here, we will treat the approach using the g-prior (Fernandez et al., 2001). We propose a BD process that can be extended to a superior DTMC. 
+
+Preliminaries: We assume that a continuous variable Y is modeled via a linear com-bination of k explanatory variables X1, . . . , X k. We observe n observations of all our variables. Let y = ( y1, . . . , y n) denote the n observations of variable Y , and let the n × k
+
+matrix x contain the corresponding n observations from the variables X1, . . . , X k. Its elements xij denote the ith observation of variable Xj , i = 1 , . . . , n and j = 1 , . . . , k .We then have 
+
+yi = xi1β1 + · · · + xik βk + εi, i = 1 , . . . , n, (S37) where εi ∼ N (0 , 1) and β = ( β1, . . . , β k) is the vector of unknown regression coefficients. We define a “model” as a binary vector γ = ( γ1, . . . , γ k), where γi is equal to 1 if variable Xi is deemed relevant and 0 otherwise. The regression coefficients βk are the “model-associated parameters”. Bayesian variable selection sets out to find the posterior distribution of this model, given by 
+
+p(γ | y, x ) = p(y, x | γ)p(γ)
+
+p(y, x ) . (S38) 11 For a review of Bayesian variable selection, see Tadesse and Vannucci (2021). 
+
+BD processes: Using the g-prior (Fernandez et al., 2001) for the regression coefficients, the Bayes factor simplifies to 
+
+p(y, x | γi)
+
+p(y, x | γ) = (1 + g)(|γ|−| γi|)1 /2 (1 + g(1 − R2 
+
+> γ
+
+)) n−12
+
+(1 + g(1 − R2 
+
+> γi
+
+)) n−12
+
+, (S39) where γi equals the vector γ except in element γi, g ∈ R+ is a user-specified constant, 
+
+R2 
+
+> γ
+
+is the coefficient of determination for model γ, and |γ| denotes the number of non-zero entries in a model γ. Since γi and γ differ in only one element, we have (|γ|−| γi|) ∈{− 1, 1}. With this exact evaluation of the Bayes factor, one can design a BD algorithm as in Lemma 2.1 in the main article with rates 
+
+Q(γ, γ ′) = 
+
+{
+
+qi(γ), if γ′ = γi for some i ∈ { 1, . . . , k };0, otherwise , (S40) where 
+
+qi(γ) := min 
+
+(
+
+1, p(y, x | γi)
+
+p(y, x | γ)
+
+p(γi)
+
+p(γ)
+
+)
+
+(S41) This BD process will add/delete exactly one variable in each iteration. This becomes problematic for large model spaces. 
+
+Our algorithm: We can extend the BD process to a DTMC with transition probabili-ties (8) and use Algorithm 1 to generate samples γ(1) , . . . , γ (S). These samples will have the same limiting distribution as the corresponding BD process as long as the sequence 
+
+{εs}s≥1 satisfies (9), see Theorem 3.2. However, the DTMC is able to add/delete mul-tiple edges in a single iteration, and therefore has the potential to lead to a significant reduction in computation time. 
+
+## B.2 Ising model 
+
+This subsection treats the Ising model. We introduce the Ising model and propose a BD process, which we extend to a superior DTMC. 
+
+Preliminaries: In the Ising model, the data y is an n × p matrix, containing n obser-vations of the variables Y1, . . . , Y p. Each observation y = ( y1, . . . , y p) is a p-dimensional binary vector and follows the following distribution: 
+
+p(y | μ, Σ) = 1
+
+Z(μ, Σ) exp 
+
+ ∑
+
+> e=( i,j ): i<j
+
+σe yiyj + ∑
+
+> i
+
+μi yi
+
+ , i, j = 1 , . . . , p. 
+
+Here, the vector μ = ( μ1, . . . , μ p) contains the main effects, the symmetric matrix Σ –with elements σe for every edge e = ( i, j ) – contains the associations between each pair 12 Scalable MCMC algorithm for Bayesian inference 
+
+of variables, and Z(μ, Σ) denotes the normalizing constant. The matrix Σ is called the interaction matrix and encodes the conditional independence between the variables due to the following relationship: 
+
+σe = 0 for some edge e = ( i, j ) ⇐⇒ Yi and Yj are conditionally independent .
+
+Similar to GGMs (Subsection 4.1), we can depict the conditional dependence relation-ships in a graph G. Bayesian inference in Ising models aims to uncover the posterior distribution of this graph given by 
+
+p(G | y) = p(y | G)p(G)
+
+p(y) . (S42) As in GGMs, we can encode every graph G as a binary vector of length k = p(p − 1) /2.The graphs G are therefore the binary “models,” and the space of all p × p graphs is the binary model space. The interaction matrix Σ is the model-associated parameter. 
+
+BD process: Using the marginal pseudo-likelihood (Besag, 1975), we can factorize the marginal likelihood p(y | G) nodewise and obtain 
+
+p(y | G) ≈ ˜p(y | G) := 
+
+> p
+
+∏
+
+> i=1
+
+pi(G), (S43) where pi(G) is the marginal likelihood of a logistic regression of variable Yi on all vari-ables Yj that are neighbors of node i in the graph G. Following Barber and Drton (2015), we can approximate each pi(G) using the (extended) Bayesian Information Criterion. Let G and Ge be two graphs that differ only in the edge e = ( i, j ). Their Bayes factor can now be approximated by 
+
+p(y | Ge)
+
+p(y | G) ≈ ˜p(y | Ge)˜p(y | G) = pi(Ge)pj (Ge)
+
+pi(G)pj (G) (S44) We can now design a BD process with rates 
+
+Q(G, G ′) = 
+
+{
+
+qe(G), if G′ = Ge for some edge e;0, otherwise, (S45) where 
+
+qe(G) := min 
+
+(
+
+1, pi(Ge)pj (Ge)
+
+pi(G)pj (G)
+
+p(Ge)
+
+p(G)
+
+)
+
+(S46) Such a BD process would add/delete a single edges per iteration. It would therefore be problematic to apply it to large-scale problems. 
+
+Our algorithm: Our work allows to extend this BD process to a DTMC with transi-tion probabilities (8), where the rates qe(G) are as in (S46). One can use Algorithm 1 to sample from this DTMC. If the sequence {εs}s≥1 satisfies (9), the resulting DTMC samples have the same limiting distribution as the BD process (see Theorem 3.2). Con-trary to the BD process, however, the DTMC is able to add or delete multiple edges in a single iteration. It therefore has the potential to deliver a significant reduction in computational cost. 13 
+
+# C Extended simulation results 
+
+This section includes a detailed description of all instances, settings, metrics, and results of the simulation study of Section 5.1 of the main document. 
+
+Instances: We only consider instances with p = 1000 variables. We consider instances with a small ( n = 400 ) and large ( n = 1000) amount of observations. We consider sparse (0.2% edge density) and dense (1%) graphs. All instances are listed in Table S1. 
+
+Simulation settings: For an instance with p variables, n observations and edge density 
+
+α, we generate a true graph G∗ at random by including each edge with a probability of 
+
+α. We then sample the true precision matrix K∗ from the G-Wishart distribution with 
+
+D = I as the scale parameter and b = 3 as the shape parameter. We then sample the data y containing n observations from the p-variate normal distribution with covariance matrix K∗− 1. We repeat this process eight times. We run our algorithms on 8 cores with 
+
+8 GiB memory per core. We use a prior density of 0.5% . Depending on the instances, the number of MCMC iterations to run our algorithm ranges between 100 and one million. The MCMC iterations for each instances are listed in Table S1. 
+
+Maximum jump size: We observed that in some cases, when starting from an empty graph, and only in the first five iterations of the MCMC chain, our algorithm suggests very large jumps. These jumps are so large that in those first iterations, our algorithm outputs samples with a density as high as 50% . Later in the chain, the algorithm corrects this “overshooting" and outputs MCMC samples with a normal edge density (i.e. 1% )again. The initial overshooting, however, requires lots of computational power. That is why, during those first iterations, we restrict the jump size to rp (p − 1) /2 edges per iter-ation, where we refer to r ∈ (0 , 1) as the maximum jump size. r denotes the percentage of edges that is allowed to flip in a single iteration. Depending on the instance, r ranges from 0.0025 to 1. See Table S1 for the instance-specific values of the maximum jump size r.
+
+Metrics: We use four different metrics to assess the accuracy of the estimated edge-inclusion probabilities: AUC-PR, AUC-ROC, p+, p−. The AUC-PR represents the area under the precision-recall curve. The AUC-ROC represents the area under the receiver operating characteristic curve. The p+ (p−) values represent the average posterior edge inclusion probability for edges that are (not) in the true graph. The AUC-PR, AUC-ROC, and p+ values ranges from 0 (worse) to 1 (best). The p− value ranges from 0
+
+(best) to 1 (worse). 14 Scalable MCMC algorithm for Bayesian inference 
+
+p density n algorithm ε1 decay in εs max jump MCMC Iterations 
+
+1000 0.2% 400 MJ-MCMC 0.001 none 1 40000 0.01 none 1 4000 0.05 none 1 750 0.3 none 1 200 0.7 none 0.0025 100 0.95 none 0.0025 100 0.3 slow 1 500 0.3 fast 1 40000 
+
+MPL-BD NA NA NA 300000 1000 0.2% 1000 MJ-MCMC 0.001 none 1 40000 0.01 none 1 4000 0.05 none 1 750 0.3 none 0.0025 1000 0.7 none 0.0025 100 0.95 none 0.0025 100 0.3 slow 0.0025 500 0.3 fast 0.0025 40000 
+
+MPL-BD NA NA NA 300000 1000 1% 400 MJ-MCMC 0.001 none 1 100000 0.01 none 1 10000 0.05 none 0.01 500 0.25 none 0.05 100 0.75 none 0.05 200 0.25 slow 0.0025 3000 0.25 fast 0.0025 100000 
+
+MPL-BD NA NA NA 1000000 1000 1% 1000 MJ-MCMC 0.001 none 1 100000 0.01 none 1 10000 0.05 none 0.0025 5000 0.25 none 0.01 100 0.75 none 0.05 200 0.25 slow 0.0025 3000 0.25 fast 0.0025 100000 
+
+MPL-BD NA NA NA 500000 
+
+Table S1: All instances with their corresponding maximum jump size (“max jump") and number of MCMC iterations 15 
+
+## C.1 p = 1000 , n = 400 , 0.2% edge density 
+
+Figure S1: AUC-PR scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying εs.Zoomed out on the left, zoomed in on the right. Results are the average of eight repli-cations on instances with p = 1000 variables, n = 400 observations, and 0.2% edge density. This figure is the same as Figure 2 in the main document. 
+
+Figure S2: AUC-ROC scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying 
+
+εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 400 observations, and edge density of 0.2% .16 Scalable MCMC algorithm for Bayesian inference 
+
+Figure S3: p+ scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 400 observations, and 0.2% edge density. 
+
+Figure S4: p− scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying εs. Zoomed-out on the left, zoomed-in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 400 observations, and 0.2% edge density. 17 
+
+## C.2 p = 1000 , n = 1000 , 0.2% edge density 
+
+Figure S5: AUC-PR scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying εs.Zoomed out on the left, zoomed in on the right. Results are the average of eight repli-cations on instances with p = 1000 variables, n = 1000 observations, and 0.2% edge density. 
+
+Figure S6: AUC-ROC scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying 
+
+εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 1000 observations, and edge density of 0.2% .18 Scalable MCMC algorithm for Bayesian inference 
+
+Figure S7: p+ scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 1000 observations, and 0.2% edge density. 
+
+Figure S8: p− scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.3, 0.7, 0.95 and for a quickly and slowly decaying εs. Zoomed-out on the left, zoomed-in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 1000 observations, and 0.2% edge density. 19 
+
+## C.3 p = 1000 , n = 400 , 1% edge density 
+
+Figure S9: AUC-PR scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying 
+
+εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 400 observations, and 1% edge density. 
+
+Figure S10: AUC-ROC scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying 
+
+εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 400 observations, and edge density of 1% .20 Scalable MCMC algorithm for Bayesian inference 
+
+Figure S11: p+ scores over running time for the BD-MPL algorithm and for our ap-proach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying εs.Zoomed out on the left, zoomed in on the right. Results are the average of eight replica-tions on instances with p = 1000 variables, n = 400 observations, and 1% edge density. 
+
+Figure S12: p− scores over running time for the BD-MPL algorithm and for our ap-proach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying εs.Zoomed-out on the left, zoomed-in on the right. Results are the average of eight replica-tions on instances with p = 1000 variables, n = 400 observations, and 1% edge density. 21 
+
+## C.4 p = 1000 , n = 1000 , 1% edge density 
+
+Figure S13: AUC-PR scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying 
+
+εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 1000 observations, and 1% edge density. 
+
+Figure S14: AUC-ROC scores over running time for the BD-MPL algorithm and for our approach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying 
+
+εs. Zoomed out on the left, zoomed in on the right. Results are the average of eight replications on instances with p = 1000 variables, n = 1000 observations, and edge density of 1% .22 Scalable MCMC algorithm for Bayesian inference 
+
+Figure S15: p+ scores over running time for the BD-MPL algorithm and for our ap-proach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying εs.Zoomed out on the left, zoomed in on the right. Results are the average of eight replica-tions on instances with p = 1000 variables, n = 1000 observations, and 1% edge density. 
+
+Figure S16: p− scores over running time for the BD-MPL algorithm and for our ap-proach with εs = 0 .001 , 0.01 , 0.05 , 0.25 , 0.75 and for a quickly and slowly decaying εs.Zoomed-out on the left, zoomed-in on the right. Results are the average of eight replica-tions on instances with p = 1000 variables, n = 1000 observations, and 1% edge density. 
+
+# References 
+
+Barber, R. F. and Drton, M. (2015). “High-dimensional Ising model selection with Bayesian information criteria.” Electronic Journal of Statistics , 9(1): 567–607. 12 Besag, J. (1975). “Statistical Analysis of Non-Lattice Data.” Journal of the Royal Statistical Society. Series D (The Statistician) , 24(3): 179–195. 12 Fernandez, C., Ley, E., and Steel, M. (2001). “Benchmark Priors for Bayesian Model Averaging.” Edinburgh School of Economics, University of Edinburgh, ESE Discussion Papers , 100(2): 381–427. 10, 11 Tadesse, M. and Vannucci, M. (2021). Handbook of Bayesian Variable Selection . New York: Chapman and Hall/CRC. 11

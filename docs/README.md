@@ -6,53 +6,77 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-03-29
-- 运行时间：2026-03-29 19:40:46 UTC
+- 最新运行日期：2026-03-30
+- 运行时间：2026-03-30 20:33:22 UTC
 - 运行状态：成功
-- 本次总论文数：10
-- 精读区：0
-- 速读区：10
+- 本次总论文数：19
+- 精读区：6
+- 速读区：13
 
 ### 今日简报（AI）
-今日追踪 10 篇前沿进展，深度覆盖社会博弈演化动力学与万亿级科学大模型。
-重点推荐 Intern-S1-Pro 万亿级科学多模态基座模型，以及集体风险博弈中合作与风险的共演化机制。
-建议关注 AI 赋能科学发现的新范式，并探索复杂系统运动如何影响公共利益分配。
-- 详情：[/202603/29/README](/202603/29/README)
+今日精选 19 篇前沿论文，重点攻克量子启发式基因组定相与可解释性 GWAS 发现两大
+- 详情：[/202603/30/README](/202603/30/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [QHap: Quantum-Inspired Haplotype Phasing](/202603/30/2603.25762v1-qhap-quantum-inspired-haplotype-phasing)  
+   标签：评分：9.0/10、query:xeno
+   evidence：人类主要组织相容性复合体(MHC)区域的单倍型相位分析
+2. [Incorporating contextual information into KGWAS for interpretable GWAS discovery](/202603/30/2603.25855v1-incorporating-contextual-information-into-kgwas-for-interpretable-gwas-discovery)  
+   标签：评分：9.0/10、query:q7
+   evidence：利用AI和知识图谱进行GWAS及基因组发现
+3. [Evaluating Phylogenetic Comparative Methods under Reticulate Evolutionary Scenarios](/202603/30/2603.25986v1-evaluating-phylogenetic-comparative-methods-under-reticulate-evolutionary-scenarios)  
+   标签：评分：9.0/10、query:q3
+   evidence：评估网状演化情景下的系统发育比较方法
+4. [A Boltzmann-machine-enhanced Transformer For DNA Sequence Classification](/202603/30/2603.26465v1-a-boltzmann-machine-enhanced-transformer-for-dna-sequence-classification)  
+   标签：评分：9.0/10、query:q7
+   evidence：利用AI增强的Transformer进行DNA序列分类和上位性发现
+5. [TaxaAdapter: Vision Taxonomy Models are Key to Fine-grained Image Generation over the Tree of Life](/202603/30/2603.26128v1-taxaadapter-vision-taxonomy-models-are-key-to-fine-grained-image-generation-over-the-tree-of-life)  
+   标签：评分：8.0/10、query:profile-1
+   evidence：用于生命之树物种生成的视觉分类模型
+6. [Improved Approximation Algorithms and Hardness Results for Shortest Common Superstring with Reverse Complements](/202603/30/2603.26176v1-improved-approximation-algorithms-and-hardness-results-for-shortest-common-superstring-with-reverse-complements)  
+   标签：评分：8.0/10、query:pangen
+   evidence：用于基因组组装和 DNA 反向互补的最短公共超串算法
 
 ### 速读区论文标签
-1. [Coevolutionary dynamics of cooperation, risk, and cost in collective risk games](/202603/29/2603.20706v1-coevolutionary-dynamics-of-cooperation-risk-and-cost-in-collective-risk-games)  
-   标签：评分：7.0/10、query:q5
-   evidence：演化博弈模型与协同演化动力学
-2. [Pattern Formation in a Spatial Public Goods Dilemma due to Diffusive or Directed Motion](/202603/29/2603.21025v1-pattern-formation-in-a-spatial-public-goods-dilemma-due-to-diffusive-or-directed-motion)  
-   标签：评分：7.0/10、query:q5
-   evidence：合作行为的演化与群体动力学
-3. [Intern-S1-Pro: Scientific Multimodal Foundation Model at Trillion Scale](/202603/29/2603.25040v1-intern-s1-pro-scientific-multimodal-foundation-model-at-trillion-scale)  
+1. [Causal Network Discovery from Interventional Count Data with Latent Linear DAGs](/202603/30/2603.25838v1-causal-network-discovery-from-interventional-count-data-with-latent-linear-dags)  
    标签：评分：7.0/10、query:q7
-   evidence：生命科学多模态基础模型
-4. [Structure-aware divergences for comparing probability distributions](/202603/29/2603.22237v1-structure-aware-divergences-for-comparing-probability-distributions)  
+   evidence：基因扰动研究中的因果发现
+2. [Growing binary trees](/202603/30/2603.25972v1-growing-binary-trees)  
+   标签：评分：7.0/10、query:q3
+   evidence：通过离散演化过程模拟二叉树的生长
+3. [DPD-Cancer: Explainable Graph-based Deep Learning for Small Molecule Anti-Cancer Activity Prediction](/202603/30/2603.26114v1-dpd-cancer-explainable-graph-based-deep-learning-for-small-molecule-anti-cancer-activity-prediction)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用AI进行癌症研究和基因组变异分析
+4. [Making Multi-Axis Models Robust to Multiplicative Noise: How, and Why?](/202603/30/2603.26327v1-making-multi-axis-models-robust-to-multiplicative-noise-how-and-why)  
+   标签：评分：7.0/10、query:q7
+   evidence：用于单细胞RNA测序数据分析的图学习算法
+5. [Multi-scale Metabolic Modeling and Simulation](/202603/30/2603.26370v1-multi-scale-metabolic-modeling-and-simulation)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用AI代理模型进行全基因组代谢建模
+6. [Coupling Quantum Mechanical Modeling and Molecular Dynamics on Heterogeneous Supercomputers for Studying Distal Mutation Effects on Drug Binding in HIV-1](/202603/30/2603.26411v1-coupling-quantum-mechanical-modeling-and-molecular-dynamics-on-heterogeneous-supercomputers-for-studying-distal-mutation-effects-on-drug-binding-in-hiv-1)  
+   标签：评分：7.0/10、query:q10
+   evidence：突变对蛋白质结合影响的分子机制
+7. [A Scalable MCMC Algorithm for Bayesian Inference on Binary Model Spaces](/202603/30/2603.22573v1-a-scalable-mcmc-algorithm-for-bayesian-inference-on-binary-model-spaces)  
+   标签：评分：6.0/10、query:pangen
+   evidence：用于图模型和决策树的可扩展MCMC算法
+8. [Graph-Aware Late Chunking for Retrieval-Augmented Generation in Biomedical Literature](/202603/30/2603.22633v1-graph-aware-late-chunking-for-retrieval-augmented-generation-in-biomedical-literature)  
+   标签：评分：6.0/10、query:q7
+   evidence：利用AI驱动的生物医学文献检索增强生成
+9. [Self-organized pattern synchronization modulated by stochasticity in coupled plankton ecosystems](/202603/30/2603.24000v1-self-organized-pattern-synchronization-modulated-by-stochasticity-in-coupled-plankton-ecosystems)  
+   标签：评分：6.0/10、query:q5
+   evidence：浮游生物群落的时空生态模型
+10. [KANEL: Kolmogorov-Arnold Network Ensemble Learning Enables Early Hit Enrichment in High-Throughput Virtual Screening](/202603/30/2603.25755v1-kanel-kolmogorov-arnold-network-ensemble-learning-enables-early-hit-enrichment-in-high-throughput-virtual-screening)  
+   标签：评分：6.0/10、query:q7
+   evidence：用于化学生物活性和虚拟筛选的AI集成学习
+11. [Context Tree Prior Distributions based on Node Weighting with exact Bayes Factors](/202603/30/2603.25806v1-context-tree-prior-distributions-based-on-node-weighting-with-exact-bayes-factors)  
    标签：评分：6.0/10、query:q3
-   evidence：利用结构感知散度比较具有相似特征的物种
-5. [Privacy-Preserving EHR Data Transformation via Geometric Operators: A Human-AI Co-Design Technical Report](/202603/29/2603.22954v1-privacy-preserving-ehr-data-transformation-via-geometric-operators-a-human-ai-co-design-technical-report)  
+   evidence：上下文树先验分布与贝叶斯框架
+12. [In-Context Molecular Property Prediction with LLMs: A Blinding Study on Memorization and Knowledge Conflicts](/202603/30/2603.25857v1-in-context-molecular-property-prediction-with-llms-a-blinding-study-on-memorization-and-knowledge-conflicts)  
    标签：评分：6.0/10、query:q7
-   evidence：用于医疗AI和生物医学发现的隐私保护EHR数据
-6. [Cooperation in Public Goods Games over Uniform Random Hypergraphs with Game Transitions](/202603/29/2603.22967v1-cooperation-in-public-goods-games-over-uniform-random-hypergraphs-with-game-transitions)  
-   标签：评分：6.0/10、query:q5
-   evidence：演化博弈论中合作的演化
-7. [MLLM-HWSI: A Multimodal Large Language Model for Hierarchical Whole Slide Image Understanding](/202603/29/2603.23067v2-mllm-hwsi-a-multimodal-large-language-model-for-hierarchical-whole-slide-image-understanding)  
+   evidence：利用AI进行科学任务中的分子性质预测
+13. [TurboESM: Ultra-Efficient 3-Bit KV Cache Quantization for Protein Language Models with Orthogonal Rotation and QJL Correction](/202603/30/2603.26110v1-turboesm-ultra-efficient-3-bit-kv-cache-quantization-for-protein-language-models-with-orthogonal-rotation-and-qjl-correction)  
    标签：评分：6.0/10、query:q7
-   evidence：用于分层全切片图像理解的AI
-8. [Feedback Control of a Recirculating Bioreactor with Electrophoretic Removal of Inhibitory Extracellular DNA](/202603/29/2603.23150v1-feedback-control-of-a-recirculating-bioreactor-with-electrophoretic-removal-of-inhibitory-extracellular-dna)  
-   标签：评分：6.0/10、query:q7
-   evidence：AI驱动的生物反应器DNA去除控制
-9. [The speeds of propagation for the monostable Lotka-Volterra competition-diffusion system in general unbounded domains](/202603/29/2603.23834v1-the-speeds-of-propagation-for-the-monostable-lotka-volterra-competition-diffusion-system-in-general-unbounded-domains)  
-   标签：评分：6.0/10、query:q5
-   evidence：竞争扩散系统中的传播速度
-10. [MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization](/202603/29/2603.24382v1-molevolve-llm-guided-evolutionary-search-for-interpretable-molecular-optimization)  
-   标签：评分：6.0/10、query:q7
-   evidence：大模型引导的分子优化演化搜索
+   evidence：用于蛋白质语言模型和结构预测的AI
 
 
 <div class="dpr-home-promo-card">
