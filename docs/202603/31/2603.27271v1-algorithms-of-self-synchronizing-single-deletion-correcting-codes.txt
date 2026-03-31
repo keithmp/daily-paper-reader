@@ -1,0 +1,928 @@
+Title: Algorithms of self-synchronizing single-deletion-correcting codes
+
+URL Source: https://arxiv.org/pdf/2603.27271v1
+
+Published Time: Tue, 31 Mar 2026 00:47:39 GMT
+
+Number of Pages: 20
+
+Markdown Content:
+ALGORITHMS OF SELF-SYNCHRONIZING SINGLE-DELETION-CORRECTING CODES 
+
+WHAN-HYUK CHOI ABSTRACT . This study explores the self-synchronization problem in DNA cod-ing, specifically addressing single-deletion errors without using delimiters be-tween codewords. We aim to identify the beginning of each codeword with-out using delimiters, enhancing the transmission efficiency. The motivation arises from the inefficiency of adding meaningless symbols as delimiters, de-creasing the information rate. In addition, the historical context in biology, specifically Francis Crick’s proposal of “codes without commas” for DNA se-quences, inspires this investigation. We introduce a novel approach for correct-ing single-deletion errors in continuous transmissions without delimiters, distin-guishing the beginning and end of each codeword. This approach is based on the properties of complementary information set codes , which is used to present an algorithm for single-deletion correcting codes with self-synchronizing ca-pability. Accordingly, we present encoding and decoding algorithms for self-synchronizing single-deletion correcting DNA codes with concrete examples. 
+
+Keywords: Single-deletion-correcting code, DNA codes, reversible self-dual code, self-synchronizing block codes, and non-binary code. 1. I NTRODUCTION 
+
+Since the inception of the coding theory, error-correcting codes have focused on substitution errors that involve symbol changes [10, 17]. However, practical communication scenarios often involve a spectrum of errors beyond symbol sub-stitutions, encompassing deletions, insertions, and erasures, collectively known as 
+
+synchronization errors [15, 19]. In our previous work [3, 12], we studied deletion-error-correcting codes and their application to DNA codes. Moreover, we intro-duce a construction algorithm for single-single-deletion-correcting (SDC) DNA codes [3]. When transmitting encoded data, it is assumed that the sender and re-ceiver know the length as well as the beginning and end of each codeword. The start and end of each codeword can be distinguished by the proper placement of 
+
+delimiters ; for example, a fixed number of zeroes are placed between each code-word. Under this assumption, we proposed an algorithm for correcting single in-sertion/deletion errors in [3]. However, adding meaningless symbols, such as commas, to distinguish the be-ginning and end of a codeword reduces transmission efficiency as the overall length of the information increases and the information rate of the code decreases. Thus, we aim to answer the following question: How can we identify the beginning of 
+
+> 1
+> arXiv:2603.27271v1 [cs.IT] 28 Mar 2026 2
+
+each codeword without delimiters placed between the codewords, even if they suf-fer from deletion errors? We call this the self-synchronization problem .For instance, suppose that one receives a sequence of DNA codes of length 8, separated by a delimiter, symboled by |, as follows: 
+
+GAT CCT AG |AGT T ACT |GGAT T GT C |GGGT T GG |CGT CCT GC. 
+
+Because the delimiter’s positions are known, the receiver can tell that this sequence has 5 codewords and that a single deletion error has occurred in the second and fourth codewords because they have only seven symbols. This type of error can be corrected using the algorithm in [12]. However, with no delimiter for each codeword, the receiver receives a sequence of 38 consecutive symbols, as follows: 
+
+GAT CCT AGAGT T ACT GGAT T GT CGGGT T GGCGT CCT GC. 
+
+In this case, at least two deletion errors can be noticed when checking the se-quence’s length. However, it is impossible to determine the positions of the dele-tion errors because the receiver does not know where each codeword begins or ends. This study introduces a novel approach for correcting a single-deletion error, even when transmitting codewords continuously without delimiters, by distinguish-ing the beginning and end of each codeword. Discarding delimiters is the primary distinction between this and earlier studies on synchronization errors. Interestingly, the first self-synchronization problem emerged in biology shortly after the discovery of deoxyribonucleic acid (DNA) by one of its discoverers, Fran-cis Crick [5]. Crick aimed to solve a mathematical issue concerning DNA se-quences in connection with protein synthesis. In [5], Crick proposed codes without commas (equivalently, codes without delimiters), which refer to DNA codes com-posed of three DNA symbols encoding each amino acid; this solved a sort of syn-chronization problem of DNA sequences. Although Crick’s solution was proved biologically wrong, his idea was developed by mathematicians interested in the synchronization problem [7, 16, 18]. In this study, we investigated the self-synchronization problem of DNA codes. We introduced encoding and decoding algorithms for SDC DNA codes with self-synchronizing capabilities. These algorithms detect the location of a single deletion error in each DNA codeword, correct the error, and distinguish the beginning and end of each DNA codeword. Even though there has been extensive research on deletion error correction, especially in the context of DNA sequences, almost of them has assumed the presence of delimiters between codewords [8, 9, 21]. There-fore, as far as we know, this is the first study to provide explicit algorithms for self-synchronizing SDC DNA codes without using delimiters. The remainder of this paper is organized as follows. We begin with the prelimi-naries in Section 2. In addition, we summarize crucial results from [3] and [12] and discuss the properties of DNA codes. Theorem 17, Algorithm 15, and Algorithm 16 are presented in Section 3. Section 4 describes the implementation of the novel algorithm. 3
+
+2. P RELIMINARIES 
+
+2.1. Single-deletion-correcting codes. Let Fq be the finite field of order q for a prime power q. A subset C of Fnq is called a code of length n over Fq. In particular, if C is a k-dimensional subspace of Fnq , C is called a q-ary linear code of length 
+
+n and dimension k, which we denote as [n, k ]q code . Each element of a code is called a codeword . A code C of length n is called systematic if there exists a subset 
+
+I of {1, 2, . . . , n } (called an information set of C) such that every possible tuple of length | I | occurs in exactly one codeword in C within the specified coordinates 
+
+xi; i ∈ I [4, 13]. If C is a systematic code with information set I of size k, then there exists a one-to-one correspondence between Fkq and distinct qk codewords in C whose coordinates are contained in I. If the first k coordinates form the information set, the code has a unique generator matrix of the form (Ek | A),where Ek is a k × k identity matrix and A is a k × n − k matrix. Such a generator matrix is said to be in standard form .A complementary information set (CIS) code is a special type of systematic code: a CIS code C of length n over Fq is a [2 n, n ]q code which has two disjoint information sets I and J, each of size n. In other words, every vector in Fnq appears exactly once in the coordinates of C restricted to I, and also exactly once in the coordinates restricted to J. For details of the CIS codes, refer [4]. The following lemma characterizes CIS codes over Fq.
+
+Lemma 1. [4, Lemma 4.1] If a [2 n, n ] code C over Fq has generator matrix (I | A)
+
+with A invertible, then C is a CIS code with the systematic partition. Conversely, every CIS code is equivalent to a code with generator matrix in that form. 
+
+Example 2. Consider a [4 , 2] 3 linear code C1 having the generator matrix in stan-dard form 1 0 1 10 1 1 0
+
+
+
+,
+
+which means 
+
+C1 = {0000 , 1011 , 0110 , 1121 , 2022 , 0220 , 2212 , 1201 , 2102 }.
+
+It is easy to check that all nine possible vectors in F23 appear in the first two co-ordinates, as well as in the last two coordinates. Since both the first and last two coordinates form disjoint information sets of size two, C1 is a CIS code. Let x be a codeword in code C of length n. If a vector y ∈ Fn−1 
+
+> q
+
+is obtained from x by deleting one symbol of x, then y is called a subword of x. We denote a subword y of x as y = xi if the ith symbol of x is deleted. Let D1(x) denote a set of subwords in x. A code C is said to be an SDC code if D1(x1) ∩ D1(x2) = ∅ for all x1, x2 ∈ C , x1̸ = x2.Let u and v be two codewords in code C. The Levenshtein distance dl(u, v)
+
+between u and v is defined as the smallest number of insertions and deletions required to transform u into v: Levenshtein distance is a metric. The minimum Levenshtein distance of C, denoted by dl(C), is the smallest Levenshtein distance between distinct codewords in C. The Hamming distance dh(u, v) between u and 4
+
+v is defined as the number of coordinates in which x and y differ. The minimum Hamming distance of C, denoted by dh(C), is the smallest Hamming distance be-tween the distinct codewords in C. Code C can correct t substitution errors only if 
+
+dh(C) > 2t. Similarly, code C can correct e deletion/insertion errors if and only if 
+
+dl(C) > 2e.Next, we introduce some results of our previous study [3] without proof. The following theorem and remark are the main results from [3], which show that an SDC code can be created from a CIS code by inserting two identical symbols with a specific rule. 
+
+Theorem 3. [3, Theorem 3.5] Let C be a CIS code of length 2n over Fq and let 
+
+ϕ : F2nq → Fq
+
+be a map defined by 
+
+ϕ(x) = xn + 1 ,
+
+where x = ( xi) ∈ F2nq . We also define a vector 
+
+xϕ = ( x1, · · · , x n, ϕ (x), ϕ (x), x n+1 , · · · , x 2n) ∈ F2n+2 
+
+> q
+
+obtained by adding two ϕ(x)’s between the nth and (n + 1) th positions of x for every codeword x in C. Then the set of vectors xϕ for all codewords x in C, that is, 
+
+Cϕ = {xϕ | x ∈ C} ,
+
+is an SDC code. 
+
+Example 4. Consider the code 
+
+C1 = {0000 , 1011 , 0110 , 1121 , 2022 , 0220 , 2212 , 1201 , 2102 }
+
+in Example 20, which consists of nine codewords. The minimum Levenshtein distance dl(C1) is 2 since Levenshtein distance between codewords 1011 and 0110 
+
+is 2. By applying the map ϕ of Theorem on C1, we obtain 
+
+C1ϕ = {001100 , 101111 , 012210 , 112221 ,
+
+201122 , 020020 , 220012 , 120001 , 212202 }.
+
+It is routine to check that dl(C1ϕ) = 4 and C1ϕ is an SDC code. 
+
+Remark 5. If ϕ is defined by ϕ(x) = xn + a for any fixed nonzero element a in 
+
+Fq, then set Cϕ is an SDC code. If we define ϕ such that the image ϕ(x) is different from xn for every codeword x in CIS code C, then we can obtain SDC code Cϕ.As Remark 5 points out, the key to constructing the SDC code from CIS codes of length 2n involves choosing the symbol ϕ(x) that is different from the n-th symbol xn of each codeword x of the CIS code and inserting it twice in the middle of the codeword. For proof and details, refer [3]. The following is from Algorithm 3.7 in [3]. The algorithm focuses on single-deletion-error correction in a received vector with delimiters from a codeword in 
+
+Cϕ where C is a CIS code of length 2n.5
+
+Algorithm 6 Decoding algorithm for single-deletion-error correction in [3] 
+
+Require: a received vector x through a single-deletion channel from Cϕ over Fq
+
+Ensure: the codeword c in C decoded from x 
+
+> 1:
+
+2n ← the length of C ; L ← the length of x 
+
+> 2:
+
+if L = 2 n + 1 then  
+
+> 3:
+
+decompose x = u ⊕ (xn+1 ) ⊕ v, where u, v ∈ Fnq . 
+
+> 4:
+
+ϕ ← xn+1  
+
+> 5:
+
+un ←the last symbol of u 
+
+> 6:
+
+if un = xn+1 then  
+
+> 7:
+
+there is no deletion in v 
+
+> 8:
+
+take y = v with the set I = {n + 1 , . . . , 2n}. 
+
+> 9:
+
+else if un̸ = xn+1 then  
+
+> 10:
+
+there is no deletion in u 
+
+> 11:
+
+take y = u with the set I = {1, . . . , n }. 
+
+> 12:
+
+end if  
+
+> 13:
+
+obtain c generated by y with the information set I. 
+
+> 14:
+
+else if L = 2 n + 2 then  
+
+> 15:
+
+decompose x = u ⊕ (xn+1 , x n+2 ) ⊕ v, where u, v ∈ Fnq . 
+
+> 16:
+
+ϕ ← xn+1  
+
+> 17:
+
+c ← u ⊕ v 
+
+> 18:
+
+end if  
+
+> 19:
+
+return c, ϕ 
+
+Compared to [3], this study focuses on the self-synchronization problem: How can we identify the beginning of each codeword when there are no delimiters be-tween codewords and the transmitted data suffer from deletion errors? Some defi-nitions must be clarified to answer this question. 
+
+Definition 7. Let C be a code and (c1, c2, · · · , cm) be a sequence of m codewords in C. If we delete all delimiters between codewords, we denote the sequence with-out the delimiter simply by c1c2 · · · cm. If there exists a proper algorithm that converts the sequence c1c2 · · · cm without delimiters back to the original sequence 
+
+(c1, c2, · · · , cm), then the sequence is called a self-synchronizing sequence. 
+
+Definition 8. Let C be a code and c1c2 · · · cm be a sequence of m codewords in 
+
+C without delimiters. When deletion errors in c1c2 · · · cm occur at most once for each codeword but not consecutively , we call these errors single-deletion-errors .If there exists an appropriate algorithm that can correct single-deletion-errors in a sequence c1c2 · · · cm and simultaneously convert the sequence c1c2 · · · cm without delimiters back to the original sequence (c1, c2, · · · , cm), then the sequence is called a self-synchronizing single-deletion-correcting sequence .
+
+Definition 9. If every sequence made from codewords in C with an appropri-ate algorithm is a self-synchronizing SDC sequence , then code C is called a self-synchronizing SDC code .6
+
+2.2. DNA codes. Deoxyribonucleic acid (DNA) encodes genetic information of life in the DNA helix with four basic units called nucleotides : Adenine( A), Cytosine( C), Guanine( G) and Thymine( T ). The DNA helix is a double strand built by join-ing four nucleotides and complementary base pairing, which connects the Wat-son–Crick complement , denoted by Ac = T , T c = A, Cc = G and Gc = C. A 
+
+DNA code of length n is a set of tuples (x1, · · · , x n), where xi ∈ { A, C, G, T }. A 
+
+DNA codeword is an element of DNA code. We call a continuous sequence of DNA codewords a DNA strand . The GC -weight of the DNA codeword is the number of occurrences of C and G in the codeword. DNA symbols can be identified with two-digit binary numbers under the map 
+
+δ : F2 × F2 → { A, C, G, T } defined by 
+
+δ(00) = A, δ (11) = T, δ (10) = C and δ(01) = G. 
+
+Using this map δ, we can encode a binary sequence of length 2n into a DNA se-quence of length n. For example, a binary sequence of length 20, 10011011011100100111 ,is encoded into the DNA sequence CGCT GT ACGT .Another method is to identify DNA symbols with four elements of F4 under the bijection μ : F4 → { A, C, G, T } defined by 
+
+μ(0) = A, μ (1) = T, μ (ω) = C and μ(¯ ω) = G. 
+
+The map μ defines the complement of the elements of F4 to be compatible with the 
+
+Watson-Crick complement : the complement of x in F4 is denoted by xc = x + 1 .We enlarged this map μ to a vector and code. Thus, a DNA code can be identified using a code over F4 under the bijection μ. For a vector x = ( x1, · · · , x n) ∈ Fn 
+
+> 4
+
+,we denote the complement of x by xc = ( xc
+
+> 1
+
+, · · · , x cn) and reverse of x by xr =(xn, · · · , x 1). The reverse-complement of x is denoted by xrc = ( xcn, · · · , x c
+
+> 1
+
+).A vector x is called self-reversible (self-reverse-complementary ) if x = xr ( x =
+
+xrc ). For computation, we define an injection map τ : F4 → M 2(F2), where M2(F2)
+
+be a set of 2 × 2 binary matrices: 
+
+τ (0) = ( 0 0 0 0 ) , τ (1) = ( 1 0 0 1 ) , τ (ω) = ( 0 1 1 1 ) , and τ (¯ ω) = ( 1 1 1 0 ) ,
+
+Therefore, we can represent a DNA symbol by a matrix in M2(F2) using the com-posite map τ ◦μ−1. We denote the map τ ◦μ−1 and its inverse map under restriction by f and f −1, respectively. Next, we enlarge these maps to a vector, sequence, and code. For example, 
+
+f (ACCT G ) = ( 0 0 0 1 0 1 1 0 1 1 0 0 1 1 1 1 0 1 1 0 )
+
+Regarding the properties of good DNA codes, refer [3, 6]. Given positive inte-gers t and e, the following five constraints are of concern when designing a DNA code D:- Hamming distance constraint ( HD ): dh(x, y) ≥ t for all x, y ∈ D with 
+
+x̸ = y.- Reverse constraint ( RV ): dh(x, yr) ≥ t for all x, y ∈ D .- Reverse-complement constraint ( RC ): dh(x, yrc ) ≥ t for all x, y ∈ D .7
+
+- Fixed GC-content constraint ( GC ): GC-weights of all codewords of D are constant. - Deletion/insertion constraint ( DI ) : dl(x, y) ≥ e for all x, y ∈ D with 
+
+x̸ = y.In the following section, we provide a solution to the self-synchronization prob-lem - how can we identify the beginning of each codeword with possible errors when no commas are separating them? For the solution, we start with Theorem 4 and take them one step further. Our approach involves selecting a symbol ϕ(x)
+
+under certain additional conditions to construct a self-synchronizing SDC code. Thus, we can distinguish the beginning and end of each codeword in an SCD code without using commas. Furthermore, we proposed an algorithm to detect and cor-rect one deletion error in each codeword. 3. S ELF -SYNCHRONIZING SDC DNA CODES 
+
+Hereafter, we focus on the DNA codes. In the later parts of this paper, we assume that C is a CIS code of length 2n over F4 for some integer n. A DNA code induced from C is denoted by D = μ(C); however, we would often identify C and 
+
+D.The following theorem is a variation of Theorem 4 in [3]. We use this as a stepping-stone for constructing self-synchronizing SDC DNA codes. 
+
+Theorem 10. Let C be a CIS code of length 2n over Fq. Let 
+
+ψ : Fq × Fq → Fq
+
+be a map satisfying the following conditions: i) ψ(a, b )̸ = a and ψ(a, b )̸ = b
+
+ii) ψ(a + 1 , b + 1) ̸ = ψ(a, b ) + 1 
+
+We also define a vector xψ ∈ F2n+2  
+
+> q
+
+as 
+
+(x1, · · · , x n, ψ (xn, x n+1 ), ψ (xn, x n+1 ), x n+1 , · · · , x 2n),
+
+obtained by adding symbol ψ(xn, x n+1 ) twice between the nth and (n + 1) -th po-sition of x for every codeword x in C. Then the set of vectors xψ for all codewords 
+
+x in C, that is, 
+
+Cψ = {xψ | x ∈ C} 
+
+is an SDC code. 
+
+Proof. Based on the condition of the map ψ, symbol ψ(xn, x n+1 ) is always dif-ferent from xn for every codeword x in C. Thus, a similar reasoning as that of the proof of Theorem 4 and remark 5 proves the theorem. ■
+
+The following definition provides a map ψ satisfying Theorem 10 when q = 4 :8
+
+Definition 11. We define a map ψ that satisfies the conditions in Theorem 10 as map ψ : F4 × F4 → F4 by 
+
+ψ(x, y ) = 
+
+
+
+x + y + ω if x + y ∈ { 0, 1} and x, y ∈ { 0, 1},x + y if x + y ∈ { 0, 1} and x, y ∈ { ω, ¯ω},x + y if x + y ∈ { ω, ¯ω} and xy ̸ = 0 ,
+
+1 if x + y ∈ { ω, ¯ω} and xy = 0 .
+
+We also present the values of map ψ in Table 1. TABLE 1. Images of map ψ(x, y )
+
+x\y 0 1 ω ¯ω
+
+0 ω ¯ω 1 11 ¯ω ω ¯ω ωω 1 ¯ω 0 1
+
+¯ω 1 ω 1 0We can easily verify that ψ(a, b )̸ = a, ψ(a, b )̸ = b, and ψ(a + 1 , b + 1) ̸ =
+
+ψ(a, b ) + 1 for each a and b in F4, which are the conditions in Theorem 10. The following example motivates the main idea behind our approach. 
+
+Example 12. Consider a simple DNA code D1 with four codewords of length six: 
+
+D1 = {AACCAA, T AT T CG, CAT T GT, GAGGT C }.
+
+This DNA code D1 is a subcode of μ(Cψ) for a CIS code C of length four over F4
+
+with generator matrix ( 1 0 ω ¯ω 
+
+> 0 1 ¯ ω ω
+
+) and the map ψ is from Definition 11. Thus, it is easy to verify that D1 is an SDC code. Suppose some data are encoded in a DNA strand made from D1.
+
+CAT T GT, GAGGT C, CAT T GT , T AT T CG, AACCAA. 
+
+Each codeword is separated by commas that act as delimiters. Now, assume that there are no commas and each codeword allows a single-deletion error so that the red symbols are deleted. Then, the DNA strand becomes 
+
+CT T GT GAGT CCAT T GT AT CGACCAA. 
+
+How can we decode this DNA strand to recover its original form? Firstly, we exam-ine the first six symbols CT T GT G , and decode this to the codeword CAT T GT 
+
+using Algorithm 6: 
+
+CAT T GT, GAGT CCAT T GT AT CGACCAA. 
+
+Then, we notice that symbol G, the last symbol of CT T GT G , is the first symbol of the second possible codeword GAGT CC . Next, GAGT CC is decoded to a codeword GAGGT C in D1 using Algorithm 6: 
+
+CAT T GT, GAGGT C, CAT T GT AT CGACCAA. 9
+
+Regarding the third codeword CAT T GT , there is a problem: we cannot notice the deletion of the last symbol T of CAT T GT because the fourth codeword also begins with the symbol T . If we admit the third codeword to be CAT T GT , the corrected DNA strand becomes 
+
+CAT T GT, GAGGT C, CAT T GT , AT CGACCAA. 
+
+Consequently, because the remaining strand AT CGACCAA is considered to have three deletions in two codewords, we cannot decode the remaining sequences cor-rectly. From the previous example, we make the following observations. 1) Observation 1: If it is possible to decode the DNA strand codeword by codeword, from the first to the last in turn, then the whole DNA strand may be decoded. 2) Observation 2: If the last symbol of the previous codeword is identical to the first symbol of the current codeword, there may be confusion about the beginning of the codeword. Motivated by these observations, we propose three novel algorithms, Algorithms 13, 15 and 16, for encoding and decoding self-synchronizing SDC DNA sequences. The key to our algorithms is adding an all-one vector 1 to make a DNA codeword complementary whenever it has the first symbol identical to the last symbol of the previous codeword, preventing confusion in Observation 2. In the pseudo-algorithms of Algorithms 13, 15 and 16, we assume that C is a CIS code of length 2n over F4 having an all-one vector 1 as a codeword, ci, 1 ≤ i ≤ m,are codewords in C, and ψ is a map that satisfies the conditions in Theorem 10. Σ[ i]
+
+denotes the i-th element of Σ and Σ[ i..k ] denotes the subsequence of Σ made from 
+
+ith to jth consecutive symbols of Σ.Since we assume no delimiters, we admit that every subsequence of length 2n+2 
+
+is a possible codeword. Therefore, we modify Algorithm 6 and propose Algorithm 13 for detecting and correcting a single-deletion error in a subsequence of length 
+
+2n + 2 .Using Algorithm 13 and Theorem 10, we prove the following. 
+
+Theorem 14. Let ψ be a map satisfying the conditions in Theorem 10, C be a CIS code of length 2n over F4 having an all-one vector as codewords, and Cψ be the set of vectors xψ for all codewords x in C. Suppose that a sequence of m codewords in C, (c1, c2, · · · , cm), is encoded to a continuous sequence of codewords in Cψ,
+
+d1d2 · · · dm without delimiters, per the following encoding rules: i) d1 = c1ψ.ii) For i ≥ 2, di = ciψ if the last symbol of ci−1 is not equal to the first symbol of ci.iii) For i ≥ 2, di = ciψ + 1 if the last symbol of ci−1 is equal to the first symbol of ci, where 1 is the all-one vector of length 2n + 2 .Then, the encoded sequence d1d2 · · · dm without delimiters is a self-synchronizing SDC sequence. 10 
+
+Algorithm 13 Decoding algorithm for a received vector 
+
+Require: a received vector x through a single-deletion channel from Cψ of length 
+
+2n + 2 .
+
+Ensure: the codeword c in C decoded from x with values of ψ = xn+1 and is _del . 
+
+> 1:
+
+L ← the length of x 
+
+> 2:
+
+if L = 2 n + 1 then ; is _del ← true  
+
+> 3:
+
+decompose x = u ⊕ (xn+1 ) ⊕ v, where u and v are vectors of length n. 
+
+> 4:
+
+ϕ ← xn+1  
+
+> 5:
+
+if xn+1 ̸ = xn+2 then  
+
+> 6:
+
+there is a single deletion in the position of [1 ..n + 2] ; 
+
+> 7:
+
+obtain c generated by x[n + 2 .. 2n + 1] with the information set {n +1, . . . , 2n}. 
+
+> 8:
+
+else if xn+1 = xn+2 then  
+
+> 9:
+
+there is no single-deletion in u 
+
+> 10:
+
+obtain c generated by u with the information set {1, . . . , n }. 
+
+> 11:
+
+end if  
+
+> 12:
+
+else if L = 2 n + 2 then  
+
+> 13:
+
+decompose x = u⊕(xn+1 , x n+2 )⊕v, where u and v are vectors of length 
+
+n. 
+
+> 14:
+
+ϕ ← xn+1  
+
+> 15:
+
+if xn+1 ̸ = xn+2 then  
+
+> 16:
+
+there is a single deletion in the position of [1 ..n + 2] ; is _del ← true  
+
+> 17:
+
+obtain c generated by x[n + 2 .. 2n + 1] with the information set {n +1, . . . , 2n}. 
+
+> 18:
+
+else if xn+1 = xn+2 then  
+
+> 19:
+
+there is no single-deletion in u 
+
+> 20:
+
+obtain c generated by u with the information set {1, . . . , n }. 
+
+> 21:
+
+if c[n + 1 .. 2n] = x[n + 3 .. 2n + 2] then  
+
+> 22:
+
+there is no single-deletion; is _del ← f alse  
+
+> 23:
+
+else  
+
+> 24:
+
+there is a single-deletion at [n + 3 .. 2n]; is _del ← true  
+
+> 25:
+
+end if  
+
+> 26:
+
+end if  
+
+> 27:
+
+end if  
+
+> 28:
+
+return c, ψ = xn+1 , is _del 
+
+Proof. We prove the theorem by induction on m, the number of codewords. When 
+
+m = 1 , any single-deletion-error in the first codeword d1 can be decoded us-ing Algorithm 6. That is, a sequence consisting of a single codeword d1 forms a self-synchronizing SDC sequence. Suppose, as the induction hypothesis, that for a positive integer k, a sequence of k codewords without delimiters, d1d2 · · · dk,is a self-synchronizing SDC sequence. Now consider a sequence of k + 1 code-words, d1d2 · · · dkdk+1 without delimiters. By the induction hypothesis, the first 11 
+
+k codewords d1d2 · · · dk form a self-synchronizing SDC sequence. Thus, it suf-fices to prove that any single-deletion error occuring in dk+1 can be corrected. If the last symbol of dk is not equal to the first symbol of dk+1 ,there is no ambiguity in determining the starting position of dk+1 , and thus dk+1 can be decoded using Algorithm 13. If, on the other hand, the last symbol of dk equals the first symbol of dk+1 and if the last symbol of dk is deleted, then Algorithm 13 cannot detect the single-deletion in dk, will mistakenly interpret the first symbol of dk+1 as the last symbol of dk. If a single-deletion occurs within dk+1 , Algorithm 13 would process a subsequence dk+1 with two deleted symbols, resulting in a decoding failure of dk+1 . However, encoding rule (iii) ensures that the last symbol of dk
+
+is always different from the first symbol of dk+1 . Therefore, no confusion arises when determining the first symbol of dk+1 and dk+1 can be correctly decoded using Algorithm 13. This completes the induction and the proof. ■
+
+Next, we propose Algorithms 15 and 16. Based on these algorithms, we propose a method for self-synchronizing SDC DNA codes in Theorem 17. 
+
+Algorithm 15 Encoding algorithm for self-synchronizing SDC codes 
+
+Require: a sequence of m codewords (c1, c2, · · · , cr)
+
+Ensure: sequence Σ = d1d2 · · · dr with no delimiters.  
+
+> 1:
+
+x ← c1 
+
+> 2:
+
+convert x to xψ. 
+
+> 3:
+
+Σ ← xψ 
+
+> 4:
+
+for n = 2 , . . . , r do  
+
+> 5:
+
+x ← the i-th codeword ci 
+
+> 6:
+
+convert x to xψ. 
+
+> 7:
+
+σ ← the first symbol of xψ 
+
+> 8:
+
+if σ = λ then  
+
+> 9:
+
+xψ ← xψ + 1 
+
+> 10:
+
+end if  
+
+> 11:
+
+concatenate xψ to Σ without delimiter  
+
+> 12:
+
+λ ← the last symbol of Σ. 
+
+> 13:
+
+end for 12 
+
+Algorithm 16 Decoding algorithm for self-synchronizing SDC codes 
+
+Require: a sequence Σ = d1d2 · · · dr with no delimiters and possible single-deletion errors, encoded using Algorithm 15. 
+
+Ensure: sequence Λ = ( c1, c2, · · · , cr) 
+
+> 1:
+
+Λ ← the empty sequence  
+
+> 2:
+
+m ← the number of symbols in sequence Σ 
+
+> 3:
+
+while m > 0 do  
+
+> 4:
+
+if m ≥ 2n + 2 then  
+
+> 5:
+
+d ← Σ[1 .. (2 n + 2)]  
+
+> 6:
+
+else if m = 2 n + 1 then  
+
+> 7:
+
+d ← Σ[1 .. (2 n + 1)]  
+
+> 8:
+
+else  
+
+> 9:
+
+Σ is undecodable; terminate.  
+
+> 10:
+
+end if  
+
+> 11:
+
+apply Algorithm 13 on d and obtain c and ϕ 
+
+> 12:
+
+if d is proved to have a single-deletion then  
+
+> 13:
+
+Σ ← Λ[(2 n + 2) ..m ] 
+
+> 14:
+
+m ← m − (2 n + 1)  
+
+> 15:
+
+else  
+
+> 16:
+
+Σ ← Λ[(2 n + 3) ..m ] 
+
+> 17:
+
+m ← m − (2 n + 2)  
+
+> 18:
+
+end if  
+
+> 19:
+
+a ← c[n]; b ← c[n + 3]  
+
+> 20:
+
+if ψ(a, b ) = ϕ + 1 then  
+
+> 21:
+
+c ← c + 1 
+
+> 22:
+
+else  
+
+> 23:
+
+pass  
+
+> 24:
+
+end if  
+
+> 25:
+
+append c to Λ 
+
+> 26:
+
+end while  
+
+> 27:
+
+return Λ
+
+Theorem 17. Let ψ be the map defined in Definition 11. Assume that C is a CIS code of length 2n over F4 having all-one vector as codewords, and let Cψ be the set of vectors xψ for all codewords x in C. Then, D = μ(Cψ) is a self-synchronizing single-deletion-correcting DNA code, and its encoding and decoding algorithms can be achieved using Algorithms 15 and 16. 
+
+Proof. This result is straightforward from Theorem 14. ■
+
+4. I MPLEMENTATION ON DNA CODES 
+
+This section proposes the encoding and decoding algorithms for binary data using a self-synchronizing SDC DNA code. We implement these algorithms with Python. We assume that C is a CIS code of length 2n over F4 having an all-one 13 
+
+vector, ψ is the map defined in Definition 11, and nh is a sufficiently large fixed positive integer such that 2nh ≥ is the length of bin _data .
+
+Algorithm 18 (Encoding algorithm for self-synchroning SDC DNA codes) .
+
+Input: bin _data := binary data, such as. txt file, image files, etc. Output: Σ := encoded DNA sequence of bin _data 
+
+Step 1. [Convert bin _data to bin _seq ]Add header as metadata for bin _data and zero-padding so that the length of the converted binary sequence, bin _seq , is a multiple of 2n.- (Length check) let ℓ be the length of bin _data 
+
+- (Header) convert ℓ to binary number ℓ2 of nh digits. - (Zero-padding) let ℓp be all 0 sequence of length 2n−(ℓ+nh) modulo 
+
+2n.- Let bin _seq be the concatenated sequence of ℓ2, ℓp, and bin _data , in this order. Step 2. [Convert bin _seq to a pre-dna _seq ]Convert every two each symbols in bin _data to a DNA symbol, A, C, G 
+
+and T under the map δ to obtain pre-dna _seq :pre −dna _seq = δ(bin _seq ).
+
+The length of pre-dna _seq is a multiple of n.Step 3. [Divide pre-dna _seq ]Divide every n symbol of pre-dna _seq and let r be the number of divi-sions. Then, pre-dna _seq is in the form 
+
+(m1, m2, · · · , mr),
+
+where mi is a sequence of n DNA symbols for 1 ≤ i ≤ r.Step 4. [Encode each block of pre-dna _seq ]Encode each mi of pre-dna _seq to DNA codeword of C as follows. - Convert each mi to a 2 × 2n matrix f (mi) over F2 by map f .- Encode each f (mi) to a codeword f (ci) by multiplying the generator matrix of C under map τ .- Apply map f −1 to f (ci) and obtain the DNA codeword ci of C.Thus, we obtain the sequence of DNA codewords (c1, c2, · · · , cr)
+
+Step 5. [Encoding to self-synchronizing SDC sequence] Apply Algorithm 15 to the sequence of DNA codewords (c1, c2, · · · , cr).Finally, we obtain the DNA sequence Σ = d1d2 · · · dr with no delimiters. 
+
+Algorithm 19 (Decoding algorithm) .
+
+Input: DNA sequence Σ = d1d2 · · · dr with possible single-deletion errors and no delimiters. Output: bin _data := the original binary data. 14 
+
+Step 1. [Decode Σ]Apply Algorithm 16 to the DNA sequence Σ = d1d2 · · · dr with no delim-iters. Then we obtain the sequence of DNA codewords Λ = ( c1, c2, · · · , cr)
+
+Step 2. [Obtain pre-dna _seq ]For each DNA codeword ci in Λ, let mi be ci[1 ..n ]. Concatenating mi for all i gives the pre-dna _seq .Step 3. [Convert pre-dna _seq to bin _seq ]Obtain bin _seq using the inverse map of δ, that is, 
+
+bin _seq = δ−1(pre −dna _seq ).
+
+Step 4. [Obtain original binary data] The binary number made by the first nh digits of bin _seq is the number of the length of the original binary data. Take that amount of digits of 
+
+bin _seq , counting from the end of bin _seq , to obtain the original binary data bin _data .We provide the following examples, which illustrate Algorithms 18 and 19. In the following examples, we use a reversible CIS [6,3,3]-code in the encoding and decoding process. We exploited the reversibility of codewords when decoding single-error codewords. For details on the reversible code, please refer [3, 11]. 
+
+Example 20. Let C be a reversible self-dual code of length 6 over F4 with generator matrix 
+
+G =
+
+1 0 0 ω 1 ω
+
+0 1 0 ω2 ω2 10 0 1 0 ω2 ω
+
+ ,
+
+and set the header length to nh = 6 . It is easy to verify that C is an all-one vector as a codeword. The conversion of the generator matrix over DNA symbols is 
+
+μ−1(G) = 
+
+T A A C T CA T A G G TA A T A G C
+
+ ,
+
+and the conversion of the generator matrix over GF(2) is 
+
+τ (G) = 
+
+
+
+100000011001 010000110111 001000111110 000100101001 000010001101 000001001011 
+
+
+
+.
+
+Assume that we have binary data of 19 bits: 
+
+bin _data = 1010100101010100111 .
+
+Step 1. [Convert bin _data to bin _seq ]Since we set the header length nh = 6 , the header becomes 010011 as the six-digit binary representation of length 19 . Thus, we need five 0’s for 15 
+
+zero-padding so that the concatenated binary sequence has a length of 30, a multiple of 6:
+
+bin _seq = 010011 /00000 /1010100101010100111 .
+
+Note that there are m = 5 blocks in this sequence. Step 2. [Convert bin _seq to pre-dna _seq ]The concatenated data is converted to the pre-dna _seq of length 30 /2 = 15 :pre-dna _seq = δ(bin _seq ) = GAT AAGGGACCCCGT. 
+
+Step 3. [Divide pre-dna _seq ]The sequence GAT AAGGGACCCCGT is divided into five subsequences of 3 DNA symbols: 
+
+GAT, AAG, GGA, CCC, CGT. 
+
+Step 4. [Encode each block of pre-dna _seq ]Each subsequence of pre-dna _seq is converted to a 2×6 matrix using map 
+
+f : 110010 100001 
+
+> 
+> ,
+> 000011 000010
+> 
+> ,
+> 111100 101000
+> 
+> ,
+> 010101 111111
+> 
+> ,
+> 011110 111001
+> 
+> .
+
+By multiplying the generator matrix τ (G) with each block, we obtain five codewords of 2 × 12 matrices. For example, the first block is encoded as 
+
+110010 100001 
+
+
+
+100000011001 010000110111 001000111110 000100101001 000010001101 000001001011 
+
+
+
+=
+
+110010100011 100001010010 
+
+
+
+.
+
+Applying f −1 gives 
+
+f −1
+
+110010100011 100001010010 
+
+
+
+= GAT T AG. 
+
+Repeating this process for all the codewords and concatenating them, we obtain the sequence of DNA codewords 
+
+GAT T AG, AAGACT, GGAGT C, CCCCCC, CGT T GC. 
+
+Step 5. [Encoding to self-synchronizing SDC sequence] Applying Algorithm 19, the sequence of DNA codewords is converted into 
+
+GAT CCT AG, AAGT T ACT, GGAT T GT C, GGGT T GGG, CGT CCT GC. 
+
+The fourth block CCCCCC is converted into CCCAACCC at first; however, the first symbol C is identical to the last symbol of the previ-ous codeword GGAT T GT C . Thus, we take GGGT T GGG , the comple-ment of CCCAACCC . Therefore, as the self-synchronizing SDC DNA 16 
+
+sequence, we obtain 
+
+Σ = GAT CCT AGAAGT T ACT GGA T T GT CGGGT T GGGCGT CCT GC. 
+
+Example 21. Assume that the sender sends the original DNA sequence from Ex-ample 20: 
+
+Σ = GAT CCT AGAAGT T ACT GGAT T GT CGGGT T GGGCGT CCT GC, 
+
+and assume that we have the information of the code C and nh = 6 . Suppose that four single-deletion errors occur during transmission as follows: 
+
+Σ = GAT CCT AGA @@AGT T ACT GGA @T T GT CGGGT T G @@GGC @@GT CCT GC. 
+
+Thus, we receive the following DNA sequence: 
+
+Σ′ = GAT CCT AGAGT T ACT GGAT GT CGGGT T GGCT CCT GC 
+
+Step 1. [Decode Σ′]Apply Algorithm 16 to the DNA sequence Σ′.- Set Λ = () , empty sequence and m = 36 , the number of symbols in 
+
+Σ′
+
+- Since m = 36 > 0, the first iteration begins. (1) m > 8; thus, we set d = GAT CCT AG .(2) Apply Algorithm 13 on d:- d = GAT CCT AG is decomposed into GAT, CC, T AG 
+
+and set ϕ = C.- Since xn+1 = C = xn+2 , there is no deletion in position 
+
+d[1 .. 3] = GAT .- f (GAT ) = 
+
+110010 100001 
+
+
+
+, and multiplying τ (G), we obtain 
+
+f (c) = 
+
+110010100011 100001010010 
+
+
+
+; therefore, c = GAT T AG. 
+
+(3) Since c[4 .. 6] = d[6 .. 8] , we conclude that there is no deletion. Thus, m = m − 8 = 28 and Σ′ becomes 
+
+Σ′ = AGT T ACT GGAT GT CGGGT T GGCT CCT GC. 
+
+(4) Since ψ(a, b ) = ψ(T, T ) = C = ϕ, we append c to Λ, that is, 
+
+Λ = ( GAT T AG ) and the first iteration ends. - Since m = 28 > 0, the second iteration begins. (1) m > 8; thus, we set d = AGT T ACT G .(2) Apply Algorithm 13 on d:- d = AGT T ACT G is decomposed into AGT, T A, CT G ,and set ϕ = T .- Since xn+1 = T̸ = A = xn+2 , there is a single deletion in position [1..5]. 17 
+
+- We take f (d[5 .. 7]) = f (ACT ) with information set [4..6]. To obtain c, we use f (T CA r) = f (T CA ) = 
+
+100100 011100 
+
+
+
+.
+
+By multiplying τ (G), we obtain 
+
+100100 011100 
+
+
+
+100000011001 010000110111 001000111110 000100101001 000010001101 000001001011 
+
+
+
+=
+
+100100110000 011100100000 
+
+
+
+.
+
+Thus, we see that T CAGAA is a codeword of C, and the reversibility of C ensure that AAGACT is also a codeword in C having ACT in information set [4..6]. Therefore, we conclude that c = AAGACT .(3) Since d has a single-deletion, m = m−7 = 21 and Σ′ becomes 
+
+Σ′ = GGAT GT CGGGT T GGCT CCT GC, 
+
+returning the last symbol G of d.(4) Since ψ(a, b ) = ψ(G, A ) = T = ϕ, we append c to Λ, and the second iteration ends. - Since m = 21 > 0, the third iteration begins. (1) m > 8; thus, we set d = GGAT GT CG .(2) Apply Algorithm 13 on d:- d = GGAT GT CG is decomposed into GGAT GT CG ,and set ϕ = T .- Since xn+1 = T̸ = G = xn+2 , there is a single deletion in position [1..5]. - We take f (d[5 .. 7]) = f (T CG ) with information set [4..6]. - We take a similar process as the second iteration, and ob-tain c = GGAGT C .(3) Since d has a single-deletion, m = m−7 = 14 and Σ′ becomes 
+
+Σ′ = GGGT T GGCT CCT GC, 
+
+returning the last symbol G of d.(4) Since ψ(a, b ) = ψ(A, G ) = T = ϕ, we append c to Λ, and the third iteration ends. - Since m = 14 > 0, the fourth iteration begins. (1) m > 8; thus, we set d = GGGT T GGC .(2) Apply Algorithm 13 on d:- d = GGGT T GGC is decomposed into GGG, T T, GGC ,and set ϕ = T .- Since xn+1 = T = xn+2 , there is no single deletion in position [1..5]. - We take f (d[1 .. 3]) = f (GGG ) with information set [1..3]. 18 
+
+- We take a similar process as the first iteration, and obtain 
+
+c = GGGGGG .(3) Since c[4 .. 6] = GGG ̸ = GGC = d[6 .. 8] , d has a single-deletion. Thus m = m − 7 = 7 and Σ′ becomes 
+
+Σ′ = CT CCT GC, 
+
+returning the last symbol C of d.(4) Since ψ(G, G ) = A̸ = T = ϕ, we append c + 1 = CCCCCC 
+
+to Λ, and the fourth iteration ends. - Since m = 7 > 0, the fifth iteration begins. (1) m = 7 = 2 n + 1 ; thus, we set d = CT CCT GC .(2) Apply Algorithm 13 on d:- d = CT CCT GC is decomposed into CT C, C, T GC ,and set ϕ = C.- Since xn+1 = C̸ = T = xn+2 , there is a single deletion in position [1..5]. - We take f (d[5 .. 7]) = f (T GC ) with information set [4..6]. - We take a similar process as the second iteration, and ob-tain c = CGT T GC .(3) Since d has a single-deletion, m = m − 7 = 0 and Σ′ becomes empty. (4) Since ψ(a, b ) = ψ(T, T ) = C = ϕ, we append c to Λ, and the fifth iteration ends. - Since m = 0 , it is terminated. - It returns Λ = ( GAT T AG, AAGACT, GGAGT C, CCCCCC, CGT T GC ).
+
+Step 2. [Obtain pre-dna _seq ]From Λ = ( GAT T AG, AAGACT, GGAGT C, CCCCCC, CGT T GC ),
+
+we obtain the pre-dna _seq :
+
+GAT AAGGGACCCCGT 
+
+Step 3. [Convert pre-dna _seq to bin _seq ]The map δ−1(GAT AAGGGACCCCGT ) gives 
+
+bin _seq = 010011000001010100101010100111 .
+
+Step 4. [Obtain the original binary data] Since nh = 6 , the length of the original binary data is binary 010011 ,equivalently, 19. Therefore we take 19 digits of bin _seq from the end, and the original binary data bin _data is 1010100101010100111 .
+
+5. C ONCLUDING REMARKS 
+
+This study introduces a novel approach for correcting single-deletion errors in continuous transmissions without delimiters with a self-synchronizing capability. Whereas traditional error-correcting codes concentrate only on substitution errors, applications of coding theory in bioinformatics encompass a wider range of errors, including deletions, insertions, and erasures, known as synchronization errors. The 19 
+
+historical context of the self-synchronization problem in biology, particularly in DNA sequences, has been explored since the discovery of DNA. We point out that Francis Crick’s early proposal of “codes without commas” for DNA sequences, though proven biologically incorrect, inspired mathematicians interested in syn-chronization problems. While this work provides a theoretical foundation for the construction of single-deletion-correcting DNA codes using CIS codes, we acknowledge that our focus has been on mathematical formulation and analysis rather than immediate practical implementation. As a result, certain challenges remain regarding the direct appli-cation of our approach to real-world DNA storage and DNA computing systems. Addressing these practical aspects—including experimental validation and adapta-tion to the constraints of DNA synthesis, sequencing, and channel noise—will be an important direction for future research. We hope that our results will serve as a stepping stone for both theoretical advances and future applications in the field. We hope to find applications of self-synchronizing single-deletion correcting codes in various research fields, such as DNA computing and computer designs, DNA data-storage devices, and synthetic DNA sequence designs. In future work, we will explore the applications of DNA coding theory and continue to study self-synchronizing codes with multi-deletion or insertion-correcting capabilities. ACKNOWLEDGMENT 
+
+This work is supported by the the National Research Foundation of Korea (NRF) grant funded by the Korea government (2019R1I1A1A01057755, 2022R1C1C2011689). REFERENCES           
+
+> [1] K.A. Abdel-Ghaffar, H.C. Ferreira, and L. Cheng, “Correcting deletions using linear and cyclic codes,” IEEE Trans. Inform. Theory , vol. 56, no. 10, pp. 5223–5234, 2010. [2] J. Cannon, C. Playoust, “An Introduction to Magma.” University of Sydney, Sydney, Australia, 1994. [3] W.-H. Choi, H.J. Kim, and Y. Lee, “Construction of single-deletion-correcting DNA codes using CIS codes,” Des. Codes Cryptogr. , vol. 88, pp. 2581–2596, 2020. [4] C. Carlet, P. Gaborit, J-L. Kim, and P. Sol ´e, “A new class of codes for Boolean masking of cryptographic computations,” IEEE Trans. Inform. Theory , vol. 58, pp. 6000–6011, 2012. [5] F.H.C. Crick, J.S. Griffith, and L. E. Orgel, “Codes without commas,” Proc. Natl. Acad. Sci. U.S.A. , vol. 43, no. 5, pp. 416–421, 1957. [6] P. Gaborit and O.D. King, “Linear constructions for DNA codes,” Theoret. Comput. Sci. , vol. 334(1-3), pp. 99–113, 2005. [7] S. W. Golomb, G. Basil, and R.W. Lloyd, “Comma-free codes,” Can. J. Math , vol. 10, pp. 202–209, 1958. [8] S.K. Hanna, “Effective IDS Error Correction Algorithms for DNA Storage Channels With Mul-tiple Output Sequences,” IEEE Trans. Inf. Theory , vol. 69, no. 9, pp. 5687–5700, 2023. [9] B. Haeupler, A. Shahrasbi, “Synchronization Strings and Codes for Insertions and Deletions -A Survey,” IEEE Trans. Inf. Theory , vol. 67, no. 6, pp. 3190–3206, 2021. [10] W.C. Huffman, V. Pless, Fundamentals of Error-Correcting Codes , Cambridge University Press, Cambridge, 2003. [11] H.J. Kim, W.-H. Choi, and Y. Lee, “Construction of reversible self-dual codes,” Finite Fields Appl. , vol. 67, pp. 101714, 2020. 20
+
+[12] H.J. Kim, W.-H. Choi, and Y. Lee, “Designing DNA codes from reversible self-dual codes over 
+
+GF (4) ,” Discrete Math. , vol. 344, no. 1, pp. 112159, 2021. [13] H.J. Kim and Y. Lee, “Complementary information set codes over GF (p),” Des. Codes Cryp-togr. , vol. 81, pp. 541–555, 2016. [14] O.D. King, “Bounds for DNA codes with constant GC-content,” Electron. J. Combin. , vol. 10, R33, 2003. [15] V.I. Levenshtein, “Binary codes capable of correcting deletions, insertions, and reversals,” In Soviet physics doklady , vol. 10, no. 8, pp. 707–710, 1966. [16] J. Levy, “Self-synchronizing codes derived from binary cyclic codes,” IEEE Trans. Inf. Theory ,vol. 12, no. 3, pp. 286–290, 1966. [17] F.J. MacWilliams, N.J.A. Sloane, The theory of error-correcting codes , North-Holland, Ams-terdam, 1977. [18] J.L. Massey, “Optimum Frame Synchronization,” IEEE Trans. Commun. , vol. 20, no. 2, pp. 115–119, 1972. [19] F. Sala, R. Gabrys, C. Schoeny, and L. Dolecek, “Exact Reconstruction From Insertions in Synchronization Codes,” IEEE Trans. Inf. Theory , vol. 63, no. 4, pp. 2428–2445, 2017. [20] Van Rossum, G., & Drake, F. L. (2009). Python 3 Reference Manual. Scotts Valley, CA: Cre-ateSpace. [21] Z. Yan, C. Liang, and H. Wu, “A Segmented-Edit Error-Correcting Code With Re-Synchronization Function for DNA-Based Storage Systems,” IEEE Trans. Emerg. Top. Com-put. , vol. 11, no. 3, pp. 605-618, 2023. DEPARTMENT OF MATHEMATICS KANGWON NATIONAL UNIVERSITY CHUNCHEON 24341, KOREA 
+
+KANGWON RESEARCH INSTITUTE OF MATHEMATICAL SCIENCES , K ANGWON NATIONAL 
+
+UNIVERSITY , C HUNCHEON 24341, K OREA , E-MAIL : WHCHOI @KANGWON .AC .KR ,

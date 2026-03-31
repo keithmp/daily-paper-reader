@@ -1,0 +1,897 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-03-31T19:49:09.787122+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 8,
+    "deep_cap": 8,
+    "deep_selected": 8,
+    "quick_candidates": 19,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.27255v1",
+      "title": "When can fitness epistasis be ignored in a polygenic trait at equilibrium?",
+      "abstract": "Although many phenotypic traits are determined by a large number of genetic variants, the behavior of allele frequencies in a polygenic trait is not completely understood. The problem is especially challenging when the quantitative trait of interest is under epistatic selection as the allele frequency at a locus is affected by those at other loci. Here, we consider a panmictic, diploid finite population evolving under stabilizing selection and symmetric mutations when the population is in linkage equilibrium. In the stationary state, using a diffusion theory, we calculate the marginal distribution of allele frequency, and find parameter regimes where fitness epistasis can not be ignored for an accurate description of the frequency distribution. For such parameters, the mean deviation in the phenotypic optimum and genic variance are, however, found to be well captured even when epistatic interactions are neglected. Thus, while the presence of epistasis may not be evident in phenotypic quantities, it can strongly affect the allele frequency distribution.We also find that the allele frequency distribution at a locus is unimodal if its effect size is below a threshold effect and bimodal otherwise; these results are the stochastic analog of the deterministic ones where the stable allele frequency becomes bistable when the effect size exceeds a threshold. Our analytical results are verified against Monte Carlo simulations and numerical integration of a Langevin equation.",
+      "authors": [
+        "Archana Devi",
+        "Kavita Jain"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cond-mat.stat-mech"
+      ],
+      "published": "2026-03-28T12:13:51+00:00",
+      "link": "https://arxiv.org/pdf/2603.27255v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "allele frequencies in polygenic traits under epistatic selection",
+      "llm_evidence_cn": "上位性选择下多基因性状的等位基因频率",
+      "llm_evidence": "上位性选择下多基因性状的等位基因频率",
+      "canonical_evidence": "上位性选择下多基因性状的等位基因频率",
+      "llm_tldr_en": "Calculates allele frequency distributions in polygenic traits to determine when fitness epistasis matters.",
+      "llm_tldr_cn": "计算多基因性状中的等位基因频率分布，以确定适应度上位性在何时不可忽略。",
+      "llm_tldr": "计算多基因性状中的等位基因频率分布，以确定适应度上位性在何时不可忽略。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.27145v1",
+      "title": "Pan-Cancer Mapping of the Tumor Immune Landscape through Metagene Clustering and Predictive Modeling",
+      "abstract": "As immunotherapies become standard cancer treatments, it is increasingly important to identify a patient's immune profile, which encompasses the activity of immune cells within the tumor microenvironment and the presence of specific biomarkers. However, we lack mechanistic explanations drivers of immune phenotypes. Despite advances in immune profiling with high-throughput sequencing, the mechanisms driving them remain unclear. This study aimed to identify novel, robust immune-related gene clusters (metagenes) and evaluate their prognostic significance and functional relevance across various pan-cancer types using a comprehensive computational pipeline. We acquired pan-cancer bulk RNA-seq and established immune subtypes from The Cancer Genome Atlas (TCGA). Using expression-based filtering and clustering of genes with ANOVA and Gaussian Mixture Model (GMM), we identified 48 unique metagenes. These metagenes achieved 87% accuracy in predicting the established subtypes. SHAP analysis revealed the most predictive metagenes per subtype, while functional enrichment analysis identified their associated pathways. Genes were ranked by differential expression between high- and low-expression groups. The metagenes revealed insights, including co-expression of immune activation and regulatory factors, links between cell cycle regulation and immune evasion, and dynamic microenvironment remodeling signatures. Kaplan-Meier survival analysis and multivariate Cox Regression revealed that many metagenes had prognostic value for overall survival. Overall, the metagenes represent coordinated biological programs across diverse cancer types, providing a foundation for developing robust, broadly applicable immuno-oncology biomarkers that extend beyond single-gene markers. They demonstrate prognostic value across cancer types and hold potential to guide immunotherapy treatment decisions.",
+      "authors": [
+        "Soham Chatterjee"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-03-28T05:38:40+00:00",
+      "link": "https://arxiv.org/pdf/2603.27145v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "pan-cancer genomic mapping and immune gene clusters",
+      "llm_evidence_cn": "泛癌基因组图谱与免疫基因簇",
+      "llm_evidence": "泛癌基因组图谱与免疫基因簇",
+      "canonical_evidence": "泛癌基因组图谱与免疫基因簇",
+      "llm_tldr_en": "Identifies immune-related gene clusters across cancers to understand drivers of immune phenotypes.",
+      "llm_tldr_cn": "识别跨癌症的免疫相关基因簇，以了解免疫表型的驱动因素。",
+      "llm_tldr": "识别跨癌症的免疫相关基因簇，以了解免疫表型的驱动因素。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.27140v1",
+      "title": "Viral Quasispecies Evolution as a Branching Random Walk on the Hypercube",
+      "abstract": "We study a continuous-time nearest-neighbor branching random walk on the $d$-dimensional $b$-ary hypercube $\\{0,1,\\dots,b-1\\}^d$ as a model for viral quasispecies evolution under mutation and replication. Motivated by mutagenic antiviral treatments and evolutionary-safety questions, we analyze the first passage time to a fixed target genotype at Hamming distance $m$, corresponding to the first appearance of a prescribed collection of mutations. We derive sharp asymptotics for these first passage times, uniformly for $m\\le d/L$ as $d\\to\\infty$ (where $L>0$ is a large constant), and identify a phase transition in first-passage scaling at $ρ=e$, where $ρ$ denotes the effective growth parameter. In the slow-branching regime $ρ\\in(1,e)$ relevant to mutagenic treatment scenarios, the first passage time is asymptotically affine in the genome length $d$ and the target distance $m$. In particular, when replication is fixed and mutation exceeds branching, increasing the mutation rate can delay the first appearance of a prescribed genotype by order $d$, providing a quantitative perspective on evolutionary safety.",
+      "authors": [
+        "Jose Blanchet",
+        "Zhenyuan Zhang"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR"
+      ],
+      "published": "2026-03-28T05:31:31+00:00",
+      "link": "https://arxiv.org/pdf/2603.27140v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "evolutionary dynamics of viral quasispecies and mutation",
+      "llm_evidence_cn": "病毒准种演化与突变的动力学",
+      "llm_evidence": "病毒准种演化与突变的动力学",
+      "canonical_evidence": "病毒准种演化与突变的动力学",
+      "llm_tldr_en": "Models viral evolution as a branching random walk to analyze the time to reach specific genotypes.",
+      "llm_tldr_cn": "将病毒演化建模为分支随机游走，分析达到特定基因型的时间。",
+      "llm_tldr": "将病毒演化建模为分支随机游走，分析达到特定基因型的时间。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.26809v1",
+      "title": "Dictionary-based Pathology Mining with Hard-instance-assisted Classifier Debiasing for Genetic Biomarker Prediction from WSIs",
+      "abstract": "Prediction of genetic biomarkers, e.g., microsatellite instability in colorectal cancer is crucial for clinical decision making. But, two primary challenges hamper accurate prediction: (1) It is difficult to construct a pathology-aware representation involving the complex interconnections among pathological components. (2) WSIs contain a large proportion of areas unrelated to genetic biomarkers, which make the model easily overfit simple but irrelative instances. We hereby propose a Dictionary-based hierarchical pathology mining with hard-instance-assisted classifier Debiasing framework to address these challenges, dubbed as D2Bio. Our first module, dictionary-based hierarchical pathology mining, is able to mine diverse and very fine-grained pathological contextual interaction without the limit to the distances between patches. The second module, hard-instance-assisted classfier debiasing, learns a debiased classifier via focusing on hard but task-related features, without any additional annotations. Experimental results on five cohorts show the superiority of our method, with over 4% improvement in AUROC compared with the second best on the TCGA-CRC-MSI cohort. Our analysis further shows the clinical interpretability of D2Bio in genetic biomarker diagnosis and potential clinical utility in survival analysis. Code will be available at https://github.com/DeepMed-Lab-ECNU/D2Bio.",
+      "authors": [
+        "Ling Zhang",
+        "Boxiang Yun",
+        "Ting Jin",
+        "Qingli Li",
+        "Xinxing Li",
+        "Yan Wang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-03-26T14:23:28+00:00",
+      "link": "https://arxiv.org/pdf/2603.26809v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for genetic biomarker prediction from pathology images",
+      "llm_evidence_cn": "利用AI从病理图像中预测遗传生物标志物",
+      "llm_evidence": "利用AI从病理图像中预测遗传生物标志物",
+      "canonical_evidence": "利用AI从病理图像中预测遗传生物标志物",
+      "llm_tldr_en": "Uses AI to predict genetic biomarkers like microsatellite instability from whole slide images.",
+      "llm_tldr_cn": "利用AI从全切片图像中预测微卫星不稳定等遗传生物标志物。",
+      "llm_tldr": "利用AI从全切片图像中预测微卫星不稳定等遗传生物标志物。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.26994v1",
+      "title": "ImmSET: Sequence-Based Predictor of TCR-pMHC Specificity at Scale",
+      "abstract": "T cells are a critical component of the adaptive immune system, playing a role in infectious disease, autoimmunity, and cancer. T cell function is mediated by the T cell receptor (TCR) protein, a highly diverse receptor targeting specific peptides presented by the major histocompatibility complex (pMHCs). Predicting the specificity of TCRs for their cognate pMHCs is central to understanding adaptive immunity and enabling personalized therapies. However, accurate prediction of this protein-protein interaction remains challenging due to the extreme diversity of both TCRs and pMHCs. Here, we present ImmSET (Immune Synapse Encoding Transformer), a novel sequence-based architecture designed to model interactions among sets of variable-length biological sequences. We train this model across a range of dataset sizes and compositions and study the resulting models' generalization to pMHC targets. We describe a failure mode in prior sequence-based approaches that inflates previously reported performance on this task and show that ImmSET remains robust under stricter evaluation. In systematically testing the scaling behavior of ImmSET with training data, we show that performance scales consistently with data volume across multiple data types and compares favorably with the pre-trained protein language model ESM2 fine-tuned on the same datasets. Finally, we demonstrate that ImmSET can outperform AlphaFold2 and AlphaFold3-based pipelines on TCR-pMHC specificity prediction when provided sufficient training data. This work establishes ImmSET as a scalable modeling paradigm for multi-sequence interaction problems, demonstrated in the TCR-pMHC setting but generalizable to other biological domains where high-throughput sequence-driven reasoning complements structure prediction and experimental mapping.",
+      "authors": [
+        "Marco Garcia Noceda",
+        "Matthew T Noakes",
+        "Andrew FigPope",
+        "Daniel E Mattox",
+        "Bryan Howie",
+        "Harlan Robins"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-27T21:08:10+00:00",
+      "link": "https://arxiv.org/pdf/2603.26994v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Predicting TCR-pMHC specificity for immune recognition",
+      "llm_evidence_cn": "预测TCR-pMHC特异性以进行免疫识别",
+      "llm_evidence": "预测TCR-pMHC特异性以进行免疫识别",
+      "canonical_evidence": "预测TCR-pMHC特异性以进行免疫识别",
+      "llm_tldr_en": "ImmSET uses transformers to predict TCR-pMHC interactions, crucial for understanding immune recognition.",
+      "llm_tldr_cn": "ImmSET利用Transformer预测TCR-pMHC相互作用，对理解免疫识别至关重要。",
+      "llm_tldr": "ImmSET利用Transformer预测TCR-pMHC相互作用，对理解免疫识别至关重要。",
+      "llm_tags": [
+        "query:xeno"
+      ],
+      "matched_query_tag": "query:xeno",
+      "matched_query_text": "Molecular mechanisms of immune recognition in xenotransplantation",
+      "matched_requirement_id": "req-29",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.26827v1",
+      "title": "Central-to-Local Adaptive Generative Diffusion Framework for Improving Gene Expression Prediction in Data-Limited Spatial Transcriptomics",
+      "abstract": "Spatial Transcriptomics (ST) provides spatially resolved gene expression profiles within intact tissue architecture, enabling molecular analysis in histological context. However, the high cost, limited throughput, and restricted data sharing of ST experiments result in severe data scarcity, constraining the development of robust computational models. To address this limitation, we present a Central-to-Local adaptive generative diffusion framework for ST (C2L-ST) that integrates large-scale morphological priors with limited molecular guidance. A global central model is first pretrained on extensive histopathology datasets to learn transferable morphological representations, and institution-specific local models are then adapted through lightweight gene-conditioned modulation using a small number of paired image-gene spots. This strategy enables the synthesis of realistic and molecularly consistent histology patches under data-limited conditions. The generated images exhibit high visual and structural fidelity, reproduce cellular composition, and show strong embedding overlap with real data across multiple organs, reflecting both realism and diversity. When incorporated into downstream training, synthetic image-gene pairs improve gene expression prediction accuracy and spatial coherence, achieving performance comparable to real data while requiring only a fraction of sampled spots. C2L-ST provides a scalable and data-efficient framework for molecular-level data augmentation, offering a domain-adaptive and generalizable approach for integrating histology and transcriptomics in spatial biology and related fields.",
+      "authors": [
+        "Yaoyu Fang",
+        "Jiahe Qian",
+        "Xinkun Wang",
+        "Lee A. Cooper",
+        "Bo Zhou"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "published": "2026-03-27T02:32:00+00:00",
+      "link": "https://arxiv.org/pdf/2603.26827v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI diffusion framework for gene expression prediction in spatial transcriptomics",
+      "llm_evidence_cn": "用于空间转录组学基因表达预测的AI扩散框架",
+      "llm_evidence": "用于空间转录组学基因表达预测的AI扩散框架",
+      "canonical_evidence": "用于空间转录组学基因表达预测的AI扩散框架",
+      "llm_tldr_en": "C2L-ST uses a generative diffusion framework to improve gene expression prediction in spatial transcriptomics.",
+      "llm_tldr_cn": "C2L-ST利用生成式扩散框架改进了空间转录组学中的基因表达预测。",
+      "llm_tldr": "C2L-ST利用生成式扩散框架改进了空间转录组学中的基因表达预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.27303v1",
+      "title": "Self-evolving AI agents for protein discovery and directed evolution",
+      "abstract": "Protein scientific discovery is bottlenecked by the manual orchestration of information and algorithms, while general agents are insufficient in complex domain projects. VenusFactory2 provides an autonomous framework that shifts from static tool usage to dynamic workflow synthesis via a self-evolving multi-agent infrastructure to address protein-related demands. It outperforms a set of well-known agents on the VenusAgentEval benchmark, and autonomously organizes the discovery and optimization of proteins from a single natural language prompt.",
+      "authors": [
+        "Yang Tan",
+        "Lingrong Zhang",
+        "Mingchen Li",
+        "Yuanxi Yu",
+        "Bozitao Zhong",
+        "Bingxin Zhou",
+        "Nanqing Dong",
+        "Liang Hong"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-28T15:16:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.27303v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI agents for protein discovery and directed evolution",
+      "llm_evidence_cn": "用于蛋白质发现和定向演化的AI智能体",
+      "llm_evidence": "用于蛋白质发现和定向演化的AI智能体",
+      "canonical_evidence": "用于蛋白质发现和定向演化的AI智能体",
+      "llm_tldr_en": "VenusFactory2 is an autonomous AI framework for protein discovery and optimization via self-evolving agents.",
+      "llm_tldr_cn": "VenusFactory2是一个通过自我演化智能体进行蛋白质发现和优化的自主AI框架。",
+      "llm_tldr": "VenusFactory2是一个通过自我演化智能体进行蛋白质发现和优化的自主AI框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.27465v1",
+      "title": "Poisoning the Genome: Targeted Backdoor Attacks on DNA Foundation Models",
+      "abstract": "Genomic foundation models trained on DNA sequences have demonstrated remarkable capabilities across diverse biological tasks, from variant effect prediction to genome design. These models are typically trained on massive, publicly sourced genomic datasets comprising trillions of nucleotide tokens, which renders them intrinsically susceptible to errors, artifacts, and adversarial issues embedded in the training data. Unlike natural language, DNA sequences lack the semantic transparency that might allow model makers to filter out corrupted entries, making genomic training corpora particularly susceptible to undetected manipulation. While training data poisoning has been established as a credible threat to large language models, its implications for genomic foundation models remain unexplored. Here, we present the first systematic investigation of training data poisoning in genomic language models. We demonstrate two complementary attack vectors. First, we show that adversarially crafted sequences can selectively degrade generative behavior on targeted genomic contexts, with backdoor activation following a sigmoidal dose-response relationship and full implantation achieved at 1 percent cumulative poison exposure. Second, targeted label corruption of downstream training data can selectively compromise clinically relevant variant classification, demonstrated using BRCA1 variant effect prediction. Our results reveal that genomic foundation models are vulnerable to targeted data poisoning attacks, underscoring the need for data provenance tracking, integrity verification, and adversarial robustness evaluation in the genomic foundation model development pipeline.",
+      "authors": [
+        "Charalampos Koilakos",
+        "Ioannis Mouratidis",
+        "Ilias Georgakopoulos-Soares"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-03-29T00:59:10+00:00",
+      "link": "https://arxiv.org/pdf/2603.27465v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "security of DNA foundation models used for genomic tasks",
+      "llm_evidence_cn": "用于基因组任务的DNA基础模型的安全性研究",
+      "llm_evidence": "用于基因组任务的DNA基础模型的安全性研究",
+      "canonical_evidence": "用于基因组任务的DNA基础模型的安全性研究",
+      "llm_tldr_en": "Investigates targeted backdoor attacks on genomic foundation models trained on DNA sequences.",
+      "llm_tldr_cn": "研究了针对基于DNA序列训练的基因组基础模型的定向后门攻击。",
+      "llm_tldr": "研究了针对基于DNA序列训练的基因组基础模型的定向后门攻击。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.26378v1",
+      "title": "Generative Modeling in Protein Design: Neural Representations, Conditional Generation, and Evaluation Standards",
+      "abstract": "Generative modeling has become a central paradigm in protein research, extending machine learning beyond structure prediction toward sequence design, backbone generation, inverse folding, and biomolecular interaction modeling. However, the literature remains fragmented across representations, model classes, and task formulations, making it difficult to compare methods or identify appropriate evaluation standards. This survey provides a systematic synthesis of generative AI in protein research, organized around (i) foundational representations spanning sequence, geometric, and multimodal encodings; (ii) generative architectures including $\\mathrm{SE}(3)$-equivariant diffusion, flow matching, and hybrid predictor-generator systems; and (iii) task settings from structure prediction and de novo design to protein-ligand and protein-protein interactions. Beyond cataloging methods, we compare assumptions, conditioning mechanisms, and controllability, and we synthesize evaluation best practices that emphasize leakage-aware splits, physical validity checks, and function-oriented benchmarks. We conclude with critical open challenges: modeling conformational dynamics and intrinsically disordered regions, scaling to large assemblies while maintaining efficiency, and developing robust safety frameworks for dual-use biosecurity risks. By unifying architectural advances with practical evaluation standards and responsible development considerations, this survey aims to accelerate the transition from predictive modeling to reliable, function-driven protein engineering.",
+      "authors": [
+        "Senura Hansaja Wanasekara",
+        "Minh-Duong Nguyen",
+        "Xiaochen Liu",
+        "Nguyen H. Tran",
+        "Ken-Tye Yong"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-27T13:02:16+00:00",
+      "link": "https://arxiv.org/pdf/2603.26378v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Generative AI in protein research and sequence design",
+      "llm_evidence_cn": "蛋白质研究和序列设计中的生成式AI",
+      "llm_evidence": "蛋白质研究和序列设计中的生成式AI",
+      "canonical_evidence": "蛋白质研究和序列设计中的生成式AI",
+      "llm_tldr_en": "A survey of generative modeling in protein research, covering representations and architectures for design.",
+      "llm_tldr_cn": "蛋白质研究中生成式建模的综述，涵盖了设计的表示和架构。",
+      "llm_tldr": "蛋白质研究中生成式建模的综述，涵盖了设计的表示和架构。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.21582v1",
+      "title": "Overview of TREC 2025 Biomedical Generative Retrieval (BioGen) Track",
+      "abstract": "Recent advances in large language models (LLMs) have made significant progress across multiple biomedical tasks, including biomedical question answering, lay-language summarization of the biomedical literature, and clinical note summarization. These models have demonstrated strong capabilities in processing and synthesizing complex biomedical information and in generating fluent, human-like responses. Despite these advancements, hallucinations or confabulations remain key challenges when using LLMs in biomedical and other high-stakes domains. Inaccuracies may be particularly harmful in high-risk situations, such as medical question answering, making clinical decisions, or appraising biomedical research. Studies on the evaluation of the LLMs' abilities to ground generated statements in verifiable sources have shown that models perform significantly",
+      "authors": [
+        "Deepak Gupta",
+        "Dina Demner-Fushman",
+        "William Hersh",
+        "Steven Bedrick",
+        "Kirk Roberts"
+      ],
+      "primary_category": "cs.IR",
+      "categories": [
+        "cs.IR"
+      ],
+      "published": "2026-03-23T05:10:16+00:00",
+      "link": "https://arxiv.org/pdf/2603.21582v1",
+      "tags": [
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI and LLMs for biomedical information synthesis",
+      "llm_evidence_cn": "用于生物医学信息综合的AI和大型语言模型",
+      "llm_evidence": "用于生物医学信息综合的AI和大型语言模型",
+      "canonical_evidence": "用于生物医学信息综合的AI和大型语言模型",
+      "llm_tldr_en": "Overview of the TREC 2025 track evaluating LLMs on biomedical retrieval and summarization tasks.",
+      "llm_tldr_cn": "2025年TREC生物医学生成检索赛道概览，评估大模型在医学任务中的表现。",
+      "llm_tldr": "2025年TREC生物医学生成检索赛道概览，评估大模型在医学任务中的表现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.26858v1",
+      "title": "A Hierarchical Sheaf Spectral Embedding Framework for Single-Cell RNA-seq Analysis",
+      "abstract": "Single-cell RNA-seq data analysis typically requires representations that capture heterogeneous local structure across multiple scales while remaining stable and interpretable. In this work, we propose a hierarchical sheaf spectral embedding (HSSE) framework that constructs informative cell-level features based on persistent sheaf Laplacian analysis. Starting from scale-dependent low-dimensional embeddings, we define cell-centered local neighborhoods at multiple resolutions. For each local neighborhood, we construct a data-driven cellular sheaf that encodes local relationships among cells. We then compute persistent sheaf Laplacians over sampled filtration intervals and extract spectral statistics that summarize the evolution of local relational structure across scales. These spectral descriptors are aggregated into a unified feature vector for each cell and can be directly used in downstream learning tasks without additional model training. We evaluate HSSE on twelve benchmark single-cell RNA-seq datasets covering diverse biological systems and data scales. Under a consistent classification protocol, HSSE achieves competitive or improved performance compared with existing multiscale and classical embedding-based methods across multiple evaluation metrics. The results demonstrate that sheaf spectral representations provide a robust and interpretable approach for single-cell RNA-seq data representation learning.",
+      "authors": [
+        "Xiang Xiang Wang",
+        "Guo-Wei We"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "math.SP",
+        "q-bio.GN",
+        "stat.ML"
+      ],
+      "published": "2026-03-27T13:52:16+00:00",
+      "link": "https://arxiv.org/pdf/2603.26858v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI framework for single-cell RNA-seq local structure analysis",
+      "llm_evidence_cn": "用于单细胞RNA测序局部结构分析的AI框架",
+      "llm_evidence": "用于单细胞RNA测序局部结构分析的AI框架",
+      "canonical_evidence": "用于单细胞RNA测序局部结构分析的AI框架",
+      "llm_tldr_en": "Proposes a hierarchical sheaf spectral embedding framework for stable single-cell RNA-seq data representation.",
+      "llm_tldr_cn": "提出一种分层鞘谱嵌入框架，用于稳定的单细胞RNA测序数据表示。",
+      "llm_tldr": "提出一种分层鞘谱嵌入框架，用于稳定的单细胞RNA测序数据表示。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.26377v1",
+      "title": "Biological Time Equivalence in Vertebrates: Thermodynamic Framework, Comparative Tests, and Clade-Specific Deviations",
+      "abstract": "The product of resting heart rate and maximum lifespan is approximately constant across adult warm-blooded vertebrates, $N^\\star = f_H L \\approx 10^9$ cardiac cycles, a regularity documented since Rubner (1908) but lacking a thermodynamic derivation. We derive $N^\\star$ from the non-equilibrium second law by treating the adult organism as a metabolic non-equilibrium steady state (NESS) and introducing the closure $\\dot{e}_p = σ_0 f$, linking entropy production rate to heart rate via a mass-specific parameter $σ_0 \\propto M^0$. Integration yields a finite dissipative budget $Σ= σ_0 N^\\star$, identifying $N^\\star = Σ/σ_0$ as the correct primitive conserved quantity; lifetime energy per unit mass is a derived consequence valid only under simultaneous constancy of body temperature and $σ_0$. Phylogenetically independent contrasts on 112 endotherm species yield a $\\log f_H$--$\\log L$ slope of $-0.99 \\pm 0.04$ ($p=0.84$ against $-1$); the West--Brown--Enquist null of zero inter-clade variation is rejected ($F=12.7$, $p<0.001$). A factored multiplier $Φ_C = Φ_{\\mathrm{duty}} \\cdot Φ_{\\mathrm{thermal}} \\cdot Φ_{\\mathrm{mito}} \\cdot Φ_{\\mathrm{haz}}$, calibrated from independently measured physiology, accounts for longevity deviations across four warm-blooded clades. The integral of physiological frequency defines a biological proper time classifying longevity mechanisms as time dilation (reduce $f$) or budget expansion (reduce $σ_0$). The decisive test is calorimetric measurement of $σ_0 = P/(TfM)$ across three body-mass decades.",
+      "authors": [
+        "Mesfin Taye"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph"
+      ],
+      "published": "2026-03-27T13:00:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.26377v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Comparative tests of biological time across vertebrate clades",
+      "llm_evidence_cn": "脊椎动物进化支生物时间的比较测试",
+      "llm_evidence": "脊椎动物进化支生物时间的比较测试",
+      "canonical_evidence": "脊椎动物进化支生物时间的比较测试",
+      "llm_tldr_en": "Establishes a thermodynamic framework for biological time equivalence across warm-blooded vertebrates.",
+      "llm_tldr_cn": "建立了温血脊椎动物生物时间等效性的热力学框架并进行比较测试。",
+      "llm_tldr": "建立了温血脊椎动物生物时间等效性的热力学框架并进行比较测试。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.26860v1",
+      "title": "Ecological systems in a modeling perspective",
+      "abstract": "May (1974,1976) opened the debate on whether biological populations might exhibit nonlinear dynamics and chaos. However, it has in general been difficult to verify nonlinear dynamics in biological populations. There are many reports concerning problems with this issue and some of them can be traced back to Hassell, Lawton, and May (1976) and Morris (1990).   Our objective is not a discussion of the presence of nonlinear dynamics in biological populations. Instead, we analyze whether ecological census data can be used for validating nonlinearities at all. We choose our models and our situation so that as much as possible can be done rigorously with by hand computations.   We consider a clearly nonlinear chemostat based model that is isolated. Some noise must be considered, and we choose a minimal approach: Only noise originating from the fact that ecological populations remain finite is considered, cf. Bailey (1964). In ecology, exceptionally long and famous time series are those collected by Nicholson (1954) and Utida (1957). Our judgement is that ecological time series data containing a few hundred data points is exceptionally long.",
+      "authors": [
+        "Torsten Lindström"
+      ],
+      "primary_category": "q-bio.OT",
+      "categories": [
+        "q-bio.OT"
+      ],
+      "published": "2026-03-27T15:49:36+00:00",
+      "link": "https://arxiv.org/pdf/2603.26860v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "nonlinear dynamics in biological populations",
+      "llm_evidence_cn": "生物种群中的非线性动力学",
+      "llm_evidence": "生物种群中的非线性动力学",
+      "canonical_evidence": "生物种群中的非线性动力学",
+      "llm_tldr_en": "Analyzes whether ecological census data can validate nonlinear dynamics in biological populations.",
+      "llm_tldr_cn": "分析了生态普查数据是否可用于验证生物种群中的非线性动力学。",
+      "llm_tldr": "分析了生态普查数据是否可用于验证生物种群中的非线性动力学。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.26530v1",
+      "title": "Control of genes by self-organizing multicellular interaction networks",
+      "abstract": "Multicellular self-organization drives development in biological organisms, yet a comprehensive theory is lacking as basic properties of cells can complicate common approaches. Framing such properties by dynamic graphs led to new theoretical propositions for multicellular self-organization in Escherichia coli. Here, corresponding ideas are developed from biologically-general first principles. The resulting perspective could aid both experimental and computational approaches to multicellular biology as well as efforts to control and engineer it.",
+      "authors": [
+        "Kyle R. Allison"
+      ],
+      "primary_category": "q-bio.MN",
+      "categories": [
+        "q-bio.MN"
+      ],
+      "published": "2026-03-27T15:44:27+00:00",
+      "link": "https://arxiv.org/pdf/2603.26530v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "molecular mechanisms of gene control and multicellular self-organization",
+      "llm_evidence_cn": "基因控制与多细胞自组织的分子机制",
+      "llm_evidence": "基因控制与多细胞自组织的分子机制",
+      "canonical_evidence": "基因控制与多细胞自组织的分子机制",
+      "llm_tldr_en": "Develops a theory for multicellular self-organization and gene control using dynamic graphs.",
+      "llm_tldr_cn": "利用动态图论开发了多细胞自组织和基因控制的理论框架。",
+      "llm_tldr": "利用动态图论开发了多细胞自组织和基因控制的理论框架。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.26981v1",
+      "title": "Boosting multi-view association testing via devariation",
+      "abstract": "Understanding the interplay between high-dimensional data from different views is essential in biomedical research, particularly in fields such as genomics, neuroimaging and biobank-scale studies involving high-dimensional features. Existing statistical tests for the association between two random vectors often do not fully capture dependencies between views due to limitations in modeling within-view dependencies, particularly in high-dimensional data without clear dependency patterns, which can lead to a potential loss of statistical power. In this work, we propose a novel approach termed devariation which is considered a simple yet effective preprocessing method to address the limitations by adopting a penalized low-rank factor model to flexibly capture within-view dependencies. Theoretical analysis of asymptotic power shows that devariation increases statistical power, especially when within-view correlations impact signal-to-noise ratios, while maintaining robustness in scenarios without strong internal correlations. Simulation studies demonstrate devariation's superior performance over existing methods in various scenarios. We further validate devariation in multimodal neuroimaging data from the UK Biobank study, examining the associations between imaging-derived phenotypes (IDPs) from functional, structural, and diffusion magnetic resonance imaging (MRI).",
+      "authors": [
+        "Ruyi Pan",
+        "Yinqiu He",
+        "Jun Young Park"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "math.ST",
+        "stat.AP"
+      ],
+      "published": "2026-03-27T20:47:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.26981v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Statistical association testing for high-dimensional genomics data",
+      "llm_evidence_cn": "针对高维基因组数据的统计关联测试",
+      "llm_evidence": "针对高维基因组数据的统计关联测试",
+      "canonical_evidence": "针对高维基因组数据的统计关联测试",
+      "llm_tldr_en": "Introduces a devariation method to boost statistical power in multi-view biomedical and genomic data analysis.",
+      "llm_tldr_cn": "引入一种去变异方法，旨在增强多视图生物医学和基因组数据分析中的统计效力。",
+      "llm_tldr": "引入一种去变异方法，旨在增强多视图生物医学和基因组数据分析中的统计效力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.26790v1",
+      "title": "Elucidating the Design Space of Flow Matching for Cellular Microscopy",
+      "abstract": "Flow-matching generative models are increasingly used to simulate cell responses to biological perturbations. However, the design space for building such models is large and underexplored. We systematically analyse the design space of flow matching models for cell-microscopy images, finding that many popular techniques are unnecessary and can even hurt performance. We develop a simple, stable, and scalable recipe which we use to train our foundation model. We scale our model to two orders of magnitude larger than prior methods, achieving a two-fold FID and ten-fold KID improvement over prior methods. We then fine-tune our model with pre-trained molecular embeddings to achieve state-of-the-art performance simulating responses to unseen molecules.   Code is available at https://github.com/valence-labs/microscopy-flow-matching",
+      "authors": [
+        "Charles Jones",
+        "Emmanuel Noutahi",
+        "Jason Hartford",
+        "Cian Eastwood"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-25T15:18:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.26790v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI foundation model for cellular microscopy and biological perturbations",
+      "llm_evidence_cn": "用于细胞显微镜和生物扰动的AI基础模型",
+      "llm_evidence": "用于细胞显微镜和生物扰动的AI基础模型",
+      "canonical_evidence": "用于细胞显微镜和生物扰动的AI基础模型",
+      "llm_tldr_en": "A scalable flow-matching foundation model for simulating cellular responses to molecular perturbations.",
+      "llm_tldr_cn": "一种可扩展的流匹配基础模型，用于模拟细胞对分子扰动的反应。",
+      "llm_tldr": "一种可扩展的流匹配基础模型，用于模拟细胞对分子扰动的反应。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.27104v1",
+      "title": "Autonomous Agent-Orchestrated Digital Twins (AADT): Leveraging the OpenClaw Framework for State Synchronization in Rare Genetic Disorders",
+      "abstract": "Background: Medical Digital Twins (MDTs) are computational representations of individual patients that integrate clinical, genomic, and physiological data to support diagnosis, treatment planning, and outcome prediction. However, most MDTs remain static or passively updated, creating a critical synchronization gap, especially in rare genetic disorders where phenotypes, genomic interpretations, and care guidelines evolve over time.   Methods: We propose an agent-orchestrated digital twin framework using OpenClaw's proactive \"heartbeat\" mechanism and modular Agent Skills. This Autonomous Agent-orchestrated Digital Twin (AADT) system continuously monitors local and external data streams (e.g., patient-reported phenotypes and updates in variant classification databases) and executes automated workflows for data ingestion, normalization, state updates, and trigger-based analysis.   Results: A prototype implementation demonstrates that agent orchestration can continuously synchronize MDT states with both longitudinal phenotype updates and evolving genomic knowledge. In rare disease settings, this enables earlier diagnosis and more accurate modeling of disease progression. We present two case studies, including variant reinterpretation and longitudinal phenotype tracking, highlighting how AADTs support timely, auditable updates for both research and clinical care.   Conclusion: The AADT framework addresses the key bottleneck of real-time synchronization in MDTs, enabling scalable and continuously updated patient models. We also discuss data security considerations and mitigation strategies through human-in-the-loop system design.",
+      "authors": [
+        "Hongzhuo Chen",
+        "Zhanliang Wang",
+        "Quan M. Nguyen",
+        "Gongbo Zhang",
+        "Chunhua Weng",
+        "Kai Wang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.AI",
+        "cs.IR"
+      ],
+      "published": "2026-03-28T03:18:21+00:00",
+      "link": "https://arxiv.org/pdf/2603.27104v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-orchestrated digital twins integrating genomic data for rare disorders",
+      "llm_evidence_cn": "集成基因组数据用于罕见病的AI编排数字孪生",
+      "llm_evidence": "集成基因组数据用于罕见病的AI编排数字孪生",
+      "canonical_evidence": "集成基因组数据用于罕见病的AI编排数字孪生",
+      "llm_tldr_en": "Proposes an autonomous agent framework for digital twins to synchronize genomic and clinical data.",
+      "llm_tldr_cn": "提出一种自主智能体数字孪生框架，用于同步罕见病的基因组和临床数据。",
+      "llm_tldr": "提出一种自主智能体数字孪生框架，用于同步罕见病的基因组和临床数据。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.27085v1",
+      "title": "Model-free Feature Screening via Revised Chatterjee's Rank Correlation for Ultra-high Dimensional Censored Data",
+      "abstract": "In large-scale biomedical research, it's common to gather ultra-high dimensional data that includes right-censored survival times. Feature screening has emerged as a crucial statistical technique for handling such data. In this paper, we introduce a straightforward and robust feature screening approach, leveraging the modified Chatterjee's rank correlation, suitable for a broad range of survival models. With reasonably mild regularity assumptions, we establish the properties of sure screening and ranking consistency. The computation involved in our proposed method is quite direct and simple. Through simulation studies and real gene expression data analysis, we demonstrate the superior efficacy of our proposed approach.",
+      "authors": [
+        "Shuya Chen",
+        "Heng Peng",
+        "Min Zhou"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-03-28T02:06:31+00:00",
+      "link": "https://arxiv.org/pdf/2603.27085v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Statistical feature screening for real gene expression data analysis",
+      "llm_evidence_cn": "用于真实基因表达数据分析的统计特征筛选方法",
+      "llm_evidence": "用于真实基因表达数据分析的统计特征筛选方法",
+      "canonical_evidence": "用于真实基因表达数据分析的统计特征筛选方法",
+      "llm_tldr_en": "Introduces a robust feature screening method for ultra-high dimensional survival data in biomedical research.",
+      "llm_tldr_cn": "介绍了一种用于生物医学研究中超高维生存数据的稳健特征筛选方法。",
+      "llm_tldr": "介绍了一种用于生物医学研究中超高维生存数据的稳健特征筛选方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.27950v1",
+      "title": "Scaling Atomistic Protein Binder Design with Generative Pretraining and Test-Time Compute",
+      "abstract": "Protein interaction modeling is central to protein design, which has been transformed by machine learning with applications in drug discovery and beyond. In this landscape, structure-based de novo binder design is cast as either conditional generative modeling or sequence optimization via structure predictors (\"hallucination\"). We argue that this is a false dichotomy and propose Proteina-Complexa, a novel fully atomistic binder generation method unifying both paradigms. We extend recent flow-based latent protein generation architectures and leverage the domain-domain interactions of monomeric computationally predicted protein structures to construct Teddymer, a new large-scale dataset of synthetic binder-target pairs for pretraining. Combined with high-quality experimental multimers, this enables training a strong base model. We then perform inference-time optimization with this generative prior, unifying the strengths of previously distinct generative and hallucination methods. Proteina-Complexa sets a new state of the art in computational binder design benchmarks: it delivers markedly higher in-silico success rates than existing generative approaches, and our novel test-time optimization strategies greatly outperform previous hallucination methods under normalized compute budgets. We also demonstrate interface hydrogen bond optimization, fold class-guided binder generation, and extensions to small molecule targets and enzyme design tasks, again surpassing prior methods. Code, models and new data will be publicly released.",
+      "authors": [
+        "Kieran Didi",
+        "Zuobai Zhang",
+        "Guoqing Zhou",
+        "Danny Reidenbach",
+        "Zhonglin Cao",
+        "Sooyoung Cha",
+        "Tomas Geffner",
+        "Christian Dallago",
+        "Jian Tang",
+        "Michael M. Bronstein",
+        "Martin Steinegger",
+        "Emine Kucukbenli",
+        "Arash Vahdat",
+        "Karsten Kreis"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-30T01:54:03+00:00",
+      "link": "https://arxiv.org/pdf/2603.27950v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for protein interaction and sequence optimization",
+      "llm_evidence_cn": "利用AI进行蛋白质相互作用和序列优化",
+      "llm_evidence": "利用AI进行蛋白质相互作用和序列优化",
+      "canonical_evidence": "利用AI进行蛋白质相互作用和序列优化",
+      "llm_tldr_en": "Proposes a generative AI method for atomistic protein binder design and sequence optimization.",
+      "llm_tldr_cn": "提出了一种用于原子级蛋白质结合剂设计和序列优化的生成式AI方法。",
+      "llm_tldr": "提出了一种用于原子级蛋白质结合剂设计和序列优化的生成式AI方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.27271v1",
+      "title": "Algorithms of self-synchronizing single-deletion-correcting codes",
+      "abstract": "This study explores the self-synchronization problem in DNA coding, specifically addressing single-deletion errors without using delimiters between codewords. We aim to identify the beginning of each codeword without using delimiters, enhancing the transmission efficiency. The motivation arises from the inefficiency of adding meaningless symbols as delimiters, decreasing the information rate. In addition, the historical context in biology, specifically Francis Crick's proposal of ``codes without commas'' for DNA sequences, inspires this investigation. We introduce a novel approach for correcting single-deletion errors in continuous transmissions without delimiters, distinguishing the beginning and end of each codeword. This approach is based on the properties of {\\it complementary information set codes}, which is used to present an algorithm for {\\it single-deletion correcting codes} with self-synchronizing capability. Accordingly, we present encoding and decoding algorithms for self-synchronizing single-deletion correcting DNA codes with concrete examples.",
+      "authors": [
+        "Whan-Hyuk Choi"
+      ],
+      "primary_category": "cs.IT",
+      "categories": [
+        "cs.IT"
+      ],
+      "published": "2026-03-28T13:57:01+00:00",
+      "link": "https://arxiv.org/pdf/2603.27271v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "DNA coding and historical context of codes without commas",
+      "llm_evidence_cn": "DNA编码与无逗号代码的历史背景",
+      "llm_evidence": "DNA编码与无逗号代码的历史背景",
+      "canonical_evidence": "DNA编码与无逗号代码的历史背景",
+      "llm_tldr_en": "Explores self-synchronizing codes for DNA sequences to correct single-deletion errors efficiently.",
+      "llm_tldr_cn": "研究用于 DNA 序列的自同步编码，以高效纠正单碱基缺失错误。",
+      "llm_tldr": "研究用于 DNA 序列的自同步编码，以高效纠正单碱基缺失错误。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.28334v1",
+      "title": "Key-Embedded Privacy for Decentralized AI in Biomedical Omics",
+      "abstract": "The rapid adoption of data-driven methods in biomedicine has intensified concerns over privacy, governance, and regulation, limiting raw data sharing and hindering the assembly of representative cohorts for clinically relevant AI. This landscape necessitates practical, efficient privacy solutions, as cryptographic defenses often impose heavy overhead and differential privacy can degrade performance, leading to sub-optimal outcomes in real-world settings. Here, we present a lightweight federated learning method, INFL, based on Implicit Neural Representations that addresses these challenges. Our approach integrates plug-and-play, coordinate-conditioned modules into client models, embeds a secret key directly into the architecture, and supports seamless aggregation across heterogeneous sites. Across diverse biomedical omics tasks, including cohort-scale classification in bulk proteomics, regression for perturbation prediction in single-cell transcriptomics, and clustering in spatial transcriptomics and multi-omics with both public and private data, we demonstrate that INFL achieves strong, controllable privacy while maintaining utility, preserving the performance necessary for downstream scientific and clinical applications.",
+      "authors": [
+        "Rongyu Zhang",
+        "Hongyu Dong",
+        "Gaole Dai",
+        "Ziqi Qiao",
+        "Shenli Zheng",
+        "Yuan Zhang",
+        "Aosong Cheng",
+        "Xiaowei Chi",
+        "Jincai Luo",
+        "Pin Li",
+        "Li Du",
+        "Dan Wang",
+        "Yuan Du",
+        "Xudong Xing",
+        "Jianxu Chen",
+        "Shanghang Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.DC"
+      ],
+      "published": "2026-03-30T12:04:50+00:00",
+      "link": "https://arxiv.org/pdf/2603.28334v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for biomedical omics with privacy preservation",
+      "llm_evidence_cn": "具有隐私保护功能的生物医学组学AI",
+      "llm_evidence": "具有隐私保护功能的生物医学组学AI",
+      "canonical_evidence": "具有隐私保护功能的生物医学组学AI",
+      "llm_tldr_en": "Presents a federated learning method for privacy-preserving AI in biomedical omics data analysis.",
+      "llm_tldr_cn": "提出一种联邦学习方法，用于生物医学组学数据分析中的隐私保护AI。",
+      "llm_tldr": "提出一种联邦学习方法，用于生物医学组学数据分析中的隐私保护AI。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
