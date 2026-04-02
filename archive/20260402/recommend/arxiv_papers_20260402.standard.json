@@ -1,0 +1,906 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-02T20:33:44.150789+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 12,
+    "deep_cap": 8,
+    "deep_selected": 8,
+    "quick_candidates": 25,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2604.00058v1",
+      "title": "GenoBERT: A Language Model for Accurate Genotype Imputation",
+      "abstract": "Genotype imputation enables dense variant coverage for genome-wide association and risk-prediction studies, yet conventional reference-panel methods remain limited by ancestry bias and reduced rare-variant accuracy. We present Genotype Bidirectional Encoder Representations from Transformers (GenoBERT), a transformer-based, reference-free framework that tokenizes phased genotypes and uses a self-attention mechanism to capture both short- and long-range linkage disequilibrium (LD) dependencies. Benchmarking on two independent datasets including the Louisiana Osteoporosis Study (LOS) and the 1000 Genomes Project (1KGP) across ancestry groups and multiple genotype missingness levels (5-50%) shows that GenoBERT achieves the highest overall accuracy compared to four baseline methods (Beagle5.4, SCDA, BiU-Net, and STICI). At practical sparsity levels (up to 25% missing), GenoBERT attains high overall imputation accuracy ($r^2 approx 0.98$) across datasets, and maintains robust performance ($r^2 > 0.90$) even at 50% missingness. Experimental results across different ancestries confirm consistent gains across datasets, with resilience to small sample sizes and weak LD. A 128-SNP (single-nucleotide polymorphism) context window (approximately 100 Kb) is validated through LD-decay analyses as sufficient to capture local correlation structures. By eliminating reference-panel dependence while preserving high accuracy, GenoBERT provides a scalable and robust solution for genotype imputation and a foundation for downstream genomic modeling.",
+      "authors": [
+        "Lei Huang",
+        "Chuan Qiu",
+        "Kuan-Jui Su",
+        "Anqi Liu",
+        "Yun Gong",
+        "Weiqiang Lin",
+        "Lindong Jiang",
+        "Chen Zhao",
+        "Meng Song",
+        "Jeffrey Deng",
+        "Qing Tian",
+        "Zhe Luo",
+        "Ping Gong",
+        "Hui Shen",
+        "Chaoyang Zhang",
+        "Hong-Wen Deng"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-03-31T04:16:55+00:00",
+      "link": "https://arxiv.org/pdf/2604.00058v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "AI language model for genotype imputation",
+      "llm_evidence_cn": "用于基因型填充的AI语言模型",
+      "llm_evidence": "用于基因型填充的AI语言模型",
+      "canonical_evidence": "用于基因型填充的AI语言模型",
+      "llm_tldr_en": "A transformer-based model for accurate genotype imputation across diverse ancestries without reference panels.",
+      "llm_tldr_cn": "一种基于Transformer的模型，无需参考面板即可在不同族群中进行准确的基因型填充。",
+      "llm_tldr": "一种基于Transformer的模型，无需参考面板即可在不同族群中进行准确的基因型填充。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.26177v1",
+      "title": "Can AI Scientist Agents Learn from Lab-in-the-Loop Feedback? Evidence from Iterative Perturbation Discovery",
+      "abstract": "Recent work has questioned whether large language models (LLMs) can perform genuine in-context learning (ICL) for scientific experimental design, with prior studies suggesting that LLM-based agents exhibit no sensitivity to experimental feedback. We shed new light on this question by carrying out 800 independently replicated experiments on iterative perturbation discovery in Cell Painting high-content screening. We compare an LLM agent that iteratively updates its hypotheses using experimental feedback to a zero-shot baseline that relies solely on pretraining knowledge retrieval. Access to feedback yields a $+53.4\\%$ increase in discoveries per feature on average ($p = 0.003$). To test whether this improvement arises from genuine feedback-driven learning rather than prompt-induced recall of pretraining knowledge, we introduce a random feedback control in which hit/miss labels are permuted. Under this control, the performance gain disappears, indicating that the observed improvement depends on the structure of the feedback signal ($+13.0$ hits, $p = 0.003$). We further examine how model capability affects feedback utilization. Upgrading from Claude Sonnet 4.5 to 4.6 reduces gene hallucination rates from ${\\sim}33\\%$--$45\\%$ to ${\\sim}3$--$9\\%$, converting a non-significant ICL effect ($+0.8$, $p = 0.32$) into a large and highly significant improvement ($+11.0$, $p=0.003$) for the best ICL strategy. These results suggest that effective in-context learning from experimental feedback emerges only once models reach a sufficient capability threshold.",
+      "authors": [
+        "Gilles Wainrib",
+        "Barbara Bodinier",
+        "Haitem Dakhli",
+        "Josep Monserrat",
+        "Almudena Espin Perez",
+        "Sabrina Carpentier",
+        "Roberta Codato",
+        "John Klein"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-27T08:48:30+00:00",
+      "link": "https://arxiv.org/pdf/2603.26177v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI agents for iterative perturbation discovery in genomics",
+      "llm_evidence_cn": "AI智能体用于基因组学中的迭代扰动发现",
+      "llm_evidence": "AI智能体用于基因组学中的迭代扰动发现",
+      "canonical_evidence": "AI智能体用于基因组学中的迭代扰动发现",
+      "llm_tldr_en": "Demonstrates that AI agents can learn from experimental feedback to improve discovery in Cell Painting.",
+      "llm_tldr_cn": "证明了AI智能体可以通过实验反馈学习，从而提高细胞绘画筛选中的发现效率。",
+      "llm_tldr": "证明了AI智能体可以通过实验反馈学习，从而提高细胞绘画筛选中的发现效率。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.00075v1",
+      "title": "Large Language Models for Variant-Centric Functional Evidence Mining",
+      "abstract": "Functional evidence is essential for clinical interpretation of genomic variants, but identifying relevant studies and translating experimental results into structured evidence remains labor intensive. We developed a benchmark based on ClinGen curated annotations to evaluate two large language models (LLMs), a non reasoning model (gpt-4o-mini) and a reasoning model (o4-mini), on tasks relevant to functional evidence curation: (1) abstract screening to determine whether a study reports functional experiments directly testing specific variants, and (2) full text evidence extraction and classification from matched variant-paper pairs, including interpretation of evidence direction and generation of evidence summaries. Starting from ClinGen variants annotated with functional evidence, we processed curator comments with an LLM to extract PubMed identifiers, evidence labels, and narrative, and retrieved titles, abstracts, and open access PDFs to construct variant-paper pairs. In abstract screening, both models achieved high recall (0.88-0.90) with moderate specificity (0.59-0.65). For full text evidence classification under an explicit variant matching gate, o4-mini achieved 96% accuracy and higher specificity (0.83 vs. 0.37) while maintaining high F1 (0.98 vs. 0.96) compared with gpt-4o-mini. We also used an LLM-as-judge protocol to compare model generated evidence summaries with expert curator comments. Finally, we developed AcmGENTIC, an end to end pipeline that expands variant identifiers, retrieves literature via LitVar2, filters abstracts with LLMs, acquires PDFs, performs multimodal evidence extraction, and generates evidence reports for curator review, with optional agentic parsing of figures and tables. Together, this benchmark and pipeline provide a practical framework for scaling functional evidence curation with human in the loop LLM assistance.",
+      "authors": [
+        "Ali Saadat",
+        "Jacques Fellay"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-03-31T15:08:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.00075v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "LLMs for variant-centric functional evidence mining in genomics",
+      "llm_evidence_cn": "利用大语言模型进行基因变异功能证据挖掘",
+      "llm_evidence": "利用大语言模型进行基因变异功能证据挖掘",
+      "canonical_evidence": "利用大语言模型进行基因变异功能证据挖掘",
+      "llm_tldr_en": "Evaluates LLMs for automating the extraction and interpretation of functional evidence for genomic variants.",
+      "llm_tldr_cn": "评估大语言模型在自动化提取和解释基因组变异功能证据方面的表现。",
+      "llm_tldr": "评估大语言模型在自动化提取和解释基因组变异功能证据方面的表现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.00602v1",
+      "title": "The fitness landscape of overlapping genes",
+      "abstract": "Natural genomes sometimes encode two different proteins in staggered reading frames of the same DNA sequence. Despite the prevalence of these 'overlapping genes' across the tree of life, it remains unknown whether arbitrary protein pairs can overlap, to what extent such overlaps are feasible, or what design principles govern them. Here, we study compatibility, frustration, and connectivity in the fitness landscape of overlapping genes. We computationally design sequences de novo that satisfy the dual functional constraints of two distinct protein families. The joint fitness landscape, inferred via Potts models from multiple sequence alignments, reveals a fundamental trade-off between the two proteins and provides a simple criterion for when overlap is feasible. We find widespread compatibility between protein families, with one class of reading frames markedly more permissible than others. By exploring alternative genetic codes, we find that the natural genetic code is uniquely well-suited to support overlapping genes. Constructing mutational paths between sequences, we find that sequence-diverse overlapped genes can be connected via a network of near-neutral mutations. Overall, our results suggest that protein fitness landscapes are sufficiently flexible so as to accommodate the stringent, orthogonal requirements of overlapping genes.",
+      "authors": [
+        "Orson Kirsch",
+        "Nicole Wood",
+        "Steven A Redford",
+        "Kabir Husain"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "physics.bio-ph",
+        "q-bio.PE"
+      ],
+      "published": "2026-04-01T08:07:31+00:00",
+      "link": "https://arxiv.org/pdf/2604.00602v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "fitness landscape and evolution of overlapping genes",
+      "llm_evidence_cn": "重叠基因的适应度景观与演化机制",
+      "llm_evidence": "重叠基因的适应度景观与演化机制",
+      "canonical_evidence": "重叠基因的适应度景观与演化机制",
+      "llm_tldr_en": "Studies the fitness landscape and design principles of overlapping genes across the tree of life.",
+      "llm_tldr_cn": "研究生命树中重叠基因的适应度景观、兼容性及演化设计原则。",
+      "llm_tldr": "研究生命树中重叠基因的适应度景观、兼容性及演化设计原则。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "complex gene evolution mechanisms",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.00854v1",
+      "title": "Perturb-and-Restore: Simulation-driven Structural Augmentation Framework for Imbalance Chromosomal Anomaly Detection",
+      "abstract": "Detecting structural chromosomal abnormalities is crucial for accurate diagnosis and management of genetic disorders. However, collecting sufficient structural abnormality data is extremely challenging and costly in clinical practice, and not all abnormal types can be readily collected. As a result, deep learning approaches face significant performance degradation due to the severe imbalance and scarcity of abnormal chromosome data. To address this challenge, we propose a Perturb-and-Restore (P&R), a simulation-driven structural augmentation framework that effectively alleviates data imbalance in chromosome anomaly detection. The P&R framework comprises two key components: (1) Structure Perturbation and Restoration Simulation, which generates synthetic abnormal chromosomes by perturbing chromosomal banding patterns of normal chromosomes followed by a restoration diffusion network that reconstructs continuous chromosome content and edges, thus eliminating reliance on rare abnormal samples; and (2) Energy-guided Adaptive Sampling, an energy score-based online selection strategy that dynamically prioritizes high-quality synthetic samples by referencing the energy distribution of real samples. To evaluate our method, we construct a comprehensive structural anomaly dataset consisting of over 260,000 chromosome images, including 4,242 abnormal samples spanning 24 categories. Experimental results demonstrate that the P&R framework achieves state-of-the-art (SOTA) performance, surpassing existing methods with an average improvement of 8.92% in sensitivity, 8.89% in precision, and 13.79% in F1-score across all categories.",
+      "authors": [
+        "Yilan Zhang",
+        "Hanbiao Chen",
+        "Changchun Yang",
+        "Yuetan Chu",
+        "Siyuan Chen",
+        "Jing Wu",
+        "Jingdong Hu",
+        "Na Li",
+        "Junkai Su",
+        "Yuxuan Chen",
+        "Ao Xu",
+        "Xin Gao",
+        "Aihua Yin"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-01T13:06:25+00:00",
+      "link": "https://arxiv.org/pdf/2604.00854v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Deep learning for chromosomal anomaly detection",
+      "llm_evidence_cn": "利用深度学习进行染色体异常检测",
+      "llm_evidence": "利用深度学习进行染色体异常检测",
+      "canonical_evidence": "利用深度学习进行染色体异常检测",
+      "llm_tldr_en": "A simulation-driven framework using deep learning to improve detection of structural chromosomal abnormalities.",
+      "llm_tldr_cn": "一种利用深度学习提高染色体结构异常检测能力的模拟驱动框架。",
+      "llm_tldr": "一种利用深度学习提高染色体结构异常检测能力的模拟驱动框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.29719v1",
+      "title": "Nucleoid clustering drives stepwise expansion and segregation of replicating bacterial chromosomes",
+      "abstract": "Bacterial chromosome replication occurs in the absence of a canonical spindle apparatus; yet it reliably produces organised and segregated genomes. While both passive and active mechanisms have been investigated, DNA replication itself is a non-equilibrium process that continuously generates new genetic material and reorganizes the nucleoid. Here, we investigate how replication-driven dynamics, combined with nucleoid-associated protein (NAP) interactions, shape spatiotemporal chromosome organisation using a three-dimensional polymer model that explicitly simulates DNA synthesis. We show that NAP-mediated interactions induce dynamic clustering of DNA, generating density fluctuations in the nucleoid. When coupled to replication, these clusters undergo cycles of stress buildup and release that produce stepwise expansion dynamics consistent with experimental observations. Chromosome segregation occurs naturally in this regime, but only within a finite range of interaction strengths: weak interactions fail to structure the nucleoid, whereas strong interactions hinder replication progression. Within this optimal balance, replication also promotes the spontaneous formation of replication factories. Our results demonstrate that bacterial chromosome organisation can be understood as a non-equilibrium system in which the interplay between replication forces and protein-mediated interactions generates nucleoid mechanics, dynamics, and segregation.",
+      "authors": [
+        "Giada Forte",
+        "Enzo Orlandini",
+        "Davide Marenduzzo"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "cond-mat.soft"
+      ],
+      "published": "2026-03-31T13:20:48+00:00",
+      "link": "https://arxiv.org/pdf/2603.29719v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "molecular mechanisms of bacterial chromosome replication and nucleoid organization",
+      "llm_evidence_cn": "细菌染色体复制和类核组织的分子机制",
+      "llm_evidence": "细菌染色体复制和类核组织的分子机制",
+      "canonical_evidence": "细菌染色体复制和类核组织的分子机制",
+      "llm_tldr_en": "Investigates how replication-driven dynamics and protein interactions shape bacterial chromosome organization.",
+      "llm_tldr_cn": "研究复制驱动的动力学和蛋白质相互作用如何塑造细菌染色体的空间组织。",
+      "llm_tldr": "研究复制驱动的动力学和蛋白质相互作用如何塑造细菌染色体的空间组织。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.00393v1",
+      "title": "How to Forage for a Mate?",
+      "abstract": "Foraging is a central decision-making behavior performed by all animals, essential to garnishing enough energy for an organism to survive. Similarly, mating is crucial for evolutionary continuity and offspring production. Mate choice is one of the central tenets of sexual selection, driving major evolutionary processes, and can be regarded as a decision-making process between potential mating partners. Often researchers have used coarse-grained models to describe macroscopic phenomenology pertaining to mate choice without detailed quantitative mechanisms of how animals use individual and environmental signals to guide their mating decisions. In this letter, we show that mate choice can be cast as a foraging problem, and we present an analytically tractable optimal foraging-inspired mechanistic theory of decision-making underlying mate choice. We begin from the premise that deciding upon which partner with which to mate is at its core a stochastic decision-making process. Agents adopt a variety of decision strategies, tuned by decision thresholds for leaving or committing to a mate. We find that sensitive leaving thresholds are favored independently of signal availability in the population. By contrast, optimal thresholds for committing to a mate depend upon signal availability in the population, with signal-rich populations generally favoring less eager strategies compared to signal-poor populations.",
+      "authors": [
+        "Daniel T Bernstein",
+        "Ahmed El Hady"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-04-01T02:22:25+00:00",
+      "link": "https://arxiv.org/pdf/2604.00393v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "sexual selection driving major evolutionary processes and mate choice mechanisms",
+      "llm_evidence_cn": "性选择驱动的主要进化过程和配偶选择机制",
+      "llm_evidence": "性选择驱动的主要进化过程和配偶选择机制",
+      "canonical_evidence": "性选择驱动的主要进化过程和配偶选择机制",
+      "llm_tldr_en": "Models mate choice as an optimal foraging problem to understand mechanisms of sexual selection and evolution.",
+      "llm_tldr_cn": "将配偶选择建模为最优觅食问题，以理解性选择和进化的机制。",
+      "llm_tldr": "将配偶选择建模为最优觅食问题，以理解性选择和进化的机制。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2603.29398v1",
+      "title": "Pathogen diversity emerging from coevolutionary dynamics in interconnected systems",
+      "abstract": "The spread of infectious disease and the evolution of antigenically distinct strains are often modeled separately, despite strong feedbacks mediated by host immune memory and heterogeneous contacts. To tackle this challenging problem, we introduce a coevolutionary framework in which transmission occurs on a metapopulation network while mutational exploration of strain space follows a mutation network. In this multiscale model, cross-immunity is encoded by similarity in the latent diffusion geometry of the strain network, so that nearby strains confer partial immune protection. We first identify an effective critical region that controls the transition between extinction, recurrent outbreak episodes, and long-lived endemic persistence, thus characterizing the resulting strain-turnover dynamics. We then derive a replicator-mutator-like equation for strain composition and an explicit dynamical evolutionary landscape induced by the coupling of mutation and transmission. Finally, allowing host heterogeneity to modulate the local mutation structure, we show that spreading across demes can effectively connect otherwise disconnected components of strain space, increasing long-term endemic diversity while producing a non-monotonic change in overall prevalence. Together, our results isolate minimal mechanisms by which immune-mediated competition and network structure can shape antigenic diversification.",
+      "authors": [
+        "Davide Zanchetta",
+        "Vittoria Bettio",
+        "Sandro Azaele",
+        "Manlio De Domenico"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-03-31T08:01:39+00:00",
+      "link": "https://arxiv.org/pdf/2603.29398v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Coevolutionary dynamics and mutational exploration of strain space",
+      "llm_evidence_cn": "协同演化动力学与菌株空间的突变探索",
+      "llm_evidence": "协同演化动力学与菌株空间的突变探索",
+      "canonical_evidence": "协同演化动力学与菌株空间的突变探索",
+      "llm_tldr_en": "A coevolutionary framework modeling pathogen diversity and transmission through mutational and metapopulation networks.",
+      "llm_tldr_cn": "建立了一个协同演化框架，通过突变和元种群网络模拟病原体多样性和传播。",
+      "llm_tldr": "建立了一个协同演化框架，通过突变和元种群网络模拟病原体多样性和传播。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.28015v1",
+      "title": "What an Autonomous Agent Discovers About Molecular Transformer Design: Does It Transfer?",
+      "abstract": "Deep learning models for drug-like molecules and proteins overwhelmingly reuse transformer architectures designed for natural language, yet whether molecular sequences benefit from different designs has not been systematically tested. We deploy autonomous architecture search via an agent across three sequence types (SMILES, protein, and English text as control), running 3,106 experiments on a single GPU. For SMILES, architecture search is counterproductive: tuning learning rates and schedules alone outperforms the full search (p = 0.001). For natural language, architecture changes drive 81% of improvement (p = 0.009). Proteins fall between the two. Surprisingly, although the agent discovers distinct architectures per domain (p = 0.004), every innovation transfers across all three domains with <1% degradation, indicating that the differences reflect search-path dependence rather than fundamental biological requirements. We release a decision framework and open-source toolkit for molecular modeling teams to choose between autonomous architecture search and simple hyperparameter tuning.",
+      "authors": [
+        "Edward Wijaya"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-03-30T04:08:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.28015v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI architecture search for protein sequences",
+      "llm_evidence_cn": "针对蛋白质序列的AI架构搜索",
+      "llm_evidence": "针对蛋白质序列的AI架构搜索",
+      "canonical_evidence": "针对蛋白质序列的AI架构搜索",
+      "llm_tldr_en": "Evaluates whether transformer architectures designed for language transfer effectively to protein sequences.",
+      "llm_tldr_cn": "评估为自然语言设计的Transformer架构是否能有效迁移到蛋白质序列研究中。",
+      "llm_tldr": "评估为自然语言设计的Transformer架构是否能有效迁移到蛋白质序列研究中。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.27526v1",
+      "title": "Q-BIOLAT: Binary Latent Protein Fitness Landscapes for QUBO-Based Optimization",
+      "abstract": "Protein fitness optimization is inherently a discrete combinatorial problem, yet most learning-based approaches rely on continuous representations and are primarily evaluated through predictive accuracy. We introduce Q-BIOLAT, a framework for modeling and optimizing protein fitness landscapes in compact binary latent spaces. Starting from pretrained protein language model embeddings, we construct binary latent representations and learn a quadratic unconstrained binary optimization (QUBO) surrogate that captures unary and pairwise interactions.   Beyond its formulation, Q-BIOLAT provides a representation-centric perspective on protein fitness modeling. We show that representations with similar predictive performance can induce fundamentally different optimization landscapes. In particular, learned autoencoder-based representations collapse after binarization, producing degenerate latent spaces that fail to support combinatorial search, whereas simple structured representations such as PCA yield high-entropy, decodable, and optimization-friendly latent spaces.   Across multiple datasets and data regimes, we demonstrate that classical combinatorial optimization methods, including simulated annealing, genetic algorithms, and greedy hill climbing, are highly effective in structured binary latent spaces. By expressing the objective in QUBO form, our approach connects modern machine learning with discrete and quantum-inspired optimization.   Our implementation and dataset are publicly available at: https://github.com/HySonLab/Q-BIOLAT-Extended",
+      "authors": [
+        "Truong-Son Hy"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-03-29T05:33:55+00:00",
+      "link": "https://arxiv.org/pdf/2603.27526v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "modeling protein fitness landscapes for optimization",
+      "llm_evidence_cn": "蛋白质适应度景观建模与优化",
+      "llm_evidence": "蛋白质适应度景观建模与优化",
+      "canonical_evidence": "蛋白质适应度景观建模与优化",
+      "llm_tldr_en": "Q-BIOLAT uses binary latent spaces and QUBO to model and optimize protein fitness landscapes.",
+      "llm_tldr_cn": "Q-BIOLAT框架利用二进制潜空间和QUBO算法对蛋白质适应度景观进行建模与优化。",
+      "llm_tldr": "Q-BIOLAT框架利用二进制潜空间和QUBO算法对蛋白质适应度景观进行建模与优化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.27405v1",
+      "title": "DynamicLogLog: Faster, Smaller, and More Accurate Cardinality Estimation",
+      "abstract": "Cardinality estimation - calculating the number of distinct elements in a stream - is a longstanding problem with applications from networking to bioinformatics. HyperLogLog (HLL), the prevailing standard, has a well-known 34% error spike in its transition region and requires 6 bits per bucket, with data structure size scaling as B*log(log(cardinality)). We present DynamicLogLog (DLL), which uses a shared exponent across all buckets, storing only relative leading-zero counts. This yields three benefits: (1) only 4 bits per bucket (33% memory reduction), (2) an early exit mask that rejects >99.9% of elements at high cardinality before any bucket access (16-29% faster than HLL), and (3) a flat error profile via Dynamic Linear Counting (DLC) and a Logarithmic Hybrid Blend that eliminates HLL's transition artifact. Squaring the maximum representable cardinality requires only a single additional bit of global state. At 2,048 buckets with 512k simulations, DLL4's hybrid estimate achieves 1.830% mean and 1.834% peak absolute error using 1,024 bytes, compared to 1.84% mean and 34.1% peak for HLL using 1,536 bytes. DLC achieves 1.90% mean without correction factors. DynamicUltraLogLog (UDLL6), a fusion of DLL and UltraLogLog, achieves ULL-level accuracy at 75% of the memory. History-corrected variants (Hybrid+n) and Layered DLC (LDLC) provide further improvements using per-state correction tables and anti-phase error cancellation.",
+      "authors": [
+        "Brian Bushnell"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-03-28T20:52:33+00:00",
+      "link": "https://arxiv.org/pdf/2603.27405v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Cardinality estimation with applications in bioinformatics",
+      "llm_evidence_cn": "基数估计及其在生物信息学中的应用",
+      "llm_evidence": "基数估计及其在生物信息学中的应用",
+      "canonical_evidence": "基数估计及其在生物信息学中的应用",
+      "llm_tldr_en": "Introduces DynamicLogLog for faster and more accurate cardinality estimation in bioinformatics streams.",
+      "llm_tldr_cn": "引入DynamicLogLog算法，用于生物信息学数据流中更快速、准确的基数估计。",
+      "llm_tldr": "引入DynamicLogLog算法，用于生物信息学数据流中更快速、准确的基数估计。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.29727v1",
+      "title": "Latent-Y: A Lab-Validated Autonomous Agent for De Novo Drug Design",
+      "abstract": "Drug discovery relies on iterative expert workflows that are slow to parallelize and difficult to scale. Here we introduce Latent-Y, an AI agent that autonomously executes complete antibody design campaigns from text prompts, covering literature review, target analysis, epitope identification, candidate design, computational validation, and selection of lab-ready sequences. Latent-Y is integrated into the Latent Labs Platform, where it operates in the same environment as drug-discovery experts with access to bioinformatics tools, biological databases, and scientific literature. The agent can run fully autonomously end-to-end, or collaboratively, where researchers review progress, provide feedback, and direct subsequent steps. Candidate antibodies are generated using Latent-X2, our frontier generative model for drug-like antibody design. We demonstrate the agent's capability across three distinct campaign types: epitope discovery guided by therapeutic specifications, cross-species binder design, and autonomous design from a scientific publication targeting human transferrin receptor for blood-brain barrier crossing. Across nine targets, Latent-Y produced lab-confirmed nanobody binders against six, achieving a 67% target-level success rate with binding affinities reaching the single-digit nanomolar range, without human filtering or intervention. In user studies, experts working with Latent-Y completed design campaigns 56 times faster than independent expert time estimates, compressing weeks of work into hours. Because Latent-X2 is a general-purpose atomic-level model for biologics design, the same agent architecture naturally extends to macrocyclic peptide and mini-binder design campaigns, broadening autonomous discovery across therapeutic modalities. Latent-Y is available to selected partners at https://platform.latentlabs.com.",
+      "authors": [
+        "Latent Labs Team",
+        "Sebastian M. Schmon",
+        "Daniella Pretorius",
+        "Simon Mathis",
+        "Rebecca Bartke-Croughan",
+        "Aishaini Puvanendran",
+        "James Vuckovic",
+        "Henry Kenlay",
+        "Mária Vlachynská",
+        "Alex Bridgland",
+        "Ivan Grishin",
+        "Sven Over",
+        "David Li",
+        "Bridget Li",
+        "Jonathan Crabbé",
+        "Agrin Hilmkil",
+        "Alexander W. R. Nelson",
+        "David Yuan",
+        "Annette Obika",
+        "Simon A. A. Kohl"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM"
+      ],
+      "published": "2026-03-31T13:26:33+00:00",
+      "link": "https://arxiv.org/pdf/2603.29727v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI agent for antibody design and bioinformatics tools",
+      "llm_evidence_cn": "用于抗体设计和生物信息学工具的AI智能体",
+      "llm_evidence": "用于抗体设计和生物信息学工具的AI智能体",
+      "canonical_evidence": "用于抗体设计和生物信息学工具的AI智能体",
+      "llm_tldr_en": "An autonomous AI agent for de novo antibody design using bioinformatics tools and biological databases.",
+      "llm_tldr_cn": "一种利用生物信息学工具和数据库进行从头抗体设计的自主AI智能体。",
+      "llm_tldr": "一种利用生物信息学工具和数据库进行从头抗体设计的自主AI智能体。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2603.28589v1",
+      "title": "Towards a Medical AI Scientist",
+      "abstract": "Autonomous systems that generate scientific hypotheses, conduct experiments, and draft manuscripts have recently emerged as a promising paradigm for accelerating discovery. However, existing AI Scientists remain largely domain-agnostic, limiting their applicability to clinical medicine, where research is required to be grounded in medical evidence with specialized data modalities. In this work, we introduce Medical AI Scientist, the first autonomous research framework tailored to clinical autonomous research. It enables clinically grounded ideation by transforming extensively surveyed literature into actionable evidence through clinician-engineer co-reasoning mechanism, which improves the traceability of generated research ideas. It further facilitates evidence-grounded manuscript drafting guided by structured medical compositional conventions and ethical policies. The framework operates under 3 research modes, namely paper-based reproduction, literature-inspired innovation, and task-driven exploration, each corresponding to a distinct level of automated scientific inquiry with progressively increasing autonomy. Comprehensive evaluations by both large language models and human experts demonstrate that the ideas generated by the Medical AI Scientist are of substantially higher quality than those produced by commercial LLMs across 171 cases, 19 clinical tasks, and 6 data modalities. Meanwhile, our system achieves strong alignment between the proposed method and its implementation, while also demonstrating significantly higher success rates in executable experiments. Double-blind evaluations by human experts and the Stanford Agentic Reviewer suggest that the generated manuscripts approach MICCAI-level quality, while consistently surpassing those from ISBI and BIBM. The proposed Medical AI Scientist highlights the potential of leveraging AI for autonomous scientific discovery in healthcare.",
+      "authors": [
+        "Hongtao Wu",
+        "Boyun Zheng",
+        "Dingjie Song",
+        "Yu Jiang",
+        "Jianfeng Gao",
+        "Lei Xing",
+        "Lichao Sun",
+        "Yixuan Yuan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-03-30T15:37:25+00:00",
+      "link": "https://arxiv.org/pdf/2603.28589v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI framework for clinical medical research",
+      "llm_evidence_cn": "用于临床医学研究的AI框架",
+      "llm_evidence": "用于临床医学研究的AI框架",
+      "canonical_evidence": "用于临床医学研究的AI框架",
+      "llm_tldr_en": "Introduces an autonomous AI framework for generating medical hypotheses and drafting manuscripts.",
+      "llm_tldr_cn": "引入了一种自主AI框架，用于生成医学假设并起草学术论文。",
+      "llm_tldr": "引入了一种自主AI框架，用于生成医学假设并起草学术论文。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.28325v2",
+      "title": "Building evidence-based knowledge graphs from full-text literature for disease-specific biomedical reasoning",
+      "abstract": "Biomedical knowledge resources often either preserve evidence as unstructured text or compress it into flat triples that omit study design, provenance, and quantitative support. Here we present EvidenceNet, a framework and dataset for building disease-specific knowledge graphs from full-text biomedical literature. EvidenceNet uses a large language model (LLM)-assisted pipeline to extract experimentally grounded findings as structured evidence nodes, normalize biomedical entities, score evidence quality, and connect evidence records through typed semantic relations. We release two resources: EvidenceNet-HCC with 7,872 evidence records, 10,328 graph nodes, and 49,756 edges, and EvidenceNet-CRC with 6,622 records, 8,795 nodes, and 39,361 edges. Technical validation shows high component fidelity, including 98.3% field-level extraction accuracy, 100.0% high-confidence entity-link accuracy, 87.5% fusion integrity, and 90.0% semantic relation-type accuracy. In downstream evaluation, EvidenceNet improves internal and external retrieval-augmented question answering and retains structural signal for future link prediction and target prioritization. These results establish EvidenceNet as a disease-specific resource for evidence-aware biomedical reasoning and hypothesis generation.",
+      "authors": [
+        "Chang Zong",
+        "Sicheng Lv",
+        "Si-tu Xue",
+        "Huilin Zheng",
+        "Jian Wan",
+        "Lei Zhang"
+      ],
+      "primary_category": "cs.CE",
+      "categories": [
+        "cs.CE",
+        "cs.AI"
+      ],
+      "published": "2026-03-30T11:53:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.28325v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM-assisted pipeline for building disease-specific biomedical knowledge graphs",
+      "llm_evidence_cn": "利用大语言模型辅助构建疾病特异性生物医学知识图谱",
+      "llm_evidence": "利用大语言模型辅助构建疾病特异性生物医学知识图谱",
+      "canonical_evidence": "利用大语言模型辅助构建疾病特异性生物医学知识图谱",
+      "llm_tldr_en": "EvidenceNet uses LLMs to extract structured findings from literature to build disease-specific knowledge graphs.",
+      "llm_tldr_cn": "EvidenceNet利用大语言模型从文献中提取结构化发现，构建疾病特异性知识图谱。",
+      "llm_tldr": "EvidenceNet利用大语言模型从文献中提取结构化发现，构建疾病特异性知识图谱。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00065v1",
+      "title": "Genetic algorithms for multi-omic feature selection: a comparative study in cancer survival analysis",
+      "abstract": "Multi-omic datasets offer opportunities for improved biomarker discovery in cancer research, but their high dimensionality and limited sample sizes make identifying compact and effective biomarker panels challenging. Feature selection in large-scale omics can be efficiently addressed by combining machine learning with genetic algorithms, which naturally support multi-objective optimization of predictive accuracy and biomarker set size. However, genetic algorithms remain relatively underexplored for multi-omic feature selection, where most approaches concatenate all layers into a single feature space. To address this limitation, we introduce Sweeping*, a multi-view, multi-objective algorithm alternating between single- and multi-view optimization. It employs a nested single-view multi-objective optimizer, and for this study we use the genetic algorithm NSGA3-CHS. It first identifies informative biomarkers within each layer, then jointly evaluates cross-layer interactions; these multi-omic solutions guide the next single-view search. Through repeated sweeps, the algorithm progressively identifies compact biomarker panels capturing cross-modal complementary signals. We benchmark five Sweeping* strategies, including hierarchical and concatenation-based variants, using survival prediction on three TCGA cohorts. Each strategy jointly optimizes predictive accuracy and set size, measured via the concordance index and root-leanness. Overall performance and estimation error are assessed through cross hypervolume and Pareto delta under 5-fold cross-validation. Our results show that Sweeping* can improve the accuracy-complexity trade-off when sufficient survival signal is present and that integrating omic layers can enhance survival prediction beyond clinical-only models, although benefits remain cohort-dependent.",
+      "authors": [
+        "Luca Cattelani",
+        "Vittorio Fortino"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-03-31T10:42:35+00:00",
+      "link": "https://arxiv.org/pdf/2604.00065v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "genetic algorithms for multi-omic feature selection in cancer",
+      "llm_evidence_cn": "利用遗传算法进行癌症多组学特征选择",
+      "llm_evidence": "利用遗传算法进行癌症多组学特征选择",
+      "canonical_evidence": "利用遗传算法进行癌症多组学特征选择",
+      "llm_tldr_en": "Introduces a multi-objective genetic algorithm for biomarker discovery in multi-omic cancer datasets.",
+      "llm_tldr_cn": "引入一种多目标遗传算法，用于癌症多组学数据中的生物标志物筛选与生存分析。",
+      "llm_tldr": "引入一种多目标遗传算法，用于癌症多组学数据中的生物标志物筛选与生存分析。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2604.00502v1",
+      "title": "Generalized Heavy-tailed Mutation for Evolutionary Algorithms",
+      "abstract": "The heavy-tailed mutation operator, proposed by Doerr, Le, Makhmara, and Nguyen (2017) for evolutionary algorithms, is based on the power-law assumption of mutation rate distribution. Here we generalize the power-law assumption using a regularly varying constraint on the distribution function of mutation rate. In this setting, we generalize the upper bounds on the expected optimization time of the $(1+(λ,λ))$ genetic algorithm obtained by Antipov, Buzdalov and Doerr (2022) for the OneMax function class parametrized by the problem dimension $n$. In particular, it is shown that, on this function class, the sufficient conditions of Antipov, Buzdalov and Doerr (2022) on the heavy-tailed mutation, ensuring the $O(n)$ optimization time in expectation, may be generalized as well. This optimization time is known to be asymptotically smaller than what can be achieved by the $(1+(λ,λ))$ genetic algorithm with any static mutation rate.   A new version of the heavy-tailed mutation operator is proposed, satisfying the generalized conditions, and promising results of computational experiments are presented.",
+      "authors": [
+        "Anton V. Eremeev",
+        "Dmitri V. Silaev",
+        "Valentin A. Topchii"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE"
+      ],
+      "published": "2026-04-01T05:33:12+00:00",
+      "link": "https://arxiv.org/pdf/2604.00502v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Heavy-tailed mutation operators in evolutionary algorithms and genetic algorithms",
+      "llm_evidence_cn": "演化算法和遗传算法中的重尾变异算子",
+      "llm_evidence": "演化算法和遗传算法中的重尾变异算子",
+      "canonical_evidence": "演化算法和遗传算法中的重尾变异算子",
+      "llm_tldr_en": "Generalizes heavy-tailed mutation theory to optimize the performance of genetic algorithms.",
+      "llm_tldr_cn": "推广了重尾变异理论，以优化遗传算法的性能。",
+      "llm_tldr": "推广了重尾变异理论，以优化遗传算法的性能。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.28417v1",
+      "title": "KGroups: A Versatile Univariate Max-Relevance Min-Redundancy Feature Selection Algorithm for High-dimensional Biological Data",
+      "abstract": "This paper proposes a new univariate filter feature selection (FFS) algorithm called KGroups. The majority of work in the literature focuses on investigating the relevance or redundancy estimations of feature selection (FS) methods. This has shown promising results and a real improvement of FFS methods' predictive performance. However, limited efforts have been made to investigate alternative FFS algorithms. This raises the following question: how much of the FFS methods' predictive performance depends on the selection algorithm rather than the relevance or the redundancy estimations? The majority of FFS methods fall into two categories: relevance maximisation (Max-Rel, also known as KBest) or simultaneous relevance maximisation and redundancy minimisation (mRMR). KBest is a univariate FFS algorithm that employs sorting (descending) for selection. mRMR is a multivariate FFS algorithm that employs an incremental search algorithm for selection. In this paper, we propose a new univariate mRMR called KGroups that employs clustering for selection. Extensive experiments on 14 high-dimensional biological benchmark datasets showed that KGroups achieves similar predictive performance compared to multivariate mRMR while being up to 821 times faster. KGroups is parameterisable, which leaves room for further predictive performance improvement through hyperparameter finetuning, unlike mRMR and KBest. KGroups outperforms KBest.",
+      "authors": [
+        "Malick Ebiele",
+        "Malika Bendechache",
+        "Rob Brennan"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-30T13:28:09+00:00",
+      "link": "https://arxiv.org/pdf/2603.28417v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Feature selection algorithm for high-dimensional biological data",
+      "llm_evidence_cn": "针对高维生物数据的特征选择算法",
+      "llm_evidence": "针对高维生物数据的特征选择算法",
+      "canonical_evidence": "针对高维生物数据的特征选择算法",
+      "llm_tldr_en": "KGroups is a new feature selection algorithm designed to improve predictive performance in biological datasets.",
+      "llm_tldr_cn": "KGroups是一种新型特征选择算法，旨在提高生物数据集的预测性能。",
+      "llm_tldr": "KGroups是一种新型特征选择算法，旨在提高生物数据集的预测性能。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01187v1",
+      "title": "Competition at the front of expanding populations",
+      "abstract": "When competing species grow into new territory, the population is dominated by descendants of successful ancestors at the expansion front. Successful ancestry depends on both the reproductive advantage (fitness), as well as ability and opportunity to colonize new domains. We present a model that integrates both elements by coupling the classic description of one-dimensional competition (Fisher equation) to the minimal model of front shape (KPZ equation). Macroscopic manifestations of these equations are distinct growth morphologies controlled by expansion rates, competitive abilities, or spatial anisotropy. In some cases the ability to expand in space may overcome reproductive advantage in colonizing new territory. When new traits appear with accumulating mutations, we find that variations in fitness in range expansion may be described by the Tracy--Widom distribution.",
+      "authors": [
+        "Sergio Eraso",
+        "Mehran Kardar"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-01T17:35:04+00:00",
+      "link": "https://arxiv.org/pdf/2604.01187v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "population genetics and evolutionary dynamics in expanding populations",
+      "llm_evidence_cn": "扩张种群中的群体遗传学与演化动力学",
+      "llm_evidence": "扩张种群中的群体遗传学与演化动力学",
+      "canonical_evidence": "扩张种群中的群体遗传学与演化动力学",
+      "llm_tldr_en": "Models competition and mutation traits at the front of expanding populations using physical equations.",
+      "llm_tldr_cn": "利用物理方程模拟扩张种群前沿的物种竞争与突变性状演化。",
+      "llm_tldr": "利用物理方程模拟扩张种群前沿的物种竞争与突变性状演化。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2604.00763v1",
+      "title": "Non-ignorable fuzziness in granular counts: the case of RNA-seq data",
+      "abstract": "RNA-seq count data are often affected by read-to-gene alignment ambiguity, especially in high-dimensional transcriptomics. This type of ambiguity can be conveniently expressed through granular counts, namely fuzzy-valued observations of latent discrete quantities. We study a class of fuzzy-reporting mechanisms and show that, when reporting exploits graded membership, ignorability fails generically, leading to a coarsening-not-at-random structure. A hierarchical model is then introduced as a tractable instance of this construction and illustrated using RNA-seq data.",
+      "authors": [
+        "Antonio Calcagnì",
+        "Arianna Consiglio",
+        "Przemyslaw Grzegorzewski",
+        "Corrado Mencar"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "q-bio.GN",
+        "stat.AP"
+      ],
+      "published": "2026-04-01T11:26:59+00:00",
+      "link": "https://arxiv.org/pdf/2604.00763v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RNA-seq read-to-gene alignment ambiguity and granular counts",
+      "llm_evidence_cn": "RNA-seq读段比对歧义与粒度计数",
+      "llm_evidence": "RNA-seq读段比对歧义与粒度计数",
+      "canonical_evidence": "RNA-seq读段比对歧义与粒度计数",
+      "llm_tldr_en": "Addresses alignment ambiguity in RNA-seq data using fuzzy-valued granular counts and hierarchical modeling.",
+      "llm_tldr_cn": "利用模糊值粒度计数和层次模型解决RNA-seq数据中的读段比对歧义问题。",
+      "llm_tldr": "利用模糊值粒度计数和层次模型解决RNA-seq数据中的读段比对歧义问题。",
+      "llm_tags": [
+        "query:pangen:composite"
+      ],
+      "matched_query_tag": "query:pangen:composite",
+      "matched_query_text": "Papers central to 泛基因组与复杂基因演化相关论文检索, especially work that connects or combines: pangenome analysis and construction; complex gene evolution mechanisms; comparative genomics of complex traits; genomic structural variations in pangenomes; gene family expansion and contraction evolution; phylogenomic analysis of gene evolution; recent advances in pangenome research and gene evolution; computational methods for pangenome construction and evolutionary analysis; impact of structural variations on complex gene evolution; evolutionary dynamics of core and dispensable genes in pangenomes.",
+      "matched_requirement_id": "req-composite-pangen",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.29376v1",
+      "title": "Assessing Multimodal Chronic Wound Embeddings with Expert Triplet Agreement",
+      "abstract": "Recessive dystrophic epidermolysis bullosa (RDEB) is a rare genetic skin disorder for which clinicians greatly benefit from finding similar cases using images and clinical text. However, off-the-shelf foundation models do not reliably capture clinically meaningful features for this heterogeneous, long-tail disease, and structured measurement of agreement with experts is challenging. To address these gaps, we propose evaluating embedding spaces with expert ordinal comparisons (triplet judgments), which are fast to collect and encode implicit clinical similarity knowledge. We further introduce TriDerm, a multimodal framework that learns interpretable wound representations from small cohorts by integrating wound imagery, boundary masks, and expert reports. On the vision side, TriDerm adapts visual foundation models to RDEB using wound-level attention pooling and non-contrastive representation learning. For text, we prompt large language models with comparison queries and recover medically meaningful representations via soft ordinal embeddings (SOE). We show that visual and textual modalities capture complementary aspects of wound phenotype, and that fusing both modalities yields 73.5% agreement with experts, outperforming the best off-the-shelf single-modality foundation model by over 5.6 percentage points. We make the expert annotation tool, model code and representative dataset samples publicly available.",
+      "authors": [
+        "Fabian Kabus",
+        "Julia Hindel",
+        "Jelena Bratulić",
+        "Meropi Karakioulaki",
+        "Ayush Gupta",
+        "Cristina Has",
+        "Thomas Brox",
+        "Abhinav Valada",
+        "Harald Binder"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-31T07:46:02+00:00",
+      "link": "https://arxiv.org/pdf/2603.29376v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for rare genetic skin disorder research",
+      "llm_evidence_cn": "利用AI进行罕见遗传性皮肤病研究",
+      "llm_evidence": "利用AI进行罕见遗传性皮肤病研究",
+      "canonical_evidence": "利用AI进行罕见遗传性皮肤病研究",
+      "llm_tldr_en": "A multimodal framework for learning wound representations in patients with a rare genetic skin disorder.",
+      "llm_tldr_cn": "一种多模态框架，用于学习罕见遗传性皮肤病患者的伤口表征。",
+      "llm_tldr": "一种多模态框架，用于学习罕见遗传性皮肤病患者的伤口表征。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00810v1",
+      "title": "Role Differentiation in a Coupled Resource Ecology under Multi-Level Selection",
+      "abstract": "A group of non-cooperating agents can succumb to the \\emph{tragedy-of-the-commons} if all of them seek to maximize the same resource channel to improve their viability. In nature, however, groups often avoid such collapses by differentiating into distinct roles that exploit different resource channels. It remains unclear how such coordination can emerge under continual individual-level selection alone. To address this, we introduce a computational model of multi-level selection, in which group-level selection shapes a common substrate and mutation operator shared by all group members undergoing individual-level selection. We also place this process in an embodied ecology where distinct resource channels are not segregated, but coupled through the same behavioral primitives. These channels are classified as a positive-sum intake channel and a zero-sum redistribution channel. We investigate whether such a setting can give rise to role differentiation under turnover driven by birth and death. We find that in a learned ecology, both channels remain occupied at the colony level, and the collapse into a single acquisition mode is avoided. Zero-sum channel usage increases over generations despite not being directly optimized by group-level selection. Channel occupancy also fluctuates over the lifetime of a boid. Ablation studies suggest that most baseline performance is carried by the inherited behavioral basis, while the learned variation process provides a smaller but systematic improvement prior to saturation. Together, the results suggest that multi-level selection can enable groups in a common-pool setting to circumvent tragedy-of-the-commons through differentiated use of coupled channels under continual turnover.",
+      "authors": [
+        "Siddharth Chaturvedi",
+        "Ahmed El-Gazzar",
+        "Marcel van Gerven"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-04-01T12:19:15+00:00",
+      "link": "https://arxiv.org/pdf/2604.00810v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Computational model of multi-level selection and mutation",
+      "llm_evidence_cn": "多层级选择与突变的计算模型",
+      "llm_evidence": "多层级选择与突变的计算模型",
+      "canonical_evidence": "多层级选择与突变的计算模型",
+      "llm_tldr_en": "Explores how role differentiation emerges under individual and group-level selection in a computational ecology.",
+      "llm_tldr_cn": "探讨了在计算生态系统中，个体和群体层面的选择如何驱动角色分化。",
+      "llm_tldr": "探讨了在计算生态系统中，个体和群体层面的选择如何驱动角色分化。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}

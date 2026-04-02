@@ -1,0 +1,792 @@
+Title: Generalized Heavy-tailed Mutation for Evolutionary Algorithms
+
+URL Source: https://arxiv.org/pdf/2604.00502v1
+
+Published Time: Thu, 02 Apr 2026 00:48:21 GMT
+
+Number of Pages: 13
+
+Markdown Content:
+Published as a conference paper at MathAI 2026 
+
+# GENERALIZED HEAVY -TAILED MUTATION FOR EVO -
+
+# LUTIONARY ALGORITHMS 
+
+Anton V. Eremeev, Dmitri V. Silaev & Valentin A. Topchii 
+
+Novosibirsk State University 1, Pirogova str., Novosibirsk, 630090, Russia, Sobolev Institute of Mathematics 4, Koptyuga pr., Novosibirsk, 630090, Russia 
+
+eremeev@ofim.oscsbras.ru 
+
+# ABSTRACT 
+
+The heavy-tailed mutation operator, proposed by Doerr, Le, Makhmara, and Nguyen (2017) for evolutionary algorithms, is based on the power-law assump-tion of mutation rate distribution. Here we generalize the power-law assumption using a regularly varying constraint on the distribution function of mutation rate. In this setting, we generalize the upper bounds on the expected optimization time of the (1 + ( λ, λ )) genetic algorithm obtained by Antipov, Buzdalov and Doerr (2022) for the OneMax function class parametrized by the problem dimension n.In particular, it is shown that, on this function class, the sufficient conditions of Antipov, Buzdalov and Doerr (2022) on the heavy-tailed mutation, ensuring the 
+
+O(n) optimization time in expectation, may be generalized as well. This opti-mization time is known to be asymptotically smaller than what can be achieved by the (1 + ( λ, λ )) genetic algorithm with any static mutation rate. A new ver-sion of the heavy-tailed mutation operator is proposed, satisfying the generalized conditions, and promising results of computational experiments are presented. 
+
+# 1 INTRODUCTION 
+
+A distinctive feature of evolutionary algorithms (EA) is their imitation of the process of evolutionary adaptation of a biological population to environmental conditions. Individuals correspond to trial points in the solution space of an optimization problem, and their fitness is determined by the values of the objective function, taking into account penalties for violating the problem’s constraints, if any. The construction of new trial points in EA is accomplished using mutation and crossover operators. When using the latter, EAs are commonly referred to as genetic algorithms. When solving unconstrained pseudo-Boolean maximization problems max {f (x) : x ∈ { 0, 1}n}, or minimization problems min {f (x) : x ∈ { 0, 1}n}, where the objective function is f : {0, 1}n → R, one of the most frequently used mutation operators is the standard mutation Goldberg (1989), where each bit of the given string x ∈ { 0, 1}n independently changes its value with a given probability p. In this paper, we will assume that in the case of standard mutation, at each iteration of an EA with distribution Bin( n, p ), a number of mutated bits ℓ is selected, and the next descendant is obtained from the parent solution by making changes to ℓ randomly selected bits. The main performance characteristic of evolutionary algorithms in solving optimization problems is the optimization time , hereafter denoted by T , which is defined as the number of times the fitness function is evaluated until the optimum is reached for the first time. Typically, the expected value of the optimization time or the average optimization time is studied. In this paper, we study the optimization time of a genetic algorithm with a computational scheme from Antipov et al. (2022) when maximizing the fitness function O NE MAX (x) = Pni=1 xi. A family of such functions, param-eterized by the problem dimension n, is one of the basic benchmarks in the theory of evolutionary computation, used to evaluate the effectiveness of EAs on simple problems. In particular, in the case of high expected optimization time on O NE MAX , random search algorithms or subsets of their adjustable hyper-parameter values are considered ineffective Lehre (2011); Oliveto & Witt (2015). 1
+
+> arXiv:2604.00502v1 [cs.NE] 1 Apr 2026
+
+Published as a conference paper at MathAI 2026 Symmetry considerations imply that EAs based on the standard mutation behave identically on both ONE MAX and any function O NE MAX z : {0, 1}n → R, defined as ONE MAX z (x) := |{ i ∈ { 1, ..., n } : xi = zi}| 
+
+for any bit string z ∈ { 0, 1}n. It was shown by Erd˝ os & R´ enyi (1963) that any algorithm that obtains information only from queries of the fitness function O NE MAX z will, on average, require 
+
+Ω( n/ log n) fitness function computations before first hitting the optimal solution z, and this bound cannot be improved. Doerr et al. (2015) developed a genetic algorithm, (1 + ( λ, λ )) GA, with a new crossover operator that eliminates “bad” mutations. At each iteration of the algorithm, (1 + ( λ, λ )) GA, a single parent individual generates λ = λ(n) offspring independently of each other at equal Hamming distance ℓ
+
+from the parent, with ℓ ∼ Bin( n, p ). Next, the best-fitting of these solutions is selected, and a crossover operator with parameter c is applied to it. With probability c, the crossover operator uses bits from the best offspring, and with probability 1 − c, it uses bits from the parent solution. In this way, λ individuals are created, and the best of these λ individuals is accepted as a new parent if it is at least as fit as the previous parent. A theoretical analysis of the optimization time has shown that the (1 + ( λ, λ )) GA algorithm, for many values of the adjustable parameters, is asymptotically faster by O NE MAX than most classical evolutionary algorithms. As demonstrated by Doerr et al. (2017), choosing a mutation parameter for multi-extremal problems is significantly more challenging than for O NE MAX . To overcome this difficulty, Doerr et al. (2017) proposed using a random choice for the mutation parameter p following a heavy-tailed distribution, namely, a truncated power-law distribution with exponent −β < −1. In this case, a random number 
+
+α ∈ { 1, . . . , ⌊ n 
+
+> 2
+
+⌋} is first selected, so that the probability of selecting α = k is proportional to k−β ,
+
+k ≤ ⌊ n 
+
+> 2
+
+⌋. Then, p = α/n is set and the standard mutation is applied with this value p. At each iteration of the EA, the values of α are selected independently. As shown by Doerr & Doerr (2018) for the O NE MAX case, the optimal choice of a fixed value of the mutation parameter p for the entire running time of the GA yields an optimization time of 
+
+E[T ] = Θ n
+
+s
+
+log( n) log log log( n)log log n
+
+!
+
+, (1) which is asymptotically smaller than the average optimization time of many known evolutionary algorithms. Antipov et al. (2022) demonstrated the effectiveness of fast mutation in optimizing the O NE MAX 
+
+function. Here, the (1 + ( λ, λ )) GA from Doerr et al. (2015), combined with the fast mutation operator, was considered. Antipov et al. (2022) proved an upper bound for the average optimization time of order O(n) for (1 + ( λ, λ )) GA with fast mutation on O NE MAX , under a specific choice of the distributions of the random variables λ and p. This is less than the average optimization time of (1 + ( λ, λ )) GA with any fixed probability of mutations. In this algorithm, both the population size λ and the rapid mutation parameter p have a truncated power-law distribution with upper bounds 
+
+λ ≤ un and p ≤ un/n , respectively. The linear bound of Antipov et al. (2022) holds when the power-law exponent β satisfies the inequalities 2 < β < 3 and un ≥ ln 1/(3 −β) n.
+
+The main result of this work, presented in Theorems 1 and 2, shows that the upper bounds on the expected optimization time of (1 + ( λ, λ )) GA, similar to those obtained in (Antipov et al., 2022), hold not only for truncated power-law distributions of the random variables λ and p, but also for a wider class of distributions described in terms of regularly varying constraints on the distribution function of this quantity. As follows from (1), the linear bound on the average optimization time obtained by us, like the linear bound from (Antipov et al., 2022), turns out to be asymptotically smaller than the average optimization time of (1 + ( λ, λ )) GA with any mutation parameter p that remains unchanged during the algorithm’s execution. The proofs are provided in the Appendix. This is a translation of the publication in Russian (Eremeev et al., 2024). A special case of this result, obtained without using the apparatus of regularly varying functions, is presented in (Eremeev & Topchii, 2024). 2Published as a conference paper at MathAI 2026 1.1 NOTATION AND DEFINITIONS 
+
+Denote Nm := {k : k ∈ N, k ≤ m}, S := {0, 1}n, |S| = 2 n. Introduce the norm and Hamming distance |x| = Pni=1 xi and |x − y| = Pni=1 |xi − yi| for x, y ∈ S. Denote by x∗ the solution with ones in all positions, and Zs = {x ∈ S : |x − x∗| = s} is the set of solutions having exactly s zeros, 
+
+s = 0 , . . . , n . In particular, Z0 = {x∗}.Let λ(n), n ∈ N be a set of jointly independent random variables (r.v.s) with ranges from a subset of Nun , where un ≤ 0.5n is the maximum possible value of λ(n) with positive probability. In other words, probabilities P(λ(n) = k) = pn,k ≥ 0 only for k ∈ Nun and pn,u n > 0. Constraints on 
+
+pn,k will be introduced later. The r.v.s λ∗(n) with different indices instead of ∗ are independent and identically distributed with λ(n). We study the case u = u(n) → ∞ as n → ∞ .Let us describe the algorithm A under study, whose predecessor is the (1 + ( λ, λ )) EA from (Doerr et al., 2015) with deterministic mutation probabilities p = λ(n)/n and crossover parameter c =
+
+λ−1(n). Later in (Antipov et al., 2022), a randomization of the (1 + ( λ, λ )) EA from (Doerr et al., 2015) was proposed with respect to the population size λ(n), where the probabilities P(λ(n) = 
+
+k) = pn,k are expressed via power functions. This algorithm in (Antipov et al., 2022) was named the fast (1 + ( λ, λ )) genetic algorithm . When the parameter λ(n) is chosen according to a power law and the mutation parameter p = λ(n)/n , the algorithm from (Antipov et al., 2022) has a heavy-tailed mutation, coinciding with that proposed in (Doerr et al., 2017). In this paper, we abandon explicit expressions for pn,k and provide only constraints on the distribution function of the r.v. 
+
+λ(n). In all other respects, algorithm A coincides with the fast (1 + ( λ, λ )) genetic algorithm. 
+
+Algorithm A: (1 + ( λ, λ )) genetic algorithm with regularly varying constraints on the distribution function of λ(n) with an upper limit of its values un, maximizing the function f : {0, 1}n → R
+
+1. x ← random bit string of length n;2. while not terminated do 
+
+3. Choose λ from [1..u] with P(λ = k) = pn,k ;4. Choose ℓ ∼ Bin( n, λ (n)/n );5. for i ∈ [1 ..λ ] do 
+
+6. x(i) ← a copy of x;7. Flip ℓ bits in x(i) chosen uniformly at random; 8. end 
+
+9. x′ ← arg max z∈{ x(1) ,...,x (λ)}f (z);10. for i ∈ [1 ..λ ] do 
+
+11. Create y(i) by taking each bit from x′ with probability 
+
+λ−1 and from x with probability (λ − 1) λ−1;12. end 
+
+13. y ← arg max z∈{ y(1) ,...,y (λ)}f (z);14. if f (y) ≥ f (x) then 
+
+15. x ← y;16. end 
+
+17. end 
+
+Algorithm A starts with a random initial bit string x. Each iteration of the algorithm consists of obtaining a random realization of the r.v. λ(n) for the population size λ, followed by a mutation phase, a crossover phase, and a selection phase. In the mutation phase (lines 4–8), after obtaining a realization ℓ with distribution Bin( n, p ), λ offspring are created from x by making changes in ℓ
+
+3Published as a conference paper at MathAI 2026 randomly selected bits in each of them. From these new λ individuals, one with the highest fitness is selected for further participation in the crossover phase. If there is more than one offspring with maximum fitness, we choose one of them uniformly at random. Denote the selected offspring by 
+
+x′. In the crossover phase (lines 10–12), λ new offspring are created from the parent individual 
+
+x and the winner x′ from the mutation phase. From these λ offspring, the string with the highest fitness is selected. If there are several, then we choose uniformly at random one of them (strings that coincide with the parent solution x are not considered). In the selection phase (line 14), the parent x
+
+is replaced by the winner individual of the crossover phase y, if the fitness of y is not lower than the fitness of x. In algorithm A, as in many other algorithms mentioned above, no stopping criterion is specified. This is because in theoretical studies we are mainly interested in the time of first reaching the optimum. In practical applications of algorithm A, it is natural to specify a stopping criterion. 
+
+# 2 MAIN PROPERTIES OF THE ALGORITHM 
+
+Denote by ℓλ(n)(s) the number of iterations of Algorithm 1 from (Doerr et al., 2015), starting from a solution x ∈ Zs, until the first improvement of the fitness function for fixed n and λ(n), and the probability of improvement on the first iteration by pλ(n)(s) = P(ℓλ(n)(s) = 1) . Further we study algorithm A with the fitness function O NE MAX , and the probabilities pλ(n)(s) coincide for all x ∈ Zs. Note that with a random choice of λ(n), the r.v. ℓλ(n)(s) does not carry a semantic load, but only the event {ℓλ(n)(s) = 1 } is important. We present Lemma 7 from (Doerr et al., 2015) with a fixed (not random) value of λ for each n with mutation parameter p = λ/n and crossover parameter c = λ−1.
+
+Lemma 1 One iteration of algorithm A with fixed λ in the case of the fitness function ONE MAX ,starting from a solution x ∈ Zs, leads to an improvement of the current fitness function value with probability satisfying the inequality 
+
+pλ(s) ≥ C
+
+
+
+1 − (1 − s/n )λ2/2  
+
+1 − e−1/8
+
+(2) 
+
+for some constant C > 0 independent of n.
+
+Further, without additional comments, for constants independent of n we will use the notations 
+
+C > 0 and c > 0 with or without indices. These constants may be interrelated, but only the presence of these positive constants is fundamentally important. In some cases, to simplify the presentation, for different constants we will use the symbols C∗ and c∗ without indicating their explicit form, and even in one equation, in different parts of the equality, these values may be different. Inequality (2) taking into account the bound 
+
+1 − (1 − p)λ ≥ λp 
+
+1 + λp , ∀p ∈ (0 , 1) , λ > 0,
+
+from Lemma 2 of (Antipov et al., 2022) can be written as 
+
+pλ(n)(s) ≥ C1
+
+0.5λ2(n)s/n 
+
+1 + 0 .5λ2(n)s/n , (3) in particular, inequality (3) can be written as 
+
+pλ(n)(s) ≥ C2λ2(n)s/n, for λ2(n)s/n < 1, (4) 
+
+pλ(n)(s) ≥ C3, for λ2(n)s/n ≥ 1. (5) Let λ(n) be random. Formally, at each iteration with number t, a r.v. λt(n) is realized with the same distribution as λ(n). Given that there is no dependence on t, we omit this index. Using the law of total probability (averaging over λ(n)), denote the probability of improvement in one iteration by 
+
+pn(s) = Eλ(n)pλ(n)(s) = P(ℓn(s) = 1) , where ℓn(s) is the number of iterations until improvement of the fitness function. Formally, in the definition of the probability pn(s), which does not depend on the iteration number t, the event {ℓn(s) = 1 } depends on this number t, and ℓn(s) equals the number of unsuccessful iterations in a series of iterations until the first successful one. The count of iterations starts from the initial individual or after the next increase in the fitness function. 4Published as a conference paper at MathAI 2026 Compute the expectation Eℓn(s). The random variable ℓn(s) has a geometric distribution with parameter pn(s). By definition we have 
+
+P(ℓn(s) = k) = (1 − pn(s)) k−1pn(s), k ∈ N,
+
+Eℓn(s) = (1 − pn(s)) p−1 
+
+> n
+
+(s) + 1 = p−1 
+
+> n
+
+(s). (6) Suppose that for some fixed m0, m 1 ∈ N there exists a constant c > 0 independent of n such that for all n ∈ N\Nm1 the inequalities hold 
+
+P(λ(n) ∈ Nm0 ) ≥ c. (7) A sufficient condition for inequality (7) to hold is uniform in n boundedness of Eλ(n), i.e., the conditions Eλ(n) ≤ c1, ∀n ∈ N, for some 0 < c 1 < ∞. Then by Markov’s inequality for non-negative random variables λ(n) for any c0 > c 1
+
+P(λ(n) < c 0) ≥ 1 − Eλ(n)/c 0 ≥ 1 − c1/c 0 > 0.
+
+Conditions for inequality (7) to hold will be formulated as: for sufficiently large n. Obviously, if inequality (7) holds for some fixed m0 and m1, then it also holds when these values are replaced by any fixed values greater than them. Estimate the fraction on the right-hand side of bound (3) for λ(n) ∈ Nm0 . If s ≤ 0.5nm −20 , then 
+
+0.5λ2(n)s/n ≤ 0.25 and the bound holds 
+
+0.5λ2(n)s/n 
+
+1 + 0 .5λ2(n)s/n ≥ 0.4λ2(n)s/n ≥ 0.4sn −1.
+
+Otherwise, s > 0.5nm −20 and (0 .5λ2(n)s/n )−1 < 4 and the bound holds 
+
+0.5λ2(n)s/n 
+
+1 + 0 .5λ2(n)s/n > 0.2 = 0 .2sn −1s−1n ≥ 0.2sn −1.
+
+When inequality (7) holds, due to the last two bounds and inequality (3), for all n ∈ N\Nm1 and 
+
+s ∈ Nn the inequalities hold 
+
+pn(s) ≥ Eλ(n){pλ(n)(s); λ(n) ∈ Nm0 } ≥ 0.2C1sn P(λ(n) ∈ Nm0 ) = C4sn . (8) 
+
+Lemma 2 In the case of the fitness function ONE MAX , the average number of iterations of al-gorithm A, starting from a solution x ∈ Zs, until improvement of the objective function, under condition (7) satisfies the inequality 
+
+Eℓn(s) ≤ C−14 n/s, s ∈ Nn, (9) 
+
+where C4 is defined in expression (8). 
+
+Let τi(n) be the number of iterations until the first hit of x∗ given that the process starts from an individual x(0) ∈ Zi. If the initial solution is chosen uniformly from the population, then 
+
+P x(0) ∈ Zi
+
+ = Cin2−n, Eτi(n) ≤
+
+> i
+
+X
+
+> s=1
+
+Eℓn(s) = 
+
+> i
+
+X
+
+> s=0
+
+Eℓn(s). (10) Let τ (n) be the number of iterations until the first hit of x∗ from a randomly chosen individual x(0) .By the law of total probability, the representation holds 
+
+Eτ (n) = 2−nnX
+
+> i=0
+
+CinEτi(n) ≤ 2−nnX
+
+> i=0
+
+CiniX
+
+> s=0
+
+Eℓn(s)= 2−nnX
+
+> s=1
+
+Eℓn(s)
+
+> n
+
+X
+
+> i=s
+
+Cin = 2 −nnϵ X
+
+> s=1
+
+Eℓn(s)
+
+> n
+
+X
+
+> i=s
+
+Cin
+
+5Published as a conference paper at MathAI 2026 
+
++ 2−nnX
+
+> s=nϵ +1
+
+Eℓn(s)
+
+> n
+
+X
+
+> i=s
+
+Cin ≤
+
+> nϵ
+
+X
+
+> s=1
+
+Eℓn(s) + C5n, (11) where ϵ ∈ (0 , 1) is an arbitrary fixed number and the sum of combinations divided by 2n is the sum of probabilities, which does not exceed 1, and Eℓn(s) ≤ C−14 ϵ−1 =: C5 for nϵ + 1 ≤ s ≤ n. Here and below, in sums over subsets of natural numbers and functions of a natural argument with not necessarily integer limits or values, we consider that these quantities are equal to the nearest smaller integer. 
+
+# 3 AVERAGE NUMBER OF ITERATIONS UNTIL HITTING THE OPTIMUM 
+
+3.1 REGULARLY VARYING FUNCTIONS 
+
+Let us consider several definitions and properties of regularly varying functions. (See e.g. the monograph (Seneta, 1976) and §9 of Chapter VIII in (Feller, 1971).) 
+
+Definition 1 A measurable function g(v) > 0, defined for sufficiently large v ∈ R+ or v ∈ N, is called regularly varying at infinity with exponent α ∈ R, if for any fixed c ∈ R+ the condition holds 
+
+lim 
+
+> v→+∞
+
+g(cv )
+
+g(v) → cα, (12) 
+
+where cv should be replaced by [cv ], the integer part of the number in the case v ∈ N.In the case α = 0 , the function is called slowly varying at infinity .
+
+The property of regular variation is asymptotic and the function g(v) > 0 does not necessarily have to be defined on any initial interval of the half-axis. Regularly varying functions for v ∈ N
+
+and v ∈ N will be called regularly varying sequences. (There is another definition of regularly varying sequences for c ∈ N in expression (12), but to avoid unnecessary complications, we restrict ourselves to the simple case.) Any regularly varying at infinity function g(v), v ∈ R+, will be asymptotically equivalent to a regularly varying at infinity step function g([ v]) , which can be interpreted as a regularly varying at infinity sequence g(z), z ∈ N. Obviously, the converse statement also holds. 
+
+Lemma 3 For a regularly varying at infinity sequence g(z), z ∈ N, there exists a regularly varying at infinity function ˆg(v), v ∈ R+, such that g([ v]) = ˆ g([ v]) for sufficiently large v ∈ R+.
+
+Further, we will not distinguish between notations for sequences and functions defined through each other, i.e., we identify the symbols ˆg and g.
+
+Definition 2 A measurable function g(v) > 0, defined for sufficiently small v ∈ R+, is called 
+
+regularly varying at zero from the right with exponent α ∈ R, if for any fixed c ∈ R+ the condition holds 
+
+lim 
+
+> v→+0
+
+g(cv )
+
+g(v) → cα
+
+In the case α = 0 , the function is called slowly varying at zero from the right. 
+
+Definition (2) can be formulated for any a ∈ R, both in one-sided and two-sided variants, by replac-ing g(v) > 0 with g(v − a) > 0 and convergence in one sense or another of v − a to zero. Here are several examples of regularly varying functions. This class is a generalization of the family of power functions g(v) = vα, v ∈ R+, and sequences for v ∈ N. Functions vα, v ∈ R+, for any 
+
+α ∈ R are regularly varying at 0 and at infinity. Functions | ln v|, | ln | ln v|| and any powers of them are slowly varying at 0 and at infinity. If a slowly varying function at 0 or at infinity is denoted by 
+
+ℓ(v), then for any α ∈ R the function g(v) = vαℓ(v) will be regularly varying at zero or at infinity with exponent α. Moreover, all regularly varying functions are representable only in this form. 6Published as a conference paper at MathAI 2026 3.2 GENERALIZATION OF CONDITIONS ON POPULATION SIZE AND MUTATION SETTINGS 
+
+The following two definitions specify our conditions on the distribution of the population size λ(n)
+
+(and hence on the distribution of the mutation parameter p = λ(n)/n ). 
+
+Definition 3 A random sequence λ(n) satisfies condition Ac 
+
+> 2
+
+if, for all n ∈ N, the second moment satisfies the inequality Eλ2(n) < C for some constant C > 0.
+
+Definition 4 A random sequence λ(n) satisfies conditions A∞ 
+
+> 2
+
+, if Eλ2(n) ≥ ψ(n) = L(un) → ∞ ,where L(m) is a regularly varying sequence with exponent 3 − β ∈ (0 .2) as m → ∞ , independent of n, un ≤ n/ 2, and un → ∞ is a regularly varying sequence as n → ∞ . Moreover, for some constant C > 0 independent of n and any b ∈ Nun \Nm0 (for sufficiently large n), the following inequality holds: 
+
+P(b/ 2 ≤ λ(n) ≤ b) ≥ Cb −2L(b). (13) The aim of this work is to generalize Theorems 5 and 6 from (Antipov et al., 2022) to wider classes of distributions of sequences of random variables λ(n), n ∈ N. Let us give the explicit form of distributions from (Antipov et al., 2022) 
+
+P(λ(n) = k) = pn,k = Cβ,u n k−β , k ∈ Nun , (14) where un → ∞ as n → ∞ and Cβ,u n = Pun 
+
+> k=1
+
+k−β . We consider only the case β > 1. Due to the convergence of the series P∞ 
+
+> k=1
+
+k−β , the sequence Cβ,u n is asymptotically constant. From the point of view of regularly varying functions, the probabilities pn,k from representation (14) are described in terms of regularly varying functions with exponent −β, in which the slowly varying factor is an asymptotically constant function of un. The second moment Eλ2(n) = Cβ,u n
+
+Pun 
+
+> k=1
+
+k2−β , as shown in (Antipov et al., 2022), is of order u3−βn , i.e., it will be a regularly varying function with exponent 3 − β for β < 3. This motivates the choice of the parameter 3 − β in definition A∞ 
+
+> 2
+
+.Condition Ac 
+
+> 2
+
+means that the second moment of the random variable λ(n) is uniformly bounded and there are no other constraints on pn,k , which is realized for β > 3 in condition (14). Condition A∞ 
+
+> 2
+
+means that the regularly varying at infinity function L(v) has the form L(v) = 
+
+v3−β ℓ(v), v ∈ R+, where ℓ(v) varies slowly at infinity. Condition (13) can be written as 
+
+P(b/ 2 ≤ λ(n) ≤ b) ≥ Cb 1−β ℓ(b).
+
+In terms of assumptions (14), these conditions hold for 1 < β < 3 and ℓ(v) asymptotically constant, but the explicit form of pn,k , the probabilities of specific values for λ(n), is not important, and only bounds for their sums over long intervals are used, which will be regularly varying at infinity functions with exponent 1 − β. Obviously, L(un), as a composition of regularly varying sequences, will be a regularly varying sequence as n → ∞ with a naturally computed exponent. Condition A∞ 
+
+> 2
+
+could also include some cases β = −1, −3, which yield explicit bounds for Eτ (n),but these proofs are cumbersome and require working with subtle structural theorems for slowly varying functions. Let us give a generalization of Theorem 5 from Antipov et al. (2022). 
+
+Theorem 1 The average number of iterations τ in algorithm (1+( λ, λ )) GA with the fitness function 
+
+ONE MAX before reaching the optimum is 
+
+Eτ (n) = O(n ln n), subject to Ac
+
+> 2
+
+; (15) 
+
+Eτ (n) = O(n) + O
+
+ n ln nψ(n)
+
+
+
+, subject to A∞ 
+
+> 2
+
+, (16) 
+
+where ψ(n) is from definition 4. 
+
+Bound (16) for the number of iterations until the first hit of x∗ when passing to arbitrary regularly varying at infinity sequences un and L(n) = n1−β ℓ(n) differs qualitatively from that obtained in Theorem 5 from (Antipov et al., 2022), where the second term is absent, which disappears when 
+
+ψ−1(n) ln n = L−1(un) ln n = O(1) . In the case of conditions (14), the last bound becomes 
+
+uβ−3 
+
+> n
+
+ln n = O(1) , which implies condition un ≥ ln 1/(3 −β) n of Theorem 5 (Antipov et al., 2022). 7Published as a conference paper at MathAI 2026 
+
+# 4 UPPER BOUNDS FOR OPTIMIZATION TIME AND COMPUTATIONAL COST 
+
+Let T op be the number of computational operations until the first hit of x∗ in the RAM model with random access memory (Aho et al., 1974), where standard arithmetic operations have constant dura-tion. The distributions of the random variables T and T op depend on the dimension of the bit strings of individuals n. Therefore, for them, we further use the notations T (n) and T op (n), respectively. Denote by Ts(n) and T op s (n) the number of fitness function evaluations and computational opera-tions until the first hit of x∗, respectively, given that the process starts from an individual x(0) ∈ Zs.Denote the number of fitness function evaluations and the number of computational operations in one iteration, starting from an individual x ∈ Zs, ending with the preservation, possibly of a different individual x from Zs for the next operation, for fixed λi,s (n), by μλ(n)(i, s ) and νλ(n)(i, s, n ). Here the random variables λi,s (n) are independent in i and s and have the same distribution as λ(n),and the index i denotes the ordinal number of a start from an individual x (possibly different from the original one, but with the same fitness function value) with an unsuccessful outcome – without transition to a higher level. The averages over λi,s (n) for μλ(n)(i, s ) and νλ(n)(i, s, n ) are denoted by μn(i, s ) = Eλ(n)μλ(n)(i, s ) and νn(i, s ) = Eλ(n)νλ(n)(i, s, n ), respectively. Due to the identical distribution of the r.v.s λi,s (n) in i, the latter averages coincide for different i with fixed s and n.For μλ(n)(i, s ) in the first step of the loop (mutation of the individual x), λ(n) evaluations of the fitness function Eλ(n) ≤ μn(i, s ) are performed, and in the second step, corresponding to crossover, there are no more than λ(n) such evaluations. Therefore, the constraints hold 
+
+μn(i, s ) ≤ 2Eλ(n). (17) Estimates for νλ(n)(i, s ) are more complicated. This value depends on the implementation of the computational algorithm. Suppose that there exists a function ϕ(λ(n), n ) such that 
+
+νλ(n)(i, s, n ) ≤ ϕ(λi,s (n), n ).
+
+Denoting ϕn = Eλ(n)ϕ(λi,s (n), n ), we obtain the inequalities 
+
+νn(i, s ) ≤ ϕn. (18) Let μλ(n)(s) and νλ(n)(s, n ) denote the random numbers of fitness function evaluations and com-putational operations in one iteration starting from any individual x in Zs, ending with a transition to another individual with a higher fitness function value. Their averages over λ(n) are denoted by 
+
+μn(s) = Eλ(n)μλ(n)(s) and νn(s) = Eλ(n)νλ(n)(s, n ), respectively. For these averages, inequali-ties analogous to (17) and (18) hold 
+
+μn(s) ≤ 2Eλ(n), νn(s) ≤ ϕn. (19) Let ζn(s) and ηn(s) be the number of objective function evaluations and the number of computa-tional operations during the time that successive individuals x stay in As, ending with a transition to an individual with a higher fitness function value. More specifically, the representations hold 
+
+ζn(s) = 
+
+> ℓn(s)−1
+
+X
+
+> i=1
+
+μn(i, s ) + μn(s), ηn(s) = 
+
+> ℓn(s)−1
+
+X
+
+> i=1
+
+νn(i, s ) + νn(s), (20) where the sum is zero if the upper index is less than the lower one. Relations (17), (18), (19) and (20) and Kolmogorov-Prokhorov theorem (Borovkov, 1976, Ch. 4, §4) for non-negative random variables allow us to write the inequalities 
+
+Eℓn(s)Eλ(n) ≤ 2Eℓn(s)Eλ(n), Eηn(s) ≤ Eℓn(s)ϕn. (21) The next theorem is a generalization of Theorem 6 from (Antipov et al., 2022). 
+
+Theorem 2 The average number of fitness function evaluations T (n) and the number of operations 
+
+T op (n) in algorithm A with fitness function ONE MAX are bounded from above by the quantities 
+
+ET (n) = O(n ln n), under condition Ac
+
+> 2
+
+;
+
+8Published as a conference paper at MathAI 2026 
+
+ET (n) = O
+
+
+
+n + n ln nψ(n)
+
+
+
+Eλ(n), under condition A∞ 
+
+> 2
+
+; (22) 
+
+ET op (n) = O(n ln n)ϕn, under condition Ac
+
+> 2
+
+;
+
+ET op (n) = O
+
+
+
+n + n ln nψ(n)
+
+
+
+ϕn, under condition A∞ 
+
+> 2
+
+.
+
+The statement of Theorem 6 (Antipov et al., 2022) corresponds to the special case of bounds (22) under the conditions 
+
+Eλ(n) ≤ C < ∞, ∀n ∈ N,
+
+(or β > 2), ψ(n) = u3−βn and un ≥ ln 1/(3 −β) n, which is a special case of the condition 
+
+uβ−3 
+
+> n
+
+ln n = O(1) .
+
+Corollary 1 If we choose the set N(2) = {2ℓ, ℓ = 0 , 1, 2, · · · } as the support of the distribution of 
+
+λ(n) and set pn,k := C(∗)(β, u n)k1−β for k ∈ N(2)  
+
+> un
+
+and un ∈ N(2) , then ET (n) = O(n) in the case of the fitness ONE MAX .
+
+In the next section, an experimental comparison of CPU time until the first reaching of the optimum of the O NE MAX function is carried out when generating the r.v. λ(n) as indicated in Corollary 1 or according to the power law with support {0, 1, 2, . . . , n } from (Antipov et al., 2022). 
+
+# 5 COMPUTATIONAL EXPERIMENT 
+
+In the computational experiment, algorithm A was considered, where the r.v. λ(n) was generated as indicated in Corollary 1 (hereinafter, algorithm A) and the algorithm (1 + ( λ, λ )) GA, where 
+
+λ(n) is chosen according to the power law with support {0, 1, 2, . . . , n } from (Antipov et al., 2022) (hereinafter, algorithm B). The optimization criterion was the function O NE MAX , and the algorithm had an adjustable parameter β = 2 .75 and an upper bound on the number of offspring un = n.The software code in Scala proposed by the authors of (Antipov et al., 2022) was used as a ba-sis. Changes concerned only the procedure for generating λ(n): in the case of algorithm A, it can be implemented with complexity O(log log( un)) , while in the original implementation from (An-tipov et al., 2022), choosing λ requires O(log( un)) operations. In order to compare the compu-tational costs in CPU time until the first reaching the optimum, experiments were carried out for 
+
+n = 2 15 , 216 , 217 , 218 and 219 . Computations were performed on a server with an AMD EPYC 7502 processor using 5 independent parallel threads. For each instance, both algorithms were run 
+
+10 5 times. The arithmetic mean ˆTA, ˆTB and the estimates of standard deviation ˆσA, ˆσB for the measured computation time (milliseconds) are given in Table 1. As can be seen from the table, algorithm A has an advantage in average computation time and smaller standard deviation. 
+
+n 215 216 217 218 219 
+
+ˆTA 93.91 201.65 476.82 1141.03 2790.51 
+
+ˆσA 225.58 593.88 2005.57 6629.19 22902.68 
+
+ˆTB 117.11 266.83 608.05 1492.12 3783.67 
+
+ˆσB 420.09 1495.47 5007.79 18652.82 64356.55 Table 1: Average CPU time (ms) until first hitting the optimum and the estimate of its standard deviation for algorithms A and B depending on the problem size. 
+
+# 6 CONCLUSION 
+
+In this paper, we investigated the question of the average time to obtain the optimal solution of a simple model problem of maximizing O NE MAX using a known version of the genetic algorithm 
+
+(1 + ( λ, λ )) GA. The main result of this work is that the upper bound obtained in the article by Antipov, Buzdalov and Doerr (Antipov et al., 2022) for (1 + ( λ, λ )) GA with the fast mutation op-erator remains valid in a more general case, when the distributions for the size of the intermediate 9Published as a conference paper at MathAI 2026 population λ and the mutation parameter p are chosen from a wider class of distributions. The con-ducted computational experiment showed promising results, suggesting that the proposed method of random selection of the population size λ(n) may be useful in practice. The function O NE MAX considered here has only one local optimum, which is also global. As follows from the theoretical results obtained in (Doerr et al., 2017) for (1 + ( λ, λ )) GA on the model function J UMP with many local optima, the use of fast mutation on this function removes the problem of exact tuning of the population size and mutation parameter. In this regard, in further research it makes sense to consider the possibilities of relaxing the requirements for the distribution of these parameters in the fast mutation operator when optimizing the J UMP function and other multimodal functions, in particular, when solving NP-hard pseudo-Boolean optimization problems. ACKNOWLEDGMENTS 
+
+This research was funded by the Mathematical Center in Akademgorodok under the agreement 
+
+№ 075-15-2025-349 with the Ministry of Science and Higher Education of the Russian Federation. 
+
+# REFERENCES 
+
+Alfred V. Aho, John E. Hopcroft, and Jeffrey D. Ullman. The design and analysis of computer algorithms. Addison-Wesley Series in Computer Science and Information Processing. Reading, Mass. etc.: Addison-Wesley Publishing Company., 1974. Denis Antipov, Maxim Buzdalov, and Benjamin Doerr. Fast mutation in crossover-based algorithms. 
+
+Algorithmica , 84(6):1724–1761, 2022. doi: 10.1007/S00453-022-00957-5. A.A. Borovkov. Probability theory . Moskva: “Nauka”, Glavnaya Redaktsiya Fiziko-Matematicheskoj Literatury, 1976. (in Russian). Benjamin Doerr and Carola Doerr. Optimal static and self-adjusting parameter choices for the (1 + ( λ, λ )) genetic algorithm. Algorithmica , 80:1658–1709, 08 2018. doi: 10.1007/ s00453-017-0354-9. Benjamin Doerr, Carola Doerr, and Franziska Ebel. From black-box complexity to designing new genetic algorithms. Theoretical Computer Science , 567:87–104, 2015. ISSN 0304-3975. doi: https://doi.org/10.1016/j.tcs.2014.11.028. Benjamin Doerr, Huu Phuoc Le, R´ egis Makhmara, and Ta Duy Nguyen. Fast genetic algorithms. In Proceedings of the Genetic and Evolutionary Computation Conference , GECCO’17, pp. 777– 784, New York, NY, USA, 2017. Association for Computing Machinery. ISBN 9781450349208. doi: 10.1145/3071178.3071301. P´ al Erd˝ os and Alfr´ ed R´ enyi. On two problems of information theory. Publ. Math. Inst. Hung. Acad. Sci., Ser. A , 8:229–243, 1963. Anton Eremeev and Valentin Topchii. Generalization of the heavy-tailed mutation in the (1 + (λ, λ )) genetic algorithm. In Proceedings of the Genetic and Evolutionary Computation Confer-ence Companion , GECCO’24 Companion, pp. 93–94, New York, NY, USA, 2024. Association for Computing Machinery. ISBN 9798400704956. doi: 10.1145/3638530.3664095. A.V. Eremeev, D.V. Silaev, and Topchii V.A. Generalized heavy-tailed mutation for evolutionary algorithms. Sibirskie Elektronnye Matematicheskie Izvestiya [Siberian Electronic Mathematical Reports] , 21:940–959, 2024. doi: https://doi.org/10.33048/semi.2024.21.062. In Russian. W. Feller. An introduction to probability theory and its applications , volume 2. Wiley, Moscow, 2 edition, 1971. David E. Goldberg. Genetic Algorithms in search, optimization and machine learning . Addison-Wesley, MA, USA, 1989. Per Kristian Lehre. Fitness-levels for non-elitist populations. In Proceedings of the 2011 Genetic and Evolutionary Computation Conference (GECCO 2011) , pp. 2075–2082. ACM, 2011. 10 Published as a conference paper at MathAI 2026 Pietro Simone Oliveto and Carsten Witt. Improved time complexity analysis of the simple genetic algorithm. Theor. Comput. Sci. , 605:21–41, 2015. E. Seneta. Regularly varying functions , volume 508 of Lecture Notes in Mathematics . Springer-Verlag, Berlin-Heidelberg-New York, 1976. 
+
+# APPENDIX 
+
+This appendix contains the proofs omitted from the main text of the paper. 
+
+Lemma 2. In the case of the fitness function ONE MAX , the average number of iterations of al-gorithm A, starting from a solution x ∈ Zs, until improvement of the objective function, under condition (7) satisfies the inequality 
+
+Eℓn(s) ≤ C−14 n/s, s ∈ Nn, (23) 
+
+where C4 is defined in expression (8). 
+
+Proof. Estimate (23) follows from relations (6) and (8). Q.E.D. 
+
+Theorem 1. The average number of iterations τ in algorithm (1 + ( λ, λ )) GA with the fitness function ONE MAX before reaching the optimum is 
+
+Eτ (n) = O(n ln n), subject to Ac
+
+> 2
+
+; (24) 
+
+Eτ (n) = O(n) + O
+
+ n ln nψ(n)
+
+
+
+, subject to A∞ 
+
+> 2
+
+, (25) 
+
+where ψ(n) is from definition 4. 
+
+Proof. Note that under condition Ac
+
+> 2
+
+, the first moment Eλ(n) is also uniformly bounded in n.Consequently, by Lemma 2, under conditions Ac
+
+> 2
+
+, the inequality holds 
+
+Eℓn(s) ≤ C−14
+
+ns . (26) Note that the sum Pus=1 s−1 of a regularly varying step function as u → ∞ will be asymptotically equivalent to the integral R u 
+
+> 1
+
+x−1dx , i.e., as u → ∞ 
+
+> u
+
+X
+
+> s=1
+
+s−1 ∼
+
+Z u
+
+> 1
+
+x−1dx = ln u. (27) Estimate (24) follows from relations (11), (26) and (27). Now we prove inequality (25). Consider first the case u2
+
+> n
+
+s/n < 1. Under condition A∞ 
+
+> 2
+
+, bound (4) leads to the inequality 
+
+pn(s) = Eλ(n)pλ(n)(s) ≥ C∗L(un)s/n = C∗ψ(n)s/n. (28) Therefore, for u2
+
+> n
+
+s/n < 1 and under condition A∞ 
+
+> 2
+
+, from relations (6) and (28) we obtain 
+
+Eℓn(s) ≤ C∗ nψ(n)s , (29) where formally instead of C∗ should be 1/C ∗ with the constant from bound (28), but in accordance with our assumptions we use the same notation C∗ for it. This bound for s > nϵ, where ϵ ∈ (0 , 1) is an arbitrary fixed number, and u2 
+
+> n
+
+→ ∞ , is not applicable, but if s > nϵ , then the sum containing such terms Eℓn(s) has already been boundd above by the quantity Cn in relations (11) and cannot be improved in order. Now consider the case u2
+
+> n
+
+s/n ≥ 1. In this case, under conditions A∞ 
+
+> 2
+
+, from inequality (13) for 
+
+m0 < b ≤ un follows the bound 
+
+Eλ(n)λ2(n) ≥ Eλ(n)
+
+λ2(n); λ(n) ∈ [b/ 2, b ] ≥ CL(b). (30) 11 Published as a conference paper at MathAI 2026 In the case under consideration, for sufficiently large n, the inequalities m0 < pn/s ≤ un hold. Therefore, using inequality (30) with b = pn/s , s ∈ Nϵn , we bound the average pλ(n)(s) on the set λ2(n) < n/s 
+
+Eλ(n)pλ(n)(s) ≥ CL(b)s/n. 
+
+From here and from relation (6) we obtain 
+
+Eℓn(s) ≤ C∗ n
+
+L p n/s s . (31) Inequalities (29) and (31), obtained in the two cases considered above, imply the bound 
+
+> nϵ
+
+X
+
+> s=1
+
+Eℓn(s) ≤ C∗nψ(n)
+
+> n/u 2
+> n−1
+
+X
+
+> s=1
+
+s−1 + C∗
+
+> nϵ
+
+X
+
+> s=n/u 2
+> n
+
+n
+
+L p n/s s (32) 
+
+≤ C∗ nψ(n) ln( n/u 2
+
+> n
+
+) + C∗ 
+
+> 1
+
+n. (33) We explain inequality (33). The first sum from the right-hand side of expression (32) is bounded here using relation (27). The terms of the second sum from (32) can be represented via the function 
+
+L0(x) := xL−1(√x), where x = n/s , which will be regularly varying at infinity with exponent 
+
+β0 := 1 − 0.5(3 − β) = 0 .5( β − 1) . Under the change of variables y = x−1, the function L0(y−1)
+
+will be regularly varying at zero with exponent −1 < −β0 < 0. From the function L0(y−1), we determine an equivalent regularly varying at zero function ˜L0(y−1) with values L0(s/n ) on the set 
+
+y−1 ∈ [s/n, (s + 1) /n ). The sum of a regularly varying sequence L0(s/n ) coincides with the integral of ˜L0(y−1), which is constant on half-intervals of length n−1 and will be regularly varying at zero with exponent −1 < −β0 < 0. After the change of variables u = yn −1, the last integral becomes 
+
+n
+
+Z ϵu−2
+
+> n
+
+˜L0(u)du ≤ n
+
+Z ϵ
+
+> 0
+
+˜L0(u)du, 
+
+which converges at zero for −1 < −β0 < 0 by the lemma from (Feller, 1971, Ch. VIII, §9). The uniform boundedness of the second sum is proved, which completes the proof of bound (33). If ψ(n) varies regularly with a positive exponent, then the first term in (33) will be of order o(n),and the integral will converge. As a result, under conditions A∞ 
+
+> 2
+
+for functions ψ(n) that are not slowly varying, we have nϵ X
+
+> s=1
+
+Eℓn(s) ≤ C∗n. (34) For slowly varying unboundedly growing functions un, by property 2◦ from (Seneta, 1976, Ch. 1, Sec. 1.5), the relation ln un = o(ln n) holds, which together with bounds (11) and (33) proves relation (25). Q.E.D. 
+
+Theorem 2. The average number of fitness function evaluations T (n) and the number of operations 
+
+T op (n) in algorithm A with fitness function ONE MAX are bounded from above by the quantities 
+
+ET (n) = O(n ln n), under condition Ac
+
+> 2
+
+;
+
+ET (n) = O
+
+
+
+n + n ln nψ(n)
+
+
+
+Eλ(n), under condition A∞ 
+
+> 2
+
+; (35) 
+
+ET op (n) = O(n ln n)ϕn, under condition Ac
+
+> 2
+
+;
+
+ET op (n) = O
+
+
+
+n + n ln nψ(n)
+
+
+
+ϕn, under condition A∞ 
+
+> 2
+
+.
+
+Proof. Applying the law of total probability by analogy with (11) and using inequalities (21), we have 
+
+ET (n) = 2 −n n−1P
+
+> s=0
+
+CsnETs(n) ≤ C∗Eτ (n)Eλ(n), (36) 12 Published as a conference paper at MathAI 2026 
+
+ET op (n) = 2 −n n−1P
+
+> s=0
+
+CsnET op s (n) ≤ C∗Eτ (n)ϕn. (37) Theorem 1 and bounds (36) and (37) imply the statement of Theorem 2. Q.E.D. 13
