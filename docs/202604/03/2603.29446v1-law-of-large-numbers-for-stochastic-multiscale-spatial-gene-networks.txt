@@ -1,0 +1,4722 @@
+Title: 2603.29446v1.pdf
+
+URL Source: https://arxiv.org/pdf/2603.29446v1
+
+Published Time: Wed, 01 Apr 2026 00:52:13 GMT
+
+Number of Pages: 36
+
+Markdown Content:
+> arXiv:2603.29446v1 [math.PR] 31 Mar 2026
+
+LAW OF LARGE NUMBERS FOR STOCHASTIC MULTISCALE SPATIAL GENE NETWORKS 
+
+ARNAUD DEBUSSCHE, BAPTISTE HUGUET 
+
+Abstract. We study a stochastic multiscale spatial gene network. These naturally arise in molecular biology. In our model, the reactants are subject to on-site reactions on both scales and diffusion on the continuous scale only, although diffusion on both scales could easily be handled. We obtain, under a light condition on the scales between the total population size and the mesh discretisation, the convergence of the stochastic system to a deterministic system consisting of a PDE coupled to a ODE. This is in contrast with the well-stirred case where jumps remain at the limit. In order to prove this convergence result, we develop some moments control for martingales in discrete Sobolev topologies and use products rule in discrete Sobolev spaces. 
+
+Contents 
+
+1. Introduction 1
+
+2. The spatial stochastic gene network 3
+
+3. Tightness of the discrete scale 10 
+
+4. Regularised jumps of the continuous scale 12 
+
+5. Convergence 20 
+
+Appendix A. Product rules for discrete Sobolev space 31 
+
+Appendix B. Existence and uniqueness of the solution 34 
+
+References 35 1. Introduction 
+
+In molecular biology, a gene regulatory network is the system of reactions which regulates the expression of genes, the mRNA transcription and the proteins’ translation. These networks are modelled using Markov jump processes, building on Delbr¨ uck’s seminal work [ 14 ]. Since then, the stochastic nature of gene networks has been emphasized by experimental biology [ 19 ]. Specifically, stochastic models replicate experimentally observed behaviours, including the burst production of proteins [ 9], the phenotype variability in isogenic population [ 18 ], the noise prop-agation [ 29 ], or the circadian clocks stability [ 3]. However, Markov models implementation is computationally challenging. Gillespie algorithm, also referred to as Stochastic Simulation Al-gorithm (SSA), is not effective for real systems with numerous reagents or for systems that are highly interconnected. On the other hand, the exact number of molecules of each reagent is irrelevant when dealing with large populations. We are more interested in concentrations, which can be thought of as the ratio of the population of a species divided by the total population. The convergence of Markov models, in a large population limit, has been first studied for a long time, especially by Kurtz, for homogeneous (or well-stirred) case. Kurtz proves a law of large numbers, a central limit theorem, and a diffusion approximation, in probability, for the uniform topology ([ 23 ], [ 24 ] and [ 25 ], see also [ 15 , Chapter 11] for simple proofs). This homogeneous  
+
+> 12A. DEBUSSCHE, B. HUGUET
+
+mono-scale case is still of mathematical interest nowadays, for instance for the study of large deviation principles [ 28 ]. The convergence of non-homogeneous models, with spatial dependence, has been studied by Arnold and Thedosopulu [ 1]. The associated stochastic models have two kinds of jumps : reaction jumps (as in the homogeneous case), and diffusion jumps of a molecule to an adjacent site, with local rate. They proved convergence under a high density assumption : l/N 2 → ∞ , where l denotes the total population scale per site and 1 /N the size of the mesh. These results have been developed by Kotelenez ([ 21 ] and [ 22 ]) and further improved by Blount ([ 7] and [ 8]), who used the regularisation properties of the (discrete) heat semigroup to relax the high density assumption. In particular, he proved the convergence in L∞ under the density assumption l/ log( N ) → ∞ .A particularity of gene networks, amongst other biological systems, is the coexistence of different orders of magnitude for the number of reactants. For some molecules in abundance, the concentration is the relevant information, but for others, in scarce quantity, the concentration is null. That means that we must renormalise the system with different scales, depending on the type of reactant. In the homogeneous - or well-stirred - setting, Crudu, the first author, and Radulescu introduce a hybrid piecewise deterministic Markov process (PDMP), coupling ODE and jump process, as a model for gene network in [ 11 ]. In a second article [ 10 ] with Muller, they prove that the multi-scale renormalised Markov model converges in distribution to a PDMP in various realistic biologic situations. This result has been improved by the second author in [ 17 ], with a strong convergence and a central limit theorem in distribution. The case with spatial dependance has been investigated by the first author and Nguepedja Nankep. The stochastic multi-scale spatial models considered have two scales. The first one, the ”continuous scale”, has an abundant population (of order l), fast reactions (rates of order l), and diffusion (rates of order 
+
+lN 2). The second one, the ”discrete scale”, has a rare population (of order 1), with slow reaction (rates of order 1) and no diffusion. The biological assumption, also used for mono-scale models, is the ”one-site reaction” : a jump occurs in a mesh with a rate depending on the population of this mesh only. Under this assumption, the discrete scale presents a real obstruction to convergence. Indeed, the discrete part of the limit process is, formally, the solution of an ODE, and so, is a continuous process. This problem has been treated in two directions. In [ 12 ], the products of a discrete jump are spread over the adjacent meshes, according to a distribution kernel. This means that, even if it has jumps of order one, this scale is no longer discrete. This enables convergence in the supremum norm. It has to be noted that this situation is not biologically realistic. In a second article, [ 13 ], the meshes of the discrete scale are constant : this scale has macro-site and its jumps only depend on these sites. The limit process is a PDE, for the continuous scale, coupled with a jump process, for the discrete scale. This PDMP limit is mathematically interesting and is closer to biology but is not really relevant. The goal of the present work is to prove the convergence of the stochastic model under the natural on-site reaction assumption. In order to address the issue of making a discrete process converge to a continuous one, we need to relax the topology on the discrete scale and prove a convergence in negative Sobolev norm. However, it has two costs. The first one is a constraint on the model itself. In order to prove that the limit process is a solution to the limit equation, the rates must be continuous, in the discrete scale, for the Sobolev topology, and so, they must be linear in the discrete scale. The second cost relates to the continuous scale. Indeed, by a duality argument, a weak convergence on the discrete scale must be compensated with a stronger convergence on the continuous scale, with a convergence in a positive Sobolev topology. This suggests that the density assumption l/ log( N ) → ∞ will not be strong enough to ensure the convergence. Note in a different context, Blount has also considered convergence in negative Sobolev norms in [ 7]. 3
+
+Let us summarise the content of our article. In Section 2, we present our stochastic model and our main convergence result. We also introduce the functional framework. In section 3, we prove that the discrete scale is tight. It proceeds from a martingale control in low regularity and does not involve any density assumption. In section 4, we control the martingale part of the continuous scale when smoothed by the discrete heat kernel. The main tool there is a bound for exponential moments of a function-valued martingale. It is the key step from where our new density assumption arises. We conclude the proof of convergence in Section 5. It mixes probabilistic convergence arguments and numerical analysis tools in low regularity. Note that we perform our analysis in the case of a single continuous species and a single discrete species but this is is no loss of generality. Also, we work in the one dimensional and periodic case. Extension to other boudary conditions is no problem while higher dimension can be treated at the price of further assumptions, see Remark (see Remark 5.3 ). 2. The spatial stochastic gene network 
+
+2.1. The stochastic model. For N ≥ 1, we denote by Ij = [ j/N, (j + 1) /N [, for 0 ≤ j ≤ N − 1a partition of [0 , 1[, with the convention I−1 = IN −1 and IN = I0. We are interested in a system of two reactants, denoted as C and D, living on the [0 , 1], with periodic boundary condition. The reactants C are abundant; let l > 1 be the order of magnitude of C reactants in a cell Ij .This parameter may depend on N . On the other hand, the reactants D are rare : the number of D reactants in a cell is of order 1. In total, there are about lN reactants C and N reactants 
+
+D in the system. The notation C refers to ”continuous scale” (or ”concentration scale”) as, for this species, the relevant information is total number of particle renormalised by the order of magnitude l. The notation D refers to the ”discrete scale”. For all 0 ≤ t and 0 ≤ j ≤ N − 1, we denote by lu Nj (t) and vNj (t) the number of reactants C and D, respectively, in the cell Ij , at time t.These two species are subject to a finite number of on-site reactions ( Er )r∈R , characterised by their jump sizes ( γr )r∈R in N∗ ∪ {− 1}, and their rates ( λr )r∈R . There are tow kinds of reactions 
+
+R = RC ∪ R D, which transform the system in the following way 
+
+{ (uNj (t), v Nj (t)) −→ (uNj (t) + γr /l, v Nj (t)) r ∈ R C
+
+(uNj (t), v Nj (t)) −→ (uNj (t), v Nj (t) + γr ) r ∈ R D
+
+Each reaction Er occurs in the cell Ij at rates λr (uNj , v nj ). In the following, we assume that the rates satisfies the following properties. 
+
+Assumption 2.1. For all r ∈ R , we have 
+
+λr (u, v ) = 
+
+
+
+ar uv + br (u) + dr v if r ∈ R C , γ r > 0
+
+ar uv + br (u) if r ∈ R C , γ r = −1
+
+dr v + br(u) if r ∈ R D, γ r > 0
+
+dr v if r ∈ R D, γ r = −1
+
+with ar, d r ≥ 0, and (br)r∈R are non-negative, C1 functions such that br(0) = 0 whenever γr =
+
+−1.
+
+As already mentionned, vN is controlled only in negative topologies. Therefore the rates have to be linear with respect to v. Assumption 2.1 is stronger since we only consider terms of the form uv for reactions in RC and v in RD. We need to assume this for technical reasons, in particular in the proof of tightness of vN performed in section 3.We denote by |γ| the largest jump size 
+
+|γ| = max  
+
+> r∈R
+
+|γr |.4 A. DEBUSSCHE, B. HUGUET 
+
+We also denote by Ri, ai, bi, and di, for i ∈ { C, D }, the functions and constants defined as 
+
+Ri(u, v ) = ∑
+
+> r∈R i
+
+γr λr (u, v ) = aiuv + bi(u) + div, ∀(u, v ) ∈ R2.
+
+Furthermore, we add a confining field assumption on RC
+
+Assumption 2.2. There exists M > 0 such that for all u > M , v ≥ 0, RC (u, v ) < 0.
+
+This assumption means that aC < 0, and bC is negative outside a compact. Together with the on-site reactions, the C species are subject to diffusion. This means that, the system undergoes the following transitions, both with rate lN 2uNj ,
+
+{(uNj−1(t), u Nj (t)) −→ (uNj−1(t) + 1 /l, u Nj (t) − 1/l )(uNj (t), u Nj+1 (t)) −→ (uNj (t) − 1/l, u Nj+1 (t) + 1 /l )The D species are not subject to diffusion and only evolve through on-site reactions. Let us define a sequence of stochastic processes associated to these transitions. Let HN be the space of step function on [0 , 1[, R-valued, constant on the intervals ( Ij )0≤j≤N −1. Let ( Pr,j ), (Pj+ ), and ( Pj− ) denote independent Poisson processes with intensity 1. We define a jump process ( uN , v N ) : R+ × [0 , 1] → HN × HN as 
+
+uN (t, x ) =  
+
+> N−1
+
+∑
+
+> j=0
+
+1Ij (x)uNj , vN (t, x ) =  
+
+> N−1
+
+∑
+
+> j=0
+
+1Ij (x)vNj ,
+
+such that (1) 
+
+
+
+uN (t, x ) = uN (0 , x ) +  
+
+> N−1
+
+∑
+
+> j=0
+
+1Ij (x) ∑
+
+> r∈R C
+
+γr
+
+l Pr,j 
+
+(
+
+l
+
+∫ t
+
+> 0
+
+λr (uNj (s), v Nj (s)) ds 
+
+)
+
++ 
+
+> N−1
+
+∑
+
+> j=0
+
+1Ij+1 (x) − 1Ij (x)
+
+l Pj+
+
+(
+
+lN 2
+
+∫ t
+
+> 0
+
+uNj (s) ds 
+
+)
+
++ 
+
+> N−1
+
+∑
+
+> j=0
+
+1Ij−1 (x) − 1Ij (x)
+
+l Pj−
+
+(
+
+lN 2
+
+∫ t
+
+> 0
+
+uNj (s) ds 
+
+)
+
+vN (t, x ) = vN (0 , x ) +  
+
+> N−1
+
+∑
+
+> j=0
+
+1Ij (x) ∑
+
+> r∈R D
+
+γr Pr,j 
+
+(∫ t
+
+> 0
+
+λr (uNj (s), v Nj (s)) ds 
+
+)
+
+In order for this process to be well-defined, we need to prove that the jump rates do not explode. With our assumptions, it is sufficient to show that the process is bounded. Yet, we do not have this information a priori. There are two ways to deal with this issue. The first one is to add a cemetery state and to define the process as stationary after explosion. The second one, consists in truncating the jumps after a stopping time, and in working with this auxiliary process. This is the approach we use. The well-posedness of our original process without truncation will be a by-product of the convergence of the truncated process to a bounded limit. In order to study these processes, we emphasise their martingale parts. Indeed, if h is an adapted process, and P is a Poisson process, the process 
+
+t 7 → P
+
+(∫ t
+
+> 0
+
+hs ds 
+
+)
+
+−
+
+∫ t
+
+> 0
+
+hs ds 5
+
+is a local martingale. So, we have the following decomposition 
+
+
+
+uN (t, x ) = uN (0 , x ) + ZNC (t, x ) + 
+
+∫ t
+
+> 0
+
+RC (uN (s, x ), v N (s, x )) ds +
+
+∫ t
+
+> 0
+
+∆N uN (s, x ) ds vN (t, x ) = vN (0 , x ) + ZND (t, x ) + 
+
+∫ t
+
+> 0
+
+RD(uN (s, x ), v N (s, x )) ds 
+
+where ZNi are HN -valued local martingales, and ∆ N denotes the discrete Laplace operator on 
+
+HN
+
+(2) ∆N f (x) = N 2 (f (x + 1 /N ) − 2f (x) + f (x − 1/N )) , ∀f ∈ HN .
+
+The goal of this article is to prove the convergence, for an appropriate topology, of the sequence (uN , v N ) to the solution of the coupled equations (3) 
+
+{∂tu = ∆ u + RC (u, v ),∂tv = RD(u, v ).
+
+These are supplemented by initial conditions and to periodic boundary conditions. 2.2. Classical and discrete Sobolev spaces. In order to prove the convergence of ( uN , v N ), we introduce a Sobolev structure on HN . Let us explain its construction and its basics properties. For more details on discrete Sobolev norms, see [ 6]. Let us denote by L2 the space of square integrable functions on [0 , 1], and 〈· , ·〉 its canonical inner product. For m ∈ N∗, we define the functions 
+
+ϕ0 :x ∈ [0 , 1] 7 → 1
+
+ϕm :x ∈ [0 , 1] 7 → √2 cos(2 πmx )
+
+ψm :x ∈ [0 , 1] 7 → √2 sin(2 πmx )The family {ϕm, ψ m} is a complete orthonormal family in L2 of eigenfunction for the Laplace operator ∆, with periodic boundary conditions. Let us denote λm = (2 πm )2, then we have ∆em = −λmem, for em ∈ { ϕm, ψ m}.For 0 < α , we define the Sobolev spaces Hα as 
+
+Hα =
+
+f ∈ L2/‖f ‖2 
+
+> Hα
+
+= ∑
+
+> 0≤m
+
+(1 + λm)α (〈f, ϕ m〉2 + 〈f, ψ m〉2) < ∞
+
+ ,
+
+where we set ψ0 = 0. Its dual space, denoted H−α, is the completion of L2 for the norm 
+
+‖f ‖2 
+
+> H−α
+
+= ∑
+
+> 0≤m
+
+(1 + λm)−α (〈f, ϕ m〉2 + 〈f, ψ m〉2) .
+
+We denote by ( ·, ·) the duality product. The semigroup generated by ∆ on L2, is denoted by 
+
+e∆t. It is can be extended to Hα for α ∈ R and is a contraction. Similarly to the classical construction, the discrete Sobolev structures on HN relies on the eigenfunctions of a discrete Laplace operator. In the following, assume, for simplicity, that N is an odd integer. We define the orthogonal projection PN : L2 → HN as 
+
+PN f (x) = N
+
+∫ (j+1) /N j/N 
+
+f (y)dy, ∀x ∈ Ij .6 A. DEBUSSCHE, B. HUGUET 
+
+The space HN is a subspace of L2 and inherits its Hilbert structure. We denote by ‖ · ‖ H0 
+
+> N
+
+, the restriction to HN of the L2-norm. Then, we define the discrete gradients ∇+ 
+
+> N
+
+and ∇− 
+
+> N
+
+, on HN
+
+as 
+
+∇± 
+
+> N
+
+f (x) = N (f (x ± 1/N ) − f (x)) , ∀f ∈ HN .
+
+Then, the discrete Laplacian ∆ N , defined in Equation ( 2), satisfies ∆N f = −∇ + 
+
+> N
+
+∇− 
+
+> N
+
+f = −∇ − 
+
+> N
+
+∇+ 
+
+> N
+
+f. 
+
+For all 1 ≤ m ≤ (N − 1) /2, we define the functions 
+
+ϕ0,N (x) =1 
+
+ϕm,N (x) = √2 cos(2 πmj/N )
+
+ψm,N (x) = √2 sin(2 πmj/N )for x ∈ Ij and 0 ≤ j ≤ N −1. We also set ϕ0,N = 0. The system {ϕm,N , ψ m,N } is an orthonormal basis of HN for the norm H0 
+
+> N
+
+. Moreover, these functions are eigenfunctions of ∆ N . Indeed, we have ∆ N em,N = −λm,N em,N , for all em,N ∈ { ϕm,N , ψ m,N } and 
+
+λm,N = 2 N 2 (1 − cos(2 πm/N )) .
+
+Then, for all α ∈ R, we define the norm HαN as 
+
+‖f ‖2 
+
+> HαN
+
+= 
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )α (〈f, ϕ m,N 〉2 + 〈f, ψ m,N 〉2) .
+
+Let us remark that this definition is consistent for α = 0. Let us notice that in the discrete case, the duality bracket coincides with the scalar product. The following lemma from [ 7] summarises some useful properties for our study. 
+
+Lemma 2.3 ([ 7, Lemma 2.9]) . (a) For all f, g ∈ HN , 〈∇ + 
+
+> N
+
+f, g 〉 = 〈f, ∇− 
+
+> N
+
+g〉.(b) For em,N ∈ { ϕm,N , ψ m,N }, ‖∇ ± 
+
+> N
+
+em,N ‖∞ ≤ 2√2πm .(c) There exists c > 0 such that for all 1 ≤ m ≤ (N − 1) /2
+
+c−1λm ≤ λm,N ≤ cλ m.
+
+(d) For all 0 ≤ α, there exists c > 0 such that for all f ∈ HN
+
+c−1‖f ‖H−α ≤ ‖ f ‖H−αN
+
+≤ c‖f ‖H−α .
+
+Let us emphasise that the constants, appearing in this lemma, are independent of N . The projections PN and id − PN are continuous for the Sobolev norm, and for all γ ∈ [0 , 1], we have (4) ‖PN v‖HγN ≤ C‖v‖Hγ
+
+and (5) ‖(I − PN )v‖L2 ≤ C/N ‖v‖H1
+
+The functions 1Ij are of high interest for two reasons. Firstly, every jumps of ¯ uN and ¯ vN are a combination of them. Secondly, the renormalised ( N 1Ij )N approximate the Dirac measure. That is why we need to control their Sobolev norm. 
+
+Lemma 2.4. For all −1/2 < γ , their exists a constants Cγ > 0 such that 
+
+C−1 
+
+> γ
+
+N γ−1/2 ≤ ∥∥1Ij
+
+∥∥HγN
+
+≤ Cγ N γ−1/2.7
+
+Proof. For all N ≥ 1, 0 ≤ j ≤ N − 1, and 0 ≤ m ≤ (N − 1) /2, we have 
+
+〈1Ij , ϕ m,N 〉 =
+
+√2
+
+N cos(2 πjm/N ), 〈1Ij , ψ m,N 〉 =
+
+√2
+
+N sin(2 πjm/N ),
+
+and 〈1Ij , ϕ 0,N 〉 = 1 /N . It follows that 
+
+∥∥1Ij
+
+∥∥2
+
+> HγN
+
+= 
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )γ (〈1Ij , ϕ m,N 〉2 + 〈1Ij , ψ m,N 〉2)
+
+= 1
+
+N 2 + 2
+
+N 2(N −1) /2
+
+∑
+
+> m=1
+
+(1 + λm,N )γ
+
+= 1
+
+N 2 + 2 N 2γ−2(N −1) /2
+
+∑
+
+> m=1
+
+(1 /N 2 + sin 2(πm/N )) γ
+
+Then, for all N ≥ 1 and 1 ≤ m ≤ (N − 1) /2, we have 
+
+π2
+
+π2 + 1 ≤ sin 2(πm/N )
+
+1/N 2 + sin 2(πm/N ) ≤ 1
+
+2 .
+
+For γ > −1/2, we have the following integral comparison 1
+
+N 
+
+> (N−1) /2
+
+∑
+
+> m=1
+
+sin 2γ (πm/N ) ∼
+
+∫ 1/20
+
+sin 2γ (x) dx. 
+
+This ends the proof. 
+
+In particular, √N 1Ij are an orthonormal basis of HN . Now, we give the discrete equivalent of two important results for classical Sobolev spaces : the regularisation of the heat semigroup and the product rules. Let us denote TN the semigroup generated by ∆ N . It is a contraction for all norm HαN and for the norm L∞. Moreover, it regularises functions. 
+
+Lemma 2.5. Let α ≤ β, then for all 0 < T , there exists c > 0, such that for all 1 ≤ N , and 
+
+ϕ ∈ HN
+
+‖TN (t)ϕ‖HβN
+
+≤ ct −(β−α)/2‖ϕ‖HαN , t ∈ [0 , T ].
+
+Proof. We have 
+
+‖TN (t)ϕ‖2
+
+> HβN
+
+≤ 〈 TN (t)ϕ, ϕ 0,N 〉2 + c 
+
+> (N−1) /2
+
+∑
+
+> m=1
+
+λβm,N 
+
+(〈TN (t)ϕ, ϕ m,N 〉2 + 〈TN (t)ϕ, ψ m,N 〉2)
+
+= 〈ϕ, ϕ 0,N 〉2 + c 
+
+> (N−1) /2
+
+∑
+
+> m=1
+
+λαm,N λβ−αm,N e−2λm,N t (〈ϕ, ϕ m,N 〉2 + 〈ϕ, ψ m,N 〉2)
+
+= c
+
+(
+
+1 + t−(β−α)) (N −1) /2
+
+∑
+
+> m=0
+
+λαm,N (λm,N t)β−αe−2λm,N t (〈ϕ, ϕ m,N 〉2 + 〈ϕ, ψ m,N 〉2)
+
+Then, for all 0 ≤ γ the function x ∈ R+ 7 → xγ e−2x is upper bounded by c = ( γ/ 2e)γ . Hence, we have 
+
+‖TN (t)ϕ‖2
+
+> HβN
+
+≤ c
+
+(
+
+1 + t−(β−α))
+
+‖ϕ‖2 
+
+> HαN
+
+.
+
+8 A. DEBUSSCHE, B. HUGUET 
+
+We conclude with the product rules in HN . We give simple proofs of these results in Appendix 
+
+A for the sake of completeness but they could be deduced from product rules in discrete Besov spaces (see instance [ 27 ], [ 16 ]). There are two kind of rules : the direct one, for non-negative Sobolev spaces, and their dual, for negative indices. 
+
+Theorem 2.6. Let 0 ≤ α, β, γ ≤ 1, satisfying one of the following assumptions (i) If 1/2 < α ∨ β ≤ 1, and γ < α ∧ β,(ii) If α ∨ β ≤ 1/2, and γ < α + β − 1/2,Then, there exists C > 0 such that for all u, v ∈ HN , ‖uv ‖HγN ≤ C‖u‖HαN ‖v‖HβN
+
+.
+
+Corollary 2.7. Let 0 ≤ α, β, γ ≤ 1, satisfying one of the following assumptions (i) β ∨ γ > 1/2, and α < β ∧ γ,(ii) 0 ≤ β ∨ γ ≤ 1/2, and −γ < β − α − 1/2,Then, there exists C > 0 such that for all u, v ∈ HN , ‖uv ‖H−γN
+
+≤ C‖u‖H−αN
+
+‖v‖HβN
+
+.
+
+Once again, we point out that the constants do not depend on N . In fact, for the classical Sobolev spaces, sharper product rules hold but we do not need these. 2.3. The main result. Let us fix a time horizon T > 0. Let 0 < α < β < 1/2. The goal of this article is to prove the convergence of ( uN , v N ) to this unique solution of Equation ( 3), in 
+
+C ([0 , T ], (L∞ ∩ Hβ ) × H−α), in the sense that sup 
+
+> 0≤t≤T
+
+‖uN (t) − u(t)‖∞, sup 
+
+> 0≤t≤T
+
+‖uN (t) − PN (u)( t)‖HβN
+
+, and sup 
+
+> 0≤t≤T
+
+‖vN (t) − v(t)‖H−αN
+
+converge to 0. Firstly, let us make some assumptions on the initial distributions. 
+
+Assumption 2.8. (i) (uN (0) , v N (0)) are uniformly bounded in L∞ : for all N ≥ 1
+
+‖(uN (0) , v N (0) ‖∞ < M. 
+
+(ii) There exists ˜β > β such that u(0) ∈ C 0 ∩ H ˜β and uN (0) converges to u(0) in L∞ ∩ H ˜βN .(iii) vN (0) converges to v(0) in H−α.
+
+Under this assumption on ( u(0) , v (0), we show that Equation ( 3) admits a unique solution. 
+
+Lemma 2.9. For all (u0, v 0) ∈ (L∞ ∩ Hβ ) × H−α, there exists only one solution to the system 
+
+(3), with initial condition u(0) = u0 and v(0) = v0, in C ([0 , T ], (L∞ ∩ Hβ ) × H−α). Moreover, it satisfies 
+
+sup 
+
+> 0≤t≤T
+
+‖u(t)‖∞ ≤ M. 
+
+The proof is left in Appendix B
+
+Our main result states that under an appropriate scaling property for l, the stochastic model (uN , v N ) converges to the solution of Equation ( 3). 
+
+Theorem 2.10. Assume that lN −2β / log( N ) converges to +∞. Then under our assumptions, the process (uN , v N ) converges in probability to the unique solution of the system (3), for the uniform topology on D
+
+(
+
+[0 , T ], (L∞ ∩ HβN ) × H−α
+
+)
+
+.
+
+Let us notice that the assumption on the scaling of l suggests that we should think β as small as possible, so that l diverges significantly slower than the usual parabolic scaling l/N 2, and not much quicker than the scaling l/ log( N ) required for the one-scale gene network from [ 8]. Let us remark that in this one-dimensional case, it is possible to choose α = β, even for arbitrarily small β, at the cost of controlling products in low regularity. Yet, this argument does not hold in larger spatial dimension d > 1, for small β.9
+
+An interesting feature of ou result is that it shows that at the limit, the concentration of the continuous reactant satisfies a reaction diffusion equation with memory. Indeed, the equation on the discrete scale can be resolved explicitly, in terms of uv(t) = edD tv(0) + 
+
+∫ t
+
+> 0
+
+edD (t−s)bD(u(s)) ds, t ∈ [0 , T ].
+
+So u is solution to the equation 
+
+∂tu(t) = ∆ u(t) + bC (u(t)) + ( aC u(t) + dC )
+
+(
+
+edD tv(0) + 
+
+∫ t
+
+> 0
+
+edD (t−s)bD(u(s)) ds 
+
+)
+
+.
+
+This memory effect has been observed in biological experiments. 2.4. A truncation argument. The existence of ( uN , v N ) is easy to prove as long as it stays bounded. However, we do not have this information, a priori, so we introduce an auxiliary processes (¯ uN , ¯vN )N ≥1, with stopped jumps. Let us define the sequence of stopping times 
+
+τN = inf 
+
+{
+
+t ≥ 0/‖uN (t)‖∞ > M + 1 or ‖vN (t)‖H−αN
+
+> M + 1 
+
+}
+
+,
+
+where M satisfies Assumption 2.2 , and M ≥ sup 0≤t≤T ‖v(t)‖H−α , where ( u, v ) is the unique solution of Equation ( 3) with initial data ( u(0) , v (0)). We define the auxiliary processes as, (6) 
+
+
+
+¯uN (t) = uN 
+
+> 0
+
++
+
+∫ t
+
+> 0
+
+∆N ¯uN (s) + RC (¯ u(s), ¯vN (s)) ds + ZNc (t ∧ τN )¯vN (t) = vN 
+
+> 0
+
++
+
+∫ t
+
+> 0
+
+RD(¯ uN (s), ¯vN (s)) ds + ZND (t ∧ τN )As a consequence of Assumption 2.2 , and the maximum principle, the process ¯ uN is bounded in D([0 , T ], L∞). 
+
+Proposition 2.11. Let l ≥ | γ|. Assume that ‖uN (0) ‖∞ < M a.s, then, under Assumptions 2.1 
+
+and 2.2 , we have (i) For all 0 ≤ t ≤ τN , ¯uN (t) and ¯vN (t) are non negative. (ii) sup 0≤t≤T ‖¯uNt ‖∞ < M + 2 .(iii) For all N ≥ 1, there exists CN > 0 such that sup 0≤t≤T ‖¯vNt ‖∞ < C N .Proof. Assumption 2.1 ensures that whenever ¯ uN (respectively ¯ vN ) vanishes, then for all r ∈ R C
+
+(respectively RD ) such that γr = −1, λr (¯ uN , ¯vN ) = 0. It ensures that ¯ uN and ¯ vN are non-negative, up to time τN . Let t0 ≤ T and 0 ≤ j0 ≤ N − 1 such that ¯ uNj0 (t0) = sup 0≤t≤T ‖¯uN (t)‖∞.Assume that ¯ uNj0 (t0) > M then τN < t 0 ≤ T and RC (¯ uNj0 (t0), ¯vj0 (t0)) < 0. Then ¯ uNj0 is differen-tiable at t0 and we have ∂t ¯uNj0 (t0) ≥ 0. It follows that ∆ N ¯uN (t0, j 0/N ) > 0 which refutes the maximality of ¯ uNj0 (t0). This proves (ii). Concerning ¯ vN , let us remark that there exists cN > 0such that for all N and f ∈ HN
+
+‖f ‖∞ ≤ cN ‖f ‖H−α ,
+
+so for 0 ≤ t ≤ τN , we have ‖¯vN (t)‖∞ ≤ cN ˜M . Now for t ≥ τN , we have ¯vN (t) = ¯ v(τN ) + 
+
+∫ tτN
+
+(dD ¯vN (s) + bD(¯ uN (s))) ds, 
+
+So, we obtain an upper bound thanks to Gr¨ onwall’s inequality. 
+
+Let us emphasise that the L∞ bound on ¯ vN is not uniform on N . In the following, we prove that the auxiliary processes (¯ uN , ¯vN ) converge to ( u, v ) and the conclude on the convergence of (uN , v N ) as a consequence of the boundedness of the limit ( u, v ). 10 A. DEBUSSCHE, B. HUGUET 
+
+3. Tightness of the discrete scale 
+
+The goal of this section is to prove that the discrete scale process (¯ vN )N is C-tight for the uniform topology on D([0 , T ], H −α). To that extend, we prove that the jump part vanishes in 
+
+D([0 , T ], H − ˜α) for all 0 < ˜α ≤ 1/2. Firstly, we prove a uniform bound on the |vNj (t)|.
+
+Lemma 3.1. Assume that ‖(uN (0) , v N (0)) ‖∞ < M a.s, then the sequence (¯ vN )N is uniformly bounded : there exists C > 0 such that for all N, j 
+
+E
+
+[
+
+sup 
+
+> 0≤t≤T
+
+|¯vNj (t)|
+
+]
+
+< C. 
+
+Proof. For all N, j , and for all 0 ≤ ¯t ≤ τN , we have ¯vNj (¯ t) = vNj (0) + ∑
+
+> r∈R D
+
+γrPr,j 
+
+(∫ ¯t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+)
+
+sup 
+
+> 0≤t≤¯t
+
+|¯vNj (t)| ≤ M + ∑
+
+> r∈R D
+
+|γr |P j,r 
+
+(∫ ¯t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+)
+
+E
+
+[
+
+sup 
+
+> 0≤t≤¯t
+
+|¯vNj (t)|
+
+]
+
+≤ M + C ∑
+
+> r∈R D
+
+∫ ¯t
+
+> 0
+
+E [λr (¯ uNj (s), ¯vNj (s)) ] ds 
+
+≤ C + C
+
+∫ ¯t
+
+> 0
+
+E
+
+[
+
+sup 
+
+> 0≤t≤s
+
+|¯vNj (t)|
+
+]
+
+ds. 
+
+With Gr¨ onwall’s inequality, we obtain 
+
+E
+
+[
+
+sup 
+
+> 0≤t≤τN
+
+|¯vNj (t)|
+
+]
+
+< C. 
+
+To conclude, for τN ≤ t ≤ T , the process ¯ vN is solution to a linear ODE with bounded coefficients. This ends the proof. 
+
+Let us notice that this lemma does not give any uniform bound on ‖vN (t)‖∞. From this bound, we obtain a uniform control on the martingale part ZND . Let us denote 
+
+M Nj (t) = ∑
+
+> r∈R D
+
+γr
+
+[
+
+Pr,j 
+
+(∫ t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+)
+
+−
+
+∫ t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+]
+
+,
+
+the martingale part of vNj . Then, we have 
+
+ZND (t, x ) =  
+
+> N−1
+
+∑
+
+> j=0
+
+M Nj (t)1Ij (x).
+
+Lemma 3.2. The local martingales (M Nj )j are uniformly bounded martingales: there exists 
+
+˜C > 0 such that for all N, j 
+
+E
+
+[
+
+sup 
+
+> 0≤t≤T
+
+∣∣M Nj (t ∧ τN )∣∣2
+
+]
+
+< ˜C. 
+
+Proof. For all N, j , and for all 0 ≤ t ≤ τN , we have 
+
+∣∣M Nj (t)∣∣2 ≤ C ∑
+
+> r∈R D
+
+(
+
+Pr,j 
+
+(∫ t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+)
+
+−
+
+∫ t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+)2
+
+.11 
+
+Then, we have 
+
+E
+
+[∣∣M Nj (t)∣∣2]
+
+≤ C ∑
+
+> r∈R D
+
+E
+
+[∫ t
+
+> 0
+
+λr (¯ uNj (s), ¯vNj (s)) ds 
+
+]
+
+≤ C. 
+
+This proves that M Nj (t) is L1 for all t, and so, ( M Nj )j,N are true martingales. Lastly, we conclude the proof by Doob’s inequality. 
+
+Then, we prove our first main result: the vanishing of the discrete scale jumps. 
+
+Theorem 3.3. Assume that ‖(uN (0) , v N (0)) ‖∞ < M a.s. Then, ZND converges to 0, in L1, for the uniform topology on D([0 , T ], H − ˜α). Moreover, there exists C(T ) > 0 such that 
+
+E
+
+[
+
+sup 
+
+> 0≤t≤T
+
+‖ZND (t ∧ τN )‖2 
+
+> H−˜α
+
+]
+
+≤ CN −2α.
+
+Proof. For all ϕ ∈ HN , we have 
+
+〈ZND (t), ϕ 〉 = 
+
+> N−1
+
+∑
+
+> j=0
+
+Mj (t)〈1Ij , ϕ 〉.
+
+Then, we have 
+
+‖ZND (t)‖2 
+
+> H−˜αN
+
+= 
+
+> N−1
+
+∑
+
+> m=0
+
+(1 + λm,N )− ˜α (〈ZND (t, ·), ϕ m,N 〉2 + 〈ZND (t, ·), ψ m,N 〉2)
+
+= 
+
+> N−1
+
+∑
+
+> m=0
+
+(1 + λm,N )− ˜α
+
+ 
+
+> N−1
+
+∑
+
+> j=0
+
+M Nj (t)〈1Ij , ϕ m,N 〉
+
+
+
+> 2
+
++
+
+ 
+
+> N−1
+
+∑
+
+> j=0
+
+M Nj (t)〈1Ij , ψ m,N 〉
+
+
+
+> 2
+
+
+
+By independence of the Poisson processes and thanks to the previous lemma, there exists C > 0such that for all t ∈ [0 , T ]
+
+E [M Nj (t ∧ τN )M Nl (t ∧ τN )] ≤ Cδ j,l .
+
+It follows that 
+
+E
+
+[
+
+‖ZND (t ∧ τN )‖2
+
+> H−αN
+
+]
+
+≤ C 
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )− ˜αN −1∑
+
+> j=0
+
+(〈1Ij , ϕ m,N 〉2 + 〈1Ij , ψ m,N 〉2) .
+
+Then, we use that ( √N 1Ij )0≤j≤N −1 is an orthonormal basis of HN . It follows that 
+
+E
+
+[
+
+‖ZND (t ∧ τN )‖2 
+
+> H−˜αN
+
+]
+
+≤ C
+
+N 
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )− ˜α.
+
+Lastly, we recall that λ0,N = 1, and, for m ≥ 1, λm,N behaves as (2 πm )2, independently of N .So, the sum over m ≥ 1 is of order N 1−2 ˜ α, that is 
+
+E
+
+[
+
+‖ZND (t ∧ τN )‖2 
+
+> H−˜αN
+
+]
+
+≤ C
+
+N 2 ˜ α .
+
+To conclude, we use Doob’s inequality, for the submartingale ‖ZND (t ∧ τN )‖2 
+
+> H−˜αN
+
+and the equiva-lence between the discrete and classical Sobolev norm of negative index. 
+
+This theorem has two important consequences. The first one is the uniform boundedness, in 
+
+L1, of ¯ vN , for the uniform topology on D([0 , T ], H − ˜α). 12 A. DEBUSSCHE, B. HUGUET 
+
+Corollary 3.4 (bound in L∞(H− ˜αN )) . Assume that ‖(uN (0) , v N (0)) ‖∞ < M a.s, then there exists C > 0 such that 
+
+E
+
+[
+
+sup 
+
+> 0≤t≤T
+
+‖¯vNt ‖H− ˜α
+
+]
+
+≤ C. 
+
+Proof. For all 0 ≤ ¯t ≤ T , we have 
+
+‖¯vN (¯ t)‖H− ˜α ≤ ‖ vN (0) ‖H− ˜α +
+
+∫ ¯t
+
+> 0
+
+‖RD(¯ uN (s), ¯vN (s)) ‖H− ˜α ds + ‖ZND (¯ t)‖H− ˜α
+
+≤ M +
+
+∫ ¯t
+
+> 0
+
+|dD|‖ ¯vN (s)‖H− ˜α + ‖bD(¯ uN (s)) ‖∞ ds + ‖ZND (¯ t)‖H− ˜α
+
+E
+
+[
+
+sup 
+
+> 0≤t≤¯t
+
+‖¯vN (t)‖H− ˜α
+
+]
+
+≤ C + C
+
+∫ ¯t
+
+> 0
+
+E
+
+[
+
+sup 
+
+> 0≤t≤s
+
+‖¯vN (t)‖H− ˜α
+
+]
+
+ds 
+
+The proof is concluded with Gr¨ onwall’s inequality. 
+
+The second consequence of Theorem 3.3 , is the tightness of ¯ v for the uniform topology on 
+
+D([0 , T ], H −α). 
+
+Theorem 3.5. Assume that ‖(uN (0) , v N (0)) ‖∞ < M a.s, then (¯ vN )N is C-tight for the uniform topology on D (([0 , T ], H −α).Proof. According to Theorem 3.3 , the sequence ( ZND )N converges in L1 to 0 for the uniform topology on D (([0 , T ], H −α). So, it is tight. Besides, the sequence ( vN (0)) N is bounded by assumptions, so is also tight. Then, it is sufficient to show that the sequence 
+
+F N : t ∈ [0 , T ] →
+
+∫ t
+
+> 0
+
+RD(¯ uN (s), ¯vN (s)) ds 
+
+is tight. Let us denote 
+
+‖F N ‖Lpz, ˜α = sup 
+
+> 0≤t≤T
+
+‖F N (t)‖H− ˜α + sup 
+
+> 0≤t≤T
+
+‖(F N )′(t)‖H− ˜α ,
+
+the Lipschitz norm on C([0 , T ], H − ˜α). It follows from Corollary 3.4 that 
+
+E [‖F N ‖Lpz, ˜α
+
+] ≤ C(1 + T ).
+
+Then, for all 0 < ˜α < α , the H− ˜α-ball is compact in H−α, so from Arzela-Ascoli theorem, the 
+
+‖ · ‖ Lpz, ˜α-balls of C (([0 , T ], H −α) are compact for the uniform topology. So ( F N )N is tight in 
+
+D([0 , T ], H −α), and so is (¯ vN )N . Moreover, the jumps converges to 0 in this topology so any limit point is continuous and the sequence is C-tight. 
+
+4. Regularised jumps of the continuous scale 
+
+The goal of this section is to prove that, for the continuous scale, the jumps’ contributions, in a mild sense, converge to 0 in probability for the uniform topology on D([0 , T ], L ∞ ∩ HβN ). Let us define 
+
+Y Nt =
+
+∫ t
+
+> 0
+
+TN (t − s) dZ NC (s ∧ τ ).
+
+Then, ¯ uN satisfies the mild formula ¯uN (t) = TN (t)uN 
+
+> 0
+
++ Y Nt +
+
+∫ t
+
+> 0
+
+TN (t − s)RC
+
+(¯uN (s), ¯vN (s)) ds. 13 
+
+The average jump process Y N is more regular than the jump process ZNC , and so, we are able to show that Y N converges in probability to 0, under weaker assumptions than for ZNC . Firstly, we need some control on the jumps size of ZNC .
+
+Lemma 4.1. For all ϕ ∈ HN , the compensator of 
+
+∑
+
+> s≤t
+
+(δ〈ZNC (s ∧ τN ), ϕ 〉)2
+
+is 
+
+1
+
+N l 
+
+∫ t∧τN
+
+> 0
+
+〈uN (s), (∇+ 
+
+> N
+
+ϕ)2 + ( ∇− 
+
+> N
+
+ϕ)2〉 + 〈 ˜RC (¯ uN (s), ¯vN (s)) , ϕ 2〉 ds, 
+
+with 
+
+˜RC (u, v ) = ∑
+
+> r∈R C
+
+γ2 
+
+> r
+
+λr (u, v ).
+
+Proof. We denote by X the pure jump process define as 
+
+Xt = ∑
+
+> s≤t
+
+(δ〈ZND (s ∧ τN ), ϕ 〉)2 .
+
+It has two kinds of jumps. The first ones are the reaction-jumps of size γ2 
+
+> r
+
+〈1Ij , ϕ 〉2/l 2 and with rate lλ r(¯ uN (s, j/N ), ¯vn(s, j/N )). The second ones are the diffusion-jumps, of size 〈1Ij±1 −
+
+1Ij , ϕ 〉2/l 2, with rate lN 2 
+
+> b
+
+uN (s, j/N ). Let us remark that, from Proposition 2.11 , for each N
+
+fixed, the rates are uniformly bounded. So according to [ 24 , Proposition 2.1], the process 
+
+Xt −
+
+∫ t∧τN
+
+> 0
+
+F (s) ds 
+
+is a local martingale, with 
+
+F (t) =  
+
+> N−1
+
+∑
+
+> j=0
+
+∑
+
+> r∈R C
+
+γ2
+
+> r
+
+l2 〈1Ij , ϕ 〉2lλ r(¯ uN (s, j/N ), ¯vn(s, j/N )) + 
+
+> N−1
+
+∑
+
+> j=0
+
+1
+
+l2
+
+(〈1Ij+1 − 1Ij , ϕ 〉2 + 〈1Ij−1 − 1Ij , ϕ 〉2) lN 2 ¯uN (t, j/N )= 1
+
+l 
+
+> N−1
+
+∑
+
+> j=0
+
+〈1Ij , ϕ 〉2 ˜RC (¯ uN (t, j/N ), ¯v(t, j/N )) + 1
+
+l 
+
+> N−1
+
+∑
+
+> j=0
+
+¯uN (t, j/N ) ((ϕ(( j + 1) /N ) − ϕ(j/N )) 2 + ( ϕ(( j − 1) /N ) − ϕ(j/N )) 2)
+
+= 1
+
+N l 〈¯uN (t), ˜RC (¯ uN (t), ¯vN (t)) 〉 + 1
+
+N 2l 
+
+> N−1
+
+∑
+
+> j=0
+
+¯uN (t, j/N ) ((∇+ 
+
+> N
+
+ϕ(j/N )) 2 + ( ∇− 
+
+> N
+
+ϕ(j/N )) 2)
+
+This ends the proof. 
+
+Let us denote ˜RC (u, v ) = ˜ auv + ˜b(u) + ˜dv, 
+
+with ˜ a, ˜d ≥ 0 and ˜b a non-negative function. We begin with the convergence in the supremum norm. We recall this auxiliary lemma from [ 8] which links exponential moments of a martingale with its quadratic variation. 14 A. DEBUSSCHE, B. HUGUET 
+
+Lemma 4.2 ([ 8]) . Let ξ be a real-valued bounded martingale of finite variation, right-continuous with left limits, defined on [0 , T ] with ξ(0) = 0 and such that |δξ t| ≤ 1, for 0 ≤ t ≤ T and 
+
+∑
+
+> s≤t
+
+(δξ s)2 −
+
+∫ t
+
+> 0
+
+g(s) ds 
+
+is a martingale, where g is adapted and 0 ≤ g ≤ h, for some bounded deterministic function h.Then, 
+
+E [exp( ξT )] ≤ exp 
+
+(
+
+3
+
+2
+
+∫ T
+
+> 0
+
+h(s) ds 
+
+)
+
+.
+
+The control on the jumps form Lemma 4.1 , and the previous Lemma, allow proving the convergence in L∞.
+
+Theorem 4.3. Assume that α < 3/2, and l/ log( N ) → +∞, then (Y N )N converges to 0 in probability for the uniform topology on D (([0 , T ], L ∞). Moreover, there exists C > 0 such that for all ε > 0
+
+P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖Y Nt ‖∞ > ε 
+
+)
+
+≤ C exp (log( N ) − ε2l) .
+
+Proof. This proof follows the steps of [ 8]. Let ¯ t ≤ T , 0 ≤ j ≤ N − 1 and ϕ = N 1Ij . We define the process 
+
+ξt =
+
+〈∫ t
+
+> 0
+
+TN (¯ t − s) dZ ND (s ∧ τN ), ϕ 
+
+〉
+
+.
+
+This process is a martingale, and it satifies ξ¯t = Y N 
+
+> ¯t
+
+(j/N ). By integration by parts, we have 
+
+δξ s = 〈TN (¯ t − s)δZ ND (s), ϕ 〉 = 〈δZ ND (s), T N (¯ t − s)ϕ〉.
+
+For all 0 ≤ s ≤ T , its jumps satisfy 
+
+|δξ s| = |〈 TN (¯ t − s)δZ NC (s ∧ τN ), ϕ 〉| ≤ ‖ δZ NC (s ∧ τN )‖H0 ‖TN (¯ t − s)ϕ‖H0
+
+≤ |γ|
+
+l√N ‖ϕ‖H0
+
+≤ |γ|
+
+l .
+
+In order to apply Lemma 4.2 , we need to control the compensator of ∑(δξ s)2. According to Lemma 4.1 , this compensator is given by ∫ g with 
+
+gs = 1
+
+N l 
+
+(〈 
+
+¯uN (s), (∇+ 
+
+> N
+
+TN (¯ t − s)ϕ)2 + (∇− 
+
+> N
+
+TN (¯ t − s)ϕ)2〉
+
++
+
+〈 ˜RC
+
+(¯uN (s), ¯vN (s)) , (TN (¯ t − s)ϕ)2〉) 
+
+.
+
+Then, for all 0 ≤ s ≤ ¯t ∧ τN , we have the following bounds, on the diffusion-related term 
+
+〈uN (s), (∇± 
+
+> N
+
+TN (¯ t − s)ϕ)2〉 ≤ M ‖∇ ± 
+
+> N
+
+TN (¯ t − s)ϕ‖2
+
+> H0
+> N
+
+≤ M ‖TN (¯ t − s)ϕ‖2
+
+> H1
+> N15
+
+Moreover, we have 
+
+∫ ¯t
+
+> 0
+
+‖TN (¯ t − s)ϕ‖2
+
+> H1
+> N
+
+ds =
+
+∫ ¯t 
+
+> 0(N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )e−2λm,N (¯ t−s) (〈ϕ, ϕ m,N 〉2 + 〈ϕ, ψ m,N 〉2) ds 
+
+≤ 
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(〈ϕ, ϕ m,N 〉2 + 〈ϕ, ψ m,N 〉2)
+
+≤ ‖ ϕ‖2
+
+> H0
+> N
+
+≤ CN. 
+
+On the other hand, the reaction-related term rewrites as 
+
+〈 ˜RC (¯ uN (s), ¯vN (s)) , (TN (¯ t − s)ϕ)2〉 = 〈˜a¯uN (s)¯ vN (s) + ˜b(¯ uN (s)) + ˜d¯vN (s), (TN (¯ t − s)ϕ)2〉.
+
+The ˜b-related term is bounded by its H0 norm and we have 
+
+〈˜b(¯ uN (s)) , (TN (¯ t − s)ϕ)2〉 ≤ ‖ ˜b‖∞‖TN (¯ t − s)ϕ‖2 
+
+> H0
+
+≤ CN. 
+
+The other terms are controlled, using the semigroup regularisation Lemma 2.5 , and the product rules Theorem 2.6 . Let 0 < ε such that 2 α + ε < 3, as ¯ uN and ¯ vN are non-negative, we have 
+
+〈˜a¯uN (s)¯ vN (s), (TN (¯ t − s)ϕ)2〉 ≤ ˜aM 〈¯vN (s), (TN (¯ t − s)ϕ)2〉≤ C ∥∥¯vN (s)∥∥H−αN
+
+∥∥∥(TN (¯ t − s)ϕ)2∥∥∥HαN
+
+≤ C ‖ϕ‖HαN
+
+‖TN (¯ t − s)ϕ‖Hε/ 2+1 /2
+
+> N
+
+≤ CN α+1 /2(¯ t − s)−(2 α+1+ ε)/4 ‖ϕ‖H−αN
+
+≤ CN (¯ t − s)−(2 α+1+ ε)/4.
+
+The last term is controlled by the same bound. Therefore, on [0 , ¯t ∧ τN ], g is bounded by a function h such that ∫ ¯t
+
+> 0
+
+hs ds ≤ Cl −1.
+
+Now, for θ ∈ [0 , 1], we apply Lemma 4.2 to the martingale |γ|−1θlξ , whose jumps are bounded by 1. It follows that 
+
+E [exp ( |γ|θlξ ¯t)] ≤ exp (Cθ 2l) .
+
+Therefore, for ε > 0, we have 
+
+P (Y N 
+
+> ¯t
+
+(j/N ) > ε ) = P (exp ( |γ|θlξ ¯t) > exp ( |γ|θlε )) 
+
+≤ exp (Cθ 2l − | γ|θlε )
+
+≤ exp 
+
+(
+
+− ˜Cε 2l)
+
+)
+
+.
+
+where the last inequality is obtained with the optimal θ = |γ|ε/ 2C ∈ [0 , 1]. With the same arguments, applied to −Y N 
+
+> ¯t
+
+, and taking the supremum on j, we obtain 
+
+P (‖Y N 
+
+> ¯t
+
+‖∞ > ε ) ≤ 2N exp 
+
+(
+
+− ˜Cε 2l)
+
+)
+
+.16 A. DEBUSSCHE, B. HUGUET 
+
+To conclude, we need to obtain an inequality for the supremum over ¯ t. We decompose the interval [0 , T ] as the union of N 2 sub-intervals In = [ nT /N 2, (n+1) T /N 2]. For all 0 ≤ n ≤ N 2−1, for all t ∈ I n, Y N satisfies 
+
+Y Nt = Y NnT /N 2 +
+
+∫ tnT /N 2
+
+∆N Y Ns ds + ζnt ,
+
+where ζnt = ZNC (t ∧ τN ) − ZNC (nT /N 2 ∧ τN ). Then, we have 
+
+‖Y Nt ‖∞ ≤ ‖ Y NnT /N 2 ‖∞ + 4 N 2
+
+∫ tnT /N 2
+
+‖Y Ns ‖∞ ds + ‖ζnt ‖∞.
+
+By Gr¨ onwall’s inequality, it follows that sup 
+
+> t∈I n
+
+‖Y Nt ‖∞ ≤
+
+(
+
+‖Y NnT /N 2 ‖∞ + sup 
+
+> t∈I n
+
+‖ζnt ‖∞
+
+)
+
+e4T .
+
+We apply Lemma 4.2 to the martingale ζn(k/N ) = 〈ζ, ϕ 〉. For the jumps’ size, we have 
+
+|δζ nt (k/N )| = |δZ NC (t ∧ τN , k/N )| ≤ l−1.
+
+On the other hand, the compensator of ∑(δζ n(k/N )s)2 is given by ˜gs = 1
+
+N l 
+
+(
+
+〈¯uN (s), (∇+ 
+
+> N
+
+ϕ)2 + ( ∇− 
+
+> N
+
+ϕ)2〉 + 〈 ˜RC (¯ uN (s), ¯vN (s)) , ϕ 2〉
+
+)
+
+,
+
+with the upper-bounds 
+
+〈¯uN (s), (∇+ 
+
+> N
+
+ϕ)2〉 ≤ C‖ϕ‖2
+
+> H1
+> N
+
+≤ CN 3
+
+〈˜a¯uN (s)¯ vN (s), ϕ 2〉 ≤ C‖ϕ‖HαN ‖ϕ‖H1/2+ εN
+
+≤ CN 3
+
+〈˜b(¯ uN (s)) , ϕ 2〉 ≤ C〈‖ ϕ‖2
+
+> H0
+> N
+
+≤ CN. 
+
+It follows that ˜ g is upper-bounded by a function ˜h such that 
+
+∫
+
+> In
+
+˜hs ds ≤ Cl −1.
+
+Therefore, for all θ ∈ [0 , 1], we have 
+
+E [exp (θlζ n(( n + 1) T /N 2, k/N ))] ≤ exp ( Cθl ) .
+
+As ζn(·, k/N ) is a martingale, we use Doob’s inequality to prove that 
+
+P
+
+(
+
+sup 
+
+> t∈I n
+
+ζn(t, k/N ) > ε 
+
+)
+
+≤ exp( − ˜Clε 2).
+
+At the end, we have, 
+
+P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖Y Nt ‖∞ > ε 
+
+)
+
+≤  
+
+> N2−1
+
+∑
+
+> n=0
+
+P
+
+(
+
+sup 
+
+> t∈I n
+
+‖Y Nt ‖∞ > ε 
+
+)
+
+≤  
+
+> N2−1
+
+∑
+
+> n=0
+
+4N exp (−Clε 2)
+
+≤ C exp (log( N ) − ε2l) .
+
+17 
+
+As the sequence (¯ vN )N ≥1 only converges in a negative Sobolev space, we need more than the 
+
+L∞ convergence of (¯ uN )N ≥1 to prove the convergence of the product (¯ uN ¯vN )N ≥1. In order to obtain a convergence result in the HβN topology, we use a functional version of Lemma 4.2 , for 
+
+HN -valued martingales. 
+
+Lemma 4.4. Let ξ be a HN -valued bounded martingale of finite variation, right-continuous with left limits, defined on [0 , T ] with ξ(0) = 0 and such that ‖δξ t‖HβN
+
+≤ 1, for 0 ≤ t ≤ T and 
+
+∑
+
+> s≤t
+
+‖δξ s‖2
+
+> HβN
+
+−
+
+∫ t
+
+> 0
+
+g(s) ds 
+
+is a martingale, where g is adapted and 0 ≤ g ≤ h, for some bounded deterministic function h.Then, 
+
+E
+
+[
+
+exp 
+
+(
+
+‖ξT ‖HβN
+
+)] 
+
+≤ exp 
+
+(
+
+1 + 4 
+
+∫ T
+
+> 0
+
+h(s) ds 
+
+)
+
+.
+
+Proof. Let be f : x ∈ HN 7 → exp 
+
+(√1 + ‖x‖2
+
+> HβN
+
+)
+
+. For all x, y ∈ HN such that ‖y‖HβN
+
+≤ 1, we have 
+
+f (x + y) ≤ exp 
+
+(
+
+1 + ‖x + y‖HβN
+
+)
+
+≤ exp 
+
+(
+
+1 + ‖y‖HβN
+
++ ‖x‖HβN
+
+)
+
+≤ e2f (x).
+
+Now, applying Ito formula, we have, 
+
+f (ξt) = f (0) + 
+
+∫ t
+
+> 0
+
+df (ξs− ) dξ s + ∑
+
+> s≤t
+
+f (ξs) − f (ξs− ) − df (ξs− )( δξ s)= e +
+
+∫ t
+
+> 0
+
+df (ξs− ) dξ s + ∑
+
+> s≤t
+
+1
+
+2 d2f (xs)( δξ s, δξ s)with xs ∈ [ξs− , ξ s]. Moreover, we have 
+
+d2f (x)( y, y ) ≤ ‖ y‖HβN
+
+f (x).
+
+It results that 
+
+d2f (xs)( δξ s, δξ s) ≤ f (xs) ≤ e2f (ξs).
+
+Taking the expectation, we obtain 
+
+E[f (ξt)] ≤ e + 4 
+
+∫ t
+
+> 0
+
+hsE[f (ξs)] ds. 
+
+The proof is concluded with Gr¨ onwall’s inequality. 
+
+Using this lemma, we are able to prove a Sobolev version of Theorem 4.3 .
+
+Theorem 4.5. Assume l/ (N 2β log( N )) → +∞, then (Y N )N converges to 0 in probability for the uniform topology on D
+
+(
+
+([0 , T ], H βN
+
+)
+
+, i.e there exists C > 0 such that for all ε > 0
+
+P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖Y Nt ‖HβN
+
+> ε 
+
+)
+
+≤ C exp (log( N ) − ε2lN −2β ) .
+
+Proof. This proof follows the same steps as for the proof of Theorem 4.3 . Let 0 ≤ ¯t ≤ T ,0 ≤ k ≤ N − 1. We define the HN -valued martingale 
+
+ξt =
+
+∫ t
+
+> 0
+
+TN (¯ t − s) dZ ND (s ∧ τN ).
+
+This process satisfies ξ¯t = Y N 
+
+> ¯t
+
+.18 A. DEBUSSCHE, B. HUGUET 
+
+For all 0 ≤ t ≤ ¯t, we have 
+
+δξ t = TN (¯ t − t)δZ NC (t ∧ τN ).
+
+Then, on the one hand, we have the following bound on the jumps size 
+
+‖δξ t‖HβN
+
+≤ ‖ δZ NC (t ∧ τN )‖HβN
+
+≤ cl −1N β−1/2.
+
+On the other hand, we have 
+
+∑
+
+> s≤t
+
+‖δξ t‖2
+
+> HβN
+
+= ∑ 
+
+> s≤t
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )β (〈TN (¯ t − s)δZ NC (s ∧ τN ), ϕ m,N 〉2 + 〈TN (¯ t − s)δZ NC (s), ψ m,N 〉2)
+
+= 
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )β ∑
+
+> s≤t
+
+e−2(¯ t−s)λm,N (〈δZ NC (s ∧ τN ), ϕ m,N 〉2 + 〈δZ NC (s ∧ τN ), ψ m,N 〉2) .
+
+Hence, from Lemma 4.1 , the compensator has the form of Lemma 4.4 with 
+
+gt = 1
+
+N l  
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )β e−2(¯ t−t)λm,N (〈 ¯uN (t), (∇+ 
+
+> N
+
+ϕm,N )2 + ( ∇− 
+
+> N
+
+ϕm,N )2〉
+
++ 〈¯uN (t), (∇+ 
+
+> N
+
+ψm,N )2 + ( ∇− 
+
+> N
+
+ψm,N )2〉
+
++
+
+〈 ˜RC (¯ uN (t), ¯vN (t)) , ϕ 2 
+
+> m,N
+
++ ψ2
+
+> m,N
+
+〉) 
+
+.
+
+Then, for all 0 ≤ s ≤ t ∧ τN , we have 
+
+〈¯uN (s), (∇+ 
+
+> N
+
+ϕm,N )2〉 ≤ ‖ ¯uN (s)‖H0 ‖(∇+ 
+
+> N
+
+ϕm,N )2‖H0
+
+≤ M ‖(∇+ 
+
+> N
+
+ϕm,N )‖2
+
+> ∞
+
+≤ 2M π 2m2
+
+≤ cM λ m,N 
+
+This bound also holds replacing ∇+ 
+
+> N
+
+or ϕm,N by ∇− 
+
+> N
+
+or ψm,N . On the other hand, we have 
+
+〈 ˜RC (¯ uN (t), ¯vN (t)) , ϕ 2 
+
+> m,N
+
++ ψ2
+
+> m,N
+
+〉
+
+= 〈˜a¯uN (t)¯ vN (t) + ˜b(¯ uN (t)) + ˜d¯vN (t), 1〉≤ ˜a‖¯uN (t)‖HαN ‖¯vN (t)‖H−αN
+
++ ‖˜b‖∞,[0 ,M ] + ˜d‖¯vN (t)‖H−αN
+
+≤ C
+
+It follows that g is bounded by the function 
+
+ht = C
+
+N l  
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )β+1 e−2(¯ t−t)λm,N ,
+
+which satisfies ∫ ¯t
+
+> 0
+
+hs ds ≤ C
+
+N l  
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+(1 + λm,N )β ≤ C N 2β
+
+l ,19 
+
+where the constant C does not depend on N nor ¯ t. For θ ∈ [0 , 1], we apply Lemma 4.4 to the martingale θl   
+
+> Nβ−1/2
+
+ξ, whose jumps are bounded by 1 in HβN -norm. It follows that 
+
+E
+
+[
+
+exp 
+
+( θl 
+
+N β−1/2 ‖ξ¯t‖HβN
+
+)] 
+
+≤ exp 
+
+(
+
+1 + C N 2β
+
+lθ2l2
+
+N 2β−1
+
+)
+
+= exp (1 + Cθ 2lN ) .
+
+Then, for ε > 0, we have 
+
+P
+
+(
+
+‖Y N 
+
+> ¯t
+
+‖HβN
+
+> ε 
+
+)
+
+≤ exp (1 − Cε 2lN −2β ) ,
+
+by taking the optimal θ = εN −(β+1 /2) /(2 C) ∈ [0 , 1]. To conclude, we need to obtain an inequality for the supremum over ¯ t. We decompose the interval [0 , T ] as in the proof of Theorem 4.3 . Then, for all 0 ≤ n ≤ N 2 − 1, and for all t ∈ I n, we have 
+
+‖Y Nt ‖HβN
+
+≤ ‖ Y NnT /N 2 ‖HβN
+
++ 4 N 2
+
+∫ tnT /N 2
+
+‖Y Ns ‖HβN
+
+ds + ‖ζnt ‖HβN
+
+.
+
+By Gr¨ onwall’s inequality, it follows that sup 
+
+> t∈I n
+
+‖Y Nt ‖HβN
+
+≤
+
+(
+
+‖Y NnT /N 2 ‖HβN
+
++ sup 
+
+> t∈I n
+
+‖ζnt ‖HβN
+
+)
+
+e4T .
+
+The martingale ζn satisfies δζ nt = δZ NC (t ∧ τN ). It follows that we can apply Lemma 4.4 to ζn
+
+with 
+
+‖δζ nt ‖HβN
+
+≤ C N β−1/2
+
+l ,
+
+and ˜gt ≤ cM 
+
+N l  
+
+> (N−1) /2
+
+∑
+
+> m=0
+
+λβ+1  
+
+> m,N
+
+≤ C N 2β+2 
+
+l .
+
+Using Doob’s inequality for the martingale ζn, it follows that, for all n
+
+E
+
+[
+
+exp 
+
+( θl 
+
+N β−1/2 sup 
+
+> t∈I n
+
+‖ζt‖HβN
+
+)] 
+
+≤ exp (1 + Cθ 2lN ) ,
+
+and 
+
+P
+
+(
+
+sup 
+
+> t∈I n
+
+‖ζt‖HβN
+
+> ε 
+
+)
+
+≤ exp (1 − Cε 2lN −2β ) .
+
+Therefore, we have 
+
+P
+
+(
+
+sup  
+
+> t∈[0 ,T ]
+
+‖Y Nt ‖HβN
+
+> ε 
+
+)
+
+≤ C exp (log( N ) − ε2lN −2β ) .
+
+This ends the proof. 
+
+Let us notice that this result extends the work of [ 7], for positive Sobolev spaces and for non-linear rate functions. The convergence in HβN requires a stronger assumption on the behaviour of l as N goes to ∞, than the convergence in the supremum norm. However, for β < 1/2, the behaviour of l is still sub-linear, which is far better than the quadratic behaviour l/N 2 → ∞ 
+
+needed to guarantee a direct control of ZNC (see [ 2] for example). This suggests that β should be thought as being small. 20 A. DEBUSSCHE, B. HUGUET 
+
+5. Convergence 
+
+The goal of this section is to prove the convergence of (¯ uN , ¯vN )N ≥1. The core argument is to prove that, along every converging subsequence for (¯ vN )N ≥1, the couple (¯ uN , ¯vN )N ≥1 converges to the solution of the system ( 3). This is sufficient to prove the convergence. Indeed, it implies that the sequence (¯ vN )N ≥1 has at most one limit point, and as it is tight, it necessarily converges. Hence, the whole sequence (¯ uN , ¯vN )N ≥1 converges to the solution of ( 3). In order to prove the convergence along subsequence, we proceed in two steps. The first one is probabilistic. We build an auxiliary sequence ( wN )N ≥1 such that ¯ uN − wN converges to 0 in probability, for the uniform topology on D([0 , T ], L ∞ ∩ HβN ). This auxiliary process is the solution of a discrete PDE. Hence, the second step consists in proving the convergence of ( wN , ¯vN )N ≥1 to the solution of ( 3). This second step relies on numerical analysis arguments. 5.1. The discrete PDE. Let v be a limit point of (¯ vN )N ≥1. Up to taking a subsequence, we may assume that ¯ vN converges in distribution to v, and using Skorokhod’s representation theorem, we may assume that the convergence holds almost surely. We introduce the auxiliary processes ( wN )N ≥1 defined as the solution of the discrete PDE : for all 0 ≤ t ≤ T
+
+(7) wN (t) = TN (t)uN 
+
+> 0
+
++
+
+∫ t
+
+> 0
+
+TN (t − s)RC (wN (s), v N (s)) ds. 
+
+Let us remark that, as for ¯ uN , the maximum principle shows that wN is bounded in L∞ and satisfies sup 
+
+> 0≤t≤T
+
+‖wNt ‖∞ ≤ M. 
+
+The control of the jumps’ contribution Y N , from Theorem 4.3 and 4.5 , implies the convergence of ¯ uN − wN to 0 for both the Sobolev and the L∞ topologies. 
+
+Proposition 5.1. Assume that lN −2β / log( N ) → ∞ and ‖(uN (0) , v N (0)) ‖∞ < M a.s, then 
+
+¯uN − wN converges in probability to 0 for the uniform topology on D([0 , T ], L ∞ ∩ HβN ), i.e for all ε > 0, we have 
+
+lim   
+
+> N→∞
+
+P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖¯uN (t) − wN (t)‖HβN
+
+> ε 
+
+)
+
+= lim   
+
+> N→∞
+
+P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖¯uN (t) − wN (t)‖∞ > ε 
+
+)
+
+= 0 .
+
+Proof. Let γ > 1/2 such that γ + β < 2. For all 0 ≤ t ≤ T , we have ¯uNt − wNt = Y Nt +
+
+∫ t
+
+> 0
+
+TN (t − s) (a(¯ uNs − wNs )¯ vNs + bC (¯ uNs ) − bC (wNs )) ds 
+
+‖¯uNt − wNt ‖HβN
+
+≤ ‖ Y Nt ‖HβN
+
++
+
+∫ t
+
+> 0
+
+‖TN (t − s) (a(¯ uNs − wNs )¯ vNs + bC (¯ uNs ) − bC (wNs )) ‖HβN
+
+ds 
+
+≤ ‖ Y Nt ‖HβN
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2‖(¯ uNs − wNs )¯ vNs ‖H−γN
+
+ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2 + ‖bC (¯ uNs ) − bC (wNs )‖H−γN
+
+ds 
+
+Then, we have 
+
+‖(¯ uNs − wNs )¯ vNs ‖H−γN
+
+≤ c‖¯vNs ‖H−αN
+
+‖¯uNs − wNs ‖HβN
+
+.
+
+On the other hand, we have 
+
+‖bC (¯ uNs ) − bC (wNs )‖H−γN
+
+≤ ‖ bC (¯ uNs ) − bC (wNs )‖H0 
+
+> N
+
+≤ L‖¯uNs − wNs ‖H0 
+
+> N
+
+≤ L‖¯uNs − wNs ‖HβN
+
+,21 
+
+where L is the Lipschitz constant of bC on [0 , M + 1]. Hence, we have proved that 
+
+‖¯uNt − wNt ‖HβN
+
+≤ c(1 + sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖H−αN
+
+)
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2 sup 
+
+> 0≤σ≤s
+
+‖¯uNσ − wNσ ‖HβN
+
+ds 
+
++ sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖HβN
+
+Let p, q > 1 such that 1 /p + 1 /q = 1 and q(β + γ)/2 < 1. We have 
+
+‖¯uNt − wNt ‖pHβN
+
+≤C(1 + sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+)
+
+(∫ t
+
+> 0
+
+(t − s)−(β+γ)/2 sup 
+
+> 0≤σ≤s
+
+‖¯uNσ − wNσ ‖HβN
+
+ds 
+
+)p
+
++ C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖pHβN
+
+≤C(1 + sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+)
+
+(∫ t
+
+> 0
+
+(t − s)−q(β+γ)/2 ds 
+
+)p/q ∫ t
+
+> 0
+
+sup 
+
+> 0≤σ≤s
+
+‖¯uNσ − wNσ ‖pHβN
+
+ds 
+
++ C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖pHβN
+
+Then, the singular integral is bounded on [0 , T ], and, for all 0 ≤ t ≤ T , we have sup 
+
+> 0≤σ≤t
+
+‖¯uNσ −wNσ ‖pHβN
+
+≤ C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖pHβN
+
++C
+
+(
+
+1 + sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+) ∫ t
+
+> 0
+
+sup 
+
+> 0≤σ≤s
+
+‖¯uNσ −wNσ ‖pHβN
+
+ds. 
+
+We use Gr¨ onwall’s inequality to obtain the upper bound (8) sup 
+
+> 0≤σ≤t
+
+‖¯uNσ − wNσ ‖pHβN
+
+≤ C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖pHβN
+
+exp 
+
+(
+
+C sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+)
+
+.
+
+To conclude for the HβN convergence, let us denote κN = l(N )N −2β / log( N ). For all ε > 0, we have 
+
+P
+
+(
+
+sup 
+
+> 0≤σ≤t
+
+‖¯uNσ − wNσ ‖pHβN
+
+> ε 
+
+)
+
+≤ P
+
+(
+
+C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖pHβN
+
+exp 
+
+(
+
+C sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+)
+
+> ε 
+
+)
+
+≤ P
+
+(
+
+C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖HβN
+
+> ε 1/p /κ 1/p N
+
+)
+
++ P
+
+(
+
+sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+> C log( κN )
+
+)
+
+≤ C exp 
+
+(
+
+C log( N )(1 − ε2/p κ1−1/p N )
+
+)
+
++ C
+
+κN
+
+.
+
+This proves the convergence for the HβN topology. For the L∞ convergence, we have 
+
+‖¯uNt − wNt ‖∞ ≤ ‖ Y Nt ‖∞ + C
+
+∫ t
+
+> 0
+
+‖TN (t − s) (a(¯ uNs − wNs )¯ vNs + b − C(¯ uNs ) − bC (wNs )) ‖∞ ds 
+
+≤ ‖ Y Nt ‖∞ +
+
+∫ t
+
+> 0
+
+‖TN (t − s) (a(¯ uNs − wNs )¯ vNs
+
+) ‖H1/2+ εN
+
+ds 
+
++
+
+∫ t
+
+> 0
+
+‖bC (¯ uNs ) − bC (wNs )‖∞ ds 22 A. DEBUSSCHE, B. HUGUET 
+
+≤ ‖ Y Nt ‖∞ + C
+
+∫ t
+
+> 0
+
+(t − s)−1/2−ε‖(¯ uNs − wNs )¯ vNs ‖H−1/2−εN
+
+ds 
+
++ L
+
+∫ t
+
+> 0
+
+‖¯uNs − wNs ‖∞ ds 
+
+≤ ‖ Y Nt ‖∞ + C
+
+∫ t
+
+> 0
+
+(t − s)−1/2−ε‖¯uNs − wNs ‖HβN
+
+‖¯vNs ‖H−αN
+
+ds 
+
++ L
+
+∫ t
+
+> 0
+
+‖¯uNs − wNs ‖∞ ds 
+
+≤ ‖ Y Nt ‖∞ + C sup 
+
+> 0≤σ≤T
+
+‖¯uNσ − wNσ ‖HβN
+
+sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖H−αN
+
++ L
+
+∫ t
+
+> 0
+
+‖¯uNs − wNs ‖∞ ds 
+
+Hence, using the bound ( 8), we have sup 
+
+> 0≤σ≤t
+
+‖¯uNσ − wNσ ‖∞ ≤ C sup 
+
+> 0≤σ≤T
+
+‖Y Nσ ‖∞ exp 
+
+(
+
+2C sup 
+
+> 0≤σ≤T
+
+‖¯vNσ ‖pH−αN
+
+)
+
++ L
+
+∫ t
+
+> 0
+
+sup 
+
+> 0≤σ≤s
+
+‖¯uNσ − wNσ ‖∞ ds. 
+
+The prove ends with the same arguments as for the HβN case. 
+
+5.2. Convergence of the discrete PDE. The goal of this section is to prove that the solution 
+
+wN of the discrete PDE ( 7) converges to the unique solution of the PDE (9) d
+
+dt w = ∆ w + RC (w, v ), w (0) = u0.
+
+The main difficulties come from the low regularity of the limit v. That is why we use some regularisation procedures to conclude. 
+
+Theorem 5.2. Let 0 < α < β < 1/2, ˜β > β , T ≥ 0, (vN )N ∈N a sequence in C([0 , T ]; HN ) and 
+
+v ∈ C([0 , T ]; H−α) such that 
+
+vN → v, when N → ∞ in C([0 , T ]; H−α).
+
+Let (uN 
+
+> 0
+
+)N ∈N a sequence in HN and u0 ∈ H ˜β ∩ C([0 , 1]) such that: 
+
+uN 
+
+> 0
+
+→ u0, when N → ∞ in H ˜β ∩ L∞.
+
+Then, there exists a unique solution w ∈ C(R+, H β ∩ L∞) to (9). For N ∈ N, let wN be the solution of (7) . Then 
+
+wN → w, when N → ∞ in C([0 , T ] × [0 , 1]) 
+
+and 
+
+‖wN − PN w‖Hβ → 0, when N → ∞ .
+
+Remark 5.3. Let us notice that in dimension greater than 1, a similar results holds but we need stronger assumptions on the initial data u0. This is due to product rules which are worse in higher dimension. Alternatively, we could prove a convergence which does not hold up to time 0
+
+under similar assumptions on the initial data 0. This is because we need to use the smoothing property of the heat semigroup on the initial data and this introduces a singularity in time. Similarly, up to the price of this convergence on positive time, we could get rid of the assump-tion that the initial data is continuous. 23 
+
+
+
+Since we use smoothing kernel in the proofs below. It is more convenient to work on the spatial interval [ −1/2, 1/2]. Since we work only at the level of partial differential equations and difference equations, it is easy to switch from one interval to the other by the transformation 
+
+x 7 → x − 1/2. For instance, given a function ϕ ∈ L2(0 , 1), it is mapped to the function ψ(x) = ϕ(x −
+
+1/2). The new discrete space is the space of piecewise constant functions which are constant on each [(2 l − 1) /2N, (2 l + 1) /2N [ for l = −(N − 1) /2, . . . , (N − 1) /2. The new projection from 
+
+L2(−1/2, 1/2) to the discrete space is defined by ˜PN ψl = PN ϕ(2 l+N −1) /2 = N
+
+∫ (2 l+1) /2N
+
+> (2 l−1) /2N
+
+ψ(x)dx. 
+
+Below we do not use tildes and use the same notations H, Hα, HαN ... for the spaces on [−1/2, 1/2]. Similarly we keep the notations ∆, ∆ N , TN ... for the various operators. Let ( vN )N ∈N be a sequence in C([0 , T ]; HN ) and v ∈ C([0 , T ]; H−α) for some α > 0 be such that vN → v in C([0 , T ]; H−α). We consider the equation: 
+
+d
+
+dt w = ∆ w + RC (w, v ), w (0) = u0
+
+with periodic boundary conditions on [ −1/2, 1/2]. Recall that RC (u, v ) = aC uv + bC (u) + dC v
+
+and it satisfies Assumption 2.2 .
+
+Proposition 5.4. Let β ∈ (α, 1/2) and assume that u0 ∈ Hβ ∩ L∞, then there exists a unique solution to (9) in C(R+, H β ∩ L∞).Proof. The proof follows by a truncation argument and a fixed point argument on the mild form of the equation. Take a smooth function θ with compact support in [ −2, 2] and equal to 1 on [ −1, 1], define 
+
+bMC (x) = θ(x/M 1), with M1 = 2 max {‖ uN 
+
+> 0
+
+‖∞, M } and RMC as RC replacing bC by bMC .Define T : C([0 , T ], H β ) → C([0 , T ], H β ) by 
+
+T w(t) = e∆tu(0) + 
+
+∫ t
+
+> 0
+
+e∆( t−s)RMC (w(s), v (s)) ds. 
+
+By product rules in Sobolev spaces , we know that for γ > α + 1 /2 − β:
+
+‖wv ‖H−γ ≤ C‖w‖Hβ ‖v‖H−α .
+
+We choose 3 /2 > γ > α + 1 /2 − β.Note that since bC is Lipschitz on bounded sets, bMC is Lipschitz on R.Using the smoothing property of the heat semigroup, we deduce, for w1, w 2 ∈ C([0 , T ], H β ∩
+
+L∞): 
+
+‖T w1(t) − T w2(t)‖Hβ ≤‖ u(0) ‖Hβ + C
+
+∫ t
+
+> 0
+
+|t − s|−β/ 2‖w1(s) − w2(s)‖L∞ ds 
+
++ C
+
+∫ t
+
+> 0
+
+|t − s|−(γ+β)/2‖w1(s) − w2(s)‖Hβ ‖v(s)‖H−α ds 
+
+and 24 A. DEBUSSCHE, B. HUGUET 
+
+‖T w1(t) − T w2(t)‖L∞ ≤‖ u(0) ‖L∞ + C
+
+∫ t
+
+> 0
+
+‖w1(s) − w2(s)‖L∞ ds 
+
++ C
+
+∫ t
+
+> 0
+
+|t − s|−(γ+1 /2) /2‖w1(s) − w2(s)‖Hβ ‖v(s)‖H−α ds 
+
+Since v ∈ C(R+; H−α), we deduce that for T sufficiently small, depending only on the Lipschitz constant of bMC and v, T is a contraction. It has therefore a unique fixed point w which is a solution of the truncated equation where bMC replaces bC . Iterating this construction, we get rid of the smallness condition on T .By the maximum principle and Assumption 2.2 , we know that w is bounded in the L∞ norm by max {‖ uN 
+
+> 0
+
+‖∞, M }. Thus 
+
+bMC (w(t)) = bC (w(t), t ≥ 0,
+
+and w is a solution of the original equation without the truncation. 
+
+
+
+Let ( wN )N ∈N be the solutions of Equations ( 7) in HN :(10) d
+
+dt wN = ∆ N wN + RC (wN , v N ), w N (0) = uN 
+
+> 0
+
+.
+
+By Cauchy-Lipschitz theorem there exists a local in time solution and, by the maximum principle and Assumption 2.2 , it is global. We introduce a smoothing kernel ( ρǫ)ǫ defined classically, for ǫ > 0, by: 
+
+ρǫ(y) = ǫ−1ρ( y
+
+ǫ ), y ∈ [−1/2, 1/2] ,
+
+for a smooth compactly supported even non negative ρ such that ∫ 
+
+> R
+
+ρ(z)dz = 1 and whose support is included in ](1 /2, 1/2). All these functions can be seen as smooth periodic functions on [ −1/2, 1/2]. We also write ρǫ,N = PN ρǫ.We then define vǫ = ρǫ ∗ v, v ǫ,N = ρǫ,N ∗N vN ǫ > 0, N ∈ N, where, for two functions in 
+
+a, b ∈ HN , we write ( a ∗N b)k = 1
+
+> N
+
+∑(N −1) /2  
+
+> ℓ=−(N−1) /2
+
+ak−ℓbk, and consider uǫ, wǫ,N satisfying: 
+
+wǫ(t) = e∆tρǫ ∗ u(0) + 
+
+∫ t
+
+> 0
+
+e∆( t−s)RC (wǫ(s), v ǫ(s)) ds, wǫ,N (t) = TN (t)( ρǫ,N ∗N uN 
+
+> 0
+
+) + 
+
+∫ t
+
+> 0
+
+TN (t − s)RC (wǫ,N (s), v ǫ,N (s)) ds. 
+
+The proof of the existence of wǫ, wǫ,N is the same as for w and wN . They satisfy uniform bounds. Let us first remark that by the maximum principle, we already know that all these functions are uniformly bounded in the supremum norm by max {‖ uN 
+
+> 0
+
+‖∞, M }.We need the following technical lemma whose counterpart in the continuous case is classical. 
+
+Lemma 5.5. Let ϕ ∈ HN then for any ǫ > 0, α ∈ [−1, 1] :
+
+‖ρǫ,N ∗N ϕ‖HαN ≤ ‖ ϕ‖HαN
+
+and for α, β ∈ [−1, 1] such that 0 ≤ β − α ≤ 1:
+
+‖ρǫ,N ∗N ϕ − ϕ‖HαN ≤ Cβ,α ǫβ−α‖ϕ‖HβN25 
+
+Proof. We first consider α = 0 , 1. For α = 0, we have, using 1
+
+> N
+
+∑N −1 
+
+> k=0
+
+ρǫ,N k = 1, 
+
+‖ρǫ,N ∗N ϕ‖2 
+
+> HN
+
+= 1
+
+N 3 
+
+> N−1
+
+∑
+
+> k=0
+
+| 
+
+> N−1
+
+∑
+
+> l=0
+
+ρǫ,N k−lϕl|2 ≤ 1
+
+N 2 
+
+> N−1
+
+∑ 
+
+> k=0
+> N−1
+
+∑
+
+> l=0
+
+ρǫ,N k−l|ϕl|2 ≤ 1
+
+N 
+
+> N−1
+
+∑
+
+> l=0
+
+|ϕl|2 = ‖ϕ‖2 
+
+> HN
+
+.
+
+We then write: 
+
+‖∇ + 
+
+> N
+
+(ρǫ,N ∗N ϕ)‖2 
+
+> HN
+
+= ‖ρǫ,N ∗N ∇+ 
+
+> N
+
+ϕ‖2 
+
+> HN
+
+≤ ‖∇ + 
+
+> N
+
+ϕ‖2
+
+> HN
+
+using the result for α = 0. The result follows for α = 0 , 1. By interpolation, it also follows for 
+
+α ∈ [0 , 1]. We then use duality for α ∈ [−1, 0]. Take ϕ ∈ HN and write: 
+
+‖ρǫ,N ∗N ϕ‖HαN = sup 
+
+> ‖ψ‖H−αN
+> =1
+
+(ρǫ,N ∗N ϕ, ψ )HN = sup 
+
+> ‖ψ‖H−αN
+> =1
+
+(ϕ, ρ ǫ,N ∗N ψ)HN ≤ ‖ ϕ‖HαN .
+
+This proves the first point. For the second, we first consider α = 0 and β = 1 and write: 
+
+‖ρǫ,N ∗N ϕ − ϕ‖2 
+
+> HN
+
+= 1
+
+N 3(N −1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+∣∣ 
+
+> (N−1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+ρǫ,N l (ϕk − ϕk−l )∣∣2
+
+≤ 1
+
+N 2(N −1) /2
+
+∑  
+
+> k=−(N−1) /2(N−1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+ρǫ,N l
+
+∣∣(ϕk − ϕk−l )∣∣2
+
+≤ 1
+
+N 4(N −1) /2
+
+∑  
+
+> k=−(N−1) /2(N−1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+ρǫ,N l
+
+∣∣ k−1∑
+
+> m=k−l
+
+(∇+ 
+
+> N
+
+ϕ)m
+
+∣∣2
+
+≤ 1
+
+N 4(N −1) /2
+
+∑  
+
+> k=−(N−1) /2(N−1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+lρ ǫ,N lk−1∑
+
+> m=k−l
+
+∣∣(∇+ 
+
+> N
+
+ϕ)m
+
+∣∣2
+
+≤ 1
+
+N 4(N −1) /2
+
+∑  
+
+> m=−(N−1) /2(N−1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+l2ρǫ,N l
+
+∣∣(∇+ 
+
+> N
+
+ϕ)m
+
+∣∣2
+
+≤ Cǫ 2 1
+
+N 
+
+> (N−1) /2
+
+∑ 
+
+> m=−(N−1) /2
+
+∣∣(∇+ 
+
+> N
+
+ϕ)m
+
+∣∣2
+
+= Cǫ 2|ϕ|2
+
+> H1
+> N
+
+.
+
+We have used: 1
+
+N 3(N −1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+l2ρǫ,N l = 1
+
+N 
+
+> (N−1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+( l
+
+N
+
+)2
+
+ρǫ,N l ≤ C
+
+∫ 1/2
+
+> −1/2
+
+x2ρǫ(x)dx = Cǫ 2
+
+∫ 1/2
+
+> −1/2
+
+x2ρ(x)dx. 
+
+The result is clearly true for α = β and we deduce the general case for α, β non negative by interpolation the (0 , 1) and ( α/ (1 − α + β), α/ (1 − α + β)). For the general case, we write, using the commutation of the discrete convolution and ∆ N :
+
+‖ρǫ,N ∗N ϕ − ϕ‖HαN = ‖(I − ∆N )α/ 2(ρǫ,N ∗N ϕ − ϕ)‖HN
+
+≤ Cǫ β−α‖(I − ∆N )α/ 2ϕ‖Hβ−αN
+
+= Cǫ β−α‖ϕ‖HβN
+
+.
+
+26 A. DEBUSSCHE, B. HUGUET 
+
+Lemma 5.6. Let β ∈ (α, 1 
+
+> 2
+
+) and assume that u0 ∈ Hβ ∩ L∞, then for any T > 0, (wǫ)ǫ> 0 is uniformly bounded in C([0 , T ], H β).Moreover, then for any T > 0, (wN )N ∈N and (wǫ,N )ǫ> 0, N ∈N are uniformly bounded with respect to ǫ and N in C([0 , T ], H βN ).Proof. Using the same arguments as in the proof of Proposition 5.4 , we have, with 3 /2 > γ > α + 1 /2 − β:
+
+‖wǫ(t)‖Hβ ≤ ‖ u(0) ‖Hβ + C
+
+∫ t
+
+> 0
+
+|t − s|−β/ 2M1 + |t − s|−(γ+β)/2(‖wǫ(s)‖Hβ + 1) ‖vǫ(s)‖H−α ds, 
+
+and Gr¨ onwall’s inequality indeed imply a uniform bounds on wǫ in C([0 , T ], H γ ) since vǫ is uniformly bounded in C([0 , T ], H −α). The proof of the other points follows from the same computations since TN satisfies the same smoothing property as the heat kernel in HN , vǫ,N is uniformly bounded in C([0 , T ], H −αN )thanks to Lemma 5.5 , by the convergence of vN to v in C([0 , T ], H −α), and the equivalence of the discrete and continuous Sobolev norm on H−αN ([ 6]). 
+
+Lemma 5.7. Let β ∈ (α, 1 
+
+> 2
+
+) and 0 < λ < 1 + β − α
+
+sup  
+
+> [0 ,T ]
+
+‖wǫ(t) − w(t)‖Hβ ≤ ‖ u0 − ρǫ ∗ u0‖Hβ + Cǫ λ sup  
+
+> [0 ,T ]
+
+‖v(t)‖H−α ,
+
+sup  
+
+> [0 ,T ]
+
+‖wǫ(t) − w(t)‖L∞ ≤ ‖ u0 − ρǫ ∗ u0‖L∞ + Cǫ λ sup  
+
+> [0 ,T ]
+
+‖v(t)‖H−α
+
+and for N ∈ N:
+
+sup  
+
+> [0 ,T ]
+
+‖wǫ,N (t) − wN (t)‖HβN
+
+≤ ‖ uN 
+
+> 0
+
+− ρNǫ ∗N uN 
+
+> 0
+
+‖HβN
+
++ Cǫ λ sup  
+
+> [0 ,T ]
+
+‖vN (t)‖H−αN
+
+,
+
+sup  
+
+> [0 ,T ]
+
+‖wǫ,N (t) − wN (t)‖L∞ ≤ ‖ uN 
+
+> 0
+
+− ρNǫ ∗N uN 
+
+> 0
+
+‖L∞ + Cǫ λ sup  
+
+> [0 ,T ]
+
+‖vN (t)‖H−αN
+
+for a constant C independant on ǫ or N .Proof. Define rǫ = wǫ − w, then we may write 
+
+rǫ(t) = e∆t(ρǫ ∗ u0 − u0)+
+
+∫ t
+
+> 0
+
+e∆( t−s) (( bC (w(s)) − bC (wǫ(s))) + aC (w(s)v(s) − wǫ(s)vǫ(s)) + dC (v(s) − vǫ(s))) ds 
+
+Since w and wǫ are uniformaly bounded, we may assume that bC is a Lipschitz function, we deduce: 
+
+‖bC (w(s)) − bC (wǫ(s)‖L2 ≤ L‖w(s) − wǫ(s)‖L2 ≤ L‖w(s) − wǫ(s)‖Hγ .
+
+We take 3 /2 > γ > α + λ + 1 /2 − β. By the product rules in Sobolev spaces (indiquer le r´ esultat): 
+
+‖w(s)v(s) − wǫ(s)vǫ(s)‖H−γ ≤C‖w(s) − wǫ(s)‖Hβ ‖v(s)‖H−α
+
++ C‖wǫ(s)‖Hβ ‖v(s) − vǫ(s)‖H−α−λ
+
+so that by Lemma 5.6 :
+
+‖w(s)v(s) − wǫ(s)vǫ(s)‖H−γ ≤ C (‖w(s) − wǫ(s)‖Hβ + ‖v(s) − vǫ(s)‖H−α−λ ) .
+
+We then use the smoothing property of the heat semigroup to write: 
+
+‖rǫ(t)‖Hβ ≤‖ u0 − ρǫ ∗ u0‖Hβ + C
+
+∫ t
+
+> 0
+
+|t − s|−(γ+β)/2 (‖rǫ(s)‖Hβ + ‖v(s) − vǫ(s)‖H−(α+λ ) ds 27 
+
+≤‖ u0 − ρǫ ∗ u0‖Hβ + Cǫ λT 1−(γ+β)/2 sup  
+
+> [0 ,T ]
+
+‖v(s)‖H−α )+ C
+
+∫ t
+
+> 0
+
+|t − s|−(γ+β)/2‖rǫ(s)‖Hβ ds. 
+
+The result by Gr¨ onwall’s inequality. The other results are proved similarly, in particular thanks to the previous Lemmas which give all the property we need to obtain constants uniform in N . 
+
+Lemma 5.8. 
+
+‖vǫ,N − PN vǫ‖L2 ≤ Cǫ( 1
+
+N + ‖vN − v‖H−α ).
+
+Proof. Let us split vǫ,N − PN vǫ into ρǫ,N ∗N vN − ρǫ ∗ vN , ( I − PN )vǫ and ρǫ ∗ (vN − v). Then, thanks to the smoothing property of the convolution: 
+
+‖ρǫ ∗ (vN − v)‖L2 ≤ C(ǫ, α )‖vN − v‖H−α ,
+
+and by Equation ( 5)
+
+‖(I − PN )vǫ‖L2 ≤ C
+
+N ‖vǫ‖H1 ≤ Cǫ
+
+N .
+
+Let k = −(N − 1) /2, . . . , (N − 1) /2 and x ∈ [(2 k − 1) /2N, (2 k + 1) /2N ), and write 
+
+|ρǫ,N ∗N vN (x) − ρǫ ∗ v(x)| =
+
+∣∣∣∣∣∣ 
+
+> (N+1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+al(k, x )vNl
+
+∣∣∣∣∣∣
+
+≤ ‖ a(k, x )‖H1 
+
+> N
+
+‖vN ‖H−1
+
+> N
+
+,
+
+with 
+
+a(k, x ) = N
+
+∫ (2 l+1) /2N
+
+> (2 l−1) /2N
+
+ρǫ(k/N − y) − ρǫ(x − y)dy. 
+
+Then: 
+
+‖a(k, x )‖2 
+
+> HN
+
+= 1
+
+N 
+
+> (N+1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+|N
+
+∫ (2 l+1) /2N
+
+> (2 l−1) /2N
+
+ρǫ(k/N − y) − ρǫ(x − y)dy |2
+
+≤ 1
+
+4N 2 L2 
+
+> ǫ
+
+,
+
+where Lǫ is the Lipschitz constant of ρǫ. Moreover 
+
+‖∇ + 
+
+> N
+
+a(k, x )‖2 
+
+> HN
+
+= 1
+
+N 
+
+> (N+1) /2
+
+∑ 
+
+> l=−(N−1) /2
+
+|N 2
+
+∫ (2 l+1) /2N
+
+> (2 l−1) /2N
+
+ρǫ(( k − 1) /N − y) − ρǫ(x − 1/N − y)
+
+−ρǫ(k/N − y) + ρǫ(x − y)dy |2
+
+≤ 1
+
+4N 2 L21,ǫ ,
+
+where L1,ǫ is the Lipschitz constant of ρ′
+
+> ǫ
+
+. We deduce: 
+
+|ρǫ,N ∗N vN (x) − ρǫ ∗ v(x)| ≤ Cǫ
+
+N ‖vN ‖H−1
+
+> N
+
+.28 A. DEBUSSCHE, B. HUGUET 
+
+Since vN is bounded in H−1 
+
+> N
+
+and since the supremum norm is larger than the L2 norm, we deduce: 
+
+‖vǫ,N − PN vǫ‖L2 ≤ Cǫ( 1
+
+N + ‖vN − v‖H−α ).
+
+
+
+Lemma 5.9. For all N ∈ N, t ∈ [0 , T ]:
+
+‖wǫ,N (t) − PN wǫ(t)‖HβN
+
+≤ Cǫ( 1
+
+N + ‖uN 
+
+> 0
+
+− u0‖L∞ + sup  
+
+> [0 ,T ]
+
+.‖vN (s) − v(s)‖H−α ).
+
+and 
+
+‖wǫ,N (t) − wǫ(t)‖L∞ ≤ Cǫ( 1
+
+N + ‖uN 
+
+> 0
+
+− u0‖L∞ + sup  
+
+> [0 ,T ]
+
+.‖vN (s) − v(s)‖H−α ).
+
+Proof. Let us introduce ˜wǫ,N = PN wǫ and rǫ,N = wǫ,N − ˜wǫ,N . Then: 
+
+rǫ,N (t) = TN (t)( ρǫ,N ∗N uN 
+
+> 0
+
+− PN ρǫ ∗ u0) + 
+
+∫ t
+
+> 0
+
+TN (t − s)
+
+[
+
+bC (wǫ,N (s)) − PN bC (wǫ(s)) + aC (wǫ,N (s)vǫ,N (s) − PN (wǫ(s)vǫ(s))) + dC (vǫ,N (s) − PN vǫ(s)) 
+
+]
+
+ds 
+
++
+
+∫ t
+
+> 0
+
+TN (t − s)
+
+[
+
+(∆ N PN − PN ∆) wǫ
+
+]
+
+ds. 
+
+Again, since wǫ,N and wǫ are uniformly bounded in the supremum norm, we may assume that 
+
+bC is Lipschitz and write, thanks to Equation ( 5), 
+
+‖bC (wǫ,N (s)) − PN bC (wǫ(s)) ‖HN ≤C‖rǫ,N (s)) ‖HN + ‖(I − PN )bC (wǫ(s)) ‖HN
+
++ ‖(I − PN )wǫ(s)‖HN
+
+≤C‖rǫ,N (s)) ‖HN + C
+
+N ‖wǫ(s)‖H1
+
+≤C‖rǫ,N (s)) ‖HN + Cǫ
+
+N .
+
+Let us estimate the second term in the integral above: 
+
+‖wǫ,N vǫ,N − PN (wǫvǫ)‖HN ≤‖ rǫ,N vǫ,N ‖HN + ‖ ˜wǫ,N (vǫ,N − PN vǫ)‖HN
+
++ ‖ ˜wǫ,N PN vǫ − PN (wǫvǫ)‖HN
+
+≤Cǫ‖rǫ,N ‖HN + Cǫ
+
+( 1
+
+N + ‖vN − v‖H−α
+
+)
+
++ ‖ ˜wǫ,N PN vǫ − PN (wǫvǫ)‖HN .
+
+We have used Lemma 5.8 and that the discrete and continuous convolution have a smoothing effect uniform in N so that vǫ,N and ˜wǫ,N are uniformly bounded with respect to N in H1 and 
+
+H1 
+
+> N
+
+. Moreover, since wǫ and vǫ are smooth, it can be checked that 
+
+‖ ˜wǫ,N PN vǫ − PN (wǫvǫ)‖HN ≤ C
+
+N ‖(wǫ)′‖L∞ ‖vǫ‖L∞ ≤ Cǫ
+
+N .
+
+Moreover, on [(2 l − 1) /N, (2 l + 1) /N ): (PN ∆ − ∆ − N P N )wǫ = N
+
+∫ (2 l+1) /N 
+
+> (2 l−1) /2N
+
+(wǫ)′′ (x) − N 2(wǫ(x − 1/N ) + wǫ(x + 1 /N ) − 2w(x)) dx. 29 
+
+One can check by Taylor formula that: 
+
+|(wǫ)′′ (x) − N 2(wǫ(x − 1/N ) + wǫ(x + 1 /N ) − 2w(x)) | ≤ C‖(w(4) )ǫ‖L∞ /N 2 ≤ Cǫ/N 2.
+
+Hence 
+
+‖(PN ∆ − ∆ − N P N )wǫ‖HN ≤ Cǫ/N 2.
+
+It follows, thanks to the smoothing property of the discrete heat kernel, 
+
+‖rǫ,N (t)‖HβN
+
+≤‖ ρǫ,N ∗N uN 
+
+> 0
+
+− PN ρǫ ∗ u0‖HβN
+
++ Cǫ
+
+∫ t
+
+> 0
+
+|t − s|−β/ 2
+
+[
+
+‖rǫ,N (s)) ‖L2 + 1
+
+N + ‖vN (s) − v(s)‖H−α
+
+]
+
+ds. 
+
+By similar arguments as in Lemma 5.8 :
+
+‖ρǫ,N ∗N uN 
+
+> 0
+
+− PN ρǫ ∗ u0‖HβN
+
+≤ Cǫ
+
+( 1
+
+N + ‖uN 
+
+> 0
+
+− u0‖L∞
+
+)
+
+,
+
+so that, since ‖rǫ,N (t)‖HN ≤ ‖ rǫ,N (t)‖HβN
+
+, we have by Gr¨ onwall’s inequality: 
+
+‖rǫ,N (t)‖HβN
+
+≤ Cǫ
+
+(
+
+1
+
+N + ‖uN 
+
+> 0
+
+− u0‖L∞ + sup  
+
+> [0 ,T ]
+
+.‖vN (s) − v(s)‖H−α
+
+)
+
+.
+
+By similar arguments, we have: 
+
+‖rǫ,N (t)‖L∞ ≤ Cǫ
+
+(
+
+1
+
+N + ‖uN 
+
+> 0
+
+− u0‖L∞ + sup  
+
+> [0 ,T ]
+
+‖vN (s) − v(s)‖H−α
+
+)
+
+.
+
+Finally, since ‖ ˜wǫ,N − wǫ‖L∞ ≤ Cǫ 
+
+> N
+
+, we deduce the result. 
+
+Gathering the above results proves the Theorem choosing first ǫ small and the N large since under the assumptions on the initial data ‖uN 
+
+> 0
+
+− ρNǫ ∗N uN 
+
+> 0
+
+‖L∞ → 0 and ‖uN 
+
+> 0
+
+− ρNǫ ∗N uN 
+
+> 0
+
+‖HβN
+
+→ 0uniformly in N when ǫ → 0. 5.3. Uniqueness of the limit point and conclusion. According to Proposition 5.1 ad Theo-rem 5.2 , it follows that ¯ uN converges in probability to w, on D
+
+(
+
+[0 , T ], L ∞ ∩ HβN
+
+)
+
+, for the uniform topology. Therefore, we can take the limit in the equation defining ¯ vN . It results that the limit point v satisfies the ODE-part of System ( 3). 
+
+Lemma 5.10. Assume that (vN 
+
+> 0
+
+)N ≥1 converges to v0 in H−α. Then, the limit point v satisfies 
+
+∂tv(t) = RD (w(t), v (t)) , v (0) = v0,
+
+with w the solution of Equation (9).Proof. For all N ≥ 1 and 0 ≤ t ≤ T , we have ¯vN (t) = vN (0) + 
+
+∫ t
+
+> 0
+
+dD ¯vN (s) + bD(¯ uN (s)) ds + ZND (t ∧ τ ).
+
+As v is a limit point of ¯ vN and by assumption on the initial data, is is sufficient to show that 
+
+bD(¯ u) converge for H−α. Actually, we have sup 
+
+> 0≤t≤T
+
+‖bD(¯ uN (t)) − bD(wN (t)) ‖H−α ≤ sup 
+
+> 0≤t≤T
+
+‖bD(¯ uN (t)) − bD(wN (t)) ‖∞
+
+≤C sup 
+
+> 0≤t≤T
+
+‖¯uN (t) − wN (t)‖∞,
+
+as bD is locally Lipschitz continuous, and ¯ un and wN are bounded. This ends the proof. 30 A. DEBUSSCHE, B. HUGUET 
+
+To ensure that ¯ vN admits only one limit point, we need to show that the equation ( 3) has only one solution in C ([0 , T ], (L∞ ∩ Hβ ) × H−α).
+
+Lemma 5.11. For all (u0, v 0) ∈ (L∞ ∩ Hβ ) × H−α, there exists only one solution to the sys-tem (3), with periodic boundary conditions and initial condition u(0) = u0 and v(0) = v0, in 
+
+C ([0 , T ], (L∞ ∩ Hβ ) × H−α).Proof. Let ( u1, v 1) and ( u2, v 2) two solutions of Equation ( 3) in C ([0 , T ], (L∞ ∩ Hβ ) × H−α),with the same initial data ( u0, v 0). Let 0 < ε, γ , such that 1 /2 + ε + γ < 2 and −γ < 1/2 + ε −
+
+α − 1/2. For all 0 ≤ t ≤ T , we have 
+
+‖u1(t) − u2(t)‖Hβ ≤
+
+∫ t
+
+> 0
+
+‖e∆( t−s)ac(u1(s)v1(s) − u2(s)v2(s))) ‖Hβ ds 
+
++
+
+∫ t
+
+> 0
+
+‖e∆( t−s)dC (v1(s) − v2(s))) ‖Hβ ds 
+
++
+
+∫ t
+
+> 0
+
+‖e∆( t−s)(bC (u1(s)) − bC (u2(s))) ‖Hβ ds 
+
+≤C
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2‖u1(s)v1(s) − u2(s)v2(s)‖H−γ ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(β+α)/2‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−β/ 2‖bC (u1(s)) − bC (u2(s)) ‖L2 ds 
+
+≤C
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2‖u1(s)‖Hβ ‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2‖(u1(s) − u2(s)‖Hβ ‖v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(β+α)/2‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−β/ 2‖u1(s) − u2(s)‖∞ ds 
+
+≤ + C
+
+∫ t
+
+> 0
+
+(t − s)−(β+γ)/2‖(u1(s) − u2(s)‖Hβ ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(β+α)/2‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−β/ 2‖u1(s) − u2(s)‖∞ ds 
+
+For the norm ‖ · ‖ ∞, we obtain 
+
+‖u1(t) − u2(t)‖∞ ≤ + C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+γ)/2‖(u1(s) − u2(s)‖Hβ ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+α)/2‖v1(s) − v2(s)‖H−α ds 31 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε)/2‖u1(s) − u2(s)‖∞ ds 
+
+Lastly, we control the difference between v1 and v2 with 
+
+‖v1(t) − v2(t)‖H−α ≤ C
+
+∫ t
+
+> 0
+
+‖v1(s) − v2(s)‖H−α ds + C
+
+∫ t
+
+> 0
+
+‖u1(s) − u2(s)‖∞ ds 
+
+Then, we have proved that 
+
+‖(u1(t), v 1(t)) − (u2(t), v 2(t)) ‖(L∞ ∩Hβ )×H−α
+
+≤ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+γ)/2‖(u1(s), v 1(s)) − (u2(s), v 2(s)) ‖(L∞∩Hβ )×H−α ds. 
+
+The proof is concluded by a singular version of Gr¨ onwall’s inequality, as in Proposition 5.1 . 
+
+Now, we have the last arguments to conclude the proof of our main result. 
+
+Proof of Theorem 2.10 . Let ( u, v ) the unique solution of Equation ( 3), associated to ( u0, v 0). The sequence (¯ vN )N is tight and from the previous results, it admits a unique limit point, v.Then, ¯ vN converges in distribution to this unique limit point. Therefore, it implies that ¯ uN
+
+converges to u. And as the limit ( u, v ) is deterministic, we prove that (¯ uN , ¯vN ) converges in probability to ( u, v ). To conclude, let us prove the convergence without truncation. For all 0 < ε < 1, on the event 
+
+{
+
+sup 
+
+> 0≤t≤T
+
+‖(¯ uN (t), ¯vN (t)) − (u(t), v (t)) ‖(L∞ ∩HβN )×H−α ≤ ε
+
+}
+
+we have sup 0≤t≤T ‖(¯ uN (t), ¯vN (t)) ‖(L∞ ∩HβN )×H−α ≤ M + 1. This implies that τN ≥ T , and that (uN , v N ) is well-defined on [0 , T ] and is equal to the process (¯ uN , ¯vN ). Hence, we have 
+
+P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖(uN (t), v N (t)) − (u(t), v (t)) ‖(L∞ ∩HβN )×H−α > ε 
+
+)
+
+≤ P
+
+(
+
+sup 
+
+> 0≤t≤T
+
+‖(¯ uN (t), ¯vN (t)) − (u(t), v (t)) ‖(L∞ ∩HβN )×H−α > ε 
+
+)
+
+−−−−→  
+
+> N→∞
+
+0.
+
+This ends the proof. 
+
+Appendix A. Product rules for discrete Sobolev space 
+
+The goal of this section is to derive the product rules for discrete Sobolev spaces. For u ∈ HN , we define its discrete (complex) Fourier coefficients ̂
+
+u(k) = 1
+
+N 
+
+> N−1
+
+∑
+
+> l=0
+
+u(l)e−2iπlk/N , −(N − 1) /2 ≤ k ≤ (N − 1) /2.
+
+These Fourier coefficient are related to the decomposition in the eigenbasis ( ϕm,N , ψ m,N ) by 
+
+|̂ u(m)|2 + |̂ u(−m)|2 = 〈u, ϕ m,N 〉2 + 〈u, ψ m,N 〉2, 0 ≤ m ≤ (N − 1) /2.
+
+Then, the discrete Sobolev norms can be expressed using the Fourier coefficients. 
+
+Lemma A.1. For all β > 1/2, there exists c > 0 such that for all u ∈ HN ,
+
+‖u‖∞ ≤ ‖ u‖HβN
+
+.32 A. DEBUSSCHE, B. HUGUET 
+
+Proof. For 0 ≤ j ≤ N − 1, the inverse Fourier formula states that 
+
+u(j) =  
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+̂
+
+u(k)e2iπkj/N .
+
+Then, from Cauhy-Schwartz inequality, we have 
+
+|u(j)| ≤ 
+
+ 
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+(1 + |k|2)β |̂ u(k)|2
+
+ 
+
+> 1/2
+
+ 
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+(1 + |k|2)−β
+
+
+
+> 1/2
+
+≤ c
+
+ 
+
+> (N−1) /2
+
+∑
+
+> k=0
+
+(1 + |k|2)β (〈u, ϕ k,N 〉2 + 〈u, ψ k,N 〉2)
+
+> 1/2
+
+.
+
+To conclude, the eigenvalue λk,N are equivalent to k2, uniformly in N . Therefore, we have proved that |u(j)| ≤ c‖u‖HβN
+
+, for all 0 ≤ j ≤ N − 1. 
+
+As an immediate consequence, we have a first product rule for H0 
+
+> N
+
+× HβN → H0 
+
+> N
+
+, for β > 1/2, and its dual version, H0 
+
+> N
+
+× H0 
+
+> N
+
+→ H−βN .
+
+Proposition A.2. For all β > 1/2, there exists c > 0 such that for all u, v ∈ HN
+
+‖uv ‖H0 
+
+> N
+
+≤ c‖u‖H0 
+
+> N
+
+‖v‖HβN
+
+, and ‖uv ‖H−βN
+
+≤ c‖u‖H0 
+
+> N
+
+‖v‖H0 
+
+> N
+
+.
+
+Proof. The first inequality is direct. Let u, v, ϕ ∈ HN , then, we have 
+
+〈uv, ϕ 〉 ≤ ‖ u‖H0 
+
+> N
+
+‖vϕ ‖H0 
+
+> N
+
+≤ c‖u‖H0 
+
+> N
+
+‖v‖H0 
+
+> N
+
+‖ϕ‖HβN
+
+.
+
+Hence the result. 
+
+Then, we establish that HβN is an algebra, for β > 1/2. We follow the ideas from [ 5] and [ 20 ]. In order to do so, we introduce the trigonometric interpolation IN : HN → L2 as 
+
+IN (u)( x) =  
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+̂
+
+u(k)e2iπkx .
+
+It is the only trigonometric polynomial of degree smaller than ( N − 1) /2, which interpolates u on the collocation points j/N , for 0 ≤ j ≤ N − 1. The following lemma states that IN is continuous for the Sobolev norms. 
+
+Lemma A.3. For all 0 ≤ β ≤ 1, there exists c > 0 such that, for all u ∈ HN ,
+
+c−1‖IN (u)‖Hβ ≤ ‖ u‖HβN
+
+≤ c‖IN (u)‖Hβ .
+
+Proof. From Parseval’ identity, we have ‖IN (u)‖L2 = ‖u‖H0 
+
+> N
+
+. On the other hand, we have 
+
+‖u‖2
+
+> H1
+> N
+
+= ‖u‖2
+
+> H0
+> N
+
++ ‖∇ + 
+
+> N
+
+u‖2
+
+> H0
+> N
+
+. For all −(N − 1) /2 ≤ k ≤ (N − 1) /2, we have ̂
+
+∇+ 
+
+> N
+
+u(k) = N (e2iπk/N − 1) ̂u(k).
+
+Then, we have 
+
+‖∇ + 
+
+> N
+
+u‖2
+
+> H0
+> N
+
+= 
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+∣∣∣̂ ∇+ 
+
+> N
+
+u(k)
+
+∣∣∣
+
+> 2
+
+= 
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+|2πk |2
+
+∣∣∣∣
+
+e2iπk/N − 1
+
+2πk/N 
+
+∣∣∣∣
+
+> 2
+
+|̂ u(k)|233 
+
+Hence, there exists C > 0 such that 
+
+C−1‖∇ + 
+
+> N
+
+u‖2
+
+> H0
+> N
+
+≤ 
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+|2πk |2|̂ u(k)|2 ≤ C‖∇ + 
+
+> N
+
+u‖2
+
+> H0
+> N
+
+.
+
+To conclude on the H1 
+
+> N
+
+case, let us remark that  
+
+> (N−1) /2
+
+∑ 
+
+> k=−(N−1) /2
+
+|2πk |2|̂ u(k)|2 = ‖∇ IN (u)‖2 
+
+> L2
+
+.
+
+Therefore, we have proved the result for β = 0 and β = 1. The general case is obtained by linear interpolation. 
+
+The upper bound β ≤ 1 is artificial. In order to extend the result, up to β = 2, all we need to do is a control over ‖IN (u)‖H2 . It resumes as controlling ‖∆N u)‖H0 
+
+> N
+
+, with similar arguments. The interpolation IN allows working with classical Sobolev spaces, and their classical estimates. We obtain our second product rule. 
+
+Proposition A.4. For all 1/2 < β ≤ 1, there exists c > 0 such that u, v ∈ HN
+
+‖uv ‖HβN
+
+≤ c‖u‖HβN
+
+‖v‖HβN
+
+.
+
+Proof. Let u, v ∈ HN . Then, IN (u)IN (v) is an interpolation of uv . Using [ 20 , Lemma 3.9], for all β > 1/2, there exists c(β) such that 
+
+‖uv ‖HβN
+
+≤ c(β)‖IN (u)IN (v)‖Hβ .
+
+Using a tame estimate, for classical Sobolev space, and our first lemma, we have 
+
+‖IN (u)IN (v)‖Hβ ≤ c‖IN (u)‖∞‖IN (v)‖Hβ + c‖IN (u)‖Hβ ‖IN (v)‖∞
+
+≤ c‖IN (u)‖Hβ ‖IN (u)‖Hβ
+
+We conclude using the previous lemma. 
+
+By bilinear interpolation between Lemma A.2 and Lemma A.4 , we are now able to prove a product rule in HαN × hβN , for all ( α, β ) ∈ [0 , 1] 2.
+
+Proof of Theorem 2.6 . Without any loss of generality, let us assume that 0 ≤ α ≤ β.(i). We have 1 /2 < β ≤ 1. For θ = ( β − α)/β ∈ [0 , 1], we have (α, β ) = θ(0 , β ) + (1 − λ)( β, β ).
+
+Form the previous lemmata, we have 
+
+{‖uv ‖H0 
+
+> N
+
+≤ C‖u‖H0 
+
+> N
+
+‖uv ‖HβN
+
+‖uv ‖HβN
+
+≤ C‖u‖HβN
+
+‖uv ‖HβN
+
+We use bilinear interpolation (see [ 4] exercise 5, chapter 3, [ 26 ]). Since [ HN , H βN ]α/β, 2, the real interpolation space of HN and HβN , is HαN and since [ HN , H βN ]α/β, 1 is embedded in HγN for all 
+
+γ < θ × 0 + (1 − θ)β = α, we have 
+
+‖uv ‖HγN ≤ C‖u‖HαN ‖uv ‖HβN
+
+.34 A. DEBUSSCHE, B. HUGUET 
+
+(ii ) Let 0 < ε , and θ = 2β 
+
+> 1+ ε
+
+. We have (α, β ) = θ
+
+( α
+
+β
+
+1 + ε
+
+2 , 1 + ε
+
+2
+
+)
+
++ (1 − θ)(0 , 0) .
+
+Let γ = α(1 + ε)/(2 β) − ε. From Lemma A.2 and point ( i), we have 
+
+
+
+‖uv ‖HγN ≤ C‖u‖H
+
+> 2α
+> β(1+ ε)
+> N
+
+‖uv ‖H
+
+> 1+ ε
+> 2
+> N
+
+‖uv ‖H− 1+ ε
+
+> 2
+> N
+
+≤ C‖u‖H0 
+
+> N
+
+‖uv ‖H0
+
+> N
+
+Then for all η < θγ − (1 − θ)(1 + ε)/2 = α + β − 1/2 − ε(1 /2 + 2 β/ (1 + ε)), we have, again by bilinear interpolation, 
+
+‖uv ‖HηN ≤ C‖u‖HαN ‖uv ‖HβN
+
+.
+
+This ends the proof. 
+
+To conclude, we obtain dual version, in H−αN × HβN .
+
+Corollary 2.6 . For all ϕ ∈ HN , we have 
+
+〈uv, ϕ 〉 ≤ ‖ u‖H−αN
+
+‖vϕ ‖HαN .
+
+From point ( i) from the previous lemma, for all 0 ≤ β, γ such that 0 < α < β ∧γ and 1 /2 < β ∨γ,we have 
+
+〈uv, ϕ 〉 ≤ ‖ u‖H−αN
+
+‖v‖HβN
+
+‖ϕ‖HγN .
+
+This proves point ( i). The second point is prove similarly, using the product rule ( ii ). 
+
+Appendix B. Existence and uniqueness of the solution 
+
+In this section, we prove that for every initial data ( u(0) , v (0) is ( L∞ ∩ Hβ ) × H−α, there exists a unique solution to Equation ( 3). 
+
+Existence. The proof of the existence of a solution follows the same steps as Proposition 5.4 . We define the truncated field RMC and RMD , with compactly supported bMC and bMD . Let T = ( T1, T2)be the operator defined on C ([0 , T ], (L∞ ∩ Hβ ) × H−α) as 
+
+T1(u, v )( t) = e∆tu0 +
+
+∫ t
+
+> 0
+
+e∆( t−s)RMC (u(s), v (s)) ds 
+
+T2(u, v )( t) = v0 +
+
+∫ t
+
+> 0
+
+RMD (u(s), v (s)) ds 
+
+First, we remark that C ([0 , T ], (L∞ ∩ Hβ ) × H−α) is stable under T . Then, we show that for 0 < T 0 ≤ T small enough, the restriction of T to C([0 , T 0]) is a contraction. This allows to construct a solution ( u, v ) on [0 , T 0] and on [0 , T ] by iteration. To conclude, according to Assumption 2.2 and the maximum principle, u is bounded in L∞ by max {M, ‖u(0) ‖∞}. It follows that bMC (u) = bC (u), and bMD (u) = bD(u). So ( u, v ) is also a solution for the initial problem, without truncation. 35 
+
+Uniqueness. Let ( u1, v 1), (u2, v 2) ∈ C ([0 , T ], (L∞ ∩ Hβ ) × H−α), be two solutions of Equation (3), with the same initial data ( u0, v 0). Let 0 < ε, γ , such that 1 /2 + ε + γ < 2 and −γ < 
+
+1/2 + ε − α − 1/2. For all 0 ≤ t ≤ T , we have 
+
+‖u1(t) − u2(t)‖L∞∩Hβ ≤‖ u1(t) − u2(t)‖H1/2+ ε
+
+≤C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+γ)/2‖u1(s)‖Hβ ‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+γ)/2‖(u1(s) − u2(s)‖Hβ ‖v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+α)/2‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε)/2‖u1(s) − u2(s)‖∞ ds 
+
+≤ + C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+γ)/2‖(u1(s) − u2(s)‖Hβ ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+α)/2‖v1(s) − v2(s)‖H−α ds 
+
++ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε)/2‖u1(s) − u2(s)‖∞ ds 
+
+Lastly, we control the difference between v1 and v2 with 
+
+‖v1(t) − v2(t)‖H−α ≤ C
+
+∫ t
+
+> 0
+
+‖v1(s) − v2(s)‖H−α ds + C
+
+∫ t
+
+> 0
+
+‖u1(s) − u2(s)‖∞ ds 
+
+Then, we have proved that 
+
+‖(u1(t), v 1(t)) − (u2(t), v 2(t)) ‖(L∞ ∩Hβ )×H−α
+
+≤ C
+
+∫ t
+
+> 0
+
+(t − s)−(1 /2+ ε+γ)/2‖(u1(s), v 1(s)) − (u2(s), v 2(s)) ‖(L∞∩Hβ )×H−α ds. 
+
+The proof of uniqueness is concluded by a singular version of Gr¨ onwall’s inequality, as in Propo-sition 5.1 .
+
+References 
+
+[1] L. Arnold and M. Theodosopulu. Deterministic limit of the stochastic model of chemical reactions with diffusion. Adv. Appl. Probab. , 12:367–379, 1980. [2] V. Bansaye, A. Moussa, and F. Mu˜ noz-Hern´ andez. Stability of a cross-diffusion system and approximation by repulsive random walks: a duality approach. J. Eur. Math. Soc. (JEMS) , 27(9):3889–3928, 2025. [3] N. Barkai and S. Leibler. Circadian clocks limited by noise. Nature , 403(6767):267–268, 2000. [4] J. Bergh and J. L¨ ofstr¨ om. Interpolation spaces. An introduction , volume 223 of Grundlehren Math. Wiss. 
+
+Springer, Cham, 1976. [5] J. Bernier and E. Faou. Existence and stability of traveling waves for discrete nonlinear Schr¨ odinger equations over long times. SIAM J. Math. Anal. , 51(3):1607–1656, 2019. [6] D. Blount. Comparison of a stochastic models of a chemical reaction with diffusion and the deterministic model . PhD thesis, University of Wisconsin, 1987. [7] D. Blount. Comparison of stochastic and deterministic models of a linear chemical reaction with diffusion. 
+
+Ann. Probab. , 19(4):1440–1462, 1991. [8] D. Blount. Law of large numbers in the supremum norm for a chemical reaction with diffusion. Ann. Appl. Probab. , 2(1):131–141, 1992. 36 A. DEBUSSCHE, B. HUGUET 
+
+[9] L. Cai, N. Friedman, and X. S. Xie. Stochastic protein expression in individual cells at the single molecule level. Nature , 440:358–362, 2006. [10] A. Crudu, A. Debussche, A. Muller, and O. Radulescu. Convergence of stochastic gene networks to hybrid piecewise deterministic processes. Ann. Appl. Probab. , 22(5):1822–1859, 2012. [11] A. Crudu, A. Debussche, and O. Radulescu. Hybrid stochastic simplifications for multiscale gene networks. 
+
+BMC Syst. Biol. , 3:89, 2009. [12] A. Debussche and M. J. Nguepedja Nankep. A law of large numbers in the supremum norm for a multiscale stochastic spatial gene network. Int. J. Biostat. , 15(2):39, 2019. Id/No 20170091. [13] A. Debussche and M. J. Nguepedja Nankep. A piecewise deterministic limit for a multiscale stochastic spatial gene network. Appl. Math. Optim. , 84:1731–1767, 2021. [14] M. Delbr¨ uck. Statistical fluctuations in autocatalytic reactions. J. Chem. Phys. , 8:120–124, 1940. [15] S. N. Ethier and T. G. Kurtz. Markov processes. Characterization and convergence . Wiley Ser. Probab. Math. Stat. John Wiley & Sons, Hoboken, NJ, 1986. [16] M. Gubinelli and M. Hofmanov´ a. A PDE construction of the Euclidean Φ 43 quantum field theory. Commun. Math. Phys. , 384(1):1–75, 2021. [17] B. Huguet. Strong approximation and central limit theorems for multiscale stochastic gene networks. Preprint, arXiv:2504.04768, 2026. [18] M. Kærn, T. C. Elston, W. J. Blake, and J. J. Collins. Stochasticity in gene expression: from theories to phenotypes. Nat. Rev. Genet. , 6:451–464, 2005. [19] T. B. Kepler and T. C. Elston. Stochasticity in transcriptional regulation: origins, consequences, and math-ematical representations. Biophys. J. , 81(6):3116–3136, 2001. [20] C. A. Khalil and J. Bernier. Almost conservation of the harmonic actions for fully discretized nonlinear Klein–Gordon equations at low regularity. 2024. [21] P. Kotelenez. Law of large numbers and central limit theorem for linear chemical reactions with diffusion. 
+
+Ann. Probab. , 14:173–193, 1986. [22] P. Kotelenez. Fluctuations near homogeneous states of chemical reactions with diffusion. Adv. Appl. Probab. ,19:352–370, 1987. [23] T. G. Kurtz. Solutions of ordinary differential equations as limits of pure jump Markov processes. J. Appl. Probab. , 7:49–58, 1970. [24] T. G. Kurtz. Limit theorems for sequences of jump Markov processes approximating ordinary differential processes. J. Appl. Probab. , 8:344–356, 1971. [25] T. G. Kurtz. Strong approximation theorems for density dependent Markov chains. Stochastic Processes Appl. , 6:223–240, 1978. [26] J. L. Lions and J. Peetre. On a class of interpolation spaces. Publ. Math., Inst. Hautes ´Etud. Sci. , 19:5–68, 1964. [27] J. Martin and N. Perkowski. Paracontrolled distributions on Bravais lattices and weak universality of the 2d parabolic Anderson model. Ann. Inst. Henri Poincar´ e, Probab. Stat. , 55(4):2058–2110, 2019. [28] E. Pardoux and B. Samegni-Kepgnou. Large deviation principle for epidemic models. J. Appl. Probab. ,54(3):905–920, 2017. [29] J. Paulsson. Summing up the noise in gene networks. Nature , 427:415–418, 2004. 
+
+Univ Rennes, CNRS, IRMAR - UMR 6625, F-35000 Rennes, France 
+
+Email address : baptiste.huguet@math.cnrs.fr 
+
+Email address : arnaud.debussche@ens-rennes.fr 
+
+URL : https://www.math.cnrs.fr/~bhuguet/

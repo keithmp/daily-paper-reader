@@ -1,0 +1,723 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-03T20:00:06.986703+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 4,
+    "deep_cap": 8,
+    "deep_selected": 4,
+    "quick_candidates": 25,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2603.29546v1",
+      "title": "Sampling from the Solution Space and Metabolic Environments of Genome-Scale Metabolic Models",
+      "abstract": "Flux sampling is an analysis that, based on a distribution, picks randomly an efficient number of points from the solution space of a metabolic model. Unlike most constraint-based analyses, flux sampling does not require an objective function to optimize, allowing for the exploration of the whole spectrum of the phenotypes a species can exhibit. However, sampling can also be restricted to a subspace where a chosen objective reaches at least a specified fraction of its optimum. This targeted approach adds value when investigating phenotypes that are optimal for a specific function. Contrary to Flux Balance Analysis, which returns a single solution, sampling leverages statistical power to uncover phenotypes that otherwise would be masked. This can be especially useful when changing the conditions (medium) in which a species lives. Here, we highlight some state-of-the-art methods for applying flux sampling at Genome-Scale Metabolic Models in different scenarios, and we showcase flux sampling applications",
+      "authors": [
+        "Haris Zafeiropoulos",
+        "Daniel Rios Garza"
+      ],
+      "primary_category": "q-bio.MN",
+      "categories": [
+        "q-bio.MN",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-31T10:28:37+00:00",
+      "link": "https://arxiv.org/pdf/2603.29546v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Genome-scale metabolic models and phenotype exploration",
+      "llm_evidence_cn": "全基因组尺度代谢模型与表型探索",
+      "llm_evidence": "全基因组尺度代谢模型与表型探索",
+      "canonical_evidence": "全基因组尺度代谢模型与表型探索",
+      "llm_tldr_en": "A flux sampling method to explore the phenotypic space of genome-scale metabolic models.",
+      "llm_tldr_cn": "一种用于探索全基因组尺度代谢模型表型空间的通量采样方法。",
+      "llm_tldr": "一种用于探索全基因组尺度代谢模型表型空间的通量采样方法。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.02286v1",
+      "title": "Bayesian covariance regression for differential network analysis of zero-inflated microbiome data",
+      "abstract": "Microbial interaction networks can rewire in response to host and environmental factors, yet most existing methods for network estimation treat the covariance structure as static across samples. We propose TRECOR, a Bayesian covariance regression framework for inferring covariate-dependent microbial covariation networks from zero-inflated compositional count data. The method models microbiome counts through a latent multivariate normal distribution defined on the internal nodes of a phylogenetic tree, where both the mean and covariance of the latent variables depend on covariates. The covariance is decomposed into a sparse baseline component, representing a stable microbial covariation network, and a low-rank covariate-dependent perturbation that captures network rewiring. By exploiting the binomial factorization of the multinomial distribution under the logistic-tree-normal representation, the model achieves full conjugacy and posterior inference proceeds via an efficient Gibbs sampler. In simulations, TRECOR substantially outperforms covariance regression applied to transformed counts, demonstrating the importance of explicitly modeling the compositional sampling layer. Applied to gut microbiome data from 531 individuals across three countries, we find that age has the largest effect on microbial covariation, which is a pattern not revealed by mean-based analysis alone. The age-associated differential network is enriched for Enterobacteriaceae and related families, consistent with known developmental shifts in the gut microbiota, while country-associated differential networks implicate diet-related taxa.",
+      "authors": [
+        "Zichun Xu",
+        "Jing Ma"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.AP"
+      ],
+      "published": "2026-04-02T17:26:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.02286v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "microbiome network analysis using phylogenetic tree nodes",
+      "llm_evidence_cn": "利用系统发育树节点的微生物组网络分析",
+      "llm_evidence": "利用系统发育树节点的微生物组网络分析",
+      "canonical_evidence": "利用系统发育树节点的微生物组网络分析",
+      "llm_tldr_en": "A Bayesian framework for microbial networks using phylogenetic trees to model covariate-dependent interactions.",
+      "llm_tldr_cn": "一种利用系统发育树对协变量相关的微生物相互作用进行建模的贝叶斯框架。",
+      "llm_tldr": "一种利用系统发育树对协变量相关的微生物相互作用进行建模的贝叶斯框架。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.01187v2",
+      "title": "Competition at the front of expanding populations",
+      "abstract": "When competing species grow into new territory, the population is dominated by descendants of successful ancestors at the expansion front. Successful ancestry depends on both the reproductive advantage (fitness), as well as ability and opportunity to colonize new domains. We present a model that integrates both elements by coupling the classic description of one-dimensional competition (Fisher equation) to the minimal model of front shape (KPZ equation). Macroscopic manifestations of these equations are distinct growth morphologies controlled by expansion rates, competitive abilities, or spatial anisotropy. In some cases the ability to expand in space may overcome reproductive advantage in colonizing new territory. When new traits appear with accumulating mutations, we find that variations in fitness in range expansion may be described by the Tracy--Widom distribution.",
+      "authors": [
+        "Sergio Eraso",
+        "Mehran Kardar"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-01T17:35:04+00:00",
+      "link": "https://arxiv.org/pdf/2604.01187v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "population expansion and evolutionary dynamics with mutations",
+      "llm_evidence_cn": "种群扩张与突变演化动力学",
+      "llm_evidence": "种群扩张与突变演化动力学",
+      "canonical_evidence": "种群扩张与突变演化动力学",
+      "llm_tldr_en": "Models how fitness and spatial expansion interact in competing populations with accumulating mutations.",
+      "llm_tldr_cn": "研究了竞争种群中适应度与空间扩张在突变积累下的相互作用。",
+      "llm_tldr": "研究了竞争种群中适应度与空间扩张在突变积累下的相互作用。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.01949v1",
+      "title": "annbatch unlocks terabyte-scale training of biological data in anndata",
+      "abstract": "The scale of biological datasets now routinely exceeds system memory, making data access rather than model computation the primary bottleneck in training machine-learning models. This bottleneck is particularly acute in biology, where widely used community data formats must support heterogeneous metadata, sparse and dense assays, and downstream analysis within established computational ecosystems. Here we present annbatch, a mini-batch loader native to anndata that enables out-of-core training directly on disk-backed datasets. Across single-cell transcriptomics, microscopy and whole-genome sequencing benchmarks, annbatch increases loading throughput by up to an order of magnitude and shortens training from days to hours, while remaining fully compatible with the scverse ecosystem. Annbatch establishes a practical data-loading infrastructure for scalable biological AI, allowing increasingly large and diverse datasets to be used without abandoning standard biological data formats. Github: https://github.com/scverse/annbatch",
+      "authors": [
+        "Ilan Gold",
+        "Felix Fischer",
+        "Lucas Arnoldt",
+        "F. Alexander Wolf",
+        "Fabian J. Theis"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-02T12:16:07+00:00",
+      "link": "https://arxiv.org/pdf/2604.01949v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI and machine learning for whole-genome sequencing and biological data",
+      "llm_evidence_cn": "利用AI和机器学习处理全基因组测序和生物数据",
+      "llm_evidence": "利用AI和机器学习处理全基因组测序和生物数据",
+      "canonical_evidence": "利用AI和机器学习处理全基因组测序和生物数据",
+      "llm_tldr_en": "Introduces annbatch, a tool for efficient machine learning training on terabyte-scale biological datasets.",
+      "llm_tldr_cn": "推出了 annbatch，一种用于在 TB 级生物数据集上进行高效机器学习训练的工具。",
+      "llm_tldr": "推出了 annbatch，一种用于在 TB 级生物数据集上进行高效机器学习训练的工具。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.25237v1",
+      "title": "Deep learning of committor and explainable artificial intelligence analysis for identifying reaction coordinates",
+      "abstract": "In complex molecular systems, the reaction coordinate (RC) that characterizes transition pathways is essential to understand underlying molecular mechanisms. This review surveys a framework for identifying the RC by applying deep learning to the committor, which provides the most reliable measure of the progress along a transition path. The inputs to the neural network are collective variables (CVs) expressed as functions of atomic coordinates of the system, and the corresponding RC is predicted as the output by training the network on the committor as the learning target. Because deep learning models typically operate in a black-box manner, it is difficult to determine which input variables govern the predictions. The incorporation of eXplainable Artificial Intelligence (XAI) techniques enables quantitative assessment of the contributions of individual input variables to the predictions. This approach allows the identification of CVs that play dominant roles and demonstrates that the committor distribution on the surface using important CVs is separated by well-defined boundaries. The framework provides an explainable deep learning strategy for assigning a molecular mechanism from the RC and is applicable to a wide range of complex molecular systems.",
+      "authors": [
+        "Toshifumi Mori",
+        "Kei-ichi Okazaki",
+        "Kang Kim",
+        "Nobuyuki Matubayasi"
+      ],
+      "primary_category": "physics.chem-ph",
+      "categories": [
+        "physics.chem-ph",
+        "cond-mat.soft"
+      ],
+      "published": "2026-03-26T09:42:08+00:00",
+      "link": "https://arxiv.org/pdf/2603.25237v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Deep learning for identifying reaction coordinates in molecular systems",
+      "llm_evidence_cn": "深度学习用于识别分子系统中的反应坐标",
+      "llm_evidence": "深度学习用于识别分子系统中的反应坐标",
+      "canonical_evidence": "深度学习用于识别分子系统中的反应坐标",
+      "llm_tldr_en": "Reviews deep learning applications for identifying reaction coordinates to understand molecular mechanisms.",
+      "llm_tldr_cn": "综述了应用深度学习识别反应坐标以理解分子机制的方法。",
+      "llm_tldr": "综述了应用深度学习识别反应坐标以理解分子机制的方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.26071v1",
+      "title": "MUST: Modality-Specific Representation-Aware Transformer for Diffusion-Enhanced Survival Prediction with Missing Modality",
+      "abstract": "Accurate survival prediction from multimodal medical data is essential for precision oncology, yet clinical deployment faces a persistent challenge: modalities are frequently incomplete due to cost constraints, technical limitations, or retrospective data availability. While recent methods attempt to address missing modalities through feature alignment or joint distribution learning, they fundamentally lack explicit modeling of the unique contributions of each modality as opposed to the information derivable from other modalities. We propose MUST (Modality-Specific representation-aware Transformer), a novel framework that explicitly decomposes each modality's representation into modality-specific and cross-modal contextualized components through algebraic constraints in a learned low-rank shared subspace. This decomposition enables precise identification of what information is lost when a modality is absent. For the truly modality-specific information that cannot be inferred from available modalities, we employ conditional latent diffusion models to generate high-quality representations conditioned on recovered shared information and learned structural priors. Extensive experiments on five TCGA cancer datasets demonstrate that MUST achieves state-of-the-art performance with complete data while maintaining robust predictions in both missing pathology and missing genomics conditions, with clinically acceptable inference latency.",
+      "authors": [
+        "Kyungwon Kim",
+        "Dosik Hwang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-03-27T04:56:56+00:00",
+      "link": "https://arxiv.org/pdf/2603.26071v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multimodal AI for survival prediction in oncology",
+      "llm_evidence_cn": "用于肿瘤生存预测的多模态人工智能",
+      "llm_evidence": "用于肿瘤生存预测的多模态人工智能",
+      "canonical_evidence": "用于肿瘤生存预测的多模态人工智能",
+      "llm_tldr_en": "A Transformer framework for survival prediction using incomplete multimodal medical data in oncology.",
+      "llm_tldr_cn": "一种利用不完整的肿瘤多模态医疗数据进行生存预测的Transformer框架。",
+      "llm_tldr": "一种利用不完整的肿瘤多模态医疗数据进行生存预测的Transformer框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.29529v1",
+      "title": "Sampling at intermediate temperatures is optimal for training large language models in protein structure prediction",
+      "abstract": "We investigate the parameter space of transformer models trained on protein sequence data using a statistical mechanics framework, sampling the loss landscape at varying temperatures by Langevin dynamics to characterize the low-loss manifold and understand the mechanisms underlying the superior performance of transformers in protein structure prediction. We find that, at variance with feedforward networks, the lack of a first--order--like transition in the loss of the transformer produces a range of intermediate temperatures with good learning properties. We show that the parameters of most layers are highly conserved at these temperatures if the dimension of the embedding is optimal, and we provide an operative way to find this dimension. Finally, we show that the attention matrix is more predictive of the contact maps of the protein at higher temperatures and for higher dimensions of the embedding than those optimal for learning.",
+      "authors": [
+        "L. Ghiringhelli",
+        "A. Zambon",
+        "G. Tiana"
+      ],
+      "primary_category": "cond-mat.dis-nn",
+      "categories": [
+        "cond-mat.dis-nn",
+        "cs.LG",
+        "q-bio.BM"
+      ],
+      "published": "2026-03-31T10:09:30+00:00",
+      "link": "https://arxiv.org/pdf/2603.29529v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI training optimization for protein structure prediction",
+      "llm_evidence_cn": "利用AI优化蛋白质结构预测的训练过程",
+      "llm_evidence": "利用AI优化蛋白质结构预测的训练过程",
+      "canonical_evidence": "利用AI优化蛋白质结构预测的训练过程",
+      "llm_tldr_en": "Analyzes transformer training dynamics to improve protein structure prediction performance.",
+      "llm_tldr_cn": "通过统计力学框架分析Transformer训练动态，优化蛋白质结构预测性能。",
+      "llm_tldr": "通过统计力学框架分析Transformer训练动态，优化蛋白质结构预测性能。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.26889v1",
+      "title": "Property-Guided Molecular Generation and Optimization via Latent Flows",
+      "abstract": "Molecular discovery is increasingly framed as an inverse design problem: identifying molecular structures that satisfy desired property profiles under feasibility constraints. While recent generative models provide continuous latent representations of chemical space, targeted optimization within these representations often leads to degraded validity, loss of structural fidelity, or unstable behavior. We introduce MoltenFlow, a modular framework that combines property-organized latent representations with flow-matching generative priors and gradient-based guidance. This formulation supports both conditioned generation and local optimization within a single latent-space framework. We show that guided latent flows enable efficient multi-objective molecular optimization under fixed oracle budgets with controllable trade-offs, while a learned flow prior improves unconditional generation quality.",
+      "authors": [
+        "Alexander Arjun Lobo",
+        "Urvi Awasthi",
+        "Leonid Zhukov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cond-mat.mtrl-sci"
+      ],
+      "published": "2026-03-27T18:09:52+00:00",
+      "link": "https://arxiv.org/pdf/2603.26889v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-guided molecular generation and optimization",
+      "llm_evidence_cn": "AI引导的分子生成与优化",
+      "llm_evidence": "AI引导的分子生成与优化",
+      "canonical_evidence": "AI引导的分子生成与优化",
+      "llm_tldr_en": "Introduces MoltenFlow for property-guided molecular generation and multi-objective optimization.",
+      "llm_tldr_cn": "引入了MoltenFlow用于属性引导的分子生成和多目标优化。",
+      "llm_tldr": "引入了MoltenFlow用于属性引导的分子生成和多目标优化。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.29727v2",
+      "title": "Latent-Y: A Lab-Validated Autonomous Agent for De Novo Drug Design",
+      "abstract": "Drug discovery relies on iterative expert workflows that are slow to parallelize and difficult to scale. Here we introduce Latent-Y, an AI agent that autonomously executes complete antibody design campaigns from text prompts, covering literature review, target analysis, epitope identification, candidate design, computational validation, and selection of lab-ready sequences. Latent-Y is integrated into the Latent Labs Platform, where it operates in the same environment as drug-discovery experts with access to bioinformatics tools, biological databases, and scientific literature. The agent can run fully autonomously end-to-end, or collaboratively, where researchers review progress, provide feedback, and direct subsequent steps. Candidate antibodies are generated using Latent-X2, our frontier generative model for drug-like antibody design. We demonstrate the agent's capability across three distinct campaign types: epitope discovery guided by therapeutic specifications, cross-species binder design, and autonomous design from a scientific publication targeting human transferrin receptor for blood-brain barrier crossing. Across nine targets, Latent-Y produced lab-confirmed nanobody binders against six, achieving a 67% target-level success rate with binding affinities reaching the single-digit nanomolar range, without human filtering or intervention. In user studies, experts working with Latent-Y completed design campaigns 56 times faster than independent expert time estimates, compressing weeks of work into hours. Because Latent-X2 is a general-purpose atomic-level model for biologics design, the same agent architecture naturally extends to macrocyclic peptide and mini-binder design campaigns, broadening autonomous discovery across therapeutic modalities. Latent-Y is available to selected partners at https://platform.latentlabs.com.",
+      "authors": [
+        "Latent Labs Team",
+        "Sebastian M. Schmon",
+        "Daniella Pretorius",
+        "Simon Mathis",
+        "Rebecca Bartke-Croughan",
+        "Aishaini Puvanendran",
+        "James Vuckovic",
+        "Henry Kenlay",
+        "Mária Vlachynská",
+        "Alex Bridgland",
+        "Ivan Grishin",
+        "Sven Over",
+        "David Li",
+        "Bridget Li",
+        "Jonathan Crabbé",
+        "Agrin Hilmkil",
+        "Alexander W. R. Nelson",
+        "David Yuan",
+        "Annette Obika",
+        "Simon A. A. Kohl"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM"
+      ],
+      "published": "2026-03-31T13:26:33+00:00",
+      "link": "https://arxiv.org/pdf/2603.29727v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI agent for antibody design and bioinformatics analysis",
+      "llm_evidence_cn": "用于抗体设计和生物信息学分析的AI代理",
+      "llm_evidence": "用于抗体设计和生物信息学分析的AI代理",
+      "canonical_evidence": "用于抗体设计和生物信息学分析的AI代理",
+      "llm_tldr_en": "Introduces Latent-Y, an AI agent that automates antibody design and target analysis using biological databases.",
+      "llm_tldr_cn": "引入Latent-Y，一个利用生物数据库自动执行抗体设计和靶点分析的AI代理。",
+      "llm_tldr": "引入Latent-Y，一个利用生物数据库自动执行抗体设计和靶点分析的AI代理。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.26914v1",
+      "title": "A Bayesian Functional Concurrent Zero-Inflated Dirichlet-Multinomial Regression Model with Application to Infant Microbiome",
+      "abstract": "The infant microbiome undergoes rapid changes in composition over time and is associated with long-term risks of conditions such as immune strength, allergy, asthma, and other health outcomes. Modeling the associations between exposures or treatments and microbial composition over time is essential for understanding the factors that drive these changes. Estimating these temporal dynamics has several challenges including: repeated measures, overdispersion, compositionality, high-dimensional parameter spaces, and zero-inflation. Many longitudinal regression models used in human microbiome research assume constant effects over time that cannot capture time-varying or functional effects of exposures, ignore the compositional structure of the data by modeling each taxon separately, and are not equipped to handle potential zero-inflation. Dirichlet-multinomial (DM) regression models inherently accommodate overdispersion and the compositional structure of the data and have been extended to account for excess zeros. However, existing DM-based regression models are unable to additionally handle repeated measures designs. To fill this gap, we propose a functional concurrent zero-inflated Dirichlet-multinomial (FunC-ZIDM) regression model which is designed to model time-varying relations between observed covariates and microbial taxa while accounting for zero-inflation, compositionality, and repeated measures. Through simulation, we demonstrate that the model can accurately estimate the underlying functional relations and scale to large compositional spaces. We apply our model to investigate time-varying associations between infant microbiome composition and observed covariates during the 11-week postnatal period. We found that $α$-diversity (i.e., diversity of the microbiome within an individual) is positively associated with a higher gestational age and percentage of breast milk in the diet.",
+      "authors": [
+        "Brody Erlandson",
+        "Ander Wilson",
+        "Matthew D. Koslovsky"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.AP"
+      ],
+      "published": "2026-03-27T18:43:01+00:00",
+      "link": "https://arxiv.org/pdf/2603.26914v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Bayesian regression model for high-dimensional infant microbiome composition analysis",
+      "llm_evidence_cn": "用于高维婴儿微生物组组成分析的贝叶斯回归模型",
+      "llm_evidence": "用于高维婴儿微生物组组成分析的贝叶斯回归模型",
+      "canonical_evidence": "用于高维婴儿微生物组组成分析的贝叶斯回归模型",
+      "llm_tldr_en": "Proposes a Bayesian model to capture time-varying dynamics in infant microbiome data.",
+      "llm_tldr_cn": "提出了一种贝叶斯模型来捕捉婴儿微生物组数据中的随时间变化的动态。",
+      "llm_tldr": "提出了一种贝叶斯模型来捕捉婴儿微生物组数据中的随时间变化的动态。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.29842v1",
+      "title": "Toward Generalizable Whole Brain Representations with High-Resolution Light-Sheet Data",
+      "abstract": "Unprecedented visual details of biological structures are being revealed by subcellular-resolution whole-brain 3D microscopy data, enabled by recent advances in intact tissue processing and light-sheet fluorescence microscopy (LSFM). These volumetric data offer rich morphological and spatial cellular information, however, the lack of scalable data processing and analysis methods tailored to these petabyte-scale data poses a substantial challenge for accurate interpretation. Further, existing models for visual tasks such as object detection and classification struggle to generalize to this type of data. To accelerate the development of suitable methods and foundational models, we present CANVAS, a comprehensive set of high-resolution whole mouse brain LSFM benchmark data, encompassing six neuronal and immune cell-type markers, along with cell annotations and a leaderboard. We also demonstrate challenges in generalization of baseline models built on existing architectures, especially due to the heterogeneity in cellular morphology across phenotypes and anatomical locations in the brain. To the best of our knowledge, CANVAS is the first and largest LSFM benchmark that captures intact mouse brain tissue at subcellular level, and includes extensive annotations of cells throughout the brain.",
+      "authors": [
+        "Minyoung E. Kim",
+        "Dae Hee Yun",
+        "Aditi V. Patel",
+        "Madeline Hon",
+        "Webster Guan",
+        "Taegeon Lee",
+        "Brian Nguyen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-03-31T15:00:10+00:00",
+      "link": "https://arxiv.org/pdf/2603.29842v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI foundational models for high-resolution biological structures",
+      "llm_evidence_cn": "用于高分辨率生物结构的AI基础模型",
+      "llm_evidence": "用于高分辨率生物结构的AI基础模型",
+      "canonical_evidence": "用于高分辨率生物结构的AI基础模型",
+      "llm_tldr_en": "Presents CANVAS, a dataset and framework for developing AI models to interpret whole-brain microscopy data.",
+      "llm_tldr_cn": "提出CANVAS框架，旨在开发用于解释全脑显微成像数据的AI基础模型。",
+      "llm_tldr": "提出CANVAS框架，旨在开发用于解释全脑显微成像数据的AI基础模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.29376v2",
+      "title": "Assessing Multimodal Chronic Wound Embeddings with Expert Triplet Agreement",
+      "abstract": "Recessive dystrophic epidermolysis bullosa (RDEB) is a rare genetic skin disorder for which clinicians greatly benefit from finding similar cases using images and clinical text. However, off-the-shelf foundation models do not reliably capture clinically meaningful features for this heterogeneous, long-tail disease, and structured measurement of agreement with experts is challenging. To address these gaps, we propose evaluating embedding spaces with expert ordinal comparisons (triplet judgments), which are fast to collect and encode implicit clinical similarity knowledge. We further introduce TriDerm, a multimodal framework that learns interpretable wound representations from small cohorts by integrating wound imagery, boundary masks, and expert reports. On the vision side, TriDerm adapts visual foundation models to RDEB using wound-level attention pooling and non-contrastive representation learning. For text, we prompt large language models with comparison queries and recover medically meaningful representations via soft ordinal embeddings (SOE). We show that visual and textual modalities capture complementary aspects of wound phenotype, and that fusing both modalities yields 73.5% agreement with experts, outperforming the best off-the-shelf single-modality foundation model by over 5.6 percentage points. We make the expert annotation tool, model code and representative dataset samples publicly available.",
+      "authors": [
+        "Fabian Kabus",
+        "Julia Hindel",
+        "Jelena Bratulić",
+        "Meropi Karakioulaki",
+        "Ayush Gupta",
+        "Cristina Has",
+        "Thomas Brox",
+        "Abhinav Valada",
+        "Harald Binder"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-03-31T07:46:02+00:00",
+      "link": "https://arxiv.org/pdf/2603.29376v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI and multimodal embeddings for genetic skin disorder analysis",
+      "llm_evidence_cn": "利用AI和多模态嵌入分析遗传性皮肤病",
+      "llm_evidence": "利用AI和多模态嵌入分析遗传性皮肤病",
+      "canonical_evidence": "利用AI和多模态嵌入分析遗传性皮肤病",
+      "llm_tldr_en": "Proposes a multimodal framework to learn interpretable representations for rare genetic disease cases.",
+      "llm_tldr_cn": "提出了一种多模态框架，用于学习罕见遗传病病例的可解释表征。",
+      "llm_tldr": "提出了一种多模态框架，用于学习罕见遗传病病例的可解释表征。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2603.29977v1",
+      "title": "Quantifying Cross-Modal Interactions in Multimodal Glioma Survival Prediction via InterSHAP: Evidence for Additive Signal Integration",
+      "abstract": "Multimodal deep learning for cancer prognosis is commonly assumed to benefit from synergistic cross-modal interactions, yet this assumption has not been directly tested in survival prediction settings. This work adapts InterSHAP, a Shapley interaction index-based metric, from classification to Cox proportional hazards models and applies it to quantify cross-modal interactions in glioma survival prediction. Using TCGA-GBM and TCGA-LGG data (n=575), we evaluate four fusion architectures combining whole-slide image (WSI) and RNA-seq features. Our central finding is an inverse relationship between predictive performance and measured interaction: architectures achieving superior discrimination (C-index 0.64$\\to$0.82) exhibit equivalent or lower cross-modal interaction (4.8\\%$\\to$3.0\\%). Variance decomposition reveals stable additive contributions across all architectures (WSI${\\approx}$40\\%, RNA${\\approx}$55\\%, Interaction${\\approx}$4\\%), indicating that performance gains arise from complementary signal aggregation rather than learned synergy. These findings provide a practical model auditing tool for comparing fusion strategies, reframe the role of architectural complexity in multimodal fusion, and have implications for privacy-preserving federated deployment.",
+      "authors": [
+        "Iain Swift",
+        "JingHua Ye",
+        "Ruairi O'Reilly"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-03-31T16:39:56+00:00",
+      "link": "https://arxiv.org/pdf/2603.29977v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for glioma survival prediction using RNA-seq features",
+      "llm_evidence_cn": "利用RNA-seq特征进行胶质瘤生存预测的AI研究",
+      "llm_evidence": "利用RNA-seq特征进行胶质瘤生存预测的AI研究",
+      "canonical_evidence": "利用RNA-seq特征进行胶质瘤生存预测的AI研究",
+      "llm_tldr_en": "Evaluates cross-modal interactions in deep learning models for glioma survival using genomic and image data.",
+      "llm_tldr_cn": "利用基因组和图像数据评估了胶质瘤生存预测深度学习模型中的跨模态交互。",
+      "llm_tldr": "利用基因组和图像数据评估了胶质瘤生存预测深度学习模型中的跨模态交互。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.29446v1",
+      "title": "Law of large numbers for stochastic multiscale spatial gene networks",
+      "abstract": "We study a stochastic multiscale spatial gene network. These naturally arise in molecular biology. In our model, the reactants are subject to on-site reactions on both scales and diffusion on the continuous scale only, although diffusion on both scales could easily be handled. We obtain, under a light condition on the scales between the total population size and the mesh discretisation, the convergence of the stochastic system to a deterministic system consisting of a PDE coupled to a ODE. This is in contrast with the well-stirred case where jumps remain at the limit. In order to prove this convergence result, we develop some moments control for martingales in discrete Sobolev topologies and use products rule in discrete Sobolev spaces.",
+      "authors": [
+        "Arnaud Debussche",
+        "Baptiste Huguet"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR"
+      ],
+      "published": "2026-03-31T08:50:49+00:00",
+      "link": "https://arxiv.org/pdf/2603.29446v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "stochastic multiscale spatial gene networks in molecular biology",
+      "llm_evidence_cn": "分子生物学中的随机多尺度空间基因网络",
+      "llm_evidence": "分子生物学中的随机多尺度空间基因网络",
+      "canonical_evidence": "分子生物学中的随机多尺度空间基因网络",
+      "llm_tldr_en": "Analyzes the convergence of stochastic multiscale spatial gene networks to deterministic systems.",
+      "llm_tldr_cn": "分析了随机多尺度空间基因网络向确定性系统的收敛性。",
+      "llm_tldr": "分析了随机多尺度空间基因网络向确定性系统的收敛性。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00911v1",
+      "title": "Event Embedding of Protein Networks : Compositional Learning of Biological Function",
+      "abstract": "In this work, we study whether enforcing strict compositional structure in sequence embeddings yields meaningful geometric organization when applied to protein-protein interaction networks. Using Event2Vec, an additive sequence embedding model, we train 64-dimensional representations on random walks from the human STRING interactome, and compare against a DeepWalk baseline based on Word2Vec, trained on the same walks. We find that compositional structure substantially improves pathway coherence (30.2$\\times$ vs 2.9$\\times$ above random), functional analogy accuracy (mean similarity 0.966 vs 0.650), and hierarchical pathway organization, while geometric properties such as norm--degree anticorrelation are shared with or exceeded by the non-compositional baseline. These results indicate that enforced compositionality specifically benefits relational and compositional reasoning tasks in biological networks.",
+      "authors": [
+        "Antonin Sulc"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-01T13:53:35+00:00",
+      "link": "https://arxiv.org/pdf/2604.00911v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven protein network embedding for biological function",
+      "llm_evidence_cn": "利用AI进行蛋白质网络嵌入以研究生物功能",
+      "llm_evidence": "利用AI进行蛋白质网络嵌入以研究生物功能",
+      "canonical_evidence": "利用AI进行蛋白质网络嵌入以研究生物功能",
+      "llm_tldr_en": "Uses compositional learning on protein networks to improve functional analogy and pathway organization.",
+      "llm_tldr_cn": "利用组合学习方法对蛋白质网络进行嵌入，显著提升了功能类比和通路组织的准确性。",
+      "llm_tldr": "利用组合学习方法对蛋白质网络进行嵌入，显著提升了功能类比和通路组织的准确性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.00291v1",
+      "title": "Frege in the Flesh: Biolinguistics and the Neural Enforcement of Syntactic Structures",
+      "abstract": "Biolinguistics is the interdisciplinary scientific study of the biological foundations, evolution, and genetic basis of human language. It treats language as an innate biological organ or faculty of the mind, rather than a cultural tool, and it challenges a behaviorist conception of human language acquisition as being based on stimulus-response associations. Extracting its most essential component, it takes seriously the idea that mathematical, algebraic models of language capture something natural about the world. The syntactic structure-building operation of MERGE is thought to offer the scientific community a \"real joint of nature\", \"a (new) aspect of nature\" (Mukherji 2010), not merely a formal artefact. This mathematical theory of language is then seen as being able to offer biologists, geneticists and neuroscientists clearer instructions for how to explore language. The argument of this chapter proceeds in four steps. First, I clarify the object of inquiry for biolinguistics: not speech, communication, or generic sequence processing, but the internal computational system that generates hierarchically structured expressions. Second, I argue that this formal characterization matters for evolutionary explanation, because different conceptions of syntax imply different standards of what must be explained. Third, I suggest that a sufficiently explicit algebraic account of syntax places non-trivial constraints on candidate neural mechanisms. Finally, I consider how recent neurocomputational work begins to transform these constraints into empirically tractable hypotheses, while also noting the speculative and revisable character of the present program.",
+      "authors": [
+        "Elliot Murphy"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-03-31T22:32:51+00:00",
+      "link": "https://arxiv.org/pdf/2604.00291v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolution and genetic basis of human language",
+      "llm_evidence_cn": "人类语言的演化与遗传基础",
+      "llm_evidence": "人类语言的演化与遗传基础",
+      "canonical_evidence": "人类语言的演化与遗传基础",
+      "llm_tldr_en": "Explores the biological foundations and evolution of human language as an innate biological faculty.",
+      "llm_tldr_cn": "探讨了人类语言作为一种先天生物机能的生物学基础和演化过程。",
+      "llm_tldr": "探讨了人类语言作为一种先天生物机能的生物学基础和演化过程。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01018v1",
+      "title": "A Bilevel Integer Programming Approach for the Synchronous Attractor Control Problem",
+      "abstract": "Boolean networks are dynamical models of disease development in which the activation levels of genes are represented by binary variables. Given a Boolean network, controls represent mutations or medical treatments that fix the activation levels of selected genes so that all states in every attractor (i.e., long-term recurrent states) satisfy a desired phenotype. Our goal is to enumerate all minimal controls, identifying critical gene subsets in disease development and therapy. This problem has an inherent bilevel integer programming structure and is computationally challenging.   We propose an infeasibility-based Benders decomposition, a logic-based Benders framework for bilevel integer programs with multiple subproblems. In our application, each subproblem finds a forbidden attractor of a given length and yields a problem-specific feasibility cut. We also propose an auxiliary IP called subspace separation that finds a Boolean subspace that includes multiple forbidden attractors and thereby strengthens the cut. Numerical experiments show that the resulting algorithms are much more scalable than state-of-the-art methods and that subspace separation substantially improves performance.",
+      "authors": [
+        "Kyungduk Moon",
+        "Kangbok Lee",
+        "Loïc Paulevé"
+      ],
+      "primary_category": "math.OC",
+      "categories": [
+        "math.OC",
+        "cs.DM",
+        "math.DS",
+        "q-bio.MN"
+      ],
+      "published": "2026-04-01T15:19:23+00:00",
+      "link": "https://arxiv.org/pdf/2604.01018v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Boolean networks for gene activation and disease development",
+      "llm_evidence_cn": "用于基因激活和疾病发展的布尔网络",
+      "llm_evidence": "用于基因激活和疾病发展的布尔网络",
+      "canonical_evidence": "用于基因激活和疾病发展的布尔网络",
+      "llm_tldr_en": "Uses bilevel integer programming to control gene activation levels in Boolean networks for disease therapy.",
+      "llm_tldr_cn": "采用双层整数规划控制布尔网络中的基因激活水平，用于疾病治疗研究。",
+      "llm_tldr": "采用双层整数规划控制布尔网络中的基因激活水平，用于疾病治疗研究。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
