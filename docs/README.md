@@ -6,72 +6,61 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-03
-- 运行时间：2026-04-03 20:01:51 UTC
+- 最新运行日期：2026-04-04
+- 运行时间：2026-04-04 19:47:46 UTC
 - 运行状态：成功
-- 本次总论文数：17
-- 精读区：4
-- 速读区：13
+- 本次总论文数：13
+- 精读区：2
+- 速读区：11
 
 ### 今日简报（AI）
-今日精选 17 篇前沿论文，深度解析基因组代谢模型采样与种群扩张中的竞争机制。
-重点关注中间温度采样对蛋白质结构预测模型的优化作用，以及经实验验证的自主药物设计智能体 Latent
-- 详情：[/202604/03/README](/202604/03/README)
+今日精选 13 篇前沿成果，重点攻克纳米孔测序解码与量子启发下的细胞通讯建模。
+推荐关注 SynDe 算法对原始信号的精准还原，以及 QuantumXCT 利用量子纠缠模拟细胞交互的跨界创新。
+建议生物信息学爱好者深入探索量子生成模型与多组学数据结合带来的科研新机遇。
+- 详情：[/202604/04/README](/202604/04/README)
 
 ### 精读区论文标签
-1. [Sampling from the Solution Space and Metabolic Environments of Genome-Scale Metabolic Models](/202604/03/2603.29546v1-sampling-from-the-solution-space-and-metabolic-environments-of-genome-scale-metabolic-models)  
-   标签：评分：8.0/10、query:profile-1
-   evidence：全基因组尺度代谢模型与表型探索
-2. [Competition at the front of expanding populations](/202604/03/2604.01187v2-competition-at-the-front-of-expanding-populations)  
-   标签：评分：8.0/10、query:q5
-   evidence：种群扩张与突变演化动力学
-3. [annbatch unlocks terabyte-scale training of biological data in anndata](/202604/03/2604.01949v1-annbatch-unlocks-terabyte-scale-training-of-biological-data-in-anndata)  
+1. [SynDe: Syndrome-guided Decoding of Raw Nanopore Reads](/202604/04/2604.01054v1-synde-syndrome-guided-decoding-of-raw-nanopore-reads)  
    标签：评分：8.0/10、query:q7
-   evidence：利用AI和机器学习处理全基因组测序和生物数据
-4. [Bayesian covariance regression for differential network analysis of zero-inflated microbiome data](/202604/03/2604.02286v1-bayesian-covariance-regression-for-differential-network-analysis-of-zero-inflated-microbiome-data)  
-   标签：评分：8.0/10、query:q3
-   evidence：利用系统发育树节点的微生物组网络分析
+   evidence：原始纳米孔测序读取的解码与纠错
+2. [QuantumXCT: Learning Interaction-Induced State Transformation in Cell-Cell Communication via Quantum Entanglement and Generative Modeling](/202604/04/2604.02203v1-quantumxct-learning-interaction-induced-state-transformation-in-cell-cell-communication-via-quantum-entanglement-and-generative-modeling)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用AI进行单细胞转录组学和细胞通讯研究
 
 ### 速读区论文标签
-1. [Deep learning of committor and explainable artificial intelligence analysis for identifying reaction coordinates](/202604/03/2603.25237v1-deep-learning-of-committor-and-explainable-artificial-intelligence-analysis-for-identifying-reaction-coordinates)  
+1. [PiCSRL: Physics-Informed Contextual Spectral Reinforcement Learning](/202604/04/2603.26816v1-picsrl-physics-informed-contextual-spectral-reinforcement-learning)  
    标签：评分：7.0/10、query:q7
-   evidence：深度学习用于识别分子系统中的反应坐标
-2. [Sampling at intermediate temperatures is optimal for training large language models in protein structure prediction](/202604/03/2603.29529v1-sampling-at-intermediate-temperatures-is-optimal-for-training-large-language-models-in-protein-structure-prediction)  
+   evidence：利用AI进行基因浓度自适应采样
+2. [BioCOMPASS: Integrating Biomarkers into Transformer-Based Immunotherapy Response Prediction](/202604/04/2604.00739v1-biocompass-integrating-biomarkers-into-transformer-based-immunotherapy-response-prediction)  
    标签：评分：7.0/10、query:q7
-   evidence：利用AI优化蛋白质结构预测的训练过程
-3. [Latent-Y: A Lab-Validated Autonomous Agent for De Novo Drug Design](/202604/03/2603.29727v2-latent-y-a-lab-validated-autonomous-agent-for-de-novo-drug-design)  
+   evidence：基于AI和Transformer模型的基因组生物标志物整合
+3. [Data-adaptive gene and pathway-based tests forrare-variant associations with survival outcomes](/202604/04/2604.01625v1-data-adaptive-gene-and-pathway-based-tests-forrare-variant-associations-with-survival-outcomes)  
    标签：评分：7.0/10、query:q7
-   evidence：用于抗体设计和生物信息学分析的AI代理
-4. [Toward Generalizable Whole Brain Representations with High-Resolution Light-Sheet Data](/202604/03/2603.29842v1-toward-generalizable-whole-brain-representations-with-high-resolution-light-sheet-data)  
+   evidence：罕见变异遗传关联的统计检验
+4. [A deep learning pipeline for PAM50 subtype classification using histopathology images and multi-objective patch selection](/202604/04/2604.01798v1-a-deep-learning-pipeline-for-pam50-subtype-classification-using-histopathology-images-and-multi-objective-patch-selection)  
    标签：评分：7.0/10、query:q7
-   evidence：用于高分辨率生物结构的AI基础模型
-5. [Quantifying Cross-Modal Interactions in Multimodal Glioma Survival Prediction via InterSHAP: Evidence for Additive Signal Integration](/202604/03/2603.29977v1-quantifying-cross-modal-interactions-in-multimodal-glioma-survival-prediction-via-intershap-evidence-for-additive-signal-integration)  
+   evidence：利用深度学习进行PAM50基因特征亚型分类
+5. [Data Sieving for Scalable Real-Time Multichannel Nanopore Sensing](/202604/04/2604.02166v1-data-sieving-for-scalable-real-time-multichannel-nanopore-sensing)  
    标签：评分：7.0/10、query:q7
-   evidence：利用RNA-seq特征进行胶质瘤生存预测的AI研究
-6. [Event Embedding of Protein Networks : Compositional Learning of Biological Function](/202604/03/2604.00911v1-event-embedding-of-protein-networks--compositional-learning-of-biological-function)  
-   标签：评分：7.0/10、query:q7
-   evidence：利用AI进行蛋白质网络嵌入以研究生物功能
-7. [A Bilevel Integer Programming Approach for the Synchronous Attractor Control Problem](/202604/03/2604.01018v1-a-bilevel-integer-programming-approach-for-the-synchronous-attractor-control-problem)  
-   标签：评分：7.0/10、query:q7
-   evidence：用于基因激活和疾病发展的布尔网络
-8. [MUST: Modality-Specific Representation-Aware Transformer for Diffusion-Enhanced Survival Prediction with Missing Modality](/202604/03/2603.26071v1-must-modality-specific-representation-aware-transformer-for-diffusion-enhanced-survival-prediction-with-missing-modality)  
+   evidence：用于纳米孔测序数据的GPU加速处理框架
+6. [BloClaw: An Omniscient, Multi-Modal Agentic Workspace for Next-Generation Scientific Discovery](/202604/04/2604.00550v1-bloclaw-an-omniscient-multi-modal-agentic-workspace-for-next-generation-scientific-discovery)  
    标签：评分：6.0/10、query:q7
-   evidence：用于肿瘤生存预测的多模态人工智能
-9. [Property-Guided Molecular Generation and Optimization via Latent Flows](/202604/03/2603.26889v1-property-guided-molecular-generation-and-optimization-via-latent-flows)  
-   标签：评分：6.0/10、query:q7
-   evidence：AI引导的分子生成与优化
-10. [A Bayesian Functional Concurrent Zero-Inflated Dirichlet-Multinomial Regression Model with Application to Infant Microbiome](/202604/03/2603.26914v1-a-bayesian-functional-concurrent-zero-inflated-dirichlet-multinomial-regression-model-with-application-to-infant-microbiome)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于高维婴儿微生物组组成分析的贝叶斯回归模型
-11. [Assessing Multimodal Chronic Wound Embeddings with Expert Triplet Agreement](/202604/03/2603.29376v2-assessing-multimodal-chronic-wound-embeddings-with-expert-triplet-agreement)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用AI和多模态嵌入分析遗传性皮肤病
-12. [Law of large numbers for stochastic multiscale spatial gene networks](/202604/03/2603.29446v1-law-of-large-numbers-for-stochastic-multiscale-spatial-gene-networks)  
-   标签：评分：6.0/10、query:q10
-   evidence：分子生物学中的随机多尺度空间基因网络
-13. [Frege in the Flesh: Biolinguistics and the Neural Enforcement of Syntactic Structures](/202604/03/2604.00291v1-frege-in-the-flesh-biolinguistics-and-the-neural-enforcement-of-syntactic-structures)  
+   evidence：用于生命科学和科学发现的AI操作系统
+7. [G-ICSO-NAS: Shifting Gears between Gradient and Swarm for Robust Neural Architecture Search](/202604/04/2604.00703v1-g-icso-nas-shifting-gears-between-gradient-and-swarm-for-robust-neural-architecture-search)  
    标签：评分：6.0/10、query:q2
-   evidence：人类语言的演化与遗传基础
+   evidence：基于进化算法的神经架构搜索方法
+8. [CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery](/202604/04/2604.01210v1-cliffsearch-structured-agentic-co-evolution-over-theory-and-code-for-scientific-algorithm-discovery)  
+   标签：评分：6.0/10、query:q7
+   evidence：用于科学算法发现的智能体进化框架
+9. [Enhanced Asymptotic Analysis of Continuous-Time Markov Branching Systems: Revisiting Limiting Structural Theorems](/202604/04/2604.01257v1-enhanced-asymptotic-analysis-of-continuous-time-markov-branching-systems-revisiting-limiting-structural-theorems)  
+   标签：评分：6.0/10、query:q5
+   evidence：用于群体动力学的马尔可夫分支系统
+10. [Strategies for tumor elimination and control under immune evasion and chemotherapy resistance](/202604/04/2604.01385v1-strategies-for-tumor-elimination-and-control-under-immune-evasion-and-chemotherapy-resistance)  
+   标签：评分：6.0/10、query:q5
+   evidence：免疫逃逸下肿瘤的演化与生态动力学
+11. [GPU-RMQ: Accelerating Range Minimum Queries on Modern GPUs](/202604/04/2604.01811v1-gpu-rmq-accelerating-range-minimum-queries-on-modern-gpus)  
+   标签：评分：6.0/10、query:pangen
+   evidence：加速生物序列分析中的范围最小值查询
 
 
 <div class="dpr-home-promo-card">

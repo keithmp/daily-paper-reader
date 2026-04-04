@@ -1,0 +1,162 @@
+Title: PiCSRL: Physics-Informed Contextual Spectral Reinforcement Learning
+
+URL Source: https://arxiv.org/pdf/2603.26816v1
+
+Published Time: Tue, 31 Mar 2026 00:09:20 GMT
+
+Number of Pages: 5
+
+Markdown Content:
+# PiCSRL: Physics-Informed Contextual Spectral Reinforcement Learning 
+
+Mitra Nasr Azadani , Syed Usama Imtiaz , and Nasrin Alamdari 
+
+Department of Civil and Environmental Engineering Florida State University, Tallahassee, FL, USA 
+
+{si22j, mn22, nalamdari }@fsu.edu 
+
+Abstract —High-dimensional low-sample-size (HDLSS) datasets constrain reliable environmental model development, where la-beled data remain sparse. Reinforcement learning (RL)-based adaptive sensing methods can learn optimal sampling policies, yet their application is severely limited in HDLSS contexts. In this work, we present PiCSRL (Physics-Informed Contextual Spec-tral Reinforcement Learning), where embeddings are designed using domain knowledge and parsed directly into the RL state representation for improved adaptive sensing. We developed an uncertainty-aware belief model that encodes physics-informed features to improve prediction. As a representative example, we evaluated our approach for cyanobacterial gene concentration adaptive sampling task using NASA PACE hyperspectral imagery over Lake Erie. PiCSRL achieves optimal station selection (RMSE = 0.153, 98.4% bloom detection rate, outperforming random (0.296) and UCB (0.178) RMSE baselines, respectively. Our ablation experiments demonstrate that physics-informed features improve test generalization (0.52 R², +0.11 over raw bands) in semi-supervised learning. In addition, our scalability test shows that PiCSRL scales effectively to large networks (50 stations, >2M combinations) with significant improvements over baselines (p = 0.002). We posit PiCSRL as a sample-efficient adaptive sensing method across Earth observation domains for improved observation-to-target mapping. 
+
+Index Terms —Adaptive sensing, reinforcement learning, physics-informed machine learning, high-dimensional data, hy-perspectral remote sensing 
+
+I. I NTRODUCTION 
+
+# REINFORCEMENT LEARNING (RL) based adaptive sensing methods (ADS) [1] learn when and how to sense with in action space (e.g., sampling rate, sensor activation decision) via optimization that maximizes information gain and mini-mizes resource use. Yet, this learning gets severely constrained in high-dimensional low-sample-size (HDLSS) [2] contexts, in particular, environmental monitoring. In the realm of Earth observation (EO), remotely sensed (RS) data have driven a paradigm shift to complement ground-truth data [3]. From near-surface sensors to the newly launched NASA’s Plankton, Aerosol, Cloud, and Ocean Ecosystem (PACE) mission, which 
+
+Copyright 2026 IEEE. Published in the 2026 IEEE International Geoscience and Remote Sensing Symposium (IGARSS 2026), scheduled for 9 - 14 August 2026 in Washington, D.C.. Personal use of this material is permitted. However, permission to reprint/republish this material for advertising or promotional purposes or for creating new collective works for resale or redistribution to servers or lists, or to reuse any copyrighted component of this work in other works, must be obtained from the IEEE. Contact: Manager, Copyrights and Permissions / IEEE Service Center / 445 Hoes Lane / P.O. Box 1331 / Piscataway, NJ 08855-1331, USA. Telephone: + Intl. 908-562-3966. 
+
+provides hundreds of contiguous spectral bands with increas-ingly high-resolution data and rich spatial details. However, this unprecedented capability for environmental monitoring (i.e., water quality [4, 5], precision in agriculture) requires learning from labeled examples, i.e., ground-truth measure-ments, which remain sparse and limited. In this regard, when feature dimension approaches or exceeds sample size, the mathematical foundations of learning change fundamentally, and the covariance estimates become unreliable, which makes models fit noise rather than the true signal. ADS dynamically allocates monitoring resources based on belief state to improve detection efficiency [6]. When the action space is small, simple heuristic methods may suffice, and optimal solutions can be derived via exhaustive search. However, as the action space increases, the complexity of finding optimal combinations grows exponentially. Current ADS methods in environmen-tal monitoring have explored Gaussian process bandits [7], information-directed sampling [8], and spatial utility optimiza-tion [9] as solutions. HDLSS constraints are often addressed through regularization techniques that reduce model com-plexity using dimensionality reduction and data augmentation [10]. These challenges, with increasingly high action space and HDLSS for adapted sensing , are further exacerbated by the inherent nature of the sequential decision-making task in the domain of water quality, which is inherently challenging. Such as constraints imposed by catchment hydrology [11], coupled with complex, nonlinear bacterial ecological behavior [12, 13]. Moreover, in spectral sensing applications where physical laws govern observations [14], this creates a funda-mental representation problem . We propose PiCSRL: Physics-Informed Contextual Spectral Reinforcement Learning , where embeddings are designed using domain knowledge and parsed directly into the RL state representation for improved adaptive sensing. In a representation example, we validate our approach in policy sampling for cyanobacteria genes concentration prediction using NASA PACE hyperspectral imagery over Lake Erie, USA. Our contributions are as follows: 1) We posit that PiCSRL bridges HDLSS constraints with an improved representation mechanism for models uti-lizing hyperspectral data. 2) We introduce PiCSRL, the first RL framework us-ing hyperspectral sensing under HDLSS constraints for sample-efficient policy learning. 
+
+> arXiv:2603.26816v1 [cs.LG] 26 Mar 2026
+
+3) We demonstrate direct hyperspectral-to-cyanobacterial 
+
+genes predictive modeling and to our knowledge, this is the first Algal bloom sequential decision policy RL from hyperspectral imagery for improved lake sampling. II. M ETHODS 
+
+A. Problem Formulation 
+
+Let’s x ∈ Rd denote sensor observations with d features and y ∈ R the target quantity at each location. The agent has access to n labeled training samples where d > n , the HDLSS condition. The task is to learn a policy π and sequentially select K locations from N candidates to maximize information about the spatial field subject to budget constraints. 
+
+B. Semi-Supervised Learning with Physics-Informed Features 
+
+Let’s ϕ : Rd → Rd′
+
+denote a physics-informed trans-formation where d′ ≪ d. For our spectral observations, ϕ
+
+computes ten indices derived from established spectroscopic relationships (Table I): 
+
+xphys  
+
+> i
+
+= ϕ(ri) = [ I1(ri), I 2(ri), . . . , I 10 (ri)] T (1) Where ri ∈ R286 is the raw hyperspectral reflectance, and does each index Ij encode a specific physical mechanism. We employ a teacher-student semi-supervised learning (SSL) pipeline to leverage unlabeled observations with dimensional-ity reduced through physics-informed features. We first train a ridge regression model on the labeled dataset using the physics-informed features: 
+
+ˆyi = wT xphys  
+
+> i
+
++ b, where xphys  
+
+> i
+
+∈ R10 (2) The regularization parameter α = 1 .0 was selected via 5-fold cross-validation to prevent overfitting on the small labeled set. Ridge regression serves as a robust teacher due to its closed-form solution, resistance to multicollinearity, and well-calibrated predictions under regularization. The trained teacher model generates pseudo-labels for all unlabeled pixels by applying it to their physics-informed features: 
+
+˜yu = fteacher (ϕ(ru)) , ∀ru ∈ D unlabeled (3) Pseudo-labels are constrained to the empirical range 
+
+[min( ytrain ), max( ytrain )] to enforce physical plausibility. We adopted a multi-layer perceptron (MLP) serves as the student model, and train it on the combined labeled and pseudo-labeled datasets totaling 60,215 samples. The architecture consists of two hidden layers (64 and 32 neurons) with batch normalization after each layer, ReLU activation, and dropout (p = 0 .3) for regularization. We use a weighted loss function that anchors predictions to ground-truth measurements while leveraging the broader spectral distribution captured in unla-beled data: 
+
+L = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+wi(yi − ˆyi)2 (4) Where wi = 10 for labeled samples and wi = 1 for pseudo-labeled samples. This 10:1 weighting ratio was chosen to balance trust in ground-truth versus teacher predictions.                                          
+
+> TABLE I PHYSICS -B ASED SPECTRAL INDICES
+> Index Formulation Physical Mechanism
+> CI ρ681 −ρ665 Chlorophyll fluorescence NDCI (ρ709 −ρ665 )/(ρ709 +ρ665 )Red-edge response MCI ρ709 −(ρ681 +ρ753 )/2Maximum chlorophyll FAI See [15] Floating algae index PC ρ620 /ρ 665 Phycocyanin absorption ChlRed ρ680 /ρ 665 Chlorophyll/red ratio BG ρ443 /ρ 555 Blue/green ratio GR ρ555 /ρ 665 Green/red ratio NIR ρ865 /ρ 665 NIR/red ratio NDI (ρ665 −ρ620 )/(ρ665 +ρ620 )Normalized difference Representative indices shown; full set includes ten features.
+> ρλdenotes reflectance at wavelength λnm. Formulations derive from established bio-optical relationships [4, 5].
+
+C. Reinforcement Learning in Reduced State Space 
+
+Our belief model employs a shallow neural network for point prediction, together with a bootstrap ensemble for uncertainty estimation. Each network fm maps transformed features z = ϕ(x) to predictions, with the ensemble providing uncertainty through prediction disagreement: 
+
+μ(z) = 1
+
+M
+
+> M
+
+X
+
+> m=1
+
+fm(z), σ(z) = 
+
+vuut 1
+
+M
+
+> M
+
+X
+
+> m=1
+
+(fm(z) − μ(z)) 2
+
+(5) where M denotes ensemble size. Network architecture is kept shallow to prevent overfitting in HDLSS conditions. The state at decision step t comprises predicted values μ ∈ RN and uncertainties σ ∈ RN for candidate locations, along with a binary mask indicating previously visited sites. State dimen-sionality scales with candidate locations N , independent of raw observation dimension d. Actions correspond to selecting an unvisited candidate location. The reward function balances information acquisition with uncertainty reduction: 
+
+rt = α · rinfo (at) + β · runcert (at) + γ · rspatial (at) (6) where rewards for info is the negative absolute prediction error, uncert is the epistemic uncertainty at selected location, and spatial is min distance to previously selected stations; com-ponent weights are determined through sensitivity analysis. Policy learning is performed using a deep Q-learning frame-work trained with uniform experience sampling [16]. Training proceeds through simulated episodes constructed from the belief model predictions, requiring no additional real-world samples beyond those used for belief model construction. This simulation-based training helps model capture the physics-informed state representation. III. E XPERIMENTS 
+
+A. Experimental Setup 
+
+We employ hyperspectral imagery from NASA’s PACE Ocean Color Instrument (OCI) eight-day composite products paired with ground-truth measurements (cyanobacteria gene abundance) from Western Lake Erie. Our training data com-prises 98 station-days from 2024; testing uses 92 station-days from 2025. These eight monitoring stations span the western Fig. 1. Physics-Informed Contextual Spectral Reinforcement Learning (PiCSRL) framework. Physics-informed bio-optical indices and sparse in-situ observations are integrated through a semi-supervised learning framework and an uncertainty-aware belief model. These uncertainty-aware predictions are then used in a reduced RL state representation to guide adaptive station selection under sampling constraints. 
+
+basin, and adaptive selection is performed under a fixed sam-pling budget of three stations per sampling event. For rigorous analysis, we implemented detailed baseline experiments that include random selection, spatially-stratified sampling, greedy intensity-based selection, and an upper confidence bound (UCB) strategy based on belief mean and uncertainty [7]. 
+
+B. Representation Learning for HDLSS 
+
+We first analyzed the effect of physics-informed features on generalization using a semi-supervised learning approach. Our results demonstrate that raw spectral features achieve higher training fit but substantially lower test generalization (Test R² = 0.41) compared to physics-informed indices (Test R² = 0.52). In principle, When in-sample performance is higher in comparison to out-of-sample performance, indicates that model learns spurious correlations specific to training data rather than generalizable relationships. Our semi-supervised approach yields modest but consistent improvement over the supervised baseline. The ensemble model achieves a test R2 =0.517 compared to the teacher’s R2 = 0 .516 , with the 613 ×
+
+expansion in training data (from 98 to 60,215 samples) pro-viding marginal gains in generalization. The limited improve-ment suggests that hand-crafted physics-based indices already encode the bloom-relevant spectral signal effectively, with minimal additional information accessible through pseudo-label augmentation. This validates our hypothesis that physics-               
+
+> TABLE II GENERALIZATION PERFORMANCE BY FEATURE REPRESENTATION
+> Features Dimension Train R 2Test R 2
+> Physics-Informed Indices 10 0.47 0.52 Raw Spectral Bands 117 0.52 0.41 Combined 127 0.54 0.49
+
+informed dimensionality reduction is the primary mechanism addressing HDLSS challenges, and SSL provides incremental benefit by expanding coverage of the spectral feature space. 
+
+C. Adaptive Strategy Performance 
+
+We performed adaptive sensing experiment with eight can-didate stations and three selection budget with exhaustive enumeration to identify the optimal station combination and direct verification of learned policies. PiCSRL Fig. 2 consistently selects the station subset with minimum reconstruction error and commensurate the exhaus-tive optimum (RMSE = 0.1527 ± 0.006) and effectively attaining optimal performance. In contrast, heuristic baselines exhibit substantially higher reconstruction error, including Greedy-Spatial (RMSE = 0.2098) and Greedy-Risk (RMSE = 0.1982), while random selection performs least (RMSE = 0.2958). Uncertainty-aware selection improves performance relative to purely heuristic algorithms in reducing reconstruc-tion error (RMSE = 0.178 ± 0.011) and increasing bloom Fig. 2. Adaptive sampling performance for selecting K = 3 stations from    
+
+> N= 8 candidates. Left: Lake-wide reconstruction error (RMSE; mean ±1σ
+> over 500 episodes), with the optimal exhaustive baseline shown as a dashed line. Right: Bloom detection rate (%), with the 95% operational target and the perfect (100%) reference indicated.
+
+detection accuracy. However, the proposed PiCSRL frame-work achieves the best overall performance in simultaneously minimizing reconstruction error and maximizing detection rate (98.4%). In addition, the computational comparison further fa-vors the proposed approach, where PiCSRL inference requires only a forward pass through a trained deep Q-network, while exhaustive search requires iterative finding of optimal combi-nations for station counts and this becomes infeasible for large-scale networks. This efficiency advantages the deployment of RL-based adaptive sensing for large spatial scales to preserve near-optimal performance. 
+
+D. Scalability Analysis 
+
+In order to evaluate our model performance for large scale deployment, we constructed a 50-station adaptive sensing scenario, where virtual stations were spatially distributed and formed over two million possible selection combinations. PiCSRL Fig. 3 maintains superior performance advantages at this large scale and achieves the highest bloom detection rate (88.5%) where largest cumulative reward was 6.97. In comparison, Greedy-Risk achieves 84.3% detection, while uncertainty-based UCB selection reaches 81.3%. Random se-lection performs at least with only (9.3%) detatection rate and reflects the difficulty of the task at scale. Our statistical test confirms that the improvement achieved by PiCSRL over Greedy-Risk is significant (p = 0.002), while the UCB baseline also differs significantly from the reference (p = 0.042). These results further substantiate that the proposed approach scales effectively to large candidate sets. IV. D ISCUSSION 
+
+Our physics-informed RL provides a mechanistic represen-tations that overcome HDLSS data constraints without any explicit reliance on regularization. We note, in ablation ex-periments, higher-dimensional features achieve better training performance but didn’t perform well on test datasets. This is evidence that the model overfitted and learned spurious correlations. In addition, hyperspectral sensors such as PACE have contiguous narrow wavelengths; while this enhances environmental modeling to obtain precise spectral signatures,   
+
+> Fig. 3. Performance comparison of adaptive sampling strategies. Left: De-tection accuracy for comparison methods and the proposed PiCSRL method. Right: Corresponding cumulative reward achieved by each strategy. PiCSRL attains the highest detection accuracy and cumulative reward, with statistically significant improvement over baseline methods ( p= 0 .002 ).
+
+it also induces multicollinearity when target features span multiple bands. The pretrained embeddings encode physics-based representations for the downstream task; the RL agent does not need to rediscover them from raw data. This sub-stantially reduces complexity, which leads to a faster learning and better decisions. In our experiments, we compare against a UCB baseline (μ + βσ ) that combines ensemble predictions with uncertainty bonuses. DQN consistently outperforms this heuristic with statistical significance. Unlike Gaussian Process methods that would require cubic computational scaling and suffer from kernel degradation in high dimensions, our boot-strap ensemble provides computationally efficient uncertainty estimates while operating in the physics-informed feature space. This architectural choice, learning policies in a reduced belief space rather than raw observation space, enables RL to succeed in HDLSS conditions where traditional kernel-based methods face fundamental limitations. Limitations and Future Work: Our current approach requires domain experts to specify physics-informed features, and its limited to aquatic monitoring. Future work involves multi-objective extensions using more datasets and comparing RL performance. V. C ONCLUSION 
+
+In this work, we presented a framework based on an uncertainty-aware, multi-objective RL model. As a repre-sentative example, we formulated monitoring as a sequen-tial decision problem for adaptive environmental monitor-ing, which establishes physics-informed representations in high-dimensional, low-sample-size (HDLSS) contexts. For 
+
+cyanobacterial gene prediction, our model uses domain-informed hyperspectral bands that enable sample-efficient learning over large regions. Our experimental analysis demon-strates that RL consistently identifies near-optimal sampling locations and outperforms various competing methods. As environmental systems are highly interconnected that requires sequential decision-making for long-term benefits; our work lays the foundation for leveraging RS-based data to move beyond sparse and static observation strategies. VI. A CKNOWLEDGMENT 
+
+Fig. 1 is created with Biorender [17] REFERENCES 
+
+[1] D. Pecioski, V. Gavriloski, S. Domazetovska, and A. Ignjatovska, “An overview of reinforcement learning techniques,” in Proc. 12th Mediterranean Conf. Embed-ded Computing (MECO) , Budva, Montenegro, 2023, pp. 1–4. [2] C. Chadebec, E. Thibeau-Sutre, N. Burgos, and S. Allas-sonni` ere, “Data augmentation in high dimensional low sample size setting using a geometry-based variational autoencoder,” IEEE Trans. Pattern Anal. Mach. Intell. ,vol. 45, no. 3, pp. 2879–2896, Mar. 2023. [3] A. Nuriddinov, E. Ahmadisharaf, and M. R. Alizadeh, “High Resolution Flood Extent Detection Using Deep Learning with Random Forest Derived Training La-bels,” arXiv preprint arXiv:2603.22518 , 2026. Available: https://arxiv.org/abs/2603.22518 [4] S. U. Imtiaz, M. Nasr Azadani, and N. Alamdari, “SimCLR-enabled wide and deep learning for cyanobac-terial bloom prediction from NASA’s PACE hyperspec-tral mission,” IEEE Geosci. Remote Sens. Lett. , vol. 22, pp. 1–5, 2025, Art. no. 1504905. [5] S. H. Rabby, X. Sun, A. M. I. Hafiz, Z. Yan, S. U. Imtiaz, M. Nasr Azadani, M. Pakdehi, A. S. Moumouni, E. Ah-madisharaf, and N. Alamdari, “Application of machine learning methods in water quality modeling,” in Machine Learning and Artificial Intelligence in Toxicology and Environmental Health , Z. Lin and W.-C. Chou, Eds. Academic Press, 2026, pp. 271–309. [6] P. F. Lermusiaux, “Adaptive modeling, adaptive data assimilation and adaptive sampling,” Physica D , vol. 230, pp. 172–196, 2007. [7] N. Srinivas et al. , “Gaussian process optimization in the bandit setting: No regret and experimental design,” in 
+
+Proc. ICML , pp. 1015–1022, 2010. [8] D. Russo and B. Van Roy, “Learning to optimize via information-directed sampling,” Oper. Res. , vol. 66, no. 1, pp. 230–252, 2018. [9] A. Krause et al. , “Near-optimal sensor placements in Gaussian processes: Theory, efficient algorithms and empirical studies,” J. Mach. Learn. Res. , vol. 9, pp. 235– 284, 2008. [10] D. Tuia et al. , “Domain adaptation for the classification of remote sensing data,” IEEE Geosci. Remote Sens. Mag. , vol. 4, no. 2, pp. 41–57, 2016. [11] M. Nasr Azadani, S. U. Imtiaz, and N. Alamdari, “Role of impoundment and irrigation in intensive agriculture watersheds,” J. Hydrol. , vol. 662, pt. C, 2025, Art. no. 134075. [12] M. A. Salou, S. U. Imtiaz, M. Nasr Azadani, and N. Alamdari, “Near real-time and next-day prediction for Escherichia coli (E. coli ) concentrations in highly urbanized watersheds,” Water Res. , vol. 290, 2026, Art. no. 125030. [13] N. Alamdari, Z. Yan, M. Nasr Azadani, and S. U. Imtiaz, “Algal blooms,” in Data-Driven Earth Observa-tion for Disaster Management , X. Huang, S. Wang, K. Kalogeropoulos, and A. Tsatsaris, Eds. Elsevier, 2026, pp. 183–205. [14] S. U. Imtiaz, M. Nasr Azadani, and N. Alamdari, “SpecTM: Spectral Targeted Masking for Trustworthy Foundation Models,” arXiv preprint arXiv:2603.22097 ,2026. Available: https://arxiv.org/abs/2603.22097 [15] C. Hu, “A novel ocean color index to detect floating algae in the global oceans,” Remote Sens. Environ. , vol. 113, no. 10, pp. 2118–2129, 2009. [16] Z. Wang et al. , “Dueling network architectures for deep reinforcement learning,” in Proc. ICML , pp. 1995–2003, 2016. [17] Created in BioRender. Imtiaz, S. U. (2026) https://BioRender.com/q746gxk

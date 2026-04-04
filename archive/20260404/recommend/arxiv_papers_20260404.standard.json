@@ -1,0 +1,570 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-04T19:46:20.460478+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 2,
+    "deep_cap": 8,
+    "deep_selected": 2,
+    "quick_candidates": 11,
+    "quick_skim_target": 13,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2604.01054v1",
+      "title": "SynDe: Syndrome-guided Decoding of Raw Nanopore Reads",
+      "abstract": "Nanopore sequencing technology remains highly error-prone, making efficient error correction essential in DNA-based data storage. Prior work addressed high error rates using convolutional codes with their decoder coupled with the basecaller, but such approaches only accommodate a limited number of code classes and incur significant decoding complexity. To overcome these limitations, we propose two algorithms: PrimerSeeker, which efficiently detects primer sequences in raw nanopore sequencing reads, and SynDe, a decoder that operates on the same raw reads and supports any linear error correction code with a low-complexity graphical representation. PrimerSeeker provides primer location estimates close to those of existing approaches while being better suited for real-time primer detection during sequencing. SynDe performs well with convolutional codes augmented with periodic markers, often approaching or exceeding the performance of existing algorithms with a lower time complexity. Remarkably, the confidence scores produced by SynDe reliably identify which of its outputs should be discarded.",
+      "authors": [
+        "Anisha Banerjee",
+        "Roman Sokolovskii",
+        "Thomas Heinis",
+        "Antonia Wachter-Zeh",
+        "Eirik Rosnes",
+        "Alexandre Graell i Amat"
+      ],
+      "primary_category": "cs.IT",
+      "categories": [
+        "cs.IT"
+      ],
+      "published": "2026-04-01T15:57:39+00:00",
+      "link": "https://arxiv.org/pdf/2604.01054v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "decoding and error correction of raw nanopore reads",
+      "llm_evidence_cn": "原始纳米孔测序读取的解码与纠错",
+      "llm_evidence": "原始纳米孔测序读取的解码与纠错",
+      "canonical_evidence": "原始纳米孔测序读取的解码与纠错",
+      "llm_tldr_en": "Proposes SynDe for efficient error correction in nanopore sequencing, improving genomic data reliability.",
+      "llm_tldr_cn": "提出了用于纳米孔测序高效纠错的SynDe算法，提高了基因组数据的可靠性。",
+      "llm_tldr": "提出了用于纳米孔测序高效纠错的SynDe算法，提高了基因组数据的可靠性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.02203v1",
+      "title": "QuantumXCT: Learning Interaction-Induced State Transformation in Cell-Cell Communication via Quantum Entanglement and Generative Modeling",
+      "abstract": "Inferring cell-cell communication (CCC) from single-cell transcriptomics remains fundamentally limited by reliance on curated ligand-receptor databases, which primarily capture co-expression rather than the system-level effects of signaling on cellular states. Here, we introduce QuantumXCT, a hybrid quantum-classical generative framework that reframes CCC as the problem of learning interaction-induced state transformations between cellular state distributions. By encoding transcriptomic profiles into a high-dimensional Hilbert space, QuantumXCT trains parameterized quantum circuits to learn a unitary transformation that maps a baseline non-interacting cellular state to an interacting state. This approach enables the discovery of communication-driven changes in cellular state distributions without requiring prior biological assumptions. We validate QuantumXCT using both synthetic data with known ground-truth interactions and single-cell RNA-seq data from ovarian cancer-fibroblast co-culture systems. The model accurately recovers complex regulatory dependencies, including feedback structures, and identifies dominant communication hubs such as the PDGFB-PDGFRB-STAT3 axis. Importantly, the learned quantum circuit is interpretable: its entangling topology can be translated into biologically meaningful interaction networks, while post hoc contribution analysis quantifies the relative influence of individual interactions on the observed state transitions. By shifting CCC inference from static interaction lookup to learning data-driven state transformations, QuantumXCT provides a generative framework for modeling intercellular communication. This work establishes a new paradigm for de novo discovery of communication programs in complex biological systems and highlights the potential of quantum machine learning in single-cell biology.",
+      "authors": [
+        "Selim Romero",
+        "Shreyan Gupta",
+        "Robert S. Chapkin",
+        "James J. Cai"
+      ],
+      "primary_category": "cs.ET",
+      "categories": [
+        "cs.ET",
+        "physics.bio-ph",
+        "physics.data-an",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-02T15:57:12+00:00",
+      "link": "https://arxiv.org/pdf/2604.02203v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for single-cell transcriptomics and cell communication",
+      "llm_evidence_cn": "利用AI进行单细胞转录组学和细胞通讯研究",
+      "llm_evidence": "利用AI进行单细胞转录组学和细胞通讯研究",
+      "canonical_evidence": "利用AI进行单细胞转录组学和细胞通讯研究",
+      "llm_tldr_en": "A quantum-classical generative framework for inferring cell-cell communication from transcriptomic profiles.",
+      "llm_tldr_cn": "一种用于从转录组谱中推断细胞间通讯的量子-经典混合生成框架。",
+      "llm_tldr": "一种用于从转录组谱中推断细胞间通讯的量子-经典混合生成框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2603.26816v1",
+      "title": "PiCSRL: Physics-Informed Contextual Spectral Reinforcement Learning",
+      "abstract": "High-dimensional low-sample-size (HDLSS) datasets constrain reliable environmental model development, where labeled data remain sparse. Reinforcement learning (RL)-based adaptive sensing methods can learn optimal sampling policies, yet their application is severely limited in HDLSS contexts. In this work, we present PiCSRL (Physics-Informed Contextual Spectral Reinforcement Learning), where embeddings are designed using domain knowledge and parsed directly into the RL state representation for improved adaptive sensing. We developed an uncertainty-aware belief model that encodes physics-informed features to improve prediction. As a representative example, we evaluated our approach for cyanobacterial gene concentration adaptive sampling task using NASA PACE hyperspectral imagery over Lake Erie. PiCSRL achieves optimal station selection (RMSE = 0.153, 98.4% bloom detection rate, outperforming random (0.296) and UCB (0.178) RMSE baselines, respectively. Our ablation experiments demonstrate that physics-informed features improve test generalization (0.52 R^2, +0.11 over raw bands) in semi-supervised learning. In addition, our scalability test shows that PiCSRL scales effectively to large networks (50 stations, >2M combinations) with significant improvements over baselines (p = 0.002). We posit PiCSRL as a sample-efficient adaptive sensing method across Earth observation domains for improved observation-to-target mapping.",
+      "authors": [
+        "Mitra Nasr Azadani",
+        "Syed Usama Imtiaz",
+        "Nasrin Alamdari"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-03-26T19:53:59+00:00",
+      "link": "https://arxiv.org/pdf/2603.26816v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for gene concentration adaptive sampling",
+      "llm_evidence_cn": "利用AI进行基因浓度自适应采样",
+      "llm_evidence": "利用AI进行基因浓度自适应采样",
+      "canonical_evidence": "利用AI进行基因浓度自适应采样",
+      "llm_tldr_en": "Applies physics-informed reinforcement learning to cyanobacterial gene concentration sampling.",
+      "llm_tldr_cn": "将物理信息强化学习应用于蓝藻基因浓度的自适应采样任务。",
+      "llm_tldr": "将物理信息强化学习应用于蓝藻基因浓度的自适应采样任务。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.00550v1",
+      "title": "BloClaw: An Omniscient, Multi-Modal Agentic Workspace for Next-Generation Scientific Discovery",
+      "abstract": "The integration of Large Language Models (LLMs) into life sciences has catalyzed the development of \"AI Scientists.\" However, translating these theoretical capabilities into deployment-ready research environments exposes profound infrastructural vulnerabilities. Current frameworks are bottlenecked by fragile JSON-based tool-calling protocols, easily disrupted execution sandboxes that lose graphical outputs, and rigid conversational interfaces inherently ill-suited for high-dimensional scientific data.We introduce BloClaw, a unified, multi-modal operating system designed for Artificial Intelligence for Science (AI4S). BloClaw reconstructs the Agent-Computer Interaction (ACI) paradigm through three architectural innovations: (1) An XML-Regex Dual-Track Routing Protocol that statistically eliminates serialization failures (0.2% error rate vs. 17.6% in JSON); (2) A Runtime State Interception Sandbox that utilizes Python monkey-patching to autonomously capture and compile dynamic data visualizations (Plotly/Matplotlib), circumventing browser CORS policies; and (3) A State-Driven Dynamic Viewport UI that morphs seamlessly between a minimalist command deck and an interactive spatial rendering engine. We comprehensively benchmark BloClaw across cheminformatics (RDKit), de novo 3D protein folding via ESMFold, molecular docking, and autonomous Retrieval-Augmented Generation (RAG), establishing a highly robust, self-evolving paradigm for computational research assistants. The open-source repository is available at https://github.com/qinheming/BloClaw.",
+      "authors": [
+        "Yao Qin",
+        "Yangyang Yan",
+        "Jinhua Pang",
+        "Xiaoming Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-01T06:47:40+00:00",
+      "link": "https://arxiv.org/pdf/2604.00550v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI operating system for life sciences and scientific discovery",
+      "llm_evidence_cn": "用于生命科学和科学发现的AI操作系统",
+      "llm_evidence": "用于生命科学和科学发现的AI操作系统",
+      "canonical_evidence": "用于生命科学和科学发现的AI操作系统",
+      "llm_tldr_en": "A multi-modal agentic workspace designed to support high-dimensional scientific data analysis in life sciences.",
+      "llm_tldr_cn": "一个多模态智能体工作空间，旨在支持生命科学中的高维科学数据分析。",
+      "llm_tldr": "一个多模态智能体工作空间，旨在支持生命科学中的高维科学数据分析。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00739v1",
+      "title": "BioCOMPASS: Integrating Biomarkers into Transformer-Based Immunotherapy Response Prediction",
+      "abstract": "Datasets used in immunotherapy response prediction are typically small in size, as well as diverse in cancer type, drug administered, and sequencer used. Models often drop in performance when tested on patient cohorts that are not included in the training process. Recent work has shown that transformer-based models along with self-supervised learning show better generalisation performance than threshold-based biomarkers, but is still suboptimal. We present BioCOMPASS, an extension of a transformer-based model called COMPASS, that integrates biomarkers and treatment information to further improve its generalisability. Instead of feeding biomarker data as input, we built loss components to align them with the model's intermediate representations. We found that components such as treatment gating and pathway consistency loss improved generalisability when evaluated with Leave-one-cohort-out, Leave-one-cancer-type-out and Leave-one-treatment-out strategies. Results show that building components that exploit biomarker and treatment information can help in generalisability of immunotherapy response prediction. Careful curation of additional components that leverage complementary clinical information and domain knowledge represents a promising direction for future research.",
+      "authors": [
+        "Sayed Hashim",
+        "Frank Soboczenski",
+        "Paul Cairns"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-01T11:06:29+00:00",
+      "link": "https://arxiv.org/pdf/2604.00739v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI and transformer-based models for genomic biomarker integration",
+      "llm_evidence_cn": "基于AI和Transformer模型的基因组生物标志物整合",
+      "llm_evidence": "基于AI和Transformer模型的基因组生物标志物整合",
+      "canonical_evidence": "基于AI和Transformer模型的基因组生物标志物整合",
+      "llm_tldr_en": "Integrates biomarkers into transformer-based models to improve immunotherapy response prediction.",
+      "llm_tldr_cn": "将生物标志物整合到Transformer模型中，以提高免疫治疗反应预测的准确性。",
+      "llm_tldr": "将生物标志物整合到Transformer模型中，以提高免疫治疗反应预测的准确性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.00703v1",
+      "title": "G-ICSO-NAS: Shifting Gears between Gradient and Swarm for Robust Neural Architecture Search",
+      "abstract": "Neural Architecture Search (NAS) has become a pivotal technique in automated machine learning. Evolutionary Algorithm (EA)-based methods demonstrate superior search quality but suffer from prohibitive computational costs, while gradient-based approaches like DARTS offer high efficiency but are prone to premature convergence and performance collapse. To bridge this gap, we propose G-ICSO-NAS, a hybrid framework implementing a three-stage optimization strategy. The Warm-up Phase pre-trains supernet weights ($w$) via differentiable methods while architecture parameters ($α$) remain frozen. The Exploration Phase adopts a hybrid co-optimization mechanism: an Improved Competitive Swarm Optimizer (ICSO) with diversity-aware fitness navigates the architecture space to update $α$, while gradient descent concurrently updates $w$. The Stability Phase employs fine-grained gradient-based search with early stopping to converge to the optimal architecture. By synergizing ICSO's global navigation capability with differentiable methods' efficiency, G-ICSO-NAS achieves remarkable performance with minimal cost. In the context of the DARTS search space, an accuracy of 97.46\\% is achieved on CIFAR-10 with a computational budget of just 0.15 GPU-Days. The method also exhibits strong transfer potential, recording accuracies of 83.1\\% (CIFAR-100) and 75.02\\% (ImageNet). Furthermore, regarding the NAS-Bench-201 benchmark, G-ICSO-NAS is shown to deliver state-of-the-art results across all evaluated datasets.",
+      "authors": [
+        "Xingbang Du",
+        "Enzhi Zhang",
+        "Rui Zhong",
+        "Yang Cao",
+        "Masaharu Munetomo"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE"
+      ],
+      "published": "2026-04-01T10:06:59+00:00",
+      "link": "https://arxiv.org/pdf/2604.00703v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolutionary Algorithm-based methods for neural architecture search",
+      "llm_evidence_cn": "基于进化算法的神经架构搜索方法",
+      "llm_evidence": "基于进化算法的神经架构搜索方法",
+      "canonical_evidence": "基于进化算法的神经架构搜索方法",
+      "llm_tldr_en": "G-ICSO-NAS combines gradient and swarm evolutionary algorithms for robust neural architecture search.",
+      "llm_tldr_cn": "G-ICSO-NAS结合了梯度和群体进化算法，用于鲁棒的神经架构搜索。",
+      "llm_tldr": "G-ICSO-NAS结合了梯度和群体进化算法，用于鲁棒的神经架构搜索。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01625v1",
+      "title": "Data-adaptive gene and pathway-based tests forrare-variant associations with survival outcomes",
+      "abstract": "Statistical methods for testing aggregate rare-variant genetic associations are typically based on either burden or dispersion tests (or a combination of the two). These methods lack statistical power in the presence of diverse genetic architectures. Moreover, few aggregate rare-variant association methods have been developed specifically for survival data. To address these issues, we propose data-adaptive gene- and pathway-based association tests based on Schoenfeld residuals in Cox proportional hazards models for association studies between an aggregate of rare-variants and survival outcomes. Our methods improve statistical power while maintaining flexibility across various genetic effect sizes and directions. We develop an efficient R package that enables fast computation and supports data simulation as well as gene- and pathway-level testing. Applying our approach to late bladder toxicity following radiotherapy for non-metastatic prostate cancer, we identify biologically relevant genes and pathways, replicate known signals, and capture additional associations. Our method provides a powerful, adaptive framework for survival-based genetic association studies of rare-variants.   Keywords: aSPU, time-to-event outcomes, rare-variant associations, Cox regression, Schoenfeld residuals",
+      "authors": [
+        "Yu Wang",
+        "Kwang Woo Ahn",
+        "Sarah L. Kerns",
+        "William Hall",
+        "Petra Seibold",
+        "Christopher J. Talbot",
+        "Ana Vega",
+        "Barry S. Rosenstein",
+        "Nawaid Usmani",
+        "Catharine M. L. West",
+        "Liv Veldeman",
+        "Paul L. Auer",
+        "Zhongyuan Chen"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-02T05:03:28+00:00",
+      "link": "https://arxiv.org/pdf/2604.01625v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "statistical tests for rare-variant genetic associations",
+      "llm_evidence_cn": "罕见变异遗传关联的统计检验",
+      "llm_evidence": "罕见变异遗传关联的统计检验",
+      "canonical_evidence": "罕见变异遗传关联的统计检验",
+      "llm_tldr_en": "Introduces data-adaptive tests for rare-variant associations with survival outcomes in genomic studies.",
+      "llm_tldr_cn": "引入了针对基因组研究中罕见变异与生存结果关联的数据自适应检验方法。",
+      "llm_tldr": "引入了针对基因组研究中罕见变异与生存结果关联的数据自适应检验方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.01210v1",
+      "title": "CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery",
+      "abstract": "Scientific algorithm discovery is iterative: hypotheses are proposed, implemented, stress-tested, and revised. Current LLM-guided search systems accelerate proposal generation, but often under-represent scientific structure by optimizing code-only artifacts with weak correctness/originality gating. We present CliffSearch, an agentic evolutionary framework in which the core evolution operators (pair selection, crossover, mutation, and review) are implemented as LLM agents, and the loop is designed around three principles: (1) each node is a structured scientific artifact, instantiated in either theory+code or code_only mode, (2) reviewer judgments of correctness and originality are first-class selection gates alongside optimization of the benchmark metric of interest, and (3) mutation is split into exploration and correction pathways with distinct objectives. Exploration mutation imports ideas from adjacent scientific domains to increase novelty, while correction mutation performs targeted evidence-guided repair using reviewer signals over theory, code, benchmark results, and runtime errors. We illustrate the framework on three benchmark-grounded studies: transformer hyper-connection evolution, optimizer discovery on a fixed nanoGPT stack, and a smaller native-optimizer ablation. Across these settings, the same loop supports explicit metric direction, reproducible persistence, and reviewer-gated comparison of discoveries under controlled search conditions. The result is a discovery workflow that prioritizes scientific interpretability and correctness while optimizing task metrics under controlled novelty constraints, rather than maximizing candidate throughput alone. Full run artifacts, interactive visualizations, and exported best nodes for the reported studies are available at https://cliffsearch.ai .",
+      "authors": [
+        "Youssef Mroueh",
+        "Carlos Fonseca",
+        "Brian Belgodere",
+        "David Cox"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-01T17:51:26+00:00",
+      "link": "https://arxiv.org/pdf/2604.01210v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Agentic evolutionary framework for scientific algorithm discovery",
+      "llm_evidence_cn": "用于科学算法发现的智能体进化框架",
+      "llm_evidence": "用于科学算法发现的智能体进化框架",
+      "canonical_evidence": "用于科学算法发现的智能体进化框架",
+      "llm_tldr_en": "An LLM-driven evolutionary framework for iterative scientific hypothesis and algorithm discovery.",
+      "llm_tldr_cn": "一种由大模型驱动的进化框架，用于迭代科学假设和算法发现。",
+      "llm_tldr": "一种由大模型驱动的进化框架，用于迭代科学假设和算法发现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01798v1",
+      "title": "A deep learning pipeline for PAM50 subtype classification using histopathology images and multi-objective patch selection",
+      "abstract": "Breast cancer is a highly heterogeneous disease with diverse molecular profiles. The PAM50 gene signature is widely recognized as a standard for classifying breast cancer into intrinsic subtypes, enabling more personalized treatment strategies. In this study, we introduce a novel optimization-driven deep learning framework that aims to reduce reliance on costly molecular assays by directly predicting PAM50 subtypes from H&E-stained whole-slide images (WSIs). Our method jointly optimizes patch informativeness, spatial diversity, uncertainty, and patch count by combining the non-dominated sorting genetic algorithm II (NSGA-II) with Monte Carlo dropout-based uncertainty estimation. The proposed method can identify a small but highly informative patch subset for classification. We used a ResNet18 backbone for feature extraction and a custom CNN head for classification. For evaluation, we used the internal TCGA-BRCA dataset as the training cohort and the external CPTAC-BRCA dataset as the test cohort. On the internal dataset, an F1-score of 0.8812 and an AUC of 0.9841 using 627 WSIs from the TCGA-BRCA cohort were achieved. The performance of the proposed approach on the external validation dataset showed an F1-score of 0.7952 and an AUC of 0.9512. These findings indicate that the proposed optimization-guided, uncertainty-aware patch selection can achieve high performance and improve the computational efficiency of histopathology-based PAM50 classification compared to existing methods, suggesting a scalable imaging-based replacement that has the potential to support clinical decision-making.",
+      "authors": [
+        "Arezoo Borji",
+        "Gernot Kronreif",
+        "Bernhard Angermayr",
+        "Francisco Mario Calisto",
+        "Wolfgang Birkfellner",
+        "Inna Servetnyk",
+        "Yinyin Yuan",
+        "Sepideh Hatamikia"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-02T09:13:24+00:00",
+      "link": "https://arxiv.org/pdf/2604.01798v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Deep learning for PAM50 gene signature subtype classification",
+      "llm_evidence_cn": "利用深度学习进行PAM50基因特征亚型分类",
+      "llm_evidence": "利用深度学习进行PAM50基因特征亚型分类",
+      "canonical_evidence": "利用深度学习进行PAM50基因特征亚型分类",
+      "llm_tldr_en": "A deep learning framework to predict breast cancer PAM50 subtypes from histopathology images.",
+      "llm_tldr_cn": "一种利用深度学习从病理图像预测乳腺癌PAM50基因亚型的框架。",
+      "llm_tldr": "一种利用深度学习从病理图像预测乳腺癌PAM50基因亚型的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.01257v1",
+      "title": "Enhanced Asymptotic Analysis of Continuous-Time Markov Branching Systems: Revisiting Limiting Structural Theorems",
+      "abstract": "Markov branching systems form a fundamental class of stochastic models that are extensively applied in biology, physics, finance, and other domains. These systems are distinguished by their continuous-time evolution and inherent branching structure, allowing transitions to multiple states from a single one. This branching mechanism plays a critical role in modeling phenomena such as population dynamics, epidemic spread, and probabilistic systems with multiple outcomes. Unlike standard Markov processes, branching systems require a simultaneous treatment of transition dynamics and branching probabilities, resulting in a more intricate mathematical framework. In this work, we investigate the asymptotic properties of transition functions in continuous-time Markov branching-immigration systems. Our focus lies in refining known limit theorems, establishing convergence rates, and deriving improved asymptotic expansions under relaxed moment conditions. The results contribute to a deeper understanding of the long-term behavior and invariant structures within these systems.",
+      "authors": [
+        "Azam A Imomov",
+        "Sarvar B. Iskandarov",
+        "Jakhongir B. Azimov",
+        "Hurshidjon Q. Jumaqulov"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR"
+      ],
+      "published": "2026-04-01T10:31:40+00:00",
+      "link": "https://arxiv.org/pdf/2604.01257v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Markov branching systems for population dynamics",
+      "llm_evidence_cn": "用于群体动力学的马尔可夫分支系统",
+      "llm_evidence": "用于群体动力学的马尔可夫分支系统",
+      "canonical_evidence": "用于群体动力学的马尔可夫分支系统",
+      "llm_tldr_en": "Analyzes Markov branching systems used to model population dynamics and biological evolution.",
+      "llm_tldr_cn": "分析用于模拟群体动力学和生物演化的马尔可夫分支系统。",
+      "llm_tldr": "分析用于模拟群体动力学和生物演化的马尔可夫分支系统。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.02166v1",
+      "title": "Data Sieving for Scalable Real-Time Multichannel Nanopore Sensing",
+      "abstract": "High-throughput solid-state nanopore experiments generate continuous MHz-rate data streams in which only a small fraction of data contains informative molecular information. This creates storage and processing bottlenecks that limit experimental scalability. We introduce Data Sieving, a GPU-accelerated acquisition framework that integrates real-time event detection directly into the measurement pipeline and selectively stores and allows real-time analysis of snapshots around molecular translocations. The system employs a lightweight rolling-average and min-max trigger to identify event candidates in parallel across channels. This architecture reduces stored data volume by up to 98% while preserving complete molecular signatures across a wide temporal range, from microsecond-scale protein dynamics to second-scale nucleic acid nanoparticle events. Continuous baseline monitoring enables autonomous closed-loop actuation; in high-concentration DNA experiments, automatic declogging restored pore conductance, reducing the time spent in a non-productive clogged state to near-zero and without interrupting parallel measurements. Validated across DNA, protein, and nucleic acid nanoparticle measurements, Data Sieving links data storage directly to molecular information content rather than experiment duration, enabling scalable, real-time operation of parallel nanopore sensors. The approach provides a hardware-agnostic foundation for long-duration, high-bandwidth single-molecule experiments and other event-driven sensing platforms. By using algorithms intrinsically compatible with low-latency digital architectures, this framework provides a clear path toward high-bandwidth, highly multiplexed recording across hundreds of individual nanopore channels in both solid-state and biological pores.",
+      "authors": [
+        "Matteo Cartiglia",
+        "Natan Biesmans",
+        "Wannes Peeters",
+        "Wouter Botermans",
+        "Koen Ongena",
+        "Liam Vandekerckhove",
+        "Wouter Renckens",
+        "Eric Beamish",
+        "Elizabeth Skelly",
+        "Kirill A. Afonin",
+        "Pol van Dorpe",
+        "Sanjin Marion"
+      ],
+      "primary_category": "physics.ins-det",
+      "categories": [
+        "physics.ins-det",
+        "physics.bio-ph",
+        "q-bio.BM"
+      ],
+      "published": "2026-04-02T15:31:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.02166v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "GPU-accelerated framework for nanopore sensing data",
+      "llm_evidence_cn": "用于纳米孔测序数据的GPU加速处理框架",
+      "llm_evidence": "用于纳米孔测序数据的GPU加速处理框架",
+      "canonical_evidence": "用于纳米孔测序数据的GPU加速处理框架",
+      "llm_tldr_en": "Introduces a real-time data acquisition framework to handle high-throughput nanopore molecular sensing data.",
+      "llm_tldr_cn": "介绍了一种实时数据采集框架，用于处理高通量纳米孔分子传感数据。",
+      "llm_tldr": "介绍了一种实时数据采集框架，用于处理高通量纳米孔分子传感数据。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.01385v1",
+      "title": "Strategies for tumor elimination and control under immune evasion and chemotherapy resistance",
+      "abstract": "The evolutionary and ecological dynamics of tumors under immune responses and therapeutic interventions pose major challenges to long-term treatment success. Although treatment may initially achieve short-term disease control, resistant cancer cell subpopulations often arise, leading to relapse with more aggressive and treatment-resistant forms of the disease. Here, we develop and analyze mathematical models describing the interactions among effector cells, chemo-resistant tumor cells, and immuno-resistant tumor cells under distinct immune-evasion strategies. The models incorporate competition and cooperation between resistant and sensitive tumor subpopulations. We identify threshold conditions governing tumor persistence, elimination, and phenotype dominance under varying therapeutic intensities. These findings provide a theoretical framework for designing targeted and combination therapies and offer insights into strategies for mitigating the treatment resistance.",
+      "authors": [
+        "Nazanin Mokari",
+        "Bryce Morsky"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-01T20:46:54+00:00",
+      "link": "https://arxiv.org/pdf/2604.01385v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolutionary and ecological dynamics of tumors under immune evasion",
+      "llm_evidence_cn": "免疫逃逸下肿瘤的演化与生态动力学",
+      "llm_evidence": "免疫逃逸下肿瘤的演化与生态动力学",
+      "canonical_evidence": "免疫逃逸下肿瘤的演化与生态动力学",
+      "llm_tldr_en": "Models the evolutionary dynamics of tumor cell subpopulations under chemotherapy and immune pressure.",
+      "llm_tldr_cn": "模拟了化疗和免疫压力下肿瘤细胞亚群的演化动力学。",
+      "llm_tldr": "模拟了化疗和免疫压力下肿瘤细胞亚群的演化动力学。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01811v1",
+      "title": "GPU-RMQ: Accelerating Range Minimum Queries on Modern GPUs",
+      "abstract": "Range minimum queries are frequently used in string processing and database applications including biological sequence analysis, document retrieval, and web search. Hence, various data structures have been proposed for improving their efficiency on both CPUs and GPUs.Recent work has also shown that hardware-accelerated ray tracing on modern NVIDIA RTX graphic cards can be exploited to answer range minimum queries by expressing queries as rays, which are fired into a scene of triangles representing minima of ranges at different granularities. While these approaches are promising, they suffer from at least one of three issues: severe memory overhead, high index construction time, and low query throughput. This renders these methods practically unusable on larger arrays: For example, the state-of-art GPU-based approaches LCA and RTXRMQ exceed the memory capacity of an NVIDIA RTX 4090 GPU for input arrays of size >= 2^29. To tackle these problems, in this work, we present a new approach called GPU-RMQ which is based on a hierarchical approach. GPU-RMQ first constructs a hierarchy of range minimum summaries on top of the original array in a highly parallel fashion. For query answering, only the relevant portions of the hierarchy are then processed in an optimized massively-parallel scan operation. Additionally, GPU-RMQ is hybrid in design enabling the use of both ray tracing cores and CUDA cores across different levels of the hierarchy to handle queries. Our experimental evaluation shows that GPU-RMQ outperforms the state-of-the-art approaches in terms of query throughput especially for larger arrays while offering a significantly lower memory footprint and up to two orders-of-magnitude faster index construction. In particular, it achieves up to ~8x higher throughput than LCA, ~17x higher throughput than RTXRMQ, and up to ~4800x higher throughput compared to an optimized CPU-based approach.",
+      "authors": [
+        "Lara Kreis",
+        "Justus Henneberg",
+        "Valentin Henkys",
+        "Felix Schuhknecht",
+        "Bertil Schmidt"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.DC",
+        "cs.DS"
+      ],
+      "published": "2026-04-02T09:23:08+00:00",
+      "link": "https://arxiv.org/pdf/2604.01811v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "accelerating range minimum queries for biological sequence analysis",
+      "llm_evidence_cn": "加速生物序列分析中的范围最小值查询",
+      "llm_evidence": "加速生物序列分析中的范围最小值查询",
+      "canonical_evidence": "加速生物序列分析中的范围最小值查询",
+      "llm_tldr_en": "Accelerates range minimum queries on GPUs, which are essential for biological sequence analysis and databases.",
+      "llm_tldr_cn": "在GPU上加速范围最小值查询，这对生物序列分析和数据库至关重要。",
+      "llm_tldr": "在GPU上加速范围最小值查询，这对生物序列分析和数据库至关重要。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

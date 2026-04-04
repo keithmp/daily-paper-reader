@@ -1,0 +1,1995 @@
+Title: Enhanced Asymptotic Analysis of Continuous-Time Markov Branching Systems: Revisiting Limiting Structural Theorems
+
+URL Source: https://arxiv.org/pdf/2604.01257v1
+
+Published Time: Fri, 03 Apr 2026 00:02:59 GMT
+
+Number of Pages: 27
+
+Markdown Content:
+ENHANCED ASYMPTOTIC ANALYSIS OF CONTINUOUS-TIME MARKOV BRANCHING SYSTEMS: REVISITING LIMITING STRUCTURAL THEOREMS 
+
+AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV ABSTRACT . Markov branching systems form a fundamental class of stochastic models that are ex-tensively applied in biology, physics, finance, and other domains. These systems are distinguished by their continuous-time evolution and inherent branching structure, allowing transitions to multiple states from a single one. This branching mechanism plays a critical role in modeling phenomena such as population dynamics, epidemic spread, and probabilistic systems with multiple outcomes. Unlike standard Markov processes, branching systems require a simultaneous treatment of transition dynam-ics and branching probabilities, resulting in a more intricate mathematical framework. In this work, we investigate the asymptotic properties of transition functions in continuous-time Markov branching-immigration systems. Our focus lies in refining known limit theorems, establishing convergence rates, and deriving improved asymptotic expansions under relaxed moment conditions. The results contribute to a deeper understanding of the long-term behavior and invariant structures within these systems. 
+
+1. I NTRODUCTION 
+
+Branching systems serve as important mathematical models for describing population growth, the evolution of networks, and other complex systems that exhibit dynamics of reproduction and extinction. Since its origin in the early 20th century, these systems have found widespread ap-plications across diverse scientific disciplines and practical domains. A crucial subclass of these models consists of Markov branching systems, which are distinguished by the property that their evolution depends only on the current state, making them mathematically elegant and analytically precise. Markov branching systems are a cornerstone of the theory of stochastic systems, providing a robust framework for modeling population dynamics, biological systems, and other phenomena where entities reproduce and evolve over continuous time. Rooted in the seminal works [30], [35] and [36], these systems extend the classical Galton-Watson branching model to include Markovian dynamics, where the system’s future state depends solely on its current one. The Markov property provides for a more sophisticated analysis of systems with memoryless transitions, making branch-ing systems particularly suitable for applications in genetics, epidemiology, and queuing theory. The foundational model describes a closed population where each individual reproduces and dies inde-pendently, following a specified offspring probability law. Classic results in this area, detailed in monographs [2], [3], [4], [7] and [19], focus on extinction probabilities, growth rates, and long-term population behavior. For example, the criticality of the system – whether the population grows, dies out, or remains stable – is a central theme, and martingale and generating function methods play a key role in the study. The inflow of immigrants into the system introduces both complexity and realism to branching models. Immigration ensures a continuous influx of new individuals into the population, which can 
+
+2010 Mathematics Subject Classification. 60J80, 60J85. 
+
+Key words and phrases. Markov Branching Systems; Immigration; Markov chain; Transition functions; Generating func-tions; Slow variation; Invariant measures; Limit theorems; Convergence rate. © 2025 Imomov A.A. et.al.  
+
+> 1
+> arXiv:2604.01257v1 [math.PR] 1 Apr 2026 2AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV
+
+stabilize the system even when the internal reproduction process alone would lead to extinction; see [5], [21], [22], [23], [28], [29] and [30]. Recent studies, such as those in [12], [13], [24], [25] and [31], have further advanced our un-derstanding of branching systems allowing immigration, particularly in cases where higher-order moments or variances are infinite. These works highlight the asymptotic structure and long-term behavior of such systems, providing insights into their stability and scaling limits. The literature on Markov branching systems is rich with results that bridge theory and applica-tions. As is well known, Sevastyanov [35, 36] established fundamental limit theorems for branching systems, laying the foundation for subsequent research. The monograph [4] made significant con-tributions to the theory of regular variation, which plays a crucial role in analyzing the tail behavior of branching systems. More recently, Li et al. [21, 22] investigated large deviation rates and the long-term behavior of Markov branching-immigration systems, providing new perspectives on the interplay between reproduction and immigration mechanisms. Furthermore, Pakes [27] revisited conditional limit theorems, offering deeper insights into the probabilistic structure of these systems. Thus, Markov branching models serve as powerful analytical tools for studying stochastic sys-tems with complex dynamics. The extensive body of research, ranging from seminal contributions to modern advancements, underscores the lasting significance of these systems in both theoretical and applied contexts. This report contributes to the theory of homogeneous continuous-time Markov branching systems by refining classical results and establishing new asymptotic properties under relaxed moment as-sumptions. We focus in particular on the limiting structure of transition functions, the convergence to invariant measures, and the explicit characterization of the convergence rates. The analysis is con-ducted within a rigorous framework based on the concept of slowly varying functions in the sense of Karamata. The rest of the paper is structured as follows. In Section 2, we describe the structure of the Markov branching system and briefly discuss the classification of states. Our investigation is motivated by the desire to deepen the theoretical understanding of such systems and to improve the precision of existing asymptotic results. Accordingly, we define the principal goals of the study and, to pursue them, we adopt a set of Basic axioms, adhering strictly to the fundamental principles underlying infinitesimal moment conditions. Section 3 presents the asymptotic expansion of the generating function and its derivative for the Markov branching systems. These representations underlie our main results, which will be stated and proved in Section 4. 2. PRELIMINARIES 
+
+2.1. Description of the model. We investigate the population growth dynamics of monotype indi-viduals governed by the Markov branching-immigration system (MBIS) evolving over a continuous-time axis T := ( 0, +∞). The state of the system is determined by the total population size at time 
+
+t. The system is modeled as a stochastic process incorporating both reproduction and immigration mechanisms. Each individual lives for a random amount of time and produces offspring indepen-dently according to a fixed probabilistic law, while new individuals may enter the population at random times due to an external immigration process. This setting captures more realistic scenar-ios encountered in biological systems, such as microbial populations or epidemic models, where population size is influenced by both internal reproduction and external influx. The population size evolves according to the following scheme. Let N be a set of natural num-bers and N0 = {0} ∪ N. Each individual existing at time t ∈ T in the population, independently of their history and of each other, behaves independently and undergoes transitions according to the following rules during an infinitesimal time interval (t,t + ε) as ε ↓ 0: ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 3
+
+• with probability a jε +o(ε) it produces j ∈ N0\{ 1} offspring, where a j > 0 are the branching rates and the case j = 1 is excluded; 
+
+• alternatively, with probability 1 + a1ε + o(ε), it either survives without reproducing or pro-duces exactly one offspring, each event occurring with equal chance. Imposing the normalization condition λ ∑ j a j = 1, for some λ > 0 and for j ∈ N0\{ 1}, we ensure that the individual lifetime is exponentially distributed with mean λ . Under this assumption, the branching rates satisfy the consistency condition 0 < λ a0 < −λ a1 = 1 and a j ≥ 0 for j ∈ N0\{ 1}.
+
+Hence, upon death, an individual produces k ∈ N0\{ 1} offspring with probability λ ak, independently of the rest of the population. In addition to reproduction, the system incorporates immigration. During the same infinitesimal time interval, an independent inflow of individuals may occur: 
+
+• with probability bkε + o(ε) a group of k ∈ N0\{ 1} new individuals immigrates indepen-dently of the branching events into the population; 
+
+• with the remaining probability 1 − ∑k∈N bkε + o(ε), no immigration occurs. The immigration intensities bk ≥ 0 for k ∈ N and 0 < −b0 = ∑k∈N bk < ∞, ensuring that the total immigration rate is finite. Each immigrant is assumed to behave identically to aboriginal individuals after arrival, following the same branching dynamics and lifetime distribution. This formulation corresponds to the infinitesimal generator of a continuous-time Markov branch-ing system, capturing the transition dynamics over vanishingly small time intervals. The coefficients 
+
+a j and b j encode, respectively, the branching rates and immigration intensities, while the terms o(ε)
+
+indicate higher-order infinitesimal probabilities negligible as ε ↓ 0. This local probabilistic structure effectively models both the variability in reproduction and the possibility of survival without repro-duction, thereby encapsulating the fundamental stochastic features of the population size evolution. Thus, the overall population growth mechanism is fully characterized by two infinitesimal gener-ating functions (GF): 
+
+• the offspring GF f (s) := ∑ j a js j governs the reproduction behavior of individuals, encoding the infinitesimal probabilities of producing offspring; and 
+
+• the immigration GF h(s) := ∑k bksk describes the probabilistic structure of the immigration flow into the system, reflecting the rates at which external individuals enter the population. They succinctly encode the local stochastic dynamics and serve as a foundation for further analyt-ical treatment, including the study of the GF of the system, its moment dynamics, and asymptotic behavior. Denote X(t) the population size at time t ∈ T in MBIS. The system is modeled as an irreducible, homogeneous continuous-time Markov chain with state space E ⊂ N0 and transition functions 
+
+pi j (t) := PX(τ + t) = j X(τ) = i for any τ,t ∈ T,
+
+and for all i, j ∈ E. The irreducibility of the chain implies that any state can be reached from any other state in the system, which ensures the overall connectivity of the process. The transition probabilities pi j (t) encapsulate the stochastic dynamics of the system, describing the probability of transition from state i ∈ E to state j ∈ E in an infinitesimal time interval, thereby governing the flow of population change. Moreover, the system is characterized by branching rates a j , where each rate corresponds to the probabilistic dynamics of population growth or decline in each state. This branching structure introduces an element of immigration dynamics into the system growth, allowing for the evolution of population size according to the probabilistic laws inherent in branching models. 4 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+Recall that the GF Pi(t; s) := ∑ j∈E pi j (t)s j admits the representation 
+
+Pi(t; s) = [ F(t; s)] i exp 
+
+Z t
+
+> 0
+
+h (F(u; s)) du 
+
+
+
+, (2.1) where F(t; s) satisfies the backward 
+
+∂ F(t; s)
+
+∂t = f (F(t; s)) , (2.2) and the forward ∂ F(t; s)
+
+∂t = f (s) ∂ F(t; s)
+
+∂ s (2.3) Kolmogorov equations with the initial condition F(0; s) = s; for details, see [7], [34]. The case h(0) = 1 corresponds to the absence of any immigration flow in the system, indicating that the dynamics are entirely governed by the evolution of the native population without external in-flux. In this case, the population growth evolves within a closed system, and the influence of potential immigrant contributions is eliminated from the model. In this setting, our system simplifies to a more structured yet mathematically rigorous model, referred to as the Markov Branching System (MBS) without immigration, whose evolution is governed solely by the branching rates a j, j ∈ N0 . This formulation corresponds to the classical continuous-time branching system, originally introduced to describe the reproduction dynamics of homogeneous populations, and serves as a foundational model in the probabilistic theory of population growth; see [3], [7], [34]. Let Z(t) denote the popu-lation size at time t ∈ T in MBS. 
+
+Remark 1. The MBS {Z(t)} is a reducible, continuous-time Markov chain with the state space 
+
+S0 = {0} ∪ S, where {0} is an absorbing state and S ⊂ N forms a communicating class of transient states. According to the classical theory of Markov chains, the system is classified as reducible if it is possible to transition from a transient class to an absorbing state. In this case, once the process enters the absorbing state {0}, it remains there indefinitely, signifying the system’s extinction. Although the class S forms a communicating class of transient states, the inevitable transition to the absorbing state {0} aligns with the fundamental principles of Markov theory. Consequently, the model is consistent with Markov chain theory, where S is the transient class, and {0} serves as the absorbing state. The system, being reducible, eventually reaches absorption in {0}, marking an extinction. By equations (2.2) and (2.3), the function f (s) naturally induces a family of time-dependent GF 
+
+F(t, s), which describes the temporal evolution of the system. In particular, the transition function 
+
+Pi j (t) := Pi {Z(t) = j} from state i to state j in time t is given by p j(t) := P1 j(t), i.e. 
+
+Ei
+
+h
+
+sZ(t)i
+
+:= ∑
+
+> j∈S0
+
+Pi j (t)s j = F(t; s)i,
+
+where F(t; s) = ∑ j∈S0 p j(t)s j.Wherever necessary, we will write P and E instead of P1 and E1.We observe that q := lim t→∞F(t; 0 ) = P {Z(t) = 0 f or some t ∈ T} is the probability that a ge-netic lineage, originating by the single individual, eventually dies out. Furthermore, this probability is the smallest root of the equation f (s) = 0 for s ∈ [0, 1]. It is known F(t; s) → q as t → ∞ uni-formly in s ∈ [0, d], d < 1; see [3, Ch.III]. Then the formula (2.1) implies that Pi(t; s)P(t; s) → q.Therefore, we can restrict our study to P(t; s) := P0(t; s) if t → ∞. The population mean can then be calculated by differentiating equation (2.1), which gives: 
+
+EX(t) = ∂ P(t; s)
+
+∂ s s=1
+
+=
+
+
+
+h′(1−)
+
+a
+
+ eat − 1 if a̸ = 0,
+
+h′(1−)t if a = 0,
+
+(2.4) ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 5
+
+where the prime denotes the derivative, and a = f ′(1−); from here on we use the notation A(1−) :=
+
+lim s↑1A(s). The formula (2.4) implies that the asymptotic behavior of EX(t) is governed by the sign of the parameter a, resulting in qualitatively different trajectories. In this context, the chain {X(t)}
+
+is categorized as subcritical, critical, or supercritical when a < 0, a = 0 and a > 0, respectively. Ac-cordingly, the classification of MBS follows the same principles. In the case of a ≤ 0, all generation lines in the MBS eventually die out. More precisely, q = 1 when a ≤ 0, whereas q < 1 when a > 0. 2.2. Background and Motivation. Given the above, a comprehensive study of the trajectory of 
+
+{X(t)} requires an exact characterization of the asymptotic behavior of the transition function pi j (t),as well as a rigorous analysis of the ergodicity property of the state space and the existence of an invariant measure for MBIS. In critical case, Sevastyanov [35] established that if 2 b := f ′′ (1−) <
+
+∞ and h′(1−) < ∞, then the normalized system X(t)/bt converges to a limiting standard Gamma distribution function. In the case of MBS, this reduces to the standard exponential distribution. Pakes [30] established that tλ Pi(t; s) converges to a limit function Uλ (s) as t → ∞. This function admits a power series expansion Uλ (s) = ∑ j∈E u js j and generates an invariant measure providing that 
+
+# ∑
+
+> j∈N
+
+a j j2 ln j < ∞ and ∑
+
+> j∈N
+
+b j j ln j < ∞. (2.5) Ergodic properties of the states of MBIS obey the corresponding properties of an arbitrary continuous-time Markov chain, which Anderson’s monograph [1, Ch.6] studies in detail. Sevastyanov obtained the first fundamental results on the existence of invariant measures for MBIS in his pioneering re-search [35]. Conner [6] examined the invariant properties of the critical MBIS, and later Seneta [32] established a unique correspondence between the properties of the invariant measure of branching systems with and without immigration in the discrete-time case. Yang [38]focused on the subcritical case, followed him, Pakes [30] provided a comprehensive classification of all possible cases for the trajectories of MBIS. In [23] later extended and refined results of [30]. According to a corresponding result in [23], the invariant measure of the MBIS can also be con-structed via the strong ratio limit property of transition functions. Specifically, the sequence of positive numbers n
+
+π j := lim 
+
+> t→∞
+
+p0 j(t)p00 (t)
+
+o
+
+for all j ∈ E forms an invariant measure. Note the close connection between the sequences u j, j ∈ E
+
+and π j, j ∈ E , as well as the corresponding connection between their GFs. Fundamentally, these representations correspond to different formulations of the same limiting law. It follows directly that 
+
+Uλ (s) = Uλ (0)π(s), where π(s) = ∑ j∈E π js j. This is in full agreement with the uniqueness (up to a multiplicative constant) of the invariant measure of the MBIS. We focus exclusively on the critical case. In the theory of critical MBIS, among the various problems related to the asymptotic properties of the system trajectories, one issue stands out as being of exceptional importance. It involves the study of the asymptotic approach of transition functions to invariant measures and the explicit construction of the corresponding GFs. This task was first raised in the paper [30], in which the author proved that under condition (2.5) the function tλ Pi(t; s)
+
+approaches a limit function Uλ (s) as t → ∞, which has the form 
+
+Uλ (s) = 1
+
+[b(1 − s)] λ exp 
+
+Z 1
+
+> s
+
+ h(u)
+
+f (u) − λ
+
+1 − u
+
+
+
+du 
+
+
+
+. (2.6) Significant refinement of the above results was achieved in [16], where estimates for the rate of convergence of tλ Pi(t; s) to Uλ (s) were established. The results of these studies were obtained under the conditions of the finiteness of higher-order moments f ′′′ (1−) and h′′ (1−).6 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+We are now motivated to enhance the above-recalled results from [16] and [30] by relaxing the finiteness of the higher-order moments assumptions of the branching and immigration rates. In doing so, we intend to derive a more refined and improved asymptotic expansion of the function 
+
+F(t; s). For this purpose, we will make substantial use of approaches based on the slow (or, more generally, regular) varying conception in the sense of Karamata; see, [2], [4] and [33]. Recall that a function L(·) is called slowly varying at a point α ∈ R if it is positive and the ratio L(λt)/L(t)
+
+approaches 1 as t → α for each λ > 0. In what follows, we will denote the class of slowly varying functions at a point α by SV α . The representation theorem states that every function L(·) ∈ SV α can be expressed as L(·) = c(x) exp R xa [ε(u)/u] du for some a > 0, where c(x) is a bounded function such that c(x) → c > 0 and ε(x) is a continuous function satisfying ε(x) → 0 as x → ∞. If c(x) ≡ c, then 
+
+L(·) is called a normalized function. A function V (·) is said to be regularly varying at infinity with index ρ if it is defined on (0, ∞) and can be represented as V (x) = xρ L(x) for some L(·) ∈ SV ∞.2.3. Basic Axioms and aim. Next, we impose the following conditions on the GFs f (s) and h(s).Let 
+
+f (s) = ( 1 − s)1+ν L
+
+ 11 − s
+
+
+
+[ fν ]
+
+and 
+
+h(s) = −(1 − s)δ ℓ
+
+ 11 − s
+
+
+
+[hδ ]
+
+for all s ∈ [0, 1), where ν, δ ∈ (0, 1) and, the functions L(·), ℓ(·) are in the Karamata functions class 
+
+SV ∞. This assumptions state that the offspring distribution belongs to the domain of attraction of the (1 + ν)-stable law, whereas the immigration distribution belongs to the domain of attraction of the δ -stable law. By the criticality of the system, the assumption fν implies that 2 b := f ′′ (1−) = ∞.If b < ∞ then [ fν ] holds for ν = 1 and L(t) → b as t → ∞. Similarly, the GF h(s) of the form [hδ ]
+
+generates the immigration law, which has the δ -order moment. However, if h′(1−) < ∞, then [hδ ] is satisfied with δ = 1 and ℓ(t) → h′(1− as t → ∞. It was established in [23] that S is positive-recurrent if γ := δ − ν > 0, and transient if γ < 0. In the special case where γ = 0, it follows that h(s) = f ′(s)
+
+and L(t) → 1 + ν as t → ∞. Under this condition, a different population system, known as the Markov Q-process, replaces the MBIS. For details on the Markov Q-process, we refer the reader to [14], [18], [27]. Further, since L(λt) ∼ L(t), the approaching rate of the ratio L(λt)/L(t) to unity should be characterized by some infinitesimal function as t → ∞, uniformly in λ > 0. Thus, we can formally write that L(λt)
+
+L(t) = 1 + ωλ (t), [Lν ]
+
+where ωλ (t) is an infinitesimal function, known as the remainder term, which vanishes at infinity uniformly with respect to λ . This allows us to characterize the behavior of slowly varying functions in a more precise manner. In the presence of the remainder term ω(t) := ωλ (t), it is said that the function L(·) ∈ SV ∞ belongs to the class of slowly varying functions with the remainder ω(t); see [4, p.185]. For this specific class of functions, we adopt the convention L(·) ∈ SV ∞(ω), in line with the standard notation commonly used in the field. Whenever condition [Lν ] is invoked, we will consistently assume that 
+
+ω(t) = O
+
+ L(t)
+
+tν
+
+
+
+as t → ∞. [ων ]
+
+Similarly, we impose an extra condition on the function ℓ(·), assuming that 
+
+ℓ(λt)
+
+ℓ(t) = 1 + ψλ (t), [ℓδ ]ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 7
+
+so that it belongs to the class SV ∞(ψ) with remainder 
+
+ψ(t) := ψλ (t) = O
+
+ ℓ(t)
+
+tδ
+
+
+
+as t → ∞ [ψδ ]
+
+for each λ > 0. In what follows, we consider assumptions [ fν ], [hδ ], [Lν ], [ων ], [ℓδ ] and [ψδ ] as our 
+
+Basic Axioms .In the papers [10], [12], [13], [14] we have demonstrated that the Basic Axioms play a funda-mental role in elucidating the intricate asymptotic properties of Karamata functions within the class 
+
+SV ∞(ω). These axioms establish a rigorous foundation for analyzing the fine structure of slowly varying functions at infinity, providing deeper insights into their limiting behavior. In our case, the Basic Axioms serve as a powerful analytical framework for investigating the asymptotic properties of branching systems, enabling a precise characterization of their long-term dynamics and scaling laws. As for MBIS, it was demonstrated in the paper [13] that, under the Basic Axioms, the asymptotic behaviors of the transition functions pi j (t) are regulated by the parameter γ, depending on its sign. In the special case when the state space S is transient, γ < 0, it was shown that there exists a function 
+
+A(t) such that the limit function U(s) := lim t→∞ A(t)P(t; s) has an explicit form, analogous to ex-pression (2.6), which depends on GFs f (s) and h(s). Moreover, its power series expansion of U(s)
+
+generates an invariant measure with respect to the transition functions pi j (t).The aim of this report is as follows. For simple MBS, we establish significant refinements of some limit structure theorems. For transient MBIS, we rigorously determine the exact rate of convergence of the function A(t)P(t; s) to the limiting function U(s), explicitly identifying the normalizing term 
+
+A(t) as a function of the parameter γ. The asymptotic expansion of the function F(t; s) plays a principal role in achieving our aim. In the theory of critical MBS, we shall refer to this statement as the Basic Lemma. Section 3 will focus on its rigorous development, providing a comprehensive and in-depth analysis of its construction. 3. BASIC LEMMA OF CRITICAL MBS THEORY AND ITS CONSEQUENCES 
+
+Consider critical MBS {Z(t),t ∈ T} generated by GF f (s). In our designations 
+
+F(t; s) = EsZ(t) = ∑
+
+> j∈S0
+
+p j(t)s j,
+
+where p j(t) = P {Z(t) = k}. Our primary focus in this section will be on the statement regarding the asymptotic expansion of the function 
+
+τ(t; s) := 1
+
+R(t; s) ,where R(t; s) = 1 − F(t; s). In classical theory, such a statement is traditionally called the Basic Lemma of the theory of critical MBS. In this context, the results established in papers [13] and [15] under condition [ fν ], imply that the function τ(t; s) admits for all s ∈ [0, 1) the following expansion: 
+
+τ(t; s) = (νt)1/ν
+
+N(t)
+
+
+
+1 + M(s)
+
+t
+
+1/ν
+
+, (3.1) where the function N(·) ∈ SV ∞ is defined by the property 
+
+Nν (t)L (νt)1/ν
+
+N(t)
+
+!
+
+→ 1 as t → ∞, (3.2) 8 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+and M(s) is GF of invariant measures of MBS and 
+
+M(s) =  
+
+> Zs
+> 0
+
+dx f (x) = 
+
+> Z1/(1−s)
+> 1
+
+dx x1−ν L(x) .The primary aim of this section is to improve statement (3.1) based on the Basic Axioms. Given that the remainder term ω(x) belonging to the class [ων ] decays at the rate O (L(x)/xν ),we are fully justified in refining our analysis by further narrowing our focus to the more specific asymptotic regime 
+
+ω(x)
+
+L(x) xν → 1 as x → ∞.
+
+Since L(·) ∈ SV ∞(ω), the results in [10] ensure that lim x→∞L(x) < ∞. Consequently, the “narrowed” asymptotic condition above entails that 
+
+λω := lim  
+
+> x→∞
+
+xν ω(x) < ∞. (3.3) We note that a similar narrowing of asymptotic conditions is expected to emerge for the function 
+
+ℓ(·) ∈ SV ∞(ψ) in the course of our forthcoming analysis. In what follows, it will become clear that such a narrowing of the asymptotic conditions is ex-pected to play a decisive role in obtaining “outstanding” results, while strictly observing the funda-mental principles of the Basic Axioms and ensuring the preservation of the asymptotic decay rates of the remainder terms ω(·) and ψ(·).Let 
+
+Λ(y) := yν L
+
+ 1
+
+y
+
+
+
+for y ∈ (0, 1].
+
+Lemma 1. Let conditions [ fν ], [Lν ] and [ων ] be satisfied. Then 
+
+1
+
+Λ(R(t; s)) − 1
+
+Λ(1 − s) = νt + 
+
+> Zτ(t)
+> τ(0; s)
+
+ε(x)
+
+x1−ν L(x) dx + O (1/t) (3.4) 
+
+as t → ∞, where τ(t) = ( νt)1/ν N(t) and N(t) is defined in (3.2). By incorporating the supplemen-tary constraint (3.3), we directly derive the following fundamental identity: 
+
+1
+
+Λ(R(t; s)) − 1
+
+Λ(1 − s) = νt − 1
+
+ν ln [Λ(1 − s)νt] + ρ(t; s), (3.5) 
+
+where ρ(t; s) = o(ln t) as t → ∞ uniformly in s ∈ [0, 1).Proof. First, we recall that the function yΛ(y) is positive and approaches zero. And also it has a monotone derivative such that yΛ′(y)Λ(y) → ν as y ↓ 0; see [Bing, p. 401]. For this reason we will be firmly convinced that 
+
+σ (y) := ν − yΛ′(y)
+
+Λ(y) (3.6) is continuous and infinitely small function as y ↓ 0. We see that Λ(1) = p0, then integrating (3.6) over (1, y] it follows 
+
+Λ(y) = a0yν exp 
+
+
+
+− 
+
+> Zy
+> 1
+
+σ (u)
+
+u du 
+
+
+
+.
+
+Dividing by yν , the last equality becomes 
+
+L  1y = a0 exp 
+
+
+
+− 
+
+> Zy
+> 1
+
+σ (u)
+
+u du 
+
+
+
+;ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 9
+
+alternatively, by substituting u = 1/τ into the integrand, it takes the form 
+
+L(x) = a0 exp  
+
+> Zx
+> 1
+
+ε(τ)
+
+τ dτ, (3.7) where ε(τ) = σ (1/τ). Combining [Lν ] and (3.7) entails   
+
+> Zλxx
+
+ε(τ)
+
+τ dτ = ln [1 + ω(x)] . (3.8) Using an expansion of ln [1 + y] as y ↓ 0 in right-hand side of (3.7) and applying the mean value theorem to the left-hand side of the last equality produces the following relation: 
+
+ε(ζx) ln λ = ω(x) − 12 ω2(x) ( 1 + o(1)) as x → ∞, (3.9) where ( x < ζx < λ x if λ > 1,
+
+λ x < ζx < x if λ < 1.
+
+By the mean value theorem, we can write that ζx = ( 1 − (1 − λ )θ ) x for some θ ∈ (0, 1). Then 
+
+L(ζx) = L(x) ( 1 + ω(x)) and hence we obtain that 
+
+ε(ζx) = ω(ζx)
+
+
+
+1 + O
+
+ L(x)
+
+xν
+
+ 
+
+as x → ∞.
+
+Therefore, equation (3.9) becomes 
+
+ε(x) = ω(x) ( 1 + O(ω(x))) as x → ∞.
+
+Thus, according to our notation, we have 
+
+σ (y) = ω  1y (1 + O (Λ(y))) as y ↓ 0. (3.10) Returning to the function σ (y), defined in (3.6), and replacing y with R := R(t; s) there, we rewrite it as follows: 
+
+ν − RΛ′(R)
+
+Λ(R) = σ (R).
+
+Combining this equality with condition [ fν ] and the backward Kolmogorov equation ∂ F∂t = f (F),while accounting for the definition of Λ(y), we derive the following relations: 
+
+dΛ(R)
+
+dt = dR dt 
+
+Λ(R)
+
+R [ν − σ (R)] = − f (1 − R) Λ(R)
+
+R [ν − σ (R)] = −Λ2(R) [ ν − σ (R)] .
+
+It can be easily transformed into the form 
+
+d
+
+ 1
+
+Λ(R) − νt
+
+
+
+= −σ (R)dt .
+
+Integrating the last equality over [0,t) leads to the equation 1
+
+Λ(R(t; s)) − 1
+
+Λ(1 − s) = νt − 
+
+> Zt
+> 0
+
+σ (R(τ; s)) dτ. (3.11) Relation (3.10) implies that integral  
+
+> Zt
+> 0
+
+σ (R(τ; s)) dτ = o(t) as x → ∞.10 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+To more deeply interpret this integral, we once again employ the backward Kolmogorov equation 
+
+∂ F/∂t = f (F) together with the structural condition [ fν ]. This leads to the following relations: 
+
+Z t
+
+> 0
+
+σ (R(τ; s)) dτ =
+
+Z t
+
+> 0
+
+σ (R) dτ
+
+dR dR 
+
+= −
+
+Z t
+
+> 0
+
+σ (R)
+
+f (1 − R) dR = −
+
+Z R(t;s)
+
+> 1−s
+
+σ (y)
+
+yΛ(y) dy . (3.12) Next, taking into account the relation (3.10) and substituting x = 1/y into the integrand on the right-hand side of (3.12), while recalling that τ(t; s) := 1/R(t; s), we write the following equality: 
+
+Z t
+
+> 0
+
+σ (R(τ; s)) dτ =
+
+Z τ(t;s)
+
+> τ(0; s)
+
+ε(x)
+
+x1−ν L(x) dx , (3.13) where ε(x) = ω(x) ( 1 + O (ω(x))) as x → ∞. We see that M(0) = 0 and 
+
+ε(x)
+
+x1−ν L(x) = O (1/x) as x → ∞.
+
+Then it follows from (3.1) and (3.13) that 
+
+Z τ(t;s)
+
+> τ(0; s)
+
+ε(x)
+
+x1−ν L(x) dx =
+
+Z τ(t)
+
+> τ(0; s)
+
+ε(x)
+
+x1−ν L(x) dx + O (1/t) (3.14) as t → ∞, where τ(t) = τ(t; 0 ). Now relation (3.4) directly follows from combination of (3.11)– (3.14). Further, assumption (3.3) implies that xν ω(x) ∼ L(x) as x → ∞. Then it follows from relation (3.10) that 
+
+σ (R(t; s)) 
+
+Λ(R(t; s)) = 1 + O (Λ(R(t; s))) as t → ∞. (3.15) Since R(t; s) → 0 as t → ∞ uniformly in s ∈ [0, d], d < 1, we can relation (3.15) implies that the func-tion Lσ (y) := σ (y)/Λ(y) belongs to the class of Karamata functions SV 0(Λ). Therefore, denoting 
+
+Lω (x) := Lσ (1/x) and combining (3.12) with (3.15), we obtain the relations 
+
+Z t
+
+> 0
+
+σ (R(τ; s)) dτ = −
+
+Z t
+
+> 0
+
+σ (R)
+
+RΛ(R) dR = −
+
+Z t
+
+> 0
+
+Lσ (R)
+
+R dR 
+
+= −
+
+Z R(t;s)
+
+> 1−s
+
+Lσ (y)
+
+y dy =
+
+Z τ(t;s)
+
+> τ(0; s)
+
+Lω (x)
+
+x dx , (3.16) where Lω (·) ∈ SV ∞(ω) such that Lω (t) → 1 as t → ∞. In the final step of formula (3.16), we replaced x with 1 /y. Next, substituting x = uτ(t; s) into the integrand on the right-hand-side of (3.16) and by applying the methods from [10], we can easily verify that 
+
+Z τ(t;s)
+
+> τ(0; s)
+
+Lω (x)
+
+x dx = Lω (τ(t; s)) ln τ(t; s)
+
+τ(0; s) −
+
+Z 1 
+
+> T(t;s)
+
+1
+
+u
+
+
+
+1 − Lω (uτ(t)) 
+
+Lω (τ(t)) 
+
+
+
+du , (3.17) where T (t; s) = τ(t; 0 ) τ(t; s) . Since τ(t; s) → ∞ as t → ∞ and the function Lω (·) ∈ SV ∞(ω), the term in brackets on the right-hand side of (3.17) decays to zero at the rate of O (L(τ(t))  τν (t).Then relation (3.17) becomes 
+
+Z τ(t;s)
+
+> τ(0; s)
+
+Lω (x)
+
+x dx = Lω (τ(t; s)) ln τ(t; s)
+
+τ(0; s) (1 + o(1)) as t → ∞. (3.18) Finally, according to [10, Th3], we confirm that 
+
+Lω (u) = 1 + O (1/uν ) as u → ∞.ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 11 
+
+Now, by combining formulas (3.11), (3.16), and (3.18), we achieve relation (3.5). The lemma is proved. □
+
+The Basic Lemma 1 plays a pivotal role in the context of our research. Its fundamental signifi-cance is primarily due to the fact that the expression 
+
+q(t) := R(t; 0 ) = P {Z(t) ∈ S}
+
+precisely determines the survival probability of MBS initiated by a single founder. In this framework, formula (3.5) provides an asymptotic representation of this probability under Basic Axioms. We have the following result. 
+
+Theorem 1. Let conditions [ fν ], [Lν ] and [ων ] be satisfied. Then, the survival probability q (t) has the following asymptotic representation: q(t) = N(t)(νt)1/ν
+
+
+
+1 + ln a0νt
+
+ν3t (1 + o(1)) 
+
+
+
+as t → ∞, (3.19) 
+
+where the function N(·) ∈ SV ∞(ω) and it has the property (3.2). Proof. The proof follows immediately from (3.5). □
+
+Statements of Lemma 1 and Theorem 1 provide a significant refinement of the asymptotic behav-ior of both R(t; s) and q(t), offering a unified and more precise description than previously available. This result not only consolidates but also extends the findings of earlier works such as [26] and [39], establishing a new benchmark in the asymptotic analysis of the system. In addition to the function R(t; s), the asymptotic expansion of its derivative R′(t; s) := ∂ R(t; s)∂ s
+
+is of considerable importance. This is particularly justified by the identity R′(t; 0 ) = −p1(t), where 
+
+p1(t) denotes the probability that the system will again be in state 1 within time t. A detailed anal-ysis of this derivative not only reflects the local growth behavior of the system but also serves as a foundational step toward deriving asymptotic expansions for the transition probabilities Pi j (t) :=
+
+Pi {Z(t) = j} for all i, j ∈ S. Thus, the study of R′(t; s) offers valuable insights into the fine proba-bilistic structure of the branching dynamics. 
+
+Lemma 2. Under the conditions [ fν ], [Lν ] and [ων ], the following relation holds: 
+
+∂ R(t; s)
+
+∂ s = − R(t; s)
+
+f (s)
+
+1
+
+νt
+
+
+
+1 + ln [Λ(1 − s)νt]
+
+ν2t + r(t; s)
+
+
+
+, (3.20) 
+
+where r (t; s) = o (ln t/t) uniformly in s ∈ [0, 1) as t → ∞.Proof. Combination of equations (2.2) and (2.3) with [ fν ], gives 
+
+∂ R(t; s)
+
+∂ s = − R(t; s)
+
+f (s) Λ (R(t; s)) . (3.21) To seek an expression for the function Λ(R(t; s)) , we refer to relation (3.5). Substituting it into the equation (3.21) leads directly to the desired result (3.20). □
+
+The next theorem, which establishes the asymptotic relation between the local probability p1(t)
+
+and the survival probability q(t), follows as an immediate consequence of Lemma 2. 
+
+Theorem 2. Let conditions [ fν ], [Lν ] and [ων ] be satisfied. Then 
+
+p1(t)
+
+q(t) = 1
+
+a0νt
+
+
+
+1 + ln a0νt
+
+ν2t (1 + o(1)) 
+
+
+
+as t → ∞. (3.22) The statements of last two theorems imply that (νt)1+1/ν p1(t) belongs to the class of slowly varying functions at infinity with the remainder, and we can write the following 12 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+Theorem 3. Under conditions of Theorem 2 
+
+(νt)1+1/ν p1(t) = 1
+
+a0
+
+Nλ (t), (3.23) 
+
+where Nλ (t) ∈ SV ∞(ω) and Nλ (t)N(t) = 1 + O  ln tt as t → ∞.
+
+Remark 2. By applying the monotone ratio convergence property [17], we can we readily confirm that probability functions p1(t) ∈ SV ∞(ω). Moreover, this property allows us to derive a precise asymptotic expansion for these probability functions. We conclude this section by formulating some characteristic property of the function L(·), which reveals the regularity of its behavior for a given functional. This property, previously established in [11], not only reflects the intrinsic structure of L(·), but also plays a significant role in the analysis conducted in the subsequent sections. The exact formulation of this result is given below as a lemma. 
+
+Lemma 3. Let K (y) be a positive function defined on y ∈ (0, ∞), such that K (y) ↓ 0 as y ↓ 0, and define φ (y) := y − yK (y). If conditions [ fν ], [Lν ] and [ων ] hold, then the following asymptotic relation holds as y ↓ 0:
+
+L
+
+ 1
+
+φ (y)
+
+
+
+= L
+
+ 1
+
+y
+
+  
+
+1 + K(y)ω
+
+ 1
+
+y
+
+ 
+
+. (3.24) 4. CONVERGENCE THEOREMS AND INVARIANT MEASURES 
+
+First, we observe invariant properties of the transient MBIS. Similar to the case of the remainder term ω(x) for L(x), it is entirely justified to further refine our analysis by narrowing our focus to the following more precise and specific asymptotic regime: 
+
+ψ(x)
+
+ℓ(x) xδ → 1 as x → ∞
+
+which entails that 
+
+λψ := lim  
+
+> x→∞
+
+xδ ψ(x) < ∞. (4.1) As a preliminary step, we present the following important results, which directly follow from the corresponding theorems in [10] and will serve as the foundation for our forthcoming discussions and subsequent analysis. 
+
+Lemma 4. Assume that conditions (3.3) and (4.1) hold. Then, the following relations are satisfied: 
+
+
+
+λω − L(t) = λω
+
+νtν Lω (t) under assumption (3.3), 
+
+λψ − ℓ(t) = λψ
+
+δtδ Lψ (t) under assumption (4.1), 
+
+(4.2) 
+
+where L ω (t) = 1 + O(ω(t)) and L ψ (t) = 1 + O(ψ(t)) as t → ∞.
+
+Lemma 5. Under the conditions of Lemma 4 the ration function 
+
+L(t) := ℓ(t)
+
+L(t)
+
+belongs to the class L(·) ∈ SV ∞(ψ) and satisfies the asymptotic expansion CL − L(t) = CL
+
+δtδ + O
+
+ 1
+
+tν
+
+
+
+as t → ∞, (4.3) 
+
+where C L = λψ
+
+λω .ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 13 
+
+Further, let as before τ(t) := τ(t; 0 ) and T(t) := [ τ(t)] |γ|. The results proved in [13] imply that if the MBIS state space S is transient, γ < 0, then 
+
+[τ(t)] −| γ| ln p00 (t) ∈ SV ∞(ψ).
+
+This observation indicates that for γ < 0, the main emphasis should be placed on investigating the asymptotic behavior of the scaled GF eT(t)P(t; s) rather than the original P(t; s). In particular, in the fully admissible but exceptional case where the ratio function L(t) converges to |γ| as t → ∞, it becomes possible to derive an explicit representation of the limiting-invariant GF 
+
+U(s) := lim  
+
+> t→∞
+
+eT(t)P(t; s).
+
+As shown below, the structure of U(s) closely reflects the form of equation (2.6), yielding an “ex-cellent result” characterized by both its explicit form and analytical clarity. The following theorem rigorously establishes the explicit form of U(s)) and provides a precise characterization of the rate at which eT(t)P(t; s) converges to this function, offering deeper insight into the convergence behavior. The following theorem rigorously establishes the explicit form of the limit function U(s), and provides a precise characterization of the rate at which eT(t)P(t; s) converges to U(s), offering deeper insight into the convergence behavior. 
+
+Theorem 4. Let Basic Axioms hold with γ < 0 and let μ := 2δ − ν > 0. If C L = |γ| in (4.3), then eT(t)P(t; s) = U(s) · (1 + ζ (t; s)) , (4.4) 
+
+where the limiting GF U(s) has the form 
+
+U(s) = exp 
+
+(
+
+1
+
+(1 − s)|γ| + 
+
+> Z∞
+> 1/(1−s)
+
+|γ| − L(u)
+
+u1−| γ| du 
+
+)
+
+(4.5) 
+
+and 
+
+ζ (t; s) = |γ|
+
+δ μ 
+
+Nμ (t)(νt)μ/ν (1 + σ (t; s)) ,
+
+where N(·) ∈ SV ∞ is defined with the property (3.2) and σ (t; s) = O (ln t/t) as t → ∞ uniformly in s ∈ [0, d], d < 1.Proof. Using the backward Kolmogorov equation (2.2) in (2.1), we have 
+
+eT(t)P(t; s) = exp 
+
+
+
+[τ(t)] |γ| + 
+
+> Zt
+> 0
+
+h (F(u; s)) du 
+
+
+
+= exp 
+
+
+
+[τ(t; s)] |γ| + 
+
+> ZF(t;s)
+> s
+
+h(u)
+
+f (u) du + ∆(t; s)
+
+
+
+, (4.6) where ∆(t; s) = [ τ(t)] |γ| − [τ(t; s)] |γ|. It is easy to see that 
+
+[τ(t; s)] |γ| = 1
+
+(1 − F(t; s)) |γ| = 1
+
+(1 − s)|γ| + 
+
+> ZF(t;s)
+> s
+
+|γ|
+
+(1 − u)1+|γ| du .
+
+Then we can rewrite (4.6) as follows: 
+
+eT(t)P(t; s) = exp 
+
+(
+
+1
+
+(1 − s)|γ| + B(t; s) + ∆(t; s)
+
+)
+
+, (4.7) where 
+
+B(t; s) =  
+
+> ZF(t;s)
+> s
+
+"
+
+h(u)
+
+f (u) + |γ|
+
+(1 − u)1+|γ|
+
+#
+
+du .14 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+First we estimate ∆(t; s). According to our notation and using the asymptotic formula (3.5), we have 
+
+[τ(t; s)] |γ| =
+
+
+
+νtL
+
+ 1
+
+R(t; s)
+
+ |γ|/ν 
+
+1 − |γ|λω
+
+ν3
+
+ln [Λ(1 − s)νt]
+
+t (1 + o(1)) 
+
+
+
+(4.8) as t → ∞. At the same time, from the previously established formula (3.1), we can immediately write that 
+
+R(t; s) = q(t) − q(t)M(t; s),
+
+where q(t) = R(t; 0 ) as before and νtM(t; s) → M(s) as t → ∞. Therefore, since q(t) ↓ 0 as t → ∞,by utilizing formula (3.24) for φ (y) = R(t; s) with y = q(t) and K(y) = M(t; s), we can deduce that 
+
+L
+
+ 1
+
+R(t; s)
+
+
+
+= L
+
+ 1
+
+q(t)
+
+  
+
+1 + M(t; s)ω
+
+ 1
+
+q(t)
+
+ 
+
+. (4.9) Given our assumptions and according to asymptotic representation (3.19) and first assertion of (4.2), it immediately becomes obvious that 
+
+( ω  1q(t) = O (qν (t)) = O  1t as t → ∞,
+
+L  1q(t) = λω + O  1t as t → ∞. (4.10) Therefore, the utilization of relations (4.9) and (4.10) transforms equality (4.8) into the form 
+
+[τ(t; s)] |γ| =
+
+
+
+νtL
+
+ 1
+
+q(t)
+
+ |γ|/ν 
+
+1 − |γ|λω
+
+ν3
+
+ln [Λ(1 − s)νt]
+
+t + O
+
+ M(s)
+
+t2
+
+ 
+
+.
+
+Hence 
+
+∆(t; s) =
+
+
+
+νtL
+
+ 1
+
+q(t)
+
+ |γ|/ν |γ|λω
+
+ν3
+
+ln [Λ(1 − s)/a0]
+
+t
+
+
+
+1 + O
+
+ 1
+
+t
+
+ 
+
+= |γ|C1−δ /ν 
+
+> L
+
+λω
+
+ν2
+
+ln [Λ(1 − s)/a0](νt)δ /ν
+
+
+
+1 + O
+
+ 1
+
+t
+
+ 
+
+(4.11) as t → ∞.Next, employing assumptions [ fν ] and [hδ ], we write 
+
+B(t; s) = 
+
+Z F(t;s)
+
+> s
+
+|γ| − L  1(1 − u)
+
+u1+|γ| du =: B(s) − J(t; s), (4.12) where 
+
+B(s) = 
+
+Z ∞
+
+> 1
+
+(1−s)
+
+|γ| − L(x)
+
+x1−| γ| dx (4.13) and 
+
+J(t; s) = 
+
+Z ∞
+
+> τ(t;s)
+
+|γ| − L(x)
+
+x1−| γ| dx . (4.14) At this stage, when deriving equations (4.13) and (4.14), we utilized the substitution 1 − u = 1/x
+
+to simplify the subsequent transformation. According to (4.3), the integrand in equation (4.14) asymptotically behaves as |γ|/δ x1+μ if x → ∞. Consequently, it becomes necessary to analyze the integral R ∞
+
+> τ(t;s)
+
+|γ|/δ x1+μ  dx as t → ∞. Then certainly that 
+
+J(t; s) = |γ|
+
+δ μ Rμ (t; s) ( 1 + o(1)) as t → ∞. (4.15) ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 15 
+
+On the other hand, Lemma 1 implies 
+
+R(t; s) = N(t; s)(νt)1/ν
+
+
+
+1 + ln [Λ(1 − s)νt]
+
+ν3t (1 + o(1)) 
+
+
+
+(4.16) as t → ∞, where according to (4.9), N(t; s) = N(t) ( 1 + O (1/t)) . Then J(t; s) = O  1/tμ/ν . It is evident that both expressions ∆(t; s) and J(t; s) approach zero. But we can confirm that the leading part of the tail term in the approximation of eT(t)P(t; s) by the limit function U(s) is estimated by 
+
+J(t; s), since there is no doubt that O  1/tμ/ν  approaches zero much less rapidly than O  1/tδ /ν 
+
+does it as t → ∞. It follows from (4.15) and (4.16), that 
+
+J(t; s) = |γ|
+
+δ μ 
+
+Nμ (t)(νt)μ/ν
+
+
+
+1 + μν3
+
+ln [Λ(1 − s)νt]
+
+t (1 + o(1)) 
+
+
+
+(4.17) as t → ∞. Therefore, by combining (4.7), (4.12), (4.17), we conclude that 
+
+eT(t)P(t; s) = U(s) exp {J(t; s)} .
+
+It suffices to observe that ex ∼ 1 + x as x → 0, thereby establishing the convergence in (4.4), accom-panied by the explicit remainder estimate given in the form of ζ (t; s).The theorem is proved completely. □
+
+Invoking the primary branching property and Kolmogorov-Chapman equation leads to the func-tional equation F(t + u; s) = F (t; F(u; s)) . Using this equation in (2.1) and considering the limiting behavior as t → ∞, we have 
+
+U(s)
+
+U (F(t; s)) = P(t; s). (4.18) Represent the function U(s) by its power series expansion U(s) = ∑ j∈E u js j. Then, formula (2.1) and equation (4.18) entails, that 
+
+# ∑
+
+> j∈E
+
+u js j = ∑
+
+> i∈E
+
+ui(F(t; s)) iP(t; s)= ∑
+
+> i∈E
+
+uiPi(t; s) = ∑
+
+> i∈E
+
+ui ∑
+
+> j∈E
+
+pi j (t)s j = ∑
+
+> j∈E
+
+# ∑
+
+> i∈E
+
+ui pi j (t)s j.
+
+Matching the coefficients of s j on both sides of the equation leads to a recursive identity of functional form 
+
+u j = ∑
+
+> i∈E
+
+ui pi j (t),
+
+which reveals an invariance property of u j with respect to transition functions pi j (t).
+
+Remark 3. In view of assertion (4.3), the integral appearing in the exponential term of (4.5) simpli-fies to the representation 
+
+Bμ (s) := 
+
+> Z∞
+> 1/(1−s)
+
+|γ| − L(u)
+
+u1−| γ| du = 1
+
+μ (1 − s)μ + δ (s), (4.19) where δ (s) = O(1 − s)1+δ as s ↑ 1. Consequently, the limiting GF U(s) attains enhanced analytical clarity, thereby enabling a more precise and rigorous exposition of the structural characteristics underlying the invariant measure u j .As a widely applicable and highly effective alternative, the construction of an invariant mea-sure can emerge quite naturally through the monotone convergence property applied to the ratio 
+
+pi j (t)p00 (t), reflecting the inherent regularity embedded in the structure of the transition dynam-ics. Since F(t; s) → 1 as t → ∞, it follows from (2.1) that it suffices to focus on the case i = 0. The 16 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+following theorem rigorously establishes the structure of the limiting invariant measure, which is governed by the aforementioned ratio convergence property. 
+
+Theorem 5. Under the assumptions of Theorem 4, the nonnegative limits 
+
+lim 
+
+> t→∞
+
+p0 j(t)
+
+p00 (t) = π j < ∞
+
+exist and are generated by the limiting GF 
+
+π(s) = ∑
+
+> j∈E
+
+π js j = exp 
+
+(
+
+1
+
+(1 − s)|γ| Lv
+
+ 11 − s
+
+)
+
+, (4.20) 
+
+where Lv(·) ∈ SV ∞(ψ) and Lv(t)L(t) → 1|γ| as t → ∞.Proof. Referring to (2.1) we write 
+
+π(t; s) := ∑
+
+> j∈E
+
+p0 j(t)
+
+p00 (t) s j = P(t; s)
+
+P(t; 0 )= exp 
+
+Z t
+
+> 0
+
+[h (F(u; s)) − h (F(u; 0 ))] du 
+
+
+
+. (4.21) First, since F(u + τ; 0 ) = F(u; F(τ; 0 )) , denoting s = F(τ; 0 ), we write 
+
+Z t
+
+> 0
+
+h (F(u; s)) du =
+
+Z t
+
+> 0
+
+h (F(u + τ; 0 )) du =
+
+Z τ+t
+
+> τ
+
+h (F(u; 0 )) du .
+
+Combining this identity with the classical properties of the Riemann integral allows for a significant simplification of the expression in exponent of formula (4.21), ultimately yielding the following identity. 
+
+Z t
+
+> 0
+
+[h(F(u; s)) − h(F(u; 0 ))] du =
+
+Z t+τ
+
+> t
+
+h(F(u; 0 )) du −
+
+Z τ
+
+> 0
+
+h(F(u; 0 )) du 
+
+=
+
+Z τ
+
+> 0
+
+[h(F(u + t; 0 )) − h(F(u; 0 ))] du .
+
+Therefore, Z t
+
+> 0
+
+[h(F(u; s)) − h(F(u; 0 ))] du → − 
+
+Z s
+
+> 0
+
+h(y)
+
+f (y) dy as t → ∞. (4.22) At this point, we take into account that h(F(t; 0 )) vanishes as t → ∞, and apply the backward Kol-mogorov equation (2.2). These observations, when combined with formulas (4.21) and (4.22), im-mediately yield that 
+
+π(t; s) → π(s) = exp 
+
+
+
+−
+
+Z s
+
+> 0
+
+h(y)
+
+f (y) dy 
+
+
+
+as t → ∞.
+
+Nevertheless, under the combined assumptions [ fν ] and [hδ ], it necessarily follows that the asymp-totic behavior of the system is governed by the interplay between the rates of variation of the func-tions f (s) and h(s), ultimately leading to the following form of the generating function π(s):
+
+π(s) = exp 
+
+Z 1/(1−s)
+
+> 1
+
+u−(1−| γ|)L(u)du 
+
+
+
+. (4.23) ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 17 
+
+It is now observed that the integral appearing in the exponent in (4.23) falls naturally within the scope of the formula established in [10, Th5]. In accordance with this result, the following representation is obtained: Z 1/(1−s)
+
+> 1
+
+u−(1−| γ|)L(u)du = 1
+
+|γ|
+
+1
+
+(1 − s)|γ| L
+
+ 11 − s
+
+ 
+
+1 + O(1 − s)β 
+
+(4.24) as t → ∞, where β = min {δ , |γ|} . Now, denoting 
+
+Lv(t) := 1
+
+|γ| L(t)
+
+
+
+1 + O
+
+ 1
+
+tβ
+
+ 
+
+,
+
+and combining relations (4.21)–(4.24), we obtain the representation given in (4.20). The theorem is proved. □
+
+Remark 4. A direct comparison of Theorem 4 and Theorem 5 confirms the identity U(s) = U(0)π(s),which rigorously establishes that the two invariant measures u j and π j are not only equivalent up to a multiplicative constant 
+
+u0 = lim 
+
+> t→∞
+
+eT(t) p00 (t)
+
+but, in fact, represent the unique invariant measure (up to normalization) associated with the long-term dynamics of the system. As established in Theorem 5, the limiting behavior of the ratio p0 j(t)/p00 (t) plays a pivotal role in the asymptotic analysis of the transition functions. In this context, it becomes both natural and essential to derive an explicit asymptotic representation of the expression eT(t) p00 (t). This serves as a universal scaling factor in the limiting form of p0 j(t), and its precise structure is crucial for identifying the exact form and the uniqueness of the invariant measure associated with the MBIS. The necessity of investigating this function arises directly from the asymptotic framework developed in Theorem 5 and completes the foundation for a comprehensive description of the systems long-term behavior. 
+
+Theorem 6. Let the conditions of Theorem 4 be satisfied. Then Bμ := Bμ (0) is finite, where Bμ (s)
+
+is given in (4.19) , and eT(t) p00 (t) = u0 ·  1 − Jμ (t) , (4.25) 
+
+where u 0 = exp 1 + Bμ and 
+
+Jμ (t) = 1
+
+δ μ 
+
+Nμ (t)(νt)μ/ν
+
+
+
+1 + μ ln a0νt
+
+ν3t (1 + o(1)) 
+
+
+
+as t → ∞.
+
+Proof. First, by setting s = 0 in (4.7) and combining with relations (4.12)–(4.14), while accounting for the fact that ∆(t; s) = o (J(t; s)) , directly yields the asymptotic relation 
+
+eT(t) p00 (t) = exp 1 + Bμ − Jμ (t) (1 + o(1)) , (4.26) which accurately captures the leading-order behavior of the expression as t → ∞, where 
+
+Bμ = 
+
+> Z∞
+> 1
+
+|γ| − L(u)
+
+u1−| γ| du 
+
+and Jμ (t) = J(t; 0 ). Invoking assertion (4.3), we observe that 
+
+Jμ (t) =  
+
+> Z∞
+> τ(t)
+
+|γ| − L(x)
+
+x1−| γ| dx = 1
+
+δ μ qμ (t) + δ (t), (4.27) where q(t) is estimated in (3.19) and δ (t) = O  qδ (t) as t → ∞. Similarly, it can be directly verified that Bμ < ∞. Consequently, expansion (4.25) with remainder term Jμ (t) readily follows from the combination of (3.19), (4.26), and (4.27). 18 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+The theorem is proved. □
+
+Now, returning to MBS without immigration, denoted by {Z(t)}, we introduce the conditioned probability functions pS 
+
+> j
+
+(t) := P {Z(t) = j | Z(t) ∈ S}, and define the associated conditional GF by 
+
+PS(t; s) := ∑
+
+> j∈S
+
+pS 
+
+> j
+
+(t)s j
+
+which compactly encodes the time evolution of the system within the restricted state space S. This conditioning naturally gives rise to a new population system ZS(t) , which we refer to as the positively conditioned branching system. It is constructed from the original system {Z(t)} by condi-tioning trajectories to remain in S. As such, ZS(t) is a time-homogeneous, irreducible continuous-time Markov chain with strictly positive trajectories. The transition dynamics of ZS(t) reflect a probabilistic restructuring of the original system under the positivity constraint. Such constructions are conceptually related to Doob’s h-transform and to the so-called Q-processes, wherein the dy-namics are altered by conditioning on survival or restriction to a subset of states. In our context, this framework plays a pivotal role in understanding long-term behavior and in identifying invariant measures for the system. The GF PS(t; s) provides a compact representation of the distribution of the system ZS(t) over the subset S, conditioned on the initial state. To explore its dynamics, below we derive a functional relation for PS(t; s) based on the transition probability functions of the system and the combinatorial structure of the state space. This relation will serve as a fundamental tool for the subsequent analysis of the system’s evolution and its long-term behavior. We first establish the following result, which provides the explicit form of the GF M(s) appearing in (3.1). Consider the function 
+
+M(t; s) := 1 − Λ (R(t; s)) 
+
+Λ(q(t)) . (4.28) 
+
+Theorem 7. Let [ fν ], [Lν ] and [ων ] be satisfied. Then 
+
+M(s) = 1
+
+ν
+
+ 1
+
+Λ(1 − s) − 1
+
+a0
+
+
+
+. (4.29) 
+
+Proof. According to condition [ fν ], we write 
+
+M(t; s) = 1 −
+
+ R(t; s)
+
+q(t)
+
+ν L  1R(t; s)
+
+ℓ  1q(t) . (4.30) Relations (4.9) and (4.10) implies that 
+
+L
+
+ 1
+
+R(t; s)
+
+
+
+= L
+
+ 1
+
+q(t)
+
+  1 + O  1t2 . (4.31) Motivated by the seminal work of Slack [37], we now proceed to develop a continuous-time analogue of the classical Slack’s function defined as follows: 
+
+U(t; s) = νt q(t) − R(t; s)
+
+q(t) . (4.32) The limit of U(t; s) as t → ∞ is the function M(s). Indeed, by transforming equation (4.32) into the form 
+
+R(t; s) = N(t)(νt)1/ν
+
+
+
+1 − U(t; s)
+
+νt
+
+
+
+(4.33) we unequivocally obtain the asymptotic behavior of the function R(t; s), as demonstrated in equation (3.1), where U(t; s) → M(s) as t → ∞ and U(t; 0 ) = 0. Then it follows from (4.28) and (4.30)–(4.33) ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 19 
+
+that 
+
+M(t; s) = 1 −
+
+
+
+1 − U(t; s)
+
+νt
+
+ν  1 + O  1t2 = U(t; s)
+
+t + O  1t2
+
+as t → ∞. Therefore tM(t; s) → M(s) and 
+
+U(t; s) = tM(t; s) + O  1t as t → ∞. (4.34) Now, combining (3.5), (4.28) and (4.34), we obtain 
+
+M(s) = lim  
+
+> t→∞
+
+tM(t; s) = lim  
+
+> t→∞
+
+t
+
+
+
+1 − Λ(1 − s)
+
+a0
+
+a0νt + 1
+
+Λ(1 − s)νt + 1
+
+
+
+= 1
+
+νΛ(1 − s) − 1
+
+νa0
+
+.Thus, the desired relation (4.29) is established. The theorem is proved. □
+
+The following theorem establishes an asymptotic relationship between the probability functions n
+
+pS 
+
+> j
+
+(t)
+
+o
+
+and the invariant measure μ j generated by GF M(s).
+
+Theorem 8. Let conditions [ fν ], [Lν ] and [ων ] be satisfied. Then 
+
+νtPS(t; s) = M(s) · (1 + ρ(t; s)) , (4.35) 
+
+where M(s) is GF of invariant measure appeared in (3.1) , is the form of (4.29) and 
+
+ρ(t; s) − ln [Λ(1 − s)νt]
+
+ν3t = o(1) as t → ∞
+
+uniformly in s ∈ [0, 1).Proof. As noted in (3.1), the GF has the integral form M(s) = R s 
+
+> 0
+
+dx / f (x). The backward Kol-mogorov equations (2.2) can then be transformed in association with the GF M(s) as follows: 
+
+M (F(t; s)) = M(s) + t. (4.36) We now combine formulas (4.29) and (4.36) and obtain 
+
+
+
+1
+
+Λ(R(t; s)) − 1
+
+Λ(1 − s) = νt,
+
+1
+
+Λ(q(t)) − 1
+
+a0
+
+= νt.
+
+Term-by-term subtraction of these equalities gives 1
+
+Λ(R(t; s)) − 1
+
+Λ(q(t)) = νM(s)
+
+and hence 
+
+M(t; s) = 1 − Λ (R(t; s)) 
+
+Λ(q(t)) = νΛ(R(t; s)) M(s). (4.37) Furthermore, based on our assumptions and notation, we write 
+
+PS(t; s) = 1
+
+νt U(t; s). (4.38) Relations (4.34), (4.37), and (4.38), when considered together, yield the following relation: 
+
+PS(t; s) = M(s)Λ(R(t; s)) + O  1t2 as t → ∞. (4.39) Now relation (4.35) follows from (4.39) and (4.6). 20 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+The theorem is proved. □
+
+Remark 5. The system ZS(t) is an ergodic Markov chain; see [17]. According to equation (4.36), coefficients μ j generated by the power series expansion M(s) = ∑ j∈S μ js j is the invariant measures for this chain. Furthermore, by the Hardy-Littlewood Tauberian theorem, relation (4.29) yields n
+
+# ∑
+
+> j=1
+
+μ j = 1
+
+ν2Γ(ν) nν Lμ (n),
+
+where Γ(·) is the Euler’s Gamma function and Lμ (t)/L(t) → 1 as t → ∞.We now proceed to formulate a novel analogue of the monotone convergence theorem for MBS, accompanied by an explicit estimate for the convergence rate. Let 
+
+V(t; s) := ∑
+
+> j∈S
+
+p j(t)
+
+p1(t) s j.
+
+Theorem 9. Let conditions [ fν ], [Lν ] and [ων ] be satisfied. Then the functions V(t; s) converges to 
+
+V(s) = a0M(s) as t → ∞. Denoting the power series expansion of V(s) by V(s) = ∑ j∈S v js j, the ratios p j(t)p1(t) are given by 
+
+p j(t)
+
+p1(t) = v j ·
+
+
+
+1 + ln [Λ(1 − s)νt]
+
+ν3t (1 + o(1)) 
+
+
+
+as t → ∞. (4.40) 
+
+Proof. Write 
+
+V(t; s) = ∑
+
+> j∈S
+
+p j(t)
+
+p1(t) s j = q(t)
+
+p1(t)
+
+
+
+1 − R(t; s)
+
+q(t)
+
+
+
+= q(t)
+
+p1(t) PS(t; s).
+
+Combining this relation with (3.22) and (4.35) yields 
+
+V(t; s) = a0M(s) · (1 + ρ(t; s)) 
+
+
+
+1 − ln a0νt
+
+ν2t (1 + o(1)) 
+
+
+
+.
+
+Then (4.40) directly follows. □
+
+5. C ONCLUSION 
+
+This paper develops refined asymptotic results for continuous-time Markov branching systems in the critical regime. In contrast to classical works, which rely on finiteness of higher-order moments, our analysis is conducted under significantly weaker assumptions, formulated through the Basic Axioms involving slowly varying functions with remainder terms in the sense of Karamata. The main results include enhanced asymptotic expansions for the function R(t; s), with explicit logarithmic corrections (Lemma 1 and Theorem 1), and a detailed description of the asymptotic behavior of the survival probability q(t). Theorem 2 and Theorem 3 establish the asymptotic relation between the survival probability and local transition probabilities of MBS without immigration, revealing that p1(t) belongs to the class of slowly varying functions with remainder – a property not captured by classical approaches. For the transient MBIS, we construct the limiting GF U(s) in Theorem 4 and prove convergence of the normalized GF eT(t)P(t; s) to U(s) with an explicit rate. Theorem 5 and Theorem 6 provide a complete characterization of the invariant measure via ratio limits and an asymptotic expansion of the scaling factor eT(t) p00 (t).Theorems 7–9 develop the asymptotic behavior of the limiting GF M(s) associated with the positively conditioned MBS. They provide a continuous-time analogue of Slack’s classical function from discrete critical branching theory. In particular, they characterize the invariant distribution ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 21 
+
+of the system under positive survival conditioning and provide precise asymptotic expansions that quantify the effect of heavy tails and immigration. This contributes a novel perspective to the study of conditional limit theorems in continuous-time settings with infinite variance components. Unlike classical conditioning approaches that rely on finite-variance settings or discrete-time formulations, our analysis leverages the structure of the continuous-time model and the refined asymptotic tools involving slowly varying functions with remainders. This technical apparatus proves essential in deriving sharp expansions for M(s) and in capturing second-order effects. As a result, the limiting function not only generalizes earlier discrete-time results, but also reveals subtle regularity features that emerge uniquely in the infinite-variance, continuous framework. Collectively, these results constitute a significant extension of existing asymptotic theory for branching systems, particularly in settings where classical moment conditions fail. The method-ology developed herein not only generalizes and sharpens existing limit theorems but also provides a framework for analyzing systems with nonstandard scaling and heavy-tailed characteristics. 6. A PPENDIXES 
+
+6.1. Empirical Illustration of Survival Probability in Critical MBS.. The Figure 1 and Figure 2 provide an empirical illustration of the asymptotic behaviors described in Theorem 1 and Theorem 2 the structural assumption [ fν ]. This axiom ensures that the offspring distribution lies in the domain of attraction of a (1+ν)-stable law, so that the corresponding MBS exhibits a heavy-tailed reproduction mechanism and polynomial decay of survival-related probabilities. In the graphical analysis, two representative forms of L(x) are considered which, when expressed in terms of t, correspond to the slowly varying factors 
+
+N(t) = 1 + 12 log (t + 1) and N(t) = 1 + log (t + 1)
+
+tν .These choices allow us to explore the influence of L(·) on the pre-asymptotic dynamics while pre-serving the principal scaling structure dictated by axiom [ fν ]. The survival probability q(t) and the local probability p1(t), plotted on a logarithmic scale, follow the expected power-law decay with exponents −1/ν and −1/ν − 1, respectively, as t → ∞. The deviations from a straight line in the finite-time range are entirely determined by the specific form of N(t), illustrating how slowly varying components modulate the main asymptotic law. This example substantiates the asymptotic behavior derived in Section 3 and illustrates how the survival probability reflects the structural influence of heavy-tailed branching dynamics. It also provides a practical reference for researchers applying such models in fields such as population biology and epidemiology. Similar illustrations arise from the corresponding asymptotic properties of MBIS established in Theorem 4 and Theorem 5. 6.2. On Extensions to Non-Homogeneous Systems. The theoretical framework developed in this paper assumes time-homogeneous branching and immigration rates, which allows the use of classi-cal GFs and the theory of slowly varying functions in the sense of Karamata. Nevertheless, many practical systems—ranging from seasonal population dynamics to adaptive epidemiological mod-els—exhibit time-varying or state-dependent behavior. One natural extension is to consider branch-ing and immigration GFs of the form 
+
+ft (s) = ∑
+
+> k∈N0
+
+ak(t)sk and ht (s) = ∑
+
+> j∈N0
+
+b j(t)s j,
+
+where the coefficients ak(t) and b j(t) vary with time, possibly in a slowly varying or periodic man-ner. Alternatively, one may introduce state-dependence by letting ak = ak(x) depend on the current 22 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+0 10 20 30 40 50 60 70 80 90 100 
+
+10 −6
+
+10 −5
+
+10 −4
+
+10 −3
+
+10 −2
+
+10 −1
+
+10 0
+
+10 1
+
+t
+
+> q(t)
+
+Survival probability q(t) for ν = 0.2, a0 = 0.9
+
+N(t) = 1 + 12 log (t+1) N(t) = 1 + log (t+1)
+
+> tν
+
+0 10 20 30 40 50 60 70 80 90 100 
+
+10 −2
+
+10 −1
+
+t
+
+> q(t)
+
+Survival probability q(t) for ν = 0.9, a0 = 0.2
+
+N(t) = 1 + 12 log (t+1) N(t) = 1 + log (t+1)
+
+> tν
+
+FIGURE 1. Illustrations of the asymptotic behaviour of the survival probability 
+
+q(t) for different slowly varying factors N(t) and parameter sets (ν, a0).population size x, leading to a state-inhomogeneous generator. In these cases, the Kolmogorov back-ward and forward equations must be reformulated to incorporate explicit time- or state-dependence in the infinitesimal generator. The analysis of such systems would likely require the development of non-stationary analogues of slowly varying functions and the adaptation of asymptotic tools to ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 23 
+
+0 10 20 30 40 50 60 70 80 90 100 
+
+10 −7
+
+10 −5
+
+10 −3
+
+10 −1
+
+10 1
+
+t
+
+> p1(t)
+
+Local probability p1(t) for ν = 0.2, a0 = 0.9
+
+N(t) = 1 + 12 log (t+1) N(t) = 1 + log (t+1)
+
+> tν
+
+0 10 20 30 40 50 60 70 80 90 100 
+
+10 −3
+
+10 −2
+
+10 −1
+
+t
+
+> p1(t)
+
+Local probability p1(t) for ν = 0.9, a0 = 0.2
+
+N(t) = 1 + 12 log (t+1) N(t) = 1 + log (t+1)
+
+> tν
+
+FIGURE 2. Illustrations of the asymptotic behaviour of the local probability p1(t)
+
+for different slowly varying factors N(t) and parameter sets (ν, a0).the time-inhomogeneous setting. Although such generalizations lie beyond the scope of the present work, they represent a natural and meaningful direction for future research, particularly in modeling systems with seasonal migration, aging structures, or feedback-controlled reproduction. 24 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV 
+
+6.3. Enhanced Accessibility. 
+
+Summary of Key Asymptotic Expansions. The table below lists key quantities, including survival probabilities, GFs, and invariant measures, along with their corresponding asymptotic forms. These results are expressed in terms of the model parameters ν, δ , and the remainder terms associated with slowly varying functions. 
+
+Quantity Asymptotic Expression 
+
+R(t; s) = 1 − F(t; s) R(t; s) ∼ N(t)(νt)1/ν
+
+
+
+1 + ln [Λ(1 − s)νt]
+
+ν3t
+
+
+
+as t → ∞
+
+q(t) = R(t; 0 ) q(t) ∼ N(t)(νt)1/ν
+
+
+
+1 + ln (a0νt)
+
+ν3t
+
+
+
+as t → ∞
+
+p1(t) p1(t) ∼ q(t)
+
+a0νt
+
+
+
+1 + ln (a0νt)
+
+ν2t
+
+
+
+as t → ∞
+
+Invariant GF U(s) ln U(s) = 1
+
+(1 − s)|γ| + R ∞
+
+> 1/(1−s)
+
+|γ| − L(u)
+
+u1−| γ| du 
+
+Invariant GF π(s) ln π(s) = 1
+
+(1 − s)|γ| Lv
+
+ 11 − s
+
+
+
+Invariant GF M(s) M(s) = 1
+
+ν
+
+ 1
+
+Λ(1 − s) − 1
+
+a0
+
+
+
+Interpretation of the Parameter γ = δ − ν. The sign of the parameter γ plays a decisive role in deter-mining the global behavior of the system. In particular: 
+
+• if γ < 0: the system is transient , meaning the population tends to escape to infinity and does not stabilize; 
+
+• if γ > 0: the system is positive recurrent , meaning that a stationary behavior emerges and invariant measures exist; 
+
+• if γ = 0: the system exhibits critical behavior , and often requires alternative scaling (e.g., leads to a Markov Q-process). From a modeling perspective, ν controls the tail heaviness of the reproduction law, while δ
+
+reflects the immigration input. Their difference γ measures the imbalance between these two mech-anisms. Special Case: ν = 1. The choice ν = 1 corresponds to offspring distributions with finite second moments. In this classical setting, the function f (s) behaves near s = 1 as f (s) ∼ 1 − s, and the asymptotics reduce to polynomial or exponential forms. For example, the survival probability sim-plifies to: 
+
+q(t) ∼ Ct as t → ∞,
+
+where C depends on the immigration parameters. This scenario aligns with classical results such as the Yaglom or Sevastyanov theorems, providing a bridge between the heavy-tailed framework developed in this paper and the well-known finite-variance theory. 6.4. Remark on Two-Scale Fractal Perspectives. The presence of slowly varying functions in our asymptotic analysis hints at deeper structural features of the model, where different mechanisms operate across distinct temporal or population scales. This observation resonates with the spirit of ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 25 
+
+two-scale fractal theory, which describes systems whose dynamics shift character between scales — smooth at the macro level, yet potentially irregular or self-similar in finer detail. Although our results focus on global asymptotics and limit shapes, one might conjecture that fluctuations around these limits, or the fine structure of invariant measures, could exhibit patterns more naturally understood through multi-scale or fractal lenses. While such exploration lies beyond the scope of the present study, it may lead to new qualitative insights into how randomness, scaling, and structure interact within complex stochastic systems. This perspective finds a parallel in [8] and [9], where fractal modeling approaches are employed to analyze porous materials, offering complementary viewpoints that resonate with the branching systems considered here. 6.5. General Perspectives. The results of the present work open several promising directions for further research. Below, we highlight a few perspectives that may enrich or extend the framework developed herein. 
+
+• Two-Scale Fractal Structures. As discussed above, the involvement of slowly varying functions suggests potential connections with two-scale fractal theory. Investigating whether the transition dynamics or invariant distributions exhibit multiscale irregularities could lead to new insights at the intersection of probability and fractal analysis. 
+
+• Non-Homogeneous Dynamics. Extending the model to accommodate time-dependent or state-dependent branching and immigration rates would reflect more realistic settings and pose challenging mathematical questions related to time-inhomogeneous renewal theory. 
+
+• Functional Limit Theorems. While we focused on pointwise asymptotics, it would be of interest to derive functional limit theorems (e.g., weak convergence in Skorokhod spaces), especially in critical or near-critical regimes. 
+
+• Empirical Applications. Further work might explore how the proposed framework can be calibrated to empirical data in demography, epidemiology, or migration, and whether the asymptotic invariants can be meaningfully estimated from observed trajectories. CONFLICT OF INTEREST 
+
+The authors declare that they have no conflicts of interest. DATA AVAILABILITY 
+
+All data generated or analyzed during this study are included in this published article. ACKNOWLEDGMENT 
+
+This research work was carried out within the framework of the project program FL-8824063218 of the Ministry of Higher Education, Science, and Innovations of the Republic of Uzbekistan. REFERENCES [1] A NDERSON W. Continuous-Time Markov Chains: An Applications-Oriented Approach . Springer, New York, 1991. [2] A SMUSSEN S. AND HERING H. Branching processes . Birkh¨ auser, Boston, 1983. [3] A THREYA K. B. AND NEY P. E. Branching processes . Springer, New York, 1972. [4] B INGHAM N. H., G OLDIE C. M. AND TEUGELS J. L. Regular variation . Cambridge, 1987. [5] C HEN A., R ENSHAW E. Recurrence of Markov branching processes with immigration. Stoc. Proc. Appl. 45 1993, pp. 231–242. [6] C ONNER H. A note on limit theorems for Markov branching processes. Proc. American Math. Soc. 18 1967, pp. 76–86. [7] H ARRIS T. E. Theory of Branching stochastic processes . Springer, Berlin, 1963. [8] H E C.H., L IU H.W. AND LIU C. A fractal-based approach to the mechanical properties of recycled aggregate concretes.         
+
+> Facta Universitatis, Series: Mechanical Engineering 22(2) 2024, pp. 329–342. [9] H EC.H., L IU C. Fractal dimensions of a porous concrete and its effect on the concrete’s strength. Facta Universitatis, Series: Mechanical Engineering 21(1) 2023, pp. 137–150. 26 AZAM A. IMOMOV, SARVAR B. ISKANDAROV, JAKHONGIR B. AZIMOV, AND HURSHIDJON Q. JUMAQULOV
+
+[10] I MOMOV A. A., T UKHTAEV E. E. AND J ` ANOS SZTRIK On Properties of Karamata Slowly Varying Functions with Remainder and Their Applications. Mathematics 12 , 3266 2024. https://doi.org/10.3390/math12203266 [11] I MOMOV A. A., I SKANDAROV S. B. Further Improvement of the Basic Lemma of Critical Bienaym` e-Galton-Watson Branching Systems and Its Applications. Inf. Tech. Math. Mod. Queueing Theory Appl.: Proc. Conf. ITMM’2023, Tomsk, Russia CCIS 2163 2024, pp. 228–240. [12] I MOMOV A. A., T UKHTAEV E. E. On asymptotic structure of critical Galton-Watson branching processes allowing immigration with infinite variance. Stochastic Models 39(1) 2023, pp. 118–140. [13] I MOMOV A. A., M EYLIEV A. K H. On asymptotic structure of continuous-time Markov branching processes allowing immigration without higher-order moments. Ufimsk. Mat. Zh. 13 2021, pp. 137–147. [14] I MOMOV A. A. On a limit structure of the Galton-Watson branching processes with regularly varying generating func-tions. Prob. and Math. stat. 39(1) 2019, pp. 61–73. [15] I MOMOV A. A. On conditioned limit structure of the Markov branching process without finite second moment. Malays. J. Math. Sci. 11(3) 2017, pp. 393–422. [16] I MOMOV A. A. On long-term behavior of continuous-time Markov branching processes allowing immigration. J. Sib. Fed. Univ. Math. Phys. 7(4) 2014, pp. 443–454. [17] I MOMOV A. A. Limit properties of transition function of continuous-time Markov Branching Processes. Int. J. Stoc. Anal. 2014 , doi.org/10.1155/2014/409345. [18] I MOMOV A. A. On Markov analogue of Q-processes with continuous time. Theory Prob. Math. Statist. 84 2012, pp. 57– 64. [19] J AGERS P. Branching Processes with Biological applications . JW & Sons, Pitman Press, UK, 1975 [20] K OLMOGOROV A. N. K resheniyu odnoy biologicheskoy zadachi. Reports of SRI Math. and Mech. at Tomsk Univ. 
+
+2 1938, pp. 7–12. (Russian) [21] L I J., C HENG L. AND LI L. Long time behaviour for Markovian branching-immigration systems. Discrete Event Dynamic Systems 31 2021, pp. 37–57. [22] L I J., C HENG L., P AKES A. G., C HEN A. AND LI L. Large deviation rates for Markov branching processes. Analysis and Appl. 18(03) 2020, pp. 447–468. [23] L I J., C HEN A. AND PAKES A. G. Asymptotic properties of the Markov Branching Process with Immigration. J Theor Probab. 25 2012, pp. 122–143. [24] M ITOV K. V AND YANEV N. M. On a class of critical Markov branching processes with non-homogeneous Poisson immigration. Stochastic Models 2025 , pp. 1–14.doi: 10.1080/15326349.2025.2492034. [25] M ITOV K. V AND YANEV N. M. Critical Markov branching processes with non-homogeneous poisson immigration. 
+
+Pliska Stud. Math. 27 2017, pp. 55–72. [26] P AKES A. G. Critical Markov branching process limit theorems allowing infinite variance. Adv. Appl. Prob. 42 2010, pp. 460–488. [27] P AKES A. G. Revisiting conditional limit theorems for the mortal simple branching process. Bernoulli 5(6) 1999, pp. 969–998. [28] P AKES A. G. Limit theorems for the simple branching process allowing immigration, I. The case of finite offspring mean. Adv. Appl. Prob. 11 1979, pp. 31–62. [29] P AKES A. G. Some new limit theorems for the critical branching process allowing immigration. Stoch. Process. Appl. 
+
+4 1976, pp. 175–185. [30] P AKES A. G. On Markov branching processes with immigration. Sankhy¯ a, A 37 1975, pp. 129–138. [31] R AHIMOV I. Homogeneous branching processes with non-homogeneous immigration. Stoch. Qual. Control. 
+
+36(2) 2021, pp. 165–183. [32] S ENETA E. Regularly Varying Functions in the Theory of Simple Branching Processes. Adv. Appl. Probab. 6(3) 1974, pp. 408–420. [33] S ENETA E. Regularly varying functions . Springer, Berlin, 1972; Translated Russian , Nauka, Moscow, 1985. [34] S EVASTYANOV B. A. Branching Processes . Nauka, Moscow, 1971. (Russian) [35] S EVASTYANOV B. A. Limit theorems for stochastic branching processes of special form. Theory Prob. and Appl. 
+
+2(3) 1957, pp. 321–331. [36] S EVASTYANOV B. A. The theory of Branching stochastic process. Uspekhi Mat. Nauk. 6(46) 1951, pp. 47–99. [37] S LACK R. S. A branching process with mean one and possible infinite variance. Wahrscheinlichkeitstheor. und Verv. Geb. 9 1968, pp. 139–145. [38] Y ANG Y. S. On branching processes allowing immigration. Theory Prob. Appl. 9 1972, pp. 24–31. [39] Z OLOTAREV V. M. More exact statements of several theorems in the theory of branching processes. Theory Prob. Appl. 
+
+2 1957, pp. 245–253. ASYMPTOTIC ANALYSIS OF MARKOV BRANCHING SYSTEMS 27 
+
+AZAM ABDURAKHIMOVICH IMOMOV 
+
+KARSHI STATE UNIVERSITY ,17, K UCHABAG ST ., 180100 K ARSHI CITY , U ZBEKISTAN .
+
+Email address : imomov azam@mail.ru 
+
+SARVAR B. I SKANDAROV 
+
+URGENCH STATE UNIVERSITY ,URGENCH CITY , U ZBEKISTAN .
+
+Email address : sarvar.i@urdu.uz 
+
+JAKHONGIR B. A ZIMOV 
+
+TASHKENT STATE TRANSPORT UNIVERSITY ,TASHKENT 100000, U ZBEKISTAN .
+
+Email address : azimovjb@mail.ru 
+
+JAKHONGIR B. A ZIMOV 
+
+KOKAND STATE UNIVERSITY ,KOKAND , U ZBEKISTAN .
+
+Email address : xurshid81@gmail.com
