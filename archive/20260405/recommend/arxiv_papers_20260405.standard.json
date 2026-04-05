@@ -1,0 +1,462 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-05T19:47:08.615897+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 11,
+    "quick_skim_target": 13,
+    "quick_selected": 11
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2603.28924v1",
+      "title": "CrossTrace: A Cross-Domain Dataset of Grounded Scientific Reasoning Traces for Hypothesis Generation",
+      "abstract": "Scientific hypothesis generation is a critical bottleneck in accelerating research, yet existing datasets for training and evaluating hypothesis-generating models are limited to single domains and lack explicit reasoning traces connecting prior knowledge to novel contributions. I introduce CrossTrace, a dataset of 1,389 grounded scientific reasoning traces spanning biomedical research (518), AI/ML (605), and cross-domain work (266). Each trace captures the structured reasoning chain from established knowledge through intermediate logical steps to a novel hypothesis, with every step grounded in source paper text. I define an Input/Trace/Output schema that extends the Bit-Flip-Spark framework of HypoGen with step-level verification, a taxonomy of eight discovery patterns, and multi-domain coverage. Fine-tuning Qwen2.5-7B-Instruct on CrossTrace via QLoRA yields substantial improvements over the untuned baseline: IAScore rises from 0.828 to 0.968 (GPT-4o judge) and from 0.716 to 0.888 (Claude Opus 4.5), structural compliance improves from 0% to 100%, and spark cosine similarity increases from 0.221 to 0.620. Balanced cross-domain training (biomedical + AI/ML + CS) outperforms single-domain training, providing evidence that scientific reasoning patterns transfer across disciplines. Human validation of 150 stratified records confirms 99.7% step-level grounding accuracy and a 0.0% fabrication rate. To my knowledge, CrossTrace is the first large-scale, cross-domain dataset with step-level grounded reasoning traces for hypothesis generation, and my results demonstrate that such traces are an effective training signal whose benefits are at least partially domain-general.",
+      "authors": [
+        "Andrew Bouras",
+        "OMS-II Research Fellow"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-03-30T18:55:55+00:00",
+      "link": "https://arxiv.org/pdf/2603.28924v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for scientific hypothesis generation in biomedical research",
+      "llm_evidence_cn": "利用AI在生物医学研究中生成科学假设",
+      "llm_evidence": "利用AI在生物医学研究中生成科学假设",
+      "canonical_evidence": "利用AI在生物医学研究中生成科学假设",
+      "llm_tldr_en": "Introduces a dataset for AI-driven scientific reasoning in biomedicine, supporting AI in genomics research.",
+      "llm_tldr_cn": "引入了一个用于生物医学AI推理的数据集，支持利用AI进行基因组和生物医学研究。",
+      "llm_tldr": "引入了一个用于生物医学AI推理的数据集，支持利用AI进行基因组和生物医学研究。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.28325v1",
+      "title": "Building evidence-based knowledge graphs from full-text literature for disease-specific biomedical reasoning",
+      "abstract": "Biomedical knowledge resources often either preserve evidence as unstructured text or compress it into flat triples that omit study design, provenance, and quantitative support. Here we present EvidenceNet, a framework and dataset for building disease-specific knowledge graphs from full-text biomedical literature. EvidenceNet uses a large language model (LLM)-assisted pipeline to extract experimentally grounded findings as structured evidence nodes, normalize biomedical entities, score evidence quality, and connect evidence records through typed semantic relations. We release two resources: EvidenceNet-HCC with 7,872 evidence records, 10,328 graph nodes, and 49,756 edges, and EvidenceNet-CRC with 6,622 records, 8,795 nodes, and 39,361 edges. Technical validation shows high component fidelity, including 98.3% field-level extraction accuracy, 100.0% high-confidence entity-link accuracy, 87.5% fusion integrity, and 90.0% semantic relation-type accuracy. In downstream evaluation, EvidenceNet improves internal and external retrieval-augmented question answering and retains structural signal for future link prediction and target prioritization. These results establish EvidenceNet as a disease-specific resource for evidence-aware biomedical reasoning and hypothesis generation.",
+      "authors": [
+        "Chang Zong",
+        "Sicheng Lv",
+        "Si-tu Xue",
+        "Huilin Zheng",
+        "Jian Wan",
+        "Lei Zhang"
+      ],
+      "primary_category": "cs.CE",
+      "categories": [
+        "cs.CE",
+        "cs.AI"
+      ],
+      "published": "2026-03-30T11:53:45+00:00",
+      "link": "https://arxiv.org/pdf/2603.28325v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM-assisted pipeline for disease-specific biomedical knowledge graphs",
+      "llm_evidence_cn": "利用大语言模型构建疾病特异性生物医学知识图谱",
+      "llm_evidence": "利用大语言模型构建疾病特异性生物医学知识图谱",
+      "canonical_evidence": "利用大语言模型构建疾病特异性生物医学知识图谱",
+      "llm_tldr_en": "Develops EvidenceNet to extract structured biomedical findings from literature using LLMs.",
+      "llm_tldr_cn": "开发了EvidenceNet，利用大语言模型从文献中提取结构化的生物医学发现。",
+      "llm_tldr": "开发了EvidenceNet，利用大语言模型从文献中提取结构化的生物医学发现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01619v1",
+      "title": "Automatic Image-Level Morphological Trait Annotation for Organismal Images",
+      "abstract": "Morphological traits are physical characteristics of biological organisms that provide vital clues on how organisms interact with their environment. Yet extracting these traits remains a slow, expert-driven process, limiting their use in large-scale ecological studies. A major bottleneck is the absence of high-quality datasets linking biological images to trait-level annotations. In this work, we demonstrate that sparse autoencoders trained on foundation-model features yield monosemantic, spatially grounded neurons that consistently activate on meaningful morphological parts. Leveraging this property, we introduce a trait annotation pipeline that localizes salient regions and uses vision-language prompting to generate interpretable trait descriptions. Using this approach, we construct Bioscan-Traits, a dataset of 80K trait annotations spanning 19K insect images from BIOSCAN-5M. Human evaluation confirms the biological plausibility of the generated morphological descriptions. We assess design sensitivity through a comprehensive ablation study, systematically varying key design choices and measuring their impact on the quality of the resulting trait descriptions. By annotating traits with a modular pipeline rather than prohibitively expensive manual efforts, we offer a scalable way to inject biologically meaningful supervision into foundation models, enable large-scale morphological analyses, and bridge the gap between ecological relevance and machine-learning practicality.",
+      "authors": [
+        "Vardaan Pahuja",
+        "Samuel Stevens",
+        "Alyson East",
+        "Sydne Record",
+        "Yu Su"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-02T04:55:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.01619v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven morphological trait annotation for organisms",
+      "llm_evidence_cn": "利用AI进行生物形态特征自动标注",
+      "llm_evidence": "利用AI进行生物形态特征自动标注",
+      "canonical_evidence": "利用AI进行生物形态特征自动标注",
+      "llm_tldr_en": "Automates morphological trait annotation using sparse autoencoders and vision-language models.",
+      "llm_tldr_cn": "利用稀疏自编码器和视觉语言模型实现生物形态特征的自动标注。",
+      "llm_tldr": "利用稀疏自编码器和视觉语言模型实现生物形态特征的自动标注。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.29316v1",
+      "title": "A Bayesian Finite Mixture Model Approach for Mixed-type Data Clustering and Variable Selection with Censored Biomarkers",
+      "abstract": "Clustering mixed-type data remains a major challenge in biomedical research to uncover clinically meaningful subgroups within heterogeneous patient populations. Most existing clustering methods impose restrictive assumptions like local independence, fail to accommodate censored biomarkers, or unable to quantify variable importance. We propose a Bayesian finite mixture model (BFMM) clustering framework that addresses these limitations. BFMM flexibly models both continuous and categorical variables, incorporates three covariance structures to capture cluster-specific dependencies among continuous features, and handles censored observations through likelihood-based imputation. To facilitate feature prioritization, BFMM uses spike-and-slab priors to estimate variable importance on a continuous 0-1 scale. Simulation studies demonstrate that BFMM outperforms existing methods in clustering accuracy, particularly given strong within-cluster correlation or censored variables, and reliably distinguishes informative features from noise under varying conditions. We applied BFMM to two real-world datasets: (1) the SENECA cohort integrating electronic health records from patients with Sepsis; and (2) the EDEN randomized trial of patients with acute lung injury. In both settings, BFMM identified clinically interpretable phenotypes and revealed variable-specific contributions to subgroup differentiation. In the EDEN trial, it also uncovered evidence of treatment heterogeneity. These findings validate BFMM as an effective, interpretable, and practically useful clustering tool for complex biomedical datasets.",
+      "authors": [
+        "Yueting Wang",
+        "Shu Wang",
+        "Jonathan G. Yabes",
+        "Chung-Chou H. Chang"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-03-31T06:34:04+00:00",
+      "link": "https://arxiv.org/pdf/2603.29316v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "clustering and variable selection with censored biomarkers in biomedical research",
+      "llm_evidence_cn": "生物医学研究中删减生物标志物的聚类与变量选择",
+      "llm_evidence": "生物医学研究中删减生物标志物的聚类与变量选择",
+      "canonical_evidence": "生物医学研究中删减生物标志物的聚类与变量选择",
+      "llm_tldr_en": "A Bayesian model for clustering mixed-type biomedical data and identifying important biomarkers.",
+      "llm_tldr_cn": "一种用于混合类型生物医学数据聚类和重要生物标志物识别的贝叶斯模型。",
+      "llm_tldr": "一种用于混合类型生物医学数据聚类和重要生物标志物识别的贝叶斯模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.02227v1",
+      "title": "Sensitivity analysis for stopping criteria with application to organ transplantations",
+      "abstract": "We consider a stopping problem and its application to the decision-making process regarding the optimal timing of organ transplantation for individual patients. At each decision period, the patient state is inspected and a decision is made whether to transplant. If the organ is transplanted, the process terminates; otherwise, the process continues until a transplant happens or the patient dies. Under suitable conditions, we show that there exists a control limit optimal policy. We propose a smoothed perturbation analysis (SPA) estimator for the gradient of the total expected discounted reward with respect to the control limit. Moreover, we show that the SPA estimator is asymptotically unbiased.",
+      "authors": [
+        "Xingyu Ren",
+        "Michael C. Fu",
+        "Steven I. Marcus"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY",
+        "math.OC",
+        "stat.ME"
+      ],
+      "published": "2026-04-02T16:20:43+00:00",
+      "link": "https://arxiv.org/pdf/2604.02227v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "decision-making for optimal timing of organ transplantation",
+      "llm_evidence_cn": "器官移植最佳时机的决策制定",
+      "llm_evidence": "器官移植最佳时机的决策制定",
+      "canonical_evidence": "器官移植最佳时机的决策制定",
+      "llm_tldr_en": "Analyzes stopping criteria and optimal timing for organ transplantation using sensitivity analysis.",
+      "llm_tldr_cn": "利用敏感性分析研究了器官移植的停止标准和最佳时机决策。",
+      "llm_tldr": "利用敏感性分析研究了器官移植的停止标准和最佳时机决策。",
+      "llm_tags": [
+        "query:xeno"
+      ],
+      "matched_query_tag": "query:xeno",
+      "matched_query_text": "Xenotransplantation research and clinical trials",
+      "matched_requirement_id": "req-21",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.29464v1",
+      "title": "On the global asymptotic stability of an infection-age structured competitive model",
+      "abstract": "We investigate an infection-age structured competitive epidemiological model involving multiple strains. While classical results establish competitive exclusion when a unique maximal basic reproduction number exists, we provide here a complete characterization of the asymptotic behavior for an arbitrary number of populations without assuming uniqueness of the maximal reproduction number. By means of integrated semigroups theory, persistence results, and Lyapunov functionals, we establish global asymptotic stability of equilibria and extend previous results obtained for simpler (ODE) models. A key contribution lies in overcoming technical difficulties related to the definition and differentiation of Lyapunov functionals, as well as in refining arguments based on the LaSalle invariance principle.",
+      "authors": [
+        "Simon Girel",
+        "Quentin Richard"
+      ],
+      "primary_category": "math.AP",
+      "categories": [
+        "math.AP"
+      ],
+      "published": "2026-03-31T09:12:38+00:00",
+      "link": "https://arxiv.org/pdf/2603.29464v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "competitive epidemiological model for multiple strains and populations",
+      "llm_evidence_cn": "多菌株和多群体的竞争性流行病学模型",
+      "llm_evidence": "多菌株和多群体的竞争性流行病学模型",
+      "canonical_evidence": "多菌株和多群体的竞争性流行病学模型",
+      "llm_tldr_en": "Analyzes the global stability and competitive dynamics of multiple strains within structured populations.",
+      "llm_tldr_cn": "分析了结构化种群中多菌株的全局稳定性和竞争动态。",
+      "llm_tldr": "分析了结构化种群中多菌株的全局稳定性和竞争动态。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00533v1",
+      "title": "Learning from Many and Adapting to the Unknown in Open-set Test Streams",
+      "abstract": "Large Language Models (LLMs) generalize across tasks via reusable representations and flexible reasoning, yet remain brittle in real deployment under evolving tasks and continual distribution shift. A common approach is Test-Time Adaptation (TTA), existing ones of which updates models with hand-designed unsupervised objectives over the full parameter space and mostly overlook preserving shared source knowledge and the reliability of adaptation signals. Drawing on molecular signaling cascades of memory updating in Drosophila, we propose Synapse Consolidation (SyCo), a parameter-efficient LLM adaptation method that updates low-rank adapters through Rac1 and MAPK pathways under the guidance of a structured TTA objective driven by problem understanding, process understanding, and source-domain guardrail. Rac1 confines plasticity to a tail-gradient subspace that is less critical for source knowledge, enabling rapid specialization while preserving source representations. MAPK uses a tiered controller to suppress noisy updates and consolidate useful adaptations under non-stationary streams. To model real deployments with multiple sources and continually emerging tasks, we introduce Multi-source Open-set Adaptation (MOA) setting, where a model is trained on multiple labeled source tasks and then adapts on open, non-stationary unlabeled test streams that mix seen and unseen tasks with partial overlap in label and intent space. Across 18 NLP datasets and the MOA setting, SyCo consistently outperforms strong baselines, achieving 78.31\\% on unseen-task adaptation and 85.37\\% on unseen-data shifts.",
+      "authors": [
+        "Xiao Zhang",
+        "Juntao Lyu",
+        "Tianyu Hu",
+        "Qianchuan Zhao",
+        "Huimin Ma"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.IT"
+      ],
+      "published": "2026-04-01T06:23:24+00:00",
+      "link": "https://arxiv.org/pdf/2604.00533v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI adaptation inspired by Drosophila molecular signaling",
+      "llm_evidence_cn": "受果蝇分子信号传导启发的AI自适应方法",
+      "llm_evidence": "受果蝇分子信号传导启发的AI自适应方法",
+      "canonical_evidence": "受果蝇分子信号传导启发的AI自适应方法",
+      "llm_tldr_en": "Proposes an LLM adaptation method inspired by biological molecular signaling pathways in Drosophila.",
+      "llm_tldr_cn": "提出了一种受果蝇生物分子信号通路启发的轻量化大模型自适应方法。",
+      "llm_tldr": "提出了一种受果蝇生物分子信号通路启发的轻量化大模型自适应方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00599v1",
+      "title": "Predicting Dynamics of Ultra-Large Complex Systems by Inferring Governing Equations",
+      "abstract": "Predicting the behavior of ultra-large complex systems, from climate to biological and technological networks, is a central unsolved challenge. Existing approaches face a fundamental trade-off: equation discovery methods provide interpretability but fail to scale, while neural networks scale but operate as black boxes and often lose reliability over long times. Here, we introduce the Sparse Identification Graph Neural Network, a framework that overcome this divide by allowing to infer the governing equations of large networked systems from data. By defining symbolic discovery as edge-level information, SIGN decouples the scalability of sparse identification from network size, enabling efficient equation discovery even in large systems. SIGN allows to study networks with over 100,000 nodes while remaining robust to noise, sparse sampling, and missing data. Across diverse benchmark systems, including coupled chaotic oscillators, neural dynamics, and epidemic spreading, it recovers governing equations with high precision and sustains accurate long-term predictions. Applied to a data set of time series of temperature measurements in 71,987 sea surface positions, SIGN identifies a compact predictive network model and captures large-scale sea surface temperature conditions up to two years in advance. By enabling equation discovery at previously inaccessible scales, SIGN opens a path toward interpretable and reliable prediction of real-world complex systems.",
+      "authors": [
+        "Qi Shao",
+        "Duxin Chen",
+        "Jiawen Chen",
+        "Yujie Zeng",
+        "Athen Ma",
+        "Wenwu Yu",
+        "Vito Latora",
+        "Wei Lin"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-01T08:06:20+00:00",
+      "link": "https://arxiv.org/pdf/2604.00599v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "inferring governing equations of biological networks",
+      "llm_evidence_cn": "推断生物网络的控制方程",
+      "llm_evidence": "推断生物网络的控制方程",
+      "canonical_evidence": "推断生物网络的控制方程",
+      "llm_tldr_en": "Introduces a graph neural network framework to infer governing equations of large complex biological systems.",
+      "llm_tldr_cn": "引入图神经网络框架，用于推断大型复杂生物系统的控制方程。",
+      "llm_tldr": "引入图神经网络框架，用于推断大型复杂生物系统的控制方程。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00624v1",
+      "title": "The Critical Patch Size Problem in Random Graphs",
+      "abstract": "The problem of {\\it critical patch size} -- a threshold condition for population persistence -- is investigated in the context of discrete habitats, modeled as graphs with a distinguished subset of vertices acting as sinks. These sinks impose boundary-like constraints analogous to Dirichlet conditions in continuous domains. The population proliferates locally at the vertices and diffuse across the network through the graph Laplacian. In the sinks the population cannot survive. The Dirichlet eigenvalue of the habitat is defined as the smallest eigenvalue of the principal submatrix of the Laplacian obtained by removing the rows and columns associated with sink vertices. This spectral parameter governs the habitat's viability: survival occurs when the Dirichlet eigenvalue of the habitat lies below a critical reaction-to-diffusion ratio.   We study survival conditions for a sequence of random habitats built on binomial random graphs. We establish a law of large numbers for the corresponding sequence of Dirichlet eigenvalues and prove the emergence of a sharp threshold phenomenon: with high probability, a large random habitat is either viable or non-viable, depending on whether the reaction-to-diffusion ratio lies below or above this threshold. Our results provide the first general spectral theory for critical patch size on graphs, with implications for ecology, synthetic biology, and the modeling of processes on brain connectomes.",
+      "authors": [
+        "Nicola Apollonio",
+        "Veronica Tora",
+        "Davide Vergni"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR"
+      ],
+      "published": "2026-04-01T08:31:06+00:00",
+      "link": "https://arxiv.org/pdf/2604.00624v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Population persistence and evolutionary dynamics in habitats",
+      "llm_evidence_cn": "生境中的种群持久性与演化动态",
+      "llm_evidence": "生境中的种群持久性与演化动态",
+      "canonical_evidence": "生境中的种群持久性与演化动态",
+      "llm_tldr_en": "Investigates the critical patch size for population survival in discrete habitats using graph theory.",
+      "llm_tldr_cn": "利用图论研究离散生境中种群生存的临界斑块大小问题。",
+      "llm_tldr": "利用图论研究离散生境中种群生存的临界斑块大小问题。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.00756v1",
+      "title": "Stochastic ordering tools for continuous-time Markov chains and applications to reaction network models",
+      "abstract": "Stochastic reaction networks are mathematical models with a wide range of applications in biochemistry, ecology, and epidemiology, and are often complex to analyze. Except for some special cases, it is generally difficult to predict how the abundances of all considered species evolve over time. A possible approach to address this issue is to develop tools to compare the model under study with a similar one whose behavior is better understood. The main contribution of our work is to provide direct and computable conditions that can be used to ensure the existence of an ordered coupling between two stochastic reaction networks and to identify which parameter changes in a given model lead to an increase or decrease in the count of certain species. We also make available an algorithm that implements our theory, and we illustrate it with several applications.",
+      "authors": [
+        "Daniele Cappelletti",
+        "Giulio Cuniberti",
+        "Paola Siri"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR",
+        "q-bio.MN"
+      ],
+      "published": "2026-04-01T11:21:14+00:00",
+      "link": "https://arxiv.org/pdf/2604.00756v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Stochastic reaction networks for biochemistry and ecology evolution",
+      "llm_evidence_cn": "用于生物化学和生态演化的随机反应网络",
+      "llm_evidence": "用于生物化学和生态演化的随机反应网络",
+      "canonical_evidence": "用于生物化学和生态演化的随机反应网络",
+      "llm_tldr_en": "Tools for analyzing stochastic reaction networks in biochemistry and ecology using ordered couplings.",
+      "llm_tldr_cn": "利用有序耦合分析生物化学和生态学中随机反应网络的方法工具。",
+      "llm_tldr": "利用有序耦合分析生物化学和生态学中随机反应网络的方法工具。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.01307v1",
+      "title": "Space-Efficient Text Indexing with Mismatches using Function Inversion",
+      "abstract": "A classic data structure problem is to preprocess a string T of length $n$ so that, given a query $q$, we can quickly find all substrings of T with Hamming distance at most $k$ from the query string. Variants of this problem have seen significant research both in theory and in practice. For a wide parameter range, the best worst-case bounds are achieved by the \"CGL tree\" (Cole, Gottlieb, Lewenstein 2004), which achieves query time roughly $\\tilde{O}(|q| + \\log^k n + \\# occ)$ where $\\# occ$ is the size of the output, and space ${O}(n\\log^k n)$. The CGL Tree space was recently improved to $O(n \\log^{k-1} n)$ (Kociumaka, Radoszewski 2026).   A natural question is whether a high space bound is necessary. How efficient can we make queries when the data structure is constrained to $O(n)$ space? While this question has seen extensive research, all known results have query time with unfavorable dependence on $n$, $k$, and the alphabet $Σ$. The state of the art query time (Chan et al. 2011) is roughly $\\tilde{O}(|q| + |Σ|^k \\log^{k^2 + k} n + \\# occ)$.   We give an $O(n)$-space data structure with query time roughly $\\tilde{O}(|q| + \\log^{4k} n + \\log^{2k} n \\# occ)$, with no dependence on $|Σ|$. Even if $|Σ| = O(1)$, this is the best known query time for linear space if $k\\geq 3$ unless $\\# occ$ is large. Our results give a smooth tradeoff between time and space. We also give the first sublinear-space results: we give a succinct data structure using only $o(n)$ space in addition to the text itself.   Our main technical idea is to apply function inversion (Fiat, Naor 2000) to the CGL tree. Combining these techniques is not immediate; in fact, we revisit the exposition of both the Fiat-Naor data structure and the CGL tree to obtain our bounds. Along the way, we obtain improved performance for both data structures, which may be of independent interest.",
+      "authors": [
+        "Jackson Bibbens",
+        "Levi Borevitz",
+        "Samuel McCauley"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-04-01T18:19:11+00:00",
+      "link": "https://arxiv.org/pdf/2604.01307v1",
+      "tags": [
+        "keyword:基因演化",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Text indexing with mismatches for string processing",
+      "llm_evidence_cn": "带错配的文本索引字符串处理",
+      "llm_evidence": "带错配的文本索引字符串处理",
+      "canonical_evidence": "带错配的文本索引字符串处理",
+      "llm_tldr_en": "Proposes space-efficient text indexing for string matching, a core computational method for genomic sequences.",
+      "llm_tldr_cn": "提出了一种高效的带错配文本索引方法，是基因组序列比对的核心计算方法。",
+      "llm_tldr": "提出了一种高效的带错配文本索引方法，是基因组序列比对的核心计算方法。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

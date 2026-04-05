@@ -1,0 +1,6460 @@
+Title: Ontheglobalasymptoticstabilityofaninfection-agestructuredcompetitivemodel
+
+URL Source: https://arxiv.org/pdf/2603.29464v1
+
+Published Time: Wed, 01 Apr 2026 00:54:25 GMT
+
+Number of Pages: 29
+
+Markdown Content:
+> arXiv:2603.29464v1 [math.AP] 31 Mar 2026
+
+# On the global asymptotic stability of an infection-age structured competitive model 
+
+## S. Girel 1 and Q. Richard 21Universit´ e Cˆ ote d’Azur, CNRS, LJAD, Parc Valrose, 06108 Nice, France 
+
+> 2
+
+## Universit´ e de Montpellier, CNRS, IMAG, 34090 Montpellier, France. 
+
+Abstract 
+
+We investigate an infection-age structured competitive epidemiological model involving multiple strains. While classical results establish competitive exclusion when a unique maximal basic reproduction number exists, we provide here a complete characterization of the asymptotic behavior for an arbitrary number of populations without assuming uniqueness of the maximal reproduction number. By means of integrated semigroups theory, persistence results, and Lyapunov functionals, we establish global asymptotic stability of equilibria and extend previous results obtained for simpler (ODE) models. A key contribution lies in overcoming technical difficulties related to the definition and differentiation of Lyapunov functionals, as well as in refining arguments based on the LaSalle invariance principle. 
+
+Keywords: Infection-age structured model; Competitive exclusion principle; Global asymptotic stability; Lyapunov functionals; Persistence theory; Integrated semigroups theory 
+
+# 1 Introduction 
+
+In this paper we focus on the following infection-age structured competitive model 
+
+
+
+S′(t) = Λ − μS S(t) − S(t)
+
+> n
+
+∑
+
+> k=1
+
+∫ ∞
+
+> 0
+
+βk(a)xk(t, a )da, ∂x k
+
+∂t (t, a ) + ∂x k
+
+∂a (t, a ) = −μk(a)xk (t, a ),xk(t, 0) = S(t)
+
+∫ ∞
+
+> 0
+
+βk(a)xk (t, a )da 
+
+(S(0) , x 1(0 , . ), ..., x n(0 , . )) = (S0, x 1,0, ..., x n, 0) ∈ R+ × (L1+(0 , ∞)) n
+
+(1) for every ( t, a, k ) ∈ (R∗
+
+> +
+
+)2 × J1, n K where n ≥ 1 is the number of infected populations. The case n = 1 was investigated by Thieme and Castillo-Chavez in [ 19 , 20 ] with the study of the uniform persistence of the system and the local asymptotic stability (LAS) of the endemic equilibrium. The analysis was completed by Magal, McCluskey and Webb who established the global asymptotic stability (GAS) of both the disease-free and the endemic equilibria [ 11 ]. Using the next generation operator approach [ 3] they derive an explicit expression for the basic reproduction number R0 and prove that if R0 ≤ 1 then the disease-free equilibrium is GAS in the whole space, while if R0 > 1 then the unique endemic equilibrium is GAS in the set of initial conditions for which disease transmission occurs, and the disease-free equilibrium is GAS in the complementary set. Later, the case n ≥ 2 was investigated by Martcheva and Li using a more general model that includes a vaccinated compartment [ 14 ]. They derive a basic reproduction number R0,k for each species k ∈ J1, n K and prove that if max k∈J1,n K{R 0,k } ≤ 1 then the disease-free equilibrium is GAS in the whole space. Moreover, under the assumption that there exists j ∈ J1, n K such that R0,j > 1 and R0,j > max k∈J1,n K\{ j}{R 0,k } then the endemic equilibrium corresponding to the survival of the strain j only ( i∗ 
+
+> j
+
+6 = 0 and i∗ 
+
+> k
+
+= 0 if k 6 = j), is GAS in the set of initial conditions for which the transmission of the disease j occurs. This classical result is commonly called competitive exclusion principle and was postulated first by Gause in an ecological context [ 5] and later reinterpreted in an epidemiological context by Bremermann and Thieme [ 1]. It states that n competitors cannot coexist on less than n resources, hence if multiple strains circulate in the population then only the strain with the largest reproduction number persists, while the strains with suboptimal reproduction numbers are eliminated. As mentioned by the authors, the case where the maximal reproduction number is reached 1for multiple populations is not treated in [ 14 ]. For two species ( n = 2), this case was partly investigated in [16 ] with an attractiveness result of the set composed of all endemic equilibria. In the absence of age-infection structure, the ODE model has been extensively studied (see [ 8, 9] for Holling type 2 models or more recently [2] with infinitely many variants). The asymptotic behavior of the solutions is fully characterized in all cases. Moreover, when the maximal R0 is attained for multiple populations, the equilibrium toward which the solution converges can be explicitly determined based on the initial condition. This issue, however, remains open in the PDE setting. The methodology employed in [ 11 ] consists first in using integrated semigroup theory (see [ 12 ]) to get an appropriate framework for the well-posedness of the problem. It allows to linearize the system around each equilibrium, obtain linear C0-semigroups, then use spectral theory to obtain the local stability of the equilibria (see [ 4, 21 ]). Afterwards the study focuses on the semiflow (see [ 6] for definitions and results) by proving that it is both bounded-dissipative and asymptotically smooth, which implies the existence of a strong global attractor 
+
+A that is LAS. The last part of the proof consists in showing that this attractor reduces to some equilibrium, by using Lyapunov functionals. The same kind of arguments are used in [ 14 ]. More recently, global stability results were established in a SI epidemiological PDE model with infection load-structure [ 15 ]. This is also done by using Lyapunov functionals, however, contrarily to [ 11 , 14 ], the computations are not done on the global attractor but on the omega-limit set for each initial condition. This method comes at the cost of requiring local asymptotic stability to be established independently. In order to reduce the attractor to some equilibrium, we first must check that the Lyapunov candidate function is well defined on the attractor. This is immediate for the disease-free equilibrium, whereas strong uniform persistence results are necessary for the endemic equilibrium. In [ 11 , 14 ], the weak persistence of the semiflow is readily obtained, then the uniform weak persistence is deduced from the tools developed in [ 7] (see also [ 17 ]). This ultimately leads to the uniform strong persistence due to the existence of a global attractor [ 17 ]. In [ 15 ] the author combines the weak persistence with the fact that the disease-free equilibrium is included in the omega-limit set to claim a contradiction, but there may be cases where the solution approaches the disease-free equilibrium without converging to it. This proof was unfortunately reused in [ 16 ]. The second point is to compute the derivative of the Lyapunov candidate function. As explained in [ 11 ], initial conditions in some specific domain lead to classical solutions [ 12 ] of ( 1) and the PDE equations can be used to readily compute the derivative. For other initial conditions, the key argument is the density of the latter domain into the positive cone of the whole set as mentioned in [ 11 ]. Though it is also necessary that the semiflow is state-continuous uniformly in finite time (see [ 17 ]) which naturally follows from the Lipschitz property of the non-linearity. For the endemic equilibrium, this is even trickier since the sequence of initial conditions obtained by the density argument does not necessarily satisfy the estimates required for the Lyapunov candidate function to be well-defined. Hence, the construction of an ad hoc sequence, which both belong to the domain and satisfy the estimates, is necessary. This is done in the present paper. The third and last point is the reduction of the attractor to the equilibrium. In [ 11 ], this is done by considering a point z ∈ A and a complete orbit through z. Using the Lyapunov function and some estimates on the alpha limit set of the complete orbit, the authors get the result for the disease-free equilibrium when R0 ≤ 1. For the endemic equilibrium, the authors combine the fact that the derivative of the Lyapunov function must vanish on the alpha-limit set of z (see [ 17 ]) which actually reduces to the endemic equilibrium (by computing the largest invariant set on which the derivative vanishes), with the LAS of the endemic equilibrium to obtain the result when R0 > 1. In [ 15 ], since the Lyapunov is computed on the omega-limit set ω(x) for the initial condition x,the LaSalle invariance principle does not imply that the derivative of the Lyapunov function vanishes for each point of ω(x) as claimed but only on the omega-limit (and alpha-limit) sets of each point of ω(x) (see [ 17 ]). It follows that the endemic equilibrium belongs to ω(x) but is not necessarily equal to it. The mistake lies in asserting that, if y ∈ ω(x), then ω(y) = ω(x). A simple counter-example exists with ODEs (see [ 18 , Example, p.224])) where ω(x) consists of two fixed points plus the orbits joining them, while ω(y) reduces to one of the equilibria, for each y ∈ ω(x). In the present paper we do not need the LAS of the endemic equilibrium. The argument follows [ 11 , 14 ] by considering z ∈ A and a complete orbit through z on which the Lyapunov function is well defined. The LaSalle invariance principle implies that the derivative of the Lyapunov function vanishes both on the omega and alpha limit sets of z, which then both reduce to the endemic equilibrium. Using the fact that the Lyapunov is zero at the endemic equilibrium, it follows that the Lyapunov function vanishes along the complete orbit, hence the derivative vanishes for all time and the result follows. This point is of particular interest here, since the stability of the endemic equilibrium cannot be established by linearization when the maximal R0 is attained for multiple populations. In the second section, we specify the assumptions and notations, remind some definitions then state the main result that is a complete description of the asymptotic behavior for n species in the case where the 2maximal reproduction number is not necessarily unique, with global asymptotic stability results of the equilibria, extending the results obtained in [ 14 ]. In the third section we prove the result by induction on n, using the tools described above. 
+
+# 2 Assumptions and results 
+
+For every k ∈ J1, n K, we define the function 
+
+πk : a 7 −→ e− ∫ a  
+
+> 0μk(s)ds
+
+describing the survival probability from infection to the infection age a for the population k. We also define the following quantities 
+
+βk := sup(supp( βk)) , rk := 
+
+∫ ∞
+
+> 0
+
+βk(a)πk(a)da 
+
+which allow us to define the basic reproduction number associated to the species k as 
+
+R0,k = Λrk
+
+μS
+
+.
+
+We will look at solutions on the Banach space 
+
+X := R × (L1(0 , ∞)) n
+
+which is endowed with the usual norm while we denote by X+ its positive cone. We also define the sets 
+
+Sk := 
+
+{
+
+(S0, x 1,0, ..., x n, 0) ∈ X+ :
+
+∫ βk
+
+> 0
+
+xk, 0(s)ds > 0
+
+}
+
+, ∂Sk = X+ \ S k, ∀k ∈ J1, n K.
+
+Assumption 2.1. 
+
+1. The constants Λ and μS are positive. For each k ∈ J1, n K the functions μk and βk belong to L∞(0 , ∞)
+
+with βk 6 ≡ 0. Moreover, there exists μ0 > 0 such that μS ≥ μ0 and such that for each k ∈ J1, n K we have 
+
+μk(a) ≥ μ0 a.e a ≥ 0.
+
+2. For each k ∈ J1, n K there exists βk ∈ [0 , βk) such that 
+
+βk(a) > 0 a.e. a ∈ [βk, βk).
+
+3. The functions βk are uniformly continuous. 
+
+We note that the last assumption is to obtain the compactness of the orbits. We remind (see [ 11 , 16 ]) that we can define the linear operator A : D(A) ⊂ X → X by 
+
+A
+
+
+
+S( 0
+
+x1
+
+)
+
+...( 0
+
+xn
+
+)
+
+=
+
+
+
+−μS S( −x1(0) 
+
+−x′ 
+
+> 1
+
+− μ1x1
+
+)
+
+...( −xn(0) 
+
+−x′ 
+
+> n
+
+− μnxn
+
+)
+
+with D(A) = R × ({0} × W 1,1(0 , ∞)) n and X = R × (R × L1(0 , ∞)) n. We define the sets X0 = D(A) = 
+
+R × ({0} × L1(0 , ∞)) 2 and its positive cone X0+ = R+ × ({0} × L1+(0 , ∞)) 2. Then we define the part of A in 
+
+X0 as 
+
+A0x = Ax, ∀x ∈ D(A0) := {x ∈ D(A) : Ax ∈ X 0}.
+
+We also define the non-linear function F : X0 → X by 
+
+F
+
+
+
+S( 0
+
+x1
+
+)
+
+...( 0
+
+xn
+
+)
+
+=
+
+
+
+Λ − S ∑nk=1 
+
+∫ ∞ 
+
+> 0
+
+βk(a)xk(a)da 
+
+(S ∫ ∞ 
+
+> 0
+
+β1(a)x1(a)da 
+
+0
+
+)
+
+...(S ∫ ∞ 
+
+> 0
+
+βn(a)xn(a)da 
+
+0
+
+)
+
+.
+
+3Finally, we define the nonlinear generator (A + F )u = Au + F (u), ∀u ∈ D(A)and the part of A + F in X0 as (( A + F )0)u = ( A + F )u, ∀u ∈ D(( A + F )0) = {u ∈ D(A) : Au + F (u) ∈ X 0}. (2) We can then rewrite the model ( 1) in the following abstract Cauchy form (not densely defined): 
+
+{ du 
+
+dt (t) = Au (t) + F (u(t)) , ∀t > 0
+
+u(0) = u0 ∈ X 0.
+
+(3) Under Assumption 2.1 we can state the following properties (see the proof of [ 16 , Proposition 2.1] in the case 
+
+n = 2): 
+
+Lemma 2.2. Suppose that Assumption 2.1 holds. Then: 1. A is a Hille-Yosida operator with (−μ0, ∞) ⊂ ρ(A), where ρ(A) denotes the resolvent set of A and 
+
+‖(λI − A)−n)‖L(X ) ≤ 1
+
+(λ + μ0)n , ∀λ > −μ0, ∀n ≥ 1.
+
+2. F is a locally Lipschitz continuous function: ∀r > 0, ∃Kr > 0 such that 
+
+‖F (u0) − F (˜ u0)‖X ≤ Kr ‖u0 − ˜u0‖X
+
+for every (u0, ˜u0) ∈ (X0 ∩ BX (0 , r )) 2 where BX (0 , r ) is the ball centered at 0 ∈ X and radius r.3. A is resolvent positive and for every r > 0 there exists Kr such that F (u0) + Kru0 ∈ X + and A − KrI is resolvent positive for every u0 ∈ X 0 ∩ BX (0 , r ) ∩ X +.For the second and third points, the constant Kr can be taken as Kr := 2 r ∑nk=1 ‖βk‖L∞ .
+
+From the above lemma, we deduce (see [ 11 , Proposition 2.1] in the case n = 1 or [ 16 , Theorem 2.2] for 
+
+n = 2) the following result. 
+
+Proposition 2.3. Suppose that Assumption 2.1 holds. 1. There exists a unique continuous semiflow {U (t)}t≥0 on X0+ such that for every u0 ∈ X 0+ , there exist 
+
+tmax (u0) ≤ ∞ and a continuous map U (.)u0 ∈ C ([0 , t max ), X0+ ) which is a maximal integrated solution of 
+
+(3), i.e. ∫ t
+
+> 0
+
+U (s)u0ds ∈ D(A), ∀t ∈ [0 , t max )
+
+and 
+
+U (t)u0 = u0 + A
+
+∫ t
+
+> 0
+
+U (s)u0ds +
+
+∫ t
+
+> 0
+
+F (U (s)u0)ds, ∀t ∈ [0 , t max ).
+
+2. This solution is global in time, i.e. tmax (u0) = + ∞ and it induces a continuous semiflow via 
+
+Φ : R+ × X+ 7 −→ Φt(z) = ( S(t), x 1 (t, . ), ..., x n(t, . )) =: (Φ St , Φ1 
+
+> t
+
+, ..., Φnt )( z).
+
+The semiflow rewrites using the following Duhamel formulation 
+
+Φt(z) = 
+
+(
+
+0, Φ1,1 
+
+> t
+
+(z), ..., Φn, 1 
+
+> t
+
+(z)
+
+)
+
++
+
+(
+
+ΦSt (z), Φ1,2 
+
+> t
+
+(z), ..., Φn, 2 
+
+> t
+
+(z)
+
+)
+
+(4) 
+
+with ΦSt (z) > 0 for every t > 0 and every z ∈ X+. Also for each k ∈ J1, n K, we have 
+
+{
+
+Φk, 1 
+
+> t
+
+(z)( a) = xk, 0(a − t)e− ∫ aa−t μk (s)ds χ[t, ∞)(a)Φk, 2 
+
+> t
+
+(z)( a) = ΦSt−a(z) (∫ ∞ 
+
+> 0
+
+βk(s)Φ kt−a(z)( s)ds ) e− ∫ a  
+
+> 0μk(ξ)dξ
+
+χ[0 ,t )(a) (5) 
+
+where z = ( S0, x 1,0, ..., x n, 0) and χ denotes the characteristic function. Also, for every u0 ∈ X 0+ we have 
+
+‖U (t)u0‖X ≤ Λ
+
+μ0
+
+(1 − e−μ0t) + ‖u0‖X e−μ0t ≤ max 
+
+{ Λ
+
+μ0
+
+, ‖u0‖X
+
+}
+
+, ∀t ≥ 0. (6) 43. The semiflow Φ is bounded-dissipative on X+, i.e. there exists a bounded set (that is BX (0 , Λ 
+
+> μ0
+
+), the ball of X centered at 0 and radius Λ 
+
+> μ0
+
+) which attracts every bounded set of X+.4. The semiflow Φ is state-continuous uniformly in finite time, i.e. for every (t, z ) ∈ R+ × X+ and every 
+
+ε > 0, there exists δ > 0 such that 
+
+‖Φs(z) − Φs(˜ z)‖X ≤ ε, ∀(s, ˜z) ∈ [0 , t ] × X+ such that ‖z − ˜z‖X ≤ δ. 
+
+5. The semiflow Φ is asymptotically smooth, i.e. for every non-empty, closed, bounded and positively invari-ant set B ⊂ X+, there exists a compact set K ⊂ B such that d(Φ t(B), K ) → 
+
+> t→∞
+
+0 where we defined 
+
+d(Φ t(B), K ) = sup 
+
+> z∈B
+
+inf  
+
+> y∈K
+
+‖Φt(z) − y‖X .
+
+Proof. 1. From Lemma 2.2 , A is a Hille-Yosida operator, so it generates a locally Lipschitz continuous integrated semigroup {SA(t)}t≥0 on X (see [ 10 , Theorem 2.4] or [ 12 , Proposition 3.4.3, p.116]). Moreover, Kellermann-Hieber theorem (see [ 10 ] or [ 12 , Theorem 3.6.2, p.133]) implies that for any τ > 0 and any f ∈ L1((0 , τ ), X ), the maps t 7 −→ (SA ∗ f ) ( t) are continuously differentiable, where ∗ denotes the convolution product: (SA ∗ f )( t) = 
+
+∫ t
+
+> 0
+
+SA(t − s)f (s)ds 
+
+and for all t ∈ [0 , τ ] then 
+
+‖uf (t)‖ := 
+
+∥∥∥∥
+
+d
+
+dt (SA ∗ f )( t)
+
+∥∥∥∥ ≤ e−μ0t
+
+∫ t
+
+> 0
+
+eμ0 s‖f (s)‖ds ≤ δA(t) sup 
+
+> s∈[0 ,t ]
+
+|| f (s)|| . (7) where δA(t) = t converges to 0 as t → 0. Then Assumption 5.1.2 from [ 12 ] applies and, since we proved that F is locally Lipschitz continuous, [ 12 , Theorem 5.2.7, p.226] states that there exists a unique maximal integrated (mild) solution U (.)u0 ∈ C ([0 , t max ), X0) (with tmax ≤ ∞ ) of the problem ( 3) for each initial condition u0 ∈ X 0. This solution satisfies: 
+
+U (t)u0 = TA0 (t)u0 + d
+
+dt (SA ∗ (F ◦ U (.)u0)( t)) . (8) where {TA0 }t≥0 is the C0-semigroup on X0 generated by A0. Note that the existence of {TA0 }t≥0 on 
+
+D(A0) comes from the Hille-Yosida Theorem [ 12 , Lemma 2.4.5] while [ 12 , Lemma 2.2.11] implies that 
+
+D(A0) = X0.Due to the positive properties stated in Lemma 2.2 , we deduce by [ 12 , Proposition 5.3.2, p. 227] that for each u0 ∈ X 0+ the solution satisfies U (.)u0 ∈ C ([0 , t max ), X+). This proves the first point. 2. Let u0 = ( S0, (0 , x 1,0), ..., (0 , x n, 0)) ∈ X 0+ and z := ( S0, x 1,0, ..., x n, 0) ∈ X+. First, the formula ( 5)are derived for every t ∈ [0 , t max (u0)) in [ 16 , Theorem 2.2] by the method of characteristics. Next, we have U (.)u0 ∈ C ([0 , t max (u0)) , X0+ ). Denoting U (t)u0 = ( S(t), (0 , x 1(t, . )) , ..., (0 , x n(t, . ))) for every 
+
+t ∈ [0 , t max (u0)), then the function t 7 −→ S(t) belongs to C1([0 , t max (u0)) , R+) and the S-equation of ( 1)holds. We deduce that 
+
+S(t) ≤ S0e−μ0 t +
+
+∫ t
+
+> 0
+
+(
+
+Λ − S(s)
+
+> n
+
+∑
+
+> k=1
+
+∫ ∞
+
+> 0
+
+βk(a)xk (s, a )da 
+
+)
+
+e−μ0 (t−s)ds 
+
+≤ S0e−μ0 t + Λ
+
+μ0
+
+(1 − e−μ0 t) −
+
+> n
+
+∑
+
+> k=1
+
+∫ t
+
+> 0
+
+S(s)
+
+(∫ ∞
+
+> 0
+
+βk(a)xk (s, a )da 
+
+)
+
+e−μ0 (t−s)ds 
+
+On the other hand, using ( 5) we have 
+
+∫ ∞
+
+> 0
+
+xk(t, a )da ≤ ‖ xk, 0‖L1 e−μ0t +
+
+∫ t
+
+> 0
+
+S(t − a)
+
+(∫ ∞
+
+> 0
+
+βk(s)xk (t − a, s )ds 
+
+)
+
+e−μ0ada. 
+
+It follows that ( 6) holds for every t ∈ [0 , t max (u0)) whence the solution U (.)u0 is global in time (otherwise the norm should explode at tmax (u0)). We deduce the existence of the continuous semiflow: Φ : R+ × X+ ∋ (t, z ) 7 −→ (S(t), x 1(t, . ), ..., x n(t, . )) ∈ X+
+
+5with the bijection 
+
+z := ( S0, x 1,0, ..., x n, 0) ∈ X+ 7 −→ u0 = ( S0, (0 , x 1,0), ..., (0 , x n, 0)) ∈ X 0+ .
+
+This proves the second point. 3. Let B ⊂ X+ be a bounded subset and let z := ( S0, x 1,0, ..., x n, 0) ∈ B. From ( 6) we know that 
+
+‖Φt(z)‖X ≤ Λ
+
+μ0
+
+(1 − e−μ0 t) + ‖z‖X e−μ0t, ∀t ≥ 0.
+
+It shows that lim t→+∞ ‖Φt(z)‖X ≤ Λ 
+
+> μ0
+
+uniformly in z ∈ B. In conclusion we get 
+
+d
+
+(
+
+Φt(B), B X
+
+(
+
+0, Λ
+
+μ0
+
+)) 
+
+−→  
+
+> t→∞
+
+0and Φ is bounded-dissipative on X+.4. Let u0 ∈ X 0+ . Then U (.)u0 ∈ C (R+, X0+ ). Let t ≥ 0, ε > 0 and define 
+
+r = max 
+
+{ Λ
+
+μ0
+
+, ‖u0‖X + ε
+
+}
+
+, δ = εe −Krt
+
+where Kr is as in Lemma 2.2 . Let ˜ u0 ∈ X 0+ such that ‖u0 − ˜u0‖X ≤ δ. We have U (.)˜ u0 ∈ C (R+, X0+ )and F is Lipschitz continuous whence F ◦ U (.)u0 and F ◦ U (.)˜ u0 belong to L1([0 , t ], X ). Also we have (U (s)u0, U (s)˜ u0) ∈ (X0+ ∩ BX (0 , r )) 2 for every s ∈ [0 , t ] by using ( 6) and since ‖˜u0‖X ≤ δ + ‖u0‖X ≤ r.From ( 8) we deduce that for every s ∈ [0 , t ): 
+
+U (s)˜ u0 − U (s)u0 = TA0 (s)(˜ u0 − u0) + d
+
+dt (SA ∗ (( F ◦ U (.)˜ u0) − (F ◦ U (.)u0))( s)) .
+
+From [ 12 , Lemma 2.2.10, p. 65], we have ρ(A0) = ρ(A) whence Hille-Yosida theorem states that 
+
+‖TA0 (s)(˜ u0 − u0)‖X ≤ e−μ0s‖˜u0 − u0‖X ≤ δ, ∀s ∈ [0 , t ].
+
+Using again Kellermann-Hieber theorem then ( 7) holds and we deduce that 
+
+‖U (s)˜ u0 − U (s)u0‖X ≤ δ +
+
+∫ s
+
+> 0
+
+‖F (U (ξ)˜ u0) − F (U (ξ)u0)‖X dξ, ∀s ∈ [0 , t ].
+
+It follows from Lemma 2.2 that 
+
+‖U (s)˜ u0 − U (s)u0‖X ≤ δ + Kr
+
+∫ s
+
+> 0
+
+‖U (ξ)˜ u0 − U (ξ)u0‖X dξ, ∀s ∈ [0 , t ]which leads by means of Gronwall’s inequality to 
+
+‖U (s)˜ u0 − U (s)u0‖X ≤ δe Kr s ≤ ε, ∀s ∈ [0 , t ]which proves the point. 5. From the decomposition ( 4), we see that the function η : R+ × R+ ∋ (t, r ) 7 −→ nre −μ0 t ∈ R+ satisfies: 
+
+∀r > 0 : lim  
+
+> t→+∞
+
+η(t, r ) = 0 and 
+
+‖(0 , Φ1,1 
+
+> t
+
+, ..., Φn, 1 
+
+> t
+
+)‖X ≤ η(t, r ), ∀(t, z ) ∈ R+ × X+ such that ‖z‖X ≤ r. 
+
+Let t > 0 and k ∈ J1, n K. We want to show that the operator Φ k, 2 
+
+> t
+
+: X+ → L1(R+) is compact. Let B ⊂ X+
+
+be a bounded subset and r = sup z∈B ‖z‖X . We use Riez-Fr´ echet-Kolmogorov theorem [ 22 , Theorem X.1, p. 275] to prove that {Φk, 2 
+
+> t
+
+(z), z ∈ B} is relatively compact in L1. First, using ( 6) we get sup 
+
+> z∈B
+
+‖Φk, 2 
+
+> t
+
+(z)‖L1 ≤
+
+(
+
+max 
+
+{ Λ
+
+μ0
+
+, r 
+
+}) 
+
+< +∞.
+
+6Secondly, let h > 0 then clearly sup 
+
+> z∈B
+
+∫ ∞
+
+> h
+
+Φk, 2 
+
+> t
+
+(z)( a)da −→  
+
+> h→+∞
+
+0.
+
+since Φ k, 2 
+
+> t
+
+(z)( a) = 0 for a > t . Thirdly, let h > 0 such that t − h > 0. Let us define 
+
+Bzk (s) = Φ ks (z)(0) = Φ Ss (z)
+
+∫ ∞
+
+> 0
+
+βk(a)Φ ks (z)( a)da, ∀(z, s ) ∈ B × R+
+
+whence Φk, 2 
+
+> s
+
+(z)( a) = Bzk (s − a)πk(a)χ[0 ,s )(a), ∀(z, s, a ) ∈ B × [0 , t ] × R+.
+
+Using ( 6) we have 
+
+Bzk (s) ≤ ‖ βk‖L∞
+
+(
+
+max 
+
+{ Λ
+
+μ0
+
+, r 
+
+}) 2
+
+=: c1, ∀(z, s ) ∈ B × R+
+
+and with the S-equation of ( 1) we get 
+
+∣∣∣∣
+
+dΦSs (z)
+
+ds 
+
+∣∣∣∣ ≤ Λ + μS max 
+
+{ Λ
+
+μ0
+
+, r 
+
+}
+
++
+
+(
+
+max 
+
+{ Λ
+
+μ0
+
+, r 
+
+}) 2 n∑
+
+> j=1
+
+‖βj ‖L∞ =: c2, ∀(z, s ) ∈ B × R+
+
+leading to 
+
+|ΦSs+h(z) − ΦSs (z)| ≤ c2h, ∀(z, s ) ∈ B × R+.
+
+We remark that 
+
+Bzk (s) = Φ Ss (z)
+
+∫ s
+
+> 0
+
+βk(a)Bzk (s − a)e− ∫ a 
+
+> 0μ(ξ)dξ
+
+da + Φ Ss (z)
+
+∫ ∞
+
+> 0
+
+βk(a + s)Φ k 
+
+> 0
+
+(z)( a)e− ∫ a+sa μk (ξ)dξ da 
+
+for every ( z, s ) ∈ B × R+ whence 
+
+|Bzk (s + h) − Bzk (s)| ≤ c3(h) + ‖βk‖L∞ max 
+
+{ Λ
+
+μ0
+
+, r 
+
+} ∫ s
+
+> 0
+
+|Bzk (s + h − a) − Bzk (s − a)|da, ∀(z, s ) ∈ B × R+
+
+where 
+
+c3(h) := r max 
+
+{ Λ
+
+μ0
+
+, r 
+
+} ( 
+
+c1h‖βk‖L∞ + sup 
+
+> a≥0
+
+|βk(a + h) − βk(a)| + (1 − e−h‖μk ‖L∞ )‖βk‖L∞
+
+)
+
++ c2h‖βk‖L∞
+
+( c1
+
+μ0
+
++ r
+
+)
+
+with c3(h) −→  
+
+> h→0
+
+0 uniformly in z ∈ B since βk is uniformly continuous by Assumption 2.1 . From Gronwall’s inequality we deduce that 
+
+|Bzk (s + h) − Bzk (s)| ≤ c3(h) exp 
+
+(
+
+r(t + h) × max 
+
+{ Λ
+
+μ0
+
+, r 
+
+}) 
+
+= c4(h), ∀(z, s ) ∈ B × [0 , t ].
+
+Thus it comes: 
+
+∫ ∞
+
+> 0
+
+|Φk, 2 
+
+> t
+
+(z)( a + h) − Φk, 2 
+
+> t
+
+(z)( a)|da ≤
+
+∫ t−h
+
+> −h
+
+|Bzk (t − (a + h)) − Bzk (t − a)) |πk(a + h)da 
+
++
+
+∫ t−h
+
+> −h
+
+Bzk (t − a)|πk(a + h) − πk (a)|da +
+
+∫ 0
+
+> −h
+
+Bzk (t − a)πk(a)da +
+
+∫ tt−h
+
+Bzk (t − a)πk(a)da 
+
+whence ∫ ∞
+
+> 0
+
+|Φk, 2 
+
+> t
+
+(z)( a + h) − Φk, 2 
+
+> t
+
+(z)( a)|da ≤ tc 4(h) + tc 1(1 − e−h‖μk ‖L∞ ) + 2 hc 1 −→  
+
+> h→0
+
+0uniformly in z ∈ B . It follows that the operator Φ k, 2 
+
+> t
+
+is compact for each t > 0. In conclusion the operator (Φ St , Φ1,2 
+
+> t
+
+, ..., Φn, 2 
+
+> t
+
+) is compact since the range of Φ St is finite dimensional. It proves the relative compactness of the positive orbits by using [ 21 , Proposition 3.13, p. 100], for each z ∈ X+ and also that the semiflow {Φt}t≥0 is asymptotically smooth (see [ 6, Lemma 3.2.6, p. 38] or [ 17 , Theorem 2.46, p.51]). 
+
+7Corollary 2.4. Suppose that Assumption 2.1 holds.There exists a strong global attractor A ⊂ X+, that is A is a non-empty, compact and invariant subset that attracts every bounded subsets of X+. This attractor satisfies 
+
+A ⊂ BX (0 , Λ 
+
+> μ0
+
+) which is the ball centered at 0 ∈ X with radius Λ 
+
+> μ0
+
+. The set A is locally asymptotically stable (LAS), i.e. for every neighborhood V of A, there exists a neighborhood W ⊂ V of A such that Φt(W) ⊂ V for every t ≥ 0 and there exists moreover a neighborhood V of A such that A attracts V. Finally the following holds: 
+
+∃ cS > 0 : ∀(S0, x 1,0, ..., x n, 0) ∈ A , Λ
+
+μ0
+
+≥ S0 ≥ cS . (9) 
+
+The constant cS can be taken as cS := Λ
+
+μS + Λ
+
+> μ0
+
+∑nk=1 ‖βk‖L∞
+
+.Proof. First we see that orbits of bounded sets are bounded since 
+
+‖Φt(z)‖X ≤ max 
+
+{
+
+‖z‖X , Λ
+
+μ0
+
+}
+
+, ∀t ≥ 0by using ( 6). Using [ 17 , Theorem 2.33, p. 43] (see also [ 6, Theorem 3.4.6, p. 39]), we deduce that there exists a strong global attractor A ⊂ X+. This attractor A is locally asymptotically stable according to [ 6, Theorem 3.4.2, p. 39] or [ 17 , Theorem 2.39 p. 47]. Moreover, since Φ is bounded dissipative by Proposition 2.3 and since 
+
+A is compact and invariant then for every t ≥ 0: 
+
+d
+
+(
+
+A, B X
+
+(
+
+0, Λ
+
+μ0
+
+)) 
+
+= d
+
+(
+
+Φt(A), B X
+
+(
+
+0, Λ
+
+μ0
+
+)) 
+
+−→  
+
+> t→∞
+
+0whence A ⊂ BX (0 , Λ 
+
+> μ0
+
+). For the last point, let z := ( S0, x 1,0, ..., x n, 0) ∈ A . By invariance of A there exists a complete orbit 
+
+{φ(t), t ∈ R} ⊂ A through z, that satisfies ‖φ(t)‖X ≤ Λ 
+
+> μ0
+
+for every t ∈ R. From ( 1) we get 
+
+dΦSt (φ(s)) 
+
+dt ≥ Λ −
+
+(
+
+μS + Λ
+
+μ0
+
+> n
+
+∑
+
+> k=1
+
+‖βk‖L∞
+
+)
+
+ΦSt (φ(s)) , ∀(t, s ) ∈ R∗ 
+
+> +
+
+× R
+
+leading for every ( t, s ) ∈ R+ × R to ΦSt (φ(s)) ≥ Λ
+
+μS + Λ
+
+> μ0
+
+∑nk=1 ‖βk‖L∞
+
+(
+
+1 − e−(μS + Λ   
+
+> μ0
+> ∑nk=1 ‖βk‖L∞)t
+
+)
+
+−→ 
+
+> t→+∞
+
+Λ
+
+μS + Λ
+
+> μ0
+
+∑nk=1 ‖βk‖L∞
+
+= cS .
+
+Let ε > 0 then there exists t∗ ≥ 0 such that for every t ≥ t∗ we have Φ St (φ(s)) ≥ cS − ε for every s ∈ R. Taking 
+
+s = −t leads to S0 ≥ cS − ε for any ε > 0, whence ( 9) holds. 
+
+As it is proved in [ 16 , Proposition 4.4.4] in the case n = 2, we know that for each k ∈ J1, n K, the sets Sk and 
+
+∂Sk are positively invariant. Also, we see that if z ∈ ∂Sk then 
+
+‖Φkt (z)‖L1(R+) ≤ ‖ x0,k ‖L1(R+ )e−μ0t, ‖βkxk(t, . )‖L1 = 0 ∀t ≥ 0 (10) which reduces the problem to the n − 1 populations model. Without loss of generality, we may assume that 
+
+R0,1 ≥ R 0,2 ≥ · · · ≥ R 0,n . (11) We define now the following indexing: 
+
+σ0 = 0 , σk = max {j ∈ J1, n K : R0,j = R0,1+ σk−1 } ∀ k ∈ J1, n RK
+
+where nR ∈ J1, n K is the number of different reproduction numbers and satisfies σnR = n. For example if n = 1 or if every reproduction number are equal then nR = 1 ; while in the case where each reproduction number is different then nR = n. We denote by n> ∈ J0, n RK the number of different reproduction numbers that are bigger than one, which is such that 
+
+R0,k > 1, ∀k ∈ J1, σ n> K.
+
+With these notations, we can describe the different equilibria. First there is the disease-free equilibrium: 
+
+E0 = (S∗ 
+
+> 0
+
+, 0(L1(R+)) n
+
+) =
+
+( Λ
+
+μS
+
+, 0, ..., 0
+
+)
+
+∈ X+
+
+8which always exist. Second, if n> ≥ 1 then for each k ∈ J1, n >K the following set of equilibria exists: 
+
+E∗ 
+
+> k
+
+=
+
+E∗,k α1 ,...,α n : ( α1, ..., α n) ∈ [0 , 1] n,
+
+> σk
+
+∑
+
+> j=1+ σk−1
+
+αj = 1 , α j = 0 ∀j ∈ J1, σ k−1K ∪ J1 + σk , n K
+
+ (12) where 
+
+E∗,k α1 ,...,α n = ( S∗ 
+
+> σk
+
+, x ∗ 
+
+> 1,α 1
+
+, · · · , x ∗ 
+
+> n,α n
+
+),S∗ 
+
+> σk
+
+= 1
+
+rσk
+
+,x∗ 
+
+> j,α j
+
+(a) = μS (R0,j − 1) 
+
+rj
+
+αj πj (a), ∀(j, a ) ∈ J1, n K × R+.
+
+We can note that if for some k we have σk = 1 + σk−1 (for example if n = 1) then E∗ 
+
+> k
+
+is reduced to a single equilibrium (otherwise there are a infinite number of equilibria). Following the classical notations (see [ 6]), we denote for z ∈ X:
+
+γ+(z) = {Φt(z)) , t ≥ 0} , ω(z) = ⋂ 
+
+> τ≥0
+
+{Φt(z), t ≥ τ }
+
+respectively the positive orbit starting from z and the ω-limit set of z. Also, let a function φ : ( −∞ , 0] → X
+
+such that φ(0) = z and for any s ≤ 0, Φ t(φ(s)) = φ(t + s) for each 0 ≤ t ≤ − s, then the set {φ(s), s ≤ 0} is called a negative orbit through z, denoted by γ−(z). Similarly, for a function φ : R → X such that φ(0) = z
+
+and for each s ∈ R, Φ t(φ(s)) = φ(t + s) for every t ≥ 0, then the set {φ(s), s ∈ R} is called a complete orbit through z, denoted by γ(z). We define the set 
+
+H(t, z ) = {y ∈ X : there is a negative orbit through z defined by φ : ( −∞ , 0] → X, φ (0) = z and φ(−t) = y}
+
+and the α-limit set of z as 
+
+α(z) = ⋂ 
+
+> τ≥0
+
+{H(t, z ), t ≥ τ }.
+
+For a given complete orbit γ(z) = {φ(s), s ∈ R}, we define the α-limit set of the orbit similarly as 
+
+α(φ) = α(γ(z)) = ⋂ 
+
+> τ≥0
+
+{φ(−t), t ≥ τ }.
+
+Furthermore, we define the sets Γ−(z) = ⋃
+
+> t≥0
+
+H(t, z ), Γ( z) = Γ −(z) ∪ γ+(z)that contain respectively all negative and complete orbits through z. To obtain results about the asymptotic behavior of the solutions, we will make use of Lyapunov functionals. To this end we define the following key function 
+
+g : R∗ 
+
+> +
+
+∋ x 7 −→ x − ln( x) − 1 ∈ R+
+
+and for each k ∈ J1, n K we define the function Ψ k ∈ L∞ 
+
+> +
+
+(0 , ∞) by Ψk(a) = 1
+
+rk
+
+∫ ∞
+
+> a
+
+βk(s)e− ∫ sa μk (ξ)dξ ds. 
+
+We now define for every z := ( S0, x 1,0, ..., x n, 0) the functional 
+
+L0 : z 7 −→ S∗ 
+
+> 0
+
+g
+
+( S0
+
+S∗
+
+> 0
+
+)
+
++
+
+> n
+
+∑
+
+> k=1
+
+∫ ∞
+
+> 0
+
+Ψk(a)xk, 0(a)da (13) and for each k ∈ J1, n RK we define the functional 
+
+Lα1+ σk−1 ,...,α σk 
+
+> k
+
+: z 7 −→ S∗ 
+
+> σk
+
+g
+
+( S0
+
+S∗
+
+> σk
+
+)
+
++
+
+> n
+
+∑
+
+> j=1
+
+∫ ∞
+
+> 0
+
+ηj Ψj (a)xj, 0(a)da +
+
+> n
+
+∑
+
+> j=1
+
+∫ ∞
+
+> 0
+
+(1 − ηj )Ψ j (a)x∗ 
+
+> j,α j
+
+(a)g
+
+(
+
+xj, 0(a)
+
+x∗ 
+
+> j,α j
+
+(a)
+
+)
+
+da 
+
+(14) where 
+
+ηj =
+
+{
+
+1 if j ∈ J1, σ k−1K ∪ J1 + σk , n K or if αj = 0 0 else. Under these assumptions, we state the following result which is mainly a competitive exclusion principle but where multiple populations can survive provided that they have the same R0 and provided that the populations with bigger R0,k are not present in the system ( i.e. belong to the corresponding set ∂Sk). 9Theorem 2.5. Suppose that (11 ) and Assumption 2.1 hold. 1. The disease-free equilibrium E0 is GAS on X+ if n> = 0 and in (∩σn> 
+
+> j=1
+
+∂Sj ) otherwise. Moreover, let 
+
+K ⊂ (∩σn> 
+
+> j=1
+
+∂Sj ) be a compact invariant, then the functional L0 defined by (13 ) is a Lyapunov functional on every complete orbit γ(z) for any z ∈ K.2. For every k ∈ J1, n >K, the set E∗ 
+
+> k
+
+is GAS in (∩σk−1 
+
+> j=1
+
+∂Sj ) ∩ (∪σk 
+
+> j=1+ σk−1
+
+Sj ). More precisely: for each non-empty subset J ⊂ J1 + σk−1 , σ kK, the set of equilibria 
+
+E∗ 
+
+> k, J
+
+:= {E∗,k α1,...,α n = ( S∗ 
+
+> σk
+
+, x ∗ 
+
+> 1,α 1
+
+, ..., x ∗ 
+
+> n,α n
+
+) ∈ E ∗ 
+
+> k
+
+: αj = 0 ∀j ∈ J1, n K \ J } (15) 
+
+is GAS in (∩σk−1 
+
+> j=1
+
+∂Sj ) ∩ (∪j∈J Sj ) ∩ (∩j∈J1+ σk−1 ,σ k K\J ∂Sj ). Also, let K be a compact invariant such that 
+
+K ⊂ (∩σk−1 
+
+> j=1
+
+∂Sj ) ∩ (∩j∈J Sj ) ∩ (∩j∈J1+ σk−1 ,σ k K\J ∂Sj ) then the functional Lα1+ σk−1 ,...,α σk 
+
+> k
+
+defined by (14 ),where (α1, ..., α n) is such that E∗,k α1 ,...,α n ∈ E ∗ 
+
+> k, J
+
+, is a Lyapunov functional on every complete orbit γ(z) for any z ∈ K.
+
+# 3 Proof of the global stability 
+
+In this section we prove Theorem 2.5 by induction on n ≥ 1. The initialisation is clear since it is handled in [11 ]. Let n ≥ 2 and we suppose that the statements of Theorem 2.5 are true for n − 1 (in others words, for the system (1) with only n − 1 infected populations then the asymptotic behavior is known for every case). We will prove that the statements are still true for n.If z ∈ ∂S1, then Φ t(z) ∈ ∂S1 by invariance of ∂S1 and from ( 10 ) it is clear that ‖x1(t, . )‖L1(R+) → 0 when 
+
+t → ∞ . Consequently the model ( 1) is reduced to n − 1 populations (which are J2, n K) and by recurrence hypothesis we get the first item when n> 6 = 0 and the second item is also true for every k ∈ J2, n >K.In all that follow we assume that ( 11 ) and Assumption 2.1 hold. We start with the following lemmas. 
+
+Lemma 3.1. Let v ∈ A , then the function t 7 −→ L0(Φ t(v)) is well-defined on R+ and for every t > 0 it satisfies 
+
+dL 0(Φ t(v)) 
+
+dt = − (Λ − μS ΦSt (v)) 2
+
+μS ΦSt (v) +
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+) ∫ ∞
+
+> 0
+
+βk(a)Φ kt (v)( a)da. (16) 
+
+In particular L0 is a Lyapunov functional on A ∩ 
+
+(⋂σn> 
+
+> j=1
+
+∂Sj
+
+)
+
+.Proof. Using ( 9) implies that L0(Φ t(v)) is well-defined on R+. Let v := (S0, x 1,0, ..., x n, 0) ∈ A and ̂
+
+v := ( S0, (0 , x 1,0), ..., (0 , x n, 0)) ∈ X +. If ̂ v ∈ D(( A + F )0) ∩ X 0+ (we remind the definition ( 2)) then using [12 , Theorem 5.6.6, p. 242] we may compute the derivative of the function t 7 −→ L0(Φ t(v)) according to t since Φkt (v) belongs to W 1,1(0 , ∞) for each t ≥ 0 and every k ∈ J1, n K. Similar computations to [ 16 , Proposition 5.3.1] lead for every t > 0 to ( 16 ) which can be rewritten in the following form for every t ≥ 0
+
+L0(Φ t(v)) = L0(v) −
+
+∫ t
+
+> 0
+
+(Λ − μS ΦSξ (v)) 2
+
+μS ΦSξ (v) dξ +
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+) ∫ t
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (v)( a)dadξ. (17) If ̂ v 6 ∈ D(( A + F )0) ∩ X 0+ then we let t ≥ 0 and we use the density of D(( A + F )0) ∩ X 0+ into X0+ (see [ 12 ,Lemma 5.6.7, p. 243]) to compute the derivative of the function L0 along the solution of ( 1) for the initial condition v. Thus we can assert that 
+
+∃ (̂v(m))m∈N ⊂ (D(( A + F )0) ∩ X 0+ )N : ‖̂ v(m) −̂ v‖X −→  
+
+> m→∞
+
+0where ̂ v(m) = ( S(m)0 , (0 , x (m)1,0 ), ..., (0 , x (m) 
+
+> n, 0
+
+)) ∈ D(( A + F )0) ∩ X 0+ . Denoting v(m) = ( S(m)0 , x (m)1,0 , ..., x (m) 
+
+> n, 0
+
+) ∈ X+
+
+and using Proposition 2.3 (4), we see that this sequence satisfies sup 
+
+> s∈[0 ,t ]
+
+‖Φs(v(m)) − Φs(v)‖X −→  
+
+> m→∞
+
+0.
+
+Let ε > 0 be small enough and mε ∈ N such that 
+
+‖̂ v(m) −̂ v‖X ≤ ε, sup 
+
+> s∈[0 ,t ]
+
+‖Φs(v(m)) − Φs(v)‖X ≤ ε, ∀m ≥ mε. (18) 10 Using ( 9) we get S(m)0 ≥ cS − ε > 0 for each m ≥ mε so it is clear that the function s 7 −→ L0(Φ s(v(m))) is well-defined on [0 , t ] and its derivative can be computed as for ( 16 ) leading to 
+
+L0(Φ s(v(m))) = L0(v(m)) −
+
+∫ s
+
+> 0
+
+(Λ − μS ΦSξ (v(m))) 2
+
+μS ΦSξ (v(m)) dξ +
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+) ∫ s
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (v(m))( a)dadξ 
+
+for every s ∈ [0 , t ] and every m ≥ mε. The goal is to show that 
+
+L0(Φ s(v)) = L0(v) −
+
+∫ s
+
+> 0
+
+(Λ − μS ΦSξ (v)) 2
+
+μS ΦSξ (v) dξ +
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+) ∫ s
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (v)( a)dadξ. (19) For this, we compute for every s ∈ [0 , t ]
+
+∣∣∣∣∣L0(Φ s(v)) − L0(v) + 
+
+∫ s
+
+> 0
+
+(Λ − μS ΦSξ (v(m))) 2
+
+μS ΦSξ (v(m)) dξ −
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+) ∫ s
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (v(m))( a)dadξ 
+
+∣∣∣∣∣
+
+≤ ∣∣L0(Φ s(v)) − L0(Φ s(v(m))) ∣∣ + s × sup ξ∈[0 ,s ]
+
+∣∣∣∣∣
+
+(Λ − μS ΦSξ (v)) 2
+
+μS ΦSξ (v) − (Λ − μS ΦSξ (v(m))) 2
+
+μS ΦSξ (v(m))
+
+∣∣∣∣∣
+
++ ∣∣L0(v) − L0(v(m))∣∣ +
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+)
+
+s × ‖ βk‖L∞ sup 
+
+> ξ∈[0 ,s ]
+
+‖Φkξ (v) − Φkξ (v(m))‖
+
+Since A is invariant then by using ( 9) we get Φ Ss (v) ∈ [cS , Λ 
+
+> μ0
+
+] for each s ∈ [0 , t ] and from ( 18 ) we deduce that ΦSs (v(m)) ∈ [cS − ε, Λ 
+
+> μ0
+
++ ε] for each s ∈ [0 , t ] and every m ≥ mε. It shows both that 
+
+∣∣∣∣S∗ 
+
+> 0
+
+g
+
+( ΦSs (v)
+
+S∗
+
+> 0
+
+)
+
+− S∗ 
+
+> 0
+
+g
+
+( ΦSs (v(m))
+
+S∗
+
+> 0
+
+)∣ ∣∣∣ ≤
+
+∣∣∣ΦSs (v) − ΦSs (v(m))
+
+∣∣∣ ×
+
+(
+
+1 + S∗
+
+> 0
+
+cS − ε
+
+)
+
+≤ ε
+
+(
+
+1 + S∗
+
+> 0
+
+cS − ε
+
+)
+
+:= κ1(ε)and that 
+
+s × sup ξ∈[0 ,s ]
+
+∣∣∣∣∣
+
+(Λ − μS ΦSξ (v)) 2
+
+μS ΦSξ (v) − (Λ − μS ΦSξ (v(m))) 2
+
+μS ΦSξ (v(m))
+
+∣∣∣∣∣
+
+≤ tε 
+
+
+
+Λ
+
+μS (cS − ε)
+
+(
+
+2Λ μS + μ2
+
+> S
+
+( Λ
+
+μ0
+
++ ε
+
+)) 
+
++
+
+(
+
+Λ + μS
+
+( Λ
+
+μ0
+
++ ε
+
+)) 2
+
+cS (cS − ε)
+
+ := κ2(ε)Using again ( 18 ) we have for every s ∈ [0 , t ] and every m ≥ mε on one hand that 
+
+∣∣∣∣∣
+
+> n
+
+∑
+
+> k=1
+
+∫ ∞
+
+> 0
+
+ΨkΦks (v)( a)da −
+
+> n
+
+∑
+
+> k=1
+
+∫ ∞
+
+> 0
+
+ΨkΦks (v(m))( a)da 
+
+∣∣∣∣∣ ≤
+
+> n
+
+∑
+
+> k=1
+
+‖Ψk‖L∞ ‖Φks (v(m)) − Φks (v)‖L1
+
+≤ ε
+
+> n
+
+∑
+
+> k=1
+
+‖Ψk‖L∞ := κ3(ε)leading to ∣∣∣L0(Φ s(v)) − L0(Φ s(v(m))) 
+
+∣∣∣ +
+
+∣∣∣L0(v) − L0(v(m))
+
+∣∣∣ ≤ 2( κ1(ε) + κ3(ε)) and on the other hand that 
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+)
+
+s × ‖ βk‖L∞ sup 
+
+> ξ∈[0 ,s ]
+
+‖Φkξ (v) − Φkξ (v(m))‖ ≤ ε
+
+> n
+
+∑
+
+> k=1
+
+( R0,k − 1
+
+rk
+
+)
+
+t × ‖ βk‖L∞ := κ4(ε).
+
+Since κk(ε) −→  
+
+> ε→0
+
+0 for each k ∈ J1, 4K then clearly ( 19 ) is proved for each s ∈ [0 , t ] whence ( 17 ) and consequently (16 ) hold for every v ∈ A . Finally, if v ∈ A ∩ 
+
+(⋂σn> 
+
+> j=1
+
+∂Sj
+
+)
+
+, it is clear that dL 0(Φ t(v))  
+
+> dt
+
+≤ 0 for every t ≥ 0, hence 
+
+L0 is a Lyapunov functional on A ∩ 
+
+(⋂σn> 
+
+> j=1
+
+∂Sj
+
+)
+
+.
+
+Lemma 3.2. Let v ∈ A ∩ 
+
+(⋂σn> 
+
+> j=1
+
+∂Sj
+
+)
+
+and γ(v) := {ψ(t), t ∈ R} ⊂ Γ( v) ⊂ A be a complete orbit through v. If 
+
+L0 is constant on γ(v) then γ(v) = {E0}. In particular, v = {E0}.
+
+11 Proof. Let v := ( S0, x 1,0, ..., x n, 0) ∈ A ∩ 
+
+(⋂σn> 
+
+> j=1
+
+∂Sj
+
+)
+
+and γ(v) := {ψ(t), t ∈ R} ⊂ Γ( v) ⊂ A be a complete orbit through v. Suppose that L0 is constant on γ(v). It implies that 
+
+d
+
+dt L0(Φ t(ψ(s))) = 0 , ∀(t, s ) ∈ R∗ 
+
+> +
+
+× R.
+
+From ( 16 ) we get Φ St (ψ(s)) = S∗ 
+
+> 0
+
+for every ( t, s ) ∈ R+ × R (in particular S0 = S∗ 
+
+> 0
+
+). Using the S-equation of ( 1), we deduce that ∫ ∞
+
+> 0
+
+βk(a)Φ kt (ψ(s))( a)da = 0 , ∀(t, s, k ) ∈ R∗ 
+
+> +
+
+× R × J1, n K.
+
+With ( 5) (second equation) we get Φkt (ψ(s))( a) = 0 , ∀(t, s, a ) ∈ R+ × R × [0 , t ].
+
+We remark that Φkt (ψ(s))( a) = Φ kt+a(ψ(s − a))( a) = 0 , ∀(t, s, a ) ∈ R+ × R × [t, +∞)so it follows that xk, 0 ≡ 0 for every k ∈ J1, n K, whence v = {E0} and result is proved. 
+
+## 3.1 Case R0,1 ≤ 1
+
+We suppose here that n> = 0 which is equivalent to R0,k ≤ 1 for each k ∈ J1, n K. We now show that A = {E0}.Let z ∈ A . By invariance of A there exists a complete orbit γ(z) = {φ(s), s ∈ R} ⊂ A through z. From Lemma 
+
+3.1 we know that L0(φ(t)) is well-defined for each t ∈ R. Also the equation ( 16 ) is satisfied for every v ∈ γ(z). The fact that R0,k ≤ 1 for each k ∈ J1, n K implies that L0 is a Lyapunov function on A (and in particular on 
+
+γ(z)). Using [ 17 , Proposition 2.51 p. 53] we deduce that L0 is constant on α(φ) and on ω(z). Since γ(z) ⊂ A 
+
+which is compact, then γ−(z) := {φ(s), s ≤ 0} is relatively compact on X and non empty. From [ 17 , Theorem 2.48, p.52] the alpha-limit set α(φ) is nonempty, compact, invariant, connected and lim t→−∞ d(φ(t), α (φ)) = 0. Since L0 is constant on α(φ) then it is constant on every complete orbit γ(v) ⊂ α(φ) and by Lemma 3.2 we get 
+
+α(φ) = {E0}. It follows that lim  
+
+> s→−∞
+
+d(φ(s), {E0}) = 0 .
+
+Using the facts that L0(E0) = 0 and that L0 is a Lyapunov function on γ(z), then we necessarily get L0(φ(s)) = 0 for every s ∈ R. Finally {φ(s), s ∈ R} ⊂ Γ( z) ⊂ A is a complete orbit through z ∈ A on which L0 is constant. Using again Lemma 3.2 we get z = {E0}. In conclusion A = {E0} which is GAS on X+ and the first item is proved. 
+
+## 3.2 Case R0,1 > 1
+
+In this section, we suppose that n> ≥ 1. It remains to prove the second item for k = 1. We first recall the definitions of the different notions of persistence. 
+
+Definition 3.3 ([ 17 , Def 3.1 p. 61]) . Let p : X+ → R+ be a continuous function non identically zero. The semiflow Φ is: (1) weakly p-persistent if 
+
+∀x ∈ X : p(x) > 0, lim sup 
+
+> t→+∞
+
+p(Φ t(x)) > 0,
+
+(2) (strongly) p-persistent if 
+
+∀x ∈ X : p(x) > 0, lim inf  
+
+> t→+∞
+
+p(Φ t(x)) > 0,
+
+(3) uniformly weakly p-persistent if ∃ ε > 0:
+
+∀x ∈ X : p(x) > 0, lim sup 
+
+> t→+∞
+
+p(Φ t(x)) ≥ ε, 
+
+(4) uniformly (strongly) p-persistent if ∃ ε > 0:
+
+∀x ∈ X : p(x) > 0, lim inf  
+
+> t→+∞
+
+p(Φ t(x)) ≥ ε. 
+
+12 3.2.1 Existence of a global attractor 
+
+We start with the following lemma. 
+
+Lemma 3.4. Suppose that n> ≥ 2 and let k ∈ J2, n >K. Let J ⊂ J1 + σk−1, σ kK with J 6 = ∅. Let 
+
+z ∈
+
+
+
+> σk−1
+
+⋂
+
+> j=1
+
+∂Sj
+
+ ∩
+
+ ⋂
+
+> j∈J
+
+Sj
+
+ ∩
+
+ ⋂  
+
+> j∈J1+ σk−1,σ kK\J
+
+∂Sj
+
+
+
+and let 
+
+γ(z) = {φ(t), t ∈ R} ⊂ 
+
+
+
+> σk−1
+
+⋂
+
+> j=1
+
+∂Sj
+
+ ∩
+
+ ⋂
+
+> j∈J
+
+Sj
+
+ ∩
+
+ ⋂  
+
+> j∈J1+ σk−1,σ kK\J
+
+∂Sj
+
+
+
+be a complete orbit through z. Let (α1+ σk−1 , ..., α σk ) ∈ [0 , 1] σk −σk−1 such that ∑σk 
+
+> j=1+ σk−1
+
+αj = 1 and with 
+
+αj = 0 for every j ∈ J1 + σk−1 , σ kK \ J . Let J ∗ = {j ∈ J : αj > 0}. Then: 1. The functional Lα1+ σk−1 ,...,α σk 
+
+> k
+
+defined by (14 ) is a Lyapunov functional on the complete orbit γ(z) and for each (t, v ) ∈ R∗ 
+
+> +
+
+× γ(z) we have: 
+
+dL α1+ σk−1 ,...,α σk 
+
+> k
+
+(Φ t(v)) 
+
+dt = − ∑ 
+
+> j∈J ∗
+
+S∗
+
+> σk
+
+∫ ∞
+
+> 0
+
+βj (a)x∗ 
+
+> j,α j
+
+(a)g
+
+( Φjt (v)( a) ∫ ∞ 
+
+> 0
+
+βj (s)x∗ 
+
+> j,α j
+
+(s)ds 
+
+x∗ 
+
+> j,α j
+
+(a) ∫ ∞ 
+
+> 0
+
+βj (s)Φ jt (v)( s)ds 
+
+)
+
+da 
+
+−|J ∗|g
+
+( S∗
+
+> σk
+
+ΦSt (v)
+
+)
+
+−
+
+> n
+
+∑
+
+> j=1+ σk
+
+∫ ∞
+
+> 0
+
+βj (a)Φ jt (v)( a)
+
+( 1
+
+rj
+
+− S∗
+
+> σk
+
+)
+
+da − μS
+
+ΦSt (v) (Φ St (v) − S∗ 
+
+> σk
+
+)2.
+
+(20) 
+
+2. Suppose that J ∗ = J , that is for each j ∈ J we have αj > 0. Suppose also that Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is constant on γ(z). Then γ(v) ⊂ E ∗ 
+
+> k, J
+
+(which is defined by (15 )). In particular v ∈ E ∗ 
+
+> k, J
+
+.Proof. 1. First we suppose that the assumptions of the lemma hold and let v := ( S0, x 1,0, ..., x n, 0) ∈ γ(z). Since γ(z) ⊂ ∂S1 then ∫ ∞ 
+
+> 0
+
+Ψ1(a)x1,0(a)da = 0 and x1,0 ≡ 0. It follows that Lα1+ σk−1 ,...,α σk 
+
+> k
+
+(v) = ˜Lα1+ σk−1 ,...,α σk 
+
+> k
+
+(˜ v) for ˜ v := ( S0, x 2,0, ..., x n, 0) where ˜Lα1+ σk−1 ,...,α σk 
+
+> k
+
+(˜ v) = S∗ 
+
+> σk
+
+g
+
+( S0
+
+S∗
+
+> σk
+
+)
+
++
+
+> n
+
+∑
+
+> j=2
+
+∫ ∞
+
+> 0
+
+ηj Ψj (a)xj, 0(a)da 
+
++
+
+> n
+
+∑
+
+> j=2
+
+∫ ∞
+
+> 0
+
+(1 − ηj )Ψ j (a)x∗ 
+
+> j,α j
+
+(a)g
+
+(
+
+xj, 0(a)
+
+x∗ 
+
+> j,α j
+
+(a)
+
+)
+
+da 
+
+and with 
+
+ηj =
+
+{
+
+1 if j ∈ J2, σ k−1K ∪ J1 + σk, n K or if αj = 0 0 else. We define ˜Φ : ( t, ˜v) 7 −→ (Φ St (v), Φ2 
+
+> t
+
+(v), ..., Φnt (v)) that is the solution of the reduced problem ( 1) with the infected populations j ∈ J2, n K and initial condition ˜ v. By recurrence hypothesis the function 
+
+t 7 −→ ˜Lα1+ σk−1 ,...,α σk 
+
+> k
+
+( ˜Φt(˜ v)) is well-defined on R+, continuous and satisfy 
+
+dL α1+ σk−1 ,...,α σk 
+
+> k
+
+(Φ t(˜ v)) 
+
+dt = − ∑ 
+
+> j∈J ∗
+
+S∗
+
+> σk
+
+∫ ∞
+
+> 0
+
+βj (a)x∗ 
+
+> j,α j
+
+(a)g
+
+( ˜Φjt (˜ v)( a) ∫ ∞ 
+
+> 0
+
+βj (s)x∗ 
+
+> j,α j
+
+(s)ds 
+
+x∗ 
+
+> j,α j
+
+(a) ∫ ∞ 
+
+> 0
+
+βj (s) ˜Φjt (˜ v)( s)ds 
+
+)
+
+da 
+
+−|J ∗|g
+
+( S∗
+
+> σk
+
+˜ΦSt (˜ v)
+
+)
+
+−
+
+> n
+
+∑
+
+> j=1+ σk
+
+∫ ∞
+
+> 0
+
+βj (a) ˜Φjt (˜ v)( a)
+
+( 1
+
+rj
+
+− S∗
+
+> σk
+
+)
+
+da − μS
+
+˜ΦSt (˜ v) ( ˜ΦSt (˜ v) − S∗ 
+
+> σk
+
+)2
+
+which is non-positive since 1 
+
+> rj
+
+− S∗ 
+
+> σk
+
+= 1 
+
+> rj
+
+− 1
+
+> rσk
+
+= Λ 
+
+> μS
+
+( 1 
+
+> R0,j
+
+− 1
+
+> R0,σ k
+
+) > 0 for every j ∈ J1 + σk, n K. It naturally follows that the first point is true. 13 2. Step 1. First we know that Φ jt (φ(s))( a) = 0 for every j ∈ J1, σ k−1K ∪ (J1 + σk−1, σ kK \ J ) and every (s, t, a ) ∈ R × (R+)2 since γ(z) ⊂ (⋂ σk−1 
+
+> j=1
+
+∂Sj
+
+) ∩
+
+(⋂   
+
+> j∈J1+ σk−1,σ kK\J
+
+∂Sj
+
+)
+
+and in particular xj, 0 ≡ 0. Suppose now that Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is constant on γ(v). It implies that 
+
+d
+
+dt Lα1+ σk−1 ,...,α σk 
+
+> k
+
+(Φ t(φ(s))) = 0 , ∀t > 0, ∀s ∈ R.
+
+From ( 20 ) we get Φ St (φ(s)) = S∗ 
+
+> σk
+
+for every ( t, s ) ∈ R+ × R (in particular S0 = S∗ 
+
+> σk
+
+). Using ( 20 ) and Assumption 2.1 we deduce that 
+
+∀(j, t ) ∈ J ∗ × R+, ∃ cj (t) > 0 : Φjt (φ(s))( a) = cj (t)x∗ 
+
+> j,α j
+
+(a), ∀s ∈ R a.e. a ∈ [βj , βj ).
+
+Let ( j, s, a ) ∈ J ∗ × R × [βj , βj ). Using the fact that γ(z) is a complete orbit we have 
+
+cj (t)x∗ 
+
+> j,α j
+
+(a) = Φ jt (φ(s))( a) = Φ j 
+
+> ˜t
+
+(φ(s + t − ˜t))( a) = cj (˜ t)x∗ 
+
+> j,α j
+
+(a), ∀(t, ˜t) ∈ (R+)2 a.e. a ∈ [βj , βj ).
+
+whence cj does not depend on t and we have 
+
+∀j ∈ J ∗, ∃ cj > 0 : Φjt (φ(s))( a) = cj x∗ 
+
+> j,α j
+
+(a), ∀(s, t ) ∈ R × R+ a.e. a ∈ [βj , βj ).
+
+From ( 5) and from the latter equation with t = a we see that 
+
+cj x∗ 
+
+> j,α j
+
+(a) = Φ ja(φ(s))( a) = Φ jξ (φ(s))( ξ)e− ∫ aξ μj (z)dz , ∀ξ ∈ [0 , a ]and Φjξ(φ(s))( ξ) = Φ ja(φ(s))( a)e− ∫ ξa μj (z)dz = cj x∗ 
+
+> j,α j
+
+(a)e− ∫ ξa μj (z)dz = cj x∗ 
+
+> j,α j
+
+(ξ), ∀ξ ≥ a. 
+
+These two equations lead to 
+
+∀(j, s, a ) ∈ J ∗ × R × R+ : Φja(φ(s))( a) = cj x∗ 
+
+> j,α j
+
+(a).
+
+Let t ≥ 0. Since γ(z) is a complete orbit then we have Φjt (φ(s))( a) = Φ ja(φ(t + s − a))( a) = cj x∗ 
+
+> j,α j
+
+(a) = x∗  
+
+> j,c jαj
+
+(a)and this latter formula is true for every ( j, s, t, a ) ∈ J ∗ × R × (R+)2. In particular xj, 0 = x∗  
+
+> j,c jαj
+
+for each 
+
+j ∈ J ∗. Now let j ∈ J1 + σk, n K. From ( 20 ) we get 
+
+∫ ∞
+
+> 0
+
+βj (a)Φ jt (φ(s))( a)da = 0 for every ( s, t ) ∈ R × R+, whence Φ jt (φ(s))( a) = 0 a.e. a ∈ [βj , βj ). As before, letting t = a and using ( 5)we get 0 = Φ ja(φ(s))( a) = Φ jξ(φ(s))( ξ)e− ∫ aξ μj (z)dz , ∀ξ ∈ [0 , a ]and Φjξ(φ(s))( ξ) = Φ ja(φ(s))( a)e− ∫ ξa μj (z)dz = 0 , ∀ξ ≥ a
+
+whence Φ ja(φ(s))( a) = 0 for every ( j, a, s ) ∈ J1 + σk , n K × R+ × R. Let t ≥ 0, since γ(z) is a complete orbit then Φjt (φ(s))( a) = Φ ja(φ(t + s − a))( a) = 0 and this latter formula is true for every ( j, s, t, a ) ∈ J1 + σk, n K × R × (R+)2. In particular xj, 0 ≡ 0. 
+
+Step 2. By the first step, looking at the S-equation of ( 1) we get 
+
+∑ 
+
+> j∈J ∗
+
+∫ ∞
+
+> 0
+
+βj (a)x∗  
+
+> j,c jαj
+
+(a)da = ∑ 
+
+> j∈J ∗
+
+∫ ∞
+
+> 0
+
+βj (a)Φ jt (φ(s))( a)da = Λ
+
+S∗
+
+> σk
+
+−μS = μS (R0,k −1) , ∀(t, s ) ∈ R∗ 
+
+> +
+
+×R
+
+which is equivalent to ∑ 
+
+> j∈J ∗
+
+cj μS (R0,j − 1) αj = μS (R0,k − 1) but since R0,j = R0,k for every j ∈ J ∗ then we get the condition 
+
+∑ 
+
+> j∈J ∗
+
+cj αj = 1 which implies φ(t) ∈ E ∗  
+
+> k, J∗
+
+= E∗ 
+
+> k, J
+
+for every t ∈ R and this ends the proof. 
+
+14 Now we prove that Φ has a global attractor A0 ⊂ A in ∪σ1
+
+> k=1
+
+Sk. We proceed in several stages. Let 
+
+p : X+ → R+ be the function defined by: 
+
+p(z) = 
+
+> σ1
+
+∑
+
+> k=1
+
+∫ βk
+
+> 0
+
+xk, 0(s)ds 
+
+for every z = ( S0, x 1,0, ..., x n, 0) ∈ X+. Let the subsets 
+
+S0 = {z ∈ X+ : p(z) > 0} =
+
+> σ1
+
+⋃
+
+> k=1
+
+Sk, ∂S0 = {z ∈ X + : p(z) = 0 } =
+
+> σ1
+
+⋂
+
+> k=1
+
+∂Sk.
+
+We also define the set Ω := ⋃
+
+> z∈∂S0
+
+ω(z) = {E0} ∪ 
+
+( n>
+
+⋃
+
+> k=2
+
+E∗
+
+> k
+
+)
+
+by recurrence hypothesis. We have the following properties: 1. The set {E0} and each subset E∗ 
+
+> k
+
+(k ∈ J2, n >K) are invariant and disjoints. Also, {E0} is clearly compact while E∗ 
+
+> k
+
+is compact as the image of the compact set 
+
+{(α1, ..., α n) ∈ [0 , 1] n :
+
+> σk
+
+∑
+
+> j=1+ σk−1
+
+αj = 1 , α j = 0 ∀j ∈ J1, σ k−1K ∪ J1 + σk , n K}
+
+by the continuous function (α1, ..., α n) 7 −→ E∗,k α1 ,...,α n .
+
+2. (i) Let ε > 0 such that ( Λ
+
+μS
+
+− ε
+
+)
+
+r1 > 1 (21) Following the proof of [ 16 , Proposition 4.4.8.(a)], we show that 
+
+∀z ∈ M ε := {z ∈ S 0, ‖z − E0‖X ≤ ε}, ∃ t > 0 : ‖Φt(z) − E0‖X > ε (22) which implies that 
+
+{z ∈ X+, p(z) > 0 : lim  
+
+> t→+∞
+
+Φt(z) = E0} = ∅
+
+meaning that the semiflow Φ is weakly persistent (we note that in [ 16 ], the equation ( 22 ) was proved for 
+
+z in the intersection, but the same proof works for the reunion). Indeed, suppose by contradiction that there exists z := ( S0, x 1,0, ..., x n, 0) ∈ S 0 such that 
+
+‖Φt(z) − E0‖X ≤ ε, ∀t ≥ 0then ΦSt (z) ≥ Λ
+
+μS
+
+− ε, ∀t ≥ 0.
+
+Let j ∈ J1, σ 1K such that z ∈ S j , then by continuity arguments there exists c ∈ (βj , ∞) such that 
+
+( Λ
+
+μS
+
+− ε
+
+) ∫ c
+
+> 0
+
+βj (a)πj (a)da > 1.
+
+Also, using [ 16 , Proposition 4.4.4] we know that there exists τ ≥ 0 such that 
+
+∫ ∞
+
+> 0
+
+βj (a)Φ jt (z)( a)da > 0for every t ≥ τ . Thus we arrive at 
+
+
+
+∂Φjt (z)( a)
+
+∂t + ∂Φjt (z)( a)
+
+∂a = −μj (a)Φ jt (z)( a),
+
+Φjt (z)(0) ≥
+
+( Λ
+
+μS
+
+− ε
+
+) ∫ c
+
+> 0
+
+βj (a)Φ jt (z)( a)da 
+
+15 for every t ≥ τ > τ . It follows that Φ j 
+
+> τ
+
+(z) ∈ L1+(0 , c ) \ { 0} since Φj 
+
+> τ
+
+(z)( a) = 
+
+(∫ ∞
+
+> 0
+
+βj (ξ)Φ j 
+
+> τ−a
+
+(z)( ξ)dξ 
+
+)
+
+e− ∫ a   
+
+> 0μj(s)ds
+
+> 0, ∀a ∈ [0 , τ − τ ]and then lim t→∞ 
+
+∫ c 
+
+> 0
+
+Φjt (z)( a)da = ∞ (see e.g. [16 , Lemma 4.3]) by using the comparison theorem [ 13 ,Proposition 5.2] which is absurd, hence ( 22 ) is true. 
+
+(ii) Now, let k ∈ J2, n >K (hence we suppose that n> ≥ 2). Let ε > 0 such that 
+
+( 1
+
+rσk
+
+− ε
+
+)
+
+r1 > 1. (23) As the first point, we can prove that 
+
+∀z ∈ M kε := {z ∈ S 0, ‖z − E ∗ 
+
+> k
+
+‖X ≤ ε}, ∃ t > 0 : ‖Φt(z) − E ∗ 
+
+> k
+
+‖X > ε. (24) Indeed, suppose by contradiction that there exists z := ( S0, x 1,0, ..., x n, 0) ∈ S 0 such that ΦSt (z) ≥ S∗ 
+
+> σk
+
+− ε = 1
+
+rσk
+
+− ε, ∀t ≥ 0.
+
+Let j ∈ J1, σ 1K such that z ∈ S j then by continuity arguments (since rj = r1 because R0,j = R0,1) there exists c ∈ (βj , ∞) such that ( 1
+
+rk
+
+− ε
+
+) ∫ c
+
+> 0
+
+βj (a)πj (a)da > 1and the same arguments as before lead to lim t→∞ 
+
+∫ c 
+
+> 0
+
+Φjt (z)( a)da = ∞ which is absurd, hence ( 24 ) is true. 3. (i) We prove that {E0} is isolated i.e. the maximal compact invariant set of a neighborhood of itself (this neighborhood being called an isolating neighborhood). Indeed, let ε > 0 be small enough such that (21 ) is true then following the arguments of [ 11 , Proposition 2.4] (see also [ 7]), we can prove that the ball centered at E0 and radius ε, denoted by BX (E0, ε ), is an isolating neighborhood of E0. To prove it we let K ⊂ BX (E0, ε ) be a compact invariant subset of BX (E0, ε ) and let z ∈ K. We need to prove that 
+
+K = {E0}. If z ∈ M ε then clearly, from ( 22 ), it follows that K is not invariant, whence z 6 ∈ M ε i.e. 
+
+z ∈ ∂S0. First we prove that 
+
+K ⊂ ⋂ 
+
+> k∈J1,σ n>K
+
+∂Sk. (25) If n> = 1, then ( 25 ) is true by definition of ∂S0. Suppose now that n> ≥ 2, that z ∈ ∪ k∈J1+ σ1 ,σ n> KSk and also that 
+
+ε < S ∗ 
+
+> 0
+
+− max  
+
+> k∈J1,σ n>K
+
+{ 1
+
+rσk
+
+}
+
+= Λ
+
+μS
+
+(
+
+1 − 1
+
+min k∈J1,σ n> K{R 0,σ k }
+
+)
+
+.
+
+Let k = min {j ∈ J2, n >K : z ∈ ∪ s∈J1+ σj−1 ,σ j KSs}. By invariance of K and since z ∈ ∂S0 ⊂ ∂S1, then denoting z = ( S0, x 1,0, ..., x n, 0) we necessarily have x1,0 ≡ 0 and Φ 1 
+
+> t
+
+(z) = 0 for every t ≥ 0. It follows that the function t 7 −→ (Φ St (z), Φ2 
+
+> t
+
+(z), ..., Φnt (z)) is solution of the reduced problem ( 1) with the infected populations k ∈ J2, n K. By recurrence hypothesis we deduce that Φ t(z) −→  
+
+> t→∞
+
+E∗ 
+
+> k
+
+hence Φ St (z) −→ 
+
+> t→∞
+> 1
+> rσk
+
+.This is absurd since S∗ 
+
+> 0
+
+− 1
+
+> rσk
+
+> ε (thus Φ t(z) 6 ∈ BX (E0, ε ) for t large enough and consequently K is not invariant). It follows that ( 25 ) is true. Since K is invariant, there exists a complete orbit γ(z) = {φ(t), t ∈ R} through z. Using Lemma 3.1 and (25 ) we deduce that L0 is a Lyapunov functional on γ(z). As in the case R0,1 ≤ 1 we deduce first that L0
+
+is constant on α(φ) and by using Lemma 3.2 that α(φ) = {E0}. Secondly, we deduce that L0 is constant on γ(z) which leads to z = {E0} by Lemma 3.2 . Finally K = {E0} and is isolated. 
+
+(ii) Suppose that n> ≥ 2 and let k ∈ J2, n >K. We prove that E∗ 
+
+> k
+
+is isolated. Let ε > 0 be small enough such that ( 23 ) is satisfied and such that 
+
+S∗ 
+
+> 0
+
+− 1
+
+rk
+
+> ε, min 
+
+> j∈J1,n >K\{ k}
+
+{∣ ∣∣∣
+
+1
+
+rj
+
+− 1
+
+rk
+
+∣∣∣∣}
+
+> ε 
+
+Let K ⊂ BX (E∗ 
+
+> k
+
+, ε ) be a compact invariant subset and let z ∈ K. If z ∈ M kε then from ( 24 ) it follows that K is not invariant, whence z 6 ∈ M kε i.e. z ∈ ∂S0.16 Step 1. We prove that 
+
+z ∈
+
+
+
+> σk−1
+
+⋂
+
+> j=1
+
+∂Sj
+
+ ∩
+
+
+
+> σk
+
+⋃
+
+> j=1+ σk−1
+
+Sj
+
+ . (26) We already know that z ∈ ∂S0. If z ∈ ∪ j∈J1+ σ1 ,σ k−1 KSj then by recurrence hypothesis we would have Φt(z) −→  
+
+> t→∞
+
+E∗ 
+
+> j∗
+
+for a j∗ ∈ J2, k − 1K. Thus Φ St (z) −→  
+
+> t→∞
+> 1
+> rj∗
+
+which is absurd since | 1 
+
+> rj∗
+
+− 1 
+
+> rk
+
+| > ε . Suppose now that z ∈ ∩ j∈J1+ σk−1 ,σ k K∂Sj , then either Φ t(z) −→  
+
+> t→∞
+
+E∗ 
+
+> j∗
+
+for j∗ ∈ Jk + 1 , n >K which is absurd with the arguments above, or Φ t(z) −→  
+
+> t→∞
+
+E0 which implies Φ St (z) −→  
+
+> t→∞
+
+S∗ 
+
+> 0
+
+and this is also absurd since S∗ 
+
+> 0
+
+− 1 
+
+> rk
+
+> ε .It follows that ( 26 ) is satisfied. Step 2. Let J ⊂ J1 + σk−1, σ kK be the (non-empty) subset such that 
+
+z ∈
+
+ ⋂
+
+> j∈J
+
+Sj
+
+ ∩
+
+ ⋂  
+
+> j∈J1+ σk−1,σ kK\J
+
+∂Sj
+
+ .
+
+Since K is invariant, there exists a complete orbit γ(z) = {φ(t), t ∈ R} through z. Still by invariance we have φ(t) ∈ ∩ j∈J Sj and φ(t) ∈ ∩ j∈J1,σ k K\J ∂Sj for every t ∈ R. Let ( α1+ σk−1 , ..., α σk ) ∈ [0 , 1] σk −σk−1 such that ∑σk 
+
+> j=1+ σk−1
+
+αj = 1, with αj = 0 for every j ∈ J1 + σk−1, σ kK \ J and with αj > 0 for every j ∈ J (for example αj = 1 
+
+> |J |
+
+for j ∈ J ). We know by Lemma 3.4 that Lα1+ σk−1 ,...,α σk 
+
+> k
+
+defined by ( 14 ) is a Lyapunov functional on γ(z). A consequence of [ 17 , Proposition 2.51, p. 53] is that Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is constant on 
+
+α(φ) and on ω(z). Following the arguments used in the case R0,1 ≤ 1 we deduce that α(φ) is nonempty, compact, invariant and lim t→−∞ d(φ(t), α (φ)) = 0. Since Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is constant on every complete orbit γ(v) ⊂ α(φ) then we can use Lemma 3.4 to obtain α(φ) ⊂ E ∗ 
+
+> k, J
+
+. Similarly we get ω(z) ⊂ E ∗ 
+
+> k, J
+
+and then lim  
+
+> t→−∞
+
+d(φ(t), E∗ 
+
+> k, J
+
+) = lim  
+
+> t→+∞
+
+d(φ(t), E∗ 
+
+> k, J
+
+) = 0 .
+
+Step 3. We prove now that there exists ( E∗,k τ1,...,τ n , E ∗,k ω1 ,...,ω n ) ∈ (E∗ 
+
+> k, J
+
+)2 such that: lim  
+
+> t→−∞
+
+φ(t) = E∗,k τ1 ,...,τ n lim  
+
+> t→+∞
+
+φ(t) = E∗,k ω1,...,ω n . (27) Suppose by contradiction that there exist ( E∗,k τ1 ,...,τ n , E ∗,k τ ′ 
+
+> 1,...,τ ′
+> n
+
+) ∈ (α(φ)) 2 such that ( τ1, ..., τ n) 6 = ( τ ′
+
+> 1
+
+, ..., τ ′
+
+> n
+
+). By definition of E∗ 
+
+> k, J
+
+we have 
+
+τj = τ ′ 
+
+> j
+
+= 0 ∀j ∈ J1, n K \ J 
+
+thus we arrive at the assumption (τ1+ σk−1 , ..., τ σk ) 6 = ( τ ′ 
+
+> 1+ σk−1
+
+, ..., τ ′ 
+
+> σk
+
+).
+
+Firstly we prove that for every j ∈ J we have τj = 0 ⇐⇒ τ ′ 
+
+> j
+
+= 0. By contradiction suppose that there exists j ∈ J such that τj = 0 and τ ′ 
+
+> j
+
+6 = 0. Then we use the functional Lα1+ σk−1 ,...,α σk 
+
+> k
+
+defined by ( 14 )where αj = 1 and αs = 0 for every s ∈ J1 + σk−1, σ kK\ { j}. Using Lemma 3.4 this is a Lyapunov functional on γ(z), and as explained in Step 2, it should be constant on α(φ) implying that 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k τ1,...,τ n
+
+) = Lα1+ σk−1 ,...,α σk
+
+> k
+
+(
+
+E∗,k τ ′ 
+
+> 1,...,τ ′
+> n
+
+)
+
+since ( E∗,k τ1 ,...,τ n , E ∗,k τ ′ 
+
+> 1,...,τ ′
+> n
+
+) ∈ (α(φ)) 2 . On the other hand we have 
+
+Lα1+ σk−1 ,...,α σk 
+
+> k
+
+(E∗,k τ1 ,...,τ n ) = 
+
+∫ ∞
+
+> 0
+
+Ψj (a) μS
+
+rj
+
+(R0,j − 1) πj (a)g(τj )da + ∑
+
+> s∈J \{ j}
+
+∫ ∞
+
+> 0
+
+Ψs(a)x∗ 
+
+> s,τ s
+
+(a)da = ∞
+
+and 
+
+Lα1+ σk−1 ,...,α σk 
+
+> k
+
+(E∗,k τ ′  
+
+> 1,...,τ ′
+> n
+
+) = 
+
+∫ ∞
+
+> 0
+
+Ψj (a) μS
+
+rj
+
+(R0,j − 1) πj (a)g(τ ′ 
+
+> j
+
+)da + ∑
+
+> s∈J \{ j}
+
+∫ ∞
+
+> 0
+
+Ψs(a)x∗  
+
+> s,τ ′
+> s
+
+(a)da < ∞
+
+which is absurd (the same proof works for τj 6 = 0 and τ ′ 
+
+> j
+
+= 0). 17 Secondly we prove that for every j ∈ J we have τj = τ ′ 
+
+> j
+
+. For this, we decompose the set J as J =
+
+J= ⊔ J > ⊔ J < where 
+
+J= := {j ∈ J : τj = τ ′ 
+
+> j
+
+}, J> := {j ∈ J : τj > τ ′ 
+
+> j
+
+}, J< := {j ∈ J : τj < τ ′ 
+
+> j
+
+}.
+
+We see that 
+
+J= 6 = J , J> 6 = J , J< 6 = J , J> 6 = ∅, J< 6 = ∅
+
+since ( τ1, ..., τ n) 6 = ( τ ′
+
+> 1
+
+, ..., τ ′
+
+> n
+
+) and ∑ 
+
+> j∈J
+
+τj = ∑ 
+
+> j∈J
+
+τ ′ 
+
+> j
+
+= 1. We use the functional Lα1+ σk−1 ,...,α σk 
+
+> k
+
+defined by ( 14 ) where for every j ∈ J1 + σk−1, σ kK we put 
+
+αj =
+
+
+
+τj
+
+∑ 
+
+> s∈J >
+
+τs
+
+if j ∈ J >
+
+0 otherwise .
+
+so that ∑ 
+
+> j∈J >
+
+αj = 1. Then we compute 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k τ1,...,τ n
+
+) = ∑
+
+> j∈J >
+
+∫ ∞
+
+> 0
+
+Ψj (a) μS
+
+rj
+
+(R0,j − 1) αj πj (a)g
+
+( τj
+
+αj
+
+)
+
+da 
+
++ ∑
+
+> j∈J \J >
+
+∫ ∞
+
+> 0
+
+Ψj (a)x∗ 
+
+> j,τ j
+
+(a)da 
+
+and 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(
+
+E∗,k τ ′ 
+
+> 1,...,τ ′
+> n
+
+)
+
+= ∑
+
+> j∈J >
+
+∫ ∞
+
+> 0
+
+Ψj (a) μS
+
+rj
+
+(R0,j − 1) αj πj (a)g
+
+( τ ′
+
+> j
+
+αj
+
+)
+
+da 
+
++ ∑
+
+> j∈J \J >
+
+∫ ∞
+
+> 0
+
+Ψj (a)x∗  
+
+> j,τ ′
+> j
+
+(a)da. 
+
+On one hand we have τj > τ ′ 
+
+> j
+
+(and necessarily τ ′ 
+
+> j
+
+> 0 by the first point) for each j ∈ J > leading to 
+
+g
+
+( τj
+
+αj
+
+)
+
+= g
+
+ ∑
+
+> s∈J >
+
+τs
+
+ < g 
+
+ τ ′
+
+> j
+
+τj
+
+∑
+
+> s∈J >
+
+τs
+
+ = g
+
+( τ ′
+
+> j
+
+αj
+
+)
+
+since g is decreasing on (0 , 1] and by using the following inequality: 1 ≥ ∑
+
+> s∈J >
+
+τs > τ ′
+
+> j
+
+τj
+
+∑
+
+> s∈J >
+
+τs ≥ 0.
+
+On the other hand we see that 
+
+∫ ∞
+
+> 0
+
+Ψj (a)x∗ 
+
+> j,τ j
+
+(a)da ≤
+
+∫ ∞
+
+> 0
+
+Ψj (a)x∗  
+
+> j,τ ′
+> j
+
+(a)da 
+
+for every j ∈ J \ J > = J= ⊔ J <. It follows that 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k τ1,...,τ n
+
+) < L α1+ σk−1 ,...,α σk
+
+> k
+
+(
+
+E∗,k τ ′ 
+
+> 1,...,τ ′
+> n
+
+)
+
+which is absurd since Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is a Lyapunov functional on γ(z) by Lemma 3.4 and as explained before it should be constant on α(φ) that is to say 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k τ1 ,...,τ n
+
+) = Lα1+ σk−1 ,...,α σk
+
+> k
+
+(
+
+E∗,k τ ′ 
+
+> 1,...,τ ′
+> n
+
+)
+
+.
+
+We deduce from this that α(φ) is reduced to a single equilibrium, that is: 
+
+α(φ) ∩ E ∗ 
+
+> k, J
+
+= {E∗,k τ1 ,...,τ n
+
+}
+
+Similarly, we may prove that 
+
+ω(z) ∩ E ∗ 
+
+> k, J
+
+= {E∗,k ω1,...,ω n
+
+} .
+
+18 Thus ( 27 ) is satisfied and the complete orbit γ(z) is either a heteroclinic or a homoclinic orbit. Step 4 . We now prove that 
+
+E∗,k τ1,...,τ n = E∗,k ω1 ,...,ω n (28) which amounts to prove that τj = ωj for every j ∈ J . Similarly to the third step, we define the sets 
+
+J> := {j ∈ J : τj > ω j }, J< := {j ∈ J : τj < ω j }.
+
+Suppose that J> 6 = ∅. We use the functional Lα1+ σk−1 ,...,α σk 
+
+> k
+
+defined by ( 14 ) where for every j ∈ J1 + 
+
+σk−1, σ kK we put 
+
+αj =
+
+
+
+τj
+
+∑ 
+
+> s∈J >
+
+τs
+
+if j ∈ J >
+
+0 otherwise .
+
+so that ∑ 
+
+> j∈J >
+
+αj = 1 and αj > 0 for every j ∈ J > since τj > ω j ≥ 0. The same computations as in Step 3 lead to 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k τ1,...,τ n
+
+) < L α1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k ω1 ,...,ω n
+
+)
+
+with the right term being equal to + ∞ if ωj = 0. This is absurd since Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is a Lyapunov functional on the complete orbit γ(z) by using Lemma 3.4 whence we should have 
+
+Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k τ1,...,τ n
+
+) ≥ Lα1+ σk−1 ,...,α σk
+
+> k
+
+(E∗,k ω1,...,ω n
+
+) .
+
+It follows that J> = ∅ whence τj ≤ ωj for each j ∈ J . If J< 6 = ∅ then we would have 1 = ∑
+
+> j∈J
+
+τj < ∑
+
+> j∈J
+
+ωj = 1 which is absurd. Consequently J< = ∅ and then τj = ωj for each j ∈ J which amounts to ( 28 ). Step 5. Finally we end up with γ(z) = {φ(t), t ∈ R} being a homoclinic orbit through z ∈ K with lim  
+
+> t→−∞
+
+φ(t) = E∗,k τ1,...,τ n = lim  
+
+> t→+∞
+
+φ(t).
+
+As in Step 2, let ( α1+ σk−1 , ..., α σk ) ∈ [0 , 1] σk −σk−1 such that ∑σk 
+
+> j=1+ σk−1
+
+αj = 1, with αj = 0 for every 
+
+j ∈ J1 + σk−1 , σ kK \ J and with αj > 0 for every j ∈ J . From Lemma 3.4 we know that Lα1+ σk−1 ,...,α σk
+
+> k
+
+is a Lyapunov functional on γ(z) that is an homoclinic orbit (see the latter equation). It implies that 
+
+Lα1+ σk−1 ,...,α σk 
+
+> k
+
+is constant on γ(z). Again by Lemma 3.4 we deduce that γ(z) ⊂ E ∗ 
+
+> k, J
+
+and then z ∈ E ∗ 
+
+> k, J
+
+.Hence K ⊂ E ∗ 
+
+> k
+
+and this latter set is isolated. 4. We prove that the set {{E0}, E∗ 
+
+> 2
+
+, ..., E∗
+
+> n>
+
+}
+
+is acyclic (see [ 17 , Definition 8.14, p. 187] for the definition). Let z ∈ ∂S0 and let γ(z) = {φ(t), t ∈ R} ⊂ 
+
+∂S0 be a complete orbit through z.
+
+(i) Suppose that lim t→∞ φ(t) = E0. Since γ(z) ⊂ ∂S0, then by looking at the reduced problem ( 1) with the infected populations k ∈ J2, n >K we deduce from the recurrence hypothesis that necessarily z ∈ ∩ σn> 
+
+> j=1
+
+∂Sj
+
+(otherwise we would have lim t→+∞ d(φ(t), E∗ 
+
+> j
+
+) = 0 for j ∈ J2, n >K which is absurd). Consequently 
+
+γ(z) ⊂ ∩ σn> 
+
+> j=1
+
+∂Sj . By Lemma 3.1 we know that L0 defined by ( 13 ) is a Lyapunov functional on γ(z). It follows from [ 17 , Proposition 2.51, p. 53] that L0 is constant on α(φ) and on ω(z). From the arguments above (see the case R0,1 ≤ 1) we deduce that α(φ) = {E0} and that L0 is constant on γ(z). By Lemma 
+
+3.2 we deduce that γ(z) = {E0}.
+
+(ii) Suppose that n> ≥ 2 and that there exists k ∈ J2, n >K such that lim t→∞ d(φ(t), E∗ 
+
+> k
+
+) = 0. Again, by recurrence hypothesis we necessarily have z ∈ (∩σk−1 
+
+> j=1
+
+∂Sj ) ∩ (∪σk 
+
+> j=1+ σk−1
+
+Sj ) (otherwise we would have lim t→+∞ d(φ(t), E∗ 
+
+> j
+
+) = 0 for j ∈ J2, k −1K which is absurd). Following the proof of the point 3.(ii) (see Steps 2–5) by first defining the subset J , then proving ( 27 ) and ( 28 ) we arrive at γ(z) being a homoclinic orbit through z ∈ E ∗ 
+
+> k, J
+
+⊂ E ∗ 
+
+> k
+
+. We just proved that the set {{E0}, E∗ 
+
+> 2
+
+, ..., E∗
+
+> n>
+
+} is not cyclic and consequently acyclic. Combining the four previous points with the existence of a global attractor A ⊂ X+ (by Corollary 2.4 ) imply from [ 17 , Theorem 8.17, p. 188] that Φ is uniformly weakly p-persistent. Actually, from [ 17 , Theorem 5.2, p. 126] we know that the semiflow is uniformly strongly p-persistent. We note here that we could have used [ 7,Theorem 4.2] since Φ is bounded dissipative by using Corollary 2.4 . Finally from [ 17 , Theorem 5.19, p. 138] (which can be used here since A is a strong global attractor) we deduce the existence of the global attractor A0
+
+in ∪σ1 
+
+> k=1
+
+Sk which is LAS. 19 3.2.2 Lyapunov functional 
+
+Let J ⊂ J1, σ 1K and K be a compact invariant such that K ⊂ (∩k∈J Sk) ∩ (∩k∈J1,σ 1 K\J ∂Sk). Let ( α1, ..., α n) ∈
+
+[0 , 1] n such that E∗,1  
+
+> α1,...,α n
+
+∈ E ∗ 
+
+> 1,J
+
+. We prove here that the functional Lα1,...,α σ1 
+
+> 1
+
+defined by ( 14 ) is a Lyapunov functional on every complete orbit γ(z) for any z ∈ K.1. We first show that Lα1,...,α σ1 
+
+> 1
+
+(Φ t(z)) is well-defined for every ( t, z ) ∈ R+ × K. Using ( 9) we have Φ St (z) ∈
+
+[cS , Λ 
+
+> μ0
+
+] for every t ≥ 0. In [ 16 , Proposition 4.4.4], it was proved that for every ( z, k ) ∈ K × J , there exists 
+
+τ ≥ 0 such that ∫ ∞
+
+> 0
+
+βk(a)Φ kt (z)( a)da > 0, ∀t ≥ τ. 
+
+We now proceed in three steps. Step 1. We prove, as it is claimed in the proof of [ 16 , Proposition 5.1] (but without proof) or in [ 15 ,Proposition 2.3], that τ is uniform in z, i.e. for every k ∈ J then 
+
+∃ τk ≥ 0, ∀z ∈ K :
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kt (z)( a)da > 0, ∀t ≥ τk. (29) To show this, let k ∈ J and first assume that βk < +∞. Defining c = ( βk + βk)/2 then: 
+
+(i) There exists δ ∈ (0 , c − βk) such that ∫ βk −δ 
+
+> 0
+
+Φk 
+
+> 0
+
+(z)( a)da > 0 for every z ∈ K. Indeed, otherwise by contradiction one gets a sequence ( δn, z n) ⊂ ((0 , c − βk) × K)N such that lim n→∞ δn = 0 and 
+
+∫ βk −δn 
+
+> 0
+
+Φk 
+
+> 0
+
+(zn)( a)da = 0 for each n ∈ N. By compactness of K there exists (up to a subsequence) 
+
+z ∈ K such that lim n→∞ ‖zn − z‖X = 0. But then 
+
+∣∣∣∣∣∫ βk
+
+> 0
+
+Φk 
+
+> 0
+
+(z)( a)da 
+
+∣∣∣∣∣ ≤
+
+∫ βk −δn
+
+> 0
+
+∣∣Φk 
+
+> 0
+
+(z)( a) − Φk 
+
+> 0
+
+(zn)( a)∣∣ da +
+
+∫ βk −δn
+
+> 0
+
+Φk 
+
+> 0
+
+(zn)( a)da +
+
+∫ βk 
+
+> βk−δn
+
+Φk 
+
+> 0
+
+(z)( a)da 
+
+≤ ‖ z − zn‖X + ‖Φk 
+
+> 0
+
+(z)χ[βk −δn ,βk ]‖L1 −→  
+
+> n→∞
+
+0by the dominated convergence theorem, whence ∫ βk 
+
+> 0
+
+Φk 
+
+> 0
+
+(z)( a)da = 0 which is absurd since z ∈ K ⊂Sk.
+
+(ii) For every z ∈ K, there exists a ∈ [0 , βk − 2δ] such that ∫ a+δ 
+
+> a
+
+Φk 
+
+> 0
+
+(z)( a)da > 0 (otherwise there would be z ∈ K such that ∫ βk −δ 
+
+> 0
+
+Φk 
+
+> 0
+
+(z)( a)da = 0 which contradicts the first item). 
+
+(iii) For every z ∈ K, there exists t0 ∈ [0 , δ + βk] such that ∫ βk +δβk Φkt0 (z)( a)da > 0. Indeed, if a ≤ βk then 
+
+t0 := βk − a works because 
+
+∫ βk +δβk
+
+Φkt0 (z)( a)da ≥ e−μ0t0
+
+∫ a+δ
+
+> a
+
+Φk 
+
+> 0
+
+(z)( a)da > 0by the second item. Otherwise (if a > β k) we can take t0 := δ + βk and we get 
+
+∫ βk +δβk
+
+Φkt0 (z)( a)da ≥ e−μ0βk
+
+∫ βk +δβk
+
+Φkt0 −βk (z)( a − βk)da 
+
+≥ e−μ0βk
+
+∫ δ
+
+> 0
+
+Φkδ (z)( a)da 
+
+≥ e−μ0(βk +δ)
+
+∫ δ
+
+> 0
+
+Φkδ−a(z)(0) da 
+
+≥ e−μ0(βk +δ)
+
+∫ δ
+
+> 0
+
+ΦSδ−a(z)
+
+∫ a+2 δ−a
+
+> a+δ−a
+
+βk(ξ)Φ kδ−a(z)( ξ)dξda 
+
+≥ cS e−μ0(βk +δ)
+
+∫ δ
+
+> 0
+
+e−μ0(δ−a)
+
+∫ a+2 δ−a
+
+> a+δ−a
+
+βk(ξ)Φ k 
+
+> 0
+
+(z)( ξ − δ + a)dξda 
+
+≥ cS e−μ0(βk +δ)
+
+∫ δ
+
+> 0
+
+e−μ0(δ−a)
+
+∫ a+δ
+
+> a
+
+βk(ξ + δ − a)Φ k 
+
+> 0
+
+(z)( ξ)dξda > 0due to the second item and the fact that ξ + δ − a ∈ [a, a + 2 δ] ⊂ [βk, βk]. 20 (iv) We observe that for every t ∈ [t0, t 0 + δ], we have: Φkt (z)(0) ≥ cS
+
+∫ βk +δ+t−t0 
+
+> βk+t−t0
+
+βk(a)Φ kt (z)( a)da 
+
+≥ cS
+
+∫ βk +δ+t−t0 
+
+> βk+t−t0
+
+βk(a)Φ kt0 (z)( a − (t − t0)) da 
+
+≥ cS
+
+∫ βk +δβk
+
+βk(a + t − t0)Φ kt0 (z)( a)da > 0since a + t − t0 ∈ [βk, β k + 2 δ) ⊂ (βk, βk) by definition of δ and we deduce that Φ kt (z)(0) > 0 for every t ∈ [t0, t 0 + δ]. 
+
+(v) Similarly, for every t ∈ (t0 + βk, t 0 + βk + 2 δ), we see that: Φkt (z)(0) ≥ cS
+
+∫ βk +δβk
+
+βk(a)Φ kt (z)( a)da 
+
+≥ cS
+
+∫ βk +δβk
+
+βk(a)Φ kt−a(z)(0) e−μ0aχ[0 ,t ](a)da 
+
+≥ cS
+
+∫ t−βk 
+
+> t−(βk+δ)
+
+βk(t − a)Φ ka(z)(0) e−μ0(t−a)da 
+
+≥ cS
+
+∫ min {t0 +δ,t −βk} 
+
+> max {t−(βx+δ),t 0}
+
+βk(t − s)Φ ks (z)(0) e−μ0(t−s)ds > 0for every t ∈ (t0 + βk, t 0 + βk + 2 δ) since Φ ks (z)(0) > 0 for every s ∈ [t0, t 0 + δ] and t − a ∈ [βk, β k + δ]. 
+
+(vi) The same computations prove that for every n ≥ 0 and every t ∈ (t0 + nβ k, t 0 + nβ k + ( n + 1) δ) we have Φ kt (z)(0) > 0. Let N = ⌈βk/δ ⌉ so that N δ ≥ βk, then it follows that Φkt (z)(0) > 0 ∀t > t 0 + N β k.
+
+(vii) In conclusion, we proved that for every z ∈ K, there exists t0 ∈ [0 , δ + βk] such that Φ kt (z)(0) > 0for every t > t 0 + N β k with δ ∈ (0 , c − βk) and N = ⌈βk/δ ⌉. It then leads to 
+
+∀z ∈ K, Φkt (z)(0) > 0, ∀t > δ + ( N + 1) βk
+
+which implies ( 29 ) (here τk = δ + ( N + 1) βk is independent of z). 
+
+(viii) The case βk = ∞ is treated similarly. We just have to let δ = βk. We prove as (ii) that for every 
+
+z ∈ K, there exists a ≤ ∞ such that ∫ a+δ 
+
+> a
+
+Φk 
+
+> 0
+
+(z)( a)da > 0. Then as in (iii), we prove that for every 
+
+z ∈ K, there exists t0 ∈ [0 , δ + βk] = [0 , 2βk] such that ∫ 2βk 
+
+> βk
+
+Φkt0 (z)( a)da > 0 (in the case a ≤ βk
+
+we may consider t0 := βk − a and in the case a > β k we may consider t0 = 2 βk). We also prove (iv), i.e. Φkt (z)(0) > 0 for every t ∈ [t0, t 0 + δ]. The step (v) is similar, while in step (vi), we have 
+
+N = ⌈βx/δ ⌉ = 1 so that Φkt (z)(0) > 0, ∀t > t 0 + βk.
+
+Consequently, ( 29 ) is still true with τk > 3βk.Step 2. By invariance of K we deduce that for every ( z, k ) ∈ K × J , there exists a complete orbit 
+
+{φ(t), t ∈ R} ⊂ K through z leading to 
+
+∫ ∞
+
+> 0
+
+βk(a)Φ k 
+
+> 0
+
+(z)( a)da =
+
+∫ ∞
+
+> 0
+
+βk(a)Φ k 
+
+> 0
+
+(φ(0))( a)da =
+
+∫ ∞
+
+> 0
+
+βk(a)Φ k 
+
+> t
+
+(φ(−t))( a)da > 0by using ( 29 ). Since K is compact then a continuity argument implies that 
+
+∀k ∈ J , ∃ ck > 0, ∀z ∈ K :
+
+∫ ∞
+
+> 0
+
+βk(a)Φ k 
+
+> 0
+
+(z)( a)da ≥ ck.
+
+21 Again, by invariance of K, we deduce that for every ( z, k ) ∈ K × J , there exists a complete orbit 
+
+{φ(t), t ∈ R} ⊂ K through z leading for every t ≥ 0 to 
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kt (z)( a)da =
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kt (φ(0))( a)da =
+
+∫ ∞
+
+> 0
+
+βk(a)Φ k 
+
+> 0
+
+(φ(t))( a)da ≥ ck
+
+that is to say 
+
+∀k ∈ J , ∃ ck > 0, ∀t ≥ 0, ∀z ∈ K :
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kt (z)( a)da ≥ ck. (30) Now we claim that 
+
+∀(t, a, z, k ) ∈ (R+)2 × K × J : Φkt (z)( a) ≥ cS ckπk(a) (31) where we remind that cS is defined in ( 9). Let k ∈ J . The proof is similar to [ 16 , Proposition 5.1.2] but expressed on K rather than on the omega-limit set of some initial condition of Sk, hence we give its proof for completeness. Let ( t, a ) ∈ (R+)2 such that t > a . From the expression of the semiflow ( 5) combined with ( 9) and ( 30 ) we get ( 31 ) for every t > a . Suppose now that t ≤ a. Once again by invariance of K,we know that for every z ∈ K, there exists a complete orbit {φ(t), t ∈ R} ⊂ K through z leading to Φkt (z)( a) = Φ kt (φ(0))( a) = Φ ka+1 (φ(t − (a + 1)))( a) ≥ cS ckπk(a)and ( 31 ) is proved. Step 3. Let J ∗ = {k ∈ J : αk > 0}. We prove now that 
+
+∃ cΦ > 0, ∀(t, a, z, k ) ∈ (R+)2 × K × J ∗ :
+
+( x∗ 
+
+> k,α k
+
+(a)
+
+Φkt (z)( a) − 1
+
+)2
+
+≤ cΦ. (32) Let ( k, t, a ) ∈ J ∗ × (R+)2. We deduce from ( 31 ) that 
+
+∀z ∈ K : Φkt (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a) ≥ cS ckrk
+
+μS αk(Rk 
+
+> 0
+
+− 1) =: ˜ ck > 0leading to ( x∗ 
+
+> k,α k
+
+(a)
+
+Φkt (z)( a) − 1
+
+)2
+
+≤ 1
+
+(˜ ck)2 + 1 < ∞
+
+which proves ( 32 ) when considering 
+
+cΦ = max  
+
+> k∈J ∗
+
+{ 1
+
+˜c2
+
+> k
+
++ 1 
+
+}
+
+.
+
+Step 4. Let ( t, a, z, k ) ∈ (R+)2 × K × J ∗, then from ( 32 ) we get 
+
+x∗ 
+
+> k,α k
+
+(a)g
+
+(
+
+Φkt (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a)
+
+)
+
+= x∗ 
+
+> k,α k
+
+(a)
+
+(
+
+Φkt (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a) + ln 
+
+( x∗ 
+
+> k,α k
+
+(a)
+
+Φkt (z)( a)
+
+)
+
+− 1
+
+)
+
+≤ x∗ 
+
+> k,α k
+
+(a)
+
+(
+
+Φkt (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a) + x∗ 
+
+> k,α k
+
+(a)
+
+Φkt (z)( a) − 2
+
+)
+
+= Φ kt (z)( a)
+
+( x∗ 
+
+> k,α k
+
+(a)
+
+Φkt (z)( a) − 1
+
+)2
+
+≤ cΦΦkt (z)( a) (33) by using the fact that ln( x) ≤ x − 1 for each x > 0. Step 5. Finally, from ( 33 ) and using the integrability on R+ of the functions 
+
+a 7 −→ Ψk(a)Φ kt (z)( a), ∀(t, z ) ∈ R+ × K
+
+for each k ∈ J1, n K, it follows that ( t, z ) 7 −→ Lα1,...,α σ1 
+
+> 1
+
+(Φ t(z)) is well-defined on R+ × K.2. We prove that Lα1,...,α σ1 
+
+> 1
+
+is a Lyapunov function on every complete orbit γ(z) for any z ∈ K. This amounts to showing that Lα1,...,α σ1 
+
+> 1
+
+is a Lyapunov function on each positive orbit γ+(z) for every z ∈ K.Let z := ( S0, x 1,0, ..., x n, 0) ∈ K and let ̂ z := ( S0, (0 , x 1,0), ..., (0 , x n, 0)). We will follow the sketch of proof of Lemma 3.1 (for the case R0,1 ≤ 1), which is here more tedious because of the shape of the functional. 22 (i) Suppose first that ̂ z ∈ D(( A + F )0) ∩ X 0+ where D(( A + F )0) is defined by ( 2). Then using [ 12 ,Theorem 5.6.6, p. 242] we can compute the derivative of the function t 7 −→ Lα1,...,α σ1 
+
+> 1
+
+(Φ t(z)) according to 
+
+t (which is well-defined due to the first point) since Φ kt (z) belong to W 1,1(0 , ∞) for each t ≥ 0 and every 
+
+k ∈ J1, n K. Similar computations to the case R0,1 ≤ 1 (see ( 20 )) lead to 
+
+dL α1,...,α σ1 
+
+> 1
+
+(Φ t(z)) 
+
+dt = − ∑  
+
+> k∈J1+ σ1,n K∪(J \J ∗)
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+) ∫ ∞
+
+> 0
+
+βk(a)Φ kt (z)( a)da − μS
+
+ΦSt (z) (Φ St (z) − S∗ 
+
+> σ1
+
+)2
+
+− |J ∗|g
+
+( S∗
+
+> σ1
+
+ΦSt (z)
+
+)
+
+− ∑ 
+
+> k∈J ∗
+
+S∗
+
+> σ1
+
+∫ ∞
+
+> 0
+
+βk(a)x∗ 
+
+> k,α k
+
+(a)g
+
+( Φkt (z)( a) ∫ ∞ 
+
+> 0
+
+βk(s)x∗ 
+
+> k,α k
+
+(s)ds 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(s)Φ kt (z)( s)ds 
+
+)
+
+da ≤ 0 (34) since 1 
+
+> rk
+
+> S ∗ 
+
+> σ1
+
+= 1
+
+> rσ1
+
+for every k ∈ J1 + σ1, n K and 1 
+
+> rk
+
+= 1
+
+> rσ1
+
+for every k ∈ J1, σ 1K. It can be rewritten in the following form: 
+
+Lα1,...,α σ1 
+
+> 1
+
+(Φ t(z)) = Lα1,...,α σ1 
+
+> 1
+
+(z) −
+
+> n
+
+∑
+
+> k=1+ σ1
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+) ∫ t
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (z)( a)dadξ 
+
+−
+
+∫ t
+
+> 0
+
+μS
+
+ΦSξ (z) (Φ Sξ (z) − S∗ 
+
+> σ1
+
+)2dξ − |J ∗|
+
+∫ t
+
+> 0
+
+g
+
+( S∗
+
+> σ1
+
+ΦSξ (z)
+
+)
+
+dξ 
+
+− ∑ 
+
+> k∈J ∗
+
+S∗
+
+> σ1
+
+∫ t
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)x∗ 
+
+> k,α k
+
+(a)g
+
+( Φkξ (z)( a) ∫ ∞ 
+
+> 0
+
+βk(s)x∗ 
+
+> k,α k
+
+(s)ds 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(s)Φ kξ (z)( s)ds 
+
+)
+
+dadξ (35) 
+
+(ii) Now, suppose that ̂ z 6 ∈ D(( A + F )0 ) ∩ X 0+ . We will use a density argument to compute the derivative of the functional Lα1,...,α σ1 
+
+> 1
+
+along the solution of ( 1) for the initial condition z. However, taking a sequence of initial conditions in D(( A + F )0) ∩ X 0+ is not sufficient for the functional Lα1 ,...,α σ1 
+
+> 1
+
+to be well-defined because similar estimates to ( 31 ) are necessary for the sequence of initial conditions. Hence we will build a suitable sequence. 
+
+Step 1. Let t ≥ 0 and j ∈ J . We know by ( 31 ) that Φ ks (z)( a) ≥ cS ckπk (a) for every ( s, a, z, k ) ∈
+
+(R+)2 × K × J . We define 
+
+v =
+
+( ˜S0, ˜x1,0, ..., ˜xn, 0
+
+)
+
+,̂ v =
+
+( ˜S0, (0 , ˜x1,0), ..., (0 , ˜xn, 0)
+
+)
+
+where ˜S0 = S0
+
+∫ ∞ 
+
+> 0
+
+βj (a)xj, 0(a)da − ν
+
+∫ ∞ 
+
+> 0
+
+βj (a)xj, 0 (a)da − ν
+
+> S∗
+> j
+
+and ˜xk, 0 =
+
+
+
+xk, 0 − νπ k
+
+∫ ∞ 
+
+> 0
+
+βk(a)xk, 0(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)xj, 0 (a)da if k ∈ J 
+
+0 if k ∈ J1, n K \ J 
+
+with ν > 0 small enough such that v ∈ X+ and ̂ v ∈ X 0+ (which exist by using ( 31 )). Here we use the density of D(( A + F )0) ∩ X 0+ into X0+ to assert: 
+
+∃ (̂v(m))m∈N ⊂ (D(( A + F )0) ∩ X 0+ )N : ‖̂ v(m) −̂ v‖X −→  
+
+> m→∞
+
+0where ̂ v(m) = ( S(m)0 , (0 , x (m)1,0 ), ..., (0 , x (m) 
+
+> n, 0
+
+)) ∈ D(( A + F )0) ∩ X 0+ . Since Φ is state-continuous uniformly in finite time (see Proposition 2.3 4.), then the sequence v(m) = ( S(m)0 , x (m)1,0 , ..., x (m) 
+
+> n, 0
+
+) ∈ X+ satisfies sup 
+
+> s∈[0 ,t ]
+
+‖Φs(v(m)) − Φs(v)‖X −→  
+
+> m→∞
+
+0.
+
+Now we define the sequence ( ̂w(m))m∈N := ( S(m)0 , (0 , x(m)1,0 ), ..., (0 , x(m) 
+
+> n, 0
+
+)) m∈N ∈ (X0+ )N where 
+
+S(m)0 = S(m)0
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da + ν
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da + ν
+
+> S∗
+> j
+
+23 and 
+
+x(m) 
+
+> k, 0
+
+=
+
+
+
+x(m) 
+
+> k, 0
+
++ νπ k
+
+∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da if k ∈ J 
+
+0 if k ∈ J1, n K \ J 
+
+which is well-defined since we have ∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da −→ 
+
+> m→∞
+
+∫ ∞ 
+
+> 0
+
+βj (a)xj, 0(a)da − ν
+
+> S∗
+> j
+
+> 0 by definition of ν. It follows that ∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da > 0 for each m ≥ 0 (up to a sub-sequence). Recalling that 
+
+xk, 0 ∈ ∂Sk for every k ∈ J1, n K \ J (by definition of K) and by invariance of K, then xk, 0(a) = 0 f.a.e. 
+
+a ≥ 0. By construction we then see that lim m→∞ ‖̂ w(m) −̂ z‖X = 0 and lim m→∞ ‖w(m) − z‖X = 0 where 
+
+w(m) := ( S(m)0 , x(m)1,0 , ..., x(m) 
+
+> n, 0
+
+) ∈ X+
+
+leading to sup 
+
+> s∈[0 ,t ]
+
+‖Φs(w(m)) − Φs(z)‖X −→  
+
+> m→∞
+
+0. (36) We now check that ̂ w(m) ∈ D(( A + F )0). Since ̂ w(m) ∈ D(A), it remains to prove that Âw(m) + F (̂w(m)) ∈X0 i.e. 
+
+∀k ∈ J , x(m) 
+
+> k, 0
+
+(0) = S(m)0
+
+∫ ∞
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da. (37) Knowing that ̂ v(m) ∈ D(( A + F )0) then by construction we have for every k ∈ J :
+
+x(m) 
+
+> k, 0
+
+(0) = x(m) 
+
+> k, 0
+
+(0) + ν ∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da =
+
+∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da 
+
+(
+
+S(m)0
+
+∫ ∞
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da + ν
+
+)
+
+= S(m)0
+
+∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da 
+
+(∫ ∞
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da + ν
+
+S∗
+
+> j
+
+)
+
+= S(m)0
+
+(∫ ∞
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da +
+
+(∫ ∞
+
+> 0
+
+βk(a)πk (a)da 
+
+) ν ∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da 
+
+)
+
+= S(m)0
+
+∫ ∞
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+so ( 37 ) is satisfied and ( ̂w(m))m∈N ⊂ (D(( A + F )0) ∩ X 0+ )N.
+
+Step 2. Let ε > 0 small enough such that 
+
+∀k ∈ J : ck − ε‖βk‖L∞ > 0 and cS − ε > 0 (38) holds. We show first a property analogous to ( 31 ) which is 
+
+∃ cw > 0, ∃M ∈ N, ∀(s, a, k ) ∈ [0 , t ] × R+ × J , ∀m ≥ M :Φks (w(m))( a) ≥ cw πk(a) and sup 
+
+> s∈[0 ,t ]
+
+‖Φs(w(m)) − Φs(z)‖X ≤ ε. (39) Let k ∈ J then 
+
+∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da −→ 
+
+> m→∞
+
+∫ ∞ 
+
+> 0
+
+βk(a)xk, 0 (a)da − ν ∫ ∞     
+
+> 0βk(a)xk, 0(a)da
+> S∗
+> k
+> ∫∞
+> 0βj(a)xj, 0(a)da
+
+∫ ∞ 
+
+> 0
+
+βj (a)xj, 0(a)da − ν
+
+> S∗
+> j
+
+=
+
+∫ ∞ 
+
+> 0
+
+βk(a)xk, 0(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)xj, 0(a)da > 0.
+
+By definition of x(m) 
+
+> k, 0
+
+and by using ( 5) we deduce that there exists Mk ∈ N and cw,k > 0 such that for every m ≥ Mk and every ( s, a ) ∈ [0 , t ] × [s, ∞)Φks (w(m))( a) = x(m) 
+
+> k, 0
+
+(a − s)e− ∫ aa−s μk (ξ)dξ 
+
+≥ νπ k (a − s)e− ∫ aa−s μk (ξ)dξ 
+
+( ∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da 
+
+)
+
+= νπ k (a)
+
+( ∫ ∞ 
+
+> 0
+
+βk(a)x(m) 
+
+> k, 0
+
+(a)da 
+
+∫ ∞ 
+
+> 0
+
+βj (a)x(m) 
+
+> j, 0
+
+(a)da 
+
+)
+
+≥ cw,k πk(a).
+
+24 Considering c(1)  
+
+> w
+
+= min k∈J {cw,k } > 0 and M (1) = max k∈J {Mk} then Φ ks (w(m))( a) ≥ c(1)  
+
+> ω
+
+πk(a) for every m ≥ M (1) and every ( s, a, k ) ∈ [0 , t ] × [s, ∞) × J . From ( 36 ) there exists M (2) ∈ N such that sup s∈[0 ,t ] ‖Φs(w(m)) − Φs(z)‖X ≤ ε for every m ≥ M (2) and every k ∈ J . Also, using ( 30 ), we see that for each k ∈ J we have 
+
+∫ ∞
+
+> 0
+
+βk(a)Φ ks (w(m))( a)da =
+
+∫ ∞
+
+> 0
+
+βk(a)Φ ks (z)( a)da +
+
+∫ ∞
+
+> 0
+
+βk(a)
+
+(
+
+Φks (w(m))( a) − Φks (z)( a)
+
+)
+
+da 
+
+≥ ck − ε‖βk‖L∞ (40) for every s ∈ [0 , t ] and every m ≥ M (2) . Moreover by ( 9) we have 
+
+ε + Λ
+
+μ0
+
+≥ ε + Φ Ss (v) ≥ ΦSs (w(m)) ≥ ΦSs (v) − ε ≥ cS − ε, ∀m ≥ M (2) (41) and using ( 5) we have Φks (w(m))( a) ≥ (cS − ε)( ck − ε‖βk‖L∞ )πk(a) =: cε,k πk(a)(wherein cε,k > 0 by ( 38 )) for every ( s, a, k ) ∈ [0 , t ] × [0 , s ) × J and every m ≥ M (2) . Considering 
+
+c(2)  
+
+> w
+
+= min k∈J {cε,k } implies that Φ ks (w(m))( a) ≥ c(2)  
+
+> ω
+
+πk(a) for every m ≥ M (2) and every ( s, a, k ) ∈
+
+[0 , t ] × [0 , s ) × J . Finally, considering cw = min {c(1)  
+
+> w
+
+, c (2)  
+
+> w
+
+} and M = max {M (1) , M (2) } prove ( 39 ). We then get 
+
+∀(s, a, k ) ∈ [0 , t ] × R+ × J ∗, ∀m ≥ M : Φks (w(m))( a)
+
+x∗ 
+
+> k,α k
+
+(a) ≥ cw rk
+
+μS αk(Rk 
+
+> 0
+
+− 1) =: ck > 0.
+
+Following the steps 3-4 of the first point, we deduce that 
+
+x∗ 
+
+> k,α k
+
+(a)g
+
+(
+
+Φks (w(m))( a)
+
+x∗ 
+
+> k,α k
+
+(a)
+
+)
+
+≤ Φks (w(m))( a)
+
+( 1
+
+c2
+
+> k
+
++ 1 
+
+)
+
+for every ( s, a, k ) ∈ [0 , t ] × R+ × J ∗ and every m ≥ M . Using ( 39 ) we see that for each k ∈ J we have 0 ≤
+
+∫ ∞
+
+> 0
+
+Ψk(a)Φ ks (w(m))( a)da ≤ ε‖Ψk‖L∞ +
+
+∫ ∞
+
+> 0
+
+Ψk(a)Φ ks (z)( a)da, ∀s ∈ [0 , t ]which implies that s 7 −→ Lα1,...,α σ1 
+
+> 1
+
+(Φ s(w(m))) is well-defined on [0 , t ] for each m ≥ M . It follows that we can compute its derivative as in the first point of this section (in the case where the initial condition is in the domain of the operator), leading for every s ∈ [0 , t ] and every m ≥ M to: 
+
+Lα1,...,α σ1 
+
+> 1
+
+(Φ s(w(m))) = Lα1,...,α σ1 
+
+> 1
+
+(w(m)) −
+
+> n
+
+∑
+
+> k=1+ σ1
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+) ∫ s
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (w(m))( a)dadξ 
+
+−
+
+∫ s
+
+> 0
+
+μS
+
+ΦSξ (w(m)) (Φ Sξ (w(m)) − S∗ 
+
+> σ1
+
+)2dξ − |J ∗|
+
+∫ s
+
+> 0
+
+g
+
+( S∗
+
+> σ1
+
+ΦSξ (w(m))
+
+)
+
+dξ 
+
+− ∑ 
+
+> k∈J ∗
+
+∫ s
+
+> 0
+
+S∗
+
+> σ1
+
+∫ ∞
+
+> 0
+
+βk(a)x∗ 
+
+> k,α k
+
+(a)g
+
+( Φkξ (w(m))( a) ∫ ∞ 
+
+> 0
+
+βk(s)x∗ 
+
+> k,α k
+
+(s)ds 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(s)Φ kξ (w(m))( s)ds 
+
+)
+
+dadξ. (42) 
+
+Step 3. It remains to show the formula ( 42 ) but for the initial condition z instead of w(m). Let ε > 0small enough such that ( 38 ) is satisfied. Let m ≥ M (where M is defined in ( 39 )). We thus compute for 25 s ∈ [0 , t ]: 
+
+Hs(z) := 
+
+∣∣∣∣∣Lα1 ,...,α σ1 
+
+> 1
+
+(Φ s(z)) − Lα1,...,α σ1 
+
+> 1
+
+(z) + 
+
+> n
+
+∑
+
+> k=1+ σ1
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+) ∫ s
+
+> 0
+
+∫ ∞
+
+> 0
+
+βk(a)Φ kξ (z)( a)dadξ 
+
++
+
+∫ s
+
+> 0
+
+μS
+
+ΦSξ (z) (Φ Sξ (z) − S∗ 
+
+> σ1
+
+)2dξ + |J ∗|
+
+∫ s
+
+> 0
+
+g
+
+( S∗
+
+> σ1
+
+ΦSξ (z)
+
+)
+
+dξ 
+
++ ∑ 
+
+> k∈J ∗
+
+∫ s
+
+> 0
+
+S∗
+
+> σ1
+
+∫ ∞
+
+> 0
+
+βk(a)x∗ 
+
+> k,α k
+
+(a)g
+
+( Φkξ (v)( a) ∫ ∞ 
+
+> 0
+
+βk(s)x∗ 
+
+> k,α k
+
+(s)ds 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(s)Φ kξ (v)( s)ds 
+
+)
+
+dadξ 
+
+∣∣∣∣∣
+
+≤
+
+∣∣∣Lα1,...,α σ1 
+
+> 1
+
+(Φ s(z)) − Lα1,...,α σ1 
+
+> 1
+
+(Φ s(w(m))) 
+
+∣∣∣ +
+
+∣∣∣Lα1,...,α σ1 
+
+> 1
+
+(z) − Lα1,...,α σ1 
+
+> 1
+
+(w(m))
+
+∣∣∣
+
++
+
+> n
+
+∑
+
+> k=1+ σ1
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+)
+
+s‖βk‖L∞ × sup 
+
+> ξ∈[0 ,s ]
+
+‖Φkξ (z) − Φkξ (w(m))‖L1(R+ )
+
++sμ S × sup ξ∈[0 ,s ]
+
+∣∣∣∣∣∣∣(
+
+ΦSξ (w(m)) − S∗
+
+> σ1
+
+)2
+
+ΦSξ (w(m)) −
+
+(
+
+ΦSξ (z) − S∗
+
+> σ1
+
+)2
+
+ΦSξ (z)
+
+∣∣∣∣∣∣∣
+
++s|J ∗| sup 
+
+> ξ∈[0 ,s ]
+
+∣∣∣∣∣g
+
+( S∗
+
+> σ1
+
+ΦSξ (z)
+
+)
+
+− g
+
+( S∗
+
+> σ1
+
+ΦSξ (w(m))
+
+)∣ ∣∣∣∣
+
++sS ∗ 
+
+> σ1
+
+sup 
+
+> ξ∈[0 ,s ]
+
+∑ 
+
+> k∈J ∗
+
+∫ ∞
+
+> 0
+
+βk(a)x∗ 
+
+> k,α k
+
+(a)
+
+∣∣∣∣∣g
+
+( Φkξ (z)( a) ∫ ∞ 
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (z)( ζ)dζ 
+
+)
+
+−g
+
+( Φkξ (w(m))( a) ∫ ∞ 
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (w(m))( ζ)dζ 
+
+)∣ ∣∣∣∣ da. 
+
+(43) From ( 39 ) and ( 41 ) we get 
+
+∣∣∣∣S∗ 
+
+> σ1
+
+g
+
+( ΦSs (w(m))
+
+S∗
+
+> σ1
+
+)
+
+− S∗ 
+
+> σ1
+
+g
+
+( ΦSs (z)
+
+S∗
+
+> σ1
+
+)∣ ∣∣∣ ≤
+
+∣∣∣ΦSs (w(m)) − ΦSs (z)
+
+∣∣∣ ×
+
+(
+
+1 + S∗
+
+> σ1
+
+cS − ε
+
+)
+
+≤ ε ×
+
+(
+
+1 + S∗
+
+> σ1
+
+cS − ε
+
+)
+
+=: κ1(ε)and 
+
+∑   
+
+> k∈J1+ σ1,n K∪(J\J ∗)
+
+∣∣∣∣∫ ∞
+
+> 0
+
+Ψk(a)Φ ks (z)( a)da −
+
+∫ ∞
+
+> 0
+
+Ψk(a)Φ ks (w(m))( a)da 
+
+∣∣∣∣
+
+≤ ∑   
+
+> k∈J1+ σ1,n K∪(J\J ∗)
+
+‖Ψk‖L∞ ‖Φks (z) − Φks (w(m))‖L1 ≤ ε ∑  
+
+> k∈J1+ σ1,n K∪(J\J ∗)
+
+‖Ψk‖L∞ =: κ2(ε)for every s ∈ [0 , t ]. Using ( 31 )-( 39 ), we can define c = min k∈J {cw, c S ck} so that for every k ∈ J ∗ we have Φks (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a) ≥ cr k
+
+μS (R0,k − 1) , Φks (w(m))( a)
+
+x∗ 
+
+> k,α k
+
+(a) ≥ cr k
+
+μS (R0,k − 1) for every s ∈ [0 , t ] and every a ≥ 0. It follows that 
+
+∑ 
+
+> k∈J ∗
+
+∣∣∣∣∣∫ ∞
+
+> 0
+
+Ψk(a)x∗ 
+
+> k,α k
+
+(a)g
+
+(
+
+Φks (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a)
+
+)
+
+da −
+
+∫ ∞
+
+> 0
+
+Ψk(a)x∗ 
+
+> k,α k
+
+(a)g
+
+(
+
+Φks (w(m))( a)
+
+x∗ 
+
+> k,α k
+
+(a)
+
+)
+
+da 
+
+∣∣∣∣∣
+
+≤ ∑ 
+
+> k∈J ∗
+
+‖Ψk‖L∞
+
+∫ ∞
+
+> 0
+
+x∗ 
+
+> k,α k
+
+(a)
+
+∣∣∣∣∣
+
+Φks (z)( a)
+
+x∗ 
+
+> k,α k
+
+(a) − Φks (w(m))( a)
+
+x∗ 
+
+> k,α k
+
+(a)
+
+∣∣∣∣∣ ×
+
+(
+
+1 + μS (R0,k − 1) 
+
+cr k
+
+)
+
+da 
+
+≤ ∑ 
+
+> k∈J ∗
+
+‖Ψk‖L∞
+
+(
+
+1 + μS (R0,k − 1) 
+
+cr k
+
+)
+
+‖Φks (z) − Φks (w(m))‖L1
+
+≤ ‖ Ψk‖L∞
+
+(
+
+1 + μS (R0,k − 1) 
+
+cr k
+
+)
+
+ε =: κ3(ε)26 for every s ∈ [0 , t ]. Furthermore, from ( 39 )-( 41 ) we deduce that 
+
+> n
+
+∑
+
+> k=1+ σ1
+
+‖βk‖L∞
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+)
+
+s × sup 
+
+> ξ∈[0 ,s ]
+
+‖Φkξ (z) − Φkξ (w(m))‖L1(R+)
+
+≤
+
+> n
+
+∑
+
+> k=1+ σ1
+
+‖βk‖L∞
+
+( 1
+
+rk
+
+− S∗
+
+> σ1
+
+)
+
+t × ε =: κ4(ε),sS ∗ 
+
+> σ1
+
+|J ∗| sup ξ∈[0 ,s ]
+
+∣∣∣∣∣g
+
+( S∗
+
+> σ1
+
+ΦSξ (z)
+
+)
+
+− g
+
+( S∗
+
+> σ1
+
+ΦSξ (w(m))
+
+)∣ ∣∣∣∣
+
+≤ t(S∗ 
+
+> σ1
+
+)2|J ∗|
+
+∣∣∣∣∣
+
+1
+
+ΦSξ (z) − 1
+
+ΦSξ (w(m)
+
+∣∣∣∣∣ ×
+
+(
+
+1 + Λ
+
+μ0S∗
+
+> σ1
+
+)
+
+≤ tε (S∗ 
+
+> σ1
+
+)2|J ∗| × 
+
+( 1
+
+cS (cS − ε)
+
+)
+
+×
+
+(
+
+1 + Λ
+
+μ0S∗
+
+> σ1
+
+)
+
+=: κ5(ε).
+
+and 
+
+sμ S × sup 
+
+> ξ∈[0 ,s ]
+
+∣∣∣∣∣∣∣(
+
+ΦSξ (w(m)) − S∗
+
+> σ1
+
+)2
+
+ΦSξ (w(m)) −
+
+(
+
+ΦSξ (z) − S∗
+
+> σ1
+
+)2
+
+ΦSξ (z)
+
+∣∣∣∣∣∣∣
+
+≤ tμ S × sup 
+
+> ξ∈[0 ,s ]
+
+∣∣∣∣(
+
+ΦSξ (w(m)) − S∗
+
+> σ1
+
+)2
+
+−
+
+(
+
+ΦSξ (z) − S∗
+
+> σ1
+
+)2∣∣∣∣
+
+ΦSξ (z) +
+
+(
+
+ΦSξ (w(m)) − S∗
+
+> σ1
+
+)2
+
+∣∣∣∣∣
+
+1
+
+ΦSξ (z) − 1
+
+ΦSξ (w(m))
+
+∣∣∣∣∣
+
+≤ tμ S
+
+( 2S∗ 
+
+> σ1
+
+ε + ε( 2Λ  
+
+> μ0
+
++ ε)
+
+cS
+
++ ε(ε + 2Λ  
+
+> μ0
+
+)2
+
+cS (cS − ε)
+
+)
+
+=: κ6(ε)since S∗ 
+
+> σ1
+
+≤ Λ 
+
+> μ0
+
+and by using ( 9). Moreover using ( 6) and the fact that K is compact and invariant lead for each k ∈ J ∗ to ∫ ∞ 
+
+> 0
+
+βk(ξ)x∗ 
+
+> k,α k
+
+(ξ)dξ = 1
+
+> S∗
+> k
+
+and 
+
+∫ ∞
+
+> 0
+
+βk(ξ)Φ ks (z)( ξ)dξ ≤ Λ‖βk‖L∞
+
+μ0
+
+,
+
+∫ ∞
+
+> 0
+
+βk(ξ)Φ ks (w(m))( ξ)dξ ≤ ‖ βk‖L∞
+
+(
+
+ε + Λ
+
+μ0
+
+)
+
+for every s ∈ [0 , t ] then using ( 30 ) and ( 40 ) it follows that 
+
+sS ∗ 
+
+> σ1
+
+sup 
+
+> ξ∈[0 ,s ]
+
+∑ 
+
+> k∈J ∗
+
+∫ ∞
+
+> 0
+
+βk(a)x∗ 
+
+> k,α k
+
+(a)
+
+∣∣∣∣∣g
+
+( Φkξ (z)( a) ∫ ∞ 
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (z)( ζ)dζ 
+
+)
+
+−g
+
+( Φkξ (w(m))( a) ∫ ∞ 
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (w(m))( ζ)dζ 
+
+)∣ ∣∣∣∣ da 
+
+≤ sup 
+
+> ξ∈[0 ,s ]
+
+∑ 
+
+> k∈J ∗
+
+∫ ∞
+
+> 0
+
+βk(a)x∗
+
+> k,α k
+
+∣∣∣∣∣
+
+Φkξ (w(m))( a) ∫ ∞ 
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (w(m))( ζ)dζ − Φkξ (z)( a) ∫ ∞ 
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+x∗ 
+
+> k,α k
+
+(a) ∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (z)( ζ)dζ 
+
+∣∣∣∣∣ da 
+
+×tS ∗
+
+> σ1
+
+(
+
+1 + (Λ + εμ 0)‖βk‖L∞ μS (R0,k − 1) S∗ 
+
+> 1
+
+αk
+
+cr kμ0
+
+)
+
+≤ sup 
+
+> ξ∈[0 ,s ]
+
+∑ 
+
+> k∈J ∗
+
+(∫ ∞
+
+> 0
+
+βk(ζ)x∗ 
+
+> k,α k
+
+(ζ)dζ 
+
+) ∫ ∞
+
+> 0
+
+βk
+
+∣∣∣∣∣
+
+Φkξ (w(m))( a)
+
+∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (w(m))( ζ)dζ − Φkξ (z)( a)
+
+∫ ∞ 
+
+> 0
+
+βk(ζ)Φ kξ (z)( ζ)dζ 
+
+∣∣∣∣∣ da 
+
+×tS ∗
+
+> σ1
+
+(
+
+1 + (Λ + εμ 0)‖βk‖L∞ μS (R0,k − 1) S∗ 
+
+> 1
+
+αk
+
+cr kμ0
+
+)
+
+≤ t ∑ 
+
+> k∈J ∗
+
+( ‖εβ k‖L∞
+
+ck
+
++ Λε‖βk‖2
+
+> L∞
+
+μ0ck(ck − ε‖βk‖L∞ )
+
+) ( 
+
+1 + (Λ + εμ 0)‖βk‖L∞ μS (R0,k − 1) S∗ 
+
+> 1
+
+αk
+
+cr kμ0
+
+)
+
+=: κ7(ε).
+
+Finally, from ( 43 ) we deduce that 
+
+Hs(z) ≤ 2
+
+> 7
+
+∑
+
+> j=1
+
+κj (ε) −→  
+
+> ε→0
+
+0uniformly in s ∈ [0 , t ]. We thus get Hs(z) = 0 and then ( 42 ) is satisfied for any s ∈ [0 , t ]. Also, since t ≥ 0was taken arbitrarily then ( 34 )-( 35 ) hold for any t ≥ 0 whence Lα1,...,α σ1 
+
+> 1
+
+is a Lyapunov function on every complete orbit γ(z) for any z ∈ K which proves the second point. 27 This proves the second part of the second item of Theorem 2.5 .
+
+3.2.3 Computation of the global attractor and conclusion 
+
+Here we prove that A0 is reduced to the set E∗ 
+
+> 1
+
+. We first need to state the following result. 
+
+Lemma 3.5. Let J ⊂ J1, σ 1K with J 6 = ∅. Let 
+
+z ∈
+
+ ⋂
+
+> j∈J
+
+Sj
+
+ ∩
+
+ ⋂ 
+
+> j∈J1,σ 1K\J
+
+∂Sj
+
+
+
+and let 
+
+γ(z) = {φ(t), t ∈ R} ⊂ 
+
+ ⋂
+
+> j∈J
+
+Sj
+
+ ∩
+
+ ⋂ 
+
+> j∈J1,σ 1K\J
+
+∂Sj
+
+
+
+be a complete orbit through z. Let (α1, ..., α σ1 ) ∈ [0 , 1] σ1 such that ∑σ1 
+
+> j=1
+
+αj = 1 and with αj = 0 for every j ∈
+
+J1, σ 1K \ J and αj > 0 for every j ∈ J . Then the functional Lα1,...,α σ1 
+
+> k
+
+defined by (14 ) is a Lyapunov functional on the complete orbit γ(z) and for each (t, v ) ∈ R∗ 
+
+> +
+
+× γ(z), the time derivative of t 7 −→ Lα1,...,α σ1 
+
+> k
+
+(Φ t(v)) is given by (34 ), with J ∗ = J . If moreover Lα1,...,α σ1 
+
+> k
+
+is constant on γ(z) then γ(v) ⊂ E ∗ 
+
+> 1,J
+
+that is defined by (15 ). In particular v ∈ E ∗ 
+
+> 1,J
+
+.Proof. The first part of the Lemma simply results from Section 3.2.2 . For the second part (when the Lyapunov functional is constant on γ(z)), the computations are similar to those in the proof of Lemma 3.4 (second item). 
+
+We first know that E∗ 
+
+> 1
+
+⊂ A 0 since E∗ 
+
+> 1
+
+is an invariant set that belongs to A0. Let z ∈ A 0. By invariance of 
+
+A0, let γ(z) = {φ(t), t ∈ R} ⊂ A 0 be a complete orbit through z. We denote by J ⊂ J1, σ 1K the (non-empty) set such that 
+
+z ∈
+
+( ⋂
+
+> k∈J
+
+Sk
+
+)
+
+∩
+
+ ⋂ 
+
+> k∈J1,σ 1K\J
+
+∂Sk
+
+ =: K. 
+
+Then we have φ(t) ∈ K for every t ∈ R by positive invariance of each set Sk and ∂Sk. Let ( α1, ..., α σ1 ) ∈ [0 , 1] σ1
+
+such that ∑σ1 
+
+> j=1
+
+αj = 1 and with αj = 0 for every j ∈ J1, σ 1K \ J and αj > 0 for every j ∈ J . From Lemma 3.5 ,we know that Lα1,...,α σ1 
+
+> 1
+
+defined by ( 14 ) is a Lyapunov functional on γ(z). Using [ 17 , Proposition 2.51 p. 53] we deduce that the function Lα1,...,α σ1 
+
+> 1
+
+is constant on α(φ) hence on each complete orbit of α(φ). By Lemma 
+
+3.5 , we deduce that α(φ) ⊂ E ∗ 
+
+> 1,J
+
+. Similarly we get ω(z) ⊂ E ∗ 
+
+> 1,J
+
+. It follows that lim  
+
+> t→−∞
+
+d(φ(t), E∗ 
+
+> 1,J
+
+) = lim  
+
+> t→+∞
+
+d(φ(t), E∗ 
+
+> 1,J
+
+) = 0 with lim t→−∞ Lα1,...,α σ1 
+
+> 1
+
+(φ(t)) ≥ Lα1,...,α σ1 
+
+> 1
+
+(z) ≥ lim t→+∞ Lα1,...,α σ1 
+
+> 1
+
+(φ(t)). Now, we apply the same arguments than those used in Section 3.2.1 , point 3. (ii). We just need to consider k = 1 and use Lemma 3.5 instead of Lemma 3.4 . This allow us to first prove the existence of ( E∗,1  
+
+> τ1,...,τ n
+
+, E ∗,1 
+
+> ω1,...,ω n
+
+) ∈ (E∗ 
+
+> 1,J
+
+)2 such that ( 27 ) holds (see Step 3), so that γ(z) is either a heteroclinic or homoclinic orbit. Then we prove that 
+
+E∗,1  
+
+> τ1,...,τ n
+
+= E∗,1 
+
+> ω1,...,ω n
+
+(see Step 4) so that γ(z) is actually a homoclinic orbit. Recalling that Lα1,...,α σ1 
+
+> 1
+
+is a Lyapunov functional on 
+
+γ(z), we deduce that Lα1,...,α σ1 
+
+> 1
+
+is constant on γ(z) and by Lemma 3.5 we get γ(z) ⊂ E ∗ 
+
+> 1,J
+
+and in particular 
+
+z ∈ E ∗ 
+
+> 1
+
+. In conclusion A0 = E∗ 
+
+> 1
+
+which proves that the set E∗ 
+
+> 1
+
+is GAS in S0 = ∪σ1
+
+> k=1
+
+Sk.This proves the first statement of the second point of Theorem 2.5 for k = 1. The rest of the second point readily follows since each set ∂Sj is positively invariant. Consequently Theorem 2.5 is proved. 
+
+# References 
+
+[1] H. J. Bremermann and H. R. Thieme. A competitive exclusion principle for pathogen virulence. Journal of mathematical biology , 27(2):179–190, 1989. [2] J.-B. Burie, A. Ducrot, and Q. Griette. Asymptotic behavior of an epidemic model with infinitely many variants. Journal of Mathematical Biology , 87(3):40, 2023. 28 [3] O. Diekmann, J. A. Heesterbeek, and J. A. Metz. On the definition and the computation of the basic reproduction ratio R0 in models for infectious diseases in heterogeneous populations. J. Math. Biol. ,28(4):365–382, 1990. [4] K. J. Engel and R. Nagel. One-Parameter Semigroups for Linear Evolution Equations , volume 63(2). Springer-Verlag, 2000. [5] G. Gause. The Struggle for Existence . Williams and Wilkins, Baltimore, 1934. [6] J. K. Hale. Asymptotic Behavior of Dissipative Systems , volume 25 of Mathematical Surveys and Mono-graphs . American Mathematical Society, Providence, RI, 1988. [7] J. K. Hale and P. Waltman. Persistence in infinite-dimensional systems. SIAM J. Math. Anal. , 20(2):388– 395, 1989. [8] S. B. Hsu. On global stability of a predator-prey system. Math. Biosci. , 39(1–2):1–10, 1978. [9] S. B. Hsu, S. Hubbell, and P. Waltman. A mathematical theory for single-nutrient competition in continuous cultures of micro-organisms. SIAM Journal on Applied Mathematics , 32(2):366–383, 1977. [10] H. Kellerman and M. Hieber. Integrated semigroups. J. Funct. Anal. , 84(1):160–180, 1989. [11] P. Magal, C. C. McCluskey, and G. F. Webb. Lyapunov functional and global asymptotic stability for an infection-age model. Appl. Anal. , 89(7):1109–1140, 2010. [12] P. Magal and S. Ruan. Theory and Applications of Abstract Semilinear Cauchy Problems , volume 201 of 
+
+Applied Mathematical Sciences . Springer, Cham, 2018. With a foreword by Glenn Webb. [13] P. Magal, O. Seydi, and F.-B. Wang. Monotone abstract non-densely defined Cauchy problems applied to age structured population dynamic models. Journal of Mathematical Analysis and Applications , 479(1):450– 481, 2019. [14] M. Martcheva and X.-Z. Li. Competitive exclusion in an infection-age structured model with environmental transmission. J. Math. Anal. Appl. , 408(1):225–246, 2013. [15] A. Perasso. Global stability and uniform persistence for an infection load-structured si model with expo-nential growth velocity. Communications on Pure and Applied Analysis , 18:15–32, 2019. [16] Q. Richard. Global stability in a competitive infection-age structured model. Mathematical Modelling of Natural Phenomena , 15(54):1–39, 2020. [17] H. L. Smith and H. R. Thieme. Dynamical systems and population persistence , volume 118. American Mathematical Soc., 2011. [18] G. Teschl. Ordinary Differential Equations and Dynamical Systems , volume 140 of Graduate Studies in Mathematics . American Mathematical Society, Providence, RI, 2012. [19] H. R. Thieme and C. Castillo-Chavez. On the role of variable infectivity in the dynamics of the human immunodeficiency virus epidemic. In Mathematical and Statistical Approaches to AIDS Epidemiology ,volume 83 of Lecture Notes in Biomath. , pages 157–176. Springer, Berlin, 1989. [20] H. R. Thieme and C. Castillo-Chavez. How may infection-age-dependent infectivity affect the dynamics of HIV/AIDS? SIAM J. Appl. Math. , 53(5):1447–1479, 1993. [21] G. F. Webb. Theory of Nonlinear Age-Dependent Population Dynamics . Marcel Dekker, New York, 1985. [22] K. Yosida. Functional analysis , volume 123 of Grundlehren der Mathematischen Wissenschaften [Funda-mental Principles of Mathematical Sciences] . Springer-Verlag, Berlin-New York, sixth edition, 1980. 29

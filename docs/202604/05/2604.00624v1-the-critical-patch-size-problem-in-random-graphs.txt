@@ -1,0 +1,1195 @@
+Title: The Critical Patch Size Problem in Random Graphs
+
+URL Source: https://arxiv.org/pdf/2604.00624v1
+
+Published Time: Thu, 02 Apr 2026 00:43:25 GMT
+
+Number of Pages: 13
+
+Markdown Content:
+# The Critical Patch Size Problem in Random Graphs 
+
+## Nicola Apollonio ∗ Veronica Tora † Davide Vergni ‡
+
+## April 2, 2026 
+
+Abstract 
+
+The problem of critical patch size — a threshold condition for population persistence — is investigated in the context of discrete habitats, modeled as graphs with a distinguished subset of vertices acting as sinks. These sinks impose boundary-like constraints analogous to Dirichlet conditions in continuous domains. The population proliferates locally at the vertices and diffuse across the network through the graph Laplacian. In the sinks the population cannot survive. The Dirichlet eigenvalue of the habitat is defined as the smallest eigenvalue of the principal submatrix of the Laplacian obtained by removing the rows and columns associated with sink vertices. This spectral parameter governs the habitat’s viability: survival occurs when the Dirichlet eigenvalue of the habitat lies below a critical reaction-to-diffusion ratio. We study survival conditions for a sequence of random habitats built on binomial random graphs. We establish a law of large numbers for the corresponding sequence of Dirichlet eigen-values and prove the emergence of a sharp threshold phenomenon: with high probability, a large random habitat is either viable or non-viable, depending on whether the reaction-to-diffusion ratio lies below or above this threshold. Our results provide the first general spectral theory for critical patch size on graphs, with implications for ecology, synthetic biology, and the modeling of processes on brain connectomes. 
+
+Keywords : Graph Laplacian, Dirichlet eigenvalue, Random graphs, Chernoff Bounds 
+
+# 1 Introduction 
+
+Population survival in spatially structured environments can be formulated as a threshold problem: given local proliferation and spatial dispersal, under which conditions does a population persist rather than go extinct? A central question is therefore how spatial structure and boundary effects jointly determine persistence thresholds. In classical reaction-diffusion models, this problem reduces to a spectral condition. For a species density u : [0 , ∞) × H → [0 , 1], diffusing in a bounded habitat H ⊂ Rd and evolving with a logistic growth term according to 
+
+∂tu = D∇2u + ru (1 − u), u|∂H = 0 (1) 
+
+> ∗
+
+Consiglio Nazionale delle Ricerche, Via dei Taurini 19, 00185 Roma, Italy. e-mail: nicola.apollonio@cnr.it 
+
+> †
+
+Consiglio Nazionale delle Ricerche, Via dei Taurini 19, 00185 Roma, Italy. e-mail: v.tora@iac.cnr,it, veronica.tora2@unibo.it 
+
+> ‡
+
+Consiglio Nazionale delle Ricerche, Via dei Taurini 19, 00185 Roma, Italy. e-mail: davide.vergni@cnr.it 
+
+1
+
+> arXiv:2604.00624v1 [math.PR] 1 Apr 2026
+
+persistence occurs if and only if the principal Dirichlet eigenvalue of the problem 
+
+(∇2u + λu ) |H = 0 , u|∂H = 0 (2) satisfies λ(∂H )min ≤ ρ(H), with ρ(H) = r/D , defines the survival condition for the habitat H. Note that we treat ρ(·) as function of H to allow for general dependency of the parameters r and D
+
+on H. Equation (1) is a simple extension of the original KiSS model, whose principal Dirichlet eigenvalue, in a one dimensional island of size H = [0 , L ], is given by λ(∂H )min = π2/L 2, resulting in the well known KiSS critical patch size L = π/ √ρ.Model (1) has been extended in multiple directions, including metapopulation dynamics [9], demographic and environmental stochasticity [8], spatial heterogeneity [3], and individual-based frameworks [1]. However, limited attention has been devoted to understanding how strong envi-ronmental heterogeneity and complex connectivity structures influence population survival and the determination of critical patch size in biological systems. Although ecological dynamics on net-works have recently received growing attention, as in [11, 10], to the best of our knowledge, the first attempt to discuss survival conditions in discrete habitats, modeled as graphs, was introduced in [14]. However, a general spectral characterization of survival thresholds in strongly stochastic network-structured habitats is still lacking. In the following we refer to a discrete setting in which habitats are represented as random graphs to which the spectral viewpoint discussed above naturally extends. Let {Hn} be a sequence of habitats where Hn = ( Gn, S n) consist of a binomial random graph Gn and a set Sn of sn sink nodes. Denote by L(Gn) the graph Laplacian and by L(Sn)(Gn) the principal submatrix of L(Gn)obtained by removing rows and colums corresponding to sinks Sn. In the present work, we define the critical habitat size as the smallest real number γ such that, for n ≥ γ, the habitat Hn ensures population survival, and we provide probabilistic bounds on it (see Theorem 2). We investigate the asymptotic properties of the inequality 
+
+λmin 
+
+(L(Sn)(Gn)) ≤ ρ(Hn), (3) which, in reaction-diffusion models, characterizes population persistence. Some examples of deter-ministic and stochastic graphs have been investigated in [14], but the fully stochastic case remains largely unexplored. We show that, in large random habitats, population survival is asymptot-ically determined by the expected number of connections between viable sites and sinks. For-mally, our main result establishes a law of large numbers for the Dirichlet eigenvalue in the regime 
+
+snpn ≫ log n. Under this assumption we prove that 
+
+λmin 
+
+(L(Sn)
+
+> n
+
+)/s npn → 1 almost surely .
+
+In particular, when pn ≡ p > 0 and sn ≥ (log n)1+ ǫ, the principal Dirichlet eigenvalue concentrates around snp for any ǫ > 0. This shows that, asymptotically, the survival threshold is governed by the expected boundary degree induced by the sinks. 
+
+# 2 Survival in random graphs with sinks 
+
+Let us briefly describe the theoretical and notational settings we work in. We use the symbol # to denote the cardinality of sets. As customary, for a positive integer n, we set [ n] = {1, . . . , n }. If B
+
+2is an order n matrix and S ⊆ [n], B(S) is the (principal) submatrix obtained by deleting rows and columns whose index is in S.We consider undirected graphs on the vertex set [ n] and we define Gn as the set of all such graphs. For a graph G and distinct vertices i, j ∈ [n], we write i ∼ j to mean that i and j
+
+are adjacent in G. Notice that ∼ defines a symmetric relation on [ n]. The graph Laplacian, (or simply the Laplacian) L(G) of G is the self-adjoint matrix D(G) − A(G) where A(G) = ( ai,j ) is the adjacency matrix of Gai,j =
+
+{
+
+1 if i ∼ j
+
+0 otherwise ,
+
+while D(G) = diag ( dG(1) , . . . , d G(n)) is the degree-matrix of G, where dG(i) = ∑nj=1 ai,j . If S is any subset of [ n] and i is any vertex in [ n] \ S, one has the following decomposition 
+
+dG(i) = ˜d(i) + zi(G), (4) where zi(G) = # {j ∈ S : i ∼ j} and ˜dG(i) = # {j ∈ [n] \ S : i ∼ j}. Hence zi(G) is the number of neighbors of i in S while ˜dG(i) is the degree of vertex i in the subgraph ˜G induced by [ n] \ S.Clearly ˜dG = d ˜G. For ease of notation, throughout the rest of the paper, when no ambiguity can arise, we will omit the explicit reference to G in all the above-defined symbols. A habitat is a pair (G, S ), where G ∈ Gn and S ⊆ [n] is a set of s vertices thought of as sinks (or boundary points). Using the above definitions, the diffusion dynamics in the habitat ( G, S ), near the extinction threshold, can be described as 
+
+∂tu + L(G)u = ρ id u ui|i∈S = 0 . (5) Defining A(S)(G) as the adjacency matrix of the subgraph ˜G of G induced by [ n]\S and L(S)(G)the Dirichlet matrix associate to the habitat ( G, S ), the following identities hold 
+
+L(S)(G) = D(S)(G) − A(S)(G) = Z + ˜L(S)(G) (6) where Z is the diagonal matrix whose diagonal elements are the zi’s, i ∈ [n] \ S, defined in (4) while 
+
+˜L(S)(G) is the Laplacian of ˜G. The above expression implies that, in general, L(S)(G) is not itself a graph Laplacian. Dynamics (5) can be written as 
+
+∂tu + L(S)(G)u = ρ id u (7) and, considering that Dirichlet eigenvalue of ( G, S ), denoted by ξ(S)(G) = λmin 
+
+(L(S)(G)), i.e. the smallest eigenvalue of L(S)(G), survival condition for (5) and (5) is 
+
+ξ(S)(G) ≤ ρ. (8) 
+
+## 2.1 Recall on Chernoff Bound 
+
+A binomial random graph G on [ n] is a sample point from the probability space G(n, p n) = (Gn, Pn,p n ), where 
+
+Pn,p n (G) = pe(G) 
+
+> n
+
+(1 − pn)(n 
+
+> 2
+
+)−e(G),
+
+3where e(G) is the number of edges of G. More pictorially, a binomial random graph is a graph on [ n]where each of the (n
+
+> 2
+
+) pairs of different vertices is joined by an edge with the same probability pn,independently of each other pair. We also stipulate that the sinks of a random habitat are always located in the first sn vertices of the underlying random graph and we call the corresponding habitat, the standard random habitat. This assumption causes no loss of generality because if ( G, S ) is any habitat where G ∈ Gn and S has s sinks, then there is a graph isomorphism π : [ n] → [n] such that π(S) = [ sn]. Therefore, the spectra of the matrices L(S) and L([ sn])  
+
+> n
+
+are the same, as they are conjugate by a permutation matrix. From now on, we abridge the more precise, albeit cumbersome and redundant, expression L([ sn])  
+
+> n
+
+by L(s) 
+
+> n
+
+. We tacitly apply the same convention to other related notations. In particular, hereafter ξ(s) 
+
+> n
+
+will denote the Dirichlet eigenvalue of a standard random habitat with sn sinks and n − sn non-sink vertices. The sequences of random objects (random variables, matrices) we are interested in are defined on different probability spaces for different n. Using the standard procedure of taking product of probability spaces, we can ensure that all the objects are defined on the same probability space, (Ω , F, P). Our forthcoming convergence results are always stated with respect to this probability space. Also, for a sequence of random variable {Un} and a random variable U , all being defined on (Ω , F, P), we use that shorthand notation Una.s. 
+
+−−→ U to mean that Un converge to U almost surely. We will make an extensive use of the following variants of the so-called Chernoff bounds (see [5], Chapter 27) that for a random variable X ∼ bin( ν, p ) and ǫ > 0 read as 
+
+P (X ≥ (1 + ǫ)νp ) ≤ e−ǫ2νp/ 3 Upper tail Chernoff Bound, 
+
+P (X ≤ (1 − ǫ)νp ) ≤ e−ǫ2νp/ 2 Lower tail Chernoff Bound, 
+
+P (|X − μ| ≥ ǫνp ) ≤ 2e−ǫ2νp/ 3 Symmetric Chernoff Bound .
+
+# 3 Results 
+
+In the present work, we extend this concept to that of critical habitat size, defined as the smallest real number γ such that, for n ≥ γ, the habitat Hn ensures population survival, and we provide probabilistic bounds on it (see Theorem 2). Actually the main aim of this paper is to study inequality 
+
+ξ(Sn)(Gn) ≤ ρ(Hn), (9) for a sequence of habitats {Hn}, Hn = ( Gn, S n), where Gn is a binomial random graph on 
+
+{1, 2, . . . , n }, i.e., a graph sampled from the probability space G(n, p n) (see Section 3 for pre-cise definition), Sn consists of sn sinks, the sequence {sn} does not decrease and L(Sn)(Gn) is the principal submatrix of the graph Laplacian of Gn induced by the non-sink vertices. By what we have observed and stipulated above, there is no loss of generality in assuming that Hn is a standard random habitat. Consequently, (9) is equivalent to 
+
+ξ(s) 
+
+> n
+
+≤ ρ(Hn), (10) According to whether it satisfies the survival condition or not, a habitat will be referred to as healthy or deadly. We establish law of large numbers for the Dirichlet eigenvalue of Hn under the assumptions that snpn grows faster than logarithmically. In particular, we show that ξ(s) 
+
+> n
+
+/s npn
+
+converges to 1 almost surely. This happens, for instance, when pn is a fixed constant and sn ≥
+
+4(log n)1+ ǫ for any ǫ > 0. Specifically, the following result holds, where, for functions f, g : N → N,we write f (n) ≪ g(n) to mean that lim n→∞ f (n) 
+
+> g(n)
+
+= 0. 
+
+Theorem 1 Consider a sequence {Hn} of random habitats of the form (Gn, S n) where Gn is sam-pled from G(n, p n), Sn has sn sinks and the sequence {sn} is non-decreasing. Let {ξ(sn )
+
+> n
+
+} be the corresponding sequence of Dirichlet eigenvalues. 
+
+(i) If sn ≪ n, then the sequence {p∗
+
+> n
+
+}, p∗ 
+
+> n
+
+= log n 
+
+> n
+
+, is a sharp threshold for the positiveness of the Dirichlet eigenvalue of Hn, i.e., 
+
+lim  
+
+> n→∞
+
+P(ξ(sn ) 
+
+> n
+
+> 0) =
+
+{0 if pn
+
+> p∗
+> n
+
+≤ 1 − ǫ
+
+1 if pn
+
+> p∗
+> n
+
+≥ 1 + ǫ. 
+
+for every ǫ > 0.
+
+(ii) Consider the following assumptions 
+
+(a) log n ≪ (n − sn)pn.
+
+(b) lim n→∞ sn/n < 1 and log n ≪ snpn.If assumption (b) holds, then ξ(sn )
+
+> n
+
+snpn
+
+converges to 1 almost surely. Assumptions (a) and (b) 
+
+both imply that P( lim sup n
+
+{
+
+ξ(sn ) 
+
+> n
+
+/s npn
+
+}
+
+≤ 1) = 1 .As a consequence, if assumption (b) holds, then the sequence {ρ∗
+
+> n
+
+}, ρ∗ 
+
+> n
+
+= snpn, is a sharp threshold for habitat’s viability ruled by the survival condition (9) . Under assumption (a) , for every ǫ > 0, if 
+
+ρ(Hn) ≥ (1 + ǫ)snpn, then for sufficiently large n, almost every habitat with n vertices is healthy. This happens, in particular, if snpn converges to zero and ρ(Hn) is bounded away from zero. 
+
+If the sequence {pn} is such that, eventually, pn ≥ C log n/n for some constant C > 1, then it is customary to say that random graph evolves in the connected regime while, if np n ≫ log n, then we may say that the random graph evolves in the quasi-dense regime. Consequently, statement (i) in Theorem 1 establishes that a non-zero limit for ξ(sn ) 
+
+> n
+
+can exist only in the connected regime while the subsequent statement (ii) identifies this limit in the quasi-dense regime under assumption (b). Note that assumptions (a) and (b) are independent of each other and both imply that the random graph evolves in the quasi-dense regime. In such a regime, the condition snpn → 0, occurring in the last part of Theorem 1, can be realized with pn = log a n/n , for some a > 1, and with sn either constant or growing with n. Actually, as explained in Remark 4, it is not difficult to prove that, almost surely, for n large enough, snpn − κ(n) ≤ ξ(sn ) 
+
+> n
+
+≤ snpn, where k(n) is o(np n) (see Figure 1). Also, it is worth observing, that snpn is the smallest eigenvalue of the expectation of the random matrix L(Sn) 
+
+> n
+
+rather then than expected value of the random variable ξ(sn ) 
+
+> n
+
+= λmin 
+
+(L(Sn)
+
+> n
+
+). As explained in Remark 5, one has E
+
+(
+
+ξ(sn )
+
+> n
+
+)
+
+≤ snpn.We warn the reader that, by combining Oliveira’s matrix concentration for random Laplacians (see [12]) with the aforementioned identity snpn = λmin 
+
+(E(L(s)
+
+> n
+
+)) (see Remark 5), one can prove the same asymptotic behaviour of the Dirichlet eigenvalue in the dense regime. In fact, Theorem 1.(ii) can be recovered from these general results combined with the deterministic bounds of Lemma 1. 50.8 
+
+0.85 
+
+0.9 
+
+0.95 
+
+1
+
+1000 10000 
+
+> ξn(s)  / s n pn
+
+npn=0.10 
+
+pn=0.05 
+
+pn=0.02 
+
+pn=0.01 
+
+Figure 1: Numerical computation of ξ(s) 
+
+> n
+
+/s npn vs n for fixed sn = 50 and different values of pn. The plot shows the mean and the standard deviation of ξ(s) 
+
+> n
+
+/s npn computed over 1000 random habitats. Since this route requires substantially heavier machinery and does not simplify the argument, for the sake of clarity and self-containment, we prefer to derive Theorem 1.(ii) directly from elementary first principles, using only Chernoff bounds and the Borel–Cantelli lemma. While this avoids resorting the machinery of the general theory of random graphs, it highlights the essential mechanism behind the behaviour of ξ(s) 
+
+> n
+
+.Using the fact that the survival condition defines a monotone graph property (see the proof of Theorem 2), we obtain probabilistic bounds on the minimum size of healthy habitats, i.e., the critical habitat size. Specifically, when habitats are sampled uniformly at random from the set of all possible habitats with a given number of non-sink vertices and, possibly, a given number of edges, we have the following ‘probabilistic solution’ to the critical habitat size problem in model (7): 
+
+Theorem 2 Let s be a positive integer number, ρ a positive real number and δ be a real number arbitrarily picked in (0 , 1) .
+
+(i) For any positive real number ǫ let pǫ := pǫ(ρ, s ) where pǫ(ρ, s ) = ρ 
+
+> (1+ ǫ)s
+
+. Set μ = sp ǫ. If n and 
+
+m are positive integer numbers such 
+
+n ≥ s + 3μ
+
+(ρ − μ)2 log 4
+
+δ and m ≤ pǫ
+
+(n
+
+2
+
+)
+
+, (11) 
+
+then all but at most fraction δ of the habitats with s sinks whose underlying graph has n
+
+vertices and m edges are healthy 
+
+6(ii) Except possibly for a fraction δ, if ρ ≥ s/ 2, then all habitats with s sinks and at least  
+
+> 6s
+> (s−2ρ)2
+
+log 1 
+
+> δ
+
+non-sink vertices are healthy, while, if ρ ≤ s/ 2 all habitats with s sinks and no more than δe (s−2ρ)2 /4s non-sink vertices are deadly.          
+
+> 0.8
+> 0.85
+> 0.9
+> 0.95
+> 1
+> 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.1 0.11
+> ξn(s)
+> ε
+> s 100
+> s 10
+> ρ
+
+Figure 2: Numerical computation of ξ(s) 
+
+> n
+
+vs ǫ for δ = 10 −2, ρ = 1, and s = 10 (dark green) and s = 100 (dark blue). The plot shows the mean and the standard deviation of ξ(s) 
+
+> n
+
+computed over 1000 random habitats chosen according to (11) (points with error bars), along with the 0 .01 right-tail percentile of the sample distrution (full lines with the corresponding colors). Theorem 2 provides a static counterpart to Theorem 1, in that it quantifies the typical health of a uniformly sampled habitat of size n instead of describing the behavior of ξSn (Gn) along a random growth process. Besides the fact that that the survival condition defines a monotone graph property, the proof of the theorem uses only the standard comparison between G(n, p n) and Gn,m .Yet, the result offers a clean ecological interpretation, stating that sufficiently large habitats are almost surely healthy, while sufficiently small ones are almost surely deadly. For instance, when δ = 10 −2, ρ = 1 and s = 10, according to Theorem 2.(i), for ǫ = 0 .1 at least 99% of the habitats with at least 1988 vertices are healthy, while for ǫ = 0 .03 the same fraction of the habitats is healthy with a much higher number of vertices, at least 20581. However, as shown in Fig. 2, such bounds become sharp only in the asymptotic regime of very large n (i.e. for small 
+
+ǫ), not easily accessible to numerical simulation. To the best of our knowledge, this paper is the first systematic attempt to give a general framework to address the critical patch size problem in graphs. 
+
+# 4 Proofs 
+
+We preliminary need a couples of lemmas. 7Lemma 1 Let (G, S ) be a habitat where G has n vertices and S has s sinks. For i 6 ∈ S, let zi
+
+and ˜d(i) be defined as in (4) . Let δ(S)(G) be the number of edges of G with exactly one end-vertex in S. Set ζ(S) = min i6∈S zi and ϑ(S)(G) = δ(S)(G)/(n − s). Then, the Dirichlet eigenvalue ξ(S)
+
+of (G, S ) satisfies the inequalities ζ(S) ≤ ξ(S)(G) ≤ ϑ(S)(G) and both the inequalities are sharp. Furthermore, if G is connected, then L(S)(G) is positive definite. As a consequence, if ζ(s) 
+
+> n
+
+and ϑ(s)
+
+> n
+
+are the random variable described by ζ(G)(S) and ϑ(G)(S), respectively, when (G, S ) is sampled from a standard random habitat with sn sinks, then the bounds stated above hold almost surely under P
+
+with the latter symbols replaced by the former ones. 
+
+Proof. The Laplacian L(G) of any graph G, is always positive semi-definite and has not full rank ([13]): if e is the all ones vector of appropriate dimension, then L(G)e = 0. For ease of notation, throughout the proof we omit the reference to G. The identities λmin 
+
+(L(S)) = λmin 
+
+(D(S) − A(S)) =
+
+λmin 
+
+(Z + ˜L(S)) follows by (6) where all of the symbols retain the meaning there defined. Therefore 
+
+λmin 
+
+(L(S)) ≥ λmin 
+
+(Z) + λmin 
+
+(˜L(S)) = λmin 
+
+(Z)
+
+where the last equality holds because ˜L(S) has not full rank. The lower bound follows once we observe that λmin (Z) = min i∈[n]\S zi = ζ(S). To prove the sharpness of the bound ζ(S) ≤ ξ(S)(G), it suffices to exhibit a graph whose Dirichlet eigenvalues attains equality. Let G be a graph such that the vertex κ attaining the minimum of zi over [ n] \ S is isolated in ˜G. Hence d ˜G(κ) = 0 and 
+
+dG(κ) = zκ = ζ(S). Let eκ be the κ-th fundamental basis vector defined by eκ(i) = 1 if i = κ and 
+
+eκ(i) = 0 if i 6 = 0. Observe that 
+
+e⊤ 
+
+> κ
+
+˜L(S)eκ = d ˜G(κ) = 0 .
+
+Hence 
+
+e⊤ 
+
+> κ
+
+L(S)eκ = e⊤
+
+> κ
+
+(
+
+Z + ˜L(S))
+
+eκ = e⊤ 
+
+> κ
+
+Ze κ = zκ = ζ(S).
+
+Since in any real symmetric matrix B, the smallest eigenvalue of B is the minimum value of the Rayleigh quotient of B, namely the minimum of the quadratic form Q(x) = x⊤Bx over the sphere 
+
+{‖ x‖ = 1 }, it follows that 
+
+ζ(S) ≤ ξ(S)(G) = min 
+
+> u6=0
+
+u⊤L(S)u
+
+‖u‖2 ≤ e⊤ 
+
+> κ
+
+L(S)eκ = ζ(S)
+
+which proves that, for the graph G we have constructed, ζ(S) = ξ(S)(G) as required. To establish the upper bound, observe that δ(S) = ∑ 
+
+> i∈[n]\S
+
+zi. Indeed, an edge of G contributes to the sum if and only it has exactly one end-vertex in [ n] \ S and, hence, exactly one end-vertex in S. Therefore 
+
+δ(S) = ∑
+
+> i∈[n]\S
+
+zi = e⊤Ze = e⊤ (
+
+L(S) − ˜L(S))
+
+e = e⊤L(S)e.
+
+Therefore, after observing that ‖e‖2 = n − s, it follows that 
+
+λmin (L(S)) = min 
+
+> u6=0
+
+u⊤L(S)u
+
+‖u‖2 ≤ e⊤L(S)e
+
+‖e‖2 = δ(S)
+
+n − s
+
+as claimed. As above, to prove the sharpness of the bound ξ(S)(G) ≤ ϑ(S)(G), it suffices to exhibit a graph whose Dirichlet eigenvalues attains equality. Let G be a graph such that, for some positive 8integer θ such that θ ≤ s, zi = θ for i ∈ [n] \ S. It is clear that such a graph exists: for each vertex in i ∈ [n] \ S connect i to a arbitrarily chosen subset of S of cardinality θ. For such a graph 
+
+ϑ(S)(G) = θ. On the other hand, L(S)(G) = θI + ˜L(S)(G) where I is the identity matrix of order 
+
+n − s. Since L(S)(S) is a diagonal update of ˜L(S)(S) by a scalar matrix, the spectrum of L(S) is shifted by a with respect to the spectrum of ˜L(S). Since ˜L(S) is a Laplacian matrix, its minimum eigenvalue is zero. Therefore the minimum eigenvalue of L(S) is θ so that, 
+
+θ = ξ(S)(G) ≤ ϑ(S)(G) = θ
+
+which proves that, for the graph G we have constructed, ξ(S)(G) = ϑ(S)(G) as required. To prove the last part of the lemma, it suffices to observe that if G is connected, then L(S) is an irreducible diagonally dominant matrix (see [15] for this notion) and that, as consequence of Gershgorin circle theorem, every symmetric and irreducible diagonally dominant matrix is positive definite (Corollary to Theorem 1.8 in [15]). ✷
+
+Remark 3 As innocent and folklore as it may seem, Lemma 1 provides the optimal deterministic range for the Dirichlet eigenvalue in a precise sense. Without imposing further structural assump-tions, such as conditions on the internal graph ˜G, the bounds ζ(S) ≤ ξ(S)(G) ≤ ϑ(S)(G) cannot be improved: both extremes can be attained by suitable families of graphs—via full localization of the Rayleigh minimizer on a single vertex of [n] \ S or by taking a graph with constant degree sequence on [n]\S—and no sharper universal estimate is possible without loosing the generality of the random model we have chosen. 
+
+Lemma 2 If assumptions (a) or (b) hold, then ϑ(s) 
+
+> n
+
+/s npna.s. 
+
+−−→ 1. If assumption (b) holds, then 
+
+ζ(s) 
+
+> n
+
+/s npna.s. 
+
+−−→ 1.
+
+Proof. For ease of notation, let s = sn, p = pn and ˜n = n − s. For random variables X and Y
+
+write X ∼ ber( p) to mean that X is a Bernoulli random variable with mean p and Y ∼ bin( n, p )to mean that Y has a the binomial distribution with parameters n ad p, which is the distribution of the sum of n independent Bernoulli random variables having the same mean p. Let e(n) 
+
+> i,j
+
+be the indicator of the event that vertices i and j are adjacent in the random graph. Hence e(n) 
+
+> i,j
+
+∼ ber( p)and ˜nϑ (s) 
+
+> n
+
+= ∑si
+
+∑nj=s+1 e(n) 
+
+> i,j
+
+with the e(n) 
+
+> i,j
+
+being independent. Therefore ˜nϑ (s) 
+
+> n
+
+∼ bin( s˜n, p ) under 
+
+P. For i = s + 1 , . . . , n , let Z(s) 
+
+> i,n
+
+be defined by ∑sj=1 e(n) 
+
+> i,j
+
+. Hence ζ(s) 
+
+> n
+
+= min i=s+1 ,...,n Z(s) 
+
+> i,n
+
+where 
+
+Z(s) 
+
+> i,n
+
+∼ bin( s, p ). Let 
+
+B1,n (ǫ) = {ω ∈ Ω : |ϑ(s) 
+
+> n
+
+(ω) − sp | ≥ ǫsp } and B2,n (ǫ) = {ω ∈ Ω : |ζ(s) 
+
+> n
+
+(ω) − (n − 1) p| ≥ ǫsp }.
+
+By a standard application of the Borel-Cantelli Lemma (see, e.g., [2], Chapter 6), if, for every ǫ > 0, we can prove that for h = 1 and h = 2, ∑ 
+
+> n≥1
+
+P (Bh,n (ǫ)) if finite, under, respectively, assumptions (a) or (b), and (b), then we have proved the lemma. To prove that ∑ 
+
+> n≥1
+
+P (Bh,n (ǫ)) is finite for 
+
+h = 1 , 2, we show that P (Bh,n (ǫ)) is O(n−2). An application of the symmetric Chernoff bound to 
+
+˜nϑ (s) 
+
+> n
+
+yields 
+
+P(B1,n (ǫ)) = P(|ϑ(s) 
+
+> n
+
+(ω) − sp | ≥ ǫsp ) = P(|˜nϑ (s) 
+
+> n
+
+(ω) − ˜nsp | ≥ ǫ˜nsp ) ≤ 2e−ǫ2 ˜nsp/ 3.
+
+9Assumptions (a) and (b) both imply that ˜nsp ≫ log n. Hence, for n sufficiently large, it holds that ˜nsp ≥ 6 
+
+> ǫ2
+
+log n implying that P (B1,n (ǫ)) ≤ 2e−ǫ2 ˜nsp/ 3 ≤ 2e−2 log n = 2 /n 2. This establishes the first almost sure limit. To establish the other one, observe that B2,n (ǫ) ⊆ ∪ ns+1 Fi(ǫ) where, for 
+
+i = s + 1 , . . . , n , Fi(ǫ) := {ω ∈ Ω : |Z(s) 
+
+> i,n
+
+(ω) − sp | ≥ ǫsp }. Therefore, since Z(s) 
+
+> i,n
+
+is distributed as Z
+
+where Z ∼ bin( s, p ), it follows that P (B2,n (ǫ)) ≤ ˜nP (|Z − sp | ≥ ǫsp ), where the factor ˜n is due to the Union Bound. An application of the symmetric Chernoff bound to Z yields 
+
+P (B2,n (ǫ)) ≤ ˜nP (|Z − sp | ≥ ǫsp ) ≤ 2˜ne −ǫ2sp/ 3.
+
+By assumption (b), if n is sufficiently large, then sp ≥ 9 
+
+> ǫ2
+
+log n. Hence P (B3,n (ǫ)) ≤ 2˜ne −3 log n ≤
+
+2ne −3 log n ≤ 2/n 2. This finishes the proof of the lemma. ✷
+
+Proof of Theorem 1. Let us prove statement (i) first. Let Fn be the event that in Hn the the underlying random graph is connected. By Lemma 1, event Fn implies the event that L(s) 
+
+> n
+
+is positive definite. Hence P(Fn) ≤ P(ξ(s) 
+
+> n
+
+> 0) ≤ 1. Since in the connected regime lim n→∞ P(Fn) = 1 (see, e.g., [5]), we conclude lim n→∞ P(ξ(s) 
+
+> n
+
+> 0) = 1 as well. This proves the only if part. Conversely, if 
+
+pn is below the threshold, then consider the sequence formed by the random graphs induced by the non-sink vertices. Since the event that the graphs in the sequence contain a isolated vertex is an asymptotically almost sure event (see, e.g., [7]), it follows that the event that L(s) 
+
+> n
+
+has an all zero row is also asymptotically almost sure and so is the event that L(s) 
+
+> n
+
+is singular and the proof of the statement is complete. As for statement (ii), observe that by Lemma 1, it almost surely holds that ζ(s) 
+
+> n
+
+≤ ξ(s) 
+
+> n
+
+≤ ϑ(s) 
+
+> n
+
+.On the other hand, by Lemma 2, both ζ(s) 
+
+> n
+
+/sp n and ϑ(s) 
+
+> n
+
+/sp n converge to 1 almost surely under assumption (b). Hence ξ(s) 
+
+> n
+
+/sp na.s. 
+
+−−→ 1 follows by squeezing. The second part follows straightfor-wardly from the almost sure inequality ξ(s) 
+
+> n
+
+≤ ϑ(s) 
+
+> n
+
+and the almost sure limit ϑ(s) 
+
+> n
+
+/s npna.s. 
+
+−−→ 1 under assumptions (a) or (b). These two facts imply 1 ≥ P
+
+(
+
+lim sup 
+
+> n
+
+ξ(s)
+
+> n
+
+snpn
+
+≤ 1
+
+)
+
+≥ P
+
+(
+
+lim sup 
+
+> n
+
+ϑ(s)
+
+> n
+
+snpn
+
+≤ 1
+
+)
+
+= P
+
+(
+
+lim 
+
+> n
+
+ϑ(s)
+
+> n
+
+snpn
+
+≤ 1
+
+)
+
+= 1 .
+
+The proof of the theorem is now complete. ✷
+
+Remark 4 For a standard random habitat, let d(s) 
+
+> n, min
+
+be the minimum among the degrees of the non-sink vertices. Since λmin 
+
+(D(s) 
+
+> n
+
+− A(s)
+
+> n
+
+) ≥ d(s) 
+
+> n, min
+
+− λmax 
+
+(A(s)
+
+> n
+
+), it almost surely holds that ξ(s) 
+
+> n
+
+≥
+
+d(s) 
+
+> n, min
+
+− λmax 
+
+(A(s)
+
+> n
+
+). Since, reasoning as in Lemma 2, it can be shown d(s) 
+
+> n, min
+
+= (1 + o(1))( n − 1) pn
+
+and since λmax 
+
+(A(s)
+
+> n
+
+) = (1 + o(1))( n − sn − 1) pn (see [4]), it follows that ξ(s) 
+
+> n
+
+= snpn − κ(n) where 
+
+κ(n) ≪ np n.
+
+Remark 5 By the results in [12], it can be shown that snpn = λmin 
+
+(E(L(s)
+
+> n
+
+)) , where E(L(s)
+
+> n
+
+) is the expectation under P of the random matrix L(s) 
+
+> n
+
+. The map which takes a symmetric matrix to its smallest eigenvalue is a concave map on the set of real symmetric matrix. Hence, by Jensen inequality, E(ξ(s)
+
+> n
+
+) ≤ snpn.
+
+Proof of Theorem 2. Let n and m be positive integers and Gn,m be the set of graphs on [ n]with m edges. Let H(s) 
+
+> n,m
+
+be the set of habitats ( G, S ) such that G ∈ Gn,m and S consists of s
+
+10 sinks. Likewise, H(s) 
+
+> n
+
+is the set of habitats ( G, S ) such that G ∈ Gn and S consists of s sinks. Also recall that a standard habitat is a habitat ( G, [s]). Let H(s)(S) be the subset of H(s) 
+
+> n,m
+
+(H(s) 
+
+> n
+
+,resp.) consisting of the habitats whose set of sinks is S. It is clear that H(s)(S) and H(s)([ s]) have the same number of elements. Denote by L(s)(G) the principal submatrix of L(G) induced by 
+
+{s + 1 , . . . , n }.
+
+Proof of (i) . Let P(s) 
+
+> n,m
+
+be the uniform measure on H(s) 
+
+> n,m
+
+and and let B(S) the event which occurs when a habitat sampled uniformly at random from H(s) 
+
+> n,m
+
+is healthy and its set of sinks is precisely 
+
+S. Also, let B the event that a habitat sampled uniformly at random from H(s) 
+
+> n,m
+
+is healthy. The thesis of the statement is then equivalent to P(s)
+
+> n,m
+
+(B) ≥ 1 − δ. By symmetry of the uniform model 
+
+Gn,m under vertex permutations, the probability that a habitat ( G, S ) is healthy depends only on 
+
+|S| = s and not on the specific choice of S. Indeed, for any two sets S, S ′ ⊆ [n] with |S| = |S′| = s,there is a permutation sending S to S′ that takes L(S)(G) to a similar matrix L(S′)(G′), hence preserving the probability of B(S). Thus all events B(S) have the same probability. In particular, for S = [ s], it holds that P(s)
+
+> n,m
+
+(B) = P(s)
+
+> n,m
+
+(B([ s])) = Pn,m 
+
+(L(s)(G) ≤ ρ), so that, to prove the theorem, it suffices to prove that 
+
+Pn,m 
+
+(L(s)(G) ≤ ρ) ≥ 1 − δ. (12) Since, as we shall show below, the event {G ∈ Gn | λmin 
+
+(L(G)(s)) ≥ ρ} defines a monotone increasing graph property P∗
+
+> n
+
+, we may apply the standard comparison between G(n, p n) and Gn,m 
+
+(see e.g.. Lemma 1.3 in [5] or Proposition 1.12 in [7]). In particular, with p = m/ (n
+
+> 2
+
+), it holds that 
+
+Pn,m (G ∈ P∗ 
+
+> n
+
+) ≤ 4Pn,p (G ∈ P∗ 
+
+> n
+
+) ≤ 4Pn,p ǫ (G ∈ P∗ 
+
+> n
+
+) (13) where the constant 4 comes from the lower bound P(X ≥ m) ≥ 1/4 valid for a binomial random variable X whenever m ≤ E (X) (see [6]) while the last inequality is due to the hypothesis m ≤ pǫ
+
+(n
+
+> 2
+
+)
+
+upon recalling that Pn,p 
+
+(G ∈ P∗
+
+> n
+
+) is not decreasing in p (see again [5, 7]). Consider now the property P∗ 
+
+> n
+
+= {G ∈ Gn | λmin 
+
+(L(G)(s)) ≥ ρ}. We claim that P∗ 
+
+> n
+
+is a mono-tone graph property. It suffices to show that if G′ has one edge more than G, then λmin 
+
+(L(s)(G′)) ≥
+
+λmin 
+
+(L(s)(G)). Let e be the extra edge in G′. Suppose that e connects the distinct vertices i and 
+
+j. If {i, j } ⊆ { 1, . . . , s }, then λmin 
+
+(L(s)(G′)) = λmin 
+
+(L(s)(G)) because L(s)(G′) = L(s)(G) in this case. If either i or j belongs to {1, . . . , s }, then λmin 
+
+(L(s)(G′)) = λmin 
+
+(L(s)(G) + ℓκ
+
+), where ℓκ is an order ( n − s) diagonal matrix all whose entries are zero except for the κ-th diagonal one which is 1, where κ ∈ { i, j }. If {i, j } ⊆ [n] \ { 1, . . . , s }, then λmin 
+
+(L(s)(G′)) = λmin 
+
+(L(s)(G) + ℓi,j 
+
+), where ℓi,j 
+
+is the graph Laplacian of the graph ( {s + 1 , . . . , n }, {e}). Since both ℓκ and ℓi,j are semi-definite positive matrices, in any case it holds that λmin 
+
+(L(s)(G′)) ≥ λmin 
+
+(L(s)(G)). Hence P∗ 
+
+> n
+
+is monotone as claimed. Recall now that by Lemma 2, ˜nϑ (s) 
+
+> n
+
+∼ bin( ˜ns, p ǫ), where ˜ n = n − s, and by Lemma 1, it almost surely holds that ξ(s) 
+
+> n
+
+≤ ϑ(s) 
+
+> n
+
+. Hence 
+
+Pn,p ǫ (G ∈ P∗ 
+
+> n
+
+) = Pn,p ǫ
+
+(
+
+ξ(s) 
+
+> n
+
+≥ ρ
+
+)
+
+= Pn,p ǫ
+
+(
+
+ξ(s) 
+
+> n
+
+≥ (1 + ǫ)μ
+
+)
+
+≤ Pn,p ǫ (˜nϑ (s) 
+
+> n
+
+≥ (1 + ǫ)μ˜n) ≤ exp 
+
+(
+
+− ǫ2μ˜n
+
+3
+
+)
+
+≤ δ
+
+4where the last but one inequality is the upper tail Chernoff bound, while the last inequality is granted by the assumption ˜ n ≥ 3μ 
+
+> (ρ−μ)2
+
+log 4 
+
+> δ
+
+. The proof follows by (12) and (13) after observing that Pn,m (G ∈ P∗ 
+
+> n
+
+) = 1 − Pn,m 
+
+(L(s)(G) ≤ ρ). X
+
+11 Proof of (ii) . Observe in the first place, that when p = 1 /2, the measure Pn, 1 
+
+> 2
+
+assigns the same probability to the graphs in Gn. Therefore, Pn, 1 
+
+> 2
+
+is the uniform measure on Gn. Borrowing the reasoning from the proof of Theorem 2, we see that the first of the two statements is equivalent to the statement 
+
+˜n ≥ 6s
+
+(s − 2ρ)2 log 1
+
+δ =⇒ Pn, 1 
+
+> 2
+
+(ξ(s) 
+
+> n
+
+≥ ρ) ≤ δ. 
+
+Observe that Pn, 1 
+
+> 2
+
+(ξ(s) 
+
+> n
+
+≥ ρ) ≤ Pn, 1 
+
+> 2
+
+(ϑ(s) 
+
+> n
+
+≥ ρ) because ξ(s) 
+
+> n
+
+≤ ϑ(s) 
+
+> n
+
+holds almost surely by Lemma 2. Hence, after recalling that ˜nϑ (s) 
+
+> n
+
+∼ bin( ˜ns, 1/2), the thesis follows by applying the upper tail Chernoff bound to ˜nϑ (s) 
+
+> n
+
+with ǫ = 2ρ−s 
+
+> s
+
+. Similarly, the second statement is equivalent to 
+
+˜n ≤ δe (s−2ρ)2 /4s =⇒ Pn, 1 
+
+> 2
+
+(ξ(s) 
+
+> n
+
+≤ ρ) ≤ δ. 
+
+Since by Lemma 1, it almost surely holds that ζ(s) 
+
+> n
+
+≤ ξ(s) 
+
+> n
+
+, by applying the Union Bound as in Lemma 2, yields Pn, 1 
+
+> 2
+
+(ξ(s) 
+
+> n
+
+≤ ρ) ≤ ˜nPn, 1 
+
+> 2
+
+(ζ(s) 
+
+> n
+
+≤ ρ). The thesis now follows by applying the lower tail Chernoff bound to ζ(s) 
+
+> n
+
+with ǫ = s−2ρ 
+
+> s
+
+since ζ(s) 
+
+> n
+
+∼ bin( s, 1/2). X
+
+The Theorem is thus completely proved. ✷
+
+# 5 Conclusion 
+
+In this work we investigated the critical patch size problem in a discrete setting, modeling habitats as random graphs with a subset of vertices acting as sinks. We showed that population persistence is governed by the Dirichlet eigenvalue of a Laplacian-type operator, providing a natural discrete counterpart of classical reaction-diffusion models with absorbing boundaries. For sequences of Erd¨ os-R´ enyi random habitats with extensive sink sets, we established prob-abilistic bounds and proved an almost sure asymptotic characterization of the principal Dirichlet eigenvalue in the large-network regime. These results yield sharp spectral thresholds determining population survival with high probability and allow the identification of a minimal habitat size ensuring persistence in random environments. Several directions remain open, including the extension to structured or correlated networks, different growth term, as in the Allee effect, and non-asymptotic regimes relevant for finite-size habitats. These questions may contribute to a broader understanding of persistence phenomena in complex spatially structured systems. 
+
+# Funding 
+
+The author(s) declare that financial support was received for the research, authorship, and/or publication of this article. The funding for this study was partially provided by the grant PRIN 20223R9W7H “Pre-clinical and clinical study on pediatric Traumatic Brain Injury and intranasal Nerve Growth Factor: analysis on cortico-striatal connectivity by network propagation modeling, neuronal tracing, and chemogenetics” and IAC-CNR project DIT.AD021.161 “Analisi probabilistica di dataset biologici e network dynamics”. 12 References 
+
+[1] Stefano Berti, Massimo Cencini, Davide Vergni, and Angelo Vulpiani. Extinction dynamics of a discrete population in an oasis. Physical Review E, 92(1):012722, 2015. [2] Pierre Br´ emaud. An Introduction to Applied Probability. Springer, 2024. [3] Robert Stephen Cantrell and Chris Cosner. The effects of spatial heterogeneity in population dynamics. Journal of Mathematical Biology, 29(4):315–338, 1991. [4] Fan Chung, Linyuan Lu, and Van Vu. Spectra of random graphs with given expected degrees. 
+
+Proceedings of the National Academy of Sciences, 100(11):6313–6318, 2003. [5] Alan Frieze and Michal Karo´ nski. Introduction to random graphs. Cambridge University Press, 2015. [6] Spencer Greenberg and Mehryar Mohri. Tight lower bound on the probability of a binomial exceeding its expectation. Statistics & Probability Letters, 86:91–98, 2014. [7] Svante Janson, Tomasz Luczak, and Andrzej Rucinski. Random graphs. John Wiley & Sons, 2011. [8] Russell Lande. Risks of population extinction from demographic and environmental stochas-ticity and random catastrophes. The American Naturalist, 142(6):911–927, 1993. [9] Richard Levins. Some demographic and genetic consequences of environmental heterogeneity for biological control. Bulletin of the ESA, 15(3):237–240, 1969. [10] Marvin L¨ ucke, Jobst Heitzig, P´ eter Koltai, Nora Molkenthin, and Stefanie Winkelmann. Large population limits of markov processes on random networks. Stochastic Processes and their 
+
+Applications, 166:104220, 2023. [11] Andrea Marcello Mambuca, Chiara Cammarota, and Izaak Neri. Dynamical systems on large networks with predator-prey interactions are stable and exhibit oscillations. Physical Review 
+
+E, 105(1):014305, 2022. [12] Roberto Imbuzeiro Oliveira. Concentration of the adjacency matrix and of the laplacian in random graphs with independent edges. arXiv preprint arXiv:0911.0600, 2009. [13] Gordon F Royle and Chris Godsil. Algebraic graph theory, volume 207. New York: Springer, 2001. [14] Veronica Tora and Davide Vergni. The critical patch size problem on networks. preprint, 2025. [15] Richard S Varga. Matrix Iterative analysis, volume 322. Springer, 1962. 13
