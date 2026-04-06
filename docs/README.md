@@ -6,56 +6,55 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-05
-- 运行时间：2026-04-05 19:48:03 UTC
+- 最新运行日期：2026-04-06
+- 运行时间：2026-04-06 20:31:34 UTC
 - 运行状态：成功
 - 本次总论文数：11
-- 精读区：0
-- 速读区：11
+- 精读区：6
+- 速读区：5
 
 ### 今日简报（AI）
-今日速览 11 篇前沿论文，重点聚焦科学假设生成的推理数据集与生物图像的自动化标注技术。
-推荐关注 CrossTrace 跨领域推理数据集，以及能显著提升生物形态特征标注效率的新型图像处理方法。
-建议对 AI for Science 感兴趣的读者深入了解如何利用结构化推理链条辅助自动化科学发现。
-- 详情：[/202604/05/README](/202604/05/README)
+今日聚焦 11 篇前沿论文，深度解析金星蕨科趋同演化机制与 TB 级生物数据训练新工具。
+重点关注同义密码子偏好如何超越亲缘关系重塑蕨类形态，以及 `annbatch` 对超大规模单细胞数据处理的效率突破。
+建议演化生物学研究者关注分子层面的趋同证据，技术开发者可尝试应用新框架优化组学大模型训练。
+- 详情：[/202604/06/README](/202604/06/README)
 
 ### 精读区论文标签
-- 本次无精读推荐。
+1. [Synonymous Codon Usage Bias Overrides Phylogeny to Reflect Convergent Frond Architecture in a Rapidly Radiating Fern Family Thelypteridaceae](/202604/06/2604.03028v1-synonymous-codon-usage-bias-overrides-phylogeny-to-reflect-convergent-frond-architecture-in-a-rapidly-radiating-fern-family-thelypteridaceae)  
+   标签：评分：10.0/10、query:profile-1
+   evidence：整合了蕨类植物的叶绿体系统发育基因组学和自然选择分析
+2. [annbatch unlocks terabyte-scale training of biological data in anndata](/202604/06/2604.01949v2-annbatch-unlocks-terabyte-scale-training-of-biological-data-in-anndata)  
+   标签：评分：8.0/10、query:q7
+   evidence：全基因组测序数据的AI训练
+3. [VeloTree: Inferring single-cell trajectories from RNA velocity fields with varifold distances](/202604/06/2604.02380v1-velotree-inferring-single-cell-trajectories-from-rna-velocity-fields-with-varifold-distances)  
+   标签：评分：8.0/10、query:q3
+   evidence：从测序数据中重建分化树
+4. [Re-analysis of the Human Transcription Factor Atlas Recovers TF-Specific Signatures from Pooled Single-Cell Screens with Missing Controls](/202604/06/2604.02511v1-re-analysis-of-the-human-transcription-factor-atlas-recovers-tf-specific-signatures-from-pooled-single-cell-screens-with-missing-controls)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用AI流程重新分析人类转录因子图谱
+5. [ViraHinter: a dual-modal artificial intelligence framework for predicting virus-host interactions](/202604/06/2604.02842v1-virahinter-a-dual-modal-artificial-intelligence-framework-for-predicting-virus-host-interactions)  
+   标签：评分：8.0/10、query:q7
+   evidence：用于预测病毒-宿主相互作用的AI框架
+6. [Explainable Machine Learning Reveals 12-Fold Ucp1 Upregulation and Thermogenic Reprogramming in Female Mouse White Adipose Tissue After 37 Days of Microgravity: First AI/ML Analysis of NASA OSD-970](/202604/06/2604.02942v1-explainable-machine-learning-reveals-12-fold-ucp1-upregulation-and-thermogenic-reprogramming-in-female-mouse-white-adipose-tissue-after-37-days-of-microgravity-first-aiml-analysis-of-nasa-osd-970)  
+   标签：评分：8.0/10、query:q7
+   evidence：利用AI/ML分析小鼠白色脂肪组织中的基因表达通路
 
 ### 速读区论文标签
-1. [CrossTrace: A Cross-Domain Dataset of Grounded Scientific Reasoning Traces for Hypothesis Generation](/202604/05/2603.28924v1-crosstrace-a-cross-domain-dataset-of-grounded-scientific-reasoning-traces-for-hypothesis-generation)  
-   标签：评分：7.0/10、query:q7
-   evidence：利用AI在生物医学研究中生成科学假设
-2. [Automatic Image-Level Morphological Trait Annotation for Organismal Images](/202604/05/2604.01619v1-automatic-image-level-morphological-trait-annotation-for-organismal-images)  
-   标签：评分：7.0/10、query:q7
-   evidence：利用AI进行生物形态特征自动标注
-3. [Sensitivity analysis for stopping criteria with application to organ transplantations](/202604/05/2604.02227v1-sensitivity-analysis-for-stopping-criteria-with-application-to-organ-transplantations)  
-   标签：评分：7.0/10、query:xeno
-   evidence：器官移植最佳时机的决策制定
-4. [Building evidence-based knowledge graphs from full-text literature for disease-specific biomedical reasoning](/202604/05/2603.28325v1-building-evidence-based-knowledge-graphs-from-full-text-literature-for-disease-specific-biomedical-reasoning)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用大语言模型构建疾病特异性生物医学知识图谱
-5. [A Bayesian Finite Mixture Model Approach for Mixed-type Data Clustering and Variable Selection with Censored Biomarkers](/202604/05/2603.29316v1-a-bayesian-finite-mixture-model-approach-for-mixed-type-data-clustering-and-variable-selection-with-censored-biomarkers)  
-   标签：评分：6.0/10、query:q7
-   evidence：生物医学研究中删减生物标志物的聚类与变量选择
-6. [On the global asymptotic stability of an infection-age structured competitive model](/202604/05/2603.29464v1-on-the-global-asymptotic-stability-of-an-infection-age-structured-competitive-model)  
-   标签：评分：6.0/10、query:q5
-   evidence：多菌株和多群体的竞争性流行病学模型
-7. [Learning from Many and Adapting to the Unknown in Open-set Test Streams](/202604/05/2604.00533v1-learning-from-many-and-adapting-to-the-unknown-in-open-set-test-streams)  
-   标签：评分：6.0/10、query:q7
-   evidence：受果蝇分子信号传导启发的AI自适应方法
-8. [Predicting Dynamics of Ultra-Large Complex Systems by Inferring Governing Equations](/202604/05/2604.00599v1-predicting-dynamics-of-ultra-large-complex-systems-by-inferring-governing-equations)  
+1. [Benchmarking Heritability Estimation Strategies Across 86 Configurations and Their Downstream Effect on Polygenic Risk Score Performance](/202604/06/2604.02394v1-benchmarking-heritability-estimation-strategies-across-86-configurations-and-their-downstream-effect-on-polygenic-risk-score-performance)  
+   标签：评分：7.0/10、query:q5
+   evidence：基准测试SNP遗传率估计和多基因风险评分性能
+2. [Disentangling the interactive effects of anthropogenic disturbances on biodiversity](/202604/06/2603.29116v1-disentangling-the-interactive-effects-of-anthropogenic-disturbances-on-biodiversity)  
    标签：评分：6.0/10、query:q2
-   evidence：推断生物网络的控制方程
-9. [The Critical Patch Size Problem in Random Graphs](/202604/05/2604.00624v1-the-critical-patch-size-problem-in-random-graphs)  
-   标签：评分：6.0/10、query:q5
-   evidence：生境中的种群持久性与演化动态
-10. [Stochastic ordering tools for continuous-time Markov chains and applications to reaction network models](/202604/05/2604.00756v1-stochastic-ordering-tools-for-continuous-time-markov-chains-and-applications-to-reaction-network-models)  
+   evidence：物种共存与生物多样性机制的理论方法
+3. [Knowledge database development by large language models for countermeasures against viruses and marine toxins](/202604/06/2603.29149v1-knowledge-database-development-by-large-language-models-for-countermeasures-against-viruses-and-marine-toxins)  
+   标签：评分：6.0/10、query:q7
+   evidence：利用大模型构建病毒与医学知识库
+4. [Procela: Epistemic Governance in Mechanistic Simulations Under Structural Uncertainty](/202604/06/2604.00675v1-procela-epistemic-governance-in-mechanistic-simulations-under-structural-uncertainty)  
    标签：评分：6.0/10、query:q2
-   evidence：用于生物化学和生态演化的随机反应网络
-11. [Space-Efficient Text Indexing with Mismatches using Function Inversion](/202604/05/2604.01307v1-space-efficient-text-indexing-with-mismatches-using-function-inversion)  
-   标签：评分：6.0/10、query:pangen
-   evidence：带错配的文本索引字符串处理
+   evidence：抗菌素耐药性传播与选择本体
+5. [Mechanistic insights into the spatial organization of RNA polymerase proteins and the chromosome in E. coli cells](/202604/06/2604.02838v1-mechanistic-insights-into-the-spatial-organization-of-rna-polymerase-proteins-and-the-chromosome-in-e-coli-cells)  
+   标签：评分：6.0/10、query:q10
+   evidence：大肠杆菌中RNA聚合酶聚集和染色体组织的机制
 
 
 <div class="dpr-home-promo-card">
