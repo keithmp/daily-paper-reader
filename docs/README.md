@@ -6,55 +6,63 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-06
-- 运行时间：2026-04-06 20:31:34 UTC
+- 最新运行日期：2026-04-07
+- 运行时间：2026-04-07 20:46:49 UTC
 - 运行状态：成功
-- 本次总论文数：11
+- 本次总论文数：14
 - 精读区：6
-- 速读区：5
+- 速读区：8
 
 ### 今日简报（AI）
-今日聚焦 11 篇前沿论文，深度解析金星蕨科趋同演化机制与 TB 级生物数据训练新工具。
-重点关注同义密码子偏好如何超越亲缘关系重塑蕨类形态，以及 `annbatch` 对超大规模单细胞数据处理的效率突破。
-建议演化生物学研究者关注分子层面的趋同证据，技术开发者可尝试应用新框架优化组学大模型训练。
-- 详情：[/202604/06/README](/202604/06/README)
+今日深度复盘 14 篇前沿论文，重点探讨基因组大模型的性能局限与群体遗传学的数学演化规律。
+9.0 分佳作揭示了基因组建模中的熵
+- 详情：[/202604/07/README](/202604/07/README)
 
 ### 精读区论文标签
-1. [Synonymous Codon Usage Bias Overrides Phylogeny to Reflect Convergent Frond Architecture in a Rapidly Radiating Fern Family Thelypteridaceae](/202604/06/2604.03028v1-synonymous-codon-usage-bias-overrides-phylogeny-to-reflect-convergent-frond-architecture-in-a-rapidly-radiating-fern-family-thelypteridaceae)  
-   标签：评分：10.0/10、query:profile-1
-   evidence：整合了蕨类植物的叶绿体系统发育基因组学和自然选择分析
-2. [annbatch unlocks terabyte-scale training of biological data in anndata](/202604/06/2604.01949v2-annbatch-unlocks-terabyte-scale-training-of-biological-data-in-anndata)  
+1. [Entropy, Disagreement, and the Limits of Foundation Models in Genomics](/202604/07/2604.04287v1-entropy-disagreement-and-the-limits-of-foundation-models-in-genomics)  
+   标签：评分：9.0/10、query:q7
+   evidence：研究基因组学和DNA序列中的基础模型
+2. [Addendum to: Bounds for survival probabilities in supercritical Galton-Watson processes and applications to population genetics](/202604/07/2604.04848v1-addendum-to-bounds-for-survival-probabilities-in-supercritical-galton-watson-processes-and-applications-to-population-genetics)  
+   标签：评分：9.0/10、query:q5
+   evidence：群体遗传学中的Galton-Watson过程
+3. [Significance and Stability Analysis of Gene-Environment Interaction using RGxEStat](/202604/07/2604.03337v1-significance-and-stability-analysis-of-gene-environment-interaction-using-rgxestat)  
+   标签：评分：8.0/10、query:pangen
+   evidence：分析基因型与环境相互作用对表型性状的影响
+4. [BioAlchemy: Distilling Biological Literature into Reasoning-Ready Reinforcement Learning Training Data](/202604/07/2604.03506v1-bioalchemy-distilling-biological-literature-into-reasoning-ready-reinforcement-learning-training-data)  
    标签：评分：8.0/10、query:q7
-   evidence：全基因组测序数据的AI训练
-3. [VeloTree: Inferring single-cell trajectories from RNA velocity fields with varifold distances](/202604/06/2604.02380v1-velotree-inferring-single-cell-trajectories-from-rna-velocity-fields-with-varifold-distances)  
-   标签：评分：8.0/10、query:q3
-   evidence：从测序数据中重建分化树
-4. [Re-analysis of the Human Transcription Factor Atlas Recovers TF-Specific Signatures from Pooled Single-Cell Screens with Missing Controls](/202604/06/2604.02511v1-re-analysis-of-the-human-transcription-factor-atlas-recovers-tf-specific-signatures-from-pooled-single-cell-screens-with-missing-controls)  
+   evidence：利用AI进行生物研究任务
+5. [A Multimodal Foundation Model of Spatial Transcriptomics and Histology for Biological Discovery and Clinical Prediction](/202604/07/2604.03630v1-a-multimodal-foundation-model-of-spatial-transcriptomics-and-histology-for-biological-discovery-and-clinical-prediction)  
    标签：评分：8.0/10、query:q7
-   evidence：利用AI流程重新分析人类转录因子图谱
-5. [ViraHinter: a dual-modal artificial intelligence framework for predicting virus-host interactions](/202604/06/2604.02842v1-virahinter-a-dual-modal-artificial-intelligence-framework-for-predicting-virus-host-interactions)  
+   evidence：空间转录组学的多模态基础模型
+6. [Good Rankings, Wrong Probabilities: A Calibration Audit of Multimodal Cancer Survival Models](/202604/07/2604.04239v1-good-rankings-wrong-probabilities-a-calibration-audit-of-multimodal-cancer-survival-models)  
    标签：评分：8.0/10、query:q7
-   evidence：用于预测病毒-宿主相互作用的AI框架
-6. [Explainable Machine Learning Reveals 12-Fold Ucp1 Upregulation and Thermogenic Reprogramming in Female Mouse White Adipose Tissue After 37 Days of Microgravity: First AI/ML Analysis of NASA OSD-970](/202604/06/2604.02942v1-explainable-machine-learning-reveals-12-fold-ucp1-upregulation-and-thermogenic-reprogramming-in-female-mouse-white-adipose-tissue-after-37-days-of-microgravity-first-aiml-analysis-of-nasa-osd-970)  
-   标签：评分：8.0/10、query:q7
-   evidence：利用AI/ML分析小鼠白色脂肪组织中的基因表达通路
+   evidence：利用AI结合基因组数据进行多模态癌症生存预测
 
 ### 速读区论文标签
-1. [Benchmarking Heritability Estimation Strategies Across 86 Configurations and Their Downstream Effect on Polygenic Risk Score Performance](/202604/06/2604.02394v1-benchmarking-heritability-estimation-strategies-across-86-configurations-and-their-downstream-effect-on-polygenic-risk-score-performance)  
-   标签：评分：7.0/10、query:q5
-   evidence：基准测试SNP遗传率估计和多基因风险评分性能
-2. [Disentangling the interactive effects of anthropogenic disturbances on biodiversity](/202604/06/2603.29116v1-disentangling-the-interactive-effects-of-anthropogenic-disturbances-on-biodiversity)  
-   标签：评分：6.0/10、query:q2
-   evidence：物种共存与生物多样性机制的理论方法
-3. [Knowledge database development by large language models for countermeasures against viruses and marine toxins](/202604/06/2603.29149v1-knowledge-database-development-by-large-language-models-for-countermeasures-against-viruses-and-marine-toxins)  
+1. [The limits of bio-molecular modeling with large language models : a cross-scale evaluation](/202604/07/2604.03361v1-the-limits-of-bio-molecular-modeling-with-large-language-models--a-cross-scale-evaluation)  
+   标签：评分：7.0/10、query:q7
+   evidence：评估大语言模型在生物分子发现和多尺度生物问题中的应用
+2. [A Generative Foundation Model for Multimodal Histopathology](/202604/07/2604.03635v1-a-generative-foundation-model-for-multimodal-histopathology)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用AI整合组织学和分子RNA图谱
+3. [FlowPIE: Test-Time Scientific Idea Evolution with Flow-Guided Literature Exploration](/202604/07/2603.29557v1-flowpie-test-time-scientific-idea-evolution-with-flow-guided-literature-exploration)  
    标签：评分：6.0/10、query:q7
-   evidence：利用大模型构建病毒与医学知识库
-4. [Procela: Epistemic Governance in Mechanistic Simulations Under Structural Uncertainty](/202604/06/2604.00675v1-procela-epistemic-governance-in-mechanistic-simulations-under-structural-uncertainty)  
-   标签：评分：6.0/10、query:q2
-   evidence：抗菌素耐药性传播与选择本体
-5. [Mechanistic insights into the spatial organization of RNA polymerase proteins and the chromosome in E. coli cells](/202604/06/2604.02838v1-mechanistic-insights-into-the-spatial-organization-of-rna-polymerase-proteins-and-the-chromosome-in-e-coli-cells)  
-   标签：评分：6.0/10、query:q10
-   evidence：大肠杆菌中RNA聚合酶聚集和染色体组织的机制
+   evidence：AI驱动的自主研究与科学思想演化
+4. [Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention](/202604/07/2604.00754v1-stochastic-attention-connectome-inspired-randomized-routing-for-expressive-linear-time-attention)  
+   标签：评分：6.0/10、query:q7
+   evidence：受果蝇脑连接组启发的神经网络随机路由
+5. [Inference-Path Optimization via Circuit Duplication in Frozen Visual Transformers for Marine Species Classification](/202604/07/2604.03428v1-inference-path-optimization-via-circuit-duplication-in-frozen-visual-transformers-for-marine-species-classification)  
+   标签：评分：6.0/10、query:q7
+   evidence：利用AI进行海洋物种分类
+6. [Overcoming unfairness via repeated interactions in mini-ultimatum game](/202604/07/2604.03625v1-overcoming-unfairness-via-repeated-interactions-in-mini-ultimatum-game)  
+   标签：评分：6.0/10、query:q5
+   evidence：双物种群体中公平性的演化
+7. [The Geometric Alignment Tax: Tokenization vs. Continuous Geometry in Scientific Foundation Models](/202604/07/2604.04155v1-the-geometric-alignment-tax-tokenization-vs-continuous-geometry-in-scientific-foundation-models)  
+   标签：评分：6.0/10、query:q7
+   evidence：生物学科学基础模型
+8. [Loop-Extrusion Linkage: Spectral Ordering and Interval-Based Structure Discovery for Continuous Optimization](/202604/07/2604.04273v1-loop-extrusion-linkage-spectral-ordering-and-interval-based-structure-discovery-for-continuous-optimization)  
+   标签：评分：6.0/10、query:profile-1
+   evidence：利用基因组折叠过程的生物物理学进行优化
 
 
 <div class="dpr-home-promo-card">

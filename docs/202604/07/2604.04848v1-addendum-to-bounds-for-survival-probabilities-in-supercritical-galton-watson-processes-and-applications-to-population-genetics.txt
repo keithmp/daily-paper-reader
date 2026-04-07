@@ -1,0 +1,1251 @@
+Title: Addendum to: Bounds for survival probabilities in supercritical Galton-Watson processes and applications to population genetics
+
+URL Source: https://arxiv.org/pdf/2604.04848v1
+
+Published Time: Tue, 07 Apr 2026 01:57:54 GMT
+
+Number of Pages: 9
+
+Markdown Content:
+# Addendum to: Bounds for survival probabilities in supercritical Galton-Watson processes and applications to population genetics 
+
+Reinhard Bürger 
+
+Faculty of Mathematics University of Vienna 1090 Vienna, Austria Email: reinhard.buerger@univie.ac.at 
+
+ORCID: 0000-0003-2174-4968 
+
+Abstract. In this addendum we extend Theorem 4.6 on the negative binomial distribution in [1]. We prove that the fractional linear lower bound to the negative binomial generating function derived there is indeed valid for every x ∈ [0 , 1] , and not only for x ∈ [0 , P ∞
+
+> NB
+
+],where P ∞ 
+
+> NB
+
+is the extinction probability of the associated Galton-Watson process. 
+
+Keywords: Extinction probability, negative binomial offspring distribution, fractional linear gener-ating function 
+
+Mathematics Subject Classification. Primary: 60J80; Secondary: 92D10, 92D15, 60J85 
+
+1
+
+> arXiv:2604.04848v1 [math.PR] 6 Apr 2026
+
+We assume that the reader is familiar with the content and notation in [ 1]. Here is the generalized version of Theorem 4.6 in [1]. 
+
+Theorem 1. For every r ≥ 2 and every ζ ∈ (0 , 1) , the pgfs φNB and φFL satisfy 
+
+φFL (x; πNB , ρ NB ) ≤ φNB 
+
+> (
+
+x; r, ζ(1 − ζr)1 − ζr+1 
+
+> )
+
+for every x ∈ [0 , 1] . (1) 
+
+Equality holds if and only if x = P ∞ 
+
+> NB
+
+or x = 1 .
+
+In the following, we first repeat with trivial adaptations the proof of the above theorem for 
+
+x ∈ [0 , P ∞
+
+> NB
+
+], as given in Appendix B in [ 1]. In particular, we retain the equation numbering from [1] until eq. (B.11). Then the new proof starts. We recall that ζr = P ∞ 
+
+> NB
+
+∈ (0 , 1) and define 
+
+˜ζ =
+
+> r−1∑
+> k=0
+
+ζk and y(x) = ζr − x
+
+˜ζ . (B.1) Using eq. (A.2) in [1], we observe that 
+
+y(0) = ζr
+
+˜ζ < 1
+
+r ζ(r+1) /2 < 1
+
+r , y (ζr) = 0 , y (1) = ζr − 1˜ζ = −(1 − ζ) . (B.2) With these abbreviations, we can express the negative binomial generating function φNB 
+
+(defined in eq. (4.23) in [ 1]) and the (prospective) bounding fractional linear generating function φFL (defined in eq. (2.9) in [ 1]), where πNB and ρNB are given in eq. (4.25) in [ 1], as follows: 
+
+φNB 
+
+> (
+
+x; r, ζ(1 − ζr)1 − ζr+1 
+
+> )
+
+= ζr 
+
+> (
+
+11 + y(x)
+
+> )r
+
+(B.3) and 
+
+φFL (x; πNB , ρ NB ) = ζr 1 − x − ry (x)1 − x − rζ ry(x) . (B.4) We note that numerator and denominator are always positive. We define 
+
+fNB (x; r, ζ ) := ζr
+
+> (
+
+1/φ FL (x; πNB , ρ NB ) − 1/φ NB 
+
+> (
+
+x; r, ζ(1 − ζr)1 − ζr+1 
+
+> ))
+
+(B.5) and 
+
+gNB (y(x); r, ζ ) := fNB (x; r, ζ )1 − x − ry (x)(1 − ζ)2 , (B.6) where 1 − x − ry (x) > 0.2Proof of the inequality (1) if x ∈ [0 , P ∞
+
+> NB
+
+] (this was already proved in [1]) . Proving this in-equality is equivalent to showing that gNB (y(x); r, ζ ) > 0 for 0 < y (x) < ζ r/˜ζ, r ≥ 2, and 
+
+0 < ζ < 1. In the following we write y = y(x). Using the transformation x = ζr − y 1−ζr 
+
+> 1−ζ
+
+,we obtain 
+
+gNB (y; r, ζ ) = fNB 
+
+> (
+
+ζr − y 1 − ζr
+
+1 − ζ ; r, ζ  
+
+> )
+
+(1 − ζ)(1 − ζr) + y(1 − ζr − r(1 − ζ)) (1 − ζ)3 , (B.7) which we can rewrite as 
+
+gNB (y) = 
+
+y(
+
+(1 + y)r − 1)( 
+
+r(1 − ζ) − (1 − ζr))
+
+− (1 − ζ)(1 − ζr)
+
+> ((
+
+(1 + y)r − 1)
+
+− ry 
+
+> )
+
+(1 − ζ)3 .
+
+(B.8) By the binomial expansion (1+ y)r −1 = y ∑r−1 
+
+> j=0
+> (rj+1
+> )
+
+yj and after collection of coefficients of yj , we obtain 
+
+gNB (y) = y2
+
+(1 − ζ)2
+
+> r−1∑
+> j=0
+
+yj 
+
+> ((
+
+rj + 1 
+
+> )(
+
+r − 1 − ζr
+
+1 − ζ
+
+> )
+
+− 
+
+> (
+
+rj + 2 
+
+> )
+
+(1 − ζr)
+
+> )
+
+(B.9a) 
+
+= y2
+
+> r−1∑
+> j=0
+
+yj 
+
+> (
+
+rj + 1  
+
+> )
+
+1(1 − ζ)2
+
+> ((
+
+r − 1 − ζr
+
+1 − ζ
+
+> )
+
+− r − j − 1
+
+j + 2 (1 − ζr)
+
+> )
+
+. (B.9b) Finally, expansion in terms of ζ yields after appropriate rearrangement 
+
+gNB (y; r, ζ ) = y2
+
+> r−1∑
+> j=0
+
+yj 
+
+> (
+
+rj + 1 
+
+> )
+
+cg(r, j, ζ ) , (B.10) where 
+
+cg(r, j, ζ ) = 12( j + 2) 
+
+> (r−2∑
+> k=0
+
+ζk(k + 1)[2 r(1 + j) − (2 + j)k − 2] + ζr−1
+
+1 − ζ r(r + 1) j
+
+> )
+
+.
+
+(B.11) Because 2r(1 + j) − (2 + j)k − 2 ≥ 2 + j(2 r − k) ≥ 2, we obtain cg(r, j, ζ ) > 0 for every 
+
+0 ≤ j ≤ r − 1 and every ζ ∈ (0 , 1) . Therefore, gNB (y; r, ζ ) > 0 if y > 0 and fNB (x; r, ζ ) > 0
+
+if 0 ≤ x < ζ r.
+
+Proof of the inequality (1) if x ∈ (P ∞
+
+> NB
+
+, 1] . We use the transformation y = u − (1 − ζ)
+
+which, by (B.2) , is equivalent to u = (1 −x) 1−ζ 
+
+> 1−ζr
+
+. Then, 0 ≤ u ≤ 1−ζ if P ∞ 
+
+> NB
+
+= ζr ≤ x ≤ 1.We use series expansion of 
+
+˜gNB (u; r, ζ ) := 1 − ζ
+
+(u − (1 − ζ)) 2 gNB (u − (1 − ζ); r, ζ ) (2) in u and ζ to prove that ˜gNB (u; r, ζ ) ≥ 0 if 0 ≤ u ≤ 1 − ζ and 0 < ζ < 1. The key element of the proof is the subsequent lemma. 3Lemma 1. The following representation holds: 
+
+˜gNB (u; r, ζ ) = 
+
+> r−1∑
+> k=1 2r−3−k∑
+> n=0
+
+ukζnc˜g(r, k, n ) , (3) 
+
+where 
+
+c˜g(r, k, n ) = 
+
+> 
+
+k(n+k+2 
+
+> k+2
+> )
+
+if 0 ≤ n ≤ r − 1 − k , (4a)    
+
+> (rk+1
+> )(2 r−k)( k+1) −(n+1)( k+2)
+> k+2
+
+if r − k ≤ n ≤ r − 1 , (4b)   
+
+> (rk+1
+> )(2 r−k)( k+1) −(n+1)( k+2)
+> k+2
+
++(k+( n−r)+1   
+
+> k+1
+> )(2 r−k)( k+1) −(n+1) kk+2
+
+if r ≤ n ≤ 2r − 3 − k . (4c) We will prove this lemma below. Obviously, the expression in (4a) is positive. The expression (2 r − k)( k + 1) − (n + 1)( k + 2) in (4b) and (4c) is positive if r − k ≤ n ≤ r − 1.However, it can be negative if r ≤ n ≤ 2r − k − 3.To finish the proof of inequality (1) if P ∞ 
+
+> NB
+
+< x < 1, it remains to show that the sum of the expressions in (4c) is positive. We start by noting that this case applies only if r ≥ 4
+
+and k ≤ r − 3. Two special cases emerging readily from (4c) are 
+
+c˜g(r, k, r ) =  
+
+> (
+
+rk + 1  
+
+> )
+
+(r − k − 2) k − 2
+
+k + 2 + r − k , c˜g(r, k, 2r − 3 − k) =  
+
+> (
+
+rk + 1  
+
+> )
+
+(k + 1) kr(r − 1) =
+
+> (
+
+r − 2
+
+k − 1
+
+> )
+
+.
+
+Both are positive because 1 ≤ k ≤ r − 3 and r ≥ 4. We note in passing that c˜g(r, k, 2r −
+
+i − k) = 0 if i ∈ { 0, 1, 2}.We observe that the term c˜g,a (r, k, n ) := ( rk+1   
+
+> )(2 r−k)( k+1) −(n+1)( k+2)
+> k+2
+
+is (linearly) decreas-ing in n (and becomes negative for large n). Straightforward algebra shows that the term 
+
+c˜g,b (r, k, n ) := (k+( n−r)+1   
+
+> k+1
+> )(2 r−k)( k+1) −(n+1) kk+2
+
+is positive and increasing in n under the given constraints. Moreover, the second-order forward difference is computed to 
+
+c˜g,b (r, k, n + 2) − c˜g,b (r, k, n ) − 2c˜g,b (r, k, n + 1) = 
+
+> (
+
+k + ( n − r) + 1 
+
+k 
+
+> )
+
+(2 r − n − k − 2) kn − r + 2 .
+
+(5) This is positive if r ≤ n ≤ 2r − k − 3, equals 0 if n = 2 r − k − 2, and is negative for larger 
+
+n. We obtain that (i) c˜g,b (r, k, n ) is convex, increasing, and positive if r ≤ n ≤ 2r − k − 3,(ii) c˜g,a (r, k, n ) is linear (and decreasing), (iii) the first-order differences of c˜g,b reach their maximum at n = 2 r − k − 2, where they equal ( rk+1 
+
+> )
+
+, which is the negative of the first-order difference of c˜g,a , and (iv) c˜g(r, k, r ) > 0 and c˜g(r, k, 2r −k −3) > 0. Therefore, we conclude that c˜g(r, k, n ) > 0 holds in this range. 4As consequence, ˜gNB (u; r, ζ ) is strictly positive if 0 < u < 1 − ζ. By (2) and (B.7) , this implies the desired positivity of fNB (x) if P ∞ 
+
+> NB
+
+< x < 1. Pending the proof of Lemma 1, this finishes the proof of inequality (1) for x ∈ (P ∞
+
+> NB
+
+, 1] and hence the proof of Theorem 1. Of course, the expressions given in Lemma 1 yield those in eq. (12) in [ 1] for r = 2 , 3, 4, 5.
+
+Proof of Lemma 1. It follows readily from the definition of ˜gNB and that of gNB that only the coefficients listed are nonzero, i.e., no higher-order terms can occur. The proof is structured in several steps. STEP 1. We derive the representation 
+
+c˜g(r, k, n ) = 
+
+
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+c˜g1 (r, k, n, m ) if 0 ≤ n ≤ r − 1 ,
+
+> r−1−k
+
+∑
+
+> m=n−r+1
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+c˜g2 (r, k, n, m ) if r ≤ n ≤ 2r − 3 − k , 
+
+(6a) where, 
+
+c˜g1 (r, k, n, m ) = 
+
+
+
+(−1) m
+
+(
+
+r − r+1 
+
+> m+k+2
+
+)
+
+if n = 0 ,
+
+(−1) m−n
+
+[(m−1
+
+> n
+
+)(
+
+r − r+1 
+
+> k+m+2
+
+)
+
++ (m−2
+
+> n−1
+
+)]
+
+if 1 ≤ n ≤ r − 1 ,
+
+(6b) and 
+
+c˜g2 (r, k, n, m ) = 
+
+
+
+1 − r+1  
+
+> k+3
+
+if n = r and m = 1 ,
+
+(−1) m r+1  
+
+> k+2+ m
+
+if n = r and m > 1 ,
+
+(−1) m−(n−r)
+
+[(m−1
+
+> n−r
+
+) r+1  
+
+> k+m+2
+
+− ( m−2
+
+> n−r−1
+
+)]
+
+if r + 1 ≤ n ≤ 2r − 3 − k . 
+
+(6c) We note that c˜g1 (r, k, n, 0) = r − n − r+1  
+
+> k+2
+
+because, in case n ≥ 1, we have (−1) 0−n(0−2
+
+> n−1
+
+)
+
+=
+
+−n. The coefficients c˜g2 (r, k, n, m ) vanish if n ≥ 2r − 2 − k because then the summation in the second case of (6a) includes only m = r − 1 − k and the binomial coefficients (m−1
+
+> n
+
+)
+
+and (m−2
+
+> n−1
+
+)
+
+in (6c) vanish because m − 1 < n .To prove (6) , we start with (B.10) . From the definition of ˜gNB (u; r, ζ ) and y = u−(1 −ζ),we obtain 
+
+˜gNB (u; r, ζ ) = 
+
+> r−1
+
+∑
+
+> k=0
+
+uk
+
+
+
+> r−1
+
+∑
+
+> j=k
+
+(jk
+
+)
+
+(ζ − 1) j−k 11 − ζ cg(r, j, ζ )
+
+ , (7) where cg(r, j, ζ ) is given in (B.11). 5Binomial expansion and rearrangement yields (for given r and k, and with i = j − k): 
+
+> r−1
+
+∑
+
+> j=k
+
+(jk
+
+)
+
+(ζ − 1) j−k 11 − ζ cg(r, j, ζ )=
+
+> r−1−k
+
+∑
+
+> i=0
+
+(i + kk
+
+) r−1+ i∑
+
+> n=0
+
+ζn
+
+×
+
+> min {r−1,n }
+
+∑
+
+> l=max {0,n −i}
+
+(−1) i−n+l( ii−n+l
+
+)[( ri+k+1 
+
+)
+
+(r − l) − ( r+1 
+
+> i+k+2
+
+)]
+
+. (8) To simply the last sum (over l) we need to compute the following sums: 
+
+γ1(n, i ) = 
+
+> n
+
+∑
+
+> l=max {0,n −i}
+
+(−1) i−n+l( ii−n+l
+
+)
+
+, γ2(n, i ) = 
+
+> n
+
+∑
+
+> l=max {0,n −i}
+
+(−1) i−n+l( ii−n+l
+
+)
+
+l
+
+if 0 ≤ n ≤ r − 1, and 
+
+γ3(r, n, i ) = 
+
+> r−1
+
+∑
+
+> l=max {0,n −i}
+
+(−1) i−n+l( ii−n+l
+
+)
+
+, γ4(r, n, i ) = 
+
+> r−1
+
+∑
+
+> l=max {0,n −i}
+
+(−1) i−n+l( ii−n+l
+
+)
+
+l
+
+if r ≤ n ≤ r − 1 + i .Straightforward algebra yields 
+
+γ1(n, i ) = ( −1) i−n(i−1
+
+> n
+
+)
+
+, (9a) 
+
+γ2(n, i ) = 
+
+
+
+0 if n = 0 ,
+
+(−1) i−n−1( i−2
+
+> n−1
+
+)
+
+if n > 0 , (9b) 
+
+γ3(r, n, i ) = 
+
+
+
+0 if i = 0 ,
+
+(−1) r−1−(n−i)( i−1
+
+> n−r
+
+)
+
+if i > 0 , (9c) 
+
+γ4(r, n, i ) = 
+
+
+
+0 if i ≤ 1 and n > r , r − 1 if i = 1 and n = r , 
+
+(−1) r−1−(n−i) ri −ni−1
+
+( i−1
+
+> n−r
+
+)
+
+if i > 1 .
+
+(9d) In order to simplify (8), we will have to determine the sum 
+
+> r−1−k
+
+∑
+
+> i=0
+
+(i+kk
+
+) r−1∑
+
+> n=0
+
+ζnr( ri+k+1 
+
+)
+
+γ1(n, i )=
+
+> r−1
+
+∑
+
+> n=0
+
+ζnr
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+γ1(n, m ) , (10) and analogously for γ2 .6For the corresponding sums in (8) with γ3 and γ4, which run from n = r to n = r − 1 + i,we use I∑
+
+> i=0
+
+aiN −1+ i∑
+
+> n=N
+
+ζnbn,i = 
+
+> N+I
+
+∑
+
+> n=N
+
+ζnI∑ 
+
+> m=n−N+1
+
+ambn,m , (11) where I = r−1−k and N = r. After adding the appropriate terms and simple rearrangement, we obtain the coefficients c˜g(r, k, n ) of ukζn in the form (6) . It follows that for given r, k,and n the coefficients c˜gi (r, k, n, m ) alternate in sign as m increases. Now we are ready to derive the representations of c˜g(r, k, n ) obtained in equations (4) .It is useful to keep the following in mind: 
+
+(m − 2
+
+n − 1
+
+)
+
+=
+
+
+
+(−1) n−1n if m = 0 and n ≥ 0 ,
+
+(−1) n−1 if m = 1 and n ≥ 1 ,
+
+0 if n ≥ m ≥ 2 ,
+
+1 if n = 1 or n = m − 1 ,> 1 if m ≥ n + 2 and n ≥ 2 .
+
+STEP 2. To show (4a), we assume 0 ≤ n ≤ r − k − 1. The starting point is (6).Then 
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+(−1) m−n(m−1
+
+> n
+
+)
+
+= (k+n+1 
+
+> k+1
+
+)
+
+= (k+n+2 
+
+> k+2
+
+) k + 2 
+
+k + n + 2 , (12a) 
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( r+1 
+
+> m+k+2
+
+)
+
+(−1) m−n(m−1
+
+> n
+
+)
+
+= (k+n+2 
+
+> k+2
+
+) r(k + 2) − k(k + n + 2) − nk + n + 2 , (12b) and r−1−k∑
+
+> m=0
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+(−1) m−n(m−2
+
+> n−1
+
+)
+
+= (k+n+2 
+
+> k+2
+
+) −nk + n + 2 , (12c) where the latter holds only if n ≥ 1. Applying these identities to c˜g in (6a) with c˜g1 in (6b) ,and observing that ( r+1 
+
+> m+k+2
+
+)
+
+= ( rm+k+1 
+
+) r+1  
+
+> m+k+2
+
+, we obtain the desired result: 
+
+c˜g(r, k, n ) = (k+n+2 
+
+> k+2
+
+)[
+
+r k + 2 
+
+k + n + 2 − r(k + 2) − k(k + n + 2) − nk + n + 2 − nk + n + 2 
+
+]
+
+= k(k+n+2 
+
+> k+2
+
+)
+
+.
+
+If n = 0 , the term in (12c) is absent and c˜g(r, k, 0) = k follows. STEP 3. Next we derive (4b) and assume r − k ≤ n ≤ r − 1. We start with the first case in (6a) and the second in (6b) . Because (m−1
+
+> n
+
+)
+
+= 0 if 1 ≤ m ≤ n, we have 
+
+> r−1−k
+
+∑
+
+> m=0
+
+a(m, n )(m−1
+
+> n
+
+)
+
+= r−1−k∑
+
+> m=r−k+1
+
+a(m, n )(m−1
+
+> n
+
+)
+
+= 0 in this case. Therefore, only the summand with m = 0 remains (because n ≥ 1 whence (0
+
+> n
+
+)
+
+= 0 ) and we obtain 
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+(−1) m−n(m−1
+
+> n
+
+)
+
+r = r( rk+1 
+
+)
+
+(−1) −n(−1
+
+> n
+
+)
+
+= r( rk+1 
+
+)
+
+. (13a) 7Analogously, and including the factor r+1  
+
+> m+k+2
+
+from (6b), we find 
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( r+1 
+
+> m+k+2
+
+)
+
+(−1) m−n(m−1
+
+> n
+
+)
+
+= (r+1 
+
+> k+2
+
+)
+
+(−1) −n(−1
+
+> n
+
+)
+
+= ( rk+1 
+
+) r + 1 
+
+k + 2 . (13b) Because (m−2
+
+> n−1
+
+)
+
+= 0 if 2 ≤ m ≤ n, we have r−1−k∑
+
+> m=0
+
+a(m, n )(m−2
+
+> n−1
+
+)
+
+= r−1−k∑
+
+> m=r−2−k
+
+a(m, n )(m−2
+
+> n−1
+
+)
+
+=0 in this case. Therefore, only summands with m = 0 or m = 1 remain and we obtain 
+
+> r−1−k
+
+∑
+
+> m=0
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+(−1) m−n(m−2
+
+> n−1
+
+)
+
+= 1 · ( rk+1 
+
+)
+
+(−1) −n( −2
+
+> n−1
+
+)
+
++ (1+ kk
+
+)( rk+2 
+
+)
+
+(−1) 1−n( −1
+
+> n−1
+
+)
+
+= ( rk+1 
+
+)
+
+(−1) n + ( k + 1) ( rk+2 
+
+)
+
+= ( rk+1 
+
+)( k + 1 
+
+k + 2 (r − 1 − k) − n
+
+)
+
+. (13c) Adding (13a), (13b), and (13b) according to (6b) we obtain 
+
+c˜g(r, k, n ) = 
+
+( rk + 1 
+
+) (2 r − k)( k + 1) − (n + 1)( k + 2) 
+
+k + 2 (14) if r − k ≤ n ≤ r − 1.STEP 4. Finally, we deduce (4c) and assume r ≤ n ≤ 2r − 3 − k. We assume 
+
+r + 1 ≤ n ≤ 2r − 3 − k and set s = n − r. (We leave the verification of the simpler case n = r to the reader.) We need to simplify the sums resulting from case two in (6a) combined with (6b) . For given n ≥ r + 1 (so that 1 ≤ s ≤ r − 3 − k), the sum invoking 
+
+(m−1
+
+> n−r
+
+)
+
+becomes 
+
+> r−1−k
+
+∑
+
+> m=s+1
+
+(m+kk
+
+)( r+1 
+
+> m+k+2
+
+)
+
+(−1) m−s(m−1
+
+> s
+
+)
+
+= −(r+1 
+
+> k+2
+
+)
+
++
+
+( (k + 2)( r − k)
+
+s − (k + 1) 
+
+)(k+s+1 
+
+> k+2
+
+)
+
+= −( rk+1 
+
+) r + 1 
+
+k + 2 +
+
+(
+
+(r − k) − (k + 1) sk + 2 
+
+)(k+s+1 
+
+> k+1
+
+)
+
+. (15a) The sum invoking ( m−2
+
+> n−r−1
+
+)
+
+becomes 
+
+> r−1−k
+
+∑
+
+> m=s+1
+
+(m+kk
+
+)( rm+k+1 
+
+)
+
+(−1) m−s(m−2
+
+> s−1
+
+)
+
+= ( rk+2 
+
+)( s(k + 2) 
+
+r − k − 1 − (k + 1) 
+
+)
+
+− (k+s+1 
+
+> k+2
+
+)
+
+= ( rk+1 
+
+)(
+
+s − (r − k − 1)( k + 1) 
+
+k + 2 
+
+)
+
+− (k+s+1 
+
+> k+1
+
+) sk + 2 . (15b) 8Substracting (15b) from (15a) and returning to n = r + s, we arrive at (4c) , which finishes the proof of the lemma. 
+
+Additional materials A Mathematica notebook containing the code to check the algebraically demanding parts of the proof is made available upon request. 
+
+# References 
+
+[1] Bürger R. Bounds for survival probabilities in supercritical Galton-Watson processes and applications to population genetics. Journal of Mathematical Biology 92, 40 (2026) 9

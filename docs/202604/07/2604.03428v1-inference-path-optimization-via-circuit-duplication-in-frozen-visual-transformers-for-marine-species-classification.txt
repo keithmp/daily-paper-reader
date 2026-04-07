@@ -1,0 +1,264 @@
+Title: Inference-Path Optimization via Circuit Duplication in Frozen Visual Transformers for Marine Species Classification
+
+URL Source: https://arxiv.org/pdf/2604.03428v1
+
+Published Time: Tue, 07 Apr 2026 00:17:38 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# Inference-Path Optimization via Circuit Duplication in Frozen Visual Transformers for Marine Species Classification 
+
+Thomas Manuel Rost April 7, 2026 
+
+# Abstract 
+
+Automated underwater species classification is constrained by annotation cost and environmental variation that limits the transferability of fully supervised models. Recent work has shown that frozen embeddings from self-supervised vision foundation models already provide a strong label-efficient baseline for marine image classification. Here we investigate whether this frozen-embedding regime can be improved at inference time, without fine-tuning or changing model weights. We apply Circuit Duplication, an inference-time method originally proposed for Large Language Models, in which a selected range of transformer layers is traversed twice during the forward pass. We evaluate on the class-imbalanced AQUA20 benchmark using frozen DINOv3 embeddings under two settings: global circuit selection, where a single duplicated circuit is chosen for the full dataset, and class-specific circuit selection, where each species may receive a different optimal circuit. Both settings use simple semi-supervised downstream classifiers. Circuit Duplication consistently improves over the standard frozen forward pass. At the maximum label budget, class-specific selection reaches a macro F1 of 0.875, closing the gap to the fully supervised ConvNeXt benchmark (0.889) to 1.4 points without any gradient-based training. Four species exceed their fully supervised reference, with octopus improving by +12.1 F1 points. Across all budgets, roughly 75% of classes prefer a class-specific circuit, indicating a genuinely class-dependent benefit. To our knowledge, this is the first application of Circuit Duplication to computer vision. 1
+
+> arXiv:2604.03428v1 [cs.CV] 3 Apr 2026
+
+# 1 Introduction 
+
+Visual classification plays an increasingly impor-tant role in marine science [11, 12, 3]. Under-water imaging is used for biodiversity monitor-ing, ecological surveys, fisheries assessment, and exploratory observation in environments that are difficult to sample directly [13, 12]. How-ever, converting underwater imagery into reli-able species-level observations remains challeng-ing. Taxonomic annotation is expensive, re-quires expertise, and is often difficult to scale [2, 14]. In addition, underwater imagery is af-fected by turbidity, lighting variation, colour distortion, background complexity, and camera-specific artefacts, all of which complicate super-vised learning and reduce transfer across settings [1, 2]. Recent progress in self-supervised foundation models has opened a different route [15, 4, 5]. Rather than training a model end-to-end on a domain-specific labeled dataset, one can extract embeddings from a large pre-trained transformer-based image model and use those frozen representations for downstream classifi-cation [16, 4]. Prior work has shown that this approach can be surprisingly effective in eco-logical classification tasks [17, 18, 19], and re-cent results on the AQUA20 benchmark indicate that frozen DINOv3 embeddings paired with simple semi-supervised methods already provide a strong label-efficient baseline for underwater species recognition [6]. In this paper, we ask whether that frozen-embedding regime can itself be improved at in-ference time, without fine-tuning and without changing model weights. This is important be-cause it opens a route toward better task-specific representations without requiring the curation of large fully supervised training datasets. In-stead of collecting and annotating massive image corpora for end-to-end training, one can begin from a strong frozen foundation model, use only a small number of labeled examples, and opti-mize the embedding process itself. In addition, computing forward passes for the selection of op-timal circuit parameters is much cheaper than fully supervised training pipelines that require significant compute. In a marine setting, where labeled data are costly and often scarce for rare classes, this has clear potential for efficient data collection, rapid deployment, and active-learning workflows. We study this through Circuit Duplication, a method recently introduced in the context of Large Language Models [7]. Rather than chang-ing parameters, Circuit Duplication changes the path taken through the transformer at inference time by duplicating a selected range of layers. The hidden state is re-entered into an earlier point in the stack, so that part of the compu-tation is repeated before the forward pass con-tinues. Our central question is whether such inference-path modification can improve downstream clas-sification in a frozen foundation-model setting. We study this in two forms. In the first exper-iment, we search for a single globally optimal duplicated circuit for the dataset as a whole. In the second, we allow the optimal circuit to dif-fer by class and evaluate class-specific circuit se-lection. The motivation for the second experi-ment is that marine species differ substantially in morphology, texture, silhouette, and visual context, so the same inference path may not be equally useful for all of them. This lets us test both whether circuit duplication is useful in gen-eral, and whether its benefits are partly class-dependent. The contributions of this paper are threefold. First, to our knowledge, this is the first appli-cation of Circuit Duplication to computer vi-sion. Second, it is the first application of the method in marine species classification. Third, it introduces and evaluates two optimization set-tings, global circuit selection and class-specific circuit selection, showing that inference-time cir-cuit modification consistently improves frozen vi-sual embeddings for downstream classification, that such gains are genuinely class-dependent, 2and that the resulting system approaches fully supervised performance without any gradient-based training. 
+
+# 2 Related Work 
+
+Label-efficient marine species classifica-tion. Automated underwater species recogni-tion has historically relied on fully supervised computer vision models trained on labeled ma-rine datasets [1]. While such models can achieve strong performance when sufficient labels are available, their practical use is often limited by annotation cost, domain shift, and the dif-ficulty of collecting representative underwater data across sites and conditions. The AQUA20 benchmark provides an important recent reference point for this problem. It is a challenging underwater species classification dataset with substantial class imbalance and re-alistic image degradation [1], making it a suitable testbed for label-efficient alternatives to fully su-pervised training. 
+
+Frozen foundation model embeddings. Amajor recent development in computer vision has been the emergence of self-supervised vision foundation models such as DINOv2 and DINOv3 [4, 5]. These models are trained on very large image corpora without manual labels and pro-duce general-purpose visual representations that transfer well to downstream tasks. Instead of learning a classifier end-to-end, one can use the foundation model as a frozen feature extractor and apply lightweight downstream methods. Recent work has shown that frozen transformer-based image embeddings can support strong per-formance in ecological settings, including un-supervised and weakly supervised species-level tasks [17, 6]. In the marine domain, this ap-proach is particularly attractive because it shifts most of the representation-learning burden away from scarce labeled datasets. 
+
+Inference-time architectural modification. 
+
+Most efforts to adapt foundation models to downstream tasks still rely on training. This includes full fine-tuning and parameter-efficient methods such as Low-Rank Adaptation, mean-ing lightweight trainable additions that modify model behaviour with fewer updated parame-ters [20]. By contrast, inference-time architec-tural modification changes the computation per-formed by the model during the forward pass while leaving all weights fixed. Circuit Duplication, introduced in the context of Large Language Models [7], is one such method. It duplicates a selected subset of transformer lay-ers by routing the hidden state back through an earlier segment of the network. To our knowl-edge, this idea has not yet been applied to com-puter vision or to marine image classification. 
+
+Gap addressed by this paper. Current label-efficient pipelines in marine image classification largely assume a fixed frozen feature extractor. The representation may be strong, but the in-ference path itself remains static. This paper examines whether that assumption can be re-laxed. Specifically, we test whether a frozen vi-sual foundation model can be made more use-ful for downstream marine classification through inference-path modification, without retraining, and whether such modification operates differ-ently across classes. 
+
+# 3 Methods 
+
+3.1 Overview 
+
+Our starting point is a frozen DINOv3 back-bone. Rather than using only the standard for-ward pass, we generate alternative embeddings by modifying the inference path through Circuit Duplication. Each duplicated circuit is defined by a pair of layer indices, and each configuration produces a distinct embedding space. We then evaluate downstream classifiers on those em-beddings under two optimization settings: one 3global and one class-specific. 
+
+3.2 Circuit Duplication in a visual transformer 
+
+The backbone is a 12-layer DINOv3 Base model with patch size 16 [5]. In the standard model, the hidden state passes through the transformer blocks once, in order, from layer 0 to layer 11. We define a circuit by two integers, ( i, j ), with 0 ≤ i < j < 12. The model first processes layers 0 through j, then re-enters at layer i and repeats layers i through j, and finally continues forward through the remaining layers. As illustrated in Figure 1, the duplicated circuit is inserted im-mediately after its first traversal and before ex-ecution continues with subsequent layers. importantly, no model weights are changed. The only difference is the computational path taken during inference. The duplicated layers are al-ready part of the model, so the method does not require loading additional parameters into memory. As noted in the original RYS work [7], the main cost is additional computation from traversing part of the existing stack more than once. It therefore increases inference time for the duplicated block, but does not require gra-dient computation, backpropagation, retraining, or additional model-memory overhead. As in the original work [7], the mechanism by which this improves performance remains unclear and is in some sense counter-intuitive. A plausible hypothesis is that transformer residual connec-tions make this kind of re-entrant computation possible without catastrophic degradation, but at present this remains speculative. We evaluate all 66 possible circuits in a 12-layer model, corresponding to all ordered pairs ( i, j )with i < j . The standard non-duplicated for-ward pass is included as both a reference condi-tion and in the case of class based optimsation, as potential optimisation choice. 
+
+3.3 Image preprocessing and embed-ding extraction 
+
+All images are resized to 518 × 518 pixels and passed through the modified DINOv3 backbone. We extract a single image representation by av-eraging the spatial patch tokens from the final layer output, excluding the classification token and register tokens, and then applying L2 nor-malization, meaning scaling each vector to unit length. Each circuit configuration produces its own em-bedding space. Because these spaces differ, we treat them as separate manifolds rather than as interchangeable feature variants. 
+
+3.4 Dimensionality reduction 
+
+For each circuit configuration, we reduce the 768-dimensional embeddings to 128 dimensions using Principal Component Analysis, a standard linear dimensionality-reduction method that captures the major directions of variance in the data. A separate Principal Component Analysis model is fitted for each circuit. This avoids mixing the geometry of different duplicated inference paths into a shared projection. As in the baseline study, dimensionality reduc-tion is performed in a transductive manner using the combined train and test embedding set for the relevant circuit configuration. This does not expose test labels, but does allow the geometry of the full sample to shape the representation. 
+
+3.5 Downstream classifiers 
+
+We evaluate several downstream classifiers on the resulting circuit-specific embedding spaces. The methods have been deliberately chosen to be simple in order to show the power of the un-derlying embedding generation: 
+
+• Label Spreading: a graph-based semi-40 → 1 → 2 → 3 → 4 → 5| {z } 
+
+> original path up to j
+
+→ 2 → 3 → 4 → 5| {z }
+
+> repeated block [ i,j ]
+
+→ 6 → 7 → 8 → 9 → 10 → 11 | {z }
+
+> remaining path
+
+Figure 1: Example of the effective path when layers i through j are repeated. supervised method in which labels are diffused over a similarity graph connecting labeled and unlabeled samples [8]. 
+
+• Self-Training K-nearest neighbours: anearest-neighbour classifier combined with it-erative pseudo-labeling [9, 10]. 
+
+• Self-Training Support Vector Machine: 
+
+a pseudo-labeling procedure built around a Support Vector Machine classifier [9, 10]. 
+
+• Seeded K-means: a centroid-based baseline using labeled seeds for initialization. 
+
+• K-nearest neighbours baseline: apurely supervised nearest-neighbour classifier trained only on the labeled seeds. These are the same downstream methods used in the baseline study [6], allowing direct comparison between the standard frozen-embedding setting and the circuit-duplicated setting. 
+
+# 4 Experimental Design 
+
+4.1 Dataset 
+
+We evaluate on AQUA20, a benchmark dataset for underwater species classification compris-ing 20 marine categories and an official train-test split [1]. The dataset is strongly class-imbalanced and includes challenging visual con-ditions typical of underwater imagery. This makes it a suitable test case for label-efficient classification methods and for circuit-level op-timization. Conventiently, the authors ot AQUA20 provide the performance of fully su-pervised state of the art training regiment that we use as benchmark for the performance of our approaches. 
+
+4.2 Three-pool evaluation design 
+
+To avoid leakage, we adopt a three-pool design. First, a validation pool is carved out from the training split before any labeled seeds are as-signed. Second, labeled seeds are drawn only from the remaining training subset. Third, the official test set is reserved exclusively for final evaluation. It is worth noting that the validation pool (40% of the training split) is reserved entirely for cir-cuit selection and is never used as labeled data for the downstream classifiers. Thus, even at the maximum label budget (denoted 100% in our experiments), the classifiers are trained on ap-proximately 60% of the original training data. The fully supervised ConvNeXt benchmark, by contrast, is trained on the entire training split. Comparissons therefore are biased against our approach which might potentially perform even better than reported below. 
+
+4.3 Global circuit optimization 
+
+In the first experiment, we evaluate all 66 pos-sible duplicated circuits together with the stan-dard non-duplicated forward pass and select a single circuit for the dataset as a whole. Circuit quality is measured on the validation pool, al-lowing comparison of global duplicated inference paths against the standard frozen baseline under the same downstream classifiers. This experi-ment tests whether circuit duplication is useful as a general architectural intervention even with-5out class-specific adaptation. Figure 2 summarizes the global circuit selection pipeline. 
+
+4.4 Class-specific circuit optimization 
+
+Visual classification tasks often involve classes with a vide variety of forms, shapes and pat-terns. Some may be separable primarily through coarse shape, while others may depend more strongly on repeated texture, local structure, or finer-grained visual refinement. If circuit dupli-cation changes the balance of these representa-tional properties, then different classes may ben-efit from different duplicated regions of the trans-former. For this reason, we evaluate a second optimiza-tion strategy. In the class-specific setting, the best-performing circuit is selected independently for each class based on validation set perfor-mance. This produces a class-specific mapping from species to circuit configuration via the cho-sen classificaion method. In other words, the em-bedding extraction process itself becomes class-dependent, allowing us to compare different cir-cuits on performance for each class in a one-vs-all approach. Results are averaged across repeated runs with fixed random seeds for each circuit and classi-fier combination. The key quantity of interest in this experiment is the best-performing combina-tion of circuit and downstream method for each class, allowing us to determine whether some classes benefit systematically from different in-ference paths than others. Figure 3 summarizes the class-specific circuit se-lection pipeline. 
+
+4.5 Label budgets 
+
+We evaluate both absolute and fractional label budgets. Absolute budgets (5, 10, and 20 la-beled seeds per class) allow direct control over annotation effort. Fractional budgets (5%, 10%, 15%, and 100% of the training split) allow com-parison with the full-supervision regime and with the baseline paper [6]. The main low-label set-tings focus on small numbers of labeled examples per species, where label efficiency matters most. Interesting to note is that due to class imbalance, some classes might receive more samples in the absolute experiment while some might receive more sampes in the fractional one. Future abla-tions might take the class support into account in order to generate a more consistent budget-ing strategy, e.g by setting a minimum amount of labels per class. Note that fractional budgets are applied to the post-validation training pool, not to the full training split. Because 40% of the training data is reserved for circuit selection (Section 4.2), a fractional budget of, for example, 10% corre-sponds to approximately 6% of the original train-ing data. 
+
+4.6 Implementation and reporting 
+
+All feature extraction is performed in PyTorch, and downstream classification is implemented in scikit-learn. Results are averaged across re-peated runs with fixed random seeds for each circuit and classifier combination. The main reported metrics are macro F1-score and accu-racy. In the class-specific experiment, we report the best-performing combination of circuit and downstream method for each class. 
+
+# 5 Results 
+
+5.1 Circuit duplication improves frozen embeddings across all budgets 
+
+Table 1 presents the main global results. Across all seven label budgets, both the globally opti-6Global Circuit Selection 
+
+Sweep 66 ( i, j ) pairs, select one global best on val, report on test 
+
+Image   
+
+> 518 ×518
+
+Frozen DINOv3 ViT-B/16 with circuit duplication            
+
+> L0 .. Li .. Lj —Li .. Lj .. L11
+> pass 1 pass 2
+
+768-d  
+
+> L2norm
+
+PCA 
+
+> 128-d
+
+Semi-supervised classification ( k labeled seeds per class)         
+
+> Label spreading |Self-train KNN |Self-train SVM |Seeded K-means |KNN baseline
+
+Select best global (i, j ) 
+
+> on validation pool
+
+Report on held-out test 
+
+Figure 2: Pipeline for global circuit selection. All 66 duplicated circuits are swept over the frozen DINOv3 backbone. A single best ( i, j ) pair is selected on the validation pool across all classes, and final performance is reported on the held-out test set. mized circuit (Exp2) and the class-specific cir-cuit selection (Exp3) improve macro F1 over the standard frozen baseline. The class-specific set-ting provides the largest gains: at 5 seeds per class, class-specific circuit selection reaches 0.735 macro F1 compared to 0.665 for the baseline, an improvement of 7.0 points. At 10 and 20 seeds per class, the gains are 6.6 and 4.9 points respectively. Even at the 100% budget, class-specific selection improves over the baseline by 4.3 points. The global circuit (Exp2) captures part of this improvement but not all. At every budget, the class-specific setting outperforms the global opti-mum, confirming that a single duplicated circuit cannot fully exploit the class-dependent struc-ture in the data. Notably, the relative advantage of circuit duplication is largest at the lowest la-bel budgets, which is exactly the regime where label efficiency matters most. Figure 4 shows these results visually alongside the fully supervised ConvNeXt benchmark [1]. 
+
+5.2 Comparison to full supervision without training 
+
+The comparison to the fully supervised Con-vNeXt benchmark [1] provides important con-text for these results. The ConvNeXt model was trained end-to-end on the full AQUA20 train-ing set and achieves a macro F1 of 0.889. At the 100% label budget, class-specific circuit selection reaches 0.875, closing the gap to just 1.4 percent-age points. At 20 seeds per class, the gap is 3.6 points. These results are achieved entirely with-out gradient-based training: the DINOv3 back-bone is frozen, no weights are updated, and the downstream classifiers are classical methods that require no backpropagation. This finding is significant because it shows that a frozen foundation model, combined with inference-path optimization, can approach the performance of a fully supervised model trained specifically on the target dataset. The practical implication is that competitive classification per-7Class-Specific Circuit Selection 
+
+Each species gets its own optimal ( i, j ) — selected per class on val, report on test 
+
+Image   
+
+> 518 ×518
+
+Frozen DINOv3 ViT-B/16 with circuit duplication            
+
+> L0 .. Li .. Lj —Li .. Lj .. L11
+> pass 1 pass 2
+
+768-d  
+
+> L2norm
+
+PCA 
+
+> 128-d
+
+Semi-supervised classification ( k labeled seeds per class)         
+
+> Label spreading |Self-train KNN |Self-train SVM |Seeded K-means |KNN baseline
+
+Select best (i, j ) per class  
+
+> on validation pool
+
+Report on held-out test          
+
+> octopus →(i1, j 1)jellyfish →(i2, j 2)shark →(i3, j 3). . .
+
+Figure 3: Pipeline for class-specific circuit selection. The same sweep is performed, but the best (i, j ) pair is selected independently for each class on the validation pool. Different species may therefore receive different optimal inference paths through the frozen transformer. formance may be achievable with only a fraction of the annotation effort and compute required by end-to-end training. Moreover, as noted in Section 4.2, the down-stream classifiers are trained on only approxi-mately 60% of the original training data, since the remaining 40% is reserved for circuit se-lection, making the comparison to ConvNeXt, which uses the full training split, conservative. 
+
+5.3 Per-class analysis: circuit dupli-cation exceeds full supervision for specific classes 
+
+While the global macro F1 remains slightly be-low the fully supervised benchmark, the per-class analysis reveals a more nuanced picture. Table 2 shows per-class F1 scores at the maximum label budget. Four classes exceed their ConvNeXt ref-erence under class-specific circuit selection: octo-pus (+0.121), seaUrchin (+0.059), fishInGroups (+0.044), and starfish (+0.008). The octopus result is particularly striking. The ConvNeXt model achieves an F1 of 0.750 for octopus, whereas class-specific circuit selection reaches 0.871, a gain of more than 12 points. The frozen baseline already surpasses ConvNeXt for this class (0.847), but circuit duplication extends the advantage further. This suggests that the DINOv3 representation already contains infor-mation about octopus that the supervised model fails to exploit, and that circuit duplication helps surface that information more effectively. For the remaining classes, class-specific circuit selection narrows the gap to ConvNeXt in most cases. The average deficit across all 20 classes is only 1.4 F1 points (∆ = −0.014), and for 14 out of 20 classes the gap is less than 4 points. Figure 5 shows the per-class comparison at the 100% budget. 8Table 1: Global test-set performance (Macro F1) across label budgets. The fully supervised Con-vNeXt benchmark [1] is shown for reference. Baseline refers to the standard frozen DINOv3 forward pass [6]. Global Circuit selects a single best duplicated circuit for the full dataset. Class-Specific selects the best circuit independently per class. Bold indicates the best result among the frozen-embedding methods. Budget ConvNeXt Baseline Global Circuit Class-Specific 5 seeds/cls 0.889 0.665 0.691 0.735 
+
+10 seeds/cls 0.889 0.749 0.782 0.815 
+
+20 seeds/cls 0.889 0.804 0.830 0.853 
+
+5% seeds 0.889 0.670 0.698 0.720 
+
+10% seeds 0.889 0.697 0.723 0.744 
+
+15% seeds 0.889 0.743 0.766 0.787 
+
+100% seeds 0.889 0.832 0.855 0.875 
+
+Figure 4: Global macro F1 across label budgets. Red: standard frozen baseline. Blue: globally optimized circuit (Exp2). Purple: class-specific circuit selection (Exp3). The green dashed line marks the fully supervised ConvNeXt benchmark at 88.9% [1]. Circuit duplication improves over the baseline at every budget, with class-specific selection providing the largest gains. At 100% labels, the gap to full supervision narrows to 1.4 percentage points. 
+
+5.4 Class wide preference for specific circuits 
+
+Figure 6 shows, for each label budget, how many of the 20 classes are best served by the standard forward pass (baseline), by the globally optimal circuit, or by a unique circuit that differs from both. Across all seven budgets, only 2-3 classes prefer the standard forward pass, and approxi-mately 15 classes prefer a circuit that is neither the baseline nor the global winner. This pattern is remarkably stable: it does not collapse at high label budgets. This result has two implications. First, it con-firms that circuit duplication is not simply com-pensating for label scarcity. Even when all train-ing labels are available, different species benefit from different inference paths through the trans-former. Second, it suggests that the visual prop-erties relevant for distinguishing different marine species are distributed across different regions of the transformer’s computational path, and that circuit duplication provides a way to selectively amplify those properties without any parameter modification. 9Table 2: Per-class F1 score comparison at maximum label budget (100% of the post-validation training pool; see Section 4.2). ConvNeXt: fully supervised benchmark [1]. Baseline: best stan-dard frozen DINOv3 classifier. Global Circuit: per-class score under the globally optimal circuit. Class-Specific: per-class best circuit and classifier. ∆ is the difference between Class-Specific and ConvNeXt. Bold positive values indicate classes where the frozen-embedding approach exceeds full supervision. 
+
+Class Best Method ConvNeXt Baseline Global Circuit Class-Specific ∆coral self train knn 0.906 0.869 0.870 0.876 −0.030 crab label spreading 0.857 0.818 0.833 0.841 −0.017 diver self train knn 1.000 0.931 0.948 0.959 −0.041 eel label spreading 0.835 0.770 0.814 0.825 −0.010 fish self train knn 0.918 0.897 0.899 0.906 −0.012 fishInGroups self train knn 0.746 0.757 0.756 0.790 +0.044 
+
+flatworm self train knn 0.846 0.810 0.767 0.810 −0.037 jellyfish label spreading 0.962 0.946 0.943 0.953 −0.008 marine dolphin label spreading 0.737 0.628 0.705 0.726 −0.011 octopus self train knn 0.750 0.847 0.855 0.871 +0.121 
+
+rayfish label spreading 0.963 0.950 0.954 0.956 −0.007 seaAnemone self train knn 0.899 0.882 0.868 0.892 −0.006 seaCucumber self train knn 0.947 0.848 0.830 0.892 −0.056 seaSlug knn baseline 0.923 0.864 0.819 0.864 −0.059 seaUrchin self train knn 0.839 0.875 0.883 0.898 +0.059 
+
+shark label spreading 0.865 0.746 0.804 0.804 −0.061 shrimp label spreading 0.952 0.800 0.859 0.887 −0.066 squid label spreading 0.889 0.746 0.779 0.799 −0.089 starfish knn baseline 0.962 0.968 0.938 0.970 +0.008 
+
+turtle label spreading 0.987 0.982 0.982 0.983 −0.003 
+
+Macro avg. 0.889 0.847 0.855 0.875 −0.014 
+
+5.5 Downstream classifier patterns 
+
+The per-class results in Table 2 also reveal which downstream classifiers benefit most from circuit-modified embeddings. At the maximum bud-get, self-training KNN and label spreading are the dominant winning methods, accounting for all 20 classes between them. This indicates that the benefit of circuit duplication is not an artefact of one particular downstream classi-fier but is expressed through both graph-based semi-supervised methods and pseudo-labeling approaches. 
+
+# 6 Discussion 
+
+The results show that Circuit Duplication consis-tently improves downstream classification from frozen visual foundation model embeddings. Three findings deserve particular discussion. 
+
+Approaching full supervision without training. The most practically significant re-sult is that class-specific circuit selection closes the gap to the fully supervised ConvNeXt bench-mark to just 1.4 macro F1 points at the maxi-mum label budget, and to 3.6 points with only 20 labeled examples per class. This is achieved entirely without gradient-based training. The DINOv3 backbone remains frozen, no param-eters are updated, and the downstream classi-10 Figure 5: Per-class F1 scores at the 100% label budget. Red: best standard frozen baseline classifier per class. Blue: per-class score under the globally optimized circuit (Exp2). Purple: class-specific circuit selection (Exp3). Green dashed lines: ConvNeXt fully supervised benchmark per class [1]. Classes are sorted by the difference between class-specific selection and the ConvNeXt reference. Octopus, seaUrchin, fishInGroups, and starfish exceed the fully supervised benchmark. fiers are classical methods. This suggests that a substantial portion of the performance gap be-tween frozen embeddings and end-to-end super-vised training can be recovered by optimizing the inference path rather than the model weights. 
+
+Exceeding full supervision for specific classes. Four classes, octopus, seaUrchin, fish-InGroups, and starfish, exceed their fully su-pervised ConvNeXt reference under class-specific circuit selection. The octopus result is espe-cially notable: the ConvNeXt model achieves only 0.750 F1 for this class, likely because octo-pus is a rare class (10 test samples) with high visual variability and camouflage-like appear-ance. The frozen DINOv3 baseline already out-performs ConvNeXt at 0.847, and circuit dupli-cation pushes this further to 0.871. This sug-gests that the general-purpose DINOv3 repre-sentation captures information about visually complex, low-frequency classes that a domain-specific supervised model fails to exploit, and that circuit duplication helps surface that infor-mation. More broadly, the fact that a training-free method can exceed full supervision for spe-cific classes is an unusual result that warrants further investigation. 
+
+Class-specific effects are stable and not driven by label scarcity. The winning strat-egy distribution (Figure 6) shows that approx-imately 75% of classes prefer a unique cir-cuit across all label budgets, including the full-label setting. This rules out the interpreta-tion that circuit duplication is merely compen-sating for noisy estimates under extreme la-bel poverty. Instead, it indicates that different species genuinely benefit from different compu-tational paths through the transformer, likely reflecting differences in the visual properties (shape, texture, colour, context) that distinguish them. This observation connects to the broader question of whether different downstream tasks engage different parts of a foundation model’s internal computation, and suggests that circuit-level optimization may be a useful complement to classifier-level optimization even when labels are plentiful. 
+
+Headroom for improvement. It is worth not-ing that the results reported here were obtained under deliberately minimal downstream assump-tions. No hyperparameter tuning was performed 11 Figure 6: Composition of per-class winning strategies across label budgets. Red: number of classes where the standard forward pass (base-line) achieves the best F1. Blue: classes where the globally optimized circuit is best. Purple: classes where a unique circuit, distinct from both baseline and global winner, achieves the best F1. Across all budgets, approximately 75% of classes prefer a class-specific circuit. on the downstream classifiers; all methods were run with default or fixed settings. The classi-fiers themselves are among the simplest avail-able: nearest-neighbour methods, graph-based label propagation, and centroid-based clustering. No ensemble methods, gradient-boosted models, or neural classifiers were used. The foundation model was used entirely as provided, with no domain-specific fine-tuning on underwater im-agery, and no use of foundation models natively trained on marine or ecological data. Each of these directions represents a plausible route to further improvement. Taken together, the fact that a macro F1 of 0.875 can be reached un-der such minimal conditions, within 1.4 points of a fully supervised, end-to-end trained Con-vNeXt, suggests that the effective ceiling of this approach, once these additional degrees of free-dom are explored, may well exceed the fully su-pervised baseline while remaining far less expen-sive in terms of both annotation effort and com-pute. In addition, the current evaluation design re-serves 40% of the training split for validation, meaning the downstream classifiers never see the full labeled pool; reducing this fraction or adopt-ing more sample-efficient circuit selection strate-gies could yield further gains. Practical im-plications. In settings, such as marine science, where expert annotation is expensive and rare classes may have very few examples, these re-sults suggest that useful performance gains are achievable without the cost of full supervised retraining. The method requires only forward passes through the existing model and simple downstream classifiers, making it computation-ally lightweight compared to fully supervised pipelines that require expensive equipment as well as technical expertise that can be hard to come by. This could support more efficient an-notation strategies, quicker adaptation to new survey sites, and active-learning-style data col-lection pipelines. 
+
+Limitations. Several limitations should be noted. This study evaluates a single dataset (AQUA20), a single foundation model (DINOv3 Base), and extremely simple downstream classi-fiers. The method currently depends on a sweep over all 66 possible circuits, which, while cheap relative to gradient-based training, adds infer-ence cost. In addition, the PCA dimensional-ity reduction is fitted transductively on the com-bined train and test embeddings for each circuit configuration. This does not expose test labels, and because PCA is an unsupervised method that captures directions of maximal variance, the influence of test samples on the projection axes is unlikely to introduce meaningful bias to-ward better classification. Nonetheless, it is a departure from a strictly inductive setting, and the effect of fitting PCA on training data alone should be verified in follow-up work. And fi-nally, the mechanism by which circuit dupli-cation improves performance is not yet under-stood: why duplicating specific transformer lay-ers should improve embedding quality for spe-cific classes remains an open question. In ad-dition, the class-specific optimization setting re-quires per-class validation, which may not always be practical with very few labeled examples. Any broader generalisation of these findings to other datasets, models, or domains would require fur-12 ther empirical investigation. 
+
+# 7 Conclusion 
+
+This paper introduces Circuit Duplication to computer vision by applying it to a frozen DINOv3 backbone in a label-efficient marine species classification setting. To our knowledge, this is the first application of the method outside of language modelling and the first application in marine species classification. The results demonstrate that inference-time modification of the computational path through a frozen visual transformer consistently improves downstream classification. Class-specific circuit selection reaches a macro F1 of 0.875 at the maximum label budget, closing the gap to the fully supervised ConvNeXt benchmark (0.889) to 1.4 points without any gradient-based training. Four species exceed their fully supervised refer-ence, with the largest gain observed for octopus (+12.1 F1 points). Across all label budgets, ap-proximately 75% of classes prefer a class-specific circuit that differs from both the standard for-ward pass and the global optimum, indicating that the benefit of circuit duplication is gen-uinely class-dependent and not driven by label scarcity alone. These findings suggest that frozen visual foun-dation model embeddings are not only useful as static feature extractors, but can be further optimized at the level of their computational path. Circuit duplication provides a lightweight, training-free mechanism for this optimization, with practical relevance for label-constrained sci-entific classification tasks. Future work should investigate the mechanism underlying circuit-dependent improvements, characterise which cir-cuit regions benefit which types of visual classes, and test the approach on additional datasets, models, and domains. 
+
+# Declaration of AI Use 
+
+Generative Artificial Intelligence systems were used as writing and coding assistants during the preparation of this manuscript. All research con-cepts, experimental design, data analysis, and scientific interpretations are the sole work of the author. 
+
+# References 
+
+[1] Taufikur Rahman Fuad, Sabbir Ahmed, and Shahriar Ivan. AQUA20: A benchmark dataset for underwater species classification under challenging conditions. Arabian Jour-nal for Science and Engineering , 2026. [2] Alzayat Saleh, Issam H. Laradji, Dmitry A. Konovalov, Michael Bradley, David Vazquez, and Marcus Sheaves. Computer vision and deep learning for fish classifica-tion in underwater habitats: A survey. Fish and Fisheries , 23:977–999, 2022. [3] Marko Radeta, Agustin Zuniga, Naser Hos-sein Motlagh, Mohan Liyanage, Ruben Fre-itas, Moustafa Youssef, Sasu Tarkoma, Hu-ber Flores, and Petteri Nurmi. Deep learn-ing and the oceans. Computer , 55(5):39–50, 2022. [4] Maxime Oquab, Timoth´ ee Darcet, Th´ eo Moutakanni, et al. DINOv2: Learning ro-bust visual features without supervision. 
+
+arXiv preprint arXiv:2304.07193 , 2023. [5] Oriane Sim´ eoni, Huy V. Vo, Maximil-ian Seitzer, Federico Baldassarre, Maxime Oquab, et al. DINOv3. arXiv preprint arXiv:2508.10104 , 2025. [6] Thomas Manuel Rost. Label-efficient un-derwater species classification with semi-supervised learning on frozen foundation model embeddings, 2026. [7] David Noel Ng. LLM neuroanatomy: How I topped the LLM leaderboard without changing a single weight. Blog post, 2026. 13 [8] Xiaojin Zhu and Zoubin Ghahramani. Learning from labeled and unlabeled data with label propagation. Technical Report CMU-CALD-02-107 , 2002. [9] Dong-Hyun Lee. Pseudo-label: The sim-ple and efficient semi-supervised learning method for deep neural networks. In 
+
+Workshop on Challenges in Representation Learning, ICML , 2013. [10] David Yarowsky. Unsupervised word sense disambiguation rivaling supervised meth-ods. In ACL , 1995. [11] Robert B. Fisher, Yun-Heh Chen-Burger, Daniela Giordano, Lynda Hardman, and Fang-Pang Lin. Fish4Knowledge: Collect-ing and Analyzing Massive Coral Reef Fish Video Data . Springer, 2016. [12] Morten Goodwin, Kim Tallaksen Halvorsen, Lei Jiao, et al. Unlocking the potential of deep learning for marine ecology: Overview, applications, and outlook. ICES Journal of Marine Science , 79(2):319–336, 2022. [13] Carlos Dominguez-Carri´ o, Joan Llu´ ıs Riera, Katleen Robert, Mikel Zabala, Susana Re-quena, Josep-Maria Gili, Jordi Griny´ o, Co-vadonga Orejas, Claudio Lo Iacono, En-rique Isla, Alejandra Londo˜ no-Burbano, and Telmo Morato. A cost-effective video system for a rapid appraisal of deep-sea ben-thic habitats: The Azor drift-cam. Meth-ods in Ecology and Evolution , 12:1379–1388, 2021. [14] Sparsh Mittal, Srishti Srivastava, and J. Phani Jayanth. A survey of deep learn-ing techniques for underwater image classi-fication. IEEE Transactions on Neural Net-works and Learning Systems , 34(10):6968– 6982, 2023. [15] Mathilde Caron, Hugo Touvron, Ishan Misra, Herv´ e J´ egou, Julien Mairal, Piotr Bojanowski, and Armand Joulin. Emerging properties in self-supervised vision trans-formers. In Proceedings of the IEEE/CVF International Conference on Computer Vi-sion (ICCV) , 2021. [16] Alexey Dosovitskiy, Lucas Beyer, Alexan-der Kolesnikov, et al. An image is worth 16x16 words: Transformers for image recog-nition at scale. In International Conference on Learning Representations (ICLR) , 2021. [17] Hugo Markoff, Stefan Hein Bengtson, and Michael Ørsted. Vision transformers for zero-shot clustering of animal images: Acomparative benchmarking study. arXiv preprint arXiv:2602.03894, 2026. [18] Murilo Gustineli et al. Multi-label plant species classification with self-supervised vi-sion transformers. In CLEF 2024 Working Notes , 2024. [19] Artzai Picon et al. Robust multi-species agricultural segmentation across de-vices, seasons, and sensors using hierar-chical DINOv2 models. arXiv preprint arXiv:2508.07514 , 2026. [20] Sangmin Ying et al. Relaxed recursive transformers: Effective parameter sharing with layer-wise LoRA. arXiv preprint arXiv:2410.20672, 2024. 14 A Additional Results 
+
+A.1 Global accuracy 
+
+Figure 7 shows the global accuracy compari-son, complementing the macro F1 results in Fig-ure 4. The pattern is consistent: circuit dupli-cation improves over the baseline at all budgets, with class-specific selection providing the largest gains. 
+
+A.2 Per-class results across label bud-gets 
+
+Figures 8–13 show per-class F1 scores at all eval-uated label budgets. These complement Figure 5 by showing how per-class patterns evolve from low- to high-label settings. 15 Figure 7: Global accuracy across label budgets. Conventions as in Figure 4. The ConvNeXt fully supervised benchmark is 90.7%. 
+
+Figure 8: Per-class F1 scores at 5% label budget. 
+
+Figure 9: Per-class F1 scores at 10% label budget. 16 Figure 10: Per-class F1 scores at 15% label budget. 
+
+Figure 11: Per-class F1 scores at 5 seeds per class. 17 Figure 12: Per-class F1 scores at 10 seeds per class. 
+
+Figure 13: Per-class F1 scores at 20 seeds per class. 18

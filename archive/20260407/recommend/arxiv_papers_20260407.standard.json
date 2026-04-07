@@ -1,0 +1,614 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-07T20:44:56.529103+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 6,
+    "deep_cap": 8,
+    "deep_selected": 6,
+    "quick_candidates": 8,
+    "quick_skim_target": 13,
+    "quick_selected": 8
+  },
+  "deep_dive": [
+    {
+      "id": "2604.04287v1",
+      "title": "Entropy, Disagreement, and the Limits of Foundation Models in Genomics",
+      "abstract": "Foundation models in genomics have shown mixed success compared to their counterparts in natural language processing. Yet, the reasons for their limited effectiveness remain poorly understood. In this work, we investigate the role of entropy as a fundamental factor limiting the capacities of such models to learn from their training data and develop foundational capabilities. We train ensembles of models on text and DNA sequences and analyze their predictions, static embeddings, and empirical Fisher information flow. We show that the high entropy of genomic sequences -- from the point of view of unseen token prediction -- leads to near-uniform output distributions, disagreement across models, and unstable static embeddings, even for models that are matched in architecture, training and data. We then demonstrate that models trained on DNA concentrate Fisher information in embedding layers, seemingly failing to exploit inter-token relationships. Our results suggest that self-supervised training from sequences alone may not be applicable to genomic data, calling into question the assumptions underlying current methodologies for training genomic foundation models.",
+      "authors": [
+        "Maxime Rochkoulets",
+        "Lovro Vrček",
+        "Mile Šikić"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CL",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-05T22:04:01+00:00",
+      "link": "https://arxiv.org/pdf/2604.04287v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "investigates foundation models in genomics and DNA sequences",
+      "llm_evidence_cn": "研究基因组学和DNA序列中的基础模型",
+      "llm_evidence": "研究基因组学和DNA序列中的基础模型",
+      "canonical_evidence": "研究基因组学和DNA序列中的基础模型",
+      "llm_tldr_en": "Analyzes why genomic foundation models struggle due to high sequence entropy and prediction instability.",
+      "llm_tldr_cn": "分析了基因组基础模型因序列高熵和预测不稳定而面临的挑战。",
+      "llm_tldr": "分析了基因组基础模型因序列高熵和预测不稳定而面临的挑战。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.04848v1",
+      "title": "Addendum to: Bounds for survival probabilities in supercritical Galton-Watson processes and applications to population genetics",
+      "abstract": "In this addendum we extend Theorem 4.6 on the negative binomial distribution in `Bounds for survival probabilities in supercritical Galton-Watson processes and applications to population genetics' (Journal of Mathematical Biology 92:40, 2026; arXiv:2503.21403). We prove that the fractional linear lower bound to the negative binomial generating function derived there is indeed valid for every $x\\in[0,1]$, and not only for $x\\in[0,P^\\infty_{\\rm NB}]$, where $P^\\infty_{\\rm NB}$ is the extinction probability of the associated Galton-Watson process.",
+      "authors": [
+        "Reinhard Bürger"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR"
+      ],
+      "published": "2026-04-06T16:47:46+00:00",
+      "link": "https://arxiv.org/pdf/2604.04848v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Galton-Watson processes in population genetics",
+      "llm_evidence_cn": "群体遗传学中的Galton-Watson过程",
+      "llm_evidence": "群体遗传学中的Galton-Watson过程",
+      "canonical_evidence": "群体遗传学中的Galton-Watson过程",
+      "llm_tldr_en": "Mathematical extension of survival probability bounds for processes used in population genetics models.",
+      "llm_tldr_cn": "对群体遗传学模型中使用的Galton-Watson过程生存概率界的数学扩展。",
+      "llm_tldr": "对群体遗传学模型中使用的Galton-Watson过程生存概率界的数学扩展。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.03337v1",
+      "title": "Significance and Stability Analysis of Gene-Environment Interaction using RGxEStat",
+      "abstract": "Genotype-by-Environment (GxE) interactions influence the performance of genotypes across diverse environments, reducing the predictability of phenotypes in target environments. In-depth analysis of GxE interactions facilitates the identification of how genetic advantages or defects are expressed or suppressed under specific environmental conditions, thereby enabling genetic selection and enhancing breeding practices. This paper introduces two key models for GxE interaction research. Specifically, it includes significance analysis based on the mixed effect model to determine whether genes or GxE interactions significantly affect phenotypic traits; stability analysis, which further investigates the interactive relationships between genes and environments, as well as the relative superiority or inferiority of genotypes across environments. Additionally, this paper presents RGxEStat, a lightweight interactive tool, which is developed by the authors and integrates the construction, solution, and visualization of the aforementioned models. Designed to eliminate the need for breeders and agronomists to learn complex SAS or R programming, RGxEStat provides a user-friendly interface for streamlined breeding data analysis, significantly accelerating research cycles. Codes and datasets are available at https://github.com/mason-ching/RGxEStat.",
+      "authors": [
+        "Meng'en Qin",
+        "Zhe Li",
+        "Xiaohui Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-03T07:19:57+00:00",
+      "link": "https://arxiv.org/pdf/2604.03337v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "analysis of genotype-by-environment interactions for phenotypic traits",
+      "llm_evidence_cn": "分析基因型与环境相互作用对表型性状的影响",
+      "llm_evidence": "分析基因型与环境相互作用对表型性状的影响",
+      "canonical_evidence": "分析基因型与环境相互作用对表型性状的影响",
+      "llm_tldr_en": "Introduces RGxEStat for analyzing how gene-environment interactions affect phenotypic stability and breeding.",
+      "llm_tldr_cn": "介绍了用于分析基因与环境相互作用如何影响表型稳定性和育种的RGxEStat工具。",
+      "llm_tldr": "介绍了用于分析基因与环境相互作用如何影响表型稳定性和育种的RGxEStat工具。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "comparative genomics of complex traits",
+      "matched_requirement_id": "req-13",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.03506v1",
+      "title": "BioAlchemy: Distilling Biological Literature into Reasoning-Ready Reinforcement Learning Training Data",
+      "abstract": "Despite the large corpus of biology training text, the impact of reasoning models on biological research generally lags behind math and coding. In this work, we show that biology questions from current large-scale reasoning datasets do not align well with modern research topic distributions in biology, and that this topic imbalance may negatively affect performance. In addition, we find that methods for extracting challenging and verifiable research problems from biology research text are a critical yet underdeveloped ingredient in applying reinforcement learning for better performance on biology research tasks. We introduce BioAlchemy, a pipeline for sourcing a diverse set of verifiable question-and-answer pairs from a scientific corpus of biology research text. We curate BioAlchemy-345K, a training dataset containing over 345K scientific reasoning problems in biology. Then, we demonstrate how aligning our dataset to the topic distribution of modern scientific biology can be used with reinforcement learning to improve reasoning performance. Finally, we present BioAlchemist-8B, which improves over its base reasoning model by 9.12% on biology benchmarks. These results demonstrate the efficacy of our approach for developing stronger scientific reasoning capabilities in biology. The BioAlchemist-8B model is available at: https://huggingface.co/BioAlchemy.",
+      "authors": [
+        "Brian Hsu",
+        "Ozan Gökdemir",
+        "Carlo Siebenschuh",
+        "Bruce Parrello",
+        "Neil Getty",
+        "Thomas S. Brettin",
+        "Rick L. Stevens",
+        "Ian T. Foster",
+        "Nicholas Chia",
+        "Arvind Ramanathan"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-03T23:06:59+00:00",
+      "link": "https://arxiv.org/pdf/2604.03506v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for biological research tasks",
+      "llm_evidence_cn": "利用AI进行生物研究任务",
+      "llm_evidence": "利用AI进行生物研究任务",
+      "canonical_evidence": "利用AI进行生物研究任务",
+      "llm_tldr_en": "A pipeline to distill biological literature into training data for reinforcement learning reasoning models.",
+      "llm_tldr_cn": "一个将生物文献转化为强化学习推理模型训练数据的流水线。",
+      "llm_tldr": "一个将生物文献转化为强化学习推理模型训练数据的流水线。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.03630v1",
+      "title": "A Multimodal Foundation Model of Spatial Transcriptomics and Histology for Biological Discovery and Clinical Prediction",
+      "abstract": "Spatial transcriptomics (ST) enables gene expression mapping within anatomical context but remains costly and low-throughput. Hematoxylin and eosin (H\\&E) staining offers rich morphology yet lacks molecular resolution. We present \\textbf{\\ours} (\\textbf{S}patial \\textbf{T}ranscriptomics and hist\\textbf{O}logy \\textbf{R}epresentation \\textbf{M}odel), a foundation model trained on 1.2 million spatially resolved transcriptomic profiles with matched histology across 18 organs. Using a hierarchical architecture integrating morphological features, gene expression, and spatial context, STORM bridges imaging and omics through robust molecular--morphological representations. STORM enhances spatial domain discovery, producing biologically coherent tissue maps, and outperforms existing methods in predicting spatial gene expression from H\\&E images across 11 tumor types. The model is platform-agnostic, performing consistently across Visium, Xenium, Visium HD, and CosMx. Applied to 23 independent cohorts comprising 7,245 patients, STORM significantly improves immunotherapy response prediction and prognostication over established biomarkers, providing a scalable framework for spatially informed discovery and clinical precision medicine.",
+      "authors": [
+        "Jinxi Xiang",
+        "Siyu Hou",
+        "Yuchen Li",
+        "Ryan Quinton",
+        "Xiaoming Zhang",
+        "Feyisope Eweje",
+        "Xiangde Luo",
+        "Yijiang Chen",
+        "Zhe Li",
+        "Colin Bergstrom",
+        "Ted Kim",
+        "Sierra Willens",
+        "Francesca Maria Olguin",
+        "Matthew Abikenari",
+        "Andrew Heider",
+        "Sanjeeth Rajaram",
+        "Joel Neal",
+        "Maximilian Diehn",
+        "Xiang Zhou",
+        "Ruijiang Li"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-04T08:00:26+00:00",
+      "link": "https://arxiv.org/pdf/2604.03630v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "multimodal foundation model for spatial transcriptomics",
+      "llm_evidence_cn": "空间转录组学的多模态基础模型",
+      "llm_evidence": "空间转录组学的多模态基础模型",
+      "canonical_evidence": "空间转录组学的多模态基础模型",
+      "llm_tldr_en": "STORM is a foundation model bridging histology and spatial transcriptomics for biological discovery.",
+      "llm_tldr_cn": "STORM是一个连接组织学和空间转录组学的基础模型，用于生物学发现和临床预测。",
+      "llm_tldr": "STORM是一个连接组织学和空间转录组学的基础模型，用于生物学发现和临床预测。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.04239v1",
+      "title": "Good Rankings, Wrong Probabilities: A Calibration Audit of Multimodal Cancer Survival Models",
+      "abstract": "Multimodal deep learning models that fuse whole-slide histopathology images with genomic data have achieved strong discriminative performance for cancer survival prediction, as measured by the concordance index. Yet whether the survival probabilities derived from these models - either directly from native outputs or via standard post-hoc reconstruction - are calibrated remains largely unexamined.   We conduct, to our knowledge, the first systematic fold-level 1-calibration audit of multimodal WSI-genomics survival architectures, evaluating native discrete-time survival outputs (Experiment A: 3 models on TCGA-BRCA) and Breslow-reconstructed survival curves from scalar risk scores (Experiment B: 11 architectures across 5 TCGA cancer types). In Experiment A, all three models fail 1-calibration on a majority of folds (12 of 15 fold-level tests reject after Benjamini-Hochberg correction). Across the full 290 fold-level tests, 166 reject the null of correct calibration at the median event time after Benjamini-Hochberg correction (FDR = 0.05). MCAT achieves C-index 0.817 on GBMLGG yet fails 1-calibration on all five folds.   Gating-based fusion is associated with better calibration; bilinear and concatenation fusion are not. Post-hoc Platt scaling reduces miscalibration at the evaluated horizon (e.g., MCAT: 5/5 folds failing to 2/5) without affecting discrimination. The concordance index alone is insufficient for evaluating survival models intended for clinical use.",
+      "authors": [
+        "Sajad Ghawami"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-05T19:47:04+00:00",
+      "link": "https://arxiv.org/pdf/2604.04239v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI-driven multimodal cancer survival prediction using genomic data",
+      "llm_evidence_cn": "利用AI结合基因组数据进行多模态癌症生存预测",
+      "llm_evidence": "利用AI结合基因组数据进行多模态癌症生存预测",
+      "canonical_evidence": "利用AI结合基因组数据进行多模态癌症生存预测",
+      "llm_tldr_en": "Audits the calibration of AI models that integrate histopathology images and genomic data for cancer prognosis.",
+      "llm_tldr_cn": "审计了整合组织病理图像和基因组数据进行癌症预后的AI模型的校准性。",
+      "llm_tldr": "审计了整合组织病理图像和基因组数据进行癌症预后的AI模型的校准性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.03361v1",
+      "title": "The limits of bio-molecular modeling with large language models : a cross-scale evaluation",
+      "abstract": "The modeling of bio-molecular system across molecular scales remains a central challenge in scientific research. Large language models (LLMs) are increasingly applied to bio-molecular discovery, yet systematic evaluation across multi-scale biological problems and rigorous assessment of their tool-augmented capabilities remain limited. We reveal a systematic gap between LLM performance and mechanistic understanding through the proposed cross-scale bio-molecular benchmark: BioMol-LLM-Bench, a unified framework comprising 26 downstream tasks that covers 4 distinct difficulty levels, and computational tools are integrated for a more comprehensive evaluation. Evaluation on 13 representative models reveals 4 main findings: chain-of-thought data provides limited benefit and may even reduce performance on biological tasks; hybrid mamba-attention architectures are more effective for long bio-molecular sequences; supervised fine-tuning improves specialization at the cost of generalization; and current LLMs perform well on classification tasks but remain weak on challenging regression tasks. Together, these findings provide practical guidance for future LLM-based modeling of molecular systems.",
+      "authors": [
+        "Yaxin Xu",
+        "Yue Zhou",
+        "Tianyu Zhao",
+        "Fengwei An",
+        "Zhixiang Ren"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-03T17:38:42+00:00",
+      "link": "https://arxiv.org/pdf/2604.03361v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Evaluation of LLMs in bio-molecular discovery and multi-scale biological problems",
+      "llm_evidence_cn": "评估大语言模型在生物分子发现和多尺度生物问题中的应用",
+      "llm_evidence": "评估大语言模型在生物分子发现和多尺度生物问题中的应用",
+      "canonical_evidence": "评估大语言模型在生物分子发现和多尺度生物问题中的应用",
+      "llm_tldr_en": "Evaluates LLMs across 26 bio-molecular tasks to identify gaps in mechanistic understanding.",
+      "llm_tldr_cn": "评估大语言模型在26个生物分子任务中的表现，揭示其在机械理解方面的差距。",
+      "llm_tldr": "评估大语言模型在26个生物分子任务中的表现，揭示其在机械理解方面的差距。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2603.29557v1",
+      "title": "FlowPIE: Test-Time Scientific Idea Evolution with Flow-Guided Literature Exploration",
+      "abstract": "Scientific idea generation (SIG) is critical to AI-driven autonomous research, yet existing approaches are often constrained by a static retrieval-then-generation paradigm, leading to homogeneous and insufficiently divergent ideas. In this work, we propose FlowPIE, a tightly coupled retrieval-generation framework that treats literature exploration and idea generation as a co-evolving process. FlowPIE expands literature trajectories via a flow-guided Monte Carlo Tree Search (MCTS) inspired by GFlowNets, using the quality of current ideas assessed by an LLM-based generative reward model (GRM) as a supervised signal to guide adaptive retrieval and construct a diverse, high-quality initial population. Based on this population, FlowPIE models idea generation as a test-time idea evolution process, applying selection, crossover, and mutation with the isolation island paradigm and GRM-based fitness computation to incorporate cross-domain knowledge. It effectively mitigates the information cocoons arising from over-reliance on parametric knowledge and static literature. Extensive evaluations demonstrate that FlowPIE consistently produces ideas with higher novelty, feasibility and diversity compared to strong LLM-based and agent-based frameworks, while enabling reward scaling during test time.",
+      "authors": [
+        "Qiyao Wang",
+        "Hongbo Wang",
+        "Longze Chen",
+        "Zhihao Yang",
+        "Guhong Chen",
+        "Hamid Alinejad-Rokny",
+        "Hui Li",
+        "Yuan Lin",
+        "Min Yang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-03-31T10:37:47+00:00",
+      "link": "https://arxiv.org/pdf/2603.29557v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven autonomous research and scientific idea evolution",
+      "llm_evidence_cn": "AI驱动的自主研究与科学思想演化",
+      "llm_evidence": "AI驱动的自主研究与科学思想演化",
+      "canonical_evidence": "AI驱动的自主研究与科学思想演化",
+      "llm_tldr_en": "Proposes FlowPIE, a framework for AI-driven scientific idea generation and literature exploration.",
+      "llm_tldr_cn": "提出FlowPIE框架，利用AI驱动科学思想的生成与文献探索。",
+      "llm_tldr": "提出FlowPIE框架，利用AI驱动科学思想的生成与文献探索。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.03635v1",
+      "title": "A Generative Foundation Model for Multimodal Histopathology",
+      "abstract": "Accurate diagnosis and treatment of complex diseases require integrating histological, molecular, and clinical data, yet in practice these modalities are often incomplete owing to tissue scarcity, assay cost, and workflow constraints. Existing computational approaches attempt to impute missing modalities from available data but rely on task-specific models trained on narrow, single source-target pairs, limiting their generalizability. Here we introduce MuPD (Multimodal Pathology Diffusion), a generative foundation model that embeds hematoxylin and eosin (H&E)-stained histology, molecular RNA profiles, and clinical text into a shared latent space through a diffusion transformer with decoupled cross-modal attention. Pretrained on 100 million histology image patches, 1.6 million text-histology pairs, and 10.8 million RNA-histology pairs spanning 34 human organs, MuPD supports diverse cross-modal synthesis tasks with minimal or no task-specific fine-tuning. For text-conditioned and image-to-image generation, MuPD synthesizes histologically faithful tissue architectures, reducing Fréchet inception distance (FID) scores by 50% relative to domain-specific models and improving few-shot classification accuracy by up to 47% through synthetic data augmentation. For RNA-conditioned histology generation, MuPD reduces FID by 23% compared with the next-best method while preserving cell-type distributions across five cancer types. As a virtual stainer, MuPD translates H&E images to immunohistochemistry and multiplex immunofluorescence, improving average marker correlation by 37% over existing approaches. These results demonstrate that a single, unified generative model pretrained across heterogeneous pathology modalities can substantially outperform specialized alternatives, providing a scalable computational framework for multimodal histopathology.",
+      "authors": [
+        "Jinxi Xiang",
+        "Mingjie Li",
+        "Siyu Hou",
+        "Yijiang Chen",
+        "Xiangde Luo",
+        "Yuanfeng Ji",
+        "Xiang Zhou",
+        "Ehsan Adeli",
+        "Akshay Chaudhari",
+        "Curtis P. Langlotz",
+        "Kilian M. Pohl",
+        "Ruijiang Li"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "published": "2026-04-04T08:09:11+00:00",
+      "link": "https://arxiv.org/pdf/2604.03635v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "integrating histological and molecular RNA profiles using AI",
+      "llm_evidence_cn": "利用AI整合组织学和分子RNA图谱",
+      "llm_evidence": "利用AI整合组织学和分子RNA图谱",
+      "canonical_evidence": "利用AI整合组织学和分子RNA图谱",
+      "llm_tldr_en": "A generative foundation model that integrates histology and molecular RNA data for disease diagnosis.",
+      "llm_tldr_cn": "一种整合组织学和分子RNA数据用于疾病诊断的生成式基础模型。",
+      "llm_tldr": "一种整合组织学和分子RNA数据用于疾病诊断的生成式基础模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.00754v1",
+      "title": "Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention",
+      "abstract": "The whole-brain connectome of a fruit fly comprises over 130K neurons connected with a probability of merely 0.02%, yet achieves an average shortest path of only 4.4 hops. Despite being highly structured at the circuit level, the network's long-range connections are broadly distributed across brain regions, functioning as stochastic shortcuts that enable efficient global communication. Inspired by this observation, we propose Stochastic Attention (SA), a drop-in enhancement for sliding-window attention (SWA) that applies a random permutation to the token sequence before windowed attention and restores the original order afterward. This transforms the fixed local window into a stochastic global one within the same $O(nw)$ per-layer budget. Through depth, independently sampled permutations yield exponentially growing receptive fields, achieving full sequence coverage in $O(\\log_w n)$ layers versus $O(n/w)$ for SWA. We validate SA in two settings: pre-training language models from scratch, where a gated SA + SWA combination achieves the best average zero-shot accuracy, and training-free inference on Qwen3-8B and Qwen3-30B-A3B, where SA consistently outperforms SWA and matches or exceeds Mixture of Block Attention at comparable compute budgets. These results suggest that connectome-inspired stochastic routing is a practical primitive for improving the expressivity of efficient attention, complementary to existing linear and sparse approaches.",
+      "authors": [
+        "Zehao Jin",
+        "Yanan Sui"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-04-01T11:18:40+00:00",
+      "link": "https://arxiv.org/pdf/2604.00754v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Connectome-inspired randomized routing for neural networks",
+      "llm_evidence_cn": "受果蝇脑连接组启发的神经网络随机路由",
+      "llm_evidence": "受果蝇脑连接组启发的神经网络随机路由",
+      "canonical_evidence": "受果蝇脑连接组启发的神经网络随机路由",
+      "llm_tldr_en": "Proposes a bio-inspired attention mechanism based on the fruit fly connectome for efficient global communication.",
+      "llm_tldr_cn": "提出了一种受果蝇连接组启发的生物启发式注意力机制，用于高效的全局通信。",
+      "llm_tldr": "提出了一种受果蝇连接组启发的生物启发式注意力机制，用于高效的全局通信。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.03428v1",
+      "title": "Inference-Path Optimization via Circuit Duplication in Frozen Visual Transformers for Marine Species Classification",
+      "abstract": "Automated underwater species classification is constrained by annotation cost and environmental variation that limits the transferability of fully supervised models. Recent work has shown that frozen embeddings from self-supervised vision foundation models already provide a strong label-efficient baseline for marine image classification. Here we investigate whether this frozen-embedding regime can be improved at inference time, without fine-tuning or changing model weights.   We apply Circuit Duplication, an inference-time method originally proposed for Large Language Models, in which a selected range of transformer layers is traversed twice during the forward pass. We evaluate on the class-imbalanced AQUA20 benchmark using frozen DINOv3 embeddings under two settings: global circuit selection, where a single duplicated circuit is chosen for the full dataset, and class-specific circuit selection, where each species may receive a different optimal circuit. Both settings use simple semi-supervised downstream classifiers.   Circuit Duplication consistently improves over the standard frozen forward pass. At the maximum label budget, class-specific selection reaches a macro F1 of 0.875, closing the gap to the fully supervised ConvNeXt benchmark (0.889) to 1.4 points without any gradient-based training. Four species exceed their fully supervised reference, with octopus improving by +12.1 F1 points. Across all budgets, roughly 75% of classes prefer a class-specific circuit, indicating a genuinely class-dependent benefit. To our knowledge, this is the first application of Circuit Duplication to computer vision.",
+      "authors": [
+        "Thomas Manuel Rost"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-03T19:57:04+00:00",
+      "link": "https://arxiv.org/pdf/2604.03428v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for marine species classification",
+      "llm_evidence_cn": "利用AI进行海洋物种分类",
+      "llm_evidence": "利用AI进行海洋物种分类",
+      "canonical_evidence": "利用AI进行海洋物种分类",
+      "llm_tldr_en": "Optimizes visual transformers for label-efficient marine species classification.",
+      "llm_tldr_cn": "优化视觉Transformer以实现高效的海洋物种分类。",
+      "llm_tldr": "优化视觉Transformer以实现高效的海洋物种分类。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.03625v1",
+      "title": "Overcoming unfairness via repeated interactions in mini-ultimatum game",
+      "abstract": "Repeated interactions are ubiquitous and known to promote social behaviour. While research often focuses on cooperation in the Prisoner's Dilemma, experimental evidence suggests repeated interactions also foster fairness. This study addresses a gap in the literature by theoretically modelling the evolution of fairness within a repeated mini-ultimatum game. Specifically, we construct a repeated-game framework where offerers and accepters interact using reactive strategies. We then investigate whether fair reactive strategy pairs are resilient against unfair mutants in a two-species population. By analyzing short-term evolutionary stability via the concept of two-species evolutionary stable strategy, we identify a critical effective game length: below this value, fairness is promoted by offerers and accepters who comply with their partner's past actions. Above this critical value, fairness is maintained by `complier' offerers and fair accepters. We also show that specific reactive strategies effectively facilitate the emergence and sustenance of fairness in long-term mutation-selection dynamics. To this end, we develop a two-population stochastic dynamics model -- a generalization of classical adaptive dynamics -- that accounts for finite population sizes and non-local mutants in the reactive strategy space.",
+      "authors": [
+        "Prosanta Mandal",
+        "Arunava Patra",
+        "Sagar Chakraborty"
+      ],
+      "primary_category": "nlin.AO",
+      "categories": [
+        "nlin.AO",
+        "econ.TH",
+        "physics.bio-ph",
+        "q-bio.PE"
+      ],
+      "published": "2026-04-04T07:45:39+00:00",
+      "link": "https://arxiv.org/pdf/2604.03625v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolution of fairness in a two-species population",
+      "llm_evidence_cn": "双物种群体中公平性的演化",
+      "llm_evidence": "双物种群体中公平性的演化",
+      "canonical_evidence": "双物种群体中公平性的演化",
+      "llm_tldr_en": "Models the evolution of fairness using two-species evolutionary stable strategy concepts.",
+      "llm_tldr_cn": "利用双物种演化稳定策略概念模拟公平性的演化。",
+      "llm_tldr": "利用双物种演化稳定策略概念模拟公平性的演化。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.04155v1",
+      "title": "The Geometric Alignment Tax: Tokenization vs. Continuous Geometry in Scientific Foundation Models",
+      "abstract": "Foundation models for biology and physics optimize predictive accuracy, but their internal representations systematically fail to preserve the continuous geometry of the systems they model. We identify the root cause: the Geometric Alignment Tax, an intrinsic cost of forcing continuous manifolds through discrete categorical bottlenecks. Controlled ablations on synthetic dynamical systems demonstrate that replacing cross-entropy with a continuous head on an identical encoder reduces geometric distortion by up to 8.5x, while learned codebooks exhibit a non-monotonic double bind where finer quantization worsens geometry despite improving reconstruction. Under continuous objectives, three architectures differ by 1.3x; under discrete tokenization, they diverge by 3,000x. Evaluating 14 biological foundation models with rate-distortion theory and MINE, we identify three failure regimes: Local-Global Decoupling, Representational Compression, and Geometric Vacuity. A controlled experiment confirms that Evo 2's reverse-complement robustness on real DNA reflects conserved sequence composition, not learned symmetry. No model achieves simultaneously low distortion, high mutual information, and global coherence.",
+      "authors": [
+        "Prashant C. Raju"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.IT",
+        "q-bio.QM",
+        "stat.ML"
+      ],
+      "published": "2026-04-05T15:45:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.04155v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "scientific foundation models for biology",
+      "llm_evidence_cn": "生物学科学基础模型",
+      "llm_evidence": "生物学科学基础模型",
+      "canonical_evidence": "生物学科学基础模型",
+      "llm_tldr_en": "Analyzes how tokenization affects the geometric representation of biological systems in foundation models.",
+      "llm_tldr_cn": "分析了分词方式如何影响基础模型中生物系统的几何表示。",
+      "llm_tldr": "分析了分词方式如何影响基础模型中生物系统的几何表示。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.04273v1",
+      "title": "Loop-Extrusion Linkage: Spectral Ordering and Interval-Based Structure Discovery for Continuous Optimization",
+      "abstract": "The rapid growth of nature-inspired metaheuristics has exposed a persistent gap between metaphorical novelty and genuine algorithmic advancement. Motivated by the biophysics of chromatin loop extrusion -- a well-characterized genome-folding process driven by SMC motor complexes and conditional barriers -- we introduce the Loop-Extrusion Linkage (LEL) operator, a structure-learning wrapper that combines online variable-interaction estimation, spectral seriation via the Fiedler vector, and adaptive interval-based subspace search. LEL constructs a sparse interaction graph from successful optimization steps, derives a heuristic one-dimensional variable ordering, and generates overlapping evaluation subsets through stochastic interval growth modulated by learned boundary-crossing probabilities. We evaluate LEL on six synthetic diagnostic functions at d=96 designed to probe specific structural hypotheses -- contiguous blocks, permuted blocks, overlapping windows, banded chains, separable controls, and dense rotated couplings -- across 10^4 and 5 x 10^4 evaluation budgets with 15 independent seeds. Results are assessed via the Wilcoxon signed-rank test with Holm-Bonferroni correction and Vargha-Delaney A12 effect sizes. At 10^4 evaluations, Full LEL achieves the best median log-gap on 3 of 6 functions significantly outperforming all ablations and jSO on the structured tasks. At 5 x 10^4 evaluations, simpler ablations and baselines often surpass the full method, indicating that the adaptive barrier mechanism may over-constrain late-stage search on uniformly partitioned landscapes. The strongest supported finding is that learned spectral ordering consistently improves over graph-only grouping and random variable ordering, suggesting that interaction-graph seriation is the most valuable component of the proposed framework.",
+      "authors": [
+        "Eren Unlu"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE"
+      ],
+      "published": "2026-04-05T21:26:21+00:00",
+      "link": "https://arxiv.org/pdf/2604.04273v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Genome-folding process biophysics for optimization",
+      "llm_evidence_cn": "利用基因组折叠过程的生物物理学进行优化",
+      "llm_evidence": "利用基因组折叠过程的生物物理学进行优化",
+      "canonical_evidence": "利用基因组折叠过程的生物物理学进行优化",
+      "llm_tldr_en": "Uses chromatin loop extrusion biophysics to develop a structure-learning operator for continuous optimization.",
+      "llm_tldr_cn": "利用染色质环挤压生物物理学开发了一种用于连续优化的结构学习算子。",
+      "llm_tldr": "利用染色质环挤压生物物理学开发了一种用于连续优化的结构学习算子。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
