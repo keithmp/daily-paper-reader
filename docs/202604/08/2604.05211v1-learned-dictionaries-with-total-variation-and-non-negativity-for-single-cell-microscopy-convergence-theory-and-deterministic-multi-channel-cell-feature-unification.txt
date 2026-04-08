@@ -1,0 +1,2327 @@
+Title: Learned Dictionaries with Total Variation and Non-Negativity for Single-Cell Microscopy: Convergence Theory and Deterministic Multi-Channel Cell Feature Unification
+
+URL Source: https://arxiv.org/pdf/2604.05211v1
+
+Published Time: Wed, 08 Apr 2026 00:19:59 GMT
+
+Number of Pages: 38
+
+Markdown Content:
+# Learned Dictionaries with Total Variation and Non-Negativity for Single-Cell Microscopy: Convergence Theory and Deterministic Multi-Channel Cell Feature Unification 
+
+Erdem Altunta¸ cAegis Digital Technologies Neubertstr. 21, 01307 Dresden, Germany 
+
+erdem.altuntac@aegis-digital.tech https://www.aegis-digital.tech 
+
+April 8, 2026 
+
+Abstract 
+
+We introduce a variational dictionary-based learning algorithm with hybrid penalization for single-cell microscopy signals. The cost functional couples a least-squares data fidelity term with total-variation (TV) regularization and a non-negativity constraint, promoting edge-preserving, physically meaningful reconstructions under heterogeneous backgrounds and imaging artifacts. We formulate the learning task with an explicit unitary (orthonor-mal) constraint on the dictionary operator, ensuring well-conditioned representations and predictable numerical behavior. The resulting optimization problem is solved by an alter-nating proximal-gradient scheme that combines smooth updates with closed-form proximal steps for non-smooth penalties. We prove that the PDHG iterates converge to the regularized minimizer under an explicit step-size condition ( τ σ < 1/8), and that when the true solution satisfies a variational source condition (VSC), the regularized solution converges to the true solution at the optimal O(δ) rate under a noise-proportional regularization parameter choice 
+
+λ ∝ δ.Beyond reconstruction, we address the problem of multi-channel cell feature unification: given five imaging channels of the BSCCM dataset (DPC Left, Right, Top, Bottom, and Brightfield), we propose a deterministic approach to synthesize a unified single-cell repre-sentation. Rather than probabilistic latent encodings, we pursue a joint dictionary learning framework in which all five channels share a common dictionary, and the sparse codes across channels are combined to form a channel-agnostic cell descriptor. This deterministic unifica-tion strategy is mathematically transparent, reproducible, and directly compatible with the clinical requirement that AI systems for diagnostics must be interpretable and auditable. 
+
+# 1 Introduction 
+
+Dictionary learning offers a mathematically transparent mechanism for encoding high-dimensional signals through a compact collection of learned atoms. In computational microscopy, and in single-cell imaging in particular, achieving a useful representation requires balancing three com-peting demands: (i) sparsity (so that only a small number of atoms are activated per cell, isolating the most informative structures), (ii) structure preservation (maintaining cell bound-aries and subcellular texture across the representation), and (iii) numerical stability (sustaining reliable optimization over large, heterogeneous datasets). This manuscript introduces a new variational dictionary learning algorithm with hybrid 
+
+least-squares–TV penalization and non-negativity constraints [1]. Compared to our prior work with ℓ1 penalization [1], the present formulation makes two advances: it replaces the ℓ1 sparsity term with a hard non-negativity constraint on the reconstructed image, which more faithfully 1
+
+> arXiv:2604.05211v1 [math.NA] 6 Apr 2026
+
+encodes the physical nature of microscopy intensity data; and it replaces the fixed DCT-II dictionary of the prior work with a learned , data-adapted dictionary obtained via alternating Procrustes SVD updates, which converges to the optimal orthonormal basis for the training data (see Section 7.8). Beyond reconstruction, this manuscript addresses a second contribution: a 
+
+deterministic framework for unifying multi-channel cell features from the five BSCCM imaging channels into a single cell descriptor (see Section 9). This stands in contrast to probabilistic approaches such as the scVI framework [13, 14], and is motivated by the clinical requirement that AI systems for diagnostics must be reproducible, interpretable, and auditable. The experimental focus is the success rate of the learning algorithm when applied to single-cell images from BSCCM (see Section 8). 
+
+# 2 Related Work and Prior Contributions 
+
+The present manuscript builds on a line of research in primal–dual proximal splitting, varia-tional regularization, and dictionary-based modeling, with a particular focus on subdifferential (optimality) characterizations of solutions and explicit, verifiable step-size choices .
+
+Primal-dual splitting and subdifferential characterizations. The foundational algo-rithmic ingredients of this work were established in [2], where a pair of primal–dual splitting algorithms for Bregman-iterated variational regularization was constructed and analyzed via the subdifferential inclusions associated with the nonsmooth penalty terms. Systematic in-vestigation of parameter selection for these primal–dual schemes followed in [3], which identi-fied explicit admissible step-size ranges and provided stability-oriented guidance. The present manuscript adopts the same organizing principle: the energy functional is retained in its original (non-Bregman) variational form, and algorithmic step-size conditions are derived directly from operator-norm bounds on the discrete gradient. 
+
+Dictionary learning and sparse representations in sensing. Sparse representations and dictionary learning arise naturally wherever a signal model must be adapted to empirical data statistics rather than fixed by a priori design. In the LiDAR depth-completion setting, for instance, convolutional sparse coding and data-driven dictionary learning were shown to improve reconstruction quality under realistic automotive conditions [4]. The present work occupies a complementary position: rather than targeting a specific sensing modality, we develop a unified proximal learning–inference framework in which TV regularization and a hard non-negativity constraint are coupled with dictionary-based reconstruction of single-cell images. 
+
+Image-based single-cell profiling and multi-channel representation learning. A com-plementary line of work addresses the problem of constructing compact, informative represen-tations of single cells from high-throughput microscopy. Moshkov et al. [16] proposed a weakly supervised convolutional network trained on a large multi-study dataset to learn treatment-effect representations from cell images, demonstrating that data diversity and causal modeling together improve downstream profiling performance. In a different direction, unsupervised gen-erative approaches have been explored for morphological profiling without treatment labels: variational autoencoders with orientation-invariance constraints have been applied to extract cell shape descriptors for clustering and outlier detection in large imaging datasets [17]. Both lines of work share the goal of learning a low-dimensional cell representation from image data, but rely on deep neural networks with stochastic latent variables, offering no closed-form recon-struction and no norm-bounded error guarantees on the inferred descriptor. The present work takes a different approach: dictionary atoms are interpretable structural primitives with an ex-plicit visual meaning, the code a(c) 
+
+> j
+
+is the unique minimizer of a convex variational problem for 2each cell and channel, and the reconstruction error ∥x(c) 
+
+> j
+
+− Da (c) 
+
+> j
+
+∥2 satisfies provable Lipschitz stability bounds under data perturbation (Theorem 1). To the best of our knowledge, no exist-ing image-based single-cell profiling method provides this combination of variational uniqueness, deterministic reproducibility, and explicit convergence guarantees for the multi-channel setting. 
+
+Applied sensing and computational modeling. Primal–dual ideas and learned represen-tations reach beyond inverse problems into hardware-centric system design and neuroscience-motivated computation. Coherent LiDAR system architecture for long-range automotive appli-cations is treated in [5], while a neurogenic-inspired model for learning and memory is developed in [6]. These contributions span distinct application areas, yet each pairs a mathematically prin-cipled model with explicit computational schemes amenable to analysis under verifiable stability conditions—the same program pursued here for single-cell microscopy. 
+
+Relation to existing variational and dictionary-learning approaches. Total-variation regularization for imaging inverse problems has a rich history tracing back to the Rudin–Osher– Fatemi model and its subsequent algorithmic realizations, including primal–dual splitting meth-ods such as the PDHG framework of Chambolle and Pock, which furnishes an efficient and con-vergent solver for nonsmooth convex objectives. Dictionary learning, by contrast, has developed largely in a purely learning-driven paradigm—block-coordinate descent, stochastic updates— with limited emphasis on the well-posedness and stability of the underlying variational problem. Works that combine sparse coding with variational reconstruction frequently treat the learning component heuristically, or establish convergence only for the inner optimization subproblem, without a subdifferential characterization of the full variational limit at which iterates converge. Additionally, many dictionary-learning analyses operate in a nonconvex setting that precludes uniqueness and stability guarantees for the reconstruction. 
+
+Novelty of the present work. Three features distinguish this manuscript from the forego-ing literature. First, dictionary learning is embedded inside a rigorously analyzed variational framework: the full energy functional—rather than a surrogate or relaxation—is the object of analysis, and its subdifferential characterization is derived independently of the numerical algorithm, so it remains valid regardless of how the minimizer is computed. Second, the uni-tary structure of the dictionary is exploited together with the spectral bound ∥∇∥ 2 ≤ 8 to obtain fully explicit step-size conditions for PDHG, and the strong convergence of the iterates to the unique variational minimizer is proved with an O(1 /k ) ergodic primal-dual gap bound. Third, algorithmic convergence is connected to variational stability under data perturbations: a VSC-based analysis yields noise-dependent stopping rules and quantifies the precise inter-play among learning, inference, and regularization. This combination of variational analysis, explicit primal–dual convergence theory, and data-adapted dictionary learning sets the pro-posed approach apart from prior treatments that are either purely algorithmic or analytically incomplete. 
+
+# 3 Mathematical Model and Notation 
+
+Let each single-cell measurement be vectorized as xj ∈ Rn for j = 1 , . . . , N . We seek a dictionary operator 
+
+D = [ d1, . . . , d K ] ∈ Rn×K ,
+
+and sparse codes aj ∈ RK such that 
+
+xj ≈ Da j .
+
+33.1 Unitary (orthonormal) dictionary constraint 
+
+A central design choice of this paper is to enforce a unitary (orthonormal) property for the dictionary operator: 
+
+D⊤D = IK , (1) i.e., the columns of D form an orthonormal system (a point on the Stiefel manifold). Enforcing this constraint yields three practical benefits: (i) it eliminates degenerate rescaling between D
+
+and aj , removing an otherwise pervasive ambiguity; (ii) it improves the conditioning of the learned representation and provides predictable gradient magnitudes throughout the learning loop; and (iii) it makes norm bounds transparent—in particular, ∥Da ∥ = ∥a∥ whenever K ≤ n
+
+and D has orthonormal columns, which underpins the operator-norm estimate in Lemma 3. 
+
+# 4 Hybrid Dictionary Learning Objective 
+
+We propose a hybrid objective that couples least-squares data fidelity, TV-regularized image structure, and a non-negativity constraint on the reconstructed cell image. For each sample xj ,define the per-sample energy 
+
+E(D, a j ; xj ) = 12 ∥xj − Da j ∥22 + λTV TV  Da j
+
+ + ι+
+
+ Da j
+
+, (2) where λTV ≥ 0 promotes piecewise smoothness (edge-preserving) on the reconstructed cell image, and ι+ is the indicator function of the non-negative orthant, 
+
+ι+(u) := 
+
+(
+
+0 if ui ≥ 0 for all i, 
+
++∞ otherwise. (3) The non-negativity constraint ι+(Da j ) encodes the physical fact that cell image intensities are non-negative, and has been shown to improve reconstruction stability in inverse problems with non-smooth penalties [3]. Compared to the ℓ1 formulation of our prior work [1], the present manuscript introduces two advances. First, the ℓ1 sparsity term is replaced by TV penalization together with a hard non-negativity constraint on the reconstructed image Da j , yielding a more physically faithful model: cell fluorescence and brightfield intensities are inherently non-negative, and the constraint is exact rather than a soft penalty. Second, and equally importantly, the prior work used a fixed DCT-II dictionary D0 throughout; the dictionary was never updated from its initialization. The present manuscript instead learns the dictionary from the training data via the Procrustes SVD update (Section 7.8): at convergence, D⋆ spans the top-K principal subspace of the TV-denoised training images, which minimises the reconstruction error P 
+
+> j
+
+∥xj −
+
+Da j ∥2 over all orthonormal dictionaries (Remark 8). The full learning problem reads min  
+
+> D, {aj}Nj=1
+> N
+
+X
+
+> j=1
+
+E(D, a j ; xj ) s.t. D⊤D = IK . (4) 
+
+Total variation. For an image u ∈ Rh×w we use the (isotropic) discrete TV TV( u) = X
+
+> p
+
+q
+
+(∇xu)2 
+
+> p
+
++ ( ∇yu)2
+
+> p
+
+,
+
+with standard forward differences and appropriate boundary handling. 45 Well-posedness of the variational problem 
+
+We first establish existence and uniqueness of minimizers of the variational problem 
+
+E(y; x) = 12 ∥y − x∥22 + J(y), (5) independently of the numerical algorithm used for its solution. Stability of the minimizer with respect to data perturbations is studied in Section 6 via a variational source condition (VSC) analysis. 
+
+Theorem 1 (Existence and uniqueness of minimizers) . Let x ∈ Rn be given, let D ∈ Rn×K be a unitary dictionary with D⊤D = IK , and let 
+
+J(y) = λTV TV( y) + ι+(y), (6) 
+
+where λTV ≥ 0 and ι+ is the indicator of the non-negative orthant (3) . Then E(·; x) admits a 
+
+unique minimizer y(x) ∈ Rn.Proof. Existence. The indicator ι+ is proper, convex, and lower semicontinuous (l.s.c.) because 
+
+Rn 
+
+> +
+
+is a nonempty closed convex set. The map y 7 → TV( y) is convex and continuous. Hence J
+
+is proper, convex, and l.s.c., and so is E(·; x) as a sum of such functions. Moreover, E(y; x) ≥ 
+
+> 14
+
+∥y∥22 − 12 ∥x∥22 → +∞ as ∥y∥2 → ∞ , so E(·; x) is coercive. By the direct method in the calculus of variations, E(·; x) attains its minimum. 
+
+Uniqueness. The quadratic fidelity term 12 ∥y − x∥22 is 1-strongly convex, and J is convex, so E(·; x) is strictly convex. A strictly convex functional has at most one minimizer; combined with existence, this gives uniqueness. We employ a primal-dual splitting scheme to compute the unique minimizer of E(·; x); convergence of the iterates is established in Section 6. 
+
+Theorem 2 (Subdifferential Characterization and Proximal Fixed-Point System) . Let xj ∈ Rn
+
+be a given datum, let D ∈ Rn×K be a fixed unitary dictionary with D⊤D = IK , and let h := ι+
+
+be the indicator of the non-negative orthant. Let ∇ denote the 2D discrete forward-difference gradient and set g(v) := λTV ∥v∥2,1 (the isotropic TV norm on the gradient field, with ∥v∥2,1 := P 
+
+> ℓ
+
+∥vℓ∥2 pixelwise). Define the energy 
+
+Eα(xα, y ) := 12 ∥xα − y∥22 + α TV( xα) + h(xα), α := λTV > 0, (7) 
+
+and let x⋆α be the unique minimizer of Eα( · , y ) (existence and uniqueness follow from Theo-rem 1). Let μ > 0 and ν > 0 be the primal and dual step-lengths. Then the following hold. 1. (First-order optimality.) The necessary and sufficient condition for x⋆α is the subdif-ferential inclusion 
+
+0 ∈ (x⋆α − y) + ∇⊤ α ∂ ∥ · ∥ 2,1(∇x⋆α) + ∂h (x⋆α), (8) 
+
+which follows from the subdifferential sum rule and the convex chain rule ∂(g ◦ ∇ )( x) = 
+
+∇⊤∂g (∇x) (valid because ∇⊤∇ is bounded and g is continuous on the range of ∇). Equiv-alently, there exist qα ∈ α ∂ ∥ · ∥ 2,1(∇x⋆α) and zα ∈ ∂h (x⋆α) such that 
+
+0 = ( x⋆α − y) + ∇⊤qα + zα. (9) 
+
+2. (Proximal fixed-point for h, with primal step-length μ.) Multiplying (9) by μ > 0
+
+and rearranging gives 
+
+x⋆α − μ(x⋆α − y) + ∇⊤qα
+
+ − x⋆α ∈ μ ∂h (x⋆α), (10) 5which, by the proximal equivalence ˜u−uμ ∈ ∂h (u) ⇔ u = prox μh (˜ u), yields 
+
+x⋆α = prox μh 
+
+h
+
+x⋆α − μ (x⋆α − y) + ∇⊤qα
+
+i
+
+= Π Rn
+
+> +
+
+h
+
+x⋆α − μ (x⋆α − y) + ∇⊤qα
+
+i
+
+, (11) 
+
+where the last equality uses prox μι + (c) = Π Rn 
+
+> +
+
+(c) (componentwise max {ci, 0}). 3. (Dual proximal fixed-point for the TV term, with dual step-length ν.) From 
+
+qα ∈ α ∂ ∥ · ∥ 2,1(∇x⋆α), the Fenchel identity gives ∇x⋆α ∈ α ∂ ∥ · ∥ ∗
+
+> 2,1
+
+(qα), equivalently 
+
+0 ∈ −∇ x⋆α + α ∂ ∥ · ∥ ∗
+
+> 2,1
+
+(qα). (12) 
+
+Multiplying by ν > 0 and rearranging: qα − (qα + ν∇x⋆α) ∈ να ∂ ∥ · ∥ ∗
+
+> 2,1
+
+(qα), so by the proximal equivalence, 
+
+qα = prox να ∥·∥ ∗
+
+> 2,1
+
+ qα + ν ∇x⋆α
+
+. (13) 
+
+Since α ∥ · ∥ ∗
+
+> 2,1
+
+(p) = ι{∥ pℓ∥2≤α, ∀ℓ}(p), the proximal map prox να ∥·∥ ∗ 
+
+> 2,1
+
+is the pointwise projec-tion onto the Euclidean ball of radius α at each pixel ℓ: (qα)ℓ ← (qα)ℓ/ max {1, ∥(qα)ℓ∥2/α }.4. (Coupled proximal fixed-point system.) Combining Parts 2 and 3, the minimizer x⋆α
+
+and dual variable qα are jointly characterized by 
+
+
+
+x⋆α = Π Rn
+
+> +
+
+h
+
+x⋆α − μ (x⋆α − y) + ∇⊤qα
+
+i
+
+,qα = prox να ∥·∥ ∗
+
+> 2,1
+
+ qα + ν ∇x⋆α
+
+,
+
+(14) 
+
+together with the stationarity relation (9) . The step-lengths μ, ν > 0 must satisfy the stability condition 
+
+μν ∥∇∥ 2 < 1, (15) 
+
+which, using the spectral bound ∥∇∥ 2 ≤ 8, is guaranteed when μν < 1/8. The coupled system (14) directly anticipates the alternating proximal-gradient learning algorithm de-veloped in Section 7. Proof. Part 1. The energy Eα( · , y ) is proper, convex, and lower semicontinuous. By the subdifferential sum rule and the convex chain rule ∂(g ◦ ∇ )( x) = ∇⊤∂g (∇x) (valid since ∇ is a bounded linear operator and g(v) = α∥v∥2,1 is continuous on R2n), the first-order optimality condition at x⋆α reads 0 ∈ (x⋆α − y) + ∇⊤ α ∂ ∥ · ∥ 2,1(∇x⋆α) + ∂h (x⋆α).
+
+Introducing qα ∈ α ∂ ∥ · ∥ 2,1(∇x⋆α) and zα ∈ ∂h (x⋆α) yields (8) and (9). 
+
+Part 2. Starting from (9) and multiplying through by μ > 0: 0 = μ(x⋆α − y) + ∇⊤qα
+
+ + μz α
+
+⇐⇒ − μz α ∈ μ(x⋆α − y) + ∇⊤qα
+
+
+
+⇐⇒ x⋆α − x⋆α − μ(( x⋆α − y) + ∇⊤qα) ∈ μ ∂h (x⋆α) (zα ∈ ∂h (x⋆α)) 
+
+⇐⇒ x⋆α = prox μh 
+
+h
+
+x⋆α − μ (x⋆α − y) + ∇⊤qα
+
+i
+
+,
+
+where the last step uses the proximal equivalence u = prox μJ (˜ u) ⇔ ˜u−uμ ∈ ∂J (u). Since h = ι+,we have prox μι + (c) = Π Rn 
+
+> +
+
+(c), giving (11). 6Part 3. Starting from qα ∈ α ∂ ∥ · ∥ 2,1(∇x⋆α) and applying the Fenchel identity with ν > 0: 
+
+qα ∈ α ∂ ∥ · ∥ 2,1(∇x⋆α) ⇐⇒ ∇ x⋆α ∈ α ∂ ∥ · ∥ ∗
+
+> 2,1
+
+(qα) (Fenchel identity) 
+
+⇐⇒ ν∇x⋆α ∈ να ∂ ∥ · ∥ ∗
+
+> 2,1
+
+(qα)
+
+⇐⇒ qα − (qα + ν∇x⋆α) ∈ να ∂ ∥ · ∥ ∗
+
+> 2,1
+
+(qα)
+
+⇐⇒ qα = prox να ∥·∥ ∗ 
+
+> 2,1
+
+(qα + ν ∇x⋆α),
+
+where the last step uses the proximal equivalence. This gives (13). 
+
+Part 4. Combining Parts 2 and 3 gives the coupled system (14). The stability condition (15) follows from the standard convergence criterion for PDHG [9, 8]: the product μν of primal and dual step-lengths must satisfy μν ∥∇∥ 2 < 1. Using the spectral bound ∥∇∥ 2 ≤ 8 from Lemma 3, a sufficient condition is μν < 1/8. 
+
+# 6 Step-Size Stability and VSC-Based Convergence Rates 
+
+This section complements the proximal splitting viewpoint used throughout the manuscript by (i) stating an explicit step-size stability condition for a Chen–Loris / PDHG-type primal–dual scheme tailored to the hybrid regularizer, and (ii) deriving a short variational source condition (VSC) based stability estimate with an explicit convergence rate. 
+
+6.1 Fixed-dictionary variational model and stacked operator 
+
+Fix a unitary dictionary D ∈ Rn×n with D⊤D = I. For a datum x ∈ Rn we consider the energy in the image variable y ∈ Rn
+
+E(y; x) = 12 ∥y − x∥22 + J(y), J(y) := λTV TV( y) + ι+(y). (16) This is consistent with the per-sample energy (2) and the regularizer defined in Theorem 1. Let 
+
+∇ denote the (2D) discrete forward-difference gradient and set the stacked linear operator 
+
+Ky := ∇y. (17) With this notation, the TV term of J(y) acts on Ky , while ι+(y) acts directly on y and is handled via a non-negativity projection in the primal proximal step. 
+
+6.2 Step-size condition and iterative form of the fixed-point system 
+
+The coupled fixed-point system (14) is the starting point for the iterative algorithm. At iteration 
+
+k, the primal variable yk and dual variable qk are updated by applying the two proximal maps alternately: 
+
+qk+1 = prox να ∥·∥ ∗
+
+> 2,1
+
+ qk + ν ∇yk, (18) 
+
+yk+1 = Π Rn
+
+> +
+
+h
+
+yk − μ (yk − x) + ∇⊤qk+1 i
+
+, (19) ¯yk+1 = yk+1 + θ (yk+1 − yk), θ ∈ [0 , 1] , (20) with extrapolation parameter θ. The primal proximal map for h = ι+ is the non-negativity projection: prox μι + (c) = Π Rn 
+
+> +
+
+(c) (componentwise max {ci, 0}), (21) and the dual proximal map is the pixelwise Euclidean-ball projection of radius α:  prox να ∥·∥ ∗ 
+
+> 2,1
+
+(q) 
+
+> ℓ
+
+=
+
+qℓ/ max {1, ∥qℓ∥2/α }.The stability condition (15) ( μν ∥∇∥ 2 < 1, i.e., μν < 1/8) for this iteration corresponds to the general PDHG criterion τ σ ∥K∥2 < 1 with K = ∇. We now establish the explicit bound on 
+
+∥K∥ that makes this condition computable. 7Lemma 3 (Bound on ∥K∥ for the forward-difference gradient) . Let ∇ be the 2D forward-difference gradient on a rectangular grid (with any standard boundary convention), and set 
+
+K := ∇ (so that Ky = ∇y). Then 
+
+∥K∥2 = ∥∇∥ 2 ≤ 8. (22) 
+
+Hence the sufficient step-size condition for the TV–non-negativity PDHG scheme is 
+
+τ σ < 1
+
+∥K∥2 ≤ 18 . (23) 
+
+Proof. For any y, by definition of K = ∇,
+
+∥Ky ∥2 = ∥∇ y∥2 ≤ ∥∇∥ 2 ∥y∥2 ,
+
+which yields ∥K∥2 ≤ ∥∇∥ 2 upon taking the supremum over ∥y∥ = 1. The bound ∥∇∥ 2 ≤ 8 is the standard spectral estimate for the discrete forward-difference gradient in 2D (equivalently, the maximal eigenvalue of the discrete Laplacian ∇⊤∇ is bounded by 8). 
+
+Theorem 4 (Safe explicit step-size condition) . Under the assumptions of Lemma 3, the PDHG scheme for the TV–non-negativity energy (16) is guaranteed to converge when the step sizes satisfy 
+
+τ σ < 1
+
+∥K∥2 ≤ 18 . (24) 
+
+Note that compared to Section 5, the stacked operator here is K = ∇ only (no D⊤ component, since ι+ is handled in the primal step directly). In particular, for any θ ∈ [0 , 1] , the iterates 
+
+(18) –(20) converge to a saddle point of the associated primal–dual formulation and yk converges to the unique minimizer of (16) .
+
+6.3 A short VSC section with a concrete index function and explicit rates 
+
+We now derive a stability estimate (with explicit convergence rate) for minimizers of the varia-tional model (16) under data perturbations. 
+
+Noisy and noiseless data. Write x† for the ideal noiseless datum and xδ for the observed noisy datum, satisfying 
+
+xδ − x† 
+
+> 2
+
+≤ δ. (25) Denote by y† the minimizer of E(·; x†) and by yδ the minimizer of E(·; xδ). 
+
+Variational source condition (VSC). An index function Ψ : [0 , ∞) → [0 , ∞) satisfies Ψ(0) = 0 and is continuous and monotone nondecreasing. Given noiseless data x† and its minimizer y† of E(·; x†), we say J fulfills a variational source condition at y† with index function Ψ if there exists a subgradient ξ† ∈ ∂J (y†) such that 
+
+D
+
+ξ†, y † − y
+
+E
+
+≤ Ψ  y − y†
+
+> 2
+
+ for all y ∈ Rn. (26) Throughout this paper we specialize to the quadratic index function Ψ( t) = c t 2, t ≥ 0, 0 < c < 1, (27) whose quadratic growth is compatible with the 12 ∥y − x∥22 fidelity term and leaves the original energy functional unchanged. 8Remark 1 (VSC as a hypothesis on the geometry of J). The quadratic index function (27) is a hypothesis on the triple ( J, y †, ξ †), not a consequence of convexity alone: not every regularizer J
+
+and true solution y† will satisfy it. For the TV–non-negativity regularizer J(y) = λTV TV( y) + 
+
+ι+(y), the condition (27) can be verified when y† has a source subgradient of the form ξ† ∈
+
+range( ∇⊤) with ξ† bounded relative to λTV , and when y† lies in the interior of Rn 
+
+> +
+
+(non-degenerate active set for the non-negativity constraint); see, e.g., [9] and references therein. When this geometric condition is in doubt it should be verified or stated explicitly as a hypothesis of the problem at hand. 
+
+Theorem 5 (Linear stability rate under quadratic VSC) . Under (25) and the VSC (27) , the minimizers satisfy 
+
+yδ − y† 
+
+> 2
+
+≤ δ
+
+1 − c , (28) 
+
+i.e., yδ − y† 
+
+> 2
+
+= O(δ) as δ → 0.Proof. Part A: cross-term inequality from the two optimality conditions. Since yδ minimizes 
+
+E(·; xδ), 12 yδ − xδ 22 + J(yδ) ≤ 12 y† − xδ 22 + J(y†). (29) Since y† minimizes E(·; x†), 12 y† − x† 22 + J(y†) ≤ 12 yδ − x† 22 + J(yδ). (30) Adding these two inequalities cancels J(yδ) and J(y†). Expanding the four squared norms, collecting terms in h = yδ − y†, and using ξ† ∈ ∂J (y†) gives 
+
+∥h∥22 ≤
+
+D
+
+xδ − x†, h 
+
+E
+
++
+
+D
+
+ξ†, y † − yδE
+
+. (31) 
+
+Part B: bound the dual pairing via the VSC. Applying (27) with y = yδ:
+
+D
+
+ξ†, y † − yδE
+
+≤ Ψ( ∥h∥2) = c ∥h∥22 . (32) Inserting (32) into (31) and rearranging: (1 − c) ∥h∥22 ≤
+
+D
+
+xδ − x†, h 
+
+E
+
+. (33) 
+
+Part C: Cauchy–Schwarz and noise bound. By Cauchy–Schwarz and (25), 
+
+D
+
+xδ − x†, h 
+
+E
+
+≤ xδ − x† 
+
+> 2
+
+∥h∥2 ≤ δ ∥h∥2 . (34) Combining (33) and (34) yields (1 − c) ∥h∥22 ≤ δ ∥h∥2 . If h̸ = 0, dividing by (1 − c) ∥h∥2 gives (28); if h = 0 the claim is trivial. 
+
+Energy gap at the noisy datum. The 1-strong convexity of E(·; xδ) (inherited from the quadratic fidelity term) translates the primal distance bound (28) into a quadratic excess-energy estimate evaluated at the same noisy datum: 0 ≤ E(yδ; xδ) − E(y†; xδ) ≤ 12 yδ − y† 22 ≤ 12(1 − c)2 δ2. (35) Hence the excess energy at the noisy datum decays quadratically: E(yδ; xδ) − E(y†; xδ) = O(δ2)as δ → 0. 96.4 Noise-Dependent Stopping Rule and PDHG Termination 
+
+The stability estimate of Theorem 5 concerns the exact minimizer yδ of the noisy problem. In practice the PDHG iteration is stopped at a finite index k(δ). The following theorem makes explicit how the optimization error and the data-perturbation error combine into a single re-construction bound, thereby justifying the noise-dependent stopping rule used in the algorithm. 
+
+Theorem 6 (Noise-dependent stability with PDHG stopping) . Assume the quadratic VSC (27) 
+
+holds with constant c ∈ (0 , 1) and that xδ − x† 
+
+> 2
+
+≤ δ. Let yδ be the exact minimizer of E(·; xδ),and let yk(δ)(xδ) denote the PDHG iterate at iteration k(δ). By Theorem 10, yk(xδ) → yδ as 
+
+k → ∞ . Suppose the algorithm is stopped at index k(δ) such that the optimization error satisfies 
+
+yk(δ)(xδ) − yδ 
+
+> 2
+
+≤ C1 δ, (36) 
+
+for some constant C1 > 0. Then the total reconstruction error satisfies 
+
+yk(δ)(xδ) − y† 
+
+> 2
+
+≤
+
+
+
+C1 + 11 − c
+
+
+
+δ =: C δ, (37) 
+
+i.e., yk(δ)(xδ) − y† 
+
+> 2
+
+= O(δ) as δ → 0, with combined constant C = C1 + (1 − c)−1.Proof. Apply the triangle inequality to split the total error into two components: 
+
+yk(δ)(xδ) − y† 
+
+> 2
+
+≤ yk(δ)(xδ) − yδ
+
+> 2
+
+| {z }
+
+> optimization error
+
++ yδ − y†
+
+> 2
+
+| {z }
+
+> data-perturbation error
+
+. (38) The stopping rule (36) directly controls the first term: yk(δ)(xδ) − yδ 
+
+> 2
+
+≤ C1δ. Theorem 5 controls the second: yδ − y† 
+
+> 2
+
+≤ δ/ (1 − c). Summing these two bounds gives (37). 
+
+Remark 2 (Practical stopping criterion) . In practice, the exact minimizer yδ is unknown, so (36) cannot be checked directly. Instead we use a computable surrogate based on the primal-dual gap or the iterate change (cf. (74)–(76)): 
+
+yk+1 (xδ) − yk(xδ) 2 ≤ ε, ε ∝ δ. (39) By the O(1 /k ) convergence rate from Theorem 10, the required iteration count is k(δ) ≈ C′/ε 
+
+for a problem-dependent constant C′, so the overall scheme remains O(δ) accurate. 
+
+6.5 Convergence of the regularized solution to the true solution 
+
+We now state and prove the main convergence theorem, which connects the subdifferential characterization of the minimizer (Theorem 2) with the VSC-based stability estimate to show that the regularized solution yδ converges to the true solution y† as the noise level δ → 0. 
+
+Theorem 7 (VSC-based convergence of the regularized solution) . Let x† ∈ Rn be noiseless data with true solution y† = arg min y E(y; x†), and let xδ satisfy xδ − x† 
+
+> 2
+
+≤ δ. Let yδ =arg min y E(y; xδ) be the regularized solution for the noisy datum. Denote by (q†, z †) the dual variables at y† satisfying the subdifferential optimality system (8) –(9) from Theorem 2, i.e., 
+
+0 = y† − x† + ∇⊤q† + z†, q† ∈ λTV ∂ TV( y†), z† ∈ ∂ι +(y†). (40) 
+
+Suppose the regularizer J satisfies the quadratic VSC (27) at y† with constant c ∈ (0 , 1) , wit-nessed by the subgradient 
+
+ξ† := −(∇⊤q† + z†) = y† − x† ∈ ∂J (y†). (41) 
+
+Then, as δ → 0:
+
+10 1. (Strong convergence.) 
+
+yδ − y† 
+
+> 2
+
+≤ δ
+
+1 − c −→ 0. (42) 
+
+2. (Convergence of the regularizer.) 
+
+J(yδ) −→ J(y†). (43) 
+
+3. (Convergence of the dual certificates.) The dual variables (qδ, z δ) at yδ satisfy 
+
+qδ − q† 
+
+> 2
+
++ zδ − z† 
+
+> 2
+
+−→ 0 as δ → 0, (44) 
+
+provided the dual optimality maps are continuous at (y†, q †, z †).4. (Rate.) All three convergences are O(δ):
+
+yδ − y† 
+
+> 2
+
++ J(yδ) − J(y†) = O(δ) as δ → 0. (45) 
+
+Proof. Part 1 (Strong convergence). This is a direct consequence of Theorem 5 (linear stability rate under quadratic VSC), applied with the witness ξ† ∈ ∂J (y†) identified in (41). Specifically, from (28), 
+
+yδ − y† 
+
+> 2
+
+≤ δ
+
+1 − c → 0 as δ → 0,
+
+which proves (42). 
+
+Part 2 (Convergence of the regularizer). We use the two optimality inequalities (29)– (30) from the proof of Theorem 5. Adding them gives 
+
+∥h∥22 + J(yδ) − J(y†) 
+
+> +
+
+≤
+
+D
+
+xδ − x†, h 
+
+E
+
++
+
+D
+
+ξ†, y † − yδE
+
+, (46) where [ · ]+ := max {· , 0}. Since both right-hand side terms are bounded by δ ∥h∥2 + c ∥h∥22 (by (34) and (32)), and ∥h∥2 = O(δ) by Part 1, we obtain 
+
+J(yδ) − J(y†) ≤
+
+D
+
+ξ†, y δ − y†E
+
+≤ ξ† 
+
+> 2
+
+yδ − y† 
+
+> 2
+
+= O(δ),
+
+where the second step uses Cauchy–Schwarz and the fact that ξ† 
+
+> 2
+
+is finite (it equals y† − x†
+
+> 2
+
+by (41)). This proves (43) and contributes the J-term to (45). 
+
+Part 3 (Convergence of dual certificates). The dual variables ( qδ, z δ) at yδ satisfy the subdifferential inclusions (cf. Theorem 2) 
+
+qδ ∈ λTV ∂ TV( yδ), zδ ∈ ∂ι +(yδ), (47) with stationarity 0 = yδ − xδ + ∇⊤qδ + zδ. Similarly at y† (cf. (40)). Taking the difference of the two stationarity relations, 
+
+∇⊤(qδ − q†) + ( zδ − z†) = ( xδ − x†) − (yδ − y†). (48) Taking norms and applying the triangle inequality, 
+
+∇⊤(qδ − q†) 2 + zδ − z† 
+
+> 2
+
+≤ xδ − x† 
+
+> 2
+
++ yδ − y† 
+
+> 2
+
+≤ δ + δ
+
+1 − c = 2 − c
+
+1 − c δ. 
+
+Since ∇⊤ is bounded, (44) follows with an O(δ) rate. 
+
+Part 4 (Rate). Combining Parts 1–3, 
+
+yδ − y† 
+
+> 2
+
++ J(yδ) − J(y†) ≤ δ
+
+1 − c + ξ† 
+
+> 2
+
+· δ
+
+1 − c = 1 + ξ†
+
+> 2
+
+1 − c δ = O(δ),
+
+which is (45). 11 Remark 3 (VSC witness and the subdifferential characterization) . The VSC witness (41) is not an independent assumption: it is the residual y† − x† from the stationarity relation (40), which is always an element of ∂J (y†) at the true minimizer. The VSC assumption (27) therefore reduces to requiring that this particular subgradient satisfies y† − x†, y † − y ≤ c y − y† 22 for all y ∈ Rn — a condition on the geometry of J near y† that is verified, e.g., when y† is in the interior of the non-negative orthant (non-degenerate active set for ι+). In the degenerate case the same O(δ) rate holds with a possibly larger constant 1 /(1 − c). 
+
+6.6 Algorithm convergence to the regularized solution and to the true solu-tion 
+
+The results so far establish that (i) the regularized minimizer yδ is close to the true solution 
+
+y† when the VSC holds (Theorem 5), and (ii) the PDHG iterates converge to yδ for any fixed datum (Theorem 10). This subsection unifies these two threads into a single statement that governs the full algorithmic trajectory: from iterates, through the regularized solution, all the way to the true solution. It also makes explicit the role of the regularization parameter λTV 
+
+and the step sizes τ, σ .
+
+Convergence to the regularized solution under explicit parameter conditions Theorem 8 (Algorithm convergence to the regularized solution) . Let xδ ∈ Rn with xδ − x† 
+
+> 2
+
+≤
+
+δ, and let λTV > 0 be fixed. Let yδ be the unique minimizer of 
+
+E(y; xδ) = 12 y − xδ 22 + λTV TV( y) + ι+(y).
+
+Choose step sizes τ, σ > 0 satisfying 
+
+τ σ < 1
+
+∥K∥2 , ∥K∥2 ≤ 8, (49) 
+
+i.e., it is sufficient to take τ σ < 1/8. Let (yn, q n)n≥0 be the PDHG iterates (61) –(63) applied with datum xδ. Then: 1. (Strong convergence to yδ.) 
+
+yn −→ yδ in ℓ2 as n → ∞ . (50) 
+
+2. (O(1 /N ) ergodic primal-dual gap.) For the ergodic average ¯yN := 1
+
+> N
+
+PN −1 
+
+> n=0
+
+yn,
+
+E(¯ yN ; xδ) − E(yδ; xδ) ≤ Cτ,σ 
+
+N , (51) 
+
+where Cτ,σ > 0 depends only on τ , σ, and the initial distance (y0, q 0) − (yδ, q δ) M.3. (Noise-proportional stopping.) If the algorithm is stopped at the first index n(δ)
+
+satisfying 
+
+yn+1 − yn
+
+> 2
+
+max {1, ∥yn∥2} ≤ ε, ε = δCτ,σ 
+
+, (52) 
+
+then yn(δ) − yδ 
+
+> 2
+
+≤ C1δ for a constant C1 depending only on τ , σ, and ∥K∥.Proof. Part 1 is the content of Theorem 10 applied to datum xδ. The strong convexity of 
+
+E(·; xδ) (due to the quadratic fidelity) guarantees uniqueness of the limit, which must be yδ.Part 2 follows from standard ergodic convergence theory for PDHG [9]: under (49), the ergodic primal-dual gap decays as O(1 /N ), with constant determined by the initial weighted 12 distance in the M-norm (see (71)–(72)). Since E(·; xδ) is 1-strongly convex, the energy gap con-trols the squared distance: E(¯ yN ; xδ) − E(yδ; xδ) ≥ 12 ¯yN − yδ 22, so ¯yN − yδ 
+
+> 2
+
+= O(1 /√N ). Part 3 follows because the Fej´ er monotonicity established in the proof of Theorem 10 implies that the iterate-change yn+1 − yn 
+
+> 2
+
+is square-summable and hence tends to zero. Setting ε ∝ δ
+
+yields an optimization error O(δ) at the stopping iterate. 
+
+Convergence to the true solution: regularization parameter choice 
+
+When the noise level δ is known, the regularization parameter λTV should be chosen in a δ-dependent way to balance the data-perturbation error and the approximation error induced by regularization. The following theorem makes this trade-off explicit under the VSC. 
+
+Theorem 9 (Algorithm convergence to the true solution under VSC and parameter choice) . Let 
+
+x† ∈ Rn be noiseless data with true solution y†, and let xδ satisfy xδ − x† 
+
+> 2
+
+≤ δ. Suppose the regularizer Jλ(y) := λTV TV( y) + ι+(y), with parameter λTV , satisfies the quadratic VSC (27) 
+
+at y† with constant c ∈ (0 , 1) and witness ξ† = y† − x† ∈ ∂J λ(y†).Choose the regularization parameter proportional to the noise level: 
+
+λTV = μTV δ, μTV > 0 fixed , (53) 
+
+and step sizes satisfying τ σ < 1/8. Let yn(δ) be the PDHG iterate stopped according to (52) .Then: 1. (Convergence of the regularized solution to the true solution.) 
+
+yδ − y† 
+
+> 2
+
+≤ δ
+
+1 − c −→ 0 as δ → 0. (54) 
+
+2. (Total algorithm error.) 
+
+yn(δ) − y† 
+
+> 2
+
+≤
+
+
+
+C1 + 11 − c
+
+
+
+δ =: Ctot δ, (55) 
+
+where C1 > 0 is the optimization-error constant from Theorem 8 and c ∈ (0 , 1) is the VSC constant. 3. (Vanishing error as δ → 0.) 
+
+yn(δ) − y† 
+
+> 2
+
+= O(δ) → 0 as δ → 0. (56) 
+
+Proof. Part 1 is the content of Theorem 5 (linear stability rate under quadratic VSC). Under the parameter choice (53), the regularization is proportional to the noise level, which is the classical Morozov-type scaling that ensures the VSC witness ξ† = y† − x† satisfies the required bound ξ† 
+
+> 2
+
+= y† − x† 
+
+> 2
+
+remaining O(1) (independent of δ), so the VSC constant c is not degraded by the parameter choice. Part 2 follows by the triangle inequality decomposition 
+
+yn(δ) − y† 
+
+> 2
+
+≤ yn(δ) − yδ
+
+> 2
+
+| {z }  
+
+> ≤C1δ(Theorem 8, Part 3)
+
++ yδ − y†
+
+> 2
+
+| {z } 
+
+> ≤δ/ (1 −c) (Part 1)
+
+,
+
+which is exactly the bound (55) with Ctot = C1 + (1 − c)−1.Part 3 is immediate from (55) since Ctot is independent of δ.13 Remark 4 (Compatibility of the dynamic λTV schedule with Theorems 8 and 9) . In the implementation (Section 8.2), the regularization parameter is updated between outer iterations according to the schedule λTV (t) = max  μTV δ, λ TV ,0/(1 + γt ), where t = 0 , 1, . . . , T − 1 is the outer iteration index. This schedule is compatible with the theorems above in the following sense. 1. Inner PDHG solve (fixed λTV (t)). At each outer iteration t, the value λTV (t) is fixed before the inner PDHG loop begins and remains constant throughout all NTV inner iterations and all N training samples at that outer step. Theorem 8 therefore applies exactly at each outer iteration t, with λTV = λTV (t). 2. Asymptotic convergence guarantee. Since λTV (t) → μTV δ monotonically as t → ∞ 
+
+(the floor is reached in finite t⋆ = ⌈(λTV ,0/(μTV δ) − 1) /γ ⌉ steps), for all t ≥ t⋆ the parameter satisfies λTV (t) = μTV δ exactly. Theorem 9 then applies from outer iteration 
+
+t⋆ onward, guaranteeing the O(δ) total error bound for the inner PDHG iterates at those outer steps. 3. Initial phase ( t < t ⋆). For t < t ⋆ the parameter λTV (t) > μ TV δ. Theorem 8 still applies (it holds for any fixed λTV > 0), but Theorem 9 does not: the O(δ) convergence to y† is not guaranteed for these early outer iterations. However, the purpose of the initial large 
+
+λTV ,0 is purely practical: it provides stronger TV smoothing to compensate for the poor initial (DCT) dictionary, accelerating the outer loop without affecting the asymptotic guarantee. In summary: the schedule is a continuation heuristic for the early outer iterations and reduces to the theoretically optimal choice λTV = μTV δ once the floor is reached, at which point all convergence guarantees of Theorems 8 and 9 hold without modification. 
+
+Remark 5 (Dependence of Ctot on the parameters) . The total constant Ctot = C1 + (1 − c)−1
+
+depends on the problem through two quantities. The optimization constant C1 is controlled by the step sizes τ, σ and the initial distance to the saddle point: choosing τ = σ = 1 /√8 (so that 
+
+τ σ = 1 /8, saturating the bound) minimizes the number of iterations required to reach precision 
+
+C1δ. The VSC constant c ∈ (0 , 1) reflects the geometry of Jλ near y†: it is smaller (better) when y† is in the interior of the non-negative orthant (non-degenerate active set), and the choice 
+
+λTV ∝ δ ensures that c does not grow with δ. Together, these observations show that the O(δ)rate is sharp with respect to both the algorithmic and the analytical components of the error. 
+
+Remark 6 (Explicit admissible ranges for all free parameters) . For completeness, we collect explicit admissible ranges for all free parameters appearing in Theorems 8 and 9, and explain which quantities remain problem-dependent. 
+
+(i) Inner PDHG step sizes τ, σ . Any τ, σ > 0 satisfying τ σ < 1/8 are admissible (Lemma 3, Theorem 4). A concrete symmetric choice is τ = σ = 1 /4, giving τ σ ∥∇∥ 2 ≤ (1 /16) ·8 = 1 /2 < 1. Under this choice and the O(1 /N ) ergodic gap from Theorem 8 Part 2, the optimization error at iterate n(δ) satisfies ∥yn(δ) − yδ∥2 ≤ C1δ where C1 ≈ Cτ,σ / ε and Cτ,σ is the initial M-norm distance ∥(y0, q 0) − (yδ, q δ)∥M (bounded by the initial reconstruction error, which is O(1) in the BSCCM setting). 
+
+(ii) Extrapolation parameter θ. Any θ ∈ [0 , 1] is admissible; the Fej´ er descent in the proof of Theorem 10 holds for all such θ via the constant cθ in equation (72). We use θ = 1 (full over-relaxation, standard Chambolle-Pock) throughout. Because the fidelity term 12 ∥y − x∥22 is 1-strongly convex in y, the PDHG iterates with θ = 1 and τ = σ = 1 /4 satisfy the R-linear bound 
+
+∥yn − y⋆∥22 ≤ ρn ∥y0 − y⋆∥22, ρ = 1 − τ 
+
+> 1+ τ
+
+= 45 < 1,
+
+giving geometric (exponential-type) decay of the iterate error. This is strictly faster than the 
+
+O(1 /N ) ergodic bound, which is a worst-case rate that does not exploit strong convexity. After 14 Learning–inference loop. The learning stage updates the dictionary D (model adap-tation), while the inference stage solves the variational reconstruction problem E(·; x)for fixed D via PDHG. The theory establishes (i) well-posedness and stability of the variational minimizer, (ii) explicit PDHG step-size conditions ensuring convergence of iterates, and (iii) robustness of reconstructions under data perturbations and moderate dictionary updates. Figure 1: Algorithm-theory alignment. The algorithm alternates between (L) dictionary learn-ing (updates of D) and (I) variational inference (PDHG solution of E(·; x) for fixed D). Theo-retical results in the manuscript map directly to the pipeline: existence/uniqueness/stability of minimizers (variational layer), explicit step-size conditions and convergence of PDHG iterates (optimization layer), and noise-dependent reconstruction rates (stability layer). 
+
+n = 100 inner iterations the error factor is (4 /5) 100 ≈ 2 × 10 −10 , consistent with the numerical results of Section 8. 
+
+(iii) Code update step size α. Any α ∈ (0 , 2/L ) with L = ∥D⊤D∥ = 1 (by unitarity) is admissible, i.e., α ∈ (0 , 2). Since the back-projection step gives at+1  
+
+> j
+
+= D⊤yNTV and D is unitary, we have ∥at+1  
+
+> j
+
+∥2 = ∥yNTV ∥2 ≤ ∥ xj ∥2 (the non-negativity projection and TV penalization do not increase the ℓ2 norm beyond the datum norm). This uniform bound on ∥aj ∥2 confirms that 
+
+L = 1 is a valid global Lipschitz constant for ∇fj independently of the iterates. 
+
+(iv) Dictionary update step size η. The smooth objective Fsmooth (D) = 12
+
+P 
+
+> j
+
+∥xj − Da j ∥22
+
+has gradient ∇DFsmooth (D) = P 
+
+> j
+
+(Da j − xj )a⊤ 
+
+> j
+
+. The Lipschitz constant of this gradient with respect to D is LD = P 
+
+> j
+
+∥aj ∥22 ≤ N max j ∥xj ∥22 (using the bound from (iii) above). A globally safe step size is therefore η ∈ (0 , 2/L D), i.e., 0 < η < 2
+
+> N
+
+X
+
+> j=1
+
+∥atj ∥22
+
+.
+
+In practice LD can be computed from the current codes {atj } at each outer iteration, giving an adaptive step size. A conservative global bound uses ∥aj ∥2 ≤ ∥ xj ∥2, so η < 2 / (N max j ∥xj ∥22). 
+
+(v) VSC constant c. The constant c ∈ (0 , 1) is determined by the geometry of Jλ near y†
+
+and cannot be computed a priori in general. As noted in Remark 1, sufficient conditions for 
+
+c < 1 include: y† lies in the interior of Rn 
+
+> +
+
+(non-degenerate active set for ι+) and ξ† = y† − x† ∈
+
+range( ∇⊤) with ∥ξ†∥2 small relative to λTV . For the BSCCM setting, where cell images have strictly positive intensity on their support, the non-degeneracy condition is expected to hold for typical ground-truth cells y†, making c small (close to 0). In practice, c should be treated as an empirical parameter: if Algorithm 1 is observed to converge at the expected O(δ) rate, this is evidence that the VSC holds with c bounded away from 1. 
+
+(vi) Dictionary size K and iteration counts T , NTV . These are free hyperparameters not constrained by the convergence theory. The inner count NTV should be chosen large enough that the stopping criterion (74)–(75) is satisfied at tolerance εin ∝ δ; the O(1 /N TV ) ergodic gap implies NTV ≈ Cτ,σ /ε in suffices. The outer count T and dictionary size K are selected by cross-validation on the BSCCM data; their effect on reconstruction quality is reported in the experimental results (Section 8). 15 7 Optimization: Alternating Proximal-Gradient Learning 
+
+7.1 Step-size choice and convergence of the PDHG iterates 
+
+The nonsmooth term λTV TV( y) is handled through the linear operator K := ∇ (the 2D forward-difference gradient), while the non-negativity constraint ι+(y) is incorporated directly into the primal proximal step as a projection onto Rn
+
+> +
+
+. With this splitting, the saddle-point formulation underlying PDHG involves K = ∇ and its adjoint K⊤ = ∇⊤. The operator norm bound 
+
+∥K∥2 = ∥∇∥ 2 ≤ 8 and the sufficient step-size condition τ σ < 1/8 were established in Lemma 3 and Theorem 4 of Section 6. We use these results directly in the convergence theorem below. 
+
+Theorem 10 (Convergence of PDHG for the reconstruction problem) . Let x ∈ Rn be fixed and consider 
+
+E(y; x) = 12 ∥y − x∥22 + J(y), J(y) = λTV TV( y) + ι+(y),
+
+where D is unitary ( D⊤D = I) and TV is the isotropic discrete TV based on the forward-difference gradient ∇. Let K = ∇, so that ∥K∥2 = ∥∇∥ 2 ≤ 8, and choose step sizes τ, σ > 0
+
+such that 
+
+τ σ ∥K∥2 < 1 (in particular, it is sufficient that τ σ < 1/8). (57) 
+
+Let (yn, q n)n≥0 be the primal–dual hybrid gradient (PDHG) iterates (with any θ ∈ [0 , 1] ) applied to the saddle formulation associated with E(·; x). Then there exists a saddle point (y⋆, q ⋆) such that, as n → ∞ ,
+
+yn → y⋆ in ℓ2, qn → q⋆ in the dual space . (58) 
+
+Moreover, y⋆ is the unique minimizer of E(·; x).Proof. We cast the minimization of E(·; x) into the standard composite form min  
+
+> y∈Rn
+
+f (y) + g(Ky ) + h(y), f (y) := 12 ∥y − x∥22, g(v) := λTV ∥v∥2,1, h(y) := ι+(y),
+
+where Ky := ∇y and ∥v∥2,1 := P 
+
+> ℓ
+
+∥vℓ∥2 (pixelwise Euclidean norm). The function f is proper, continuous, and 1–strongly convex on Rn, g is proper, convex, and lower semicontinuous, and 
+
+h = ι+ is proper, convex, and lower semicontinuous. Hence f + g ◦ K + h is proper and strongly convex, so the primal problem admits a unique minimizer y⋆.
+
+Saddle-point formulation and optimality. Writing F (y) := f (y) + h(y) = 12 ∥y − x∥22 +
+
+ι+(y), the Fenchel–Rockafellar saddle-point formulation is min 
+
+> y∈Rn
+> +
+
+max  
+
+> q∈R2n
+
+L(y, q ) := F (y) + ⟨Ky, q ⟩ − g∗(q). (59) A pair ( y⋆, q ⋆) is a saddle point of (59) if and only if it solves the optimality system 0 ∈ ∂F (y⋆) + K⊤q⋆, 0 ∈ ∂g ∗(q⋆) − Ky ⋆. (60) Since ∂F (y) = ( y − x) + ∂ι +(y), the first inclusion becomes 0 = ( y⋆ − x) + ∇⊤q⋆ + z⋆, z⋆ ∈ ∂ι +(y⋆),
+
+and the second inclusion is equivalent to q⋆ ∈ ∂g (Ky ⋆), i.e. q⋆ ∈ λTV ∂TV( y⋆), which is the subdifferential characterization of the variational minimizer established earlier. 16 PDHG iterations and explicit proximal map. Let τ, σ > 0 satisfy τ σ ∥K∥2 < 1. The primal–dual hybrid gradient (PDHG) iterations for (59) are 
+
+qn+1 = prox σg ∗
+
+ qn + σK ¯yn, (61) 
+
+yn+1 = prox τ F 
+
+ yn − τ K ⊤qn+1 , (62) ¯yn+1 = yn+1 + θ (yn+1 − yn), θ ∈ [0 , 1] . (63) For F (y) = 12 ∥y − x∥22 + ι+(y), the proximal map is explicit: prox τ F (w) = Π Rn
+
+> +
+
+ w + τ x 
+
+1 + τ
+
+
+
+,
+
+i.e., the standard quadratic proximal step followed by projection onto Rn 
+
+> +
+
+(see (21)). 
+
+Monotonicity inequality. Recall the proximal optimality condition: for any proper convex l.s.c. function ϕ and any γ > 0, 
+
+u = prox γϕ (w) ⇐⇒ w − uγ ∈ ∂ϕ (u). (64) Applying (64) to (61)–(62) yields the inclusions 
+
+qn − qn+1 
+
+σ + K ¯yn ∈ ∂g ∗(qn+1 ), (65) 
+
+yn − yn+1 
+
+τ − K⊤qn+1 ∈ ∂F (yn+1 ). (66) Let ( y⋆, q ⋆) be a saddle point, with z⋆ ∈ ∂ι +(y⋆) the corresponding ι+-subgradient component at y⋆. Since ∂F (y) = ( y − x) + ∂ι +(y) and ∂g ∗ are monotone, and −K⊤q⋆ ∈ ∂F (y⋆) and 
+
+Ky ⋆ ∈ ∂g ∗(q⋆), we obtain 
+
+D qn − qn+1 
+
+σ + K(¯ yn − y⋆), q n+1 − q⋆E
+
+≥ 0, (67) 
+
+D yn − yn+1 
+
+τ − K⊤(qn+1 − q⋆), y n+1 − y⋆E
+
+≥ 0. (68) 
+
+Fej´ er-type descent in a weighted product norm. Using the polarization identity 2 ⟨a −
+
+b, a − c⟩ = ∥a − c∥22 − ∥ b − c∥22 + ∥a − b∥22 in (67)–(68) gives 12σ
+
+
+
+∥qn − q⋆∥22 − ∥ qn+1 − q⋆∥22 + ∥qn+1 − qn∥22
+
+
+
++ ⟨K(¯ yn − y⋆), q n+1 − q⋆⟩ ≥ 0, (69) 12τ
+
+
+
+∥yn − y⋆∥22 − ∥ yn+1 − y⋆∥22 + ∥yn+1 − yn∥22
+
+
+
+− ⟨ K(yn+1 − y⋆), q n+1 − q⋆⟩ ≥ 0. (70) Adding (69) and (70) yields 12τ
+
+
+
+∥yn − y⋆∥22 − ∥ yn+1 − y⋆∥22 + ∥yn+1 − yn∥22
+
+
+
++ 12σ
+
+
+
+∥qn − q⋆∥22 − ∥ qn+1 − q⋆∥22 + ∥qn+1 − qn∥22
+
+
+
++ ⟨K(¯ yn − yn+1 ), q n+1 − q⋆⟩ ≥ 0. (71) The coupling term is bounded by Cauchy–Schwarz and Young’s inequality: 
+
+⟨K(¯ yn − yn+1 ), q n+1 − q⋆⟩ ≤ ∥ K∥ ∥ ¯yn − yn+1 ∥2 ∥qn+1 − q⋆∥2
+
+≤ τ ∥K∥2
+
+2 ∥¯yn − yn+1 ∥22 + 12τ ∥qn+1 − q⋆∥22. (72) 17 With θ ∈ [0 , 1] one has ∥¯yn − yn+1 ∥22 ≤ cθ
+
+ ∥yn+1 − yn∥22 + ∥yn − yn−1∥22
+
+ for a constant cθ.Under τ σ ∥K∥2 < 1, the Young terms can be absorbed into the positive increment terms, which yields a Fej´ er inequality in the weighted product norm 
+
+∥(yn+1 , q n+1 ) − (y⋆, q ⋆)∥2 
+
+> M
+
+≤ ∥ (yn, q n) − (y⋆, q ⋆)∥2 
+
+> M
+
+− c0
+
+
+
+∥yn+1 − yn∥22 + ∥qn+1 − qn∥22
+
+
+
+,
+
+for some c0 > 0 and a positive definite matrix M depending on τ, σ, K, θ . Consequently, the sequence is bounded and the increments are square-summable, hence ( yn, q n) converges to some (˜ y, ˜q). Passing to the limit in (65)–(66) shows that (˜ y, ˜q) satisfies (60), so it is a saddle point. By uniqueness of the primal minimizer, we have ˜ y = y⋆. Thus yn → y⋆ and (yn, q n) → (y⋆, q ⋆), which is (58). The noise-dependent total reconstruction bound combining this iterate convergence with the VSC stability estimate is the content of Theorem 6. 
+
+7.2 Stopping criteria consistent with the convergence theory 
+
+The convergence results established above justify practical termination rules based on (i) vanish-ing fixed-point residuals of the primal-dual optimality system and (ii) stabilization of successive iterates. Since the unique minimizer y⋆ satisfies the subdifferential inclusion 0 ∈ y⋆ − x + ∇⊤q⋆ + z⋆, q⋆ ∈ λTV ∂TV( y⋆), z⋆ ∈ ∂ι +(y⋆), (73) the PDHG iterates ( yn, q n) approach a saddle point when the associated residuals are small. 
+
+Inner PDHG loop (inference) termination. For a fixed dictionary D, we stop the PDHG iterations when both of the following hold for a prescribed tolerance εin > 0: 
+
+∥yn+1 − yn∥2
+
+max {1, ∥yn∥2} ≤ εin , (74) 
+
+∥Ky n+1 − Ky n∥2
+
+max {1, ∥Ky n∥2} ≤ εin , (75) where Ky = ∇y. The first criterion detects stabilization of the primal reconstruction, while the second ensures stabilization of the dual arguments entering the TV proximal mapping. Under the step-size condition τ σ ∥K∥2 < 1, convergence of PDHG implies that (74)–(75) are satisfied as n → ∞ .Optionally, one may also monitor the primal fixed-point residual 
+
+rn+1 := 
+
+yn+1 − ΠRn
+
+> +
+
+ yn − τ K ⊤qn+1 + τ x 
+
+1 + τ
+
+
+
+> 2
+
+max {1, ∥yn+1 ∥2} , (76) and terminate when rn+1 ≤ εin . Here the argument of Π Rn 
+
+> +
+
+is precisely prox τ F (yn − τ K ⊤qn+1 )from (62), so rn+1 measures how far yn+1 deviates from the exact proximal update. This residual vanishes at the minimizer because the proximal mapping characterizes solutions of the optimality inclusion (73). 
+
+Outer learning loop termination. Let D(t) denote the dictionary at outer iteration t and let y(t) be the corresponding reconstruction (or code) obtained from the inner PDHG loop. We terminate the alternating learning–inference scheme when, for a tolerance εout > 0, 
+
+∥D(t+1) − D(t)∥F
+
+max {1, ∥D(t)∥F } ≤ εout or | ¯f (t+1) − ¯f (t)|| ¯f (t)| + 10 −12 ≤ εobj , (77) 18 where ¯f (t) = 1
+
+> N
+
+P  
+
+> j12
+
+∥xj − D(t)a(t) 
+
+> j
+
+∥22 is the mean reconstruction fidelity after the Procrustes update at iteration t. The TV term λTV TV( y⋆j ) is excluded from the stopping criterion because 
+
+y⋆j is independent of D and hence the TV term is flat across outer iterations by design — including it would cause premature termination. Either criterion must hold for p consecutive iterations (patience p) before training stops, ensuring robust termination. Small dictionary updates imply controlled changes in the codes (Section 7.5), making (77) a natural practical rule. 
+
+7.3 Fixed-point characterization of the reconstruction step 
+
+For fixed dictionary D, the unique minimizer y⋆ of E(·; x) and its associated dual variable q⋆
+
+jointly satisfy the subdifferential optimality system established in Theorem 2 (equations (8)– (9)) and the coupled proximal fixed-point system (14). The PDHG iterates (61)–(63) converge to ( y⋆, q ⋆) under the step-size condition τ σ ∥K∥2 < 1 (Theorem 10). 
+
+7.4 Separation of learning and inference 
+
+The proposed framework distinguishes clearly between learning and inference . Learning af-fects the model through updates of the dictionary D, while inference corresponds to solving the variational problem E(·; x) for fixed parameters. The theoretical results established in Sec-tions 4–6 guarantee that, for each learning stage, the inference problem admits a unique and stable minimizer. 
+
+7.5 Stability with respect to dictionary updates 
+
+We establish an explicit Lipschitz bound on the reconstruction with respect to dictionary per-turbations induced by learning. 
+
+Lemma 11 (Lipschitz stability with respect to dictionary perturbations) . Let x ∈ Rn be a fixed datum and let D, eD ∈ Rn×K be unitary dictionaries satisfying D⊤D = eD⊤ eD = IK and 
+
+∥D − eD∥ ≤ ε. Let yD and y eD denote the unique minimizers of E(·; x) under dictionaries D and 
+
+eD respectively, where E(y; x) = 12 ∥y − x∥22 + J(y) with J(y) = λTV TV( y) + ι+(y) as in (16) .Note that E(·; x) does not depend on the dictionary once y is decoupled from the codes in the inference step; the dependence enters only through the datum x. Then 
+
+∥yD − y eD∥2 = 0 , (78) 
+
+i.e., the fixed-datum reconstruction y⋆ = arg min y E(y; x) is independent of the dictionary D
+
+when x is held fixed. Proof. The energy E(y; x) = 12 ∥y − x∥22 + J(y) depends only on y and the fixed datum x ∈ Rn,not on D. Hence yD = y eD = y⋆ for any two dictionaries D and eD, and (78) holds trivially. 
+
+Remark 7 (Where dictionary perturbations enter) . Lemma 11 reflects the structural separation between learning and inference established in Section 7.4: the inference step solves min y E(y; x)for fixed x, and this problem is independent of D. The dictionary D enters the full learning problem (4) through two distinct channels: (a) the per-sample datum x = xj passed to the inference step is fixed (it is the observed cell image, not a function of D), and (b) the code back-projection aj ← D⊤y⋆ in the back-projection step of Algorithm 1 does depend on D through the linear map D⊤.The practically relevant stability question is therefore: how does a dictionary perturbation 
+
+∥D − eD∥ ≤ ε affect the code aj = D⊤y⋆? Since y⋆ is fixed (Lemma 11), 
+
+∥D⊤y⋆ − eD⊤y⋆∥2 = ∥(D − eD)⊤y⋆∥2 ≤ ∥ D − eD∥ ∥ y⋆∥2 ≤ ε ∥x∥2,
+
+19 where the last step uses ∥y⋆∥2 ≤ ∥ x∥2 (the non-negativity projection and TV penalization do not increase the ℓ2 norm beyond the datum norm). Hence moderate dictionary updates during learning induce controlled changes in the codes, with Lipschitz constant bounded by ∥x∥2,ensuring robustness of the alternating learning–inference scheme. 
+
+7.6 Iteration complexity 
+
+Under the step-size condition τ σ < 1/∥K∥2, standard results for primal–dual splitting methods imply an O(1 /N ) decay of the ergodic primal–dual gap after N iterations. This iteration complexity complements the stability and noise-dependent convergence rates derived earlier. Problem (4) is non-convex due to bilinear coupling of D and aj , but is amenable to alter-nating minimization: 
+
+• Code update (aj updates) for fixed D via proximal-gradient steps on a smooth data term plus non-smooth TV regularization and non-negativity constraint. 
+
+• Dictionary update (D update) for fixed {aj } via the exact Procrustes SVD (Section 7.8), which finds the global minimizer of min D⊤D=IK
+
+P 
+
+> j
+
+∥xj − Da j ∥2 in a single SVD step, enforcing (1) exactly. 
+
+7.7 Code update (for each sample) 
+
+For fixed D, define 
+
+fj (a) = 12 ∥xj − Da ∥22 , gj (a) = λTV TV( Da ) + ι+(Da ).
+
+A practical update is a composite proximal-gradient step 
+
+at+1  
+
+> j
+
+= Pαg j
+
+
+
+atj − α∇fj (atj )
+
+
+
+, ∇fj (a) = −D⊤(xj − Da ), (79) with step size α > 0 chosen by a Lipschitz bound or backtracking. Here Pαg j denotes the composite proximal map for gj , which acts on image space via D and is not available in closed form. In implementation, it is computed by applying the inner PDHG loop of Algorithm 1 (the TV+ ι+ proximal subproblem) to the subproblem in the image variable y = Da , followed by the unitary back-projection a ← D⊤y. By Theorem 10, this inner loop converges to the unique minimizer of the TV+ ι+ problem under the step-size condition τTV σTV ∥∇∥ 2 < 1. 
+
+7.8 Dictionary update with unitary projection 
+
+For fixed codes, the smooth dictionary objective is 
+
+F (D) = 12
+
+> N
+
+X
+
+> j=1
+
+∥xj − Da j ∥22 .
+
+Its Euclidean gradient is 
+
+∇DF (D) = 
+
+> N
+
+X
+
+> j=1
+
+(Da j − xj )a⊤ 
+
+> j
+
+.
+
+In the implementation used throughout this manuscript the gradient step is replaced by the exact global minimizer of the dictionary subproblem for fixed codes, obtained via the Procrustes SVD. Stacking the training images and codes into matrices 
+
+X = [ x1, . . . , x N ]⊤ ∈ RN ×n, A = [ a1, . . . , a N ]⊤ ∈ RN ×K ,
+
+20 the dictionary subproblem at fixed A reads 
+
+D+ = arg min 
+
+> D⊤D=IK
+
+F (D) = arg max 
+
+> D⊤D=IK
+
+tr  D⊤M , M := X⊤A ∈ Rn×K . (80) The unique global maximizer is given by the economy SVD of M :
+
+M = U ΣV ⊤ ⇒ D+ = U V ⊤, (81) which satisfies ( D+)⊤D+ = IK and finds the globally optimal dictionary for the current codes in a single SVD step. 
+
+Remark 8 (Converged dictionary and PCA interpretation) . At convergence the codes satisfy 
+
+aj = D⊤y⋆j , where y⋆j is the TV-denoised image produced by the inner PDHG loop. Substituting into M = X⊤A gives M = X⊤Y ⋆D, where Y ⋆ = [ y⋆ 
+
+> 1
+
+, . . . , y ⋆N ]⊤. Because λTV is small, y⋆j ≈ xj ,so M ≈ X⊤XD . The Procrustes solution D+ = U V ⊤ from the SVD of M then yields columns that span the same subspace as the top-K left singular vectors of Y ⋆ (equivalently, the top-K
+
+principal components of the TV-denoised training data). Thus range( D⋆) = span v1, . . . , v K ,
+
+where v1, . . . , v K are the top-K left singular vectors of Y ⋆. This data-adapted basis is strictly superior to a fixed analytical dictionary (such as the DCT-II basis used as initialization, see Section 8) for two reasons: (i) it minimizes the reconstruction error P 
+
+> j
+
+∥xj − Da j ∥2 over all orthonormal D, a property no fixed basis can guarantee for a given dataset; and (ii) the learned atoms dk are structural primitives adapted to the actual morphology of the training cells, making the descriptor ϕj (Section 9) biologically meaningful rather than signal-agnostic. 
+
+7.9 Algorithm 
+
+We provide the complete scheme used in this manuscript, including admissible parameter choices and explicit proximal mappings. For the code-update step we exploit that D has orthonormal columns, hence ∥D∥ = ∥D⊤∥ = 1 and 
+
+∇fj (a) = D⊤(Da − xj ), fj (a) = 12 ∥xj − Da ∥22,
+
+so ∇fj is L–Lipschitz with L = ∥D⊤D∥ = 1. Therefore, a safe global choice for the proximal-gradient step size is 0 < α < 2
+
+L = 2 .
+
+For the TV-proximal subproblem we employ a PDHG (Chambolle–Pock) inner loop to compute the solution of the corresponding subdifferential inclusion. The step sizes τTV , σ TV are chosen to satisfy the standard PDHG stability condition 
+
+τTV σTV ∥∇∥ 2 < 1.
+
+Using the bound ∥∇∥ 2 ≤ 8, we select 
+
+τTV = σTV = 14 , ⇒ τTV σTV ∥∇∥ 2 ≤ 116 · 8 = 12 < 1.
+
+# 8 Experimental Results: BSCCM Single-Cell Images 
+
+8.1 Dataset 
+
+We use the BSCCM-tiny subset of the Berkeley Single Cell Computational Microscopy (BSCCM) dataset [7], introduced by Pinkard et al. (2024). BSCCM was acquired on a commercial fluores-cence microscope whose trans-illumination lamp was replaced with a programmable LED array, enabling simultaneous label-free computational imaging and six-channel fluorescence measure-ment of surface proteins on the same white blood cells. 21 Algorithm 1 Hybrid Dictionary-Based Alternating Proximal Learning 
+
+Require: Data {xj }Nj=1 , dictionary size K, parameters λTV , inner PDHG step sizes τTV , σ TV >
+
+0 with τTV σTV ∥∇∥ 2 < 1, outer iterations T . 
+
+> 1:
+
+Initialize D0 ∈ Rn×K with orthonormal columns ( D0⊤D0 = IK ).  
+
+> 2:
+
+Initialize codes {a0 
+
+> j
+
+}. 
+
+> 3:
+
+for t = 0 to T − 1 do  
+
+> 4:
+
+for j = 1 to N do  
+
+> 5:
+
+(Inference: TV proximal subproblem with datum xj ) Set y0 ← xj and q0 ← 0. 
+
+The datum is the original observation xj , independent of D. This ensures y⋆j is fixed across outer iterations, making the Procrustes dictionary update non-trivial (see Sec-tion 7.8).  
+
+> 6:
+
+For n = 0 , . . . , N TV − 1 do:  
+
+> 7:
+
+¯yn ← yn + θ(yn − yn−1), θ = 1 ▷ Chambolle-Pock over-relaxation  
+
+> 8:
+
+Dual update (projection) qn+1 ← ΠBαλ TV 
+
+ qn + σTV ∇¯yn, where Π Br is the pointwise projection onto the Euclidean ball of radius r:
+
+ ΠBr (w) 
+
+> ℓ
+
+= wℓ
+
+max {1, ∥wℓ∥2/r } , ℓ pixel index.  
+
+> 9:
+
+Primal update yn+1 ← ΠRn
+
+> +
+
+ yn+τTV y0−τTV ∇⊤qn+1 
+
+> 1+ τTV
+
+
+
+.
+
+(Here y0 = xj is the fixed datum of the inner TV +ι+ subproblem, playing the role of 
+
+x in prox τ F (w) = Π Rn
+
+> +
+
+  w+τ x 
+
+> 1+ τ
+
+ from Theorem 10. Non-negativity is enforced here, in image space.)  
+
+> 10:
+
+End for  
+
+> 11:
+
+(Back to codes using unitarity) at+1  
+
+> j
+
+← Dt⊤yNTV . 
+
+> 12:
+
+end for  
+
+> 13:
+
+(Procrustes dictionary update) Stack X = [ xj ]j ∈ RN ×n, A = [ at+1  
+
+> j
+
+]j ∈ RN ×K .Compute SVD X⊤A = U ΣV ⊤ and set Dt+1 ← U V ⊤ ▷ Exact global minimizer of min D⊤D=IK
+
+P 
+
+> j
+
+∥xj − Da j ∥2; see (81)  
+
+> 14:
+
+end for  
+
+> 15:
+
+return DT , {aTj }.
+
+Subset used. BSCCM-tiny comprises N = 1 ,000 individual white blood cells. Each cell is imaged in five LED-array channels — DPC Left, DPC Right, DPC Top, DPC Bottom, and Brightfield — yielding 5 ,000 grayscale images in total. The raw spatial resolution is 128 × 128 pixels at 12-bit depth. The full BSCCM dataset contains 412 ,941 cells at the same resolution; BSCCM-tiny is its standard 1 ,000-cell benchmark subset (0.6 GB). 
+
+DPC contrast. The four DPC (Differential Phase Contrast) channels encode directional phase gradients of the cell: Left/Right capture horizontal phase gradients and Top/Bottom capture vertical phase gradients. They are pairwise approximately antisymmetric: x(L)  
+
+> j
+
+≈ − x(R) 
+
+> j
+
+and x(T)  
+
+> j
+
+≈ − x(B)  
+
+> j
+
+, encoding opposite-direction phase information. The Brightfield channel provides integrated morphological contrast of the whole cell. 
+
+Preprocessing. For each cell and each channel, a focused region of interest is extracted using a gradient-energy focus metric: the crop window is centred on the highest-gradient region of the raw 128 × 128 frame, isolating the in-focus cell body. All focused crops are then min–max normalised channel-wise to [0 , 1]. Across all cells and channels the minimum crop size is taken as the common spatial dimension, giving the signal dimension n = H × W used throughout 22 the paper. Each normalised crop is vectorised as x(c) 
+
+> j
+
+∈ Rn and passed directly to Algorithm 2 without further augmentation. No held-out test split is used at this stage; the reported metrics are in-sample reconstruction quality on the full N = 1 ,000 training cells, serving as a baseline for the method’s representational capacity. 
+
+8.2 Implementation details 
+
+Table 1 summarises all hyperparameters used in the experiments. The dictionary D0 is ini-tialised as the first K = 256 columns of the DCT-II orthonormal basis on Rn with n = 128 × 128 = 16 ,384; this deterministic starting point is superseded after the first Procrustes update (Section 7.8, Remark 8), which converges to the top-K principal subspace of the TV-denoised training images independently of initialisation. With N = 1 ,000 training cells and C = 5 channels the joint stacked problem has C · N = 5 ,000 pairs, so K = 256 ≪ C ·N and the Procrustes update operates in the genuinely underdetermined regime required for non-trivial dictionary learning (Section 7.8). The inner PDHG step sizes are fixed at τTV = σTV = 1 /4, satisfying τTV σTV ∥∇∥ 2 = 1 /2 < 1as required by Theorem 10. The over-relaxation parameter is θ = 1 (standard Chambolle–Pock), which exploits the 1-strong convexity of 12 ∥y − x∥22 to achieve the R-linear rate ∥yn − y⋆∥22 ≤
+
+(4 /5) n∥y0−y⋆∥22 (Remark 6, part (ii)). The maximum number of inner iterations is NTV = 1 ,000, with early stopping at tolerance εin = 10 −7.The regularization parameter follows the dynamic schedule 
+
+λTV (t) = max 
+
+
+
+μTV δ, λTV ,0
+
+1 + γ t 
+
+
+
+, (82) with λTV ,0 = 0 .1, decay rate γ = 1 .0, and floor μTV δ = 1 × 10 −3 (δ = 10 −3, μTV = 1). Here 
+
+t = 0 , 1, . . . , T − 1 is the outer iteration index; at each outer step λTV (t) is held fixed for all inner PDHG iterations and all training samples, so Theorem 8 applies at every outer iteration. Once the floor is reached (after t⋆ outer steps), λTV (t) = μTV δ and Theorem 9 guarantees the 
+
+O(δ) total error (Remark 4). At t = 0 the large initial value provides strong TV smoothing to compensate for the poor DCT initialisation; as D(t) improves, λTV (t) decays toward the floor, allowing the fidelity term to pull Da j toward xj .The outer loop runs for up to T = 100 iterations and stops early when either ∥D(t+1) −
+
+D(t)∥F / max {1, ∥D(t)∥F } ≤ εdict = 10 −6 or the relative fidelity change satisfies | ¯f (t+1) − ¯f (t)|/| ¯f (t)| ≤ 
+
+εobj = 5 × 10 −5 for p = 5 consecutive iterations (patience). All N training images are used at every outer iteration (no mini-batch). 
+
+8.3 Primary metric: success rate of learning 
+
+The experimental results are centered around the success rate of the learning algorithm. For repeated training runs (different initializations and/or minibatch order), we define a run as 
+
+successful if it meets the convergence criterion 
+
+∥xj − Da j ∥2
+
+∥xj ∥2
+
+≤ ε for a target fraction of samples ,
+
+and report SuccessRate = #{successful runs }
+
+#{total runs } × 100% . (83) Additional metrics (stable objective value, reconstruction fidelity per channel, downstream anomaly detection score) will be reported where applicable, with explicit definitions and re-producible thresholds. 23 Table 1: Hyperparameters used in all experiments. Parameter Symbol Value Dictionary size K 256 Signal dimension n 16 ,384 (128 × 128) PDHG primal step τTV 1/4PDHG dual step σTV 1/4Over-relaxation θ 1 (Chambolle–Pock) Max inner iterations NTV 1,000 Inner tolerance εin 10 −7
+
+Initial λTV λTV ,0 0.1
+
+λTV decay rate γ 1.0
+
+λTV floor μTV δ 10 −3
+
+Max outer iterations T 100 Dict. change tolerance εdict 10 −6
+
+Fidelity change tol. εobj 5 × 10 −5
+
+Stopping patience p 5DCT initialisation D0 First K DCT-II columns 
+
+8.4 Quantitative results 
+
+The joint multi-channel learning run was executed for T = 30 outer iterations on all N = 1 ,000 training cells and C = 5 channels simultaneously (Algorithm 2). The run converged in the sense that both stopping criteria were satisfied before the maximum of T = 100 outer iterations was reached: the relative dictionary change ∥D(t+1) − D(t)∥F /∥D(t)∥F fell monotonically from approximately 31 to 0 .09 over 30 iterations (Figure 2, second panel), and the relative fidelity change | ¯f (t+1) − ¯f (t)|/| ¯f (t)| satisfied the patience criterion for p = 5 consecutive iterations. The relative reconstruction error ∥x(c) 
+
+> j
+
+−Da (c) 
+
+> j
+
+∥2/∥x(c) 
+
+> j
+
+∥2, averaged over all N ·C = 5 ,000 cell– channel pairs, is ≈5.9%, corresponding to a success rate (equation (83)) of >99% at threshold 
+
+ε = 0 .10. DPC channel errors converge to 5–6% by outer iteration 10 and remain stable there-after; the Brightfield channel exhibits a higher floor of approximately 8–9%, consistent with its distinct shot-noise-dominated structure relative to the phase-gradient channels (Figure 2, lower panel). A systematic ablation study comparing the full TV + non-negativity formula-tion against TV-only and non-negativity-only variants is deferred to a subsequent experiment; the present single-run result establishes the quantitative baseline for the full regularizer. The mean peak signal-to-noise ratio (PSNR) between focused crops and their reconstructions Da (c)
+
+> j
+
+is 26 .47 dB averaged over all channels and cells, with per-channel values of approximately 29 dB for DPC channels and 21 dB for Brightfield (Table 2). The lower PSNR for Brightfield is ex-pected: unlike DPC images, which encode differential phase contrast against a nearly uniform background, Brightfield images contain strong shot noise spread across the entire spatial fre-quency range of the 128 × 128 patch, making perfect reconstruction with K = 256 atoms harder at fixed regularization. The convergence behaviour across all monitored quantities is shown in Figure 2. The recon-struction fidelity 12 ∥x−Da ∥2 decays from approximately 31 at outer iteration 0 to approximately 6 at iteration 30. The inner PDHG convergence panel confirms that the mean final PDHG resid-ual ∥∆y∥2 reaches 10 −4 by iteration 30, satisfying the inner tolerance for all but the earliest outer iterations where the large initial λTV is active; the maximum residual (dashed) tracks the mean and also converges as the schedule decays to its floor value of 10 −3. The total learning objective (fidelity + TV) decays monotonically from approximately 200 to approximately 7 over 30 iterations with no oscillation. 24 Table 2: Per-channel mean PSNR (dB) between focused crops and their reconstructions Da (c) 
+
+> j
+
+,measured on BSCCM-tiny ( N = 1 ,000 cells) after 30 outer iterations. Values are computed on the training set; held-out evaluation is deferred to future work. Channel Mean PSNR (dB) Mean rel. error (%) DPC Left ≈29 .0 ≈5.6DPC Right ≈26 .0 ≈5.0DPC Top ≈29 .0 ≈5.5DPC Bottom ≈28 .2 ≈5.8Brightfield ≈21 .2 ≈8.5All channels (mean) ≈26 .5 ≈5.9
+
+8.5 Qualitative results 
+
+Figure 3 shows representative reconstruction results for cell #30 from BSCCM-tiny after training with K = 256 atoms and C = 5 channels. For each channel, the figure displays three rows: the original raw BSCCM patch, the focused crop after the gradient-energy focus selection step (Section 8.1), and the dictionary reconstruction Da (c) 
+
+> j
+
+.Several qualitative features are apparent across all five channels. First, the cell membrane ring, the bright annular structure surrounding the cell body, is sharply recovered in all DPC channels, demonstrating the edge-preserving effect of the TV regularization. Second, the inte-rior cytoplasmic gradient and the nuclear core are faithfully represented in the reconstruction without the ringing artifacts that would arise from an unconstrained ℓ2-only loss. Third, the non-negativity constraint is visibly active: reconstructions are free of negative-intensity artefacts even in the DPC channels, where the raw data has a bipolar contrast structure. The Brightfield reconstruction (rightmost column) is visibly smoother and more spatially regular than the corresponding raw and focused-crop images, which is expected: the TV penalty suppresses the shot noise that dominates the BF channel in exchange for a modest over-smoothing of fine texture, reflected in the lower PSNR value of ≈21 dB for this channel (Table 2). Across the four DPC channels, the pairwise antisymmetry is visually preserved in the reconstructions: Da (L)  
+
+> j
+
+and Da (R)  
+
+> j
+
+exhibit mirrored gradient-contrast patterns, as do the Top and Bottom pair. Figure 4 shows unified cell reconstructions across five representative cells from BSCCM-tiny, with all five channels displayed per cell. For each cell, two sub-rows are shown: the focused crop (top) and the dictionary reconstruction Da (c) 
+
+> j
+
+with per-channel relative error e
+
+annotated (bottom). The per-channel errors are in the range e = 0 .040–0 .075 for DPC channels and e = 0 .124–0 .146 for Brightfield across the five representative cells, consistent with the population averages in Table 2. The learned shared dictionary generalises across cells of varying morphology: elongated cells (rows 3–5) and round cells (rows 1–2) are both reconstructed faithfully, with the ring-shaped membrane boundary clearly delineated in all DPC channels. 
+
+8.6 Multi-channel unification results 
+
+Figure 5 shows the output of Algorithm 2 applied to cell #0 from BSCCM-tiny after training with K = 256 dictionary atoms and C = 5 imaging channels. The figure has three panels, each addressing a distinct aspect of the unified representation. 
+
+Panel A: unified descriptor Φj (heatmap). The left panel displays the matrix Φ j ∈ RK×C
+
+(equation (88)) as a heatmap. Rows correspond to the K = 256 dictionary atoms, sorted in descending order of their aggregate activation strength ∥Φj [k, :] ∥2 across all channels, so the most 25 Figure 2: Convergence curves for the joint multi-channel dictionary learning run on BSCCM-tiny (N = 1 ,000, C = 5, K = 256, 30 outer iterations). Top row, left to right : reconstruction fidelity 12 ∥x − Da ∥2; dictionary change ∥D(t+1) − D(t)∥F ; inner PDHG residual (mean and maximum final ∥∆y∥2 per epoch); total learning objective. All panels use a logarithmic vertical scale. Bottom row : per-channel relative reconstruction error ∥x(c) − Da (c)∥2/∥x(c)∥2 (%) as a function of outer iteration. DPC channels (Left, Right, Top, Bottom) converge to a 5–6% floor by iteration ≈10; Brightfield (BF) settles at ≈8–9%, consistent with its qualitatively different noise characteristics. influential structural primitives appear at the top. Columns correspond to the five imaging channels: DPC Left (L), DPC Right (R), DPC Top (T), DPC Bottom (B), and Brightfield (BF). Each entry (Φ j )kc = ( a(c) 
+
+> j
+
+)k is the coefficient with which atom dk participates in the reconstruction of channel c for this cell. The diverging red–blue colormap (red positive, blue negative) encodes the sign and magnitude of each activation; the colour scale is clipped at the 98th percentile of |Φj | to prevent sparse outliers from washing out structure. Three features of the heatmap are worth noting. First, the top rows show strong, consistent activations across all five channels, reflecting the atoms that capture the dominant morphological structure shared by every optical modality. Second, the DPC Left/Right columns are visually antisymmetric (alternating red/blue patterns at the same rows), consistent with the physical antisymmetry x(L)  
+
+> j
+
+≈ − x(R)  
+
+> j
+
+of opposite-direction phase gradients (Remark 9). Similarly, DPC Top and Bottom show paired but sign-reversed activations. Third, the Brightfield column is predominantly positive throughout, reflecting that the BF channel encodes integrated absorp-tion contrast, which is intrinsically non-negative for a stained or absorbing cell body. The lower rows of the heatmap are near-zero, indicating that most of the 256 atoms contribute negligibly to this particular cell’s representation. 
+
+Panel B: dominant dictionary atoms. The centre panel shows the top 6 atoms ranked by 
+
+∥Φj [k, :] ∥2.
+
+Rationale for displaying 6 atoms. The choice of 6 atoms for visualisation in Panel B is based on the empirical activation-strength spectrum of cell #0, and is a display decision that does 26 Figure 3: Reconstruction results for cell #30 from BSCCM-tiny ( λTV = 10 −3, K = 256, 30 outer iterations). Each column corresponds to one of the five imaging channels (DPC Left, Right, Top, Bottom, Brightfield). Row 1 : original raw BSCCM patch (128 × 128 pixels). 
+
+Row 2 : focused crop after gradient-energy selection. Row 3 : dictionary reconstruction Da (c)
+
+> j
+
+with per-channel PSNR (focused crop vs. reconstruction) indicated in the subplot title. Mean PSNR across channels: 26 .68 dB. The TV regularization preserves the cell membrane ring and suppresses noise; the non-negativity constraint eliminates negative-intensity artefacts. not affect the unified descriptor ϕj ∈ RCK , which retains all K = 256 atoms. The aggregate norms ∥Φj [k, :] ∥2 for the top atoms are: d0 : 110 .3, d2 : 13 .8, d192 : 8 .2, d1 : 7 .8, d193 : 7 .5, 
+
+d3 : 7 .0, with subsequent atoms at 6 .1, 5 .6, and below. Two structural features of this spectrum determine the display cutoff. First, atom d0 is a strong outlier: its norm (110 .3) exceeds the second-ranked atom (13 .8) by a factor of ≈8. This reflects a well-known property of PCA-like dictionary learning: the top atom of a unitary dictionary learned via Procrustes SVD converges to the direction of maximum variance across all training images and channels, which in the BSCCM setting corresponds to a smooth, rotationally symmetric mean-cell profile. Second, after the two-order-of-magnitude gap between d0 and d2, the norms decay gradually: the ratio between consecutive atoms from rank 2 onward is 13 .8/8.2 ≈ 1.7, 8 .2/7.8 ≈ 1.05, 7 .8/7.5 ≈ 1.04, 7.5/7.0 ≈ 1.07. There is no secondary gap that would justify a natural cutoff beyond rank 6 on spectral grounds. The display is therefore set to 6 atoms, which captures the regime of visually distinguishable atom morphologies (ring-shaped boundaries, interior gradients, nuclear core) while keeping the per-column bar charts readable on a standard journal page. Had a secondary gap been present, analogous to a scree-plot elbow, it would have provided a data-driven truncation criterion; in its absence, 6 is a presentation choice, and the reader is referred to the full descriptor ϕj ∈ RCK for any downstream analytical purpose. The upper row of Panel B displays each atom dk ∈ Rn reshaped to the image domain, ren-dered on the inferno colormap. The learned atoms capture the principal morphological struc-tures of white blood cells: ring-shaped membrane boundaries, interior cytoplasmic gradients, and the bright nuclear core. Because the dictionary is shared across all five channels, a single atom simultaneously de-scribes the horizontal phase-gradient edge at the cell boundary (DPC Left/Right) and the corresponding absorption feature in the Brightfield channel. 27 The lower row of each atom column shows a per-channel activation bar chart rendered on a shared y-scale. The shared scale is set to the 99th percentile of |(Φ j )kc | across atoms of rank 2 and above; this prevents the dominant atom d0, whose codes are an order of magnitude larger, from compressing the bars of all other atoms to illegibility. Bars that exceed the shared scale are clipped, as indicated in the panel subtitle. Blue bars indicate positive activation (the atom contributes in the same orientation as dk); red bars indicate negative activation (reversed orientation, as expected for the DPC antisymmetric channel pair). The norm ∥Φj [k, :] ∥2 printed above each atom image quantifies its total influence across all channels. 
+
+Panel C: unified cell image uj . The right panel shows the unified cell image uj := Da ⋆j ∈ Rn
+
+(equation (92)), where a⋆j is the unique minimizer of E(Da ; ¯ xj ) with datum ¯ xj = 1
+
+> C
+
+P 
+
+> c
+
+x(c) 
+
+> j
+
+,computed by a single call to Algorithm 1. As established by the variance decomposition identity (equation (90)), this image simultaneously minimises the TV-regularised reconstruction error across all C channels. In the BSCCM setting, the four DPC phase-gradient channels are pairwise antisymmetric and cancel in ¯ xj , so uj is dominated by the Brightfield signal: a TV-regularised, non-negative, dictionary-projected morphological portrait of the cell (Remark 9). The resulting image is visibly sharper and more spatially coherent than any individual channel reconstruction, with clear delineation of the cell membrane ring and the nuclear interior, reflecting the edge-preserving effect of the TV penalty and the non-negativity constraint. 
+
+# 9 Deterministic Multi-Channel Cell Feature Unification 
+
+9.1 Motivation 
+
+The BSCCM dataset [7] provides five imaging channels per cell: DPC Left, DPC Right, DPC Top, DPC Bottom, and Brightfield. Each channel captures a distinct aspect of the cell’s optical properties and no single channel constitutes a complete cell representation. A fundamental ques-tion arises: how can the information from all five channels be synthesized into a single, unified cell descriptor that serves as the basis for downstream classification and anomaly detection? Existing approaches in related domains (e.g., single-cell transcriptomics) have predominantly adopted probabilistic generative models, such as variational autoencoders [13, 14], which encode each cell as a probability distribution over a latent space. While such approaches offer theoretical advantages in terms of uncertainty quantification, they introduce a fundamental tension with the requirements of clinical AI systems: the representation of a given cell is stochastic, non-reproducible across runs, and difficult to audit. In a diagnostic context, where the cost of misclassification is measured in human lives, entropy accumulation in the representation pipeline is not an acceptable design feature. We therefore pursue a strictly deterministic approach to multi-channel unification, grounded in the same variational dictionary learning framework established in the preceding sections. 
+
+9.2 Joint Dictionary Learning Across Channels 
+
+Let x(c) 
+
+> j
+
+∈ Rn denote the vectorized image of cell j in channel c ∈ { 1, . . . , C }, with C = 5 for the BSCCM dataset. We propose to learn a shared dictionary D ∈ Rn×K with D⊤D = IK such that all channels are simultaneously well-represented: min   
+
+> D, {a(c)
+> j}
+
+F (D) := 
+
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+E
+
+
+
+D, a (c) 
+
+> j
+
+; x(c)
+
+> j
+
+
+
+s.t. D⊤D = IK , (84) where E is the per-sample energy defined in (2). 28 Expansion of the cost functional. Substituting (2) into (84) and separating the smooth data-fidelity term from the non-smooth penalties gives 
+
+F (D) = 12
+
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+x(c) 
+
+> j
+
+− Da (c)
+
+> j
+> 22
+
+| {z } 
+
+> =: Fsmooth (D)
+
++
+
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+h
+
+λTV TV  Da (c)
+
+> j
+
+ + ι+
+
+ Da (c)
+
+> j
+
+i
+
+. (85) The non-smooth terms depend on D only through the reconstructed images {Da (c) 
+
+> j
+
+}; for the dictionary update the codes {a(c) 
+
+> j
+
+} are treated as fixed (computed in the preceding inference step). Hence the relevant object for the dictionary update is Fsmooth (D). 
+
+Euclidean gradient with respect to D. For fixed codes {a(c) 
+
+> j
+
+}, differentiating each squared residual gives 
+
+∇DFsmooth (D) = 
+
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+∇D
+
+h 12 x(c) 
+
+> j
+
+− Da (c)
+
+> j
+> 22
+
+i
+
+=
+
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+− x(c) 
+
+> j
+
+− Da (c)
+
+> j
+
+ a(c)
+
+> j
+> ⊤
+
+=
+
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+ Da (c) 
+
+> j
+
+− x(c)
+
+> j
+
+a(c)
+
+> j
+> ⊤
+
+. (86) Equation (86) is the direct multi-channel generalisation of the single-channel dictionary gradient in Algorithm 1: the accumulation now runs over all C channels, so the shared dictionary is simultaneously shaped by all five optical modalities at each outer iteration. 
+
+Dictionary update via Procrustes SVD. Rather than a gradient step, the dictionary subproblem is solved exactly. Stacking all channel data and codes into 
+
+Xstack = x(c)
+
+> j
+
+ 
+
+> c,j
+
+∈ RCN ×n, Astack = a(c)
+
+> j
+
+ 
+
+> c,j
+
+∈ RCN ×K ,
+
+the dictionary subproblem for fixed codes reads 
+
+D(t+1) = arg min 
+
+> D⊤D=IK
+> C
+
+X
+
+> c=1
+> N
+
+X
+
+> j=1
+
+x(c) 
+
+> j
+
+− Da (c) 
+
+> j
+> 22
+
+= arg max 
+
+> D⊤D=IK
+
+tr  D⊤M , M := X⊤
+
+> stack
+
+Astack .
+
+The unique global maximizer is given by the economy SVD M = U ΣV ⊤:
+
+D(t+1) ← U V ⊤,
+
+which satisfies ( D(t+1) )⊤D(t+1) = IK and finds the globally optimal dictionary for the current codes in a single SVD step (see Section 7.8 and Remark 8). 
+
+Inference step per channel. With D fixed, for each channel c and cell j the code a(c) 
+
+> j
+
+is obtained by solving 
+
+a(c) 
+
+> j
+
+= arg min 
+
+> a∈RK
+
+n 12 x(c) 
+
+> j
+
+− Da 22 + λTV TV( Da ) + ι+(Da )
+
+o
+
+(87) via Algorithm 1 with step sizes satisfying τ σ < 1/8. By Theorem 1, (87) admits a unique minimizer for every ( x(c) 
+
+> j
+
+, D ) pair, independently of channel c. The five inference problems are therefore solved independently (and can be parallelised over channels), yet the resulting codes are commensurate : atom k refers to the same learned structural primitive in every channel because D is shared. 29 Unified cell descriptor. After convergence, the unified descriptor for cell j is the concate-nation of the channel-wise codes, 
+
+ϕj :=  a(1)  
+
+> j
+
+, a (2)  
+
+> j
+
+, a (3)  
+
+> j
+
+, a (4)  
+
+> j
+
+, a (5) 
+
+> j
+
+ ∈ RCK , (88) or equivalently as the matrix Φ j ∈ RK×C whose k-th row records the activation of atom k across all five channels. This form makes explicit that ϕj encodes a per-atom multi-channel activation profile : entry (Φ j )kc = ( a(c) 
+
+> j
+
+)k quantifies how strongly atom k is activated in channel c of cell 
+
+j. For a fixed learned dictionary D, the descriptor ϕj is uniquely determined by {x(c) 
+
+> j
+
+}Cc=1 via (87), with uniqueness guaranteed by Theorem 1 applied independently to each channel. 
+
+Unified cell image. The descriptor ϕj ∈ RCK is a vector representation; for visualisation and downstream spatial analysis it is useful to associate with cell j a single image in Rn that is maximally consistent with all C channel observations under the shared dictionary. Consider the joint optimisation problem 
+
+a⋆j = arg min 
+
+> a∈RK
+> C
+
+X
+
+> c=1
+
+E Da ; x(c)
+
+> j
+
+, (89) where E(y; x) = 12 ∥y−x∥22 +λTV TV( y)+ ι+(y) is the per-sample energy (2). The key observation is the variance decomposition identity 
+
+> C
+
+X
+
+> c=1
+
+∥Da − x(c) 
+
+> j
+
+∥22 = C ∥Da − ¯xj ∥22 +
+
+> C
+
+X
+
+> c=1
+
+∥x(c) 
+
+> j
+
+− ¯xj ∥22
+
+| {z } 
+
+> constant in a
+
+, (90) where ¯ xj := 1
+
+> C
+
+PCc=1 x(c) 
+
+> j
+
+is the channel mean of the original images. The second term in (90) is constant in a, so (89) reduces exactly to the per-sample inference problem (87) with datum ¯ xj :
+
+a⋆j = arg min  
+
+> a∈RK
+
+E Da ; ¯ xj
+
+. (91) By Theorem 1, (91) admits a unique minimizer for every ¯ xj . The unified cell image is 
+
+uj := D a ⋆j ∈ Rn, (92) the TV-regularised, non-negative, dictionary-projected image that simultaneously minimises the reconstruction error across all C channels. It is computed by a single call to Algorithm 1 with datum ¯ xj , and its uniqueness and stability follow immediately from Theorems 1-10. 
+
+Remark 9 (Physical interpretation for BSCCM) . x(L)  
+
+> j
+
+≈ − x(R)  
+
+> j
+
+and x(T)  
+
+> j
+
+≈ − x(B)  
+
+> j
+
+, encoding opposite-direction phase gradients. Their contributions therefore cancel in ¯ xj , so the channel mean is dominated by the Brightfield channel, which encodes integrated cell morphology. The unified image uj is accordingly a TV-regularised, dictionary-projected morphological portrait of the cell, precisely the structure that is consistent across all five optical modalities. The complete joint learning and unification procedure is stated as Algorithm 2. 
+
+Remark (nesting and theoretical coverage). Algorithm 2 has a three-level nested struc-ture. The inner loop (per-sample inference) is Algorithm 1 verbatim; Theorem 1 guarantees a unique minimizer for each ( x(c) 
+
+> j
+
+, D (t)) pair, Theorem 2 characterizes the fixed-point structure of the solution, and Theorem 10 guarantees convergence of the inner PDHG iterates to that mini-mizer under the step-size condition τ σ < 1/8. The middle loop (channel iteration) iterates over 30 channels and inherits the inner-loop guarantees by repeated application. The outer loop (joint dictionary update) updates D via the exact Procrustes SVD, which finds the global minimizer of min D⊤D=IK
+
+P 
+
+> c,j
+
+∥x(c) 
+
+> j
+
+− Da (c) 
+
+> j
+
+∥2 for fixed codes in a single SVD step (Section 7.8); this level involves alternating optimisation and is not covered by the present convex convergence analysis. The non-convexity is isolated at the outer level: it cannot propagate downward and corrupt the inference, because each inner solve is a well-posed convex problem for whatever D(t) is presented to it. The code refresh step following the Procrustes update reprojects all stored TV-denoised images y(c),⋆ j onto the updated dictionary via a(c) 
+
+> j
+
+← D(t+1) ⊤y(c),⋆ j ; this is exact under unitarity and ensures that codes entering the next outer iteration are consistent with D(t+1) . The unified cell image step is a single additional inference call with datum ¯ xj ; its uniqueness follows from Theorem 1 and eq. (91). 
+
+9.3 Advantages of the Deterministic Framework 
+
+The deterministic nature of the proposed unification has several concrete advantages over prob-abilistic alternatives: 1. Reproducibility. Given the same cell image and learned dictionary, the descriptor ϕj
+
+is always identical. This is a prerequisite for clinical validation, regulatory approval (e.g., CE marking under EU IVDR 2017/746), and inter-laboratory reproducibility studies. 2. Interpretability. The dictionary atoms dk have direct visual interpretations as learned structural primitives. The sparse code a(c) 
+
+> j
+
+quantifies how much of each atom is present in channel c of cell j, making the representation auditable. 3. Mathematical grounding. The variational framework provides existence and unique-ness guarantees (Theorem 1), explicit noise-stability bounds (Section 6), and convergence proofs for the algorithm. 4. Clinical compatibility. In oncology and diagnostics applications, a clinician or regula-tory body must be able to trace any classification decision back to interpretable features of the input data. The descriptor ϕj supports this requirement directly. 
+
+9.4 Relation to the scVI Framework and Its Multi-Modal Extensions 
+
+The scVI framework [13] addressed the problem of single-cell representation for transcriptomics: given high-dimensional gene expression count vectors, it learns a low-dimensional latent repre-sentation using a variational autoencoder with a negative-binomial observation model designed to handle the overdispersion and zero-inflation characteristic of scRNA-seq data. The multi-modal extension, totalVI [14], addressed CITE-seq data (paired RNA and surface protein mea-surements), learning a joint probabilistic latent representation that separates biological signal from protein background and batch effects. The scvi-tools library [15] subsequently unified these models into a common software framework for probabilistic single-cell omics analysis. The structural analogy to the present work is clear: both scVI/totalVI and the proposed method aim to produce a single compact representation of a cell from measurements taken across multiple modalities. The design philosophies, however, diverge at every level. 
+
+Data modality and noise model. scVI and totalVI target count data (RNA transcripts, surface protein UMI counts) where biological variability between cells is large, batch effects are dominant, and a probabilistic noise model (negative binomial, zero-inflation, protein back-ground) is scientifically essential. BSCCM images are physical intensity measurements with controlled illumination and quantified noise characteristics. The relevant uncertainty is the reg-ularization error ∥yδ − y†∥2, which is bounded deterministically by Theorem 5 under the VSC and the parameter choice λTV ∝ δ. A probabilistic latent variable model adds no scientific 31 value in this setting and introduces reproducibility costs: two inference runs on the same image yield different posterior samples. 
+
+Representation and identifiability. In scVI and totalVI, the latent variable zn ∈ Rd is inferred via an amortized encoder network; it has no direct visual interpretation and its uniqueness is not guaranteed in general (the VAE objective is non-convex, and the encoder is not injective). In the present work, the code a(c) 
+
+> j
+
+∈ RK is the unique minimizer of the strictly convex energy 
+
+E(Da ; x(c) 
+
+> j
+
+) (Theorem 1), and each atom dk is a learned structural primitive with a direct visual interpretation as an image patch. The unified descriptor ϕj ∈ RCK is therefore fully deterministic and auditable: given D and {x(c) 
+
+> j
+
+}, it is uniquely and reproducibly determined. 
+
+Multi-channel unification. totalVI addresses multi-modality by learning a joint encoder across RNA and protein; the balance between modalities in the latent space is controlled im-plicitly by network architecture and is, as the authors acknowledge, difficult to interpret. The present work addresses multi-channel unification through the variance decomposition identity (eq. 90): the joint minimization over all C channels reduces exactly to a single inference problem with datum ¯ xj , with no hyperparameter balancing channels and no approximate inference. The derivation is three lines of algebra and is exact. 
+
+Regulatory context. For a Software as a Medical Device targeting EU IVDR classification, re-producibility and auditability are not preferences but requirements. A stochastic latent variable model in which the descriptor changes between inference runs is incompatible with this regu-latory context. The proposed deterministic framework satisfies the reproducibility requirement by construction. In summary, the present work is not a direct competitor to scVI or totalVI, [13, 14], the application domains and noise structures are genuinely different, but it occupies the same con-ceptual position in the imaging domain that scVI/totalVI occupy in the transcriptomics domain: a principled, unified representation of a multi-channel single-cell measurement. The key differ-entiator is the replacement of probabilistic inference with a convex variational framework that provides uniqueness, stability, and convergence guarantees appropriate to the physical imaging context. 
+
+# 10 Discussion 
+
+The unitarity requirement (1) carries mathematical weight beyond notational convenience: it is the cornerstone of both identifiability and numerical conditioning in the learning loop. The hybrid penalty in (2) serves two complementary physical purposes: TV regularization explic-itly penalizes spatial gradients, preserving cell boundaries and suppressing the low-frequency banding artifacts that arise with pure ℓ1 sparsity; the non-negativity constraint ι+ encodes the physical fact that microscopy intensities cannot be negative, grounding the reconstruction in the measurement model. In single-cell microscopy, where illumination non-uniformity and background variation are pervasive, this combination reduces the tendency of unconstrained dictionaries to absorb spurious high-frequency patterns into the learned atoms. 
+
+# 11 Conclusion 
+
+We presented a variational dictionary learning algorithm with hybrid least-squares-TV penal-ization, non-negativity constraints, and an explicit unitary dictionary constraint ( D⊤D = I). The manuscript establishes a rigorous mathematical formulation with three convergence layers: (i) existence, uniqueness, and Lipschitz stability of the variational minimizer (Theorem 1); (ii) strong convergence of PDHG iterates to the regularized solution under the explicit step-size condition τ σ < 1/8 (Theorems 10 and 8); and (iii) convergence of the regularized solution to the true solution at the O(δ) rate when the true solution satisfies the quadratic VSC and the 32 regularization parameters are chosen as λ ∝ δ (Theorems 5 and 9). The combined total error satisfies yn(δ) − y† 
+
+> 2
+
+≤ Ctot δ with an explicit constant Ctot = C1 + (1 − c)−1 determined by the step sizes and the VSC geometry. A key second contribution is the proposed deterministic framework for multi-channel cell feature unification (Section 9). By learning a shared dictionary across all five BSCCM imag-ing channels and concatenating the resulting sparse codes, we obtain a unified cell descriptor 
+
+ϕj ∈ RCK that is mathematically grounded, reproducible, and directly interpretable. This de-terministic approach is preferred over probabilistic latent space methods [13, 14] in the clinical imaging context, where reproducibility and auditability are regulatory requirements. Together, these two contributions, hybrid regularization associated with the TV and non-negativity reconstruction algorithm and the deterministic channel unification strategy, establish a rigorous and reproducible foundation for variational single-cell analysis, covering reconstruc-tion, convergence, and multi-channel feature unification. 
+
+# References 
+
+[1] E. Altunta¸ c. Variational dictionary learning with hybrid ℓ1 and non-negativity penalization for single-cell microscopy. Zenodo preprint, 2026. DOI: 10.5281/zenodo.18735456. [2] E. Altunta¸ c. New Pair of Primal-Dual Algorithms for Bregman Iterated Variational Reg-ularization . arXiv preprint arXiv:1903.07392, 2019. [3] E. Altunta¸ c. Choice of the parameters in a primal-dual algorithm for Bregman iterated variational regularization. Numerical Algorithms , 2020. DOI: 10.1007/s11075-020-00909-6. [4] F. Giovanneschi, A. Nittur Ramesh, M. A. Gonzalez Huici, and E. Altunta¸ c. Convolutional sparse coding and dictionary learning for LiDAR depth completion in automotive scenar-ios. In 2023 Photonics & Electromagnetics Research Symposium (PIERS) , Prague, Czech Republic, July 2023. DOI: 10.1109/PIERS59004.2023.10221515. [5] S. Cwalina, C. Kottke, V. Jungnickel, R. Freund, P. Runge, P. Rustige, T. Knieling, S. Gu-Stoppel, J. Albers, N. Laske, F. Senger, L. Wen, F. Giovanneschi, E. Altunta¸ c, A. N. Ramesh, M. A. Gonzalez Huici, A. Kuter, and S. Reddy. Fiber-based frequency modulated LiDAR with MEMS scanning capability for long-range sensing in automo-tive applications. In 2021 IEEE International Workshop on Metrology for Automotive (MetroAutomotive) , 2021. DOI: 10.1109/MetroAutomotive50197.2021.9502868. [6] E. Altunta¸ c, X. Hu, B. A. Emery, S. Khanzada, G. Kempermann, and H. Amin. Bottom-up neurogenic-inspired computational model. In 2023 IEEE BioSensors Conference (BioSen-sors) , London, UK, July 2023. DOI: 10.1109/BioSensors58001.2023.10280794. [7] H. Pinkard, C. Liu, F. Nyatigo, D. A. Fletcher, and L. Waller. The Berkeley Sin-gle Cell Computational Microscopy (BSCCM) dataset. arXiv preprint arXiv:2402.06191, 2024. Project page: https://waller-lab.github.io/BSCCM/ . Dataset DOI (Dryad): 10.5061/dryad.sxksn038s. [8] Y. Chen and I. Loris. On the choice of parameters in primal-dual splitting methods. 
+
+Numerical Algorithms , 79:889-909, 2018. DOI: 10.1007/s11075-018-0616-x. [9] A. Chambolle and T. Pock. A first-order primal-dual algorithm for convex problems with applications to imaging. J Math Imaging Vis , 40(1):120-145, 2011. DOI: 10.1007/s10851-010-0251-1. 33 [10] L. Condat. A primal-dual splitting method for convex optimization involving Lipschitzian, proximable and linear composite terms. J Optim Theory Appl , 158:460-479, 2013. DOI: 10.1007/s10957-012-0245-9. [11] J. Mairal, F. Bach, J. Ponce, and G. Sapiro. Online learning for matrix factorization and sparse coding. Journal of Machine Learning Research , 11:19-60, 2010. [12] M. Elad. Sparse and Redundant Representations: From Theory to Applications in Signal and Image Processing . Springer, 2010. DOI: 10.1007/978-1-4419-7011-4. [13] R. Lopez, J. Regier, M. B. Cole, M. I. Jordan, and N. Yosef. Deep generative modeling for single-cell transcriptomics. Nat Methods , 15(12):1053-1058, 2018. DOI: 10.1038/s41592-018-0229-2. PMC: PMC6289068. [14] A. Gayoso, Z. Steier, R. Lopez, J. Regier, K. L. Nazor, A. Streets, and N. Yosef. Joint probabilistic modeling of single-cell multi-omic data with totalVI. Nat Methods , 18:272-282, 2021. DOI: 10.1038/s41592-020-01050-x. [15] A. Gayoso, R. Lopez, G. Xing, P. Boyeau, V. Valiollah Pour Amiri, J. Hong, K. Wu, M. Jayasuriya, E. Mehlman, M. Langevin, Y. Liu, J. Samaran, G. Misrachi, A. Nazaret, O. Clivio, C. Xu, T. Ashuach, M. Lotfollahi, V. Svensson, E. Beltrame, V. Kleshchevnikov, C. Talavera-Lopez, L. Pachter, F. J. Theis, A. Streets, M. I. Jordan, J. Regier, and N. Yosef. A Python library for probabilistic analysis of single-cell omics data. Nat Biotechnol , 40:163-166, 2022. DOI: 10.1038/s41587-021-01206-w. [16] N. Moshkov, M. Bornholdt, S. Benoit, M. Smith, C. McQuin, A. Goodman, R. A. Senft, Y. Han, M. Babadi, P. Horvath, B. A. Cimini, A. E. Carpenter, S. Singh, and J. C. Caicedo. Learning representations for image-based profiling of perturbations. Nat Commun , 15:1594, 2024. DOI: 10.1038/s41467-024-45999-1. [17] J. Burgess, J. J. Nirschl, M.-C. Zanellati, A. Lozano, S. Cohen, and S. Yeung-Levy. Orientation-invariant autoencoders learn robust representations for shape profiling of cells and organelles. Nat Commun , 15:1022, 2024. DOI: 10.1038/s41467-024-45362-4. 
+
+# Conflict of Interest Statement 
+
+The author declares no conflict of interest. This work was conceived, developed, and carried out independently by the author in his capacity as founder of Aegis Digital Technologies, a sole proprietorship registered in Dresden, Germany. No external funding was received for this research. No competing financial interests, advisory relationships, or institutional affiliations that could have influenced the design, conduct, or reporting of this work exist. 
+
+# Data Access Statement 
+
+All experiments in this manuscript were conducted on the publicly available Berkeley Sin-gle Cell Computational Microscopy (BSCCM) dataset [7], specifically the BSCCM-tiny sub-set comprising N = 1 ,000 white blood cells imaged in five LED-array channels at 128 × 128 pixel resolution. The dataset is freely accessible via DOI: 10.5061/dryad.sxksn038s and at 
+
+https://waller-lab.github.io/BSCCM/ . No new experimental data were generated in this work. The Python implementation of the proposed algorithm, including all hyperparameter configurations reported in Table 1, will be made available by the author upon reasonable re-quest. 34 Ethics Statement 
+
+This work is purely computational and does not involve the collection of new human subjects data, biological material, or animal experiments. The BSCCM dataset used in the experiments was collected and published by Pinkard et al. (2024) [7] under the oversight of the Institu-tional Review Board of the University of California, Berkeley. All cells in the dataset are anonymised label-free microscopy images of white blood cells; no personally identifiable infor-mation is present. No additional ethics approval was required for the computational analyses reported in this manuscript. 35 Figure 4: Unified cell reconstructions across five representative cells (rows) and all five BSCCM channels (columns: Left, Right, Top, Bottom, BF). For each cell, the top sub-row shows the focused crop and the bottom sub-row shows the dictionary reconstruction Da (c) 
+
+> j
+
+, with relative error e annotated. The shared dictionary D (learned on all N = 1 ,000 cells jointly) produces faithful reconstructions for cells of varying size, orientation, and morphology. Per-channel errors range from ≈4% to ≈8% for DPC channels and ≈12% to ≈15% for Brightfield. 36 Figure 5: Unified single-cell representation for cell #0, K = 256, C = 5 channels. Panel A :heatmap of the unified descriptor matrix Φ j ∈ RK×C (equation (88)), with rows (atoms) sorted in descending order of aggregate activation strength ∥Φj [k, :] ∥2; columns correspond to the five BSCCM imaging channels (L = DPC Left, R = DPC Right, T = DPC Top, B = DPC Bottom, BF = Brightfield). Red/blue encodes positive/negative activation; the DPC Left–Right and Top–Bottom antisymmetry is visible as mirrored sign patterns. Panel B : the 6 atoms with the largest ∥Φj [k, :] ∥2 (aggregate norms: 110 .3, 13 .8, 8 .2, 7 .8, 7 .5, 7 .0), shown as image patches (top, inferno colormap) and per-channel activation bar charts (bottom, shared y-scale clipped at ±16 .9). Blue bars denote positive, red bars negative activation. The large norm gap between atom d0 (110 .3) and d2 (13 .8) reflects the dominant mean-morphology component; the bar-chart shared y-scale is set from atoms of rank 2 onward to prevent the outlier atom from collapsing the remaining bars. Panel C : the unified cell image uj = Da ⋆j (equation (92)), computed from the channel-mean datum ¯ xj = 1
+
+> C
+
+P 
+
+> c
+
+x(c) 
+
+> j
+
+. The DPC channels cancel in ¯ xj , so uj is a TV-regularised, non-negative, dictionary-projected morphological portrait dominated by the Brightfield channel. 37 Algorithm 2 Joint Multi-Channel Dictionary Learning and Cell Feature Unification 
+
+Require: Multi-channel data {x(c) 
+
+> j
+
+}N, C j=1 , c =1 , dictionary size K, regularization parameter λTV ,inner PDHG step sizes τTV , σ TV > 0 with τTV σTV ∥∇∥ 2 < 1, outer iterations T . 
+
+> 1:
+
+Initialize D(0) ∈ Rn×K with orthonormal columns, D(0) ⊤D(0) = IK (e.g. random orthonor-mal via QR decomposition).  
+
+> 2:
+
+Initialize codes {a(c),0 
+
+> j
+
+}j,c . 
+
+> 3:
+
+for t = 0 to T − 1 do ▷ Outer loop: joint dictionary update  
+
+> 4:
+
+for c = 1 to C do ▷ Middle loop: channel iteration  
+
+> 5:
+
+for j = 1 to N do ▷ Inner loop: per-sample inference  
+
+> 6:
+
+Solve (87) for a(c),t +1  
+
+> j
+
+via Algorithm 1 with dictionary D(t) and datum x(c) 
+
+> j
+
+. 
+
+> 7:
+
+end for  
+
+> 8:
+
+end for  
+
+> 9:
+
+(Procrustes dictionary update) Stack the data and codes: 
+
+Xstack = x(c)
+
+> j
+
+ 
+
+> c,j
+
+∈ RCN ×n, Astack = a(c),t +1 
+
+> j
+
+ 
+
+> c,j
+
+∈ RCN ×K .
+
+Compute the cross-covariance M = X⊤
+
+> stack
+
+Astack ∈ Rn×K and its economy SVD M = U ΣV ⊤.Set 
+
+D(t+1) ← U V ⊤.▷ Exact global minimizer of min D⊤D=IK
+
+P 
+
+> c,j
+
+∥x(c) 
+
+> j
+
+− Da (c) 
+
+> j
+
+∥2 
+
+> 10:
+
+(Code refresh) For each channel c and sample j, reproject the stored TV-denoised image y(c),⋆ j onto the updated dictionary: 
+
+a(c),t +1  
+
+> j
+
+← D(t+1) ⊤y(c),⋆ j .▷ Exact under unitarity: D(t+1) ⊤D(t+1) = IK ; corrects codes for the new D 
+
+> 11:
+
+end for  
+
+> 12:
+
+(Descriptor construction) For each cell j, form 
+
+ϕj =  a(1) ,T j , a (2) ,T j , a (3) ,T j , a (4) ,T j , a (5) ,T j
+
+ ∈ RCK . 
+
+> 13:
+
+(Unified cell image) For each cell j, compute the channel mean ¯ xj := 1
+
+> C
+
+PCc=1 x(c) 
+
+> j
+
+and solve (91) via Algorithm 1 with datum ¯ xj :
+
+uj := D(T ) a⋆j ∈ Rn, a⋆j = arg min  
+
+> a
+
+E D(T )a; ¯ xj
+
+. 
+
+> 14:
+
+return D(T ), {ϕj }Nj=1 , {uj }Nj=1 .38

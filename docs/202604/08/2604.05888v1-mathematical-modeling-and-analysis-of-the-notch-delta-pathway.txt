@@ -1,0 +1,1802 @@
+Title: Mathematical modeling and analysis of the Notch-Delta pathway
+
+URL Source: https://arxiv.org/pdf/2604.05888v1
+
+Published Time: Wed, 08 Apr 2026 01:18:50 GMT
+
+Number of Pages: 41
+
+Markdown Content:
+# Mathematical modeling and analysis of the Notch–Delta pathway 
+
+# Angela Stevens, Nicola Vassena April 8, 2026 
+
+## Dedicated to Vera Natalia (*2026) and to Heinrich (*1928) 
+
+Abstract 
+
+In this paper mathematical models for the evolutionary conserved Notch–Delta pathway are developed and analyzed in order to better understand how two neigh-boring biological cells can become different. We pursue a structure-based stoichio-metric type of approach, such that no specific reaction kinetics have to be defined. Only their dependencies on the relevant species participating in the model network are taken into account. Reaction networks and their related systems of ODEs are presented and analyzed with respect to their capacity for symmetry-induced bi-furcations. The possibility to obtain a singular Jacobian is analyzed symbolically. This approach is valid for parameter-rich kinetics, where the parametrization of the steady-state fluxes and of the first derivatives of the reaction rates evaluated at the steady state are independent. In this context, also with the help of abstract mini-mal models, we could mathematically identify some of the Notch pathway’s features being more relevant than others. 
+
+Keywords: Notch pathway, reaction networks, symmetry-induced bifurcation, symbolic analysis, systems of ODEs 
+
+## Contents 
+
+1 Introduction 2
+
+1.1 Biochemically informed mathematical models . . . . . . . . . . . . . . . . . . 3
+
+2 Some Formalisms for Reaction Networks 7
+
+2.1 From stoichiometry to singular steady-states . . . . . . . . . . . . . . . . . . . 8
+
+2.2 Positive feedback and instability motifs . . . . . . . . . . . . . . . . . . . . . . 11 
+
+3 Mathematical analysis of the models 13 
+
+4 Minimal Mechanisms 18 
+
+4.1 Connecting back to biology . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20 
+
+4.2 Autocatalytic and non-autocatalytic instabilities . . . . . . . . . . . . . . . . . 23 
+
+5 Discussion 26 
+
+6 Proofs 27 
+
+1
+
+> arXiv:2604.05888v1 [math.DS] 7 Apr 2026
+
+## 1 Introduction 
+
+The so-called Notch or Notch–Delta pathway is one of the evolutionary highly conserved and central cellular signaling pathways among metazoan organisms, which include worms, fish, flies, amphibians, reptiles, mammals, birds, and humans. The Notch pathway con-trols several fundamental differentiation processes and regulates binary cell fate decisions. Thus its proper functioning is of utmost importance. Nevertheless, the precise mecha-nisms on how neighboring and seemingly similar cells can finally become different w.r.t. the expression of Notch receptors (and/or Delta/Serrate/LAG-2 ligands) are not fully understood. The outcome of such a dynamical process may not be robust in the selection of specific cells among a few, but it has at least to be robust in some sense, e.g. w.r.t. the percentage and spatial patterning of differently expressing cells in a given tissue. In order to contribute to a better understanding of such dynamics from a theoretical point of view, we set up and analyze mathematical models for two cells only. Our mod-els are first formulated as reaction networks and take into account some of the known and conjectured structural features of the Notch pathway. We then identify the most relevant of those features which can give rise to symmetry breaking in the systems of or-dinary differential equations related to these networks. Based on biological descriptions, our models focus only on those processes that ‘mathematically’ can create qualitative differences between two initially identical cells. We target symmetry breaking, without imposing specific relative orderings between the two cells w.r.t. quantitative expression levels of Notch/Delta. We do not explain layers, stripes etc. in tissues here, which can also be seen in Notch–Delta patterning. Spontaneous symmetry breaking is well understood mathematically, with applications in biology too. It may arise, for instance, through the loss of stability of a homogeneous steady state via a zero-eigenvalue bifurcation, which generically leads to a pitchfork bifur-cation and the emergence of two inhomogeneous, i.e. asymmetric, steady states [GH13]. This perspective has been developed in detail within equivariant dynamical systems theory 
+
+[GS03]. It provides a framework to analyze symmetry-induced bifurcations, including net-works. Here we draw on this perspective but focus on reaction networks where symmetry is intrinsic since the interacting cells are initially identical. A systematic approach that combines symmetry with stoichiometric considerations, as customary in reaction network theory, appears to be largely underexplored. To the best of our knowledge, symmetry has only occasionally been used to establish bistability in specific reaction-network models, see e.g. [HR15]. Many mathematical models of the Notch–Delta pathway trace back to [CMML96], where the pathway’s dynamics are described by explicitly given nonlinear regulatory functions. Notch in cell 1 is activated by Delta of cell 2, while this Notch activity inhibits the produc-tion of Delta in the same cell 1, and vice versa. The mechanism leading to differentiation, i.e. different expression levels of Notch/Delta in the two cells, is thus ‘directly’ encoded in the specific choice of the nonlinear interaction functions. In our present paper, the focus is different. We are, instead, searching within the network structure itself for the possibility of differentiation, and do not fix nonlinearities. The model in [CMML96] has subsequently been extended into several directions, including the coupling with other signaling pathways and also with diffusion [BYA10], long-range signaling [BP23], or stochastic cell rearrangements [OTIS +23]. A different body of work 2on the Notch pathway relates to [SLL +10]. This model was mathematically rigorously analyzed in [MZZ19]. It adopts a structural description of the system, closer in spirit to our perspective here, and in particular also focuses on the additional possible cis-interaction between Notch and Delta, i.e., their interaction within the same cell, see BII 
+
+below, and in particular Remark 1.2. Finally, the Notch–Delta pathway has also been analyzed for oscillatory gene-expression dynamics in the context of the segmentation clock in vertebrate embryos, often in inter-action with other pathways [RGSFM07, GP08]. 
+
+1.1 Biochemically informed mathematical models 
+
+Our mathematical models are based on descriptions in [HS19, ASL11, YCB10], see Fig. 1 for an overview. In order to focus on the internal structure and interactions of the pathway, we deliberately omit ubiquitous production and degradation reactions. These are not specific to the model and bear the risk of obscuring, rather than clarifying, the analysis. Thus their omission allows us to better understand the essential features of this highly conserved pathway.      
+
+> Figure 1: Schematic representation of the biological mechanisms taken into account in our mathematical models, on the left BI and the cis-reactions BII , on the right the ligand-activation variant BIII . Not all interactions are depicted symmetrically, for visual clarity, but they are to be understood as occurring symmetrically in both cells. Letters refer to the biochemical explanation in the text. For the complete hypergraph representation of the reaction models, see Fig. 2.
+
+For the central part of our mathematical model, we consider the Notch receptors N 1 of e.g. cell 1, which arise from an extracellular domain NE 1 and an intracellular domain NI 1 (a) .The Notch receptors are activated by cell-surface ligands from a neighboring cell (b) , i.e. the receptors release their intracellular domain upon transactivation of their extracellular domain by Delta/Serrate/LAG-2 ligands D 2 of cell 2. The released intracellular domain NI 1 then, after some other reactions (see Remark 1.1) translocates to the nucleus of cell 1. The otherwise newly formed transaction complex T2 is endocytozed by cell 2 (c) , and 3it can be recycled into an extracellular Notch domain NE 2 (d) and a ligand D 2 of cell 2 
+
+(e) . These central processes take place in both cells and are, in essence, represented by the following six reactions, which are pairwise symmetric. This symmetry is also reflected by our choice of numbering the reactions. (BI )NI 1 + NE 111 
+
+−−→ N1 NI 2 + NE 221 
+
+−−→ N2
+
+N1 + D 212 
+
+−−→ NI 1 + T 2 N2 + D 122 
+
+−−→ NI 2 + T 1
+
+T113 
+
+−−→ NE 1 + D 1 T223 
+
+−−→ NE 2 + D 2.
+
+Remark 1.1. The translocation of NI to the nucleus can be explicitly modeled by intro-ducing NI Nucleus 1 and NI Nucleus 2 , and splitting the reactions 12 and 22 as 
+
+(BI’ ) N1 + D 212 ′
+
+−−→ NI Nucleus 1 + T 2 N2 + D 122 ′
+
+−−→ NI Nucleus 2 + T 1
+
+NI Nucleus 112 ′′ 
+
+−−→ NI 1 NI Nucleus 222 ′′ 
+
+−−→ NI 2.
+
+These additions do not affect the behavior of BI w.r.t. the capacity for differentiation (see Remark 3.5 and p. 29). They only increase the system’s dimension and are therefore dismissed. 
+
+A cell’s Notch receptors N j can also interact with the very same cell’s ligands D j , j = 1 , 2, (cis reaction ), (f) . It is conjectured that this reaction does not lead to the type of Notch activation described above. So this reaction acts like a kind of inhibition. Despite its likely broad relevance, however, this interesting regulatory mechanisms is most often overlooked [HS19, ASL11]. Therefore we extend our central model BI by introducing a product C j
+
+for this cis reaction. This product is resolved after a while again. (BII ) N1 + D 114 
+
+−−⇀↽−−
+
+> 15
+
+C1 N2 + D 224 
+
+−−⇀↽−−
+
+> 25
+
+C2
+
+Remark 1.2. The model in [SLL +10] considers the Notch receptor N with its intracellular domain NI , and the Delta ligand D, within one cell. Further, constant production of N
+
+and D and linear degradation of N, NI , and D are assumed. A fixed concentration Dext 
+
+accounts for the Delta concentration in neighboring cells. In the mathematical follow up paper [MZZ19] two interacting cells were considered in an analogous way 
+
+(Cis-R )N1 + D 1 −−→ 
+
+> S1
+
+. . . N2 + D 2 −−→ . . . 
+
+N1 + D 2 −−→ 
+
+> S2
+
+NI 1 −−→ . . . N2 + D 1 −−→ NI 2 −−→ . . . . . . −−→ N1 −−→ . . . . . . −−→ N2 −−→ . . . . . . −−→ D1 −−→ . . . . . . −−→ D2 −−→ . . . 
+
+where the dots encode production by and degradation to entities external to the system. In [SLL +10] only the reactions on the left-hand side of Cis-R were considered with D2 =Dext . It was proven in [MZZ19] that the mass-action ODE system associated to Cis-R 
+
+possesses a unique asymptotically stable steady-state if the respective parameters in the two cells are considered to be identical. In both cases, also in [SLL +10] , differentiation in the sense of our present paper is excluded, unless parameters vary in the two cells from the beginning, which we want to exclude here. Although our model involves more entities and 
+
+4considers dynamics where no production or degradation terms are required, we remark the consistency of reactions S1 and S2 in Cis-R with reactions 14/24 in BII and 12/22 in 
+
+BI .
+
+Further, in a third model we extend our central model BI by the so-called ligand activation hypothesis [YCB10]. It is assumed that newly synthesized Delta, D sj , initially appears at the cell’s surface in a silenced state, see (g) in Fig. 1, incapable of signaling. Thus an interaction between N i and D sj , i ̸ = j results in a blocked complex Bj , which eventually resolves (h) . To become activated, the silenced Delta must first be endocytozed. Only after being recycled back to the cell’s surface it becomes activated (D j ) and capable of signaling (i) . The molecular mechanism of this ‘activation’ remains to be identified. In order to account for this process, we modify BI to obtain (BIII )NI 1 + NE 111 
+
+−−→ N1 NI 2 + NE 221 
+
+−−→ N2
+
+N1 + D 212 
+
+−−→ NI 1 + T 2 N2 + D 122 
+
+−−→ NI 2 + T 1
+
+N1 + D s216 
+
+−−⇀↽−−
+
+> 17
+
+B2 N2 + D s126 
+
+−−⇀↽−−
+
+> 27
+
+B1
+
+Ds118 
+
+−−→ D1 Ds228 
+
+−−→ D2
+
+T119 
+
+−−→ NE 1 + D s1 T229 
+
+−−→ NE 2 + D s2
+
+Remark 1.3. The blocked complex Bj is intercellular and therefore does not clearly belong to either cell 1 or 2. The choice of labeling is consequently entirely arbitrary, and nothing would differ by exchanging B1 with B2, and vice versa. 
+
+Remark 1.4. The silenced state Dsj of Delta acts crucially different w.r.t. the capacity for differentiation in comparison to the translocation of the intracellular Notch domain NI j
+
+to the nucleus as NI N ucleus j in BI’ . This is due to the presence of the ‘blocked’ reactions 
+
+j6 for j = 1 , 2.
+
+So we consider the Notch–Delta dynamics in three variants: BI , BI +BII , and BIII , as networks of biochemical reactions and deal with systems of ordinary differential equations (ODEs), see Sec. 3. Since we model the interaction between two initially identical cells the network graph exhibits a structural symmetry , specifically a Z2-symmetry, induced by the involutive graph automorphism. Our choice of labels for the reactions makes this symmetry explicit. Reactions 11 − 19 refer to cell 1 and reactions 21 − 29 to cell 2. Due to the supposed identity of the two cells prior to differentiation, we also assume kinetic symmetry , i.e., the nonlinearities of reactions mapped into each other by the symmetry automorphism are identical. This assumption renders the system Z2-equivariant [GS03]: in other words, the dynamics commute with the swap of indices between the two cells. We address the symmetry-breaking differentiation process, where two initially identical cells develop different levels of expression of Notch (and/or Delta/Serrate/LAG-2 ligands) by a local bifurcation of the ODE systems steady-states. The number of steady states remains unchanged as long as the Jacobian at the homogeneous steady state is invertible and the implicit function theorem holds. The emergence of multiple asymmetric steady states thus requires the Jacobian to be singular, with determinant zero. This bifurcation argument brings up our central structural question: 5Which of our network topologies do allow for a singular Jacobian at a homogeneous steady-state with kinetic symmetry? 
+
+For a positive answer to this question, we say that the network has the capacity for differentiation . We stress that this corresponds only to a necessary linear condition. The precise nonlinear unfolding depends of course on the specific choice of the nonlinear reaction rates. In this sense, one main problem in the analysis of most biochemical reaction networks and beyond is indeed the lack of quantitative knowledge of the reaction rates. Trying to quantify them in our given setting would not make sense. Therefore we pursue a structure-based, i.e., stoichiometric type of analysis to answer the above question. In order to do so, we consider the network being endowed with a broad class of kinetics, where only the dependencies of the reaction rates on the concentrations are specified. These dependencies are encoded by the stoichiometry itself. The possibility of a singular Jacobian is analyzed symbolically, i.e., no steady-state computation has to be done. Therefore the generality of the class of kinetics being considered is essential. Our approach is valid whenever the kinetics under consideration are parameter-rich [VS24], that is, allowing for an independent parametrization of both the steady-state fluxes and the first derivatives of the reaction rates evaluated at the steady state. This concept works for a wide range of kinetic schemes relevant and used in concrete biochemical con-texts, such as Michaelis–Menten kinetics [MM13], Hill kinetics [Hil10], and generalized mass-action kinetics [MR12], all of which are parameter-rich. In contrast to this, classic mass-action kinetics [WG64] are not parameter-rich, and therefore the results presented here do not automatically apply in such a restricted framework. 
+
+Overview of the results obtained. We will show the following features: 
+
+• The stoichiometry of our central Notch–Delta model, BI does not structurally sup-port the capacity for differentiation as defined above. Even without any kinetic symmetry constraints, zero-eigenvalue bifurcations are excluded under any mono-tone kinetics. The system admits only one steady state for any choice of parameters. 
+
+• We prove zero-eigenvalue bifurcation - also under kinetic symmetry constraints - for both variants of the central model: BI +BII , and BIII . There is an analogy between variant BI +BII and BIII . Both models contain a ‘Notch–Delta’ interaction without direct effects. These seemingly ineffective interactions however subtly introduce non-autocatalytic positive feedback, in the sense introduced in Sec. 2, which enables the capacity for differentiation. 
+
+• Then we take the purely mathematical point of view and propose and analyze min-imal mathematical models, symmetric and for two cells with an analogous type of differentiation as described above and with similar constraints. The paper is organized as follows. Sec. 2 introduces the formalism on reaction networks needed for our analysis. Sec. 3 formally states the main results for BI , and for the two extended models BI +BII , and BIII . Further - for the latter two models - we present the sources of instability, in form of network motifs, which these modifications introduce when compared to BI . In Sec. 4, we propose and analyze several minimal reaction net-work models of two initially identical cells with the capacity for differentiation. Sec. 5 summarizes and discusses our results. Proofs are presented in Sec. 6. 62 Some Formalisms for Reaction Networks 
+
+A reaction network Γ is a pair of sets ( M, E), where M = (X 1, ..., X|M|) is the set of species of the network, and E is the set of reactions. Each reaction j is a directed relation between nonnegative linear combination of the species (2.1) j :
+
+> |M|
+
+X
+
+> m=1
+
+sjmXm →
+
+> j
+> |M|
+
+X
+
+> m=1
+
+˜sjmXm,
+
+where the sjm, ˜sjm ≥ 0 are so-called stoichiometric coefficients of reaction j. Species Xm
+
+on the left-hand side of (2.1) with coefficients sjm > 0 are called reactants of reaction j
+
+and species Xm on the right-hand side with ˜ sjm > 0 are called products of the reaction j.The |M| × | E| stoichiometric matrix S with entries (2.2) Smj = ˜ sjm − sjm, m = 1 , . . . , |M|, j = 1 , . . . , |E|
+
+encodes the net consumption or production of each species in each reaction. We assume each reaction to be irreversible by fixing an orientation. While thermodynamics dictates that all processes are fundamentally reversible, this irreversibility assumption is valid for approximations of biochemical networks and allows for the analysis of a smaller system. Therefore also our model is idealized and, as usual, it is not intended to account for all reactions present in the respective networks. In this sense, we repeat that our models 
+
+BI , BI +BII , and BIII omit production (inflow) and degradation (outflow) reactions, respectively (2.3) . . . → Xm and Xm → . . . ,
+
+where the ‘ . . . ’ denote species external to the system. The related ODE system describing the time-evolution x(t) ∈ R|M| 
+
+> >0
+
+of the positive con-centrations of X 1, . . . , X|M| reads (2.4) ˙x = f (x) := Sr(x),
+
+where S is defined in (2.2) and r(x) ∈ R|E| is the vector of nonlinear reaction rates (kinetics) that define the chemical laws governing each reaction. Left kernel vectors w of the stoichiometric matrix S identify conservation laws , since (2.5) d(wx (t)) 
+
+dt = w ˙x = wS r(x) = 0 ,
+
+thus wx = Kw for a constant Kw, which is determined by the initial conditions x0 ∈ R|M| 
+
+> >0
+
+.Complementarily, for each x0 the sets (2.6) x0 + Image S
+
+which are invariant under the flow of (2.4), are called stoichiometric compatibility classes .In order to reduce the system to a given stoichiometric compatibility class, we take a basis 
+
+{w1, ..., w n} of ker ST and solve the linear constraints (2.7) wlx = Kwl = Kwl (x0)7for l = 1 , . . . , n arbitrary variables, with n being the dimension of ker ST .Since the exact quantitative form of the reaction rates rj is generally unknown, it is common in the literature to represent them as a vector of parametric functions r(x, p), depending on a set of parameters p. However, even the very choice of the parametric nonlinearity is arbitrary for our models. Accordingly, in this paper we only assume that all reaction rates rj (x, p) are monotone chemical functions in the following sense. 
+
+Definition 2.1. A function rj (x) is called monotone chemical if 1. rj (x) ≥ 0, for all x ∈ R|M|≥0 ;2. rj (x) > 0 if and only if xm > 0 for all m with sjm > 0; 3. for sjm = 0 we have ∂r j /∂x m ≡ 0; 4. for x > 0 and sjm > 0 we have ∂r j /∂x m > 0. Thus we consider monotone nonlinearities whose dependencies are fully encoded by the stoichiometry of the system. Widely-used kinetics such as mass action (classic and gen-eralized), Michaelis–Menten, and Hill kinetics all are monotone chemical function. 
+
+2.1 From stoichiometry to singular steady-states 
+
+A positive steady-state ¯ x of system (2.4), (2.8) 0 = f (¯ x) = Sr(¯ x),
+
+requires the existence of a right kernel vector v > 0 of the stoichiometric matrix, i.e. 
+
+Sv = 0. Networks satisfying this structural property are called consistent in the literature [ADLS07]. The Jacobian matrix reads (2.9) fx = ( Sr(x)) x = S(r(x)) x,
+
+where ( r(x)) x indicates the E × M matrix of the partial derivatives: (2.10)   (r(x)) x
+
+ 
+
+> jm
+
+= ∂r j
+
+∂x m
+
+(x).
+
+Since any rj (x) is a monotone chemical function, we have that ∂r j (x)/∂x m̸ = 0 at x > 0 if and only if sjm > 0, i.e., the species X m is a reactant of reaction j. Therefore we consider the Jacobian matrix of f symbolically in the following sense. 
+
+Definition 2.2. The entries of the |E| × | M| symbolic reactivity matrix R for system (2.4) are defined by (2.11) Rjm := 
+
+(
+
+rjm if sjm > 0; here rjm > 00 otherwise .
+
+Their relation to our system will be given below. The |M| × | M| symbolic Jacobian G is then defined as (2.12) G := SR. 
+
+8Now fix a concentration vector ¯ x > 0 and a choice ¯R for the positive parameters in the symbolic reactivity matrix, i.e. ¯Rjm = {¯rjm }. Consider a consistent network. Clearly, in the wide class of monotone chemical functions, we can always find a suitable nonlinearity 
+
+r such that (2.13) 
+
+
+
+Sr(¯ x) = 0; 
+
+∂r j (x)
+
+∂x m x=¯ x
+
+= ¯ rjm for all j = 1 , . . . , |E| and m = 1 , . . . , |M|.
+
+Here we want to be explicit on the possible choices of nonlinearities. 
+
+Definition 2.3. A parametric kinetic rate model rj (x, p) is parameter-rich if for every choice of a steady-state value ¯ x > 0 and any choice of the symbolic reactivity matrix ¯R,there exist parameters ¯ p such that (2.14) ¯rjm = ∂r j (x, p)
+
+∂x m (x, p)=(¯ x, ¯p)
+
+.
+
+As mentioned already, most reaction schemes used in biochemical contexts, such as Micha-elis–Menten kinetics, Hill kinetics, and generalized mass-action laws, are parameter-rich [VS24]. A crucial advantage of this framework is that for a consistent reaction network with parameter-rich kinetics, it suffices to analyze how the stability of the symbolic Jaco-bian SR changes as the parameters in R vary in order to detect steady-state bifurcations. In this paper we consider differentiation as a zero-eigenvalue bifurcation, i.e., when a real eigenvalue of the Jacobian crosses the imaginary axis. From the parameter-rich kinetics point of view, these dynamics can be detected by the characteristic polynomial of the symbolic Jacobian G = SR :(2.15) g(λ) = 
+
+> |M|
+
+X
+
+> k=1
+
+akλ|M|− k .
+
+Each of the coefficients ak, sum of the principal minors of order k of G = SR , is a function of the values of those symbolic entries rjm of R which are larger than zero. Conservation laws may force one or more of the coefficients ak to vanish identically, regardless of the choice of R. In reaction networks, this typically arises from linear conservation laws w with wS = 0. We call ak algebraically nonzero if ak̸ ≡ 0 as a function of the entries of the symbolic reactivity matrix R. Let a˜k denote the algebraically nonzero coefficient with the highest index ˜k. If the system is full rank and in particular has no conservation laws, then a|M| corresponds to det G. In general, we say that the system is nondegenerate , if the highest index ˜k for nonzero coefficient a˜k satisfies ˜k =
+
+|M| − n, where n = dim ker ST is the number of linearly independent conservation laws. In this case a˜k corresponds to the determinant of the Jacobian of (2.9) reduced to a stoichiometric compatibility class. Thus differentiation can only occur if this algebraically nonzero coefficient is zero for a specific choice of parameters in R.In order to tackle the question of whether there exists a choice R∗ such that the coefficient 
+
+a˜k = 0 we use Child-Selections as the main tool. 9Definition 2.4. For a network Γ ΓΓ = ( M, E), a k-Child-Selection triple κκκ = ( κ, E κ, J ), or 
+
+k-CS, is such that |κ| = |Eκ| = k, κ ⊆ M, Eκ ⊆ E, and J : κ → Eκ is the Child-Selection bijection satisfying sJ(X m) 
+
+> m
+
+> 0 for all X m ∈ κ.In particular, a k-CS κκκ = ( κ, E κ, J ) defines a k × k stoichiometric matrix S[κκκ] with entries (2.16) S[κκκ]ml := S[κ, E κ]m,J (X l) = ˜ sJ(X l) 
+
+> m
+
+− sJ(X l) 
+
+> m
+
+.
+
+Here, S[κ, E κ] denotes the submatrix of the stoichiometric matrix S with row-indices in κ
+
+and column-indices in Eκ. The matrix S[κκκ] is then obtained from S[κ, E κ] by reshuffling the columns according to J. In particular, if (X 1, . . . , Xk) are the k species relabeled in 
+
+κ, then the stoichiometric column corresponding to the reaction j = J(X m) appears in 
+
+S[κκκ] as the mth column. For a given k-CS κκκ, we refer to the associated matrix S[κκκ] as its Child-Selection matrix (CS-matrix). If no species X m appears as both a reactant and product of any single reaction j, then CS-matrices identify all square submatrices of the stoichiometric matrix S that, upon reshuffling of its columns, possess a strictly negative diagonal. This is the case in all our models BI , BI +BII , and BIII .CS-matrices are instrumental in understanding the sign-changes of coefficients ak of the characteristic polynomial. 
+
+Lemma 2.5 (Lemma 5.4, [Vas23]) . Let ak be a coefficient of the characteristic polynomial 
+
+g(λ) in (2.15) of the symbolic Jacobian G = SR . Then 
+
+(2.17) ak = X
+
+> κκκ
+
+det S[κκκ] Y
+
+> Xm∈κ
+
+RJ(Xm)m.
+
+In particular, since any ak is a multilinear homogeneous polynomial in the symbolic vari-ables Rjm , it follows that 
+
+Corollary 2.6 (Corollary 5.7, [Vas23]) . There exists a choice of R such that ak = 0 if and only if there exist two k × k CS-matrices S[κκκ1] and S[κκκ2] with 
+
+(2.18) det S[κκκ1] det S[κκκ2] < 0.
+
+Thus for consistent and nondegenerate networks, zero-eigenvalue bifurcations and the ca-pacity for differentiation require co-existence of two ˜k × ˜k CS-matrices with determinants of opposite sign, where again ˜k indicates the highest index of the nonzero coefficients ak
+
+in the characteristic polynomial of the symbolic Jacobian. A second relevant corollary which follows from Lemma 2.5 is 
+
+Corollary 2.7 (Corollary 5.1, in [VS24]) . Assume there exists an unstable CS-matrix 
+
+S[κκκ], i.e. S[κκκ] has at least one eigenvalue with positive real part, then there exists a choice of R such that the symbolic Jacobian G = SR is unstable. 
+
+10 2.2 Positive feedback and instability motifs 
+
+Let κκκ = ( κ, E κ, J ) be a k-CS. Child-Selections are naturally nested: any restriction κκκ′ of 
+
+κκκ, defined by a subset κ′ ⊂ κ and Eκ′ = J(κ′) ⊂ Eκ, forms a k′-CS κκκ′ = ( κ′, E κ′ , J ). The CS-matrix for κκκ′ is a principal submatrix of that for κκκ. This motivates to focus on minimal matrices satisfying a given property, in the following sense. We consider the property of a CS-matrix being unstable with a real positive eigenvalue. An unstable-positive feedback is a k × k CS-matrix satisfying (2.19) sign det S[κκκ] = ( −1) k−1,
+
+such that no determinant of a k′ ×k′ principal submatrix has the sign ( −1) k′−1. Descartes’ rule of signs applied to its characteristic polynomial shows that such a S[κκκ] has exactly one real positive eigenvalue. The presence of an unstable-positive feedback is sufficient for a consistent network to admit an unstable steady-state due to Corollary 2.7. We refer to [VS24] for further details and for an illustration of the general concept of unstable cores , which encompass both positive and negative feedback. Corollary 2.6 implies that the occurrence of zero-eigenvalue bifurcations - and thus the capacity for differentiation - requires the presence of a CS matrix in the network, which is an unstable-positive feedback, since (2.18) cannot be satisfied if no CS-matrix in the network fulfills (2.19). Therefore, we will search in all three models, BI , BI +BII , and BIII , for CS-matrices that are unstable-positive feedbacks. We will focus on minimal topological structures via 
+
+instability motifs .
+
+Definition 2.8. Consider a k-CS, κκκ = ( κ, E κ, J ) in a network Γ = ( M, E) such that its associated CS matrix S[κκκ] is an unstable-positive feedback. The associated instability motif is defined as the subnetwork Γ[κκκ] = ( κ, E κ) ⊆ Γ consisting of the species in κ and the reactions in Eκ. If a reaction j in Eκ involves additional species X m̸ ∈ κ, those species are omitted and not considered in the instability motif (see Frame 1 for an illustration). This focus is particularly suitable for incomplete models, as most biochemical models inherently are. The presence of an unstable-positive feedback is preserved if additional reactions or species are included. Moreover, no additional unstable-positive feedback arises from the inclusion of degradation reactions. Any CS-matrix involving such reactions contains a column with a single −1 on the diagonal, so that its eigenvalues are given by 
+
+{− 1} jointly with those of the corresponding principal submatrix obtained by omitting the degradation reaction and the corresponding species. This supports our choice to dismiss such reactions. Finally, in experiments, autocatalysis is a fundamental mechanism for self-amplification and positive feedback in chemical networks. Its formalization and its role in the origin of life and evolution in general is still much debated [AFMS20]. Here we follow the for-malism in [BLN20] which is based on the definition of the International Union of Pure and Applied Chemistry (IUPAC) [IUP], and addresses autocatalysis from a purely struc-tural and stoichiometric perspective. In this framework, autocatalysis is characterized by certain stoichiometric submatrices named autocatalytic cores . However, the presence of autocatalysis in this form does not necessarily translate into experimentally observable autocatalysis, as actual self-amplification depends not only on stoichiometry but also on more specific conditions on the reaction rates [VS24, NNU26]. 11 The formalism in [VS24] implies that autocatalytic cores correspond exactly to CS-matrices that are unstable-positive feedbacks as defined above, with the further condition that off-diagonal entries are nonnegative (Metzler matrices), so that we use the following: 
+
+Definition 2.9. In our context, a reaction network is called autocatalytic if it possesses at least one unstable-positive feedback S[κκκ] that is a Metzler matrix. Intuitively, such structures generalize simple autocatalytic pathways as e.g. (2.20) X1 −−→ X2 −−→ 2X 1,
+
+which corresponds to the CS matrix 
+
+−1 21 −1
+
+
+
+, which is Metzler and unstable. In turn, unstable-positive feedbacks can also be non-autocatalytic , in particular with some negative off-diagonal entry. Our results here show that the positive feedback, if present in our three models, is always non-autocatalytic. 
+
+Workflow - analysis of models BI, BI+BII, BIII. 
+
+1. We check that the respective network is consistent and nondegenerate . This guar-antees that the algebraically nonzero coefficient a˜k in the characteristic polynomial of the Jacobian matrix, with ak ≡ 0 for k > ˜k, corresponds to the determinant of the Jacobian restricted to a stoichiometric compatibility class, so that the stability of steady-states can be addressed by analyzing this coefficient. 2. We enforce kinetic symmetry by assuming that the rates rj of symmetry-related re-actions are identical. The system is considered at a homogeneous steady-state where the concentrations of symmetry-related species are also identical. Consequently, the symmetry-related entries Rjm of R coincide. 3. Under such symmetry constraint, we explicitly compute the characteristic polyno-mial g(λ) of the symbolic Jacobian associated with the respective model. 4. We examine the coefficients ak of g(λ) for terms with opposite signs in their expan-sion (2.17). If no such terms are present, zero-eigenvalue bifurcation is precluded, and thus the capacity for differentiation. If such terms occur in the nonzero coeffi-cient a˜k, we say that the system has the capacity for a zero-eigenvalue bifurcation and differentiation. 5. When terms of opposite sign are present, we study the associated CS-matrices and identify the minimal ones, namely the k × k matrices S[κκκ] satisfying (2.19) and such that no k′ × k′ principal minor has sign ( −1) k′−1. These matrices correspond to unstable-positive feedbacks, and the presence (resp. absence) of any such feedback that is also a Metzler matrix classifies the network as autocatalytic (resp. non-autocatalytic). Finally, we identify the corresponding instability motif .12 Illustration of our approach: Consider three species X 1, X2, Y, and two reactions 1 , 2: (2.21) X1 + Y −−→ 
+
+> 1
+
+X2 −−→ 
+
+> 2
+
+2X 1 .
+
+The stoichiometric matrix S, the symbolic reactivity matrix R and the Jacobian G = SR are 
+
+S =
+
+
+
+−1 2
+
+−1 01 −1
+
+ ; R =
+
+r1X 1 r1Y 00 0 r2X 2
+
+
+
+; G =
+
+
+
+−r1X 1 −r1Y 2r2X 2
+
+−r1X 1 −r1Y 0
+
+r1X 1 r1Y −r2X 2
+
+ .
+
+The characteristic polynomial g(λ) of G expands via Lemma 2.5 as 
+
+g(λ) = − λ3 + ( −r1Y − r1X 1 − r2X 2 )λ2 +
+
+
+
+det 
+
+−1 01 −1
+
+
+
+r1X 1 r2X 2 + det 
+
+−1 21 −1
+
+
+
+r1Y r2X 2
+
+
+
+λ
+
+= − λ3 + ( −r1Y − r1X 1 − r2X 2 )λ2 + ( r1X 1 r2X 2 − r1Y r2X 2 )λ . 
+
+There is only one k × k CS-matrix with sign det S[κκκ] = ( −1) k−1 and thus only one unstable-positive feedback: 
+
+S[κκκ] = 1 2 
+
+X1 −1 2X2 1 −1 .
+
+This corresponds to the species {X1, X2} and reactions {1, 2}. Since S[κκκ] is a Metzler matrix, it is autocatalytic. The matrix is associated with the instability motif 
+
+(2.22) X1 + · · · −−→ 
+
+> 1
+
+X2 −−→ 
+
+> 2
+
+2X 1,
+
+which omits the species Y, as it does not appear in the CS-matrix. Taking the network verbatim without including any production or degradation reactions, the stoichiometric matrix S lacks a strictly positive right-kernel vector v > 0. Consequently, the network is not consistent and admits 
+
+no positive steady state, but nevertheless it is sufficient to serve our illustration purposes. 
+
+Frame 1: An autocatalytic toy model illustrating our concepts. 
+
+## 3 Mathematical analysis of the models 
+
+We analyze the ODE systems arising from the reaction networks of our central model BI ,the cis-model BI +BII , and the ligand-activation hypothesis BIII , and draw conclusions on their capacity for differentiation. As explained in Sec. 2, we associate the capacity for differentiation with the presence of unstable-positive feedback, which we characterize structurally in terms of square stoichiometric CS-matrices S[κκκ]. Each such matrix is asso-ciated with an instability motif in the network. See Fig. 2 for an overview of the instability motifs identified in the cis-model BI +BII and in the ligand-activation hypothesis BIII .
+
+The central model: BI. As customary in chemistry, we use the notation [X] to de-note the concentration of a species X. The ODEs modeling the time-evolution of the 13 Figure 2: Instability motifs in the cis-model BI +BII (rows 1 , 2, 3; motifs (3.5), (3.6), and (3.7)) and in the ligand-activation model BIII (row 4; motif (3.10)). The cis-reactions 14 − 15, and 24 − 25, are marked by dashed arrows. The left and right columns display the symmetric variants. The motifs in rows 1, 2 share the same topological structure, differing only by the use of NI j in the first and T j in the second motif. All motifs contain an even number of reactant–reactant interactions involving one Notch N species and one Delta D (or D s) species - four in rows 1 , 2, and two in rows 3 , 4. Since these motifs do include reactant–reactant interactions, they are classified as non-autocatalytic, as their associated CS-matrices are not Metzler (see proof in Sec. 6). See also Step 3 on page 30. 
+
+14 concentrations of the central model are: (3.1) 
+
+
+
+˙[NE 1] = −r11 ([NI 1], [NE 1]) + r13 ([T 1]) ˙[NI 1] = r12 ([N 1], [D 2]) − r11 ([NI 1], [NE 1]) [ ˙N1] = −r12 ([N 1], [D 2]) + r11 ([NI 1], [NE 1]) [ ˙D1] = r13 ([T 1]) − r22 ([N 2], [D 1]) [ ˙T1] = −r13 ([T 1]) + r22 ([N 2], [D 1]) [ ˙NE 2] = −r21 ([NI 2], [NE 2]) + r23 ([T 2]) [ ˙NI 2] = r22 ([N 2], [D 1]) − r21 ([NI 2], [NE 2]) [ ˙N2] = −r22 ([N 2], [D 1]) + r21 ([NI 2], [NE 2]) [ ˙D2] = −r12 ([N 1], [D 2]) + r23 ([T 2]) [ ˙T2] = r12 ([N 1], [D 2]) − r23 ([T 2]) 
+
+Kinetic symmetry requires (3.2) r1k ≡ r2k for all k = 1 , 2, 3. However, our analysis of (3.1) shows that this system does not support the capacity for differentiation irrespective of enforcing the constraints (3.2) or not: 
+
+Theorem 3.1. The ODE system (3.1) admits only one single steady-state for all choices of monotone chemical functions r. The associated network BI is non-autocatalytic. In particular, no unstable-positive feedback exists and BI has no capacity for differentiation. 
+
+The cis-model: BI+BII. To highlight the cis-interactions added to the central model BI ,we mark the corresponding terms in bold. The ODE system reads: (3.3) 
+
+
+
+˙[NE 1] = −r11 ([NI 1], [NE 1]) + r13 ([T 1]) ˙[NI 1] = r12 ([N 1], [D 2]) − r11 ([NI 1], [NE 1]) [ ˙N1] = −r12 ([N 1], [D 2]) + r11 ([NI 1], [NE 1]) +r15 ([C 1]) − r14 ([N 1], [D 1]) 
+
+[ ˙D1] = r13 ([T 1]) − r22 ([N 2], [D 1]) +r15 ([C 1]) − r14 ([N 1], [D 1]) 
+
+[ ˙T1] = −r13 ([T 1]) + r22 ([N 2], [D 1]) 
+
+[ ˙ C1] = −r15 ([C 1]) + r14 ([N 1], [D 1]) 
+
+[ ˙NE 2] = −r21 ([NI 2], [NE 2]) + r23 ([T 2]) [ ˙NI 2] = r22 ([N 2], [D 1]) − r21 ([NI 2], [NE 2]) [ ˙N2] = −r22 ([N 2], [D 1]) + r21 ([NI 2], [NE 2]) +r25 ([C 2]) − r24 ([N 2], [D 2]) 
+
+[ ˙D2] = −r12 ([N 1], [D 2]) + r23 ([T 2]) +r25 ([C 2]) − r24 ([N 2], [D 2]) 
+
+[ ˙T2] = r12 ([N 1], [D 2]) − r23 ([T 2]) 
+
+[ ˙ C2] = −r25 ([C 2]) + r24 ([N 2], [D 2]) 
+
+In this case, kinetic symmetry holds when the reaction rates satisfy: (3.4) r1k ≡ r2k for all k = 1 , 2, 3, 4, 5.
+
+Theorem 3.2. Consider the ODE system (3.3) with the constraints (3.4) . The system has the capacity for zero-eigenvalue bifurcations and thus for differentiation. Moreover, 
+
+15 up to symmetry, there are exactly three instability motifs, associated to unstable-positive feedback, which generate the necessary instability. These are: 
+
+(3.5) 
+
+
+
+NI j + ... j1
+
+−−→ Nj
+
+Nj + D kj2
+
+−−→ NI j
+
+Nj + D jj4
+
+−−→ ... 
+
+Nk + D jk2
+
+−−→ ... 
+
+Nk + D kk4
+
+−−→ ... 
+
+for (j, k ) = (1 , 2) and (j, k ) = (2 , 1) ,
+
+(3.6) 
+
+
+
+Nj + D kj2
+
+−−→ .... 
+
+Tjj3
+
+−−→ Dj
+
+Nj + D jj4
+
+−−→ ... 
+
+Nk + D jk2
+
+−−→ Tj
+
+Nk + D kk4
+
+−−→ ... 
+
+for (j, k ) = (1 , 2) and (j, k ) = (2 , 1) ,
+
+(3.7) 
+
+
+
+NI j + ... j1
+
+−−→ Nj
+
+Njj2
+
+−−→ NI j + T k
+
+Nj + D jj4
+
+−−→ ... 
+
+NE k + ... k1
+
+−−→ Nk
+
+Nk + D jk2
+
+−−→ ... 
+
+Tkk3
+
+−−→ NE k
+
+for (j, k ) = (1 , 2) and (j, k ) = (2 , 1) .
+
+All three motifs identify non-autocatalytic positive feedback and the associated network 
+
+BI +BII is in particular non-autocatalytic. 
+
+Remarkably, all three instability motifs in the cis model BI +BII include either both central Notch–Delta interactions (reactions 12 and 22), as in (3.5) and (3.6), or at least one of them, as in (3.7). Similarly, each motif includes either both cis-reactions (reactions 14 and 24), as in (3.5) and (3.6), or at least one of them, as in (3.7). Note, that the motifs (3.5) and (3.6) share an identical network structure, meaning that, if labels are ignored, the two motifs are indistinguishable, as shown in Fig. 2, first and second row. More explicitly, disregarding the reaction labels, the simple relabeling of species (NI j , Nj , Dk, Dj , Nk) −→ (T j , Dj , Nk, Nj , Dk)transforms motif (3.5) into motif (3.6): the role of NI j in the former is taken over by T j
+
+in the latter, with the roles of D and N also switched. 
+
+Remark 3.3. To handle the complexity of identifying all instability motifs, we relied on the Python module BiRNe [GGSV25] , see Sec. 6. Incidentally, BiRNe also identifies a class of subnetworks that give rise to oscillatory behavior in a parameter-rich kinetics setting, i.e., it identifies the existence of parameter choices for which periodic solutions exist. The underlying theoretical framework is based on global Hopf bifurcation [BSV25] .Scanning BI +BII via BiRNe indeed certified the model’s capacity for periodic oscilla-tions. Since this is not our focus here, we just mention this aspect and leave a more comprehensive discussion for future investigations. 
+
+16 The ligand activation hypothesis: BIII. The associated ODE system reads: (3.8) 
+
+
+
+[ ˙NE 1] = −r11 ([NI 1], [NE 1]) + r19 ([T 1]) [ ˙NI 1] = r12 ([N 1], [D 2]) − r11 ([NI 1], [NE 1]) [ ˙N1] = −r12 ([N 1], [D 2]) + r11 ([NI 1], [NE 1]) − r16 ([D s2], [N 1]) + r17 ([B 2]) [ ˙Ds1] = r19 ([T 1]) − r26 ([D s1], [N 2]) + r27 ([B 1]) − r18 ([D s1]) [ ˙D1] = r18 ([D s1]) − r22 ([N 2], [D 1]) [ ˙T1] = −r19 ([T 1]) + r22 ([N 2], [D 1]) [ ˙B1] = r26 ([D s1], [N 2]) − r27 ([B 1]) [ ˙NE 2] = −r21 ([NI 2], [NE 2]) + r29 ([T 2]) [ ˙NI 2] = r22 ([N 2], [D 1]) − r21 ([NI 2], [NE 2]) [ ˙N2] = −r26 ([D s1], [N 2]) + r27 ([B 1]) − r22 ([N 2], [D 1]) + r21 ([NI 2], [NE 2]) [ ˙Ds2] = r29 ([T 2]) − r16 ([D s2], [N 1]) + r17 ([B 2]) − r28 ([D s2]) [ ˙D2] = −r12 ([N 1], [D 2]) + r28 ([D s2]) [ ˙T2] = r12 ([N 1], [D 2]) − r29 ([T 2]) [ ˙B2] = r16 ([D s2], [N 1]) − r17 ([B 2]) In this case, kinetic symmetry holds when the reaction rates satisfy: (3.9) r1k ≡ r2k for all k = 1 , 2, 6, 7, 8, 9For this model, we have the following result: 
+
+Theorem 3.4. Consider the ODE system (3.8) with the constraints (3.9) . The system has the capacity for zero-eigenvalue bifurcations and thus for differentiation. Moreover, up to symmetry, there is only one instability motif, associated to unstable-positive feedback, which generates the necessary instability: 
+
+(3.10) 
+
+
+
+Nj + D kj2
+
+−−→ Tk + ... 
+
+Nj + D sk j6
+
+−−→ ... 
+
+Dsk k8
+
+−−→ Dk
+
+Tkk3
+
+−−→ Dks + ... 
+
+for (j, k ) = (1 , 2) and (j, k ) = (2 , 1) 
+
+The motif identifies non-autocatalytic positive feedback and the associated network BIII 
+
+is in particular non-autocatalytic. 
+
+Remark 3.5. The unique instability motif (3.10) of the ligand-activation model BIII 
+
+includes the blocked reaction j6 (16 or 26 up to symmetry). These reactions are therefore necessary to introduce instability into the system. In contrast, the extension BI’ of the central model BI , which explicitly models the translocation of the intracellular domain NI j
+
+to the nucleus as NI nucleus  
+
+> j
+
+, lacks this type of interaction and consequently has no capacity for instability and differentiation. We refer again to p. 29 for a rigorous mathematical argument. 
+
+17 4 Minimal Mechanisms 
+
+In the previous sections we have set up and discussed mathematical models related to biological information. Now we come from the other side, arguing purely mathematically, and try to answer the following questions: 
+
+What are the essential minimal interactions required between two cells, mathematically speaking, in order to allow for symmetry breaking as described above? What can we learn for biology from this? 
+
+From our previous analysis, it appears that the ‘central’ reaction involving the interac-tion of Notch N j and Delta D k, j ̸ = k, and vice versa, is still an essential part of the Notch pathway. This is an asymmetric interaction (Notch with Delta) with the additional splitting of Notch into two parts, the intracellular and the extracellular domain. Now let’s only look at this splitting of Notch in a mathematical minimal way, without focussing on other differences between Notch and Delta, i.e., consider two entities of cell 1 that interact with one entity of cell 2. Let this entity be called Λ and as before, let the subscripts 1 , 2 refer to cell 1 and cell 2, respectively. Then we have (MI ) 2Λ 1 + Λ 21
+
+⇌ 
+
+> 2
+
+Λ1 + 2Λ 2 .
+
+Interestingly, this minimal model MI has the capacity for differentiation. Further, it is 
+
+autocatalytic , in contrast to BI , BI +BII , BIII , which are non-autocatalytic. In fact, reaction 1 in MI is autocatalytic in Λ 2, since one molecule of Λ 2 yields two molecules of Λ2. The same holds for reaction 2 and Λ 1. The ODEs associated to MI are: (4.1) 
+
+(
+
+[ ˙Λ1] = −r1([Λ 1], [Λ 2]) + r2([Λ 2], [Λ 1]) = −r([Λ 1], [Λ 2]) + r([Λ 2], [Λ 1]) [ ˙Λ2] = + r1([Λ 1], [Λ 2]) − r2([Λ 2], [Λ 1]) = + r([Λ 1], [Λ 2]) − r([Λ 2], [Λ 1]) ,
+
+at kinetic symmetry, i.e. r1(x, y ) = r2(x, y ) =: r(x, y ). We have [ ˙Λ1] + [ ˙Λ2] = 0, and consequently the conservation law [Λ 1] + [Λ 2] = K. The same observation can also be obtained by considering the stoichiometric matrix (4.2) S =
+
+−1 11 −1
+
+
+
+.
+
+Then (1 , 1) is a left-kernel vector, corresponding to the conservation law. By fixing K
+
+and writing [Λ 2] = K − [Λ 1], system (4.1) reduces to one ODE: (4.3) [ ˙Λ1] = H(Λ 1) := −r([Λ 1], K − [Λ 1]) + r(K − [Λ 1], [Λ 1]) .
+
+Let ∂1r and ∂2r denote the derivatives of r w.r.t. its first and the second component, then 
+
+H′([Λ 1]) = − ∂1r([Λ 1], K − [Λ 1]) + ∂2r([Λ 1], K − [Λ 1]) 
+
+− ∂1r(K − [Λ 1], [Λ 1]) + ∂2r(K − [Λ 1], [Λ 1]) .(4.4) Due to (4.3) and since Def. 2.1 of monotone chemical functions implies that r(0 , Λ1) = 
+
+r(Λ 1, 0) = 0, there are always at least three nontrivial steady-states: (4.5) EB1 := {[¯Λ1] = 0 }; EB2 := {[¯Λ1] = K}; Ek := {[¯Λ1] = K/ 2}.
+
+18 The existence of connecting orbits between these steady-states, i.e., the existence of further steady-states, depends on the chosen nonlinearity r.We analyze our ODE (4.3) with decreasing levels of generality. Since any orbit is bounded and we are looking at one ODE, if the homogeneous steady-state Ek is unstable, then any diverging orbit from Ek necessarily converges to another inhomogeneous steady-state Ei,with Ei > E k if the initial condition [Λ 1](0) > E k, and Ei < E k otherwise. In particular, multistability with at least two inhomogeneous steady-states follows. Without further assumptions, the condition for linear instability of Ek can be computed via (4.6) H′
+
+K
+
+2
+
+
+
+= 2 
+
+
+
+∂2r
+
+K
+
+2 , K
+
+2
+
+
+
+− ∂1r
+
+K
+
+2 , K
+
+2
+
+ 
+
+,
+
+giving the following bifurcation condition for H′ = 0 at Ek:(4.7) ∂2r Λ1=Ek
+
+= ∂1r Λ1=Ek
+
+and consequent instability ( H′ > 0) whenever ∂2r Λ1=Ek
+
+> ∂ 1r Λ1=Ek
+
+. In turn, we study the (in)stability of the inhomogeneous steady-states EB1 and EB2 by assuming that (4.8) r(x, y ) = [ f (x)] 2g(y),
+
+where both f and g are monotone chemical functions. In particular, see Def. 2.1, f and g
+
+are nonnegative monotone functions, f (x) = 0 (resp. g(y) = 0) if and only if x = 0 (resp. 
+
+y = 0). This functional form naturally models a reaction of the form 2X + Y, where the stoichiometric coefficient of X appears as an exponent. This includes mass-action, Michaelis–Menten, and Hill kinetics. Under this assumption, the inhomogeneous bound-ary steady-states EB1 and EB2 are never linearly stable. H′(0) = H′(K), independently of the choice of r. Then, assuming (4.8), we compute 
+
+H′(0) = −2f (0) f ′(0) g(K) + f (0) 2g′(K) − 2f (K)f ′(K)g(0) + f (K)2g′(0) = f 2(K)g′(0) ≥ 0.
+
+(4.9) In particular, if g′(0) > 0, then both EB1 and EB2 are always linearly unstable and orbits diverging from the homogeneous steady-state Ek must always converge to another steady-state Ei̸ ∈ { EB1 , E B2 }. Thus, the most generic geometrical picture consists of three steady-states when Ek is stable. If Ek loses stability, it does so via a supercritical pitchfork bifurcation, producing two additional inhomogeneous steady-states. Now consider the example: (4.10) r(x, y ) = [ f (x)] 2g(y) = 
+
+ x
+
+1 + βx 
+
+2
+
+y, 
+
+which suits our purpose and is chemically consistent with the stoichiometry of reactants 2X+Y. Here g(y) is of mass-action form, so g′(0) = 1 > 0 and f (x) is of Michaelis–Menten type. For K = 1, our ODE becomes (4.11) ˙[Λ] 1 = −
+
+ [Λ] 1
+
+1 + β[Λ] 1
+
+2
+
+(1 − [Λ] 1) + 
+
+ 1 − [Λ] 1
+
+1 + β(1 − [Λ] 1)
+
+2
+
+[Λ] 1,
+
+19 Figure 3: The steady states of (4.11) are plotted as a function of β using Python. Continuous lines signify stable steady states, and dashed lines unstable ones. The boundary steady states EB1 = 0 and         
+
+> EB2= 1 are unstable, irrespective of the value of β. In turn, at β= 2, the reference steady state Ek= 0 .5loses stability and undergoes a supercritical pitchfork bifurcation. For β > 2 bistability occurs.
+
+whose non-boundary steady-states E / ∈ { EB1, E B2} can be found analytically. Dividing the steady-state equation by [Λ 1](1 − [Λ 1]), corresponding to the boundary steady-states, one obtains (4.12) −
+
+
+
+1 + β(1 − [Λ 1]) 
+
+2
+
+[Λ 1]+ 
+
+
+
+1 + β[Λ 1]
+
+2
+
+(1 − [Λ 1]) = 0 ,
+
+which factorizes as (4.13) (2[Λ 1] − 1)  β2[Λ 1]2 − β2[Λ 1] + 1  := P([Λ] 1, β ) = 0 .
+
+The ODE ˙Λ = P(Λ , β ) is essentially the normal form of a pitchfork bifurcation, see e.g. [GH13]. While the first factor always identifies the reference steady-state Ek, the second factor has roots (4.14) Ei1, E i2 = 12 ±
+
+r14 − 1
+
+β2 .
+
+Therefore, as the bifurcation parameter β ∈ R≥0 varies, the following occurs (see Fig. 3 for an illustration): 1. For β ∈ [0 , 2), there are three steady-states. EB1 and EB2 are unstable, and Ek is stable. Any orbit is a heteroclinic connection from EBj to Ek, j = 1 , 2. 2. At β = 2, corresponding to (4.7), a supercritical pitchfork bifurcation occurs and generates two additional inhomogeneous stable steady-states Ei1, E i2̸ ∈ { EB1 , E B2 }.3. For β > 2, any nonstationary orbit converges either to Ei1 or to Ei2. When β tends to + ∞, Ei1 and Ei2 converge to EB1 and EB2, respectively. In summary, this minimal network has the capacity for differentiation. 
+
+4.1 Connecting back to biology 
+
+Why did evolution/biology not follow/invent this simple mathematical rule? How do the two viewpoints still connect? 20 Consider the following basic Notch–Delta interaction: NI 1 + NE 1 + D 2 −→  
+
+> 1
+
+NI 1 + NE 2 + D 2
+
+NI 2 + NE 2 + D 1 −→  
+
+> 2
+
+NI 2 + NE 1 + D 1 .
+
+(MII )This network is not able to produce differentiation (see Prop. 4.3 for mathematical details). So, which essence is lost here, when both - the mathematically minimal network MI which allows for differentiation, and this basic biological one MII which does not - are so close? In the literature it is discussed that the extracellular domain of Notch NE and Delta D might have had a close ancestor, let’s call it Λ again. This translates MII into NI 1 + Λ 1 + Λ 2 −→  
+
+> 1
+
+NI 1 + 2 Λ 2
+
+NI 2 + Λ 2 + Λ 1 −→  
+
+> 2
+
+NI 2 + 2 Λ 1
+
+(MIII )Nicely enough, this network has the capacity for differentiation (see Prop. 4.2). Similarly to MI also MIII is autocatalytic , since in its reaction 1, Λ 2 catalyses its own production, and vice versa Λ 1 in reaction 2. 
+
+Remark 4.1. If we neglect the participation of NI in MIII , we obtain the reduced network 
+
+Λ1 + Λ 2 −→  
+
+> 1
+
+2 Λ 2
+
+Λ2 + Λ 1 −→  
+
+> 2
+
+2 Λ 1.
+
+(MIIIb )
+
+Since the stoichiometric matrix S as well as the reactivity matrix R are identical in MIIIb 
+
+and MI , the associated ODEs (4.1) are identical as well. For differentiation to occur through (4.7) , a certain asymmetry is needed. This asymmetry can be encoded structurally in the stoichiometry of the reactants, as in MI , or less generally only at the level of the chosen nonlinearity, as here in MIIIb .
+
+For a full mathematical classification, we now also analyze the other situations, namely NI being close to NE, i.e. 2Λ 1 + D 2 −→  
+
+> 1
+
+Λ1 + Λ 2 + D 2
+
+2Λ 2 + D 1 −→  
+
+> 2
+
+Λ2 + Λ 1 + D 1
+
+(MIV )and NI being close to D, i.e. Λ1 + NE 1 + Λ 2 −→  
+
+> 1
+
+Λ1 + NE 2 + Λ 2
+
+Λ2 + NE 2 + Λ 1 −→  
+
+> 2
+
+Λ2 + NE 1 + Λ 1
+
+(MV )Both MIV and MV do not allow for differentiation (see again Prop. 4.3 for details). Below we summarize the capacity for differentiation ( Diff. ) in the five minimal models. 21 Model Specialization Reaction network Diff. MI (NI = NE = D) := Λ 2Λ 1 + Λ 21
+
+⇌ 
+
+> 2
+
+Λ1 + 2Λ 2 ✓
+
+MII (NI ̸ = NE ̸ = D) NI 1 + NE 1 + D 2 −→  
+
+> 1
+
+NI 1 + NE 2 + D 2
+
+NI 2 + NE 2 + D 1 −→  
+
+> 2
+
+NI 2 + NE 1 + D 1
+
+×××
+
+MIII (NE = D) := Λ ̸ = NI NI 1 + Λ 1 + Λ 2 −→  
+
+> 1
+
+NI 1 + 2 Λ 2
+
+NI 2 + Λ 2 + Λ 1 −→  
+
+> 2
+
+NI 2 + 2 Λ 1
+
+✓
+
+MIV (NI = NE) := Λ ̸ = D 2Λ 1 + D 2 −→  
+
+> 1
+
+Λ1 + Λ 2 + D 2
+
+2Λ 2 + D 1 −→  
+
+> 2
+
+Λ2 + Λ 1 + D 1
+
+×××
+
+MV (NI = D) := Λ ̸ = NE Λ1 + NE 1 + Λ 2 −→  
+
+> 1
+
+Λ1 + NE 2 + Λ 2
+
+Λ2 + NE 2 + Λ 1 −→  
+
+> 2
+
+Λ2 + NE 1 + Λ 1
+
+×××
+
+We already know the capacity for differentiation for MI . The next two propositions cover the other four models. Interestingly MIII formally mirrors MIV , with inverse orientation, so that the autocatalytic self-amplification process in MIII , which has the capacity for differentiation, results in a non-autocatalytic ‘self-attenuation’ process in MIV , which does not. Intuitively, this is analogous to the idea that an iterated process such as X −→ 
+
+2X leads to self-amplification of X, whereas 2X −→ X leads to self-attenuation. 
+
+Proposition 4.2. Consider the ODEs associated to MIII ,
+
+(4.15) 
+
+
+
+[ ˙Λ1] = −r1([NI 1], [Λ 1], [Λ 2]) + r2([NI 1], [Λ 2], [Λ 1]) [ ˙Λ2] = r1([NI 1], [Λ 1], [Λ 2]) − r2([NI 1], [Λ 2], [Λ 1]) [ ˙NI 1] = [ ˙NI 2] = 0 
+
+,
+
+with the kinetic symmetry constraint r1 ≡ r2. The system has the capacity for zero-eigenvalue bifurcations and thus for differentiation. 
+
+Proposition 4.3. Consider the ODEs associated to MII ,
+
+(4.16) 
+
+
+
+[ ˙NE 1] = −r1([NI 1], [NE 1], [D 2]) + r2([NI 2], [NE 2], [D 1]) [ ˙NE 2] = r1([NI 1], [NE 1], [D 2]) − r2([NI 2], [NE 2], [D 1]) [ ˙NI 1] = [ ˙NI 2] = [ ˙D1] = [ ˙D2] = 0 
+
+,
+
+the ODEs associated to MIV ,
+
+(4.17) 
+
+
+
+[ ˙Λ1] = −r1([Λ 1], [D 2]) + r2([Λ 2], [D 1]) [ ˙Λ2] = r1([Λ 1], [D 2]) − r2([Λ 2], [D 1]) [ ˙D1] = [ ˙D2] = 0 
+
+,
+
+and the ODEs associated to MV ,
+
+(4.18) 
+
+
+
+[ ˙NE 1] = −r1([Λ 1], [NE 1], [Λ 2]) + r2([Λ 2], [NE 2], [Λ 1]) [ ˙NE 2] = r1([Λ 1], [NE 1], [Λ 2]) − r2([Λ 2], [NE 2], [Λ 1]) [ ˙Λ1] = [ ˙Λ2] = 0 
+
+.
+
+Systems (4.16) , (4.17) , and (4.18) all admit only one single steady-state for all choices of monotone reaction functions r and thus do not have the capacity for differentiation. 
+
+22 4.2 Autocatalytic and non-autocatalytic instabilities 
+
+The models BI , BI +BII , and BIII , are non-autocatalytic. In contrast, both minimal models that exhibit the capacity for differentiation, MI and MIII , are autocatalytic. Why should evolution dismiss a functioning autocatalytic process and favor a larger non-autocatalytic network instead? We can not really answer this question, but would still like to discuss it here. The central model BI may be regarded as an elaborated version of MII : Thm. 3.1 proves that also BI does not have the capacity for differentiation. By contrast, the cis model 
+
+BI +BII and the ligand-activation model BIII do exhibit differentiation and Thm. 3.2 and Thm. 3.4 show that differentiation arises precisely from the additional interactions (the cis and blocked-ligand mechanisms), which induce non-autocatalytic instabilities. Nevertheless, the autocatalytic MI and MIII do not need this. For further insight and comparison, we now investigate minimal non-autocatalytic insta-bility motifs in a symmetric setting. As argued in Sec. 2, the existence of a CS-matrix representing an unstable-positive feedback is a necessary condition for the capacity for differentiation. In case of two variables, such an unstable-positive feedback is not only necessary but also sufficient, as established by the expansion in Lemma 2.5 for the deter-minant of the Jacobian. Accordingly, a 2 ×2 non-autocatalytic unstable-positive feedback, in symmetric form, must necessarily take the explicit form: (4.19) S[κκκ] = η1 η2
+
+η2 η1
+
+!
+
+, with η1 < 0 and sign det S[κκκ] = ( −1) 2−1 = −1.
+
+Thus |η1| < |η2|. If η2 > 0 the system would be autocatalytic, since then the network possesses a CS-matrix S[κκκ] that is both unstable and Metzler. The only remaining case is η2 < 0. W.l.o.g. fix one parameter to −1. Then a minimal non-autocatalytic unstable-positive feedback takes one of the following two forms (4.20) S[κκκ] = −1 −η
+
+−η −1
+
+!
+
+, for η > 1 or S[κκκ] = −η −1
+
+−1 −η
+
+!
+
+, for η < 1.
+
+Both cases correspond to the same minimal network with two reactions, 1 and 2 below. Since this minimal model is intentionally designed to isolate the non-autocatalytic in-stability motif, we have to make an important exception here and do include constant production in order to ensure the existence of a positive steady-state. The resulting model (see also Fig. 4, left) is (NonAut-I-η) ηΛ1 + Λ 21
+
+−→ . . . ηΛ2 + Λ 12
+
+−→ . . . ... PΛ2
+
+−→ Λ2 ... PΛ1
+
+−→ Λ1
+
+Proposition 4.4. Consider the system of ODEs associated to NonAut-I-η:
+
+(4.21) 
+
+(
+
+[ ˙Λ1] = PΛ1 − η r 1([Λ 1], [Λ 2]) − r2([Λ 2], [Λ 1]) [ ˙Λ2] = PΛ2 − r1([Λ 1], [Λ 2]) − η r 2([Λ 2], [Λ 1]) 23 with kinetic symmetry constraints: 
+
+(4.22) r1([Λ 1], [Λ 2]) ≡ r2([Λ 2], [Λ 1]) ≡ r(·, ·), PΛ1 ≡ PΛ2 ≡ P. 
+
+For η̸ = 1 , system (4.21) has the capacity for zero-eigenvalue bifurcation and thus differ-entiation with bifurcation condition: 
+
+(4.23) ∂1r = ∂2r. 
+
+The instability motif, associated to non-autocatalytic unstable-positive feedback, which gen-erates the necessary instability is: 
+
+(4.24) 
+
+(
+
+ηΛ1 + Λ 21
+
+−→ . . . ηΛ2 + Λ 12
+
+−→ . . . 
+
+Remark 4.5. In NonAut-I-η there are no conservation laws. The concentrations of Λ1
+
+or Λ2 are thus not bounded and may diverge, so that the loss of stability of the homogeneous steady-state ¯Λ1 = ¯Λ2 may result in, e.g., Λ1 converging to 0, while Λ2 diverges to infinity. 
+
+Remark 4.6. Interestingly, in NonAut-I-2 reactions 1 and 2 share the same reactant stoichiometry as the reactions in MI . However, the autocatalytic MI does not need pro-duction terms because its combined reactions produce back the same reactants. In contrast, the non-autocatalytic NonAut-I-η does not possesses a sequence of reactions (j1, . . . , j n)
+
+where a species Λj appears as a reactant and ends with jn where the same Λj appears as a product. In this sense, NonAut-I-η is closer to a simple continuous-stirred tank reactor 
+
+−−→ Λ1 −−→−−→ Λ2 −−→
+
+(4.25) 
+
+but with a symmetric outflow law given by reactions 1 and 2. This type of outflow puts 
+
+Λ1 and Λ2 in a reactant–reactant relation and introduces instability through the non-autocatalytic unstable positive feedback (4.24) . The system can therefore still be viewed as a continuous-flow reactor with no reactant–product loop, but its dynamics are fundamentally altered by the introduction of such a positive feedback. 
+
+Let us now describe a minimal non-autocatalytic instability without production. If we abstractly consider a mutual transfer of biochemical information between two cells, a simple mechanism of this kind with the capacity for differentiation could then be as follows (see also Fig. 4, right): (NonAut-II-η) ηΛ1 + Λ 21
+
+−−→ ηΛ1 + I 2 ηΛ2 + Λ 13
+
+−−→ ηΛ2 + I 1
+
+I22
+
+−−→ Λ2 I14
+
+−−→ Λ1
+
+Here Λ 1, Λ2 denote entities in the two cells that interact with each other, while I j denotes an intermediate entity in cell j, arising from Λ j upon its interaction with η entities Λ i in cell i. This may correspond, for instance, to the translocation of Λ j to the nucleus, to its endocytosis and release, or to a silenced state. The process occurs symmetrically and simultaneously in both cells. NonAut-II-η has the capacity for differentiation, but with a caveat for η = 1, see Remark 4.8. 24 Proposition 4.7. Consider the ODE system associated to the network NonAut-II-η:
+
+(4.26) 
+
+
+
+[ ˙Λ1] = −r3([Λ 2], [Λ 1]) + r4(I 1),
+
+[˙I1] = r3([Λ 2], [Λ 1]) − r4(I 1)[ ˙Λ2] = −r1([Λ 1], [Λ 2]) + r2(I 2)[˙I2] = r1([Λ 1], [Λ 2]) − r2(I 2)
+
+with kinetic symmetry constraints: 
+
+(4.27) r1([Λ 1], [Λ 2]) ≡ r3([Λ 2], [Λ 1]) ≡ ro(·, ·), and r2(·) = r4(·) = re(·).
+
+Let ∂1ro and ∂2ro denote the derivatives of ro w.r.t. its first and second arguments, and 
+
+∂I re the derivative of re w.r.t. to its single argument. System (4.26) has the capacity for zero-eigenvalue bifurcation and consequently differentiation, with bifurcation condition: 
+
+(4.28) ∂2ro + ∂I re = ∂1ro,
+
+The existence of an unstable steady-state requires 
+
+(4.29) ∂2ro + ∂I re < ∂ 1ro.
+
+The unique associated instability motif, represented by a non-autocatalytic unstable-positive feedback, which generates the necessary instability is: 
+
+(4.30) 
+
+(
+
+ηΛ1 + Λ 21
+
+−−→ ηΛ1 + ... ηΛ2 + Λ 13
+
+−−→ ηΛ2 + ... 
+
+The instability motif (4.30) resembles the instability motifs (3.5), (3.6), and (3.7) of the cis model BI +BII , and (3.10) of the ligand-activation model BIII , in the sense that it contains an even number of reactant–reactant interactions (in this case two), together with reactant–product loops attached to them. See Fig. 2 and Fig. 4, right.      
+
+> Figure 4: Networks NonAut-I-2 (left) and NonAut-II-2 (right), with instability motifs.
+
+Remark 4.8. In contrast to NonAut-I-η, the model NonAut-II-η has the capacity for differentiation for all η. However, for condition (4.29) to hold for NonAut-II-1 at kinetic symmetry at a homogeneous steady-state, it is necessary that the functions r1, r3 are not 
+
+symmetric, i.e., r(x, y )̸ = r(y, x ). This is a crucial restriction, although parameter-rich kinetics such as Michaelis–Menten are generally not symmetric: 
+
+(4.31) r(x, y ) = k x
+
+(1 + ax )
+
+y
+
+(1 + by ), for a̸ = b , 
+
+25 while parametrically ‘poor’ mass-action kinetics r(x, y ) = kxy naturally are. Even if Λ1
+
+and Λ2 appear as reactants in both reaction 1 and 3 with the same stoichiometry, an asymmetric reaction function means that the interaction Λ1 + Λ 2 is different from that of Λ2 + Λ 1, similarly to MIIIb , see Remark 4.1 . This type of asymmetry needs further explanation. NonAut-II-2 , though, is non-autocatalytic, does not need production or decay terms, and the asymmetry is encoded in the stoichiometry.                    
+
+> Figure 5: Top row: models MI (top left), MIII (top center), NonAut-II-2 (top right). Bottom row: models MIIIb (bottom left), and NonAut-II-1 (bottom right). Black squares denote Λ 1and grey squares Λ 2.The white rectangle denotes NI 1in MIIIb , and I 2in NonAut-II-η.As in Fig. 1, all interactions are understood to occur symmetrically. All models possess the capacity for differentiation. In the top row, the asymmetric interaction between black and grey squares is structurally explicit; in the bottom row, the asymmetry arises solely from the reaction function modeling the interaction and this needs a further biochemical explanation, see Remarks 4.1 and 4.8.
+
+## 5 Discussion 
+
+We are interested in understanding the essential features of the Notch pathway which drives two initially identical cells to finally produce different levels of concentrations of Notch or Delta. In order to do so we employed biochemical information as well as abstract mathematical considerations for symmetry breaking. We work under the assumption that evolution may have optimized this pathway since it is an essential pathway and is preserved over many species. Of course this is only a starting point for further considerations, since the Notch pathway is relevant for much more detailed patterning than just driving two neighboring cells into two different states. From our analysis it turns out that within our class of presented models BI +BII and 
+
+BIII can give rise to differentiation in the sense we discussed before. Both are non-autocatalytic and include the asymmetry (with the splitting of Notch due to the contact with Delta of another cell) of the central model together with either the cis-interaction or the ligand activation. Both do not need explicit production or degradation terms in order to work. Here, we rely on a purely stoichiometric definition of autocatalysis to classify the models as autocatalytic or non-autocatalytic. 26 In the class of minimal models MI and MIII can give rise to differentiation. Both are autocatalytic. Both do also not need explicit production or degradation terms in order to work. Further, when looking for non-autocatalytic reduced networks, NonAut-I-η and NonAut-II-η can give rise to differentiation, but NonAut-I-η needs production terms in order to work, which NonAut-II-η does not need. NonAut-II-1 needs asymmetric reaction functions for an in principle symmetric interaction between Λ 1 and Λ 2, which needs an explanation. This issue is similar for MIIIb . Thus at first glance a concrete biochemical interpretation for NonAut-II-1 and MIIIb seems more difficult than for the other cases. In turn, NonAut-II-2 does not need asymmetric reaction functions and is in that sense closest to BI +BII and BIII , and a smaller network. If we keep the reasoning from the start of our paper, namely to exclude production and degradation as central players for the differentiation process, then we are left with the question of autocatalysis vs non-autocatalysis, at least when comparing all minimal mod-els, and with the question which types of asymmetry allow for a biochemical explanation. The latter one seems more natural for asymmetry induced by stoichiometry. Discussing this issue probably needs more experimental information. As for the former, the mod-els we derived from the biological information available to us are all non-autocatalytic. But this does not mean that we can answer the question here why or if evolution favors non-autocatalytic networks over autocatalytic ones in the context of cell differentiation. Therefore let’s shift the point of view. Does our analysis allow for a reasonable hypothesis when looking back to the early evolution of the Notch pathway or to other pathways relevant for cell differentiation? If so, then our suggestions would be to consider the following questions: Did early versions of the Notch pathway start from the finally extracellular and intracel-lular Notch domains and Delta all being similar entities? Both BI +BII and BIII include the asymmetric interaction with splitting of two entities from cell 1 and one entity from cell 2 which afterwards are redistributed as one entity in cell 1 and two entities in cell 2, and vice versa. Did early versions of the Notch pathway not yet exhibit this asymmetric interaction with splitting but rather have one entity of cell 1 interacting with another single entity of cell 2, or even have one entity of cell 1 interacting with the corresponding entity of cell 2? Is there a possibility to develop biomimetic or biochemical experiments e.g. for the min-imal models MI and NonAut-II-2 where one could see different concentrations arising in two different but interacting ‘containers’ which had the same initial concentrations? 
+
+## 6 Proofs 
+
+Proofs of Sec. 3 
+
+Proof of Thm. 3.1. We divide the proof in three steps. 27 Step 1: The network is consistent. The system admits at least one positive steady state. This is equivalent to finding a positive right-kernel vector of the stoichiometric matrix S
+
+of BI , which reads 
+
+S =                                                  
+
+> 
+> −101000
+> −1100001−100000010−1000−1010000−101000−1100001−100−1000101000−1
+> 
+> .
+
+Only the stoichiometric coefficients {0, 1} are present and any species participates only in two reactions, one as a reactant and one as a product. This implies that the positive vector v = ( k, k, k, k, k, k ), k ∈ R>0, is indeed a right-kernel vector of S, Sv = 0. Thus the network is consistent and one positive steady state exists. 
+
+Step 2: The network is nondegenerate. For nondegeneracy, the dimension of system (3.1) must be equal the number of species (10) minus the number of independent linear conservation laws, i.e., the dimension n of the left kernel W of the stoichiometric matrix 
+
+S. For this, we compute an arbitrary basis as: 
+
+W = span ⟨(0 , 1, 1, 0, 0, 0, 0, 0, 0, 0) , (0 , 0, 0, 1, 1, 0, 0, 0, 0, 0) , (1 , 0, 1, 0, 1, 1, 0, 1, 0, 1) ,
+
+(0 , 0, 0, 0, 0, 0, 1, 1, 0, 0) , (0 , 0, 0, 0, 0, 0, 0, 0, 1, 1) ⟩
+
+Thus there are 5 linearly independent conservation laws ( n = 5), namely 
+
+
+
+w1 := NI 1 + N 1,w2 := D 1 + T 1,w3 := NE 1 + N 1 + T 1 + NE 2 + N 2 + T 2,w4 := NI 2 + N 2,w5 := D 2 + T 2.
+
+All species appear in at least one of the conserved quantities, which guarantees that the orbits of the system (3.1) cannot diverge and are bounded. To show that the system is nondegenerate, it is enough to show that the coefficient a|M|− n = a5 of the characteristic polynomial g(λ) of the symbolic Jacobian is non-identically zero. Via Lemma 2.5, this is equivalent to the existence of at least one 5 × 5 invertible CS-matrix. We provide an arbitrary example. Consider the CS-triple 
+
+κκκ = ( {NE 1, N1, T1, N2, T2}, {11 , 12 , 13 , 22 , 23 }, J (NE 1, N1, T1, N2, T2) = (11 , 12 , 13 , 22 , 23)) .
+
+Its associated CS-matrix S[κκκ] reads: 
+
+S[κκκ] =                     
+
+> 
+> −100001−100000−110000−100100−1
+> 
+
+,
+
+which is invertible (all eigenvalues are −1). The network is thus nondegenerate. 28 Step 3: The positive steady state is unique and always locally stable. Since G = SR , its nonzero spectrum is identical to that of H := RS . Here: 
+
+R =                                                      
+
+> 
+> r11NE 1r11NI 10000000000r12N 100000r12D 200000r13T 10000000000r21NE 2r21NI 2000000r22D 1000r22N 200000000000r23T 2
+> 
+> ,
+
+which yields that H equals                                       
+
+> 
+> −r11NE 1−r11NI 1r11NI 1r11NE 1000
+> r12N 1−r12D 2−r12N 1000r12D 2
+> 00−r13T 10r13T 10000−r21NE 2−r21NI 2r21NI 2r21NE 2
+> 00r22D 1r22N 2−r22D 1−r22N 200r23T 2000−r23T 2
+> 
+> ,
+
+which is weakly diagonally dominant by rows, i.e., |Hii | ≥ P  
+
+> j̸=i
+
+|Hij | with negative diag-onal entries: Hii < 0 for any i. In [BG21, Prop. 2], it was shown in full generality that 
+
+H = RS is weakly diagonally dominant with negative diagonal whenever the stoichiomet-ric coefficients are {0, 1} only, and each species participates at most in two reactions, as it is the case here. Our analysis holds irrespective of whether or not one considers the for-mulation BI’ with an explicit translocation of the intracellular domain NI j to the nucleus. Indeed, in BI’ all stoichiometric coefficients are in {0, 1}, and each species participates in at most two reactions. For j = 1 , 2, the species NI j participates in reactions ( j1, j 2′′ ), while NI Nucleus  
+
+> j
+
+participates in reactions ( j2′, j 2′′ ). The Gershgorin disk theorem [Ger31] implies that the eigenvalues must have nonpositive real parts, regardless of the choice of parameters. On the other hand, Lemma 2.5 equates the capacity for a real-zero eigenvalue to the capacity for an eigenvalue with positive real part, since the determinant a5 of the system reduced to any stoichiometric compatibility class is a multilinear homogeneous polynomial in the entries of the symbolic reactivity matrix R. Therefore, zero eigenvalues are also excluded and any steady-state is always locally stable. Finally, to exclude multistationarity, we use [BP16, Theorem 3] which states that multistationarity for consistent nondegenerate networks is equivalent to the capacity of the determinant to have a real zero eigenvalue. In conclusion, the system always admits only one locally stable steady state. The proofs of Thm. 3.2, Thm. 3.4 both follow the workflow introduced in Sec. 2, which we repeat here in more detail. The first two steps are analogous to the proof of Thm. 3.1. 
+
+Step 1 . We will verify that each ODE system (3.3) and (3.8) admits a positive steady-state for a choice of monotone chemical functions. We will write the ODE system as ˙ x = Sr(x).
+
+The existence of a positive steady-state is equivalent to the existence of a strictly positive kernel vector v > 0 of the stoichiometric matrix S.
+
+Step 2 : In order to verify that the network is nondegenerate, we compute the n linearly independent conservation laws of the systems by providing a basis of the left kernel space of the S. Then, we give an invertible k-CS matrix, where k = |M | − n.29 Step 3: Via the Python module BiRNe [GGSV25], we compute and analyze the char-acteristic polynomial of the symbolic Jacobian matrix G = SR . Via Lemma 2.5, we will look for all k × k CS-matrices S[κκκ] such that (6.1) sign det S[κκκ] = ( −1) k−1,
+
+and identify the unstable-positive feedbacks as the minimal ones among those, i.e. the CS-matrices S[κκκ] with (6.1) and such that none of its principal submatrices S[κκκ′] satisfies sign det S[κκκ′] = ( −1) k′−1. BiRNe scans the coefficients ai in the g(λ) (2.15) starting from 
+
+a0 = 1. In each coefficient, the summands det S[κκκ] Q 
+
+> Xm∈κ
+
+RJ(Xm)m in (2.17) that satisfy condition (6.1) are identified and labeled by their monomials Q 
+
+> Xm∈κ
+
+RJ(Xm)m. From this structure, a Hasse diagram [BFR72] is constructed, where each vertex corresponds to a summand in g(λ) fulfilling (6.1). A directed edge between two vertices is drawn, if and only if, the monomial label of one summand is a subset of that of another, with the direction following the order of increasing indices i, i.e. from ai to al with i < l. By this construction, the root vertices, i.e. those with no incoming edges, identify all the CS-matrices that are minimal w.r.t. the property of having exactly one real positive eigenvalue, which are exactlyt the unstable-positive feedbacks. If no unstable-positive feedback is represented by a Metzler CS-matrix, we classify the networks as non-autocatalytic. 
+
+Step 4. Finally, we enforce the kinetic symmetric, respectively (3.4) for (3.3) and (3.9) for (3.8). We will assume that the steady-state is homogeneous, i.e. ¯|X|1 = ¯|X|2 respectively for X = {NE , NI , N, D, T, C} in (3.3) and X = {NE , NI , N, D, T, B} in (3.8). These two assumptions imply the symmetric constraint for the reactivities in R, rjX = rσ(j)σ(X) ,
+
+where σ associates a reaction 1 j to a the corresponding reaction 2 j, and a species X 1 to the corresponding species X 2 and vice versa. Again, we compute g(λ) under such symmetric constraint, and show that we can solve a|M |− n = 0, where a|M |− n is the determinant of the Jacobian of the system reduced to one stoichiometric compatibility class. 
+
+Proof of Thm. 3.2. Step 1. The stoichiometric matrix S of BI +BII reads: (6.2) S =                                                                                                            
+
+> 
+> −1010000000
+> −11000000001−10−1100000001−110−100000−100010000001−10000000000−1010000000−11000000001−10−110−1000001−110100000−100000000001−1
+> 
+> ,
+
+from which we can compute that any positive vector v such that Sv = 0 is of the form 
+
+v = ( k, k, k, h, h, k, k, k, l, l ) for k, h, l ∈ R>0. In particular, the flux cone F := {v ∈
+
+R10  
+
+> >0
+
+| Sv = 0 } is three dimensional, and thus nonempty, and the network is consistent and admits a positive steady-state. 
+
+Step 2. We compute a basis for the left kernel W of S as: 
+
+W = span ⟨(0 , 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0) , (0 , 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0) ,
+
+(1 , 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1) , (0 , 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1) , (0 , 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1) ⟩,
+
+30 and thus there are 5 linearly independent conservation laws ( n = 5), namely 
+
+
+
+w1 := NI 1 + N 1 + C 1,w2 := D 1 + T 1 + C 1,w3 := NE 1 + N 1 + T 1 + C 1 + NE 2 + N 2 + T 2 + C 2,w4 := NI 2 + N 2 + C 2,w5 := D 2 + T 2 + C 2.
+
+All species appear in at least one of the conserved quantities, which guarantees that orbits of the system (3.3) cannot diverge and they are bounded. To show that the system is nondegenerate, it is enough to show that the coefficient a|M |− n = a7 of g(λ) is non-identically zero. Via Lemma 2.5, this is in turn equivalent to the existence of at least one 7 × 7 invertible CS-matrix. Again, we provide an arbitrary example. Consider 
+
+κκκ = ( {NE 1, N1, T1, C1N2, T2, C2}, {11 , 12 , 13 , 15 , 22 , 23 , 25 }, J (NE 1, N1, T1, C1, N2, T2, C2) = (11 , 12 , 13 , 15 , 22 , 23 , 25)) .
+
+Its associated CS-matrix S[κκκ] reads: 
+
+S[κκκ] =                                           
+
+> 
+> −10000001−10100000−10100000−10000000−10101000−10000000−1
+> 
+
+,
+
+which is invertible, since all eigenvalues are −1. The network is thus nondegenerate. 
+
+Step 3. We compute the symbolic Jacobian G = SR as the product of the stoichiometric matrix (6.2) and 
+
+R =                                                                                                              
+
+> 
+> r11NE 1r11NI 1000000000000r12N 1000000r12D 2000000r13T 1000000000r14N 1r14D 10000000000000r15C 1000000000000r21NE 2r21NI 20000000r22D 10000r22N 20000000000000r23T 2000000000r24N 2r24D 20000000000000r25C 2
+> 
+> ,
+
+which we do not write down here explicitly for the sake of space. Then we compute the characteristic polynomial of G and, with the expansion in Lemma 2.5, we look for unstable-positive feedback. We use the BiRNe Python module [GGSV25], which takes as input a list of reactions and produces as output the list of CS-matrices S[κκκ] that are minimal with the property of having one real positive eigenvalue. There are exactly six CS-triples ( κκκ1, κκκ2, κκκ3, κκκ4, κκκ5, κκκ6) whose CS-matrices are unstable-positive feedbacks: 
+
+
+
+κ1 = {NI 1, N1, D1, N2, D2}, E κ1 = {11 , 12 , 14 , 22 , 24 }, J (κ1) = {11 , 12 , 14 , 22 , 24 }
+
+κ2 = {N1, D1, NI 2, N2, D2}, E κ2 = {12 , 14 , 21 , 22 , 24 }, J (κ2) = {12 , 14 , 21 , 22 , 24 }
+
+κ3 = {N1, D1, T1, N2, D2}, E κ3 = {12 , 13 , 14 , 22 , 24 }, J (κ3) = {14 , 22 , 13 , 24 , 12 }
+
+κ4 = {N1, D1, N2, D2, T2}, E κ4 = {12 , 14 , 22 , 23 , 24 }, J (κ4) = {14 , 22 , 24 , 12 , 23 }
+
+κ5 = {NI 1, N1, D1, NE 2, N2, T2}, E κ5 = {11 , 12 , 14 , 21 , 22 , 23 }, J (κ5) = {11 , 12 , 14 , 21 , 22 , 23 }
+
+κ6 = {NE 1, N1, T1, NI 2, N2, D2}, E κ6 = {11 , 12 , 13 , 21 , 22 , 24 }, J (κ6) = {11 , 12 , 13 , 21 , 22 , 24 }
+
+31 The associated CS-matrices read 
+
+S[κκκ1] = 11 12 14 22 24 
+
+
+
+NI 1 −1 1 0 0 0N1 1 −1 −1 0 0D1 0 0 −1 −1 0N2 0 0 0 −1 −1D2 0 −1 0 0 −1
+
+S[κκκ2] = 12 14 21 22 24 
+
+
+
+N1 −1 −1 0 0 0D1 0 −1 0 −1 0NI 2 0 0 −1 1 0N2 0 0 1 −1 −1D2 −1 0 0 0 −1
+
+S[κκκ3] = 14 22 13 24 12 
+
+
+
+N1 −1 0 0 0 −1D1 −1 −1 1 0 0T1 0 1 −1 0 0N2 0 −1 0 −1 0D2 0 0 0 −1 −1
+
+S[κκκ4] = 14 22 24 12 23 
+
+
+
+N1 −1 0 0 −1 0D1 −1 −1 0 0 0N2 0 −1 −1 0 0D2 0 0 −1 −1 1T2 0 0 0 1 −1
+
+S[κκκ5] = 11 12 14 21 22 23 
+
+
+
+NI 1 −1 1 0 0 0 0N1 1 −1 −1 0 0 0D1 0 0 −1 0 −1 0NE 2 0 0 0 −1 0 1N2 0 0 0 1 −1 0T2 0 1 0 0 0 −1
+
+S[κκκ6] = 11 12 13 21 22 24 
+
+
+
+NE 1 −1 0 1 0 0 0N1 1 −1 0 0 0 0T1 0 0 −1 0 1 0NI 2 0 0 0 −1 1 0N2 0 0 0 1 −1 −1D2 0 −1 0 0 0 −1Note that the pairs ( κκκ1, κ κκ2), ( κκκ3, κ κκ4), ( κκκ5, κ κκ6) are the ones related by symmetry. The reac-tions and species, which appear in such CS-triples, respectively constitute the instability motifs (3.5), (3.6), (3.7). As no matrix S[κκκi], i = 1 , ... 6, is Metzler, i.e. they all possess negative off-diagonal entries, the network is non-autocatalytic. 
+
+Step 4. We assume the kinetic symmetry condition (3.4) at a homogeneous steady state, i.e. where |X1| = |X2| for all X ∈ { NE , NI , N, D, T, C}. Then, there is no quantitative distinction between the two cells. To simplify notation, we denote the reaction rates as 
+
+rj := r1j = r2j for j ∈ { 1, 2, 3, 4, 5}, and |X| := |X1| = |X2|. This yields the following symbolic reactivity matrix Rσ under kinetic symmetry: 
+
+Rσ =
+
+
+
+r1NE r1NI 0 0 0 0 0 0 0 0 0 00 0 r2N 0 0 0 0 0 0 r2D 0 00 0 0 0 r3T 0 0 0 0 0 0 00 0 r4N r4D 0 0 0 0 0 0 0 00 0 0 0 0 r5C 0 0 0 0 0 00 0 0 0 0 0 r1NE r1NI 0 0 0 00 0 0 r2D 0 0 0 0 r2N 0 0 00 0 0 0 0 0 0 0 0 0 r3T 00 0 0 0 0 0 0 0 r4N r4D 0 00 0 0 0 0 0 0 0 0 0 0 r5C 
+
+
+
+,
+
+where due to the Z2-symmetry, each symbol appears exactly two times. The symbolic 32 Jacobian Gσ = SR σ, at kinetic symmetry, is 
+
+
+
+−r1NE −r1NI 0 0 r3T 0 0 0 0 0 0 0
+
+−r1NE −r1NI r2N 0 0 0 0 0 0 r2D 0 0
+
+r1NE r1NI −r2N − r4N −r4D 0 r5C 0 0 0 −r2D 0 00 0 −r4N −r2D − r4D r3T r5C 0 0 −r2N 0 0 00 0 0 r2D −r3T 0 0 0 r2N 0 0 00 0 r4N r4D 0 −r5C 0 0 0 0 0 00 0 0 0 0 0 −r1NE −r1NI 0 0 r3T 00 0 0 r2D 0 0 −r1NE −r1NI r2N 0 0 00 0 0 −r2D 0 0 r1NE r1NI −r2N − r4N −r4D 0 r5C 
+
+0 0 −r2N 0 0 0 0 0 −r4N −r2D − r4D r3T r5C 
+
+0 0 r2N 0 0 0 0 0 0 r2D −r3T 00 0 0 0 0 0 0 0 r4N r4D 0 −r5C 
+
+
+
+We compute the characteristic polynomial gσ(λ) of Gσ. Since the network is nondegen-erate, the determinant of the Jacobian matrix reduced to a stoichiometric compatibility class is interpreted as the coefficient a|M |− n = a|12 |− 5 = a7, which reads: 
+
+a7 =2 r3T r1NE 
+
+ r2D r4N + r4D r2N + r5C r2N 
+
+ · . . . 
+
+· · · ·  r4D r2N r3T − r2D r4N r3T + r5C r2N r3T + r2D r5C r1NE + r2D r5C r1NI + r5C r2N r1NE 
+
++ r2D r4N r1NI − r4D r2N r1NI + r4D r3T r1NE + r5C r3T r1NE + r4D r3T r1NI + r5C r3T r1NI 
+
++ r4N r3T r1NE + r4N r3T r1NI 
+
+.
+
+Since the factor is a multilinear homogeneous polynomials in the symbols rjX with mono-mials having coefficients of both positive and negative sign, there exists a choice of symbols such that a7 = 0, and thus the system has the capacity for a zero-eigenvalue bifurca-tion and differentiation. To see this last statement, it suffices to apply the intermediate value theorem. Indeed, for e.g. (r4D , r 2N , r 3T ) big enough, a7 is positive, while for e.g. (r2D , r 4N , r 3T ) big enough, a7 is negative, thus there exists a value in between for which 
+
+a7 changes sign. 
+
+Proof of Thm. 3.4. Step 1. The stoichiometric matrix S of BIII reads: (6.3) S =
+
+
+
+−1 0 0 0 0 1 0 0 0 0 0 0
+
+−1 1 0 0 0 0 0 0 0 0 0 01 −1 −1 1 0 0 0 0 0 0 0 00 0 0 0 −1 1 0 0 −1 1 0 00 0 0 0 1 0 0 −1 0 0 0 00 0 0 0 0 −1 0 1 0 0 0 00 0 0 0 0 0 0 0 1 −1 0 00 0 0 0 0 0 −1 0 0 0 0 10 0 0 0 0 0 −1 1 0 0 0 00 0 0 0 0 0 1 −1 −1 1 0 00 0 −1 1 0 0 0 0 0 0 −1 10 −1 0 0 0 0 0 0 0 0 1 00 1 0 0 0 0 0 0 0 0 0 −10 0 1 −1 0 0 0 0 0 0 0 0
+
+
+
+.
+
+from which we can compute that any positive vector v such that Sv = 0 is of the form 
+
+v = ( k, k, h, h, k, k, k, k, l, l, k, k ) for k, h, l ∈ R>0. In particular, the flux cone F := {v ∈
+
+R12  
+
+> >0
+
+| Sv = 0 } is three dimensional, and thus nonempty, and the network is consistent and admits a positive steady-state. 33 Step 2. We compute a basis for the left kernel W of S as: 
+
+W = span ⟨
+
+
+
+0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0
+
+
+
+,
+
+
+
+0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+
+
+
+,
+
+
+
+1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1
+
+
+
+,
+
+
+
+0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1
+
+
+
+,
+
+
+
+0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0
+
+
+
+⟩.
+
+Thus there are 5 linearly independent conservation laws ( n = 5), namely 
+
+
+
+w1 := D s1 + D 1 + T 1 + B 1,w2 := NI 1 + N 1 + B 2,w3 := NE 1 + N 1 + T 1 + B 1 + NE 2 + N 2 + T 2 + B 2,w4 := D s2 + D 2 + T 2 + B 2
+
+w5 := B 1 + NI 2 + N 2.
+
+All species appear in at least one of the conserved quantities, which guarantees that orbits of the system (3.8) cannot diverge and they are bounded. Now we show that the coefficient 
+
+a|M |− n = a9 of g(λ) is non-identically zero. Via Lemma 2.5, this is in turn equivalent to the existence of at least one 9 × 9 invertible CS-matrix. We provide an arbitrary example: consider the CS-triple 
+
+κκκ = ( {NE 1, N1, Ds1, T1, B1, N2, Ds2, T2, B2}, {11 , 12 , 17 , 18 , 19 , 22 , 27 , 28 , 29 },J(NE 1, N1, Ds1, T1, B1, N2, Ds2, T2, B2) = (11 , 12 , 18 , 19 , 27 , 22 , 28 , 29 , 17)) .
+
+Its associated CS-matrix S[κκκ] reads: (6.4) S[κκκ] =                                                                         
+
+> 
+> −1001000001−1000000100−1110000000−1010000000−1000000001−1000000000−1110100000−1000000000−1
+> 
+
+,
+
+which is invertible since all eigenvalues are −1. The network is thus nondegenerate. 
+
+Step 3. As in the proof of Thm. 3.2, we compute the symbolic Jacobian G = SR as the product between the stoichiometric matrix (6.3) and: 
+
+R =                                                                                                                                                            
+
+> 
+> r11NE 1r11NI 100000000000000r12N 100000000r12D 20000r16N 10000000r16D s20000000000000000r17B 2
+> 000r18D s1000000000000000r19T 1000000000000000r21NE 2r21NI 2000000000r22D 10000r22N 20000000r26D s100000r26N 20000000000r27B 100000000000000000r28D s2000000000000000r29T 20
+> 
+> .
+
+34 Again, we omit the explicit form of G and compute the characteristic polynomial of G
+
+and, using the expansion in Lemma 2.5, we look for unstable-positive feedback. With the 
+
+BiRNe Python module [GGSV25], we find that there are exactly two CS-triples ( κκκ1, κκκ2)whose CS-matrices are unstable-positive feedbacks: 
+
+(
+
+κκκ1 = ( κ1 = {Ds1, D1, T1, N2}, E κ1 = {18 , 19 , 22 , 26 }, J (κ1) = {18 , 22 , 19 , 26 })
+
+κκκ2 = ( κ2 = {N1, Ds2, D2, T2}, E κ2 = {12 , 16 , 28 , 29 }, J (κ2) = {16 , 28 , 12 , 29 })with associated CS-matrices 
+
+S[κκκ1] = 18 22 19 26 
+
+
+
+Ds1 −1 0 1 −1D1 1 −1 0 0T1 0 1 −1 0N2 0 −1 0 −1
+
+S[κκκ2] = 16 28 12 29 
+
+
+
+N1 −1 0 −1 0Ds2 −1 −1 0 1D2 0 1 −1 0T2 0 0 1 −1The pair of CS ( κκκ1, κ κκ2) is related by the symmetry. By selecting the corresponding reactions and species in the network, which appear in such CS-triples, we get the instability motif (3.10). As both S[κκκ1] and S[κκκ2] possess negative off-diagonal entries, they are non-Metzler, and thus the network is non-autocatalytic. 
+
+Step 4. We assume the kinetic symmetry condition (3.4) at a homogeneous steady state, i.e. where |X1| = |X2| for X ∈ { NE , NI , N, Ds, D, T, B}. Again, we denote the reaction rates as rj := r1j = r2j for j ∈ { 1, 2, 6, 7, 8, 9}, and the species concentrations as |X| := 
+
+|X1| = |X2|. This yields the following symbolic reactivity matrix: 
+
+Rσ =
+
+
+
+r1NE r1NI 0 0 0 0 0 0 0 0 0 0 0 00 0 r2N 0 0 0 0 0 0 0 0 r2D 0 00 0 r6N 0 0 0 0 0 0 0 r6D s 0 0 00 0 0 0 0 0 0 0 0 0 0 0 0 r7B 
+
+0 0 0 r8D s 0 0 0 0 0 0 0 0 0 00 0 0 0 0 r9T 0 0 0 0 0 0 0 00 0 0 0 0 0 0 r1NE r1NI 0 0 0 0 00 0 0 0 r2D 0 0 0 0 r2N 0 0 0 00 0 0 r6D s 0 0 0 0 0 r6N 0 0 0 00 0 0 0 0 0 r7B 0 0 0 0 0 0 00 0 0 0 0 0 0 0 0 0 r8D s 0 0 00 0 0 0 0 0 0 0 0 0 0 0 r9T 0
+
+
+
+.
+
+Due to the Z2-symmetry, each symbol appears now exactly two times. From Rσ, the symbolic Jacobian Gσ = SR σ, at kinetic symmetry, is computed as                                                                                                                                                                                               
+
+> 
+> −r1N E −r1N I 000r9T00000000
+> −r1N E −r1N I r2N00000000r2D00
+> r1N E r1N I −r2N−r6N0000000−r6Ds −r2D0r7B
+> 000−r6Ds −r8Ds 0r9Tr7B00−r6N0000000r8Ds −r2D0000−r2N00000000r2D−r9T000r2N0000000r6Ds 00−r7B00r6N00000000000−r1N E −r1N I 000r9T00000r2D00−r1N E −r1N I r2N0000000−r6Ds −r2D0r7Br1N E r1N I −r2N−r6N000000−r6N0000000−r6Ds −r8Ds 0r9Tr7B
+> 00−r2N0000000r8Ds −r2D0000r2N00000000r2D−r9T000r6N0000000r6Ds 00−r7B
+> 
+
+35 We compute the characteristic polynomial gσ(λ) of Gσ. Since the network is nonde-generate, the Jacobian of the system reduced to a stoichiometric compatibility class is interpreted as the coefficient a|M |− n = a|14 |− 5 = a9, which reads: 
+
+a9 =2 r9T r1N E r8Ds (r7B r2N − r2Dr6N ) · . . . 
+
+· · · · 
+
+
+
+r2Dr7B r9T r1N E + r2Dr7B r9T r1N I + r2Dr6N r9T r1N E + r2Dr6N r9T r1N I 
+
+− r2Dr6N r9T r8Ds + r2Dr7B r1N E r8Ds + r2Dr7B r1N I r8Ds + r7B r2N r1N E r8Ds 
+
++ r2Dr6N r1N I r8Ds + r2Dr9T r1N E r6Ds + r2Dr9T r1N I r6Ds + r7B r9T r1N E r8Ds 
+
++ r7B r9T r1N I r8Ds + r2N r9T r1N E r6Ds + r2N r9T r1N I r6Ds 
+
++ r7B r2N r9T r8Ds + r6N r9T r1N E r8Ds + r6N r9T r1N I r8Ds 
+
+
+
+.
+
+From the first factor in brackets, we see that a9 = 0 and thus a zero eigenvalue bifurcation occurs and with this the capacity for differentiation if r7B r2N = r2Dr6N .
+
+Proofs of Sec. 4 
+
+Proof of Prop. 4.2. The network is consistent by choosing r1 = r2. Moreover, the system describes a one-to-one exchange of Λ 1 with Λ 2 mediated and catalyzed by [NI 1] and [NI 2]. In particular, the quantity [Λ 1]+[Λ 2] is conserved. Since only two equations in the system are non-identically zero, this yields that the system is one ODE. Consequently, upon inspection of the Jacobian matrix, the capacity for zero-eigenvalue bifurcation is equivalent to the fact that the trace can change sign. Ordering the species as (NI 1, Λ1, NI 2, Λ2) we get: 
+
+G =                                
+
+> 
+> 0000
+> −∂NI 1r1∂Λ1r2−∂Λ1r1∂NI 2r2∂Λ2r2−∂Λ2r1
+> 0000
+> ∂NI 1r1−∂Λ1r2+∂Λ1r1−∂NI 2r2−∂Λ2r2+∂Λ2r1
+> 
+
+,
+
+with trace Tr G = ( ∂Λ1 r2 − ∂Λ1 r1) + ( −∂Λ2 r2 + ∂Λ2 r1). At kinetic symmetry, we get that: 
+
+∂Λ1 r2 = ∂Λ2 r1 := g1, and ∂Λ1 r1 = ∂Λ2 r2 := g2,
+
+and thus Tr G = 2( g1 − g2). A zero-eigenvalue bifurcation is thus possible for g1 = g2, and with this the capacity for differentiation. 
+
+Proof of Prop. 4.3. The arguments are similar in all three cases. All three models are consistent: simply choosing identical flux for r1 and r2 yields the existence of (at least) one positive steady state. Moreover, all three models are one ODE, as they contain two nonzero ODEs with one conservation law, respectively (NE 1 + NE 2) in (4.16) and (4.18), (Λ 1 + Λ 2) in (4.17). This follows from the fact that the reaction networks all concern a one-to-one exchange of one entity: (NE 1 with NE 2) in (4.16) and (4.18), and (Λ 1 with Λ 2)in (4.17). Such exchange is catalyzed by the other species involved in the network. For monostationarity and the consequent absence of capacity for differentiation, we check the trace of the respective symbolic Jacobians. A negative trace guarantees that the single nonzero eigenvalue is always negative and thus the steady-state is unique and locally stable for all choices of parameters, thereby excluding autocatalysis as well. 36 The three Jacobians are listed in sequence below. For (4.16), ordering the involved species as (NI 1, NE 1, D1, NI 2, NE 2, D2), the Jacobian matrix reads 
+
+G =                                          
+
+> 
+> 000000
+> −∂NI 1r1−∂NE 1r1∂D1r2∂NI 2r2∂NE 2r2−∂D2r1
+> 000000000000
+> ∂NI 1r1∂NE 1r1−∂D1r2−∂NI 2r2−∂NE 2r2∂D2r1
+> 000000
+> 
+
+,
+
+with negative trace Tr G = −∂NE 1 r1 −∂NE 2 r2 < 0. For (4.17), ordering the involved species as (Λ 1, D1, Λ2, D2, ), the Jacobian matrix reads 
+
+G =                    
+
+> 
+> −∂Λ1r1∂D1r2∂Λ2r2−∂D2r1
+> 0000
+> ∂Λ1r1−∂D1r2−∂Λ2r2∂D2r1
+> 0000
+> 
+
+,
+
+with negative trace Tr G = −∂Λ1 r1 − ∂Λ2 r2 < 0. For (4.18), ordering the involved species as (Λ 1, NE 1, Λ2, NE 2), the Jacobian matrix reads 
+
+G =                                
+
+> 
+> 0000
+> ∂Λ1r2−∂Λ1r1−∂NE 1r1∂Λ2r2−∂Λ2r1∂NE 2r2
+> 0000
+> −∂Λ1r2+∂Λ1r1∂NE 1r1−∂Λ2r2+∂Λ2r1−∂NE 2r2
+> 
+
+,
+
+with negative trace Tr G = −∂NE 1 r1 − ∂NE 2 r2 < 0. In conclusion, MII , MIV and MV do not have the capacity for differentiation. 
+
+Proof of Prop. 4.4. The network is consistent and it admits a homogeneous steady-state, i.e. with [ ¯Λ1] = [ ¯Λ2], whenever P = η r ([ ¯Λ1], [¯Λ2]) + r([ ¯Λ2], [¯Λ1]). Let ∂1r(·, ·) and ∂2r(·, ·)denote differentiation of r with respect to its first and second arguments, respectively. The symbolic Jacobian reads 
+
+G =
+
+−η ∂ 1r − ∂2r −η ∂ 2r − ∂1r
+
+−η ∂ 2r − ∂1r −η ∂ 1r − ∂2r
+
+ ,
+
+with det G = det −η −1
+
+−1 −η
+
+!
+
+(∂1r)2 + det −1 −η
+
+−η −1
+
+!
+
+(∂2r)2
+
+= ( η2 − 1) (∂1r)2 − (∂2r)2.
+
+(6.5) Thus, a zero-eigenvalue bifurcation occurs for η̸ = 1 precisely when ∂2r = ∂1r, with the instability region identified when ∂1r > ∂ 2r for η < 1 and ∂1r < ∂ 2r for η > 1. The instability motif is given by the matrices in the expansion (6.5) of the determinant of the symbolic Jacobian. Depending on η > 1 or η < 1 the unstable CS matrix is −1 −η
+
+−η −1
+
+!
+
+or −η −1
+
+−1 −η
+
+!
+
+. Both cases identify the same instability motif (4.24). 37 Proof of Prop. 4.7. The stoichiometric matrix of NonAut-II-η reads: 
+
+S =
+
+
+
+0 0 −1 10 0 1 −1
+
+−1 1 0 01 −1 0 0
+
+ ,
+
+and has a natural basis of the (right and left) kernel space as ker S = span {v1, v 2} with 
+
+vT 
+
+> 1
+
+= (1 , 1, 0, 0) and vT 
+
+> 2
+
+= (0 , 0, 1, 1). Consistency of the network follows from considering any positive flux vector, e.g. vT 
+
+> 1
+
++ vT 
+
+> 2
+
+= (1 , 1, 1, 1), while the two-dimensionality of the left kernel of S implies the existence of two independent conservation laws, i.e. ([Λ 1] + [I 1]) and ([Λ 2] + [I 2]). This implies that the system is (at most) two dimensional, so we just check the symbolic Jacobian at kinetic symmetry. Let ∂1ro and ∂2ro denote the derivative of r w.r.t. its first and second arguments. At kinetic symmetry, we get: 
+
+
+
+∂Λ1 r1 = ∂Λ2 r3 = ∂1ro
+
+∂Λ1 r3 = ∂Λ2 r1 = ∂2ro
+
+∂I1 r2 = ∂I2 r4 = ∂I re
+
+,
+
+and thereby the symbolic reactivity matrix R reads: 
+
+R =
+
+
+
+∂1ro 0 ∂2ro 00 0 0 ∂I re
+
+∂2ro 0 ∂1ro 00 ∂I re 0 0
+
+ ,
+
+yielding a symbolic Jacobian matrix at kinetic symmetry: 
+
+G =
+
+
+
+−∂2ro ∂I re −∂1ro 0
+
+∂2ro −∂I re ∂1ro 0
+
+−∂1ro 0 −∂2ro ∂I re
+
+∂1ro 0 ∂2ro −∂I re
+
+ ,
+
+with characteristic polynomial: 
+
+g(λ) = λ4 +  2 ∂I re + 2 ∂2ro
+
+λ3 +
+
+
+
+(∂I re)2 + 2 ∂I re ∂1ro + ( ∂2ro)2 − (∂1ro)2
+
+
+
+λ2.
+
+As the system is two-dimensional, a zero-eigenvalue bifurcation occurs if and only if 
+
+∂I re +∂2ro = ∂1ro, with instability area being identified by ∂I re +∂2ro < ∂ 1ro. Via Lemma 2.5, the CS matrix associated to the unstable summand ( ∂1ro)2 and the instability motif (4.30) is 
+
+S[κκκ] = 1 3 !
+
+Λ1 0 −1Λ2 −1 0
+
+.
+
+38 Acknowledgments: A.S. was supported by the DFG (German Research Foundation) under Germany’s Excellence Strategy EXC 2044/390685587 and EXC 2044/2-390685587, Mathematics M¨ unster: Dynamics - Geometry - Structure and partially hosted by the Max-Planck-Insitute for Mathematics in the Sciences in Leipzig. N.V.’s work was funded by the DFG, project n. 512355535, and by the MATOMIC consortium of the Novo Nordisk Foundation, grant NNF21OC0066551. 
+
+## References 
+
+[ADLS07] David Angeli, Patrick De Leenheer, and Eduardo D Sontag. A Petri net approach to the study of persistence in chemical reaction networks. Mathematical Biosciences ,210(2):598–618, 2007. [AFMS20] Jakob L Andersen, Christoph Flamm, Daniel Merkle, and Peter F Stadler. Defining autocatalysis in chemical reaction networks. Journal of Systems Chemistry , 8:121– 133, 2020. [ASL11] Emma R. Andersson, Rickard Sandberg, and Urban Lendahl. Notch signaling: simplicity in design, versatility in function. Development , 138(17):3593–3612, 09 2011. [BFR72] K. A. Baker, P. C. Fishburn, and F. S. Roberts. Partial orders of dimension 2. 
+
+Networks , 2(1):11–28, January 1972. [BG21] Franco Blanchini and Giulia Giordano. Dual chemical reaction networks and im-plications for Lyapunov-based structural stability. IEEE Control Systems Letters ,6:488–493, 2021. [BLN20] Alex Blokhuis, David Lacoste, and Philippe Nghe. Universal motifs and the di-versity of autocatalytic systems. Proceedings of the National Academy of Sciences ,117(41):25230–25236, 2020. [BP16] Murad Banaji and Casian Pantea. Some results on injectivity and multistationar-ity in chemical reaction networks. SIAM Journal on Applied Dynamical Systems ,15(2):807–869, 2016. [BP23] Francisco Berkemeier and Karen M Page. Coupling dynamics of 2d Notch-Delta signalling. Mathematical Biosciences , 360:109012, 2023. [BSV25] Alexander Blokhuis, Peter F Stadler, and Nicola Vassena. Stoichiometric recipes for periodic oscillations in reaction networks. arXiv preprint arXiv:2508.15273 ,2025. [BYA10] Majid Bani-Yaghoub and David E. Amundsen. Dynamics of Notch activity in a model of interacting signaling pathways. Bulletin of Mathematical Biology ,72(4):780–804, 2010. [CMML96] Joanne R Collier, Nicholas AM Monk, Philip K Maini, and Julian H Lewis. Pattern formation by lateral inhibition with feedback: a mathematical model of Delta-Notch intercellular signalling. Journal of theoretical Biology , 183(4):429–446, 1996. [Ger31] Semyon Aranovich Gerschgorin. ¨Uber die Abgrenzung der Eigenwerte einer Matrix. 
+
+lzv. Akad. Nauk. USSR. Otd. Fiz-Mat. Nauk , 7:749–754, 1931. 
+
+39 [GGSV25] Richard Golnik, Thomas Gatter, Peter F Stadler, and Nicola Vassena. BiRNe: Symbolic bifurcation analysis of reaction networks with Python. arXiv preprint arXiv:2511.14431 , 2025. [GH13] John Guckenheimer and Philip Holmes. Nonlinear oscillations, dynamical systems, and bifurcations of vector fields , volume 42. Springer Science & Business Media, 2013. [GP08] Albert Goldbeter and Olivier Pourqui´ e. Modeling the segmentation clock as a network of coupled oscillations in the Notch, Wnt and FGF signaling pathways. 
+
+Journal of Theoretical Biology , 252(3):574–585, 2008. [GS03] Martin Golubitsky and Ian Stewart. The symmetry perspective: from equilibrium to chaos in phase space and physical space , volume 200. Springer Science & Business Media, 2003. [Hil10] Archibald Vivian Hill. The possible effects of the aggregation of the molecules of haemoglobin on its dissociation curves. The Journal of Physiology , 40:4–7, 1910. [HR15] Juliette Hell and Alan D Rendall. A proof of bistability for the dual futile cycle. 
+
+Nonlinear Analysis: Real World Applications , 24:175–189, 2015. [HS19] Domingos Henrique and Fran¸ cois Schweisguth. Mechanisms of Notch signaling: a simple logic deployed in time and space. Development , 146(3):dev172148, 02 2019. [IUP] Definition of ‘catalyst’. Gold Book of the International Union of Pure and Applied Chemistry (IUPAC) .[MM13] L. Michaelis and M. L. Menten. Die Kinetik der Invertinwirkung. Biochem. Z. ,49:333–369, 1913. [MR12] Stefan M¨ uller and Georg Regensburger. Generalized mass action systems: Com-plex balancing equilibria and sign vectors of the stoichiometric and kinetic-order subspaces. SIAM Journal on Applied Mathematics , 72(6):1926–1947, 2012. [MZZ19] Matt Moore, Yican Zhang, and Xiaoming Zheng. Steady state and sensitivity analysis of a Notch–Delta signaling system of one single cell interacting with fixed environment. Journal of Biological Systems , 27(03):337–363, 2019. [NNU26] Praneet Nandan, Philippe Nghe, and Jeremie Unterberger. Autocatalytic cores in the diluted regime: classification and properties. Journal of Mathematical Biology ,92(36), 2026. [OTIS +23] Toshiki Oguma, Hisako Takigawa-Imamura, Tomoyasu Shinoda, Shuntaro Ogura, Akiyoshi Uemura, Takaki Miyata, Philip K. Maini, and Takashi Miura. Analyzing the effect of cell rearrangement on Delta-Notch pattern formation. Physical Review E, 107(6):064404, 2023. [RGSFM07] J. G. Rodriguez-Gonz´ alez, M. Santill´ an, A. C. Fowler, and Michael C. Mackey. The segmentation clock in mice: interaction between the Wnt and Notch signalling pathways. Journal of Theoretical Biology , 248(1):37–47, 2007. [SLL +10] David Sprinzak, Amit Lakhanpal, Lauren LeBon, Leah A Santat, Michelle E Fontes, Graham A Anderson, Jordi Garcia-Ojalvo, and Michael B Elowitz. Cis-interactions between Notch and Delta generate mutually exclusive signalling states. 
+
+Nature , 465(7294):86–90, 2010. [Vas23] Nicola Vassena. Symbolic hunt of instabilities and bifurcations in reaction networks. 
+
+Discrete and Continuous Dynamical Systems - Series B , 30(6):2183–2208, 2023. 
+
+40 [VS24] Nicola Vassena and Peter F Stadler. Unstable cores are the source of in-stability in chemical reaction networks. Proceedings of the Royal Society A ,480(2285):20230694, 2024. [WG64] P Waage and CM Guldberg. Studier over affiniteten. Forhandlinger i Videnskabs-selskabet i Christiania , 1:35–45, 1864. [YCB10] Shinya Yamamoto, Wu-Lin Charng, and Hugo J. Bellen. Chapter five - Endocytosis and intracellular trafficking of Notch and its ligands. In Raphael Kopan, editor, 
+
+Notch Signaling , volume 92 of Current Topics in Developmental Biology , pages 165–200. Academic Press, 2010. 
+
+Angela Stevens University of M¨ unster Institute for Analysis and Numerics Einsteinstr. 62 D-48149 M¨ unster Germany angela.stevens@uni-muenster.de Nicola Vassena Leipzig University Faculty of Mathematics and Computer Science Augustuspl. 10 04109 Leipzig Germany nicola.vassena@uni-leipzig.de 41
