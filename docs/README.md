@@ -6,85 +6,76 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-08
-- 运行时间：2026-04-08 19:57:29 UTC
+- 最新运行日期：2026-04-09
+- 运行时间：2026-04-09 20:19:06 UTC
 - 运行状态：成功
-- 本次总论文数：21
-- 精读区：8
-- 速读区：13
+- 本次总论文数：18
+- 精读区：6
+- 速读区：12
 
 ### 今日简报（AI）
-今日深挖 21 篇演化与生物信息学前沿，重点突破协同演化的几何建模与动力学系统。
-满分论文提出的“嵌套树空间”为协同演化提供了严谨几何框架，复制子系统研究则揭示了演化博弈的数学本质。
-推荐关注演化数学模型在复杂系统中的应用，并留意 AI 在罕见病表型识别上的跨界突破。
-- 详情：[/202604/08/README](/202604/08/README)
+今日聚焦 18 篇跨学科前沿，深度复盘了原核生物分类新平台与基因组大模型的逻辑短板。
+核心结论指出 WebCVTree4 实现了全基因组水平的系统发育研究，而基因组 LLM 仍难以掌握位置调控逻辑。
+建议生物信息学者尝试新一代分类工具，同时警惕大模型在处理复杂基因调控任务时的局限。
+- 详情：[/202604/09/README](/202604/09/README)
 
 ### 精读区论文标签
-1. [Nested tree space: a geometric framework for co-phylogeny](/202604/08/2604.05056v1-nested-tree-space-a-geometric-framework-for-co-phylogeny)  
+1. [WebCVTree4: A Newly Designed Phylogenetic and Taxonomic Study Platform for Prokaryotes Using Composition Vectors and Whole Genomes](/202604/09/2604.06835v1-webcvtree4-a-newly-designed-phylogenetic-and-taxonomic-study-platform-for-prokaryotes-using-composition-vectors-and-whole-genomes)  
    标签：评分：10.0/10、query:q3
-   evidence：嵌套系统发育树和协同演化的几何框架
-2. [Mathematical Models of Evolution and Replicator Systems Dynamics. Chapter 1: Introduction to Replicator Systems](/202604/08/2604.05720v1-mathematical-models-of-evolution-and-replicator-systems-dynamics-chapter-1-introduction-to-replicator-systems)  
-   标签：评分：9.0/10、query:q2
-   evidence：进化过程的数学形式化
-3. [GenomeQA: Benchmarking General Large Language Models for Genome Sequence Understanding](/202604/08/2604.05774v1-genomeqa-benchmarking-general-large-language-models-for-genome-sequence-understanding)  
+   evidence：利用全基因组序列数据推断物种系统发育和分类的无比对方法
+2. [The Mechanistic Invariance Test: Genomic Language Models Fail to Learn Positional Regulatory Logic](/202604/09/2604.06549v1-the-mechanistic-invariance-test-genomic-language-models-fail-to-learn-positional-regulatory-logic)  
    标签：评分：9.0/10、query:q7
-   evidence：基准测试大语言模型对基因组序列的理解和推理任务
-4. [PhageBench: Can LLMs Understand Raw Bacteriophage Genomes?](/202604/08/2604.05775v1-phagebench-can-llms-understand-raw-bacteriophage-genomes)  
+   evidence：评估基因组语言模型在调控逻辑上的表现
+3. [ECLIPSE: A Composable Pipeline for Predicting ecDNA Formation, Evolution, and Therapeutic Vulnerabilities in Cancer](/202604/09/2604.06569v1-eclipse-a-composable-pipeline-for-predicting-ecdna-formation-evolution-and-therapeutic-vulnerabilities-in-cancer)  
+   标签：评分：9.0/10、query:pangen
+   evidence：ecDNA演化与基因组结构变异
+4. [Probing 3D Chromatin Structure Awareness in Evo2 DNA Language Model](/202604/09/2604.07196v1-probing-3d-chromatin-structure-awareness-in-evo2-dna-language-model)  
    标签：评分：9.0/10、query:q7
-   evidence：利用大语言模型进行原始基因组解释和表型注释
-5. [An Imbalanced Dataset with Multiple Feature Representations for Studying Quality Control of Next-Generation Sequencing](/202604/08/2604.04981v1-an-imbalanced-dataset-with-multiple-feature-representations-for-studying-quality-control-of-next-generation-sequencing)  
+   evidence：在Evo2 DNA语言模型中探测3D染色质结构
+5. [MO-RiskVAE: A Multi-Omics Variational Autoencoder for Survival Risk Modeling in Multiple MyelomaMO-RiskVAE](/202604/09/2604.06267v1-mo-riskvae-a-multi-omics-variational-autoencoder-for-survival-risk-modeling-in-multiple-myelomamo-riskvae)  
    标签：评分：8.0/10、query:q7
-   evidence：利用AI进行二代测序质量控制
-6. [PRIME: Prototype-Driven Multimodal Pretraining for Cancer Prognosis with Missing Modalities](/202604/08/2604.04999v1-prime-prototype-driven-multimodal-pretraining-for-cancer-prognosis-with-missing-modalities)  
+   evidence：用于多组学数据整合和生存风险建模的AI技术
+6. [MAT-Cell: A Multi-Agent Tree-Structured Reasoning Framework for Batch-Level Single-Cell Annotation](/202604/09/2604.06269v1-mat-cell-a-multi-agent-tree-structured-reasoning-framework-for-batch-level-single-cell-annotation)  
    标签：评分：8.0/10、query:q7
-   evidence：整合基因表达的AI多模态预训练
-7. [Learning Stable Predictors from Weak Supervision under Distribution Shift](/202604/08/2604.05002v1-learning-stable-predictors-from-weak-supervision-under-distribution-shift)  
-   标签：评分：8.0/10、query:q7
-   evidence：AI与机器学习应用于CRISPR-Cas13d基因组实验
-8. [General Multimodal Protein Design Enables DNA-Encoding of Chemistry](/202604/08/2604.05181v1-general-multimodal-protein-design-enables-dna-encoding-of-chemistry)  
-   标签：评分：8.0/10、query:q7
-   evidence：AI驱动的蛋白质设计与序列-结构协同设计
+   evidence：用于单细胞注释和转录组分析的AI框架
 
 ### 速读区论文标签
-1. [Automatic Image-Level Morphological Trait Annotation for Organismal Images](/202604/08/2604.01619v2-automatic-image-level-morphological-trait-annotation-for-organismal-images)  
+1. [Epistemic Blinding: An Inference-Time Protocol for Auditing Prior Contamination in LLM-Assisted Analysis](/202604/09/2604.06013v1-epistemic-blinding-an-inference-time-protocol-for-auditing-prior-contamination-in-llm-assisted-analysis)  
    标签：评分：7.0/10、query:q7
-   evidence：AI驱动的生物体形态特征注释
-2. [RDFace: A Benchmark Dataset for Rare Disease Facial Image Analysis under Extreme Data Scarcity and Phenotype-Aware Synthetic Generation](/202604/08/2604.03454v1-rdface-a-benchmark-dataset-for-rare-disease-facial-image-analysis-under-extreme-data-scarcity-and-phenotype-aware-synthetic-generation)  
-   标签：评分：7.0/10、query:q7
-   evidence：AI辅助罕见遗传病筛查
-3. [Personality Requires Struggle: Three Regimes of the Baldwin Effect in Neuroevolved Chess Agents](/202604/08/2604.03565v1-personality-requires-struggle-three-regimes-of-the-baldwin-effect-in-neuroevolved-chess-agents)  
-   标签：评分：7.0/10、query:q2
-   evidence：鲍德温效应与演化时间尺度上的行为多样性
-4. [Mathematical modeling and analysis of the Notch-Delta pathway](/202604/08/2604.05888v1-mathematical-modeling-and-analysis-of-the-notch-delta-pathway)  
-   标签：评分：7.0/10、query:q2
-   evidence：进化保守的Notch-Delta通路建模
-5. [Biomimetic PINNs for Cell-Induced Phase Transitions: UQ-R3 Sampling with Causal Gating](/202604/08/2603.29184v1-biomimetic-pinns-for-cell-induced-phase-transitions-uq-r3-sampling-with-causal-gating)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用AI研究细胞诱导的相变和微观结构
-6. [Digital nanophotonic biosensing empowered by silicon Mie voids](/202604/08/2604.01182v1-digital-nanophotonic-biosensing-empowered-by-silicon-mie-voids)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用深度学习进行生物标志物检测
-7. [Efficient and Principled Scientific Discovery through Bayesian Optimization: A Tutorial](/202604/08/2604.01328v2-efficient-and-principled-scientific-discovery-through-bayesian-optimization-a-tutorial)  
-   标签：评分：6.0/10、query:q7
-   evidence：AI驱动的贝叶斯优化用于科学发现
-8. [Do We Need Bigger Models for Science? Task-Aware Retrieval with Small Language Models](/202604/08/2604.01965v1-do-we-need-bigger-models-for-science-task-aware-retrieval-with-small-language-models)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于科学知识发现的AI检索
-9. [Understanding When Poisson Log-Normal Models Outperform Penalized Poisson Regression for Microbiome Count Data](/202604/08/2604.03853v1-understanding-when-poisson-log-normal-models-outperform-penalized-poisson-regression-for-microbiome-count-data)  
-   标签：评分：6.0/10、query:profile-1
-   evidence：微生物组计数数据建模与潜在依赖性
-10. [MolDA: Molecular Understanding and Generation via Large Language Diffusion Model](/202604/08/2604.04403v1-molda-molecular-understanding-and-generation-via-large-language-diffusion-model)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用AI进行分子理解与生成
-11. [MolDA: Molecular Understanding and Generation via Large Language Diffusion Model](/202604/08/2604.04403v2-molda-molecular-understanding-and-generation-via-large-language-diffusion-model)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用AI进行分子理解与生成
-12. [Learned Dictionaries with Total Variation and Non-Negativity for Single-Cell Microscopy: Convergence Theory and Deterministic Multi-Channel Cell Feature Unification](/202604/08/2604.05211v1-learned-dictionaries-with-total-variation-and-non-negativity-for-single-cell-microscopy-convergence-theory-and-deterministic-multi-channel-cell-feature-unification)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于单细胞显微镜的AI和字典学习
-13. [A graph based advection framework for climate-driven species distribution](/202604/08/2604.05423v1-a-graph-based-advection-framework-for-climate-driven-species-distribution)  
+   evidence：利用AI进行生物数据集分析
+2. [From stochastic individual-based models to free-boundary Hamilton-Jacobi equations](/202604/09/2604.06516v1-from-stochastic-individual-based-models-to-free-boundary-hamilton-jacobi-equations)  
+   标签：评分：7.0/10、query:q5
+   evidence：群体表型性状与突变的随机分支模型
+3. [Emergence of cooperation in nonlinear higher-order public goods games](/202604/09/2604.07228v1-emergence-of-cooperation-in-nonlinear-higher-order-public-goods-games)  
+   标签：评分：7.0/10、query:q5
+   evidence：演化博弈论与结构化种群
+4. [A Boolean encoding of the Most Permissive semantics for Boolean networks](/202604/09/2604.03029v1-a-boolean-encoding-of-the-most-permissive-semantics-for-boolean-networks)  
+   标签：评分：6.0/10、query:q2
+   evidence：布尔网络用于模拟生物调节网络及其动力学
+5. [Lotka-Sharpe Neural Operators for Control of Population PDEs](/202604/09/2604.03892v1-lotka-sharpe-neural-operators-for-control-of-population-pdes)  
    标签：评分：6.0/10、query:q5
-   evidence：环境梯度下的种群持久性和物种分布
+   evidence：用于捕食者-猎物模型和相互作用种群的神经算子
+6. [A Modular 3D-Printed Design to Investigate Prebiotic Chemical Systems in Hot Spring Pools](/202604/09/2604.05223v1-a-modular-3d-printed-design-to-investigate-prebiotic-chemical-systems-in-hot-spring-pools)  
+   标签：评分：6.0/10、query:q2
+   evidence：遗传物质的起源与演化
+7. [Transcriptomic Models for Immunotherapy Response Prediction Show Limited Cross-cohort Generalisability](/202604/09/2604.05478v1-transcriptomic-models-for-immunotherapy-response-prediction-show-limited-cross-cohort-generalisability)  
+   标签：评分：6.0/10、query:profile-1
+   evidence：肿瘤-免疫相互作用的转录组模型
+8. [ToxReason: A Benchmark for Mechanistic Chemical Toxicity Reasoning via Adverse Outcome Pathway](/202604/09/2604.06264v1-toxreason-a-benchmark-for-mechanistic-chemical-toxicity-reasoning-via-adverse-outcome-pathway)  
+   标签：评分：6.0/10、query:q7
+   evidence：利用AI进行生物机制推理
+9. [Toward a universal foundation model for graph-structured data](/202604/09/2604.06391v1-toward-a-universal-foundation-model-for-graph-structured-data)  
+   标签：评分：6.0/10、query:q7
+   evidence：用于基因调节回路和生物医学图谱的基础模型
+10. [When Does Context Help? A Systematic Study of Target-Conditional Molecular Property Prediction](/202604/09/2604.06558v1-when-does-context-help-a-systematic-study-of-target-conditional-molecular-property-prediction)  
+   标签：评分：6.0/10、query:q7
+   evidence：用于跨蛋白质家族分子属性预测的AI研究
+11. [A Data-Informed Variational Clustering Framework for Noisy High-Dimensional Data](/202604/09/2604.06864v1-a-data-informed-variational-clustering-framework-for-noisy-high-dimensional-data)  
+   标签：评分：6.0/10、query:q7
+   evidence：高维生物数据的变分聚类
+12. [Temporal Structure Mediates the Robustness and Collapse of Plant-Pollinator Networks](/202604/09/2604.07347v1-temporal-structure-mediates-the-robustness-and-collapse-of-plant-pollinator-networks)  
+   标签：评分：6.0/10、query:q2
+   evidence：物种相互作用的时间性质与群落多样性
 
 
 <div class="dpr-home-promo-card">

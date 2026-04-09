@@ -1,0 +1,4629 @@
+Title: From stochastic individual-based models to free-boundary Hamilton-Jacobi equations
+
+URL Source: https://arxiv.org/pdf/2604.06516v1
+
+Published Time: Thu, 09 Apr 2026 00:24:41 GMT
+
+Number of Pages: 44
+
+Markdown Content:
+# From stochastic individual-based models to free-boundary Hamilton-Jacobi equations 
+
+Nicolas Champagnat ∗ Sylvie M´ el´ eard † Sepideh Mirrahimi ‡ Viet Chi Tran §
+
+April 9, 2026 
+
+Abstract 
+
+We study a stochastic branching model for a population structured by a quantitative phenotypic trait and subject to births, deaths, and mutations. In a regime of large popu-lation and small mutations, and in logarithmic scales of size and time, we derive a certain class of free boundary Hamilton-Jacobi equations with state constraints from the stochastic individual-based system. This goes beyond the classical Hamilton-Jacobi equations obtained from deterministic models by taking into account the possible extinction of the system in certain regions of the trait space. The proof is obtained by combining methods for the anal-ysis of Hamilton-Jacobi equations with probabilistic tools from the theory of large deviations and branching processes. 
+
+Keywords: stochastic birth-death model, measure-valued process, large population approxima-tion, mutation, Hamilton-Jacobi equations, large deviations. MSC 2000 subject classification: 92D25, 92D15, 60J80, 60F99, 35F21. 
+
+# 1 Introduction 
+
+In the mathematical modeling of eco-evolutionary dynamics of phenotypically structured pop-ulations with mutation and selection, several methods have been developed over the past two decades, based either on stochastic or deterministic approaches. Among these approaches, some of them aim to describe long-term evolutionary dynamics of dominant evolutionary paths in large populations, based either on stochastic processes or deterministic equations. The stochastic approach developed in [12, 14] was based on birth and death measure-valued processes [31, 13] involving mutation and competition. The mutation time scale was assumed much slower than that of demographic events and, using slow-fast time scales arguments, some 
+
+> ∗
+
+Universit´ e de Lorraine, CNRS, Inria, IECL, F-54000 Nancy, France; E-mail: nicolas.champagnat@inria.fr 
+
+> †
+
+Ecole Polytechnique, CNRS, Institut polytechnique de Paris, Inria, route de Saclay, 91128 Palaiseau Cedex-France; E-mail: sylvie.meleard@polytechnique.edu 
+
+> ‡
+
+Univ Toulouse, INSA Toulouse, CNRS, IMT, Toulouse, France; E-mail: 
+
+sepideh.mirrahimi@math.univ-toulouse.fr 
+
+> §
+
+Univ. Lille, CNRS, Inria, UMR 8524 - Laboratoire Paul Painlev´ e, F-59000 Lille, France; E-mail: 
+
+chi.tran@inria.fr 
+
+1
+
+> arXiv:2604.06516v1 [math.PR] 7 Apr 2026
+
+dominant evolutionary dynamics were highlighted in the time scale of mutations. However, the hypothesis of very rare mutations, which may be reasonable for certain phenotypes, may seem unrealistic for others, as may be the very long timescale required to describe evolutionary phenomena [48]. At the same time, an approach involving Hamilton-Jacobi equations has been developed to characterize the evolutionary dynamics [20, 5], as limits of integro-differential selection-mutation equations under the assumption of small mutation effect and long time, and using a Hopf-Cole transformation. These integro-differential equations themselves have been derived as large pop-ulation limits of stochastic individual-based models [31, 13]. The order in which these limiting procedures are applied can influence the outcome, since they do not always commute, poten-tially leading to some inaccuracies in the deterministic approximations. In particular, the large population approximation prevents phenomena of local extinction, which may lead to an over-estimation of the speed of evolution, as this may be slowed down by certain extinction events [45]. More recently [22, 9, 15, 17, 23], stochastic birth and death mutation-selection models were studied under different parameter scalings, with rare mutations, but not so rare as in the pre-vious stochastic approach. They were inspired by some stochastic Hopf-Cole transformation, making them much closer to the deterministic models described above. In this work, following our seminal work [16] (see also [36]), we reconcile the stochastic and deterministic approaches by deriving a new class of state-constrained Hamilton-Jacobi equa-tions directly from the stochastic system in the time and size scales of [15] but assuming small mutations instead of rare mutations. In [16], we studied the case of a uniformly supercritical branching population with discretized and compact state space using a direct convergence ap-proach and deterministic methods on Hamilton-Jacobi equations [5]. In [36], this result was extended to weaker assumptions in the supercritical case and new results were obtained in the subcritical case, allowing extinction of the population. Here we develop a new and robust math-ematical strategy to study the general case where the growth rate can change sign, without requiring a discretized trait space, and where the restrictive assumptions required in [16, 36] are relaxed. This leads to a new limiting object which takes into account the effect of demographic stochasticity and possible extinction of small subpopulations. This approach yields more accu-rate and informative results with regard to modeling. In particular, the speed of evolution can be slowed down compared to classical Hamilton Jacobi approaches, making this model relevant for understanding the evolutionary dynamics of advantageous traits. Our main result is based on the variational representation of the solution of the Hamilton-Jacobi equations and on exponential deviations results for branching processes. We were inspired by an analytical approach proposed in [43] and by the study of branching processes in [6, 40]. In Section 1, we develop the model and state our main results (Theorems 1.1 and 1.2), that is large deviations estimates for historical processes on a logarithmic time scale and on the path space, characterized by a variational expression. The latter is related to the solution of state constrained Hamilton-Jacobi equations (Theorem 1.4 and Corollary 1.7). In Section 1.3, we compare our results with existing work in different contexts, all seeking to characterize optimal trajectories in one way or another. Based on Feynman-Kac formula for branching processes, we study in Section 2 the underlying Markovian mutational process for which large deviation results can be easily obtained. We complete these results by proving some uniformity with respect to 2the initial condition in the large deviation principle. Sections 3, 4 and 5 are devoted to the proofs of Theorems 1.1 and 1.2. The proof of the lower bound (Theorem 1.2) is more difficult and we use moment methods developed for branching processes as in [40] to control the number of particles whose paths are in a given tube, following the strategy used in [6]. Section 6 studies the link between the variational formulation of the limit and the Hamilton-Jacobi equation. Notation : The space of finite measures on R is denoted by MF (R) and the set of finite point measures on R by MP (R). For a measure μ and a μ-integrable or positive function f , we write R 
+
+> R
+
+f (x)μ(dx ) = ⟨μ, f ⟩.For a Polish space E (in particular for E = R or E = MF (R)), we will denote by D([0 , t ], E )the Skorohod space of right-continuous and left-limited (c` adl` ag) functions from [0 , t ] to E. We will sometimes use the notation D[0 , t ] or D instead of D([0 , t ], R) and D(R+, R) respectively. The space D[0 , t ] is equipped with the Skorohod distance dSko that makes this space Polish, see e.g. [8]: for f, g ∈ D[0 , t ], 
+
+dSko (f, g ) = inf 
+
+> λ
+
+n
+
+sup 
+
+> s∈[0 ,t ]
+
+|f ◦ λ(t) − g(t)| + sup 
+
+> s̸=r
+
+log λ(s) − λ(r)
+
+s − r
+
+o
+
+, (1.1) where the supremum is taken over all increasing homeomorphisms of [0 , t ]. We denote by C[0 , t ]the set of continuous functions from [0 , t ] to R, by C∞[0 , t ] the set of infinitely differentiable real functions on [0 , t ] and by AC [0 , t ] the set of absolutely continuous real functions on [0 , t ]. 
+
+1.1 Model 
+
+We consider a stochastic birth-death-mutation process describing an asexual population of in-dividuals (for example, cells or bacteria), characterized by a quantitative trait x belonging to 
+
+R. Notice that for better legibility we restrict our work to x ∈ R. However, our results can easily be extended to x ∈ Rd. We introduce a parameter K ∈ N scaling the initial population size and the mutation amplitude. We assume that an individual with trait x ∈ R undergoes the following events independently from the other individuals: this individual can 
+
+• give birth to a new individual with the same trait x at rate b(x); 
+
+• die at rate d(x); 
+
+• give birth to a mutant individual at rate p(x) and the mutant trait is given by x + Y 
+
+> log K
+
+where Y is distributed as G(y)dy where G is a probability density function. We assume that G : R → R∗ 
+
+> +
+
+is positive continuous, that it is an even function and that it has all its exponential moments finite. We also assume that the functions b, d, p are nonnegative locally Lipschitz-continuous bounded functions, and that there exist positive constants ¯b, ¯ p and p such that for all x ∈ R,0 ≤ b(x) ≤ ¯b, p ≤ p(x) ≤ ¯p. (1.2) In particular, there exists a positive constant ¯R such that the growth rate satisfies for all x ∈ R
+
+R(x) := b(x) + p(x) − d(x) ≤ ¯R. (1.3) 3In the model, we index individuals using the Ulam-Harris-Neveu numbering. The set of labels is 
+
+U = [
+
+> n≥0
+
+(N∗ × { 0, 1}n) ,
+
+where we use the usual notation v1v2 . . . v n for the vector ( v1, v 2, . . . , v n) ∈ U . Individuals initially present in the population form the first generation and are labeled by integers from 1 to N K 
+
+> 0
+
+, the initial number of individuals. When an individual of label v ∈ U reproduces, we consider that it acquires the label v0 and its offspring is given the label v1. The population dynamics at scale K is the point measure-valued process ( ZKt )t≥0 defined for each t ≥ 0 by 
+
+ZKt = X 
+
+> v∈VKt
+
+δXK,v t
+
+,
+
+where V Kt denotes the labels of individuals alive at time t and each individual v alive at time 
+
+t has the trait XK,v t . In the sequel, we will sometimes also denote by V K 
+
+> [0 ,t ]
+
+the set of labels for individuals born before time t (including those still alive at time t), i.e. V K 
+
+> [0 ,t ]
+
+= S 
+
+> s∈[0 ,t ]
+
+V Ks .We assume that 
+
+ZK 
+
+> 0
+
+is a Poisson point measure on R with intensity measure KβK 
+
+> 0(x)
+
+dx, (1.4) where for any K, βK 
+
+> 0
+
+is a continuous function on R which converges uniformly (as K tends to infinity) to a function β0 such that there exist constants ¯β and α > 0 such that 
+
+β0 is locally Lipschitz on R and β0(x) ≤ ¯β − α|x|, ∀x ∈ R. (1.5) This implies in particular that the intensity measure KβK 
+
+> 0(x)
+
+dx is finite for any K and hence that the initial number of individuals N K 
+
+> 0
+
+= ⟨ZK 
+
+> 0
+
+, 1⟩ is almost surely finite, i.e. ZK 
+
+> 0
+
+∈ M P (R), since 
+
+E(N K 
+
+> 0
+
+) = E(⟨ZK 
+
+> 0
+
+, 1⟩) = 
+
+Z
+
+> R
+
+KβK 
+
+> 0(x)
+
+dx < +∞. (1.6) The process ZK can be represented as the unique strong solution of a stochastic differential equation driven by Poisson point measures. Let us consider a Poisson point process N (ds, dv, dθ )on R+ × U × R+ with intensity measure ds ⊗ n(dv ) ⊗ dθ where ds and dθ are Lebesgue measures on R+ and n(dv ) is the counting measure on the denumerable set U. We also introduce a Poisson point measure Q(ds, dv, dy, dθ ) on R+ ×U × R×R+ with intensity measure ds ⊗n(dv )⊗G(y)dy ⊗
+
+dθ . We assume that the random measures ZK 
+
+> 0
+
+, N and Q are independent. Let us consider a test function φ ∈ C b(R, R), then 
+
+⟨ZKt , φ ⟩ =
+
+Z
+
+> R
+
+φ(x)ZKt (dx ) = X 
+
+> v∈VKt
+
+φ XK,v t
+
+
+
+=⟨ZK 
+
+> 0
+
+, φ ⟩ +
+
+Z t
+
+> 0
+
+Z
+
+> U
+
+Z
+
+> R+
+
+1lv∈V Ks−
+
+φ(XK,v s− )
+
+
+
+1lθ≤b(XK,v s− )
+
+− 1lb(XK,v s− )<θ ≤b(XK,v s− )+ d(XK,v s− )
+
+
+
+N (ds, dv, dθ )+
+
+Z t
+
+> 0
+
+Z
+
+> U
+
+Z
+
+> R
+
+Z
+
+> R+
+
+1lv∈V Ks− ,θ ≤p(XK,v s− )φ
+
+
+
+XK,v s− + y
+
+log K
+
+
+
+Q(ds, dv, dy, dθ ), (1.7) 4For v ∈ V Kt , we can define the lineage of v as follows, and this process will be denoted ( XK,v s∧t )s≥0.It is a path of D(R+, R), constant after time t with value XK,v t , and that takes at times s ≤ t the trait value of the (unique) ancestor of v (possibly v itself) living at this time. In particular, on the event that individual v reproduces before dying, XK,v t = XK,v 0 
+
+> t
+
+= XK,v 1 
+
+> t
+
+for all t (strictly) smaller than the reproduction time of v.Using standard Itˆ o calculus (see [34, 31]), we obtain that: 
+
+⟨ZKt , φ ⟩ =⟨ZK 
+
+> 0
+
+, φ ⟩ +
+
+Z t
+
+> 0
+
+⟨ZKs , (b + p − d)φ⟩ ds 
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R
+
+Z
+
+> R
+
+ φ(x + y
+
+log K ) − φ(x)p(x) G(y)dy Z Ks (dx ) ds + M K,φ t , (1.8) where M K,φ is a square integrable martingale with predictable quadratic variation process: 
+
+⟨M K,φ ⟩t =
+
+Z t
+
+> 0
+
+Z
+
+> R
+
+ b(x) + p(x) + d(x)φ2(x) Zks (dx ) ds 
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R
+
+Z
+
+> R
+
+p(x)  φ(x + y
+
+log K ) − φ(x)2G(y)dy Z Ks (dx ) ds. (1.9) Using (1.2) and (1.4), it is standard [31] to prove that for any T > 0 and n > 0, 
+
+E(sup 
+
+> t≤T
+
+⟨ZKt , 1⟩n) < +∞,
+
+and then the process ZK is well defined on any time interval [0 , T ] and belongs to D(R+, MP (R)). We also introduce the associated historical process (Θ Kt , t ≥ 0) which is a point measure-valued process taking values in MP (D), and defined for any t ≥ 0 by ΘK 
+
+> 0
+
+= ZK 
+
+> 0
+
+; Θ Kt = X 
+
+> v∈VKt
+
+δXK,v .∧t
+
+.
+
+It is possible to write an SDE in the spirit of (1.7) to describe the dynamics of the historical process, see [10, 33, 42]. In the sequel, because the mutation steps are of order of magnitude 1 / log K, we will consider the process at the time scale log K. Hence we define the time-changed historical process eΘK
+
+taking values in MP (D) for all t > 0 as 
+
+eΘKt = X   
+
+> v∈VKtlog K
+
+δXK,v  
+
+> (.∧t) log K
+
+. (1.10) For all T > 0 and all measurable A ⊂ D[0 , T ], we define for all t ∈ [0 , T ] the set 
+
+At := {f·∧ t, f ∈ A} (1.11) of functions in A stopped at time t. We define the number of particles living at time t log K
+
+having their lineage in A by 
+
+N K,A t = ⟨ eΘKt , 1At ⟩. (1.12) 5As in our seminal works [15] and [16], we are interested in capturing the number of trajectories at logarithmic time scale living in some fixed set, which is of the order of magnitude of a power of K. To obtain the limiting dynamics (in K) of the exponent of such K-power number, we are led to study the asymptotic behaviour of log N K,A t / log K, which will be the aim of Theorems 1.1 and 1.2. Note that these quantities can be seen as the stochastic analog of the Hopf-Cole transformation used by the analysts to describe concentration phenomena (see for example [44] and Section 1.3 for more details on the related literature), 1 / log K playing in our setting the role of ε in the usual deterministic setting. To achieve this, we use techniques developed in the theory of large deviations and branching Markov processes. 
+
+1.2 Useful mathematical objects and main results 
+
+In this section, we introduce some notations and useful functions that will allow us to state our main results. We define 
+
+H(α) = 
+
+Z
+
+> R
+
+(eαy − 1) G(y) dy, (1.13) 
+
+L(x, v ) = sup 
+
+> α∈R
+
+(αv − p(x)H(α)) . (1.14) Our assumptions on G imply that H(α) < ∞ for all α ∈ R and H and L are convex and superlinear functions with respect to α and v (see [25, Section 3.3]). In particular, there exist a positive constant A and a superlinear function μ : R+ → R, with lim r→+∞ μ(r) 
+
+> r
+
+= + ∞, such that for all ( x, v ) ∈ R2,
+
+μ(|v|) − A ≤ L(x, v ), lim 
+
+> |v′|→ +∞
+
+∂vL(x, v ′) · v′
+
+|v′| = + ∞. (1.15) Next, for any f ∈ D[0 , t ], we define 
+
+Ft(f ) = β0(f (0)) + 
+
+Z t
+
+> 0
+
+R(fs)ds − It(f ), (1.16) with 
+
+It(f ) = 
+
+(R t 
+
+> 0
+
+L(fs, ˙fs)ds if f ∈ AC [0 , t ],
+
++∞ otherwise. (1.17) The functions Ft and It will play respectively the roles of a cost function and a good rate function associated with a large deviation principle as we will see later in the article. A non-variational formulation of the rate function It will be given in Section 2.3. Our main results are asymptotic upper and lower bounds on the logarithm of N K,A t defined in (1.12). In the sequel, for any a ∈ R and any sequence of real random variables ( Xn)n∈N, we will say that lim sup 
+
+> n→+∞
+
+Xn ≤ a in probability if, for all ε > 0, lim  
+
+> n→+∞
+
+P (Xn ≥ a + ε) = 0 .
+
+The extension to lim inf Xn ≥ a in probability is straightforward. 6Theorem 1.1. For any t > 0 and any closed set A ⊂ D[0 , t ], we have, in probability 
+
+lim sup 
+
+> K→+∞
+
+1log K log N K,A t ≤ sup {Ft(f ); f ∈ A, ∀s ∈ [0 , t ], F s(f ) ≥ 0}.
+
+Theorem 1.2. For any open set G ⊂ D[0 , t ], we have, almost surely, 
+
+lim inf 
+
+> K→+∞
+
+1log K log N K,G t ≥ sup {Ft(f ); f ∈ G, ∀s ∈ [0 , t ], F s(f ) > 0}.
+
+Note that, by definition of It(f ), the upper bound in Theorem 1.1 is equal to sup {Ft(f ); f ∈ A ∩ AC [0 , t ], ∀s ∈ [0 , t ], F s(f ) ≥ 0}
+
+and similarly for Theorem 1.2. Some heuristic explanations for these results are given at the end of this section. To link these results to a Hamilton-Jacobi equation, let us define for a ∈ R,
+
+ua(t, x ) = sup {Ft(f ); f ∈ AC[0 , t ], f (t) = x, ∀s ∈ [0 , t ], F s(f ) ≥ a}, (1.18) 
+
+eΩa = (t, x ) ∈ [0 , +∞) × R; ∃f ∈ AC [0 , t ], f (t) = x, ∀s ∈ [0 , t ], F s(f ) ≥ a .
+
+Notice that it is immediate that 
+
+ua(t, x ) ≥ a, for all ( t, x ) ∈ eΩa, and ua(t, x ) = −∞ , for all ( t, x ) ∈ eΩca, (1.19) where we used the convention that sup ∅ = −∞ .
+
+The next results show that the functions ua(t, x ) allow us to characterize the asymptotic density of individuals at ( t, x ) in the stochastic population process ZK and are solutions of some state-constrained Hamilton-Jacobi equations. Let us define for all t ≥ 0, x ∈ R and δ > 0
+
+Ax,δ t = {f ∈ D[0 , t ], f (t) ∈ [x − δ, x + δ]} ,Gx,δ t = {f ∈ D[0 , t ], f (t) ∈ (x − δ, x + δ)} .
+
+Then, we have the following result. 
+
+Theorem 1.3. For all t ≥ 0 and x ∈ R, in probability 
+
+lim  
+
+> a↓0
+
+ua(t, x ) ≤ lim inf  
+
+> δ→0
+
+lim inf 
+
+> K→∞
+
+1log K log N K,G x,δ t 
+
+> t
+
+≤ lim sup 
+
+> δ→0
+
+lim sup 
+
+> K→∞
+
+1log K log N K,A x,δ t 
+
+> t
+
+≤ u0(t, x ).
+
+Moreover, if a 7 → ua(t, x ) is continuous at a = 0 , then, in probability 
+
+lim  
+
+> δ→0
+
+lim 
+
+> K→∞
+
+1log K log N K,A x,δ t 
+
+> t
+
+= lim  
+
+> δ→0
+
+lim 
+
+> K→∞
+
+1log K log N K,G x,δ t 
+
+> t
+
+= u0(t, x ). (1.20) To define the Hamilton-Jacobi equation, we also need to introduce the set Ωa = {(t, x ) ∈ eΩa | ua(t, x ) > a },
+
+7Theorem 1.4. The set Ωa is an open set. The function ua belongs to C(cl(Ω a)) and it is the unique locally Lipschitz-continuous and bounded above viscosity solution of the following Hamilton-Jacobi equation 
+
+
+
+∂tu = p(x)H(∂xu) + R(x), (t, x ) ∈ Ωa
+
+u(t, x ) = a, (t, x ) ∈ ∂Ωa, t > 0,u(0 , x ) = β0(x), for all x s.t β0(x) > a. 
+
+(1.21) The proof of Theorem 1.4 is postponed to Section 6. Notice that ua defined by (1.18), satisfies a state constraint boundary condition in Ω a ([2, Section 5.1.3]), i.e. Fs(f ) has to remain larger than a for all s ∈ [0 , t ] in the variational for-mula (1.18). Moreover, ua = −∞ in eΩca and ua = a in eΩa \ Ωa. We lastly show in the following lemma that, for a.e. a, eΩa \ Ωa is a Lebesgue-null set and ua is right continuous with respect to 
+
+a. For this, let us define Γa0 = [
+
+> a>a 0
+
+eΩa.
+
+One can verify that, for all a1, a 2 ∈ R, with a1 < a 2, we have 
+
+eΩa2 ⊂ eΩa1 , Ωa2 ⊂ Ωa1 , ua2 (·, ·) ≤ ua1 (·, ·),
+
+and for all a0 ∈ R,Γa0 ⊂ Ωa0 ⊂ eΩa0 , and for all ( t, x ) ∈ eΩca0 , lim 
+
+> a↓a0
+
+ua(t, x ) = ua0 (t, x ) = −∞ . (1.22) 
+
+Lemma 1.5. For almost every a0 ∈ R, we have 
+
+Z
+
+> R+×R
+
+1eΩa0 \Γa0
+
+(t, x )dtdx = 0 , (1.23) 
+
+and 
+
+∀(t, x ) ∈ Γa0 ∪ eΩca0 , lim 
+
+> a↓a0
+
+ua(t, x ) = ua0 (t, x ). (1.24) The proof is also deferred to Section 6. 
+
+Remark 1.6. Notice that Lemma 1.5 is satisfied for almost every a0, but might fail for a0 = 0 .We explain here that up to perturbing slightly the initial condition, we always have that for all 
+
+(t, x ) ∈ Γ0 ∪ Ωc 
+
+> 0
+
+and in particular for a.e. (t, x ), in probability 
+
+lim  
+
+> δ→0
+
+lim 
+
+> K→∞
+
+1log K log N K,A x,δ t 
+
+> t
+
+= u0(t, x ).
+
+The exact formulation will appear in (1.26) . To precise this statement, let us define for any 
+
+f ∈ AC [0 , t ]
+
+F μt (f ) = β0(f (0)) − μ +
+
+Z t
+
+> 0
+
+(b + p − d)( f (s)) ds − It(f ),uμ 
+
+> 0
+
+(t, x ) = sup {F μt (f ); f ∈ AC[0 , t ], f (t) = x, ∀s ∈ [0 , t ], F μs (f ) ≥ 0}, (1.25) 8eΩμ 
+
+> 0
+
+= (t, x ) ∈ [0 , +∞) × R; ∃f ∈ AC [0 , t ], f (t) = x, ∀s ∈ [0 , t ], F μs (f ) ≥ 0 ,
+
+Ωμ 
+
+> 0
+
+= {(t, x ) ∈ eΩμ 
+
+> 0
+
+| uμ 
+
+> 0
+
+(t, x ) > 0},
+
+Γμ 
+
+> 0
+
+= [
+
+> a>a 0
+
+eΩμa .
+
+One can verify that 
+
+eΩμ 
+
+> 0
+
+= eΩμ, Ωμ 
+
+> 0
+
+= Ω μ, Γμ 
+
+> 0
+
+= Γ μ, uμ 
+
+> 0
+
+(t, x ) = uμ(t, x ) − μ. 
+
+Then, Lemma 1.5 implies that for almost every μ0 we have 
+
+∀(t, x ) ∈ Γμ0 
+
+> 0
+
+∪ Ωμ0 
+
+> 0
+
+, lim 
+
+> μ↓μ0
+
+uμ 
+
+> 0
+
+(t, x ) = uμ0 
+
+> 0
+
+(t, x ).
+
+Let us also define 
+
+N K,A,μ t := ⟨ eΘK,μ t , 1At ⟩,
+
+where eΘK,μ t is the historical birth-death process defined in (1.10) and At defined in (1.11) , such that ZK,μ  
+
+> 0
+
+is a Poisson point measure in R with intensity measure KβK 
+
+> 0(x)−μ
+
+dx . We finally deduce from Theorem 1.3 that for a.e. μ and all (t, x ) ∈ Γμ 
+
+> 0
+
+∪ Ωμ 
+
+> 0
+
+, and in particular for a.e. 
+
+(t, x ) ∈ R+ × R, in probability 
+
+lim  
+
+> δ→0
+
+lim 
+
+> K→∞
+
+1log K log N K,A x,δ t ,μ t = uμ 
+
+> 0
+
+(t, x ). (1.26) 
+
+□
+
+Theorems 1.1 and 1.2 also allow us to identify the typical lineages of the population. As we saw in Theorem 1.3, the density of individuals of trait x at time t can be estimated as in (1.20) with 
+
+u0(t, x ) = sup {Ft(f ); f ∈ AC[0 , t ], f (t) = x, ∀s ∈ [0 , t ], F s(f ) ≥ 0}.
+
+Let us assume that fo is an optimal trajectory where the supremum above is attained. It is proved in Lemma 6.1 that such a trajectory necessarily exists. Assume also that Fs(fo) > 0for all s ∈ [0 , t ] so that u0(t, x ) = lim a↓0 ua(t, x ). Then, Theorems 1.1 and 1.2 imply that a subpopulation of comparable size (in the logarithmic scale) to the population size close to ( t, x )has indeed followed the trajectory fo. More precisely, let us define 
+
+Aδ,f o = {γ ∈ D[0 , t ]; dSko 
+
+ γ, f o) ≤ δ},Gδ,f o = {γ ∈ D[0 , t ]; dSko (γ, f o) < δ }.
+
+Then, Theorems 1.1 and 1.2 imply that, in probability lim sup 
+
+> K→+∞
+
+1log K log N K,A δ,fo  
+
+> t
+
+≤ sup {Ft(f ); f ∈ Aδ,f o , ∀s ∈ [0 , t ], F s(f ) ≥ 0}
+
+and lim inf 
+
+> K→+∞
+
+1log K log N K,G δ,fo  
+
+> t
+
+≥ sup {Ft(f ); f ∈ Gδ,f o , ∀s ∈ [0 , t ], F s(f ) > 0}.
+
+Letting δ → 0 we then obtain, in probability 
+
+u0(t, x ) ≤ lim inf  
+
+> δ→0
+
+lim inf 
+
+> K→+∞
+
+1log K log N K,G δ,fo  
+
+> t
+
+≤ lim sup 
+
+> δ→0
+
+lim sup 
+
+> K→+∞
+
+1log K log N K,A δ,fo  
+
+> t
+
+≤ u0(t, x ).
+
+where we have used u0(t, x ) = F fo 
+
+> t
+
+. We hence deduce the following result. 9Corollary 1.7. Let (t, x ) ∈ (0 , +∞) × R and fo be an optimal trajectory such that fo(t) = x
+
+and u0(t, x ) = Ft(fo). Assume also that Fs(fo) > 0 for all s ∈ [0 , t ]. We then have in probability 
+
+lim  
+
+> δ→0
+
+lim 
+
+> K→+∞
+
+1log K log N K,G δ,fo  
+
+> t
+
+= lim  
+
+> δ→0
+
+lim 
+
+> K→+∞
+
+1log K log N K,A δ,fo  
+
+> t
+
+= u0(t, x ).
+
+Thus any optimal trajectory fo can be interpreted as the ancestral lineage of a large part of the population having trait x at time t.Let us end this section with some comments. As explained before, the quantity 
+
+βK,A t = 1log K log N K,A t
+
+is the exponent in K of the number of particles N K,A t , in the sense that N K,A t = KβK,A t . The evolution in time of the number of particles around the path f is approximately KFt(f ). This says that the exponent, starting from β0(f (0)), changes according to the births and deaths along this path as R t 
+
+> 0
+
+R(fs) ds . For comparison, remember that for a branching process without mutation and with constant growth rate R, E(N K,A t ) = E(N K,A  
+
+> 0
+
+)eRt . The penalization by −It(f ), as we will see later, comes from the fact that the probability for an ancestral lineage to be around f
+
+is of the order of K−It(f ). The state constraint boundary condition tells that only paths f such that Fs(f ) > 0 for all s ∈ [0 , t ] are admissible: the population gets extinct on the way otherwise. Notice also that the assumption that Fs(f ) > 0 for all s ∈ [0 , t ] is not contradictory with the fact that for some s we may have R(f (s)) < 0. 
+
+1.3 Comparison with previous works 
+
+Our main results take the form of large deviation estimates on population sizes. This question for spatial branching Markov processes for large time goes back to [7] and has been studied by several authors, notably [6], from which a large part of our work is inspired. These works deal with branching Brownian motions on the line and aim at describing the particles that constitute the right front. The method of [6] is based on additive martingales for the branching process and the spine decomposition of [32, 41]. We use a similar approach to obtain large deviations upper bounds on the branching population size. Many other works dealing more specifically with estimates on the position of the rightmost particle in branching Brownian motion used methods based on moment estimates [27, 49]. Similar questions for general branching random walks are studied in [40] and are thus closer to our work. Our proof of the large deviations lower bound on the branching population size is inspired from these works, although we focus on a different question dealing with the study of local population densities in a model with inhomogeneous space dependence of rates. In [39, 47], spatial birth-death processes with interaction are used to study the effect of population sizes and demographic stochasticity on the speed of invasion fronts under different scalings. Hamilton-Jacobi equations have been widely used in the asymptotic analysis of integro-differential equations in evolutionary biology (see for instance [44, 5, 38]) but also in the study of propagation phenomena (see e.g. [29, 26, 4]). Let us consider the following model 
+
+(
+
+ε∂ tnε(t, x ) = R 
+
+> R
+
+p(x + h)nε(x + h)G(h/ε )dh/ε + nε(b(x) − d(x)) ,nε(0 , x ) = exp( β0(x)/ε ). (1.27) 10 Here nε(t, x ) stands for the phenotypic density of a population, with t ∈ R+ and x ∈ R corre-sponding respectively to time and to a phenotypic trait. Similarly to above, b(x) and p(x) stand for birth rates without and with mutations and d(x) corresponds to a death rate. The mutations are distributed as 1 
+
+> ε
+
+G( yε )dy . The mutational variance scales as ε2, which is assumed to be a small parameter. A change of variable in time t → t/ε has then been taken into account to accelerate the slow dynamics resulting from small effects of mutations. This change of variable leads to the ε coefficient in front of ∂tnε.Such an equation can be related to the stochastic process ZKt introduced in Section 1.1 in two ways. Firstly, it can be obtained as a large population limit, that is K → +∞ of the stochastic process ZKt /K (see [31, 13]), but taking the mutational variance constant of order ε2
+
+and independent of K. Secondly, the expectation of the stochastic process above satisfies (1.27) with 1 / log K = ε.The asymptotic behavior of nε as ε → 0 can be described via a Hopf-Cole transformation: 
+
+Uε(t, x ) = ε log( nε(t, x )) .
+
+Notice the analogy of this transformation with the transformation 1log K log N K,A t used above. It is proved in [5] (in a slightly different setting, taking into account a competition term) that as 
+
+ε → 0, Uε converges to the unique viscosity solution of 
+
+(
+
+∂tU = p(x)H(∂xU ) + R(x), x ∈ R
+
+U (0 , x ) = β0(x), (1.28) with H and R defined in (1.13) and (1.3). Notice that this is the same equation as (1.21) but set in the whole domain R. When considering the asymptotic behavior of the stochastic process instead of the deterministic integro-differential equation, possible extinction of small subpopulations are taken into account. This leads to a smaller limit u0 ≤ U . The limit u0 of the stochastic process can in particular take −∞ as value. The variational formulation of the problem given in (1.18) provides an intuitive explanation. The maximal trajectories in the variational problem correspond indeed to the typical trajectories of lineages as obtained in Theorems 1.1 and 1.2. If the value function on such a trajectory takes a negative value −c < 0, then the expected population size approaches the small size of order K−c as proved later in Theorem 3.1, which results with high probability in extinction, so the trajectory should be excluded. This is a significant difference with the deterministic derivation where all trajectories are allowed, leading to the Hamilton-Jacobi equation (1.28) in the whole domain. In the stochastic derivation the limit u0 is positive in the set Ω 0 and equal to −∞ outside this set. The function u0 satisfies both a Dirichlet boundary condition and a state constraint condition. Several comments are in order. (i) In deterministic works, one usually considers a slightly more complex model taking into account a nonlocal mortality rate due to competition [44, 5, 38]. In this case, the growth rate is given by R(x, I ε(t)), with Iε(t) = R 
+
+> R
+
+nε(t, x )dx . Such a mortality rate leads often to a constraint of type max  
+
+> x∈R
+
+U (t, x ) = 0 .
+
+This constraint on the limit U might seem confusing when it is combined with the threshold on the trajectories in the stochastic derivation leading to u0 ≥ 0. Note however that in order to make a relevant comparison between these results we have to divide the population process 11 ZKt by K (see [13] where (1.27) has been derived from a stochastic model). This means that, when put in a similar framework than usual deterministic works, one has to put the threshold of extinction equal to −1 instead of 0. The expected equation, in presence of a competition term, would then be given by 
+
+
+
+∂tu = H(x, ∂ xu) + R(x, I ), (t, x ) ∈ ΩI
+
+max x∈R u(t, x ) = 0 ,u(t, x ) = −1, (t, x ) ∈ ∂ΩI , t > 0,u(0 , x ) = β0(x) − 1, for all x s.t (0 , x ) ∈ ΩI ,
+
+with a set Ω I which depends on the competition term I(·) and would be such that u also satisfies a state constraint boundary condition in Ω I . Obtaining this equation rigorously is the aim of a future work. (ii) Biological criticisms were made on the Hamilton-Jacobi method because of the so-called tail problem [45]. Artifacts may indeed arise due to an inadequate treatment of small sub-populations. Exponentially small subpopulations which actually may be extinct can have a strong influence on the future of the population. Artificial jumps of the dominant trait may occur. The branching patterns are also too fast. Modifications of the Hamilton-Jacobi equation were suggested in [45, 35, 43] to solve this problem. These modifications were directly made to deterministic models. Here we use a stochastic individual-based approach providing a more biologically relevant justification of the outcome. Note however that we obtain a closely related limit to [43], even though this correction was described in a less direct and less precise way in [43]. Moreover the threshold of extinction that was considered in [43] was arbitrary. Here the threshold is obtained with a direct link to the population size. (iii) As mentioned above, Hamilton-Jacobi equations are widely used to provide approxima-tions of the phenotypic density of a population in a small mutational variance regime [44, 5, 38]. Here, we go further than characterizing the phenotypic density. We also identify the typical lineages of the population thanks to Corollary 1.7. A previous work [30] had already made a link between the optimal trajectories of the Hamilton-Jacobi equation and the typical lineages of the population. These authors considered a deterministic model in a context of changing environment and they used the neutral fractions approach to study the inside dynamics of the population. Probabilist spinal techniques and historical birth and death processes that allow to link the typical lineages with stochastic individual-based models have been used in [10, 33] to describe the phylogenies but only under a large population limit, whereas here, mutations and time are also rescaled. Some techniques that are used in the present work, such as using Feynman-Kac formulas for characterizing spines, are still taken from these papers (see also [32]). 
+
+# 2 Study of an auxiliary jump process 
+
+2.1 A Feynman-Kac formula for E(N K,A t )
+
+Given t > 0 and A ⊂ D[0 , t ], we interpret E(N K,A t ) as the expectation of a functional of an auxiliary process based on the mutations dynamics. Based on (1.8), let us introduce a random walk in continuous time ( XKt )t∈R+ with paths in D
+
+12 and infinitesimal generator 
+
+LK φ(x) = p(x)
+
+Z
+
+> R
+
+
+
+φ
+
+
+
+x + y
+
+log K
+
+
+
+− φ(x)
+
+
+
+G(y)dy, (2.1) defined for any measurable bounded function φ.A pathwise representation similar to (1.7) of the process ( XKt )t≥0 can be obtained as follows: let us give ourselves (on some probability space) a Poisson point measure Q(ds, dθ, dy ) on R+ ×
+
+R+ × R with intensity G(y)dy ⊗ dθ ⊗ ds and an independent real random variable XK 
+
+> 0
+
+. We can write 
+
+XKt = XK 
+
+> 0
+
++
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+Z
+
+> R
+
+y
+
+log K 1l{θ≤p(XKs−)}Q(ds, dθ, dy ). (2.2) Let us also define 
+
+Y Kt = XKt log K , (2.3) the process in the time scale log K. For all t > 0 and x ∈ R, we denote by μKx,t the law of the process ( Y Ks )s∈[0 ,t ] on D[0 , t ] conditionally on Y K 
+
+> 0
+
+= XK 
+
+> 0
+
+= x, and by EμKx,t the corresponding expectation. We have the following classical Feynman-Kac representation of N K,A t (also called many-to-one formula). 
+
+Proposition 2.1. Let x ∈ R. We consider the birth-death-mutation process (ZKt , t ≥ 0) defined as before but started from a unique individual with trait x, i.e. ZK 
+
+> 0
+
+= δx, and we denote the corresponding expectation by Eδx .(i) Let φ : R → R be bounded and measurable. Then, for any t > 0, we have 
+
+Eδx
+
+⟨ZKt , φ ⟩ = Ex
+
+
+
+exp 
+
+Z t
+
+> 0
+
+R(XKs ) ds 
+
+
+
+φ(XKt )
+
+
+
+, (2.4) 
+
+where XK is the process defined in (2.2) .(ii) For t > 0, x ∈ R and for a bounded measurable function Φ : D[0 , t ] → R,
+
+Eδx
+
+⟨ΘKt , Φ⟩ = Eδx
+
+ X 
+
+> u∈VKt
+
+Φ( XK,u s , s ≤ t)
+
+ = Ex
+
+
+
+exp 
+
+Z t
+
+> 0
+
+R(XKs ) ds 
+
+
+
+Φ( XKs , s ≤ t)
+
+
+
+.
+
+(2.5) 
+
+(iii) For all t > 0 and A ⊂ D[0 , t ],
+
+E(N K,A t ) = 
+
+Z
+
+> R
+
+KβK 
+
+> 0(x)
+
+EμKx,T 
+
+h
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈A
+
+i
+
+dx. 
+
+Proof. The proof of point (i) for φ ∈ Cb(R) is given in Section A.1 for the sake of completeness. Since the set of bounded continuous functions on R is dense for the bounded pointwise topology in the set of bounded measurable functions [24, Prop. 4.2, Chap. 3], Point (i) extends easily to any φ bounded measurable. Note that the Feynman-Kac formula (2.4) concerns the law of first moments of ZKt (with fixed t) issued from one individual with trait x and can be extended to the whole trajectory using standard techniques (see [10, 41]), providing (ii). Point (iii) then follows from (1.4) changing time t by t log K by change of variables. 13 In what follows, we will also need a many-to-one formula for the whole tree, as in [1, 41]. Recall that V K 
+
+> [0 ,t ]
+
+= S 
+
+> s∈[0 ,t ]
+
+V Ks is the set of individuals born before time t (including those still alive at time t). Recall that our continuous-time birth-death process is associated with a binary tree where each node corresponds to a birth or death event. If it is a death event, the node is a leaf. If it is a birth event, then the individual v is replaced with v0 and v1, where v0 is the continuation of the mother v (with the same trait) and v1 is the new offspring (with a possible mutated trait). Let us also denote by S0 
+
+> v
+
+the birth time of v and by Sv the time at which v
+
+disappears (either by death or reproduction). 
+
+Proposition 2.2. We have that for all t > 0, Φ : D[0 , t ] × [0 , t ] → R a bounded measurable function and x ∈ R:
+
+Eδx
+
+X 
+
+> v∈VK
+> [0 ,t ]
+
+Φ (XK,v r∧Sv , r ≤ t), S v ∧ t
+
+=
+
+Z t
+
+> 0
+
+Ex
+
+"
+
+Φ (XKr∧s, r ≤ t), s (b + p + d)( XKs ) exp 
+
+ Z s
+
+> 0
+
+R(XKr )dr 
+
+#
+
+ds 
+
++ Ex
+
+"
+
+Φ (XKr , r ≤ t), t  exp 
+
+ Z t
+
+> 0
+
+R(XKr )dr 
+
+#
+
+. (2.6) 
+
+Notice that if there exists a function Ψ : D[0 , t ]×[0 , t ] → R such that for all (f, s ) ∈ D[0 , t ]×[0 , t ],
+
+Φ( f, s ) = Ψ  f, s )1 ls<t , then the second term in the right hand side of (2.6) vanishes. 
+
+The proof of Proposition 2.2 is deferred to Appendix A.2. Using Proposition 2.2, we can establish an identity for forks, i.e. sums over pairs of individuals living at time t (also called many-to-two formula). We do not state this corollary in full generality as this would require extra notations, but will prove a version tailored for our needs in Section 5.1 (see Lemma 5.2). 
+
+2.2 Large deviation principle for (μKx,t )K≥1
+
+For all t > 0 and x ∈ R, we define the function It restricted to functions starting from x as follows: for all f ∈ D[0 , t ], 
+
+It,x (f ) = 
+
+(
+
+It(f ) if f (0) = x, 
+
++∞ otherwise. Note that It(f ) = It,f (0) (f ). The following large deviations principle is a direct application of [21, Theorem 10.2.6]. Indeed, the conditions 10.2.2 and 10.2.4 in this theorem are obviously satisfied thanks to the assumptions on the measure p(x)G(y)dy .
+
+Theorem 2.3. For all t > 0 and x ∈ R, the family of laws (μKx,t )K≥1 satisfies a large deviation principle on D[0 , t ] with rate 1/ log K and good rate function It,x : for any subset A ⊂ D[0 , t ],
+
+− inf   
+
+> f∈int( A)
+
+It,x (f ) ≤ lim inf 
+
+> K→+∞
+
+1log K Px
+
+ (XKs log K )s≤t ∈ A
+
+≤ lim sup 
+
+> K→+∞
+
+1log K Px
+
+ (XKs log K )s≤t ∈ A ≤ − inf   
+
+> f∈cl( A)
+
+It,x (f ), (2.7) 14 where int( A) and cl( A) are the interior and closure of A for the Skorohod topology. In addition, the family of measures (μKx,t )K≥1 satisfies the Laplace principle with rate 1/ log K
+
+and rate function It,x uniformly on compact sets with respect to x ∈ R, as recalled below. 
+
+We recall that the rate function It,x is good if it is lower semi-continuous and if {It,x ≤ M } is compact for all M < ∞. We also recall that μKx,t satisfies the Laplace principle with rate 1 / log K
+
+and rate function It,x uniformly on compact sets with respect to x ∈ R if, for all compact subset 
+
+A of R and all constant M < ∞,
+
+[
+
+> x∈A
+
+{f ∈ D[0 , t ], I t,x (f ) ≤ M } (2.8) is compact and for all bounded continuous function ϕ : D[0 , t ] → R
+
+lim  
+
+> K→∞
+
+sup 
+
+> x∈A
+
+1log K log EμKt,x 
+
+
+
+K−ϕ(Y Ks ,s ≤t)
+
++ inf  
+
+> f∈D[0 ,t ]
+
+(ϕ(f ) + It,x (f )) = 0 . (2.9) See [21, Def. 1.2.6]. Let us prove a uniform in x version of the exponential tightness of the measures μKx,t .
+
+Lemma 2.4. For all t > 0, the family of measures (μKx,t )K,x is exponentially tight, uniformly on compact sets. This means that, for all M < ∞ and all compact subset B of R, there exists a compact subset A of D[0 , t ] such that 
+
+lim sup 
+
+> K→∞
+
+sup 
+
+> x∈B
+
+1log K log μKx,t (Ac) ≤ − M. 
+
+Proof. The proof of Lemma 2.4 is inspired form [19, Exercice 4.1.10]. 
+
+Step 1: asymptotic bound. Our first goal is to prove that, for all M0 < ∞, all η > 0 and all compact subset B of R, there exist an integer m ≥ 1, functions f1, . . . , f m ∈ D[0 , t ] and an integer K0 such that, for all K ≥ K0,sup 
+
+> x∈B
+
+μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ K−M0 , (2.10) where Bη(f ) is the open ball of radius η centered at f for Skorohod’s distance dSko .Fix η > 0, M0 < ∞ and B ⊂ R compact. The set D[0 , t ] equipped with the Skorohod topology is a Polish space, so in particular there exists a dense sequence ( fn)n≥1. Let m ∈ N. For all 
+
+k ≥ 1, we define for f ∈ D[0 , t ]
+
+ϕk(f ) = k d Sko (f, (∪mi=1 Bη(fi)) c) . (2.11) Since the function ϕk is bounded and continuous, it follows from the Laplace principle uniformly on compact sets (2.9) that lim sup 
+
+> K→∞
+
+sup 
+
+> x∈B
+
+1log K log μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ lim sup 
+
+> K→∞
+
+sup 
+
+> x∈B
+
+1log K log EμKx,t (K−ϕk ) (2.12) 
+
+≤ − inf  
+
+> x∈B
+
+inf  
+
+> f∈D[0 ,t ]
+
+(ϕk(f ) + It,x (f )) . (2.13) 15 If f ∈ ∪ mi=1 Bη/ 2(fi), ϕk(f ) ≥ kη/ 2, hence lim sup 
+
+> K→∞
+
+sup 
+
+> x∈B
+
+1log K log μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ − kη 
+
+2 ∧ inf  
+
+> x∈B
+
+inf   
+
+> f̸∈∪ mi=1 Bη/ 2(fi)
+
+It,x (f )
+
+!
+
+.
+
+Now, (2.8) implies that [
+
+> x∈B
+
+{f ∈ D[0 , t ], I t,x (f ) ≤ M0 + 1 }
+
+is compact, hence there exists m ≥ 1 such that this set is included in ∪mi=1 Bη/ 2(fi). Therefore, for such a value of m,lim sup 
+
+> K→∞
+
+sup 
+
+> x∈B
+
+1log K log μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ − kη 
+
+2 ∧ (M0 + 1) .
+
+Choosing k > 2M0/η ends the proof of (2.10). 
+
+Step 2: uniform bound. We now prove the following stronger version of (2.10): for all M0 < ∞,
+
+η > 0 and compact subset B of R, there exists an integer m ≥ 1 and functions f1, . . . , f m ∈ D[0 , t ]such that, for all K ≥ 1, sup 
+
+> x∈B
+
+μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ K−M0 . (2.14) In view of Step 1, to prove this, increasing m if necessary, it is sufficient to prove that for any 
+
+K ≤ K0 − 1, for all m large enough, sup 
+
+> x∈B
+
+μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ K−M0 .
+
+So we fix K ≤ K0 − 1 and M0 < ∞ until the end of Step 2. The last claim follows from a continuity property of the process Y K constructed from (2.2) and (2.3) with respect to its initial value: given x ∈ R and a Poisson point measure QK (du, dθ, dy ) on R+ × R+ × R with intensity (log K)dudθG (y)dy , we define Y K,x as the solution to 
+
+Y Kt = x +
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+Z
+
+> R
+
+y
+
+log K 1l{θ≤p(Y Ku−)}QK (du, dθ, dy )and we define eY K,x as the solution to 
+
+eY Kt = x +
+
+Z t
+
+> 0
+
+Z
+
+> R+
+
+Z
+
+> R
+
+y
+
+log K 1l{θ<p ( eY Ku−)}QK (du, dθ, dy ).
+
+Notice that the inequality in the definition of eY Kt is strict, contrary to the one in the definition of 
+
+Y Kt . By standard properties of Poisson point measures, Y K,x = eY K,x almost surely. In addition, by continuity of the function p, for any ω in the event {Y K,x = eY K,x }, the map 
+
+y 7 → (Y K,y s (ω) − y)s≤t
+
+16 is constant for y in a neighborhood of x. Therefore, it follows from Lebesgue’s theorem that, for any measurable set G ⊂ D[0 , t ], defining for all y ∈ R
+
+Gy := {f + y, f ∈ G} , (2.15) the map 
+
+y 7 → μKy,t (Gy)is continuous at x. Since x was arbitrary, we deduce that this map is continuous. More precisely, for all x ∈ R and G ⊂ D[0 , t ], 
+
+μKy,t (Gy) − μKx,t (Gx) ≤ P  Y K,y s − y̸ = Y K,x s − x, for some s ∈ [0 , t ] −−−→ 
+
+> y→x
+
+0.
+
+In particular, there exists δx > 0 such that for all y ∈ [x − δx, x + δx], 
+
+P  Y K,y s − y̸ = Y K,x s − x, for some s ∈ [0 , t ] ≤ K−M0
+
+2 . (2.16) We can assume without loss of generality that δx ≤ η/ 2 for all x ∈ R. Since the compact set B
+
+is included in the union of the intervals ( x − δx, x + δx) there exist N < ∞ and x1, . . . , x N ∈ R
+
+such that 
+
+B ⊂
+
+> N
+
+[
+
+> j=1
+
+(xj − δxj , x j + δxj ).
+
+For any j ∈ { 1, . . . , N }, since ( fi)i≥1 is dense in D[0 , t ], there exists mj large enough such that 
+
+μKxj ,t 
+
+" mj
+
+[
+
+> i=1
+
+Bη/ 2(fi)
+
+!c#
+
+≤ K−M0
+
+2 .
+
+Our goal is now to extend this estimate to any x ∈ B. Let x ∈ B, there exists j ∈ { 1, . . . , N }
+
+such that |x − xj | ≤ δxj . Recalling that δxj < η/ 2, for all m ≥ sup 1≤j≤N mj , we have the inclusion, m[
+
+> i=1
+
+Bη/ 2(fi)
+
+!
+
+> x−xj
+
+⊂
+
+> m
+
+[
+
+> i=1
+
+Bη(fi)
+
+!
+
+.
+
+where the notation () x−xj has been defined in (2.15). Therefore, 
+
+μKx,t 
+
+" m[
+
+> i=1
+
+Bη(fi)
+
+!c#
+
+≤ μKx,t 
+
+
+
+> m
+
+[
+
+> i=1
+
+Bη/ 2(fi)
+
+!cx−xj
+
+
+
+≤ μKx,t 
+
+
+
+> m
+
+[
+
+> i=1
+
+Bη/ 2(fi)
+
+!cx−xj
+
+ − μKxj ,t 
+
+" m[
+
+> i=1
+
+Bη/ 2(fi)
+
+!c#
+
++ μKxj ,t 
+
+" mj
+
+[
+
+> i=1
+
+Bη/ 2(fi)
+
+!c#
+
+≤ P  Y K,y s − y̸ = Y K,x s − x, for some s ∈ [0 , t ] + K−M0
+
+2 .
+
+17 Hence, by (2.16), we have proved (2.14) for m ≥ sup 1≤j≤N mj .
+
+Step 3: Conclusion of the proof. We fix M < ∞ and a compact subset B of R. For all integer 
+
+k ≥ 1, we apply (2.14) with η = 1 /k and M0 = kM : there exists mk < ∞ such that for all 
+
+K ≥ 1sup 
+
+> x∈B
+
+μKx,t 
+
+" mk[
+
+> i=1
+
+B1/k (fi)
+
+!c#
+
+≤ K−kM .
+
+This implies that sup 
+
+> x∈B
+
+μKx,t 
+
+" ∞\
+
+> k=1
+> mk
+
+[
+
+> i=1
+
+B1/k (fi)
+
+!c#
+
+≤ K−M
+
+1 − K−M .
+
+Now, the set ∞\
+
+> k=1
+> mk
+
+[
+
+> i=1
+
+B1/k (fi)is precompact. Indeed, considering any sequence ( ϕj )j≥1 in this set, since it belongs to ∪m1
+
+> i=1
+
+B1(fi), there exists i1 ∈ { 1, . . . , m 1} such that ϕj ∈ B1(fi1 ) infinitely often. Using the diagonal extrac-tion procedure, we deduce that there exists a subsequence, still denoted ( ϕj )j≥1 for convenience, and integers ik ∈ { 1, . . . , m k} such that ϕj ∈ B1/k (fik ) for all j large enough. This implies that the sequence ( ϕj )j≥1 is Cauchy, hence the conclusion. Therefore, the compact set 
+
+> ∞
+
+\
+
+> k=1
+> mk
+
+[
+
+> i=1
+
+B1/k (fi)satisfies the claim of Lemma 2.4. 
+
+2.3 Non-variational form and domain of the rate function It
+
+Note that the function H is a convex function and H′ is a C1-diffeomorphism from R to itself. We have the following result, providing an alternative, non-variational expression for the rate function It and characterizing the set of functions f such that It(f ) < +∞.
+
+Lemma 2.5. (i) For all t and f ∈ C2[0 , t ],
+
+It(f ) = ψf (t)f (t) − ψf (0) f (0) −
+
+Z t
+
+> 0
+
+ fsψ′ 
+
+> f
+
+(s) + p(fs)H(ψf (s))  ds, (2.17) 
+
+where for all s ∈ [0 , t ],
+
+ψf (s) = ( H′)−1 ˙fs
+
+p(fs)
+
+!
+
+.
+
+(ii) For all f ∈ AC [0 , t ], It(f ) < +∞ iff 
+
+Z t
+
+> 0
+
+˙fs(H′)−1 ˙fs
+
+¯p
+
+!
+
+ds =
+
+Z t
+
+> 0
+
+| ˙fs|(H′)−1 | ˙fs|
+
+¯p
+
+!
+
+ds < +∞.
+
+18 Proof. Let f ∈ C2[0 , t ]. From (1.14) and (1.17), we have that 
+
+It(f ) = 
+
+Z t
+
+> 0
+
+sup 
+
+> α∈R
+
+ α ˙fs − p(fs)H(α)ds. 
+
+For a given s ∈ [0 , t ], the optimization problem sup α∈R
+
+ α ˙fs − p(fs)H(α) reaches its supremum for α that solves H′(α) = ˙fs/p (fs), i.e. for α = ψf (s). Hence 
+
+It(f ) = 
+
+Z t
+
+> 0
+
+
+
+ψf (s) ˙fs − p(fs)H ψf (s)
+
+ds. 
+
+For f ∈ C2[0 , t ], the function ψf is C1, hence integration by parts yields (2.17). We now proceed with the proof of (ii). Observe that L(x, β ) = p(x)eL(β/p (x)), with eL(v) := sup α∈R{αv − H(α)} convex, non-decreasing on [0 , +∞) and non-increasing on ( −∞ , 0] with 
+
+eL(0) = 0. Since the optimization problem in the definition of eL has a unique solution, we obtain 
+
+eL(v) = v(H′)−1(v) − H(H′− 1(v)). We next deduce from the change of variable y → − y and from the fact that G is symmetric that for all α ∈ R
+
+H′(α) = 
+
+Z
+
+> R
+
+ye αy − ye −αy 
+
+2 G(y)dy 
+
+and 
+
+H′′ (α) = 
+
+Z
+
+> R
+
+y2eαy + y2e−αy 
+
+2 G(y)dy. 
+
+Hence, using that x sinh x ≤ x2 cosh x for all x ∈ R+,
+
+|H′(α)| ≤ 
+
+Z
+
+> R
+
+|y| sinh( |αy |)G(y)dy ≤ 1
+
+|α|
+
+Z
+
+> R
+
+(αy )2 cosh( αy )G(y)dy = |α|H′′ (α). (2.18) This implies that for all a > 1 and all x ∈ R
+
+|(H′)−1(x)| ≤ | (H′)−1(ax )| ≤ a|(H′)−1(x)|. (2.19) Indeed, H′ is an increasing homeomorphism from R to itself and, since G is symmetric, H′(x)and ( H′)−1(x) have the same sign as x, so the first inequality is clear and it is enough to check the second inequality of (2.19) for x > 0. In this case, we have ln( H′)−1(ax ) − ln( H′)−1(x) = 
+
+Z a
+
+> 1
+
+x(( H′)−1)′(rx )(H′)−1(rx ) dr =
+
+Z a
+
+> 1
+
+x
+
+(H′)−1(rx )H′′ (( H′)−1(rx )) dr 
+
+≤
+
+Z a
+
+> 1
+
+dr r = ln a, 
+
+using (2.18) with α = ( H′)−1(rx ). Hence (2.19) is proved. Using the fact that there exists some x0 > 0 such that, for all x ≥ x0 or x ≤ − x0,
+
+ex − 1 ≤ x
+
+2 ex,
+
+and thus, using that xe x ≥ − e−1 for all x ∈ R, we deduce that for all x ∈ R,
+
+ex − 1 ≤ x
+
+2 ex + e−1
+
+2 + ex0 − 1.
+
+19 This implies that, for all α ∈ R,
+
+H(α) ≤ α
+
+2 H′(α) + e−1
+
+2 + ex0 − 1.
+
+Since H(α) ≥ 0 for all α, we deduce that, for all x, β ∈ R,
+
+β(H′)−1
+
+ βp(x)
+
+
+
+≥ L(x, β ) ≥ β
+
+2 (H′)−1
+
+ βp(x)
+
+
+
+− ¯p( e−1
+
+2 + ex0 − 1) . (2.20) Then, it follows from (2.19) that 
+
+|β|(H′)−1
+
+ |β|
+
+¯p
+
+
+
+≤ | β|(H′)−1
+
+ |β|
+
+p(x)
+
+
+
+= β(H′)−1
+
+ βp(x)
+
+
+
+≤ ¯pp |β|(H′)−1
+
+ |β|
+
+¯p
+
+
+
+.
+
+Therefore, Point (ii) follows. 
+
+# 3 Large deviations estimates on E(N K,A t )
+
+In order to prove the large deviations estimates on N K,A t of Theorems 1.1 and 1.2, we first need large deviations estimates on E(N K,A t ). 
+
+Theorem 3.1. For any t > 0 and for any closed A ⊂ D[0 , t ],
+
+lim sup 
+
+> K→+∞
+
+1log K log  E[N K,A t ] ≤ sup  
+
+> f∈A
+
+Ft(f ), (3.1) 
+
+and for any open G ⊂ D[0 , t ]lim inf 
+
+> K→+∞
+
+1log K log  E[N K,G t ] ≥ sup  
+
+> f∈G
+
+Ft(f ), (3.2) 
+
+with the usual convention that sup ∅ = −∞ .
+
+Note that, in contrast with Theorems 1.1 and 1.2, there is no state constraint in the right-hand sides of (3.1) and (3.2). This shows the fundamental difference between the behavior of the stochastic process and its expectation, already observed in [7, 6]. 
+
+Proof of the upper bound in Theorem 3.1. Let A ⊂ D[0 , t ] be closed. Assume first that sup  
+
+> f∈A
+
+Ft(f ) > −∞ .
+
+Since β0(x) → −∞ when x → ±∞ and βK 
+
+> 0
+
+converges to β0 for the uniform norm, there exists a compact subset B of R such that 
+
+∀x ∈ Bc, βK 
+
+> 0
+
+(x) ≤ − t(¯b + ¯ p) − 1 + sup  
+
+> f∈A
+
+Ft(f ). (3.3) Let A0 be the compact set given by Lemma 2.4 with this choice of B and with the constant 
+
+M = sup 
+
+> K≥1
+
+sup 
+
+> x∈R
+
+βK 
+
+> 0
+
+(x) + ( ¯b + ¯ p)t + 1 − sup  
+
+> f∈A
+
+Ft(f ). (3.4) 20 Fix ε > 0 and f ∈ A ∩ A0. Since β0, b, d and p are continuous, there exists δf > 0 such that, for all K large enough, for all g ∈ Bδf (f ), 
+
+βK 
+
+> 0
+
+(g(0)) + 
+
+Z t
+
+> 0
+
+R(g(s)) ds ≤ β0(f (0)) + 
+
+Z t
+
+> 0
+
+R(f (s)) ds + ε. 
+
+In addition, since the function It is lower semi-continuous on D[0 , t ] (cf. [28, Thm. 3.2.1]), we can also assume reducing δf > 0 if necessary that, for all x ∈ [f (0) − δf , f (0) + δf ] and all 
+
+g ∈ B2δf (f ), 
+
+It,x (g) ≥ It,f (0) (f ) − ε. (3.5) We introduce for all k ≥ 1 the function ϕk,f on D[0 , t ] defined for all g ∈ D[0 , t ] by 
+
+ϕk,f (g) = k [( dSko (g, B δf (f ))) ∧ 1] .
+
+Then 
+
+Z
+
+> R
+
+KβK 
+
+> 0(x)
+
+EμKx,T 
+
+h
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈Bδf (f )
+
+i
+
+dx 
+
+≤ Kβ0(f (0))+ R t  
+
+> 0R(f(s)) ds +ε
+
+Z f (0)+ δf 
+
+> f(0) −δf
+
+μKx,t (Bδf (f )) dx 
+
+≤ 2δf Kβ0(f (0))+ R t   
+
+> 0R(f(s)) ds +ε
+
+sup     
+
+> x∈[f(0) −δf,f (0)+ δf]
+
+EμKx,t (K−ϕk,f ).
+
+(3.6) Since the function ϕk,f is bounded continuous, it follows from the Laplace principle uniform on compact sets of Theorem 2.3 that lim sup 
+
+> K→∞
+
+1log K log 
+
+Z 
+
+> R
+
+KβK 
+
+> 0(x)
+
+EμKx,T 
+
+h
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈Bδf (f )
+
+i
+
+dx 
+
+
+
+≤ β0(f (0)) + 
+
+Z t
+
+> 0
+
+R(f (s)) ds + ε − inf 
+
+> g∈D[0 ,t ]
+
+(ϕk,f (g) + It,x (g)) .
+
+Now, using the definition of ϕk and (3.5) inf 
+
+> g∈D[0 ,t ]
+
+(ϕk,f (g) + It,x (g)) ≥ inf     
+
+> g̸∈B2δf(f)
+
+ϕk,f (g) ∧ inf    
+
+> g∈B2δf(f)
+
+It,x (g) ≥ (( δf ∧ 1) k) ∧ (It(f ) − ε).
+
+Since k was arbitrary, choosing it large enough entails lim sup 
+
+> K→∞
+
+1log K log 
+
+Z 
+
+> R
+
+KβK 
+
+> 0(x)
+
+EμKx,T 
+
+h
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈Bδf (f )
+
+i
+
+dx 
+
+
+
+≤ Ft(f ) + 2 ε. (3.7) Since A ∩ A0 is compact, there exists m < ∞ and f1, . . . , f m ∈ A ∩ A0 such that 
+
+A ∩ A0 ⊂
+
+> m
+
+[
+
+> j=1
+
+Bδfj (fj ).
+
+21 Now, it follows from Proposition 2.1 that 
+
+EN K,A t ≤
+
+> m
+
+X
+
+> j=1
+
+Z
+
+> R
+
+KβK 
+
+> 0(x)
+
+EμKx,T 
+
+h
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈Bδfj (fj )
+
+i
+
+dx 
+
++
+
+Z
+
+> Bc
+
+KβK 
+
+> 0(x)+( ¯b+¯ p)t
+
+μKx,T (Ac
+
+> 0
+
+)dx + Leb( B)Ksup y∈R βK  
+
+> 0(y)+( ¯b+¯ p)t
+
+sup 
+
+> x∈B
+
+μKx,T (Ac
+
+> 0
+
+).
+
+Therefore, using Lemma 2.4 and Eq. (1.5), (3.3), (3.4) and (3.7), lim sup 
+
+> K→∞
+
+1log K log EN K,A t ≤ max {Ft(fj ) + 2 ε, 1 ≤ j ≤ m} ∨ sup  
+
+> f∈A
+
+Ft(f ) − 1
+
+!
+
+∨ sup 
+
+> y∈R, K ≥1
+
+βK 
+
+> 0
+
+(y) + ( ¯b + ¯ p)t − M
+
+!
+
+≤ sup  
+
+> f∈A
+
+Ft(f ) + 2 ε. 
+
+Since ε > 0 was arbitrary, the proof is completed in the case where sup f ∈A Ft(f ) > −∞ .
+
+In the case where sup f ∈A Ft(f ) = −∞ , let C > 0 be fixed. For all f ∈ A, there exists δf > 0such that, for all x ∈ [f (0) − δf , f (0) + δf ] and all g ∈ B2δf (f ), It,x (g) ≥ M , where 
+
+M = sup 
+
+> K≥1
+
+sup 
+
+> x∈R
+
+βK 
+
+> 0
+
+(x) + ( ¯b + ¯ p)t + C. 
+
+Following the same argument as in (3.6) (with k = 1), we deduce that lim sup 
+
+> K→∞
+
+1log K log 
+
+Z 
+
+> R
+
+KβK 
+
+> 0(x)
+
+EμKx,T 
+
+h
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈Bδf (f )
+
+i
+
+dx 
+
+
+
+≤ − C
+
+We conclude as above that lim sup 
+
+> K→∞
+
+1log K log EN K,A t ≤ − C. 
+
+Since C > 0 was arbitrary, the proof of the upper bound in Theorem 3.1 is complete. 
+
+Proof of the lower bound in Theorem 3.1. We fix t > 0 and G ⊂ D[0 , t ] open. The proof is divided into 3 steps. 
+
+Step 1. We first prove using the Laplace principle uniform on compacts the following property: for all f ∈ D[0 , t ] such that It,f (0) (f ) < +∞ and all δ > 0, lim inf  
+
+> K→∞
+
+inf   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+1log K log μKt,x (Bδ(f )) ≥ − sup   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+inf   
+
+> g∈B2δ/ 3(f)
+
+It,x (g). (3.8) For all integer k ≥ 1, we define the function ϕk on D[0 , t ] as: for all g ∈ D[0 , t ]
+
+ϕk(g) = k
+
+ 3
+
+δ dSko (g, B 2δ/ 3(f )) ∧ 1
+
+
+
+.
+
+Since ϕk is bounded continuous, it follows from the Laplace principle uniform on compacts that lim inf  
+
+> K→∞
+
+inf   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+1log K log EμKt,x (K−ϕk ) ≥ − sup   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+inf 
+
+> g∈D[0 ,t ]
+
+(ϕk(g) + It,x (g)) 
+
+≥ − sup   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+inf   
+
+> g∈B2δ/ 3(f)
+
+It,x (g),
+
+22 where we used that ϕk = 0 on B2δ/ 3(f ). We observe that, for all x ∈ R,
+
+EμKt,x (K−ϕk ) ≤ K−k + μKt,x (Bδ(f )) ,
+
+so we deduce that max 
+
+
+
+lim inf  
+
+> K→∞
+
+inf   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+1log K log μKt,x (Bδ(f )) ; −k
+
+
+
+≥ − sup   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+inf   
+
+> g∈B2δ/ 3(f)
+
+It,x (g).
+
+Letting k → ∞ yields (3.8). 
+
+Step 2. We now prove the following weak continuity property of It,x : for all f ∈ D[0 , t ] such that 
+
+It,f (0) (f ) < +∞ and all ε > 0, there exists δ > 0 such that, for all x ∈ [f (0) − δ/ 2, f (0) + δ/ 2], there exists g ∈ Bδ(f ) with g(0) = x such that It,x (g) ≤ It,f (0) (f ) + ε.To prove this, we recall from Step 1 of the proof of Lemma 2.5 (ii) that It,f (0) (f ) < +∞
+
+implies that | ˙f |(H′)−1(| ˙f |/¯p) ∈ L1[0 , t ]. Defining for all x ∈ R and s ∈ [0 , t ] f (x) 
+
+> s
+
+= x − f0 + fs
+
+and observing that ˙f (x) = ˙f , it then follows from (2.19) and (2.20) that there exists a constant 
+
+C such that, for all x in a neighborhood of f (0), L(f (x) 
+
+> s
+
+, ˙f (x) 
+
+> s
+
+) ≤ C| ˙f |(H′)−1(| ˙f |/¯p). Since 
+
+L(·, ·) is continuous with respect to both variables, we deduce from Lebesgue’s theorem that 
+
+It,x (f (x)) → It,f (0) (f ) when x → f (0), hence the result. 
+
+Step 3. We now conclude the proof as follows: first, if inf g∈G It,g (0) (g) = + ∞, there is nothing to prove. So assume the converse and fix ε > 0. Then sup g∈G Ft(g) > −∞ , so we can take f ∈ G
+
+such that 
+
+Ft(f ) ≥ sup 
+
+> g∈G
+
+Ft(g) − ε. 
+
+Since G is open and in view of Steps 1 and 2, there exists δ > 0 such that Bδ(f ) ⊂ G and lim inf  
+
+> K→∞
+
+inf   
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+1log K log μKt,x (Bδ(f )) ≥ − It,f (0) (f ) − ε. 
+
+Reducing δ > 0 if necessary, we can assume that, for K large enough, for all g ∈ Bδ(f ), 
+
+βK 
+
+> 0
+
+(g(0)) + 
+
+Z t
+
+> 0
+
+R(g(s)) ds ≥ βK 
+
+> 0
+
+(f (0)) + 
+
+Z t
+
+> 0
+
+R(f (s)) ds − ε. 
+
+Now, the Feynman-Kac formula of Proposition 2.1 implies that 1log K log EN K,G t
+
+≥ 1log K log 
+
+Z f (0)+ δ/ 3 
+
+> f(0) −δ/ 3
+
+KβK 
+
+> 0(x)
+
+EμKt,x 
+
+
+
+exp 
+
+
+
+log K
+
+Z t
+
+> 0
+
+R(Y Ks )ds 
+
+
+
+1(Y Ks )s∈[0 ,t ]∈Bδ (f )
+
+
+
+≥ βK 
+
+> 0
+
+(f (0)) + 
+
+Z t
+
+> 0
+
+R(f (s)) ds − ε + 1log K log 
+
+ 2δ
+
+3 inf    
+
+> x∈[f(0) −δ/ 3,f (0)+ δ/ 3]
+
+μKt,x (Bδ(f )) 
+
+
+
+.
+
+Therefore, lim inf 
+
+> K→∞
+
+1log K log EN K,G t ≥ Ft(f ) − 2ε ≥ sup 
+
+> g∈G
+
+Ft(g) − 3ε. 
+
+Since ε > 0 was arbitrary, the lower bound in Theorem 3.1 is proved. 23 4 Proof of Theorem 1.1 
+
+The proof relies on the following proposition. 
+
+Proposition 4.1. For any t > 0 and all closed set A ⊂ D[0 , t ], in probability 
+
+lim sup 
+
+> K→∞
+
+log N K,A t
+
+log K ≤ sup {Ft(f ); f ∈ A}.
+
+Proof. We introduce the notation 
+
+Ft(A) = sup {Ft(f ); f ∈ A}.
+
+Using Markov inequality and the upper bound in Theorem 3.1, we have for all fixed δ > 0lim sup 
+
+> K→∞
+
+1log K log P(N K,A t ≥ KFt(A)+ δ) ≤ lim sup 
+
+> K→∞
+
+1log K log E(N K,A t )
+
+KFt(A)+ δ
+
+!
+
+≤ − δ. 
+
+Therefore, for K large enough, 
+
+P(N K,A t ≥ KFt(A)+ δ) ≤ K−δ/ 2.
+
+Hence it follows that, in probability, lim sup 
+
+> K→∞
+
+log N K,A t
+
+log K ≤ Ft(A) + δ. 
+
+Since δ was arbitrary, the proof is complete. 
+
+Proof of Theorem 1.1. Step 1: Proof for A compact. 
+
+Fix k ≥ 1. For any f ∈ D[0 , t ] such that It(f ) < ∞, there exists δf > 0 such that, for all 
+
+g ∈ adh( Bδf (f )), 
+
+∀s ∈ [0 , t ], Fs(g) ≤ Fs(f ) + 1
+
+k . (4.1) Indeed, if it was not true, there would exist sn ∈ [0 , t ] and gn ∈ D[0 , t ] converging to f such that 
+
+Fsn (gn) > F sn (f ) + 1 /k . After extraction, we can assume that sn → s. We then deduce from the lower semi-continuity of I(s−δ)∨0 (see [28, Thm. 3.2.1]) that, for all δ > 0, 
+
+F(s−δ)∨0(f ) ≥ lim sup 
+
+> n
+
+F(s−δ)∨0(gn)
+
+≥ lim sup 
+
+> n
+
+Fsn (gn) − ¯Rδ 
+
+≥ lim sup 
+
+> n
+
+Fsn (f ) − ¯Rδ + 1
+
+k = Fs(f ) − ¯Rδ + 1
+
+k .
+
+Therefore, 
+
+Fs(f ) = lim  
+
+> δ→0
+
+F(s−δ)∨0(f ) ≥ Fs(f ) + 1
+
+k ,
+
+which is absurd. 24 Similarly, if f ∈ D[0 , t ] is such that It(f ) = + ∞, there exists δf > 0 such that, for all 
+
+g ∈ adh( Bδf (f )), 
+
+∀s ∈ [0 , t ], Fs(g) ≤ − k. 
+
+Now, assume that A is compact. Since 
+
+A ⊂ [ 
+
+> f∈A
+
+Bδf (f ),
+
+there exists n ≥ 1 and f1, . . . , f n ∈ A such that, denoting δi = δfi ,
+
+A ⊂
+
+> n
+
+[
+
+> i=1
+
+Bδi (fi).
+
+Given i ∈ { 1, . . . , n }, if there exists s ≤ t such that Fs(fi) < −1/k , we can apply Proposi-tion 4.1 to show that, in probability, lim sup 
+
+> K→∞
+
+log N K, cl( Bδi (fi)) 
+
+> s
+
+log K ≤ Fs(fi) + 1 /k < 0.
+
+Since N K, cl( Bδi (fi))  
+
+> s
+
+is integer-valued, this implies that, N K, cl( Bδi (fi))  
+
+> s
+
+= 0 for K large enough, hence with probability converging to one, log N K, cl( Bδi (fi)) 
+
+> s
+
+log K = −∞ 
+
+and, since t ≥ s,log N K, cl( Bδi (fi)) 
+
+> t
+
+log K = −∞ .
+
+If Ft(fi) > −∞ and for all s ≤ t, Fs(fi) ≥ − 1/k , we deduce from Proposition 4.1 that, in probability, lim sup 
+
+> K→∞
+
+log N K, cl( Bδi (fi)) 
+
+> t
+
+log K ≤ Ft(fi) + 1 /k. 
+
+Finally, if Ft(fi) = −∞ , we deduce from Proposition 4.1 that, in probability, lim sup 
+
+> K→∞
+
+log N K, cl( Bδi (fi)) 
+
+> t
+
+log K ≤ − k. 
+
+Observing that 
+
+N K,A t ≤
+
+> n
+
+X
+
+> i=1
+
+N K, cl( Bδi (fi))  
+
+> t
+
+,
+
+we obtain in probability lim sup 
+
+> K→∞
+
+log N K,A t
+
+log K ≤ sup 
+
+
+
+Ft(fi) + 1
+
+k , i ∈ { 1, . . . , n } s.t. Fs(fi) ≥ − 1
+
+k ∀s ∈ [0 , t ]
+
+
+
+∨ (−k)
+
+≤
+
+ 1
+
+k + sup 
+
+
+
+Ft(f ), f ∈ A s.t. Fs(f ) ≥ − 1
+
+k ∀s ∈ [0 , t ]
+
+ 
+
+∨ (−k). (4.2) 25 Now, when k converges to + ∞,sup 
+
+
+
+Ft(f ), f ∈ A s.t. Fs(f ) ≥ − 1
+
+k ∀s ∈ [0 , t ]
+
+
+
+−→ sup {Ft(f ), f ∈ A s.t. Fs(f ) ≥ 0 ∀s ∈ [0 , t ]} ,
+
+since otherwise, there would exist η > 0 and a sequence ( fk)k≥1 in A such that Fs(fk) ≥ − 1/k for all s ∈ [0 , t ] and Ft(fk) ≥ sup {Ft(f ), f ∈ A, F s(f ) ≥ 0 ∀s ∈ [0 , t ]} + η. Since A is compact, we can assume after extraction that fk converges to some g ∈ A. Since Fs is upper semi-continuous for all s ∈ [0 , t ], Fs(g) ≥ lim sup k Fs(fk) ≥ 0 for all s ∈ [0 , t ] and Ft(g) ≥ sup {Ft(f ), f ∈
+
+A, F s(f ) ≥ 0 ∀s ∈ [0 , t ]} + η, which is a contradiction. Hence, letting k → ∞ in (4.2) ends the proof of Theorem 1.1 for A compact. 
+
+Step 2: Proof of Theorem 1.1 for A closed. Following standard arguments in large deviations, to conclude, it only remains to prove that, for all M0, there exists a compact set CM0 ⊂ D[0 , t ]such that, almost surely lim sup 
+
+> K→+∞
+
+log N K,C cM0
+
+> t
+
+log K ≤ − M0. (4.3) This can be deduced from Proposition 2.1 and Lemma 2.4 as follows: let CM0 ⊂ D[0 , t ] be the compact set of Lemma 2.4 for B = {x ∈ R, β 0(x) ≥ − 2 − t ¯R − M0} (which is compact by Assumption (1.5)), and M = M0 + t ¯R + ¯β + 2, i.e. lim sup 
+
+> K→∞
+
+sup 
+
+> x∈B
+
+1log K log μKx,t (CcM0 ) ≤ − M0 − ¯β − t ¯R − 2.
+
+By Proposition 2.1, for K large enough, 
+
+EN K,C cM0 
+
+> t
+
+≤
+
+Z
+
+> Bc
+
+K(−2−t ¯R−M0)∧( ¯β−α|x|)Kt ¯Rdx + Leb( B) sup 
+
+> x∈B
+
+K ¯β+t ¯R+ 12 μKx,t (CcM0 ),
+
+so lim sup 
+
+> K→∞
+
+log EN K,C cM0
+
+> t
+
+log K ≤ − M0 − 32 .
+
+To conclude, we proceed as in the proof of Proposition 4.1: 
+
+P
+
+
+
+N K,C cM0 
+
+> t
+
+≥ K−M0
+
+
+
+≤ EN K,C cM0
+
+> t
+
+K−M0 ≤ K−5/4
+
+for K large enough. Then Borel-Cantelli’s lemma entails (4.3). 
+
+# 5 Proof of Theorem 1.2 
+
+We follow the general approach of [6], using moment estimates following ideas in [40]. We start with considering for t ≥ 0, ε > 0 and f ∈ D[0 , t ] such that It(f ) < +∞. Recall that Bε(f ) is the open ball {g ∈ D[0 , t ], d Sko (g, f ) < ε }. Let us denote by 
+
+N K,ε,f t = N K,B ε(f ) 
+
+> t
+
+= X   
+
+> u∈VKtlog K
+
+1lBε(f )(XK,u s log K , s ≤ t),
+
+the number of particles remaining in the tube of width ε around f until time t. The key ingredient of the proof is the following lemma. 26 Lemma 5.1. Let us consider t ≥ 0 and f ∈ AC [0 , t ] such that It(f ) < +∞ and such that for all s ≤ t, Fs(f ) > 0. Almost surely, for all sufficiently small ε > 0,
+
+lim inf 
+
+> K→+∞
+
+1log K log N K,ε,f ≥ Ft(f ). (5.1) Assuming Lemma 5.1, we can then complete the proof of Theorem 1.2 as follows. Let t > 0and G be an open subset of D[0 , t ]. If sup {Ft(g); g ∈ G, ∀s ∈ [0 , t ], F s(g) > 0} = −∞ ,
+
+then we have nothing to prove. Otherwise, for any δ > 0, we can find f ∈ G such that Fs(f ) > 0for all s ∈ [0 , t ] and 
+
+Ft(f ) ≥ sup {Ft(g); g ∈ G, ∀s ∈ [0 , t ], F s(g) > 0} − δ. 
+
+Since G is open, there exists ε > 0 such that Bε(f ) ⊂ G. Hence, reducing ε > 0 if necessary, we deduce from Lemma 5.1 that, almost surely, lim inf 
+
+> K→∞
+
+1log K log N K,G t ≥ lim inf 
+
+> K→∞
+
+1log K log N K,ε,f t
+
+≥ Ft(f )
+
+≥ sup {Ft(g); g ∈ G, ∀s ∈ [0 , t ], F s(g) > 0} − δ. 
+
+Since δ > 0 was arbitrary, the proof of Theorem 1.2 is completed. The proof of Lemma 5.1 is divided into two subsections. In Section 5.1, we establish an upper bound of E  N K,ε,f t
+
+2 with the idea of [40] in mind, by establishing a many-to-two formula (or formula for forks). We conclude in Section 5.2. 
+
+5.1 Estimates for the second moment of N K,ε,f 
+
+A key ingredient to compare N K,ε,f t with its expectation is to control its second moment. For this purpose, we first establish the next lemma. 
+
+Lemma 5.2. Let us consider t ≥ 0 and f ∈ AC [0 , t ] such that It(f ) < +∞ and such that for all s ≤ t, Fs(f ) > 0. For all δ′ > 0, for all sufficiently small ε > 0 and sufficiently large K, we have 
+
+E  N K,ε,f t
+
+2 ≤ E2N K,ε,f t
+
+ × K8δ′
+
+. (5.2) 
+
+Proof. Recall that V Kt is the collection of labels of individuals alive at time t, and that V K
+
+> [0 ,t ]
+
+consists of the labels of individuals alive between times 0 and t.27 First, we have E  N K,ε,f t
+
+2 = A + B + C with 
+
+A =E
+
+ X   
+
+> v∈VKtlog K
+
+1l2 
+
+> Bε(f)
+
+(XK,v s log K , s ≤ t)
+
+
+
+B =E X                
+
+> v1̸=v2, v 1, v 2∈VKtlog K
+> ∃w∈VK
+> [0 ,t log K], w ≺v1, w ≺v2
+
+1lBε(f )(XK,v 1   
+
+> slog K
+
+, s ≤ t)1 lBε(f )(XK,v 2   
+
+> slog K
+
+, s ≤ t)
+
+!
+
+C =E X                
+
+> v1̸=v2, v 1, v 2∈VKtlog K̸∃w∈VK
+> [0 ,t log K], w ≺v1, w ≺v2
+
+1lBε(f )(XK,v 1   
+
+> slog K
+
+, s ≤ t)1 lBε(f )(XK,v 2   
+
+> slog K
+
+, s ≤ t)
+
+!
+
+.
+
+In B, the two individuals v1 and v2 have a common ancestor w ∈ V K   
+
+> [0 ,t log K]
+
+and hence a common ancestor at time 0, whereas in C, the two individuals are descended from different ancestors at time 0. 
+
+Term A. Let δ′ > 0. For the term A, we notice that A = E N K,ε,f t
+
+. Then, using Theorem 3.1, we obtain that for ε small enough and K large enough, 
+
+KFt(f )−δ′
+
+≤ Ksup g∈Bε (f ) Ft(g)−δ′
+
+≤ A ≤ Ksup g∈Bε (f ) Ft(g)+ δ′
+
+≤ KFt(f )+2 δ′
+
+, (5.3) where Bε(f ) denotes here the closure in D of Bε(f ), and where we used (3.5) for the right-most inequality. 
+
+Term B. Summing over all pair of leaves ( v1, v 2) ∈ (V Kt log K )2, v1̸ = v2, that have a common ancestor at time 0 amounts to summing over all the internal nodes w of the tree, and then over all pairs made of one descendant at t log K of w0 and one of w1. Then, denoting by eSw log K
+
+the time at which the individual w gives birth, 
+
+B =E
+
+X   
+
+> w∈V K
+> [0 ,t log K]
+> eSw<t
+
+X  
+
+> v1∈V Ktlog K
+> v1⪰w0
+
+1lBε(f )
+
+ XK,v 1   
+
+> slog K
+
+, s ≤ t ×
+
+X  
+
+> v2∈V Ktlog K
+> v2⪰w1
+
+1lBε(f )
+
+ XK,v 2   
+
+> slog K
+
+, s ≤ t .
+
+Conditionally on F fSw log K , the two populations descending from w0 and w1 are indepen-dent. The idea is to condition on F eSw log K and consider the time intervals [0 , eSw log K] and [ eSw log K, t log K]. It is then natural to introduce, for any time s ∈ [0 , t ] and f ∈ AC [0 , t ], the notation 
+
+Fs,t (f ) := Ft(f ) − Fs(f ) = 
+
+Z ts
+
+R(f (u)) du − Is,t (f ), (5.4) where Is,t (f ) = It(f ) − Is(f ) = R ts L(fu, ˙fu)du can be interpreted as the rate function of the large deviations for Y K on the time interval [ s, t ]. A difficulty arises from the Skorohod distance as, 
+
+dSko (f, g ) ≤ max 
+
+
+
+dSko 
+
+ f |[0 ,s ], g |[0 ,s ]
+
+, d Sko 
+
+ f |[s,t ], g |[s,t ]
+
+
+
+, (5.5) 28 with an inequality that can be strict as the right hand side can be associated only with a time deformation λ in (1.1) that keeps s fixed. This implies that 
+
+Bε(f ) ⊃ g ∈ D[0 , t ] : g|[0 ,s ] ∈ Bε(f |[0 ,s ]) ∩ g ∈ D[0 , t ] : g|[s,t ] ∈ Bε(f |[s,t ]) ,
+
+and not the reverse inclusion, which raises difficulties when separating the time interval [0 , t ]into [0 , s ] and [ s, t ]. However, we will be only interested in the case where f ∈ AC [0 , t ], for which there exists a constant η(ε) depending on ε, f and t (the dependencies on f and t are omitted in the notation for the sake of readability), such that 
+
+Bε(f ) ⊂ B∞
+
+> η(ε)
+
+(f ) := {g ∈ D[0 , t ], sup 
+
+> r∈[0 ,t ]
+
+|f (r) − g(r)| < η (ε)}. (5.6) This inclusion is proved in Appendix B. Now, for the uniform norm, we have an equality in (5.5) and 
+
+B∞
+
+> η(ε)
+
+(f ) = 
+
+n
+
+g ∈ D[0 , t ] : g|[0 ,s ] ∈ B∞
+
+> η(ε)
+
+(f |[0 ,s ])
+
+o
+
+∩
+
+n
+
+g ∈ D[0 , t ] : g|[s,t ] ∈ B∞
+
+> η(ε)
+
+(f |[s,t ])
+
+o
+
+. (5.7) With these notations, we have on the set { eSw < t }:
+
+E
+
+ X  
+
+> v∈V Ktlog K
+> v⪰w0
+
+1lBε(f )
+
+ XK,v s log K , s ≤ t F eSw log K
+
+
+
+≤E
+
+ X  
+
+> v∈V Ktlog K
+> v⪰w0
+
+1lB∞ 
+
+> η(ε)(f)
+
+ XK,v s log K , s ≤ t F eSw log K
+
+
+
+=1 lB∞   
+
+> η(ε)(f|[0 ,eSw ])
+
+(XK,w r log K , r ≤ eSw)
+
+× EδXK,w 0  
+
+> eSw log K
+
+ X  
+
+> v∈VK
+> (t−s) log K
+
+1lB∞ 
+
+> η(ε)(f(s+·))
+
+ XK,v r log K , r ≤ t − s
+
+|s= eSw
+
+=1 lB∞   
+
+> η(ε)(f|[0 ,eSw ])
+
+(XK,w r log K , r ≤ eSw)
+
+× EXK,w 0  
+
+> eSw log K
+
+
+
+K     
+
+> Rt−s
+> 0R(XKrlog K)dr
+
+1lB∞ 
+
+> η(ε)(f(s+·))
+
+ XKr log K , r ≤ t − s)
+
+
+
+|s= eSw
+
+≤1lB∞   
+
+> η(ε)(f|[0 ,eSw ])
+
+(XK,w r log K , r ≤ eSw) K    
+
+> Rt
+> eSw R(f(r)) dr +C(f,R )tη (ε)
+
+× PXK,w 0  
+
+> eSw log K
+
+
+
+sup 
+
+> r≤t−s
+
+|XKr log K − f (s + r)| < η (ϵ)
+
+
+
+|s= eSw , (5.8) where we have used Proposition 2.1(ii) to obtain the fourth line, and where the constant C(f, R )is the Lipschitz norm of R on [inf f − 1, sup f + 1]. We would like to use Theorem 2.3 to upper bound the probability appearing in the right hand side of (5.8). But because eSw is a random time, we have to discretize the time interval [0 , t ]. It will be useful to consider h > 0 a small time mesh such that t/h ∈ N. For any x ∈ R and 29 s < s ′ < t ,
+
+Px
+
+
+
+sup 
+
+r≤t−s
+
+|XKr log K − f (s + r)| < η (ϵ)
+
+
+
+≤ Ex 1lXK  
+
+> (s′−s) log K
+
+∈[f (s′)−η(ε),f (s′)+ η(ε)] PXK 
+
+> (s′−s) log K
+
+
+
+sup 
+
+r≤t−s′
+
+|XKr log K − f (s′ + r)| < η (ϵ)
+
+!
+
+≤ sup 
+
+y∈[f (s′)−η(ε),f (s′)+ η(ε)] 
+
+Py
+
+
+
+sup 
+
+r≤t−s′
+
+|XKr log K − f (s′ + r)| < η (ϵ)
+
+
+
+≤ sup 
+
+y∈[f (s′)−η(ε),f (s′)+ η(ε)] 
+
+μKy,t −s′ (Bη(ε)(f |[s′,t ])) where we notice that we have returned to a ball with respect to the Skorohod distance in the last line, permitting to use our large deviation result. Hence, for k ∈ { 0, . . . , t/h − 1}, on the event { eSw ∈ [kh, (k + 1) h]},
+
+E
+
+ X  
+
+> v∈V Ktlog K
+
+v⪰w0
+
+1lBε(f )
+
+ XK,v s log K , s ≤ t F eSw log K
+
+
+
+≤ 1lB∞
+
+> η(ε)
+
+(f |[0 , eSw ])(XK,w r log K , r ≤ eSw) K
+
+R t 
+
+> eSw
+
+R(f (r)) dr +C(f,R )tη (ε)
+
+× sup 
+
+y∈[f (( k+1) h)−η(ε),f (( k+1) h)+ η(ε)] 
+
+μKy,t −(k+1) h(Bη(ε)(f |[( k+1) h,t ])) .
+
+Using the Laplace principle uniformly on compact sets of Theorem 2.3 as in (2.11) and (2.13), we deduce that, for K large enough, for all y ∈ [f (( k + 1) h) − η(ε), f (( k + 1) h) + η(ε)], log μKy,t −(k+1) h(Bη(ε)(f |[( k+1) h,t ])) log K ≤ − inf  
+
+> g∈Bη(ε)(f|[( k+1) h,t ])
+
+g(0) ∈[f (( k+1) h)−η(ε),f (( k+1) h)+ η(ε)] 
+
+It−(k+1) h(g)
+
+≤ − It−(k+1) h(f |[( k+1) h,t ]) + δ′,
+
+by the lower semi-continuity of It−(k+1) h, for ε small enough. Hence, on the event { eSw ∈
+
+[kh, (k + 1) h]},
+
+E
+
+ X  
+
+> v∈V Ktlog K
+
+v⪰w0
+
+1lBε(f )
+
+ XK,v s log K , s ≤ t F eSw log K
+
+
+
+≤1lB∞
+
+> η(ε)
+
+(f |[0 , eSw ])(XK,w r log K , r ≤ eSw) K
+
+R t 
+
+> eSw
+
+R(f (r)) dr +C(f,R )tη (ε)−It−(k+1) h(f |[( k+1) h,t ])+ δ′
+
+≤1lB∞
+
+> η(ε)
+
+(f |[0 , eSw ])(XK,w r log K , r ≤ eSw) KF eSw ,t (f )+ C(f,R )tη (ε)+ δ′+Ikh, (k+1) h(f )
+
+≤1lB∞
+
+> η(ε)
+
+(f |[0 , eSw ])(XK,w r log K , r ≤ eSw) KF eSw ,t (f )+2 δ′
+
+, (5.9) reducing ε > 0 if needed and choosing h such that Ikh, (k+1) h(f ) ≤ δ′/2 for all k. This property holds true on the event { eSw ∈ [kh, (k + 1) h]} for all K large enough and all ε > 0 small enough. Since there are only finitely many k ∈ { 0, . . . , t/h − 1}, we deduce that (5.9) holds true almost surely for all K large enough and all ε > 0 small enough. 30 A similar expression holds for the population stemming from w1. Thus, using Proposition 2.2, 
+
+B ≤
+
+Z
+
+R
+
+Kβ0(x)Eδx
+
+X  
+
+> w∈V K
+> [0 ,t log K]
+
+eSw <t 
+
+1lsup r≤ eSw |XK,w r log K −f (r)|<ε K2F eSw ,t (f )+4 δ′
+
+ dx 
+
+≤
+
+Z f (0)+ εf (0) −ε
+
+Kβ0(x)
+
+Z t
+
+0
+
+Ex
+
+
+
+1lsup r≤s |XKr log K −f (r)|<ε 
+
+× (b + p + d)( XKs log K ) K2Fs,t (f )+ R s 
+
+> 0
+
+R(XKr log K )dr +4 δ′ 
+
+ds dx 
+
+≤(¯b + ¯ p + ¯d)2 εK β0(f (0))+ Cε 
+
+Z t
+
+0
+
+K−Is(f )+2 Fs,t (f )+ R s 
+
+> 0
+
+R(f (r)) dr +5 δ′
+
+ds 
+
+≤KFt(f )+sup s∈[0 ,t ] Fs,t (f )+6 δ′
+
+, (5.10) for ε sufficiently small and K sufficiently large, and where we used (1.16) and (5.4) in the fourth line. Note that: 
+
+Ft(f ) + sup 
+
+s∈[0 ,t ]
+
+Fs,t (f ) = Ft(f ) + sup 
+
+s∈[0 ,t ]
+
+ Ft(f ) − Fs(f ) = 2 Ft(f ) − inf 
+
+s∈[0 ,t ] Fs(f ).
+
+Thus, 
+
+B ≤ K2Ft(f )−inf s∈[0 ,t ] Fs(f )+6 δ′
+
+≤ K2Ft(f )+6 δ′
+
+, (5.11) as inf s∈[0 ,t ] Fs(f ) ≥ 0 by the assumptions of Lemma 5.2. 
+
+Term C. By the branching property, 
+
+C =E X 
+
+> w1̸=w2
+
+w1,w 2∈V K
+
+> 0
+
+X  
+
+> v1∈V Ktlog K
+
+v1⪰w1
+
+X  
+
+> v2∈V Ktlog K
+
+v2⪰w2
+
+1lBε(f )(XK,v 1
+
+s log K , s ≤ t)1 lBε(f )(XK,v 2
+
+s log K , s ≤ t)
+
+!! 
+
+=E X 
+
+> w1̸=w2
+
+w1,w 2∈V K
+
+> 0
+
+EδXK,w 10
+
+ X
+
+v1∈V Kt log K
+
+1lBε(f )(XK,v 1
+
+s log K , s ≤ t)
+
+
+
+× EδXK,w 20
+
+ X
+
+v2∈V Kt log K
+
+1lBε(f )(XK,v 2
+
+s log K , s ≤ t)
+
+!
+
+=E X 
+
+> w1̸=w2
+
+w1,w 2∈V K
+
+> 0
+
+EδXK,w 10
+
+
+
+N K,ε,f t
+
+
+
+EδXK,w 20
+
+
+
+N K,ε,f t
+
+!
+
+Using (5.3) for the internal expectations and accounting that we start from a single particle and not from a point process of intensity Kβ0(x)dx ,
+
+C ≤E
+
+Z Z 
+
+(f (0) −ε,f (0)+ ε)2
+
+1x̸=yK2Ft(f )−2β0(f (0))+4 δ′
+
+ZK
+
+0 (dx )ZK
+
+0 (dy )
+
+!
+
+=K2Ft(f )−2β0(f (0))+4 δ′
+
+Z Z 
+
+(f (0) −ε,f (0)+ ε)2
+
+Kβ0(x)Kβ0(y)dx dy ≤ K2Ft(f )+5 δ′
+
+, (5.12) 31 where we used the multivariate Mecke’s formula (e.g. [37, Theorem 4.4]) in the second line. Gathering the upper bounds in (5.3), (5.11) and (5.12) gives that: 
+
+E  N K,ε,f t
+
+2 ≤ K2Ft(f )+6 δ′
+
+≤ E2N K,ε,f t
+
+ × K8δ′
+
+, (5.13) where the last inequality comes from the lower bound in (5.3). This ends the proof of Lemma 5.2. Notice that if the initial condition has not the intensity Kβ0(x) dx but Kβ0(x)−δ′′ 
+
+dx for example, the proof above would provide instead of (5.13) that: 
+
+E  N K,ε,f t
+
+2 ≤ K2Ft(f )+6 δ′−2δ′′ 
+
+≤ E2N K,ε,f t
+
+ × K8δ′
+
+. (5.14) For the last inequality, notice that β0(x) appears in the definition of Ft(f ) so that for this new initial condition β0(x) − δ′′ , the lower bound in (5.3) becomes: 
+
+K(β0(x)−δ′′ )+ R t   
+
+> 0R(f(s)) ds −It(f)−δ′
+
+= KFt(f )−δ′′ −δ′
+
+≤ E(N K,ε,f t ). (5.15) These inequalities will be useful in the following. 
+
+5.2 Proof of Lemma 5.1 
+
+We are now ready to prove Lemma 5.1. Let us introduce 
+
+δ0 = min  
+
+> s∈[0 ,t ]
+
+{Fs(f )} > 0. (5.16) Let us fix δ ∈ (0 , δ 0). Our purpose is to prove that almost surely, for all sufficiently small ε > 0, lim inf 
+
+> K→∞
+
+1log K log N K,ε,f t > F t(f ) − δ. (5.17) A direct use of Lemma 5.2 would only show that 1log K log N K,ε,f t > F t(f ) − δ holds with a probability converging to 0 as K → +∞ (see (5.20) below). To obtain the almost sure lower bound we make use of the branching property by dividing the initial population into several groups. For this, let us consider δ′′ ∈ (0 , δ 0) so that β0(f (0)) − δ′′ > 0. This δ′′ as well as the 
+
+δ′ appearing in (5.3) will be fixed depending on δ in the end of the proof, and ε (resp. K) are chosen small (resp. large) enough according to these choices. By the form of the initial condition (1.4), and by the superposition principle, we can write 
+
+ZK 
+
+> 0
+
+(dx ) =  
+
+> ⌊Kδ′′ ⌋
+
+X
+
+> i=1
+
+eZK,i  
+
+> 0
+
+(dx )where eZK,i  
+
+> 0
+
+(dx ) are i.i.d. Poisson point measures with the modified intensity measure ( KβK 
+
+> 0(x)
+
+/⌊Kδ′′ 
+
+⌋)dx .This decomposition combined with the branching property will provide that (5.1) holds almost surely by Borel-Cantelli’s lemma. For i ∈ { 1, · · · , ⌊Kδ′′ 
+
+⌋} , we will denote by eN K,ε,f,i t the number of particles, among those started from eZK,i  
+
+> 0
+
+, that remain in the tube of width ε around f until time t. Note that the random variables eN K,ε,f,i t are i.i.d. 32 Let us consider the branching process started from eZK, 10 and let δ ∈ (0 , δ 0). We have by the Cauchy-Schwarz inequality that 
+
+E
+
+h eN K,ε,f, 1 
+
+> t
+
+1l eN K,ε,f, 1  
+
+> t>K Ft(f)−δ
+
+i
+
+≤
+
+q
+
+E  eN K,ε,f, 1
+
+> t
+
+2P  eN K,ε,f, 1 
+
+> t
+
+> K Ft(f )−δ. (5.18) Moreover, 
+
+E
+
+h eN K,ε,f, 1 
+
+> t
+
+1l eN K,ε,f, 1  
+
+> t>K Ft(f)−δ
+
+i
+
+=E
+
+h eN K,ε,f, 1
+
+> t
+
+i
+
+− E
+
+h eN K,ε,f, 1 
+
+> t
+
+1l eN K,ε,f, 1  
+
+> t≤KFt(f)−δ
+
+i
+
+≥E eN K,ε,f, 1
+
+> t
+
+ − KFt(f )−δ
+
+≥E eN K,ε,f, 1
+
+> t
+
+  1 − Kδ′+δ′′ −δ, (5.19) using (5.15). As a consequence, using (5.14), 
+
+P  eN K,ε,f, 1 
+
+> t
+
+> K Ft(f )−δ ≥ E2 eN K,ε,f, 1
+
+> t
+
+  1 − Kδ′+δ′′ −δ2
+
+E  eN K,ε,f, 1
+
+> t
+
+2
+
+≥K−8δ′  1 − Kδ′+δ′′ −δ2.
+
+If δ′ and δ′′ are small enough so that δ′ + δ′′ − δ < 0, we obtain for K large enough, 
+
+P  eN K,ε,f, 1 
+
+> t
+
+> K Ft(f )−δ ≥ 12 K−8δ′
+
+≥ K−9δ′
+
+(5.20) and the same inequality also holds for any eN K,ε,f,i t , i ∈ { 1, . . . , ⌊Kδ′′ 
+
+⌋} .We can now conclude, using the branching property. Let us consider the full branching process started from ZK 
+
+> 0
+
+(dx ). We have: 
+
+P N K,ε,f t ≤ KFt(f )−δ ≤
+
+> Kδ′′
+
+Y
+
+> i=1
+
+P  eN K,ε,f,i t ≤ KFt(f )−δ
+
+≤
+
+
+
+1 − K−9δ′ ⌊Kδ′′ ⌋
+
+∼ exp   − Kδ′′ −9δ′ , (5.21) for K sufficiently large. This bound converges to zero provided δ′′ − 9δ′ > 0. Choosing δ′ = δ/ 20 and δ′′ = δ/ 2, we have that δ′ + δ′′ − δ = −9δ/ 20 < 0 and δ′′ − 9δ′ =
+
+δ/ 20 > 0, in accordance to what we wanted in (5.20) and (5.21). Moreover, from (5.21), we obtain by Borel-Cantelli’s lemma, that (5.17) holds true almost surely. Since δ was arbitrary, we have proved Lemma 5.1. 2
+
+# 6 The link between the variational formulation of the limit and the Hamilton-Jacobi equation (1.21) 
+
+In this section, we study the link between the variational formulation (1.18) and the Hamilton-Jacobi equation (1.21). In particular, we prove Theorem 1.4, Lemma 1.5, and Theorem 1.3. To this end, we first provide some preliminary lemmas. 33 Lemma 6.1. Let (t, x ) ∈ eΩa. There exists an optimal trajectory f ∈ AC([0 , t ]) in the maxi-mizing problem in (1.18) , such that f (t) = x and that for all s ∈ [0 , t ], Fs(f ) ≥ a. Moreover, 
+
+∥f ∥W 1,∞([0 ,t ]) is uniformly bounded for all (t, x ) ∈ [0 , T ] × BM (0) .Proof. Let fn ∈ AC[0 , t ] be such that Ft(fn) → ua(t, x ) and Fs(fn) ≥ a, for all s ∈ [0 , t ]. Since L(x, v ) is strictly convex and superlinear with respect to v, and since R(x) and β0(x) are bounded above, it can be shown (see [28, Section 3.2]) that fn converges, as n → +∞, to an absolutely continuous trajectory f0, with f0(t) = x and 
+
+Fs(fn) → Fs(f0), for all s ∈ [0 , t ].
+
+Since Fs(fn) ≥ a, for all s ∈ [0 , t ], we also have Fs(f0) ≥ a and hence ( s, f 0(s)) ∈ eΩa. Moreover, one can prove (see [28] and [11, Lemma 6]) that this optimal trajectory is bounded in W 1,∞([0 , t ]) for all ( t, x ) in a compact set [0 , T ]×BM (0). Note that here we can use the results of [11] since our assumptions in (1.2)–(1.3) lead to the assumptions made in the latter article (see [11, Corollary 4]). 
+
+Lemma 6.2. The set Ωa is an open set. Furthermore, ua is bounded above locally in t and globally in x, and it is locally Lipschitz continuous in Ωa, and consequently in eΩa. Moreover, the Lipschitz bound in t and x, is locally uniform with respect to a.Proof. i) ua is lower semicontinuous in Ωa and Ωa is an open set. Let ( t1, x 1) ∈ Ωa. We prove that for all η > 0, there exists r > 0, small enough, such that Br(t1, x 1) ∈ Ωa and that, for all ( t2, x 2) ∈ Br(t1, x 1), we have 
+
+ua(t2, x 2) ≥ ua(t1, x 1) − η. 
+
+Let ( t2, x 2) ∈ Br(t1, x 1). We define δ = |t1 − t2| + |x1 − x2| and note that t2 − δ < t 1. We also recall that, due to Lemma 6.1, there exists an optimal trajectory f1(·) such that f1(t1) = x1,
+
+u(t1, x 1) = Ft1 (f1) and Fs(f ) ≥ a, for all s ∈ [0 , t 1]. We define 
+
+f (s) = 
+
+(
+
+f1(s) for all s ∈ [0 , t 2 − δ], 
+
+f1(t2 − δ) + s−t2+δδ (x2 − f1(t2 − δ)) for all s ∈ [t2 − δ, t 2]. (6.1) We will prove that, for r small enough, Fτ (f ) ≥ a for all τ ∈ [0 , t 2] and that Ft2 (f ) ≥
+
+ua(t1, x 1) − η. Note that, for all τ ∈ [0 , t 2 − δ], Fτ (f ) = Fτ (f1) ≥ a. We next consider the case τ ∈ [t2 − δ, t 1] and write 
+
+Fτ (f ) = Ft1 (f1) −
+
+Z t1
+
+> t2−δ
+
+R(f1(s)) − L(f1(s), ˙f1(s)) ds +
+
+Z τt2−δ
+
+R(f (s)) − L(f (s), ˙f (s)) ds. (6.2) Note that for all τ ∈ [t2 − δ, t 2], f (τ ) ∈ [x2 ∧ f1(t2 − δ), x 2 ∨ f1(t2 − δ)]. Hence, f (τ ) is uniformly bounded in [ t2 − δ, t 2], for fixed ( t1, x 1) and r. We next note that 
+
+| ˙f (τ )| = |x2 − f1(t2 − δ)|
+
+δ ≤ |x1 − x2|
+
+δ + 2|f1(t1) − f1(t2 − δ)|
+
+t1 − t2 + δ , for all τ ∈ [t2 − δ, t 2] .
+
+Since | ˙f1| is uniformly bounded in [0 , t 1] thanks to Lemma 6.1 and since |x1 − x2| ≤ δ, we deduce that there exists a constant C such that 
+
+| ˙f (τ )| ≤ C. 
+
+34 Therefore, the integrand terms in the r.h.s. of (6.2) are bounded. Since R and L are locally bounded, up to choosing r to be a smaller constant, we obtain that, for all τ ∈ [t2 − δ, t 2] and, 
+
+Fτ (f ) ≥ ua(t1, x 1) − C′δ ≥ ua(t1, x 1) − C′r > a. 
+
+We deduce that ( t1, x 1) ∈ Ωa and hence Ω a is an open set. Furthermore, we have, for r small enough 
+
+ua(t2, x 2) ≥ Ft2 (f ) ≥ ua(t1, x 1) − C′r ≥ ua(t1, x 1) − η. 
+
+(ii) ua is continuous on ∂Ωa. We recall from (1.19) that u ≥ a in eΩa. From the definition of Ω a, it is then immediate that ua = a on ∂Ωa ⊂ eΩa \ Ωa. We prove that ua is continuous on ∂Ωa. Let (¯ t, ¯x) ∈ ∂Ωa and ( tn, x n) ∈ Ωa such that, as n → +∞, ( tn, x n) → (¯ t, ¯x). Then, there exist optimal trajectories fn : [0 , t n] → R, such that fn(tn) = xn, Fs(fn) ≥ a, for all 
+
+s ∈ [0 , t n], and ua(tn, x n) = Ftn (fn). Similarly to the proof of Lemma 6.1, we deduce that fn
+
+converges along subsequences, as n → +∞, to an absolutely continuous trajectory f such that 
+
+f (¯ t) = ¯ x, and Fs(fn) → Fs(f ), for all s ∈ [0 , ¯t]. Consequently, Fs(f ) ≥ a for all s ∈ [0 , ¯t] and 
+
+u(¯ t, ¯x) ≥ F¯t( ¯f ) = lim n→+∞ ua(tn, x n) ≥ a. Since (¯ t, ¯x) /∈ Ωa, we deduce that ua(¯ t, ¯x) = a, and hence lim n→+∞ ua(tn, x n) = ua(¯ t, ¯x) = a.(iii) ua is locally Lipschitz continuous in Ωa. We first prove that ua is locally Lipschitz continuous in Ω a, for all a > 0, in the following sense. Let Br ⊂ Ωa be a ball of radius r. We will prove that for r chosen small enough, there exists a constant C such that for all ( t1, x 1) ∈ Br
+
+and ( t2, x 2) ∈ Br,
+
+|ua(t1, x 1) − ua(t2, x 2)| ≤ C(|t1 − t2| + |x1 − x2|).
+
+The proof follows similar arguments as in the proof of (i). We first choose δ = |t1 − t2| + |x1 − x2|
+
+and notice that t2 − δ < t 1. From step (i), ua is lower semi-continuous and hence um := min (t,x )∈Br ua(t, x ) > a . Let f1 be the optimal trajectory such that f1(t1) = x1 and Fs(f1) ≥ a
+
+for all s ∈ [0 , t 1] and Ft(f1) = ua(t1, x 1) > a . We define f as in (6.1) and notice similarly to above that f and | ˙f | are bounded. We also notice that, for τ ∈ [0 , t 2 − δ], Fτ (f ) ≥ a. We next use (6.2) and the boundedness of f , ˙f , f1 and ˙f1 to obtain that, for τ ∈ [t2 − δ, t 2], 
+
+Fτ (f ) ≥ Ft1 (f1) − Cδ = ua(t1, x 1) − Cδ ≥ um − Cδ. 
+
+We deduce on the one hand that, for r small enough, Fτ (f ) ≥ a, for all τ ∈ [t2 − δ, t 2]. On the other hand, we have 
+
+ua(t2, x 2) ≥ Ft2 (f ) ≥ ua(t1, x 1) − Cδ. 
+
+The opposite inequality can be proved following similar arguments. We conclude that ua is Lipschitz continuous in Br.We next notice that the Lipschitz bound above only depends on the local bounds on L and 
+
+R. From the continuity of ua up to the boundary of Ω a, we deduce that ua is indeed locally Lipschitz continuous in Ω a. Since ua(t, x ) = a in eΩa \ Ωa, we deduce that ua is also locally Lipschitz in eΩa. Finally, since the Lipschitz bound above only depends on the local bounds on 
+
+L and R, we deduce that there exist Lipschitz bounds which are locally uniform with respect to 
+
+a.(v) The bound from above. From the definition of ua in (1.18) and the fact that R, −L
+
+and β0 are bounded from above, thanks to assumptions (1.3) and (1.5), we obtain a uniform bound from above on ua, locally in t and globally in x.35 Lemma 6.3. Let (t, x ) ∈ Ωa and 0 < τ < t , with τ small enough. Then, we have 
+
+ua(t, x ) = sup   
+
+> f∈AC[ t−τ,t ]
+> f(t)= x
+
+Z tt−τ
+
+R(f (s)) − L(f (s), ˙f (s)) ds + ua(t − τ, f (t − τ )) . (6.3) 
+
+Proof. Let f0 be an optimal trajectory such that f0(t) = x and Ft(f0) = x, and Fs(f0) ≥ a, for all s ∈ [0 , t ]. We have 
+
+ua(t, x ) = 
+
+Z tt−τ
+
+R(f0(s)) − L(f0(s), ˙f0(s)) ds +
+
+Z t−τ
+
+> 0
+
+R(f0(s)) − L(f0(s), ˙f0(s)) ds + β0(f0(0)) .
+
+Since Fs(f0) ≥ a, for all s ∈ [0 , t ] and in particular for all s ∈ [0 , t − τ ], we deduce that 
+
+ua(t, x ) ≤ R tt−τ
+
+R(f0(s)) − L(f0(s), ˙f0(s)) ds + ua(t − τ, f 0(t − τ )) 
+
+≤ sup f ∈AC[ t−τ,t ] 
+
+> f(t)= x
+
+R tt−τ
+
+R(f (s)) − L(f (s), ˙f (s)) ds + ua(t − τ, f (t − τ )) .
+
+Let us now assume that f1 : [ t − τ, t ] → R is such that f1(t) = x and 
+
+ua(t, x ) <
+
+Z tt−τ
+
+R(f1(s)) − L(f1(s), ˙f1(s)) ds + ua(t − τ, f 1(t − τ )) . (6.4) Let also f2 be an optimal trajectory such that f2(t−τ ) = f1(t−τ ), ua(t−τ, f 1(t−τ )) = Ft−τ (f2)and Fs(f2) ≥ a for all s ∈ [0 , t − τ ]. We then define 
+
+f3(s) = 
+
+(
+
+f2(s) s ∈ [0 , t − τ ],f1(s) s ∈ [t − τ, t ].
+
+Then it is immediate that ua(t, x ) < F t(f3). We will prove that Fs(f3) ≥ a, for all s ∈ [0 , t ], which leads to a contradiction with the latter inequality and the definition of ua. Notice that since Fs(f2) ≥ a, for all s ∈ [0 , t − τ ], we deduce that Fs(f3) ≥ a, for all s ∈ [0 , t − τ ]. To prove this property for s ∈ [t − τ, t ], we write 
+
+Fs(f3) > u a(t, x ) −
+
+Z ts
+
+R(f1(s)) − L(f1(s), ˙f1(s)) ds. 
+
+Since R is bounded from above and L is bounded from below, we deduce that, for all s ∈ [t−τ, t ]and C a positive constant, 
+
+Fs(f3) > u a(t, x ) − C(t − s) ≥ ua(t, x ) − C(t − τ ).
+
+Since ua(t, x ) > a , choosing τ small enough, we obtain that Fs(f3) ≥ a for all s ∈ [t − τ, t ] and hence Fs(f3) ≥ a for all s ∈ [0 , t ]. 
+
+Proof of Theorem 1.4. Thanks to Lemma 6.2, ua is locally Lipschitz continuous in Ω a
+
+and due to Lemma 6.3 it satisfies (6.3). It is then immediate (see [3, Section 3.3]) that u is a viscosity solution to the Hamilton-Jacobi equation (1.21) in Ω a. We conclude the proof using the uniqueness of locally Lipschitz and bounded from above viscosity solutions to (1.21) [18]. Note that the uniqueness result in [18] is given for a Hamilton-Jacobi equation, with a convex 36 Hamiltonian, in the whole domain. However, the proof can be adapted to Hamilton-Jacobi equations, with a convex Hamiltonian, and with Dirichlet boundary conditions. Note also that when Ω a is bounded, the uniqueness follows from more standard arguments as in [3, Section 5]. We next prove Lemma 1.5. 
+
+Proof of Lemma 1.5. (i) We first prove (1.23). Let K ⊂ R+ × R be a compact set. We define 
+
+f K(a) = 
+
+Z
+
+> K
+
+1eΩa (t, x )dtdx. 
+
+Since ( eΩa)a is a decreasing family of sets, we deduce that f K 
+
+> a
+
+is a decreasing function with respect to a. Since a decreasing function has at most a countable set of discontinuity points, we deduce that f K(a) is continuous at almost every point a. At a continuity point a0 of f K we have lim 
+
+> a→a0
+
+Z
+
+> K
+
+1eΩa (t, x )dtdx =
+
+Z
+
+> K
+
+1eΩa0
+
+(t, x )dtdx. 
+
+Moreover, since Γ a0 = S
+
+> a>a 0
+
+eΩa, we deduce that 
+
+Z
+
+> K
+
+1Γa0 (t, x )dtdx. = lim 
+
+> a↓a0
+
+Z
+
+> K
+
+1eΩa (t, x )dtdx =
+
+Z
+
+> K
+
+1eΩa0
+
+(t, x )dtdx. 
+
+It follows that, for a.e. a0 ∈ R,
+
+Z
+
+> K
+
+1eΩa0 \Γa0
+
+(t, x )dtdx = 0 .
+
+Since this equality holds a.e. for all compact set K ⊂ R+ × R, we deduce that, for a.e. a0 ∈ R,
+
+Z
+
+> R+×R
+
+1eΩa0 \Γa0
+
+(t, x )dtdx = 0 .
+
+(ii) We next prove (1.24). Let K ⊂ R+ × R, be a compact set. We then define 
+
+g(a) = 
+
+Z
+
+> K
+
+1eΩa ua(t, x )dtdx. 
+
+Notice that 1eΩa ua(t, x ) is decreasing with respect to a. It hence converges, as a ↓ a0, to 
+
+1Γa0 v(t, x ), for a certain function v(t, x ). Moreover, since ua is locally Lipschitz in eΩa with respect to t and x, with a locally uniform dependence on a, we deduce that v(t, x ) is indeed a continuous function in Γ a0 . We also have lim 
+
+> a↓a0
+
+g(a) = 
+
+Z
+
+> K
+
+1Γa0 v(t, x )dtdx. 
+
+We also notice that g is a decreasing function with respect to a. Consequently, g is continuous with respect to a, for almost every a. We deduce that, for almost every a0 ∈ R,
+
+Z
+
+> K
+
+1eΩa0
+
+ua0 (t, x )dtdx = g(a0) = lim 
+
+> a↓a0
+
+g(a) = 
+
+Z
+
+> K
+
+1Γa v(t, x )dtdx. 
+
+37 From the monotonicity of Ω a and ua we also obtain 
+
+1eΩa0
+
+ua0 (·, ·) ≥ 1Γa0 v(·, ·).
+
+Combining the lines above we obtain that, for almost every a0 ∈ R and ( t, x ) ∈ K ,
+
+1eΩa0
+
+ua0 (t, x )) = 1Γa0 v(t, x ),
+
+and consequently, for almost every a0 ∈ R and ( t, x ) ∈ K ∩ Γa0 ,
+
+ua0 (t, x ) = v(t, x ).
+
+Finally, since ua0 and v are both continuous in Γ a0 , we deduce that for almost every a0 ∈ R and for all ( t, x ) ∈ K ∩ Γa0 ,
+
+ua0 (t, x ) = v(t, x ) = lim 
+
+> a↓a0
+
+ua(t, x ).
+
+Since this equality holds in K ∩ Γa0 for a.e. a0 and any compact set K, we deduce that it also holds for a.e. a0 and for all ( t, x ) ∈ Γa0 . Combining this property with (1.22) we obtain (1.24). 
+
+Proof of Theorem 1.3. (i) We first prove the lower bound. From Theorem 1.2 we deduce that lim inf 
+
+> K→+∞
+
+1log K log N K,G x,δ t 
+
+> t
+
+≥ sup {Ft(f ); f ∈ Gx,δ t , ∀s ∈ [0 , t ], F s(f ) > 0}.
+
+Let a > 0. Then, we have for all a > 0 and δ > 0, 
+
+{f ∈ AC [0 , t ], f (t) = x, ∀s ∈ [0 , t ], F s(f ) ≥ a} ⊂ { f ∈ Gx,δ t , ∀s ∈ [0 , t ], F s(f ) > 0}.
+
+Using (1.19) we obtain that, for all a > 0 and δ > 0, 
+
+ua(t, x ) ≤ sup {Ft(f ); f ∈ Gx,δ t , ∀s ∈ [0 , t ], F s(f ) > 0}.
+
+Combining the properties above we conclude that lim  
+
+> a↓0
+
+ua(t, x ) ≤ lim inf  
+
+> δ→0
+
+lim inf 
+
+> K→+∞
+
+1log K log N K,G x,δ t 
+
+> t
+
+.
+
+(ii) We next prove the upper bound. From Theorem 1.1 we obtain that lim sup 
+
+> K→+∞
+
+1log K log N K,A x,δ t 
+
+> t
+
+≤ sup {Ft(f ); f ∈ Ax,δ t , ∀s ∈ [0 , t ], F s(f ) ≥ 0}.
+
+Similarly to Lemma 6.1, and since the set Ax,δ t is a closed set, there exists an optimal trajectory f δ
+
+which maximizes Ft(·) in the set above, with Fs(f δ) ≥ 0 for all s ∈ [0 , t ]. Moreover, ∥f δ∥W 1,∞([0 ,t ]) 
+
+is bounded uniformly with respect to δ. Note that the W 1,∞ bound is proved in [28] and [11, Lemma 6] in the maximization problem with a fixed ending point. Here, we consider the trajectories with ending points in [ x − δ, x + δ]. Therefore, if f0 is the optimal trajectory, f0 is also an optimal trajectory with ending point at f0(t) and the same result applies. We deduce that lim sup 
+
+> δ→0
+
+lim sup 
+
+> K→+∞
+
+1log K log N K,A x,δ t 
+
+> t
+
+≤ lim sup 
+
+> δ→0
+
+Ft(f δ).
+
+38 Let ( f δn )n be a sequence of trajectories such that lim sup 
+
+> δ→0
+
+Ft(f δ) = lim  
+
+> n→∞
+
+Ft(f δn ).
+
+From the uniform bound in W 1,∞, we deduce that, up to considering a subsequence, f δn con-verges to a trajectory f 0 ∈ AC [0 , t ] such that lim sup 
+
+> δ→0
+
+Ft(f δ) = Ft(f 0), f 0(t) = x, Fs(f 0) ≥ 0, ∀s ∈ [0 , t ].
+
+It follows that lim sup 
+
+> δ→0
+
+lim sup 
+
+> K→+∞
+
+1log K log N K,A x,δ t 
+
+> t
+
+≤ u0(t, x ).
+
+2
+
+# A Proof of the many-to-one formulas 
+
+A.1 Proof of Proposition 2.1 (i) 
+
+Let us give a simple proof based on Itˆ o’s formula. Let us first note that the intensity measure of ZKt , νKt (dy ) = Eδx
+
+ZKt (dy ) defined for any φ in Cb(R) by 
+
+⟨νKt , φ ⟩ = Eδx
+
+⟨ZKt , φ ⟩
+
+is the unique weak solution of (
+
+∂tνt = νtLK + R ν t,ν0 = δx, (A.1) where we denote by νLK the adjoint of the operator LK applied to the probability measure ν.Uniqueness of such a solution is proven as in Theorem 2.2 in [33]. Let us show that the r.h.s. term of (2.4) also satisfies (A.1). Uniqueness will yield the result. Let φ in C1 
+
+> b
+
+(R). Applying Itˆ o’s formula with jumps (e.g. [34, Th.5.1]) to the semimartingale exp 
+
+R t 
+
+> 0
+
+R(XKs )ds 
+
+
+
+φ(XKt ), we have exp 
+
+Z t
+
+> 0
+
+R(XKs )ds 
+
+
+
+φ(XKt ) − φ(XK 
+
+> 0
+
+) −
+
+Z t
+
+> 0
+
+exp 
+
+Z s
+
+> 0
+
+R(XKr )dr 
+
+
+
+LK φ(XKs ) ds 
+
+−
+
+Z t
+
+> 0
+
+φ(XKs )R(XKs ) exp 
+
+Z s
+
+> 0
+
+R(XKr )dr 
+
+
+
+ds. 
+
+is a square integrable martingale since R is bounded. Taking the expectation, we obtain that 
+
+Ex
+
+
+
+exp 
+
+Z t
+
+> 0
+
+R(XKs )ds 
+
+
+
+φ(XKt )
+
+
+
+= φ(x)+ Ex
+
+ Z t
+
+> 0
+
+exp 
+
+Z s
+
+> 0
+
+R(XKr )dr 
+
+  
+
+R(XKs ) φ(XKs ) + LK φ(XKs )
+
+
+
+ds 
+
+
+
+. (A.2) If we define the measure μt for any test function φ ∈ C 1 
+
+> b
+
+(R) by 
+
+⟨μt, φ ⟩ = Ex
+
+
+
+exp 
+
+Z t
+
+> 0
+
+R(XKs )ds 
+
+
+
+φ(XKt )
+
+
+
+,
+
+39 we obtain from (A.2) that 
+
+⟨μt, φ ⟩ = ⟨δx, φ ⟩ +
+
+Z t
+
+> 0
+
+⟨μs, Rφ + LK φ⟩ds. 
+
+This proves that the flow ( μt, t ≥ 0) is a weak solution of (A.1) and the conclusion follows by uniqueness of solution of the equation. 
+
+A.2 Proof of Proposition 2.2 
+
+Recall that V K 
+
+> [0 ,t ]
+
+is the set of individuals born before time t and that V Kt is the set of individuals still alive at time t.Note that in our model, the trait x of an individual v remains constant during their life. The total rate of event for such an individual will be denoted here by Λ( x) = b(x) + p(x) + d(x),
+
+and the time Sv where they dies or gives birth has a density Λ( x) exp  Λ( x)( s − Sv 
+
+> 0
+
+)1ls>S v 
+
+> 0
+
+with respect to Lebesgue’s measure, conditionally on its birth time S0 
+
+> v
+
+. Let us note that 
+
+v ∈ V Ks ⇐⇒ S0 
+
+> v
+
+≤ s < S v.
+
+First, we have for all v ∈ U ,
+
+Eδx
+
+h
+
+1lv∈V K
+
+> [0 ,t ]
+
+Φ (XK,v r∧Sv , r ≤ t), S v ∧ ti
+
+=Eδx
+
+h
+
+1lv∈V K
+
+> [0 ,t ]
+
+Z +∞
+
+> S0
+> v
+
+Φ (XK,v r∧s , r ≤ t), s ∧ tΛ( XK,v s )e− R sS0   
+
+> vΛ( XK,v r)dr
+
+ds 
+
+i
+
+=Eδx
+
+h
+
+1lv∈V K
+
+> [0 ,t ]
+
+Z +∞
+
+> S0
+> v
+
+Φ (XK,v r∧s , r ≤ t), s ∧ tΛ( XK,v s )
+
+ Z +∞
+
+> s
+
+Λ( XK,v τ )e− R τS0  
+
+> vΛ( XK,v r)dr
+
+dτ 
+
+
+
+ds 
+
+i
+
+=Eδx
+
+h
+
+1lu∈V K
+
+> [0 ,t ]
+
+Z +∞
+
+> S0
+> v
+
+ Z τS0
+
+> v
+
+Φ (XK,v r∧s , r ≤ t), s ∧ tΛ( XK,v s ) ds 
+
+
+
+Λ( XK,v τ )e− R τS0   
+
+> vΛ( XK,v r)dr
+
+dτ 
+
+i
+
+=Eδx
+
+h
+
+1lv∈V K
+
+> [0 ,t ]
+
+Z Sv
+
+> S0
+> v
+
+Φ (XK,v r∧s , r ≤ t), s ∧ tΛ( XK,v s ) ds 
+
+i
+
+, (A.3) where we used Fubini’s theorem at the third equality, and where we recognized the distribution 40 of Sv to obtain the last equality. Then, summing (A.3) over v ∈ U entails 
+
+Eδx
+
+X 
+
+> v∈VK
+> [0 ,t ]
+
+Φ(( XK,v r∧Sv , r ≤ t), S v ∧ t)
+
+
+
+= X
+
+> v∈U
+
+Eδx
+
+h
+
+1lv∈V K
+
+> [0 ,t ]
+
+Z Sv
+
+> S0
+> v
+
+Φ (XK,v r∧s , r ≤ t), s ∧ tΛ( XK,v s ) ds 
+
+i
+
+= X
+
+> v∈U
+
+Eδx
+
+h Z t
+
+> 0
+
+1lv∈V Ks Φ (XK,v r∧s , r ≤ t), s  Λ( XK,v s ) ds 
+
+i
+
++ X
+
+> v∈U
+
+Eδx
+
+h
+
+1lv∈V Kt Φ (XK,v r , r ≤ t), t  Z Sv
+
+> t
+
+Λ( XK,v s ) ds 
+
+i
+
+=
+
+Z t
+
+> 0
+
+Eδx
+
+h X  
+
+> v∈VKs
+
+Φ (XK,v r∧s , r ≤ t), s  Λ( XK,v s )
+
+i
+
+ds 
+
++ Eδx
+
+h X  
+
+> v∈VKt
+
+Φ (XK,v r , r ≤ t), t Λ( XK,v t ) ( Sv − t)
+
+i
+
+=
+
+Z t
+
+> 0
+
+Eδx
+
+h X  
+
+> v∈VKs
+
+Φ (XK,v r∧s , r ≤ t), s  Λ( XK,v s )
+
+i
+
+ds + Eδx
+
+h X  
+
+> v∈VKt
+
+Φ (XK,v r , r ≤ t), t i
+
+where we used in the third line that for v ∈ V Kt and t ≤ s < S v, XK,v s = XK,v t . For the last equality, we notice that 
+
+ESv − t | F t
+
+ = 1Λ( XK,v t ) .
+
+Using Proposition 2.1(ii), we obtain 
+
+Eδx
+
+X 
+
+> v∈VK
+> [0 ,t ]
+
+Φ(( XK,v r∧Sv , r ≤ t), S v ∧ t)
+
+
+
+=
+
+Z t
+
+> 0
+
+Ex
+
+"
+
+Φ (XKr∧s, r ≤ t), s Λ( XKs ) exp 
+
+ Z s
+
+> 0
+
+R(XKr )dr 
+
+#
+
+ds 
+
++Ex
+
+"
+
+Φ (XKr , r ≤ t), t  exp 
+
+ Z t
+
+> 0
+
+R(XKr )dr 
+
+#
+
+.
+
+This ends the proof of Proposition 2.2. 
+
+# B On Skorohod balls around absolutely continuous functions 
+
+We prove here the inclusion stated in (5.6). Let f ∈ AC [0 , t ]. Note that for any homeomorphism 
+
+λ of [0 , t ], we have sup 
+
+> r∈[0 ,t ]
+
+f (r) − g(r) ≤ sup 
+
+> r∈[0 ,t ]
+
+f ◦ λ(r) − g(r) + sup 
+
+> r∈[0 ,t ]
+
+|f ◦ λ(r) − f (r)|. (B.1) 41 Thus, if dSko (f, g ) < ε , the first term in the right hand side can be made smaller than 2 ε for a good choice of homeomorphism λ. By (1.1), the latter homeomorphism can be chosen such that sup 
+
+> r∈[0 ,t ]
+
+|λ(r) − r| ≤ (eε − 1) t. 
+
+Then, the second term in the right hand side of (B.1) is upper-bounded by the modulus of continuity ω(f, (eε − 1) t), where 
+
+ω(f, η ) = sup 
+
+> |t−s|<η
+
+f (t) − f (s) .
+
+Since f is absolutely continuous, and since ( eε − 1) t converges to zero for ϵ → 0, the second term also converges to zero. Gathering these equations gives (5.6), for η(ε) = 2 ε + ω(f, (eε − 1) t). 
+
+# Acknowledgements 
+
+We thank B. Mallein and P. Maillard for enlightening discussions and references. This work is funded by the European Union (ERC, SINGER, 101054787 and ERC-2024-COG MUSEUM-101170884). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council. Nei-ther the European Union nor the granting authority can be held responsible for them. This work has also been supported by the Chair “Mod´ elisation Math´ ematique et Biodiversit´ e” of Ve-olia Environnement-Ecole Polytechnique-Museum National d’Histoire Naturelle-Fondation X. V.C.T. acknowledge the support of the R-CDP-24-004-C2EMPI project, funded by the French State under the France-2030 programme, the University of Lille, the Initiative of Excellence of the University of Lille, the European Metropolis of Lille. 
+
+# References 
+
+[1] V. Bansaye, J.F. Delmas, L. Marsalle and V.C. Tran. Limit theorems for Markov processes indexed by continuous time Galton-Watson trees. The Annals of Applied Probability, Vol. 21, No. 6, 2263-2314, (2011). [2] G. Barles. Solutions de viscosit´ e des ´ equations de Hamilton-Jacobi. Springer-Verlag Berlin Heidelberg, 1994. [3] G. Barles, An Introduction to the Theory of Viscosity Solutions for First-Order Hamilton-Jacobi Equations and Applications, Lecture Notes in Mathematics 2074, 2013. [4] G. Barles, L. C. Evans, and P. E. Souganidis. Wavefront propagation for reaction-diffusion systems of PDE. Duke Math. J., 61(3):835–858, 1990. [5] G. Barles, S. Mirrahimi, and B. Perthame. Concentration in Lotka-Volterra parabolic or integral equations: a general convergence result. Methods and Applications of Analysis, 16(3):321–340, 2009. [6] J. Berestycki and E. Brunet and J.W. Harris and J. W. Harris and C. Simon and M.I. Roberts. Growth rates of the population in a branching Brownian motion with an inhomogeneous breeding potential. Stochastic Process. Appl. 125 (2015), no. 5, 2096–2145. [7] J.D. Biggins. The growth and spread of the general branching random walk. The Annals of Applied Probability, 5(4):1008-1024, (1995). [8] P. Billingsley. Convergence of Probability Measures. John Wiley & Sons, New York (1968). [9] A. Bovier, L. Coquille, C. Smadi. Crossing a fitness valley as a metastable transition in a stochastic population model. Ann. Appl. Probab. 29(6), 3541–3589 (2019). 
+
+42 [10] V. Calvez, B. Henry, S. M´ el´ eard, V.C. Tran. Dynamics of lineages in adaptation to a gradual environmental change. Annales Henri Lebesgue, 5:729–777, 2022. [11] V. Calvez, V. and K.-Y. Lam, Uniqueness of the viscosity solution of a constrained Hamilton-Jacobi equation , Calc. Var. Partial Differ. Equ., 59(5) (2020) pp. 163. [12] N. Champagnat. A microscopic interpretation for adaptative dynamics trait substitution sequence models. Stochastic Processes and their Applications, 116:1127–1160, 2006. [13] N. Champagnat, R. Ferri` ere, and S. M´ el´ eard. Unifying evolutionary dynamics: from individual stochastic processes to macroscopic models via timescale separation. Theoretical Population Biology, 69:297–321, 2006. [14] N. Champagnat and S. M´ el´ eard. Polymorphic evolution sequence and evolutionary branching. Probability Theory and Related Fields, 151(1-2):45–94, 2011. [15] N. Champagnat, S. M´ el´ eard and V.C. Tran. Stochastic analysis of emergence of evolutionary cyclic behavior in population dynamics with transfer. Ann. Appl. Probab., 31(4), 1820–1867, 2021. [16] N. Champagnat, S. M´ el´ eard, S. Mirrahimi and V.C. Tran. Filling the gap between individual-based evolu-tionary models and Hamilton-Jacobi equations. J. Ec. Polytechnique, 10, 1247–1275, 2023. [17] L. Coquille and A. Kraut and C. Smadi. Stochastic individual-based models with power law mutation rate on a general finite trait space. Electron. J. Probab., 26, 1–37, 2021. [18] G. Dal Maso, H. Frankowska , Value functions for Bolza problems with discontinuous Lagrangians and Hamilton-Jacobi inequalities , ESAIM: Control, Optimisation and Calculus of Variations 5, 369-393, 2000. [19] A. Dembo and O. Zeitouni. Large Deviations Techniques and Applications. Vol 38., Springer, second edition, 1998. [20] O. Diekmann, P.-E. Jabin, S. Mischler, and B. Perthame. The dynamics of adaptation: an illuminating example and a Hamilton-Jacobi approach. Theoretical Population Biology, 67, 257–271, 2005. [21] P. Dupuis and R.S. Ellis. A Weak Convergence Approach to the Theory of Large Deviations. Wiley Series in Probability and Statistics, 1997. [22] R. Durrett and J. Mayberry. Travelling waves of selective sweeps. Annals of Applied Probability, 21(2), 699–744, 2011. [23] M. Esser and A. Kraut. A general multi-scale description of metastable adaptive motion across fitness valleys. J. Math. Biol., 89(46), 2024. [24] Stewart N. Ethier and Thomas G, Kurtz. Markov processes: characterization and convergence. John Wiley & Sons, 1986. [25] L. C. Evans Partial differential equations Graduate Studies in Mathematics Vol. 19, American Mathematical Society, 1998. [26] L. C. Evans and P. E. Souganidis. A PDE approach to geometric optics for certain semilinear parabolic equations. Indiana Univ. Math. J., 38(1):141–172, 1989. [27] M. Fang and O. Zeitouni. Slowdown for Time Inhomogeneous Branching Brownian Motion. J. Statistical Physics, 149:1-9, (2012). [28] A. Fathi. Weak Kam Theorem in Lagrangian Dynamics. Cambridge Studies in Advanced Mathematics, Cambridge University Press, 2016. [29] M Freidlin. Limit theorems for large deviations and reaction-diffusion equations. The Annals of Probability, 13(3):639–675, 1985. [30] R. Forien, J. Garnier and F. Patout. Ancestral lineages in mutation-selection equilibria with moving optimum. Bull Math Biol., 84(93), 2022. [31] N. Fournier and S. M´ el´ eard. A Microscopic Probabilistic Description of a Locally Regulated Population and Macroscopic Approximations. Ann. Appl. Probab., 14(4):1880-1919, 2004. [32] R. Hardy and S.C. Harris. A Spine Approach to Branching Diffusions with Applications to Lp-Convergence of Martingales. S´ eminaire de Probabilit´ es XLII, Lecture Notes in Mathematics, 1979:281-330, Springer Nature, 2009. [33] B. Henry, S. M´ el´ eard and V.C. Tran. Time reversal of spinal processes for linear and non-linear branching processes near stationarity. Electronic Journal of Probability, 28(32):1–27, 2023. 
+
+43 [34] N. Ikeda and S. Watanabe. Stochastic Differential Equations and Diffusion Processes, North-Holland Pub-lishing Company, 1989. [35] P.-E. Jabin. Small populations corrections for selection-mutation models. Netw. Heterog. Media, 7(4), 805–836, 2012. [36] A. Jeddi. Asymptotic behavior of some stochastic models in population dynamics: a Hamilton-Jacobi approach. ArXiV arXiv:2602.20825, 2026. [37] G. Last and M. Penrose. Lectures on the Poisson Process. IMS Textbook by Cambridge University Press (2017) [38] A. Lorz, S. Mirrahimi and B Perthame. Dirac mass dynamics in a multidimensional nonlocal parabolic equation. Communications in Partial Differential Equations, 36, 1071–1098 (2011). [39] P. Maillard and G. Raoul and J. Tourniaire. Spreading speed of locally regulated population models in macroscopically heterogeneous environments (2024). ArXiv:2105.06985. [40] B. Mallein. Maximal displacement of a branching random walk in time- inhomogeneous environment. Stochastic Processes and Their Applications, 125(10), 3958–4019 (2015). [41] A. Marguet. Uniform sampling in a structured branching population. Bernoulli, 25, 4A, 2649-2695, 2019. [42] S. M´ el´ eard and V.C. Tran. Nonlinear historical superprocess approximations for population models with past dependence. Electronic Journal of Probability, 17(47):1-32, 2012. [43] S. Mirrahimi, G. Barles, B. Perthame, P.E. Souganidis. A singular Hamilton-Jacobi equation modeling the tail problem. SIAM J. Math. Anal., 44 (6), 4297–4319, 2012. [44] B. Perthame and G. Barles. Dirac concentrations in Lotka-Volterra parabolic PDEs. Indiana Univ. Math. J. 57, 3275–3301 (2008). [45] B. Perthame and M. Gauduchon. Survival thresholds and mortality rates in adaptive dynamics: conciliating deterministic and stochastic simulations. Math. Med. Biol. 27(3), 195–210 (2010). [46] P.E. Protter. Stochastic integration and differential equations , second Edition. Stochastic Modelling and Applied Probability, 21, Springer, Berlin, 2004. [47] C. Desmarais, E. Schertzer, Z. Talygi´ as. K-Branching random walk with noisy selection: large population limits and phase transitions. arXiv:2509.26254. [48] D. Waxman and S. Gavrilets. 20 Questions on Adaptive Dynamics. Journal of Evolutionary Biology 18, 1139-1154 (2005). [49] O. Zeitouni. Branching random walks and Gaussian fields. Lecture notes, (2012). 
+
+44

@@ -1,0 +1,768 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-09T20:16:17.793367+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 6,
+    "deep_cap": 8,
+    "deep_selected": 6,
+    "quick_candidates": 12,
+    "quick_skim_target": 13,
+    "quick_selected": 12
+  },
+  "deep_dive": [
+    {
+      "id": "2604.06835v1",
+      "title": "WebCVTree4: A Newly Designed Phylogenetic and Taxonomic Study Platform for Prokaryotes Using Composition Vectors and Whole Genomes",
+      "abstract": "CVTree is an alignment-free methodology for inferring species phylogeny and taxonomy. This method allows for the efficient and accurate resolution of evolutionary relationships among large numbers of species based on whole-genome sequence data. Since 2004, we have been continuously providing CVTree web services. Recently, the server has undergone a significant upgrade, culminating in the release of the WebCVTree4 platform. This upgrade encompasses a comprehensive update of the inbuilt genomic database. Concurrently, the core algorithm has been optimized to support online phylogenetic reconstruction for tens of thousands of species, thereby facilitating the construction of genome-based trees of life. Moreover, we have developed a novel algorithm for comparing phylogenetic trees with established taxonomic systems. This algorithm allows for rapid tree rooting, taxonomic annotation, and topology comparison. Through an interactive web-based visualization tool, users can dynamically adjust tree layouts and export high-quality phylogenetic tree figures. This functionality provides robust support for comparative analysis between CVTree-generated phylogeny and taxonomy. As genome sequencing costs continue to decline, research into microbial evolution and the revision of taxonomic frameworks will increasingly rely on whole-genome data. WebCVTree4 will serve as an efficient web-based platform to support studies in microbial phylogenetics and taxonomy, accessible at https://cvtree.online/.",
+      "authors": [
+        "Guanghong Zuo"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-08T08:55:29+00:00",
+      "link": "https://arxiv.org/pdf/2604.06835v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "alignment-free methodology for inferring species phylogeny and taxonomy using whole-genome sequence data",
+      "llm_evidence_cn": "利用全基因组序列数据推断物种系统发育和分类的无比对方法",
+      "llm_evidence": "利用全基因组序列数据推断物种系统发育和分类的无比对方法",
+      "canonical_evidence": "利用全基因组序列数据推断物种系统发育和分类的无比对方法",
+      "llm_tldr_en": "WebCVTree4 is an upgraded platform for large-scale prokaryotic phylogenetic reconstruction using whole genomes.",
+      "llm_tldr_cn": "WebCVTree4 是一个利用全基因组进行大规模原核生物系统发育重建的升级平台。",
+      "llm_tldr": "WebCVTree4 是一个利用全基因组进行大规模原核生物系统发育重建的升级平台。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.06549v1",
+      "title": "The Mechanistic Invariance Test: Genomic Language Models Fail to Learn Positional Regulatory Logic",
+      "abstract": "Genomic language models (gLMs) have transformed computational biology, achieving state-of-the-art performance across genomic tasks. Yet a fundamental question threatens the foundation of this success: do these models learn the mechanistic principles governing gene regulation, or do they merely exploit statistical shortcuts? We introduce the Mechanistic Invariance Test (MIT), a rigorous 650-sequence benchmark across 8 classes with scrambled controls that enables clean discrimination between compositional sensitivity and genuine positional understanding. We evaluate five gLMs spanning all major architectural paradigms (autoregressive, masked, and bidirectional state-space models) and uncover a universal failure mode. Through systematic mechanistic probing via AT titration, positional ablation, spacing perturbation, and strand orientation tests, we demonstrate that apparent compensation sensitivity is driven entirely by AT content correlation (r=0.78-0.96 across architectures), not positional regulatory logic. The failures are striking: Evo2-1B and Caduceus score regulatory elements at incorrect positions higher than correct positions, inverting biological reality. All models are strand-blind. Compositional effects dominate positional effects by 46-fold. Perhaps most revealing, a simple 100-parameter position-aware PWM achieves perfect performance (CSS=1.00, SCR=0.98), exposing that billion-parameter gLMs fail not from insufficient capacity but from fundamentally misaligned inductive biases. Larger models show stronger compositional bias, demonstrating that scale amplifies rather than corrects this limitation. These findings reveal that current gLMs capture surface statistics while missing the positional grammar essential for gene regulation, demanding architectural innovation before deployment in synthetic biology, gene therapy, and clinical variant interpretation.",
+      "authors": [
+        "Bryan Cheng",
+        "Jasper Zhang"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-08T00:56:26+00:00",
+      "link": "https://arxiv.org/pdf/2604.06549v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "evaluation of genomic language models on regulatory logic",
+      "llm_evidence_cn": "评估基因组语言模型在调控逻辑上的表现",
+      "llm_evidence": "评估基因组语言模型在调控逻辑上的表现",
+      "canonical_evidence": "评估基因组语言模型在调控逻辑上的表现",
+      "llm_tldr_en": "The Mechanistic Invariance Test reveals that genomic language models often fail to learn positional regulatory logic.",
+      "llm_tldr_cn": "机械不变性测试揭示了基因组语言模型通常无法学习位置调控逻辑。",
+      "llm_tldr": "机械不变性测试揭示了基因组语言模型通常无法学习位置调控逻辑。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.06569v1",
+      "title": "ECLIPSE: A Composable Pipeline for Predicting ecDNA Formation, Evolution, and Therapeutic Vulnerabilities in Cancer",
+      "abstract": "Extrachromosomal DNA (ecDNA) represents one of the most pressing challenges in cancer biology: circular DNA structures that amplify oncogenes, evade targeted therapies, and drive tumor evolution in ~30% of aggressive cancers. Despite its clinical importance, computational ecDNA research has been built on broken foundations. We discover that existing benchmarks suffer from circular reasoning -- models trained on features that already require knowing ecDNA status -- artificially inflating performance from AUROC 0.724 to 0.967. We introduce ECLIPSE, the first methodologically sound framework for ecDNA analysis, comprising three modules that transform how we predict, model, and target these structures. ecDNA-Former achieves AUROC 0.812 using only standard genomic features, demonstrating for the first time that ecDNA status is predictable without specialized sequencing, and that careful feature curation matters more than complex architectures. CircularODE captures ecDNA's unique stochastic dynamics through physics-constrained neural SDEs, achieving r > 0.997 on experimental data via zero-shot transfer. VulnCausal applies causal inference to identify therapeutic vulnerabilities, achieving 80x enrichment over chance and 3.7x higher validation than standard approaches by filtering spurious correlations. Together, these modules establish rigorous baselines for an emerging application area and reveal a broader lesson: in high-stakes biomedical ML, methodological rigor -- eliminating leakage, encoding domain physics, addressing confounding -- outweighs architectural innovation. ECLIPSE provides both the tools and the template for principled computational oncology.",
+      "authors": [
+        "Bryan Cheng",
+        "Jasper Zhang"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-08T01:35:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.06569v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "ecDNA evolution and genomic structural variations",
+      "llm_evidence_cn": "ecDNA演化与基因组结构变异",
+      "llm_evidence": "ecDNA演化与基因组结构变异",
+      "canonical_evidence": "ecDNA演化与基因组结构变异",
+      "llm_tldr_en": "A pipeline for predicting ecDNA formation and evolution in cancer genomes.",
+      "llm_tldr_cn": "一个用于预测癌症基因组中ecDNA形成和演化的流水线。",
+      "llm_tldr": "一个用于预测癌症基因组中ecDNA形成和演化的流水线。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "complex gene evolution mechanisms",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.07196v1",
+      "title": "Probing 3D Chromatin Structure Awareness in Evo2 DNA Language Model",
+      "abstract": "DNA language models like Evo2 now fit million-token contexts large enough to cover entire TADs, yet whether they learn 3D chromatin structure, a key regulatory layer acting atop primary sequence, remains untested and questionable, given that Evo2's training data includes prokaryotes lacking this structure. We probed Evo2-7B on TAD boundaries and convergent CTCF loops in 1 Mb windows using two complementary tests: likelihood-based perturbation and sequence generation. Evo2 did not distinguish functional perturbations from matched random controls and failed to reliably generate convergent CTCF loops, recovering TAD boundaries only partially. Together, these results indicate that Evo2 has learned local CTCF grammar but misses higher-order 3D organization, pointing to bidirectional model architectures integrating cell types and 3D contacts, rather than longer contexts, as the path to developing 3D-aware DNA language models.",
+      "authors": [
+        "UkJin Lee"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-08T15:20:10+00:00",
+      "link": "https://arxiv.org/pdf/2604.07196v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Probing 3D Chromatin Structure in Evo2 DNA Language Model",
+      "llm_evidence_cn": "在Evo2 DNA语言模型中探测3D染色质结构",
+      "llm_evidence": "在Evo2 DNA语言模型中探测3D染色质结构",
+      "canonical_evidence": "在Evo2 DNA语言模型中探测3D染色质结构",
+      "llm_tldr_en": "Evaluates whether the Evo2 DNA language model understands 3D chromatin organization and TAD boundaries.",
+      "llm_tldr_cn": "评估Evo2 DNA语言模型是否理解3D染色质结构和TAD边界。",
+      "llm_tldr": "评估Evo2 DNA语言模型是否理解3D染色质结构和TAD边界。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.06267v1",
+      "title": "MO-RiskVAE: A Multi-Omics Variational Autoencoder for Survival Risk Modeling in Multiple MyelomaMO-RiskVAE",
+      "abstract": "Multimodal variational autoencoders (VAEs) have emerged as a powerful framework for survival risk modeling in multiple myeloma by integrating heterogeneous omics and clinical data. However, when trained under survival supervision, standard latent regularization strategies often fail to preserve prognostically relevant variation, leading to unstable or overly constrained representations. Despite numerous proposed variants, it remains unclear which aspects of latent design fundamentally govern performance in this setting. In this work, we conduct a controlled investigation of latent modeling choices for multimodal survival prediction within a unified extension of the MyeVAE framework. By systematically isolating regularization scale, posterior geometry, and latent space structure under identical architectures and optimization protocols, we show that survival-driven training is primarily sensitive to the magnitude and structure of latent regularization rather than the specific divergence formulation. In particular, moderate relaxation of KL regularization consistently improves survival discrimination, while alternative divergence mechanisms such as MMD and HSIC provide limited benefit without appropriate scaling. We further demonstrate that structuring the latent space can improve alignment between learned representations and survival risk gradients. A hybrid continuous--discrete formulation based on Gumbel--Softmax enhances global risk ordering in the continuous latent subspace, even though stable discrete subtype discovery does not emerge under survival supervision. Guided by these findings, we instantiate a robust multimodal survival model, termed MO-RiskVAE, which consistently improves risk stratification over the original MyeVAE without introducing additional supervision or complex training heuristics.",
+      "authors": [
+        "Zixuan Chen",
+        "Heng Zhang",
+        "YuPeng Qin",
+        "WenPeng Xing",
+        "Qiang Wang",
+        "Da Wang",
+        "Changting Lin",
+        "Meng Han"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-07T03:58:04+00:00",
+      "link": "https://arxiv.org/pdf/2604.06267v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for multi-omics data integration and survival risk modeling",
+      "llm_evidence_cn": "用于多组学数据整合和生存风险建模的AI技术",
+      "llm_evidence": "用于多组学数据整合和生存风险建模的AI技术",
+      "canonical_evidence": "用于多组学数据整合和生存风险建模的AI技术",
+      "llm_tldr_en": "Investigates multimodal VAEs for integrating heterogeneous omics data to predict survival risk in cancer.",
+      "llm_tldr_cn": "研究了用于整合异质组学数据以预测癌症生存风险的多模态变分自编码器。",
+      "llm_tldr": "研究了用于整合异质组学数据以预测癌症生存风险的多模态变分自编码器。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.06269v1",
+      "title": "MAT-Cell: A Multi-Agent Tree-Structured Reasoning Framework for Batch-Level Single-Cell Annotation",
+      "abstract": "Automated cellular reasoning faces a core dichotomy: supervised methods fall into the Reference Trap and fail to generalize to out-of-distribution cell states, while large language models (LLMs), without grounded biological priors, suffer from a Signal-to-Noise Paradox that produces spurious associations. We propose MAT-Cell, a neuro-symbolic reasoning framework that reframes single-cell analysis from black-box classification into constructive, verifiable proof generation. MAT-Cell injects symbolic constraints through adaptive Retrieval-Augmented Generation (RAG) to ground neural reasoning in biological axioms and reduce transcriptomic noise. It further employs a dialectic verification process with homogeneous rebuttal agents to audit and prune reasoning paths, forming syllogistic derivation trees that enforce logical consistency.Across large-scale and cross-species benchmarks, MAT-Cell significantly outperforms state-of-the-art (SOTA) models and maintains robust per-formance in challenging scenarios where baselinemethods severely degrade. Code is available at https://gith ub.com/jiangliu91/MAT-Cell-A-Mul ti-Agent-Tree-Structured-Reasoni ng-Framework-for-Batch-Level-Sin gle-Cell-Annotation.",
+      "authors": [
+        "Yehui Yang",
+        "Zelin Zang",
+        "Changxi Chi",
+        "Jingbo Zhou",
+        "Xienan Zheng",
+        "Yuzhe Jia",
+        "Chang Yu",
+        "Jinlin Wu",
+        "Fuji Yang",
+        "Jiebo Luo",
+        "Zhen Lei",
+        "Stan Z. Li"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.AI"
+      ],
+      "published": "2026-04-07T04:56:06+00:00",
+      "link": "https://arxiv.org/pdf/2604.06269v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI framework for single-cell annotation and transcriptomic analysis",
+      "llm_evidence_cn": "用于单细胞注释和转录组分析的AI框架",
+      "llm_evidence": "用于单细胞注释和转录组分析的AI框架",
+      "canonical_evidence": "用于单细胞注释和转录组分析的AI框架",
+      "llm_tldr_en": "MAT-Cell uses a multi-agent tree-structured reasoning framework to improve batch-level single-cell annotation.",
+      "llm_tldr_cn": "MAT-Cell利用多智能体树状结构推理框架来改进批次级单细胞注释。",
+      "llm_tldr": "MAT-Cell利用多智能体树状结构推理框架来改进批次级单细胞注释。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.06013v1",
+      "title": "Epistemic Blinding: An Inference-Time Protocol for Auditing Prior Contamination in LLM-Assisted Analysis",
+      "abstract": "This paper presents epistemic blinding in the context of an agentic system that uses large language models to reason across multiple biological datasets for drug target prioritization. During development, it became apparent that LLM outputs silently blend data-driven inference with memorized priors about named entities - and the blend is invisible: there is no way to determine, from a single output, how much came from the data on the page and how much came from the model's training memory. Epistemic blinding is a simple inference-time protocol that replaces entity identifiers with anonymous codes before prompting, then compares outputs against an unblinded control. The protocol does not make LLM reasoning deterministic, but it restores one critical axis of auditability: measuring how much of an output came from the supplied data versus the model's parametric knowledge. The complete target identification system is described - including LLM-guided evolutionary optimization of scoring functions and blinded agentic reasoning for target rationalization - with demonstration that both stages operate without access to entity identity. In oncology drug target prioritization across four cancer types, blinding changes 16% of top-20 predictions while preserving identical recovery of validated targets. The contamination problem is shown to generalize beyond biology: in S&P 500 equity screening, brand-recognition bias reshapes 30-40% of top-20 rankings across five random seeds. To lower the barrier to adoption, the protocol is released as an open-source tool and as a Claude Code skill that enables one-command epistemic blinding within agentic workflows. The claim is not that blinded analysis produces better results, but that without blinding, there is no way to know to what degree the agent is adhering to the analytical process the researcher designed.",
+      "authors": [
+        "Michael Cuccarese"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "published": "2026-04-07T16:06:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.06013v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI for biological dataset analysis",
+      "llm_evidence_cn": "利用AI进行生物数据集分析",
+      "llm_evidence": "利用AI进行生物数据集分析",
+      "canonical_evidence": "利用AI进行生物数据集分析",
+      "llm_tldr_en": "Proposes a protocol to audit prior contamination in LLMs used for biological drug target prioritization.",
+      "llm_tldr_cn": "提出了一种协议，用于审计用于生物药物靶点优先级排序的大模型中的先验污染。",
+      "llm_tldr": "提出了一种协议，用于审计用于生物药物靶点优先级排序的大模型中的先验污染。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.03029v1",
+      "title": "A Boolean encoding of the Most Permissive semantics for Boolean networks",
+      "abstract": "Boolean networks are widely used to model biological regulatory networks and study their dynamics. Classical semantics, such as the asynchronous semantics, do not always accurately capture transient or asymptotic behaviors observed in quantitative models. To address this limitation, the Most Permissive semantics was introduced by Paulevé et al., extending Boolean dynamics with intermediate activity levels that allow components to transiently activate or inhibit their targets during transitions. In this work, we provide a Boolean encoding of the Most Permissive semantics: each component of the original network is represented by a triplet of Boolean variables, and we derive the extended logical function governing the resulting network. We prove that the asynchronous dynamics of the encoded network exactly reproduces the attainability properties of the original network under Most Permissive semantics. This encoding is implemented as a modifier within the bioLQM framework, making it directly compatible with existing tools such as GINsim. To address scalability limitations, we further extend the tool to support partial unfolding, restricted to a user-defined subset of components.",
+      "authors": [
+        "Laure de Chancel",
+        "Brigitte Mossé",
+        "Aurélien Naldi",
+        "Élisabeth Remy"
+      ],
+      "primary_category": "cs.DM",
+      "categories": [
+        "cs.DM"
+      ],
+      "published": "2026-04-03T13:36:01+00:00",
+      "link": "https://arxiv.org/pdf/2604.03029v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Boolean networks used to model biological regulatory networks and dynamics",
+      "llm_evidence_cn": "布尔网络用于模拟生物调节网络及其动力学",
+      "llm_evidence": "布尔网络用于模拟生物调节网络及其动力学",
+      "canonical_evidence": "布尔网络用于模拟生物调节网络及其动力学",
+      "llm_tldr_en": "Provides a Boolean encoding for Most Permissive semantics to better capture biological network dynamics.",
+      "llm_tldr_cn": "为最宽松语义提供布尔编码，以更好地捕捉生物调节网络的动力学特征。",
+      "llm_tldr": "为最宽松语义提供布尔编码，以更好地捕捉生物调节网络的动力学特征。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.06516v1",
+      "title": "From stochastic individual-based models to free-boundary Hamilton-Jacobi equations",
+      "abstract": "We study a stochastic branching model for a population structured by a quantitative phenotypic trait and subject to births, deaths, and mutations. In a regime of large population and small mutations, and in logarithmic scales of size and time, we derive a certain class of free boundary Hamilton-Jacobi equations with state constraints from the stochastic individual-based system. This goes beyond the classical Hamilton-Jacobi equations obtained from deterministic models by taking into account the possible extinction of the system in certain regions of the trait space. The proof is obtained by combining methods for the analysis of Hamilton-Jacobi equations with probabilistic tools from the theory of large deviations and branching processes.",
+      "authors": [
+        "Nicolas Champagnat",
+        "Sylvie Méléard",
+        "Sepideh Mirrahimi",
+        "Viet Chi Tran"
+      ],
+      "primary_category": "math.PR",
+      "categories": [
+        "math.PR",
+        "math.AP"
+      ],
+      "published": "2026-04-07T23:18:09+00:00",
+      "link": "https://arxiv.org/pdf/2604.06516v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "stochastic branching model for population phenotypic traits and mutations",
+      "llm_evidence_cn": "群体表型性状与突变的随机分支模型",
+      "llm_evidence": "群体表型性状与突变的随机分支模型",
+      "canonical_evidence": "群体表型性状与突变的随机分支模型",
+      "llm_tldr_en": "Derives Hamilton-Jacobi equations from stochastic models to study population trait evolution and extinction.",
+      "llm_tldr_cn": "通过随机模型推导方程，研究群体性状演化及灭变动态。",
+      "llm_tldr": "通过随机模型推导方程，研究群体性状演化及灭变动态。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.03892v1",
+      "title": "Lotka-Sharpe Neural Operators for Control of Population PDEs",
+      "abstract": "Age-structured predator-prey integro-partial differential equations provide models of interacting populations in ecology, epidemiology, and biotechnology. A key challenge in feedback design for these systems is the scalar $ζ$, defined implicitly by the Lotka-Sharpe nonlinear integral condition, as a mapping from fertility and mortality rates to $ζ$. To solve this challenge with operator learning, we first prove that the Lotka-Sharpe operator is Lipschitz continuous, guaranteeing the existence of arbitrarily accurate neural operator approximations over a compact set of fertility and mortality functions. We then show that the resulting approximate feedback law preserves semi-global practical asymptotic stability under propagation of the operator approximation error through various other nonlinear operators, all the way through to the control input. In the numerical results, not only do we learn ``once-and-for-all'' the canonical Lotka-Sharpe (LS) operator, and thus make it available for future uses in control of other age-structured population interconnections, but we demonstrate the online usage of the neural LS operator under estimation of the fertility and mortality functions.",
+      "authors": [
+        "Miroslav Krstic",
+        "Iasson Karafyllis",
+        "Luke Bhan",
+        "Carina Veil"
+      ],
+      "primary_category": "eess.SY",
+      "categories": [
+        "eess.SY",
+        "cs.LG",
+        "math.OC"
+      ],
+      "published": "2026-04-04T23:17:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.03892v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Neural operators for predator-prey models and interacting populations",
+      "llm_evidence_cn": "用于捕食者-猎物模型和相互作用种群的神经算子",
+      "llm_evidence": "用于捕食者-猎物模型和相互作用种群的神经算子",
+      "canonical_evidence": "用于捕食者-猎物模型和相互作用种群的神经算子",
+      "llm_tldr_en": "Applies neural operators to control population partial differential equations in ecology and biotechnology.",
+      "llm_tldr_cn": "应用神经算子来控制生态学和生物技术中的种群偏微分方程。",
+      "llm_tldr": "应用神经算子来控制生态学和生物技术中的种群偏微分方程。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.07228v1",
+      "title": "Emergence of cooperation in nonlinear higher-order public goods games",
+      "abstract": "Evolutionary game theory has provided substantial contributions to explain the emergence of cooperation under unfavourable conditions in ecology, economics, and the social sciences. Recently, inspired by newly available empirical evidence on group interactions, higher-order networks have emerged as a natural framework to properly encode multiplayer games in structured populations. Here, we study the emergence of cooperation in a nonlinear public goods game (PGG) on hypergraphs, where collective reinforcement captures the synergistic or discounting effect associated with each additional cooperator. In well-mixed populations, single-order PGGs, where all games have the same number of players, display a change in the nature of transition from continuous to discontinuous depending on the exact form of nonlinearity. By contrast, mixed-order PGGs, where games with different number of players coexist, exhibit a richer dynamical regime wherein a state of active coexistence of bistability and cooperation can arise. We further find that scale-free hypergraphs promote cooperation, highlighting the crucial role played by both the initial placement of cooperators and the presence of hyperdegree correlations. Overall, our results provide a comprehensive characterization of nonlinear PGGs on hypergraphs and open up new avenues for richer models of evolutionary dynamics of multiplayer interactions on structured populations.",
+      "authors": [
+        "Jaume Llabrés",
+        "Onkar Sadekar",
+        "Federico Malizia",
+        "Federico Battiston"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph",
+        "cs.GT",
+        "cs.SI",
+        "math.DS",
+        "q-bio.PE"
+      ],
+      "published": "2026-04-08T15:51:03+00:00",
+      "link": "https://arxiv.org/pdf/2604.07228v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary game theory and structured populations",
+      "llm_evidence_cn": "演化博弈论与结构化种群",
+      "llm_evidence": "演化博弈论与结构化种群",
+      "canonical_evidence": "演化博弈论与结构化种群",
+      "llm_tldr_en": "Explores the emergence of cooperation in public goods games using higher-order networks.",
+      "llm_tldr_cn": "利用高阶网络研究公共物品博弈中合作行为的演化涌现。",
+      "llm_tldr": "利用高阶网络研究公共物品博弈中合作行为的演化涌现。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.05223v1",
+      "title": "A Modular 3D-Printed Design to Investigate Prebiotic Chemical Systems in Hot Spring Pools",
+      "abstract": "The emergence of membranous compartments (protocells) with encapsulated genetic material was a crucial step life's origin and evolution. The hot spring hypothesis for the origin of life suggests that protocells could have formed in hot spring pools and encapsulated organic matter. Previous investigations have focused on mimicking wet-dry (WD) cycles within a single pool, which precludes simulation of many hydrothermal field conditions, such as differential mineralogy, variable temperature and pH and water flow between multiple hot spring pools. Here, we present a modular 3D-printed hydrothermal field simulator that mimics the complex nature of hot spring fields by controlling the variability of a series of linked pools, including WD cycles, temperature, pH, mineralogy, and mixing of different fluids. Results from using the prototype hot spring field design demonstrate the ability to spontaneously form lipid vesicles that encapsulate organic matter within membranous compartments comprised of decanoic acid:decanol (4:1) or the phospholipids POPC:POPG (1:1). We observed distinct morphological differences in the vesicles, ranging from thick-walled multilamellar, thin-walled oligolamellar and unilamellar as well as giant unilamellar vesicles formed under multiple WD cycles in the simulator pools. Cargo encapsulation was favoured in the cell-like giant unilamellar and small oligolamellar vesicles. Overall, hot-spring simulator offers a customisable avenue for studying other hot spring processes such as prebiotic chemical reactions, mineral surface catalysis, and the complexity of hydrothermal field dynamics.",
+      "authors": [
+        "Arslan Siddique",
+        "Dev Chauhan",
+        "Alethea Dutton",
+        "Kavish Reddy",
+        "Soumya Kanti De",
+        "Albert C. Fahrenbach",
+        "Tracie Barber",
+        "Martin Van Kranendonk",
+        "Anna Wang"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft"
+      ],
+      "published": "2026-04-06T22:39:12+00:00",
+      "link": "https://arxiv.org/pdf/2604.05223v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "origin and evolution of genetic material",
+      "llm_evidence_cn": "遗传物质的起源与演化",
+      "llm_evidence": "遗传物质的起源与演化",
+      "canonical_evidence": "遗传物质的起源与演化",
+      "llm_tldr_en": "A 3D-printed simulator to study the emergence of protocells and genetic material in hot springs.",
+      "llm_tldr_cn": "一种用于研究热泉中原始细胞和遗传物质出现的3D打印模拟器。",
+      "llm_tldr": "一种用于研究热泉中原始细胞和遗传物质出现的3D打印模拟器。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.05478v1",
+      "title": "Transcriptomic Models for Immunotherapy Response Prediction Show Limited Cross-cohort Generalisability",
+      "abstract": "Immune checkpoint inhibitors (ICIs) have transformed cancer therapy; yet substantial proportion of patients exhibit intrinsic or acquired resistance, making accurate pre-treatment response prediction a critical unmet need. Transcriptomics-based biomarkers derived from bulk and single-cell RNA sequencing (scRNA-seq) offer a promising avenue for capturing tumour-immune interactions, yet the cross-cohort generalisability of existing prediction models remains unclear.We systematically benchmark nine state-of-the-art transcriptomic ICI response predictors, five bulk RNA-seq-based models (COMPASS, IRNet, NetBio, IKCScore, and TNBC-ICI) and four scRNA-seq-based models (PRECISE, DeepGeneX, Tres and scCURE), using publicly available independent datasets unseen during model development. Overall, predictive performance was modest: bulk RNA-seq models performed at or near chance level across most cohorts, while scRNA-seq models showed only marginal improvements. Pathway-level analyses revealed sparse and inconsistent biomarker signals across models. Although scRNA-seq-based predictors converged on immune-related programs such as allograft rejection, bulk RNA-seq-based models exhibited little reproducible overlap. PRECISE and NetBio identified the most coherent immune-related themes, whereas IRNet predominantly captured metabolic pathways weakly aligned with ICI biology. Together, these findings demonstrate the limited cross-cohort robustness and biological consistency of current transcriptomic ICI prediction models, underscoring the need for improved domain adaptation, standardised preprocessing, and biologically grounded model design.",
+      "authors": [
+        "Yuheng Liang",
+        "Lucy Chuo",
+        "Ahmadreza Argha",
+        "Nona Farbehi",
+        "Lu Chen",
+        "Roohallah Alizadehsani",
+        "Mehdi Hosseinzadeh",
+        "Amin Beheshti",
+        "Thantrira Porntaveetusm",
+        "Youqiong Ye",
+        "Hamid Alinejad-Rokny"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-04-07T06:18:59+00:00",
+      "link": "https://arxiv.org/pdf/2604.05478v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Transcriptomic models for tumor-immune interactions",
+      "llm_evidence_cn": "肿瘤-免疫相互作用的转录组模型",
+      "llm_evidence": "肿瘤-免疫相互作用的转录组模型",
+      "canonical_evidence": "肿瘤-免疫相互作用的转录组模型",
+      "llm_tldr_en": "Benchmarks transcriptomic models for predicting immunotherapy response using RNA sequencing data.",
+      "llm_tldr_cn": "利用RNA测序数据对预测免疫治疗反应的转录组模型进行了系统基准测试。",
+      "llm_tldr": "利用RNA测序数据对预测免疫治疗反应的转录组模型进行了系统基准测试。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.06264v1",
+      "title": "ToxReason: A Benchmark for Mechanistic Chemical Toxicity Reasoning via Adverse Outcome Pathway",
+      "abstract": "Recent advances in large language models (LLMs) have enabled molecular reasoning for property prediction. However, toxicity arises from complex biological mechanisms beyond chemical structure, necessitating mechanistic reasoning for reliable prediction. Despite its importance, current benchmarks fail to systematically evaluate this capability. LLMs can generate fluent but biologically unfaithful explanations, making it difficult to assess whether predicted toxicities are grounded invalid mechanisms. To bridge this gap, we introduce ToxReason, a benchmark grounded in the Adverse Outcome Pathway (AOP) that evaluates organ-level toxicity reasoning across multiple organs. ToxReason integrates experimental drug-target interaction evidence with toxicity labels, requiring models to infer both toxic outcomes and their underlying mechanisms from Molecular Initiating Event (MIE) to Adverse Outcome (AO). Using ToxReason, we evaluate toxicity prediction performance and reasoning quality across diverse LLMs. We find that strong predictive performance does not necessarily imply reliable reasoning. Furthermore, we show that reasoning-aware training improves mechanistic reasoning and, consequently, toxicity prediction performance. Together, these results underscore the necessity of integrating reasoning into both evaluation and training for trustworthy toxicity modeling.",
+      "authors": [
+        "Jueon Park",
+        "Wonjune Jang",
+        "Chanhwi Kim",
+        "Yein Park",
+        "Jaewoo Kang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.AI"
+      ],
+      "published": "2026-04-07T02:32:38+00:00",
+      "link": "https://arxiv.org/pdf/2604.06264v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for biological mechanism reasoning",
+      "llm_evidence_cn": "利用AI进行生物机制推理",
+      "llm_evidence": "利用AI进行生物机制推理",
+      "canonical_evidence": "利用AI进行生物机制推理",
+      "llm_tldr_en": "Introduces a benchmark for evaluating LLMs on mechanistic biological reasoning for chemical toxicity.",
+      "llm_tldr_cn": "引入了一个基准，用于评估大语言模型在化学毒性生物机制推理方面的能力。",
+      "llm_tldr": "引入了一个基准，用于评估大语言模型在化学毒性生物机制推理方面的能力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.06391v1",
+      "title": "Toward a universal foundation model for graph-structured data",
+      "abstract": "Graphs are a central representation in biomedical research, capturing molecular interaction networks, gene regulatory circuits, cell--cell communication maps, and knowledge graphs. Despite their importance, currently there is not a broadly reusable foundation model available for graph analysis comparable to those that have transformed language and vision. Existing graph neural networks are typically trained on a single dataset and learn representations specific only to that graph's node features, topology, and label space, limiting their ability to transfer across domains. This lack of generalization is particularly problematic in biology and medicine, where networks vary substantially across cohorts, assays, and institutions. Here we introduce a graph foundation model designed to learn transferable structural representations that are not specific to specific node identities or feature schemes. Our approach leverages feature-agnostic graph properties, including degree statistics, centrality measures, community structure indicators, and diffusion-based signatures, and encodes them as structural prompts. These prompts are integrated with a message-passing backbone to embed diverse graphs into a shared representation space. The model is pretrained once on heterogeneous graphs and subsequently reused on unseen datasets with minimal adaptation. Across multiple benchmarks, our pretrained model matches or exceeds strong supervised baselines while demonstrating superior zero-shot and few-shot generalization on held-out graphs. On the SagePPI benchmark, supervised fine-tuning of the pretrained backbone achieves a mean ROC-AUC of 95.5%, a gain of 21.8% over the best supervised message-passing baseline. The proposed technique thus provides a unique approach toward reusable, foundation-scale models for graph-structured data in biomedical and network science applications.",
+      "authors": [
+        "Sakib Mostafa",
+        "Lei Xing",
+        "Md. Tauhidul Islam"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-07T19:21:21+00:00",
+      "link": "https://arxiv.org/pdf/2604.06391v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "foundation model for gene regulatory circuits and biomedical graphs",
+      "llm_evidence_cn": "用于基因调节回路和生物医学图谱的基础模型",
+      "llm_evidence": "用于基因调节回路和生物医学图谱的基础模型",
+      "canonical_evidence": "用于基因调节回路和生物医学图谱的基础模型",
+      "llm_tldr_en": "Introduces a universal foundation model for graph-structured data in biomedical research.",
+      "llm_tldr_cn": "引入了一种用于生物医学研究中图结构数据的通用基础模型。",
+      "llm_tldr": "引入了一种用于生物医学研究中图结构数据的通用基础模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.06558v1",
+      "title": "When Does Context Help? A Systematic Study of Target-Conditional Molecular Property Prediction",
+      "abstract": "We present the first systematic study of when target context helps molecular property prediction, evaluating context conditioning across 10 diverse protein families, 4 fusion architectures, data regimes spanning 67-9,409 training compounds, and both temporal and random evaluation splits. Using NestDrug, a FiLM-based architecture that conditions molecular representations on target identity, we characterize both success and failure modes with three principal findings. First, fusion architecture dominates: FiLM outperforms concatenation by 24.2 percentage points and additive conditioning by 8.6 pp; how you incorporate context matters more than whether you include it. Second, context enables otherwise impossible predictions: on data-scarce CYP3A4 (67 training compounds), multi-task transfer achieves 0.686 AUC where per-target Random Forest collapses to 0.238. Third, context can systematically hurt: distribution mismatch causes 10.2 pp degradation on BACE1; few-shot adaptation consistently underperforms zero-shot. Beyond methodology, we expose fundamental flaws in standard benchmarking: 1-nearest-neighbor Tanimoto achieves 0.991 AUC on DUD-E without any learning, and 50% of actives leak from training data, rendering absolute performance metrics meaningless. Our temporal split evaluation (train up to 2020, test 2021-2024) achieves stable 0.843 AUC with no degradation, providing the first rigorous evidence that context-conditional molecular representations generalize to future chemical space.",
+      "authors": [
+        "Bryan Cheng",
+        "Jasper Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.BM",
+        "q-bio.MN"
+      ],
+      "published": "2026-04-08T01:19:16+00:00",
+      "link": "https://arxiv.org/pdf/2604.06558v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for molecular property prediction across protein families",
+      "llm_evidence_cn": "用于跨蛋白质家族分子属性预测的AI研究",
+      "llm_evidence": "用于跨蛋白质家族分子属性预测的AI研究",
+      "canonical_evidence": "用于跨蛋白质家族分子属性预测的AI研究",
+      "llm_tldr_en": "Systematically studies how target context conditioning improves AI-based molecular property prediction.",
+      "llm_tldr_cn": "系统研究了目标上下文调节如何提高基于AI的分子属性预测性能。",
+      "llm_tldr": "系统研究了目标上下文调节如何提高基于AI的分子属性预测性能。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.06864v1",
+      "title": "A Data-Informed Variational Clustering Framework for Noisy High-Dimensional Data",
+      "abstract": "Clustering in high-dimensional settings with severe feature noise remains challenging, especially when only a small subset of dimensions is informative and the final number of clusters is not specified in advance. In such regimes, partition recovery, feature relevance learning, and structural adaptation are tightly coupled, and standard likelihood-based methods can become unstable or overly sensitive to noisy dimensions. We propose DIVI, a data-informed variational clustering framework that combines global feature gating with split-based adaptive structure growth. DIVI uses informative prior initialization to stabilize optimization, learns feature relevance in a differentiable manner, and expands model complexity only when local diagnostics indicate underfit. Beyond clustering performance, we also examine runtime scalability and parameter sensitivity in order to clarify the computational and practical behavior of the framework. Empirically, we find that DIVI performs competitively under severe feature noise, remains computationally feasible, and yields interpretable feature-gating behavior, while also exhibiting conservative growth and identifiable failure regimes in challenging settings. Overall, DIVI is best viewed as a practical variational clustering framework for noisy high-dimensional data rather than as a fully Bayesian generative solution.",
+      "authors": [
+        "Wan Ping Chen"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-04-08T09:25:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.06864v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Variational clustering for high-dimensional biological data",
+      "llm_evidence_cn": "高维生物数据的变分聚类",
+      "llm_evidence": "高维生物数据的变分聚类",
+      "canonical_evidence": "高维生物数据的变分聚类",
+      "llm_tldr_en": "A clustering framework for noisy high-dimensional data, applicable to genomic feature relevance learning.",
+      "llm_tldr_cn": "一种适用于噪声高维数据的聚类框架，可用于基因组特征相关性学习。",
+      "llm_tldr": "一种适用于噪声高维数据的聚类框架，可用于基因组特征相关性学习。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.07347v1",
+      "title": "Temporal Structure Mediates the Robustness and Collapse of Plant-Pollinator Networks",
+      "abstract": "Mutualistic networks provide a powerful way to describe and analyse plant-pollinator communities and their structure over time. While these networks capture the complex interdependencies that link population fates across the season, they can be hard to untangle, preventing us from understanding the emergence of community-scale properties and responses to perturbation. Here, we address this problem by developing a structural model of a plant-pollinator community that explicitly incorporates seasonal turnover and the temporal nature of species interactions. We analyse our model using percolation methods from network science to derive simple analytical solutions linking network structure to emergent community diversity. Our findings reveal that temporal structure organises community diversity into distinct ecological phases, creating the potential for alternative high- and low-diversity states and bistable regimes. We demonstrate how this temporal structure mediates the nature of transitions between these states, determining whether systems undergo gradual shifts or abrupt, catastrophic collapses. Crucially, we show how this temporal structure reduces the robustness of plant-pollinator systems, creating bottlenecks that inhibit species persistence and increase susceptibility to secondary extinctions. Our results demonstrate that the temporal dynamics of plant-pollinator networks are central to mediating their fragility, highlighting the importance of accounting for time when considering community resilience.",
+      "authors": [
+        "Tom Clegg",
+        "Thilo Gross"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph",
+        "q-bio.PE"
+      ],
+      "published": "2026-04-08T17:58:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.07347v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Temporal nature of species interactions and community diversity",
+      "llm_evidence_cn": "物种相互作用的时间性质与群落多样性",
+      "llm_evidence": "物种相互作用的时间性质与群落多样性",
+      "canonical_evidence": "物种相互作用的时间性质与群落多样性",
+      "llm_tldr_en": "A structural model analyzing how seasonal turnover affects plant-pollinator network robustness and diversity.",
+      "llm_tldr_cn": "一个分析季节更替如何影响植物-传粉者网络稳健性和多样性的结构模型。",
+      "llm_tldr": "一个分析季节更替如何影响植物-传粉者网络稳健性和多样性的结构模型。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
