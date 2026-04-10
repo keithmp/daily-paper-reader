@@ -1,0 +1,645 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-10T19:42:01.748368+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 4,
+    "deep_cap": 8,
+    "deep_selected": 4,
+    "quick_candidates": 11,
+    "quick_skim_target": 13,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2604.08071v1",
+      "title": "Identifying bubble-like subgraphs in linear-time via a unified SPQR-tree framework",
+      "abstract": "A fundamental algorithmic problem in computational biology is to find all subgraphs of a given type (superbubbles, snarls, and ultrabubbles) in a directed or bidirected input graph. These correspond to regions of genetic variation and are useful in analyzing collections of genomes. We present the first linear-time algorithms for identifying all snarls and all ultrabubbles, resolving problems open since 2018. The algorithm for snarls relies on a new linear-size representation of all snarls with respect to the number of vertices in the graph. We employ the well-known SPQR-tree decomposition, which encodes all 2-separators of a biconnected graph. After several dynamic-programming-style traversals of this tree, we maintain key properties (such as acyclicity) that allow us to decide whether a given 2-separator defines a subgraph to be reported. A crucial ingredient for linear-time complexity is that acyclicity of linearly many subgraphs can be tested simultaneously via the problem of computing all arcs in a directed graph whose removal renders it acyclic (so-called feedback arcs). As such, we prove a fundamental result for bidirected graphs, that may be of independent interest: all feedback arcs can be computed in linear time for tipless bidirected graphs, while in general this is at least as hard as matrix multiplication, assuming the k-Clique Conjecture. Our results form a unified framework that also yields a completely different linear-time algorithm for finding all superbubbles. Although some of the results are technically involved, the underlying ideas are conceptually simple, and may extend to other bubble-like subgraphs. More broadly, our work contributes to the theoretical foundations of computational biology and advances a growing line of research that uses SPQR-tree decompositions as a general tool for designing efficient algorithms, beyond their traditional role in graph drawing.",
+      "authors": [
+        "Francisco Sena",
+        "Aleksandr Politov",
+        "Corentin Moumard",
+        "Massimo Cairo",
+        "Romeo Rizzi",
+        "Manuel Cáceres",
+        "Sebastian Schmidt",
+        "Juha Harviainen",
+        "Alexandru I. Tomescu"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-04-09T10:41:09+00:00",
+      "link": "https://arxiv.org/pdf/2604.08071v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "computational biology algorithms for genetic variation in graphs",
+      "llm_evidence_cn": "用于分析图结构中遗传变异的计算生物学算法",
+      "llm_evidence": "用于分析图结构中遗传变异的计算生物学算法",
+      "canonical_evidence": "用于分析图结构中遗传变异的计算生物学算法",
+      "llm_tldr_en": "Presents linear-time algorithms for identifying genetic variation regions in genome graphs.",
+      "llm_tldr_cn": "提出了用于识别基因组图中遗传变异区域的线性时间算法。",
+      "llm_tldr": "提出了用于识别基因组图中遗传变异区域的线性时间算法。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.08217v1",
+      "title": "Co-design for Trustworthy AI: An Interpretable and Explainable Tool for Type 2 Diabetes Prediction Using Genomic Polygenic Risk Scores",
+      "abstract": "The polygenic risk scores (PRS) have emerged as an important methodology for quantifying genetic predisposition to complex traits and clinical disease. Significant progress has been made in applying PRS to conditions such as obesity, cancer, and type 2 diabetes (T2DM). Studies have demonstrated that PRS can effectively identify individuals at high risk, thereby enabling early screening, personalized treatment, and targeted interventions for diseases with a genetic predisposition. One current limitation of PRS, however, is the lack of interpretability tools. To address this problem for T2DM, researchers at the Graduate School of Data Science at the Seoul National University introduced eXplainable PRS (XPRS). This visualization tool decomposes PRSs into gene-level and single-nucleotide polymorphism (SNP) contribution scores via Shapley Additive Explanations (SHAP), providing granular insights into the specific genetic factors driving an individual's risk profile. We used a co-design approach to assess XPRS trustworthiness by considering legal, medical, ethical, and technical robustness during early design and potential clinical use. For that, we used Z-inspection, an ethically aligned Trustworthy AI co-design methodology, and piloted the Council of Europe's Human Rights, Democracy, and the Rule of Law Impact Assessment for AI Systems (HUDERIA) (Council of Europe (CAI) 2025). The findings of this use-case comprise a comprehensive set of ethical, legal, and technical lessons learned. These insights, identified by a multidisciplinary team of experts (ethics, legal, human rights, computer science, and medical), serve as a framework for designers to navigate future challenges with this and other AI systems. The findings also provide a useful reference for researchers developing explainability frameworks for PRS in diverse clinical contexts.",
+      "authors": [
+        "Ralf Beuthan",
+        "Megan Coffee",
+        "Heejin Kim",
+        "Na Yeon Kim",
+        "Pedro Kringen",
+        "Elisabeth Hildt",
+        "Haekyung Lee",
+        "Seunggeun Lee",
+        "Emilie Wiinblad Mathez",
+        "Sira Maliphol",
+        "Vadim Pak",
+        "Yuna Park",
+        "Stephan Sonnenberg",
+        "Jesmin Jahan Tithi",
+        "Magnus Westerlund",
+        "Roberto V. Zicari"
+      ],
+      "primary_category": "cs.CY",
+      "categories": [
+        "cs.CY"
+      ],
+      "published": "2026-04-09T13:14:34+00:00",
+      "link": "https://arxiv.org/pdf/2604.08217v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI tool for disease prediction using genomic polygenic risk scores",
+      "llm_evidence_cn": "利用基因组多基因风险评分进行疾病预测的AI工具",
+      "llm_evidence": "利用基因组多基因风险评分进行疾病预测的AI工具",
+      "canonical_evidence": "利用基因组多基因风险评分进行疾病预测的AI工具",
+      "llm_tldr_en": "Introduces an interpretable AI tool for predicting Type 2 Diabetes using genomic polygenic risk scores.",
+      "llm_tldr_cn": "介绍了一种利用基因组多基因风险评分预测2型糖尿病的可解释AI工具。",
+      "llm_tldr": "介绍了一种利用基因组多基因风险评分预测2型糖尿病的可解释AI工具。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.07464v1",
+      "title": "Virtual Dummies: Enabling Scalable FDR-Controlled Variable Selection via Sequential Sampling of Null Features",
+      "abstract": "High-dimensional variable selection, particularly in genomics, requires error-controlling procedures that scale to millions of predictors. The Terminating-Random Experiments (T-Rex) selector achieves false discovery rate (FDR) control by aggregating results of early terminated random experiments, each combining original predictors with i.i.d. synthetic null variables (dummies). At biobank scales, however, explicit dummy augmentation requires terabytes of memory. We demonstrate that this bottleneck is not fundamental. Formalizing the information flow of forward selection through a filtration, we show that compatible selectors interact with unselected dummies solely through projections onto an adaptively evolving low-dimensional subspace. For rotationally invariant dummy distributions, we derive an adaptive stick-breaking construction sampling these projections from their exact conditional distribution given the selection history, thereby eliminating dummy matrix materialization. We prove a pathwise universality theorem: under mild delocalization conditions, selection paths driven by generic standardized i.i.d. dummies converge to the same Gaussian limit. We instantiate the theory through Virtual Dummy LARS (VD-LARS), reducing memory and runtime by several orders of magnitude while preserving the exact selection law and FDR guarantees of the T-Rex selector. Experiments on realistic genome-wide association study data confirm that VD-T-Rex controls FDR and achieves power at scales where all competing methods either fail or time out.",
+      "authors": [
+        "Taulant Koka",
+        "Jasin Machkour",
+        "Daniel P. Palomar",
+        "Michael Muma"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.ML"
+      ],
+      "published": "2026-04-08T18:04:06+00:00",
+      "link": "https://arxiv.org/pdf/2604.07464v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "high-dimensional variable selection in genomics",
+      "llm_evidence_cn": "基因组学中的高维变量选择",
+      "llm_evidence": "基因组学中的高维变量选择",
+      "canonical_evidence": "基因组学中的高维变量选择",
+      "llm_tldr_en": "A scalable method for FDR-controlled variable selection suitable for biobank-scale genomic data.",
+      "llm_tldr_cn": "一种适用于生物库规模基因组数据的可扩展FDR控制变量选择方法。",
+      "llm_tldr": "一种适用于生物库规模基因组数据的可扩展FDR控制变量选择方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.08507v1",
+      "title": "A Quasi-Regression Method for the Mediation Analysis of Zero-Inflated Single-Cell Data",
+      "abstract": "Recent advances in single-cell technologies have advanced our understanding of gene regulation and cellular heterogeneity at single-cell resolution. Single-cell data contain both gene expression levels and the proportion of expressing cells, which makes them structurally different from bulk data. Currently, methodological work on causal mediation analysis for single-cell data remains limited and often requires specific distributional assumptions. To address this challenge, we present QuasiMed, a mediation framework specialized for single-cell data. Our proposed method comprises three steps, including (i) screening mediator candidates through penalized regression and marginal models (similar to sure independence screening), (ii) estimation of indirect effects through the average expression and the proportion of expressing cells, (iii) and hypothesis testing with multiplicity control. The key benefit of QuasiMed is that it specifies only the mean functions of the mediation models through a quasi-regression framework, thereby relaxing strict distributional assumptions. The method performance was evaluated through the real-data-inspired simulations, and demonstrated high power, false discovery rate control, and computational efficiency. Lastly, we applied QuasiMed to ROSMAP single-cell data to illustrate its potential to identify mediating causal pathways. R package is freely available on GitHub repository at https://github.com/sjahnn/QuasiMed.",
+      "authors": [
+        "Seungjun Ahn",
+        "Donald Porchia",
+        "Panos Roussos",
+        "Maaike van Gerwen",
+        "Qing Lu",
+        "Zhigang Li"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "q-bio.QM",
+        "stat.AP"
+      ],
+      "published": "2026-04-09T17:49:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.08507v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "mediation analysis of single-cell genomic data",
+      "llm_evidence_cn": "单细胞基因组数据的中介分析",
+      "llm_evidence": "单细胞基因组数据的中介分析",
+      "canonical_evidence": "单细胞基因组数据的中介分析",
+      "llm_tldr_en": "A specialized framework for causal mediation analysis in zero-inflated single-cell expression data.",
+      "llm_tldr_cn": "一种专门用于零膨胀单细胞表达数据因果中介分析的框架。",
+      "llm_tldr": "一种专门用于零膨胀单细胞表达数据因果中介分析的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.07424v1",
+      "title": "An Analysis of Artificial Intelligence Adoption in NIH-Funded Research",
+      "abstract": "Understanding the landscape of artificial intelligence (AI) and machine learning (ML) adoption across the National Institutes of Health (NIH) portfolio is critical for research funding strategy, institutional planning, and health policy. The advent of large language models (LLMs) has fundamentally transformed research landscape analysis, enabling researchers to perform large-scale semantic extraction from thousands of unstructured research documents. In this paper, we illustrate a human-in-the-loop research methodology for LLMs to automatically classify and summarize research descriptions at scale. Using our methodology, we present a comprehensive analysis of 58,746 NIH-funded biomedical research projects from 2025. We show that: (1) AI constitutes 15.9% of the NIH portfolio with a 13.4% funding premium, concentrated in discovery, prediction, and data integration across disease domains; (2) a critical research-to-deployment gap exists, with 79% of AI projects remaining in research/development stages while only 14.7% engage in clinical deployment or implementation; and (3) health disparities research is severely underrepresented at just 5.7% of AI-funded work despite its importance to NIH's equity mission. These findings establish a framework for evidence-based policy interventions to align the NIH AI portfolio with health equity goals and strategic research priorities.",
+      "authors": [
+        "Navapat Nananukul",
+        "Mayank Kejriwal"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CY",
+        "cs.MA"
+      ],
+      "published": "2026-04-08T17:05:11+00:00",
+      "link": "https://arxiv.org/pdf/2604.07424v1",
+      "tags": [
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI adoption in NIH-funded biomedical research",
+      "llm_evidence_cn": "NIH资助的生物医学研究中AI的应用情况",
+      "llm_evidence": "NIH资助的生物医学研究中AI的应用情况",
+      "canonical_evidence": "NIH资助的生物医学研究中AI的应用情况",
+      "llm_tldr_en": "Analyzes the landscape of AI and machine learning adoption across thousands of NIH-funded research projects.",
+      "llm_tldr_cn": "分析了数万个NIH资助的生物医学研究项目中人工智能和机器学习的应用现状。",
+      "llm_tldr": "分析了数万个NIH资助的生物医学研究项目中人工智能和机器学习的应用现状。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.02203v2",
+      "title": "QuantumXCT: Learning Interaction-Induced State Transformation in Cell-Cell Communication via Quantum Entanglement and Generative Modeling",
+      "abstract": "Inferring cell-cell communication (CCC) from single-cell transcriptomics remains fundamentally limited by reliance on curated ligand-receptor databases, which primarily capture co-expression rather than the system-level effects of signaling on cellular states. Here, we introduce QuantumXCT, a hybrid quantum-classical generative framework that reframes CCC as a problem of learning interaction-induced state transformations between cellular state distributions. By encoding transcriptomic profiles into a high-dimensional Hilbert space, QuantumXCT trains parameterized quantum circuits to learn a unitary transformation that maps a baseline non-interacting cellular state to an interacting state. This approach enables the discovery of communication-driven changes in cellular state distributions without requiring prior biological assumptions. We validate QuantumXCT using both synthetic data with known ground-truth interactions and single-cell RNA-seq data from ovarian cancer-fibroblast co-culture model. The QuantumXCT model accurately recovered complex regulatory dependencies, including feedback structures, and identified dominant communication hubs such as the PDGFB-PDGFRB-STAT3 axis. Importantly, the learned quantum circuit is interpretable: its entangling topology was translated into biologically meaningful interaction networks, while post hoc contribution analysis quantified the relative influence of individual interactions on the observed state transitions. Notably, by shifting CCC inference from static interaction lookup to learning data-driven state transformations, QuantumXCT provides a generative framework for modeling intercellular communication. This work establishes a new paradigm for de novo discovery of communication programs in complex biological systems and highlights the potential of quantum machine learning in the context of single-cell biology.",
+      "authors": [
+        "Selim Romero",
+        "Shreyan Gupta",
+        "Robert S. Chapkin",
+        "James J. Cai"
+      ],
+      "primary_category": "cs.ET",
+      "categories": [
+        "cs.ET",
+        "physics.bio-ph",
+        "physics.data-an",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-02T15:57:12+00:00",
+      "link": "https://arxiv.org/pdf/2604.02203v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI and quantum modeling for cell-cell communication transcriptomics",
+      "llm_evidence_cn": "利用AI和量子建模研究细胞通讯转录组学",
+      "llm_evidence": "利用AI和量子建模研究细胞通讯转录组学",
+      "canonical_evidence": "利用AI和量子建模研究细胞通讯转录组学",
+      "llm_tldr_en": "Uses a hybrid quantum-classical framework to infer cell-cell communication from transcriptomic profiles.",
+      "llm_tldr_cn": "使用量子-经典混合框架，从转录组数据中推断细胞间的通讯机制。",
+      "llm_tldr": "使用量子-经典混合框架，从转录组数据中推断细胞间的通讯机制。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.07566v1",
+      "title": "Robust Mendelian Randomization Estimation using Weighted Quantile Regression",
+      "abstract": "In Mendelian randomization (MR) studies, genetic variants are used as instrumental variables (IVs) to investigate causal relationships between exposures and outcomes based on observational data. However, numerous genetic studies have shown the pervasive pleiotropy of genetic variants, meaning that many, if not most, variants are associated with multiple traits, potentially violating the core assumptions of IV estimation. Uncorrelated pleiotropy occurs when genetic variants have a direct effect on the outcome that is not mediated by the exposure, while correlated pleiotropy occurs when genetic variants affect the exposure and outcome via shared heritable confounders. In this work, we propose a novel MR method, called MR-Quantile, based on weighted quantile regression (WQR) that is robust to both correlated and uncorrelated pleiotropy. We propose a procedure for selecting the optimal quantile of the ratio estimates through a likelihood-based formulation of WQR using the asymmetric Laplace distribution. Monte Carlo simulations demonstrate the empirical performance of the proposed method, especially in settings with many invalid IVs with weak pleiotropic effects. Finally, we apply our method to study the causal effect of resting heart rate on atrial fibrillation. Genetic variants associated with heart rate were identified in a genome-wide association study of 425,748 individuals from the VA Million Veteran Program, and used as instruments in a two-sample MR analysis with summary statistics from a genetic meta-analysis of 228,926 AF cases across eight studies.",
+      "authors": [
+        "Julien St-Pierre",
+        "Archer Y. Yang",
+        "Mireille E. Schnitzer",
+        "Marc-André Legault"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-08T20:07:38+00:00",
+      "link": "https://arxiv.org/pdf/2604.07566v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Mendelian randomization using genetic variants to investigate causal relationships",
+      "llm_evidence_cn": "利用遗传变异进行孟德尔随机化以研究因果关系",
+      "llm_evidence": "利用遗传变异进行孟德尔随机化以研究因果关系",
+      "canonical_evidence": "利用遗传变异进行孟德尔随机化以研究因果关系",
+      "llm_tldr_en": "Proposes a robust Mendelian randomization method to handle pleiotropy in genetic association studies.",
+      "llm_tldr_cn": "提出了一种稳健的孟德尔随机化方法，用于处理遗传关联研究中的多效性问题。",
+      "llm_tldr": "提出了一种稳健的孟德尔随机化方法，用于处理遗传关联研究中的多效性问题。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.05274v1",
+      "title": "Simulating the Evolution of Alignment and Values in Machine Intelligence",
+      "abstract": "Model alignment is currently applied in a vacuum, evaluated primarily through standardised benchmark performance. The purpose of this study is to examine the effects of alignment on populations of models through time. We focus on the treatment of beliefs which contain both an alignment signal (how well it does on the test) and a true value (what the impact actually will be). By applying evolutionary theory we can model how different populations of beliefs and selection methodologies can fix deceptive beliefs through iterative alignment testing. The correlation between testing accuracy and true value remains a strong feature, but even at high correlations ($ρ= 0.8$) there is variability in the resulting deceptive beliefs that become fixed. Mutations allow for more complex developments, highlighting the increasing need to update the quality of tests to avoid fixation of maliciously deceptive models. Only by combining improving evaluator capabilities, adaptive test design, and mutational dynamics do we see significant reductions in deception while maintaining alignment fitness (permutation test, $p_{\\text{adj}} < 0.001$).",
+      "authors": [
+        "Jonathan Elsworth Eicher"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-07T00:18:28+00:00",
+      "link": "https://arxiv.org/pdf/2604.05274v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "applying evolutionary theory to model populations and selection",
+      "llm_evidence_cn": "应用演化理论对群体和选择进行建模",
+      "llm_evidence": "应用演化理论对群体和选择进行建模",
+      "canonical_evidence": "应用演化理论对群体和选择进行建模",
+      "llm_tldr_en": "Uses evolutionary biology principles to simulate the alignment and value evolution in AI models.",
+      "llm_tldr_cn": "利用生物演化原理模拟AI模型中的对齐和价值演化。",
+      "llm_tldr": "利用生物演化原理模拟AI模型中的对齐和价值演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.08220v1",
+      "title": "WaST: a formalisation of the Wave model with associated statistical inference and applications",
+      "abstract": "We propose a mathematical formalisation of the ``wave model'' originally developed in historical linguistics but with further applications in human sciences. This model assumes new traits appear in a population and spread to nearby populations depending on their closeness. It is mostly used to describe joint evolution of closely related populations, for example of several dialects. These situations of permanent contact are not accurately represented by its competitors based on tree structures. We built a fully Bayesian generative model where innovation spread along a fixed graph and disappear according to a death process. We then develop a Metropolis-Hastings within Gibbs sampler to sample from the posterior distribution on the graph. We test our method on simulated datasets as well as on several real dataset.",
+      "authors": [
+        "Grégoire Clarté"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-04-09T13:15:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.08220v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "joint evolution of closely related populations and trait spreading",
+      "llm_evidence_cn": "亲缘种群的共同演化与性状扩散",
+      "llm_evidence": "亲缘种群的共同演化与性状扩散",
+      "canonical_evidence": "亲缘种群的共同演化与性状扩散",
+      "llm_tldr_en": "A Bayesian generative model for population evolution and trait spreading along graphs.",
+      "llm_tldr_cn": "一种用于种群演化和性状沿图扩散的贝叶斯生成模型。",
+      "llm_tldr": "一种用于种群演化和性状沿图扩散的贝叶斯生成模型。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.06779v1",
+      "title": "FVD: Inference-Time Alignment of Diffusion Models via Fleming-Viot Resampling",
+      "abstract": "We introduce Fleming-Viot Diffusion (FVD), an inference-time alignment method that resolves the diversity collapse commonly observed in Sequential Monte Carlo (SMC) based diffusion samplers. Existing SMC-based diffusion samplers often rely on multinomial resampling or closely related resampling schemes, which can still reduce diversity and lead to lineage collapse under strong selection pressure. Inspired by Fleming-Viot population dynamics, FVD replaces multinomial resampling with a specialized birth-death mechanism designed for diffusion alignment. To handle cases where rewards are only approximately available and naive rebirth would collapse deterministic trajectories, FVD integrates independent reward-based survival decisions with stochastic rebirth noise. This yields flexible population dynamics that preserve broader trajectory support while effectively exploring reward-tilted distributions, all without requiring value function approximation or costly rollouts. FVD is fully parallelizable and scales efficiently with inference compute. Empirically, it achieves substantial gains across settings: on DrawBench it outperforms prior methods by 7% in ImageReward, while on class-conditional tasks it improves FID by roughly 14-20% over strong baselines and is up to 66 times faster than value-based approaches.",
+      "authors": [
+        "Shivanshu Shekhar",
+        "Sagnik Mukherjee",
+        "Jia Yi Zhang",
+        "Tong Zhang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-08T07:50:00+00:00",
+      "link": "https://arxiv.org/pdf/2604.06779v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Inspired by Fleming-Viot population dynamics and lineage collapse under selection pressure",
+      "llm_evidence_cn": "受Fleming-Viot群体动力学和选择压力下的谱系崩溃启发",
+      "llm_evidence": "受Fleming-Viot群体动力学和选择压力下的谱系崩溃启发",
+      "canonical_evidence": "受Fleming-Viot群体动力学和选择压力下的谱系崩溃启发",
+      "llm_tldr_en": "Introduces a diffusion model alignment method based on population dynamics to prevent diversity collapse.",
+      "llm_tldr_cn": "引入一种基于群体动力学的扩散模型对齐方法，以防止多样性崩溃。",
+      "llm_tldr": "引入一种基于群体动力学的扩散模型对齐方法，以防止多样性崩溃。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.08254v1",
+      "title": "Generalized Lotka-Volterra Model with Species Turnover in a Variable-Basis State Space",
+      "abstract": "The state space is a fundamental concept for describing the trajectory of a dynamic system. Depending on its form, it can highlight certain changes over time while ignoring others. This is particularly the case for the spaces associated with theoretical ecology models, notably the generalized Lotka-Volterra (gLV) model, which allows the modeling of interacting populations. The fixed-dimension state space classically used in gLV models does not account for the effective renewal of species through addition, removal, or mutation. To address this limitation, we propose a new variable-base state space, introduced in a previous study. This framework leads to a reformulation of the gLV model within the context of hybrid dynamical systems. To illustrate the approach, we apply the proposed model to the gut microbiota, particularly in the context of bacteriotherapy following antibiotic treatment.",
+      "authors": [
+        "Arthur Doliveira",
+        "Christophe Roman",
+        "Guillaume Graton",
+        "Mustapha Ouladsine"
+      ],
+      "primary_category": "math.DS",
+      "categories": [
+        "math.DS"
+      ],
+      "published": "2026-04-09T13:42:41+00:00",
+      "link": "https://arxiv.org/pdf/2604.08254v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary dynamics and species turnover in ecological models",
+      "llm_evidence_cn": "生态模型中的演化动力学和物种更替",
+      "llm_evidence": "生态模型中的演化动力学和物种更替",
+      "canonical_evidence": "生态模型中的演化动力学和物种更替",
+      "llm_tldr_en": "Reformulates the Lotka-Volterra model to account for species renewal through addition or mutation.",
+      "llm_tldr_cn": "重新构建了Lotka-Volterra模型，以解释通过增加或突变实现的物种更新。",
+      "llm_tldr": "重新构建了Lotka-Volterra模型，以解释通过增加或突变实现的物种更新。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.07124v1",
+      "title": "A modular approach to achieve multistationarity using AND-gates",
+      "abstract": "Systems of differential equations have been used to model biological systems such as gene and neural networks. A problem of particular interest is to understand the number of stable steady states. Here we propose conjunctive networks (systems of differential equations equations created using AND gates) to achieve any desired number of stable steady states. Our approach uses combinatorial tools to predict the number of stable steady states from the structure of the wiring diagram. Furthermore, AND gates have been successfully engineered by experimentalists for gene networks, so our results provide a modular approach to design gene networks that achieve arbitrary number of phenotypes.",
+      "authors": [
+        "Alan Veliz-Cuba",
+        "Zeyu Wang"
+      ],
+      "primary_category": "q-bio.MN",
+      "categories": [
+        "q-bio.MN",
+        "eess.SY",
+        "math.DS"
+      ],
+      "published": "2026-04-08T14:19:32+00:00",
+      "link": "https://arxiv.org/pdf/2604.07124v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Modeling molecular mechanisms of gene networks and phenotypes using differential equations",
+      "llm_evidence_cn": "使用微分方程模拟基因网络和表型的分子机制",
+      "llm_evidence": "使用微分方程模拟基因网络和表型的分子机制",
+      "canonical_evidence": "使用微分方程模拟基因网络和表型的分子机制",
+      "llm_tldr_en": "Proposes a modular approach using AND-gates to design gene networks with multiple stable steady states.",
+      "llm_tldr_cn": "提出了一种利用与门设计具有多个稳定稳态的基因网络的模块化方法。",
+      "llm_tldr": "提出了一种利用与门设计具有多个稳定稳态的基因网络的模块化方法。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.07276v1",
+      "title": "Making Room for AI: Multi-GPU Molecular Dynamics with Deep Potentials in GROMACS",
+      "abstract": "GROMACS is a de-facto standard for classical Molecular Dynamics (MD). The rise of AI-driven interatomic potentials that pursue near-quantum accuracy at MD throughput now poses a significant challenge: embedding neural-network inference into multi-GPU simulations retaining high-performance. In this work, we integrate the MLIP framework DeePMD-kit into GROMACS, enabling domain-decomposed, GPU-accelerated inference across multi-node systems. We extend the GROMACS NNPot interface with a DeePMD backend, and we introduce a domain decomposition layer decoupled from the main simulation. The inference is executed concurrently on all processes, with two MPI collectives used each step to broadcast coordinates and to aggregate and redistribute forces. We train an in-house DPA-1 model (1.6 M parameters) on a dataset of solvated protein fragments. We validate the implementation on a small protein system, then we benchmark the GROMACS-DeePMD integration with a 15,668 atom protein on NVIDIA A100 and AMD MI250x GPUs up to 32 devices. Strong-scaling efficiency reaches 66% at 16 devices and 40% at 32; weak-scaling efficiency is 80% to 16 devices and reaches 48% (MI250x) and 40% (A100) at 32 devices. Profiling with the ROCm System profiler shows that >90% of the wall time is spent in DeePMD inference, while MPI collectives contribute <10%, primarily since they act as a global synchronization point. The principal bottlenecks are the irreducible ghost-atom cost set by the cutoff radius, confirmed by a simple throughput model, and load imbalance across ranks. These results demonstrate that production MD with near ab initio fidelity is feasible at scale in GROMACS.",
+      "authors": [
+        "Luca Pennati",
+        "Andong Hu",
+        "Ivy Peng",
+        "Lukas Müllender",
+        "Stefano Markidis"
+      ],
+      "primary_category": "cs.DC",
+      "categories": [
+        "cs.DC",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-08T16:40:08+00:00",
+      "link": "https://arxiv.org/pdf/2604.07276v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven interatomic potentials and molecular dynamics in GROMACS",
+      "llm_evidence_cn": "GROMACS中AI驱动的原子间势能与分子动力学",
+      "llm_evidence": "GROMACS中AI驱动的原子间势能与分子动力学",
+      "canonical_evidence": "GROMACS中AI驱动的原子间势能与分子动力学",
+      "llm_tldr_en": "Integrates AI-driven potentials into GROMACS for high-performance molecular dynamics simulations.",
+      "llm_tldr_cn": "将AI驱动的势能集成到GROMACS中，用于高性能分子动力学模拟。",
+      "llm_tldr": "将AI驱动的势能集成到GROMACS中，用于高性能分子动力学模拟。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.07496v1",
+      "title": "SMT with Uninterpreted Functions and Monotonicity Constraints in Systems Biology",
+      "abstract": "The theory of uninterpreted functions is a key modeling tool for systems with unknown or abstracted components. Some domains such as systems biology impose further restrictions regarding monotonicity on these components, requiring specific inputs to have a consistently positive or negative effect on the output. In this paper, we tackle the model inference problem for biological systems by applying the theory of uninterpreted functions with monotonicity constraints. We compare the performance of naive quantified encodings of the problem and the performance of the existing approach based on eager quantifier instantiation, which is based on the fact that a finite set of quantifier-free monotonicity lemmas is sufficient to encode the monotonicity of uninterpreted functions. Additionally, we consider a lazy variant of the approach that introduces the monotonicity lemmas on demand.   We evaluate the SMT-based approach to model inference using a large collection of systems biology benchmarks. The results demonstrate that the instantiation-based encodings significantly outperform quantified encodings, which typically struggle with large function arities and complex instances. As the key result, we show that our approach based on SMT with uninterpreted functions and monotonicity constraints significantly outperforms state-of-the-art domain-specific tools used in systems biology, such as the ASP-based Bonesis and the BDD-based AEON.",
+      "authors": [
+        "Ondřej Huvar",
+        "Martin Jonáš",
+        "Samuel Pastva"
+      ],
+      "primary_category": "cs.LO",
+      "categories": [
+        "cs.LO"
+      ],
+      "published": "2026-04-08T18:35:34+00:00",
+      "link": "https://arxiv.org/pdf/2604.07496v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "model inference for biological systems using SMT and monotonicity constraints",
+      "llm_evidence_cn": "利用SMT和单调性约束进行生物系统模型推理",
+      "llm_evidence": "利用SMT和单调性约束进行生物系统模型推理",
+      "canonical_evidence": "利用SMT和单调性约束进行生物系统模型推理",
+      "llm_tldr_en": "Applies SMT theory to model inference in systems biology, relevant to biological mechanism modeling.",
+      "llm_tldr_cn": "将SMT理论应用于系统生物学模型推理，与生物机制建模相关。",
+      "llm_tldr": "将SMT理论应用于系统生物学模型推理，与生物机制建模相关。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.08324v1",
+      "title": "Multi-Modal Learning meets Genetic Programming: Analyzing Alignment in Latent Space Optimization",
+      "abstract": "Symbolic regression (SR) aims to discover mathematical expressions from data, a task traditionally tackled using Genetic Programming (GP) through combinatorial search over symbolic structures. Latent Space Optimization (LSO) methods use neural encoders to map symbolic expressions into continuous spaces, transforming the combinatorial search into continuous optimization. SNIP (Meidani et al., 2024), a contrastive pre-training model inspired by CLIP, advances LSO by introducing a multi-modal approach: aligning symbolic and numeric encoders in a shared latent space to learn the phenotype-genotype mapping, enabling optimization in the numeric space to implicitly guide symbolic search. However, this relies on fine-grained cross-modal alignment, whereas literature on similar models like CLIP reveals that such an alignment is typically coarse-grained. In this paper, we investigate whether SNIP delivers on its promise of effective bi-modal optimization for SR. Our experiments show that: (1) cross-modal alignment does not improve during optimization, even as fitness increases, and (2) the alignment learned by SNIP is too coarse to efficiently conduct principled search in the symbolic space. These findings reveal that while multi-modal LSO holds significant potential for SR, effective alignment-guided optimization remains unrealized in practice, highlighting fine-grained alignment as a critical direction for future work.",
+      "authors": [
+        "Benjamin Léger",
+        "Kazem Meidani",
+        "Christian Gagné"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE",
+        "cs.AI"
+      ],
+      "published": "2026-04-09T14:55:36+00:00",
+      "link": "https://arxiv.org/pdf/2604.08324v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "learning phenotype-genotype mapping using multi-modal learning and genetic programming",
+      "llm_evidence_cn": "利用多模态学习和遗传编程学习表型-基因型映射",
+      "llm_evidence": "利用多模态学习和遗传编程学习表型-基因型映射",
+      "canonical_evidence": "利用多模态学习和遗传编程学习表型-基因型映射",
+      "llm_tldr_en": "Explores multi-modal learning to align symbolic and numeric encoders for phenotype-genotype mapping.",
+      "llm_tldr_cn": "探索多模态学习，通过对齐符号和数值编码器来进行表型-基因型映射。",
+      "llm_tldr": "探索多模态学习，通过对齐符号和数值编码器来进行表型-基因型映射。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

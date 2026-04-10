@@ -6,76 +6,67 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-09
-- 运行时间：2026-04-09 20:19:06 UTC
+- 最新运行日期：2026-04-10
+- 运行时间：2026-04-10 19:43:57 UTC
 - 运行状态：成功
-- 本次总论文数：18
-- 精读区：6
-- 速读区：12
+- 本次总论文数：15
+- 精读区：4
+- 速读区：11
 
 ### 今日简报（AI）
-今日聚焦 18 篇跨学科前沿，深度复盘了原核生物分类新平台与基因组大模型的逻辑短板。
-核心结论指出 WebCVTree4 实现了全基因组水平的系统发育研究，而基因组 LLM 仍难以掌握位置调控逻辑。
-建议生物信息学者尝试新一代分类工具，同时警惕大模型在处理复杂基因调控任务时的局限。
-- 详情：[/202604/09/README](/202604/09/README)
+今日精选 15 篇前沿论文，重点攻克了线性时间子图识别算法与可解释性糖尿病预测 AI 模型。
+推荐关注 SPQR 树框架在复杂网络分析中的效率突破，以及基因组学驱动的可信医疗 AI 决策工具。
+建议从算法优化与医疗透明度两个维度，探索前沿技术在生物信息与临床预测中的落地应用。
+- 详情：[/202604/10/README](/202604/10/README)
 
 ### 精读区论文标签
-1. [WebCVTree4: A Newly Designed Phylogenetic and Taxonomic Study Platform for Prokaryotes Using Composition Vectors and Whole Genomes](/202604/09/2604.06835v1-webcvtree4-a-newly-designed-phylogenetic-and-taxonomic-study-platform-for-prokaryotes-using-composition-vectors-and-whole-genomes)  
-   标签：评分：10.0/10、query:q3
-   evidence：利用全基因组序列数据推断物种系统发育和分类的无比对方法
-2. [The Mechanistic Invariance Test: Genomic Language Models Fail to Learn Positional Regulatory Logic](/202604/09/2604.06549v1-the-mechanistic-invariance-test-genomic-language-models-fail-to-learn-positional-regulatory-logic)  
-   标签：评分：9.0/10、query:q7
-   evidence：评估基因组语言模型在调控逻辑上的表现
-3. [ECLIPSE: A Composable Pipeline for Predicting ecDNA Formation, Evolution, and Therapeutic Vulnerabilities in Cancer](/202604/09/2604.06569v1-eclipse-a-composable-pipeline-for-predicting-ecdna-formation-evolution-and-therapeutic-vulnerabilities-in-cancer)  
+1. [Identifying bubble-like subgraphs in linear-time via a unified SPQR-tree framework](/202604/10/2604.08071v1-identifying-bubble-like-subgraphs-in-linear-time-via-a-unified-spqr-tree-framework)  
    标签：评分：9.0/10、query:pangen
-   evidence：ecDNA演化与基因组结构变异
-4. [Probing 3D Chromatin Structure Awareness in Evo2 DNA Language Model](/202604/09/2604.07196v1-probing-3d-chromatin-structure-awareness-in-evo2-dna-language-model)  
+   evidence：用于分析图结构中遗传变异的计算生物学算法
+2. [Co-design for Trustworthy AI: An Interpretable and Explainable Tool for Type 2 Diabetes Prediction Using Genomic Polygenic Risk Scores](/202604/10/2604.08217v1-co-design-for-trustworthy-ai-an-interpretable-and-explainable-tool-for-type-2-diabetes-prediction-using-genomic-polygenic-risk-scores)  
    标签：评分：9.0/10、query:q7
-   evidence：在Evo2 DNA语言模型中探测3D染色质结构
-5. [MO-RiskVAE: A Multi-Omics Variational Autoencoder for Survival Risk Modeling in Multiple MyelomaMO-RiskVAE](/202604/09/2604.06267v1-mo-riskvae-a-multi-omics-variational-autoencoder-for-survival-risk-modeling-in-multiple-myelomamo-riskvae)  
+   evidence：利用基因组多基因风险评分进行疾病预测的AI工具
+3. [Virtual Dummies: Enabling Scalable FDR-Controlled Variable Selection via Sequential Sampling of Null Features](/202604/10/2604.07464v1-virtual-dummies-enabling-scalable-fdr-controlled-variable-selection-via-sequential-sampling-of-null-features)  
    标签：评分：8.0/10、query:q7
-   evidence：用于多组学数据整合和生存风险建模的AI技术
-6. [MAT-Cell: A Multi-Agent Tree-Structured Reasoning Framework for Batch-Level Single-Cell Annotation](/202604/09/2604.06269v1-mat-cell-a-multi-agent-tree-structured-reasoning-framework-for-batch-level-single-cell-annotation)  
+   evidence：基因组学中的高维变量选择
+4. [A Quasi-Regression Method for the Mediation Analysis of Zero-Inflated Single-Cell Data](/202604/10/2604.08507v1-a-quasi-regression-method-for-the-mediation-analysis-of-zero-inflated-single-cell-data)  
    标签：评分：8.0/10、query:q7
-   evidence：用于单细胞注释和转录组分析的AI框架
+   evidence：单细胞基因组数据的中介分析
 
 ### 速读区论文标签
-1. [Epistemic Blinding: An Inference-Time Protocol for Auditing Prior Contamination in LLM-Assisted Analysis](/202604/09/2604.06013v1-epistemic-blinding-an-inference-time-protocol-for-auditing-prior-contamination-in-llm-assisted-analysis)  
+1. [An Analysis of Artificial Intelligence Adoption in NIH-Funded Research](/202604/10/2604.07424v1-an-analysis-of-artificial-intelligence-adoption-in-nih-funded-research)  
    标签：评分：7.0/10、query:q7
-   evidence：利用AI进行生物数据集分析
-2. [From stochastic individual-based models to free-boundary Hamilton-Jacobi equations](/202604/09/2604.06516v1-from-stochastic-individual-based-models-to-free-boundary-hamilton-jacobi-equations)  
+   evidence：NIH资助的生物医学研究中AI的应用情况
+2. [Robust Mendelian Randomization Estimation using Weighted Quantile Regression](/202604/10/2604.07566v1-robust-mendelian-randomization-estimation-using-weighted-quantile-regression)  
    标签：评分：7.0/10、query:q5
-   evidence：群体表型性状与突变的随机分支模型
-3. [Emergence of cooperation in nonlinear higher-order public goods games](/202604/09/2604.07228v1-emergence-of-cooperation-in-nonlinear-higher-order-public-goods-games)  
+   evidence：利用遗传变异进行孟德尔随机化以研究因果关系
+3. [WaST: a formalisation of the Wave model with associated statistical inference and applications](/202604/10/2604.08220v1-wast-a-formalisation-of-the-wave-model-with-associated-statistical-inference-and-applications)  
    标签：评分：7.0/10、query:q5
-   evidence：演化博弈论与结构化种群
-4. [A Boolean encoding of the Most Permissive semantics for Boolean networks](/202604/09/2604.03029v1-a-boolean-encoding-of-the-most-permissive-semantics-for-boolean-networks)  
+   evidence：亲缘种群的共同演化与性状扩散
+4. [Generalized Lotka-Volterra Model with Species Turnover in a Variable-Basis State Space](/202604/10/2604.08254v1-generalized-lotka-volterra-model-with-species-turnover-in-a-variable-basis-state-space)  
+   标签：评分：7.0/10、query:q5
+   evidence：生态模型中的演化动力学和物种更替
+5. [QuantumXCT: Learning Interaction-Induced State Transformation in Cell-Cell Communication via Quantum Entanglement and Generative Modeling](/202604/10/2604.02203v2-quantumxct-learning-interaction-induced-state-transformation-in-cell-cell-communication-via-quantum-entanglement-and-generative-modeling)  
+   标签：评分：6.0/10、query:q7
+   evidence：利用AI和量子建模研究细胞通讯转录组学
+6. [Simulating the Evolution of Alignment and Values in Machine Intelligence](/202604/10/2604.05274v1-simulating-the-evolution-of-alignment-and-values-in-machine-intelligence)  
    标签：评分：6.0/10、query:q2
-   evidence：布尔网络用于模拟生物调节网络及其动力学
-5. [Lotka-Sharpe Neural Operators for Control of Population PDEs](/202604/09/2604.03892v1-lotka-sharpe-neural-operators-for-control-of-population-pdes)  
+   evidence：应用演化理论对群体和选择进行建模
+7. [FVD: Inference-Time Alignment of Diffusion Models via Fleming-Viot Resampling](/202604/10/2604.06779v1-fvd-inference-time-alignment-of-diffusion-models-via-fleming-viot-resampling)  
    标签：评分：6.0/10、query:q5
-   evidence：用于捕食者-猎物模型和相互作用种群的神经算子
-6. [A Modular 3D-Printed Design to Investigate Prebiotic Chemical Systems in Hot Spring Pools](/202604/09/2604.05223v1-a-modular-3d-printed-design-to-investigate-prebiotic-chemical-systems-in-hot-spring-pools)  
-   标签：评分：6.0/10、query:q2
-   evidence：遗传物质的起源与演化
-7. [Transcriptomic Models for Immunotherapy Response Prediction Show Limited Cross-cohort Generalisability](/202604/09/2604.05478v1-transcriptomic-models-for-immunotherapy-response-prediction-show-limited-cross-cohort-generalisability)  
+   evidence：受Fleming-Viot群体动力学和选择压力下的谱系崩溃启发
+8. [A modular approach to achieve multistationarity using AND-gates](/202604/10/2604.07124v1-a-modular-approach-to-achieve-multistationarity-using-and-gates)  
+   标签：评分：6.0/10、query:q10
+   evidence：使用微分方程模拟基因网络和表型的分子机制
+9. [Making Room for AI: Multi-GPU Molecular Dynamics with Deep Potentials in GROMACS](/202604/10/2604.07276v1-making-room-for-ai-multi-gpu-molecular-dynamics-with-deep-potentials-in-gromacs)  
+   标签：评分：6.0/10、query:q7
+   evidence：GROMACS中AI驱动的原子间势能与分子动力学
+10. [SMT with Uninterpreted Functions and Monotonicity Constraints in Systems Biology](/202604/10/2604.07496v1-smt-with-uninterpreted-functions-and-monotonicity-constraints-in-systems-biology)  
    标签：评分：6.0/10、query:profile-1
-   evidence：肿瘤-免疫相互作用的转录组模型
-8. [ToxReason: A Benchmark for Mechanistic Chemical Toxicity Reasoning via Adverse Outcome Pathway](/202604/09/2604.06264v1-toxreason-a-benchmark-for-mechanistic-chemical-toxicity-reasoning-via-adverse-outcome-pathway)  
+   evidence：利用SMT和单调性约束进行生物系统模型推理
+11. [Multi-Modal Learning meets Genetic Programming: Analyzing Alignment in Latent Space Optimization](/202604/10/2604.08324v1-multi-modal-learning-meets-genetic-programming-analyzing-alignment-in-latent-space-optimization)  
    标签：评分：6.0/10、query:q7
-   evidence：利用AI进行生物机制推理
-9. [Toward a universal foundation model for graph-structured data](/202604/09/2604.06391v1-toward-a-universal-foundation-model-for-graph-structured-data)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于基因调节回路和生物医学图谱的基础模型
-10. [When Does Context Help? A Systematic Study of Target-Conditional Molecular Property Prediction](/202604/09/2604.06558v1-when-does-context-help-a-systematic-study-of-target-conditional-molecular-property-prediction)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于跨蛋白质家族分子属性预测的AI研究
-11. [A Data-Informed Variational Clustering Framework for Noisy High-Dimensional Data](/202604/09/2604.06864v1-a-data-informed-variational-clustering-framework-for-noisy-high-dimensional-data)  
-   标签：评分：6.0/10、query:q7
-   evidence：高维生物数据的变分聚类
-12. [Temporal Structure Mediates the Robustness and Collapse of Plant-Pollinator Networks](/202604/09/2604.07347v1-temporal-structure-mediates-the-robustness-and-collapse-of-plant-pollinator-networks)  
-   标签：评分：6.0/10、query:q2
-   evidence：物种相互作用的时间性质与群落多样性
+   evidence：利用多模态学习和遗传编程学习表型-基因型映射
 
 
 <div class="dpr-home-promo-card">
