@@ -1,0 +1,143 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-11T19:56:04.701819+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 13,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2604.03386v1",
+      "title": "Activity-Dependent Plasticity in Morphogenetically-Grown Recurrent Networks",
+      "abstract": "Developmental approaches to neural architecture search grow functional networks from compact genomes through self-organisation, but the resulting networks operate with fixed post-growth weights. We characterise Hebbian and anti-Hebbian plasticity across 50,000 morphogenetically grown recurrent controllers (5M+ configurations on CartPole and Acrobot), then test whether co-evolutionary experiments -- where plasticity parameters are encoded in the genome and evolved alongside the developmental architecture -- recover these patterns independently. Our characterisation reveals that (1) anti-Hebbian plasticity significantly outperforms Hebbian for competent networks (Cohen's d = 0.53-0.64), (2) regret (fraction of oracle improvement lost under the best fixed setting) reaches 52-100%, and (3) plasticity's role shifts from fine-tuning to genuine adaptation under non-stationarity. Co-evolution independently discovers these patterns: on CartPole, 70% of runs evolve anti-Hebbian plasticity (p = 0.043); on Acrobot, evolution finds near-zero eta with mixed signs -- exactly matching the characterisation. A random-RNN control shows that anti-Hebbian dominance is generic to small recurrent networks, but the degree of topology-dependence is developmental-specific: regret is 2-6x higher for morphogenetically grown networks than for random graphs with matched topology statistics.",
+      "authors": [
+        "Sergii Medvid",
+        "Andrii Valenia",
+        "Mykola Glybovets"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO",
+        "cs.NE"
+      ],
+      "published": "2026-04-03T18:35:13+00:00",
+      "link": "https://arxiv.org/pdf/2604.03386v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Evolution of neural networks from compact genomes and co-evolutionary experiments",
+      "llm_evidence_cn": "从紧凑基因组生长神经网络的演化及协同演化实验",
+      "llm_evidence": "从紧凑基因组生长神经网络的演化及协同演化实验",
+      "canonical_evidence": "从紧凑基因组生长神经网络的演化及协同演化实验",
+      "llm_tldr_en": "Explores how neural architectures and plasticity parameters evolve from genomes through self-organization.",
+      "llm_tldr_cn": "探讨神经架构和可塑性参数如何通过基因组自组织演化而成。",
+      "llm_tldr": "探讨神经架构和可塑性参数如何通过基因组自组织演化而成。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.05880v1",
+      "title": "Collective spatial reorganization from arrest to peeling and migration through density-dependent mobility in internal-state coordinates",
+      "abstract": "Numerous problems in development, regeneration, and disease involve simultaneous evolution of both spatial organization and the internal state of the constituents in addition to local interactions and crowding. This motivates us to study a minimal model for interacting populations evolving in coupled spatial and internal-state coordinates. We focus on a specific transition of particular biological interest: the reorganization of dense collectives from compact or arrested states toward boundary-led peeling and migration. In our formulation, each particle carries a spatial position and a scalar internal state, and interacts through finite-range forces. Mobilities are defined on both spatial and internal-state coordinates with a density dependence, and are asymmetrically cross-coupled. We derive update equations for stochastic dynamics in the overdamped limit and perform numerical simulations. We find that mobility in internal-state coordinates alone provides an independent control axis for large-scale spatial reorganization. In particular, increasing the baseline internal-state diffusivity and tuning its density dependence drives a transition from arrested aggregates to a peeling-like regime with broad spatial excursions, strong outward radial bias, and edge-localized activity, while the baseline positional diffusivity is held fixed. The transition is accompanied by correlated broadening of spatial and internal-state displacements, systematic reorganization of radial density and density-curvature profiles, and a pronounced dependence on system size, consistent with the idea that growing aggregates can cross into a boundary-dominated migratory state. These results establish the utility of our approach and motivate a broader framework aimed at modeling state change, spatial redistribution, and neighborhood structure within a common formalism.",
+      "authors": [
+        "Yagyik Goswami"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft",
+        "cond-mat.dis-nn",
+        "cond-mat.stat-mech"
+      ],
+      "published": "2026-04-07T13:43:13+00:00",
+      "link": "https://arxiv.org/pdf/2604.05880v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolution of spatial organization and internal state in biological collectives",
+      "llm_evidence_cn": "生物集体中空间组织和内部状态的演化",
+      "llm_evidence": "生物集体中空间组织和内部状态的演化",
+      "canonical_evidence": "生物集体中空间组织和内部状态的演化",
+      "llm_tldr_en": "A minimal model for the collective spatial reorganization and internal state evolution of biological populations.",
+      "llm_tldr_cn": "一个关于生物群体集体空间重组和内部状态演化的极简模型。",
+      "llm_tldr": "一个关于生物群体集体空间重组和内部状态演化的极简模型。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.08103v1",
+      "title": "Reinforcement learning with reputation-based adaptive exploration promotes the evolution of cooperation",
+      "abstract": "Multi-agent reinforcement learning serves as an effective tool for studying strategy adaptation in evolutionary games. Although prior work has integrated Q-learning with reputation mechanisms to promote cooperation, most existing algorithms adopt fixed exploration rates and overlook the influence of social context on exploratory behavior. In practice, individuals may adjust their willingness to explore based on their reputation and perceived social standing. To address this, we propose a Q-learning model that couples exploration rates with local reputation differences and incorporates asymmetric, state-dependent reputation updates. Our results show that each mechanism independently promotes cooperation, and their combination yields a reinforcing effect. The joint mechanism enhances cooperation by making ``high reputation--low exploration, low reputation--high exploration'', while adjusting reputation updates to amplify cooperative gains at low status and defection penalties at high status. This study thus offers insights into how social evaluation can shape learning behavior in complex environments.",
+      "authors": [
+        "An Li",
+        "Wenqiang Zhu",
+        "Chaoqian Wang",
+        "Longzhao Liu",
+        "Hongwei Zheng",
+        "Yishen Jiang",
+        "Xin Wang",
+        "Shaoting Tang"
+      ],
+      "primary_category": "physics.comp-ph",
+      "categories": [
+        "physics.comp-ph"
+      ],
+      "published": "2026-04-09T11:22:08+00:00",
+      "link": "https://arxiv.org/pdf/2604.08103v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolution of cooperation in evolutionary games using reinforcement learning",
+      "llm_evidence_cn": "利用强化学习研究演化博弈中合作的演化",
+      "llm_evidence": "利用强化学习研究演化博弈中合作的演化",
+      "canonical_evidence": "利用强化学习研究演化博弈中合作的演化",
+      "llm_tldr_en": "Explores how reputation-based adaptive exploration in reinforcement learning promotes the evolution of cooperation.",
+      "llm_tldr_cn": "探讨强化学习中基于声誉的自适应探索如何促进合作行为的演化。",
+      "llm_tldr": "探讨强化学习中基于声誉的自适应探索如何促进合作行为的演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
