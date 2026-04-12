@@ -1,0 +1,145 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-12T19:50:30.511237+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 3,
+    "quick_skim_target": 13,
+    "quick_selected": 3
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2604.04083v2",
+      "title": "Parent Selection Mechanisms in Elitist Crossover-Based Algorithms",
+      "abstract": "Parent selection methods are widely used in evolutionary computation to accelerate the optimization process, yet their theoretical benefits are still poorly understood. In this paper, we address this gap by proposing a parent selection strategy for the $(μ+1)$ genetic algorithm (GA) that prioritizes the selection of maximally distant parents for crossover. We show that, with an appropriately chosen population size, the resulting algorithm solves the Jump$_k$ problem in $O(k4^kn\\log(n))$ expected time. This bound is significantly smaller than the best known bound of $O(nμ\\log(μ)+n\\log(n)+n^{k-1})$ for any $(μ+1)$~GA using no explicit diversity-preserving mechanism and a constant crossover probability.   To establish this result, we introduce a novel diversity metric that captures both the maximum distance between pairs of individuals in the population and the number of pairs achieving this distance. The main novelty of our analysis is that it relies on crossover as a mechanism for creating and maintaining diversity throughout the run, rather than using crossover only in the final step to combine already diversified individuals. The insights provided by our analysis contribute to a deeper theoretical understanding of the role of crossover in the population dynamics of genetic algorithms.",
+      "authors": [
+        "Andre Opris",
+        "Denis Antipov"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE",
+        "cs.AI"
+      ],
+      "published": "2026-04-05T12:02:25+00:00",
+      "link": "https://arxiv.org/pdf/2604.04083v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolutionary computation and genetic algorithms for optimization",
+      "llm_evidence_cn": "用于优化的进化计算和遗传算法",
+      "llm_evidence": "用于优化的进化计算和遗传算法",
+      "canonical_evidence": "用于优化的进化计算和遗传算法",
+      "llm_tldr_en": "Analyzes parent selection in genetic algorithms to improve optimization efficiency in complex problem spaces.",
+      "llm_tldr_cn": "分析遗传算法中的亲本选择策略，以提高复杂问题空间中的优化效率。",
+      "llm_tldr": "分析遗传算法中的亲本选择策略，以提高复杂问题空间中的优化效率。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.06684v1",
+      "title": "GraphWalker: Graph-Guided In-Context Learning for Clinical Reasoning on Electronic Health Records",
+      "abstract": "Clinical Reasoning on Electronic Health Records (EHRs) is a fundamental yet challenging task in modern healthcare. While in-context learning (ICL) offers a promising inference-time adaptation paradigm for large language models (LLMs) in EHR reasoning, existing methods face three fundamental challenges: (1) Perspective Limitation, where data-driven similarity fails to align with LLM reasoning needs and model-driven signals are constrained by limited clinical competence; (2) Cohort Awareness, as demonstrations are selected independently without modeling population-level structure; and (3) Information Aggregation, where redundancy and interaction effects among demonstrations are ignored, leading to diminishing marginal gains. To address these challenges, we propose GraphWalker, a principled demonstration selection framework for EHR-oriented ICL. GraphWalker (i) jointly models patient clinical information and LLM-estimated information gain by integrating data-driven and model-driven perspectives, (ii) incorporates Cohort Discovery to avoid noisy local optima, and (iii) employs a Lazy Greedy Search with Frontier Expansion algorithm to mitigate diminishing marginal returns in information aggregation. Extensive experiments on multiple real-world EHR benchmarks demonstrate that GraphWalker consistently outperforms state-of-the-art ICL baselines, yielding substantial improvements in clinical reasoning performance. Our code is open-sourced at https://github.com/PuppyKnightUniversity/GraphWalker",
+      "authors": [
+        "Yue Fang",
+        "Weibin Liao",
+        "Yuxin Guo",
+        "Jiaran Gao",
+        "Hongxin Ding",
+        "Jinyang Zhang",
+        "Xinke Jiang",
+        "Zhibang Yang",
+        "Junfeng Zhao",
+        "Yasha Wang",
+        "Liantao Ma"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-08T04:59:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.06684v1",
+      "tags": [
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI and LLM reasoning on clinical Electronic Health Records",
+      "llm_evidence_cn": "AI 和大语言模型在临床电子健康档案推理中的应用",
+      "llm_evidence": "AI 和大语言模型在临床电子健康档案推理中的应用",
+      "canonical_evidence": "AI 和大语言模型在临床电子健康档案推理中的应用",
+      "llm_tldr_en": "Proposes GraphWalker for graph-guided in-context learning to improve clinical reasoning on EHRs.",
+      "llm_tldr_cn": "提出了 GraphWalker 框架，通过图引导的上下文学习提升临床电子病历推理能力。",
+      "llm_tldr": "提出了 GraphWalker 框架，通过图引导的上下文学习提升临床电子病历推理能力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.07936v1",
+      "title": "Shortcut Learning in Glomerular AI: Adversarial Penalties Hurt, Entropy Helps",
+      "abstract": "Stain variability is a pervasive source of distribution shift and potential shortcut learning in renal pathology AI. We ask whether lupus nephritis glomerular lesion classifiers exploit stain as a shortcut, and how to mitigate such bias without stain or site labels. We curate a multi-center, multi-stain dataset of 9{,}674 glomerular patches (224$\\times$224) from 365 WSIs across three centers and four stains (PAS, H\\&E, Jones, Trichrome), labeled as proliferative vs.\\ non-proliferative. We evaluate Bayesian CNN and ViT backbones with Monte Carlo dropout in three settings: (1) stain-only classification; (2) a dual-head model jointly predicting lesion and stain with supervised stain loss; and (3) a dual-head model with label-free stain regularization via entropy maximization on the stain head. In (1), stain identity is trivially learnable, confirming a strong candidate shortcut. In (2), varying the strength and sign of stain supervision strongly modulates stain performance but leaves lesion metrics essentially unchanged, indicating no measurable stain-driven shortcut learning on this multi-stain, multi-center dataset, while overly adversarial stain penalties inflate predictive uncertainty. In (3), entropy-based regularization holds stain predictions near chance without degrading lesion accuracy or calibration. Overall, a carefully curated multi-stain dataset can be inherently robust to stain shortcuts, and a Bayesian dual-head architecture with label-free entropy regularization offers a simple, deployment-friendly safeguard against potential stain-related drift in glomerular AI.",
+      "authors": [
+        "Mohammad Daouk",
+        "Jan Ulrich Becker",
+        "Neeraja Kambham",
+        "Anthony Chang",
+        "Hien Nguyen",
+        "Chandra Mohan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-09T07:55:05+00:00",
+      "link": "https://arxiv.org/pdf/2604.07936v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI application in renal pathology and glomerular lesion classification",
+      "llm_evidence_cn": "AI 在肾脏病理学和肾小球病变分类中的应用",
+      "llm_evidence": "AI 在肾脏病理学和肾小球病变分类中的应用",
+      "canonical_evidence": "AI 在肾脏病理学和肾小球病变分类中的应用",
+      "llm_tldr_en": "Investigates shortcut learning in renal pathology AI and proposes mitigation strategies using entropy.",
+      "llm_tldr_cn": "研究了肾脏病理 AI 中的捷径学习问题，并提出了利用熵的缓解策略。",
+      "llm_tldr": "研究了肾脏病理 AI 中的捷径学习问题，并提出了利用熵的缓解策略。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
