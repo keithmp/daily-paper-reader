@@ -1,0 +1,2370 @@
+Title: Berry-Esseen bounds for estimators of entropy and diversity indices on countable alphabets
+
+URL Source: https://arxiv.org/pdf/2604.11489v1
+
+Published Time: Tue, 14 Apr 2026 02:20:25 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+BERRY-ESSEEN BOUNDS FOR ESTIMATORS OF ENTROPY AND DIVERSITY INDICES ON COUNTABLE ALPHABETS   
+
+> ZHENHONG YU AND YU MIAO
+> Abstract. In the present paper, we derive Berry-Esseen bounds for the estimation of diversity indices on countable alphabets. A general non-asymptotic convergence rate is established for the plug-in estimator of a wide class of indices, including Simp-son’s index and Re´ nyi’s entropy. For the practically crucial case of Shannon entropy, we provide explicit Berry-Esseen bounds for the standard plug-in estimator, as well as for two widely used bias-corrected variants, the Miller-Madow and the jackknife estimators.
+
+1. Introduction 
+
+Diversity indices provide the fundamental framework for quantifying the uncertainty or information content of a probability distribution over an alphabet. In this setting, the absence of natural ordering renders classical moments like variance and standard deviation undefined. Beyond information theory, these indices are widely applied in ecology, genetics, and linguistics, where they quantify the complexity of populations such as species assemblages, cancer cell types, and author vocabularies. The earliest contributions to this field include Shannon’s entropy [12] and Simpson’s index [13], both of which remain widely used. A unifying framework for these indices was established by R´ enyi [11], who introduced a parametric family of entropies that includes both Shannon’s entropy and Simpson’s index as special cases. This framework was further advanced by Hill [6], who showed that a broad class of diversity indices are equivalent under monotonic transformations. Zhang and Grabchak [16] showed that a large class of diversity indices in the literature can be represented as linear combinations of an entropic basis and proposed corresponding nonparametric estimators. The most prevalent approach for evaluating a diversity index is the plug-in estimator. While extensive research has addressed its asymptotic properties for finite alphabets [16], the case of countably infinite alphabets presents additional challenges. In previous papers, Grabchak and Zhang [5] studied the asymptotic distribution of the plug-in estimator for a large class of diversity indices. Additionally, Paninski [8] and Zhang and Zhang [17] proved the asymptotic normality of the plug-in estimator of Shannon’s entropy, and Zhang and Shi [15] extended this analysis to generalized Shannon entropy.     
+
+> 2020 Mathematics Subject Classification. 94A17, 62G05, 62G20, 60F05.
+> Key words and phrases. Diversity indices, Entropy, Plug-in estimator, Berry-Esseen bound. This work is supported by Natural Science Foundation of Henan (No. 262300421307).
+> 1
+> arXiv:2604.11489v1 [math.PR] 13 Apr 2026 2Z. H. YU AND Y. MIAO
+
+To further reduce the sample bias, a number of bias-corrected modifications have been proposed in Pinchas et al. [10]. Among these, two of the most popular are the Miller-Madow estimator [7], which applies an additive correction based on the number of observed symbols, and the jackknife estimator [14], a resampling-based technique that systematically reduces bias by recomputing the estimate on subsamples of the data. Chen et al. [2] provided sufficient conditions for the asymptotic normality of these two bias-corrected estimators. However, these studies primarily establish asymptotic distributions without providing explicit rates of convergence. In the present paper, we establish Berry-Esseen bounds for a large class of diversity indices and their bias-corrected estimators, thereby offering explicit non-asymptotic convergence rates. Section 2 states the main results. Our results hold for a wide family of diversity indices including Simpson’s index and R´ enyi’s entropy. While Shannon’s entropy [12] does not directly fall into our framework, we provide a separate proof for this specific case. The result is then extended to the Miller-Madow and jackknife estimators of Shannon’s entropy. In Section 3, we discuss some examples to show that our conditions are readily satisfied. The proofs of all results are detailed in Section 4. 2. Diversity Indices 
+
+We first present a general theorem establishing the non-asymptotic convergence rate of the plug-in estimator. Specifically, our analysis covers a triangular array setting, where the underlying distribution may depend on the sample size n, as well as the classical independent and identically distributed setting with a fixed distribution. To state our results, we need the following definition. 
+
+Definition 2.1. Fix β ∈ (0 , 1]. A function g : [0 , 1] → R is called β-H¨ older continuous if there exists a constant M > 0 such that, for any x, y ∈ [0 , 1], we have 
+
+|g(x) − g(y)| ≤ M |x − y|β .
+
+It is easy to see that every β-H¨ older continuous function is continuous and bounded on a closed interval. Let A = {ai, i ≥ 1} be a countably infinite alphabet with associated probability measures Pn = {pn,i , i ≥ 1} for each n. The letters of A correspond to species in an ecosystem, words in the English language, types of cancer cells in a tumour, or any other categorical quantity whose diversity is of interest to us. We allow some (even countably many) pn,i s to be zero. Thus finite alphabets are a special case of this model. For each n, diversity index is a function θ that maps Pn into R. A common assump-tion is that 
+
+θn = θ(Pn) = 
+
+> ∞
+
+X
+
+> i=1
+
+g (pn,i ) , (2.1) BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 3
+
+where g : [0 , 1] → R. Such indices were called dichotomous indices in Patil and Taillie [9]. To ensure that the index is well defined, we assume that 
+
+> ∞
+
+X
+
+> i=1
+
+|g (pn,i )| < ∞, for each n. (2.2) For each n ≥ 1, let {Xk,n , 1 ≤ k ≤ n} be an array of independent and identically distributed random variables taking values in some countably infinite alphabet A with common distribution Pn, i.e., 
+
+pn,i = P(X1,n = ai), i ≥ 1, n ≥ 1.
+
+For each i, let ˆpn,i := 1
+
+n
+
+> n
+
+X
+
+> k=1
+
+I{Xk,n =ai}
+
+be the sample proportion. The plug-in estimator of θn is given by ˆθn =
+
+> ∞
+
+X
+
+> i=1
+
+g(ˆ pn,i ). (2.3) 
+
+Theorem 2.1. Assume that the function g : [0 , 1] → R is differentiable and its deriv-ative g′ is β-H¨ older continuous for some β ∈ (0 , 1] . Let 
+
+σ2 
+
+> n
+
+=
+
+> ∞
+
+X
+
+> i=1
+
+pn,i (g′ (pn,i )) 2 −
+
+> ∞
+
+X
+
+> i=1
+
+pn,i g′ (pn,i )
+
+!2
+
+(2.4) 
+
+and 
+
+γ =
+
+(β/ 2 if β ∈ (0 , 0.5] 
+
+β − 0.5 if β ∈ (0 .5, 1] . (2.5) 
+
+If 
+
+(1) β ∈ (0 .5, 1] or 
+
+(2) β ∈ (0 , 0.5] and 
+
+sup 
+
+> n
+> ∞
+
+X
+
+> i=1
+
+p(β+1) /2 
+
+> n,i
+
+< ∞, (2.6) 
+
+then we have 
+
+sup 
+
+> x
+
+P
+
+√nσn
+
+(ˆθn − θn) ≤ x
+
+
+
+− Φ( x) ≤ Cnγ/ 2σ1/2
+
+> n
+
+, (2.7) 
+
+where Φ denotes the standard normal distribution function. 
+
+Remark 2.1. The bound directly implies the central limit theorem established in [5] 
+
+with the same condition 
+
+lim  
+
+> n→∞
+
+nγ σn = ∞.4 Z. H. YU AND Y. MIAO 
+
+Theorem 2.1 allows the underlying distribution Pn to change with n. An important special case is the classical setting with fixed distribution. Let {Xn, n ≥ 1} be a sequence of independent and identically distributed random variables taking values in alphabet A = {ai, i ≥ 1} with distribution P = {pi, i ≥ 1}
+
+i.e., 
+
+pi = P(X1 = ai), i ≥ 1.
+
+For each i, let ˆpi := 1
+
+n
+
+> n
+
+X
+
+> k=1
+
+I{Xk =ai} (2.8) be the sample proportion. The plug-in estimator of θ is given by ˆθn =
+
+> ∞
+
+X
+
+> i=1
+
+g(ˆ pi). (2.9) 
+
+Corollary 2.1. Assume that the function g is differentiable on [0 , 1] and its derivative 
+
+g′ is β-H¨ older continuous for some β ∈ (0 , 1] . Let 
+
+σ2 =
+
+> ∞
+
+X
+
+> i=1
+
+pi (g′ (pi)) 2 −
+
+> ∞
+
+X
+
+> i=1
+
+pig′ (pi)
+
+!2
+
+(2.10) 
+
+and assume that 
+
+γ =
+
+(β/ 2 if β ∈ (0 , 0.5] 
+
+β − 0.5 if β ∈ (0 .5, 1] . (2.11) 
+
+If 
+
+(1) β ∈ (0 .5, 1] or 
+
+(2) β ∈ (0 , 0.5] and ∞X
+
+> i=1
+
+p(β+1) /2 
+
+> i
+
+< ∞,
+
+then we have 
+
+sup 
+
+> x
+
+P
+
+√nσ (ˆθn − θ) ≤ x
+
+
+
+− Φ( x) ≤ Cnγ/ 2 , (2.12) 
+
+where Φ denotes the standard normal distribution function. 
+
+Remark 2.2. Corollary 2.1 follows directly from Theorem 2.1 by taking Pn ≡ P. It presents the bound in its classical form, where the distribution does not depend on n.
+
+Remark 2.3. The uniform bound in Corollary 2.1 implies the convergence in distri-bution of √n(ˆθn − θ)/σ to the standard normal as n → ∞ . Thus, under the same conditions, Corollary 2.1 directly yields the central limit theorem established in [5] .
+
+Consider the index 
+
+hμ,ν =
+
+> ∞
+
+X
+
+> i=1
+
+pμi (1 − pi)ν (2.13) BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 5
+
+for μ > 0 and ν ≥ 0. When μ = 2 and ν = 0, this reduces to Simpson’s index introduced in Simpson [13]. When μ and ν are integers, this corresponds to the generalized Simpson’s indices introduced in Zhang and Zhou [18] and further studied in Grabchak et al. [4]. When μ > 0 and ν = 0, this corresponds to the R´ enyi equivalent entropy introduced in Zhang and Grabchak [16]. Note that for hμ,ν , where μ > 0 and ν ≥ 0, we have g(x) = xμ(1 − x)ν and 
+
+g′(x) = μx μ−1(1 − x)ν − νx μ(1 − x)ν−1.
+
+Furthermore, we recall the following properties. 
+
+Proposition 2.1. [5, Proposition 3.1] When μ ≥ 1 and ν ∈ { 0}∪ [1 , ∞), g′ is β-H¨ older continuous with 
+
+β =
+
+
+
+min {μ − 1, ν − 1, 1} if μ, ν > 1min {μ − 1, 1} if μ > 1, ν ∈ { 0, 1}
+
+min {ν − 1, 1} if μ = 1 , ν > 11 if μ = 1 , ν ∈ { 0, 1}
+
+In order to illustrate the convergence rate more clearly, a concrete example for The-orem 2.1 is given below. 
+
+Example 2.1. Consider a sequence of distributions of the form 
+
+pn, 1 = 12 + 12nλ , pn, 2 = 12 − 12nλ ,
+
+where λ ∈ (0 , 1/2) is a real number and pn,i = 0 for all i = 3 , 4, · · · . Clearly, this approaches a uniform distribution as n → ∞ . Suppose we consider Simpson’s diversity index, which corresponds to g(x) = x2. In this case, g′(x) = 2 x is 1-H¨ older continuous. Thus 
+
+σ2 
+
+> n
+
+=12
+
+
+
+1 + 1
+
+nλ
+
+3
+
++ 12
+
+
+
+1 − 1
+
+nλ
+
+3
+
+− 14
+
+
+
+1 + 1
+
+nλ
+
+2
+
++
+
+
+
+1 − 1
+
+nλ
+
+2!2
+
+= 1
+
+n2λ − 1
+
+n4λ ∼ 1
+
+n2λ .
+
+For the case we have 
+
+sup 
+
+> x
+
+P
+
+√nσn
+
+(ˆθn − θn) ≤ x
+
+
+
+− Φ( x) ≤ Cn1/2−λ/ 2 .
+
+3. Shannon’s entropy and its bias-corrected estimators 
+
+We now turn to Shannon’s entropy, one of the most well-known diversity indices. It is an exception to the general framework established in Section 2 since its function 
+
+g(x) = −x ln x has an unbounded derivative near zero. In this case, the assumptions of Corollary 2.1 do not hold, thus requiring a distinct analytical approach to establish its Berry-Esseen bound. 6 Z. H. YU AND Y. MIAO 
+
+Let the sequence {Xn, n ≥ 1} and the distribution P be defined as before. Shannon’s entropy [12] was introduced as 
+
+H = −
+
+> ∞
+
+X
+
+> i=1
+
+pi ln pi,
+
+and its plug-in estimator is given by ˆHn = −
+
+> ∞
+
+X
+
+> i=1
+
+ˆpi ln ˆ pi (3.1) where ˆpi := 1
+
+n
+
+> n
+
+X
+
+> k=1
+
+I{Xk =ai}.
+
+Asymptotic normality for the plug-in estimator of Shannon’s entropy on a countably infinite alphabet was proved by Zhang and Zhang [17], relying on the result of Paninski [8]. Building upon this foundation, we extend the analysis to obtain a non-asymptotic convergence rate. 
+
+Theorem 3.1. Fix 0 < δ < 12 . Let {Xn, n ≥ 1} be a sequence of independent and iden-tically distributed random variables with a common nonuniform distribution {pi, i ≥ 1}
+
+satisfying E| ln p(X1)|2+ δ < ∞. Assume that there exists an integer valued function 
+
+K(n) such that, 
+
+K(n) ≤ n12 −δ, n12 +δ ln n
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ≤ C and − n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln pi ≤ C, (3.2) 
+
+then we have 
+
+sup 
+
+> x
+
+P
+
+√n( ˆHn − H)
+
+σ < x 
+
+!
+
+− Φ( x) ≤ Cn − δ 
+
+> 2
+
+, (3.3) 
+
+where Φ denotes the standard normal distribution function and σ2 = Var(ln p(X1)) .
+
+Remark 3.1. If δ = 0 , the conditions in Theorem 3.1 reduce to K(n) ≤ n1/2 and 
+
+n12 +δ ln n
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ≤ C, −n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln pi ≤ C. 
+
+In this case, the theorem does not provide an explicit convergence rate, but the as-ymptotic normality still holds. Indeed, under the assumption E| ln p(X1)|2 < ∞ and the given conditions, the Lindeberg condition can be verified for the sequence, which implies the central limit theorem [17] . The absence of the rate is due to the technical limitations of the proof rather than the failure of convergence. 
+
+Next we consider two widely used bias-corrected estimators: the Miller-Madow es-timator and the jackknife estimator. Our goal is to establish Berry-Esseen bounds for these estimators, quantifying their convergence rates under distributional conditions similar to those in Theorem 3.1. BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 7
+
+The Miller-Madow estimator [7] applies the classic strategy of first-order bias correc-tion through a simple adjustment term based on the number of observed symbols. Let 
+
+Yi = Pnk=1 I{Xk =i} be the observed letter counts in the sample, and let ˆ m = P∞ 
+
+> i=1
+
+I{Yi>0}
+
+be the number of letters observed in the sample. Then the Miller-Madow entropy es-timator can be written as ˆHM M = ˆHn + ˆm − 12n ,
+
+where ˆHn denotes the plug-in estimator of Shannon’s entropy as defined in 3.1. 
+
+Theorem 3.2. Let {Xn, n ≥ 1} be a sequence of independent and identically dis-tributed random variables with common nonuniform distribution {pi, i ≥ 1} satisfying 
+
+E| ln p(X1)|2+ δ < ∞. Assume that there exist an integer valued function K(n) and 
+
+0 < δ < 12 such that 
+
+K(n) ≤ n12 −δ, n12 +δ ln n
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ≤ C, −n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln pi ≤ C, (3.4) 
+
+then we have 
+
+sup 
+
+> x
+
+P
+
+√n( ˆHM M − H)
+
+σ < x 
+
+!
+
+− Φ( x) ≤ Cn − δ 
+
+> 2
+
+, (3.5) 
+
+where Φ denotes the standard normal distribution function and σ2 = Var(ln p(X1)) .
+
+The jackknife entropy estimator proposed by [14] is another commonly used estima-tor designed to reduce the bias of the plug-in estimator. For each j ∈ { 1, 2, . . . , n }, let ˆH(j) 
+
+> n
+
+be the plug-in estimator computed from the subsample obtained by deleting the 
+
+jth observation. That is, ˆH(j) 
+
+> n
+
+= −
+
+> ∞
+
+X
+
+> i=1
+
+ˆp(j) 
+
+> i
+
+ln ˆ p(j) 
+
+> i
+
+,
+
+where ˆp(j) 
+
+> i
+
+= 1
+
+n − 1
+
+> n
+
+X
+
+> k=1
+
+I{Xk =i} − I{Xj =i}
+
+!
+
+.
+
+The jackknife entropy estimator can then be written as ˆHJK = n ˆHn − (n − 1) 
+
+Pnj=1 ˆH(j)
+
+n .
+
+Theorem 3.3. Let {Xn, n ≥ 1} be a sequence of independent and identically dis-tributed random variables with common nonuniform distribution {pi, i ≥ 1} satisfying 
+
+E| ln p(X1)|2+ δ < ∞. Assume that there exists an integer valued function K(n) such that, for some 0 < δ < 12 ,
+
+K(n) ≤ n12 −δ, n12 +δ ln n
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ≤ C and − n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln pi ≤ C. (3.6) 8 Z. H. YU AND Y. MIAO 
+
+If there exists an ϵ ∈ (1 /2, 1) with 
+
+> ∞
+
+X
+
+> i=1
+
+p1−ϵi < ∞, (3.7) 
+
+then we have 
+
+sup 
+
+> x
+
+P
+
+√nσ ( ˆHJK − H) ≤ x
+
+
+
+− Φ( x) ≤ Cn − δ 
+
+> 2
+
++ Cn 14 − ϵ 
+
+> 2
+
+, (3.8) 
+
+where Φ denotes the standard normal distribution function and σ2 = V ar (ln p(X1)) .
+
+Next, we provide some examples to verify the conditions of Theorems 3.1, 3.2, and 3.3. 
+
+Example 3.1. For any 0 < δ < 12 and λ > 21−2δ , let pi = Cλi−λ for all i = 1 , 2, · · · ,where 
+
+Cλ = 1
+
+P∞ 
+
+> i=1
+
+i−λ < ∞.
+
+It is easy to check that P∞ 
+
+> i=1
+
+pi| ln pi|2+ δ < ∞. And let K(n) = n 1 
+
+> λ
+
+, we have 
+
+n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln n ∼ n12 +δ ln n
+
+Z ∞
+
+> K(n)
+
+Cλ
+
+xλ dx = Cλ ln nλ − 1 n 1    
+
+> λ−(12−δ)
+
+≤ Cλ
+
+λ − 1,
+
+and 
+
+− n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln pi ∼ n12 +δ
+
+Z ∞
+
+> K(n)
+
+Cλ
+
+xλ ln 
+
+ xλ
+
+Cλ
+
+
+
+dx 
+
+=n12 +δ(K(n)) 1−λ
+
+Cλλ ln K(n)
+
+λ − 1 + Cλλ
+
+(λ − 1) 2 − Cλ ln Cλ
+
+λ − 1
+
+
+
+∼Cλλ ln K(n)
+
+λ − 1 n12 +δ(K(n)) 1−λ = Cλ ln nλ − 1 n 1    
+
+> λ−(12−δ)
+
+≤ Cλ
+
+λ − 1.
+
+Then the sufficient conditions of Theorem 3.1 and Theorem 3.2 hold. Furthermore, for the 12 < ϵ < 1 and λ > max { 21−2δ , 11−ϵ }, we have 
+
+> ∞
+
+X
+
+> i=1
+
+p1−ϵi = C1−ϵλ
+
+> ∞
+
+X
+
+> i=1
+
+1
+
+iλ(1 −ϵ) < ∞.
+
+Then the sufficient conditions of Theorem 3.3 hold. 
+
+Example 3.2. For every i = 1 , 2, · · · and any λ > 0, let pi = Cλe−λi where 
+
+Cλ = 1
+
+P∞ 
+
+> i=1
+
+e−λi < ∞.
+
+It’s easy to check that P∞ 
+
+> i=1
+
+pi| ln pi|2+ δ < ∞. And for any 0 < δ < 12 , let K(n) = 
+
+λ−1 ln n, we have 
+
+n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln n ∼ n12 +δ ln n
+
+Z ∞
+
+> K(n)
+
+Cλe−λx dx = Cλ
+
+λ nδ− 12 ln n ≤ Cλ
+
+λ ,BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 9
+
+and 
+
+n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+(−pi ln pi) ∼ − n12 +δ
+
+Z ∞
+
+> K(n)
+
+Cλe−λx ln( Cλe−λx )dx 
+
+=n12 +δCλe−λK (n)
+
+
+
+K(n) + 1
+
+λ − ln Cλ
+
+λ
+
+
+
+∼CλK(n)n12 +δe−λK (n) = Cλ
+
+λ nδ− 12 ln n ≤ Cλ
+
+λ .
+
+Then the sufficient conditions of Theorem 3.1 and Theorem 3.2 hold. Furthermore, 
+
+> ∞
+
+X
+
+> i=1
+
+p1−ϵi = C1−ϵλ
+
+> ∞
+
+X
+
+> i=1
+
+1
+
+e(1 −ϵ)λi < ∞.
+
+Then the sufficient conditions of Theorem 3.3 hold. 
+
+Example 3.3. For every i = 1 , 2, · · · , let pi = Ci4(ln i)2 and K(n) = n12 −δ, it’s easy to check that P∞ 
+
+> i=1
+
+pi| ln pi|2+ δ < ∞. And for any 0 < δ < 12 , we have 
+
+n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ln n ∼ n12 +δ ln n
+
+Z ∞
+
+> K(n)
+
+Cx4(ln x)2 dx ≤ Cn 12 +δ ln n
+
+3K3(n) ln 2 K(n) ≤ C
+
+3  12 − δ2 ,
+
+and 
+
+n12 +δ
+
+> ∞
+
+X
+
+> i=K(n)
+
+(−pi ln pi) ∼ n12 +δ
+
+Z ∞
+
+> K(n)
+
+Cx4(ln x)2 ln 
+
+x4(ln x)2
+
+C
+
+
+
+dx 
+
+∼4Cn 12 +δ
+
+Z ∞
+
+> K(n)
+
+1
+
+x4 ln xdx ≤ 4Cn 12 +δ 13K3(n) ln K(n) ≤ 4C
+
+3  12 − δ.
+
+Thus, the sufficient conditions of Theorems 3.1 and 3.2 are satisfied. Furthermore, for  
+
+> 12
+
+< ϵ ≤ 34 , we have 
+
+> ∞
+
+X
+
+> i=1
+
+p1−ϵi = C1−ϵ
+
+> ∞
+
+X
+
+> i=1
+
+1
+
+i4(1 −ϵ)(ln i)2(1 −ϵ) < ∞.
+
+Then the sufficient conditions of Theorem 3.3 hold. 
+
+4. Proofs of main results 
+
+We state some useful lemmas to prove these main results. 
+
+Lemma 4.1. [3] Let X1, X 2, · · · , X n be independent and not necessarily identically dis-tributed random variables with zero means and finite variances. Define W = Pnk=1 Xk
+
+and assume that V ar (W ) = 1 . Let F be the distribution function of W and Φ be the standard normal distribution function. Then there exists an absolute constant C such that for every real number x,
+
+|F (x) − Φ( x)| ≤ C
+
+> n
+
+X
+
+> i=1
+
+EX2 
+
+> i
+
+I{| Xi|>1+ |x|} 
+
+(1 + |x|)2 + E|Xi|3I{| Xi|≤ 1+ |x|} 
+
+(1 + |x|)3
+
+
+
+.10 Z. H. YU AND Y. MIAO 
+
+Furthermore, we have 
+
+sup 
+
+> x
+
+|F (x) − Φ( x)| ≤ C
+
+> n
+
+X
+
+> i=1
+
+ EX2 
+
+> i
+
+I{| Xi|>1} + E|Xi|3I{| Xi|≤ 1}
+
+ .
+
+Lemma 4.2. [1] For any random variables X, Y , real x and constant a > 0,
+
+sup 
+
+> x
+
+P(X + Y ≤ x) − Φ( x) ≤ sup 
+
+> x
+
+P(X ≤ x) − Φ( x) + a
+
+√2π + P (|Y | > a ) ,
+
+where Φ( x) is the standard normal distribution. 
+
+Lemma 4.3. [5] Assume that the function g : [0 , 1] → R is differentiable on [0 , 1] and its derivative g′ is β-H¨ older continuous, then for any a ∈ (0 , 1] we can write 
+
+g(x) = g(a) + g′(a)( x − a) + Ra(x),
+
+where 
+
+|Ra(x)| ≤ C|x − a|β+1 
+
+for some C > 0.
+
+Lemma 4.4. [5] If β ∈ (0 , 1] , then 
+
+E[|ˆpn,i − pn,i |β+1 ] ≤ 4pn,i n−β (4.1) 
+
+and there is a constant C > 0 depending only on β with 
+
+E[|ˆpn,i − pn,i |β+1 ] ≤ Cp (β+1) /2 
+
+> n,i
+
+n−(β+1) /2. (4.2) 
+
+Lemma 4.5. [2] Let {Xn, n ≥ 1} be a sequence of independent and identically dis-tributed Bernoulli random variables with parameter p ∈ (0 , 1) . For m = 1 , . . . , n let 
+
+Sm = Pmi=1 Xi, ˆpm = Sm/m , ˆhm = −ˆpm ln ˆ pm. Then for n ≥ 3, we have 
+
+E
+
+ˆhn − ˆhn−1
+
+
+
+≤ 2p
+
+(n − 1) (( n − 2) p + 2) . (4.3) For fixed ε > 0, rewriting the upper bound of (4.3) gives 2p
+
+(n − 1) (( n − 2) p + 2) = 2p1−ε
+
+n − 1
+
+ pε
+
+(n − 2) p + 2 
+
+
+
+=: 2p1−ε
+
+n − 1g(n, p, ε ). (4.4) 
+
+Lemma 4.6. [2] For any ε ∈ (0 , 1) and n ≥ 3, there exists a p0 ∈ (0 , 1) such that 
+
+g(n, p, ε ) defined in (4.4) is maximized at p0 and 
+
+0 ≤ g(n, p 0, ε ) = O(n−ε). (4.5) 
+
+Lemma 4.7. [2] For any distribution, let Bn = E ˆHn − H be the bias of the plug-in based on a sample of size n, we have 
+
+ˆBJK := n − 1
+
+n
+
+> n
+
+X
+
+> j=1
+
+ ˆHn − ˆH(j)
+
+> n
+
+
+
+≥ 0
+
+and 
+
+E( ˆBJK ) = ( n − 1)( Bn − Bn−1). (4.6) BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 11 
+
+Proof of Theorem 2.1. From Lemma 4.3, we have ˆθn − θn =
+
+> ∞
+
+X
+
+> i=1
+
+g′(pn,i )(ˆ pn,i − pn,i ) + 
+
+> ∞
+
+X
+
+> i=1
+
+Rpn,i (ˆ pn,i ). (4.7) For every n ≥ 1 and 1 ≤ k ≤ n, let us define 
+
+Tk,n := 
+
+> ∞
+
+X
+
+> i=1
+
+ I{Xk,n =ai} − pn,i 
+
+ g′(pn,i ), (4.8) then we have ∞X
+
+> i=1
+
+g′(pn,i )(ˆ pn,i − pn,i ) = 1
+
+n
+
+> n
+
+X
+
+> k=1
+
+Tk,n . (4.9) It is easy to check that {Tk,n } is an array of independent and identically distributed random variables with ET1,n = 0 and 
+
+V ar (T1,n ) = E
+
+> ∞
+
+X
+
+> i=1
+
+ 1{X1,n =ai} − pn,i 
+
+ g′(pn,i )
+
+!2
+
+=
+
+> ∞
+
+X
+
+> i=1
+
+pn,i (g′(pn,i )2 −
+
+> ∞
+
+X
+
+> i=1
+
+pn,i g′(pn,i )
+
+!2
+
+= σ2
+
+> n
+
+.
+
+Since g′ is β-H¨ older continuous, there exists a positive constant M , such that 
+
+|Tk,n | ≤ M
+
+> ∞
+
+X
+
+> i=1
+
+(I{Xk,n =ai} + pn,i ) ≤ 2M. (4.10) Thus for any 0 < α < 1, using H¨ older’s inequality, we have 
+
+E|T1,n |2+ α ≤
+
+
+
+E|T1,n | 21−α
+
+1−α 
+
+> 2
+
+ E|T1,n |21+ α 
+
+> 2
+
+≤ Cσ 1+ αn . (4.11) By Lemma 4.2, for any a > 0, we have sup 
+
+> x
+
+P
+
+√nσn
+
+(ˆθn − θn) < x 
+
+
+
+− Φ( x)
+
+≤ sup 
+
+> x
+
+P 1
+
+√nσ nnX
+
+> k=1
+
+Tk,n < x 
+
+!
+
+− Φ( x) + a
+
+√2π + P
+
+√nσn
+
+> ∞
+
+X
+
+> i=1
+
+Rpn,i (ˆ pn,i ) > a 
+
+!
+
+.
+
+(4.12) Firstly, by Lemma 4.1 and 4.11, for any 0 < α = 2 γ < 1 we have sup 
+
+> x
+
+P 1
+
+√nσ nnX
+
+> k=1
+
+Tk,n < x 
+
+!
+
+− Φ( x)
+
+≤C
+
+> n
+
+X
+
+> k=1
+
+(
+
+E
+
+ Tk,n 
+
+√nσ n
+
+2
+
+I{|Tk,n |>√nσ n} + E
+
+ |Tk,n |√nσ n
+
+3
+
+I{|Tk,n |≤ √nσ n}
+
+)
+
+≤C
+
+> n
+
+X
+
+> k=1
+
+(
+
+E Tk,n 
+
+√nσ n
+
+> 2+ α
+
+I{|Tk,n |>√nσ n} + E Tk,n 
+
+√nσ n
+
+> 2+ α
+
+I{|Tk,n |≤ √nσ n}
+
+)12 Z. H. YU AND Y. MIAO 
+
+≤ Cnα/ 2σ2+ αn
+
+E|T1,n |2+ α ≤ Cnα/ 2σn
+
+= Cnγ σn
+
+. (4.13) By using Markov inequality and Lemma 4.3, we have 
+
+P
+
+√nσn
+
+> ∞
+
+X
+
+> i=1
+
+Rpn,i (ˆ pn,i ) > a 
+
+!
+
+≤ C√naσ n
+
+> ∞
+
+X
+
+> i=1
+
+E  |ˆpn,i − pn,i |β+1  . (4.14) Next we can get the further upper bound of the above inequation by Lemma 4.4. When 
+
+β ∈ (0 .5, 1], using (4.1), we can obtain the upper bound as 
+
+C√naσ n
+
+> ∞
+
+X
+
+> i=1
+
+4n−β pn,i = Caσ nn(β−1/2) , (4.15) and when β ∈ (0 , 0.5], using (4.2) and the condition (2.6), we obtain the upper bound as 
+
+C√naσ n
+
+> ∞
+
+X
+
+> i=1
+
+p(β+1) /2 
+
+> n,i
+
+n−(β+1) /2 = Caσ nn(β/ 2) . (4.16) By taking a = 1
+
+> nγ/ 2σ1/2
+> n
+
+, (2.7) holds by using (4.12), (4.13), (4.14), (4.15) and (4.16). □
+
+Proof of Corollary 2.1. Corollary 2 .1 corresponds to the case where σn = σ is fixed in Theorem 2 .1. Since σ2 > 0 for any nonuniform distribution, the proof follows directly from that of Theorem 2 .1 with this parameter substitution. □
+
+Proof of Theorem 3.1. Let {Xk,n , 1 ≤ k ≤ n, n ≥ 1} be an array of independent and identically distributed random variables with common nonuniform distribution 
+
+{pn,i , 1 ≤ i ≤ K(n), n ≥ 1}, i.e., for any n ≥ 1, 
+
+P(X1,n = i) = pn,i , 1 ≤ i ≤ K(n)where 
+
+pn,i =
+
+(pi, 1 ≤ i < K (n)
+
+P 
+
+> i≥K(n)
+
+pi, i = K(n).
+
+Define the entropy as 
+
+Hn = −
+
+> K(n)
+
+X
+
+> i=1
+
+pn,i ln pn,i ,
+
+and the corresponding sample proportion is ˆpn,i = 1
+
+n
+
+> n
+
+X
+
+> k=1
+
+I{Xk,n =ai}.
+
+From the definition of the plug-in estimator ˆHn for the entropy H, we have ˆH − H = −
+
+> ∞
+
+X
+
+> i=1
+
+(ˆ pi − pi) ln pi −
+
+> ∞
+
+X
+
+> i=1
+
+ˆpi ln ˆpi
+
+pi
+
+. (4.17) BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 13 
+
+For every n ≥ 1 and 1 ≤ k ≤ n, let us define 
+
+Tk := −
+
+> ∞
+
+X
+
+> i=1
+
+ I{Xk =ai} − pi
+
+ ln pi,
+
+then we have 
+
+−
+
+> ∞
+
+X
+
+> i=1
+
+(ˆ pi − pi) ln pi = 1
+
+n
+
+> n
+
+X
+
+> k=1
+
+Tk. (4.18) It’s easy to see that E| ln p(X1)|2+ δ = P∞ 
+
+> i=1
+
+pi |ln pi|2+ δ < ∞ can imply H = − P∞ 
+
+> i=1
+
+pi ln pi <
+
+∞ and σ2 < ∞. Using the elementary inequality ( a + b)2+ δ ≤ C(a2+ δ + b2+ δ), we have 
+
+E|T1|2+ δ =E
+
+> ∞
+
+X
+
+> i=1
+
+ I{X1=ai} − pi
+
+ ln pi
+
+> 2+ δ
+
+≤CE
+
+> ∞
+
+X
+
+> i=1
+
+I{X1=ai} ln pi
+
+> 2+ δ
+
++ C −
+
+> ∞
+
+X
+
+> i=1
+
+p(i) ln pi
+
+> 2+ δ
+
+≤C
+
+> ∞
+
+X
+
+> i=1
+
+pi |ln pi|2+ δ + C |H|2+ δ < ∞.
+
+(4.19) From (4.17), (4.18) and Lemma 4.2, for any a > 0, we have sup 
+
+> x
+
+P
+
+√nσ ( ˆH − H) < x 
+
+
+
+− Φ( x)
+
+≤ sup 
+
+> x
+
+P 1
+
+√nσ 
+
+> n
+
+X
+
+> k=1
+
+Tk < x 
+
+!
+
+− Φ( x) + a
+
+√2π + P
+
+√nσ
+
+> ∞
+
+X
+
+> i=1
+
+ˆpi ln ˆpi
+
+pi
+
+> a 
+
+!
+
+. (4.20) Firstly, by (4.19) and Lemma 4.1, for the fixed 0 ≤ δ < 12 , we have sup 
+
+> x
+
+P 1
+
+√nσ 
+
+> n
+
+X
+
+> k=1
+
+Tk < x 
+
+!
+
+− Φ( x)
+
+≤C
+
+> n
+
+X
+
+> k=1
+
+(
+
+E
+
+ Tk
+
+√nσ 
+
+2
+
+I{|Tk |>√nσ } + E
+
+ Tk
+
+√nσ 
+
+3
+
+I{|Tk |≤ √nσ }
+
+)
+
+≤C
+
+> n
+
+X
+
+> k=1
+
+(
+
+E Tk
+
+√nσ 
+
+> 2+ δ
+
+I{|Tk |>√nσ } + E Tk
+
+√nσ 
+
+> 2+ δ
+
+I{|Tk |≤ √nσ }
+
+)
+
+≤ Cnδ/ 2σ2+ δ E|T1|2+ δ ≤ Cnδ/ 2 . (4.21) We observe that −ˆpi ln ˆ pi ≤ ˆpi ln n and −ˆpn,i ln ˆ pn,i ≤ ˆpn,i ln n, then the following two inequalities 0 ≤ √n X
+
+> i≥K(n)
+
+(−ˆpi ln ˆ pi) ≤ √n X
+
+> i≥K(n)
+
+ˆpi ln n
+
+and 0 ≤ − √nˆpn,K (n) ln ˆ pn,K (n) ≤ √nˆpn,K (n) ln n (4.22) 14 Z. H. YU AND Y. MIAO 
+
+clearly hold. From the following inequality 
+
+h
+
+1 + h < ln(1 + h) < h for h > −1,
+
+we have K(n)
+
+X
+
+> i=1
+
+ˆpn,i ln ˆpn,i 
+
+pn,i 
+
+≤
+
+> K(n)
+
+X
+
+> i=1
+
+ˆpn,i 
+
+ ˆpn,i 
+
+pn,i 
+
+− 1
+
+
+
+=
+
+> K(n)
+
+X
+
+> i=1
+
+(ˆ pn,i − pn,i )2
+
+pn,i 
+
+(4.23) and 
+
+> K(n)
+
+X
+
+> i=1
+
+ˆpn,i ln ˆpn,i 
+
+pn,i 
+
+≥
+
+> K(n)
+
+X
+
+> i=1
+
+ˆpn,i 
+
+ ˆpn,i  
+
+> pn,i
+
+− 1
+
+
+
+1 + 
+
+ ˆpn,i  
+
+> pn,i
+
+− 1
+
+ =
+
+> K(n)
+
+X
+
+> i=1
+
+pn,i 
+
+ ˆpn,i 
+
+pn,i 
+
+− 1
+
+
+
+= 0 . (4.24) With the condition K(n) ≤ n12 −δ, we obtain 
+
+P
+
+
+
+√nσ
+
+> K(n)
+
+X
+
+> i=1
+
+ˆpn,i ln ˆpn,i 
+
+pn,i 
+
+> a 
+
+
+
+≤P
+
+
+
+√nσ
+
+> K(n)
+
+X
+
+> i=1
+
+(ˆ pn,i − pn,i )2
+
+pn,i 
+
+> a 
+
+
+
+≤√naσ 
+
+> K(n)
+
+X
+
+> i=1
+
+E (ˆ pn,i − pn,i )2
+
+pn,i 
+
+!
+
+= 1
+
+n3/2aσ 
+
+> K(n)
+
+X
+
+> i=1
+
+1
+
+pn,i 
+
+E
+
+
+
+> n
+
+X
+
+> k=1
+
+(I{Xk,n =ai} − pn,i )
+
+!2
+
+= 1
+
+a√nσ 
+
+> K(n)
+
+X
+
+> i=1
+
+(1 − pn,i ) ≤ K(n)
+
+a√nσ ≤ Can δ .
+
+From the definition that pn,K (n) = P 
+
+> i≥K(n)
+
+pi, we have 
+
+X
+
+> i≥K(n)
+
+pi ln n = pn,K (n) ln n
+
+and X
+
+> i≥K(n)
+
+pi ln pi ≤ X
+
+> i≥K(n)
+
+pi ln pn,K (n) = pn,K (n) ln pn,K (n).
+
+With (4.22) and Markov’s inequality, we have 
+
+P
+
+√nσ ˆpn,K (n) ln ˆpn,K (n)
+
+pn,K (n)
+
+> a 
+
+
+
+≤P
+
+
+
+−ˆpn,K (n) ln ˆ pn,K (n) − ˆpn,K (n) ln pn,K (n) > aσ 
+
+√n
+
+
+
+≤P
+
+
+
+ˆpn,K (n) ln n − ˆpn,K (n) ln pn,K (n) > aσ 
+
+√n
+
+BERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 15 
+
+≤√naσ E ˆpn,K (n) ln n − ˆpn,K (n) ln pn,K (n)
+
+=
+
+√naσ 
+
+ pn,K (n) ln n − pn,K (n) ln pn,K (n)
+
+
+
+≤√naσ 
+
+pn,K (n) ln n − X
+
+> i≥K(n)
+
+pi ln pi
+
+
+
+and 
+
+P
+
+
+
+√nσ
+
+X
+
+> i≥K(n)
+
+ˆpi ln ˆpi
+
+pi
+
+> a 
+
+
+
+≤P
+
+− X
+
+> i≥K(n)
+
+ˆpi ln ˆ pi − X
+
+> i≥K(n)
+
+ˆpi ln pi > aσ 
+
+√n
+
+
+
+≤P
+
+ X
+
+> i≥K(n)
+
+ˆpi ln n − X
+
+> i≥K(n)
+
+ˆpi ln pi > aσ 
+
+√n
+
+
+
+≤√naσ E X
+
+> i≥K(n)
+
+ˆpi ln n − X
+
+> i≥K(n)
+
+ˆpi ln pi
+
+≤√naσ 
+
+pn,K (n) ln n − X
+
+> i≥K(n)
+
+pi ln pi
+
+ .
+
+Then using the assumption (3.2), we get 
+
+P
+
+√nσ
+
+> ∞
+
+X
+
+> i=1
+
+ˆpi ln ˆpi
+
+pi
+
+> a 
+
+!
+
+=P
+
+
+
+√nσ
+
+> K(n)
+
+X
+
+> i=1
+
+ˆpn,i ln ˆpn,i 
+
+pn,i 
+
+− ˆpn,K (n) ln ˆpn,K (n)
+
+pn,K (n)
+
++ X
+
+> i≥K(n)
+
+ˆpi ln ˆpi
+
+pi
+
+> a 
+
+
+
+≤C
+
+ 1
+
+an δ +
+
+√na pn,K (n) ln n −√na
+
+X
+
+> i≥K(n)
+
+pi ln pi
+
+ ≤ C 1
+
+an δ . (4.25) By taking a = n− δ 
+
+> 2
+
+, (3.3) holds by using (4.20), (4.21) and (4.25). □
+
+Proof of Theorem 3.2. By the defition of HM M , we have ˆHM M − H = ˆHn − H + ˆm − 12n . (4.26) By Lemma 4.2, for any a > 0 we have sup 
+
+> x
+
+P
+
+√nσ ( ˆHM M − H) ≤ x
+
+
+
+− Φ( x)16 Z. H. YU AND Y. MIAO 
+
+≤ sup 
+
+> x
+
+P
+
+√nσ ( ˆH − H) ≤ x
+
+
+
+− Φ( x) + a
+
+√2π + P
+
+√nσ
+
+ˆm − 12n > a 
+
+
+
+. (4.27) Firstly, by Theorem 3.1 sup 
+
+> x
+
+P
+
+√n( ˆH − H)
+
+σ < x 
+
+!
+
+− Φ( x) ≤ Cn − δ 
+
+> 2
+
+. (4.28) Then from Bernoulli’s inequality (1 − pi)n ≥ 1 − np i, we have 1 − (1 − pi)n ≤ np i.
+
+By using Markov inequality and the assumption (3.4), we have 
+
+P
+
+√nσ
+
+ˆm − 12n > a 
+
+
+
+≤ Ca√n (E| ˆm| + 1) = Ca√n 1 + 
+
+> ∞
+
+X
+
+> i=1
+
+(1 − (1 − pi)n)
+
+!
+
+≤ Ca√nK(n) + C√na
+
+> ∞
+
+X
+
+> i=K(n)
+
+pi ≤ Can δ . (4.29) By taking a = n− δ 
+
+> 2
+
+, (3.5) holds by using (4.27), (4.28) and (4.29). □
+
+Proof of Theorem 3.3. By the defition of HJK , we have ˆHJK − H = ˆHn − H + n − 1
+
+n
+
+> n
+
+X
+
+> j=1
+
+ ˆH − ˆH(j)
+
+
+
+. (4.30) Let us define ˆBJK := n − 1
+
+n
+
+> n
+
+X
+
+> j=1
+
+ ˆH − ˆH(j)
+
+
+
+.
+
+By Lemma 4.2, for any a > 0 we have sup 
+
+> x
+
+P
+
+√nσ ( ˆHJK − H) ≤ x
+
+
+
+− Φ( x)
+
+≤ sup 
+
+> x
+
+P
+
+√nσ ( ˆH − H) ≤ x
+
+
+
+− Φ( x) + a
+
+√2π + P
+
+√nσ ˆBJK > a 
+
+
+
+. (4.31) Firstly, by Theorem 3.1 we have sup 
+
+> x
+
+P
+
+√n( ˆH − H)
+
+σ < x 
+
+!
+
+− Φ( x) ≤ Cn − δ 
+
+> 2
+
+. (4.32) For any distribution, let Bn = E ˆHn − H be the bias of the plug-in based on a sample of size n. And for every i and every m ≤ n, let 
+
+Sm,i =
+
+> m
+
+X
+
+> k=1
+
+I{Xk =i} and ˆHm = −
+
+> ∞
+
+X
+
+> i=1
+
+Sm,i 
+
+m ln Sm,i 
+
+mBERRY-ESSEEN BOUNDS FOR ENTROPY AND DIVERSITY INDICES 17 
+
+be the observed letter counts and the plug-in estimator of entropy based on the first m
+
+observations. By using Lemma 4.5, Lemma 4.6 and the ϵ ∈ (1 /2, 1) satisfies assumption (3.7), we have 
+
+Bn − Bn−1 = E( ˆHn − ˆHn−1)=
+
+> ∞
+
+X
+
+> i=1
+
+E
+
+Sn−1,i 
+
+n − 1 ln Sn−1,i 
+
+n − 1 − Sn,i 
+
+n ln Sn,i 
+
+n
+
+
+
+≤
+
+> ∞
+
+X
+
+> i=1
+
+2pi
+
+(n − 1) (( n − 2) pi + 2) = 2 
+
+> ∞
+
+X
+
+> i=1
+
+p1−ϵi
+
+1(n − 1) 
+
+pϵi
+
+(( n − 2) pi + 2) 
+
+≤ Cn1+ ϵ .
+
+By using Markov inequality and Lemma 4.7, we have 
+
+P
+
+√nσ ˆBJK > a 
+
+
+
+≤√naσ E ˆBJK =
+
+√n(n − 1) 
+
+aσ (Bn − Bn−1)
+
+≤ Ca n1/2−ϵ. (4.33) By taking a = n14 − ϵ 
+
+> 2
+
+, (3.8) holds by using (4.31), (4.32) and (4.33). □
+
+References 
+
+[1] M. N. Chang and P. V. Rao, Berry-Esseen bound for the Kaplan-Meier estimator. Comm. Statist. Theory Methods 18 (1989), no. 12, 4647-4664. [2] C. Chen, M. Grabchak, A. Stewart, J. L. Zhang and Z. Y. Zhang, Normal laws for two entropy estimators on infinite alphabets. Entropy 20 (2018), no. 5. 371. [3] L. H. Y. Chen and Q. M. Shao, A non-uniform Berry-Esseen bound via Stein’s method. Probab. Theory Related Fields 120 (2001), no. 2, 236-254. [4] M. Grabchak, E. Marcon, G. Lang and Z. Y. Zhang, The generalized Simpson’s entropy is a measure of biodiversity. PLoS one 12 (2017), no. 3. e0173305. [5] M. Grabchak and Z. Y. Zhang, Asymptotic normality for plug-in estimators of diversity indices on countable alphabets. J. Nonparametr. Stat. 30 (2018), no. 3, 774-795. [6] M. O. Hill, Diversity and Evenness: A Unifying Notation and Its Consequences. Ecology 54 (1973), 427-432. [7] G. A. Miller and W.G. Madow, On the Maximum-Likelihood Estimate of the Shannon-Wiener Measure of Information. Air Force Cambridge Research Center Technical Report. 75 (1954), 54-75. [8] L. Paninski, Estimation of entropy and mutual information. Neural Comput. 15 (2003) no. 6, 1191-1253. [9] G. P. Patil and C. Taillie, Diversity as a concept and its measurement. J. Amer. Statist. Assoc. 77 (1982), no. 379, 548-567. [10] A. Pinchas, I. Ben-Gal and A. Painsky, A comparative analysis of discrete entropy estimators for large-alphabet problems. Entropy 26 (2024), no. 5. 369. [11] A. R´ enyi, On measures of entropy and information, Math. Statist. and Prob. (1961), 547-561. 18 Z. H. YU AND Y. MIAO 
+
+[12] C. Shannon, A mathematical theory of communication. Bell System Tech. J. 27 (1948), 379-423. [13] E. H. Simpson, Measurement of diversity, Nature 163 (1949), 688. [14] S. Zahl, Jackknifing an index of diversity. Ecology 58 (1977), no. 4, 907-913. [15] J. L. Zhang and J. Y. Shi, Asymptotic normality for plug-in estimators of generalized Shannon’s entropy. Entropy 24 (2022), no. 5, 683-693. [16] Z. Y. Zhang and M. Grabchak, Entropic representation and estimation of diversity indices. J. Nonparametr. Stat. 28 (2016), no. 3, 563-575. [17] Z. Y. Zhang and X. Zhang, A normal law for the plug-in estimator of entropy. IEEE Trans. Inform. Theory 58 (2012), no. 5, 2745-2747. [18] Z. Y. Zhang and J. Zhou, Re-parameterization of multinomial distributions and diversity indices. J. Statist. Plann. Inference 140 (2010), no. 7, 1731-1738. (Z. H. Yu) School of Mathematics and Statistics, Henan Normal University, Henan Province, 453007, China. 
+
+Email address : zhenhongyu2022@126.com 
+
+(Y. Miao) School of Mathematics and Statistics, Henan Normal University, Henan Province, 453007, China. 
+
+Email address : yumiao728@gmail.com; yumiao728@126.com
