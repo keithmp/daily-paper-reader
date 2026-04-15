@@ -1,0 +1,2467 @@
+Title: Invariance of Competition Outcomes in Hypergraph Competitive Dynamics
+
+URL Source: https://arxiv.org/pdf/2604.08730v1
+
+Published Time: Mon, 13 Apr 2026 00:09:54 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# Invariance of Competition Outcomes in Hypergraph Competitive Dynamics 
+
+# Qi Zhao a, Shaoxuan Cui b, Baolin Zhang c, Junwei Du a, Yuanshi Zheng d,
+
+> a
+
+School of Data Science, Qingdao University of Science and Technology, China 
+
+> b
+
+Bernoulli Institute, Faculty of Science and Engineering, University of Groningen, The Netherlands 
+
+> c
+
+College of Automation and Electronic Engineering, Qingdao University of Science and Technology, China 
+
+> d
+
+Shaanxi Key Laboratory of Space Solar Power Station System, School of Mechano-electronic Engineering, Xidian University, China 
+
+Abstract 
+
+Winner-take-all (WTA)–type selection is a fundamental mechanism in networked competition, yet its dependence on higher-order interactions remains insufficiently understood. We study a Lotka–Volterra competitive dynamics on higher-order net-works, where classical pairwise inhibition is augmented by multi-way interaction terms induced by hyperedges of uniform hypergraphs. The proposed model shows multiple competitive outcomes, including WTA, winner-share-all (WSA), and variant winner-take-all (VWTA). The existence, uniqueness and stability of equilibria are rigorously proved through mathematical analysis, which relies on classical stability theory and recent advances in tensor algebra. We show that the eventual selection outcome is relatively insensitive to the hyperedge order and the specific higher-order coupling structure, and is instead deter-mined by a small set of interpretable scalar parameters, such as the ratio between self-inhibition and lateral-inhibition and the external inputs. Numerical experiments support the theory by showing that higher-order interactions affect convergence and steady states, yet yield the similar outcome taxonomy (WTA/WSA/VWTA) as in standard graphs. These results provide a network-scientific explanation of the robustness of WTA-type outcomes under complex group interactions and offer principled guidance for designing selection mechanisms on higher-order networks. 
+
+Key words: Higher-order interactions, Hypergraphs, Lotka–Volterra competition, Winner-take-all, Stability analysis 
+
+1 Introduction 
+
+WTA–type selection is a fundamental mechanism in net-worked competition, widely underlying resource alloca-tion and selective activation processes in complex sys-tems. In many real settings, interactions are not purely pairwise. Group-level non-additive couplings arise from collective contexts such as group communication, co-activity, and shared constraints. This motivates com-
+
+Email addresses: zhaoqi 1995@163.com (Qi Zhao), 
+
+s.cui@rug.nl (Shaoxuan Cui), zhangbl2006@163.com 
+
+(Baolin Zhang), djwqd@163.com (Junwei Du), 
+
+zhengyuanshi2005@163.com (Yuanshi Zheng).  
+
+> 1
+
+The corresponding author is S. Cui. This work is par-tially financially supported by the Qingdao Natural Science Foundation (Grant No. 25-1-1-121-zyyd-jch), the opening project of Shandong Province Engineering Research Cen-tre (Qingdao University of Science and Technology, Grant No.KF2024SD010), and the NSFC (Grant No. 62401310). 
+
+petitive dynamics on higher-order networks such as hy-pergraphs. Neural systems provide a representative and well-studied instance of such networked competition: in-hibitory interactions among neurons are known to shape selective activation [1], decision-making [2], and cog-nitive behavior [3]. Unlike generic dynamical systems, competitive neural dynamics often exhibits strong selec-tion effects such as WTA and WSA, making it a natural testbed for developing rigorous theory on competitive outcomes in higher-order networked systems. To model these competitive processes, researchers have drawn inspiration from ecological systems, in which species compete and interact in dynamic environments. The Lotka-Volterra (LV) model, initially proposed to depict predator–prey interactions [4] and interspecies competition [5], has been introduced into neural net-works to describe neuronal inhibition [6] and selec-tion [7]. The paper [8] constructed LV-based neural cir-cuits that exhibit WTA and WSA behaviors. Zhang and 
+
+Preprint submitted to Automatica 13 April 2026 
+
+> arXiv:2604.08730v1 [eess.SY] 9 Apr 2026
+
+Yi [9] investigated the stability and multi-stability of LV neural networks with time delays. The paper [10] fur-ther extended the model by incorporating time-varying and distributed delays, and explored the existence and stability of system solutions. In addition, the above model has been used to simulate metastable transitions in neural systems, providing theoretical insights into cognitive processes [11]. Fukai and Tanaka [12] demon-strated that LV-type equations derived from membrane dynamics can effectively model neuronal competition, revealing distinct behaviors such as WTA and WSA. Building on this, [13] applied LV neural networks to fMRI-based brain region detection. Zheng proposed a WTA LV recurrent neural network with N × N neurons and established sufficient conditions for stable equilibria with a unique winner per row/column in [14]. More re-cently, data-driven approaches using neural differential equations [15] and spatial models with non-local interac-tions [16] have further expanded the applicability of LV model. The LV model combines simplicity and compu-tational efficiency, which makes it suitable for simulat-ing the dynamic evolution of neural populations. It has become a key tool for studying neuronal competition and is widely applied in computational neuroscience. Despite these advances, most existing LV-based neural models are restricted to pairwise interaction [4]- [16], typically represented by simple graphs. However, in-creasing evidence shows that real neural circuits involve complex dependencies among groups of neurons [17]. To more accurately capture these higher-order interac-tions, researchers have adopted hypergraph structures. In a hypergraph, a single edge can connect more than two nodes, better reflecting the collective behavior of neural groups. Higher-order structures have been shown to drastically alter system dynamics in various fields. In [18], the authors demonstrated that hypergraph struc-tures fundamentally alter the diffusion dynamics of SIS processes, inducing multi-stability phenomena absent in pairwise interaction models. For instance, synchroniza-tion models on hypergraphs can exhibit abrupt transi-tions, multistability, and explosive behaviors not seen in pairwise interaction systems. For example, [19] pro-posed a simple framework to incorporate non-additive higher-order interactions into biodiversity models and confirms their significant impact on species performance in natural plant communities. Carletti and Fanelli pro-posed a general framework for modeling dynamics on hypergraphs in [20], and showed that higher-order inter-actions can alter stability, conservation properties, and the structure of equilibria. Battiston et al. [21] showed that such structures can change system dynamics like synchronization and diffusion. From a computational perspective, Cui et al. [22, 23] employed tensor-based Perron–Frobenius methods to analyze both discrete-and continuous-time systems on hypergraphs, providing rigorous frameworks for attractor characterization and stability analysis of high-order interaction dynamics. Notably, although higher-order interactions commonly impact system behavior, this paper presents a competi-tion model wherein such interactions enhance modeling fidelity without altering the ultimate outcome or influ-encing factors of the WTA mechanism, which indicates that the outcome pattern maybe one of the natural characteristics of a homogeneous network competition. Building on the modeling advances in higher-order networks and hypergraphs, researchers have extended the LV model to incorporate higher-order interactions. These extensions aim to capture non-additive effects and explain complex dynamics observed in empirical systems. Higher-order interactions that capture col-lective effects among three or more species have been shown to enhance predictive accuracy in a wide range of ecological conditions. For example, [24] extended the LV competition model with higher-order interactions and demonstrated through data and simulations their preva-lence and contribution to predictive accuracy. In [25], Sidhom and Galla introduced a stochastic version with random interaction tensors. Their results showed bet-ter system stability and diversity. At the same time, Sales-Pardo et al. [26] proposed a generative model for predicting hyperedges. They found statistical links be-tween higher-order and lower-order interactions. How-ever, the inherent nonlinearity of these models makes their analytical treatment challenging. The influence of higher-order interactions on species coexistence has been examined through simulations [27] and through numerical and statistical physics approaches [28]. At present, rigorous mathematical proofs regarding the properties of equilibria remain limited. Recently, Cui et al. [29] applied S-tensor theory to high-order LV systems, establishing equilibrium conditions via a poly-nomial complementarity formulation. While providing a tensor-based framework for nonlinear dynamics, their analysis does not offer detailed and comprehensive re-sults for competitive scenarios. Most existing models still fail to adequately explore higher-order dependencies in neural competition. In particular, much of the literature focuses on pairwise couplings, and the role of higher-order interactions in shaping competition dynamics remains underexplored. Moreover, the nonlinear and high-dimensional structure of such systems complicates rigorous analysis of equi-librium existence, uniqueness, and stability. To address these gaps, this paper proposes a higher-order LV com-petition model on hypergraphs. The main contributions of this work are summarized as follows: (i) We propose a high-order LV competition model based on uniform hypergraphs, which extends tra-ditional pairwise interaction models to capture multi-neuron interactions in higher-order and even arbitrary-order network structures. (ii) We rigorously analyze the existence, uniqueness, and stability of equilibria under several competitive outcomes, including all-neurons coexistence, WSA, 2WTA, and VWTA. (iii) We obtain explicit and verifiable conditions for these results by leveraging properties of structured tensors. (iv) Numerical simulations corroborate the theory and demonstrate that higher-order couplings can af-fect convergence behavior and steady-state values, while preserving the invariant outcome under the same inputs and inhibition ratio, indicating that higher-order interactions enable a more realistic representation of neural coordination beyond pair-wise couplings. (v) Importantly, we identify a structurally invari-ant competition outcome pattern in our model: while higher-order interactions modulate the dy-namics, the fundamental competition outcome (WTA/WSA/VWTA) and its determining factors remain relatively robust. This indicates that the ratio between self-inhibition and lateral inhibition plays a more decisive role than the hyperedge order and the detailed interaction structure. The rest of this paper is structured as follows. The pre-liminaries about hypergraph, structured tensor theory and effective lemmas are introduced in Section 2. Sec-tion 3-8 contains the problem models and main theo-retical results. In Section 9, some numerical simulations are proposed to verify the validity of the designed al-gorithms. In the end, section 10 summarizes the main contents of the paper. 
+
+2 PRELIMINARIES 
+
+This section introduces the foundational concepts and mathematical tools necessary for modeling and analyz-ing High-order competition mechanisms based on the LV model. We begin by presenting the hypergraph frame-work used to characterize higher-order interactions, fol-lowed by the tensor representations that support such modeling. Finally, we summarize a collection of relevant theoretical results related to stability analysis and ten-sor equations. 
+
+2.1 Hypergraphs for High-Order Interaction Modeling 
+
+Hypergraphs generalize conventional graphs by allowing edges to connect more than two nodes simultaneously, making them a powerful tool for modeling higher-order interactions. We adopt the hypergraph formulation in-troduced in [30]. In this paper, we focus on uniform hypergraphs, where each hyperedge connects exactly r distinct nodes. An r-uniform hypergraph is defined as a pair H = ( V, E), where V is the set of nodes and E ⊆  V
+
+> r
+
+ is the set of hyperedges, each containing exactly r elements. To incorporate interaction weights, we associate a sym-metric order-r tensor A = [ Ai1i2...i r ] with the hyper-graph, where each entry represents the strength of the in-teraction among the corresponding r nodes. When r = 2, this formulation reduces to a standard graph with an adjacency matrix Aij .
+
+2.2 Tensors and Their Spectral Properties 
+
+Tensors provide a natural algebraic framework for repre-senting uniform hypergraph interactions. A tensor A ∈
+
+Rn×n×···× n = R[m,n ] is a multidimensional array of or-der m and dimension n. In this paper, we consider only cubical and supersymmetric tensors, where all modes have the same dimension and the entries are invariant under any permutation of indices. The identity tensor I = ( δi1··· im ) is defined elementwise as 
+
+δi1··· im =
+
+1, if i1 = i2 = · · · = im,
+
+0, otherwise .
+
+For vectors Ax m−1 and x[m−1] , whose i-th components are (Ax m−1)i =
+
+> n
+
+X
+
+> i2,...,i m=1
+
+Ai,i 2,...,i m xi2 · · · xim ,
+
+(x[m−1] )i = xm−1 
+
+> i
+
+.
+
+where m denote the order of the tensor A.We now turn our attention to the eigenvalue-eigenvector problem for tensors: 
+
+Ax m−1 = λx [m−1] , (1) If there exists a real number λ and a nonzero real vector 
+
+x that satisfy (1), then λ is termed an H-eigenvalue of 
+
+A, and x is the corresponding H-eigenvector of A, where 
+
+λ ∈ R and x ∈ Rn \ { 0}. Throughout this paper, the terms eigenvalue and eigenvector are used synonymously with H-eigenvalue and H-eigenvector, respectively. The spectral radius of A is 
+
+ρ(A) = max {| λ| : λ is an eigenvalue of A}.
+
+2.3 Structured Tensors and Their Properties 
+
+In this subsection, we present several special tensor classes that are fundamental to the analysis of nonlin-ear tensor equations, particularly those arising from high-order interaction models. We also summarize key results ensuring the existence and uniqueness of positive solutions. 3Let A ∈ R[m,n ] be an m-order and n-dimension real tensor. The identity tensor I ∈ R[m,n ] is defined by 
+
+Ii1i2...i m =
+
+1, if i1 = i2 = · · · = im,
+
+0, otherwise .
+
+Definition 1 ( [31]) A tensor A ∈ R[m,n ] is referred to as an M-tensor if it admits a decomposition of the form 
+
+A = sI − B, where B ∈ R[m,n ] is a nonnegative tensor and s ∈ R satisfies s ≥ ρ(B). If the inequality is strict, i.e., s > ρ (B), then A is called a nonsingular M-tensor .
+
+Definition 2 ( [32]) A tensor A ∈ R[m,n ] is called a 
+
+Metzler tensor if it can be expressed as A = sI + B,where B is a nonnegative tensor and s ∈ R. This implies that all off-diagonal entries of A are nonnegative. 
+
+Definition 3 ( [33]) Given a tensor A = ( Ai1i2...i m ) ∈
+
+R[m,n ], its comparison tensor ⟨A⟩ = ( mi1i2...i m ) is de-fined componentwise by 
+
+mi1i2...i m =
+
+|Ai1i2...i m |, if (i2, . . . , i m) = ( i1, . . . , i 1),
+
+−| Ai1i2...i m |, otherwise .
+
+Tensor A is called an H-tensor if its comparison tensor 
+
+⟨A⟩ is an M-tensor. It is called a nonsingular H-tensor 
+
+if ⟨A⟩ is a nonsingular M-tensor. In addition, if all diag-onal entries Aii...i are positive, then A is called an H+-tensor .
+
+Definition 4 ( [34]) A tensor A ∈ R[m,n ] is said to be 
+
+diagonally dominant if for all i = 1 , 2, . . . , n , it holds that 
+
+|Aii...i | ≥ X
+
+> (i2,...,i m)̸=( i,...,i )
+
+|Aii 2...i m |,
+
+if the above inequality is strict, then A is referred to as a strictly diagonally dominant tensor. 
+
+Remark 1 Diagonal dominance implies that the eigen-values of a tensor are mainly determined by its diagonal entries, as shown in [34] through a Gershgorin-type the-orem. This structural property supports the positive defi-niteness of the polynomial form, which is crucial for en-suring the stability of nonlinear systems. In applications such as neural dynamics or biological competition mod-eling, diagonal dominance reflects strong self-regulation that suppresses the influence of external interactions. 
+
+It is known that both nonsingular M-tensors and strictly diagonally dominant tensors with positive diagonal ele-ments are special cases of H+-tensors. These tensors en-joy favorable properties concerning the solvability of cer-tain tensor equations. Next, we present several lemmas that establish the existence and uniqueness of positive solutions to nonlinear tensor equations under structural assumptions on the involved tensors. 
+
+Lemma 1 ( [33]) Let A ∈ R[m,n ] be a strictly diago-nally dominant tensor with all diagonal entries Aii...i >
+
+0. Then, for any positive vector b ∈ Rn, the equation 
+
+Axm−1 = b admits a unique positive solution x ∈ Rn.
+
+Lemma 2 ( [33]) If A ∈ R[m,n ] is an H+-tensor, then the equation Axm−1 = b has a unique positive solution for every b > 0.
+
+It is worth mentioning that a strictly diagonally domi-nant tensor with all positive diagonal entries is an H+-tensor [33]. Furthermore, we develop the following results for the later system analysis. 
+
+Proposition 1 Let A ∈ R[k,n ] be the order-k (k ≥ 2)and dimension-n tensor whose entries satisfy ai1··· ik = 1 
+
+for all i1, . . . , i k ∈ { 1, . . . , n }. Consider the tensor equa-tion 
+
+Axk−1 = b, (2) 
+
+where b ∈ Rn and x ∈ Rn. Then the following statements hold. (i) (2) has a positive solution x ∈ Rn 
+
+> ++
+
+if and only if 
+
+b = c1, c > 0, (3) 
+
+where 1 = (1 , . . . , 1) ⊤ ∈ Rn. In this case, every positive solution satisfies 
+
+> n
+
+X
+
+> j=1
+
+xj = c 1 
+
+> k−1
+
+. (4) 
+
+(ii) (2) has a unique positive solution if and only if n = 1 
+
+and b = c with scalar c > 0. In that case, the unique positive solution is 
+
+x = c 1 
+
+> k−1
+
+.
+
+Moreover, if n ≥ 2 and b = c1 with c > 0, then (2) 
+
+admits infinitely many positive solutions, namely all 
+
+x ∈ Rn 
+
+> ++
+
+satisfying (4) .
+
+Proof. For each i ∈ {1, . . . , n }, using ai1··· ik = 1and the standard tensor-vector product, ( Axk−1)i =Pni2,...,i k =1 ai i 2··· ik xi2 · · · xik = Pni2,...,i k =1 xi2 · · · xik =
+
+ Pnj=1 xj
+
+k−1
+
+. Hence Axk−1 = sk−11 with s =
+
+Pnj=1 xj . Therefore (2) is equivalent to b = sk−11.(i) If there exists x ∈ Rn
+
+> ++
+
+, then s > 0 and thus b = c1
+
+with c = sk−1 > 0. Conversely, if b = c1 with c > 0, let 
+
+s = c1/(k−1) and pick any x ∈ Rn 
+
+> ++
+
+such that Pnj=1 xj =
+
+s; then Axk−1 = sk−11 = c1 = b.4(ii) If n = 1, then s = x and the equation reduces to 
+
+xk−1 = c, which has the unique positive solution x =
+
+c1/(k−1) . If n ≥ 2 and b = c1 with c > 0, then the positive solution set is exactly {x ∈ Rn 
+
+> ++
+
+: Pnj=1 xj = c1/(k−1) },which is infinite, so uniqueness fails. □
+
+Proposition 2 Let m ≥ 2 and p = m − 1. Let E be the all-ones mth-order n-dimensional tensor and let I be the identity tensor. Fix a > 0, s > 0, and b ∈ Rn
+
+> ++
+
+. Let 
+
+τ = a
+
+ nX
+
+> j=1
+
+xj
+
+p
+
+.
+
+Consider 
+
+a E xp + s Ix p = b, x ∈ Rn
+
+> ++
+
+. (5) 
+
+Define bmin = min i bi and bmax = max i bi, and 
+
+H(τ ) = as
+
+> n
+
+X
+
+> i=1
+
+(bi − τ )1/p 
+
+!p
+
+, τ ∈ (0 , b min ).
+
+Then: (i) Equation (5) has a solution in Rn 
+
+> ++
+
+if and only if there exists τ ∈ (0 , b min ) such that 
+
+τ = H(τ ). (6) 
+
+In that case the (positive) solution is given by 
+
+xi =
+
+ bi − τs
+
+1/p 
+
+, i = 1 , . . . , n. (7) 
+
+(ii) If a positive solution exists, it is unique. (iii) Equation (5) has a positive solution if and only if 
+
+H(b−
+
+> min
+
+) ≤ bmin . (8) 
+
+A convenient sufficient condition for (8) is 
+
+a n p
+
+s (bmax − bmin ) < b min . (9) 
+
+(iv) For the (unique) τ solving (6) , one has 
+
+a n p bmin 
+
+s + a n p ≤ τ ≤ a n p bmax 
+
+s + a n p . (10) 
+
+Proof. Since E is the all-ones tensor, for every i one has (Exp)i =
+
+> n
+
+X
+
+> i2,...,i m=1
+
+xi2 · · · xim =
+
+ nX
+
+> j=1
+
+xj
+
+p
+
+.
+
+Then (5) is equivalent to 
+
+τ + sx pi = bi, i = 1 , . . . , n, 
+
+so necessarily 0 < τ < b min and 
+
+xi =
+
+ bi − τs
+
+1/p 
+
+, i = 1 , . . . , n. 
+
+Summing over i and using the definition of τ yields the fixed-point equation (6). For τ ∈ (0 , b min ), define S(τ ) = Pni=1 (bi −τ )1/p , H (τ ) =  
+
+> as
+
+S(τ )p, F (τ ) = H(τ )−τ. Each term ( bi−τ )1/p is strictly decreasing in τ , hence S(τ ) is strictly decreasing, and so is H(τ ). Therefore, for 0 < τ 1 < τ 2 < b min ,
+
+F (τ2) − F (τ1) = ( H(τ2) − H(τ1)) − (τ2 − τ1) < 0,
+
+so F is strictly decreasing and has at most one zero, proving uniqueness. Moreover, F (0) = H(0) > 0. Hence a zero exists in (0 , b min ) if and only if F (b−
+
+> min
+
+) ≤ 0, i.e., H(b−
+
+> min
+
+) ≤
+
+bmin , which is (8). Using bi − bmin ≤ bmax − bmin gives 
+
+H(b−
+
+> min
+
+) = as
+
+Pni=1 (bi − bmin )1/p 
+
+!p
+
+≤ as
+
+ n(bmax −
+
+bmin )1/p p = a n p 
+
+> s
+
+(bmax − bmin ), so (9) implies (8). Finally, let τ be the (unique) fixed point. From (6) and 
+
+bi ≥ bmin , τ = as
+
+Pni=1 (bi − τ )1/p 
+
+!p
+
+≥ as
+
+ n(bmin −
+
+τ )1/p p = a n p 
+
+> s
+
+(bmin − τ ), which gives τ ≥ a n p bmin  
+
+> s+a n p
+
+. Sim-ilarly, using bi ≤ bmax gives 
+
+τ ≤ as
+
+ n(bmax − τ )1/p p = a n p
+
+s (bmax − τ ),
+
+hence τ ≤ a n p bmax  
+
+> s+a n p
+
+. This proves (10). □
+
+3 The existence of equilibrium points in High-order LV model. 
+
+To enable precise analysis of network competition, schol-ars derive a LV equation for firing activity from the mem-brane dynamics equation. In [35]- [36], Cowan discussed a LV dynamics. Within the canonical framework of neu-ral dynamics, the membrane potential and firing rate of the i-th neuron are mathematically represented as fol-lows: du i
+
+dt = −λu i + (input current) ,zi = f (ui − θ),
+
+(11) 5where ui and zi represent membrane potential and fir-ing rate of neuron i, respectively. f (ui − θ) denotes a nonlinear output function. On the basis of the model (11), we consider an n-neuron system under uniform 3-body interactions networks, the firing rate dynamics can be formulated as: 
+
+dz i
+
+dt = zi(1 − z2 
+
+> i
+
+− k X
+
+> (p,q )̸=( i,i )
+
+zpzq + wi), i = 1 , 2, · · · , n, 
+
+(12) where zi represents firing rate of neuron i. Neurons p and 
+
+q are neighbors connected to i through hyperedges. k de-notes the ratio of self-inhibition to lateral-inhibition. 1 represents the input current induced by the afferent in-puts nonspecific to each neuron, and wi > 0 represents the input current generated by the specific afferent in-puts. Rewrite equation (12) into tensor form as follows: ˙z = diag (z)( b + Az 2), (13) where z = ( z1, z 2, · · · , z n)T , z2 = z ⊗ z, b =
+
+
+
+1 + w1
+
+1 + w2
+
+...1 + wn
+
+
+
+,
+
+A(i, :,:) =1 2 · · · i · · · n
+
+12...
+
+i
+
+...
+
+n
+
+
+
+−k
+
+−k
+
+...
+
+−k
+
+...
+
+−k
+
+−k
+
+−k
+
+...
+
+−k
+
+...
+
+−k
+
+· · · · · · 
+
+. . .
+
+· · · 
+
+. . .
+
+· · · −k
+
+−k
+
+...
+
+−1...
+
+−k
+
+· · · · · · 
+
+. . .
+
+· · · 
+
+. . .
+
+· · · −k
+
+−k
+
+...
+
+−k
+
+...
+
+−k
+
+
+
+.
+
+Definition 5 Without loss of generality, we can assume that D is the set of winners produced by the system (12), where d ∈ [0 , n ] represents the number of winners. 
+
+Next, we calculate equilibrium points for System (12). By searching for the equilibrium points, we can roughly determine the relationship between the number of win-ners d and the ratio of self-inhibition to lateral-inhibition 
+
+k in System (12). 
+
+Theorem 1 For system (12), when k > 1, there can only be one winner, i.e. d = 1 . When k < 1, multiple winners may exist, i.e. d ≥ 1. When k = 1 , there can only be one winner, if and only if there exists no i, j such that wi = wj .
+
+Proof. The equilibrium points of the system (12) can be obtained according to the following equation: ˙z = diag (z)( b + Az 2) = 0 ,
+
+We can obtain the equilibrium point z∗ 
+
+> e1
+
+= (0 , 0, · · · , 0) T ,which corresponds to the outcome where all neurons are losers and die out ( d = 0), or the equilibrium point satisfying the equation −Az 2 = b, corresponding to the outcome where winners exist ( d ≥ 1). When z = z∗ 
+
+> e1
+
+= (0 , 0, · · · , 0) T , it is easy to get: 
+
+∂ ˙zi
+
+∂z i z=z∗
+
+> e1
+
+= (1 − z2 
+
+> i
+
+− k X 
+
+> p,q ̸=( i,i )
+
+zpzq + wi)+ zi
+
+−k X 
+
+> p=i, q ̸=i
+
+zq − k X
+
+> q=i, p ̸=i
+
+zp − 2zi
+
+ z=z∗
+
+> e1
+
+= 1 + wi > 0,∂ ˙zi
+
+∂z j z=z∗
+
+> e1
+
+= zi −k
+
+> n
+
+X
+
+> q=1
+
+zq − k
+
+> n
+
+X
+
+> p=1
+
+zp
+
+!
+
+> z=z∗
+> e1
+
+= 0 .
+
+It is known that the diagonal elements of a diagonal matrix are its eigenvalues. Clearly, the eigenvalues of the Jacobian matrix for system (12) are positive. It is easy to conclude that the equilibrium point z∗ 
+
+> e1
+
+= (0 , 0, · · · , 0) T
+
+is unstable. Therefore, we know that the neurons in the system (12) will inevitably produce at least one winner through competition. That is to say d̸ = 0. When d ≥ 1, the set of equilibrium points {z(D) 
+
+> i
+
+} satisfies the following: 
+
+X
+
+> p,q ∈D
+
+A(D) 
+
+> ipq
+
+zpzq = 1 + wi, i ∈ D ,z(D) 
+
+> i
+
+= 0 , i / ∈ D ,
+
+(14) where 
+
+A(D)(i, :,:) =1 2 · · · i · · · d
+
+
+
+1 −k −k · · · −k · · · −k
+
+2 −k −k · · · −k · · · −k
+
+... ... ... . . . ... . . . ...
+
+i −k −k · · · −1 · · · −k
+
+... ... ... . . . ... . . . ...
+
+d −k −k · · · −k · · · −k.
+
+For i ∈ D , we have 
+
+−A(D)z(D)2 = b(D).
+
+6Here, z(D) and b(D) represent the vectors z and b with with the elements zi(i / ∈ D ) and bi (i / ∈ D ) removed, respectively. We already know that the diagonal elements of 
+
+z(D) are positive. According to Lemma 1, when 
+
+|Aiii | = 1 > P 
+
+> (j,k )̸=( i,i )
+
+|Aijk | = k(d2 − 1), the equa-tion −A(D)z(D)2 = b(D) has a unique positive solution. Through simple calculations, we find that if d < 
+
+q k+1 
+
+> k
+
+holds, the equation (14) has unique solution z∗ 
+
+> e2
+
+, where 
+
+z∗ 
+
+> e2i
+
+> 0 (for i ∈ D ) and z∗ 
+
+> e2i
+
+= 0 (for i / ∈ D ). Addition-ally, when k ≥ 1, there must exists at least one winner, i.e. d = 1. When k < 1, multiple winners may exist, i.e. 
+
+d ≥ 1. Next, we show that when k > 1, any equilibrium point with more than one winner ( d > 1) is unstable, if exists. Fix an equilibrium point associated with a winner set D
+
+with |D| = d > 1. For convenience, denote bi = 1 + wi
+
+and write the dynamics of (12) componentwise as ˙zi = zi
+
+bi − z2 
+
+> i
+
+− k X 
+
+> p,q ̸=( i,i )
+
+zpzq
+
+ , i = 1 , . . . , n. 
+
+Note that 
+
+> n
+
+X
+
+> p,q =1
+
+zpzq =
+
+ nX
+
+> ℓ=1
+
+zℓ
+
+2
+
+=: S(z), X 
+
+> p,q ̸=( i,i )
+
+zpzq = S(z)−z2 
+
+> i
+
+,
+
+so that ˙zi = zi
+
+
+
+bi − kS (z) + ( k − 1) z2
+
+> i
+
+
+
+. (15) Let z∗ be an equilibrium point with winners D. Then 
+
+z∗ 
+
+> i
+
+> 0 for i ∈ D and z∗ 
+
+> i
+
+= 0 for i / ∈ D . Define 
+
+r = X
+
+> i∈D
+
+z∗ 
+
+> i
+
+> 0, S∗ = S(z∗) = r2.
+
+Moreover, for each i ∈ D , the equilibrium condition ˙ zi =0 together with (15) yields 
+
+bi − kS ∗ + ( k − 1)( z∗ 
+
+> i
+
+)2 = 0 , i ∈ D . (16) We now compute the Jacobian matrix J(z) = 
+
+h ∂ ˙zi
+
+> ∂z j
+
+i
+
+at 
+
+z = z∗. For i ∈ D , differentiating (15) gives 
+
+∂ ˙zi
+
+∂z j
+
+(z∗) = z∗
+
+> i
+
+∂∂z j
+
+
+
+bi − kS (z) + ( k − 1) z2
+
+> i
+
+ 
+
+> z=z∗
+
+,
+
+where we used bi − kS ∗ + ( k − 1)( z∗ 
+
+> i
+
+)2 = 0 from (16). Since S(z) = ( P 
+
+> ℓ
+
+zℓ)2, we have 
+
+∂S ∂z j
+
+(z∗) = 2 
+
+> n
+
+X
+
+> ℓ=1
+
+z∗ 
+
+> ℓ
+
+= 2 r. 
+
+Therefore, for i ∈ D ,
+
+∂ ˙zi
+
+∂z j
+
+(z∗) = 
+
+(−2kr z ∗ 
+
+> i
+
+, j ∈ D , j ̸ = i, 
+
+−2kr z ∗ 
+
+> i
+
++ 2( k − 1)( z∗ 
+
+> i
+
+)2, j = i ∈ D .
+
+Hence, the winner–winner block JD (z∗) ∈ Rd×d can be written as 
+
+JD (z∗) = u1⊤ +2( k−1) diag  (z∗ 
+
+> i
+
+)2, ui = −2kr z ∗ 
+
+> i
+
+,
+
+(17) where 1 ∈ Rd is the all-ones vector. Since d > 1, there exists a nonzero vector v ∈ Rd
+
+such that 1⊤v = 0. Multiplying (17) by such a v yields 
+
+v⊤JD (z∗)v = v⊤ u1⊤v + 2( k − 1) v⊤ diag  (z∗ 
+
+> i
+
+)2v =0 + 2( k − 1) P 
+
+> i∈D
+
+(z∗ 
+
+> i
+
+)2v2 
+
+> i
+
+.
+
+When k > 1, we have k − 1 > 0 and z∗ 
+
+> i
+
+> 0 for all 
+
+i ∈ D , hence v⊤JD (z∗)v = v⊤ JD (z∗)+ JD (z∗)⊤ 
+
+> 2
+
+v > 0.
+
+By the Rayleigh quotient, this implies that JD (z∗) has an eigenvalue with a positive real part. Since JD (z∗)is a principal submatrix of the full Jacobian J(z∗), the Jacobian J(z∗) also has an eigenvalue with a positive real part. Therefore, the equilibrium point z∗ is unstable. When k = 1, note that A(D) is an all-one tensor, thus it directly follows from the proposition 1. Consequently, when k > 1, any equilibrium point with more than one winner ( d > 1) is unstable. This shows that for k > 1, the only asymptotically stable competi-tive outcome must satisfy d = 1. □
+
+Remark 2 It is evident that the smaller the value of k is, the greater the number of winners will be. This indicates that the coexistence of multiple neurons could be more promising at the small k.
+
+4 The stability of all-neurons-coexistence equi-librium point. 
+
+In this section, we analyze the stability of the all-neurons-coexistence equilibrium point, where there is no loser. We further show both its sufficient and neces-sary condition for the local asymptotic stability and its sufficient condition for the global asymptotic stability. 
+
+Theorem 2 Assuming that system (12) has an all-neurons-coexistence equilibrium z∗ 
+
+> e3
+
+= ( z∗ 
+
+> 1
+
+, z ∗ 
+
+> 2
+
+, · · · , z ∗
+
+> n
+
+)T ,
+
+7where z∗ 
+
+> i
+
+> 0 for all neuron i. The equilibrium point z∗
+
+> e3
+
+is locally asymptotically stable if and only if k < 1.
+
+Proof. For system (12), it is easy to obtain that: 
+
+∂ ˙zi
+
+∂z i z=z∗
+
+> e3
+
+= (1 − z2 
+
+> i
+
+− k X 
+
+> p,q ̸=( i,i )
+
+zpzq + wi)+ zi
+
+−k X 
+
+> p=i, q ̸=i
+
+zq − k X
+
+> q=i, p ̸=i
+
+zp − 2zi
+
+ z=z∗
+
+> e3
+
+= z∗ 
+
+> i
+
+−k
+
+> n
+
+X
+
+> q=1
+
+z∗ 
+
+> q
+
+− k
+
+> n
+
+X
+
+> p=1
+
+z∗ 
+
+> p
+
++ 2 kz ∗ 
+
+> i
+
+− 2z∗
+
+> i
+
+!
+
+,∂ ˙zi
+
+∂z j z=z∗
+
+> e3
+
+= zi −k
+
+> n
+
+X
+
+> q=1
+
+zq − k
+
+> n
+
+X
+
+> p=1
+
+zp
+
+!
+
+> z=z∗
+> e3
+
+= z∗ 
+
+> i
+
+−k
+
+> n
+
+X
+
+> q=1
+
+z∗ 
+
+> q
+
+− k
+
+> n
+
+X
+
+> p=1
+
+z∗
+
+> p
+
+!
+
+< 0 (i̸ = j).
+
+The Jacobian matrix J of the system (12) is given by: 
+
+J = ˆT + ˆZ, 
+
+where ˆT =                       
+
+> 
+> T1T1· · · T1
+> T2T2· · · T2
+> ....... . ....
+> TnTn· · · Tn
+> 
+> n
+> ,ˆZ=2( k−1)
+> 
+> z∗210· · · 00z∗22· · · 0....... . ....00· · · z∗2
+> n
+> 
+> ,
+
+Ti = −z∗
+
+> i
+
+ k Pnq=1 z∗ 
+
+> q
+
++ k Pnp=1 z∗
+
+> p
+
+. Denote r =
+
+Pnℓ=1 z∗ 
+
+> ℓ
+
+> 0. Then Ti = −2kr z ∗ 
+
+> i
+
+and ˆT = t1⊤ with 
+
+t = ( T1, . . . , T n)⊤.(i) When k = 1, we have J = ˆT = t1⊤, which is a rank-one matrix. Hence, J has one nonzero eigenvalue 
+
+λ = −2r2 < 0, and the remaining n − 1 eigenvalues are 0. Therefore, J is not Hurwitz, and the equilibrium point 
+
+z∗ 
+
+> e3
+
+is not locally asymptotically stable. (ii) When k > 1, we have k − 1 > 0 and thus ˆZ is a positive diagonal matrix. Since n > 1, there exists a nonzero vector v ∈ Rn such that 1⊤v = 0. For such a v,we have ˆT v = t(1⊤v) = 0 and thus 
+
+v⊤Jv = v⊤ ˆZv = 2( k − 1) 
+
+> n
+
+X
+
+> i=1
+
+z∗2 
+
+> i
+
+v2 
+
+> i
+
+> 0.
+
+Consider the symmetric part Js = 12 (J + J⊤). Since 
+
+v⊤Jsv = v⊤Jv > 0, we have λmax (Js) > 0, which im-plies that J has an eigenvalue with positive real part. Therefore, the equilibrium point z∗ 
+
+> e3
+
+is unstable when 
+
+k > 1. (iii) When k < 1, we have k − 1 < 0 and thus ˆZ is a negative diagonal matrix. Define a positive diagonal matrix 
+
+P = diag 
+
+ 1
+
+z∗
+
+> 1
+
+, 1
+
+z∗
+
+> 2
+
+, . . . , 1
+
+z∗
+
+> n
+
+
+
+≻ 0.
+
+Using ˆT = t1⊤ and ti = −2kr z ∗ 
+
+> i
+
+, we obtain 
+
+P ˆT = −2kr 11 ⊤, P ˆZ = 2( k − 1) diag( z∗ 
+
+> 1
+
+, . . . , z ∗
+
+> n
+
+).
+
+Consequently, P J + J⊤P = ( P ˆT + ˆT ⊤P ) + ( P ˆZ +ˆZ⊤P ) = −4kr 11 ⊤ + 4( k − 1) diag( z∗ 
+
+> 1
+
+, . . . , z ∗
+
+> n
+
+).
+
+Since k < 1 and z∗ 
+
+> i
+
+> 0 for all i, the second term is neg-ative definite and the first term is negative semidefinite, hence P J + J⊤P ≺ 0. Therefore, J is Hurwitz and the all-neurons-coexistence equilibrium point z∗ 
+
+> e3
+
+is locally asymptotically stable. The necessary condition is a di-rect consequence of Theorem 1. □
+
+Remark 3 The local asymptotic stability result for the all-neurons-coexistence equilibrium point is conditional on its existence . Namely, the condition k < 1 guarantees that if a coexistence equilibrium z∗ ≫ 0 exists, then it is locally asymptotically stable. However, k < 1 alone does not automatically ensure the existence of such a strictly positive equilibrium; additional structural assumptions are required to guarantee existence. 
+
+Theorem 3 Let that the unique positive equilibrium point of system (13) is z∗ 
+
+> e3
+
+. If −A is an irreducible non-negative H+-tensor, the equilibrium point z∗ 
+
+> e3
+
+exists and is globally asymptotically stable. 
+
+Proof. In the equation (13), if −A is irreducible nonnegative H+-tensor, according to Lemma 2, we know that the system (13) has unique positive equi-librium point z∗ 
+
+> e3
+
+. Define set U1 = {z|z ≥ z∗ 
+
+> e3
+
+} and 
+
+U2 = {z| min zi
+
+> z∗
+> e3i
+
+< 1}. Then we let Vm = min i( zi
+
+> z∗
+> e3i
+
+)2
+
+and V = min i( zi−z∗
+
+> e3i
+> z∗
+> e3i
+
+)2, where m = arg min i( zi
+
+> z∗
+> e3i
+
+)2
+
+and assuming t = arg min i( zi−z∗
+
+> e3i
+> z∗
+> e3i
+
+)2. Because zi−z∗
+
+> e3i
+> z∗
+> e3i
+
+=
+
+> zi
+> z∗
+> e3i
+
+− 1, m = t must hold. In the set U1, we have: ˙V = 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)( b + AZ 2)m
+
+= 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)(1 + wm + X
+
+> jk
+
+amjk 
+
+zj zkz∗ 
+
+> j
+
+z∗
+
+> k
+
+z∗ 
+
+> j
+
+z∗
+
+> k
+
+)
+
+≤ 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+) 1 + wm + X
+
+> jk
+
+amjk z∗ 
+
+> j
+
+z∗ 
+
+> k
+
+Vm
+
+
+
+= 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)(1 + wm − (1 + wm)Vm)= 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)(1 − Vm)(1 + wm) ≤ 0.
+
+8For any z ∈ U2, we can obtain that: ˙V = 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)( b + AZ 2)m
+
+≤ 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)
+
+1 + wm + X
+
+> jk
+
+amjk z∗ 
+
+> j
+
+z∗ 
+
+> k
+
+V 12
+
+> m
+
+
+
+= 2zm
+
+(z∗
+
+> m
+
+)2 (zm − z∗
+
+> m
+
+)(1 + wm)(1 − V 12 
+
+> m
+
+) ≤ 0.
+
+Notice that V is locally positive definite in U1 and U2,and ˙V is negative semidefinite. Therefore, the solution converges to {x| ˙V = 0 }. In order to have ˙V = 0, for every i, it must hold that i = m and zm = z∗ 
+
+> m
+
+which indicates that {z| ˙V = 0 } only contains z∗ 
+
+> e3
+
+. Thus, z∗ 
+
+> e3
+
+is asymptotically stable with domain of attraction U1, U 2.Next, we further let Ls = max i( zi
+
+> z∗
+> e3i
+
+)2 and s =arg max i( zi
+
+> z∗
+> e3i
+
+)2. Similar to previous arguments we have that −zi = − ziz∗
+
+> e3i
+> z∗
+> e3i
+
+≥ − L 12 
+
+> s
+
+z∗
+
+> e3i
+
+, which holds as a equal-ity when i = s and otherwise holds as an strict inequal-ity. Then, consider the set U3 = {z|z < z ∗ 
+
+> e3
+
+}, ∀z ∈ U3,we get: ˙V ≥ 2z2
+
+> s
+
+(z∗ 
+
+> s
+
+)2
+
+ 1 + ws + X
+
+> jk
+
+asjk z∗ 
+
+> j
+
+z∗ 
+
+> k
+
+Ls 
+
+= 2z2
+
+> s
+
+(z∗ 
+
+> s
+
+)2 (1 + ws)(1 − Ls ) > 0,
+
+This guarantees that all trajectories in U3 finally en-ter U1 ∪ U2. Thus, the equilibrium point z∗ 
+
+> e3
+
+is globally asymptotically stable. □
+
+Remark 4 Recall that a strictly diagonally dominant tensor with all diagonal entries is an H+-tensor. There-fore, the all-neuron coexistence is preferred when k is small. 
+
+5 The stability of equilibrium points where losers exist. 
+
+This section primarily discusses the competitive evo-lution results of System (12) for non-all-neurons-coexistence equilibrium points, where losers are present. 
+
+Definition 6 ( [12]) With respect to an initial condi-tion, after competitive evolution, when only the neuron with the highest initial input becomes the winner, it is re-ferred to as the WTA phenomenon. If only one winner is activated, but this winner is not necessarily the neuron with the highest input, this behavior is called the VWTA. When the system ultimately produces multiple winners, it is termed WSA. 
+
+Theorem 4 When k = 1 , system (12) evolves through competition into a WTA phenomenon, with the sole win-ner having the highest initial input Wmax . When k > 1,system (12) exhibits VWTA behavior after competition. When k < 1, the system (12)’s competitive outcome is either WSA or WTA. 
+
+Proof. For the case where the number of win-ners 1 ≤ d < n, with a simple renumbering of the winners, we can set the equilibrium point as 
+
+z∗ 
+
+> e4
+
+= (z∗ 
+
+> 1
+
+, z ∗ 
+
+> 2
+
+, · · · , z ∗ 
+
+> d
+
+, 0, · · · , 0) T . At this point, the Jacobian matrix of system (12) is denoted as J′ =
+
+Jwinner Ω0(n−d)×d Res 
+
+!
+
+. where Jwinner =
+
+
+
+α1 T1 · · · T1
+
+T2 α2 · · · T2
+
+... ... . . . ...
+
+Td Td · · · αd
+
+
+
+,Ω = 
+
+
+
+T1 T1 · · · T1
+
+T2 T2 · · · T2
+
+... ... . . . ...
+
+Td Td · · · Td
+
+
+
+, and αi = Ti + 2( k − 1) z∗2 
+
+> i
+
+(i =1, . . . , d ). The eigenvalues of matrix J′ consist of the eigenvalues of Jwinner and the eigenvalues of Res .Without loss of generality, we assume i is the loser and 
+
+j is the winner. Then, for the diagonal elements of Res ,we have: ∂ ˙zi
+
+∂z i
+
+= 1 + wi − k X
+
+> p,q ∈D
+
+z∗ 
+
+> p
+
+z∗ 
+
+> q
+
+. (18) For the off-diagonal elements of Res , one obtain: 
+
+∂ ˙zl
+
+∂z j
+
+= 0 , f or j ̸ = i. 
+
+According to Equation (12), it is straightforward to deduce that for the winner j, the equality 1 + 
+
+wj −  z∗
+
+> j
+
+2 − k P 
+
+> p,q ∈D ,p ̸=q
+
+z∗ 
+
+> p
+
+z∗ 
+
+> q
+
+= 0 holds, i.e. 1 + wj −  z∗
+
+> j
+
+2 − k P 
+
+> p,q ∈D
+
+z∗ 
+
+> p
+
+z∗ 
+
+> q
+
++ k  z∗
+
+> j
+
+2 = 0. Sub-stituting k P 
+
+> p,q ∈D
+
+z∗ 
+
+> p
+
+z∗ 
+
+> q
+
+= 1 + wj + ( k − 1) 
+
+
+
+z∗
+
+> j
+
+2
+
+into Equation (18), we obtain the following equality:   
+
+> ∂˙zi
+> ∂z i
+
+= wi − wj − (k − 1)  z∗
+
+> j
+
+2.(i) When k = 1, according to Theorem 1, we have d = 1. Moreover, similar to the proof of Theorem 2, we conclude that the eigenvalues of Jwinner are non-positive. Thus, the eigenvalues of the matrix Res are negative if and only if wj = wmax , indicating that the equilibrium point is locally lyapunov stable. This indicates that when k =1, the WTA equilibrium point of system (12) is stable under small perturbations, where the neuron with the maximum initial input emerges as the winner. However, 9without further analysis, the system may not necessarily converge to this state. The detailed asymptotic stability analysis will be given in the next section. (ii) When k > 1, Theorem 1 also indicates that there is only one winner in this case. At this point, Jwinner =
+
+−2kz ∗2 
+
+> j
+
+< 0. It is worth noting that if k is sufficiently large, wj = wmax is not required for the eigenvalues of the matrix Res to be negative. In other words, when 
+
+k > 1, the system (12) will achieve VWTA. (iii) When k < 1, since the similar proof as in the Theo-rem 2 applies to the winner subsystem, we have Jwinner 
+
+is Hurwitz. Next, denote r = P 
+
+> p∈D
+
+z∗ 
+
+> p
+
+> 0. Recall that Res is diag-onal and for any loser i / ∈ D,
+
+∂ ˙zi
+
+∂z i z=z∗
+
+> e4
+
+= 1 + wi − k X
+
+> p,q ∈D
+
+z∗ 
+
+> p
+
+z∗ 
+
+> q
+
+= 1 + wi − kr 2.
+
+Thus, the equilibrium z∗ 
+
+> e4
+
+is locally asymptotically stable if and only if 1 + wi − kr 2 < 0, ∀ i / ∈ D. 
+
+In particular, when k < 1, there may exist locally asymp-totically stable equilibria with d ≥ 2 (WSA). On the other hand, for d = 1 (a single winner j), the above con-dition becomes 1 + wi − k(1 + wj ) < 0 for all i̸ = j,which shows that a WTA equilibrium may also be locally asymptotically stable if the input of the winner is suf-ficiently larger than the others. Therefore, when k < 1, the competitive outcome can be either WSA or WTA. □
+
+6 The global stability of the WTA solution when 
+
+k = 1 .
+
+In this section, we aim to discuss the global stability of System (12) when k = 1. In this case, the original system can be rewritten in the following form: ˙zι = zi(1 + wi −
+
+> n
+
+X
+
+> p,q =1
+
+zpzq ), (19) Without loss of generality, we may assume that the ex-ternal inputs wi follow the inequality below with respect to their magnitudes: w1 > w 2 ≥ w3 ≥ · · · ≥ wn−1 ≥
+
+wn ≥ 0. 
+
+Theorem 5 System (19) will evolve into a WTA com-petition outcome under any initial strictly positive con-ditions, and the globally stable equilibrium point will be 
+
+ √1 + wmax , 0, · · · , 0T .
+
+Proof. Consider strictly positive initial conditions z(0). For system (19) with k = 1, we can write ˙zi = zi
+
+
+
+1 + wi −
+
+> n
+
+X
+
+> p,q =1
+
+zpzq
+
+
+
+, i = 1 , . . . , n. 
+
+Denote 
+
+S(t) = 
+
+> n
+
+X
+
+> p,q =1
+
+zp(t)zq (t) = 
+
+ nX
+
+> ℓ=1
+
+zℓ(t)
+
+2
+
+.
+
+For any i̸ = 1, since zi(t) > 0 and z1(t) > 0 for all t, 
+
+> ddt
+
+ln zi(t) 
+
+> z1(t)
+
+= ˙zi 
+
+> zi
+
+− ˙z1 
+
+> z1
+
+=  1+ wi −S(t)− 1+ w1 −S(t) =
+
+wi − w1 < 0.
+
+Thus, 
+
+zi(t)
+
+z1(t) = zi(0) 
+
+z1(0) e(wi−w1)t, i = 2 , . . . , n, (20) which implies lim 
+
+> t→∞
+
+zi(t)
+
+z1(t) = 0 , i = 2 , . . . , n. (21) Note that S(t) ≥ z1(t)2 and hence ˙z1(t) = z1(t) 1 + w1 − S(t) ≤ z1(t) 1 + w1 − z1(t)2.
+
+It follows that z1(t) is bounded above by the solution 
+
+y(t) of ˙y(t) = y(t) 1 + w1 − y(t)2, y(0) = z1(0) .
+
+In particular, 
+
+z1(t) ≤ y(t) ≤ max 
+
+n
+
+z1(0) , √1 + w1
+
+o
+
+, ∀ t ≥ 0.
+
+We next show that lim t→∞ z1(t) indeed exists. From (21), we have Pni=2 zi(t) = o(z1(t)) as t → ∞.Hence, S(t) =
+
+
+
+z1(t) + Pni=2 zi(t)
+
+2
+
+= z1(t)2
+
+
+
+1 + 
+
+Pni=2 zi(t)
+
+> z1(t)
+
+2
+
+= z1(t)2 1 + o(1) . Fix an arbitrary δ > 0. Since o(1) → 0, we can choose ε ∈ (0 , 1) such that 
+
+r 1 + w1
+
+1 + ε ≥ √1 + w1 − δ. 
+
+Then there exists Tδ > 0 such that for all t ≥ Tδ ,
+
+S(t) ≤ (1 + ε) z1(t)2,
+
+10 and thus ˙z1(t) = z1(t) 1+ w1−S(t) ≥ z1(t) 1+ w1−(1+ ε)z1(t)2.
+
+In particular, whenever 0 < z 1(t) ≤ √1 + w1 − δ and 
+
+t ≥ Tδ , we have ˙ z1(t) > 0. On the other hand, whenever z1(t) ≥ √1 + w1 + δ, we have 
+
+S(t) = 
+
+ nX
+
+> i=1
+
+zi(t)
+
+2
+
+≥ z1(t)2 > (√1 + w1+δ)2 > 1+ w1,
+
+so 1 + w1 − S(t) < 0 and hence ˙ z1(t) < 0. Consequently, for all t ≥ Tδ , the vector field points strictly inside the interval  √1 + w1 − δ, √1 + w1 + δ
+
+on its boundary: ˙ z1(t) > 0 whenever z1(t) ≤ √1 + w1 −
+
+δ, ˙z1(t) < 0 whenever z1(t) ≥ √1 + w1 + δ. Since 
+
+z1(t) is continuous and bounded, it cannot remain out-side this interval for arbitrarily large times; otherwise it would be strictly increasing (resp. decreasing) on an unbounded time set while staying bounded, a contradic-tion. Hence, there exists ˜Tδ ≥ Tδ such that 
+
+√1 + w1 − δ ≤ z1(t) ≤ √1 + w1 + δ, ∀ t ≥ ˜Tδ .
+
+Since δ > 0 is arbitrary, it follows that lim t→∞ z1(t)exists. Let L = lim t→∞ z1(t). By (21), we have zi(t) → 0 for all 
+
+i ≥ 2. Hence S(t) =   P nℓ=1 zℓ(t)2 → L2. Taking limits in ˙ z1 = z1(1 + w1 − S(t)) yields 0 = lim  
+
+> t→∞
+
+˙z1(t) = L 1 + w1 − L2,
+
+so L = √1 + w1 (since z1(t) > 0). Therefore, z1(t) →√1 + w1 and (21) implies zi(t) → 0 for all i = 2 , . . . , n .Thus, system (19) converges to  √1 + wmax , 0, · · · , 0T .
+
+□
+
+7 Extension to the competition over uniform hypergraphs of arbitrary order 
+
+Now, we consider an n-neuron system with uniform arbitrary-body high-order interactions, the firing rate dynamics can be formulated as: 
+
+dz i
+
+dt = zi
+
+ 1 − zt−1 
+
+> i
+
+− k X  
+
+> (p2,··· ,p t)̸=( i, ··· ,i )
+
+zp2 · · · zpt
+
++ wi
+
+, i = 1 , 2, · · · , n. 
+
+(22) Neurons p2, · · · , p t are neighbors connected to i through hyperedges. Similarly, the dynamics can be rewritten as: ˙z = diag (z)( b + Cz t−1), (23) Firstly, we can derive the corresponding results for the number of the winners. 
+
+Theorem 6 For system (22), when k ≥ 1, there can only be one winner, i.e. d = 1 . When k < 1, multiple winners may exist, i.e. d ≥ 1.
+
+Proof. The proof is the same to the proof of Theorem 1. □
+
+Theorem 7 System (22) has one unique positive equi-librium z∗ if −C is an irreducible nonnegative H+-tensor. The equilibrium point z∗ is globally asymptotically stable. 
+
+Proof. Consider system (22) with the equilibrium con-dition 
+
+b + C(z∗)t−1 = 0 , equivalently (−C)( z∗)t−1 = b. 
+
+Under the assumption that −C is an irreducible non-negative H+-tensor, the tensor equation ( −C)xt−1 = b
+
+admits a unique positive solution, hence there exists a unique all-neurons-coexistence equilibrium point z∗.We next show its global asymptotic stability. The proof follows the same Lyapunov construction as in Theo-rem 3. Specifically, in the Lyapunov function used in Theorem 3, we replace every occurrence of the quadratic term (power 2) by the ( t−1)-th power. With this modifi-cation, the Lyapunov function remains positive definite with respect to z∗ and radially unbounded on Rn
+
+> +
+
+.Along the trajectories of system (22), the time derivative of the modified Lyapunov function has exactly the same sign structure as in Theorem 3. The only difference is that differentiating the ( t − 1)-th power introduces a constant factor ( t − 1), which is positive and therefore does not affect the sign. □
+
+Theorem 8 Assuming that system (22) with at least two species has a all-neurons-coexistence equilibrium point 
+
+z∗ 
+
+> e3
+
+= ( z∗ 
+
+> 1
+
+, z ∗ 
+
+> 2
+
+, · · · , z ∗
+
+> n
+
+)T , where z∗ 
+
+> i
+
+> 0 for all neuron i.The equilibrium point z∗ 
+
+> e3
+
+is locally asymptotically stable if and only if k < 1.
+
+Proof. The proof is similar to the proof of Theorem 2. The only difference is that 
+
+Ti = −z∗
+
+> i
+
+
+
+k X 
+
+> q4,··· ,q t
+
+z∗ 
+
+> q4
+
+· · · z∗ 
+
+> qt
+
++ k X 
+
+> q3,q 5,··· ,q t
+
+z∗ 
+
+> q3
+
+z∗ 
+
+> q5
+
+· · · z∗
+
+> qt
+
++ · · · + k X 
+
+> q3,··· ,q t−1
+
+z∗ 
+
+> q3
+
+· · · z∗
+
+> qt−1
+
+
+
+11 and ˆZ = ( t − 1)( k − 1) 
+
+
+
+z∗t−1 
+
+> 1
+
+0 · · · 00 z∗t−1 
+
+> 2
+
+· · · 0... ... . . . ...0 0 · · · z∗t−1
+
+> n
+
+
+
+.
+
+The remaining proof remains similar as in Theorem 2. □
+
+Notice that the Jacobian structure is similar to the pre-vious case and the similar proof strategies directly apply. We then further have the following results. 
+
+Theorem 9 When k = 1 , system (22) evolves through competition into a WTA phenomenon, with the sole win-ner having the highest external input Wmax . When k > 1,system (22) exhibits VWTA behavior after competition. When k < 1, the system (22)’s competitive outcome is either WSA or WTA. 
+
+Without loss of generality, we may assume that the ex-ternal inputs wi follow the inequality below with respect to their magnitudes: w1 > w 2 ≥ w3 ≥ · · · ≥ wn−1 ≥
+
+wn ≥ 0. 
+
+Theorem 10 Consider system (22) with interaction or-der t ≥ 3 and k = 1 . Assume that the external inputs satisfy w1 > w 2 ≥ w3 ≥ · · · ≥ wn−1 ≥ wn ≥ 0. Then, under any initial strictly positive conditions, system (22) will evolve into a WTA competition, and the globally sta-ble equilibrium point is 
+
+
+
+(1 + wmax ) 1 
+
+> t−1
+
+, 0, · · · , 0
+
+T
+
+.
+
+In light of Proposition 2, we have the following result on the guaranteed existence bound for the case k < 1. 
+
+Corollary 1 Consider system (22). Let k ∈ (0 , 1) and 
+
+p = t − 1 ≥ 2. Define bi = 1 + wi > 0 and 
+
+bmin = min  
+
+> i
+
+bi, bmax = max  
+
+> i
+
+bi.
+
+If 
+
+d < (1 − k) bmin 
+
+k (bmax − bmin )
+
+!1/p 
+
+, (24) 
+
+then the system admits at least one equilibrium with ex-actly d winners (i.e., d positive components and n − d
+
+zeros). 
+
+Proof. Fix any winner set D with |D| = d and write 
+
+x = zD ∈ Rd
+
+> ++
+
+. The equilibrium equations on D reduce to the all-ones tensor equation 
+
+k E xp + (1 − k) Ix p = bD ,
+
+which is Proposition 2 with a = k, s = 1 − k > 0, and dimension n = d. Applying the sufficient existence condition in Proposition 2, 
+
+a d p
+
+s (max  
+
+> i∈D
+
+bi − min  
+
+> i∈D
+
+bi) < min  
+
+> i∈D
+
+bi,
+
+and using min i∈D bi ≥ bmin and max i∈D bi −min i∈D bi ≤
+
+bmax −bmin , we see that (24) implies the above inequality and hence yields a positive solution x ≫ 0. Setting zD =
+
+x and zj = 0 for j / ∈ D gives an equilibrium with exactly 
+
+d winners. □
+
+Remark 5 The large-d equilibria are favored when (i) w
+
+is nearly homogeneous (small wmax − wmin ) and/or (ii) 
+
+k is small (weaker higher-order coupling). Conversely, larger heterogeneity or k → 1 shrinks the guaranteed range of d. In summary, as k increases from 0 to 1,the system transitions from favoring full coexistence to favoring partial coexistence, and eventually to a WTA-type regime. Moreover, the role of the interaction order 
+
+p = t − 1 is that this shrinkage is attenuated when p is large and thus makes this transition more gradual. 
+
+Remark 6 The interaction order t provides a unified viewpoint that includes the classical pairwise model as a special case. In particular, when t = 2 , the higher-order term reduces to a pairwise interaction term and sys-tem (22) degenerates to the standard competitive Lotka– Volterra (LV) dynamics 
+
+˙zi = zi
+
+
+
+1 + wi − zi − kX 
+
+> j̸=i
+
+zj
+
+
+
+= zi
+
+
+
+(1 + wi) −
+
+> n
+
+X
+
+> j=1
+
+aij zj
+
+
+
+,
+
+where aii = 1 and aij = k for i̸ = j. Thus, the proposed framework recovers the classical LV competition model when the interaction order is reduced to t = 2 .
+
+Remark 7 These theorems highlight that the type of competition outcome, whether WTA, VWTA, or WSA, is fundamentally determined by the ratio between self-inhibition and lateral-inhibition, denoted by k. However, the interaction-order t influences only the equilibrium values of neuronal states or the maximum winner num-ber without altering the qualitative competition outcome. Therefore, the system exhibits a structurally invariant competition mechanism with respect to the interaction-order. Higher-order interactions modulate the system dy-namics but do not change the competition outcome de-termined by k.
+
+8 Application: A Dynamic WTA Protocol 
+
+In this section, we explore the design of distributed pro-tocols for solving WTA, WSA, and VWTA problems over hypergraphs, by utilizing the states of locally inter-acting agents. The proposed framework is inspired by 12 biologically realistic competition dynamics and offers a flexible, extensible, and fully decentralized approach. We consider a system composed of multiple nodes, and each node is modeled as an autonomous agent. The evo-lution of each agent is governed by the following general dynamics: ˙zi = fi
+
+ zi, z j∈N (i), u i
+
+ ,
+
+where N (i) denotes the set of neighbors of node i de-fined by the hypergraph topology. Here, zi is the state of agent i, zj∈N (i) are the states of neighboring nodes, and ui denotes an external input or bias term acting on node i. Notably, the dynamics of node i depend solely on locally available information, such as its own state, the states of its neighbors, and its input. This feature makes the proposed protocol especially suitable for large-scale, resource-constrained, and privacy-sensitive environments, where minimizing communication spend-ing, efficient use of limited computational resources, and preservation of data confidentiality are essential. Based on the theoretical framework developed in this pa-per, the function fi(·) can be instantiated as the compe-tition models described in (12) and (22). These models characterize nonlinear, high-order interactions among neurons (or agents) and are well suited for deployment in distributed systems with complex interaction topolo-gies. By tuning the parameter k, the system can demonstrate a variety of competitive outcomes. This tunability en-ables the protocol to flexibly accommodate different selection modes, including WTA or VWTA behaviors where only one neuron remains active, and WSA behav-ior where multiple active agents coexist. Such flexibility makes the protocol suitable for various applications re-quiring either exclusive selection of a single dominant agent or cooperative activation among multiple agents. Overall, the proposed distributed protocol unifies math-ematical soundness and biological inspiration, opening new possibilities for practical decentralized decision-making, pattern selection, and consensus formation on hypergraph networks. 
+
+9 Simulations 
+
+In this section, we use numerical simulations to verify the validity of the theoretical results presented earlier. Assume there are 10 neurons in system (12), with initial input values w0 = (1 .9557 , 2.8322 , 3.8317 , 2.2795 , 1.3796 ,
+
+7.1796 , 8, 2.4356 , 3.8469 , 1.7953) T , and initial firing rates 
+
+z0 = (0 .1234 , 0.1678 , 0.1101 , 0.1345 , 0.1789 , 0.6256 , 0.1890 ,
+
+0.1567 , 0.1910 , 0.1346) T . The dynamics of these 10 neu-rons are described by equations (12). It is noteworthy that, under these initial conditions, neuron 7 has the largest initial input 8. 
+
+Example 1 We performed numerical simulations on the ten neurons in system (12) using initial values w0
+
+and z0. When k = 0.5, the state trajectories of the ten neurons are shown in Fig.1. The competition result evolved by the system (12) is WSA, which is consistent with the conclusion of Theorems 1 and 4. When k = 0 .01 ,the state trajectories of the ten neurons are presented in Fig.2. It is easy to see that the system ultimately con-verges to the all-neurons-coexistence equilibrium point, which is fully consistent with Theorems 2 and 3. 
+
+Remark 8 Through simulations, we observed that when 
+
+0 < k < 1, system (12) evolves to have multiple winners, i.e., WSA, and the number of winners increases as the value of k decreases. Thus, if the self-inhibition of neu-rons is much greater than the lateral-inhibition, it is more favorable for the neurons to coexist in the competition. 0 2 4 6 8 10 
+
+> Time t
+> 00.2 0.4 0.6 0.8 11.2 1.4 1.6 1.8 2
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 1. The state trajectories of all neurons in system (12) when k = 0 .5. 0 2 4 6 8 10 
+
+> Time t
+> 00.5 11.5 22.5
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 2. The state trajectories of all neurons in system (12) when k = 0 .01. 
+
+Example 2 When k = 1 .5, we consider the numeri-cal simulation of system (12) with initial values w0 and 
+
+z0. Fig.3 shows the evolution of the states values along with time for all neurons. It is clearly observed that when 
+
+k > 1, there is only one winner, i.e. neuron 6, while all other neurons become inactive. Notably, neuron 6 is not the neuron with the largest initial input Wmax . This simulation result partially validates Theorems 1 and 4, demonstrating that when k > 1, system (12) exhibits VWTA behavior. 
+
+Example 3 When k = 1 , perform numerical simula-tions on system (12) while keeping the initial values un-
+
+13 0 2 4 6 8 10 
+
+> Time t
+> 00.5 11.5 22.5
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 3. The state trajectories of all neurons in system (12) when k = 1 .5. 0 5 10 15 20 
+
+> Time t
+> 00.5 11.5 22.5 3
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 4. The state trajectories of all neurons in system (12) when k = 1. 
+
+changed. The evolution of the state values of the 10 neu-rons over time is shown in Fig.4. It is evident that the neuron 7 with the largest input 8, emerges as the sole win-ner, thereby exemplifying the WTA phenomenon. Con-currently, neuron 7 ultimately converges to a value of √1 + w7 = 3 . The simulation results are fully consistent with Theorem 5 and partially validate Theorems 1 and 4. 
+
+Example 4 For system (22), we set the interaction or-der t = 5 and adopt the same initial conditions w0 and 
+
+z0 as above. Numerical simulations were performed to analyze the state evolution of each neuron under differ-ent values of k, specifically k = 0 .0001 (Fig.5), k = 0 .5
+
+(Fig.6), k = 1 (Fig.7), and k = 2 (Fig.8). The simula-tion results confirm the validity of Theorems 6, 7, 8, and 9. 
+
+Remark 9 For system (22), we present the simulation results for the case t = 5 as a representative example to il-lustrate the evolution of the neuronal state under higher-order network structures. While the simulations continue to support the theoretical results established in this paper, it is evident that achieving all-neurons-coexistence or the VWTA pattern requires a larger or smaller parameter k
+
+compared to the case with t = 3 (system (12)). This sug-gests that the lower the interaction-order of the network, the more sensitive the neuronal dynamics are to the ra-tio between self-inhibition and lateral-inhibition. More-over, the stable states of individual neurons vary in all-0 2 4 6 8 10 
+
+> Time t
+> 00.2 0.4 0.6 0.8 11.2 1.4 1.6 1.8
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 5. The state trajectories of all neurons in system (22) when k = 0 .0001. 0 2 4 6 8 10 
+
+> Time t
+> -0.2 00.2 0.4 0.6 0.8 11.2
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 6. The state trajectories of all neurons in system (22) when k = 0 .5. 0 2 4 6 8 10 
+
+> Time t
+> -0.2 00.2 0.4 0.6 0.8 11.2 1.4 1.6 1.8
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 7. The state trajectories of all neurons in system (22) when k = 1. 0 2 4 6 8 10 
+
+> Time t
+> -0.2 00.2 0.4 0.6 0.8 11.2 1.4 1.6 1.8
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 8. The state trajectories of all neurons in system (22) when k = 2. 
+
+14 neurons-coexistence, WSA and VWTA cases, indicating that while increasing the interaction-order does not al-ter the competition pattern, it does affect the final stable states of the neurons. 
+
+Example 5 For traditional pairwise interaction system  
+
+> dz i
+> dt
+
+= zi(1 − zi − k P  
+
+> j̸=i
+
+zj + wi), i = 1 , 2, · · · , 10 , we reuse the initial conditions w0 and z0 introduced above. The evolution of neuronal states was examined through numerical simulations at varying values of the parame-ter k. Specifically, the cases of k = 0 .0001 , 0.5, 1, and 
+
+2 are presented in Fig.9–12, respectively. Under identi-cal initial conditions and parameters, the proposed model with higher-order interactions exhibits the same compe-tition patterns as those generated by traditional pairwise interaction networks: WTA for k = 1 , WSA for k < 1,and VWTA for k > 1. However, the final steady states of individual neurons show some differences. 0 2 4 6 8 10 12 14 16 18 20 
+
+> Time t
+> 012345678910
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 9. The state trajectories of all neurons in pairwise in-teraction system when k = 0 .0001. 0 2 4 6 8 10 12 14 16 18 20 
+
+> Time t
+> 01234567
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 10. The state trajectories of all neurons in pairwise interaction system when k = 0 .5. 
+
+Remark 10 Example 5 demonstrates that introducing higher-order interactions does not alter the fundamen-tal competition patterns (WTA, WSA, VWTA) under fixed initial conditions and parameters. This highlights the structural robustness of competition patterns to interaction-order, while revealing that such generaliza-tions enable richer and more faithful representations of multi-neuron coordination beyond pairwise interaction models. 0 2 4 6 8 10 12 14 16 18 20 
+
+> Time t
+> 012345678910
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 11. The state trajectories of all neurons in pairwise interaction system when k = 1. 0 2 4 6 8 10 12 14 16 18 20 
+
+> Time t
+> 0123456789
+> Firing rates z i
+> z1
+> z2
+> z3
+> z4
+> z5
+> z6
+> z7
+> z8
+> z9
+> z10
+
+Fig. 12. The state trajectories of all neurons in pairwise interaction system when k = 2. 
+
+10 CONCLUSION 
+
+In this paper, we studied WTA-type selection in a Lotka–Volterra competitive dynamics on higher-order networks, where classical pairwise inhibition is augmented by hyperedge-induced multi-way inter-actions described in a hypergraph/tensor form. We established rigorous results on the existence, unique-ness, and stability of equilibria corresponding to the WTA/WSA/VWTA outcomes using various mathe-matical tools, including LaSalle’s invariance principle, Lyapunov’s indirect method, properties of structured tensors and related tensor algebra methods. A key find-ing is an outcome-invariance property: the qualitative steady-state selection pattern is insensitive to the hyper-edge order, and is instead governed by a small set of in-terpretable scalar parameters, notably the ratio between self-inhibition and lateral inhibition and the external inputs. These results confirm the designed model’s ca-pacity to capture competitive neural activity in systems with high-order interaction structures. Future work will focus on extending the model to incorporate non-uniform hypergraphs that better reflect heterogeneous multi-neuron connectivity, exploring adaptive mecha-nisms that allow dynamic modulation of competitive interactions, and investigating the impact of stochastic fluctuations to capture intrinsic neural variability and noise effects in biologically realistic settings. 15 References 
+
+[1] J. H. Han, S. A. Kushner, A. P. Yiu, et al., “Neuronal competition and selection during memory formation,” Science ,vol. 316, no. 5823, pp. 457–460, 2007. [2] S. Tang, L. Cui, J. Pan, and N. L. Xu, “Dynamic ensemble balance in direct-and indirect-pathway striatal projection neurons underlying decision-related action selection,” Cell Reports , vol. 43, no. 9, p. 114726, 2024. [3] L. Clark, R. Cools, and T. Robbins, “The neuropsychology of ventral prefrontal cortex: decision-making and reversal learning,” Brain and Cognition , vol. 55, no. 1, pp. 41–53, 2004. [4] A. J. Lotka, “Analytical note on certain rhythmic relations in organic systems,” Proc. Natl. Acad. Sci. U.S.A. , vol. 6, no. 7, pp. 410–415, 1920. [5] V. Volterra, “Variations and fluctuations of the number of individuals in animal species living together,” ICES J. Mar. Sci. , vol. 3, no. 1, pp. 3–51, 1928. [6] Y. Xiao, M. T. Angulo, J. Friedman, et al., “Mapping the ecological networks of microbial communities,” Nat. Commun. , vol. 8, no. 1, p. 2042, 2017. [7] L. Pavel and L. Chang, “Lyapunov-based boundary control for a class of hyperbolic Lotka–Volterra systems,” IEEE Trans. Autom. Control , vol. 57, no. 3, pp. 701–714, 2011. [8] T. Asai, M. Ohtani, and H. Yonezu, “Analog integrated circuits for the Lotka-Volterra competitive neural networks,” 
+
+IEEE Trans. Neural Netw. , vol. 10, no. 5, pp. 1222–1231, 1999. [9] Z. Yi and K. K. Tan, “Dynamic stability conditions for Lotka-Volterra recurrent neural networks with delays,” Phys. Rev. E, vol. 66, no. 1, Art. no. 011910, 2002. [10] M. Es-saiydy and M. Zitane, “Oscillating dynamics of Lotka–Volterra neural networks with time-varying delays and distributed delays,” Ricerche di Matematica , vol. 73, no. 5, pp. 2779–2799, 2024. [11] C. Bick, “Lotka–Volterra like dynamics in phase oscillator networks,” in Advances in Dynamics, Patterns, Cognition: Challenges in Complexity , vol. 20, pp. 115–125, 2017. [12] T. Fukai and S. Tanaka, “A simple neural network exhibiting selective activation of neuronal ensembles: From winner-take-all to winners-share-all,” Neural Comput. , vol. 9, no. 1, pp. 77–97, 1997. [13] B. Zheng and Z. Yi, “Using competitive layer model implemented by Lotka–Volterra recurrent neural networks for detecting brain activated regions from fMRI data,” Neural Comput. Appl. , vol. 22, no. 1, pp. 395–404, 2013. [14] B. Zheng, “A winner-take-all Lotka–Volterra recurrent neural network with only one winner in each row and each column,” 
+
+Neural Comput. Appl. , vol. 24, no. 1, pp. 1749–1757, 2014. [15] R. Devgupta, R. A. Dandekar, R. Dandekar, and S. Panat, “Scientific machine learning in ecological systems: A study on the predator-prey dynamics,” arXiv preprint arXiv:2411.06858, 2024. [16] G. A. Maciel and R. Martinez-Garcia, “Enhanced species coexistence in Lotka-Volterra competition models due to nonlocal interactions,” J. Theor. Biol. , vol. 530, p. 110872, 2021. [17] P. A. Abrams, “Arguments in favor of higher order interactions,” Am. Nat. , vol. 121, no. 6, pp. 887–891, 1983. [18] S. Cui, F. Liu, L. Liang, H. Jard´ on-Kojakhmetov, and M. Cao, “An SIS diffusion process with direct and indirect spreading on a hypergraph,” Automatica , vol. 158, p. 111035, 2025. [19] M. M. Mayfield and D. B. Stouffer, “Higher-order interactions capture unexplained complexity in diverse communities,” Nat. Ecol. Evol. , vol. 1, no. 3, p. 0062%, 2017. [20] T. Carletti, D. Fanelli, and S. Nicoletti, “Dynamical systems on hypergraphs,” J. Phys. Complexity , vol. 1, no. 3, p. 035006, 2020. [21] F. Battiston, E. Amico, A. Barrat, et al., “The physics of higher-order interactions in complex systems,” Nat. Phys. , vol. 17, no. 10, pp. 1093–1098, 2021. [22] S. Cui, G. Zhang, H. Jard´ on-Kojakhmetov, and M. Cao, “On discrete-time polynomial dynamical systems on hypergraphs,” 
+
+IEEE Control Syst. Lett. , vol. 8, pp. 1078–1083, 2024. [23] S. Cui, G. Zhang, H. Jard´ on-Kojakhmetov, and M. Cao, “On Metzler positive systems on hypergraphs,” IEEE Trans. Control Netw. Syst. , vol. 12, no. 2, pp. 345–356, 2025. [24] A. D. Letten and D. B. Stouffer, “The mechanistic basis for higher-order interactions and non-additivity in competitive communities,” Ecol. Lett. , vol. 22, no. 3, pp. 423–436, 2019. [25] L. Sidhom and T. Galla, “Higher-order interactions in random Lotka-Volterra communities,” arXiv preprint arXiv:2409.10990, 2024. [26] M. Sales-Pardo, A. Marin´ e-Tena, and R. Guimer` a, “Hyperedge prediction and the statistical mechanisms of higher-order and lower-order interactions in complex networks,” Proc. Natl. Acad. Sci. U.S.A. , vol. 120, no. 50, e2303887120, 2023. [27] P. Singh and G. Baruah, “Higher order interactions and species coexistence,” Theor. Ecol. , vol. 14, no. 1, pp. 71–83, 2021. [28] T. Gibbs, S. A. Levin, and J. M. Levine, “Coexistence in diverse communities with higher-order interactions,” Proc. Natl. Acad. Sci. U.S.A. , vol. 119, no. 43, e2205063119, 2022. [29] S. Cui, Q. Zhao, G. Zhang, H. Jardon-Kojakhmetov, and M. Cao, “On the analysis of a higher-order Lotka-Volterra model: An application of S-tensors and the polynomial complementarity problem,” IEEE Transactions on Automatic Control, 2025. [30] G. Gallo, G. Longo, S. Pallottino, and S. Nguyen, “Directed hypergraphs and applications,” Discrete Appl. Math. , vol. 42, nos. 2–3, pp. 177–201, 1993. [31] W. Ding, L. Qi, and Y. Wei, “M-tensors and nonsingular m-tensors,” Linear Algebra Appl. , vol. 439, no. 10, pp. 3264– 3278, 2013. [32] S. Cui, G. Zhang, H. Jardon-Kojakhmetov, and M. Cao, “On metzler positive systems on hypergraphs,” arXiv preprint arXiv:2401.03652, 2024. [33] X. Wang, M. Che, and Y. Wei, “Existence and uniqueness of positive solution for H+-tensor equations,” Appl. Math. Lett. ,vol. 98, pp. 191–198, 2019. [34] L. Qi, “Eigenvalues of a real supersymmetric tensor,” J. Symb. Comput. , vol. 40, no. 6, pp. 1302–1324, 2005. [35] J. D. Cowan, “Statistical mechanics of nervous nets,” in Neural Networks: Proceedings of the School on Neural Networks - June , Berlin, Germany: Springer Berlin Heidelberg, 1968. [36] J. D. Cowan, “A statistical mechanics of nervous activity,” in Lectures on Mathematics in the Life Sciences , vol. 2, pp. 1–57, 1970. 
+
+16

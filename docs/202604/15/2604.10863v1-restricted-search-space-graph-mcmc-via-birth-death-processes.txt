@@ -1,0 +1,3140 @@
+Title: Restricted Search Space Graph MCMC via Birth-Death Processes
+
+URL Source: https://arxiv.org/pdf/2604.10863v1
+
+Published Time: Tue, 14 Apr 2026 01:54:29 GMT
+
+Number of Pages: 63
+
+Markdown Content:
+# Restricted Search Space Graph MCMC via Birth-Death Processes ∗
+
+# Morris Greenberg 1†
+
+# , Kieran R Campbell 1,2,3,4,5, Radu Craiu 1,4
+
+> 1
+
+Department of Statistical Sciences, University of Toronto, Toronto, ON, Canada 
+
+> 2
+
+Lunenfeld-Tanenbaum Research Institute, Sinai Health System, Toronto, ON, Canada 
+
+> 3
+
+Department of Molecular Genetics, University of Toronto, Toronto, ON, Canada 
+
+> 4
+
+Vector Institute, Toronto, ON, Canada 
+
+> 5
+
+Ontario Institute of Cancer Research, Toronto, ON, Canada 
+
+Abstract 
+
+Inferring directed acyclic graphs (DAGs) from data via Markov chain Monte Carlo (MCMC) is computationally challenging in moderate-to-high dimensional settings be-cause their discrete sampling space grows super-exponentially with the number of nodes. To address scalability, several recent MCMC-based graph inference methods restrict the search space to a subset of edges, at the cost of introducing error into the inference procedure. In this work, we derive sharp lower and upper bounds on the total variation distance between the unrestricted posterior distribution and the posterior distribution induced by a state-of-the-art restricted search space MCMC method. These bounds characterize regimes in which the approximation error is negligible and regimes in which it is not. In order to reduce the error, we propose a flexible transdimensional MCMC sampler which allows the search space to expand or contract dynamically as the chain progresses. The sampler is defined by birth-and-death rates that induce a prior distribution on the set of search spaces, rather than assume a fixed restricted search space throughout. We outline an efficient implementation of the proposed algorithm and demonstrate its finite-sample performance through simulation studies. 
+
+# 1 Introduction 
+
+Understanding the dependence structure of a set of random variables is important in multi-variate statistical analysis. Graphical models can be used to represent statistical models with conditional independence structures, and Bayesian networks are the special cases which can be represented by a directed acyclic graph (DAG). In a Bayesian network, each vertex in the 
+
+> ∗
+
+We thank Piotr Zwiernik and Ricardo Baptista for their constructive suggestions that have improved the paper. Funding support for the work was provided by NSERC of Canada. 
+
+> †
+
+Corresponding author: morris.greenberg@mail.utoronto.ca 
+
+1
+
+> arXiv:2604.10863v1 [stat.ME] 13 Apr 2026
+
+DAG represents a unique variable, and a directed edge between two vertices corresponds to conditional dependence. When data are generated from a multivariate normal distribution, the DAG dictates the sparsity pattern of the precision matrix. In addition, the acyclicity of the DAG implies possible causal relationships between variables, although it is unclear to what extent Bayesian networks facilitate causal discovery (Dawid, 2010). In most prob-lems, the DAG structure is not known a priori, which motivates the development of structure discovery methods that infer the Bayesian network from data. When inferring a Bayesian network, data D are used to estimate the DAG G and the set of parameters θ. Although it is straightforward to either evaluate the likelihood or generate data (that is, compute or sample from P (D|G, θ )) or infer the set of parameters ( P (θ|G, D ))given a known structure, inferring G and its associated posterior distribution π(G|D) is more challenging. This is mainly because (i) it is computationally infeasible to consider all DAGs that span a set of p variables unless p is small, and (ii) score equivalence of DAGs can lead to identifiability problems (Chickering, 2002). As a result, to estimate P (G|D), exact Markov chain Monte Carlo (MCMC) methods can be employed for small p, but approximate methods (such as restricting the set of edges considered in the search space, often called 
+
+hybrid samplers) are typically used for larger networks. These techniques greatly improve scalability, but can also introduce systematic error in posterior estimates, an issue that is minimally quantified in the existing literature. This paper contribution is multivalent. First, we establish lower and upper error bounds on posterior estimates for hybrid MCMC sampling methods on the topological order space. Second, we develop a transdimensional MCMC sampler that gives practitioners direct abil-ity to control the fidelity-scalability tradeoff, and outperforms competing methods on large classes of graphs by avoiding the error from fixing the restricted search space. Thirdly, we implement a number of computational swindles that reduces the computational run time by orders of magnitude to allow for scalable transdimensional sampling. We introduce notation and review previous work in Section 2. In Section 3, we derive er-ror bounds for existing fixed-space samplers and discuss how transdimensional samplers can improve them. In Section 4, we propose Birth-death processes Restricted Over Order 
+
+Distributions (BROOD), a novel algorithm that efficiently targets transdimensional posteri-ors. We compare numerically the performance of BROOD with that of other algorithms in Section 5, and conclude in Section 6. 
+
+# 2 Background 
+
+2.1 Graphs and Bayesian Networks 
+
+A directed acyclic graph (DAG) G = ( V, E G) consists of a set of vertices V (also called nodes) and directed edges EG such that no directed cycles exist (i.e., no node can be both an ancestor and a descendant of another). An edge exists from node i to node j is denoted as i → j, where i is a parent of j. We denote the set of parents of node i as pa G(i) or pa (i)
+
+when the graph is clear from context. One popular application of DAGs is in probabilistic graphical modeling, where DAGs rep-resent minimal factorizations of joint distributions into conditional and marginal compo-21
+
+23
+
+4
+
+(a) 
+
+> (a)
+
+2 4 3 1
+
+(b) 
+
+3 2 1 4
+
+> (b)
+
+Figure 1: (a) Example DAG with 4 nodes (b) 2 example topological order representations of the DAG in (a). In both topological orders, parents are always to the right of children. nents. Specifically, in a Bayesian network B = ( G, θ ), each vertex i ∈ V corresponds to a random variable Xi, EG encodes the dependence structure among the variables, and 
+
+θ denotes the parameters specifying the functional forms of the conditional distributions. We denote the random variables associated with the parents of i in G as Pa G(i) (or sim-ply Pa (i)), and write the observed data generated from a p-dimensional Bayesian network as D = ( X1, ..., X p). Given θ and G, the joint distribution P (X1, ..., X p) factorizes ac-cording to the Markov property where each variable Xi is conditionally independent of its non-descendants given Pa (i). Consequentially, the joint distribution is expressed as: 
+
+P (X1, ..., X p) = 
+
+> p
+
+Y
+
+> i=1
+
+P (Xi|Pa (i)) . (1) Every DAG G is consistent with at least one topological order (also called topological ordering , order , or ordering ), a permutation of {1, ..., p } that exhibits the ancestral relations of G. Formally, a topological order ≺∈ Sp (the symmetric group of degree p) is compatible with G if for every edge i → j in G, we have ≺[i]<≺[j]. Furthermore, i is a predecessor of j
+
+in ≺, or i ∈ pr ≺(j) for short. A four-node DAG is illustrated in figure 1a with two example compatible orders in 1b. We define G≺ := {G : G ∈ Gp, pa G(i) ⊆ pr ≺(i) for all i} (where 
+
+Gp is the set of p-node DAGs) as the set of DAGs consistent with an order ≺. For a given order ≺, we define Pa ≺(i) = ∪{G:G∈G ≺}Pa G(i).For the purpose of Bayesian inference, we treat the graph and the topological order as ran-dom variables denoted by G, O, respectively, which take values in the spaces Gp, Sp. We use G, ≺ to refer to specific realizations of these variables. 
+
+2.2 Graph Inference Methods 
+
+There are three main approaches to structure inference: constraint-based , score-based ,and hybrid methods. We summarize each below; for a complete review, see Kitson et al. (2023). 32.2.1 Constraint-Based Methods 
+
+Constraint-based methods infer the graph structure by estimating conditional dependencies via hypothesis testing. Since DAG edges correspond to conditional dependencies between nodes, these methods estimate a skeleton (the undirected edge structure) by conducting a complete set of independence tests and retaining the edges that correspond to null hypothe-ses that are rejected. Edge directions are then added in a post-processing step to infer the DAG. Constraint-based methods are consistent estimators of the true DAG under mild assumptions (Kalisch and Bühlmann 2007), but can be unstable. Because tests are often correlated across sets of random variables, slight misspecification can cause many false negatives, resulting in true edge omissions (Uhler et al. 2013). In addition, the variable ordering used during testing can significantly influence the estimated graph (Colombo and Maathuis 2014). 
+
+2.2.2 Score-Based Methods 
+
+Score-based methods (sometimes called score-and-search-based methods) infer structure by evaluating an objective function ( score ) that quantifies the relative merits of each graph. The score is then used to estimate a single best graph by searching for a maximum or to estimate a distribution over structures by sampling graphs proportionally to their scores. Unique score-based approaches vary in (1) the choice of score and (2) the strategy used to explore the space. We discuss desirable properties for score functions in 2.3 and discuss sampling techniques in 2.4. When computationally feasible, score-based methods tend to outperform constraint-based ones, as they directly work with an objective tied to model quality. However, they can scale poorly due to the exponential size of the graph space with p nodes. As a result, score-based methods are typically used in sparse graph problems or problems with few variables. 
+
+2.2.3 Hybrid Methods 
+
+Hybrid methods aim to combine the strengths of constraint-based and score-based approaches to graph inference. A common approach is to use a computationally efficient constraint-based approach to build a reduced search space, and then use a deeper score-based search within this restricted space. We describe a recent MCMC variant of this in Section 2.4.2. 
+
+2.3 Score Functions 
+
+We define a graph score Q(G, D ) to be any objective function used to compare graphs. Scores are typically proportional to either (1) a model selection criterion (such as Bayesian information criterion (BIC) or Akaike information criterion (AIC)) or (2) to a posterior probability. We define a posterior score as the special case in which the score can be mapped to the posterior probability of the graph via a strictly monotone transformation g, i.e., 
+
+Q(G, D ) = g(πDAG (G|D)) . (2) Examples of nontrivial g include the unnormalized posterior P (D|G = G)π(G) (where 
+
+g(x) = xP (D)) or its log form ( g(x) = log x + log P (D)). Posterior scores therefore provide a direct Bayesian interpretation of the scoring function. We denote (Q, π DAG ) as a 4coupled posterior score and its associated posterior distribution, noting that any monotone transformation Q′ of Q yields the same πDAG .While we introduce scores here in the graph space, it is often convenient (see Section 2.4.1) to conduct the search in reparameterized spaces to achieve efficiency gains. In those settings, we will analogously define scores and posterior scores over the corresponding space. 
+
+2.3.1 Computationally Efficient Scores 
+
+To ensure computational tractability, most score-based methods utilize decomposable scores. A score Q(G, D ) is decomposable iff Q(G, D ) = Qpi=1 S(Xi, Pa (i)|D), where S depends only on a node and its parents (sometimes, this is written in logarithmic scale where the product becomes a sum). These scores are especially useful in local update procedures, as only the terms associated with the affected node are reevaluated (whereas nondecomposable scores require rescoring the entire graph for each node-wise update). Friedman and Koller (2003) found sufficient conditions for decomposable Bayesian network posterior scores. Notable examples include the BDe score for multinomial data and the BGe score for multivariate Gaussian data (Heckerman and Geiger, 1995). Another approach for modular scoring is to use priors that induce structural Markov laws 
+
+(Byrne and Dawid, 2015), graph distributions with strong conditional independence prop-erties. Ben-David et al. (2015) used these laws to create the DAG-Wishart distribution, a flexible generalization of the BGe score that still yields decomposable scores. 
+
+2.3.2 Identifiable Scores within Equivalence Classes 
+
+Another consideration in design of scores is allowing for identifiability. Two DAGs belong to the same Markov equivalence class if they encode the same set of independence relation-ships (Drton and Maathuis, 2017); when the true DAG belongs to a nontrivial equivalence class, structure learning from observational data alone becomes unidentifiable. Many score functions, including the BDe and BGe scores, are score equivalent , meaning they assign identical scores to all graphs in the equivalence class (Geiger and Heckerman, 2002), thus preserving this ambiguity. Recent methods achieve identifiability by leveraging the unique constraints of topological orders, though often at the cost of computational or model complexity. For instance, the topological order is identifiable under structural equation models with equal error variance (Ghoshal and Honorio, 2018; Chen et al., 2019). While Chang et al. (2023) utilized this to design an identifiable empirical Bayes score, the resulting function is non-decomposable and requires approximate sampling. Alternatively, the DAG-Wishart distribution (Ben-David et al., 2015) maintains decomposability but achieves identifiability through order-dependent priors. This approach penalizes Markov equivalent structures differently based on their directionality, which risks model misspecification if the assumed ordering is in-compatible with the underlying data. 
+
+2.4 DAG MCMC Methods 
+
+As the number of nodes p in a graph grows, brute-force search methods become infeasible for 2 reasons: (1) the number of graphs in the search space grows super-exponentially, and 5(2) many scores introduce intractable terms, such as posteriors in Gaussian graph scoring setups. As a result, MCMC techniques are used to score and search the space. 
+
+2.4.1 MCMC Setups 
+
+MCMC algorithms for graphs can vary in 3 key ways: (1) the score function used, (2) the state space used, and (3) the move proposal setup (both in neighborhood choice for proposals, and the proposal scheme itself). As outlined in 2.3, choice of score function is motivated by either (1) minimizing the com-putational cost of score updates or (2) encoding information (such as identifiability) about unique graphs. Typically, MCMC techniques use posterior scores derived from graph priors that invoke the desired score properties. The simplest state space for graph inference is the set of DAGs. Structure MCMC (Madigan and York 1995, Giudici and Castelo 2003) is a random-walk Metropolis-Hastings (MH) on this space, proposing moves by adding, deleting, or reversing one edge from the current DAG while ensuring acyclicity. More sophisticated moves on the DAG space include block-Gibbs sampling (Goudie and Mukherjee, 2016), large-scale edge reversals (Grzegorczyk and Husmeier, 2008), adaptive neighborhood sets (Liang et al. 2022, Caron et al. 2024), and transdimensional methods (Giudici and Green 1999, Mohammadi and Wit 2015, Dobra and Mohammadi 2018), the last of which we discuss further in Section 2.4.3. Alternatively, grouping related DAGs as an element of the state space can improve mixing. For instance, sampling over equivalence classes (He et al. 2013, Castelletti et al. 2018) avoids transitions between indistinguishable graphs under score equivalent scores. An-other approach is to group by topological orders (Friedman and Koller 2003, Kuipers et al. 2021) or partial orders (Kuipers and Moffa 2017). Since order identifiability implies graph identifiability, samplers on the order space can distinguish between otherwise equivalent DAGs. 
+
+Order MCMC is the class of graph MCMC techniques that operate on the topological order space. Beyond enabling larger move proposals than DAG-based samplers and distinguish-ing between equivalent graphs, the order space offers two further advantages. First, while it is NP-hard to find an optimal scoring graph (Chickering 1996, Chickering et al. 2004), the problem is only O(pK ) given a known order ≺ where K is the sparsity - maximal parent set size. This reduces structure learning to a variable selection task over the  p
+
+> 2
+
+ possible edges, instead of a simultaneous identification and selection task (Buntine 1991, Cooper and Herskovits 1992). Second, order scores efficiently factorize over nodes when using decom-posable graph scores. If (Q(G, D ), π DAG (G|D)) is a posterior graph score and distribution pair, the marginal posterior distribution over orders πOrd (with associated score R) is: 
+
+πOrd (≺ | D) ∝ R(≺ | D) ∝ X
+
+> G∈G ≺
+
+πDAG (G|D). (3) For decomposable graph scores, this admits the factorized form, 
+
+R(≺ | D) ∝ X
+
+> G:G∈G ≺
+> p
+
+Y
+
+> i=1
+
+S(Xi, Pa G(i)|D) = 
+
+> p
+
+Y
+
+> i=1
+
+X
+
+> Pa ∈Pa ≺(i)
+
+S(Xi, Pa |D). (4) 6After sampling ≺ via MH, graphs can then be sampled from πDAG (G| ≺ , D ).Note that order MCMC estimates are biased towards graphs with more compatible orderings (namely, sparser graphs). This motivates substituting orders with partial orders, though both the search and scoring steps become more computationally expensive. 
+
+2.4.2 Hybrid MCMC Setups 
+
+Recent work (Kuipers et al. 2021, Viinikka et al. 2020) further improves the efficiency and scalability of order MCMC by restricting the search space to a subset of all possible edges, estimated via constraint-based methods in a hybrid setup. While in theory, a restricted search space could be any arbitrary subset of Gp, recent literature focuses on restrictions induced by a directed graph H = ( V, E H) ∈ Dp, where Dp is the set of p-node directed graphs. The set of admissible DAGs is then, 
+
+GH := {G : G = ( V, E G) ∈ Gp, E G ⊆ EH}. (5) This edge-based restriction is computationally advantageous because it allows the order score to remain decomposable over the nodes. Let H be the corresponding adjacency matrix (where Hji = 1 if j → i ∈ H ) and hi = {Xj : Hji = 1 }. The resulting restricted decomposable order score function is, 
+
+RH(≺ | D) ∝
+
+> p
+
+Y
+
+> i=1
+
+X
+
+> Pa ⊆hi
+> Pa ∈Pa ≺(i)
+
+S(Xi, Pa |D). (6) Typical order MCMC follows, just using RH instead of R. Figure 2 outlines order MCMC procedure visually on a 4-node graph problem, where 2a shows the posterior probabilities for all 4-node DAGs, and some graphs are omitted by removing an edge from the space in 2b; the ensuing topological order posterior changes as a result, shown in 2c. Constraining scores to be on the restricted space reduces the cost of MCMC steps from 
+
+O(pK ) to O(Kp ) (see B.1.1 for implementation details). However, this comes at the cost of omitting low-probability regions of the graph posterior in the space of order scores, meaning that RH will not correspond to the same target as R, as shown in figure 2c. We note that, to our knowledge, there is a major gap in the literature concerning the error incurred when considering a restricted search space. In this paper we close this gap by establishing upper and lower bounds on the error, as reported in Section 3. 
+
+2.4.3 transdimensional MCMC Setups 
+
+Standard MCMC methods and their hybrid extensions fix the support throughout the chain to ensure ergodicity (and in the latter, restrict this fixed support to a manageable subset at the cost of exactness). In contract, transdimensional MCMC methods are algorithms which permit transitions between states of differing dimensionality. The reversible jump MCMC (RJMCMC) method (Green, 1995) generalizes the MH algo-rithm to allow for dimension switches. This is done by introducing auxiliary variables to dimension-match the proposal with the current state of the chain, and including a Jaco-bian term in the acceptance probability to account for the change in dimension. Giudici and 7(a) 
+
+> (b)
+> (c)
+
+Figure 2: 4-node example of restricted search space: (a) Posterior probabilities of the DAGs without imposing any restrictions. (b) Posterior probabilities of the graphs where the edge 
+
+1 → 3 is not included in the restricted search space. Excluded DAGs are shaded in gray. (c) Resulting restricted order posterior probability mass functions for both search spaces. Green (1999) extended this approach to Gaussian Graphical Models (GGMs). The two large drawbacks of RJMCMC include (1) the slow mixing of the chain when the acceptance prob-abilities are low, and (2) the large computational cost of calculating the Jacobians (Stephens, 2000). An alternate approach is to use a birth-death MCMC (BDMCMC) process which leverages a continuous-time Markov process (Preston (1977)) rather than a discrete-time Markov chain. In BDMCMC, waiting times between jumps to higher dimensions (births) and lower dimen-sions (deaths) are taken to be random variables based on specific birth and death rates. The birth and death rates also define the transition kernel between spaces of different dimensions and are chosen such that the stationary distribution of the point process is the desired target. Extensions of the BDMCMC samplers for GGMs and general graphical models were given by Mohammadi and Wit (2015) and Dobra and Mohammadi (2018), respectively. We will take inspiration from BDMCMC to propose a flexible hybrid transdimensional sampler in Section 4.2. 83 Target Error Bounds in Restricted Search Space Methods 
+
+We first quantify the error introduced from the hybrid order MCMC sampler (as highlighted in figure 2) that restricts the search space. These results confirm our intuition that the error introduced from hybrid order MCMC techniques could be quite large in some settings, and we characterize in what ways this could occur. We will use these results to motivate the design of our novel MCMC method in Section 4. For the rest of this paper, we consider order MCMC algorithms defined on restricted search spaces. For a fixed directed graph H ∈ Dp, the state space is (≺, G ) ∈ { (≺, G ) : ≺∈ Sp, G ∈GH∩G ≺}, with corresponding approximate order score RH. When H itself is updated during sampling, we operate on (H, ≺, G ) ∈ { (H, ≺, G ) : H ∈ Dp, ≺∈ Sp, G ∈ G H ∩ G ≺}.For a fixed restricted space H ∈ Dp, we define the restricted order posterior π(H) 
+
+> Ord
+
+as the distribution over orders induced by GH. Additionally, for notational convenience, we write 
+
+πDAG (H| D) to denote the posterior mass assigned to DAGs in GH, that is, 
+
+πDAG (H| D) := X
+
+> G∈G H
+
+πDAG (G|D),
+
+with equivalent analogues for conditional or joint distributions involving H.To our knowledge, restricted search spaces have only been applied to the graph space and not to higher-level spaces such as equivalence classes or orders, in the sense that restrictions occur by omitting specific graphs (and not specific equivalence classes or orders) from the space based on a subset of edges. So, our results have been derived for order scores with restrictions to the set of admissible graphs. Note that since the empty graph is consistent with all possible orders, such restrictions do not change the support of order MCMC, but they do alter the effective support by changing the corresponding score and induced posterior distribution. 
+
+3.1 Lower and Upper Bound 
+
+The following theorem gives us upper and lower bounds on the error introduced in the restricted search space MCMC methods: 
+
+Theorem 3.1. Let H ∈ Dp be a directed graph with corresponding edge set EH and ad-missible DAG set GH. Let πDAG , π Ord denote the posterior distributions over DAGs and orders, respectively, using the full DAG space Gp, and let (RH, π (H)
+
+> Ord
+
+) denote the perturbed score-distribution pair, where π(H) 
+
+> Ord
+
+is the posterior over orders restricted to GH. Define 
+
+εH := 1 − πDAG (H| D) as the posterior mass assigned to DAGs outside of H.Then, for some constant c ∈ [0 , 1] ,
+
+1 − √1 − cε H ≤ DT V (π(H)
+
+> Ord
+
+, π Ord ) ≤ min 
+
+q 
+
+2 − 2√1 − cε H, 1
+
+
+
+(7) 
+
+where DTV denotes the total variation distance between distributions. Proof. See Section A.1. 9We plot the lower and upper bounds from equation (7) for when c = 0 .1, 0.5, 0.9 in Figure 3, which illustrates that for large c, the target will be far away from the posterior when omitting even a small portion of it (we describe the intuition of c in 3.1.1). A consequence is that if the bounds are large for a restricted search space, no Markov chain operating on it, no matter how efficient, could satisfy uniform ergodicity (Roberts and Rosenthal, 2004), a consequential property of an MCMC chain’s convergence to a stationary distribution, 
+
+π.We show how theorem 3.1 connects to convergence analysis in the following examples: 
+
+Remark 1. If the prior over graphs πDAG (G) is supported entirely over H, i.e., πDAG (G) = 0 if G / ∈ G H, then the posterior over orders restricted to H coincides with the full posterior over orders: π(H)
+
+> Ord
+
+(≺ | D) = πOrd (≺ | D) for all ≺∈ Sp, and hence DT V (π(H)
+
+> Ord
+
+(·| D), π Ord (·| D)) = 0 in Theorem 3.1. 
+
+Remark 2. DT V (π(H)
+
+> Ord
+
+(·| D), π Ord (·| D)) can converge to 0 in Theorem 3.1 under strongly consistent posteriors. A graph posterior distribution πDAG is strongly consistent when 
+
+lim  
+
+> n→∞
+
+P r (|πDAG (Gtrue |D) − 1| ≥ ϵ) = 0 for all ϵ > 0,
+
+where Gtrue is the true underlying graph and n is the number of observations in D. If πDAG 
+
+is strongly consistent and if H is estimated such that lim n→∞ P r ( ˆGM AP n ∈ G ˆHn ) = 1 , then 
+
+DT V (π(H)
+
+> Ord
+
+, π Ord ) converges to 0. However, posteriors that have been shown to be strongly consistent in previous research assume a known topological ordering (Cao et al. (2019), Lee et al. (2019)), so results on strongly consistent graph posteriors need to be extended to order scores. 
+
+Remark 3. There is a growing body of literature on noisy MCMC (Alquier et al., 2016) in which the transition kernel, P , of a Markov chain that has the desired stationary distribution 
+
+πP but is too computationally expensive to run is replaced with a “perturbed” kernel ˜P
+
+that is computationally cheaper to run. The modified transition kernel defines a chain that has a different stationary distribution π ˜P . The noisy MCMC methodology is needed to characterize conditions under which the difference between πP and π ˜P is not too large. A common setup is when P satisfies a contraction property, that is 
+
+DT V (P (x, A ), P (y, A )) ≤ (1 − α)1[x̸ = y] ∀x, y ∈ Ω, ∀A ∈ σ(Ω) , and 0 < α ≤ 1
+
+If the perturbed kernel ˜P satisfies 
+
+DT V (P (x, A ), ˜P (x, A )) ≤ ϵ ∀x ∈ Ω, ∀A ∈ σ(Ω) for some 0 ≤ ϵ < ∞
+
+then DT V (πP , π ˜P ) ≤ ϵα (Rudolf et al., 2024). In contrast, Theorem 3.1 directly bounds the total variation distance between the targets themselves (rather than between the stationary distributions of (perturbed) Markov kernels). When Markov chains targeting πOrd and π(H) 
+
+> Ord
+
+exist and are ergodic, it suggests that for any pair of Markov chains (P, ˜P ) where P and ˜P explore the full and restricted space, respectively, the inequality 
+
+10 Figure 3: Upper and Lower bound of the Total Variation Distance for different thresholds across 3 different constants. Dashed line denotes y = x.
+
+1 − √1 − cε H ≤ ϵα
+
+provides a practical lower bound on the gap between πP and π ˜P (even when we cannot neatly evaluate ϵ). This highlights how the quality of H directly influences the accuracy of any approximate kernel (as expressed through ϵ) for order MCMC, and formalizes our intuition on the practical limitations of using a restricted support set. 
+
+Even when there are theoretical guarantees for convergence, issues may arise in practice. Viinikka et al. (2020) analyzed the restricted search space problem empirically and found that, even when including the most probable 60% of possible parents for each node, the mean probability of including the true parents per node was only 90% for a data set of size n = 200 
+
+for a GDM with p = 20 nodes. 1 − εH is approximately (though not identical) to 90% 20 =12% , suggesting that even including a large portion of possible nodes in a restricted search space when p is small could lead to large εH. Perhaps even more importantly, it suggests a curse of dimensionality: even a slight error introduced per node yields large implications when increasing p.
+
+3.1.1 Understanding c
+
+In Theorem 3.1, the lower and upper bounds rely on 2 constants εH and c. εH is intuitive to understand and is a potential link between consistency and Theorem 3.1. Lemmas 3.2-3.3 provide some insight into c. For these, for a restricted representation directed graph H ∈ Dp
+
+11 with corresponding DAG set GH ⊆ Gp, we define the complementary DAG set as 
+
+G¬H := Gp \ G H.
+
+Here ¬H serves only as a symbolic index for this complementary DAG set (so ¬H does not correspond to a single element of Dp). We denote the posterior distribution over orders restricted to this omitted set as π(¬H ) 
+
+> Ord
+
+.
+
+Lemma 3.2. Let H ∈ Dp be a directed-graph representation with associated DAG set 
+
+GH ⊆ Gp, and let G¬H = Gp \ G H. Define π(H)
+
+> Ord
+
+, π (¬H ) 
+
+> Ord
+
+as the posterior distributions over orders by restricting the full posterior to GH and G¬H , respectively. Then c assumes the minimal value c = 0 if and only if π(H)
+
+> Ord
+
+(≺ | D) = π(¬H ) 
+
+> Ord
+
+(≺ | D) ∀ ≺∈ Sp.Proof. See Section A.2.1. 
+
+Lemma 3.3. Let H, ¬H , GH, G¬H , π(H)
+
+> Ord
+
+, π (¬H ) 
+
+> Ord
+
+be as in lemma 3.2. Then c is maximal (that is, c = 1 ) if and only if the probability mass functions π(H)
+
+> Ord
+
+(·| D) and π(¬H ) 
+
+> Ord
+
+(·| D) have disjoint supports. Proof. See Section A.2.2. The above lemmas provide intuition that c is related to the degree of disagreement between the restricted posterior and the posterior restricted to the region in the sample space that is being omitted. In practice, it is difficult to assess the degree of disagreement between 
+
+π(H) 
+
+> Ord
+
+and π(¬H ) 
+
+> Ord
+
+, as the construction omits π(¬H ) 
+
+> Ord
+
+. This implies that if it is not guaranteed or highly probable that lim n→∞ εHn = 0 when constructing Hn, the lower bound for noisy MCMC can be hard to quantify and can be large. This insight motivates the development of approaches that do not use a fixed restricted search space. 
+
+3.2 Adaptive MCMC Approaches for Reducing Target Error and Prior Consid-erations in a Hierarchical Setup 
+
+The error produced by hybrid algorithms for DAG sampling arises because the restricted search space H is fixed, and the chain samples from a restricted target π(H)
+
+> Ord
+
+. An alternate strategy is to adapt H as the Markov chain progresses, so that the chain does not exclusively sample from a single restricted target with a fixed error but a mixture that could collectively lower the error. To formalize this, we can treat the restricted search space as a random variable H taking values in Dp. The following hierarchical model then characterizes hybrid algorithms with adaptation of the search space: 
+
+H ∼ PH (·) (8) 
+
+G ∼ PG|H (· | H ) (9) 
+
+X1, ..., Xn
+
+> iid
+
+∼ PX|ΘG (· | θG) (10) 12 In this framework, standard hybrid order MCMC corresponds to choosing a point mass prior PH = δH∗ , where H∗ is the chosen restricted search space; that is, PH (H∗) = 1 
+
+and PH (H′) = 0 for all H′̸ = H∗. Sampling from the full space likewise corresponds to 
+
+PH = δKp , where Kp is the complete graph (i.e., its adjacency matrix A satisfies Aij = 1 
+
+when j̸ = i, and Aij = 0 when j = i). The original order MCMC paper (Friedman and Koller, 2003) effectively uses another de-generate prior, but of a different kind: instead of restricting the allowable edges through a graph H, it restricts the allowable parent sets by imposing a fixed maximal in-degree con-straint. This constraint defines a subset of Gp that cannot in general be represented by a single directed graph H. However, we can extend the hierarchical formulation to encapsu-late this case as well by including a parameter d that represents the degree. Then, the priors on d and H are also degenerate, where PH (H) = δKp , and Pd(d) = δd∗ , where d∗ ≤ p is the prespecified degree constraint. We instead propose a new class of priors that move beyond this fixed support, allowing for the potential to reduce fixed search space error. To accommodate flexible priors that allow for the restricted search space and the corresponding scores to change during sampling, we turn to transdimensional MCMC methods. Specifically, we propose to extend BDMCMC to (H, ≺, G ) to reduce the error incurred when using a restricted order space. This proves to be difficult given that orders can map to multiple graphs and that graphs can map to multiple orders. To avoid this issue, in Section 4, we propose building a Markov chain that uses a mixture transition kernel: one component samples H |≺ via a birth-death transition kernel and one component updates ≺| H according to the restricted search order transition kernel. The graphs can then be sampled directly from G |≺ , H. This approach is validated using the methodology developed by Geyer and Møller (1994). 
+
+# 4 Birth-Death Restricted Search MCMC 
+
+We aim to enable transitions between restricted search spaces of different sizes, thereby limiting the fixed-support error. This requires a class of priors on H that (1) are non-degenerate and (2) allow for computationally feasible sampling of the posterior. We draw on transdimensional MCMC literature to inform this class, specifically the balance conditions underlying birth-death MCMC, and a related mixture kernel method. 
+
+4.1 Birth-Death Detailed Balance and transdimensional Target Recovery 
+
+To create a BDMCMC algorithm for restricted search space MCMC, we must define the birth and death rates. The standard BDMCMC literature defines birth and death rates based on satisfying detailed balance conditions on a transdimensional posterior measure μ (Pre-ston (1977), Dobra and Mohammadi (2018)). For a birth-death process to have stationary probability μ on measurable space (Ω , F),
+
+Z
+
+> U
+
+β(z)dμ m(z) = 
+
+Z
+
+δ(y)K(m+1)  
+
+> δ
+
+(y, U )dμ m+1 (y) for m ≥ 0, U ∈ F m (11) 
+
+Z
+
+> V
+
+δ(z)dμ m+1 (z) = 
+
+Z
+
+β(x)K(m) 
+
+> β
+
+(x, V )dμ m(x) for m ≥ 0, V ∈ F m+1 (12) 13 where Ωm, Fm denote the support and possible states of the process with dimension m,respectively, μm is μ restricted to (Ω m, Fm), β, δ are the birth and death rates and Kmβ :Ωm × F m+1 → R+, K mδ : Ω m × F m−1 → R+ are transition kernels describing the jump processes from dimension m. To sample from μ by BDMCMC, a transition is proposed by adding or removing a point from the space according to the transition kernels defined by 
+
+β, δ that satisfy (11) and (12). All proposals are accepted, but each sample is weighted by the waiting time , 1 
+
+> β(x)+ δ(x)
+
+.Alternatively, the problem can be flipped: choose birth and death rates β, δ that define a valid birth-death process with a unique solution. Then, the limit of this jump process is μ,the probability measure that satisfies (11) and (12). Preston (1977) found conditions on β, δ 
+
+that allow μ to be recovered through a recursive formula. We use this approach to define a class of transdimensional distributions on (H, O) that can be sampled by a birth-death process for restricted search MCMC: 
+
+Theorem 4.1. Let H ∈ Dp, and ≺∈ Sp. Define Be(H, ≺) and De(H, ≺) as follows: 
+
+Be(H, ≺) ∝  
+
+> 1
+> |G H+e|
+
+πDAG (H+e |≺ , D ) 
+
+> 1
+> |G H|
+
+πDAG (H |≺ , D ) = 12
+
+πDAG (H+e |≺ , D )
+
+πDAG (H |≺ , D ) (13) 
+
+De(H, ≺) ∝  
+
+> c∗
+> |G H−e|
+
+πDAG (H−e |≺ , D ) 
+
+> 1
+> |G H|
+
+πDAG (H |≺ , D ) = 2 c∗ πDAG (H−e |≺ , D )
+
+πDAG (H |≺ , D ) (14) 
+
+where c∗ ∈ (0 , 1] . Let β(H, ≺) = P 
+
+> e / ∈EH
+
+Be(H, ≺), and δ(H, ≺) = P 
+
+> e∈EH
+
+De(H, ≺).Then, a birth-death process defined by β, δ produces a unique solution whose limit is a tractable probability distribution. Proof. See Section A.3. These rates are similar to those of Mohammadi and Wit (2015) and Dobra and Mohammadi (2018). Since those BDMCMC samplers operate directly on the graph space, the rates are defined by ratios of graph probabilities; the rates we define in Theorem 4.1 are ratios of mean graph probability within the search spaces (conditional on the topological order). This elicits the following class of search space posteriors: 
+
+Corollary 4.1.1. Construct a birth-death Markov process (H, O) ∈ Dp × Sp with the birth and death rates specified in Theorem 4.1. Then, the marginal of H ∈ Dp of the stationary distribution admits the following form: 
+
+μ(c∗)
+
+> Space
+
+(H) ∝ (2 c∗)−| EH| X
+
+> ≺∈ Sp
+
+πDAG (H| ≺ , D ). (15) 
+
+Proof. See Section A.4. The class of posteriors defined by the rates in Theorem 4.1 induces a class of priors that assign mass to more than one value in the set of search spaces. When combined with the 14 restricted order MCMC, this can allow for sampling on (H, O) without assuming a fixed 
+
+H.
+
+4.2 Mixture Kernels in Spatial Point Processes 
+
+Geyer and Møller (1994) developed a framework that is a generalization of the BDMCMC sampler. They consider a Poisson process ν on (Ω , F), with the intensity measure λ on 
+
+(Λ , B), and want to sample realizations of a point process with distribution π on (Ω , F),and density g = dπ/dν with respect to the Poisson process. To this end, they define the following MH algorithm that is a mixture of 2 transition kernels: 
+
+Qℓ(F | x) = (1 − ℓ)Q0(F | x) + ℓQ 1(F | x) 0 ≤ ℓ ≤ 1 (16) where Q0 is a standard MH procedure concentrated on Hm = Ω m ∩H, where H = {g > 0},and Q1 is concentrated on Hm−1 ∪Hm ∪Hm+1 . Q1 is constructed such that with probability 
+
+q(x), a new point ξ is generated from some random density b(x, ξ ) with respect to λ(dξ ),and with probability 1 − q(x), a random point η ∈ x is removed with some probability 
+
+D(x/η ; η) (or if m = 0 , we do nothing). For x ∈ Hm, Q1 is defined as: 
+
+Q1(Fm+1 | x) = q(x)
+
+Z
+
+> x∪ξ∈Fm+1
+
+b(x, ξ )A1(x ∪ ξ | x)λ(dξ )
+
+Q1(Fm | x) = 1[x ∈ Fm]
+
+n
+
+q(x)
+
+Z
+
+b(x, ξ )[1 − A1(x ∪ ξ | x)] λ(dξ )+ (1 − q(x)) X
+
+> η∈x
+
+D(x/η ; η)[1 − A1(x/η | x)] 
+
+o
+
+Q1(Fm−1 | x) = (1 − q(x)) X
+
+> η∈x
+
+1[x/η ∈ Fm−1]D(x/η ; η)A1(x/η | x)
+
+where A1 is the acceptance rate of the transition kernel. Time reversibility is ensured with the following acceptance rates. 
+
+A1(x | x ∪ ξ) = 
+
+(
+
+min {1, 1/r (x, ξ )} if x ∪ ξ ∈ H, 
+
+0 otherwise 
+
+A1(x ∪ ξ | x) = 
+
+(
+
+min {1, r (x, ξ )} if x ∪ ξ ∈ H, 
+
+0 otherwise where 
+
+r(x, ξ ) = g(x ∪ ξ)
+
+g(x)1 − q(x ∪ ξ)
+
+q(x)
+
+D(x; ξ)
+
+b(x, ξ ) if x ∪ ξ ∈ H (17) While the continuous-time birth-death process and the discrete-time mixture kernel frame-work of Geyer and Møller (1994) are often treated as distinct approaches to transdimensional sampling, they can be unified. We formalize this connection in Lemma 4.2, which demon-strates that the Metropolis-Hastings acceptance ratio for a Metropolized jump process is exactly determined by the ratio of the BDMCMC waiting times. This result ensures that 15 a posterior that is compatible with a birth-death process can be sampled using a mixture kernel process (and thus the birth-death rates defined in Theorem 4.1 can be seamlessly integrated into a mixture kernel MCMC architecture). 
+
+Lemma 4.2. Let μ be a transdimensional probability measure that is compatible with a birth-death process defined by β, δ . Then r(x, ξ ), the acceptance ratio in the mixture kernel sampler of Geyer and Møller (1994), is given by the ratio of waiting times w(x ∪ ξ), w (x)
+
+of the jump process: 
+
+r(x, ξ ) = 
+
+> 1
+> β(x∪ξ)+ δ(x∪ξ)1
+> β(x)+ δ(x)
+
+= w(x ∪ ξ)
+
+w(x)
+
+Proof. See Section A.5. 
+
+4.3 BROOD Algorithm 
+
+The lemma 4.2 signifies that the limiting distribution of a standard birth-death sampler can equivalently be obtained from a mixture of MH transition kernels, where the accep-tance ratio of Q1 is a waiting time ratio. This equivalence is quite useful for sampling on 
+
+(H, O). Specifically, the computationally efficient hybrid order MCMC sampler (targeting 
+
+≺| H ) serves as the kernel Q0, while Q1 facilitates the birth-death transitions between search spaces (targeting H). Since Theorem 4.1 defines a class of distributions that can be sampled by birth-death processes, consequentially, Theorem 4.1 and Lemma 4.2 together demon-strate that hybrid order MCMC can be extended into a rigorous framework for sampling from a flexible, non-degenerate class of transdimensional distributions on (H, O).We implement our novel dynamic restricted order MCMC sampler, Birth-death processes 
+
+Restricted Over Order Distributions (BROOD), using the mixture MH method. Compared to the previous hybrid order MCMC samplers, BROOD’s two methodological innovations are to (1) allow for not only expansions to the search space, but contractions too, and (2) dynamically change the search space at a rate ℓ ∈ [0 , 1] throughout the simulation, instead of doing it for a finite number of iterations. We outline BROOD in pseudocode form in algorithm 1, and illustrate it visually in Figure 4. 
+
+4.4 Gaussian DAG Models: Intuition Behind Operating on (H, ≺) Pairs 
+
+Although it may seem contrived to operate on (H, ≺), the Gaussian DAG model (GDM) provides the intuition for doing so. For analysis of continuous random variables, it is standard to assume the data are drawn from a Gaussian graphical model (GGM). A GGM is any model in the set MG = {N p(0 , Σ) , K =Σ−1 ∈ PG}, where Np is the p-dimensional multivariate Gaussian distribution, PG = {Y ∈
+
+Pp : Yij = 0 if i − j / ∈ EG, ∀i, j ∈ V }, and Pp is the cone of p × p positive-definite matrices (Dempster, 1972). Similarly, a Gaussian DAG model (GDM) stipulates that if i → j / ∈ EG
+
+then Lij = 0 , where K = LD −1LT is the modified Cholesky decomposition (Ben-David et al., 2015). Here, the order ≺ is assumed to be known and fixed, such that the rows and columns of L are arranged by ≺.16 Algorithm 1: BROOD Algorithm at step t
+
+Input: Current order ≺t; current restricted search space Ht; restricted target score and probability distribution (RHt (·| D), π (Ht) 
+
+> Ord
+
+(·| D)) ;1. Sample whether to use Q0 or Q1 with probability (1 − ℓ, ℓ );2. if Q0 then 
+
+a. Ht+1 ← H t;b. Update ≺t+1 via π(Ht+1 ) 
+
+> Ord
+
+(≺ | D), with M-H proposals from ≺t;
+
+else 
+
+a. For e ∈ EH, e′ /∈ EH, calculate the birth and death rates, Be′ (Ht, ≺t),
+
+De(Ht, ≺t);b. Calculate the waiting time wt = 1P Be′ (Ht,≺t)+ P De(Ht,≺t) ;c. Sample whether to propose expansion or contraction of the search space: adaptation type ∼
+
+(
+
+expansion with probability wt
+
+P Be′ (Ht, ≺t)
+
+contraction with probability wt
+
+P De(Ht, ≺t) ;d. if adaptation type ==expansion then 
+
+H′ gets updated proportionally to Be′ (Ht, ≺t) for e′ /∈ EH;
+
+else 
+
+H′ gets updated proportionally to De(Ht, ≺t) for e ∈ EH;
+
+end 
+
+e. Calculate birth and death rates of (H′, ≺t), and corresponding waiting time w′;f. A1(( H′, ≺t)) ← w′ 
+
+> wt
+
+;g. Sample u ∼ Uniform(0, 1); h. if u < A 1(( H′, ≺t)) then 
+
+Ht+1 ← H ′;
+
+else 
+
+Ht+1 ← H t;
+
+end 
+
+i. ≺t+1 ←≺ t
+
+end 
+
+3. If DAG sampling as well, sample Gt+1 ∼ π(Ht+1 ) 
+
+> DAG
+
+(G| ≺ t+1 , D );
+
+Output: ≺t+1 ; Ht+1 ; (RHt+1 (·| D), π Ht+1  
+
+> Ord
+
+(·| D)) ;17 Figure 4: Illustration at step t of combined BROOD Algorithm. Purple dots and arrows correspond to the Q0 kernel in equation (16) (moves across the orders space ≺), and blue dots and arrows correspond to the Q1 kernel (moves across the restricted search spaces H)In our setup, a DAG G can only be used to define L if G ∈ G H, where H ∈ Dp is the restricted search space. In addition, the ordering ≺ dictates the arrangement the rows and columns of K, L , and D (i.e., L, a lower triangular matrix, is arranged such that Lij can be nonzero if ≺[i]<≺[j]). As a result, θ(H,≺) represents a realization of the nonzero entries in the L matrix based on both H and ≺. Figure 5a illustrates this concept in a 4-node graph problem. The mixture kernel sampler is defined by two move types: (1) Q0, the transition kernel for the standard restricted order MCMC sampler (displacements within the current search space) and (2) Q1, the transition kernel for the birth-death MH algorithm (expansions or contractions of the current search space). Figure 5b illustrates how these two move types allow an MCMC sampler to change which graphs can be considered; each gives access to unique sets of L matrices in Gaussian DAG setups. 
+
+4.5 Choice of parameters 
+
+In Sections 4.1 and 4.2, we introduce 2 user-specified parameters, c∗ and ℓ, as shown in (14) and (16), respectively. We briefly discuss their implications. 
+
+4.5.1 Controlling Mixing of the Chain via ℓ
+
+The parameter ℓ ∈ [0 , 1] is the mixture weight placed on Q1. For any value ℓ ∈ (0 , 1] , the target distribution of the Markov chain is invariant and converges to the desired transdimen-sional μ (the choice ℓ = 0 also leads to a valid sampler but only for the conditional μm). However, ℓ affects the mixing time of the chain. Since the Q1 steps are more computation-ally expensive than the Q0 steps in BROOD, it is practically valuable to have ℓ be small, 18 H =
+
+
+
+1 2 3 4
+
+1 0 0 1 1
+
+2 1 0 0 0
+
+3 1 1 0 1
+
+4 0 1 1 0
+
+
+
+≺= (1 , 3, 4, 2) 
+
+# ⇒ L ∈
+
+
+
+1 3 4 2
+
+1 1 0 0 0
+
+3 ℓ31 1 0 0
+
+4 0 ℓ43 1 0
+
+2 ℓ21 0 0 1
+
+
+
+> (a)
+
+
+
+1 3 4 2
+
+1 1 0 0 0
+
+3 ℓ31 1 0 0
+
+4 0 ℓ43 1 0
+
+2 ℓ21 0 0 1
+
+
+
+
+
+1 2 3 4
+
+1 1 0 0 0
+
+2 ℓ21 1 0 0
+
+3 ℓ31 ℓ32 1 0
+
+4 0 ℓ42 ℓ43 1
+
+
+
+
+
+1 3 4 2
+
+1 1 0 0 0
+
+3 ℓ31 1 0 0
+
+4 0 ℓ43 1 0
+
+2 ℓ21 ℓ23 0 1
+
+
+
+Q0
+
+Q1
+
+> (b)
+
+Figure 5: (a) Construction of a restricted Cholesky space given restricted search space H
+
+and variable order ≺. Light-blue entries are parameters in Θ(H,≺). Purple entries are in ΘH
+
+but not Θ≺. Green entries are in Θ≺ but not ΘH. Red entries are in neither. (b) Two local moves on the space of Gaussian DAG models: Q0 changes the ordering ≺ by relocating node 2 from position 4, and Q1 adds edge 3 → 2 to H. Both modify the Cholesky factor L.and we suggest the empirical choice ℓ = 0 .1, consistent with recommendations from Geyer and Møller (1994). 
+
+4.5.2 Controlling Fidelity to the True Posterior via c∗
+
+Unlike ℓ, the parameter c∗ ∈ (0 , 1] determines the limiting distribution of the Markov chain (and thus the approximate target), as specified in Corollary 4.1.1. We note that while setting 
+
+c∗ = 0 does not satisfy the necessary conditions for recovering a posterior using the tech-niques in Preston (1977), lim t→∞ Ht = Kp where Ht is the tth sample of this process; this amounts to sampling from a chain that converges to the posterior supported by the entire space. Making c∗ nonzero loses the fidelity of the full posterior, but allows for computa-tionally tractable sampling for even high-dimensional problems. Corollary 4.1.1 directly shows the impact of c∗ on the fidelity of the posterior by highlighting a smooth mapping between the full space posterior which occurs when lim c∗→0 μ(c∗) 
+
+> Space
+
+to increasingly coarser approximate posteriors as c∗ increases. This relationship allows us to re-characterize the εH term in (7). As c∗ → 0, the algo-19 rithm places exponentially more weight on larger search spaces (those with larger |EH|). This drives the expected omitted mass E[εH] toward zero, which in turn collapses the TV bound: 
+
+lim  
+
+> c∗→0
+
+DT V (π(c∗)
+
+> Ord
+
+, π Ord ) = 0 (18) Conversely, choosing c∗ = 1 (our suggested default) calibrates the death rates with the birth rates, resulting in a posterior that has a penalty term of 1/2 scaling for each extra edge, coinciding with the notion that adding an edge to the search space doubles the number of graphs introduced. This results in a leaner sampler that stays within high-probability, lower-dimension search spaces. This choice effectively accepts a higher εH in exchange for the computational efficiency of the hybrid Q0 kernel. If a user has access to large computational resources, it could be advantageous to lower εH
+
+by making c∗ < 1. Values c∗ ∈ (0 , 1) act as a compromise between the full space posterior and the edge-penalty posterior. This directly allows a user to control the fidelity-efficiency tradeoff. In contrast, while we may expect for existing procedures to initialize the search space to have small errors in specific scenarios, such as those described in Remark 2, it is unclear how a researcher can directly control the tradeoff between fidelity and efficiency in these frameworks. Future work could involve optimizing the choice of c∗ by balancing the size of the bounds in Theorem 3.1 with the available resources. One special case is when 
+
+c∗ = 0 .5, which amounts to assigning individual search space a relative weight proportional to the scores of graphs compatible with the search space (with no direct edge-penalty for the size of the search space). 
+
+4.6 Computational Considerations 
+
+Recent work on the restricted search space order MCMC (Kuipers et al. (2021), Viinikka et al. (2020)) shows that by reducing the number of parents considered to those contained in a restricted search space, decomposable graph scores can be (1) precomputed prior to sam-pling and (2) stored in cleverly designed data structures that streamline scoring. Specifically, Kuipers et al. (2021) constructs banned score tables that allow for order MCMC scoring to have O(Kp ) operations, where p is the number of nodes and K is the sparsity between nodes (see B.1.1 for more details). Viinikka et al. (2020) details an efficient method to build the banned score table in O(p2K ). Finally, creating an initial score table for the BGe score (Heckerman and Geiger, 1995) that is used to build the banned score table requires 
+
+O(K3p2K ) operations. Updating the restricted search space adds further computational overhead, with each ex-pansion requiring O(K3p2K (p − K + 1)) in previous work, or rounded up to O(K3p22K ).However, this can be viewed as a fixed cost (Kuipers et al., 2021) for finitely many expan-sions (and running a chain thereafter does not add computational effort). Similarly, building finitely many score tables and banned score tables can be viewed as fixed costs. BROOD loses the ability to treat the expensive operations as finite fixed costs (because the search space changes dynamically at a rate ℓ instead of finitely), so we further streamline the sampler in order to lessen the computational cost. 20 By construction, one computational advantage of BROOD is that it only updates 1 node for any space transition, whereas the expansion procedure in Kuipers et al. (2021) updates up to all nodes for any space transition. As a result, BROOD removes a factor of p operations from all table constructions at expansion steps. We acknowledge that this design choice to have smaller update steps could lead to less efficient exploration in a vacuum, though the choice is a result of having both expansion and contraction steps that could offset each other in the BROOD sampler as opposed to only expansion steps previously. p-sized updates can intro-duce a different form of inefficiency: if the current search space under-represents the parent sets of certain nodes while over-representing others, a p-node update forces a transition on “settled” nodes to accommodate “unsettled” ones. By allowing for node-specific births and deaths, BROOD enables the sampler to surgically refine only the regions of the graph that require adaptation, avoiding the computational and mixing overhead of unnecessary global reconfigurations. In practice, BROOD expands the search space more efficiently than in existent implemented algorithms by using recursive block matrix formulas for determinants and Cholesky decom-positions (Osborne, 2010), the two key contributors to the computational burden of the BGe score (Kuipers et al., 2014). By vectorizing these recursive operations across each potential parent outside of the search space (see B.1.2 for details), BROOD removes an additional 
+
+(p − K + 1) operations compared to previous work that processes each potential “plus-one parent” set one at a time. This reduces expansion scoring to typical BGe scoring within a search space applied to 1 node, which requires O(K32K ) operations. Finally, contracting the search space is a low-cost operation, as for any contraction, all cal-culations have previously been performed in the larger space (and all that is required is to eliminate entries which contain parents outside the updated search space). BROOD also recycles previous calculations when creating the banned score table for the plus-one sets. We outline a procedure to do so in B.1.3 that requires O(K) operations for 1 node. 
+
+# 5 Simulation Study 
+
+5.1 Simulation Setup 
+
+We compared BROOD to two existing algorithms: the restricted order MCMC in Kuipers et al. (2021) implemented in the BiDAG R package (which we call BiDAG), and the graph birth-death MCMC sampler in Mohammadi and Wit (2015) implemented in the BDgraph 
+
+R package (which we call BDgraph). As p grows, BDgraph can take orders of magnitude longer to run than BROOD and BiDAG due to not restricting the search space, so we only run BDgraph for graphs with 80 or fewer nodes. We generate synthetic data from linear acyclic structural equation models (SEM) where the graph and error models vary across experiments. To evaluate relative performance of different algorithms, we compare their estimated edge probabilities with where edges actually exist, and aggregate these results by calculating the Receiver Operator Characteristics Area Under the Curve (ROC AUC), Precision-Recall Area Under the Curve (PR AUC), the mean true-edge probability ( P r +), and the mean non-edge probability ( P r −). These metrics have been used to evaluate model performance in other recent work on Bayesian inference of graph models (e.g., Kuipers et al. (2021), Vogels 21 et al. (2024)). Full details for calculating these can be found in C.1. Results in Section 5.2 are displayed for ROC AUC and PR AUC, while the results for the others are shown in C.2. We employ the BGe score (Heckerman and Geiger, 1995) for BROOD and BiDAG to score and search these models, while for BDgraph, we use the G-Wishart score (Letac and Mas-sam, 2007) applied to centered data, due to the respective R packages for BiDAG and BD-graph providing direct native support for them. These scores are similar (though not iden-tical, see section C.1 for details) in that they both come from a Gaussian model and use a Wishart prior on the precision for DAGs and undirected graphs, respectively. To analyze performance, we compare the estimated edge probability for each ordered pair (i, j ) (i.e., the prevalence of i → j in the graph samples drawn) with the true graph G.By default, BiDAG does not use RH throughout, but a relaxed restricted-score of R+
+
+> H
+
+, which allows up to 1 additional parent outside of the search space per node: 
+
+R+
+
+> H
+
+(≺ | D) ∝
+
+> n
+
+Y
+
+> i=1
+
+X
+
+> Pa i∈≺
+> Pa i⊆hi
+
+S(Xi, Pa i|D) + X 
+
+> Xj/∈hi
+> π≺[i]<π ≺[j]
+
+S(Xi, {Pa i, X j }| D)
+
+ (19) Within a BROOD chain, we sample graphs on the graph score analogous to RH and R+
+
+> H
+
+in (19) to allow more direct comparison with BiDAG. We label these in 5.2 as BROOD and BROOD +, respectively. This is not identical to BiDAG’s design, which uses R+ 
+
+> H
+
+on the order sampling as well. BDgraph is implemented for GGMs, but not GDMs. As a result, we compare the BDgraph graph samples with undirected versions of the BROOD and BiDAG graph samples. For each experiment, we run BROOD and BiDAG with two different starting search spaces: the skeleton from a popular constraint-based method, the PC algorithm (Spirtes et al., 2000), and the search space returned from the previous iterative expansion procedure in Kuipers et al. (2021). We consider two error distributions: a standardized N (0 , 1) , and an even mixture between 
+
+N (0 , 1) and N (0 , 2) . The latter allows for identifiability of edge direction (Hoyer et al., 2008). The former is not identifiable within the equivalence class under score-equivalent scoring, but is identifiable if the topological order is known (Chen et al. (2019)). Thus, BROOD and BiDAG could both correctly identify the true edge direction as long as the prior on H does not skew the order sampling too much. The results in Section 5.2 are for the Gaussian error model, the results for the mixture error model can be found in C.2. We consider three unique graph generation procedures: Erdős-Rényi models (ER), Stochas-tic Block models (SBM) and Hierarchical Stochastic Block models (hSBM). Setup and pa-rameter choices for these models are detailed in C.1. At a high level, block models (and hi-erarchical block models) produce community structures that more frequently induce multi-modal posterior graph scores than non-block models (where individual peaks correspond to the effects from unique communities). Based on Remark 2, we expect multi-modal prob-lems to be more challenging for fixed restricted search space methods to infer. In addition, 22 the Kuipers et al. (2021) expansion procedure continually adds the highest probability graph from outside the search space until graphs immediately outside of the search space have low probability, which suggests that it could also struggle with multi-modal problems. Finally, we vary K, the maximal allowed parent set size, a required parameter for both BROOD and BiDAG and the primary determinant of computational cost, as discussed in 4.6. We test two unique maximal parent set sizes for BROOD: (1) “plus-one sparsity”, which allows up to one additional parent beyond the maximal parent set size of the initial search space, and (2) “fixed sparsity”, which enforces a fixed maximal parent set size throughout. The former illustrates the extent to which the transdimensional move proposals can refine the search space under a limited budget, while the latter tests BROOD’s ability to escape local optima when the score is multi-modal and the initialization is poor. Since fixed sparsity is more computationally expensive, we limit these experiments to graphs with at most 140 nodes. In addition, for the fixed sparsity experiments, we include a third initialization of the search space (to more comprehensively investigate the impact of initialization) which is the skeleton returned from Greedy Equivalence Search (Chickering, 2002). Further details about the simulation setup can be found in Appendix C.1. 
+
+5.2 Simulation Results 5.2.1 Performance 
+
+Figures 6 and 7 show the ROC AUC and PR AUC, respectively, of the estimated edge prob-abilities obtained from DAGs sampled by BiDAG and BROOD, under plus-one sparsity. These experiments align with the intuition provided by Remark 2 on strong consistency: BiDAG (using the search space returned from the iterative expansion procedure) is strongest when the number of samples is 10 times larger than the number of nodes. In these settings, BiDAG outperforms BROOD, which is unsurprising; settings where a smartly-chosen re-stricted search space introduces minimal expected error should yield better empirical per-formance than a flexible model that puts a prior on the set of search spaces. In contrast, when p is large or when there are very few samples relative to p, BROOD outper-forms BiDAG within search spaces, especially in PR AUC. This suggests that the added con-traction steps of BROOD increase the precision because it can prune poorly-chosen edges in the initial search space (although this sometimes also reduces the true positive rate by pruning true edges). Since it is often unrealistic in practical applications to obtain many more samples than the number of nodes in graphical data, it highlights the flexibility of an adaptive model like BROOD and its ability to robustly handle real-world data. Figure 8 compares the ROC AUC of estimated edge probabilities of DAGs sampled from BiDAG and BROOD, on the three starting search spaces mentioned in 5.1, where we im-pose fixed sparsity across all initializations. The within-initialization trends are similar to what we observed in the plus-one sparsity experiments: BROOD significantly outperforms BiDAG in harder regimes for inference, and BiDAG thrives in settings that align with Re-mark 2. The fixed sparsity experiments shed light on between-initialization trends. For small datasets, initializing BROOD using only the PC or GES search space performs similarly to the fixed-23 Figure 6: ROC AUC results with Gaussian SEM data, using plus-one sparsity. space sampler after applying the greedy iterative expansion algorithm. We suspect that this result is present for our small dataset experiments but not for our large ones because the posteriors on small datasets are more diffuse than those on larger datasets on average. Un-der diffuser posteriors, the birth-death process accepts more space change proposals than when the posterior is more concentrated around local maxima. This implies that the space-changing procedure in BROOD can approach the performance fixed search space sampler when the posterior is diffuse enough, even when the initialization is poor for BROOD. This trend holds true across all models, including for data generated from mixture SEMs, which can be seen in Appendix C.2. Figure 9 compares the skeletons of all 3 methods, which tells a similar story – BROOD excels relative to the other methods in complex learning environments. In addition, the order-based samplers outperform BDgraph on average, suggesting that the mixing time of procedures on the space of topological orders can have large practical advantages over those on the space of graphs. 
+
+5.2.2 Computation Time 
+
+We plot the run time of the models in figure 10. Using the mixture kernel sampler (which much of the time uses the fast restricted order sampling) allows for BROOD to be signif-icantly faster than BDgraph, the previous birth-death sampler. However, BROOD’s added flexibility comes at the cost of compute time compared to BiDAG. While BROOD is sig-nificantly slower than BiDAG on sparse data problems, the more complex the problem, the 24 Figure 7: ROC PR results with Gaussian SEM data, using plus-one sparsity. closer the run times are between BROOD and BiDAG. This suggests that in scenarios where the stopping criterion in the BiDAG expansion procedure is difficult to meet, BROOD may be an especially good choice for performing structure inference. Moreover, when BROOD is significantly slower than BiDAG, for p = 200 , it still runs 200 2 log(200) = 211 , 913 
+
+MCMC steps within hours, which is quite reasonable in the structure inference literature at large (Vogels et al., 2024). 
+
+# 6 Discussion 
+
+In this work, we quantify the error introduced by fixed-space hybrid order MCMC samplers, and develop a transdimensional alternative, BROOD, which samples from a richer class of posteriors than previous hybrid methods. This class of posteriors gives the user direct control of the compromise between fidelity to the full posterior with no restrictions and computational efficiency, a quality that is lacking in previous hybrid MCMC samplers for DAGs. In addition, by allowing transitions between restricted search spaces, BROOD avoids the approximation error induced by conditioning on a fixed restricted search space, at the cost of computational expedience. This flexibility proves especially valuable empirically when the posterior is likely to be multi-modal, aligning with our intuition based on theorem 3.1. While BROOD is a promising starting point towards understanding the extent of error in hy-brid MCMC graph inference techniques, we do not directly show any theoretical guarantees 25 Figure 8: ROC AUC results with Gaussian SEM data, using fixed sparsity. where BROOD outperforms other methods given a finite budget of computational resources. In addition, empirically, BROOD can only sometimes recover from a poorly-initialized start-ing search space compared to using existing faster hybrid procedures to search for a high-quality fixed restricted search space. Two natural directions for future work both involve linking our theoretical results to user-controlled choices. First, one could optimize the user-specified parameter c∗, which regulates the size of the death rates relative to the birth rates. Given a fixed computational budget (perhaps in terms of the maximal allowed sparsity K and/or the number of nodes p), there may be an optimal 
+
+c∗ that can be recovered from constrained optimization that minimizes the expectation of the total variation distance between the hybrid sampler and the full sampler. Characterizing such an optimum may allow for a direct proof that transdimensional algorithms not only can 
+
+outperform fixed-space algorithms, but will do so in sufficiently challenging problems. It may also be possible to tune c∗ for specific problems, though empirically evaluating relative performance across different c∗ may be computationally demanding. Second, it may be possible to refine the choice of starting space. While we showed sim-ulation results for three useful starting spaces (what is returned from the PC algorithm, what is returned from the GES algorithm, and what is returned from the existing expan-sion procedure), there is opportunity for further exploration. For the expansion procedure 26 Figure 9: Skeleton version of ROC AUC results, using fixed sparsity. in Kuipers et al. (2021), it is not recommended to use algorithms like Greedy Equivalent Search (Chickering, 2002) to form the initial search space, due to their tendency to include many false positive edges (which would increase the computational cost of expanding the search space). BROOD, on the other hand, can afford to consider starting search spaces with many non-edges since it can both expand and contract the search space at any transdi-mensional step. As a result, relating properties of the starting search space (such as the false positive rate, false negative rate, true positive rate, and true negative rate) to the expected search space error could reveal principled guidelines for initializing BROOD. Another potentially valuable future extension is to add parallel tempering to BROOD. Given that empirically, BROOD is most robust to poorly initialized search spaces when the search space posterior is flatter (which allows for more acceptances of transdimensional propos-als), adding a temperature component could allow BROOD to explore the space better when the posterior is jagged or concentrated. This approach has been employed in other struc-ture learning MCMC procedures to efficiently search concentrated posteriors (Barker et al., 2010). Even without these potential future optimizations, our transdimensional procedure adds flexibility compared to previous methods, and provides a rich opportunity for more accurate inference on complicated structures. More broadly, there is scope to build flexible, computationally-efficient samplers based on 27 Figure 10: log 10 (Run Time ) results for Gaussian SEM data, using plus-one sparsity transdimensional samplers beyond the particular choice used by BROOD. BROOD is de-fined by rates corresponding to a specific prior on the set of the search spaces that (1) meets the conditions required for valid birth-death sampling, and (2) favors search spaces whose associated graphs have high posterior mass on average. Other principled transdimensional priors could also satisfy these criteria, or could be advantageous in other ways. Finally, while theorem 3.1 clarifies certain sources of error, we have not addressed the broader convergence of order MCMC methods. This remains a gap in the current litera-ture that is difficult to solve because order MCMC can get stuck within an equivalence class for arbitrarily long periods (Zhou and Chang, 2023). Nonetheless, numerical experiments suggest that order MCMC methods mix faster than graph-space samplers (Friedman and Koller, 2003), but we would like to see new theory that can formally check convergence for order MCMC approaches. 28 References 
+
+Alquier, P., Friel, N., Everitt, R., and Boland, A. (2016). Noisy Monte Carlo: convergence of Markov chains with approximate transition kernels. Statistics and Computing , 26(1):29– 47. Atay-Kayis, A. and Massam, H. (2005). A Monte Carlo method for computing the marginal likelihood in nondecomposable Gaussian graphical models. Biometrika , 92(2):317–335. Barker, D. J., Hill, S. M., and Mukherjee, S. (2010). Mc4: A tempering algorithm for large-sample network inference. In Dijkstra, T. M. H., Tsivtsivadze, E., Marchiori, E., and Heskes, T., editors, Pattern Recognition in Bioinformatics , pages 431–442, Berlin, Heidelberg. Springer Berlin Heidelberg. Ben-David, E., Li, T., Massam, H., and Rajaratnam, B. (2015). High dimensional Bayesian inference for Gaussian directed acyclic graph models. arXiv:1109.4371 [math, stat]. Buntine, W. (1991). Theory refinement on Bayesian Networks. In D’Ambrosio, B. D., Smets, P., and Bonissone, P. P., editors, Uncertainty in Artificial Intelligence , pages 52– 60. Morgan Kaufmann, San Francisco (CA). Byrne, S. and Dawid, A. P. (2015). Structural Markov graph laws for Bayesian model uncertainty. The Annals of Statistics , 43(4):1647–1681. Cao, X., Khare, K., and Ghosh, M. (2019). Posterior graph selection and estimation consis-tency for high-dimensional Bayesian DAG models. The Annals of Statistics , 47(1):319– 348. Caron, A., Liang, X., Livingstone, S., and Griffin, J. (2024). Structure learning with adap-tive random neighborhood informed MCMC. In Proceedings of the 37th International Conference on Neural Information Processing Systems , NIPS ’23, pages 40760–40772, Red Hook, NY, USA. Curran Associates Inc. Castelletti, F., Consonni, G., Vedova, M. L. D., and Peluso, S. (2018). Learning Markov equivalence classes of directed acyclic graphs: an objective Bayes approach. Bayesian Analysis , 13(4):1235–1260. Chang, H., Cai, J. J., and Zhou, Q. (2023). Order-based structure learning without score equivalence. Biometrika , 111(2):551–572. Chen, W., Drton, M., and Wang, Y. S. (2019). On causal discovery with an equal-variance assumption. Biometrika , 106(4):973–980. Chickering, D. M. (1996). Learning Bayesian networks is NP-complete. In Fisher, D. and Lenz, H.-J., editors, Learning from Data: Artificial Intelligence and Statistics V , pages 121–130. Springer, New York, NY. Chickering, D. M. (2002). Optimal structure identification with greedy search. Journal of machine learning research , 3(Nov):507–554. Chickering, D. M., Heckerman, D., and Meek, C. (2004). Large-sample learning of Bayesian networks is NP-hard. J. Mach. Learn. Res. , 5:1287–1330. 29 Colombo, D. and Maathuis, M. H. (2014). Order-independent constraint-based causal struc-ture learning. Journal of Machine Learning Research , 15(116):3921–3962. Cooper, G. F. and Herskovits, E. (1992). A Bayesian method for the induction of proba-bilistic networks from data. Machine Learning , 9(4):309–347. Dawid, A. P. (2010). Beware of the DAG! In Proceedings of Workshop on Causality: Objectives and Assessment at NIPS 2008 , pages 59–86. PMLR. Dempster, A. P. (1972). Covariance selection. Biometrics , 28(1):157–175. Dobra, A. and Mohammadi, R. (2018). Loglinear model selection and human mobility. The Annals of Applied Statistics , 12(2):815–845. Drton, M. and Maathuis, M. H. (2017). Structure learning in graphical modeling. Annual Review of Statistics and Its Application , 4(1):365–393. Friedman, N. and Koller, D. (2003). Being Bayesian about network structure. A Bayesian Approach to Structure Discovery in Bayesian Networks. Machine Learning , 50(1):95– 125. Geiger, D. and Heckerman, D. (2002). Parameter priors for directed acyclic graphical models and the characterization of several probability distributions. Annals of Statistics ,30(5):1412–1440. Geyer, C. J. and Møller, J. (1994). Simulation procedures and likelihood inference for spatial point processes. Scandinavian Journal of Statistics , 21(4):359–373. Ghoshal, A. and Honorio, J. (2018). Learning linear structural equation models in polyno-mial time and sample complexity. In Storkey, A. and Perez-Cruz, F., editors, Proceedings of the Twenty-First International Conference on Artificial Intelligence and Statistics , vol-ume 84 of Proceedings of Machine Learning Research , pages 1466–1475. PMLR. Gibbs, A. L. and Su, F. E. (2002). On choosing and bounding probability metrics. Interna-tional Statistical Review , 70(3):419–435. Giudici, P. and Castelo, R. (2003). Improving Markov chain Monte Carlo model search for data mining. Machine Learning , 50(1):127–158. Giudici, P. and Green, P. J. (1999). Decomposable graphical Gaussian model determination. 
+
+Biometrika , 86(4):785–801. Goudie, R. J. B. and Mukherjee, S. (2016). A Gibbs sampler for learning DAGs. Journal of Machine Learning Research , 17(30):1–39. Green, P. J. (1995). Reversible jump Markov chain Monte Carlo computation and Bayesian model determination. Biometrika , 82(4):711–732. Grzegorczyk, M. and Husmeier, D. (2008). Improving the structure MCMC sampler for Bayesian networks by introducing a new edge reversal move. Machine Learning ,71(2):265–305. 30 He, Y., Jia, J., and Yu, B. (2013). Reversible MCMC on Markov equivalence classes of sparse directed acyclic graphs. The Annals of Statistics , 41(4):1742 – 1779. Heckerman, D. and Geiger, D. (1995). Learning Bayesian networks: a unification for dis-crete and Gaussian domains. In Proceedings of the Eleventh conference on Uncertainty in artificial intelligence , UAI’95, pages 274–284, San Francisco, CA, USA. Morgan Kauf-mann Publishers Inc. Hoyer, P., Janzing, D., Mooij, J. M., Peters, J., and Schölkopf, B. (2008). Nonlinear causal discovery with additive noise models. In Koller, D., Schuurmans, D., Bengio, Y., and Bot-tou, L., editors, Advances in Neural Information Processing Systems , volume 21. Curran Associates, Inc. Kalisch, M. and Bühlmann, P. (2007). Estimating high-dimensional directed acyclic graphs with the PC-algorithm. Journal of Machine Learning Research , 8(22):613–636. Kitson, N. K., Constantinou, A. C., Guo, Z., Liu, Y., and Chobtham, K. (2023). A survey of Bayesian network structure learning. Artificial Intelligence Review , 56(8):8721–8814. Kuipers, J. and Moffa, G. (2017). Partition MCMC for inference on acyclic digraphs. Jour-nal of the American Statistical Association , 112(517):282–299. Kuipers, J., Moffa, G., and Heckerman, D. (2014). Addendum on the scoring of Gaussian directed acyclic graphical models. The Annals of Statistics , 42(4). Kuipers, J., Suter, P., and Moffa, G. (2021). Efficient sampling and structure learning of Bayesian networks. Journal of Computational and Graphical Statistics , 0(0):1–12. Lee, K., Lee, J., and Lin, L. (2019). Minimax posterior convergence rates and model se-lection consistency in high-dimensional DAG models based on sparse Cholesky factors. 
+
+The Annals of Statistics , 47(6):3413–3437. Letac, G. and Massam, H. (2007). Wishart distributions for decomposable graphs. The Annals of Statistics , 35(3):1278 – 1323. Liang, X., Livingstone, S., and Griffin, J. (2022). Adaptive random neighbourhood informed Markov chain Monte Carlo for high-dimensional Bayesian variable selection. Statistics and Computing , 32(5):84. Mächler, M. (2012). Accurately computing log(1 − exp( −| x|)) . https://cran. r-project.org/web/packages/Rmpfr/vignettes/log1mexp-note.pdf .Rmpfr Vignette. Madigan, D. and York, J. (1995). Bayesian graphical models for discrete data. International Statistical Review , 63:215–232. Mohammadi, A. and Wit, E. C. (2015). Bayesian structure learning in sparse Gaussian graphical models. Bayesian Analysis , 10(1):109–138. Osborne, M. (2010). Bayesian Gaussian processes for sequential prediction, optimisation and quadrature . PhD thesis, Oxford University, UK. 31 Preston, C. (1977). Spatial birth-and-death processes. Bulletin of the International Statisti-cal Institute , 46(2):371–391. Roberts, G. O. and Rosenthal, J. S. (2004). General state space Markov chains and MCMC algorithms. Probability Surveys , 1(none):20 – 71. Rudolf, D., Smith, A., and Quiroz, M. (2024). Perturbations of Markov chains. arXiv:2404.10251. Spirtes, P., Glymour, C., and Scheines, R. (2000). Causation, prediction, and search. Stephens, M. (2000). Bayesian analysis of mixture models with an unknown number of com-ponents—an alternative to reversible jump methods. The Annals of Statistics , 28(1):40 – 74. Uhler, C., Raskutti, G., Bühlmann, P., and Yu, B. (2013). Geometry of the faithfulness assumption in causal inference. The Annals of Statistics , 41(2):436–463. Viinikka, J., Hyttinen, A., Pensar, J., and Koivisto, M. (2020). Towards scalable Bayesian learning of causal DAGs. In Proceedings of the 34th International Conference on Neu-ral Information Processing Systems , NIPS ’20, pages 6584–6594, Red Hook, NY, USA. Curran Associates Inc. Vogels, L., Mohammadi, R., Schoonhoven, M., and Ş. İlker Birbil (2024). Bayesian struc-ture learning in undirected gaussian graphical models: literature review with empirical comparison. Journal of the American Statistical Association , 119(548):3164–3182. Zhou, Q. and Chang, H. (2023). Complexity analysis of Bayesian learning of high-dimensional DAG models and their equivalence classes. The Annals of Statistics ,51(3):1058–1085. 32 A Proof Work 
+
+A.1 Proof of Theorem 3.1 
+
+Let Gp, Dp be the space of DAGs with p nodes and the space of directed graphs with p
+
+nodes, respectively, and let H = ( V, E H) ⊆ Dp be the restricted search space with GH
+
+representing the corresponding set of admissible DAGs based on H. Define G¬H := Gp \G H
+
+and let ¬H serve as the symbolic index for this complementary DAG set. Define εH := 1 − πDAG (H| D).We will use the following equality that relates πOrd (·| D) and π(H)
+
+> Ord
+
+(·| D) in bounding the total variation: 
+
+πOrd (·| D) = (1 − εH)π(H)
+
+> Ord
+
+(·| D) + εHπ(¬H ) 
+
+> Ord
+
+(·| D) (20) where π(¬H ) 
+
+> Ord
+
+is the order posterior restricted to the graphs in G¬H . Equation 20 can be thought of as rewriting the order posterior as a mixture between the restricted target and an omitted target. We first consider the Hellinger distance ( dH ) on the set of orders ≺1, ..., ≺p!∈ Sp:
+
+dH (π(H)
+
+> Ord
+
+, π Ord ) = 
+
+vuut p!
+
+X
+
+> i=1
+
+q 
+
+π(H)
+
+> Ord
+
+(≺i |D) − pπOrd (≺i)
+
+2
+
+=
+
+vuut p!
+
+X
+
+> i=1
+
+q 
+
+π(H)
+
+> Ord
+
+(≺i |D) −
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D) + εHπ(¬H ) 
+
+> Ord
+
+(≺i |D)
+
+2
+
+=
+
+vuut p!
+
+X
+
+> i=1
+
+(2 − εH)a + εHb − 2p(1 − εH)a2 + εHab 
+
+where a = π(H)
+
+> Ord
+
+(≺i |D), b = π(¬H ) 
+
+> Ord
+
+(≺i |D)=
+
+vuut(2 − εH) + εH − 2
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D)=
+
+vuut2 − 2
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D)
+
+Since the Hellinger distance can take on values between [0 , √2] (Gibbs and Su, 2002), the summation above must be between [0 , 1] .We now consider the summation above, Pp!
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D),and tighten the lower bound of 0: 33 p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) ≥
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2
+
+= √1 − εH
+
+> p!
+
+X
+
+> i=1
+
+π(H)
+
+> Ord
+
+(≺i |D)= √1 − εH = √1 − εH × 1
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) ≤ 1 = √1 − εH × 0
+
+Since the sum above lies between [ √1 − εH × 1, √1 − εH × 0], there exists a constant c,
+
+0 ≤ c ≤ 1 such that √1 − εH × c precisely equals the sum. As a result, dH (π(H)
+
+> Ord
+
+, π Ord ) = p2 − 2√1 − cε H.Using the relationship that d2 
+
+> H
+> 2
+
+≤ DT V ≤ dH (Gibbs and Su, 2002), 
+
+DT V (π(H)
+
+> Ord
+
+, π Ord ) ≥ d2
+
+> H
+
+2 (π(H)
+
+> Ord
+
+, π Ord )
+
+≥
+
+p2 − 2√1 − cε H
+
+> 2
+
+2= 1 − √1 − cε H
+
+DT V (π(H)
+
+> Ord
+
+, π Ord ) ≤ dH (π(H)
+
+> Ord
+
+, π Ord ) = 
+
+q
+
+2 − 2√1 − cε H
+
+Finally, since DT V is bounded by 1, it follows that DT V (π(H)
+
+> Ord
+
+, π Ord ) ≤ min 
+
+p 2 − 2√1 − cε H, 1
+
+
+
+.
+
+A.2 Proof of Lemmas 3.2, 3.3 A.2.1 Proof of Lemma 3.2 
+
+Assume π(H)
+
+> Ord
+
+(≺ | D) = π(¬H ) 
+
+> Ord
+
+(≺ | D) for all ≺. Then, 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) = 
+
+> p!
+
+X
+
+> i=1
+
+π(H)
+
+> Ord
+
+(≺i |D) = 1 = √1 − εH × 0
+
+Thus, c = 0 .Now, assume c = 0 . Then, 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) = 1 
+
+34 Additionally, using equation 20: 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D)=
+
+> p!
+
+X
+
+> i=1
+
+r
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + π(H)
+
+> Ord
+
+(≺i |D)
+
+
+
+πOrd (≺i |D) − (1 − εH)π(H)
+
+> Ord
+
+(≺i |D)
+
+
+
+=
+
+> p!
+
+X
+
+> i=1
+
+q
+
+π(H)
+
+> Ord
+
+(≺i |D)πOrd (≺i |D)
+
+≤
+
+vuut p!
+
+X
+
+> i=1
+
+π(H)
+
+> Ord
+
+(≺i |D)
+
+vuut p!
+
+X
+
+> i=1
+
+πOrd (≺i |D) = 1 
+
+The inequality on the last line above is a result of the Cauchy-Schwarz inequality. Equality occurs precisely when the vector square-root probabilities, i.e., 
+
+q
+
+π(H)
+
+> Ord
+
+(≺1 |D)
+
+...q
+
+π(H)
+
+> Ord
+
+(≺p! |D)
+
+ ,
+
+pπOrd (≺1 |D)
+
+...pπOrd (≺p! |D)
+
+
+
+are linearly dependent. Since both π(H) 
+
+> Ord
+
+and πOrd are probability distributions (whose components sum to 1), linear dependence implies equality of the distributions: 
+
+π(H)
+
+> Ord
+
+(≺i| D) = πOrd (≺i| D) ∀i. 
+
+By equation 20, this implies π(H) 
+
+> Ord
+
+= π(¬H ) 
+
+> Ord
+
+.
+
+A.2.2 Proof of Lemma 3.3 
+
+Assume the PMFs π(H)
+
+> Ord
+
+(·| D) and π(¬H ) 
+
+> Ord
+
+(·| D) have disjoint supports. This implies that for every order ≺i, the pointwise product of the two distributions is zero: 
+
+π(H)
+
+> Ord
+
+(≺i |D) · π(¬H ) 
+
+> Ord
+
+(≺i |D) = 0 for all i = 1 , . . . , p !.
+
+We now evaluate the expression for c. Under the assumption of disjoint supports, each term in the summation simplifies as follows: 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) = 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + 0 = √1 − εH
+
+> p!
+
+X
+
+> i=1
+
+π(H)
+
+> Ord
+
+(≺i |D)= √1 − εH.
+
+35 Since the sum equals √1 − εH, it follows from the definition of c that c = 1 .Conversely, assume c = 1 . By the definition of c, this requires: 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) = √1 − εH.
+
+Note that for all i, since probabilities are non-negative: 
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) ≥
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2.
+
+Summing over all i yields: 
+
+> p!
+
+X
+
+> i=1
+
+q
+
+(1 − εH)π(H)
+
+> Ord
+
+(≺i |D)2 + εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) ≥ √1 − εH.
+
+For this inequality to hold as an equality (which is required for c = 1 ), each individual term in the sum must achieve equality. This occurs if and only if: 
+
+εHπ(H)
+
+> Ord
+
+(≺i |D)π(¬H ) 
+
+> Ord
+
+(≺i |D) = 0 for all i, 
+
+which implies that the supports of π(H)
+
+> Ord
+
+(·| D) and π(¬H ) 
+
+> Ord
+
+(·| D) are disjoint. 
+
+A.3 Proof of Theorem 4.1 
+
+We define the spatial birth-death process following the framework of Preston (1977). Let Λ be a space where an individual point lives, equipped with a σ-field B. Let Λn be n
+
+copies of Λ, Ωn be the subset of Λn that considers a permutation of the n observed points the same, and Ω be the disjoint union of all Ωn with accompanying σ-field F.The birth-death process is a continuous time jump process that evolves by adding (births) or removing (deaths) elements of Λ over time. The process is characterized by birth and death rates. Let B(x; ·) be a finite measure on (Λ , B) describing the birth rate conditional on the current state x and D(x/ξ ; ξ) be a B-measurable function describing the death rate of individual point ξ ∈ x. Define β, δ : Ω → R+ by 
+
+β(x) = B(x; Λ) , x ∈ Ω
+
+δ(x) = X
+
+> ξ∈x
+
+D(x/ξ ; ξ) if x̸ = ∅, δ (∅) = 0 
+
+For any set F ∈ F , let Fn = F ∩ Ωn denote the restriction of F to the space of exactly n
+
+observed points. Then, for a current state x ∈ Ωn, a birth results in a transition to Fn+1 ⊂
+
+Ωn+1 , while a death results in a transition to Fn−1 ⊂ Ωn−1. Rates β and δ define the jump 36 process with intensity of β + δ, and transition kernels of: 
+
+K(n) 
+
+> β
+
+(x, F ) = 1
+
+β(x)B(x; {ξ ∈ Λ : x ∪ ξ ∈ F }),K(n) 
+
+> δ
+
+(x, G ) = 1
+
+δ(x)
+
+X
+
+> ξ∈x,x/ξ ∈G
+
+D(x/ξ ; ξ)
+
+K(x, F ) = β(x)
+
+β(x) + δ(x)K(n) 
+
+> β
+
+(x, F n+1 ) + δ(x)
+
+β(x) + δ(x)K(n) 
+
+> δ
+
+(x, F n−1) (21) Under mild regularity conditions (uniqueness of the solution of the Kolmogorov backward equations as specified in proposition 5.1 in Preston (1977), finite birth and death rates), the birth-death process admits a stationary distribution μ on (Ω , F) if and only if 
+
+Z
+
+> F
+
+β(z) + δ(z)dμ n(z) = 
+
+Z
+
+β(x)K(n−1)  
+
+> β
+
+(x, F )dμ n−1(x) + 
+
+Z
+
+δ(y)K(n+1)  
+
+> δ
+
+(y, F )dμ n+1 (y),
+
+for n ≥ 1, F ∈ F n,
+
+which can alternatively be written as equations 11 and 12. To construct the stationary distribution, let ω be a σ-finite measure on (Λ , B) and suppose there exists an F × B -measurable function b : Ω × Λ → R+ such that for all x ∈ Ω, F ∈ B 
+
+we have 
+
+B(x; F ) = 
+
+Z
+
+> F
+
+b(x, ξ )dω (ξ)
+
+For n ≥ 1, let ωn be the product of n copies of ω, and let ∼
+
+ωn be the measure induced by ωn
+
+on (Ω n, Fn), and let ∼
+
+ω0 be the point mass at 0. Let μ be a probability measure on (Ω , F) such that for n ≥ 0, μn has density fn with respect to ∼
+
+ω = 1
+
+> n!
+> ∼
+
+ωn.Suppose from now on that D(x; ξ) > 0 for all x ∈ Ω, ξ ∈ Λ and define 
+
+γ(x, ξ ) = b(x, ξ )
+
+D(x; ξ)
+
+Then, 
+
+fn+1 (x ∪ ξ) = γ(x, ξ )fn(x) for all n ≥ 0, x ∈ Ωn, ξ ∈ Λ (22) If the f is well-defined above, in the sense that 
+
+γ(x ∪ ξ, η )γ(x, ξ ) = γ(x ∪ η, ξ )γ(x, η ) for all x ∈ Ω, ξ, η ∈ Λ, (23) then μ is defined as follows: 
+
+μ(F ) = Z−1
+
+Z
+
+> F
+
+f d ∼
+
+ω , with Z =
+
+Z
+
+f d ∼
+
+ω (24) 37 Thus, the induced stationary probability measure from a birth-death process can be recur-sively defined by the birth and death rates, so long as their ratio is well-defined across dif-ferent ξ, η ∈ Λ.We now apply this theory to the parameter space associated with restricted search space-order pair (H, ≺), as an extension of the local parameter vector θG (and later we can sum across all parameter sets for a fixed (H, ≺) to find space-order-level birth and death rates). We formally define the parameter set as the union of parameters across all consistent DAGs: 
+
+θ(H,≺) := [
+
+> G∈G H∩G ≺
+
+θG (25) In this setup, θ(H,≺) characterizes the local parameter vector (e.g., the Cholesky entries ℓij 
+
+in a GDM) that are “active” under the current restrictions. We use πG,θ G to denote the posterior density associated with the random variable G and its parameters. We then define 
+
+πG,θ (H,O) as the aggregated density obtained by summing over the set of DAGs consistent with a realization (H, ≺).We define the birth rate associated with adding edge e, over a parameter set F ⊆ Θe in a similar way to the previous graph-space versions, but since we operate over search spaces-order pairs (which induce sets of graphs) instead of over graphs, we take an average across the elements in the induced set: 
+
+Be(θ(H,≺); F ) ∝ 1
+
+|G H+e |
+
+Z
+
+> F
+
+πG,θ (H,O) (H+e, θ (H,≺) ∪ θe |≺ , D ) dω (θe) (26) 
+
+= 1
+
+|G H+e |
+
+X
+
+> G∈G H+e
+
+1[G ∈ G ≺]
+
+Z
+
+> F
+
+
+
+1[e ∈ EG]πG,θ G (G, θ −eG ∪ θe |≺ , D ) (27) 
+
++ 1[e / ∈ EG]πG,θ G (G, θ G |≺ , D )
+
+
+
+dω (θe)= 1
+
+|G H+e |
+
+X
+
+> G∈G H
+
+Z
+
+> F
+
+
+
+1[G+e ∈ G ≺]πG,θ G (G+e, θ G ∪ θe |≺ , D ) (28) 
+
++ 1[G ∈ G ≺]πG,θ G (G, θ G |≺ , D )
+
+
+
+dω (θe)
+
+We can then naturally define be by differentiating the birth rate: 
+
+be(θ(H,≺), θ e) ∝ 1
+
+|G H+e |
+
+X
+
+> G∈G H
+
+
+
+1[G+e ∈ G ≺]πG,θ G (G+e, θ G ∪ θe |≺ , D ) (29) 
+
++ 1[G ∈ G ≺]πG,θ G (G, θ G |≺ , D )
+
+
+
+Consistent with Preston (1977), we define β(θ(H,≺)) = P 
+
+> e / ∈EH
+
+Be(θ(H,≺); Θ e).38 We define the death rate in a similar way, but introduce a constant c∗ ∈ (0 , 1] .
+
+De(θ(H−e,≺); θe) ∝ c∗
+
+|G H−e |πG,θ (H,O) (H−e, θ (H−e,≺) |≺ , D ) (30) 
+
+= c∗
+
+|G H−e |
+
+X
+
+> G∈G H−e
+
+1[G ∈ G ≺] 1[θG ∪ θe ∈ θ(H,≺)] πG,θ G (G, θ G |≺ , D )
+
+(31) We can also define δ(θ(H,≺)) = P 
+
+> e∈EH
+
+De(θ(H−e,≺); θe).We still have not shown that these rates allow for f to be well defined as shown in condition 23. We will do so now, showing that γ is well-defined for any 2 random edges outside of 
+
+EH, e1, e 2. We need to show that 
+
+b(θ(H+e1 ,≺), θ e2 )
+
+D(θ(H+e1 ,≺), θ e2 )
+
+b(θ(H,≺), θ e1 )
+
+D(θ(H,≺), θ e1 ) = b(θ(H+e2 ,≺), θ e1 )
+
+D(θ(H+e2 ,≺), θ e1 )
+
+b(θ(H,≺), θ e2 )
+
+D(θ(H,≺), θ e2 ) (32) To prove 32, we define the following 4 disjoint sets of graphs: 
+
+G0 := {G : G ∈ G H}
+
+G1 := {G : e1 ∈ G, G ∈ G H+e1 }
+
+G2 := {G : e2 ∈ G, G ∈ G H+e2 }
+
+G3 := {G : e1, e 2 ∈ G, G ∈ G H+e1+e2 }
+
+We first simplify the left-hand side of 32: 
+
+b(θ(H+e1 ,≺), θ e2 )
+
+D(θ(H+e1 ,≺), θ e2 )
+
+b(θ(H,≺), θ e1 )
+
+D(θ(H,≺), θ e1 ) = 14c∗2
+
+P 
+
+> G∈G1∪G2∪G3
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0∪G1
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0∪G1
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0
+
+πG,θ G (G, θ G |≺ , D )= 14c∗2
+
+P 
+
+> G∈G1∪G2∪G3
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0
+
+πG,θ G (G, θ G |≺ , D )
+
+Now turning to the right-hand side: 
+
+b(θ(H+e2 ,≺), θ e1 )
+
+D(θ(H+e2 ,≺), θ e1 )
+
+b(θ(H,≺), θ e2 )
+
+D(θ(H,≺), θ e2 ) = 14c∗2
+
+P 
+
+> G∈G1∪G2∪G3
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0∪G2
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0∪G2
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0
+
+πG,θ G (G, θ G |≺ , D )= 14c∗2
+
+P 
+
+> G∈G1∪G2∪G3
+
+πG,θ G (G, θ G |≺ , D )
+
+P 
+
+> G∈G0
+
+πG,θ G (G, θ G |≺ , D )
+
+Thus, the chosen rates yield a well-defined posterior distribution on  (H, ≺), θ (H,≺)
+
+. Inte-grating across all parameter values, we can define Be(H, ≺), De(H, ≺) as follows: 
+
+Be(H, ≺) ∝ πDAG (H+e |≺ , D )
+
+|G H+e | =
+
+P 
+
+> G∈G H+e
+
+πDAG (G |≺ , D )
+
+|G H+e | (33) 
+
+De(H, ≺) ∝ c∗πDAG (H−e |≺ , D )
+
+|G H−e | = c∗ P 
+
+> G∈G H−e
+
+πDAG (G |≺ , D )
+
+|G H−e | (34) 39 Dividing 33 and 34 by πDAG (H|≺ ,D ) 
+
+> |G H|
+
+(which does not change the proportionality) yields the rates in theorem 4.1. In addition, since we consider graphs with finite dimension (i.e., p < 
+
+∞), these rates satisfy proposition 5.1 of Preston (1977) and are finite, ensuring the validity of the detailed balance condition. 
+
+A.4 Proof of Corollary 4.1.1 
+
+Without loss of generality, for a search space H with |EH| = k, define a sequence of search spaces {H 0, H1, . . . , Hk = H} , where H0 = ( V, ∅) is the empty graph, and each Hi =
+
+Hi−1 ∪ { ei} with ei ∈ EH. From (22), the stationary density f satisfies the recursive relation fn+1 (x ∪ ξ) = γ(x, ξ )fn(x).Let fc∗ (( H0, ≺), θ (( H0,≺)) ) = πDAG (H0| ≺ , D ) (since H0 is the empty graph, πDAG (H0, θ H0 | ≺ 
+
+, D ) = πDAG (H0| ≺ , D )). By induction, extending the recursive relationship across all k
+
+dimensions, fc∗ (θ(H,≺)) can then be written as the following: 
+
+fc∗ (( H, ≺), θ (H,≺)) = fc∗ (( H0, ≺), θ (H0,≺))
+
+> k
+
+Y
+
+> i=1
+
+γ((( H, ≺), θ (Hi−1,≺)), (( H+ei , ≺), θ ei )) = πDAG (H0| ≺ , D )
+
+> k
+
+Y
+
+> i=1
+
+b(θ(Hi−1,≺), θ ei )
+
+D(θ(Hi−1,≺), θ ei )= πDAG (H0| ≺ , D )
+
+> k
+
+Y
+
+> i=1
+
+12c∗
+
+P
+
+> G∈G Hi
+
+πG,ΘG (G, θ G| ≺ , D )
+
+P
+
+> G∈G Hi−1
+
+πG,ΘG (G, θ G| ≺ , D )= πDAG (H0| ≺ , D )(2 c∗)−k
+
+P
+
+> G∈G Hk
+
+πG,ΘG (G, θ G| ≺ , D )
+
+πDAG (H0| ≺ , D )= (2 c∗)−| EH| X
+
+> G∈G H
+
+πG,ΘG (G, θ G| ≺ , D )
+
+Integrating out θ(H,≺) makes fc∗ (H, ≺) = (2 c∗)−| EH| P
+
+> G∈G Hi
+
+πDAG (G| ≺ , D )
+
+Summing over all possible orders ≺∈ Sp to obtain the marginal density for H:
+
+fc∗ (H) = X
+
+> ≺∈ Sp
+
+fc∗ (H, ≺) = X
+
+> ≺∈ Sp
+
+(2 c∗)−| EH|πDAG (H| ≺ , D ) (35) Using (22), 
+
+μ(c∗)
+
+> Space
+
+(H) ∝ (2 c∗)−| EH| X
+
+> ≺∈ Sp
+
+πDAG (H| ≺ , D ). (36) 
+
+A.5 Proof of Lemma 4.2 
+
+Consider μ defined according to 24. Since it is recursively defined such that μ(x∪ξ) 
+
+> μ(x)
+
+=   
+
+> f(x∪ξ)
+> f(x)
+
+= γ(x, ξ ) = b(x,ξ ) 
+
+> D(x;ξ)
+
+, we can directly plug this in to the density ratio term in 17,  
+
+> g(x∪ξ)
+> g(x)
+
+.40 Following the setup of sampling from the birth-death process, we define b(x, ξ ) = b(x,ξ ) 
+
+> β(x)
+
+(in order to have b be a density), similarly define D(x; ξ) = D(x;ξ) 
+
+> δ(x)
+
+, and set q(x) = β(x) 
+
+> β(x)+ δ(x)
+
+, and 
+
+1 − q(x) = δ(x) 
+
+> β(x)+ δ(x)
+
+(which is compatible with the birth-death process transition kernel, as shown in equation 21). We get the following simplification of 17: 
+
+r(x, ξ ) = g(x ∪ ξ)
+
+g(x)1 − q(x ∪ ξ)
+
+q(x)
+
+D(x; ξ)
+
+b(x, ξ )= b(x, ξ )
+
+D(x; ξ)
+
+> δ(x∪ξ)
+> β(x∪ξ)+ δ(x∪ξ)
+> β(x)
+> β(x)+ δ(x)
+> D(x;ξ)
+> δ(x∪ξ)
+> b(x,ξ )
+> β(x)
+
+=
+
+> 1
+> β(x∪ξ)+ δ(x∪ξ)1
+> β(x)+ δ(x)
+
+= w(x ∪ ξ)
+
+w(x)
+
+# B Implementation 
+
+B.1 Updating the Plus-One Banned Matrix B.1.1 Background 
+
+In the efficient scoring techniques proposed in Kuipers et al. (2021) and Viinikka et al. (2020), it is standard to create a “banned” score table tabulating all of the valid scores that are compatible with particular “banned” parent possibilities (to allow constant-time lookup of valid parent-set scores under order constraints). Consider a node i with pa H(i) its allowed parents under the search space H. Then, the past work would first create a 2|pa H(i)| × 1
+
+table of scores, as well as a table of “banned” scores of the same dimensions. Table 1 illustrates these tables for a node i with 3 possible parents in H (marked by hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 3
+
+). Scoring orders in the restricted search scoring problem then amounts to identifying the banned parent configuration implied by the order for particular node i, which can be found by intersecting pa H(i) with 
+
+
+
+∪pj=≺[i] ≺j
+
+
+
+. Algorithmically, to evaluate an order’s score in 
+
+O(Kp ), one can encode each row in the table to a unique integer, where the binary mapping of the integer describes the allowed and banned parents. For instance, 4 in binary is 100 ,indicating that Si 
+
+> 4
+
+in the left table 1 corresponds to the score of just including the third parent hi 
+
+> 3
+
+whereas 5 is 011 , corresponding to the score of including hi 
+
+> 1
+
+and hi
+
+> 2
+
+; the banned equivalent can be found by subtracting the integer from 2|pa H(i)| − 1.To expand the space for node i by one parent, the past work makes two-dimensional versions of the previous score tables by adding exactly one arbitrary parent outside of H in a unique column (resulting in 2|pa H(i)| ×(p−| pa H(i)|− 1) sized tables). Table 2 shows an example of the “plus-one” parent node table, for the same node i as table 1. Each column corresponds to adding one possible parent not in H, where in this case, the graphs are in G7 (so there are three “plus-one” candidates to consider). From there, a “banned” plus score table can be created by matching the appropriate rows of the plus score table to specific banned parent sets, in the same way displayed in table 1. 41 Parents Parent score Banned parents Banned parent score 
+
+∅ Si 
+
+> 0
+
+= S(Xi, {∅} | D) ∅ Bi 
+
+> 7
+
+= Si 
+
+> 0
+
++ · · · + Si
+
+> 7
+
+hi 
+
+> 1
+
+Si 
+
+> 1
+
+= S(Xi, {hi
+
+> 1
+
+} | D) hi 
+
+> 1
+
+Bi 
+
+> 6
+
+= Si 
+
+> 0
+
++ Si 
+
+> 2
+
++ Si 
+
+> 4
+
++ Si
+
+> 6
+
+hi 
+
+> 2
+
+Si 
+
+> 2
+
+= S(Xi, {hi
+
+> 2
+
+} | D) hi 
+
+> 2
+
+Bi 
+
+> 5
+
+= Si 
+
+> 0
+
++ Si 
+
+> 1
+
++ Si 
+
+> 4
+
++ Si
+
+> 5
+
+hi 
+
+> 3
+
+Si 
+
+> 4
+
+= S(Xi, {hi
+
+> 3
+
+} | D) hi 
+
+> 3
+
+Bi 
+
+> 3
+
+= Si 
+
+> 0
+
++ Si 
+
+> 1
+
++ Si 
+
+> 2
+
++ Si
+
+> 3
+
+hi
+
+> 1
+
+, h i 
+
+> 2
+
+Si 
+
+> 3
+
+= S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+} | D) hi
+
+> 1
+
+, h i 
+
+> 2
+
+Bi 
+
+> 4
+
+= Si 
+
+> 0
+
++ Si
+
+> 4
+
+hi
+
+> 1
+
+, h i 
+
+> 3
+
+Si 
+
+> 5
+
+= S(Xi, {hi
+
+> 1
+
+, h i
+
+> 3
+
+} | D) hi
+
+> 1
+
+, h i 
+
+> 3
+
+Bi 
+
+> 2
+
+= Si 
+
+> 0
+
++ Si
+
+> 2
+
+hi
+
+> 2
+
+, h i 
+
+> 3
+
+Si 
+
+> 6
+
+= S(Xi, {hi
+
+> 2
+
+, h i
+
+> 3
+
+} | D) hi
+
+> 2
+
+, h i 
+
+> 3
+
+Bi 
+
+> 1
+
+= Si 
+
+> 0
+
++ Si
+
+> 1
+
+hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i 
+
+> 3
+
+Si 
+
+> 7
+
+= S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 3
+
+} | D) hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i 
+
+> 3
+
+Bi 
+
+> 0
+
+= Si
+
+> 0
+
+Table 1: An example score table (left) and “banned” score table (right) as shown in Kuipers et al. (2021) for a node i with 3 possible parents in H.
+
+Parents +hi 
+
+> 4
+
++hi 
+
+> 5
+
++hi
+
+> 6
+
+∅ S(Xi, {∅ , h i
+
+> 4
+
+} | D) S(Xi, {∅ , h i
+
+> 5
+
+} | D) S(Xi, {∅ , h i
+
+> 6
+
+} | D)
+
+hi 
+
+> 1
+
+S(Xi, {hi
+
+> 1
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 6
+
+} | D)
+
+hi 
+
+> 2
+
+S(Xi, {hi
+
+> 2
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 2
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 2
+
+, h i
+
+> 6
+
+} | D)
+
+hi 
+
+> 3
+
+S(Xi, {hi
+
+> 3
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 3
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 3
+
+, h i
+
+> 6
+
+} | D)
+
+hi
+
+> 1
+
+, h i 
+
+> 2
+
+S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 6
+
+} | D)
+
+hi
+
+> 1
+
+, h i 
+
+> 3
+
+S(Xi, {hi
+
+> 1
+
+, h i
+
+> 3
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 3
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 3
+
+, h i
+
+> 6
+
+} | D)
+
+hi
+
+> 2
+
+, h i 
+
+> 3
+
+S(Xi, {hi
+
+> 2
+
+, h i
+
+> 3
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 2
+
+, h i
+
+> 3
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 2
+
+, h i
+
+> 3
+
+, h i
+
+> 6
+
+} | D)
+
+hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i 
+
+> 3
+
+S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 3
+
+, h i
+
+> 4
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 3
+
+, h i
+
+> 5
+
+} | D) S(Xi, {hi
+
+> 1
+
+, h i
+
+> 2
+
+, h i
+
+> 3
+
+, h i
+
+> 6
+
+} | D)
+
+Table 2: An example “plus” score table in G7 for a node i with 3 possible parents in H.Rows correspond to base parent sets in H; columns correspond to the added parent. When scores are stored in log-space for numerical stability, computing the “banned” score requires the use of the LogSumExp (LSE) function: 
+
+LSE (x1, ..., x m) = log(exp( x1) + ... + exp( xm)) 
+
+In previous implementations of restricted order MCMC, BGe (Heckerman and Geiger, 1995) score tables take O(K3p2K ) to compute, BGe plus score tables take O(K3p2K (p −
+
+K − 1)) to compute (by repeating the score table process for each of the (p − | pa H(i)| − 1) 
+
+excluded nodes from H, and the “banned” score table takes O(2 K p) to compute. Creating the plus “banned” score table is also O(2 K p), as the row-matching process to create the Bi
+
+values illustrated in table 1 can be applied to each of the (p − | pa H(i)| − 1) columns of the plus score table in a vectorized implementation. As mentioned in Section 4.6, BROOD only performs a transdimensional update step on one node as opposed to all nodes like the previous work. As a result, all BROOD transdimen-sional updates eliminate a factor of p by construction. Below, we discuss two further ways to speed up the implementation for our birth-death version of the restricted order MCMC sampler. 42 B.1.2 Efficient Expansions for BGe score via Block Matrix Operations 
+
+We aim to reduce the largest computational cost: constructing the plus score table for the BGe score. A naive approach yields a cost of O(K32K (p − K − 1)) , where the K3 terms comes from the cubic computational cost of finding a determinant, as required in the BGe score. The total cost arises from filling all entries of a single node’s plus score table (using decomposable scores). There are 2K rows per table (for the valid subsets of parent sets), and p − K − 1 columns (for each of the excluded possible parents). Previous literature calculates the BGe score directly for each of the 2K (p − K − 1)) entries of the plus score table, resulting in the full cubic cost per cell. We reduce the cost by applying intermediate matrix calculations to the plus-one scores via rank-one update formulas. This allows us to avoid re-calculating the BGe score for the plus-one parent sets by reusing the Cholesky factorization of the base parent set (reducing the number of BGe scores to directly calculate to the 2K original scores instead of all 2K × (p −
+
+K − 1) entries). Paired with vectorization across all p − K − 1 candidate excluded parents, we generate all plus-one scores per row (as illustrated in table 2) in a batch. Specifically, the BGe score for a parent set pa (i) on a node i has two components: a normal-izing constant that depends on prior parameters, and a data-dependent term that involves a ratio of two determinants raised to different powers. The two terms in this ratio are: 1. |Rpa (i),pa (i)|(α∗−p+|pa (i)|)/2, and 2. |Rpa (i)∪{ i},pa (i)∪{ i}|(α∗−p+|pa (i)|+1) /2
+
+where R is the scale matrix in the posterior BGe score, and α∗ is the degrees of freedom parameter in the posterior BGe score. Previous work (Kuipers et al., 2014) implemented the ratios efficiently by expressing the reciprocal of the ratio of determinants in terms of a Schur complement, and using a modified Cholesky decomposition to solve for the appro-priate determinants. These computations can be performed on the log-scale by converting multiplicative components to sums and additive components to LSEs. We calculate determinants on the plus-one parent sets by using the rank-one update formulas (Osborne, 2010) for Cholesky decompositions. This reduces the cost per calculation from 
+
+O(K3) to O(K2). The rank-one updates can also be vectorized across all possible plus-one sets for a specific parent set, causing the total cost of a row of the plus score table to be O(K2) rather than O(K3(p − K − 1)) (and the overall cost to be O(K22K ) instead of 
+
+O(K32K (p−K −1)) ). Lowering the computational burden of the plus score table makes the original score table (as illustrated on the left-hand side of table 1) the main computational bottleneck. In our experiments for an 80-node problem with a maximal allowed sparsity of 18, this optimization yields a ∼ 30 × speedup over the naive implementation on creating the score table and plus score table. 
+
+B.1.3 Efficient Contractions for Decomposable Scores via Memoization 
+
+In contraction steps, an edge is removed from the search space, so the score tables must be updated to reflect this change. However, since contraction yields a subset of the previous parent configurations, no new score calculations are needed. In fact, all plus scores and 43 banned plus scores on the contracted space can be taken directly from the existing score tables, or can be found from them with simple arithmetic operations. Suppose we contract the space by 1 parent for i in H where we remove a parent j from 
+
+pa (i). We will have new 2-dimensional plus tables that are 2|pa H(i)|− 1 × (p − | pa H(i)|)
+
+instead of 2|pa H(i)| × (p − | pa H(i)| − 1) . To construct the plus score table, we reuse scores from the original table to populate the added column (corresponding to +hij ) by mapping the appropriate 2|pa H(i)|− 1 removed entries to the appropriate row in the new table. This is straightforward to do using the same mapping system as previous literature (Kuipers et al., 2021). It takes more care to populate the new banned score table. Any entry that previously banned the removed parent j remains valid and retains its relative position in the new table. For example, if hi 
+
+> 2
+
+is removed as a potential parent in table 1, then the Bi
+
+> 5
+
+, B i
+
+> 4
+
+, B i
+
+> 1
+
+, and Bi
+
+> 0
+
+banned scores – which correspond to the subsets not including hi 
+
+> 2
+
+– are preserved (and this will also be true for the plus-banned columns in the plus-banned score table). In addition, the retained entries are already ordered correctly from original versions of the tables (so in table 1, the ordering of Bi
+
+> 5
+
+, B i
+
+> 4
+
+, B i
+
+> 1
+
+, B i 
+
+> 0
+
+is appropriate for an updated contracted version of the table). To populate the new column for re-adding j in the plus-banned score table, we must subtract each retained score in the contracted banned score table from the removed supersets from the original table. For instance, continuing the example of re-adding hi
+
+> 2
+
+, its first entry of the 
+
++hi 
+
+> 2
+
+column will be Bi 
+
+> 7
+
+− Bi
+
+> 5
+
+, as this contains all graphs that would ban no parents if we force hi 
+
+> 2
+
+to be a parent (and the other 3 entries in the column will be Bi 
+
+> 6
+
+− Bi
+
+> 4
+
+, Bi 
+
+> 3
+
+− Bi
+
+> 1
+
+, and 
+
+Bi 
+
+> 2
+
+− Bi
+
+> 0
+
+). When working with scores on the log-scale, this requires us to use the inverse of the LSE, which we define as LogMinusExp (LME): Suppose LSE (a, b ) = c, 
+
+then LM E (c, b ) = a, LM E (c, a ) = b (37) To ensure numerical stability of the LME, especially for small numbers, it is advisable to use the log1p and expm1 functions in R (or equivalents in other languages) as guided by Mächler (2012). Since all values in a contracted table are derived from its pre-contracted counterpart, we can use memoization to update the tables in O(K) time. As a result, updating the space to reflect a contraction does not add computational overhead to the birth-death restricted search sampler. 44 C Simulation Details 
+
+C.1 Setup 
+
+As mentioned in Section 5.1, we consider linear acyclic causal models. Specifically, they all use the following structure: 
+
+Xi = ei + X 
+
+> Xj∈P a (G)i
+
+Bji Xj
+
+Bji ∼ Uniform (0 .4, 2) 
+
+G ∼ Graph Probability Model of Choice 
+
+ei ∼ Data Error Model of Choice 
+
+Configuration Components 
+
+Nodes ( p) {20 , 80 , 140 , 200 }
+
+Sample size ( n) n ∈ { 0.5p, 2p, 10 p}
+
+Graph model for G Erdős–Rényi (ER); Stochastic Block Model (SBM) (2 blocks); Hierarchical SBM with 3 clusters (hSBM) (1-, 2-, and 3-block structure) Error model for ei Gaussian noise: N (0 , 1) ;Functional causal model with mixture error: 
+
+0.5 N (0 , 1) + 0 .5 N (0 , 2) 
+
+Sparsity regime (i) 1 + Kinit ; (ii) Fixed sparsity across all nodes †
+
+Initial search space PC-algorithm based; GES-based §;Kuipers et al. iterative expansion Random seeds 25 per configuration MCMC replicates 4 chains for p ∈ { 20 , 80 }; 1 chain for p ∈ { 140 , 200 }
+
+Outputs 
+
+DAG inference outputs BROOD; BiDAG; BROOD +
+
+Skeleton inference outputs BROOD; BiDAG; BDgraph; BROOD +
+
+Evaluation Metrics ROC AUC; PR AUC; P r +; P r −; Run-Time ✠
+
+Table 3: Summary of synthetic-data experiments. All data are generated according to the linear acyclic causal model Xi = ei + P  
+
+> Xj∈P a (G)i
+
+Bji Xj .     
+
+> †Fixed-sparsity experiments were not conducted for p= 200 .
+> §GES-based initialization was only used for fixed-sparsity experiments.
+> ✠P r +and P r −are the estimated mean true edge probability, and mean non-edge probability, respectively.
+
+Table 3 describes the holistic set of synthetic-data experiments. 
+
+C.1.1 Graph Scores 
+
+The Bayesian Gaussian equivalence (BGe) score (Heckerman and Geiger, 1995) and G-Wishart score (Atay-Kayis and Massam, 2005) were used for BiDAG and BDgraph, respec-45 tively. The two primary difference between these scores are (1) the BGe score is defined for DAGs while the G-Wishart is a score for undirected graphs, and (2) the BGe score utilizes an unconstrained Wishart prior on the precision matrix, whereas the G-Wishart score employs a constrained prior. Specifically, the G-Wishart distribution is restricted to the subspace of precision matrices that have the same sparsity as the graph (so if an edge j − i is not in the graph, then its score will only consider the set of precision matrices with a 0 at index 
+
+(j, i )). 
+
+C.1.2 Graph Model Setup 
+
+For the Erdős–Rényi experiments, we use the randDAG function from the pcalg package in R to sample the model, specifying the expected node degree to be 4. This amounts to a connection probability of ∼ 0.21 for 20 nodes, and ∼ 0.02 for 200 nodes. For Stochastic Block Model (SBM) and Hierarchical Stochastic Block Model (hSBM) ex-periments, we respectively employ the sample_sbm and sample_hierarchical_sbm 
+
+functions from the igraph package in R to sample directed graphs. To ensure acyclic-ity, we then sample a random topological order of the nodes and retain only those edges consistent with the order. The SBM consists of two blocks, with node assignment drawn independently, with probabil-ity 0.8 of block 1 and 0.2 of block 2. Conditional on block membership, directed edges are generated independently according to the following connection probability matrix: 
+
+CSBM =
+
+min(0 .15 , 6 
+
+> p
+
+) min(0 .01 , 2 
+
+> p
+
+)min(0 .01 , 2 
+
+> p
+
+) min(0 .08 , 4 
+
+> p
+
+)
+
+
+
+(38) This model creates two blocks where within-block connections are likelier than between-block connections. The hSBM introduces a richer community structure by partitioning the nodes into three top-level clusters, with cluster sizes proportional to (0 .1, 0.3, 0.6) . Each cluster is generated according to unique block models: 1. A single-block cluster with min(0 .1, 4 
+
+> p
+
+) connection probability 2. A two-block cluster with (13 , 23 ) probability of assignment and the same connection probability matrix as the SBM in (38) 3. A three-block cluster with (16 , 13 , 12 ) probability of assignment and a connection prob-ability matrix of 
+
+
+
+min(0 .2, 8 
+
+> p
+
+) min(0 .01 , 1 
+
+> p
+
+) min(0 .2, 8 
+
+> p
+
+)min(0 .01 , 1 
+
+> p
+
+) 0 min(0 .08 , 4 
+
+> p
+
+)min(0 .2, 8 
+
+> p
+
+) min(0 .08 , 4 
+
+> p
+
+) min(0 .08 , 4 
+
+> p
+
+)
+
+
+
+The third cluster introduces more complex relationships both within and between blocks; while blocks 1 and 3 within this setup exhibit relatively strong within- and between-block connectivity, block 2 enforces near-deterministic separation within a set of nodes by assign-ing zero probability to within-block connections, but allows for relatively strong connectiv-ity to nodes within block 3. This hierarchical design yields graphs with both community and anti-community structure. 46 C.1.3 Initial Search Space Setup 
+
+To create all search spaces, we impose a fixed sparsity capacity used across all experiments (to ensure our initial search space does not exceed our computation budget). For the plus-one experiments, this amounts to a sparsity capacity of max(10 , 3+0 .05 p), and for the fixed spar-sity experiments, this amounts to a sparsity capacity of max(12 , round (3 + 0 .06 p)) .To create the search space from the PC algorithm, we use the skeleton function from the pcalg package in R, using Gaussian independence hypothesis tests, and a hypothesis testing threshold of min 
+
+
+
+0.4, 20 
+
+> p
+
+
+
+.We use the iterativeMCMC function from BiDAG to run the iterative expansion procedure proposed in Kuipers et al. (2021). In addition to imposing the maximal fixed sparsity used across all experiments as the hard limit for parent set sizes, we also use a soft limit of 10, where with fewer than 10 candidate parents, we include all edges in the undirected skeleton of the MAP DAG (so if i → j is an edge in the search space, so will j → i), but beyond this, only edges in the MAP DAG are included. We use the sample hypothesis testing threshold as we used for the PC algorithm to initialize this iterative procedure. To create the GES search space, we use the ges function from the pcalg package, using the BIC score (i.e., using an L0-penalized Gaussian maximum likelihood estimator, and a penalty parameter of log( n)). We used the default values for all other parameters for the functions we described above. 
+
+C.1.4 MCMC Setup 
+
+We employ the orderMCMC function in BiDAG and the bdgraph function in BDgraph to run BiDAG and BDgraph, respectively. We run all chains for B = min(25000 , ⌈p2 log( p)⌉) steps, with an additional warm-up of 
+
+⌊0.1B⌋ steps. For BROOD, we use the defaults of c∗ = 1 and ℓ = 0 .1 for all experiments, as discussed in section 4.5. To analyze estimated edge probabilities, we thin BROOD and BiDAG to keep 2500 samples; BDgraph returns edge probabilities directly from running it without a thinning parameter available, so we keep all of its samples in edge probability estimates. We estimate all edge probabilities directly from the graph samples of an algorithm. Suppose 
+
+G(1) , ..., G (B) are the set of graph samples across an MCMC chain under model M. Then, the estimated edge probability of i → j under M is: 
+
+cPr M(i → j) = 1
+
+B
+
+> B
+
+X
+
+> b=1
+
+1i→j∈EG(b)
+
+where EG is the edge set of a graph G.For estimating the skeleton edge probability from DAG samples, we modify the formula: 
+
+cPr M(i − j) = 1
+
+B
+
+> B
+
+X
+
+> b=1
+
+
+
+1i→j∈EG(b) + 1j→i∈EG(b)
+
+
+
+47 Let Gtrue be the true DAG used to generate the data, E+ := {(i, j ) : i → j ∈ EGtrue }, and 
+
+E− := {(i, j ) : i → j / ∈ EGtrue } (and for skeleton analysis, we redefine E+ := {(i, j ) : (i → j ∈ EGtrue ) ∪ (j → i ∈ EGtrue )}, and analogously redefine E−). Then, from 
+
+cPr M, we output the Receiver Operator Characteristic Area Under the Curve (ROC AUC), the Precision-Recall Area Under the Curve (PR AUC), as well as P r + and P r −, which are defined as: 
+
+P r +(M) = 1
+
+|E +|
+
+X
+
+> (i,j )∈E +
+
+cPr M(i → j)
+
+P r −(M) = 1
+
+|E −|
+
+X
+
+> (i,j )∈E −
+
+cPr M(i → j)
+
+To compute ROC AUC and PR AUC, we treat each node pair (i, j ) as a binary instance, with assignment of 1 when (i, j ) ∈ E +, and 0 when (i, j ) ∈ E −. We then compute ROC and precision–recall curves by thresholding cPr M across all (i, j ) and report the corresponding areas under the curve. 
+
+C.2 Further Results C.2.1 Performance: Gaussian SEM, Plus-One Runs, DAG Output 
+
+In the main paper, Figures 6 and 7 evaluate model quality on the DAG output for Gaussian SEM data, with plus-one sparsity capping for BROOD and BiDAG. Figure 11 shows the models’ mean edge probability ( P r +) and Figure 12 shows the mean non-edge probability (P r −) for these data. Similar to the findings in the main text, BiDAG performs well relative to BROOD in situations where using a single restricted fixed search space that is found by an iterative MAP procedure can be effective, like when there are few nodes, when there is a lot of data relative to the number of nodes, and when the graph model is expected to yield uni-modal posterior scores. BROOD performs better as the number of nodes increases, as the ratio between the number of observations and the number of nodes decreases, and when the posterior scores have a higher chance of being multi-modal. 
+
+C.2.2 Performance: Gaussian SEM, Plus-One Runs, Skeleton Output 
+
+In the main paper, Figure 9 showed the ROC AUC for the skeleton version of the Gaus-sian SEM data generation model with plus-one sparsity capping for BROOD and BiDAG. Figures 13, 14, 15 show the PR AUC, P r +, and P r − for these data. The trends echo the find-ings from Sections 5.2, and C.2.1: BiDAG performs comparatively better in easier sampling regimes, while BROOD performs comparatively better in harder sampling regimes. 
+
+C.2.3 Performance: FCM, Plus-One Runs, DAG and Skeleton Outputs 
+
+Changing the error model for data generation from a Gaussian SEM (which has N (0 , 1) 
+
+errors) to a FCM (which is a mixture between N (0 , 1) errors and N (0 , 2) errors) has min-imal impact on the results, both for DAGs and skeletons, as presented in Figures 16-23. One interesting insight is that the relative performance from using DAGs to skeletons has a similar level of change for FCM data generation as for Gaussian SEM data generation. This suggests that the algorithm is not especially sensitive to identifiability issues that we may expect from a Gaussian SEM but not from a FCM. 48 Figure 11: P r + results with Gaussian SEM data, using plus-one sparsity. 
+
+Figure 12: P r − results with Gaussian SEM data, using plus-one sparsity. 49 Figure 13: Skeleton version of PR AUC results with Gaussian SEM data, using plus-one sparsity. 
+
+Figure 14: Skeleton version of P r + results with Gaussian SEM data, using plus-one spar-sity. 50 Figure 15: Skeleton version of P r − results with Gaussian SEM data, using plus-one spar-sity. 
+
+Figure 16: ROC AUC results with FCM data, using plus-one sparsity. 51 Figure 17: PR AUC results with FCM data, using plus-one sparsity. 
+
+Figure 18: P r + results with FCM data, using plus-one sparsity. 52 Figure 19: P r − results with FCM data, using plus-one sparsity. 
+
+Figure 20: Skeleton version ROC AUC results with FCM data, using plus-one sparsity. 53 Figure 21: Skeleton version of PR AUC results with FCM data, using plus-one sparsity. 
+
+Figure 22: Skeleton version of P r + results with FCM data, using plus-one sparsity. 54 Figure 23: Skeleton version of P r − results with FCM data, using plus-one sparsity. 
+
+C.2.4 Performance: Gaussian SEMs, Fixed Sparsity Runs 
+
+Figure 8 capped the sparsity across to a fixed amount across all experiments for BROOD, regardless of the starting search spaces (whereas the plus-one sparsity allowed for the cap to be one more than the largest parent set size in the starting search space). Fixing the sparsity across initializations allows for us to see the extent to which BROOD can recover from poor initializations. We found in the main text that BROOD can best recover from a poorly initialized starting search space when the ratio between the number of data points to number of nodes is small; this implies that the more diffuse the score, the better BROOD can navigate the transdimensional space. Figures 24-30 show further breakdowns of the Gaussian SEM models using fixed-sparsity capping. Figures 25, 26, 29, and 30 are especially insightful into how BROOD recovers from poorly-initialized search spaces when the ratio of number of observations to number of nodes is 0.5: initializing with a PC search space, BROOD sometimes adds true edges to the space that the PC algorithm omits but also sometimes adds non-edges to the space, while initializing with the Kuipers et al. expansion search space, BROOD sometimes takes away true edges in order to exclude non-edges. Initializing with the GES search space lands in between the two. Overall, this amounts to similar P r + and P r − across all three initializations of the search space. 
+
+C.2.5 Performance: FCM, Fixed Sparsity Runs 
+
+Figures 31-34 show the ROC AUC and PR AUC (for both DAGs and skeletons) for FCM generated data with fixed sparsity capping. Using FCM data generation yields similar results 55 Figure 24: PR AUC results with Gaussian SEM data, using fixed sparsity. 
+
+Figure 25: P r + results with Gaussian SEM data, using fixed sparsity. 56 Figure 26: P r − results with Gaussian SEM data, using fixed sparsity. 
+
+Figure 27: Skeleton version of ROC AUC results with Gaussian SEM data, using fixed sparsity. 57 Figure 28: Skeleton version of PR AUC results with Gaussian SEM data, using fixed spar-sity. 
+
+Figure 29: Skeleton version of P r + results with Gaussian SEM data, using fixed sparsity. 58 Figure 30: Skeleton version of P r − results with Gaussian SEM data, using fixed sparsity. to Gaussian SEM data generation when analyzing the impact of initialization with fixed sparsity capping: in settings with posteriors that are expected to be disperse, BROOD tends to be robust to recovering from poorly initialized search spaces, but is more sensitive to the initialization in settings where posteriors are expected to be peakier. 
+
+C.2.6 Computation Time 
+
+In the main text, we showed the downside of BROOD’s flexibility in terms of log-time of the sampler finishing in Figure 10 on Gaussian SEM data, with plus-one sparsity. Figures 35, 36, 37 show the results for FCM data with plus-one sparsity, Gaussian SEM data with fixed sparsity, and FCM data with fixed sparsity, respectively. Results for these are quite similar to those shown in the main text: BROOD is slower than BiDAG, but the gap closes as the problem gets more complex. This suggests that while there is a baked-in cost to running BROOD over BiDAG, if BROOD can be robust to a poorly initialized starting search space, for sufficiently difficult problems, it can be a better solution in both performance and computational time than existing methods for MCMC-based structure inference. 59 Figure 31: ROC AUC results with FCM data, using fixed sparsity. 
+
+Figure 32: PR AUC results with FCM data, using fixed sparsity. 60 Figure 33: Skeleton version ROC AUC results with FCM data, using fixed sparsity. 
+
+Figure 34: Skeleton version of PR AUC results with FCM data, using fixed sparsity. 61 Figure 35: log 10 (Run Time ) results for FCM data, using plus-one sparsity 
+
+Figure 36: log 10 (Run Time ) results for Gaussian SEM data, using fixed sparsity 62 Figure 37: log 10 (Run Time ) results for FCM data, using fixed sparsity 63
