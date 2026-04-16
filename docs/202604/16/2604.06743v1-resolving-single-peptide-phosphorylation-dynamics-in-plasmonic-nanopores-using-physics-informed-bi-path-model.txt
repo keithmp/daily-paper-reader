@@ -1,0 +1,1434 @@
+Title: Yaltaye et al.
+
+URL Source: https://arxiv.org/pdf/2604.06743v1
+
+Published Time: Thu, 09 Apr 2026 00:36:19 GMT
+
+Number of Pages: 23
+
+Markdown Content:
+Page 1 of 23 
+
+Resolving Single -Peptide Phosphorylation Dynamics in Plasmonic Nanopores using Physics -
+
+Informed Bi -Path Model 
+
+Mulusew W. Yaltaye 1,2,3 , Yingqi Zhao 1, Kuo Zhan 1, Vahid Farrah i1,4 , Jian -An Huang  1,2,3, * 
+
+> 1
+
+Research Unit of Health Sciences and Technology, Faculty of Medicine, University of Oulu, 
+
+Aapistie 5 A, 90220 Oulu, Finland.  
+
+> 2
+
+Research Unit of Disease Networks, Faculty of Biochemistry and Molecular Medicine, 
+
+University of Oulu, Aapistie 5 A, 90220 Oulu, Finland.  
+
+> 3
+
+Biocenter Oulu, University of Oulu, Aapistie 5 A, 90220 Oulu, Finland.  
+
+> 4
+
+Institute for Sports and Sport Sciences, TU Dortmund University, Germany 
+
+*Email:  jianan.huang@oulu.fi 
+
+Abstract 
+
+Protein phosphorylation provides a dynamic readout of cellular signaling yet remains difficult to detect 
+
+at low abundance and stoichiometry. Single -molecule surface -enhanced Raman spectroscopy (SM -
+
+SERS) using particle -in -pore plasmonic nanopores offers lab el -free molecular detection with 
+
+submolecular sensitivity. However, reliable identification of subtle post -translational modifications 
+
+(PTMs) is hindered by the stochastic nature of SM -SERS signals, partial excitation of peptide residues 
+
+within the plasmon ic hotspot, and background interference. Here, we introduce a physics -informed deep 
+
+learning framework to decode complex SM -SERS dynamics and identify single -peptide PTMs. The 
+
+model integrates multiple -instance learning with a temporal encoder combining temporal convolutional 
+
+networks and bidirectional gated recurrent units to capture both local spectral variability and long -range 
+
+blinking dynamics. To address diffusion -driv en spectral heterogeneity, long spectral trajectories are 
+
+segmented using Pearson -co rrelation, enabling weakly supervised training under label ambiguity. This 
+
+framework robustly distinguishes single peptide phosphorylation despite strong background 
+
+interference and stochastic signal fluctuations. By coupling nanoplasmonic confinement with 
+
+spatiotemporal deep learning, our approach enables high -fidelity detection of single -molecule 
+
+phosphorylation events and advances ultrasensitive phosphoproteomic analysis. Page 2 of 23 
+
+Introduction 
+
+Protein phosphorylation provides a functional snapshot of signaling dynamics, yet it remains difficult 
+
+to quantify at low abundance and low stoichiometry 1–3. Consequently, scientist continues to push 
+
+towards ultrasensitive phosphoproteomics and develop ing new single -molecule approache s. While 
+
+mass spectrometry remains the gold standard for proteomic analysis, its utility is constrained by a 
+
+requirement of millions copies of molecul es 1,4 . The emerging landscape of single -molecule protein 
+
+sequencing technologies offers a promising alternative to overcome these sensitivity limits. However, 
+
+these technologies still face significant hurdles, including low throughput and complex sample 
+
+preparation 5. Fluorescence -based methods are an other alternatives for single molecule sequencing , but 
+
+they require labeling with fluorescent tags and suffer from limited labelling and photobleaching, which 
+
+in turn limits the read length 5,6 . Recent studies have demonstrated that engineered nanopores can 
+
+achieve accurate molecular detection of peptides through rational design and optimization of pore 
+
+structural properties 7,8 . However, current nanopore approaches primarily rely on ionic current 
+
+measurements, leaving room for innovative sensing modalities that could provide enhanced specificity 
+
+and spatial information .
+
+Single -molecule surface -enhanced Raman spectroscopy (SM -SERS) has emerged as a revolutionary 
+
+analytical technique capable of detecting individual molecules in a non -invasive, label -free manner with 
+
+high throughput 9. SM -SERS transcend s traditional ensemble measurements to reveal molecular 
+
+heterogeneity and dynamics previously obscured by statistical averaging of SERS spectra of multi -
+
+molecules 10,11 . The P article -in -pore Sensor represent s one of the most powerful SM -SERS detection 
+
+platforms, capable of detecting single -molecule spectrum by trapping a gold nanoparticle (AuNP) inside 
+
+a nanopore as shown in Fig. 1A 12,13 . When illuminated at its resonance wavelength, the optical near 
+
+field is confined into highly intense localized region so -called “hotspot.” The molecule diffuses 
+
+through, or transiently bind within, this hotspot experienc ing orders -of -magnitude enhancement of their 
+
+Raman scattering, enabling single molecule detection (Fig. 1B ). The particle -in -pore plasmonic sensor 
+
+is particularly attractive for biomolecular sensing, as it allows label -free readout of molecular structure 
+
+in solutions while preserving native conformational dynamics 14,15 .
+
+Despite these advantages, the inherently stochastic nature 16,17 of SM -SERS signals poses a significant 
+
+analytical challenge, as single -molecule spectra exhibit pronounced temporal fluctuations and 
+
+intermittent “blinking” driven by Brownian motion of the analyte on the surface of AuNPs and dynamic 
+
+reconfiguration of the plasmonic field (Fig. 1C )18,19 . Spectral fluctuations are further complicated by 
+
+background interference, particularly from citrate commonly used as a stabilizing agent to the gold 
+
+nanoparticle s, which can compete with the analyte for occupancy in the hotspot and obscure low -
+
+abundance spectral features 12,13 . In the case of single peptide PTM analysis, the analysis becomes 
+
+significantly more complex due to partial excitation and overlapped sequences . The unphosphorylated 
+
+peptide segment F-Ser (CDSSPDSAEDVRK) and the phosphorylated peptide F-pSer 
+
+(CDSSPDpSAEDVRK), both derived from Fetuin -A (FETUA/AHSG) 20,21 , share many amino acids, Page 3 of 23 
+
+while a hotspot may interrogate only 1 –3 amin acid residues at a time. In addition to this, aromatic 
+
+amino acid residue dominates over non -aromatic as Raman cross -sections vary substantially 4. These 
+
+combined constraints render phosphorylation identification at a peptide level very challenging, because 
+
+the phosphate group often results in subtle conformational changes or minor spectral shifts that are 
+
+easily eclipsed by the surrounding peptide backbone 22 .
+
+To address these physical constraints in SM -SERS, we herein developed a physics -informed, bi -path 
+
+hierarchical model to decode single -peptide PTM dynamics (Fig. 1D ). The model integrates Multiple 
+
+Instance Learning (MIL) with advanced temporal encoding. Recently, several supervised machine 
+
+learning and deep learning techniques have been utilized to analyze Raman spectroscopic data 13,23 –25 .
+
+However, traditional supervised learning algorithms , which typically require pixel -level annotations ,
+
+struggles when applied to SM -SERS peptide dat a acquired in flow -throug h or dynamic setups 26,27 . This 
+
+limitation arises because labels are assigned to entire time series, whereas individual spectra 
+
+(“instances”) fluctuate significantly due to Brownian motion, molecular rotation, and transient hotspot 
+
+occupancy. Consequently, a single time series measurement contains a complex mixture of neighboring 
+
+amino acid residues , idle states, and citrate -interference , which can be effectively addressed using 
+
+Multiple Instance Learning (MIL). MIL is a weakly supervised learning framework that overcomes 
+
+these lim itations by naturally accommodating problems characterized by label ambiguity 28,29 . To 
+
+prepare our data for MIL approach , we segment long time -series spectra into short segments using 
+
+Pearson correlation, the approach considers the physical properties of peptide diffusion on the surface 
+
+of AuNP in a plasmonic nanopore. Simultaneously, to capture the temporal evolution critical for 
+
+distinguishing the subtle 'blinking' dynamics of F -Ser versus F -pSer, we employ a parallel Temporal 
+
+Encoder comprising Temporal Convolutional Networks (TCNs) and bidirecti onal Gated Recurrent 
+
+Units (BiGRUs) , which captures both short -term molecular fluctuations and long -range dependencies 
+
+without vanishing gradient issues 30,31 . By fusing these instance -level attention weights with sequence -
+
+level temporal dynamics in a hierarchical two -stage classifier, our model effectively learns molecular 
+
+representations of transit through the plasmonic hotspot, enabling high -fidelity identification of post -
+
+translational modifications (PTMs) even within noisy and stochastic setups. Page 4 of 23 
+
+Figure 1. (A) Schematic of the plasmonic particle -in -pore sensor with a hot spot that excite s part of 
+
+single peptide . (B) the diffusion dynamics of molecules on the surface of gold -nanoparticles and the 
+
+occupancy of the molecules the plasmonic hot spot . (C) the spectral map of single -peptide PTM to 
+
+demonstrate variation in time , the color bar indicating the normalized intensity . ( D) The overview of 
+
+physics -informed bi -path model for disentangling single peptide PTM. 
+
+Results and Discussion 
+
+Raman spectroscopic measurement of Single -molecule PTM s
+
+Plasmonic particle -in -pore sensor with single -molecule SERS sensitivity used to measure the single -
+
+molecule SERS spectra of PTMs according to the protocol in previous papers 4,19 . The gold nanopores 
+
+of 200 nm diameter were fabricated on the silicon nitride ( Si 3N4) membrane by Focused ion Beam 
+
+milling , then after the chip is encapsulated in a PDMS chamber to form cis/trans reservoirs . Target 
+
+analytes physically adsorbed onto citrate -stabilized Au nanoparticles (AuNP) of 50 nm diameter to form 
+
+a submonolayer (1/80 monolayer, approximately 1.23% surface coverage) 13 (see molecule 
+
+concentrations in Supporting Information) , the analyte -attatched particle entrapped in the nanopore by Page 5 of 23 
+
+electro -opto -kinetic mechanism under 785 nm illumination the plasmonic nanopore generates a strong 
+
+optical gradient force that draws the particle toward the sidewall, while an applied transmembrane bias 
+
+balances electrophoretic and electroosmotic forces. ThermoFisher DXR2xi Raman microscope with 15 
+
+mW laser power, slit width of 50 μm, and 100 ms exposure time used to collect SERS spectra .
+
+Consequentely, a single plasmonic hot spots enabled the acquistion of SERS signals (Fig . 1B ).
+
+Citrate -interference and shared spectral Regions 
+
+The presence of citrate as stablizing agent of AuNPs introduces a n interference in SM -SERS spectra of 
+
+particle -in -pore -sensors that complicates data interpretation. In previous reports, citrate interference 
+
+could be minimized by replacing citrate with a monolayer of analyte molecules through incubation for 
+
+48 hours 12 . In another approach, citrate interference was removed using k -means –based clustering by 
+
+considering pure -citrate spectra as a reference and excluding any spectra that co uld contain citrate 
+
+peaks 13 . The first method is limited by sensitivity, whereas the latter risks removing genuine signals 
+
+from the target molecules, since the analyte may intrinsically share some spectral bands with citrate .
+
+The likelihood of overlapping spectral regions is even higher for peptides, since F-Ser 
+
+(CDSSPDSAEDVRK) and F -pSer (CDSSPDpSAEDVRK) share the same peptide backbone, differing 
+
+only by phosphorylation of the serine residue at the seventh position in the sequence (left to right). This 
+
+results in shared spectral ban ds between molecules . As shown in Figure 2 , a representative 
+
+measurement demonstrates that all three molecules exhibit overlapping spectral bands around 715 
+
+𝑐𝑚 −1; F-pSer and citrate overlap a t 1080  𝑐𝑚 −1; F-Ser and citrate at 1175  𝑐𝑚 −1; and F-Ser and F -pSer 
+
+around 460  𝑐𝑚 −1, thereby further complicat ing the analysis. Page 6 of 23 Page 7 of 23 
+
+Figure 2. Spectral maps and corresponding peak -occurrence frequency distributions for F -Ser (a,b), F -
+
+pSer (c,d), and citrate (e,f). The spectral maps demonstrate overlapping spectral regions among the 
+
+analyzed molecules , highlighting the challenge of distinguishing F -Ser from F -pSer .
+
+Fluctuating peak, is one of the inherent properties of SM -SERS as shown in Figure 2, makes the 
+
+traditional peak -assignment for individual spect ra impractical . Thus, peak -occurrence frequency has 
+
+become a valuable statistical tool for interpreting fluctuating single molecule spectra, where blinking 
+
+and wandering often render individual spectra unrepresentative of the molecular signature. Peak -
+
+occurrence frequency summarizes a spectral time series by counting how frequently a vibrational band 
+
+appears across many spectra and visualizing it as a normalized probability distribution over Raman 
+
+shift , in which helps to emphasizes the most reproducible features /Raman shits of the molecule and 
+
+effectively reconstructs a frequently occurring molecular fingerprint from transient and partial spectral 
+
+snapshots arising from different trapping configurations. However, despite stabilizing highly variable 
+
+SM -SERS signals, peak -occurrence analysis remains insufficient for distinguishing molecules with 
+
+strongly overlapping spectral features. 
+
+Locallized hotspot and Partial -Excitaion 
+
+Notably, the hotspot of the particle -in -pore sensor (Figure 1a) excites only up to ~3 amino acid residues 
+
+of a peptide at a time, depending on residue size, creating a fundamental challenge for identifying PTMs 
+
+in long peptide or protein sequences 4,32 . Because the localized field illuminate only a fraction of the 
+
+peptide, the resulting SERS spectra represent partial excitation of the peptide backbone rather than a 
+
+complete vibrational fingerprint. Consequently, phosphate -associated vibrational modes may appear 
+
+attenuated or intermittently absent, complicating residue -level assignment. In addition, random 
+
+molecular motions, such as rotation and diffusion on the AuNP surface, can further obscure PTM s ites. 
+
+Addressing this partial -excitation limitation is therefore critical for advancing nanopore -enabled SERS 
+
+toward robust, sequence -specific phosphoproteomics. Page 8 of 23 
+
+Figure 3. SERS time -series spectra of F -Ser (A) and F -pSer (B). Panels (C –E) show sample spectra of 
+
+F-Ser at three different time points, together with assigned amino acid bases and their vibrational modes 
+
+and the temporal hotspot configuration on peptide segment . Panels (F –H) show sample spectra of F -
+
+pSer at three different time points, along with their peak assignments and the corresponding hotspot -
+
+occupying amino acid residues based on the assignments. 
+
+Considering three spectra at different time from F -Ser, we have observed a vibrational band at 1280 
+
+𝑐𝑚 −1 is attributed to the C –O–H stretching mode ( ν( COH)) from alanine in Figure 3A . In contrast ,
+
+several vibrational modes are excited within the hotspot region (Figure 3D ), including rocking and 
+
+stretching of the ammonium group ( ρ( NH₃⁺), ν( COH)), torsional motion ( τ( CH₂)), and bending modes 
+
+(δ( NH₃⁺)) associated with glutamic acid, aspartic acid, and valine residues. In Figure 3 E, the spectrum 
+
+exhibits stretching and bending vibrational modes characteristic of glutamic acid, aspartic acid, and 
+
+alanine. When these spectra are considered sequentially in time, they indicate that the peptide diffuses 
+
+back and forth through the plasmonic hotspot, resulting in transient excitation of different residues. 
+
+Similarly , for F -pSer, vibrational modes corresponding to glutamic acid, aspartic acid, and alanine are 
+
+detected in Figure 3F , the signal is dominated by aspartic acid in Figure 3G ; and in Figure 3H ,
+
+glutamic acid, aspartic acid, and alanine again contribute to the detected vibrational modes . These 
+
+observations suggest that the plasmonic hotspot excites only 1-3 amino acid bases . Detailed assignments 
+
+of the corresponding vibrational modes are summarized in Table 1 .Page 9 of 23 
+
+Tabel 1. Peak assignments of spectral bands from partial excitation of peptide backbones (Figure 3) .
+
+Spectral band  Amino acid residues  Vibrational mode  References 
+
+700  Glu  𝜌 (𝐶𝐻 2) 33 
+
+720  Glu  𝜌 (𝐶𝐻 2) 33 
+
+730  Asp  𝜌 (𝐶𝐻 2) 34 
+
+795  Ala  𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −) 35 
+
+800  Glu  𝑣 (𝐶𝐶 ), 𝑣 (𝐶𝐻 2) 33,36 
+
+1075  Asp  𝑣 (𝐶𝑁 ) 34,37 
+
+1125  Glu , Val  𝜌 (𝑁𝐻 3
+
+> +
+
+), 𝑣 (𝐶𝑂𝐻 ) 33,38 
+
+1250  Asp  𝜏 (𝐶𝐻 2), 𝑣 (𝐶𝑂𝐻 ) 34,35,37 
+
+1280  Ala  𝑣 (𝐶𝑂𝐻 ) 35 
+
+1520  Asp  𝛿 (𝑁𝐻 3
+
+> +
+
+) 34,37 
+
+1575  Asp  𝛿 (𝑁𝐻 3
+
+> +
+
+) 34 
+
+1600  Ala , Asp  𝛿 (𝐶𝑂 ), 𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −) 35,37,39 
+
+Adaptive Segmentation using Pearson -correlation 
+
+Peptide diffusion on the surface of AuNPs and the random entrapment of AuNPs within the nanopore 
+
+result in short residence times of peptide segments in the hotspot, leading to stochastic spectral 
+
+fluctuations, blinking, and partial excitation. Consequently, raw measurement labe ls represent a longer 
+
+entrapment and broad classes rather than specific molecular states . To address this, we implemented a 
+
+segmentation algorithm based on Pearson correlation , which used as a similarity metric to compare 
+
+different sp ectra and identify the unique spectra from spectal datasets 40,41 . The algorithm scans time -
+
+series traces to identify signal onset, establishing a reference spectrum (Sref ) based on predefined criteria 
+
+(see Supporting Information). Subsequent spectra are grouped into 'bags' (segments) , if their correlation 
+
+𝑟 ≥ 0.65  with respect to (Sref ); o therwise, the current segment is terminated, and the divergent spectrum 
+
+serves as the new (Sref ) for the subsequent iteration. This iterative approach mimics the physics of single 
+
+molecules within a plasmonic hot spot. Physically, we assume a molecular resident -time of 
+
+approximately 2.5 seconds (corresponding to 25 spectral records), after which molecular diffusion or 
+
+nanoparticle displacement necessitates the detection of a new spectral signature to confirm the 
+
+continued presence of a molecule (detailed Figure S2 in the supporting information) . Pearson 
+
+correlation is sensitive to the shape of the spectrum rather than absolute intensity thus it preclude the 
+
+noisey and idle state s23,40,42 .
+
+Deep Learning Model 
+
+To accurately decode the complex single -peptide SERS data , we developed a Bi -Path hierarchical 
+
+model . The model has two branches the spectral and temporal encoders. The pipeline begins with a 
+
+shared 1D Convolutional Neural Network (CNN) that processes adaptively segmented spectral Page 10 of 23 
+
+sequences. To emphasize subtle spectral variations e.g., peak shifts induced by phosphorylation, the 
+
+input is engineered as a two -channel tensor comprising both the raw intensity and its first derivative ,
+
+which has complementary role in subtle features extraction 43 –45 . Applying a first -order derivative 
+
+transformation capture s spectral rate -of -change information helps remove baseline drift and other 
+
+background interference while reducing overlap between spectral bands 46 . The CNN features are then 
+
+fed into a channel -wise wavenumber attention mechanism, enabling the network to actively highlight 
+
+discriminative Raman shifts while suppressing baseline noise. The resulting latent spectral embeddings 
+
+are directed into two parall el processing pathways: a weakly supervised spatial aggregator and a 
+
+temporal encoder .
+
+The first pathway employs Multiple Instance Learning (MIL), a powerful weakly supervised paradigm 
+
+specifically designed for data characterized by severe label ambiguity 47,48 . In single -molecule peptide 
+
+data , a single measurement contains a complex mixture of transient molecular binding events, idle 
+
+states, citrate interference, and partial hotspot excitations. Forcing frame -level annotations onto such 
+
+stochastic data is impractical. Likewise, its success in isolating sparse diagnostic signals in clinical 
+
+pathology 49 –51 , MIL bypasses the need for exhaustive pixel -level annotation. It utilizes gated attention 
+
+to autonomously isolate and aggregate only the most informative, characteristics spectral "instances" 
+
+into a robust, bag -level representation. 
+
+While the MIL branch is inherently order -invariant 52 , the temporal evolution of the SERS signal 
+
+contains vital physical information. To capture these dynamics, the second pathway utilizes a 
+
+Temporal Convolutional Network (TCN) followed by a Bidirectional Gated Recurrent Unit (BiGRU). TCN 
+
+employs causal dilated convolutio ns, preserving temporal ordering while expanding the receptive field 
+
+to capture both short -lived spectral bursts and longer -range drift or binding events 53,54 . The BiGRU 
+
+further integrates bidirectional dependencies, encoding forward and backward contextual 
+
+information across the segment 55,56 . Finally, a temporal attention pooling layer compresses the 
+
+sequence into a single feature vector that highlights the most meaningful kinetic transitions. 
+
+The complementary spatial (MIL) and kinetic (Temporal) representations are fused and passed to a 
+
+two -stage hierarchical classifier. Mirroring the biochemical decision -making process, this classifier first 
+
+separates the control background (Citrate) from tar get signals and subsequently distinguishes 
+
+between the specific peptide variants (F -Ser vs. F -pSer). This hierarchical approach prevents dominant 
+
+background variability from obscuring the subtle spectral differences of phosphorylation. 
+
+The entire architecture is trained end -to -end using a physics -informed multi -objective loss function. 
+
+This combines standard cross -entropy with stage -specific binary losses and an MIL consistency loss 
+
+that penalizes disagreement between the globally assign ed label, and the top -k attended spectra. 
+
+Additionally , a peak -sensitive regularization (PSR) term is applied to spectral attention. By 
+
+mathematically discouraging attention from concentrating on baseline fluctuations, the PSR guides Page 11 of 23 
+
+the model to focus on chemically meaningful Raman shifts , improving the physical plausibility of its 
+
+attributions. Collectively, this unified framework integrates spectral pattern recognition, weakly 
+
+supervised instance selection, temporal dynamics, hierarchical decision -making, and peak -aware 
+
+regularization fo r interpretable single -molecule peptide SERS analysis. 
+
+Figure 4. Bi -path hierarchical model for single -peptide PTM identification. SERS time -series segments 
+
+are encoded by a shared Spectral Encoder, then split into two orthogonal branches: (i) a Multiple 
+
+Instance Learning (MIL) aggregator with gated attention to extract sparse, high -intensity binding events 
+
+and produce a bag -level feature, and (ii) a Temporal Encoder (causal dilated TCN, BiGRU, and 
+
+attention pooling) to capture continuous binding dynamics. Fused features from the two branches are 
+
+passed to a two -stage cl assifier that first separates citrate background from targets, then distinguishes 
+
+F-Ser from F -pSer. Page 12 of 23 
+
+Hieraricical classification Accuracy 
+
+Figure 5. Performance evaluation of the Bi -Path SERS Classifier. Binary class confusion matrices for 
+
+(A) the Stage 1 Citrate vs. Analyte classifier and ( B) the Stage 2 F-Ser vs. F-pSer classifier. ( C) The 
+
+final aggregated three -class confusion matrix. The model's discriminative capability is further 
+
+demonstrated by ( D) the Receiver Operating Characteristic (ROC) curves and ( E) the Precision -Recall 
+
+(PR) curves, with their respective area under the curve (AUC and AUPRC) values. 
+
+To discriminate F -Ser from F -pSer, we employed a hierarchical classifier that first isolates true single -
+
+molecule analyte events from citrate background, and then resolves their subtle spectral differences. 
+
+Figure 5 summarizes the predictive performance of this Bi -Path architecture on an unseen dataset, 
+
+utilizing hierarchical confusion matrices alongside Receiver Operating Characteristic (ROC) and 
+
+Precision -Recall (PR) curves . The Stage 1 binary classifier effectively discriminates sparse 
+
+## molecular binding events from citrate interference, achieving true positive rates of 87.1% and 
+
+## 91.4% for citrate and analyte detection, respectively (Figure 5 A). Conditioned on analyte presence, 
+
+the Stage 2 classifier distinguishes F -Ser from F -pSer with accuracies of 93.2% and 85.3%, respectively 
+
+(Figure 5 B). When aggregated into a final three -class prediction (Figure 5 C), the model maintain s
+
+robust accuracies across all the classes (Citrate: 87.1 %, F-Ser : 83.2 %, F-pSer : 85.3 %). 
+
+The model’s performance is further supported by ROC curves (Figure 5 D), which exhibit Area Under 
+
+the Curve (AUC) values exceeding 0.95 for all classes. Because single -molecule SERS datasets are 
+
+imbalanced by the rarity of true binding events, the Precision -Recall (PR) curves provide a more 
+
+rigorous assessment of predictive reliability ( Figure 5 E). The model maintained a high Area Under the 
+
+PR Curve (AUPRC) of above 91. 6% for each classes , guaranteeing a remarkably low false discovery Page 13 of 23 
+
+rate when identifying the specific post -translational modification. Together, these metrics demonstrate 
+
+that the physics -informed hierarchical approach can successfully mitigates the profound signal 
+
+ambiguity characteristic of single -molecule SERS. 
+
+Physical Interpretability via 1D Integrated Gradients 
+
+A critical limitation of deep learning models in spectroscopic and chemometric applications is the 
+
+"black box" nature of neural networks, which often rely on statistically spurious dataset artifacts rather 
+
+than genuine biochemical signatures . To verify our Bi -Path SERS Classifier relies on meaningful 
+
+features , we evaluated the spatial attribution of the Spectral Encoder using 1D Integrated Gradients 
+
+(1D -IG). Conceptually analogous to 1D Gradient -weighted Class Activation Mapping (1D -Grad -CAM) 
+
+frequently used in recent analytical chemistry literature to decode 1D -CNNs 57,58 , 1D -IG provides a high -
+
+resolution, feature -level attribution map by integrating the gradients of the output class probability with 
+
+respect to the input Raman shift. By projecting these 1D -IG feature weights over the empirical peak 
+
+occurrence frequency , we can directly observe whether the model's mathematical "attention" aligns 
+
+genuine molecular vibrations. 
+
+Figure 6 . Integrated gradient curve and peak occurrence frequency for Citrate (a), F -Ser (b), and F -
+
+pSer (c) classes derived from the bi -path single -molecule SERS classification model. For each class, 
+
+the solid -colored curve represents the 1D normalized feature attribution profile computed v ia Integrated Page 14 of 23 
+
+Gradients (IG), averaged across all test segments of each class. The bar graph overlaid on each panel 
+
+represents the peak occurrence frequency of the fraction of class -specific spectra in which a Raman 
+
+peak was detected at each wavenumber position. Spectral positions where high IG attributes co -localize 
+
+with elevated peak occurrence frequency identify reproducible Raman vibrational bands , which are 
+
+most discriminative for each molecular class. 
+
+The IG attribution curve s of F -pSer and Citrate in Figure 6 align with experimentally observed peak -
+
+occurrence frequency, which confirms the model’s learned representations are grounded in genuine 
+
+molecular signatures rather than spurious background artifacts. The IG profile for F -Ser also 
+
+demonstrates strong agreement with its corresponding peak -occurrence frequency. Analysis of the 
+
+feature map visualizations reveals that the model successfully identifies key vibrational modes. For 
+
+example in Citrate, the model highlights the bending of the carboxylate group  𝛿 (𝐶𝑂𝑂 −) at 595 and 673 
+
+𝑐𝑚 −1, the carbon -carbon ( 𝑣 (𝐶 − 𝐶 )) stretching vibration at 1015  𝑐𝑚 −1, and the asymmetric stretching 
+
+of the carboxylate group ( 𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −)) at 1125, 1345, and 1550  𝑐𝑚 −1. In the case of F-Ser, we have 
+
+observed bending, wagging and vibrations of carboxylate group at 642, 790, 1423 and 1550. 
+
+Furthermore, it identifies ring bending modes at 620 and 1483 𝑐𝑚 −1, 𝐶𝐻 2 rocking at 740  𝑐𝑚 −1, and 
+
+torsion of  𝐶𝐻 2 and vibration of C -OH at 1250 𝑐𝑚 −1. Similarly , for F -pSer, the model correctly isolates 
+
+the vibrations characteristic of the phosphate group at 930, 950, and 1005  𝑐𝑚 −1 , unequivocally 
+
+demonstrating its ability to spatially localize the specific post -translational modification without human 
+
+annotation . A comprehensive peak assignment for each class is provided in Table 2. 
+
+Table 2. Vibrational modes assigned to the SERS peaks shown in Figure 6, with references .
+
+Citrate  Vibrational mode  References 
+
+595  𝛿 (𝐶𝑂𝑂 −) 59 
+
+673  𝛿 (𝐶𝑂𝑂 −) 59 
+
+10 15  𝑣 (𝐶𝐶 ) 59 –62 
+
+1345  𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −) 59,61 
+
+1550  𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −) 59,60 
+
+F-Ser  Vibrational mode  References 
+
+620  𝛿 (𝑟𝑖𝑛𝑔 ) 63 
+
+64 2 𝛿 , 𝜔 (𝐶𝑂𝑂 −) 64 
+
+740  𝜌 (𝐶𝐻 2) 34 
+
+790  𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −) 35 
+
+1250  𝜏 (𝐶𝐻 2), 𝑣 (𝐶𝑂𝐻 ) 34,35,37 
+
+1423  𝑣 (𝐶𝑂𝑂 −) 65 
+
+1461  𝛿 (𝐶𝐻 2) 65 
+
+148 3 𝛿 (𝐶𝐻 2) 63,64 Page 15 of 23 
+
+1550  𝑣 _𝑎𝑠 (𝐶𝑂𝑂 −) 59,60 
+
+F-pSer  Vibrational mode  References 
+
+930  𝑣 (𝑃𝑂 , 𝑃 𝑂 4) 66 –68 
+
+950  𝑣 (𝑃𝑂 4
+
+> 3−
+
+) 69,70 
+
+1005  𝛾 (𝐶𝐻 2), 𝑣 (𝐻𝑃 𝑂 4) 71,72 
+
+Pathway Probability Score Analysis 
+
+To quantitatively evaluate the discriminative capability and statistical certainty, we analyzed the 
+
+probability score distributions across the three -classes ( Figure 7 ) and their corresponding probability 
+
+densities (Figure S4 in the supporting information ). In each pathway, the model assigns high 
+
+probabilities to the correct class while suppressing non -corresponding classes. Specifically, citrate 
+
+samples cluster ed near to 1 in Figure 7A, with F -Ser and F -pSer near to 0. Similarly, F -Ser samples 
+
+show high probability in Figure 7B, and F -pSer samples in Figure 7C, while the remaining classes are 
+
+confined to low -probability regions. 
+
+From an interpretability perspective , these pathway -level probability distributions provide an 
+
+intermediate explanatory layer between raw attributes and final classification outputs. While integrated 
+
+gradients in Figure 6 highlight the specific Raman shift region s contributing most to a prediction, the 
+
+pathway probability scores reflect how confidently the model supports each biochemical hypothesis. 
+
+In highly sensitive and stochastic analytical techniques such as single -molecule peptide SERS, 
+
+deterministic, threshold -based predictions are insufficient. Reliable diagnostics require well -calibrated 
+
+probability estimates to prevent transient noise from b eing misinterpreted as genuine molecular trapping 
+
+events. This hierarchical framework mirrors the decision -making process of human experts and 
+
+mitigates overconfident misclassifications, a recognized bottleneck in SERS diagnostics. Recent studies 
+
+employing MIL for SERS -based liquid biopsies has demonstrated that sequential hierarchical 
+
+architectures where baseline anomaly detection strictly gates subsequent fine -grained sub -
+
+classifications are essential for achieving high -fidelity molecular identification 50 .
+
+Figure 7. Pathway Confidence Analysis of the Bi -Path hierarchical deep learning model . The violin 
+
+plots of probability scores of Citrate pathway (A), F -Ser pathway (B), and F -pSer pathway (C). The 
+
+figure illustrates the distribution of final probability scores generated by the hierarchical classification 
+
+head across the test dataset. Page 16 of 23 
+
+Conclusion 
+
+In conclusion, we establish a physics -informed, bi -path hierarchical deep learning framework to decode 
+
+highly stochastic single -molecule SERS (SM -SERS) signals from a particle -in -pore plasmonic sensor. 
+
+This approach addresses key limitations of SM -SERS by extracting chemically meaningful signatures 
+
+from temporally fluctuating, low -intensity, and background -contaminated spectra, where conventional 
+
+analytical and supervised learning methods often fail. 
+
+The framework integrates correlation -guided segmentation, attention -based multiple instance learning 
+
+(MIL), and a temporal encoder to jointly capture spatial and temporal features of dynamics peptide 
+
+signals. In SM -SERS peptide measurements , spectral sequences contain transient binding events, idle 
+
+states, citrate interference, and partial hotspot excitation, making frame -level annotation impractical. 
+
+This challenge is overcome through adaptive segmentation and MIL, enabling the model to ide ntify and 
+
+emphas ize rare, information -rich spectra. In parallel, the temporal encoder (TCN and BiGRU) captures 
+
+blinking dynamics and sequential dependencies associated with analyte diffusion through the plasmonic 
+
+hotspot. 
+
+The fusion of spatial and temporal features, followed by hierarchical classi fication , enables effective 
+
+suppression of dominant background signals and accurate discrimination of peptides with subtle 
+
+spectral differences. Peak -sensitive regularization further constrains the model to focus on Raman -
+
+active features, reducing sensitivity to noise and baseline artifacts, while 1D -IG attribution enhances 
+
+chemical interpretability. This unified approach enables detection of subtle post -translational 
+
+modification signatures within highly overlapping spectral backgrounds. 
+
+Overall , this work establishes a robust computational paradigm for single -molecule chemometrics, 
+
+demonstrating that weakly supervised, physics -aware deep learning can transform stochastic plasmonic 
+
+sensing into an interpretable molecular readout. By filtering complex backgrounds and resolving 
+
+transient sub -molecular variations, the framework holds strong translational potential for next -
+
+generation liquid biopsies and real -time biological profiling. Beyond peptide phosphorylation, this 
+
+architecture will seam lessly translate into broader clinical diagnostics, including early -stage cancer and 
+
+neurodegenerative biomarker analysis . Ultimately, our core mechanism for decoding label -ambiguous 
+
+temporal data can be adapted across single -molecule biophysics and medical imaging, paving the way 
+
+for ultra -sensitive, real -time diagnostic tools in precision medicine. 
+
+Methods 
+
+Material 
+
+We purchased F -Ser and F -pSer from Sigma -Aldrich. MicroChemicals GmbH supplied silicon wafers 
+
+with 100 nm Si 3N4 membranes . The nonfunctionalized 50 nm gold nanoparticles (AuNPs) from Sigma 
+
+(concentration of 3.5 × 1010 particles/mL) in 0.1 mM PBS citrate stabilized, reactant free. 
+
+Apparatuses and Software used 
+
+We acquired SERS using a Thermo Fisher DXR2xi Raman imaging microscope equipped with an 
+
+Andor Solis software for over 200 s, over which a 0.1 s exposure time for each spectrum . The nanopore Page 17 of 23 
+
+was fabricated via focused ion beam (FIB) milling and characterized by a Sigma HD VP field -emission 
+
+scanning electron microscope (FE -SEM). A gold layer was deposited using a Q150T ES sputter coater. 
+
+Spectral preprocessing was performed in MATLAB R202 2b (See supporting information Figure S1 ),
+
+while subsequent data organization and model training and validation conducted by using Python within 
+
+the Visual Studio Code environment. To optimize computational efficiency for the deep learning 
+
+pipeline, model training was accelerated using NVIDIA CUDA on a GPU. 
+
+Nanopore fabrication 
+
+The gold nanopores were fabricated by using Focused Ion Beam (FIB) on commercial Si 3N4 membranes 
+
+supported on silicon. The size and thickness of the SiN window was 1 × 1mm and 100nm respectively. 
+
+After sputtering a 2 nm titanium and 100 nm gold layer on the front side and 2nm gold layer at back 
+
+side of the Si 3N4 membrane, FIB milling (FEI Helios DualBeam) from the back side of the membrane 
+
+to create nanopores with 200nm diameter. 
+
+Spectra Preprocessing 
+
+Cosmic ray artifacts were first removed using median filtering in MATLAB. Baseline correction was 
+
+subsequently performed using the asymmetric least squares (ALS) method to suppress fluorescence and 
+
+background effects . The spectra were then denoised using a Savitzky –Golay filter (window = 9, 
+
+polynomial = 3) and standardized via min –max normalization. Finally, a Pearson correlation algorithm 
+
+was used to isolate particle -trapping events from empty nanopore noise, and the data were segmented 
+
+for bi -path hierarc hical modeling. 
+
+SERS Spectra Segmentation 
+
+To resolve stochastic spectral fluctuations from peptide diffusion and blinking, we employed Pearson 
+
+correlation -based segmentation. The algorithm iteratively compares time -series spectra to a reference 
+
+(Sref ), grouping similar signals into "bags" to capture discrete molecular states. Once a valid Sref is 
+
+established at index  𝑖 , the algorithm initiates a forward -looking temporal window (24 frames) which is 
+
+consistent with a ~2.5 s resident -time of the molecule in the hotspot. For each subsequent frame Sk
+
+(where  𝑘 > 𝑖  ), the Pearson Correlation coefficient (r) calculated as follows: 
+
+## 𝑟 = ∑(𝑆 𝑟𝑒𝑓 −𝑆 ̅𝑟𝑒𝑓 )(𝑆 𝑘 −𝑆 ̅𝑘 ) 
+
+> √∑(𝑆 𝑟𝑒𝑓 −𝑆 ̅𝑟𝑒𝑓 )2∑(𝑆 𝑘 −𝑆 ̅𝑘 )2
+
+## (1) 
+
+We considered a correlation threshold  𝑟  > .65 and a segment containing less than 3 spectra discarded 
+
+as stochastic noise. This approach isolates high -fidelity molecular signatures from noise and idle states 
+
+by prioritizing spectral morphology over absolute intensity. 
+
+Training of the model 
+
+The deep learning model was trained using a supervised hierarchical approach designed to resolve 
+
+single -molecule SERS signatures across three distinct classes: Citrate, F -Ser, and F -pSer. To address Page 18 of 23 
+
+the class imbalance, we implemented a Weighted Random Sampler and applied computed class weights 
+
+to a specialized Two Stage Loss function (detailed in the GitHub link), which jointly optimized 
+
+classification accuracy and the hierarchical decision -making process. The training utilized the AdamW 
+
+optimizer with an initial learning rate of 3* 10 -4 and a weight decay of 10 -4 to prevent overfitting. We 
+
+employed a ReduceLROnPlateau scheduler to adaptively adjust the learning rate based on validation 
+
+performance, complemented by a five -epoch linear warmup phase to stabilize early -stage gradient flow. 
+
+To manage the computational load of high -dimensional spectral segments (up to 25 -time steps), we 
+
+utilized gradient accumulation with a total effective batch size of 64 and implemented mixed -precision 
+
+training on an NVIDIA GPU. The model was trained for 100 epochs, with an early s topping patience 
+
+of 20 epochs based on validation accuracy to ensure the selection of the most robust and generalized 
+
+parameter state. Page 19 of 23 
+
+# Literature 
+
+(1) Gaizley, E. J.; Surinova, S. The Pursuit of Ultrasensitive Phosphoproteomics to Unravel 
+
+Signalling in Rare Cells. Commun. Biol. 2025 , 8 (1), 1738. https://doi.org/10.1038/s42003 -
+
+025 -09131 -3. 
+
+(2) Yu, F.; Teo, G. C.; Kong, A. T.; Haynes, S. E.; Avtonomov, D. M.; Geiszler, D. J.; 
+
+Nesvizhskii, A. I. Identification of Modified Peptides Using Localization -Aware Open Search. 
+
+Nat. Commun. 2020 , 11 (1), 4065. https://doi.org/10.1038/s41467 -020 -17921 -y. 
+
+(3) Lancaster, N. M.; Sinitcyn, P.; Forny, P.; Peters -Clarke, T. M.; Fecher, C.; Smith, A. J.; 
+
+Shishkova, E.; Arrey, T. N.; Pashkova, A.; Robinson, M. L.; Arp, N.; Fan, J.; Hansen, J.; 
+
+Galmozzi, A.; Serrano, L. R.; Rojas, J.; Gasch, A. P.; Westphall, M. S.; S tewart, H.; Hock, C.; 
+
+Damoc, E.; Pagliarini, D. J.; Zabrouskov, V.; Coon, J. J. Fast and Deep Phosphoproteome 
+
+Analysis with the Orbitrap Astral Mass Spectrometer. Nat. Commun. 2024 , 15 (1), 7016. 
+
+https://doi.org/10.1038/s41467 -024 -51274 -0. 
+
+(4) Huang, J.; Mousavi, M. Z.; Giovannini, G.; Zhao, Y.; Hubarevich, A.; Soler, M. A.; Rocchia, 
+
+W.; Garoli, D.; De Angelis, F. Multiplexed Discrimination of Single Amino Acid Residues in 
+
+Polypeptides in a Single SERS Hot Spot. Angew. Chem. Int. Ed. 2020 , 59 (28), 11423 –11431. 
+
+https://doi.org/10.1002/anie.202000489. 
+
+(5) Alfaro, J. A.; Bohländer, P.; Dai, M.; Filius, M.; Howard, C. J.; van Kooten, X. F.; Ohayon, S.; 
+
+Pomorski, A.; Schmid, S.; Aksimentiev, A.; Anslyn, E. V.; Bedran, G.; Cao, C.; Chinappi, M.; 
+
+Coyaud, E.; Dekker, C.; Dittmar, G.; Drachman, N.; Eelkema, R.; G oodlett, D.; Hentz, S.; 
+
+Kalathiya, U.; Kelleher, N. L.; Kelly, R. T.; Kelman, Z.; Kim, S. H.; Kuster, B.; Rodriguez -
+
+Larrea, D.; Lindsay, S.; Maglia, G.; Marcotte, E. M.; Marino, J. P.; Masselon, C.; Mayer, M.; 
+
+Samaras, P.; Sarthak, K.; Sepiashvili, L.; Stein, D.; Wanunu, M.; Wilhelm, M.; Yin, P.; 
+
+Meller, A.; Joo, C. The Emerging Landscape of Single -Molecule Protein Sequencing 
+
+Technologies. Nat. Methods 2021 , 18 (6), 604 –617. https://doi.org/10.1038/s41592 -021 -
+
+01143 -1. 
+
+(6) Saimi, D.; Chen, Z. Chemical Tags and beyond: Live‐cell Protein Labeling Technologies for 
+
+Modern Optical Imaging. Smart Molecules 2023 , 1 (2). https://doi.org/10.1002/smo.20230002. 
+
+(7) Cao, C.; Cirauqui, N.; Marcaida, M. J.; Buglakova, E.; Duperrex, A.; Radenovic, A.; Dal 
+
+Peraro, M. Single -Molecule Sensing of Peptides and Nucleic Acids by Engineered Aerolysin 
+
+Nanopores. Nat. Commun. 2019 , 10 (1), 4918. https://doi.org/10.1038/s41467 -019 -12690 -9. 
+
+(8) Liu, D.; Chen, X.; Ren, M.; Ren, Y.; Yaltaye, M. W.; Huang, J. -A.; Tian, R.; Liang, L.; Zeng, 
+
+C. Single -Molecule Resolution of Oligopeptides in Anti -Aging Cosmetics Combined with 
+
+Nanopore Readouts and Deep Learning Model. Chemical Engineering Journal 2025 , 519 ,
+
+165442. https://doi.org/10.1016/j.cej.2025.165442. 
+
+(9) Hong, L. H.; Zhang, J. Z.; Gao, Z. H.; Yang, J.; Yang, H. Y.; Liu, J. M.; Li, Z. -Y. Seeing, 
+
+Counting, Identifying, and Distinguishing Single Molecules from Their Mixtures via Raman 
+
+Spectroscopy. Nano Lett. 2025 , 25 (34), 12947 –12953. 
+
+https://doi.org/10.1021/acs.nanolett.5c03057. 
+
+(10) Dieringer, J. A.; Lettan, R. B.; Scheidt, K. A.; Van Duyne, R. P. A Frequency Domain 
+
+Existence Proof of Single -Molecule Surface -Enhanced Raman Spectroscopy. J. Am. Chem. 
+
+Soc. 2007 , 129 (51), 16249 –16256. https://doi.org/10.1021/ja077243c. 
+
+(11) Lee, Y.; Choi, K.; Kim, J. -E.; Cha, S.; Nam, J. -M. Integrating, Validating, and Expanding 
+
+Information Space in Single -Molecule Surface -Enhanced Raman Spectroscopy for 
+
+Biomolecules. ACS Nano 2024 , 18 (37), 25359 –25371. 
+
+https://doi.org/10.1021/acsnano.4c09218. 
+
+(12) Zhao, Y.; Zhan, K.; Xin, P. -L.; Chen, Z.; Li, S.; De Angelis, F.; Huang, J. -A. Single -Molecule 
+
+SERS Discrimination of Proline from Hydroxyproline Assisted by a Deep Learning Model. 
+
+Nano Lett. 2025 , 25 (18), 7499 –7506. https://doi.org/10.1021/acs.nanolett.5c01177. 
+
+(13) Yaltaye, M. W.; Zhao, Y.; Zhan, K.; Bozo, E.; Xin, P. -L.; Farrahi, V.; De Angelis, F.; Huang, 
+
+J. -A. Single -Molecule SERS Detection of Phosphorylation in Serine and Tyrosine Using Deep 
+
+Learning -Assisted Plasmonic Nanopore. J. Phys. Chem. Lett. 2025 , 16 (33), 8418 –8426. 
+
+https://doi.org/10.1021/acs.jpclett.5c01753. Page 20 of 23 
+
+(14) Zhao, Y.; Iarossi, M.; De Fazio, A. F.; Huang, J. -A.; De Angelis, F. Label -Free Optical 
+
+Analysis of Biomolecules in Solid -State Nanopores: Toward Single -Molecule Protein 
+
+Sequencing. ACS Photonics 2022 , 9 (3), 730 –742. 
+
+https://doi.org/10.1021/acsphotonics.1c01825. 
+
+(15) Langer, J.; Jimenez de Aberasturi, D.; Aizpurua, J.; Alvarez -Puebla, R. A.; Auguié, B.; 
+
+Baumberg, J. J.; Bazan, G. C.; Bell, S. E. J.; Boisen, A.; Brolo, A. G.; Choo, J.; Cialla -May, 
+
+D.; Deckert, V.; Fabris, L.; Faulds, K.; García de Abajo, F. J.; Goodacr e, R.; Graham, D.; 
+
+Haes, A. J.; Haynes, C. L.; Huck, C.; Itoh, T.; Käll, M.; Kneipp, J.; Kotov, N. A.; Kuang, H.; 
+
+Le Ru, E. C.; Lee, H. K.; Li, J. -F.; Ling, X. Y.; Maier, S. A.; Mayerhöfer, T.; Moskovits, M.; 
+
+Murakoshi, K.; Nam, J. -M.; Nie, S.; Ozaki, Y.; Pastoriza -Santos, I.; Perez -Juste, J.; Popp, J.; 
+
+Pucci, A.; Reich, S.; Ren, B.; Schatz, G. C.; Shegai, T.; Schlücker, S.; Tay, L. -L.; Thomas, K. 
+
+G.; Tian, Z. -Q.; Van Duyne, R. P.; Vo -Dinh, T.; Wang, Y.; Willets, K. A.; Xu, C.; Xu, H.; Xu, 
+
+Y.; Yamamoto, Y. S.; Zhao, B.; Liz -Marzán, L. M. Present and Future of Surface -Enhanced 
+
+Raman Scattering. ACS Nano 2020 , 14 (1), 28 –117. https://doi.org/10.1021/acsnano.9b04224. 
+
+(16) Itoh, T.; Procházka, M.; Dong, Z. -C.; Ji, W.; Yamamoto, Y. S.; Zhang, Y.; Ozaki, Y. Toward a 
+
+New Era of SERS and TERS at the Nanometer Scale: From Fundamentals to Innovative 
+
+Applications. Chem. Rev. 2023 , 123 (4), 1552 –1634. 
+
+https://doi.org/10.1021/acs.chemrev.2c00316. 
+
+(17) Schmidt, M. M.; Brolo, A. G.; Lindquist, N. C. Single -Molecule Surface -Enhanced Raman 
+
+Spectroscopy: Challenges, Opportunities, and Future Directions. ACS Nano 2024 .
+
+https://doi.org/10.1021/acsnano.4c09483. 
+
+(18) Xin, P.; Zhao, Y.; Liang, Y.; Yaltaye, M. W.; Hubarevich, A.; Pankratova, V.; Wang, S.; 
+
+Huang, J. -A. Single -Molecule Monitoring of Nucleic Acid Dynamics Using Raman 
+
+Correlation Spectroscopy in Plasmonic Nanowells. ACS Nano 2025 , 19 (42), 37241 –37254. 
+
+https://doi.org/10.1021/acsnano.5c12000. 
+
+(19) Huang, J. -A.; Mousavi, M. Z.; Zhao, Y.; Hubarevich, A.; Omeis, F.; Giovannini, G.; Schütte, 
+
+M.; Garoli, D.; De Angelis, F. SERS Discrimination of Single DNA Bases in Single 
+
+Oligonucleotides by Electro -Plasmonic Trapping. Nat. Commun. 2019 , 10 (1), 5321. 
+
+https://doi.org/10.1038/s41467 -019 -13242 -x. 
+
+(20) Petushkova, N. A.; Zgoda, V. G.; Pyatnitskiy, M. A.; Larina, O. V.; Teryaeva, N. B.; Potapov, 
+
+A. A.; Lisitsa, A. V. Post -Translational Modifications of FDA -Approved Plasma Biomarkers 
+
+in Glioblastoma Samples. PLoS One 2017 , 12 (5), e0177427. 
+
+https://doi.org/10.1371/journal.pone.0177427. 
+
+(21) Sugiyama, N.; Masuda, T.; Shinoda, K.; Nakamura, A.; Tomita, M.; Ishihama, Y. 
+
+Phosphopeptide Enrichment by Aliphatic Hydroxy Acid -Modified Metal Oxide 
+
+Chromatography for Nano -LC -MS/MS in Proteomics Applications. Molecular & Cellular 
+
+Proteomics 2007 , 6 (6), 1103 –1109. https://doi.org/10.1074/mcp.T600060 -MCP200. 
+
+(22) Yang, F.; Yu, X.; Liu, C.; Qu, C. -X.; Gong, Z.; Liu, H. -D.; Li, F. -H.; Wang, H. -M.; He, D. -F.; 
+
+Yi, F.; Song, C.; Tian, C. -L.; Xiao, K. -H.; Wang, J. -Y.; Sun, J. -P. Phospho -Selective 
+
+Mechanisms of Arrestin Conformations and Functions Revealed by Unnatural A mino Acid 
+
+Incorporation and 19F -NMR. Nat. Commun. 2015 , 6 (1), 8202. 
+
+https://doi.org/10.1038/ncomms9202. 
+
+(23) Wang, Z.; Ranasinghe, J. C.; Wu, W.; Chan, D. C. Y.; Gomm, A.; Tanzi, R. E.; Zhang, C.; 
+
+Zhang, N.; Allen, G. I.; Huang, S. Machine Learning Interpretation of Optical Spectroscopy 
+
+Using Peak -Sensitive Logistic Regression. ACS Nano 2025 , 19 (16), 15457 –15473. 
+
+https://doi.org/10.1021/acsnano.4c16037. 
+
+(24) Wang, Z.; Ye, J.; Zhang, K.; Ding, L.; Granzier -Nakajima, T.; Ranasinghe, J. C.; Xue, Y.; 
+
+Sharma, S.; Biase, I.; Terrones, M.; Choi, S. H.; Ran, C.; Tanzi, R. E.; Huang, S. X.; Zhang, 
+
+C.; Huang, S. Rapid Biomarker Screening of Alzheimer’s Disease by Inter pretable Machine 
+
+Learning and Graphene -Assisted Raman Spectroscopy. ACS Nano 2022 , 16 (4), 6426 –6436. 
+
+https://doi.org/10.1021/acsnano.2c00538. 
+
+(25) Zhao, Y.; Zhan, K.; Xin, P. -L.; Chen, Z.; Li, S.; De Angelis, F.; Huang, J. -A. Single -Molecule 
+
+SERS Discrimination of Proline from Hydroxyproline Assisted by a Deep Learning Model. 
+
+Nano Lett. 2025 , 25 (18), 7499 –7506. https://doi.org/10.1021/acs.nanolett.5c01177. Page 21 of 23 
+
+(26) Khabarov, K.; Baldi, I. M.; Blanco Formoso, M.; Khozeymeh Sarbishe, F.; Storari, V.; Villa, 
+
+F.; Difato, F.; Tantussi, F.; De Angelis, F. Single -Molecule Peptide Discrimination via Flow -
+
+Through SERS and Machine Learning. ACS Photonics 2026 .
+
+https://doi.org/10.1021/acsphotonics.5c02676. 
+
+(27) Shi, J.; Bera, K.; Mukherjee, P.; Alex, A.; Chaney, E. J.; Spencer -Dene, B.; Majer, J.; 
+
+Marjanovic, M.; Spillman, D. R.; Hood, S. R.; Boppart, S. A. Weakly Supervised 
+
+Identification and Localization of Drug Fingerprints Based on Label -Free Hyperspectral 
+
+CARS Microscopy. Anal. Chem. 2023 , 95 (29), 10957 –10965. 
+
+https://doi.org/10.1021/acs.analchem.3c00979. 
+
+(28) Gao, Z.; Mao, A.; Dong, Y.; Clayton, H.; Wu, J.; Liu, J.; Wang, C.; He, K.; Gong, T.; Li, C.; 
+
+Crispin -Ortuzar, M. SMMILe Enables Accurate Spatial Quantification in Digital Pathology 
+
+Using Multiple -Instance Learning. Nat. Cancer 2025 , 6 (12), 2025 –2041. 
+
+https://doi.org/10.1038/s43018 -025 -01060 -8. 
+
+(29) Wu, Z.; He, H.; Zhao, X.; Lin, Z.; Ye, Y.; Guo, J.; Hu, W.; Jiang, X. Reimagining Cancer 
+
+Tissue Classification: A Multi -Scale Framework Based on Multi -Instance Learning for Whole 
+
+Slide Image Classification. Med. Biol. Eng. Comput. 2025 , 63 (9), 2617 –2635. 
+
+https://doi.org/10.1007/s11517 -025 -03341 -x. 
+
+(30) Gu, T.; Zhang, Y.; Wang, L. TCN -BiGRU: A Hybrid Deep Learning Architecture for 
+
+Enhanced Temperature Time Series Forecasting. In 2024 6th International Conference on 
+
+Robotics, Intelligent Control and Artificial Intelligence (RICAI) ; IEEE, 2024; pp 590 –594. 
+
+https://doi.org/10.1109/RICAI64321.2024.10911112. 
+
+(31) Li, L.; Hu, M.; Ren, F.; Xu, H. Temporal Attention Based TCN -BIGRU Model for Energy 
+
+Time Series Forecasting. In 2021 IEEE International Conference on Computer Science, 
+
+Artificial Intelligence and Electronic Engineering (CSAIEE) ; IEEE, 2021; pp 187 –193. 
+
+https://doi.org/10.1109/CSAIEE54046.2021.9543210. 
+
+(32) Schuknecht, F.; Kołątaj, K.; Steinberger, M.; Liedl, T.; Lohmueller, T. Accessible Hotspots for 
+
+Single -Protein SERS in DNA -Origami Assembled Gold Nanorod Dimers with Tip -to -Tip 
+
+Alignment. Nat. Commun. 2023 , 14 (1), 7192. https://doi.org/10.1038/s41467 -023 -42943 -7. 
+
+(33) Luz -Lima, C.; De Sousa, G. P.; Lima, J. A.; Melo, F. E. A.; Filho, J. M.; Polian, A.; Freire, P. 
+
+T. C. High Pressure Raman Spectra of β -Form of l -Glutamic Acid. Vib. Spectrosc. 2012 , 58 ,
+
+181 –187. https://doi.org/10.1016/j.vibspec.2011.12.005. 
+
+(34) Mary, M. B.; Ramakrishnan, V. Infrared and Laser Raman Spectral Studies of Bis(Dl -Aspartic 
+
+Acid) Sulfate. Spectrochim. Acta A Mol. Biomol. Spectrosc. 2005 , 62 (1 –3), 164 –170. 
+
+https://doi.org/10.1016/j.saa.2004.12.021. 
+
+(35) Tu, S.; Zhang, W.; Li, Y.; Tang, Y.; Hu, J.; Xiao, H. A Novel Technology Based on Raman 
+
+Spectroscopy for Effective Differentiation of Alanine Chiral Isomers. J. Mol. Struct. 2024 ,
+
+1312 . https://doi.org/10.1016/j.molstruc.2024.138587. 
+
+(36) Freire, P. T. C.; Barboza, F. M.; Lima, J. A.; Melo, F. E. A.; Filho, J. M. Raman Spectroscopy 
+
+of Amino Acid Crystals. In Raman Spectroscopy and Applications ; InTech, 2017. 
+
+https://doi.org/10.5772/65480. 
+
+(37) Šapić, M. Experimental and Theoretical Study of Aspartic Acid .
+
+(38) Jumabaev, A.; Holikulov, U.; Hushvaktov, H.; Absanov, A.; Bulavin, L. INTERACTION OF 
+
+VALINE WITH WATER MOLECULES: RAMAN AND DFT STUDY. Ukrainian Journal of 
+
+Physics 2022 , 67 (8), 602 –610. https://doi.org/10.15407/ujpe67.8.602. 
+
+(39) Zhu, G.; Zhu, X.; Fan, Q.; Wan, X. Raman Spectra of Amino Acids and Their Aqueous 
+
+Solutions. Spectrochim. Acta A Mol. Biomol. Spectrosc. 2011 , 78 (3), 1187 –1195. 
+
+https://doi.org/10.1016/j.saa.2010.12.079. 
+
+(40) Xiao, L.; Wang, C.; Dai, C.; Littlepage, L. E.; Li, J.; Schultz, Z. D. Untargeted Tumor 
+
+Metabolomics with Liquid Chromatography –Surface‐Enhanced Raman Spectroscopy. 
+
+Angewandte Chemie 2020 , 132 (9), 3467 –3471. https://doi.org/10.1002/ange.201912387. 
+
+(41) Ju, Y.; Neumann, O.; Bajomo, M.; Zhao, Y.; Nordlander, P.; Halas, N. J.; Patel, A. Identifying 
+
+Surface -Enhanced Raman Spectra with a Raman Library Using Machine Learning. ACS Nano 
+
+2023 , 17 (21), 21251 –21261. https://doi.org/10.1021/acsnano.3c05510. Page 22 of 23 
+
+(42) Sandusky, P.; Raftery, D. Use of Semiselective TOCSY and the Pearson Correlation for the 
+
+Metabonomic Analysis of Biofluid Mixtures: Application to Urine. Anal. Chem. 2005 , 77 
+
+(23), 7717 –7723. https://doi.org/10.1021/ac0510890. 
+
+(43) Chen, C.; Chen, F.; Yang, B.; Zhang, K.; Lv, X.; Chen, C. A Novel Diagnostic Method: FT -
+
+IR, Raman and Derivative Spectroscopy Fusion Technology for the Rapid Diagnosis of Renal 
+
+Cell Carcinoma Serum. Spectrochim. Acta A Mol. Biomol. Spectrosc. 2022 , 269 , 120684. 
+
+https://doi.org/10.1016/j.saa.2021.120684. 
+
+(44) Lee, Y. J.; Kim, G.; Jeong, C. W.; Kim, H. T.; Choi, M. J.; Park, S. B.; Lee, T.; Kim, H. J. 
+
+Raman Spectroscopy and One‐Dimensional Convolutional Neural Networks for the Forensic 
+
+Identification of Red Stamp Inks in Questioned Documents. Journal of Raman Spectroscopy 
+
+2026 , 57 (1), 80 –93. https://doi.org/10.1002/jrs.70018. 
+
+(45) Lee, Y. J.; Jeong, C. W.; Kim, H. T.; Lee, T. -J.; Kim, H. J. Raman Spectroscopy and Machine 
+
+Learning for Forensic Document Examination. Analyst 2025 , 150 (9), 1785 –1794. 
+
+https://doi.org/10.1039/D4AN01529K. 
+
+(46) Cheng, Z.; Chen, F.; Zuo, E.; Gong, Z.; Xiao, M.; Li, C.; Liu, Y.; Liu, P.; Chen, C.; Lv, X.; 
+
+Chen, C. The MLSE -SCAM Architecture Combines with the Improved DRSN -TIC Model for 
+
+Raman Spectroscopy Small -Sample Data Learning. Expert Syst. Appl. 2025 , 279 , 127462. 
+
+https://doi.org/10.1016/j.eswa.2025.127462. 
+
+(47) Shi, J.; Bera, K.; Mukherjee, P.; Alex, A.; Chaney, E. J.; Spencer -Dene, B.; Majer, J.; 
+
+Marjanovic, M.; Spillman, D. R.; Hood, S. R.; Boppart, S. A. Weakly Supervised 
+
+Identification and Localization of Drug Fingerprints Based on Label -Free Hyperspectral 
+
+CARS Microscopy. Anal. Chem. 2023 , 95 (29), 10957 –10965. 
+
+https://doi.org/10.1021/acs.analchem.3c00979. 
+
+(48) Carbonneau, M. -A.; Cheplygina, V.; Granger, E.; Gagnon, G. Multiple Instance Learning: A 
+
+Survey of Problem Characteristics and Applications. Pattern Recognit. 2018 , 77 , 329 –353. 
+
+https://doi.org/10.1016/j.patcog.2017.10.009. 
+
+(49) Gao, Z.; Mao, A.; Dong, Y.; Clayton, H.; Wu, J.; Liu, J.; Wang, C.; He, K.; Gong, T.; Li, C.; 
+
+Crispin -Ortuzar, M. SMMILe Enables Accurate Spatial Quantification in Digital Pathology 
+
+Using Multiple -Instance Learning. Nat. Cancer 2025 , 6 (12), 2025 –2041. 
+
+https://doi.org/10.1038/s43018 -025 -01060 -8. 
+
+(50) Shin, H.; Choi, B. H.; Shim, O.; Kim, J.; Park, Y.; Cho, S. K.; Kim, H. K.; Choi, Y. Single 
+
+Test -Based Diagnosis of Multiple Cancer Types Using Exosome -SERS -AI for Early Stage 
+
+Cancers. Nat. Commun. 2023 , 14 (1), 1644. https://doi.org/10.1038/s41467 -023 -37403 -1. 
+
+(51) Wu, Z.; He, H.; Zhao, X.; Lin, Z.; Ye, Y.; Guo, J.; Hu, W.; Jiang, X. Reimagining Cancer 
+
+Tissue Classification: A Multi -Scale Framework Based on Multi -Instance Learning for Whole 
+
+Slide Image Classification. Med. Biol. Eng. Comput. 2025 , 63 (9), 2617 –2635. 
+
+https://doi.org/10.1007/s11517 -025 -03341 -x. 
+
+(52) Chen, X.; Qiu, P.; Zhu, W.; Li, H.; Wang, H.; Sotiras, A.; Wang, Y.; Razi, A. TimeMIL: 
+
+Advancing Multivariate Time Series Classification via a Time -Aware Multiple Instance 
+
+Learning. 2024 .
+
+(53) Ma, D.; Ren, W.; Han, M. A Two -Stage Causality Method for Time Series Prediction Based 
+
+on Feature Selection and Momentary Conditional Independence. Physica A: Statistical 
+
+Mechanics and its Applications 2022 , 595 , 126970. 
+
+https://doi.org/10.1016/j.physa.2022.126970. 
+
+(54) Fu, C.; Zhang, K.; Guan, H.; Deng, S.; Sun, Y.; Ding, Y.; Wang, J.; Liu, J. Progressive 
+
+Prediction Algorithm by Multi -Interval Data Sampling in Multi -Task Learning for Real -Time 
+
+Gas Identification. Sens. Actuators B Chem. 2024 , 418 , 136271. 
+
+https://doi.org/10.1016/j.snb.2024.136271. 
+
+(55) Duy, H. A.; Srisongkram, T. Bidirectional Long Short -Term Memory (BiLSTM) Neural 
+
+Networks with Conjoint Fingerprints: Application in Predicting Skin -Sensitizing Agents in 
+
+Natural Compounds. J. Chem. Inf. Model. 2025 , 65 (6), 3035 –3047. 
+
+https://doi.org/10.1021/acs.jcim.5c00032. 
+
+(56) Tng, S. S.; Le, N. Q. K.; Yeh, H. -Y.; Chua, M. C. H. Improved Prediction Model of Protein 
+
+Lysine Crotonylation Sites Using Bidirectional Recurrent Neural Networks. J. Proteome Res. 
+
+2022 , 21 (1), 265 –273. https://doi.org/10.1021/acs.jproteome.1c00848. Page 23 of 23 
+
+(57) Chin, C. -L.; Chang, C. -E.; Chao, L. Interpretable Multiscale Convolutional Neural Network 
+
+for Classification and Feature Visualization of Weak Raman Spectra of Biomolecules at Cell 
+
+Membranes. ACS Sens. 2025 , 10 (4), 2652 –2666. https://doi.org/10.1021/acssensors.4c03260. 
+
+(58) Shi, G.; Wu, H.; Luo, S.; Lu, X.; Ren, B.; Zhang, Q.; Lin, W.; Chen, R.; Guo, P.; Chen, H.; 
+
+Tian, Z.; Shao, G.; Yang, L.; Liu, G. 1D Gradient -Weighted Class Activation Mapping, 
+
+Visualizing Decision Process of Convolutional Neural Network -Based Models in 
+
+Spectroscopy Analysis. Anal. Chem. 2023 , 95 (26), 9959 –9966. 
+
+https://doi.org/10.1021/acs.analchem.3c01101. 
+
+(59) Zhang, Y.; Prabakar, S.; Le Ru, E. C. Coadsorbed Species with Halide Ligands on Silver 
+
+Nanoparticles with Different Binding Affinities. The Journal of Physical Chemistry C 2022 ,
+
+126 (20), 8692 –8702. https://doi.org/10.1021/acs.jpcc.2c01092. 
+
+(60) Sliman, O.; Bumm, L. A.; Callaghan, R.; Blatchford, C. G.; Kerker, M. Surface -Enhanced 
+
+Raman Scattering by Citrate on Colloidal Silver ; 1983; Vol. 87. 
+
+https://pubs.acs.org/sharingguidelines. 
+
+(61) Kerker, M.; Siiman, O.; Bumm, L. A.; Wang, D. -S. Surface Enhanced Raman Scattering 
+
+(SERS) of Citrate Ion Adsorbed on Colloidal Silver. Appl. Opt. 1980 , 19 (19), 3253. 
+
+https://doi.org/10.1364/AO.19.003253. 
+
+(62) Grys, D. -B.; de Nijs, B.; Salmon, A. R.; Huang, J.; Wang, W.; Chen, W. -H.; Scherman, O. A.; 
+
+Baumberg, J. J. Citrate Coordination and Bridging of Gold Nanoparticles: The Role of Gold 
+
+Adatoms in AuNP Aging. ACS Nano 2020 , 14 (7), 8689 –8696. 
+
+https://doi.org/10.1021/acsnano.0c03050. 
+
+(63) Mary, Y. S.; Ushakumari, L.; Harikumar, B.; Varghese, H. T.; Yohannan Panicker, C. Iranian 
+
+Chemical Society FT -IR, FT -Raman and SERS Spectra of L -Proline ; 2009; Vol. 6. 
+
+(64) Cárcamo, J. J.; Aliaga, A. E.; Clavijo, E.; Garrido, C.; Gómez -Jeria, J. S.; Campos -Vallette, M. 
+
+M. Proline and Hydroxyproline Deposited on Silver Nanoparticles. A Raman, SERS and 
+
+Theoretical Study. Journal of Raman Spectroscopy 2012 , 43 (6), 750 –755. 
+
+https://doi.org/10.1002/jrs.3092. 
+
+(65) Jarmelo, S.; Reva, I.; Carey, P. R.; Fausto, R. Infrared and Raman Spectroscopic 
+
+Characterization of the Hydrogen -Bonding Network in l -Serine Crystal. Vib. Spectrosc. 2007 ,
+
+43 (2), 395 –404. https://doi.org/10.1016/j.vibspec.2006.04.025. 
+
+(66) Ma, H.; Liu, S.; Liu, Y.; Zhu, J.; Han, X. X.; Ozaki, Y.; Zhao, B. In -Situ Fingerprinting 
+
+Phosphorylated Proteins via Surface -Enhanced Raman Spectroscopy: Single -Site 
+
+Discrimination of Tau Biomarkers in Alzheimer’s Disease. Biosens. Bioelectron. 2021 , 171 ,
+
+112748. https://doi.org/10.1016/j.bios.2020.112748. 
+
+(67) Lai, Y. M.; Liang, X. F.; Yang, S. Y.; Wang, J. X.; Cao, L. H.; Dai, B. Raman and FTIR 
+
+Spectra of Iron Phosphate Glasses Containing Cerium. J. Mol. Struct. 2011 , 992 (1 –3), 84 –88. 
+
+https://doi.org/10.1016/j.molstruc.2011.02.049. 
+
+(68) Niaura, G.; Gaigalas, A. K.; Vilker, V. L. Surface -Enhanced Raman Spectroscopy of 
+
+Phosphate Anions: Adsorption on Silver, Gold, and Copper Electrodes. J. Phys. Chem. B 
+
+1997 , 101 (45), 9250 –9262. https://doi.org/10.1021/jp970097k. 
+
+(69) Frost, R. L.; Musumeci, A. W.; Kloprogge, J. T.; Adebajo, M. O.; Martens, W. N. Raman 
+
+Spectroscopy of Hydrotalcites with Phosphate in the Interlayer: Implications for the Removal 
+
+of Phosphate from Water. Journal of Raman Spectroscopy 2006 , 37 (7), 733 –741. 
+
+https://doi.org/10.1002/jrs.1500. 
+
+(70) Popović, L.; Manoun, B.; de Waal, D.; Nieuwoudt, M. K.; Comins, J. D. Raman Spectroscopic 
+
+Study of Phase Transitions in Li 3 PO 4. Journal of Raman Spectroscopy 2003 , 34 (1), 77 –83. 
+
+https://doi.org/10.1002/jrs.954. 
+
+(71) Kolesov, B. A.; Boldyreva, E. V. Difference in the Dynamic Properties of Chiral and Racemic 
+
+Crystals of Serine Studied by Raman Spectroscopy at 3−295 K. J. Phys. Chem. B 2007 , 111 
+
+(51), 14387 –14397. https://doi.org/10.1021/jp076083o. 
+
+(72) Jarvis, R. M.; Blanch, E. W.; Golovanov, A. P.; Screen, J.; Goodacre, R. Quantification of 
+
+Casein Phosphorylation with Conformational Interpretation Using Raman Spectroscopy. 
+
+Analyst 2007 , 132 (10), 1053. https://doi.org/10.1039/b702944f.

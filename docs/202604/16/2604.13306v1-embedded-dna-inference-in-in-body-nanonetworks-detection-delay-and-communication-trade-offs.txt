@@ -1,0 +1,297 @@
+Title: Embedded DNA Inference in In-Body Nanonetworks: Detection, Delay, and Communication Trade-Offs
+
+URL Source: https://arxiv.org/pdf/2604.13306v1
+
+Published Time: Thu, 16 Apr 2026 00:18:37 GMT
+
+Number of Pages: 6
+
+Markdown Content:
+# Embedded DNA Inference in In-Body Nanonetworks: Detection, Delay, and Communication Trade-Offs 
+
+Stefan Fischer 
+
+Institute for Telematics, University of L¨ ubeck, Germany Email: stefan.fischer@uni-luebeck.de 
+
+This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible. 
+
+Abstract —In-body molecular nanonetworks promise early ab-normality detection close to the source of biochemical events, but their communication capabilities are severely constrained by slow diffusion-based signaling and unstable alarm traffic. We study whether simple embedded DNA-based inference at the nanonode can improve alarm transmission to an exter-nal gateway. We compare raw reporting (RR), single-marker threshold reporting (TR), and embedded inference reporting (EIR) under a communication-oriented abstraction of DNA strand-displacement-based computation with marker gating, edge-triggered alarming, hysteretic state transitions, temporally correlated marker dynamics, diffusion-based alarm transport, and leaky gateway evidence integration. The simulations identify a bounded EIR success regime in the weak-to-moderate anomaly range: EIR can improve detection relative to RR and TR while remaining competitive in event-driven communication cost, especially relative to RR. The gain does not come from uniformly lower activity, but from more stable local alarm dynamics. EIR does not dominate globally; TR often remains cheaper when abnormalities are present, and EIR incurs additional local delay. These results point to a limited operating regime in which EIR is useful, rather than to a general advantage across settings. 
+
+Index Terms —Molecular communication, in-body nanonet-works, DNA strand displacement, local inference, false alarms, delay-cost trade-off. 
+
+I. I NTRODUCTION 
+
+Recent years have seen growing interest in Physical Neural Networks (PNNs), i.e., systems that realize neural computation directly in physical substrates rather than solely through con-ventional digital hardware. As discussed in our recent survey, this trend is driven by increasing energy and data-movement constraints in silicon-centered AI, especially in embedded and edge settings [1]. Within this broader landscape, DNA-based molecular neural systems are particularly relevant when sensing and computation must operate directly on biochemical signals. Against this background, molecular nanonetworks are a promising paradigm for in-body sensing and early abnormality detection, as they can operate close to the biochemical source of an event and communicate through molecules in environ-ments where conventional electromagnetic communication is ineffective or impractical [2]. However, molecular communi-cation is slow, bandwidth-limited [3], and easily burdened by excessive alarm traffic when many nanonodes monitor weak and noisy biochemical signatures [4]. A straightforward report-ing strategy, in which each nanonode forwards every locally relevant observation or every single-marker threshold crossing, is therefore often inefficient. It can overload the gateway with redundant or weakly informative alarms, increase false positives, and waste scarce communication opportunities in a strongly constrained in-body environment. The key difficulty is therefore not sensing alone, but deciding which local observa-tions are important enough to justify molecular transmission. While prior work has considered abnormality detection with local sensing and fusion-center or gateway-based decision making in molecular nanonetworks, the explicit use of an embedded molecular inference block at the nanonode to sup-press redundant alarms, and the resulting trade-off between reduced communication load and additional local inference delay, appears to have received little direct attention. DNA-based molecular computing offers one possible way to address this problem directly at the nanonode. In particu-lar, DNA strand displacement (DSD) enables programmable biochemical computation in which signal strands trigger the release or suppression of downstream strands [5]. Prior work has shown that such systems can implement concentration-based signal processing, weighted summation, and nonlinear decision functions via sequestration and winner-take-all mech-anisms [6], [7], [8]. This makes DNA-based local inference a plausible candidate for communication-aware pre-processing of multi-marker observations before alarm emission. However, local DNA inference is not free. Although DNA substrates offer extreme parallelism and direct processing of molecular inputs, their effective operating bandwidth remains limited, and complex strand-displacement cascades may re-quire minutes or even hours to approach equilibrium [6]. The central question is therefore under which operating conditions reduced alarm traffic and false alarms outweigh the additional local reaction delay. In this paper, we investigate communication-aware embed-ded DNA inference for in-body molecular nanonetworks. We consider nanonodes that sense multiple biochemical markers and perform a local molecular decision step before trans-mitting an alarm to an external gateway. Rather than claim-ing a sequence-level biochemical realization, we adopt acommunication-oriented functional abstraction consistent with DNA-based concentration weighting, thresholding, and com-
+
+> arXiv:2604.13306v1 [cs.ET] 14 Apr 2026
+
+petitive decision mechanisms. Based on this abstraction, we compare raw reporting (RR), single-marker threshold reporting (TR), and embedded inference reporting (EIR). The contributions of this paper are threefold: (i) we propose a compact system model for in-body molecular nanonetworks with embedded DNA-inspired local inference, diffusion-based alarm transport, and leaky gateway evidence integration; (ii) we compare RR, TR, and EIR under a reporting model that explicitly captures marker gating, edge-triggered alarming, hysteretic local state dynamics, variance-preserving temporally correlated marker evolution, and operating-point calibration under absence of abnormalities; and (iii) we show by sim-ulation that EIR admits a bounded success regime in which detection improves in the weak-to-moderate anomaly range while communication cost remains competitive rather than uniformly minimal. II. R ELATED WORK 
+
+A. Molecular Communication and In-Body Nanonetworks 
+
+Molecular communication and in-body nanonetworking have been studied as enabling paradigms for communica-tion among nanoscale devices in environments where con-ventional electromagnetic signaling is ineffective or im-practical. Prior survey and vision papers established the general communication-theoretic foundations of diffusion-based molecular channels, highlighted their relevance for nanomedicine, and framed the broader Internet of Bio-Nano Things (IoBNT) perspective [9], [10], [11]. This body of work has clarified both the promise and the main limitations of the paradigm, including slow propagation, channel memory, inter-symbol interference, and the difficulty of scaling com-munication reliably when many nanonodes share the same biochemical environment. A closely related line of work has addressed abnormality detection in molecular nanonetworks using distributed sensing nodes and a sink-side decision entity. Early two-tier schemes considered sensor nano-machines that locally detect abnormal-ities and report to a data-gathering node for final decision making [12], [13]. Subsequent work studied cooperative ab-normality detection with several sensors and a fusion center, including the analysis of reporting schemes, fusion rules, and detection performance under diffusive channels [14], [15]. More recent work has also considered gateway-related system aspects such as alarm-system architectures and timeliness-aware abnormality detection in the human circulatory system [16], [17]. However, these works primarily focus on sensing, reporting, fusion, gateway placement, or detection timeliness rather than on the question central to this paper: whether an embedded molecular inference block at the nanonode can suppress weak or redundant alarms before transmission. In particular, the explicit trade-off between reduced communication load and the additional delay introduced by local molecular inference appears to have received little direct attention in the in-body nanonetworking literature. 
+
+B. DNA Computing and Molecular Neural Systems 
+
+DNA strand displacement (DSD) has emerged as a central mechanism for programmable molecular computation and provides the biochemical basis for implementing signal pro-cessing directly in the molecular domain. Reviews of DSD-based computational systems summarize how logic gates, cascades, and larger reaction networks can be constructed from sequence-programmable strand interactions [5], [18]. A key milestone was the demonstration that DSD cascades can realize neural-network-style computation, including weighted summation and thresholding, in molecular form [19]. Closely related work also showed that scalable digital circuit compu-tation can be implemented using strand displacement cascades [7]. Subsequent research considerably expanded the expressive power of molecular neural systems. Winner-take-all DNA neu-ral networks enabled large-scale molecular pattern recognition [6], while more recent work demonstrated deeper fully con-nected and convolutional DNA neural networks [20] as well as supervised learning in DNA neural networks [8]. Beyond non-enzymatic DSD systems, enzymatic molecular neural networks have also shown strong nonlinear decision-making capabilities [21]. Nevertheless, this line of work is primarily concerned with realizing molecular computation itself. It does not directly address how such molecular inference blocks should be inte-grated into communication-constrained in-body nanonetworks in order to reduce unnecessary transmissions. 
+
+C. Local Multi-Marker Decision Making 
+
+A closely related literature studies molecular logic and biochemical decision systems for multi-input sensing and classification. DNA-based molecular computation has been used for multi-input diagnostic classification and the molecular analysis of complex biomarker profiles [22], [23]. More re-cently, spatially localized DNA classifiers have shown that lo-calized molecular decision systems can execute programmable classification of multiple miRNA inputs in a faster and more effective manner in clinical samples [24]. In addition, multi-threshold and multi-input DNA logic designs have been pro-posed for profiling cancer-related microRNA signatures [25], and recent review work has highlighted the growing practical relevance of DNA computing for diagnostic applications and molecular readout technologies [26]. These studies show that combining multiple molecular inputs can improve selectivity and enable richer decision rules than single-marker thresholding alone. However, their primary objective is typically diagnostic classification accu-racy or biochemical functionality rather than communication efficiency at the nanonetwork level. In contrast, our focus is on local multi-marker decision making as a communication-aware mechanism: the goal is not only to improve selectivity, but to suppress weak or redundant alarms before molecular trans-mission. Consistent with recent survey literature showing that neural-network-related work in molecular communication is still dominated by PHY-layer tasks such as channel estimation, synchronization, and detection, the coupled trade-off between local molecular inference delay, false-alarm suppression, and alarm-traffic reduction appears to have received little direct attention in the in-body nanonetworking literature [27]. III. S YSTEM MODEL 
+
+A. Considered Scenario 
+
+We consider an in-body molecular nanonetwork deployed in a bounded fluidic environment such as a vessel segment or a localized interstitial region. A set of N nanonodes is distributed in this environment and continuously monitors the local biochemical state. An abnormality event, such as the local emergence of a pathological process, changes the con-centrations of one or more biochemical markers. The objective of the nanonetwork is to detect such an event and report it to an external gateway by means of molecular signaling. Each nanonode senses a vector of m biochemical marker concentrations, 
+
+xi(t) = [ xi, 1(t), x i, 2(t), . . . , x i,m (t)] , (1) where xi,j (t) denotes the local concentration of marker j at node i and time t. In the present paper, we focus on the practically relevant case m = 2 , which already captures the central trade-off between a sensitive but unspecific marker and a more specific but weaker marker. The gateway is placed outside the immediate nanonetwork domain or at its boundary and receives alarm molecules emitted by nanonodes. Based on the arriving alarm pattern, the gateway decides whether an abnormality event is present. 
+
+B. Nanonode Architecture 
+
+Each nanonode consists of four functional blocks: 1) Sensing block: The sensing block measures the local biochemical marker concentrations. 2) Local inference block: The local inference block com-bines the sensed marker concentrations before transmis-sion. We do not model this block at sequence level. Instead, we use a functional abstraction consistent with DNA strand-displacement-based molecular computation, in which marker concentrations act as analog inputs, intermediate gate concentrations realize weighting, and sequestration or competitive reactions implement non-linear decision making. 3) Alarm release block: If the local decision exceeds a predefined threshold, the node releases alarm molecules into the environment. 4) Communication block: The released alarm molecules propagate toward the gateway through diffusion, option-ally superimposed with drift or flow, depending on the considered environment. 
+
+C. Local Inference Model 
+
+For each node i, the local inference block computes a scalar decision variable 
+
+zi(t) = 
+
+> m
+
+X
+
+> j=1
+
+wj xi,j (t) − θ, (2) where wj denotes the effective contribution of marker j and 
+
+θ is the local decision threshold. In the present instantiation with m = 2 , EIR combines a sensitive but less specific marker with a weaker but more specific second marker. A positive EIR state requires both a sufficiently large score and a sufficiently large concentration of the second marker. With hysteresis, ON and OFF transitions are separated: ON: zi(t) > θ, x i, 2(t) > τ g , (3) OFF: zi(t) < θ − ∆z or xi, 2(t) < τ g − ∆g , (4) where τg is the marker-2 gate threshold, ∆z the score hystere-sis margin, and ∆g the gate hysteresis margin. This realizes a specificity gate together with stabilized local state transitions. This abstraction is motivated by three experimentally and conceptually established properties of DNA-based molecular neural systems: (i) concentration-based signal encoding, (ii) weighting via reaction stoichiometry or gate concentrations, and (iii) nonlinear thresholding via sequestration or com-petitive hybridization. The abstraction allows us to analyze communication-system behavior without claiming a full bio-chemical realization of the underlying DNA circuit 1.
+
+D. Reporting Strategies 
+
+We compare three reporting strategies. 
+
+Raw reporting (RR): Each nanonode emits an alarm when-ever a locally sensed marker becomes relevant according to a basic sensing rule. This strategy minimizes local processing but may generate many transmissions and false alarms. 
+
+Single-marker threshold reporting (TR): Each nanonode emits an alarm only if a single designated marker exceeds a predefined threshold. This reduces some communication overhead but cannot exploit multi-marker evidence. 
+
+Embedded inference reporting (EIR): Each nanonode first combines multiple marker concentrations using the local in-ference block and emits an alarm only if the inferred decision output becomes positive. This strategy introduces additional local reaction delay but may substantially reduce alarm traffic and improve specificity. 
+
+E. Timing, Communication, and Event Model 
+
+The end-to-end detection process at node i consists of three delay components:  
+
+> •
+
+sensing delay Ts, 
+
+> •
+
+local inference delay Ti, 
+
+> •
+
+communication delay Tc.For raw reporting, the node does not perform local inference, and the reporting delay is 
+
+DRR  
+
+> i
+
+= Ts + Tc, (5) 
+
+DTR  
+
+> i
+
+≈ Ts + Tc, (6) 
+
+DEIR  
+
+> i
+
+= Ts + Ti + Tc. (7) 
+
+> 1There is a number of potential existing DNA technologies to be used for the real implemenantion. We note however, that this is not the purpose of this paper which instead aims at establishing more general results. Concrete realizations are postponed to future work.
+
+The additional term Ti is central to this study because communication savings are only meaningful if they are not outweighed by excessive local reaction time. When a node emits an alarm, it releases Ma alarm molecules into the environment. For node i at distance di from the gateway, the contribution of one alarm emission is modeled by a one-dimensional diffusion-based impulse response 
+
+hi(t) = η 1
+
+p4πD (t + ε) exp 
+
+
+
+− (di − vt )2
+
+4D(t + ε)
+
+
+
+e−λt , t > 0,
+
+(8) where D denotes the diffusion coefficient, v an optional drift velocity, λ an optional decay rate, and ε a small regulariza-tion term induced by the finite receiver size. In the present evaluation we use pure diffusion ( v = 0 ) without molecular decay ( λ = 0 ). The gateway does not decide on instantaneous arrivals alone. Instead, it maintains a leaky evidence state 
+
+Ak = βA k−1 + Ek, β = e−∆t/τ (gw)  
+
+> g
+
+, (9) where Ek is the alarm evidence arriving in time step k and 
+
+τ (gw)  
+
+> g
+
+is the gateway integration time constant. A gateway alarm is declared when Ak exceeds a predefined detection threshold Θg .We distinguish between the environmental states H0 (no abnormality) and H1 (abnormality present). Under H1, the local marker vector at a subset of nodes changes according to an anomaly signature. In the simplest case, marker 1exhibits a strong but less specific increase, whereas marker 2 exhibits a weaker but more specific increase. Under H0,marker concentrations fluctuate due to physiological back-ground activity and sensing noise, which may still trigger false alarms under insufficiently selective reporting rules. To capture biochemical persistence without distorting the nominal per-marker variance, we generate temporally correlated marker traces as a mean-tracking AR(1)-type process, 
+
+˜xi,j (tk) = μi,j (tk) + α ˜xi,j (tk−1) − μi,j (tk−1)
+
++ p1 − α2 σj ξi,j (k), (10) with ξi,j (k) ∼ N (0 , 1) and xi,j (tk) = max {0, ˜xi,j (tk)}. This yields temporally persistent but variance-controlled biochem-ical evidence. The overall system model is visualized in Fig. 1. IV. P ERFORMANCE METRICS AND DESIGN HYPOTHESIS 
+
+For strategy s ∈ {RR , TR , EIR }, we use five primary metrics: 
+
+P (s) 
+
+> D
+
+= Pr   bH = H1 | H 1, s , (11) 
+
+P (s) 
+
+> F A
+
+= Pr   bH = H1 | H 0, s , (12) 
+
+C(s) 
+
+> H0
+
+= MaNX
+
+> i=1
+
+n(s) 
+
+> i
+
+([0 , T ] | H 0), (13) 
+
+C(s) 
+
+> H1
+
+= MaNX
+
+> i=1
+
+n(s) 
+
+> i
+
+([ t0, t det ] | H 1), (14) 
+
+D(s) = t(s)det − t0, (15) 
+
+Fig. 1: Conceptual framework for in-vivo abnormality de-tection and external communication via DNA nanorobots (Section III). Left: Blood vessel cross-section illustrating DNA nanobots detecting cancer-specific biomarkers. Center: Functional stages including passive detection, DNA-based neural network inference for signal aggregation, and signal transmission to an on-body gateway. Right: Sequential flow of information from initial biochemical detection to external data reporting on a user device. where P (s) 
+
+> D
+
+is detection probability, P (s) 
+
+> F A
+
+is false-alarm proba-bility, C(s) 
+
+> H0
+
+is nuisance traffic over a fixed observation horizon under no event, C(s) 
+
+> H1
+
+is alarm traffic accumulated until gateway detection under an actual event, and D(s) is end-to-end detec-tion delay. The distinction between C(s) 
+
+> H0
+
+and C(s) 
+
+> H1
+
+is important because communication efficiency under nuisance conditions and communication efficiency during event-driven detection need not align. The working hypothesis of this paper is deliberately modest: EIR can be beneficial only in a bounded operating regime characterized by (i) sufficiently separable multi-marker sig-natures, (ii) temporally correlated biochemical evidence, (iii) non-negligible false-alarm pressure under simpler schemes, and (iv) local inference delay Ti that is not excessively large. Conversely, if the anomaly signature is weak, if the local state dynamics chatter, or if local molecular reactions are too slow, embedded inference is expected to lose its advantage despite improved selectivity. V. E VALUATION 
+
+A. Setup 
+
+For this study, we developed a custom stochastic system-level simulator because the question of this paper is not sequence-level DNA reaction design, but the communication-system effect of functionally abstracted local molecular in-ference under event-driven reporting, temporal correlation, diffusive transport, and gateway evidence integration. Existing detailed chemical or transport simulators on the one hand and detailed network simulators on the other would not directly provide this coupled abstraction level and would still require substantial custom model construction. We instantiate the model in a simple one-dimensional vessel segment of length L = 1000 μm with gateway position xG = 0 
+
+and abnormality source at xA = 750 μm. Unless otherwise stated, the simulation uses N = 50 nanonodes, time step ∆t = 1 s, horizon Tmax = 300 s, and abnormality onset 
+
+t0 = 30 s. Two markers are considered. Under H0, their mean concentrations are (μ(0) 1 , μ (0) 2 ) = (0 .20 , 0.10) with noise standard deviations (σ1, σ 2) = (0 .16 , 0.05) . Under H1, the baseline marker amplitudes are a1 = 0 .30 and a2 = 0 .12 with spatial decay lengths λ1 = 250 μm and λ2 = 200 μm. For EIR, we use (w1, w 2) = (1 .0, 0.90) , so that both mark-ers contribute strongly to the local decision while marker 1 remains slightly dominant. To make the decision more specific, marker 2 must additionally pass a gate calibrated at the 85th percentile under H0. Small hysteresis margins in the score (0.03 ) and in the marker-2 gate ( 0.01 ) make the local decision more stable and reduce rapid switching around the threshold. All strategies use edge-triggered alarming with a refractory period of 10 s, which prevents repeated emissions caused by short fluctuations. Alarm transport is modeled as one-dimensional diffusion with D = 3000 μm2/s, receiver radius 
+
+5 μm, no drift, and no decay, and the gateway combines arriving alarms over time using leaky evidence integration with time constant τ (gw)  
+
+> g
+
+= 20 s. Finally, local thresholds are set so that only about 2% of local states become positive under H0,and gateway thresholds are recalibrated for each strategy and sweep point to maintain a false-alarm level of roughly 5%. A key modeling assumption is that local marker concentrations evolve as variance-preserving temporally correlated processes with correlation factor α = 0 .85 . Under 
+
+H0, communication cost is measured over a fixed horizon; under H1, it is accumulated until gateway detection. For Fig. 2a, we sweep (a1, a 2) ∈ { (0 .03 , 0.012) , (0 .06 , 0.024) ,
+
+(0 .10 , 0.040) , (0 .15 , 0.060) , (0 .20 , 0.080) } to resolve the weak-event regime before saturation. 
+
+B. Local state dynamics 
+
+Before evaluating end-to-end behavior, we inspected local state dynamics because communication cost depends on how often nodes switch from OFF to ON. Under baseline H1, EIR has the highest mean ON fraction (0.337 versus 0.158 for RR and 0.117 for TR), so any benefit cannot be attributed to lower activity. Instead, EIR produces far fewer rising transitions per node (6.15 versus 13.90 for RR and 10.83 for TR) while keeping nodes active much longer once triggered (16.55 s versus 3.42 s and 3.25 s). Under H0, EIR also remains active longer (mean ON fraction 0.051 versus 0.021 and 0.022), indicating stabilized but longer-lived positive states rather than uniformly lower activity. 
+
+C. System-level results 
+
+Fig. 2 summarizes the accuracy-related trade-offs. The anomaly sweep in Fig. 2a is focused on weak-to-moderate events, because stronger anomalies quickly drive all strategies into the trivial PD ≈ 1 region. In this resolved regime, EIR shows the clearest detection advantage: at a1 = 0 .03 (with 
+
+a2 = 0 .012 ), it reaches PD ≈ 0.38 , compared with ≈ 0.25 
+
+for RR and ≈ 0.16 for TR; at a1 = 0 .06 , it rises to PD ≈ 0.69 
+
+versus ≈ 0.49 for both RR and TR; and at a1 = 0 .10 , it already reaches PD ≈ 0.99 , matching RR and exceeding TR ( ≈ 0.91 ).       
+
+> (a) Detection probability ver-sus coupled anomaly strength
+> (a1, a 2).
+> (b) False-alarm probability ver-sus noise level.
+
+Fig. 2: Accuracy-related trade-offs of RR, TR, and EIR. 
+
+> (a) Nuisance traffic under H0.
+> (b) Event-driven traffic until de-tection under H1.
+
+Fig. 3: Communication-cost behavior as the network size increases. Beyond a1 ≥ 0.15 , all strategies saturate at PD ≈ 1.Thus, EIR helps mainly when anomalies are still hard to detect; once the event becomes strong enough that all strategies detect it reliably, the difference largely disappears. Fig. 2b is again an operating-point-controlled comparison, because gateway thresholds were recalibrated for each strategy and sweep point. Within that setting, EIR remains in the same low-to-mid false-alarm band as RR and TR: for example, 
+
+PF A ≈ 0.053 at σ1 = 0 .08 , ≈ 0.073 at σ1 = 0 .12 and 0.16 ,and ≈ 0.053 at σ1 = 0 .20 . Thus, EIR improves detection without causing an obvious false-alarm collapse, but it does not provide a universal false-alarm advantage either. Fig. 3 shows a more nuanced communication picture. Under 
+
+H0, nuisance traffic grows roughly linearly with network size, with RR as the most expensive strategy, TR as the cheapest, and EIR typically in between. Under H1, TR also remains the most communication-efficient strategy as N grows: at N = 20 ,the event-driven traffic until detection is about 5481 molecules for EIR, compared with 5369 for RR and 5063 for TR; at 
+
+N = 100 , the corresponding values are about 19297, 19005, and 17029. EIR therefore does not provide universal traffic reduction, but often improves detection relative to RR while remaining in a comparable communication range. Fig. 4 shows the price of local inference. RR and TR are essentially insensitive to Ti, whereas the EIR delay rises from about 67 s at Ti = 0 to about 171 s at Ti = 120 , and its communication cost increases from about 9111 to about 19093 molecules. Fig. 4b shows the resulting bounded trade-off: at 
+
+a1 = 0 .06 , EIR reaches PD ≈ 0.69 with CH1 ≈ 14791 ,compared with ≈ 0.49 /15827 for RR and ≈ 0.49 /14015 
+
+for TR; at a1 = 0.10 , EIR reaches PD ≈ 0.99 with 
+
+CH1 ≈ 13002 , essentially matching RR in detection while (a) Detection delay versus local inference delay. 
+
+(b) Pareto view of event-driven communication cost and detec-tion probability. 
+
+Fig. 4: Delay and Pareto-style system trade-offs. staying below RR in communication cost. Once anomalies become strong, however, this advantage disappears because all strategies approach PD ≈ 1 and TR often retains lower traffic. Taken together, EIR is most useful for weak-to-moderate events. In that range, it can improve detection relative to RR without a large communication penalty. This gain is not free, however: EIR adds local delay, and TR often remains the cheaper strategy when abnormalities are present. VI. C ONCLUSION AND OUTLOOK 
+
+We studied embedded DNA-inspired inference for multi-marker in-body nanonetworks and compared raw reporting, single-marker thresholding, and embedded inference reporting under a common system model with diffusion-based alarm transport, leaky gateway evidence integration, and variance-preserving temporally correlated marker dynamics. The sim-ulations show that EIR is useful only in a bounded operating regime, mainly for weak-to-moderate anomalies where stabi-lizing local alarm dynamics improves detection. This benefit comes at the cost of additional local delay and does not make EIR uniformly preferable to TR or RR. EIR generates fewer rising alarm transitions and thus stabilizes local event signaling, while TR often remains cheaper under H1. Em-bedded molecular inference should therefore be viewed as a communication-aware trade-off rather than a universal winner. In future work, we will investigate richer temporal molec-ular integrators and distributed multi-node inference archi-tectures in which sensing, fusion, and alarm generation are separated across interacting nanobots. USE OF AI, AND DATA AND SOFTWARE AVAILABILITY 
+
+LLMs (ChatGPT and Gemini) were used during technical development of the simulator and linguistic refinement of the overall paper; Fig. 1 was generated with the help of Gemini NanoBanana. The author reviewed and edited all generated content and takes full responsibility for the final manuscript. Code, data, and plots are available on Zen-odo (https://doi.org/10.5281/zenodo.19416612) and on GitHub (https://github.com/fischesn/molecularNNsimulator). REFERENCES 
+
+[1] S. Fischer et al., Beyond silicon: Materials, mechanisms, and methods for physical neural computing , 2026. DOI : 10.48550/arXiv.2604.09833 [2] J. T. G´ omez et al., “DNA-based nanonetwork for abnormality detection and localization in the human body,” IEEE Transactions on Nanotechnology , vol. 23, pp. 794–808, 2024. DOI : 10.1109/TNANO.2024.3495541 [3] M. S ¸ . Kuran, H. B. Yilmaz, I. Demirkol, N. Farsad, and A. Goldsmith, “A survey on modulation techniques in molecular communication via diffusion,” 
+
+IEEE Communications Surveys & Tutorials , vol. 23, no. 1, pp. 7–28, 2021. DOI :10.1109/COMST.2020.3048099 [4] W. Gao, L. Shi, and L.-L. Yang, Molecular code-division multiple-access: Signaling, detection, and performance , 2024. DOI : 10.48550/arXiv.2402.16097 [5] F. C. Simmel, “Nucleic acid strand displacement - from DNA nanotechnology to translational regulation,” RNA Biol , vol. 20, no. 1, pp. 154–163, Jan. 2023. DOI :10.1080/15476286.2023.2204565 [6] K. M. Cherry and L. Qian, “Scaling up molecular pattern recognition with DNA-based winner-take-all neural networks,” Nature , vol. 559, no. 7714, pp. 370–376, 2018. DOI : 10.1038/s41586-018-0289-6 [7] L. Qian and E. Winfree, “Scaling up digital circuit computation with DNA strand displacement cascades,” Science , vol. 332, no. 6034, pp. 1196–1201, 2011. DOI :10.1126/science.1200520 [8] K. M. Cherry and L. Qian, “Supervised learning in DNA neural networks,” 
+
+Nature , 2025. DOI : 10.1038/s41586-025-09479-w [9] N. Farsad, H. B. Yilmaz, A. Eckford, C.-B. Chae, and W. Guo, “A comprehensive survey of recent advancements in molecular communication,” IEEE Communica-tions Surveys & Tutorials , vol. 18, no. 3, pp. 1887–1919, 2016. DOI : 10.1109/ COMST.2016.2527741 [10] B. Atakan, O. B. Akan, and S. Balasubramaniam, “Body area nanonetworks with molecular communications in nanomedicine,” IEEE Communications Magazine ,vol. 50, no. 1, pp. 28–34, 2012. DOI : 10.1109/MCOM.2012.6122529 [11] I. F. Akyildiz, M. Pierobon, S. Balasubramaniam, and Y. Koucheryavy, “The internet of bio-nano things,” IEEE Communications Magazine , vol. 53, no. 3, pp. 32–40, 2015. DOI : 10.1109/MCOM.2015.7060516 [12] S. Ghavami, F. Lahouti, and A. Masoudi-Nejad, “Modeling and analysis of abnormality detection in biomolecular nano-networks,” Nano Communication Networks , vol. 3, no. 4, pp. 229–241, 2012. DOI : 10.1016/j.nancom.2012.09.008 [13] S. Ghavami and F. Lahouti, “Abnormality detection in correlated gaussian molec-ular nano-networks: Design and analysis,” IEEE Transactions on NanoBioscience ,vol. 16, no. 3, pp. 189–202, 2017. DOI : 10.1109/TNB.2017.2659678 [14] R. Mosayebi, V. Jamali Kooshkghazi, N. Ghoroghchian, R. Schober, M. Nasiri-Kenari, and M. Mehrabi, “Cooperative abnormality detection via diffusive molec-ular communications,” IEEE Transactions on NanoBioscience , vol. 16, no. 8, pp. 828–842, 2017. DOI : 10.1109/TNB.2017.2775704 [15] N. Varshney, A. Patel, Y. Deng, W. Haselmayr, P. K. Varshney, and A. Nal-lanathan, “Abnormality detection inside blood vessels with mobile nanoma-chines,” IEEE Transactions on Molecular, Biological, and Multi-Scale Communi-cations , vol. 4, no. 3, pp. 189–194, 2018. DOI : 10.1109/TMBMC.2019.2913399 [16] F.-L. A. Lau et al., “Using off-the-shelf biosensors to implement gateways for alarm-system nanonetworks,” Nano Communication Networks , vol. 45, p. 100 584, Sep. 2025. DOI : 10.1016/j.nancom.2025.100584 [17] S. Pal, J. Torres G´ omez, R. Wendt, S. Fischer, and F. Dressler, “Age of information-based abnormality detection with decay in the human circulatory system,” IEEE Transactions on Molecular, Biological, and Multi-Scale Commu-nications , vol. 10, no. 3, pp. 487–492, Sep. 2024. DOI : 10.1109/TMBMC.2024. 3426951 [18] C. Chen, J. Wen, Z. Wen, S. Song, and X. Shi, “DNA strand displacement based computational systems and their applications,” Front Genet , vol. 14, p. 1 120 791, Feb. 2023. DOI : 10.3389/fgene.2023.1120791 [19] L. Qian, E. Winfree, and J. Bruck, “Neural network computation with DNA strand displacement cascades,” Nature , vol. 475, no. 7356, pp. 368–372, 2011. 
+
+> DOI
+
+: 10.1038/nature10262 [20] X. Liu et al., “Deep convolutional and fully-connected DNA neural networks,” 
+
+Nat Commun , vol. 16, no. 1, p. 10 629, Nov. 2025. DOI : 10.1038/s41467- 025-65618-x [21] S. Okumura et al., “Nonlinear decision-making with enzymatic neural networks,” 
+
+Nature , vol. 610, no. 7932, pp. 496–501, Oct. 2022. DOI : 10.1038/s41586-022-05218-7 [22] R. Lopez, R. Wang, and G. Seelig, “A molecular multi-gene classifier for disease diagnostics,” Nature Chemistry , vol. 10, pp. 746–754, 2018. DOI : 10 . 1038 / s41557-018-0056-1 [23] C. Zhang et al., “Cancer diagnosis with DNA molecular computation,” Nature Nanotechnology , vol. 15, no. 8, pp. 709–715, 2020. DOI : 10.1038/s41565-020-0699-0 [24] L. Yang et al., “A spatially localized DNA linear classifier for cancer diagnosis,” 
+
+Nature Communications , vol. 15, p. 4583, 2024. DOI : 10 . 1038 / s41467 - 024 -48869-y [25] M. Sanjabi and A. Jahanian, “Multi-threshold and multi-input DNA logic design style for profiling the microrna biomarkers of real cancers,” IET Nanobiotech-nology , vol. 13, no. 7, pp. 665–673, 2019. DOI : https : / / doi . org / 10 . 1049 / iet -nbt.2018.5275 [26] S. Takiguchi et al., “Harnessing DNA computing and nanopore decoding for practical applications: From informatics to microRNA-targeting diagnostics,” 
+
+Chem. Soc. Rev. , vol. 54, pp. 8–32, 1 2025. DOI : 10.1039/D3CS00396E [27] J. T. G´ omez et al., Communicating smartly in molecular communication en-vironments: Neural networks in the Internet of Bio-Nano Things , 2025. DOI :10.48550/arXiv.2506.20589

@@ -1,0 +1,604 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-16T20:18:43.272118+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 4,
+    "deep_cap": 8,
+    "deep_selected": 4,
+    "quick_candidates": 10,
+    "quick_skim_target": 13,
+    "quick_selected": 10
+  },
+  "deep_dive": [
+    {
+      "id": "2604.13963v1",
+      "title": "A generative model for bipartite gene-sharing networks",
+      "abstract": "Gene-sharing networks provide a powerful framework to study the evolution of viruses and mobile genetic elements. These bipartite networks, which link genes to the genomes that contain them, exhibit characteristic degree distributions: a scale-free distribution for genes and an exponential-like decay for genomes. Here, we propose a mechanistic model that explains these patterns through fundamental evolutionary processes including horizontal gene transfer, capture of new genes, emergence of new genomes, and gene loss. Using a mean-field approximation, we derive analytical expressions for the asymptotic gene and genome degree distributions, recapitulating a power-law distribution for genes and an exponential distribution for genomes. Numerical simulations validate these predictions and yield parameter values that closely fit empirical data from dsDNA viruses, RNA viruses, and prokaryotic pangenomes. This simple model with only two parameters provides a generative framework for bipartite gene-sharing networks, offering qualitative and quantitative insights into the main evolutionary forces driving genome plasticity. Setting the gene loss rate to zero, the gene and genome degree distributions of the model closely fit the empirically observed distributions. Thus, evolution of viruses appears to be dominated by gene gain, in agreement with the results of independent reconstructions of viral evolution.",
+      "authors": [
+        "Jaime Iranzo",
+        "Pedro Jódar",
+        "Eugene V. Koonin",
+        "Susanna Manrubia",
+        "José A. Cuesta"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-15T15:14:31+00:00",
+      "link": "https://arxiv.org/pdf/2604.13963v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Mechanistic model for gene-sharing networks and evolutionary dynamics of genomes",
+      "llm_evidence_cn": "基因共享网络机制模型与基因组演化动态",
+      "llm_evidence": "基因共享网络机制模型与基因组演化动态",
+      "canonical_evidence": "基因共享网络机制模型与基因组演化动态",
+      "llm_tldr_en": "Proposes a model for gene-sharing networks explaining genome evolution through horizontal transfer and gene loss.",
+      "llm_tldr_cn": "提出基因共享网络模型，通过水平转移和基因丢失解释基因组演化。",
+      "llm_tldr": "提出基因共享网络模型，通过水平转移和基因丢失解释基因组演化。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "evolutionary dynamics of core and dispensable genes in pangenomes",
+      "matched_requirement_id": "req-20",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.13986v1",
+      "title": "PRiMeFlow: Capturing Complex Expression Heterogeneity in Perturbation Response Modelling",
+      "abstract": "Predicting the effects of perturbations in-silico on cell state can identify drivers of cell behavior at scale and accelerate drug discovery. However, modeling challenges remain due to the inherent heterogeneity of single cell gene expression and the complex, latent gene dependencies. Here, we present PRiMeFlow, an end-to-end flow matching based approach to directly model the effects of genetic and small molecule perturbations in the gene expression space. The distribution-fitting approach taken by PRiMeFlow enables it to accurately approximate the empirical distribution of single-cell gene expression, which we demonstrate through extensive benchmarking inside PerturBench. Through ablation studies, we also validate important model design choices such as operating in gene expression space and parameterizing the velocity field with a U-Net architecture. The PRiMeFlow architecture was used as the basis for the model that won the Generalist Prize in the first ARC Virtual Cell Challenge.",
+      "authors": [
+        "Zichao Yan",
+        "Yan Wu",
+        "Mica Xu Ji",
+        "Chaitra Agrahar",
+        "Esther Wershof",
+        "Marcel Nassar",
+        "Mehrshad Sadria",
+        "Ridvan Eksi",
+        "Vladimir Trifonov",
+        "Ignacio Ibarra",
+        "Telmo Felgueira",
+        "Błażej Osiński",
+        "Rory Stark"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-15T15:33:07+00:00",
+      "link": "https://arxiv.org/pdf/2604.13986v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "modeling effects of genetic perturbations in gene expression space",
+      "llm_evidence_cn": "在基因表达空间中模拟遗传扰动的影响",
+      "llm_evidence": "在基因表达空间中模拟遗传扰动的影响",
+      "canonical_evidence": "在基因表达空间中模拟遗传扰动的影响",
+      "llm_tldr_en": "PRiMeFlow uses flow matching to model single-cell gene expression responses to genetic perturbations.",
+      "llm_tldr_cn": "PRiMeFlow利用流匹配技术模拟单细胞基因表达对遗传扰动的响应。",
+      "llm_tldr": "PRiMeFlow利用流匹配技术模拟单细胞基因表达对遗传扰动的响应。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.13254v1",
+      "title": "Calibrated Abstention for Reliable TCR--pMHC Binding Prediction under Epitope Shift",
+      "abstract": "Predicting T-cell receptor (TCR)--peptide-MHC (pMHC) binding is central to vaccine design and T-cell therapy, yet deployed models frequently encounter epitopes unseen during training, causing silent overconfidence and unreliable prioritization. We address this by framing TCR--pMHC prediction as a \\emph{selective prediction} problem: a calibrated model should either output a trustworthy confidence score or explicitly abstain. Concretely, we (1) introduce a dual-encoder architecture encoding both CDR3$α$/CDR3$β$ and peptide sequences via a pre-trained protein language model; (2) apply temperature scaling to correct systematic probability miscalibration; and (3) impose a conformal abstention rule that provides finite-sample coverage guarantees at a user-specified target error rate. Evaluated under three split strategies -- random, epitope-held-out, and distance-aware -- our method achieves AUROC 0.813 and ECE 0.043 under the challenging epitope-held-out protocol, reducing ECE by 69.7\\% relative to an uncalibrated baseline. At 80\\% coverage, the selective model further reduces error rate from 18.7\\% to 10.9\\%, demonstrating that calibrated abstention enables principled coverage-risk trade-offs aligned with practical screening budgets.",
+      "authors": [
+        "Arman Bekov",
+        "Timur Bekzhanov",
+        "Bekzat Sadykov"
+      ],
+      "primary_category": "cs.GR",
+      "categories": [
+        "cs.GR"
+      ],
+      "published": "2026-04-14T19:38:54+00:00",
+      "link": "https://arxiv.org/pdf/2604.13254v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "TCR-pMHC binding prediction using protein language models",
+      "llm_evidence_cn": "使用蛋白质语言模型预测TCR-pMHC结合",
+      "llm_evidence": "使用蛋白质语言模型预测TCR-pMHC结合",
+      "canonical_evidence": "使用蛋白质语言模型预测TCR-pMHC结合",
+      "llm_tldr_en": "Introduces a calibrated model for reliable T-cell receptor and MHC binding prediction to improve immunotherapy.",
+      "llm_tldr_cn": "引入了一种校准模型，用于可靠的T细胞受体与MHC结合预测，以改进免疫疗法。",
+      "llm_tldr": "引入了一种校准模型，用于可靠的T细胞受体与MHC结合预测，以改进免疫疗法。",
+      "llm_tags": [
+        "query:xeno"
+      ],
+      "matched_query_tag": "query:xeno",
+      "matched_query_text": "Human Leukocyte Antigen and cross-species compatibility",
+      "matched_requirement_id": "req-23",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.13256v1",
+      "title": "Counterfactual Peptide Editing for Causal TCR--pMHC Binding Inference",
+      "abstract": "Neural models for TCR-pMHC binding prediction are susceptible to shortcut learning: they exploit spurious correlations in training data -- such as peptide length bias or V-gene co-occurrence -- rather than the physical binding interface. This renders predictions brittle under family-held-out and distance-aware evaluation, where such shortcuts do not transfer. We introduce \\emph{Counterfactual Invariant Prediction} (CIP), a training framework that generates biologically constrained counterfactual peptide edits and enforces invariance to edits at non-anchor positions while amplifying sensitivity at MHC anchor residues. CIP augments the base classifier with two auxiliary objectives: (1) an invariance loss penalizing prediction changes under conservative non-anchor substitutions, and (2) a contrastive loss encouraging large prediction changes under anchor-position disruptions. Evaluated on a curated VDJdb-IEDB benchmark under family-held-out, distance-aware, and random splits, CIP achieves AUROC 0.831 and counterfactual consistency (CFC) 0.724 under the challenging family-held-out protocol -- a 39.7\\% reduction in shortcut index relative to the unconstrained baseline. Ablations confirm that anchor-aware edit generation is the dominant driver of OOD gains, providing a practical recipe for causally-grounded TCR specificity modeling.",
+      "authors": [
+        "Sanjar Khudoyberdiev",
+        "Arman Bekov"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.GR"
+      ],
+      "published": "2026-04-14T19:40:46+00:00",
+      "link": "https://arxiv.org/pdf/2604.13256v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Causal inference for TCR-pMHC binding and immune recognition",
+      "llm_evidence_cn": "TCR-pMHC结合与免疫识别的因果推断",
+      "llm_evidence": "TCR-pMHC结合与免疫识别的因果推断",
+      "canonical_evidence": "TCR-pMHC结合与免疫识别的因果推断",
+      "llm_tldr_en": "Introduces a framework to improve the accuracy of TCR-pMHC binding predictions by focusing on MHC anchor residues.",
+      "llm_tldr_cn": "引入一种框架，通过关注MHC锚定残基来提高TCR-pMHC结合预测的准确性。",
+      "llm_tldr": "引入一种框架，通过关注MHC锚定残基来提高TCR-pMHC结合预测的准确性。",
+      "llm_tags": [
+        "query:xeno"
+      ],
+      "matched_query_tag": "query:xeno",
+      "matched_query_text": "Molecular mechanisms of immune recognition in xenotransplantation",
+      "matched_requirement_id": "req-29",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.13980v1",
+      "title": "BOAT: Navigating the Sea of In Silico Predictors for Antibody Design via Multi-Objective Bayesian Optimization",
+      "abstract": "Antibody lead optimization is inherently a multi-objective challenge in drug discovery. Achieving a balance between different drug-like properties is crucial for the development of viable candidates, and this search becomes exponentially challenging as desired properties grow. The ever-growing zoo of sophisticated in silico tools for predicting antibody properties calls for an efficient joint optimization procedure to overcome resource-intensive sequential filtering pipelines. We present BOAT, a versatile Bayesian optimization framework for multi-property antibody engineering. Our `plug-and-play' framework couples uncertainty-aware surrogate modeling with a genetic algorithm to jointly optimize various predicted antibody traits while enabling efficient exploration of sequence space. Through systematic benchmarking against genetic algorithms and newer generative learning approaches, we demonstrate competitive performance with state-of-the-art methods for multi-objective protein optimization. We identify clear regimes where surrogate-driven optimization outperforms expensive generative approaches and establish practical limits imposed by sequence dimensionality and oracle costs.",
+      "authors": [
+        "Jackie Rao",
+        "Ferran Gonzalez Hernandez",
+        "Leon Gerard",
+        "Alexandra Gessner"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM",
+        "stat.ML"
+      ],
+      "published": "2026-04-15T15:25:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.13980v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven genetic algorithm for antibody property optimization",
+      "llm_evidence_cn": "利用AI遗传算法进行抗体属性优化",
+      "llm_evidence": "利用AI遗传算法进行抗体属性优化",
+      "canonical_evidence": "利用AI遗传算法进行抗体属性优化",
+      "llm_tldr_en": "A Bayesian optimization framework using genetic algorithms for multi-objective antibody design.",
+      "llm_tldr_cn": "一种利用遗传算法进行多目标抗体设计的贝叶斯优化框架。",
+      "llm_tldr": "一种利用遗传算法进行多目标抗体设计的贝叶斯优化框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.06743v1",
+      "title": "Resolving Single-Peptide Phosphorylation Dynamics in Plasmonic Nanopores using Physics-Informed Bi-Path Model",
+      "abstract": "Protein phosphorylation provides a dynamic readout of cellular signaling yet remains difficult to detect at low abundance and stoichiometry. Single-molecule surface-enhanced Raman spectroscopy (SM-SERS) using particle-in-pore plasmonic nanopores offers label-free molecular detection with submolecular sensitivity. However, reliable identification of subtle post-translational modifications (PTMs) is hindered by the stochastic nature of SM-SERS signals, partial excitation of peptide residues within the plasmonic hotspot, and background interference. Here, we introduce a physics-informed deep learning framework to decode complex SM-SERS dynamics and identify single-peptide PTMs. The model integrates multiple-instance learning with a temporal encoder combining temporal convolutional networks and bidirectional gated recurrent units to capture both local spectral variability and long-range blinking dynamics. To address diffusion-driven spectral heterogeneity, long spectral trajectories are segmented using Pearson-correlation, enabling weakly supervised training under label ambiguity. This framework robustly distinguishes single peptide phosphorylation despite strong background interference and stochastic signal fluctuations. By coupling nanoplasmonic confinement with spatiotemporal deep learning, our approach enables high-fidelity detection of single-molecule phosphorylation events and advances ultrasensitive phosphoproteomic analysis.",
+      "authors": [
+        "Mulusew W. Yaltaye",
+        "Yingqi Zhao",
+        "Kuo Zhan",
+        "Vahid Farrahi",
+        "Jian-An Huang"
+      ],
+      "primary_category": "cond-mat.mes-hall",
+      "categories": [
+        "cond-mat.mes-hall",
+        "physics.data-an"
+      ],
+      "published": "2026-04-08T07:09:50+00:00",
+      "link": "https://arxiv.org/pdf/2604.06743v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for protein signaling and cellular dynamics",
+      "llm_evidence_cn": "利用AI研究蛋白质信号传导和细胞动力学",
+      "llm_evidence": "利用AI研究蛋白质信号传导和细胞动力学",
+      "canonical_evidence": "利用AI研究蛋白质信号传导和细胞动力学",
+      "llm_tldr_en": "Uses deep learning to decode single-peptide phosphorylation dynamics in cellular signaling.",
+      "llm_tldr_cn": "利用深度学习框架解析细胞信号传导中的单肽磷酸化动态。",
+      "llm_tldr": "利用深度学习框架解析细胞信号传导中的单肽磷酸化动态。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.11565v1",
+      "title": "Phonological distances for linguistic typology and the origin of Indo-European languages",
+      "abstract": "We show that short-range phoneme dependencies encode large-scale patterns of linguistic relatedness, with direct implications for quantitative typology and evolutionary linguistics. Specifically, using an information-theoretic framework, we argue that phoneme sequences modeled as second-order Markov chains essentially capture the statistical correlations of a phonological system. This finding enables us to quantify distances among 67 modern languages from a multilingual parallel corpus employing a distance metric that incorporates articulatory features of phonemes. The resulting phonological distance matrix recovers major language families and reveals signatures of contact-induced convergence. Remarkably, we obtain a clear correlation with geographic distance, allowing us to constrain a plausible homeland region for the Indo-European family, consistent with the Steppe hypothesis.",
+      "authors": [
+        "Marius Mavridis",
+        "Juan De Gregorio",
+        "Raul Toral",
+        "David Sanchez"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cond-mat.stat-mech",
+        "cs.IT",
+        "physics.soc-ph"
+      ],
+      "published": "2026-04-13T14:48:15+00:00",
+      "link": "https://arxiv.org/pdf/2604.11565v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evolutionary linguistics and language family recovery",
+      "llm_evidence_cn": "演化语言学与语系恢复",
+      "llm_evidence": "演化语言学与语系恢复",
+      "canonical_evidence": "演化语言学与语系恢复",
+      "llm_tldr_en": "Uses phonological distances to recover language families, applying evolutionary biology concepts to linguistics.",
+      "llm_tldr_cn": "利用音韵距离恢复主要语系，将演化生物学概念应用于定量语言学研究。",
+      "llm_tldr": "利用音韵距离恢复主要语系，将演化生物学概念应用于定量语言学研究。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.12607v1",
+      "title": "Hierarchical generative modeling for the design of multi-component systems",
+      "abstract": "The functionality of catalysts, enzymes, and supramolecular assemblies emerges not from individual molecules alone, but from the subtle interplay between multiple components arranged in complex systems. Designing such systems is a grand challenge, the combinatorial explosion of possible chemical compositions and spatial arrangements makes brute-force exploration infeasible, while many current generative approaches remain limited to isolated molecules. In this work, we introduce a hierarchical generative optimization framework that overcomes this barrier by coupling a genetic algorithm for configurational search with a generative model for molecular design. This closed-loop approach enables simultaneous refinement of geometry and composition, efficiently steering discovery toward systems with targeted functionality. As a proof of concept, we design catalytic environments for the Claisen rearrangement of p-tolyl ether by optimizing surrounding components around a fixed reference transition-state geometry. Despite this constraint during the search phase, post-hoc validation via Climbing-Image Nudged Elastic Band calculations confirm a 30% reduction in activation barrier. Beyond this example, our framework provides a general strategy for data-driven discovery of functional multi-component systems, opening the door to automated design of catalysts, enzyme active sites, and advanced materials. Scientific contribution. The study presents a closed loop generative framework that enables joint optimization of molecular components and their spatial organization in multi-component systems. The method moves generative molecular design beyond single molecules toward larger and more complex systems.",
+      "authors": [
+        "Rhyan Barrett",
+        "Robin Curth",
+        "Julia Westermayr"
+      ],
+      "primary_category": "physics.comp-ph",
+      "categories": [
+        "physics.comp-ph",
+        "physics.chem-ph"
+      ],
+      "published": "2026-04-14T11:32:08+00:00",
+      "link": "https://arxiv.org/pdf/2604.12607v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "genetic algorithm for configurational search and molecular design",
+      "llm_evidence_cn": "用于分子设计的遗传算法配置搜索",
+      "llm_evidence": "用于分子设计的遗传算法配置搜索",
+      "canonical_evidence": "用于分子设计的遗传算法配置搜索",
+      "llm_tldr_en": "Introduces a hierarchical generative framework using genetic algorithms for multi-component system design.",
+      "llm_tldr_cn": "介绍了一个利用遗传算法进行多组分系统设计的分层生成框架。",
+      "llm_tldr": "介绍了一个利用遗传算法进行多组分系统设计的分层生成框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13175v1",
+      "title": "Pareto-Optimal Offline Reinforcement Learning via Smooth Tchebysheff Scalarization",
+      "abstract": "Large language models can be aligned with human preferences through offline reinforcement learning (RL) on small labeled datasets. While single-objective alignment is well-studied, many real-world applications demand the simultaneous optimization of multiple conflicting rewards, e.g. optimizing both catalytic activity and specificity in protein engineering, or helpfulness and harmlessness for chatbots. Prior work has largely relied on linear reward scalarization, but this approach provably fails to recover non-convex regions of the Pareto front. In this paper, instead of scalarizing the rewards directly, we frame multi-objective RL itself as an optimization problem to be scalarized via smooth Tchebysheff scalarization, a recent technique that overcomes the shortcomings of linear scalarization. We use this formulation to derive Smooth Tchebysheff Optimization of Multi-Objective Preferences (STOMP), a novel offline RL algorithm that extends direct preference optimization to the multi-objective setting in a principled way by standardizing the individual rewards based on their observed distributions. We empirically validate STOMP on a range of protein engineering tasks by aligning three autoregressive protein language models on three laboratory datasets of protein fitness. Compared to state-of-the-art baselines, STOMP achieves the highest hypervolumes in eight of nine settings according to both offline off-policy and generative evaluations. We thus demonstrate that STOMP is a powerful, robust multi-objective alignment algorithm that can meaningfully improve post-trained models for multi-attribute protein optimization and beyond.",
+      "authors": [
+        "Aadyot Bhatnagar",
+        "Peter Mørch Groth",
+        "Ali Madani"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-14T18:00:39+00:00",
+      "link": "https://arxiv.org/pdf/2604.13175v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Multi-objective RL for protein engineering",
+      "llm_evidence_cn": "用于蛋白质工程的多目标强化学习",
+      "llm_evidence": "用于蛋白质工程的多目标强化学习",
+      "canonical_evidence": "用于蛋白质工程的多目标强化学习",
+      "llm_tldr_en": "Applies multi-objective reinforcement learning to optimize conflicting rewards like activity and specificity in proteins.",
+      "llm_tldr_cn": "应用多目标强化学习来优化蛋白质工程中如活性和特异性等冲突奖励。",
+      "llm_tldr": "应用多目标强化学习来优化蛋白质工程中如活性和特异性等冲突奖励。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13306v1",
+      "title": "Embedded DNA Inference in In-Body Nanonetworks: Detection, Delay, and Communication Trade-Offs",
+      "abstract": "In-body molecular nanonetworks promise early abnormality detection close to the source of biochemical events, but their communication capabilities are severely constrained by slow diffusion-based signaling and unstable alarm traffic. We study whether simple embedded DNA-based inference at the nanonode can improve alarm transmission to an external gateway. We compare raw reporting (RR), single-marker threshold reporting (TR), and embedded inference reporting (EIR) under a communication-oriented abstraction of DNA strand-displacement-based computation with marker gating, edge-triggered alarming, hysteretic state transitions, temporally correlated marker dynamics, diffusion-based alarm transport, and leaky gateway evidence integration. The simulations identify a bounded EIR success regime in the weak-to-moderate anomaly range: EIR can improve detection relative to RR and TR while remaining competitive in event-driven communication cost, especially relative to RR. The gain does not come from uniformly lower activity, but from more stable local alarm dynamics. EIR does not dominate globally; TR often remains cheaper when abnormalities are present, and EIR incurs additional local delay. These results point to a limited operating regime in which EIR is useful, rather than to a general advantage across settings.",
+      "authors": [
+        "Stefan Fischer"
+      ],
+      "primary_category": "cs.ET",
+      "categories": [
+        "cs.ET",
+        "cs.NI"
+      ],
+      "published": "2026-04-14T21:21:27+00:00",
+      "link": "https://arxiv.org/pdf/2604.13306v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "DNA-based inference in in-body nanonetworks for abnormality detection",
+      "llm_evidence_cn": "体内纳米网络中基于DNA的推理用于异常检测",
+      "llm_evidence": "体内纳米网络中基于DNA的推理用于异常检测",
+      "canonical_evidence": "体内纳米网络中基于DNA的推理用于异常检测",
+      "llm_tldr_en": "Studies DNA-based computation for improving abnormality detection and communication in molecular networks.",
+      "llm_tldr_cn": "研究基于DNA的计算，以改进分子网络中的异常检测和通信。",
+      "llm_tldr": "研究基于DNA的计算，以改进分子网络中的异常检测和通信。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13328v1",
+      "title": "Multi-Task LLM with LoRA Fine-Tuning for Automated Cancer Staging and Biomarker Extraction",
+      "abstract": "Pathology reports serve as the definitive record for breast cancer staging, yet their unstructured format impedes large-scale data curation. While Large Language Models (LLMs) offer semantic reasoning, their deployment is often limited by high computational costs and hallucination risks. This study introduces a parameter-efficient, multi-task framework for automating the extraction of Tumor-Node-Metastasis (TNM) staging, histologic grade, and biomarkers. We fine-tune a Llama-3-8B-Instruct encoder using Low-Rank Adaptation (LoRA) on a curated, expert-verified dataset of 10,677 reports. Unlike generative approaches, our architecture utilizes parallel classification heads to enforce consistent schema adherence. Experimental results demonstrate that the model achieves a Macro F1 score of 0.976, successfully resolving complex contextual ambiguities and heterogeneous reporting formats that challenge traditional extraction methods including rule-based natural language processing (NLP) pipelines, zero-shot LLMs, and single-task LLM baselines. The proposed adapter-efficient, multi-task architecture enables reliable, scalable pathology-derived cancer staging and biomarker profiling, with the potential to enhance clinical decision support and accelerate data-driven oncology research.",
+      "authors": [
+        "Jiahao Shao",
+        "Anam Nawaz Khan",
+        "Christopher Brett",
+        "Tom Berg",
+        "Xueping Li",
+        "Bing Yao"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-14T22:26:30+00:00",
+      "link": "https://arxiv.org/pdf/2604.13328v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLM for automated cancer staging and biomarker extraction",
+      "llm_evidence_cn": "利用大语言模型进行癌症分期和生物标志物提取",
+      "llm_evidence": "利用大语言模型进行癌症分期和生物标志物提取",
+      "canonical_evidence": "利用大语言模型进行癌症分期和生物标志物提取",
+      "llm_tldr_en": "Fine-tunes LLMs to automate the extraction of clinical data and biomarkers from unstructured pathology reports.",
+      "llm_tldr_cn": "微调大语言模型，从非结构化病理报告中自动提取临床数据和生物标志物。",
+      "llm_tldr": "微调大语言模型，从非结构化病理报告中自动提取临床数据和生物标志物。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13332v1",
+      "title": "Selecting Feature Interactions for Generalized Additive Models by Distilling Foundation Models",
+      "abstract": "Identifying meaningful feature interactions is a central challenge in building accurate and interpretable models for tabular data. Generalized additive models (GAMs) have shown great success at modeling tabular data, but often rely on heuristic procedures to select interactions, potentially missing higher-order or context-dependent effects. To meet this challenge, we propose TabDistill, a method that leverages tabular foundation models and post-hoc distillation methods. Our key intuition is that tabular foundation models implicitly learn rich, adaptive feature dependencies through large-scale representation learning. Given a dataset, TabDistill first fits a tabular foundation model to the dataset, and then applies a post-hoc interaction attribution method to extract salient feature interactions from it. We evaluate these interactions by then using them as terms in a GAM. Across tasks, we find that interactions identified by TabDistill lead to consistent improvements in downstream GAMs' predictive performance. Our results suggest that tabular foundation models can serve as effective, data-driven guides for interaction discovery, bridging high-capacity models and interpretable additive frameworks.",
+      "authors": [
+        "Jingyun Jia",
+        "Chandan Singh",
+        "Rich Caruana",
+        "Ben Lengerich"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-14T22:37:11+00:00",
+      "link": "https://arxiv.org/pdf/2604.13332v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven feature interaction selection for complex data",
+      "llm_evidence_cn": "AI驱动的复杂数据特征交互选择",
+      "llm_evidence": "AI驱动的复杂数据特征交互选择",
+      "canonical_evidence": "AI驱动的复杂数据特征交互选择",
+      "llm_tldr_en": "Proposes a method to identify feature interactions by distilling tabular foundation models.",
+      "llm_tldr_cn": "提出了一种通过蒸馏表格基础模型来识别特征交互的方法。",
+      "llm_tldr": "提出了一种通过蒸馏表格基础模型来识别特征交互的方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13350v1",
+      "title": "Encodings for Range Minimum Queries over Bounded Alphabets",
+      "abstract": "Range minimum queries (RMQs) are fundamental operations with widespread applications in database management, text indexing and computational biology. While many space-efficient data structures have been designed for RMQs on arrays with arbitrary elements, there has not been any results developed for the case when the alphabet size is small, which is the case in many practical scenarios where RMQ structures are used. In this paper, we investigate the encoding complexity of RMQs on arrays over bounded alphabet. We consider both one-dimensional (1D) and two-dimensional (2D) arrays. For the 1D case, we present a near-optimal space encoding. For constant-sized alphabets, this also supports the queries in constant time. For the 2D case, we systematically analyze the 1-sided, 2-sided, 3-sided and 4-sided queries and derive lower bounds for encoding space, and also matching upper bounds that support efficient queries in most cases. Our results demonstrate that, even with the bounded alphabet restriction, the space requirements remain close to those for the general alphabet case.",
+      "authors": [
+        "Seungbum Jo",
+        "Srinivasa Rao Satti"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-04-14T23:22:26+00:00",
+      "link": "https://arxiv.org/pdf/2604.13350v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Range minimum queries for computational biology",
+      "llm_evidence_cn": "用于计算生物学的范围最小值查询",
+      "llm_evidence": "用于计算生物学的范围最小值查询",
+      "canonical_evidence": "用于计算生物学的范围最小值查询",
+      "llm_tldr_en": "Develops space-efficient data structures for range minimum queries, applicable to genomic text indexing.",
+      "llm_tldr_cn": "开发了用于范围最小值查询的高空间效率数据结构，适用于基因组文本索引。",
+      "llm_tldr": "开发了用于范围最小值查询的高空间效率数据结构，适用于基因组文本索引。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13667v1",
+      "title": "From Pixels to Nucleotides: End-to-End Token-Based Video Compression for DNA Storage",
+      "abstract": "DNA-based storage has emerged as a promising approach to the global data crisis, offering molecular-scale density and millennial-scale stability at low maintenance cost. Over the past decade, substantial progress has been made in storing text, images, and files in DNA -- yet video remains an open challenge. The difficulty is not merely technical: effective video DNA storage requires co-designing compression and molecular encoding from the ground up, a challenge that sits at the intersection of two fields that have largely evolved independently. In this work, we present HELIX, the first end-to-end neural network jointly optimizing video compression and DNA encoding -- prior approaches treat the two stages independently, leaving biochemical constraints and compression objectives fundamentally misaligned. Our key insight: token-based representations naturally align with DNA's quaternary alphabet -- discrete semantic units map directly to ATCG bases. We introduce TK-SCONE (Token-Kronecker Structured Constraint-Optimized Neural Encoding), which achieves 1.91 bits per nucleotide through Kronecker-structured mixing that breaks spatial correlations and FSM-based mapping that guarantees biochemical constraints. Unlike two-stage approaches, HELIX learns token distributions simultaneously optimized for visual quality, prediction under masking, and DNA synthesis efficiency. This work demonstrates for the first time that learned compression and molecular storage converge naturally at token representations -- suggesting a new paradigm where neural video codecs are designed for biological substrates from the ground up.",
+      "authors": [
+        "Cihan Ruan",
+        "Lebin Zhou",
+        "Bingqing Zhao",
+        "Rongduo Han",
+        "Qiming Yuan",
+        "Chenchen Zhu",
+        "Linyi Han",
+        "Liang Yang",
+        "Wei Wang",
+        "Wei Jiang",
+        "Nam Ling"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.ET"
+      ],
+      "published": "2026-04-15T09:35:18+00:00",
+      "link": "https://arxiv.org/pdf/2604.13667v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-based neural network for DNA encoding and storage",
+      "llm_evidence_cn": "基于AI的DNA编码与存储神经网络",
+      "llm_evidence": "基于AI的DNA编码与存储神经网络",
+      "canonical_evidence": "基于AI的DNA编码与存储神经网络",
+      "llm_tldr_en": "Introduces HELIX, a neural network optimizing video compression and DNA encoding for molecular storage.",
+      "llm_tldr_cn": "引入HELIX，一种优化视频压缩和DNA编码以进行分子存储的神经网络。",
+      "llm_tldr": "引入HELIX，一种优化视频压缩和DNA编码以进行分子存储的神经网络。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
