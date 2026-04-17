@@ -6,63 +6,64 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-16
-- 运行时间：2026-04-16 20:20:00 UTC
+- 最新运行日期：2026-04-17
+- 运行时间：2026-04-17 20:27:30 UTC
 - 运行状态：成功
 - 本次总论文数：14
-- 精读区：4
-- 速读区：10
+- 精读区：3
+- 速读区：11
 
 ### 今日简报（AI）
-今日深度复盘14篇前沿进展，重点突破基因共享网络生成模型与免疫结合预测的可靠性瓶颈。
-核心
-- 详情：[/202604/16/README](/202604/16/README)
+今日聚焦单细胞大模型与 Mamba 架构在生物标志物发现中的前沿应用。
+研究揭示单细胞基础模型的中间层蕴含最优生物表征，且 Mamba 结合思维链推理可显著优化基因特征筛选。
+建议关注大模型中间层特征提取及推理增强技术在精准医疗中的落地潜力。
+- 详情：[/202604/17/README](/202604/17/README)
 
 ### 精读区论文标签
-1. [A generative model for bipartite gene-sharing networks](/202604/16/2604.13963v1-a-generative-model-for-bipartite-gene-sharing-networks)  
-   标签：评分：9.0/10、query:pangen
-   evidence：基因共享网络机制模型与基因组演化动态
-2. [Calibrated Abstention for Reliable TCR--pMHC Binding Prediction under Epitope Shift](/202604/16/2604.13254v1-calibrated-abstention-for-reliable-tcr--pmhc-binding-prediction-under-epitope-shift)  
-   标签：评分：8.0/10、query:xeno
-   evidence：使用蛋白质语言模型预测TCR-pMHC结合
-3. [Counterfactual Peptide Editing for Causal TCR--pMHC Binding Inference](/202604/16/2604.13256v1-counterfactual-peptide-editing-for-causal-tcr--pmhc-binding-inference)  
-   标签：评分：8.0/10、query:xeno
-   evidence：TCR-pMHC结合与免疫识别的因果推断
-4. [PRiMeFlow: Capturing Complex Expression Heterogeneity in Perturbation Response Modelling](/202604/16/2604.13986v1-primeflow-capturing-complex-expression-heterogeneity-in-perturbation-response-modelling)  
+1. [Mamba-SSM with LLM Reasoning for Biomarker Discovery: Causal Feature Refinement via Chain-of-Thought Gene Evaluation](/202604/17/2604.14334v1-mamba-ssm-with-llm-reasoning-for-biomarker-discovery-causal-feature-refinement-via-chain-of-thought-gene-evaluation)  
+   标签：评分：9.0/10、query:q7
+   evidence：利用大语言模型推理进行生物标志物发现和RNA-seq数据中的基因评估
+2. [Intermediate Layers Encode Optimal Biological Representations in Single-Cell Foundation Models](/202604/17/2604.14838v1-intermediate-layers-encode-optimal-biological-representations-in-single-cell-foundation-models)  
+   标签：评分：9.0/10、query:q7
+   evidence：用于单细胞基因组学和轨迹推断的AI基础模型
+3. [Adaptive Multi-Prior Lasso for High-Dimensional Generalized Linear Models](/202604/17/2604.15070v1-adaptive-multi-prior-lasso-for-high-dimensional-generalized-linear-models)  
    标签：评分：8.0/10、query:q7
-   evidence：在基因表达空间中模拟遗传扰动的影响
+   evidence：利用AI与统计建模进行基因表达数据分析
 
 ### 速读区论文标签
-1. [BOAT: Navigating the Sea of In Silico Predictors for Antibody Design via Multi-Objective Bayesian Optimization](/202604/16/2604.13980v1-boat-navigating-the-sea-of-in-silico-predictors-for-antibody-design-via-multi-objective-bayesian-optimization)  
+1. [Combining Bayesian and Frequentist Inference for Laboratory-Specific Performance Guarantees in Copy Number Variation Detection](/202604/17/2604.14305v1-combining-bayesian-and-frequentist-inference-for-laboratory-specific-performance-guarantees-in-copy-number-variation-detection)  
+   标签：评分：7.0/10、query:pangen
+   evidence：拷贝数变异检测与基因组结构变异
+2. [Joint Bayesian Inference of Genetic Effect Sizes and PK Parameters in Nonlinear Mixed-Effects Models](/202604/17/2604.14364v1-joint-bayesian-inference-of-genetic-effect-sizes-and-pk-parameters-in-nonlinear-mixed-effects-models)  
    标签：评分：7.0/10、query:q7
-   evidence：利用AI遗传算法进行抗体属性优化
-2. [Resolving Single-Peptide Phosphorylation Dynamics in Plasmonic Nanopores using Physics-Informed Bi-Path Model](/202604/16/2604.06743v1-resolving-single-peptide-phosphorylation-dynamics-in-plasmonic-nanopores-using-physics-informed-bi-path-model)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用AI研究蛋白质信号传导和细胞动力学
-3. [Phonological distances for linguistic typology and the origin of Indo-European languages](/202604/16/2604.11565v1-phonological-distances-for-linguistic-typology-and-the-origin-of-indo-european-languages)  
-   标签：评分：6.0/10、query:q3
-   evidence：演化语言学与语系恢复
-4. [Hierarchical generative modeling for the design of multi-component systems](/202604/16/2604.12607v1-hierarchical-generative-modeling-for-the-design-of-multi-component-systems)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于分子设计的遗传算法配置搜索
-5. [Pareto-Optimal Offline Reinforcement Learning via Smooth Tchebysheff Scalarization](/202604/16/2604.13175v1-pareto-optimal-offline-reinforcement-learning-via-smooth-tchebysheff-scalarization)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于蛋白质工程的多目标强化学习
-6. [Embedded DNA Inference in In-Body Nanonetworks: Detection, Delay, and Communication Trade-Offs](/202604/16/2604.13306v1-embedded-dna-inference-in-in-body-nanonetworks-detection-delay-and-communication-trade-offs)  
-   标签：评分：6.0/10、query:q7
-   evidence：体内纳米网络中基于DNA的推理用于异常检测
-7. [Multi-Task LLM with LoRA Fine-Tuning for Automated Cancer Staging and Biomarker Extraction](/202604/16/2604.13328v1-multi-task-llm-with-lora-fine-tuning-for-automated-cancer-staging-and-biomarker-extraction)  
-   标签：评分：6.0/10、query:q7
-   evidence：利用大语言模型进行癌症分期和生物标志物提取
-8. [Selecting Feature Interactions for Generalized Additive Models by Distilling Foundation Models](/202604/16/2604.13332v1-selecting-feature-interactions-for-generalized-additive-models-by-distilling-foundation-models)  
-   标签：评分：6.0/10、query:q7
-   evidence：AI驱动的复杂数据特征交互选择
-9. [Encodings for Range Minimum Queries over Bounded Alphabets](/202604/16/2604.13350v1-encodings-for-range-minimum-queries-over-bounded-alphabets)  
+   evidence：遗传效应大小的贝叶斯推断和SNP选择
+3. [Perspective on Bias in Biomedical AI: Preventing Downstream Healthcare Disparities](/202604/17/2604.14514v1-perspective-on-bias-in-biomedical-ai-preventing-downstream-healthcare-disparities)  
+   标签：评分：7.0/10、query:profile-1
+   evidence：对 PubMed 索引的组学出版物和数据集中的偏差分析
+4. [Bayesian sparse principal coordinates analysis with delta-tolerant linear approximation for microbiome data](/202604/17/2604.14571v1-bayesian-sparse-principal-coordinates-analysis-with-delta-tolerant-linear-approximation-for-microbiome-data)  
+   标签：评分：7.0/10、query:q7
+   evidence：微生物组多样性与分类群识别的计算方法
+5. [Structure as Computation: Developmental Generation of Minimal Neural Circuits](/202604/17/2604.15143v1-structure-as-computation-developmental-generation-of-minimal-neural-circuits)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用小鼠转录组数据的基因调节规则模拟神经发生
+6. [Wavelet Forests Revisited](/202604/17/2604.11338v1-wavelet-forests-revisited)  
    标签：评分：6.0/10、query:pangen
-   evidence：用于计算生物学的范围最小值查询
-10. [From Pixels to Nucleotides: End-to-End Token-Based Video Compression for DNA Storage](/202604/16/2604.13667v1-from-pixels-to-nucleotides-end-to-end-token-based-video-compression-for-dna-storage)  
+   evidence：用于序列操作和压缩文本索引的小波树结构
+7. [Building and maintaining a System of Intracellular Compartments](/202604/17/2604.12930v1-building-and-maintaining-a-system-of-intracellular-compartments)  
+   标签：评分：6.0/10、query:q2
+   evidence：细胞生物学中细胞内隔室的遗传性与组装
+8. [Multitasking Embedding for Embryo Blastocyst Grading Prediction (MEmEBG)](/202604/17/2604.13217v1-multitasking-embedding-for-embryo-blastocyst-grading-prediction-memebg)  
    标签：评分：6.0/10、query:q7
-   evidence：基于AI的DNA编码与存储神经网络
+   evidence：利用AI进行生物图像分析和胚胎分级
+9. [A High-Resolution Landscape Dataset for Concept-Based XAI With Application to Species Distribution Models](/202604/17/2604.13240v1-a-high-resolution-landscape-dataset-for-concept-based-xai-with-application-to-species-distribution-models)  
+   标签：评分：6.0/10、query:q7
+   evidence：AI在物种分布和生态洞察中的应用
+10. [Computational framework for multistep metabolic pathway design](/202604/17/2604.13471v1-computational-framework-for-multistep-metabolic-pathway-design)  
+   标签：评分：6.0/10、query:q7
+   evidence：深度学习用于生化转化和代谢设计
+11. [PUFFIN: Protein Unit Discovery with Functional Supervision](/202604/17/2604.14796v1-puffin-protein-unit-discovery-with-functional-supervision)  
+   标签：评分：6.0/10、query:q7
+   evidence：利用AI发现蛋白质单元及其结构与功能的关系
 
 
 <div class="dpr-home-promo-card">
