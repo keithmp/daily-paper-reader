@@ -1,0 +1,37 @@
+{
+  "label": "2026-04-18",
+  "date": "2026-04-18",
+  "generated_at": "2026-04-18T19:47:52",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202604/18/2604.14241v1-polyformer-a-generative-framework-for-thermodynamic-modeling-of-polymeric-molecules",
+      "section": "quick",
+      "title_en": "Polyformer: a generative framework for thermodynamic modeling of polymeric molecules",
+      "authors": "Alessio Valentini, David Pekker, Chungwen Liang, Todd Martinez, Swagatam Mukhopadhyay",
+      "date": "2026-04-15",
+      "pdf": "https://arxiv.org/pdf/2604.14241v1",
+      "score": "6.0",
+      "evidence": "用于核酸等生物分子热力学建模的生成式框架",
+      "tldr": "传统的结构生物学预测工具如AlphaFold主要关注单一静态结构，忽略了生物分子的动态特性。本文提出Polyformer生成式框架，旨在进行聚合物分子的热力学建模。该模型能根据序列和温度等变量，生成符合热力学分布的构象系综。它是首个能同时解决分子折叠、系综预测及温度响应问题的模型，在蛋白质结构域测试中展现了与分子动力学模拟高度一致的结果。",
+      "tags": "query:q7",
+      "abstract_en": "The classic paradigm of structural biology is that the sequence of a biomolecule (protein, nucleic acid, lipid, etc) determines its conformation (shape) which determines its biological function. Protein folding programs like AlphaFold address this paradigm by predicting the single best conformation given a sequence that defines the molecule. However, biomolecules are not static structures, and their conformational ensemble determines their function. We present the Polyformer -- a generative framework for thermodynamic modeling of polymeric molecules. Given the sequence and temperature (or another thermodynamic variable), the Polyformer generates conformations faithful to the molecule's thermodynamic conformational ensemble. It is the first generative model that solves three problems simultaneously: how does a molecule fold, what is its conformational ensemble, and how does the conformational ensemble change as we change physical temperature. As a concrete test case, we apply Polyformer to protein domains with 50-111 residues and report good agreement of model predictions to Molecular Dynamics (MD) trajectories.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202604/18/2604.14720v1-data-synthesis-improves-3d-myotube-instance-segmentation",
+      "section": "quick",
+      "title_en": "Data Synthesis Improves 3D Myotube Instance Segmentation",
+      "authors": "David Exler, Nils Friederich, Martin Krüger, John Jbeily, Mario Vitacolonna, Rüdiger Rudolf, Ralf Mikut, Markus Reischl",
+      "date": "2026-04-16",
+      "pdf": "https://arxiv.org/pdf/2604.14720v1",
+      "score": "6.0",
+      "evidence": "AI驱动的肌肉生理学研究分割技术",
+      "tldr": "肌管是研究肌肉生理的关键模型，但由于缺乏大规模标注数据集，现有模型在3D实例分割上表现不佳。本文提出一种几何驱动的数据合成管线，通过模拟真实肌管的中心线、分支及末端结构，并结合CycleGAN领域自适应生成合成数据。实验表明，仅在合成数据上训练的3D U-Net在真实数据上的表现显著优于现有零样本模型，为标注匮乏的生物医学领域提供了有效的分割方案。",
+      "tags": "query:q7",
+      "abstract_en": "Myotubes are multinucleated muscle fibers serving as key model systems for studying muscle physiology, disease mechanisms, and drug responses. Mechanistic studies and drug screening thereby rely on quantitative morphological readouts such as diameter, length, and branching degree, which in turn require precise three-dimensional instance segmentation. Yet established pretrained biomedical segmentation models fail to generalize to this domain due to the absence of large annotated myotube datasets. We introduce a geometry-driven synthesis pipeline that models individual myotubes via polynomial centerlines, locally varying radii, branching structures, and ellipsoidal end caps derived from real microscopy observations. Synthetic volumes are rendered with realistic noise, optical artifacts, and CycleGAN-based Domain Adaptation (DA). A compact 3D U-Net with self-supervised encoder pretraining, trained exclusively on synthetic data, achieves a mean IPQ of 0.22 on real data, significantly outperforming three established zero-shot segmentation models, demonstrating that biophysics-driven synthesis enables effective instance segmentation in annotation-scarce biomedical domains.",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

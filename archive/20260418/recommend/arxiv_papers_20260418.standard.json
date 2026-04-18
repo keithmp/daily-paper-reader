@@ -1,0 +1,107 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-18T19:47:24.966207+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 13,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2604.14241v1",
+      "title": "Polyformer: a generative framework for thermodynamic modeling of polymeric molecules",
+      "abstract": "The classic paradigm of structural biology is that the sequence of a biomolecule (protein, nucleic acid, lipid, etc) determines its conformation (shape) which determines its biological function. Protein folding programs like AlphaFold address this paradigm by predicting the single best conformation given a sequence that defines the molecule. However, biomolecules are not static structures, and their conformational ensemble determines their function. We present the Polyformer -- a generative framework for thermodynamic modeling of polymeric molecules. Given the sequence and temperature (or another thermodynamic variable), the Polyformer generates conformations faithful to the molecule's thermodynamic conformational ensemble. It is the first generative model that solves three problems simultaneously: how does a molecule fold, what is its conformational ensemble, and how does the conformational ensemble change as we change physical temperature. As a concrete test case, we apply Polyformer to protein domains with 50-111 residues and report good agreement of model predictions to Molecular Dynamics (MD) trajectories.",
+      "authors": [
+        "Alessio Valentini",
+        "David Pekker",
+        "Chungwen Liang",
+        "Todd Martinez",
+        "Swagatam Mukhopadhyay"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cond-mat.stat-mech",
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-15T03:26:15+00:00",
+      "link": "https://arxiv.org/pdf/2604.14241v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Generative framework for thermodynamic modeling of biomolecules like nucleic acids",
+      "llm_evidence_cn": "用于核酸等生物分子热力学建模的生成式框架",
+      "llm_evidence": "用于核酸等生物分子热力学建模的生成式框架",
+      "canonical_evidence": "用于核酸等生物分子热力学建模的生成式框架",
+      "llm_tldr_en": "Polyformer is a generative framework for modeling the thermodynamic conformational ensembles of polymeric biomolecules.",
+      "llm_tldr_cn": "Polyformer是一个用于对聚合生物分子热力学构象系综进行建模的生成式框架。",
+      "llm_tldr": "Polyformer是一个用于对聚合生物分子热力学构象系综进行建模的生成式框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.14720v1",
+      "title": "Data Synthesis Improves 3D Myotube Instance Segmentation",
+      "abstract": "Myotubes are multinucleated muscle fibers serving as key model systems for studying muscle physiology, disease mechanisms, and drug responses. Mechanistic studies and drug screening thereby rely on quantitative morphological readouts such as diameter, length, and branching degree, which in turn require precise three-dimensional instance segmentation. Yet established pretrained biomedical segmentation models fail to generalize to this domain due to the absence of large annotated myotube datasets. We introduce a geometry-driven synthesis pipeline that models individual myotubes via polynomial centerlines, locally varying radii, branching structures, and ellipsoidal end caps derived from real microscopy observations. Synthetic volumes are rendered with realistic noise, optical artifacts, and CycleGAN-based Domain Adaptation (DA). A compact 3D U-Net with self-supervised encoder pretraining, trained exclusively on synthetic data, achieves a mean IPQ of 0.22 on real data, significantly outperforming three established zero-shot segmentation models, demonstrating that biophysics-driven synthesis enables effective instance segmentation in annotation-scarce biomedical domains.",
+      "authors": [
+        "David Exler",
+        "Nils Friederich",
+        "Martin Krüger",
+        "John Jbeily",
+        "Mario Vitacolonna",
+        "Rüdiger Rudolf",
+        "Ralf Mikut",
+        "Markus Reischl"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-16T07:30:20+00:00",
+      "link": "https://arxiv.org/pdf/2604.14720v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven segmentation for muscle physiology study",
+      "llm_evidence_cn": "AI驱动的肌肉生理学研究分割技术",
+      "llm_evidence": "AI驱动的肌肉生理学研究分割技术",
+      "canonical_evidence": "AI驱动的肌肉生理学研究分割技术",
+      "llm_tldr_en": "Uses data synthesis to improve 3D segmentation of myotubes for studying muscle physiology.",
+      "llm_tldr_cn": "利用数据合成改进肌管的3D分割，以支持肌肉生理学研究。",
+      "llm_tldr": "利用数据合成改进肌管的3D分割，以支持肌肉生理学研究。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
