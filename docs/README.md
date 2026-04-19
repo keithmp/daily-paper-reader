@@ -6,29 +6,38 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-18
-- 运行时间：2026-04-18 19:47:44 UTC
+- 最新运行日期：2026-04-19
+- 运行时间：2026-04-19 19:59:30 UTC
 - 运行状态：成功
-- 本次总论文数：2
+- 本次总论文数：5
 - 精读区：0
-- 速读区：2
+- 速读区：5
 
 ### 今日简报（AI）
-今日聚焦 AI 在高分子热力学建模与 3D 生物图像分割领域的跨界应用。
-重点关注 Polyformer 生成式框架对聚合物分子的精准建模，以及合成数据在提升 3D 肌管实例分割精度中的显著作用。
-建议关注生成式技术如何解决材料科学与生物医学中的数据稀缺与复杂建模难题。
-- 详情：[/202604/18/README](/202604/18/README)
+今日聚焦高维数据降维与生物信息学标准化，速读 5 篇涵盖特征选择与多肽学习的前沿论文。
+重点关注基于贝叶斯 Tucker 分解的无监督特征选择，以及为多肽机器学习建立的标准化基准 PepBenchmark。
+建议生物医学开发者尝试细胞分割的自监督预训练模型，以提升复杂成像任务的泛化能力。
+- 详情：[/202604/19/README](/202604/19/README)
 
 ### 精读区论文标签
 - 本次无精读推荐。
 
 ### 速读区论文标签
-1. [Polyformer: a generative framework for thermodynamic modeling of polymeric molecules](/202604/18/2604.14241v1-polyformer-a-generative-framework-for-thermodynamic-modeling-of-polymeric-molecules)  
+1. [Unsupervised feature selection using Bayesian Tucker decomposition](/202604/19/2604.14949v1-unsupervised-feature-selection-using-bayesian-tucker-decomposition)  
+   标签：评分：7.0/10、query:q7
+   evidence：应用于基因表达谱的无监督特征选择
+2. [PepBenchmark: A Standardized Benchmark for Peptide Machine Learning](/202604/19/2604.10531v1-pepbenchmark-a-standardized-benchmark-for-peptide-machine-learning)  
    标签：评分：6.0/10、query:q7
-   evidence：用于核酸等生物分子热力学建模的生成式框架
-2. [Data Synthesis Improves 3D Myotube Instance Segmentation](/202604/18/2604.14720v1-data-synthesis-improves-3d-myotube-instance-segmentation)  
+   evidence：多肽机器学习和药物研发的标准化基准
+3. [Self-supervised Pretraining of Cell Segmentation Models](/202604/19/2604.10609v1-self-supervised-pretraining-of-cell-segmentation-models)  
    标签：评分：6.0/10、query:q7
-   evidence：AI驱动的肌肉生理学研究分割技术
+   evidence：AI驱动的显微镜图像细胞实例分割
+4. [NEPMaker: Active learning of neuroevolution machine learning potential for large cells](/202604/19/2604.13848v1-nepmaker-active-learning-of-neuroevolution-machine-learning-potential-for-large-cells)  
+   标签：评分：6.0/10、query:q7
+   evidence：神经演化机器学习势能的主动学习
+5. [Unity and Diversity of Intracellular pH Maintenance Mechanisms](/202604/19/2604.15296v1-unity-and-diversity-of-intracellular-ph-maintenance-mechanisms)  
+   标签：评分：6.0/10、query:q2
+   evidence：生命树中细胞内pH维持机制
 
 
 <div class="dpr-home-promo-card">

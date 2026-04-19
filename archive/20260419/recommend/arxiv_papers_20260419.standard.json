@@ -1,0 +1,222 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-19T19:58:54.924563+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 5,
+    "quick_skim_target": 13,
+    "quick_selected": 5
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2604.14949v1",
+      "title": "Unsupervised feature selection using Bayesian Tucker decomposition",
+      "abstract": "In this paper, we proposed Bayesian Tucker decomposition (BTuD) in which residual is supposed to obey Gaussian distribution analogous to linear regression. Although we have proposed an algorithm to perform the proposed BTuD, the conventional higher-order orthogonal iteration can generate Tucker decomposition consistent with the present implementation. Using the proposed BTuD, we can perform unsupervised feature selection successfully applied to various synthetic datasets, global coupled maps with randomized coupling strength, and gene expression profiles. Thus we can conclude that our newly proposed unsupervised feature selection method is promising. In addition to this, BTuD based unsupervised FE is expected to coincide with TD based unsupervised FE that were previously proposed and successfully applied to a wide range of problems.",
+      "authors": [
+        "Y-h. Taguchi",
+        "Yoh-ichi Mototake"
+      ],
+      "primary_category": "stat.ML",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "published": "2026-04-16T12:47:03+00:00",
+      "link": "https://arxiv.org/pdf/2604.14949v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Unsupervised feature selection applied to gene expression profiles",
+      "llm_evidence_cn": "应用于基因表达谱的无监督特征选择",
+      "llm_evidence": "应用于基因表达谱的无监督特征选择",
+      "canonical_evidence": "应用于基因表达谱的无监督特征选择",
+      "llm_tldr_en": "Proposes a Bayesian Tucker decomposition method for unsupervised feature selection in gene expression data.",
+      "llm_tldr_cn": "提出了一种基于贝叶斯Tucker分解的无监督特征选择方法，并应用于基因表达数据。",
+      "llm_tldr": "提出了一种基于贝叶斯Tucker分解的无监督特征选择方法，并应用于基因表达数据。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.10531v1",
+      "title": "PepBenchmark: A Standardized Benchmark for Peptide Machine Learning",
+      "abstract": "Peptide therapeutics are widely regarded as the \"third generation\" of drugs, yet progress in peptide Machine Learning (ML) are hindered by the absence of standardized benchmarks. Here we present PepBenchmark, which unifies datasets, preprocessing, and evaluation protocols for peptide drug discovery. PepBenchmark comprises three components: (1) PepBenchData, a well-curated collection comprising 29 canonical-peptide and 6 non-canonical-peptide datasets across 7 groups, systematically covering key aspects of peptide drug development, representing, to the best of our knowledge, the most comprehensive AI-ready dataset resource to date; (2) PepBenchPipeline, a standardized preprocessing pipeline that ensures consistent dataset cleaning, construction, splitting, and feature transformation, mitigating quality issues common in ad hoc pipelines; and (3) PepBenchLeaderboard, a unified evaluation protocol and leaderboard with strong baselines across 4 major methodological families: Fingerprint-based, GNN-based, PLM-based, and SMILES-based models. Together, PepBenchmark provides the first standardized and comparable foundation for peptide drug discovery, facilitating methodological advances and translation into real-world applications. The data and code are publicly available at https://github.com/ZGCI-AI4S-Pep/PepBenchmark/.",
+      "authors": [
+        "Jiahui Zhang",
+        "Rouyi Wang",
+        "Kuangqi Zhou",
+        "Tianshu Xiao",
+        "Lingyan Zhu",
+        "Yaosen Min",
+        "Yang Wang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-12T08:48:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.10531v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Standardized benchmark for peptide machine learning and drug discovery",
+      "llm_evidence_cn": "多肽机器学习和药物研发的标准化基准",
+      "llm_evidence": "多肽机器学习和药物研发的标准化基准",
+      "canonical_evidence": "多肽机器学习和药物研发的标准化基准",
+      "llm_tldr_en": "Introduces PepBenchmark, a comprehensive dataset and pipeline for advancing peptide-related machine learning.",
+      "llm_tldr_cn": "推出了PepBenchmark，这是一个用于推进多肽相关机器学习的综合数据集和流程。",
+      "llm_tldr": "推出了PepBenchmark，这是一个用于推进多肽相关机器学习的综合数据集和流程。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.10609v1",
+      "title": "Self-supervised Pretraining of Cell Segmentation Models",
+      "abstract": "Instance segmentation enables the analysis of spatial and temporal properties of cells in microscopy images by identifying the pixels belonging to each cell. However, progress is constrained by the scarcity of high-quality labeled microscopy datasets. Many recent approaches address this challenge by initializing models with segmentation-pretrained weights from large-scale natural-image models such as Segment Anything Model (SAM). However, representations learned from natural images often encode objectness and texture priors that are poorly aligned with microscopy data, leading to degraded performance under domain shift. We propose DINOCell, a self-supervised framework for cell instance segmentation that leverages representations from DINOv2 and adapts them to microscopy through continued self-supervised training on unlabeled cell images prior to supervised fine-tuning. On the LIVECell benchmark, DINOCell achieves a SEG score of 0.784, improving by 10.42% over leading SAM-based models, and demonstrates strong zero-shot performance on three out-of-distribution microscopy datasets. These results highlight the benefits of domain-adapted self-supervised pretraining for robust cell segmentation.",
+      "authors": [
+        "Kaden Stillwagon",
+        "Alexandra Dunnum VandeLoo",
+        "Benjamin Magondu",
+        "Craig R. Forest"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-12T12:29:39+00:00",
+      "link": "https://arxiv.org/pdf/2604.10609v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven cell instance segmentation in microscopy images",
+      "llm_evidence_cn": "AI驱动的显微镜图像细胞实例分割",
+      "llm_evidence": "AI驱动的显微镜图像细胞实例分割",
+      "canonical_evidence": "AI驱动的显微镜图像细胞实例分割",
+      "llm_tldr_en": "A self-supervised framework for cell segmentation that adapts natural image models to microscopy.",
+      "llm_tldr_cn": "一种用于细胞分割的自监督框架，将自然图像模型应用于显微镜数据。",
+      "llm_tldr": "一种用于细胞分割的自监督框架，将自然图像模型应用于显微镜数据。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.13848v1",
+      "title": "NEPMaker: Active learning of neuroevolution machine learning potential for large cells",
+      "abstract": "Machine learning potentials (MLPs) achieve near first-principles accuracy but often fail for atomic environments outside the training distribution. Active learning can mitigate this limitation; however, its application to large-scale simulations is hindered by the prohibitive cost of labeling entire configurations. Here, we develop a D-optimality-driven active learning framework for the neuroevolution potential (NEP) implemented within the GPUMD package, named NEPMaker. Extrapolative atomic environments are identified on-the-fly and embedded into locally periodic structures, where boundary atoms are optimized to remain close to the training distribution. This strategy enables large-scale simulations to directly contribute to dataset construction, significantly reducing extrapolation errors while improving model robustness and transferability. The proposed framework provides a scalable route for constructing reliable machine learning potentials in complex materials systems, including those involving defects, interfaces, and phase transitions.",
+      "authors": [
+        "Junjie Wang",
+        "Shuning Pan",
+        "Haoting Zhang",
+        "Qiuhan Jia",
+        "Chi Ding",
+        "Zheyong Fan",
+        "Jian Sun"
+      ],
+      "primary_category": "physics.comp-ph",
+      "categories": [
+        "physics.comp-ph"
+      ],
+      "published": "2026-04-15T13:18:23+00:00",
+      "link": "https://arxiv.org/pdf/2604.13848v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Active learning of neuroevolution machine learning potentials",
+      "llm_evidence_cn": "神经演化机器学习势能的主动学习",
+      "llm_evidence": "神经演化机器学习势能的主动学习",
+      "canonical_evidence": "神经演化机器学习势能的主动学习",
+      "llm_tldr_en": "Develops NEPMaker, an active learning framework for neuroevolution potentials in large-scale simulations.",
+      "llm_tldr_cn": "开发了NEPMaker，一种用于大规模模拟中神经演化势能的主动学习框架。",
+      "llm_tldr": "开发了NEPMaker，一种用于大规模模拟中神经演化势能的主动学习框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.15296v1",
+      "title": "Unity and Diversity of Intracellular pH Maintenance Mechanisms",
+      "abstract": "All cells must sustain ionic motive forces (IMFs) -- the electrochemical gradients of permeant ions, together with the membrane potential they produce -- to regulate intracellular pH, drive secondary transport, and power ATP synthesis. Because membranes are imperfectly impermeable, IMFs continuously dissipate through passive leakage, and active transport must compensate at an energetic cost that competes with growth and biosynthesis. How environmental conditions set this cost, and why cells across the tree of life share a common ionic logic yet deploy strikingly diverse transporter repertoires, has lacked a unifying quantitative account.   Here we derive a thermodynamic lower bound on the power required to maintain IMFs at steady state. The bound equals the rate of free-energy dissipation by ion leakage, holds across a broad family of electrophysiological models, and is independent of organism, energy source, or transporter architecture.   Cost minimization recovers, from first principles, the universal K+-rich, Na+-poor cytoplasm observed across taxa: asymmetric membrane permeabilities alone are sufficient to explain it. The same framework predicts that extremophiles face higher maintenance costs under extreme pH, salinity, and temperature, and that when sustaining a large proton motive force becomes prohibitive, cells should shift to metabolic regimes compatible with smaller PMF, providing a thermodynamic rationale for stress-induced metabolic reconfiguration.   Finally, we show that perfect energetic efficiency is unattainable in practice, and that this very imperfection, combined with environmental variability, selects for the diversity of transport architectures observed in nature: each architecture is optimal within a discrete regime of environmental constraints.",
+      "authors": [
+        "Guillaume Terradot",
+        "Vincent Danos"
+      ],
+      "primary_category": "q-bio.CB",
+      "categories": [
+        "q-bio.CB"
+      ],
+      "published": "2026-04-16T17:56:15+00:00",
+      "link": "https://arxiv.org/pdf/2604.15296v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "intracellular pH maintenance across the tree of life",
+      "llm_evidence_cn": "生命树中细胞内pH维持机制",
+      "llm_evidence": "生命树中细胞内pH维持机制",
+      "canonical_evidence": "生命树中细胞内pH维持机制",
+      "llm_tldr_en": "Provides a quantitative account of ionic motive forces and pH regulation across diverse species.",
+      "llm_tldr_cn": "对跨物种的离子动力势和pH调节机制进行了统一的定量热力学分析。",
+      "llm_tldr": "对跨物种的离子动力势和pH调节机制进行了统一的定量热力学分析。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

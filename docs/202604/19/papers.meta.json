@@ -1,0 +1,79 @@
+{
+  "label": "2026-04-19",
+  "date": "2026-04-19",
+  "generated_at": "2026-04-19T19:59:38",
+  "count": 5,
+  "papers": [
+    {
+      "paper_id": "202604/19/2604.14949v1-unsupervised-feature-selection-using-bayesian-tucker-decomposition",
+      "section": "quick",
+      "title_en": "Unsupervised feature selection using Bayesian Tucker decomposition",
+      "authors": "Y-h. Taguchi, Yoh-ichi Mototake",
+      "date": "2026-04-16",
+      "pdf": "https://arxiv.org/pdf/2604.14949v1",
+      "score": "7.0",
+      "evidence": "应用于基因表达谱的无监督特征选择",
+      "tldr": "本研究提出了一种基于贝叶斯塔克分解（BTuD）的无监督特征选择方法。该方法假设残差服从高斯分布，并开发了与传统高阶正交迭代一致的算法。通过在合成数据集、耦合映射及基因表达谱上的实验，证明了BTuD在处理复杂多维数据特征提取方面的有效性，为无监督学习提供了一个结合贝叶斯框架与张量分解的新视角。",
+      "tags": "query:q7",
+      "abstract_en": "In this paper, we proposed Bayesian Tucker decomposition (BTuD) in which residual is supposed to obey Gaussian distribution analogous to linear regression. Although we have proposed an algorithm to perform the proposed BTuD, the conventional higher-order orthogonal iteration can generate Tucker decomposition consistent with the present implementation. Using the proposed BTuD, we can perform unsupervised feature selection successfully applied to various synthetic datasets, global coupled maps with randomized coupling strength, and gene expression profiles. Thus we can conclude that our newly proposed unsupervised feature selection method is promising. In addition to this, BTuD based unsupervised FE is expected to coincide with TD based unsupervised FE that were previously proposed and successfully applied to a wide range of problems.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202604/19/2604.10531v1-pepbenchmark-a-standardized-benchmark-for-peptide-machine-learning",
+      "section": "quick",
+      "title_en": "PepBenchmark: A Standardized Benchmark for Peptide Machine Learning",
+      "authors": "Jiahui Zhang, Rouyi Wang, Kuangqi Zhou, Tianshu Xiao, Lingyan Zhu, Yaosen Min, Yang Wang",
+      "date": "2026-04-12",
+      "pdf": "https://arxiv.org/pdf/2604.10531v1",
+      "score": "6.0",
+      "evidence": "多肽机器学习和药物研发的标准化基准",
+      "tldr": "多肽药物被视为第三代药物，但缺乏标准化基准限制了多肽机器学习的发展。本文提出PepBenchmark，这是首个标准化的多肽药物研发基准。它包含涵盖35个规范与非规范多肽数据集的PepBenchData，标准化的预处理流水线PepBenchPipeline，以及包含四类主流模型基准的PepBenchLeaderboard。该基准为多肽AI研究提供了统一的数据、流程和评估标准，显著提升了研究的可比性，推动了该领域的算法进步与实际应用。",
+      "tags": "query:q7",
+      "abstract_en": "Peptide therapeutics are widely regarded as the \"third generation\" of drugs, yet progress in peptide Machine Learning (ML) are hindered by the absence of standardized benchmarks. Here we present PepBenchmark, which unifies datasets, preprocessing, and evaluation protocols for peptide drug discovery. PepBenchmark comprises three components: (1) PepBenchData, a well-curated collection comprising 29 canonical-peptide and 6 non-canonical-peptide datasets across 7 groups, systematically covering key aspects of peptide drug development, representing, to the best of our knowledge, the most comprehensive AI-ready dataset resource to date; (2) PepBenchPipeline, a standardized preprocessing pipeline that ensures consistent dataset cleaning, construction, splitting, and feature transformation, mitigating quality issues common in ad hoc pipelines; and (3) PepBenchLeaderboard, a unified evaluation protocol and leaderboard with strong baselines across 4 major methodological families: Fingerprint-based, GNN-based, PLM-based, and SMILES-based models. Together, PepBenchmark provides the first standardized and comparable foundation for peptide drug discovery, facilitating methodological advances and translation into real-world applications. The data and code are publicly available at https://github.com/ZGCI-AI4S-Pep/PepBenchmark/.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202604/19/2604.10609v1-self-supervised-pretraining-of-cell-segmentation-models",
+      "section": "quick",
+      "title_en": "Self-supervised Pretraining of Cell Segmentation Models",
+      "authors": "Kaden Stillwagon, Alexandra Dunnum VandeLoo, Benjamin Magondu, Craig R. Forest",
+      "date": "2026-04-12",
+      "pdf": "https://arxiv.org/pdf/2604.10609v1",
+      "score": "6.0",
+      "evidence": "AI驱动的显微镜图像细胞实例分割",
+      "tldr": "针对显微镜图像中细胞分割标注数据稀缺的问题，本文提出了DINOCell框架。该方法利用DINOv2的自监督表示，通过在无标注细胞图像上进行持续自监督预训练，使其适应显微镜领域。相比于基于SAM的自然图像预训练模型，DINOCell在LIVECell基准上性能提升了10.42%，并在跨领域数据集上展现了极强的零样本泛化能力，证明了领域自适应预训练在细胞分割中的重要性。",
+      "tags": "query:q7",
+      "abstract_en": "Instance segmentation enables the analysis of spatial and temporal properties of cells in microscopy images by identifying the pixels belonging to each cell. However, progress is constrained by the scarcity of high-quality labeled microscopy datasets. Many recent approaches address this challenge by initializing models with segmentation-pretrained weights from large-scale natural-image models such as Segment Anything Model (SAM). However, representations learned from natural images often encode objectness and texture priors that are poorly aligned with microscopy data, leading to degraded performance under domain shift. We propose DINOCell, a self-supervised framework for cell instance segmentation that leverages representations from DINOv2 and adapts them to microscopy through continued self-supervised training on unlabeled cell images prior to supervised fine-tuning. On the LIVECell benchmark, DINOCell achieves a SEG score of 0.784, improving by 10.42% over leading SAM-based models, and demonstrates strong zero-shot performance on three out-of-distribution microscopy datasets. These results highlight the benefits of domain-adapted self-supervised pretraining for robust cell segmentation.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202604/19/2604.13848v1-nepmaker-active-learning-of-neuroevolution-machine-learning-potential-for-large-cells",
+      "section": "quick",
+      "title_en": "NEPMaker: Active learning of neuroevolution machine learning potential for large cells",
+      "authors": "Junjie Wang, Shuning Pan, Haoting Zhang, Qiuhan Jia, Chi Ding, Zheyong Fan, Jian Sun",
+      "date": "2026-04-15",
+      "pdf": "https://arxiv.org/pdf/2604.13848v1",
+      "score": "6.0",
+      "evidence": "神经演化机器学习势能的主动学习",
+      "tldr": "针对机器学习势函数在处理训练集外原子环境时易失效的问题，本文开发了基于D-最优准则的主动学习框架NEPMaker。该框架集成于GPUMD的神经演化势（NEP）中，通过实时识别外推原子环境并将其嵌入局部周期性结构进行标注，有效降低了大规模模拟中的标注成本。NEPMaker显著提升了模型在缺陷、界面和相变等复杂系统中的鲁棒性与迁移率，为构建可靠的大规模MLP提供了高效路径。",
+      "tags": "query:q7",
+      "abstract_en": "Machine learning potentials (MLPs) achieve near first-principles accuracy but often fail for atomic environments outside the training distribution. Active learning can mitigate this limitation; however, its application to large-scale simulations is hindered by the prohibitive cost of labeling entire configurations. Here, we develop a D-optimality-driven active learning framework for the neuroevolution potential (NEP) implemented within the GPUMD package, named NEPMaker. Extrapolative atomic environments are identified on-the-fly and embedded into locally periodic structures, where boundary atoms are optimized to remain close to the training distribution. This strategy enables large-scale simulations to directly contribute to dataset construction, significantly reducing extrapolation errors while improving model robustness and transferability. The proposed framework provides a scalable route for constructing reliable machine learning potentials in complex materials systems, including those involving defects, interfaces, and phase transitions.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202604/19/2604.15296v1-unity-and-diversity-of-intracellular-ph-maintenance-mechanisms",
+      "section": "quick",
+      "title_en": "Unity and Diversity of Intracellular pH Maintenance Mechanisms",
+      "authors": "Guillaume Terradot, Vincent Danos",
+      "date": "2026-04-16",
+      "pdf": "https://arxiv.org/pdf/2604.15296v1",
+      "score": "6.0",
+      "evidence": "生命树中细胞内pH维持机制",
+      "tldr": "本研究探讨了细胞维持胞内pH和离子动力势（IMF）的热力学原理。通过推导抵消离子泄漏所需的能量消耗下限，研究从第一性原理出发解释了生物界普遍存在的“高钾低钠”胞质特征。该框架量化了极端环境对细胞维持成本的影响，并揭示了代谢重构的动力学原因，最终说明转运蛋白的多样性是不同环境约束下能量效率最优化的演化结果。",
+      "tags": "query:q2",
+      "abstract_en": "All cells must sustain ionic motive forces (IMFs) -- the electrochemical gradients of permeant ions, together with the membrane potential they produce -- to regulate intracellular pH, drive secondary transport, and power ATP synthesis. Because membranes are imperfectly impermeable, IMFs continuously dissipate through passive leakage, and active transport must compensate at an energetic cost that competes with growth and biosynthesis. How environmental conditions set this cost, and why cells across the tree of life share a common ionic logic yet deploy strikingly diverse transporter repertoires, has lacked a unifying quantitative account.   Here we derive a thermodynamic lower bound on the power required to maintain IMFs at steady state. The bound equals the rate of free-energy dissipation by ion leakage, holds across a broad family of electrophysiological models, and is independent of organism, energy source, or transporter architecture.   Cost minimization recovers, from first principles, the universal K+-rich, Na+-poor cytoplasm observed across taxa: asymmetric membrane permeabilities alone are sufficient to explain it. The same framework predicts that extremophiles face higher maintenance costs under extreme pH, salinity, and temperature, and that when sustaining a large proton motive force becomes prohibitive, cells should shift to metabolic regimes compatible with smaller PMF, providing a thermodynamic rationale for stress-induced metabolic reconfiguration.   Finally, we show that perfect energetic efficiency is unattainable in practice, and that this very imperfection, combined with environmental variability, selects for the diversity of transport architectures observed in nature: each architecture is optimal within a discrete regime of environmental constraints.",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
