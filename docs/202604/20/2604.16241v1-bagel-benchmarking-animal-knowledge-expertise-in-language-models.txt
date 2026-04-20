@@ -1,0 +1,648 @@
+Title: BAGEL: Benchmarking Animal Knowledge Expertise in Language Models
+
+URL Source: https://arxiv.org/pdf/2604.16241v1
+
+Published Time: Mon, 20 Apr 2026 01:15:33 GMT
+
+Number of Pages: 28
+
+Markdown Content:
+# BAGEL: Benchmarking Animal Knowledge Expertise in Language Models 
+
+Jiacheng Shen 2†, Masato Hagiwara 1†, Milad Alizadeh 1, Ellen Gilsenan-McMahon 1, Marius Miron 1, David Robinson 1, Emmanuel Chemla 1, Sara Keen 1, Gagan Narula 1, Mathieu Laurière 3‡,Matthieu Geist 1‡, Olivier Pietquin 1‡
+
+> 1
+
+Earth Species Project 
+
+> 2
+
+NYU Center for Data Science; NYU Shanghai 
+
+> 3
+
+NYU Shanghai Center for Data Science; NYU-ECNU Institute of Mathematical Sciences at NYU Shanghai 
+
+Abstract 
+
+Large language models (LLMs) have shown strong performance on broad-domain knowledge and reasoning benchmarks, but it remains unclear how well language models handle special-ized animal-related knowledge under a unified closed-book evaluation protocol. We introduce 
+
+BAGEL , a Benchmark for evaluating Animal knowled Ge Expertise in Language models. BAGEL is constructed from diverse scientific and reference sources, including bioRxiv, Global Biotic In-teractions, Xeno-canto, and Wikipedia, using a combination of curated examples and automat-ically generated closed-book question-answer pairs. The benchmark covers multiple aspects of animal knowledge, including taxonomy, morphology, habitat, behavior, vocalization, geographic distribution, and species interactions. By focusing on closed-book evaluation, BAGEL measures animal-related knowledge of models without external retrieval at inference time. BAGEL further supports fine-grained analysis across source domains, taxonomic groups, and knowledge cate-gories, enabling a more precise characterization of model strengths and systematic failure modes. Our benchmark provides a new testbed for studying domain-specific knowledge generalization in language models and for improving their reliability in biodiversity-related applications. 
+
+## 1 Introduction 
+
+Instruction-tuned LLMs and chat-style assistants have rapidly improved on a wide range of knowledge and reasoning tasks (Ouyang et al., 2022; OpenAI, 2023), leading to strong per-formance on broad-domain evaluations such as MMLU (Hendrycks et al., 2021) and science-oriented benchmarks such as ScienceQA (Lu et al., 2022). These gains have fueled interest in using LLMs as general-purpose interfaces for scientific information access, synthesis, and question answering. However, strong aggregate performance on broad benchmarks does not by itself establish whether models reliably encode specialized long-tail knowledge about the natural world, especially when answering questions that require species-level facts, ecological relations, or natural-history reasoning. This gap is increasingly important because language and foundation models are already being explored for biodiversity and animal-related applica-tions. In ecology, recent studies have used LLMs to extract structured ecological information from scientific literature, including host–pathogen records and large-scale species interac-tions (Gougherty and Clipp, 2024; Keck, Broadbent, and Altermatt, 2025), and have begun 
+
+> †These authors contributed equally to this work
+> †† Co-supervising authors
+
+1                                                                        
+
+> arXiv:2604.16241v1 [cs.CL] 17 Apr 2026 BAGEL BENCHMARK
+> Benchmark / line Primary setting Relation to animals / biodiversity Key contrast with BAGEL BAGEL Text-only, closed-book 4-option MC from four curated source tracks Directly centered on animal and natural-history knowledge
+> Reference row: combines encyclopedic animal knowledge (Wikipedia), interaction reasoning among animal species (GloBI), animal-focused scientific-literature rea-soning (bioRxiv), and bioacoustic text about animals (Xeno-canto) under one unified protocol. MMLU (Hendrycks et al., 2021) Broad text MC across 57 subjects Only incidental biol-ogy / life-science cov-erage BAGEL is animal-centered, source-heterogeneous, and reports source/do-main breakdowns rather than abroad academic aggregate. ScienceQA (Lu et al., 2022) Multimodal school-science MC Includes natural-science curriculum content BAGEL targets higher-level natural-history content and uses text-only closed-book questions built from biodiversity sources. BEANS; BEANS-Zero (Hagiwara, Hoffman, et al., 2022; Robinson et al., 2024) Bioacoustic au-dio tasks; audio– language modeling Directly about animal sounds BAGEL removes audio and tests whether models can answer textual questions about vocalization properties and species knowl-edge. Ecological knowl-edge eval (Dorm et al., 2025) Textual evaluation of ecological LLM com-petence (mixed task types) Shared theme: biodiversity-related scientific knowledge in language models BAGEL is centered on animal natural his-tory and organism-level facts, using one closed-book MC format across four curated biodiversity text sources; Dorm et al. study ecological competence more broadly with a heterogeneous textual task suite. EnviroExam; ELLE (Y. Huang et al., 2024; Guo, N. Li, and M. Xu, 2025) Environmental-domain exams / QA Broad environment and eco-environment coverage BAGEL is narrower but deeper on animal and natural-history knowledge, with ex-plicit species, interaction, literature, and bioacoustic-source structure. PubMedQA; BLURB (Jin et al., 2019; Gu et al., 2021) Biomedical QA /biomedical NLP Biological, but centered on hu-man health and biomedicine BAGEL shifts the focus from biomedical language understanding to organismal di-versity, ecology, and natural-history rea-soning.
+
+Table 1 . Representative neighboring benchmarks and where BAGEL differs most clearly. Rows are illus-trative rather than exhaustive; descriptions were checked against primary papers / official benchmark descriptions. 
+
+to test ecological knowledge more directly, finding uneven performance across ecological tasks (Dorm et al., 2025). In animal communication and bioacoustics, prior work has intro-duced several important resources, including BEANS, a benchmark covering a broad range of animal sound tasks (Hagiwara, Hoffman, et al., 2022); ISPA, a text-like transcription scheme for animal sounds (Hagiwara, Miron, and Liu, 2024); and NatureLM-audio, an audio-language foundation model built upon text-only LLMs(Llama) for bioacoustics (Robinson et al., 2024). More broadly, biodiversity-focused foundation models have also emerged in other modalities, such as BioCLIP for fine-grained recognition across the tree of life (Stevens et al., 2024). Despite this momentum, most prior work emphasizes information extraction, audio understanding, or visual recognition rather than evaluating whether text-only LLMs can answer closed-book questions about animals. As a result, it remains unclear how well current language models generalize across the heterogeneous forms of knowledge that matter for animal expertise, such as taxonomy, morphology, behavior, habitat, vocalization, geographic distribution, and species interactions. To address this gap, we introduce BAGEL , a Benchmark for closed-book evaluation of Animal knowled Ge Expertise in Language models. 1 BAGEL aggregates 11,852 multiple-choice questions derived from four complementary sources: Wikipedia, Global Biotic Interactions (GloBI) (Poelen, Simons, and Mungall, 2014), bioRxiv, and Xeno-canto (Vellinga and Planqué, 2015). Together they target four animal-centered skills—encyclopedic knowl-edge about animals (Wikipedia), ecological interaction reasoning (GloBI), scientific-literature reasoning about animals (bioRxiv), and text-only bioacoustic-domain knowledge about animal vocalizations (Xeno-canto). By design, BAGEL tests not only overall accuracy but also robust-ness across source domains and source-specific dimensions, providing a more fine-grained view of what current models do and do not know about animals and natural history. 
+
+> 1
+
+Dataset release: https://huggingface.co/datasets/EarthSpeciesProject/BAGEL. 
+
+2BAGEL BENCHMARK 
+
+## 2 Related Work 
+
+LLMs and foundation models for biodiversity and animal-related applications. The use of language and foundation models in biodiversity-relevant settings is growing rapidly, but the literature is still fragmented across application areas and modalities. In ecology, LLMs have been explored as tools for extracting structured knowledge from text, including ecological vari-ables from disease reports (Gougherty and Clipp, 2024) and species interactions from large sci-entific corpora (Keck, Broadbent, and Altermatt, 2025). Recent evaluation work has also be-gun to probe whether general-purpose LLMs possess ecological knowledge directly, reporting a substantial gap between relatively strong factual or taxonomic recall and weaker ecological reasoning or conservation-oriented judgment (Dorm et al., 2025). In parallel, animal-centered foundation-model work has expanded in bioacoustics: BEANS established a public bench-mark covering multiple animal-sound tasks (Hagiwara, Hoffman, et al., 2022); ISPA proposed a text-based representation for transcribing animal sounds and connecting them to language-model-style methods (Hagiwara, Miron, and Liu, 2024); and NatureLM-audio introduced an audio-language foundation model tailored to bioacoustics, with strong zero-shot generaliza-tion across taxa and tasks (Robinson et al., 2024). Outside text and audio, BioCLIP demonstrates that biodiversity-specific foundation models can substantially improve fine-grained recogni-tion across a wide taxonomic range (Stevens et al., 2024). Adjacent Earth-science domains have likewise moved toward specialized language models, including K2 for geoscience and OceanGPT for ocean science (Deng et al., 2023; Bi et al., 2023). Together, these studies show clear momentum toward AI systems specialized for nature and environmental data, but they do not directly evaluate closed-book animal knowledge in text-only LLMs. 
+
+General knowledge and science benchmarks. Large language models are commonly eval-uated using broad knowledge benchmarks such as MMLU (Hendrycks et al., 2021), which mea-sure multitask performance across many academic subjects. In science-focused evaluation, ScienceQA (Lu et al., 2022) provides a large benchmark of science questions with associated explanations and multimodal context. These benchmarks are valuable for measuring general scientific competence, but they do not specifically target fine-grained knowledge of animals, biodiversity, or natural history. 
+
+Biomedical and scientific QA benchmarks. A separate line of work studies domain-specific evaluation in biomedicine and scientific question answering. BLURB (Gu et al., 2021) aggre-gates multiple biomedical NLP tasks into a unified benchmark, while PubMedQA (Jin et al., 2019) focuses on question answering over biomedical research abstracts. BioASQ (Nentidis et al., 2023) has also established a long-running shared task centered on large-scale biomedical semantic indexing and question answering. These resources demonstrate the value of domain-specific evaluation, but they primarily focus on biomedical or clinical knowledge rather than biodiversity and natural history. 
+
+Environmental and ecological benchmarks. More recently, several benchmarks have moved closer to environmental and ecological applications. EnviroExam (Y. Huang et al., 2024) evaluates environmental science knowledge of large language models using curriculum-based questions, and ELLE (Guo, N. Li, and M. Xu, 2025) proposes a QA benchmark for eco-environment applications. Work on ecological knowledge evaluation is also beginning to emerge, with recent evidence that strong general-purpose LLMs retain only partial and task-dependent ecological competence (Dorm et al., 2025). These efforts are important adjacent steps, but they emphasize broad environmental science, ecology, or sustainability topics rather than animal-centered expertise. In contrast, BAGEL foregrounds animal-centered evaluation under one protocol: encyclopedic species facts (Wikipedia), ecological interactions among taxa (GloBI), animal-relevant scientific literature reasoning (bioRxiv), and bioacoustic-domain textual knowledge (Xeno-canto), with accuracy reported per source. 
+
+Our Contributions. BAGEL complements prior work by focusing on a distinct but under-explored evaluation axis: closed-book question answering about animals and natural history 
+
+> 3BAGEL BENCHMARK
+> Figure 1 . Overview of the BAGEL benchmark curation pipeline: four source-specific preparation tracks feed domain prompts into a shared generator, followed by quality checks, four-option formatting, and option-order shuffling.
+
+grounded in heterogeneous biodiversity-relevant sources. Rather than testing general aca-demic knowledge or biomedical reasoning alone, BAGEL is designed to measure how well lan-guage models handle species-level knowledge, ecological relations, and animal-focused factual generalization across multiple source domains. Table 1 makes the contrasts concrete with rep-resentative neighbors. 
+
+## 3 Benchmark Construction 
+
+Figure 1 summarizes the end-to-end curation workflow; subsections below describe each source domain. The four corpora are not intended to exhaust real-world natural-history com-petence; they are public, machine-accessible anchors over complementary animal-centered skills: encyclopedic knowledge about animals, ecological interaction reasoning among taxa, scientific-literature reasoning on animal-focused preprints, and text-only bioacoustic knowl-edge derived from animal recordings. 
+
+3.1 Wikipedia 
+
+The Wikipedia subset targets encyclopedic knowledge about animals : English Wikipedia species articles supply the evidence, and each item probes closed-book recall of taxon-specific facts a reader would normally take from such an article, without access to the article at test time. 2
+
+Article retrieval. For each candidate taxon, structured metadata (scientific name and higher-level classification) is used to resolve the English article title through Wikidata (linking the taxon name to an item and reading its English Wikipedia sitelink), after which the article plain-text extract is retrieved via the MediaWiki API. Pages with missing text or extracts shorter than 1,000 characters are excluded so that stubs and minimally informative articles do not dom-inate the benchmark. 
+
+Text preparation. Extracts longer than 180,000 characters are truncated before generation, with preference for paragraph- or sentence-boundary cuts so that the retained prefix remains coherent. This cap keeps prompts within practical context-window limits of the generation model. No additional manual editing of article text is performed beyond this cap. 
+
+Question synthesis. Questions are generated through the GPT-4o-mini API using the system–user template in Appendix A.1.1. The model may emit up to eight four-option, single-answer items per species, each assigned to one of eight thematic dimensions: Taxonomy ; Be-
+
+> 2Portal https://www.wikipedia.org/; taxa are linked through Wikidata and article plain-text extracts are retrieved via the MediaWiki API.
+> 4BAGEL BENCHMARK
+
+havior (including social behavior where applicable); Communication ; Morphology ; Habitat ;
+
+Cognition ; Geographic Distribution ; and Diet . Every item must be justified solely by explicit statements in the supplied extract; dimensions not supported by the text are skipped. When the article mentions vocalization, geographic range, or feeding, the prompt encourages at least one item in Communication , Geographic Distribution , or Diet , respectively. Parsed outputs are kept only if they pass simple structural checks (valid dimension label, exactly four options, and a designated correct option that matches one option string exactly). At evaluation time, mod-els see only the stem and answer choices; article text and construction metadata are withheld, consistent with the closed-book protocol in Section 4. 
+
+3.2 Global Biotic Interactions (GloBI) 
+
+The GloBI subset targets ecological interaction reasoning among species. Tabular records in the Global Biotic Interactions exchange format describe directed links between a source taxon and a target taxon together with an interaction-type label and optional locality, coordinates, observation time, life-stage or body-part fields, habitat, and bibliographic provenance. 3
+
+Preprocessing. We read at most 10,000 rows from the record table and harmonize col-umn names across common GloBI export conventions. Rows without both endpoint taxa and an interaction-type label are excluded. Each retained row is converted into a short natural-language summary of the interaction together with optional locality, date, and coordinate meta-data, plus dataset- and reference-level provenance. 
+
+Balanced subsampling. From the annotated pool we select 3,500 interactions, stratifying by interaction type so that the empirical distribution over relation labels is more uniform than under uniform random sampling of rows. Within each type, rows with richer contextual meta-data (locality, coordinates, dates) are preferred when ties arise, using a fixed random seed for reproducibility; the final subset is shuffled before question synthesis. 
+
+Multiple-choice synthesis. For each selected interaction, we prompt GPT-4o-mini through the OpenAI API with the natural-language interaction summary as the only textual ev-idence. The instruction format is given in Appendix A.1.1. The model must output exactly one closed-book, four-option item labeled as either Masked participant identification or Masked interaction type inference , obeying constraints that discourage trivial verb cues and encourage ecologically plausible distractors. Malformed or unparseable outputs are discarded. 
+
+3.3 bioRxiv 
+
+The bioRxiv subset targets scientific-literature reasoning about animals . We harvest animal-related articles directly from the public bioRxiv website 4 using its month-indexed advanced search interface, restricting to posts dated from 2023 onward and to four subject areas: Animal Behavior and Cognition , Ecology , Evolutionary Biology , and Zoology .
+
+Preprocessing. Title, abstract, and article body are concatenated into one working docu-ment. For body text, we normalize whitespace, remove exact duplicate paragraphs, and drop paragraphs that begin with ”Figure”. We then apply a light text-cleaning pass (newline/page-number cleanup and whitespace normalization). We do not apply an additional hard length cap for bioRxiv documents since the text is within the context window that GPT-4o-mini can handle. 
+
+Multiple-choice synthesis. Each document is presented to GPT-4o-mini via the OpenAI API. The prompt specification appears in Appendix A.1.1. The model must return exactly one four-option item of type Result Interpretation : the stem must state enough of the experimen-tal setup and findings that the item is answerable without the PDF, and all claims must be grounded in the supplied excerpt. Malformed outputs are discarded. The released benchmark contains 2,183 questions (Table 2). 
+
+> 3GloBI portal and indexed interaction data: https://www.globalbioticinteractions.org/.
+> 4bioRxiv server: https://www.biorxiv.org/.
+> 5BAGEL BENCHMARK
+
+3.4 Xeno-canto 
+
+The Xeno-canto subset focuses on text-based bioacoustic knowledge concerning animals, including typical vocalization characteristics and coarse-grained acoustic structures at the species level. It is derived from the Xeno-canto community repository (Vellinga and Planqué, 2015) 5, which provides user-contributed recordings and associated species metadata. At test time, models receive only the question stem and four options; spectrograms and audio are with-held, so scores reflect vocabulary and reasoning over animal sounds in text, not perception of a played waveform.Appendix Figure 3 provides a demonstration of the Xeno-canto MCQs gen-eration pipeline. 
+
+Species coverage. Xeno-canto items are built only for species that already appear in the Wikipedia construction pipeline: we use the same scientific-name inventory as for the Wikipedia subset, so every taxon with a candidate recording is one for which we also derived species-level questions from English Wikipedia (subsection 3.1). 
+
+Recording retrieval and filtering. Recordings are retrieved from Xeno-Canto through its public query interface. For each species we request clips between 5 and 600 seconds in length, exclude material released under no-derivatives licenses, and retain at most 100 ac-cepted files per species before further processing. We also align the species list to an internal recording-level metadata inventory with richer taxonomic and recording attributes than a min-imal species-level export, matching on unified scientific names. Audio is analyzed at 16 kHz; clips shorter than five seconds or with peak amplitude below 0.1 are dropped, and longer files are truncated to the first 30 seconds for feature extraction. Each retained waveform receives a scalar clarity score from a lightweight signal-processing heuristic that combines band-limited signal-to-noise (0.5–10 kHz), separation of harmonic versus percussive energy, mean spectral flatness, and a penalty for clipping. When many candidates exist per species, we randomize order and keep a small fixed number to diversify recordings while controlling cost. 
+
+Question synthesis. For recordings with usable vocalization labels, free-text type strings are normalized: mixed or ambiguous labels (e.g., simultaneous ”song” and ”call”), empty tags, or ”uncertain” entries are skipped, and otherwise we retain a single canonical phrase. We ren-der a log-frequency spectrogram of at most 30 seconds (audio resampled at 44.1 kHz for display) and provide it together with common and scientific names to GPT-4o-mini through the Ope-nAI API. The instruction schema (Appendix A.1.1) asks for exactly one four-option item in one of four randomly drawn topic families—dominant frequency range, call or syllable duration, modulation pattern, or harmonic structure versus broadband noise—with respective sampling weights of approximately 65%, 15%, 10%, and 10%. The model should use the image only as support for species-typical acoustic descriptions and must not mention spectrograms, files, or recordings in the question; the stem must explicitly name the vocalization type (e.g., song ver-sus call). 
+
+3.5 Mitigating answer-position imbalance. 
+
+After initial construction, we found that the index of the correct option among the four ordered choices was highly skewed across domains (Appendix F, Table 9). Such imbalance is problem-atic for evaluation: recent work shows that large language models are sensitive to option or-der in multiple-choice tests and can exhibit systematic selection bias toward particular answer labels independent of content (C. Zheng et al., 2024; Pezeshkpour and Hruschka, 2024). To reduce the risk that models exploit positional shortcuts, we apply a random permutation of the four options for each item with a fixed random seed, updating the stored correct label or in-dex accordingly. Table 10 summarizes the resulting distribution over all 11 ,852 multiple-choice items in the released shuffled split: the empirical frequency of each gold position stays within about one percentage point of the nominal 25% under a balanced design. Figure 2 provides one representative example item from each source domain, illustrat-ing heterogeneity across encyclopedic animal knowledge (Wikipedia), interaction reasoning among animal species (GloBI), scientific-literature reasoning about animals (bioRxiv), and bioa-coustic text (Xeno-canto). Additional examples for every domain-specific dimension are pro-vided in Appendix B. 
+
+> 5Recordings and species metadata: https://www.xeno-canto.org/.
+> 6BAGEL BENCHMARK
+
+bioRxiv                              
+
+> Dimension: Result Interpretation
+> Level: easy
+> Question: In a study of the sea anemone
+> Nematostella vectensis ,researchers found that animals kept in environments with gravel substrate produced signif-icantly more clonal progeny through transverse fission compared to those without substrate. Given that substrate enhances fission rates, what can be inferred about its role in asexual repro-duction?
+> Options: A. Substrate provides a me-chanical advantage that facilitates the physical process of fissioning. B. Sub-strate increases the genetic diversity of the clones produced during fission. C. Substrate reduces the metabolic waste that inhibits fission in high-density pop-ulations. D. Substrate alters the hor-monal balance in Nematostella , promot-ing faster growth.
+> Gold: A. Substrate provides a mechani-cal advantage that facilitates the physical process of fissioning.
+
+Wikipedia      
+
+> Dimension: Communication
+> Level: medium
+> Question: What is one of the distinct call types of the Andean flamingo?
+> Options: A. Whistle B. Chirp C. Growl D. Peep
+> Gold: D. Peep
+
+GloBI      
+
+> Dimension: Masked participant identification
+> Level: hard
+> Question: Which taxon is likely to be the host in the interaction with Pallisentis nagpurensis?
+> Options: A. Cichlidae B. Channa striata C. Heteropneustes fos-silis D. Pallisentis nagpurensis
+> Gold: B. Channa striata
+
+Xeno-canto            
+
+> Dimension: Dominant frequency range
+> Level: easy
+> Question: What is the typical dominant frequency range of the
+> call of the Red Warbler ( Cardellina rubra )?
+> Options: A. ∼3–5 kHz B. ∼1–2 kHz C. ∼10–12 kHz D. ∼7–9 kHz
+> Gold: A. ∼3–5 kHz
+
+Figure 2 . Representative example items from each BAGEL domain. Level indicates the reference diffi-culty label from Table 3 (agreement between GPT-5.4 and Claude Opus 4.6 on the released level field). The four panels are chosen to include easy , medium , and hard strata across domains. 
+
+## 4 Experimental Setup 
+
+4.1 Models 
+
+We evaluate two frontier closed-source models—GPT-5.4 and Claude Opus 4.6—and a ladder of open-weight models from SmolLM2-360M (Ben Allal et al., 2025) upward, including five Qwen3 family models (0.6B, 4B, 8B, 14B, and 32B with reasoning mode turned off) (A. Yang et al., 2025), Gemma 3 27B IT (Team et al., 2025) and Gemma-7B (Gemma Team, 2024), Llama 3.1-8B In-struct (Grattafiori et al., 2024), Mistral-7B-Instruct (Jiang et al., 2023), and Phi-4 (Abdin et al., 2024). 
+
+4.2 Evaluation Protocol 
+
+All models are evaluated in a closed-book multiple-choice setting. At test time, the model is given a unified prompt containing only the task instruction, the question stem, and four enu-merated answer options; the source passage used during benchmark construction is not pro-vided at inference time. We use deterministic decoding with seed 0 and greedy generation for the reported results, so each model is represented by a single run rather than an average across seeds. We report accuracy on each source domain and an overall score across domains. The evaluation prompt is provided in Appendix A.1.2. 
+
+4.3 Dataset Statistics 
+
+Table 2 summarizes the composition of BAGEL: 11,852 four-option, single-answer multiple-choice questions across bioRxiv (2,183 ), GloBI (3,500 ), Wikipedia (1,927 ), and Xeno-canto 
+
+(4,242 ), along with source-specific dimensions and each category’s share within its domain. Ta-ble 3 reports how many items fall into each reference difficulty level (easy / medium / hard) when defined by agreement between GPT-5.4 and Claude Opus 4.6; the same labels are stored 
+
+7BAGEL BENCHMARK                                                     
+
+> Domain Dimension # Questions Share in Domain bioRxiv (# = 2,183) bioRxiv Result Interpretation 2,183 100.0%
+> GloBI (# = 3,500) GloBI Masked interaction type inference 2,120 60.6% GloBI Masked participant identification 1,380 39.4%
+> Wikipedia (# = 1,927) Wikipedia Behavior 353 18.3% Wikipedia Diet 296 15.4% Wikipedia Geographic Distribution 281 14.6% Wikipedia Taxonomy 268 13.9% Wikipedia Communication 234 12.1% Wikipedia Habitat 234 12.1% Wikipedia Morphology 233 12.1% Wikipedia Cognition 28 1.5%
+> Xeno-canto (# = 4,242) Xeno-canto Dominant frequency range 2,747 64.8% Xeno-canto Call / syllable duration 649 15.3% Xeno-canto Harmonic structure / tonality vs. broadband 427 10.1% Xeno-canto Modulation pattern 419 9.9%
+
+Table 2 . Composition of BAGEL across source domains and source-specific dimensions. The full bench-mark contains 11,852 questions, with average question length of 180.54 characters and average option length of 35.68 characters.                         
+
+> Domain # Items Easy Medium Hard
+> Wikipedia 1,927 1,681 (87.2%) 163 (8.5%) 83 (4.3%) Xeno-canto 4,242 1,836 (43.3%) 1,218 (28.7%) 1,188 (28.0%) GloBI 3,500 2,549 (72.8%) 439 (12.5%) 512 (14.6%) bioRxiv 2,183 1,957 (89.6%) 135 (6.2%) 91 (4.2%)
+> All 11,852 8,023 (67.7%) 1,955 (16.5%) 1,874 (15.8%)
+
+Table 3 . Reference difficulty strata induced by GPT-5.4 and Claude Opus 4.6 under our evaluation pro-tocol: easy if both models answer correctly, medium if exactly one is correct, and hard if both are wrong. 
+
+in the released data as level . We treat these as reference difficulty strata rather than absolute item difficulty, and a subset of “hard” items may also reflect option-level ambiguity. Reported lengths are measured in characters on the released benchmark files: the mean question stem length is 180.5 and the mean length of a single option string is 35.7 (averaged over all options). 
+
+## 5 Results and Discussion 
+
+5.1 Main leaderboard 
+
+Table 4 reports the main results on BAGEL. Three findings stand out. First, performance varies substantially across source domains, even for the strongest mod-els. For example, frontier closed-source models perform very strongly on Wikipedia and bioRxiv, yet remain notably weaker on Xeno-canto. This gap indicates that BAGEL is not merely measuring broad factual recall, but also source-sensitive expertise in animal and natural his-tory knowledge. Second, open-weight models span a wide band below the proprietary frontier. Among the open models in Table 4, Gemma 3 27B IT reaches the strongest overall open score (0.6789) under our protocol, followed closely by Llama 3.1 Instruct-8B (0.6522) and Phi-4 (0.6511), while Qwen3-32B is highest on Wikipedia accuracy. None of the included open models surpass GPT-5.4’s overall score (0.7601), highlighting a remaining gap to the proprietary entry in this evaluation setup. Third, the smallest open models remain near the random baseline on aggregate (Table 4), while mid-sized models already reach non-trivial accuracy on text-heavy domains yet can fail on Xeno-canto, indicating uneven scaling of biodiversity-related competence. Then we evaluate five instruct checkpoints from the same Qwen3 line—0.6B, 4B, 8B, 14B, and 32B—under an identical prompt and greedy seed-0 protocol (Table 4). Overall accuracy rises sharply from near-random performance at 0.6B ( 0.2464 ) into the 0.57 –0.65 band for 4B–32B, and GloBI, Wikipedia, and bioRxiv scores generally increase with size up to 32B. Xeno-canto 
+
+8BAGEL BENCHMARK                                                                              
+
+> Model GloBI Wiki bioRxiv Xeno-canto Overall Empirical Random Guess 0.2686 0.2247 0.2652 0.2520 0.2549
+> Closed-Source Frontier Models
+> GPT-5.4 0.7720 0.8988 0.9441 0.5926 0.7601 Claude Opus 4.6 0.8100 0.9305 0.9107 0.5601 0.7587
+> Open-Weight Models
+> smolLM2 - 360M 0.2477 0.2372 0.2510 0.2504 0.2476 Qwen3 - 0.6B 0.2523 0.2532 0.2405 0.2414 0.2464 Qwen3 - 4B 0.5866 0.6767 0.8901 0.3581 0.5753 Gemma-7B 0.4806 0.6487 0.8543 0.2791 0.5046 Mistral-7B-Instruct-v0.3 0.6060 0.6834 0.8557 0.2949 0.5532 Llama 3.1 Instruct - 8B 0.6386 0.7348 0.8882 0.5045 0.6522 Qwen3 - 8B 0.6586 0.7654 0.8992 0.3932 0.6253 Phi-4 0.7251 0.7971 0.9244 0.3831 0.6511 Qwen3-14B 0.6954 0.7940 0.9111 0.4125 0.6499 Gemma 3 27B IT 0.7471 0.8012 0.9098 0.4481 0.6789
+> Qwen3-32B 0.7074 0.8106 0.9185 0.3751 0.6441
+> Table 4 . Accuracy by domain on BAGEL. Open-weight models are ordered by increasing approximate size. Within the open-weight block, the best value in each column is shown in bold (leaders can differ by column). GPT-5.4 and Claude Opus 4.6 are closed-source references; between those two, the stronger score in each column is underlined.
+
+behaves differently: accuracy moves from 0.2414 (0.6B) through 0.3581 (4B), 0.3932 (8B), and 
+
+0.4125 (14B), then falls at 32B ( 0.3751 ). Thus the largest Qwen3 checkpoint is not the strongest on Xeno-canto even though it leads on the text-heavy sources. Because Xeno-canto contributes many items, Qwen3-14B slightly edges Qwen3-32B on Overall ( 0.6499 vs. 0.6441 ). Figure 4 in the Appendix plots the same five checkpoints with domain-wise curves. Overall, these results show that BAGEL separates models not only by aggregate capability, but also by robustness across heterogeneous sources. Appendix Tables 5–7 break down accu-racy by source-specific question type (dimensions match Table 2). 
+
+5.2 Discussion 
+
+Construct validity and interpretation. BAGEL aggregates four complementary animal-centered tracks—encyclopedic facts (Wikipedia), pairwise species-interaction reasoning (GloBI), scientific-literature-style stems (bioRxiv), and text-only items grounded in bioacoustic metadata (Xeno-canto)—under a single closed-book, four-option MC protocol. Under this setup, reported scores reflect what models can produce from parameters and instructions alone, without access to source passages or external retrieval; they should not be equated with field identification skills, expert ornithological practice, or perception of waveforms when audio is withheld by design (Section 3). Because the four tracks emphasize different surface forms of knowledge, aggregate accuracy is best treated as a coarse summary: substantive conclusions require domain-level and, where available, dimension-level accuracy (Table 4; Appendix Tables 5–7). Following standard concerns about multiple-choice artifacts, we apply independent random permutations of the four answer options at the item level to mitigate systematic gold-position imbalance in the released split (Section 3; Appendix F). Even after this mitigation, some models exhibit uneven emission of option letters, so measured accuracy can still co-vary with format sensitivity in ways that are orthogonal to “content mastery” in the narrow sense. 
+
+> 9BAGEL BENCHMARK
+
+Heterogeneity and limited cross-domain transfer. The main leaderboard underscores a recurrent pattern: models that achieve strong accuracy on text-rich domains can remain com-paratively weak on Xeno-canto (Table 4). This pattern is not an artifact of a small Xeno subset— the Xeno-canto track contributes a large share of items—yet it is frequently the lowest-accuracy column for frontier and open models alike. Such cross-track gaps motivate reading BAGEL as a portfolio evaluation in which overall ranking is secondary to diagnosing which competencies are present or absent (Hendrycks et al., 2021). In practical terms, high performance on encyclo-pedic or abstract-style items does not license the conclusion that a model will reliably handle acoustics-oriented wording at scale. 
+
+The Xeno-canto gap: item types, stem statistics, and scaling. The relative weakness on Xeno-canto does not reflect a single uniform deficit, but rather substantial heterogeneity across its underlying subtasks. Appendix Table 7 decomposes accuracy by the four acoustic topic fam-ilies used during construction (dominant frequency range, call or syllable duration, harmonic structure versus broadband noise, and modulation pattern). The spread across these dimen-sions is large: for GPT-5.4, accuracy reaches roughly 0.71 on dominant-frequency-range items but only about 0.30 on modulation-pattern items, with other models exhibiting similarly wide within-domain variation and differing strengths across dimensions. The aggregate Xeno-canto score therefore averages over subtasks of markedly different difficulty, which partially explains why it can lag Wikipedia even when both tracks are nominally “about” the same species list. To complement this item-type decomposition, Appendix Table 8 analyzes the linguistic properties of English question stems, using wordfreq unigram Zipf scores as a proxy for general-English word frequency (Speer, 2018). Relative to Wikipedia stems, Xeno-canto stems exhibit (i) substantially higher density of tokens drawn from a fixed bioacoustic keyword list (mean hits per stem: 2.03 versus 0.05 ), (ii) a larger fraction of low-frequency tokens (Zipf < 3: 18 .4% versus 
+
+11 .8%), and (iii) lower mean unigram Zipf ( 5.04 versus 5.33 ). These statistics indicate that Xeno-canto operates in a distinct lexical register, combining domain-specific acoustic terminology with less frequent general-English vocabulary. However, lexical rarity alone does not explain performance: mean stem Zipf shows negligible correlation with per-item correctness on Xeno-canto for Gemma 3 27B IT (Spearman ρ ≈ − 0.03 ), suggesting that difficulty arises from the in-teraction of domain-specific vocabulary, reasoning demands, and distractor design rather than from word frequency alone. Finally, scaling behavior further differentiates Xeno-canto from text-heavy domains. Within the Qwen3 family, Xeno-canto accuracy is non-monotonic with parameter count, with the 32B checkpoint underperforming the 14B checkpoint on this domain despite improving on Wikipedia and bioRxiv (Figure 4). This divergence indicates that gains in general language modeling or factual recall do not uniformly translate to improvements in bioacoustic text competence. These results are consistent with the possibility that text-based bioacoustic QA constitutes a partially distinct challenge, although the gap may also reflect differences in lex-ical register, item construction, and subtask composition. Under our protocol, Xeno-canto evaluates textual reasoning about sound and should be viewed as complementary to, rather than a substitute for, audio-centric animal-sound benchmarks (Hagiwara, Hoffman, et al., 2022; Robinson et al., 2024). 
+
+Multiple-choice ambiguity in BAGEL. Our findings from the manual audit in Appendix G align with a broader literature showing that multiple-choice evaluation can be confounded by insufficiently discriminative answer options, including semantically overlapping distrac-tors, multiple plausible answers, and the forced single-answer assumption (Palta et al., 2024; Balepur, Rudinger, and Boyd-Graber, 2025; W. Xu et al., 2025). Surveys and systems likewise emphasize distractor quality and option distinctness (Alhazmi et al., 2024; Bitew et al., 2023; Amanlou et al., 2026), while recent work argues for moving beyond strict MC scoring toward generative or matching-based evaluation where appropriate (Chandak et al., 2025). Superficial factors such as option ordering can also shift scores (Pezeshkpour and Hruschka, 2024). We do not claim these issues are unique to any one BAGEL domain: we highlight GloBI below because interaction-centric prompts surface them clearly in our manual review, but analogous risks can arise wherever items are generated under a single-answer protocol. 
+
+> 10 BAGEL BENCHMARK
+
+## 6 Conclusion and limitations 
+
+We introduced BAGEL, an 11,852-item closed-book MC benchmark from bioRxiv, GloBI, Wikipedia, and Xeno-canto. Experiments show large domain spread, a gap to a proprietary ref-erence, persistently weaker Xeno-canto scores for many models, and complementary strengths across open-weight families; Appendix F discusses MC positional effects. 
+
+Limitations. Results are reported with one seed and greedy decoding, so stochastic decod-ing or ensembling could shift rankings. BAGEL is closed-book only in the sense that models are evaluated without source passages or external retrieval at inference time; it does not es-tablish that benchmark content was absent from pretraining corpora. Because several source domains are public, scores may reflect a mixture of source familiarity, broader parametric re-call, multiple-choice test-taking skill, and task-specific reasoning, which this setup does not cleanly disentangle. The benchmark is English-only and inherits taxonomic, geographic, and source-selection biases from its sources. MC accuracy does not measure calibration, absten-tion, or open-ended reasoning. Corpus choice is pragmatic and axis-covering rather than ex-haustive of natural-history competence; field guides, occurrence corpora, and expert exams are out of scope but complementary. The Xeno-canto-derived domain is text-only and can-not disentangle acoustic jargon from deep understanding. A targeted audit of the “hard” sub-set indicates that a minority of items contain insufficiently discriminative answer options; the “hard” split should be interpreted as relative challenge under generative multiple-choice design rather than a clean estimate of biological reasoning difficulty in every item. Because questions are generated automatically from source materials, benchmark quality also depends on gener-ation prompts, filtering rules, and distractor construction, which may introduce artifacts not reducible to the source content itself. 
+
+> 11 BAGEL BENCHMARK
+
+## References 
+
+Abdin, Marah, Jyoti Aneja, Harkirat Behl, Sébastien Bubeck, Ronen Eldan, Suriya Gunasekar, Michael Harrison, Russell J. Hewett, Mojan Javaheripi, Piero Kauffmann, et al. (2024). “Phi-4 Technical Report.” In: arXiv preprint arXiv:2412.08905 .Alhazmi, Elaf, Quan Z. Sheng, Wei Emma Zhang, Munazza Zaib, and Ahoud Alhazmi (2024). 
+
+Distractor Generation in Multiple-Choice Tasks: A Survey of Methods, Datasets, and Evalu-ation . arXiv: 2402.01512 [cs.CL] .Amanlou, Mohammad et al. (2026). “KNIGHT: Knowledge Graph-Driven Multiple-Choice Ques-tion Generation with Adaptive Hardness Calibration.” In: arXiv preprint arXiv:2602.20135 .Balepur, Nishant, Rachel Rudinger, and Jordan Lee Boyd-Graber (2025). “Which of These Best Describes Multiple Choice Evaluation with LLMs? A) Forced B) Flawed C) Fixable D) All of the Above.” In: Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers) . Vienna, Austria, pp. 3394–3418. Ben Allal, Loubna, Anton Lozhkov, Elie Bakouch, Gabriel Martín Blázquez, Guilherme Penedo, Lewis Tunstall, Andrés Marafioti, Hynek Kydlíček, Agustín Piqueres Lajarín, Vaibhav Sri-vastav, et al. (2025). “SmolLM2: When Smol Goes Big – Data-Centric Training of a Small Language Model.” In: arXiv preprint arXiv:2502.02737 .Bi, Zhen, Ningyu Zhang, Yida Xue, Yixin Ou, Daxiong Ji, Guozhou Zheng, and Huajun Chen (2023). “OceanGPT: A Large Language Model for Ocean Science Tasks.” In: arXiv preprint arXiv:2310.02031 .Bitew, Semere Kiros, Johannes Deleu, Chris Develder, and Thomas Demeester (2023). “Distrac-tor generation for multiple-choice questions with predictive prompting and large language models.” In: arXiv preprint arXiv:2307.16338 .Chandak, Nikhil, Shashwat Goel, Ameya Prabhu, Moritz Hardt, and Jonas Geiping (2025). An-swer Matching Outperforms Multiple Choice for Language Model Evaluation . arXiv: 2507 . 02856 [cs.CL] .Deng, Cheng, Tianhang Zhang, Zhongmou He, Yi Xu, Qiyuan Chen, Yuanyuan Shi, Luoyi Fu, Weinan Zhang, Xinbing Wang, Chenghu Zhou, Zhouhan Lin, and Junxian He (2023). “K2: A Foundation Language Model for Geoscience Knowledge Understanding and Utilization.” In: arXiv preprint arXiv:2306.05064 .Dorm, Filip, Joseph Millard, Drew Purves, Michael Harfoot, and Oisin Mac Aodha (2025). “Large Language Models Possess Some Ecological Knowledge, but How Much?” In: bioRxiv .Gemma Team (2024). “Gemma: Open Models Based on Gemini Research and Technology.” In: 
+
+arXiv preprint arXiv:2403.08295 .Gougherty, Andrew V. and Hannah L. Clipp (2024). “Testing the Reliability of an AI-Based Large Language Model to Extract Ecological Information from the Scientific Literature.” In: npj Biodiversity 3, p. 13. Grattafiori, Aaron, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek Kadian, Ah-mad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, Alex Vaughan, et al. (2024). “The Llama 3 Herd of Models.” In: arXiv preprint arXiv:2407.21783 .Gu, Yu, Robert Tinn, Hao Cheng, Michael Lucas, Naoto Usuyama, Xiaodong Liu, Tristan Nau-mann, Jianfeng Gao, and Hoifung Poon (2021). “Domain-Specific Language Model Pretrain-ing for Biomedical Natural Language Processing.” In: ACM Transactions on Computing for Healthcare 3.1, pp. 1–23. 
+
+> 12 BAGEL BENCHMARK
+
+Guo, Jing, Nan Li, and Ming Xu (2025). “Environmental Large Language Model Evalua-tion (ELLE) Dataset: A Benchmark for Evaluating Generative AI Applications in Eco-Environment Domain.” In: arXiv preprint arXiv:2501.06277 .Hagiwara, Masato, Benjamin Hoffman, Jen-Yu Liu, Maddie Cusimano, Felix Effenberger, and Katie Zacarian (2022). “BEANS: The Benchmark of Animal Sounds.” In: arXiv preprint arXiv:2210.12300 .Hagiwara, Masato, Marius Miron, and Jen-Yu Liu (2024). “ISPA: Inter-Species Phonetic Alpha-bet for Transcribing Animal Sounds.” In: arXiv preprint arXiv:2402.03269 .Hendrycks, Dan, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn Song, and Ja-cob Steinhardt (2021). “Measuring Massive Multitask Language Understanding.” In: Inter-national Conference on Learning Representations (ICLR) .Huang, Yu, Liang Guo, Wanqian Guo, Zhe Tao, Yang Lv, Zhihao Sun, and Dongfang Zhao (2024). “EnviroExam: Benchmarking Environmental Science Knowledge of Large Language Mod-els.” In: arXiv preprint arXiv:2405.11265 .Jiang, Albert Q., Alexandre Sablayrolles, Arthur Mensch, Chris Bamford, Devendra Singh Chaplot, Diego de las Casas, Florian Bressand, Gianna Lengyel, Guillaume Lample, Lucile Saulnier, et al. (2023). “Mistral 7B.” In: arXiv preprint arXiv:2310.06825 .Jin, Qiao, Bhuwan Dhingra, Zhengping Liu, William W. Cohen, and Xinghua Lu (2019). “Pub-MedQA: A Dataset for Biomedical Research Question Answering.” In: Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP-IJCNLP) ,pp. 2567–2577. Keck, François, Henry Broadbent, and Florian Altermatt (2025). “Extracting Massive Ecological Data on State and Interactions of Species Using Large Language Models.” In: bioRxiv .Lu, Pan, Swaroop Mishra, Tony Xia, Liang Qiu, Kai-Wei Chang, Song-Chun Zhu, Oyvind Tafjord, Peter Clark, and Ashwin Kalyan (2022). “Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering.” In: Advances in Neural Information Pro-cessing Systems (NeurIPS) .Nentidis, Anastasios, Georgios Katsimpras, Anastasia Krithara, Salvador Lima López, Eulàlia Farré-Maduell, Luis Gasco, Martin Krallinger, and Georgios Paliouras (2023). “Overview of BioASQ 2023: The Eleventh BioASQ Challenge on Large-Scale Biomedical Semantic Index-ing and Question Answering.” In: Experimental IR Meets Multilinguality, Multimodality, and Interaction . Lecture Notes in Computer Science. OpenAI (2023). “GPT-4 Technical Report.” In: arXiv preprint arXiv:2303.08774 .Ouyang, Long, Jeff Wu, Xu Jiang, Diogo Almeida, Carroll L. Wainwright, Pamela Mishkin, Chong Zhang, Sandhini Agarwal, Katarina Slama, Alex Ray, John Schulman, Jacob Hilton, Fraser Kelton, Luke Miller, Maddie Simens, Amanda Askell, Peter Welinder, Paul Chris-tiano, Jan Leike, and Ryan Lowe (2022). “Training Language Models to Follow Instructions with Human Feedback.” In: Advances in Neural Information Processing Systems (NeurIPS) .Palta, Shramay, Nishant Balepur, Peter Rankel, Sarah Wiegreffe, Marine Carpuat, and Rachel Rudinger (2024). “Plausibly Problematic Questions in Multiple-Choice Benchmarks for Commonsense Reasoning.” In: Findings of the Association for Computational Linguistics: EMNLP 2024 . Miami, Florida, USA, pp. 3451–3473. Pezeshkpour, Pouya and Estevam Hruschka (2024). “Large Language Models Sensitivity to The Order of Options in Multiple-Choice Questions.” In: Findings of the Association for Compu-tational Linguistics: NAACL 2024 , pp. 2006–2017. 
+
+> 13 BAGEL BENCHMARK
+
+Poelen, Jorrit H., James D. Simons, and Chris J. Mungall (2014). “Global Biotic Interactions: An Open Infrastructure to Share and Analyze Species-Interaction Datasets.” In: Ecological In-formatics 24, pp. 148–159. Robinson, David, Marius Miron, Masato Hagiwara, Benno Weck, Sara Keen, Milad Alizadeh, Gagan Narula, Matthieu Geist, and Olivier Pietquin (2024). “NatureLM-audio: an Audio-Language Foundation Model for Bioacoustics.” In: arXiv preprint arXiv:2411.07186 .Speer, Robyn (2018). wordfreq: Access to word frequency data in many languages . https://github. com/rspeer/wordfreq. Stevens, Samuel, Jiaman Wu, Matthew J. Thompson, Elizabeth G. Campolongo, Chan Hee Song, David Edward Carlyn, Li Dong, Wasila M. Dahdul, Charles Stewart, Tanya Berger-Wolf, Wei-Lun Chao, and Yu Su (2024). “BioCLIP: A Vision Foundation Model for the Tree of Life.” In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) .Team, Gemma et al. (2025). Gemma 3 Technical Report . arXiv: 2503.19786 [cs.CL] . URL: https: //arxiv.org/abs/2503.19786. Vellinga, Willem-Pier and Robert Planqué (2015). “The Xeno-Canto Collection and Its Rela-tion to Sound Recognition and Classification.” In: Working Notes of CLEF 2015 Conference .Vol. 1391. CEUR Workshop Proceedings. Xu, Weijie, Shixian Cui, Xi Fang, Chi Xue, Stephanie Eckman, and Chandan K. Reddy (2025). 
+
+SATA-BENCH: Select All That Apply Benchmark for Multiple Choice Questions . arXiv: 2506. 00643 [cs.CL] .Yang, An, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, et al. (2025). “Qwen3 Technical Report.” In: arXiv preprint arXiv:2505.09388 .Zheng, Chujie, Hao Zhou, Fandong Meng, Jie Zhou, and Minlie Huang (2024). “Large Language Models Are Not Robust Multiple Choice Selectors.” In: arXiv preprint arXiv:2309.03882 .
+
+> 14 BAGEL BENCHMARK
+
+## A Appendix 
+
+A.1 Prompts 
+
+We used the following prompts in this project. 
+
+A.1.1 Benchmark Generation Prompt 
+
+Wikipedia domain benchmark generation prompt 
+
+System: You are a scientific question generator. Given a Wikipedia article about a single species, generate up to eight multiple-choice questions (no free-form). Only use information explicitly mentioned in the text. Each question must: - Fall under one of these dimensions: Taxonomy, Behavior, Communication, Morphology, Habitat, Cognition, Geographic Distribution, Diet. - For Behavior, consider social behavior (e.g., solitary vs. social, group size, social structure) when present. - Have exactly four options and exactly one correct answer. - Be factual, unambiguous, and grounded in the given Wikipedia text (no outside knowledge). - Skip dimensions not covered in the text. If the text mentions vocalization and communication, include at least one question about Communication. If the text mentions where the species is found (e.g., native range, regions, countries), include at least one question about Geographic Distribution. If the text mentions feeding or diet, include at least one question about Diet.\n\n User:Species metadata: ScientificName: {ScientificName} CommonNames: {CommonNames} Taxonomy: Kingdom={Kingdom}; Phylum={Phylum}; Class={Class}; Order={Order}; Family={ Family}; Genus={Genus} WikipediaTitle: {WikipediaTitle} WikipediaText: \”\”\”{WikipediaText}\”\”\” Instructions: Generate up to EIGHT multiple-choice questions across relevant dimensions. Return output as a JSON list under this schema: {{ ”questions”: [ {{ ”dimension”: ”<one of Taxonomy|Behavior|Communication|Morphology|Habitat|Cognition| Geographic Distribution|Diet>”, ”question”: ”<question text>”, ”options”: [”<opt1>”, ”<opt2>”, ”<opt3>”, ”<opt4>”], ”answer”: ”<correct option>” }} ]}}\n\n Assistant:\n\n 
+
+15 BAGEL BENCHMARK 
+
+GloBI domain benchmark generation prompt 
+
+System: You are creating benchmark-quality self-contained multiple-choice questions. Return only one valid JSON object User: You are generating benchmark-quality multiple-choice questions for the ecological interaction domain of an animal expertise benchmark. You will be given a short source context derived from a GloBI ecological interaction record. Your task is to generate exactly ONE self-contained multiple-choice question. The benchmark is CLOSED-BOOK: - The final test-taker will NOT see the source context. - The question must stand on its own. - The question must NOT refer to ”the passage”, ”the text”, ”the record”, ”the source”, or any hidden context. - Use ONLY information supported by the provided source context. Do NOT use outside knowledge. Your goal is to produce a question that tests ecological reasoning, not keyword matching. Select exactly ONE dimension that is most suitable for the source context: - Masked interaction type inference - Masked participant identification Dimension guidance: - Masked participant identification: hide one participant and ask which taxon best fills the missing ecological slot. - Masked interaction type inference: hide the relation label and ask which interaction type best fits the interaction pattern. High-value question criteria: - The item must require at least one inference step. - The correct answer should NOT be recoverable from a single cue word alone. - The species names and ecological clues should matter to solving the question. - The question should test ecological understanding, not simple paraphrase or label recognition. Anti-leakage rules: - Do NOT use verbs or phrases that directly reveal the correct interaction type, such as: ”consumes”, ”eats”, ”predates on”, ”parasitizes”, ”pollinates”, ”infects”, ”hosts”, ”mutualist”, ” commensal”, ”parasite”, ”predator”, ”prey”. - Do NOT use wording that is an obvious synonym or near-restatement of the correct answer. - Do NOT write a question that can be answered correctly even if the taxa are replaced with ”species X ” and ”species Y”. - Do NOT make the correct answer obvious from one lexical clue in the stem. - If the source context only supports a trivial label-retrieval question, reject it. For masked interaction type inference, do not ask for the interaction label directly unless the stem requires integrating multiple clues. Prefer questions where the solver must infer the interaction from ecological roles, asymmetry, or biological consequences, not from a single action verb. Requirements for the question: - Include only the clues necessary to support a non-trivial inference. - Prefer ecological reasoning over direct restatement. - Do not simply restate the source context verbatim unless necessary. - Do not overgeneralize from a single documented interaction. - For masked-inference questions, the missing field must be reasonably inferable from the remaining clues. - Avoid questions where multiple options could plausibly be correct. - Use clear scientific language. - The question should read like an ecological reasoning problem, not like a hidden database entry. Requirements for options: 
+
+16 BAGEL BENCHMARK 
+
+- Exactly four options labeled A, B, C, and D. - Exactly one correct answer. - Distractors must be plausible. - Distractors should reflect realistic ecological confusions, such as: - reversed interaction direction - wrong ecological role - wrong interaction type - plausible but incorrect taxon - unsupported stronger claim Reject low-value questions such as: - direct label retrieval from a cue word - simply copying a species name with no reasoning value - masked questions where the answer is not actually inferable from the clues - items where the stem already contains the answer in nearly explicit form - items that test generic ecology vocabulary rather than animal expertise Before deciding the item is usable, internally check: 1. Can the answer be solved from a single cue word or phrase? 2. Would the item still work the same if the species names were replaced with generic placeholders? 3. Is the correct option mostly a paraphrase of the stem? 4. Does the item require ecological reasoning rather than lexical matching? If the answer to any of 1-3 is yes, strongly prefer rejection. Avoid wording such as: - ”documented” - ”recorded” - ”reported” - ”observed” - ”in the record” - ”according to the source” - ”the passage states” Return valid JSON in one of these two formats. USABLE: {”usable”: ”true”, ”dimension”: ”<one of: Masked participant identification | Masked interaction type inference>”, ”question”: ”<self-contained question>”, ”options”: { ”A”: ”<option A>”, ”B”: ”<option B>”, ”C”: ”<option C>”, ”D”: ”<option D>” }, ”correct_answer”: ”<A|B|C|D>”, ”supporting_evidence”: [ ”<short evidence span 1>”, ”<short evidence span 2>” ], ”rationale”: ”<brief explanation grounded in the source context>” }REJECTION: {”usable”: ”false”, ”rejection_reason”: ”<one of: too_sparse | answer_not_self_contained | low_reasoning_value | masked_field_not_inferable | lexical_leakage>” 
+
+17 BAGEL BENCHMARK 
+
+}SOURCE CONTEXT: {Interaction record}\n\n Assistant:\n\n 
+
+BioRxiv domain benchmark generation prompt 
+
+System: You are creating benchmark-quality self-contained multiple-choice questions. Return only one valid JSON object. User: You are creating benchmark-quality multiple-choice questions from a bioRxiv paper. The final benchmark model will see ONLY the question and answer options. Therefore, the question itself must include all necessary context for answering. Read the paper and generate exactly ONE self-contained 4-choice multiple-choice question. Use ONLY information from the paper. Do NOT use outside knowledge. Only generate the following type of dimension questions: - Result Interpretation — interpreting experimental results Requirements: - The question must be fully self-contained. - Include the minimum necessary scientific context inside the question stem so that the question is answerable without access to the paper. - The question stem may be longer than usual, but it must remain concise and focused. - The question stem must include setup and evidence when needed, but must NOT directly restate the correct answer or final conclusion in answer-like wording. - Do NOT create a question that can be answered only by having seen the paper. - The question must test scientific reasoning, not trivial word matching. - Distractors must be scientifically plausible and belong to the same conceptual category as the correct answer. - Provide exactly four options labeled A, B, C, and D. - Exactly one option must be correct. - Do not mention the dimension in the question text. - Do not include unsupported information. Question-writing guidance: - Prefer a stem that includes: 1. the study system or biological setting, 2. the relevant manipulation, comparison, or observation, 3. the key evidence or result pattern, 4. the reasoning task. - Avoid copying long sentences directly from the paper. - Lightly rewrite the source information into a natural, self-contained scientific scenario. - Do not make the stem so compressed that the correct answer becomes obvious from wording alone. Before finalizing, check: - Can a model answer the question from the stem alone? - Does the stem avoid directly revealing the correct answer? - Are the options plausible and same-category? - Is the question testing reasoning rather than recall of the paper? Return valid JSON in this schema: {”dimension”: ”Result Interpretation ”, ”question”: ”<self-contained question stem>”, ”options”: { ”A”: ”<option A>”, 
+
+18 BAGEL BENCHMARK 
+
+”B”: ”<option B>”, ”C”: ”<option C>”, ”D”: ”<option D>” }, ”correct_answer”: ”<A|B|C|D>”, ”supporting_evidence”: [ ”<short copied or lightly trimmed evidence span 1>”, ”<short copied or lightly trimmed evidence span 2>” ], ”reason”: ”<brief explanation of why the correct answer is supported by the paper>” }PAPER: {paper}\n\n Assistant:\n\n 
+
+Xeno-canto domain benchmark generation prompt 
+
+System: You are an expert in bioacoustics. Use the provided spectrogram only as background to infer general, species-level acoustic facts. Write ONE multiple-choice question about the specified TOPIC for this ’species vocalizations. Do NOT mention or refer to any image/recording/ spectrogram in the question. The question must read like a factual quiz item about typical acoustic properties, not about a specific recording. CRITICALLY: include the VOCALIZATION TYPE explicitly in the question text (e.g., ’song’, ’call’, ’flight call’). User: Animal: {common_name} ({ scientific_name}). Vocalization type: {Vocalization type}. Topic: {topic_label}. Guidance: {guidance} Use appropriate units ({units_hint}). Provide 4 options (–AD) with plausible distractors; exactly one correct. Include approximate numeric ranges where applicable. Do NOT reference any image, recording, or spectrogram. IMPORTANT: The question MUST explicitly mention the vocalization type ’{vt}’. Examples of reasonable value styles: {examples}.\n\n Assistant: \n\n 
+
+A.1.2 Evaluation Prompt 
+
+Evaluation prompt 
+
+You are answering a multiple-choice closed-book benchmark question for testing animal expertise. Choose exactly one answer.\n Output exactly one capital letter: A, B, C, or D.\n Do not output any explanation, words, punctuation, or extra text.\n\n Question: {question}\n Options: A. {option_a} B. {option_b} C. {option_c} D. {option_d} Answer: 
+
+## B Example Benchmark Items 
+
+19 BAGEL BENCHMARK 
+
+B.1 Wikipedia 
+
+Example item 
+
+Dimension: Taxonomy 
+
+Level: easy 
+
+Question: What is the scientific name of the Andean flamingo? 
+
+Options: 
+
+A. Phoenicopterus andinus B. Phoenicoparrus andinus C. Phoenicopterus chilensis D. Phoenicoparrus chilensis 
+
+Gold answer: Phoenicoparrus andinus 
+
+Example item 
+
+Dimension: Geographic Distribution 
+
+Level: easy 
+
+Question: Where is the Andean flamingo native to? 
+
+Options: 
+
+A. The Amazon rainforest B. The Andes mountains of South America C. The coastal regions of Chile D. The plains of Argentina 
+
+Gold answer: The Andes mountains of South America 
+
+Example item 
+
+Dimension: Diet 
+
+Level: easy 
+
+Question: What is the primary feeding strategy of the Andean flamingo? 
+
+Options: 
+
+A. Carnivorous predation B. Filter feeding C. Scavenging D. Grazing on grass 
+
+Gold answer: Filter feeding 
+
+Example item 
+
+Dimension: Behavior 
+
+Level: easy 
+
+Question: How do Andean flamingos adapt their foraging behavior when grouped with other flamingo species? 
+
+Options: 
+
+A. They forage alone regardless of group B. They adopt the foraging patterns of the species they are grouped with C. They only forage at night D. They stop foraging altogether 
+
+Gold answer: They adopt the foraging patterns of the species they are grouped with 
+
+> 20 BAGEL BENCHMARK
+
+Example item 
+
+Dimension: Communication 
+
+Level: medium 
+
+Question: What is one of the distinct call types of the Andean flamingo? 
+
+Options: 
+
+A. Chirp B. Peep C. Whistle D. Growl 
+
+Gold answer: Peep 
+
+Example item 
+
+Dimension: Morphology 
+
+Level: easy 
+
+Question: What distinguishes the Andean flamingo from other flamingo species? 
+
+Options: 
+
+A. Its bright red plumage B. Its yellow legs and three-toed feet C. Its long neck D. Its ability to fly at high altitudes 
+
+Gold answer: Its yellow legs and three-toed feet 
+
+Example item 
+
+Dimension: Habitat 
+
+Level: easy 
+
+Question: In which type of environment do Andean flamingos primarily live during the summer? 
+
+Options: 
+
+A. Forests B. Salt lakes C. Grasslands D. Deserts 
+
+Gold answer: Salt lakes 
+
+Example item 
+
+Dimension: Cognition 
+
+Level: easy 
+
+Question: What cognitive ability is noted in kea regarding problem-solving? 
+
+Options: 
+
+A. They can memorize songs B. They can solve logical puzzles C. They can mimic human speech D. They can navigate using stars 
+
+Gold answer: They can solve logical puzzles 
+
+> 21 BAGEL BENCHMARK
+
+B.2 GloBI 
+
+Example item 
+
+Dimension: Masked participant identification 
+
+Level: hard 
+
+Question: Which taxon is likely to be the host in the interaction where Pearsonema plica is an endoparasite? 
+
+Options: 
+
+A. Procyon lotor B. Ursus americanus C. Canis lupus D. Lynx rufus 
+
+Gold answer: Procyon lotor 
+
+(Verbatim from the released BAGEL GloBI JSONL; underlying GloBI record: Pearsonema plica endoparasiteof Procyon lotor.) 
+
+Example item 
+
+Dimension: Masked interaction type inference 
+
+Level: easy 
+
+Question: In an ecological interaction where a tree species is negatively affected by a fungal organism, what type of interaction is most likely occurring? 
+
+Options: 
+
+A. The tree is providing nutrients to the fungus. B. The fungus is benefiting at the expense of the tree. C. The tree is benefiting the fungus without any harm. D. The tree and fungus are mutually benefiting each other. 
+
+Gold answer: The fungus is benefiting at the expense of the tree. 
+
+B.3 bioRxiv 
+
+Example item 
+
+Dimension: Result Interpretation 
+
+Level: easy 
+
+Question: In a study of the sea anemone Nematostella vectensis, researchers found that ani-mals kept in environments with gravel substrate produced significantly more clonal progeny through transverse fission compared to those without substrate. Given that the presence of substrate is shown to enhance fission rates, what can be inferred about the role of substrate in the asexual reproduction of Nematostella vectensis? 
+
+Options: 
+
+A. Substrate provides a mechanical advantage that facilitates the physical process of fission-ing. B. Substrate increases the genetic diversity of the clones produced during fission. C. Substrate reduces the metabolic waste that inhibits fission in high-density populations. D. Substrate alters the hormonal balance in Nematostella, promoting faster growth. 
+
+Gold answer: Substrate provides a mechanical advantage that facilitates the physical pro-cess of fissioning. 
+
+> 22 BAGEL BENCHMARK
+
+B.4 Xeno-canto 
+
+Example item 
+
+Dimension: modulation pattern 
+
+Level: hard 
+
+Question: What common frequency modulation (FM) pattern is typically observed in the song of the Red Warbler (Cardellina rubra)? 
+
+Options: 
+
+A. Rising glide B. Sinusoidal vibrato C. Falling glide D. Trill 
+
+Gold answer: Rising glide 
+
+Example item 
+
+Dimension: dominant frequency range 
+
+Level: medium 
+
+Question: What is the typical dominant frequency range of the song of the Red Warbler (Cardellina rubra)? 
+
+Options: 
+
+A. ∼9–11 kHz B. ∼3–5 kHz C. ∼6–8 kHz D. ∼1–2 kHz 
+
+Gold answer: ∼3–5 kHz 
+
+Example item 
+
+Dimension: call/ syllable duration 
+
+Level: easy 
+
+Question: What is the typical duration of a single call for the Red Warbler (Cardellina rubra)? 
+
+Options: 
+
+A. 80–150 ms B. 200–400 ms C. 0.8–1.2 s D. 1.5–2.0 s 
+
+Gold answer: 80–150 ms 
+
+Example item 
+
+Dimension: harmonic structure / tonality vs. broadband 
+
+Level: hard 
+
+Question: Are the calls of the Red Warbler (Cardellina rubra) typically characterized as tonal with harmonics or broadband/noisy? 
+
+Options: 
+
+A. Strong harmonics B. Weak harmonics C. Broadband D. Tonal whistle 
+
+Gold answer: Strong harmonics 
+
+## C Xeno-canto generation pipeline demonstration plot 
+
+Figure 3 shows the pipeline to create text-based bioacoustic knowledge MCQs. 
+
+> 23 BAGEL BENCHMARK Question: What is the typical dominant frequency range of the call of the Western Corella (Cacatua pastinator)? Options: A: 0.5–1 kHz B: 2–4 kHz C: 4–6 kHz D: 10–12 kHz Answer: B
+> LLM (gpt-4o-mini)
+> Figure 3 . Xeno-canto question generation pipeline. The process involves feeding a log-frequency spec-trogram of a bioacoustic recording into GPT-4o-mini to generate structured, multiple-choice questions based on visual acoustic features.
+
+## D Accuracy by question type within each source domain 
+
+Table 6 shows the breakdown accuracy of all the models across Behavior, Cognition, Commu-nication, Diet, Geographic Distribution, Habitat, Morphology type questions on the Wikipedia domain. Table 7 shows the breakdown accuracy of all the models across Dominant frequency range and Call/syllable duration, Harmonic vs broadband, and Modulation type of text-based bioacoustic knowledge questions in the Xeno-canto domain. Table 5 shows the breakdown accuracy among Masked interaction type inference and masked participant identification type questions in the GloBI domain. 
+
+## E Qwen3 family performance on BAGEL 
+
+Figure 4 shows the Qwen3 family accuracy curve on BAGEL. 
+
+## F Answer-position bias in the initial release 
+
+After inspecting model outputs on the initial BAGEL release (before option shuffling), we found substantial answer-position skew in the benchmark itself. Table 9 shows that the correct option was often concentrated in a single position within a domain, despite the multiple-choice format. This skew appears to have created a shortcut that some small models could exploit under greedy decoding. Table 10 reports the distribution after the option-shuffling mitigation described at the end of Section 3. We then examined whether models showed corresponding output collapse or positional preference. Table 11 reports the distribution of first-option letters emitted by five representative open models under the same seed-0 greedy-decoding setting used in the main paper. Qwen3-0.6B collapses almost entirely to option A across all four domains, while smolLM2-360M col-lapses primarily to option B. Larger models do not collapse as completely, but several still ex-hibit strong positional skew, especially toward option B on Wikipedia and Xeno-canto. Their apparent accuracy in some domains therefore tracks the dominant gold-option position rather than necessarily reflecting genuine domain competence. This artifact is important for interpreting the initial leaderboard. In particular, strong scores from small models on some domains should not be read as direct evidence of robust animal-
+
+> 24 BAGEL BENCHMARK
+
+Model Masked interaction type inference Masked participant identification 
+
+smolLM2 0.258 0.233 Qwen3-0.6B 0.254 0.250 Qwen3-4B 0.801 0.257 Gemma-7B 0.591 0.312 Mistral-7B-Instruct-v0.3 0.757 0.374 Llama 3.1 Instruct-8B 0.808 0.378 Qwen3-8B 0.814 0.420 Phi-4 0.880 0.488 Qwen3-14B 0.850 0.459 Gemma 3 27B IT 0.888 0.530 Qwen3-32B 0.855 0.481 Claude Opus 4.6 0.921 0.640 GPT-5.4 0.909 0.561 
+
+Table 5 . Accuracy by question type on the GloBI subset of BAGEL. Open-weight models are ordered by increasing approximate parameter count. Best value in each column is underlined.                                                                                                                 
+
+> Model Behavior Cognition Communication Diet Geographic Distribution Habitat Morphology Taxonomy
+> smolLM2 0.227 0.250 0.218 0.236 0.242 0.222 0.279 0.239 Qwen3-0.6B 0.246 0.179 0.239 0.236 0.246 0.256 0.292 0.272 Qwen3-4B 0.635 0.607 0.650 0.720 0.754 0.812 0.605 0.578 Gemma-7B 0.524 0.571 0.538 0.693 0.751 0.846 0.545 0.679 Mistral-7B-Instruct-v0.3 0.606 0.643 0.679 0.736 0.786 0.838 0.541 0.616 Llama 3.1 Instruct-8B 0.677 0.643 0.692 0.777 0.790 0.859 0.665 0.705 Qwen3-8B 0.722 0.643 0.731 0.838 0.826 0.897 0.691 0.672 Phi-4 0.737 0.857 0.752 0.845 0.854 0.932 0.704 0.761 Qwen3-14B 0.722 0.821 0.718 0.845 0.875 0.923 0.734 0.750 Gemma 3 27B IT 0.700 0.750 0.765 0.895 0.872 0.923 0.708 0.769 Qwen3-32B 0.742 0.607 0.774 0.865 0.879 0.936 0.712 0.799 Claude Opus 4.6 0.870 0.857 0.897 0.939 0.989 0.983 0.893 0.963 GPT-5.4 0.819 0.786 0.850 0.912 0.979 0.970 0.863 0.929
+
+Table 6 . Accuracy by question type on the Wikipedia subset of BAGEL. Open-weight models are ordered by increasing approximate parameter count. Best value in each column is underlined; ties are jointly underlined. 
+
+knowledge competence when the dominant output letter aligns with the dominant gold-answer position. In follow-up experiments, we therefore shuffled answer options to remove this bench-mark shortcut. 
+
+## G Illustrative manual review on GloBI. 
+
+We manually sampled GloBI items to characterize recurring construction issues; this is not afull relabeling or prevalence study, and we do not quantify rates here. We observed three il-lustrative buckets. (i) Multi-plausible answers and taxonomic overlap. For example, globi:2:0 
+
+asks for a likely host of an endoparasite without restating the host from the source interac-tion; broad host ranges can make more than one species-level option defensible. globi:205:0 and 
+
+globi:525:0 can pair a concrete host species with a higher taxon, so multiple options are plausi-ble depending on whether “taxon” is read at species or higher rank. globi:207:0 and globi:303:0 
+
+mix species and subspecies names for the same lineage, creating taxonomy-granularity colli-sions. (ii) Under-specified interaction prompts. Flower-visitation templates such as globi:21:0 ,
+
+globi:420:0 , globi:736:0 , globi:785:0 , and globi:1436:0 can admit more than one interaction la-
+
+25 BAGEL BENCHMARK 
+
+Model Dominant freq. range Call / syll. dur. Harmonic vs. broadband Modulation 
+
+smolLM2 0.248 0.257 0.269 0.236 Qwen3-0.6B 0.237 0.271 0.225 0.239 Qwen3-4B 0.375 0.342 0.403 0.227 Gemma-7B 0.270 0.314 0.321 0.241 Mistral-7B-Instruct-v0.3 0.271 0.327 0.377 0.317 Llama 3.1 Instruct-8B 0.584 0.325 0.464 0.305 Qwen3-8B 0.427 0.322 0.297 0.382 Phi-4 0.443 0.308 0.286 0.205 Qwen3-14B 0.442 0.421 0.323 0.301 Gemma 3 27B IT 0.521 0.260 0.389 0.325 Qwen3-32B 0.403 0.290 0.393 0.303 Claude Opus 4.6 0.671 0.435 0.286 0.310 GPT-5.4 0.711 0.439 0.351 0.301 
+
+Table 7 . Accuracy by question type on the Xeno-canto subset of BAGEL. Columns follow the dimension labels in Table 2 (harmonic structure / tonality vs. broadband; modulation pattern). Open-weight models are ordered by increasing approximate parameter count. Best value in each column is underlined. 
+
+Source domain Items Mean Zipf Rare tok. (%) Bio-term hits/stem 
+
+Wikipedia 1,927 5.33 11.8 0.05 Xeno-canto 4,242 5.04 18.4 2.03 
+
+Table 8 . Lexical statistics of English question stems (options excluded), computed with wordfreq (Speer, 2018). Higher Zipf indicates more frequent unigrams in general English. “Rare tok.” is the mean fraction of stem tokens with Zipf < 3. “Bio-term hits” counts tokens from a fixed bioacoustic keyword list (e.g., 
+
+harmonic , khz , modulation ). 
+
+bel when “visits flowers” alone does not pin down pollination outcomes; globi:47:0 mixes relationship-type wording with mechanistic phrasing so two options can appear simultane-ously acceptable for a parasite–host association. (iii) Record-specific keys. Some host items key to a particular interaction record even when alternative hosts are plausible without the source string, so performance partially reflects record recovery rather than species biology alone. Our two-model “hard” stratum should therefore be read as a relative difficulty signal under gener-ative MCQ noise rather than a guarantee of a single objectively correct option in every case; future releases should include additional adjudication, taxonomic de-duplication, and tighter prompt constraints where appropriate. 
+
+26 BAGEL BENCHMARK 0.6B 4B 8B 14B 32B 
+
+Qwen3 instruct checkpoint (parameters) 
+
+0.0 
+
+0.2 
+
+0.4 
+
+0.6 
+
+0.8 
+
+1.0 
+
+> Accuracy
+
+BAGEL accuracy versus Qwen3 model size (seed 0, greedy) 
+
+> GloBI
+> Wikipedia
+> bioRxiv
+> Xeno-canto
+> Overall
+
+Figure 4 . Qwen3 instruct family on BAGEL (seed 0, greedy): accuracy versus model size for each source domain and Overall. GloBI, Wikipedia, and bioRxiv generally improve up to 32B, while Xeno-canto peaks at 14B and drops at 32B under our protocol—the same non-monotonicity discussed in the text. 
+
+Domain A B C D
+
+bioRxiv 659 (30.2%) 1,143 (52.4%) 325 (14.9%) 56 (2.6%) GloBI 2,135 (61.0%) 658 (18.8%) 633 (18.1%) 74 (2.1%) Wikipedia 199 (10.3%) 1,244 (64.6%) 445 (23.1%) 39 (2.0%) Xeno-canto 618 (14.6%) 3,231 (76.2%) 333 (7.8%) 60 (1.4%) 
+
+Table 9 . Correct-answer position distribution in the initial BAGEL release before option shuffling. Per-centages are computed over the evaluated subset used by the benchmark loader. 
+
+Domain A B C D
+
+bioRxiv 519 (23.8%) 556 (25.5%) 551 (25.2%) 557 (25.5%) GloBI 883 (25.2%) 877 (25.1%) 869 (24.8%) 871 (24.9%) Wikipedia 487 (25.3%) 479 (24.9%) 490 (25.4%) 471 (24.4%) Xeno-canto 1,034 (24.4%) 1,062 (25.0%) 1,053 (24.8%) 1,093 (25.8%) All domains 2,923 (24.7%) 2,974 (25.1%) 2,963 (25.0%) 2,992 (25.2%) 
+
+Table 10 . Correct-answer position distribution after option shuffling, counting individual multiple-choice items in the released evaluation files ( n=11 ,852 ). 27 BAGEL BENCHMARK 
+
+Model Domain A B C D
+
+Qwen3-0.6B bioRxiv 2,178 (99.8%) 3 (0.1%) 1 (0.0%) 1 (0.0%) Qwen3-0.6B GloBI 3,500 (100.0%) 0 0 0Qwen3-0.6B Wikipedia 1,927 (100.0%) 0 0 0Qwen3-0.6B Xeno-canto 4,242 (100.0%) 0 0 0smolLM2-360M bioRxiv 1 (0.0%) 2,168 (99.3%) 14 (0.6%) 0smolLM2-360M GloBI 138 (3.9%) 3,276 (93.6%) 85 (2.4%) 1 (0.0%) smolLM2-360M Wikipedia 85 (4.4%) 1,517 (78.7%) 323 (16.8%) 2 (0.1%) smolLM2-360M Xeno-canto 1 (0.0%) 4,225 (99.6%) 16 (0.4%) 0Qwen3-8B bioRxiv 731 (33.5%) 1,056 (48.4%) 319 (14.6%) 77 (3.5%) Qwen3-8B GloBI 1,640 (46.9%) 681 (19.5%) 757 (21.6%) 422 (12.1%) Qwen3-8B Wikipedia 432 (22.4%) 989 (51.3%) 398 (20.7%) 108 (5.6%) Qwen3-8B Xeno-canto 1,367 (32.2%) 1,965 (46.3%) 741 (17.5%) 169 (4.0%) Llama 3.1 Instruct-8B bioRxiv 716 (32.8%) 1,065 (48.8%) 331 (15.2%) 71 (3.3%) Llama 3.1 Instruct-8B GloBI 1,655 (47.3%) 812 (23.2%) 829 (23.7%) 204 (5.8%) Llama 3.1 Instruct-8B Wikipedia 453 (23.5%) 1,016 (52.7%) 373 (19.4%) 85 (4.4%) Llama 3.1 Instruct-8B Xeno-canto 1,131 (26.7%) 2,818 (66.4%) 229 (5.4%) 64 (1.5%) 
+
+Table 11 . Distribution of emitted option letters in the initial BAGEL release for representative open models under seed-0 greedy decoding. Smaller models exhibit near-complete collapse to a single option, while stronger models still show substantial positional skew in several domains, especially Wikipedia and Xeno-canto. 28

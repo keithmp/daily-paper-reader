@@ -1,0 +1,414 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-20T19:46:08.514578+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 4,
+    "deep_cap": 8,
+    "deep_selected": 4,
+    "quick_candidates": 5,
+    "quick_skim_target": 13,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2604.15889v1",
+      "title": "Markov embedding of ranked unlabelled evolutionary trees and its applications",
+      "abstract": "Rooted bifurcating trees are mathematical objects used to model evolutionary relationships and arise naturally in both coalescent theory and phylogenetics. Recent numerical representations of tree topologies, known as F-matrices, allow for summarizing a sample of trees via Fréchet means and provide new measures of tree balance. However, the number of ranked unlabelled trees grows super-exponentially with the number of leaves. This makes computation intensive and current methods rely on mixed integer programming and simulation-based methods. Moreover, F-matrices are difficult to interpret, and their distribution is only described in terms of first- and second-order moments under neutral branching. In this paper, we introduce a Markov chain embedding of ranked and unlabelled trees that drastically decreases the size of the state space. Leveraging this embedding, we develop an algorithm that efficiently computes all Fréchet means and use discrete phase-type theory to obtain the joint distribution of tree balance indices. We also use discrete phase-type theory to generalize previous results regarding moments of F-matrices to arbitrary order for any time homogeneous and bifurcating coalescent model. Using this framework, we construct three tests for neutrality and demonstrate their improved power compared to previous methods on simulated data.",
+      "authors": [
+        "Lasse Thorup Fallesen",
+        "Simon Pauli",
+        "Elisabeth Sommer James",
+        "Lars Nørvang Andersen",
+        "Asger Hobolth"
+      ],
+      "primary_category": "stat.CO",
+      "categories": [
+        "stat.CO"
+      ],
+      "published": "2026-04-17T09:37:42+00:00",
+      "link": "https://arxiv.org/pdf/2604.15889v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "phylogenetic analysis and tree construction methods",
+      "llm_evidence_cn": "系统发育分析与树构建方法",
+      "llm_evidence": "系统发育分析与树构建方法",
+      "canonical_evidence": "系统发育分析与树构建方法",
+      "llm_tldr_en": "Introduces Markov embedding for unlabelled evolutionary trees to improve phylogenetic computation.",
+      "llm_tldr_cn": "引入无标签演化树的马尔可夫嵌入，以改进系统发育计算。",
+      "llm_tldr": "引入无标签演化树的马尔可夫嵌入，以改进系统发育计算。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.14334v2",
+      "title": "Mamba-SSM with LLM Reasoning for Feature Selection: Faithfulness-Aware Biomarker Discovery",
+      "abstract": "Gradient saliency from deep sequence models surfaces candidate biomarkers efficiently, but the resulting gene lists can be contaminated by tissue-composition confounders that degrade downstream classifiers. We study whether LLM chain-of-thought (CoT) reasoning can filter these confounders, and whether reasoning quality is associated with downstream performance. We train a Mamba SSM on TCGA-BRCA RNA-seq and extract the top-50 genes by gradient saliency; DeepSeek-R1 evaluates every candidate with structured CoT to produce a final 17-gene set. On the held-out test split, the raw 50-gene saliency set (no LLM) performs worse than a 5,000-gene variance baseline (AUC 0.832 vs. 0.903), while the LLM-filtered set surpasses it (AUC 0.927), using 294x fewer features. A faithfulness audit (COSMIC CGC, OncoKB, PAM50) shows that 6 of 17 selected genes (35.3%) are validated BRCA biomarkers, while 10 of 16 known BRCA genes present in the input were missed - including FOXA1. This divergence between downstream performance and reasoning faithfulness suggests selective faithfulness in this setting: targeted confounder removal can improve predictive performance without comprehensive recall.",
+      "authors": [
+        "Pushpa Kumar Balan",
+        "Aijing Feng"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.AI"
+      ],
+      "published": "2026-04-15T18:39:46+00:00",
+      "link": "https://arxiv.org/pdf/2604.14334v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI and LLM reasoning for biomarker discovery in RNA-seq data",
+      "llm_evidence_cn": "利用AI和LLM推理在RNA-seq数据中发现生物标志物",
+      "llm_evidence": "利用AI和LLM推理在RNA-seq数据中发现生物标志物",
+      "canonical_evidence": "利用AI和LLM推理在RNA-seq数据中发现生物标志物",
+      "llm_tldr_en": "Uses Mamba-SSM and LLM reasoning to filter confounders in gene-based biomarker discovery.",
+      "llm_tldr_cn": "利用Mamba-SSM和LLM推理在基于基因的生物标志物发现中过滤干扰因素。",
+      "llm_tldr": "利用Mamba-SSM和LLM推理在基于基因的生物标志物发现中过滤干扰因素。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.15361v1",
+      "title": "GEN-Graph: Heterogeneous PIM Accelerator for General Computational Patterns in Graph-based Dynamic Programming",
+      "abstract": "While graph-based dynamic programming (DP) is a cornerstone of genomics and network analytics, its efficiency is hampered by fundamentally conflicting computational patterns. Matrix-centric DP drives regular, compute-bound network analytics, while topology-centric DP handles irregular, memory-bound genomic traversals. These two categories of DP have substantially different computation patterns and dataflows, which makes it difficult for a single homogeneous processing-in-memory (PIM) architecture to efficiently support both.   This work presents GEN-Graph, a novel heterogeneous PIM chiplet that integrates two types of specialized compute tiles within a 2.5D package: Matrix-tile, a processing-using-memory (PUM) tile optimized for matrix-centric workloads, such as all-pairs shortest path (APSP); and traversal-tile, a processing-near-memory (PNM) tile optimized for traversal-centric DP workloads, such as DNA sequence alignment. Our hardware-software co-design employs recursive partitioning and reconfigurable windowed bit-parallel logic to ensure exact computation. Results show the matrix tile achieves 42.8x speedup and 392x energy efficiency over the NVIDIA H100 GPU for APSP. For sequence-to-graph alignment, the traversal tile sustains 2.56 million reads/s (short-reads) and 39.3 thousand reads/s (long-reads), outperforming state-of-the-art accelerators by up to 2.56x in throughput. GEN-Graph provides the first scalable, exact solution for general DP dataflows by matching hardware specialization to algorithmic structure.",
+      "authors": [
+        "Yanru Chen",
+        "Runyang Tian",
+        "Zheyu Li",
+        "Mahbod Afarin",
+        "Weihong Xu",
+        "Tajana Rosing"
+      ],
+      "primary_category": "cs.AR",
+      "categories": [
+        "cs.AR",
+        "cs.SI"
+      ],
+      "published": "2026-04-13T00:16:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.15361v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "PIM accelerator for genomic traversals and dynamic programming",
+      "llm_evidence_cn": "用于基因组遍历和动态规划的PIM加速器",
+      "llm_evidence": "用于基因组遍历和动态规划的PIM加速器",
+      "canonical_evidence": "用于基因组遍历和动态规划的PIM加速器",
+      "llm_tldr_en": "Presents GEN-Graph, a heterogeneous PIM accelerator designed for efficient genomic traversals and network analytics.",
+      "llm_tldr_cn": "介绍了GEN-Graph，一种专为高效基因组遍历和网络分析设计的异构内存处理加速器。",
+      "llm_tldr": "介绍了GEN-Graph，一种专为高效基因组遍历和网络分析设计的异构内存处理加速器。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.16065v1",
+      "title": "Phase transitions in microbial lineage trees",
+      "abstract": "Statistical physics can describe the behavior of microbial populations consisting of many heterogeneous individuals. A direct consequence is the existence of phase transitions, where the behavior of a population changes discontinuously upon a small perturbation. While such phase transitions have often been proposed in biology, connecting observed behavior to the underlying physics has remained challenging. We show how phase transitions naturally arise in microbial population dynamics and highlight their connection with genealogies. We rigorously demonstrate the existence of a first-order phase transition in a model of bacterial plasmid engineering and find a strict lower bound on the number of plasmids that can be stably maintained in a population.",
+      "authors": [
+        "Kaan Öcal",
+        "Syrine Ghrabli",
+        "Michael P. H. Stumpf"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-17T13:46:34+00:00",
+      "link": "https://arxiv.org/pdf/2604.16065v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Microbial population dynamics and connection with genealogies",
+      "llm_evidence_cn": "微生物种群动态及其与谱系的联系",
+      "llm_evidence": "微生物种群动态及其与谱系的联系",
+      "canonical_evidence": "微生物种群动态及其与谱系的联系",
+      "llm_tldr_en": "Explores phase transitions in microbial population dynamics and their rigorous connection to lineage trees.",
+      "llm_tldr_cn": "探讨了微生物种群动态中的相变及其与谱系树的严谨联系。",
+      "llm_tldr": "探讨了微生物种群动态中的相变及其与谱系树的严谨联系。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.15520v1",
+      "title": "Sparse regression, classification, and microbial network estimation in QIIME2 with q2-classo and q2-gglasso",
+      "abstract": "Motivation: Statistical analysis of microbial count data derived from 16S rRNA or metagenomics sequencing poses unique challenges due to the sparse, compositional, and high-dimensional nature of the data. While QIIME 2 already provides many tools for data pre-processing and analysis, plugins for statistical regression, classification, and microbial network estimation tailored to compositional count data are relatively scarce. Results: We present q2-classo and q2-gglasso, two novel QIIME 2 plugins that implement penalized regression, classification, and graphical modeling approaches for microbial compositional data. q2-classo enables the prediction of a continuous or binary outcome of interest using compositional microbiome data as predictors. Both sparse log-contrast regression and classification, as well as tree-aggregated log-contrast models are available. q2-gglasso enables the estimation of taxon-taxon association networks through sparse graphical model estimation, such as, e.g., the SPIEC-EASI framework, as well as adaptive and latent graphical models. The latent model can decompose taxon-taxon associations into a sparse direct interaction matrix and a latent (low-rank) matrix which enables robust principal component embedding of a data set. Within the QIIME 2 ecosystem we demonstrate their application on the Atacama soil microbiome dataset, illustrating robust model selection, classification, and microbial network estimation with covariates and latent factors. Availability: The software is freely available under the BSD-3-Clause License. Source code is available at https://github.com/bio-datascience/q2-gglasso and https://github.com/bio-datascience/q2-classo-latest, with installation through QIIME 2 and Docker.",
+      "authors": [
+        "Oleg Vlasovets",
+        "Fabian Schaipp",
+        "Leo Simpson",
+        "Evan Bolyen",
+        "J. Gregory Caporaso",
+        "Christian L. Mueller"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-16T20:59:07+00:00",
+      "link": "https://arxiv.org/pdf/2604.15520v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Statistical analysis of metagenomics sequencing data using AI-driven plugins",
+      "llm_evidence_cn": "利用AI驱动的插件对宏基因组测序数据进行统计分析",
+      "llm_evidence": "利用AI驱动的插件对宏基因组测序数据进行统计分析",
+      "canonical_evidence": "利用AI驱动的插件对宏基因组测序数据进行统计分析",
+      "llm_tldr_en": "Introduces QIIME 2 plugins for penalized regression and network estimation in microbial compositional data.",
+      "llm_tldr_cn": "介绍了用于微生物组成数据惩罚回归和网络估计的 QIIME 2 插件。",
+      "llm_tldr": "介绍了用于微生物组成数据惩罚回归和网络估计的 QIIME 2 插件。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.11305v2",
+      "title": "Beyond Fixed False Discovery Rates: Post-Hoc Conformal Selection with E-Variables",
+      "abstract": "Conformal selection (CS) uses calibration data to identify test inputs whose unobserved outcomes are likely to satisfy a pre-specified minimal quality requirement, while controlling the false discovery rate (FDR). Existing methods fix the target FDR level before observing data, which prevents the user from adapting the balance between number of selected test inputs and FDR to downstream needs and constraints based on the available data. For example, in genomics or neuroimaging, researchers often inspect the distribution of test statistics, and decide how aggressively to pursue candidates based on observed evidence strength and available follow-up resources. To address this limitation, we introduce {post-hoc CS} (PH-CS), which generates a path of candidate selection sets, each paired with a data-driven false discovery proportion (FDP) estimate. PH-CS lets the user select any operating point on this path by maximizing a user-specified utility, arbitrarily balancing selection size and FDR. Building on conformal e-variables and the e-Benjamini-Hochberg (e-BH) procedure, PH-CS is proved to provide a finite-sample post-hoc reliability guarantee whereby the ratio between estimated FDP level and true FDP is, on average, upper bounded by $1$, so that the average estimated FDP is, to first order, a valid upper bound on the true FDR. PH-CS is extended to control quality defined in terms of a general risk. Experiments on synthetic and real-world datasets demonstrate that, unlike CS, PH-CS can consistently satisfy user-imposed utility constraints while producing reliable FDP estimates and maintaining competitive FDR control.",
+      "authors": [
+        "Meiyi Zhu",
+        "Osvaldo Simeone"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.IT",
+        "stat.ML"
+      ],
+      "published": "2026-04-13T11:02:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.11305v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "statistical selection method for genomics candidates",
+      "llm_evidence_cn": "用于基因组学候选者筛选的统计选择方法",
+      "llm_evidence": "用于基因组学候选者筛选的统计选择方法",
+      "canonical_evidence": "用于基因组学候选者筛选的统计选择方法",
+      "llm_tldr_en": "Introduces a post-hoc conformal selection method to control false discovery rates in genomics and neuroimaging.",
+      "llm_tldr_cn": "引入了一种事后符合性选择方法，用于控制基因组学和神经影像学中的错误发现率。",
+      "llm_tldr": "引入了一种事后符合性选择方法，用于控制基因组学和神经影像学中的错误发现率。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.15456v1",
+      "title": "DeepER-Med: Advancing Deep Evidence-Based Research in Medicine Through Agentic AI",
+      "abstract": "Trustworthiness and transparency are essential for the clinical adoption of artificial intelligence (AI) in healthcare and biomedical research. Recent deep research systems aim to accelerate evidence-grounded scientific discovery by integrating AI agents with multi-hop information retrieval, reasoning, and synthesis. However, most existing systems lack explicit and inspectable criteria for evidence appraisal, creating a risk of compounding errors and making it difficult for researchers and clinicians to assess the reliability of their outputs. In parallel, current benchmarking approaches rarely evaluate performance on complex, real-world medical questions. Here, we introduce DeepER-Med, a Deep Evidence-based Research framework for Medicine with an agentic AI system. DeepER-Med frames deep medical research as an explicit and inspectable workflow of evidence-based generation, consisting of three modules: research planning, agentic collaboration, and evidence synthesis. To support realistic evaluation, we also present DeepER-MedQA, an evidence-grounded dataset comprising 100 expert-level research questions derived from authentic medical research scenarios and curated by a multidisciplinary panel of 11 biomedical experts. Expert manual evaluation demonstrates that DeepER-Med consistently outperforms widely used production-grade platforms across multiple criteria, including the generation of novel scientific insights. We further demonstrate the practical utility of DeepER-Med through eight real-world clinical cases. Human clinician assessment indicates that DeepER-Med's conclusions align with clinical recommendations in seven cases, highlighting its potential for medical research and decision support.",
+      "authors": [
+        "Zhizheng Wang",
+        "Chih-Hsuan Wei",
+        "Joey Chan",
+        "Robert Leaman",
+        "Chi-Ping Day",
+        "Chuan Wu",
+        "Mark A Knepper",
+        "Antolin Serrano Farias",
+        "Jordina Rincon-Torroella",
+        "Hasan Slika",
+        "Betty Tyler",
+        "Ryan Huu-Tuan Nguyen",
+        "Asmita Indurkar",
+        "Mélanie Hébert",
+        "Shubo Tian",
+        "Lauren He",
+        "Noor Naffakh",
+        "Aseem Aseem",
+        "Nicholas Wan",
+        "Emily Y Chew",
+        "Tiarnan D L Keenan",
+        "Zhiyong Lu"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-16T18:17:24+00:00",
+      "link": "https://arxiv.org/pdf/2604.15456v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agents for biomedical research and evidence synthesis",
+      "llm_evidence_cn": "用于生物医学研究和证据合成的AI智能体",
+      "llm_evidence": "用于生物医学研究和证据合成的AI智能体",
+      "canonical_evidence": "用于生物医学研究和证据合成的AI智能体",
+      "llm_tldr_en": "A framework using AI agents to accelerate evidence-based research and discovery in medicine.",
+      "llm_tldr_cn": "一个利用AI智能体加速医学循证研究和科学发现的框架。",
+      "llm_tldr": "一个利用AI智能体加速医学循证研究和科学发现的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.16203v1",
+      "title": "A Bayesian Updating Framework for Long-term Multi-Environment Trial Data in Plant Breeding",
+      "abstract": "In variety testing, multi-environment trials (MET) are essential for evaluating the genotypic performance of crop plants. A persistent challenge in the statistical analysis of MET data is the estimation of variance components, which are often still inaccurately estimated or shrunk to exactly zero when using residual (restricted) maximum likelihood (REML) approaches. At the same time, institutions conducting MET typically possess extensive historical data that can, in principle, be leveraged to improve variance component estimation. However, these data are rarely incorporated sufficiently. The purpose of this paper is to address this gap by proposing a Bayesian framework that systematically integrates historical information to stabilize variance component estimation and better quantify uncertainty.   Our Bayesian linear mixed model (BLMM) reformulation uses priors and Markov chain Monte Carlo (MCMC) methods to maintain the variance components as positive, yielding more realistic distributional estimates. Furthermore, our model incorporates historical prior information by managing MET data in successive historical data windows. Variance component prior and posterior distributions are shown to be conjugate and belong to the inverse gamma and inverse Wishart families. While Bayesian methodology is increasingly being used for analyzing MET data, to the best of our knowledge, this study comprises one of the first serious attempts to objectively inform priors in the context of MET data. This refers to the proposed Bayesian updating approach. To demonstrate the framework, we consider an application where posterior variance component samples are plugged into an A-optimality experimental design criterion to determine the average optimal allocations of trials to agro-ecological zones in a sub-divided target population of environments (TPE).",
+      "authors": [
+        "Stephan Bark",
+        "Waqas Ahmed Malik",
+        "Maryna Prus",
+        "Hans-Peter Piepho",
+        "Volker Schmid"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.AP",
+        "stat.ML"
+      ],
+      "published": "2026-04-17T16:14:30+00:00",
+      "link": "https://arxiv.org/pdf/2604.16203v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evaluating genotypic performance in plant breeding trials",
+      "llm_evidence_cn": "在植物育种试验中评估基因型表现",
+      "llm_evidence": "在植物育种试验中评估基因型表现",
+      "canonical_evidence": "在植物育种试验中评估基因型表现",
+      "llm_tldr_en": "Proposes a Bayesian framework to improve genotypic variance estimation in crop plant multi-environment trials.",
+      "llm_tldr_cn": "提出了一个贝叶斯框架，用于改进农作物多环境试验中的基因型方差估计。",
+      "llm_tldr": "提出了一个贝叶斯框架，用于改进农作物多环境试验中的基因型方差估计。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.16241v1",
+      "title": "BAGEL: Benchmarking Animal Knowledge Expertise in Language Models",
+      "abstract": "Large language models have shown strong performance on broad-domain knowledge and reasoning benchmarks, but it remains unclear how well language models handle specialized animal-related knowledge under a unified closed-book evaluation protocol. We introduce BAGEL, a benchmark for evaluating animal knowledge expertise in language models. BAGEL is constructed from diverse scientific and reference sources, including bioRxiv, Global Biotic Interactions, Xeno-canto, and Wikipedia, using a combination of curated examples and automatically generated closed-book question-answer pairs. The benchmark covers multiple aspects of animal knowledge, including taxonomy, morphology, habitat, behavior, vocalization, geographic distribution, and species interactions. By focusing on closed-book evaluation, BAGEL measures animal-related knowledge of models without external retrieval at inference time. BAGEL further supports fine-grained analysis across source domains, taxonomic groups, and knowledge categories, enabling a more precise characterization of model strengths and systematic failure modes. Our benchmark provides a new testbed for studying domain-specific knowledge generalization in language models and for improving their reliability in biodiversity-related applications.",
+      "authors": [
+        "Jiacheng Shen",
+        "Masato Hagiwara",
+        "Milad Alizadeh",
+        "Ellen Gilsenan-McMahon",
+        "Marius Miron",
+        "David Robinson",
+        "Emmanuel Chemla",
+        "Sara Keen",
+        "Gagan Narula",
+        "Mathieu Laurière",
+        "Matthieu Geist",
+        "Olivier Pietquin"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "published": "2026-04-17T17:00:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.16241v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "animal knowledge and taxonomy benchmark",
+      "llm_evidence_cn": "动物知识与分类学基准",
+      "llm_evidence": "动物知识与分类学基准",
+      "canonical_evidence": "动物知识与分类学基准",
+      "llm_tldr_en": "Introduces BAGEL, a benchmark for evaluating animal-related knowledge in LLMs.",
+      "llm_tldr_cn": "引入了BAGEL，一个用于评估大语言模型中动物相关知识的基准。",
+      "llm_tldr": "引入了BAGEL，一个用于评估大语言模型中动物相关知识的基准。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
