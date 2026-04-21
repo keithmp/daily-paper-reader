@@ -1,0 +1,4222 @@
+Title: Optimal Phylogenetic Reconstruction from Sampled Quartets
+
+URL Source: https://arxiv.org/pdf/2604.17461v1
+
+Published Time: Tue, 21 Apr 2026 01:23:52 GMT
+
+Number of Pages: 55
+
+Markdown Content:
+# Optimal Phylogenetic Reconstruction from Sampled Quartets 
+
+Dionysis Arvanitakis ∗
+
+Northwestern University Vaggos Chatziafratis †
+
+UC Santa Cruz Yiyuan Luo †
+
+UC Santa Cruz Konstantin Makarychev ∗
+
+Northwestern University 
+
+Abstract 
+
+Quartet Reconstruction, the task of recovering a single phylogenetic tree from smaller trees on four species called quartets , is a well-studied problem in theoretical computer science with far-reaching connections to statistics, graph theory and biology. Given a random sample containing 
+
+m noisy quartets, labeled according to an unknown ground-truth tree T on n taxa, we want to learn the tree structure of T with small generalization error, i.e., to output a tree bT that is 
+
+close to T in terms of quartet distance and can predict the classification of unseen quartets. Unfortunately, the empirical risk minimizer corresponds to the NP -hard problem of finding a tree that maximizes agreements with the sampled quartets, and earlier works in approximation algorithms gave (1 − ϵ)-approximation schemes (PTAS) for dense instances with m = Θ( n4)
+
+quartets, or for m = Θ( n2 log n) quartets randomly sampled from T .Prior to our work, it was unknown how many samples are information-theoretically required to learn the tree, and whether there is an efficient reconstruction algorithm. We present optimal results for reconstructing an unknown phylogenetic tree T from a random sample of m = Θ( n)
+
+quartets, potentially corrupted under the standard Random Classification Noise (RCN) model. This matches the Ω( n) lower bound required for any meaningful tree reconstruction, as for 
+
+m = o(n), large parts of T cannot be recovered, and exact tree reconstruction ( ϵ = 0 ) requires 
+
+Ω( n3) quartets. Our contribution is twofold: first, we give a tree reconstruction algorithm that, not only achieves a (1 − ϵ)-approximation for Quartet Reconstruction, but most importantly 
+
+recovers a tree close to T in quartet distance; second, we show a new Θ( n) bound on the Natarajan dimension of phylogenies (an analog of VC dimension in multiclass classification), which may be of independent interest. Coupled together, these imply that our reconstructed tree 
+
+bT will generalize well to unseen quartets. Our analysis relies on a new Quartet-based Embedding and Detection ( QED ) procedure, that repeatedly identifies and removes well-clustered subtrees from the (unknown) ground-truth T via semidefinite programming. 
+
+> ∗
+
+D. Arvanitakis and K. Makarychev were supported by NSF Awards CCF-1955351 and EECS-2216970, and in part by grants from the NSF (DMS-2235451) and the Simons Foundation (MPS-NITMB-00005320) to the NSF-Simons National Institute for Theory and Mathematics in Biology (NITMB). 
+
+> †
+
+V. Chatziafratis and Y. Luo were supported by a UC Santa Cruz start-up grant and by Hellman’s fellowship. Part of this work was done while visiting Archimedes Research Unit, Athens, Greece. 
+
+> arXiv:2604.17461v1 [cs.DS] 19 Apr 2026
+
+# Contents 
+
+1 Introduction 1
+
+1.1 Learning Trees from Noisy Samples . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11.2 Our Results: Optimal Tree Reconstruction with m = Θ( n) Quartets . . . . . . . . . 31.3 Further Related Work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+
+2 Technical Overview 63 Tree Reconstruction 9
+
+3.1 Clustering Step . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 93.2 Reconstruction Step . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14 3.3 Verification Step . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17 3.4 Runtime of the Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18 
+
+4 QED Procedure and Analysis 18 
+
+4.1 The Q(n, λ, η )-model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 4.2 Constructing a Graph . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 4.3 The SDP . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20 4.4 Concentration: Expected Instance vs. Actual Instance . . . . . . . . . . . . . . . . . 21 4.5 QED Description and Theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23 4.6 A Probability Gap on the Expected Instance . . . . . . . . . . . . . . . . . . . . . . 24 4.7 Geometry of the SDP Solution: S is a tight Cluster . . . . . . . . . . . . . . . . . . . 27 4.8 Proof of Theorem 4.3: Recovering S up to O(δ2n) error . . . . . . . . . . . . . . . . 30 
+
+5 Natarajan Dimension of Quartets 33 6 Acknowledgment 38 A Inequalities 46 B Mapping Quartet Relations on a Rooted Tree 46 C Auxiliary Lemmas used in Section 4 48 D Distribution of graph G′ 49 E Quartet Query Complexity 52 F Figures 53 1 Introduction 
+
+How can we reconstruct a phylogenetic tree from partial information on how different species are related? This is a classic question in computational biology and a central topic in the field of Phy-logenetics, where a major task is to recover the Tree of Life for living and extinct species (Colonius and Schulze, 1981; Maddison et al., 2007; Jansson et al., 2016). Beyond biology, similar questions for finding hierarchical tree representations of data from labeled samples (often called a hierar-chical clustering ) naturally arise across disciplines, ranging from linguistics with the evolution of languages (Gray et al., 2009; Nakhleh et al., 2005; Walker et al., 2012), to computer science and statistics, as datasets and networks tend to organize hierarchically (Ward Jr, 1963; Ravasz and Barabási, 2003; Clauset et al., 2008; Nickel and Kiela, 2017). A common approach for reconstructing a tree works by first obtaining small subtrees on over-lapping sets of taxa, most commonly on 4 species called quartets , and then, trying to aggre-gate/amalgamate these subtrees into one big tree over the whole set (Strimmer and Von Haeseler, 1996; Jansson et al., 2005; Byrka et al., 2010; Jansson et al., 2016). One of the most basic problems here is the NP -complete problem of Quartet Reconstruction (Steel, 1992; Jiang et al., 1998, 2001): 
+
+Problem 1.1 (Quartet Reconstruction, MaxQuartetRec ). Given a set L of n items, and a sample of m quartets of the form ab |cd with a, b, c, d ∈ L, Quartet Reconstruction aims to find an unrooted tree T with n leaves labeled from L, so that the path a, b is vertex-disjoint from the path 
+
+c, d in T , for all given quartets (in this case we say quartet ab |cd is satisfied). The corresponding optimization problem of maximizing satisfied quartets is denoted MaxQuartetRec .
+
+Quartet-based reconstruction has played a central role in phylogenetics, both in theory and in practice, see survey by Chor (1998) and standard textbooks by Semple and Steel (2003); Felsenstein (2004). A quartet tree, i.e., a phylogenetic tree 1 on 4 elements a, b, c, d , constitutes the basic infor-mative building unit in phylogenetic applications (Avni et al., 2015; Avni and Snir, 2019), and lies at the heart of popular quartet-puzzling methods (Strimmer and Von Haeseler, 1996; Yang et al., 2013; Reaz et al., 2014). Recently, assuming Unique Games (Khot, 2002), it was shown that MaxQuarte-tRec is NP -hard to approximate beyond a 13 -approximation factor (Chatziafratis and Makarychev, 2023). Note that there are only 3 distinct quartets on a, b, c, d , namely ab |cd, ac |bd, ad |bc , so a  
+
+> 13
+
+-approximation is also obtained by the trivial algorithm that outputs a random tree on n leaves (each quartet is equally likely), which means that MaxQuartetRec is approximation resistant in the worst-case (Håstad, 2001; Hast, 2005; Guruswami et al., 2011). 
+
+1.1 Learning Trees from Noisy Samples 
+
+The approximation of MaxQuartetRec (Problem 1.1) has been instrumental in tree reconstruc-tion approaches (Strimmer and Von Haeseler, 1996; Bryant and Steel, 2001; Yang et al., 2013; Reaz et al., 2014), and can be seen as a (hierarchical) clustering objective. For example, early work by Jiang et al. (1998, 2001) designed a PTAS for fully-dense instances of m =  n
+
+> 4
+
+ quartets, and later Snir and Yuster (2011, 2012) significantly improved the dependence on the sample size to 
+
+m = Θ( n2 log n) random samples. However, the true goal of most phylogenetic applications is to 
+
+recover a meaningful ground-truth tree on n species of interest, i.e., to reconstruct the quartet relationships on them, and not just approximate a proxy objective. This is of course a well-known   
+
+> 1In other words, a quartet tree is an unrooted tree with 4leaves, where every internal node is of degree 3.
+
+1issue with all clustering objectives (Balcan et al., 2009; Ackerman and Ben-David, 2009; Bilu and Linial, 2012; Daniely et al., 2012; Makarychev et al., 2014a; Angelidakis et al., 2017; Ben-David, 2018), where an objective function (e.g., k-means, etc.) serves only as a means to an end for re-covering ground-truth solutions, with various stability notions being proposed to avoid worst-case impossibility results, see book by Roughgarden (2021). 
+
+Reconstruction of an unknown tree T . In most applications, indeed there is a meaningful ground-truth tree T to be recovered, often called a latent tree (Anandkumar et al., 2011; Kandiros et al., 2023), and the m given quartets are obtained by some noisy classification on a random sample (a, b, c, d ) at the leaves (see App. F, Fig. 5), e.g., by an experiment on the genomes of 4 species, or by asking an expert (Wu et al., 2008; Vikram and Dasgupta, 2016; Emamjomeh-Zadeh and Kempe, 2018; Ghoshdastidar et al., 2019). Quartets offer several advantages, as they do not make assumptions on numerical values of pairwise distances (see Chapter 12 in Felsenstein (2004)), or on the ancestry of species from triplets (Aho et al., 1981; Byrka et al., 2010; Bryant et al., 2000; Wu et al., 2008; Emamjomeh-Zadeh and Kempe, 2018). In fact, in statistics, quartets played a major role in the resolution of Steel’s conjecture for the Cavender-Farris-Neyman/Ising mutation model: Mossel (2004); Daskalakis et al. (2006, 2011) designed “quartet tests” that avoided the bias of sampled sequences of characters at the leaves of a ground-truth tree, obtaining the optimal reconstruction bounds for the mutation probability. Finally, earlier works study PAC-learning of evolutionary trees under various stochastic models for evolution, such as the two-state general Markov model (Ambainis et al., 1997; Farach and Kannan, 1999; Cryan et al., 2001). Here, our focus is on reconstructing a tree bT that is close to T , based on m noisy quartet samples from T . Before we define the problem of Tree Learning , we need a notion of distance between trees, captured by the classic notion of quartet distance (Felsenstein, 2004; Brodal et al., 2013; Dudek and Gawrychowski, 2019): 
+
+Definition 1.2. (Quartet Distance on Trees, dist( bT , T )) Given two trees bT , T on the same set L
+
+of n leaves, the quartet distance dist( bT , T ) is the fraction out of  n
+
+> 4
+
+ quartets on which the two trees disagree, i.e., the fraction of induced quartet topologies that are different in bT compared to T .
+
+Since every tree uniquely defines a set of  n
+
+> 4
+
+ quartets, quartet distance is a standard measure of similarity between phylogenetic trees, focusing on the branching patterns of quartet trees on the 
+
+n taxa (Grünewald et al., 2007; Brodal et al., 2013). It ranges between ≈ 23 if two trees widely disagree, and zero, if they are identical. In fact, the maximum quartet distance has been studied in combinatorics: a conjecture of Bandelt and Dress (1986) states that the maximum quartet distance between two trees is always at most 23 + o(1) , and the currently best-known bound is 0.69 + o(1) 
+
+by Alon et al. (2016). Furthermore, quartet distance has deep connections with graph theory; as it turns out, computing the quartet distance is equivalent (up to polylogarithmic factors) to counting 4-cycles (Dudek and Gawrychowski, 2019), leading to surprising connections with fine-grained complexity and conjectures made by Yuster and Zwick (1997); Dahlgaard et al. (2017). In this paper, we develop algorithms for recovery in quartet distance from noisy quartets. 
+
+Random Classification Noise (RCN) Model. Let T be the class of all phylogenetic trees on the n leaves labeled from L. Moreover, let T ∈ T be any ground-truth tree whose structure we want to recover via a tree bT , such that dist( bT , T ) ≤ ϵ, for some target accuracy ϵ. Notice that being close in quartet distance means that such a tree bT generalizes well, i.e., it would be successful even 2at predicting unseen quartets. Towards this, we follow the standard Random Classification Noise (RCN) model under the uniform distribution (Angluin and Laird, 1988; Natarajan et al., 2013), where we are given a random sample of m quartets, each of which is generated as follows: 
+
+• Draw 4 distinct elements (a, b, c, d ) uniformly at random from the set L of leaves; 
+
+• With probability 1 − η, we get the correct quartet label 
+
+T (a, b, c, d ) ∈ {{ ab |cd }, {ac |bd }, {ad |bc }} ;
+
+• Otherwise, w.p. η, we get a random wrong quartet label, that disagrees with T (a, b, c, d ).A quartet t = ab |cd drawn from the RCN model with error η is denoted as t ∼ RCN (η) (η, or an upper bound to it, is known to the algorithm). Notice that since there are 3 labels for a quartet, 
+
+η = 23 corresponds to a uniformly random quartet, so from now on η < 23 . The RCN noise model is quite standard as it captures for instance the aforementioned scenarios where labeled examples are provided by a noisy expert or experiment. The criterion for successfully learning the ground-truth 
+
+T is generalization :
+
+Problem 1.3 (Phylogenetic Tree Learning) . Let T be the class of all phylogenetic trees on n leaves. Given small constants ϵ, δ > 0, using as few sampled quartets as possible, efficiently find a tree 
+
+bT ∈ T , that generalizes well to unseen quartets. That is, with probability 1 − δ, find a tree bT ∈ T so the probability of error on 4 random elements (a, b, c, d ) is small compared to the best tree T ∈ T ,or equivalently, 2,
+
+Pr[ bT (a, b, c, d )̸ = T (a, b, c, d )] ≤ ϵ
+
+where T (a, b, c, d ) ∈ {{ ab |cd }, {ac |bd }, {ad |bc }} denotes the unique quartet satisfied by tree T ∈ T .
+
+Observe that this is the standard generalization framework of PAC-learning (Shalev-Shwartz and Ben-David, 2014); here our algorithms will be robust, so we also allow input samples to be noisy, and the reconstructed output tree bT will still have small quartet distance from the ground-truth 
+
+T , dist( bT , T ) ≤ ϵ. MaxQuartetRec (Problem 1.1) corresponds to the Empirical Risk Minimizer (ERM) on the sample of size m; indeed, approximating the MaxQuartetRec objective can be seen as a prerequisite step towards recovery and it has been extensively studied in theoretical computer science (Jiang et al., 1998, 2001; Byrka et al., 2010; Snir and Yuster, 2011, 2012). However, learning the structure of T is more challenging and the main question behind our work is the following: 
+
+Main Question (Sampling Complexity and Efficient Tree Learning) . How many (noisy) quartet samples m are necessary to learn the underlying ground-truth tree T ? Most importantly, is there a polynomial-time algorithm that reconstructs T (up to generalization error ϵ)? 
+
+1.2 Our Results: Optimal Tree Reconstruction with m = Θ( n) Quartets 
+
+We present two results, one on the sampling complexity of tree learning (Theorem 1.4), and one on algorithmically learning the structure of a ground-truth tree (Theorem 1.5), via a new Quartet-based Embedding and Detection (QED ) procedure based on semidefinite programming, which also implies a PTAS for MaxQuartetRec from m = O(n) samples (see Technical Overview).                  
+
+> 2This is in the realizable setting. In the agnostic setting, samples consist of tuples (a, b, c, d )and a quartet label q∈{{ ab |cd },{ac |bd },{ad |bc }} , with the desired guarantee being Pr
+>  bT(a, b, c, d )̸=q
+> 
+> ≤min T∈T Pr( T(a, b, c, d )̸=q) + ϵ.
+
+3Sampling Complexity. In PAC-learning, the Natarajan dimension (Natarajan, 1989; Haussler and Long, 1995) captures the sampling complexity for learning a set of functions, generalizing the VC-dimension from binary to multi-class settings (Shalev-Shwartz and Ben-David, 2014; Daniely et al., 2015; Avdiukhin et al., 2023). Natarajan dimension is suitable for our tree learning purposes, since 4 elements a, b, c, d can be classified in three different ways by a ground-truth tree T , namely 
+
+T (a, b, c, d ) ∈ {{ ab |cd }, {ac |bd }, {ad |bc }} , but we defer precise definitions of Natarajan shattering to Section 5. Our first result is a tight bound on the Natarajan dimension of learning trees (information-theoretically) from quartets: 
+
+Theorem 1.4 (Sampling Complexity of Tree Learning) . The Natarajan dimension of learn-ing phylogenetic trees on n leaves from quartets is Θ( n), hence the sampling complexity of Problem 1.3 is m = Θ ϵ,δ (n) quartets. 
+
+This means that, in principle, the reconstruction of the ground-truth tree T is possible with only m = Θ( n) samples. Notice here, this result holds for any distribution, not necessarily the uniform. However, previous results on efficient PTAS algorithms required much larger samples of size m = Θ( n4), later improved to m = Θ( n2 log n) (Jiang et al., 1998, 2001; Snir and Yuster, 2011, 2012). Observe that since there are |T | ≤ (2 n − 2) 2n−4 leaf-labeled trees on n leaves, a direct upper bound for the Natarajan dimension is O(n log n). To improve the bound, we do a quartet-preserving embedding of a phylogenetic tree T , by associating each quadruple vi, v j , v k, v l of leaves to a degree-8
+
+polynomial. The sign of the polynomial reveals what the correct split for vi, v j , v k, v l is according to T , and then we bound the number of sign-patterns of polynomials (Warren, 1968; Alon et al., 1985). Up to constant factors, our result also recovers the bound in Avdiukhin et al. (2023) for the rooted triplet consistency problem, which is solvable in polynomial time (Aho et al., 1981; Byrka et al., 2010; Emamjomeh-Zadeh and Kempe, 2018). Unfortunately, contrary to triplets, checking satisfiability of quartets is NP -complete (Steel, 1992). 
+
+Algorithm for Tree Learning. Even in the absence of noise ( η = 0 ), a trivial lower bound for any meaningful tree reconstruction to be possible in terms of quartet distance is m = Ω( n), as otherwise, with m = o(n), most of the ground-truth tree would not even be observed in the sample. Our main result is a polynomial-time algorithm that recovers an unknown ground-truth hierarchy T
+
+from m = Θ( n) quartet samples on its leaves L, matching the above information-theoretic bound, and that is robust against noise from RCN (η) model above. Our main technical ingredient is a tree reconstruction algorithm that we call Quartet-based Embedding and Detection (QED ) that repeatedly detects well-clustered subtrees of T via semidefinite programming, then removes them, and ultimately combines them into a final tree bT with small quartet distance from T . In particular, our algorithm implies a new PTAS for MaxQuartetRec with m = Θ( n) noisy quartets improving the previously-best sample size of m = Θ( n2 log n) (Jiang et al., 1998, 2001; Snir and Yuster, 2011; Snir and Rao, 2012). 4Theorem 1.5 (Tree Learning with m = Θ( n) quartets) . There exists an algorithm with the following guarantee. For every ϵ > 0 and unknown ground-truth tree T on n items, given a uniformly random sample of m = c · n quartets consistent with T (where c = c(ϵ) is a constant depending only on ϵ), the algorithm outputs a tree bT with dist( bT , T ) ≤ ϵ with probability 
+
+1 − o(1) . The algorithm runs in time polynomial in n.Moreover, the guarantee continues to hold in the presence of noise. Specifically, when 
+
+m = c(ϵ, η ) · n sampled quartets are corrupted under the RCN (η) model (with η < 2/3), the algorithm still guarantees dist( bT , T ) ≤ ϵ. This yields a (1 − ϵ)-approximation scheme (PTAS) for MaxQuartetRec .
+
+Here, the sampling complexity is polynomial on both 1 
+
+> ϵ
+
+and 11− 32 η , and the runtime of the algo-rithm is polynomial in n, specifically the runtime is O(f (ϵ) poly( n)) , where f (ϵ) =   1
+
+> ϵ
+
+O( 1 
+
+> ϵ)
+
+. Notice that no restrictions are imposed on the topology of the ground-truth T which could be adversarially chosen. Even without noise ( η = 0 ), allowing some reconstruction error ϵ > 0 is reasonable, as for the exact tree reconstruction problem ( ϵ = 0 ), at least Ω( n3) quartet samples are required; in fact, there is a query lower bound of Ω( n3) against any non-adaptive query algorithm (future queries cannot depend on previous answers), let alone our setting where algorithms only have access to a randomly drawn sample (see proof in Appendix E). For the case where adaptivity is allowed, 
+
+O(n log n) queries suffice (Wu et al., 2008; Emamjomeh-Zadeh and Kempe, 2018). Furthermore, even for the noiseless setting ( η = 0 ), our result significantly improves prior works which gave a PTAS with m = Θ( n2 log n) randomly sampled quartets labeled correctly by T (Snir and Yuster, 2011, 2012). Observe that if errors were completely adversarial, any algorithm would suffer quartet distance dist( bT , T ) > η and would not generalize. Earlier works for MaxQuartetRec , gave a PTAS with much larger sample size of m = Θ( n4) quartets (Jiang et al., 1998, 2001; Snir and Yuster, 2011), using techniques from Arora et al. (1995, 2002) for dense graph problems. More-over, recall that for worst-case sample distributions, hardness-of-approximation results prevent us from approximating MaxQuartetRec beyond the trivial baseline of 13 achieved by a random tree (Chatziafratis and Makarychev, 2023). Taken together, Theorems 1.4, 1.5 answer the Main Question for learning trees (Problem 1.3). 
+
+1.3 Further Related Work 
+
+Quartets have played an important role in phylogenomics, statistics and machine learning for re-covering latent tree structures (Daskalakis et al., 2006, 2011; Anandkumar et al., 2011; Avni et al., 2015; Avni and Snir, 2019; Kandiros et al., 2023), and also in logic and algebra due to closure operations on trees (Grünewald et al., 2007; Bodirsky and Mueller, 2010; Bodirsky, 2012; Bodirsky et al., 2017). More technically distant works on recovering trees from pairwise information on the leaves have also been widely-studied in computer science and metric embeddings. For example, a related problem arising in phylogenetics is given an n × n matrix describing dissimilarity on n
+
+taxa, find the tree metric or ultrametric that best fits the matrix (Agarwala et al., 1998; Ailon and Charikar, 2005; Charikar and Gao, 2024; Cohen-Addad et al., 2024, 2025). Algorithms for commu-nity detection in the Stochastic Block Model have been extensively studied in the literature; see e.g., Boppana (1987); Feige and Kilian (2001); McSherry (2001); Coja-Oghlan (2010); Massoulié (2014); Makarychev et al. (2012, 2014b, 2016); Mossel et al. (2015); Feldman et al. (2015); Gué-5don and Vershynin (2016); Abbe (2018). For hierarchical clustering, these settings were studied by Cohen-Addad et al. (2017, 2019); Manghiuc and Sun (2021) in beyond-worst-case models with a planted tree, where they show a constant-factor approximation for the similarity-based objective introduced by Dasgupta (2016). These works differ from our setting as they do not address quartets. 
+
+Roadmap. Section 2 provides the technical overview for our reconstruction algorithm, and Sec-tion 3 provides the details of the clustering , reconstruction , and verification procedures assuming black box access to QED procedure. Section 4 describes in detail the QED procedure: we formulate and analyze the SDP for recovering the leaves of a subtree of T . Finally, Section 5 provides the proof for the bound on the Natarajan dimension. Throughout the paper, we use  Sk
+
+ to denote the set of k-subsets of S. T denotes the ground-truth tree on L leaves, and bT is the reconstructed tree. We use Q(T ) or simply Q for the set of  n
+
+> 4
+
+ quartets that T satisfies. Trees can be rooted arbitrarily, as per the definition of quartets, this will not affect satisfaction of quartets or quartet distance. For a rooted tree T , we use Tu for the subtree rooted at a vertex u ∈ T , and Tuv for the subtree rooted at the lowest common ancestor of u and v, LCA( u, v ).
+
+# 2 Technical Overview 
+
+In this section, we provide an overview of the tree reconstruction algorithm. We assume that there exists a ground-truth tree T with n leaves. The algorithm receives a collection of m = O(n) random quartets (ab |cd ). Each quartet is obtained by sampling four distinct leaves a, b, c, d uniformly at random from the set of all 4-tuples of leaves for which the relation (ab |cd ) holds in the ground-truth tree T . To model noise, each quartet is independently replaced with one of the two unsatisfied quartets, (ac |bd ) or (ad |bc ), each with probability η/ 2 (see Section 1.1 for details). Thus, η represents the probability that a sampled quartet is misclassified, and η = 0 corresponds to the noiseless setting. Our goal is to reconstruct the underlying ground-truth tree T from this collection of (possibly noisy) quartet constraints. Given such samples, we aim to recover a tree bT whose structure is close to T in the quartet distance. We show that, with high probability, the reconstructed tree bT differs from T on at most an ϵ-fraction of quartets while using only polynomial time and a number of samples linear in n (see Theorem 1.5). In this overview, we focus on the noiseless classification setting, where η = 0 . Note that even when η = 0 , we cannot directly use an algorithm for finding a satisfying assignment, since this problem is NP -complete and hence no polynomial-time algorithm exists (unless P = NP ). Later, we will build on the ideas presented in this section when describing the algorithm that applies to the case η ∈ [0 , 23 ).The ground-truth tree T is initially unrooted. For convenience, we introduce a root r by sub-dividing one of the edges of T so that the two subtrees adjacent to r contain between one-third and two-thirds of the leaves; that is, their sizes differ by at most a factor of 2:1 . From this point onward, we view T as a rooted tree. Note that the quartet relation (ab |cd ) is independent of the choice of the root: it evaluates to true if and only if the paths between a and b and between c and 
+
+d are vertex-disjoint. The starting point of our discussion is the following observation: the probability that, for a given pair of vertices (a, b ), there exists a quartet constraint (ab |cd ) or (cd |ab ) in the random sample is slightly higher when the vertices a and b are close to each other rather than far apart. More 6precisely, this probability is proportional to 
+
+1 − 2|Tab |
+
+n + O
+
+
+
+(|Tab |/n )2
+
+, (1) provided that |Tab |/n is sufficiently small, where Tab denotes the subtree rooted at the least common ancestor of a and b.To take advantage of this observation, we construct an auxiliary graph G on the leaves of T .For each quartet constraint (ab |cd ) in our random sample, we add either the edge ab or cd to G,each with probability 1/2. In this way, we obtain a random graph G on the vertex set L (the set of leaves of the tree), where the presence of all edges is independent, and the probability that an edge between a and b appears depends on the positions of a and b in the ground-truth tree T .The random graph arises from a stochastic model similar to the Hierarchical Stochastic Block Model introduced by Cohen-Addad, Kanade, Mallmann-Trenn, and Mathieu (2019). Hence, one might consider applying the algorithms developed by Cohen-Addad et al. (2019) in our setting. Unfortunately, this is not possible for the following reasons: (i) the general algorithm in the paper by Cohen-Addad et al. (2019) provides only a constant-factor approximation, which is insufficient for our purposes; and (ii) the probability bound (1) holds only for leaves a and b that are sufficiently close to each other. Nevertheless, we can use the graph G to extract information about the structure of the under-lying tree. Building on techniques for learning communities in the Stochastic Block Model with 
+
+k communities and adversarial noise (Makarychev, Makarychev, and Vijayaraghavan, 2016), we develop a procedure that identifies a set of leaves belonging to a subtree of size δn , where δ is a sufficiently small constant. The idea behind this learning step is as follows. Let u be a vertex in the tree, and let Lu denote the set of leaves in the subtree rooted at u. Suppose |Lu| ≈ δn . Then, the probability that two leaves a, b ∈ Lu are connected by an edge in G is slightly higher than the probability of an edge ac ,where a ∈ Lu and c / ∈ Lu. However, note that (i) for leaves c that are close to Lu, the probability of the edge ac may be very close to that of ab ; and (ii) for leaves c that are very far from a, this probability can actually be quite large. Thus, we cannot identify the set Lu exactly but can only recover it approximately: we find a set Ru such that 
+
+|Lu△Ru| ≤ O(δ2n).
+
+Towards identifying such a set Ru, we employ a semidefinite program (SDP), specified in Eqs. (10)-(13), as a community detection procedure. This SDP embeds the graph into a Euclidean space, with the hope that the vectors corresponding to vertices within S form a cluster – that is, they are tightly grouped together and well separated from the remaining vertices. However, as discussed above, the probability that an edge between two vertices u, v ∈ S is present is nearly identical to the probability of an edge between u ∈ S and a vertex w / ∈ S when w is sufficiently close to u. Moreover, these probabilities may depend on the unknown topology of the underlying tree T . To account for this, we introduce a buffer set B surrounding S, consisting of intermediate vertices that separate S from the remainder of the ground-truth tree T . Our analysis shows that 
+
+|B| ≤ O(δ2n). Finally, to ensure that the SDP does not return an excessively large set that could deviate from the intended tree structure of T , we include an appropriate spreading constraint (see Eq. (13)). 7Equipped with this recovery procedure, we can approximately recover the leaves of all subtrees 
+
+Tu containing approximately δn leaves. However, this information alone is not sufficient to approxi-mately reconstruct the entire tree, since many, or even most, leaves may not belong to such subtrees 
+
+Tu.To address this, we consider an iterative algorithm. The algorithm maintains a set of active leaves, denoted by Ai. Initially, all leaves are active, i.e., A0 = L. At iteration i, the algorithm approximately identifies the set of leaves belonging to the subtree rooted at some vertex ui of T
+
+that are still active at the beginning of that iteration, that is, the set Lui ∩ Ai. Denote the identified set by Ri. We then remove Ri from Ai by setting Ai+1 = Ai \ Ri, and proceed to the next iteration. After running this iterative process, we obtain a partition of the leaves into clusters R1, . . . , R k.Each cluster has size approximately δn , and the total number of clusters satisfies k ≈ 1/δ . (For certain technical reasons, we need to recover the left and right parts of T separately; however, we omit this and other low-level details from this overview.) Each set Ri approximately corresponds to a set Lui ∩ Ai, which denotes the leaves active at step i in the subtree rooted at some vertex ui.Let U = {u1, . . . , u k}.We now define sets Si as follows: each Si consists of all leaves x in T such that the unique shortest path from x to ui does not contain any other vertex uj ∈ U . We show that each Ri
+
+approximates not only Lui ∩ Ai but also Si, that is, 
+
+> k
+
+X
+
+> i=1
+
+|Ri△Si| ≤ εn, 
+
+for some small ε > 0. Importantly, while the sets Ri and Ai depend on the entire execution of our algorithm, the partition S1, . . . , S k is uniquely determined by the set U of vertices u1, . . . , u k.We now reconstruct the tree by first guessing the relative positions of the nodes u1, . . . , u k in the ground-truth tree T . We then build a binary skeleton consisting of the vertices u1, . . . , u k and at most k additional Steiner vertices. We finally attach each set Ri to the corresponding vertex ui.At a high level, this reconstruction procedure is similar to the approach of Snir and Yuster (2012), who refer to such a skeleton as a model tree (see also Jiang, Kearney, and Li (1998, 2001); Chatziafratis and Makarychev (2023)). However, our method differs in several key respects. Rather than guessing the model in advance, we first identify the vertices u1, . . . , u k using the recovery pro-cedure and only then guess their relative positions. This strategy both simplifies the reconstruction process and makes it more robust to misclassified nodes produced by the recovery step. In particu-lar, it ensures that we never need to recover sets Lui ∩ Ai that are very small i.e., of size less than 
+
+δn .We next show that the reconstructed tree bT is close to the ground-truth tree T in terms of the quartet distance. The argument proceeds in two steps: (a) if we were to attach the true sets 
+
+Si to the reconstructed skeleton, the resulting tree would provide a good approximation of T ; and (b) since the recovered sets Ri are close to the corresponding Si, the same guarantee holds for our reconstructed tree bT .Throughout the reconstruction process, the algorithm makes several nondeterministic choices, which may lead to multiple candidate trees bT . We know that at least one of these candidates is a good approximation of the ground-truth tree T , but we do not initially know which one. To identify a near-correct tree, we evaluate all candidate trees on the random instance of quartets Q
+
+and select the one that achieves the highest consistency. This validation step is justified by a uniform 8convergence argument based on our bound on the Natarajan dimension of the quartet consistency problem (see Theorem 5.7, Section 5). 
+
+# 3 Tree Reconstruction 
+
+In this section, we present the Quartet-based Embedding and Detection (QED) tree reconstruction algorithm and prove Theorem 1.5. The construction follows the technical overview provided in Section 2. Recall that we assume the ground-truth tree T is rooted, and that both its left and right subtrees contain at least one third of all leaves. The main building block of the algorithm is the community detection procedure. In Section 4.4 we describe a procedure to generate a graph based on the quartet set Q and introduce the notion of a good graph G, defined as a graph that satisfies the conditions of Lemma 4.2. Lemma 4.2 shows that, with probability exponentially close to 1 (specifically, with probability at least 1 −
+
+poly(1 /δ ) exp( −1.5n)) over the randomness in the quartet set and the internal randomness of the algorithm, the graph constructed is good. Throughout this section, we shall assume that G is a good graph. We fix a sufficiently small parameter δ = Θ( ϵ), where ϵ denotes the target accuracy. Below, we use the notation Tu for the subtree rooted at vertex u and Lu for the set of leaves of 
+
+Tu. We prove the following theorem in Section 4 (see Theorem 4.3). 
+
+Theorem 3.1 (QED Procedure) . There exists a randomized polynomial-time algorithm that, given a random sample of quartets Q for an unknown tree T , a subset of leaves A ⊆ L, and a side indicator 
+
+σ ∈ {L , R} (where L and R denote the left and right sides, respectively), returns a set R ⊆ A such that |R| ∈ [δn, 2δn ].The algorithm satisfies the following guarantee. With probability at least pδ (over the internal randomness of the algorithm), there exists a vertex u in the σ-subtree of T such that 
+
+|R△(Lu ∩ A)| ≤ Cδ 2n, 
+
+where pδ > 0 is a constant depending only on δ, provided that the following conditions hold: (i) 
+
+|Q| ≥ αδ,η n and G is a good graph (see above); (ii) at least 48 δn leaves of A lie in the σ-side of T ;and (iii) at least n/ 4 leaves of A lie in the opposite subtree of T , where αδ,η is a constant depending only on δ and η.
+
+We postpone the detailed discussion of the QED procedure until Section 4 and now describe the overall tree reconstruction algorithm. The algorithm proceeds in three main phases: the clustering step , the reconstruction step , and the verification step .
+
+3.1 Clustering Step 
+
+The algorithm begins by guessing the sizes of the left and right subtrees of the unknown tree T up to an additive error of δn . We denote this guess by (ρL, ρ R). This guess is correct with probability at least δ; that is, with probability at least δ, we have ρL − | LrL | ≤ δn , where rL is the left child of the root r, and LrL denotes the set of leaves in the subtree rooted at rL.Having fixed the estimate (ρL, ρ R), the algorithm recursively partitions the leaves on the left and right sides of the tree. The algorithm first selects a side σ ∈ {L , R} ; throughout, we use L and R
+
+to denote the left and right sides, respectively. It then iteratively partitions the leaves on the σ-side of the tree. The algorithm maintains a set of active leaves Aσi ⊆ L, consisting of the leaves that 9Algorithm 1: ClusteringStep (Q, L, ρ L, ρ R, δ )
+
+Input : Quartet sample Q, leaves L, estimates (ρL, ρ R), parameter δ
+
+Output: Clusters {RL 
+
+> i
+
+}, {RR 
+
+> i
+
+}, and R◦ 
+
+> 1
+
+Let δ = Θ( ϵ) be a sufficiently small parameter.  
+
+> 2
+
+for σ ∈ {L , R} : 
+
+> 3
+
+Aσ 
+
+> 1
+
+= L # Initialize active leaves  
+
+> 4
+
+i = 1  
+
+> 5
+
+while P 
+
+> i′<i
+
+|Rσi′ | ≤ ρσ − 49 δn : 
+
+> 6
+
+Rσi = QED (Q, A σi , σ ) # Apply QED on the current side  
+
+> 7
+
+Aσi+1 = Aσi \ Rσi # Remove clustered leaves  
+
+> 8
+
+i = i + 1  
+
+> 9
+
+kσ = i − 1 # Number of clusters for σ 
+
+> 10
+
+R◦ = L \ (S 
+
+> σ,i
+
+Rσi ) # Place all unassigned leaves into R◦ 
+
+> 11
+
+return {RL 
+
+> 1
+
+, . . . , R L 
+
+> kL
+
+}, {RR 
+
+> 1
+
+, . . . , R R 
+
+> kR
+
+}, R ◦
+
+remain unclustered at the beginning of iteration i. In each iteration, it invokes the QED procedure (Theorem 3.1) with the σ-side indicator and the current active set Aσi . The QED procedure returns a subset Rσi ⊆ Aσi of size between δn and 2δn . After obtaining Rσi , the algorithm removes these leaves from the active set, setting 
+
+Aσi+1 = Aσi \ Rσi ,
+
+and repeats the process. This iterative procedure continues as long as the total number of leaves in the recovered sets Rσ 
+
+> 1
+
+, . . . , R σi remains below ρσ − 49 δn .The clustering step is applied independently to the left and right subtrees of the tree, producing collections RL 
+
+> 1
+
+, . . . , R L 
+
+> kL
+
+and RR 
+
+> 1
+
+, . . . , R R 
+
+> kR
+
+. We note that the recovered clusters on the left and right sides may overlap slightly, and a small fraction of leaves may remain unassigned. We place these unassigned leaves into a separate set R◦. The pseudocode for the clustering step is provided in Algorithm 1. We now state and prove the main theorem concerning the clustering step. To this end, we first introduce the following definition (see Figure 1). 
+
+Definition 3.2. Let T be a rooted tree, and let U be a subset of its vertices that includes the root. Define the mapping ϕU : V (T ) → U as follows: for each vertex v ∈ V (T ), ϕU (v) is the first vertex in U encountered on the unique path from v to the root. Then, for each u ∈ U , define 
+
+SU (u) = {v ∈ L : ϕU (v) = u}.
+
+In other words, SU (u) is the set of leaves v such that the path from v to u does not contain any other vertices from U .
+
+Theorem 3.3 (Correctness of the Clustering Step) . There exists a constant pδ = δO( 1  
+
+> δ)
+
+> 0 (the 
+
+success probability ) such that, with probability at least pδ, the clusters RL 
+
+> 1
+
+, . . . , R L 
+
+> kL
+
+, RR 
+
+> 1
+
+, . . . , R R 
+
+> kR
+
+,and R◦ produced by the clustering step satisfy the following property. There exists a set of vertices 
+
+U =
+
+n
+
+r, u L 
+
+> 1
+
+, . . . , u L 
+
+> kL
+
+, u R 
+
+> 1
+
+, . . . , u R
+
+> kR
+
+o
+
+10 r
+
+uL 
+
+> 1
+
+uR
+
+> 1
+
+uL
+
+> 2
+
+SU (uL 
+
+> 1
+
+) SU (uR 
+
+> 1
+
+)SU (uL 
+
+> 2
+
+) SU (r)
+
+∈ U
+
+/∈ U
+
+ϕU
+
+Figure 1: Illustration of Definition 3.2. Vertices in U = {r, u L 
+
+> 1
+
+, u L 
+
+> 2
+
+, u R 
+
+> 1
+
+} are shown as filled squares. For each leaf, ϕU maps it to the nearest ancestor in U (dashed arrows). The colored regions indicate the partition of leaves into SU (uL 
+
+> 1
+
+), SU (uL 
+
+> 2
+
+), SU (uR 
+
+> 1
+
+), and SU (r).
+
+in the ground-truth tree T such that 
+
+X
+
+> σ∈{L ,R}
+> kσ
+
+X
+
+> i=1
+
+Rσi △SU (uσi ) + R◦△SU (r) ≤ Cδn, (2) 
+
+for some universal constant C > 0.Proof. The clustering procedures for the left and right subtrees are independent, and thus we will analyze them separately. We say that the procedure succeeds for side σ ∈ {L , R} if there exist vertices uσ 
+
+> 1
+
+, . . . , u σkσ , all lying on the σ-side of the tree T , such that 
+
+> kσ
+
+X
+
+> i=1
+
+Rσi △SU σ (uσi ) ≤ C′δn, (3) where U σ = {r, u σ 
+
+> 1
+
+, . . . , u σkσ } and C′ is a universal constant. We show that the algorithm succeeds for each side of the tree with a positive probability p′ 
+
+> δ
+
+that depends only on δ. For clarity of exposition, we focus on the left side of the tree; the argument for the right side is entirely analogous. We remind the reader that |LrL | denotes the number of leaves in the left subtree. 
+
+Lemma 3.4. For a fixed constant δ > 0, there exists a positive constant p′ 
+
+> δ
+
+> 0 such that, conditioned on the event ρL − | LrL | ≤ δn , the clustering procedure applied to the left side of the tree succeeds with probability at least p′ 
+
+> δ
+
+= δO( 1 
+
+> δ)
+
+. In other words, with conditional probability at least p′
+
+> δ
+
+, there exist vertices uL 
+
+> 1
+
+, . . . , u L 
+
+> kL
+
+on the left side of the tree T satisfying (3) .
+
+We first establish the following claim. 
+
+Claim 3.5. For a fixed constant δ > 0, there exists a positive constant p′ 
+
+> δ
+
+> 0 such that, conditioned on the events ρL − | LrL | ≤ δn and that the constructed graph G is good (see Section 4.4 and earlier discussion), all invocations of the QED procedure succeed with probability at least p′ 
+
+> δ
+
+= δO( 1 
+
+> δ)
+
+.
+
+11 Proof of Claim 3.5. Observe that the number of invocations of the QED procedure is at most 1/δ .Indeed, each call to QED removes at least δn leaves from the active set AL 
+
+> i
+
+, and since there are at most n leaves in total, the procedure can iterate at most 1/δ times. Next, we verify that the preconditions required for invoking the QED procedure remain valid throughout the process, as long as the algorithm continues to succeed. Specifically, we must ensure that, at every iteration i, the left side of the tree contains at least 48 δn active leaves and the right side contains at least n/ 4 active leaves, assuming that all previous QED invocations have succeeded. Recall that the algorithm continues clustering the left side as long as P 
+
+> i′<i
+
+|Rσi′ | ≤ ρσ − 49 δn. 
+
+Assuming that ρσ was guessed within an additive error of δn , we have 
+
+|LrL | − X
+
+> i′<i
+
+|Rσi′ | ≥ (ρσ − δn ) − (ρσ − 49 δn ) ≥ 48 δn. 
+
+Thus, at each iteration, the left side continues to contain enough active leaves to satisfy the condi-tions of Theorem 3.1. Each successful QED call may misclassify or remove at most Cδ 2n leaves from the right side. Therefore, after all iterations, the total number of leaves erroneously removed from the right side is at most Cδ 2n · (1 /δ ) = Cδn . Since the right subtree initially contains at least n/ 3 leaves by assumption on the root placement, it follows that, even after accounting for misclassifications, the right side still contains at least n/ 4 leaves for sufficiently small δ.Finally, by Theorem 3.1, each call of the QED procedure succeeds with probability at least 
+
+p′′  
+
+> δ
+
+= Ω(poly( δ)) , conditioned on the successful completion of all previous calls. Since there are at most 1/δ invocations in total, the probability that all of them succeed simultaneously is at least 
+
+p′ 
+
+> δ
+
+= ( p′′  
+
+> δ
+
+)1/δ = δO( 1  
+
+> δ)
+
+> 0, which depends only on δ. This completes the proof of the claim. 
+
+Proof of Lemma 3.4. By Claim 3.5, the probability that all invocations of the QED procedure on the left side succeed is at least p′
+
+> δ
+
+. We now condition on this event and show that, under this assumption, the clustering algorithm for the left side succeeds. At iteration i of the clustering algorithm, the QED procedure returns a set RL 
+
+> i
+
+. Since we assume that the QED procedure succeeds at every step, including iteration i, there exists a vertex uL 
+
+> i
+
+such that 
+
+|RL 
+
+> i
+
+△(LuL 
+
+> i
+
+∩ AL 
+
+> i
+
+)| ≤ Cδ 2n, 
+
+where LuL 
+
+> i
+
+∩ AL 
+
+> i
+
+is the set of active leaves at the beginning of iteration i in the subtree rooted at 
+
+uL 
+
+> i
+
+. This implies that at least δn − Cδ 2n leaves belonging to the true subtree LuL 
+
+> i
+
+are active before iteration i, since |RL 
+
+> i
+
+| ≥ δn , and that at most Cδ 2n leaves from LuL 
+
+> i
+
+remain active after iteration i.We now make a useful observation. Consider two iterations i and j with i < j . If uL 
+
+> i
+
+were an ancestor of uL 
+
+> j
+
+, then LuL 
+
+> j
+
+⊆ LuL 
+
+> i
+
+and hence 
+
+δn − Cδ 2n ≤ | LuL 
+
+> j
+
+∩ AL 
+
+> j
+
+| ≤ | LuL 
+
+> i
+
+∩ AL 
+
+> j
+
+| ≤ Cδ 2n. 
+
+Since the right-hand side is strictly smaller than the left-hand side for sufficiently small δ, it follows that uL 
+
+> i
+
+cannot be an ancestor of uL 
+
+> j
+
+whenever i < j .We now bound the left-hand side of (3) for σ = L. Consider a leaf x that belongs to the symmetric difference RL 
+
+> i
+
+△SU L (uL 
+
+> i
+
+) for some i. Let i∗ be the smallest such index. Then x must belong to the active set AL 
+
+> i∗
+
+, since otherwise there would exist an index j∗ < i ∗ such that x ∈ RL 
+
+> j∗
+
+.12 By the minimality of i∗, this would also imply that x ∈ SU L (uL 
+
+> j∗
+
+). Consequently, x / ∈ RL 
+
+> i∗
+
+and 
+
+x / ∈ SU L (uL 
+
+> i∗
+
+), as the sets RL 
+
+> j
+
+are pairwise disjoint and the sets SU L (uL 
+
+> j
+
+) are pairwise disjoint as well. This leads to a contradiction with the assumption that x ∈ RL 
+
+> i∗
+
+△SU L (uL 
+
+> i∗
+
+). The same argument also shows that x / ∈ SU L (uL 
+
+> j
+
+) for j < i ∗. We thus conclude that x ∈ AL 
+
+> i∗
+
+.Since x ∈ RL 
+
+> i∗
+
+△SU L (uL 
+
+> i∗
+
+) and x ∈ AL 
+
+> i∗
+
+, we have 
+
+x ∈  RL 
+
+> i∗
+
+△SU L (uL 
+
+> i∗
+
+) ∩ AL 
+
+> i∗
+
+= RL 
+
+> i∗
+
+△ SU L (uL 
+
+> i∗
+
+) ∩ AL
+
+> i∗
+
+,
+
+where we used RL 
+
+> i∗
+
+⊂ AL 
+
+> i∗
+
+. We claim that x ∈ SU L (uL 
+
+> i∗
+
+) ∩ AL 
+
+> i∗
+
+if and only if x ∈ LuL 
+
+> i∗
+
+∩ AL 
+
+> i∗
+
+. Note that 
+
+SU L (uL 
+
+> i∗
+
+) ⊆ LuL 
+
+> i∗
+
+, and therefore if x ∈ SU L (uL 
+
+> i∗
+
+) ∩ AL 
+
+> i∗
+
+, then x ∈ LuL 
+
+> i∗
+
+∩ AL 
+
+> i∗
+
+. For the reverse direction, assume x ∈ LuL 
+
+> i∗
+
+∩ AL 
+
+> i∗
+
+and consider the path from x to the root. Let uL 
+
+> j
+
+be the first vertex from U L
+
+encountered along this path. As argued above, j ≤ i∗. If j̸ = i∗, then j < i ∗, which would imply that x ∈ SU L (uL 
+
+> j
+
+) with j < i ∗, but this would contradict the minimality of i∗.We thus conclude that x ∈ RL 
+
+> i∗
+
+△ LuL 
+
+> i∗
+
+∩ AL
+
+> i∗
+
+. This means that if x ∈ RL 
+
+> i
+
+△SU L (uL 
+
+> i
+
+), then 
+
+x ∈ RL 
+
+> i
+
+△ LuL 
+
+> i
+
+∩ AL
+
+> i
+
+. Since any x may belong to RL 
+
+> i
+
+△SU L (uL 
+
+> i
+
+) for at most two distinct values of 
+
+i, we obtain kLX
+
+> i=1
+
+RL 
+
+> i
+
+△SU (uL 
+
+> i
+
+) ≤ 2
+
+> kL
+
+X
+
+> i=1
+
+RL 
+
+> i
+
+△ LuL 
+
+> i
+
+∩ AL
+
+> i
+
+ ≤ 2kL Cδ 2n, 
+
+where the last inequality follows from the guarantee of Theorem 3.1. Recalling that kL ≤ 1/δ 
+
+completes the proof. In Lemma 3.4, we established that, with constant probability, the algorithm successfully clusters the left side of the tree, conditioned on the event E′ that the sizes of the left and right subtrees were guessed within an additive error of δn . An identical guarantee holds for the right side. The probability of the event E′ is at least δ, since there are at most 1/δ possible values for the size of the left subtree on a grid with step size δn in the range [n/ 3, 2n/ 3] . Conditioned on E′, the events that the algorithm successfully clusters the left and right sides are independent. Consequently, the probability that both sides are successfully clustered is at least δ · (p′
+
+> δ
+
+)2 = δO( 1 
+
+> δ)
+
+, which is a constant depending only on δ. To complete the proof of Theorem 3.3, we next show that if both subtrees are clustered correctly, then the entire tree is clustered successfully. 
+
+Claim 3.6. If the algorithm succeeds for both the left and right sides, then the combined clustering satisfies the desired inequality (2) .Proof. Suppose that the algorithm succeeds for both the left and right sides. Then there exist sets 
+
+U L and U R, where each vertex uσi lies on side σ ∈ {L , R} , and inequality (3) holds for both sides. Define U = U L ∪ U R.Consider a vertex uL 
+
+> i
+
+∈ U L and the corresponding sets SU (uL 
+
+> i
+
+) and SU L (uL 
+
+> i
+
+). Both sets contain only leaves from the left side of the tree, since each uL 
+
+> i
+
+lies on that side and any path from a vertex on the right side to the root cannot pass through uL 
+
+> i
+
+. Therefore, no leaf on the right side can be assigned to uL 
+
+> i
+
+.Now consider a leaf x on the left side of the tree. The path from x to the root does not pass through any vertex uR 
+
+> j
+
+. Hence, x is assigned to SU (uL 
+
+> i
+
+) if and only if uL 
+
+> i
+
+is the first vertex on the path from x to the root that belongs to U L. This is precisely the same rule used for assigning x to SU L (uL 
+
+> i
+
+).13 We conclude that SU L (uL 
+
+> i
+
+) = SU (uL 
+
+> i
+
+) for all i, and similarly, SU R (uR 
+
+> j
+
+) = SU (uR 
+
+> j
+
+) for all j. The bound (3) now implies kσX
+
+> i=1
+
+Rσi △SU (uσi ) ≤ C′δn. (4) Combining the two bounds for the left and right sides, we obtain 
+
+X
+
+> σ∈{L ,R}
+> kσ
+
+X
+
+> i=1
+
+Rσi △SU (uσi ) ≤ 2C′δn. 
+
+To complete the proof of the claim, it remains to bound the term R◦△SU (r) . Recall that R◦
+
+represents the set of leaves that remain unassigned after the clustering procedures on both sides have completed. By definition, 
+
+R◦ = L \ [
+
+> σ∈{L ,R}
+> kσ
+
+[
+
+> i=1
+
+Rσi , and SU (r) = L \ [
+
+> σ∈{L ,R}
+> kσ
+
+[
+
+> i=1
+
+SU (uσi ).
+
+Hence, 
+
+R◦△SU (r) =
+
+
+
+L \ [
+
+> σ,i
+
+Rσi
+
+
+
+△
+
+
+
+L \ [
+
+> σ,i
+
+SU (uσi )
+
+
+
+=
+
+[ 
+
+> σ,i
+
+Rσi
+
+
+
+△
+
+[ 
+
+> σ,i
+
+SU (uσi )
+
+
+
+≤ [
+
+> σ,i
+
+ Rσi △SU (uσi ) ≤ X
+
+> σ,i
+
+Rσi △SU (uσi ) ≤ 2C′δn. 
+
+Therefore, 
+
+X
+
+> σ∈{L ,R}
+> kσ
+
+X
+
+> i=1
+
+Rσi △SU (uσi ) + R◦△SU (r) ≤ Cδn, 
+
+for some universal constant C > 0, which completes the proof of the claim. This concludes the proof of Theorem 3.3. 
+
+3.2 Reconstruction Step 
+
+We next describe how the algorithm reconstructs the tree from the clusters obtained in the previous phase. At the end of the clustering step, the algorithm outputs the collections of sets 
+
+R◦, R L 
+
+> 1
+
+, . . . , R L 
+
+> kL
+
+, RR 
+
+> 1
+
+, . . . , R R 
+
+> kR
+
+.
+
+If the clustering procedure has succeeded, then by Theorem 3.3 there exist vertices 
+
+uL 
+
+> 1
+
+, . . . , u L 
+
+> kL
+
+, u R 
+
+> 1
+
+, . . . , u R
+
+> kR
+
+in the ground-truth tree T satisfying the bound (2). Of course, the algorithm itself does not know whether the clustering succeeded; in any case, it proceeds to reconstruct the tree based solely on the obtained clusters. 14 The reconstruction phase aims to infer the relative positions of the vertices uσi within the un-derlying tree structure. Let U denote the collection of all such vertices together with the root r,that is, 
+
+U = {r} ∪ { uL 
+
+> 1
+
+, . . . , u L 
+
+> kL
+
+} ∪ { uR 
+
+> 1
+
+, . . . , u R 
+
+> kR
+
+}.
+
+We define the skeleton tree TU as the tree obtained from T by iteratively removing all leaves not in U , and suppressing all vertices not in U that have exactly one child, until no such vertices remain. The skeleton tree TU contains at most 2|U | ≤ 4⌈1/δ ⌉ vertices, since every leaf of TU belongs to U , and every vertex not in U has exactly two children, which implies that the number of internal (non-U ) vertices is at most |U | − 2. Thus, the algorithm can guess the skeleton TU with a small but constant (depending only on δ) positive probability pTU 
+
+> δ
+
+= δO( 1 
+
+> δ)
+
+.After guessing the skeleton TU , the algorithm constructs a tree bT based on TU as follows. For every vertex uσi ∈ V (TU ), we create, in an arbitrary manner, a binary rooted tree whose leaves are exactly the vertices of the corresponding set Rσi . This tree is then attached as an additional (rightmost) child of uσi .To ensure that bT remains binary, we locally modify the structure at uσi if necessary. If after the attachment uσi has three children, we introduce a new vertex as the left child of uσi , and reattach the original two children of uσi (i.e., those inherited from TU ) as children of this new vertex. Consequently, uσi has exactly two children: the newly created vertex and the root of the attached tree. See Figure 2. Note that all sets RL 
+
+> j
+
+are pairwise disjoint, and likewise all sets RR 
+
+> j
+
+are pairwise disjoint. How-ever, a leaf may belong to both some RL 
+
+> j′
+
+and RR 
+
+> j′′
+
+. In such cases, the leaf is included in only one of the corresponding subtrees – either the one attached to uL 
+
+> j′
+
+or to uR 
+
+> j′′
+
+. This assignment is made arbitrarily. 
+
+r
+
+uL
+
+> 2
+
+uL
+
+> 1
+
+uR  
+
+> 1
+> (a) Guessed skeleton TU.
+
+r
+
+uL
+
+> 2
+
+uL
+
+> 1
+
+uR  
+
+> 1
+> RL
+> 1
+> RL
+> 2
+> RR
+> 1
+> R◦
+> (b) Reconstructed tree bT.
+
+Figure 2: Illustration of the reconstruction step. (a) With a small but constant positive probability 
+
+δO(1 /δ ), the algorithm correctly guesses the skeleton tree TU on U = {r, u L 
+
+> 1
+
+, u L 
+
+> 2
+
+, u R 
+
+> 1
+
+}. (b) For each vertex u ∈ U , the algorithm constructs an arbitrary binary tree on its cluster Ru, attaches it as an additional rightmost child of u, and resolves any duplicate leaf memberships arbitrarily. We now show that if the clustering phase succeeds and the reconstruction phase correctly guesses 15 the skeleton, then the resulting tree bT is a good approximation of the true tree T . Specifically, for a randomly chosen 4-tuple (a, b, c, d ) of leaves, the quartet relation (ab | cd ) takes the same value in 
+
+T and bT with probability 1 − O(δ). Equivalently, the quartet distance between T and bT is O(δ).
+
+Theorem 3.7. Suppose that the clustering phase succeeds and that the reconstruction phase correctly guesses the skeleton tree TU . Let bT denote the reconstructed tree. Then, for a uniformly random 4-tuple (a, b, c, d ) of leaves, the quartet relation (ab | cd ) takes the same value in T and bT with probability 1 − O(δ) (over the random choice of (a, b, c, d )). Proof. Consider a uniformly random 4-tuple (a, b, c, d ) of leaves. We define a bad event E as follows. The event E occurs if either one of the vertices a, b, c , or d lies in 
+
+[
+
+> σ∈{L ,R}
+> kσ
+
+[
+
+> i=1
+
+ Rσi △SU (uσi ) ∪  R◦△SU (r), (5) or if there exists a distinct triplet x, y, z ∈ { a, b, c, d } such that ϕU (x) = ϕU (LCA( y, z )) .We now show that Pr( E) = O(δ). Indeed, by Theorem 3.3 and our assumption that the clustering step succeeded, the size of the union in (5) is O(δn ). Consequently, the probability that any of a, b, c, 
+
+or d lies in this set is O(δ). Moreover, since each set Rσi has size at most 2δn , every corresponding set SU (uσi ) also has size O(δn ). The same bound holds for SU (r).Now fix distinct x, y, z ∈ { a, b, c, d }. The vertex ϕU (LCA( y, z )) equals some u ∈ U , and the event ϕU (x) = u occurs if and only if x ∈ SU (u). Thus, 
+
+Pr 
+
+
+
+ϕU (x) = ϕU (LCA( y, z )) 
+
+
+
+= O(δ).
+
+Applying the union bound over all 24 distinct ordered triplets (x, y, z ) from {a, b, c, d } gives the claimed bound Pr( E) = O(δ).We now show that if the bad event E does not occur, then the quartet relation (ab | cd ) agrees in both T and bT . Recall that for any four distinct leaves a, b, c, d , there is exactly one partition of 
+
+{a, b, c, d } into two unordered pairs {a, b } and {c, d } for which the relation (ab | cd ) holds. Without loss of generality, assume that (ab | cd ) is the quartet relation in the true tree T . We will show that the same relation holds in the reconstructed tree bT . Equivalently, assuming that the paths from a
+
+to b and from c to d are vertex-disjoint in T , we prove that they are vertex-disjoint in bT .We denote by P (x, y ) the path from x to y in the true tree T , and by bP (x, y ) the corresponding path in the reconstructed tree bT . Lemma B.1 in Appendix B states that if (i) the paths P (a, b )
+
+and P (c, d ) are vertex-disjoint in T , and (ii) for every distinct triple x, y, z ∈ { a, b, c, d }, we have 
+
+ϕU (x)̸ = ϕU (LCA( y, z )) , then the images P (ϕU (a), ϕ U (b)) and P (ϕU (c), ϕ U (d)) are also vertex-disjoint. Since both conditions (i) and (ii) hold in our setting (the former by assumption, and the latter because the bad event E does not occur), we conclude that the paths P (ϕU (a), ϕ U (b)) and 
+
+P (ϕU (c), ϕ U (d)) in T are vertex-disjoint. We now claim that the corresponding paths bP (ϕU (a), ϕ U (b)) and bP (ϕU (c), ϕ U (d)) in the recon-structed tree bT are also vertex-disjoint. It suffices to show that the paths between ϕU (a) and ϕU (b)
+
+and between ϕU (c) and ϕU (d) remain vertex-disjoint in the skeleton tree TU . Indeed, the skeleton construction is obtained from T by iteratively removing degree-one vertices and contracting vertices of degree two that do not belong to U . This process maps every path between two vertices u′, u ′′ ∈ U
+
+in T to a subpath of the original path connecting u′ and u′′ . Consequently, it cannot convert two vertex-disjoint paths in T into intersecting paths in TU .16 Assume for the moment that the vertices ϕU (a), ϕU (b), ϕU (c), and ϕU (d) are all distinct. Con-sider the path bP (a, b ) in bT : it consists of three segments—one from a up to ϕU (a), one along 
+
+bP (ϕU (a), ϕ U (b)) connecting the corresponding cluster representatives in the skeleton, and one from 
+
+ϕU (b) down to b. The segments from a, b, c, d to ϕU (a), ϕU (b), ϕU (c), and ϕU (d), respectively, are pairwise vertex-disjoint, since each such path lies entirely within the distinct subtree attached to the right child of its corresponding ϕU (·). Furthermore, the paths bP (ϕU (a), ϕ U (b)) and bP (ϕU (c), ϕ U (d)) 
+
+in the skeleton do not intersect, as established above. Consequently, the full paths bP (a, b ) and bP (c, d )
+
+are vertex-disjoint, and hence the quartet relation (ab | cd ) also holds in the reconstructed tree bT .It remains to consider the case where some of the vertices in {a, b, c, d } are mapped by ϕU to the same vertex u ∈ U . Since the paths P (ϕU (a), ϕ U (b)) and P (ϕU (c), ϕ U (d)) are vertex-disjoint, we must have ϕU (a)̸ = ϕU (c), ϕU (a)̸ = ϕU (d), ϕU (b)̸ = ϕU (c), and ϕU (b)̸ = ϕU (d). Thus, the only possibilities are that ϕU (a) = ϕU (b) = u or ϕU (c) = ϕU (d) = u. Assume without loss of generality that ϕU (a) = ϕU (b) = u. Then ϕU (c)̸ = u and ϕU (d)̸ = u. The path bP (a, b ) lies entirely within the subtree attached to the right child of u in bT . Since neither c nor d lies in this subtree, the path 
+
+bP (c, d ) does not enter it. Consequently, bP (c, d ) does not intersect bP (a, b ).
+
+3.3 Verification Step 
+
+So far, we have described the clustering and reconstruction phases of the algorithm and established that each of these phases succeeds with a small but constant probability depending only on δ. In particular, the two phases succeed with probability at least δO( 1 
+
+> δ)
+
+. Conditioned on their success, the resulting tree bT is a good approximation of the true tree T : specifically, by Theorem 3.7, the quartet distance between T and bT is O(δ). We set δ to be a sufficiently small constant, δ = Θ( ϵ), so that the quartet distance between T and bT is at most ϵ/ 2 whenever the clustering and reconstruction 
+
+phases succeed. However, the algorithm itself does not know whether the clustering and reconstruction steps have succeeded in a particular run. To overcome this, the algorithm repeats both phases a sufficiently large number of times (say, 1   
+
+> δO(1
+> δ)
+
+· n times), so that the probability that all attempts to cluster the leaves and reconstruct the tree fail becomes exponentially small. For each reconstructed tree bT , it invokes a verification step that estimates the quartet distance between T and bT using the quartet dataset Q, i.e., it calculates the fraction of quartets in Q that tree bT fails to satisfy 3. We denote this empirical estimate by bRQ( bT ). If this estimate is at most a fixed acceptance threshold η + 
+
+> 34
+
+ϵ(1 − 3η 
+
+> 2
+
+), the verifier declares success, and the algorithm outputs the corresponding bT as the final reconstruction. Otherwise, the algorithm discards the candidate tree and repeats the procedure. There are two possible scenarios under which the algorithm may fail. First, with a small prob-ability, the algorithm may fail to obtain a verified tree, in which case it terminates and reports failure. Second, the verifier may erroneously accept an inaccurate reconstruction. Observe that the event that the algorithm fails is a subset of A ∪ B , where A and B are defined as follows. Event A is the event that the algorithm fails to produce a tree of small distance, at most ϵ 
+
+> 2
+
+, to the ground truth tree after running the clustering and reconstruction step a polynomial number of times. Note that the probability of that event is o(1) . Event B is the event that there exists a tree T ′ ∈ T on which the verification step fails. We say that the verification step fails on tree T ′ if (i) dist( T, T ′) ≤ ϵ
+
+> 2
+
+and ˆRQ(T ′) > η + 34 ϵ(1 − 3η 
+
+> 2
+
+) (the tree is close to T but the estimate is above the threshold) or (ii)          
+
+> 3Strictly speaking, the algorithm estimates the probability that the quartet label of a sample from RCN (η)is different from the quartet label according to bT. For example, this probability is ηfor the ground truth tree T.
+
+17 dist( T, T ′) > ϵ and ˆRQ(T ′) ≤ η + 34 ϵ(1 − 3η 
+
+> 2
+
+) (the tree is far from T but the estimate is at most the threshold). We prove the following theorem, which by the union bound implies the main result, Theorem 1.5. 
+
+Theorem 3.8 (Verification guarantee) . There exists an absolute constant C such that if Q is a quartet dataset with i.i.d. samples from RCN (η) model with |Q| ≥ C n   
+
+> (ϵ(1 −3η
+> 2)) 2
+
+then the probability, over the randomness in Q, that there exists a tree T ′ for which the verification procedure fails is 
+
+o(1) .Proof. Let Rη(T ′) be the probability that tree T ′ fails to classify correctly a quartet from the 
+
+RCN (η) model. We can relate this to the quartet distance from the ground truth tree T : Rη(T ′) = (1 − 3η 
+
+> 2
+
+) dist( T, T ′) + η. Applying Theorem 5.7 and the Multiclass Fundamental Theorem (Theorem 29.3 in Shalev-Shwartz and Ben-David (2014)), we have that there exist a C such that for every error parameter ε > 0, if Q is a set of i.i.d. samples from RCN (η) model with |Q| ≥ C nε2 then with probability 1 − o(1) , for every T ′ ∈ T : | ˆRQ(T ′) − R (T ′)| ≤ ε. We apply this with error parameter ϵ
+
+> 4
+
+
+
+1 − 3η
+
+> 2
+
+
+
+and we have that with probability at least 1 − o(1) , for every T ′ ∈ T :
+
+| ˆRQ(T ′)−R η(T ′)| ≤ ϵ
+
+> 4
+
+
+
+1 − 3η
+
+> 2
+
+
+
+. We show that if this event happens then the verification procedure succeeds on every T ′ ∈ T . We divide between cases for T ′. Recall that the verification step can fail on T ′ only if dist( T, T ′) ≤ ϵ 
+
+> 2
+
+or if dist( T, T ′) > ϵ . Thus, the verification step trivially succeeds on 
+
+T ′ if ϵ 
+
+> 2
+
+< dist( T, T ′) ≤ ϵ. If dist( T, T ′) > ϵ then we have that: 
+
+ˆRQ(T ′) ≥ R η(T ′) − ϵ
+
+4
+
+
+
+1 − 3η
+
+2
+
+
+
+> 3ϵ
+
+4
+
+
+
+1 − 3η
+
+2
+
+
+
++ η, 
+
+and the verification procedure succeeds. On the other hand, if dist( T, T ′) ≤ ϵ 
+
+> 2
+
+then we have: 
+
+ˆRQ(T ′) ≤ R η(T ′) + 
+
+
+
+1 − 3η
+
+2
+
+ ϵ
+
+4 ≤ 3ϵ
+
+4
+
+
+
+1 − 3η
+
+2
+
+
+
++ η, 
+
+and the verification procedure would succeed on T ′.
+
+3.4 Runtime of the Algorithm 
+
+For the runtime of the algorithm, we observe that both the clustering and reconstruction procedures run in time polynomial in n, and the same of course holds for the verification procedure. The algorithm then repeats all three of the procedures 1   
+
+> δO(1
+> δ)
+
+· n times, thus yielding a runtime of 
+
+O 1
+
+δ  
+
+> O(1
+> δ)
+
+poly( n)
+
+!
+
+= O 1
+
+ϵ  
+
+> O(1
+> ϵ)
+
+· poly( n)
+
+!
+
+.
+
+# 4 QED Procedure and Analysis 
+
+We now present the SBM-inspired algorithm that recovers the leaves corresponding to a subtree Tu
+
+of the tree T . At a high level, the algorithm iteratively recovers such sets to reconstruct a tree close to the ground truth. To achieve this, it constructs a graph G′(L′, E ′) using the quartet dataset, 
+
+L′ here corresponds to the set of active leaves. The algorithm then uses a semidefinite program to 18 approximately recover the subset of L′ that are leaves of that subtree. The size of the recovered subtree is approximately δn , where δ is a small constant dependent on the accuracy parameter ε.Our algorithm recovers the intended set up to an error of O(δ2n). We introduce some notation that we use throughout this section. 
+
+Notation. For a, b ∈ L, Qab denotes the quartet constraints satisfied by T that place a and b
+
+together. QL′ is used for the subset of Q that only involves leaves from L′, and Qab |L′ is the subset of Qab that only contains elements of L′. Finally, as mentioned in the Technical Overview even though the ground-truth tree T is initially unrooted, we can introduce a root r by subdividing one of the edges of T so that the two subtrees adjacent to r contain between one-third and two-thirds of the leaves. From this point onward, we view T as a rooted tree, and we use L and R to denote the leaves of the left and right subtrees of T . For vertices u, v ∈ L′ we use δuv |L′ to denote 
+
+|Luv ∩ L′|/|L′| and for a set Z ⊆ L′ we use δZ|L′ = |L′ ∩ LLCA( Z)|/|L′|, where LCA( Z) is the lowest common ancestor of all nodes in a set Z.
+
+4.1 The Q(n, λ, η )-model 
+
+In this section we give a slightly different random model for the problem. A set of quartets Q ∼
+
+Q(n, λ, η ) is generated according to the following procedure. For every set {a, b, c, d } ⊆  L
+
+> 4
+
+, the number of times a quartet on these leaves is included, is determined by an independent Poisson random variable with parameter λ. Each quartet involving set {a, b, c, d } is labeled as T (a, b, c, d )
+
+with probability 1 − η and has a random incorrect label with the remaining probability. Note that similarly to the RCN model, the generated set Q could in fact be a multi-set, this is not an issue for us but also the probability of that event happening is o(1) for the sparse parameter regime that is most interesting to us 4. The RCN model we are considering corresponds to Q(n, λ, η ) with λ = c′ 
+
+> n3
+
+.It is not hard to show that the two models are equivalent, in the sense that an algorithm can use an instance from one to simulate an instance from the other (up to o(1) total variation distance). Here, for completeness, we describe how an algorithm can use samples from the RCN (η) model to simulate an instance from the Q(n, λ, η ) model. Let for convenience, ¯m =  n
+
+> 4
+
+ · λ (the expected number of quartets in an instance generated from Q(n, λ, η ). We draw 2 ¯ m samples from the RCN (η)
+
+model and generate a Poisson random variable X with parameter λ ·  n
+
+> 4
+
+. Note that by Chernoff bound (e.g. Exercise 2.3.5 in Vershynin (2018)), with probability 1 − o(1) , X ≤ 2 ¯ m. If that is the case then we sample random X constraints among 2 ¯ m and provide them to the algorithm, otherwise we give all 2 ¯ m constraints to the algorithm. Using Poisson conditioning (e.g. Theorem 3.7.8 in Durrett (2019)) we get that the quartet sample set generated from the above procedure has 
+
+o(1) total variation distance from an instance generated according to Q(n, λ, η ).
+
+4.2 Constructing a Graph 
+
+In this section, we describe how the algorithm constructs a multi-graph G′ = ( L′, E ′) from an instance Q of quartets drawn from the Q(n, c′ 
+
+> n3
+
+, η ) model described in Section 4.1. The vertex set is a set of leaves, L′ ⊆ L, has size |L′| = γn , and, roughly speaking, corresponds to leaves that have not yet been recovered by the algorithm, i.e. they are still active. Throughout, we maintain the invariant that γ ≥ 14 .
+
+> 4If we are in a denser regime, the algorithm can always subsample so that the input is sparse as studied here.
+
+19 Construction of the graph. The construction of G′ is straightforward: For every ab |cd ∈ Q with 
+
+{a, b, c, d } ⊆ L′, we add an edge connecting a and b with probability 1/2 and an edge connecting c, d 
+
+otherwise. Notice that the algorithm can construct the graph once and then remove edges coming from constraints that are no longer relevant. In fact, we can construct an initial graph G, using all quartets. The graph G′ that corresponds to a set of leaves L′ can be derived from G by removing all edges coming from a quartet involving at least one item that is not in L′. The following lemma shows that the graph G′ constructed has independent edges and gives estimates for the probability of an edge between a and b appearing in terms of the relative position of a and b in the tree. 
+
+Lemma 4.1. The distribution over graphs generated from the above procedure has the following properties. 1. Each edge is included in the graph independently 2. For c = γ2c′ 
+
+> 4
+
+, up to o   1
+
+> n
+
+ terms: 5
+
+cn
+
+
+
+1 − 2δab |L′ + δ2
+
+> ab |L′
+
+ 
+
+1 − 3η
+
+2
+
+
+
++ η
+
+2
+
+
+
+≤ Pr  (a, b ) ∈ E′ . (6) 
+
+and also (again up to o   1
+
+> n
+
+ terms): 
+
+Pr  (a, b ) ∈ E′ ≤ cn
+
+
+
+1 − 2δab |L′ + 2 δ2
+
+> ab |L′
+
+ 
+
+1 − 3η
+
+2
+
+
+
++ η
+
+2
+
+
+
+. (7) 
+
+3. If a ∈ L ∩ L′ and b ∈ R ∩ L′ then for α = |L∩ L′||L′| and β = |R∩ L′||L′| then up to o   1
+
+> n
+
+ terms: 
+
+Pr  (a, b ) ∈ E′ ≤ cn
+
+
+
+(1 − 2αβ )
+
+
+
+1 − 3η
+
+2
+
+
+
++ η
+
+2
+
+
+
+. (8) At a high level, the second item of Lemma 4.1 states that while δab |L′ is small the probability of an edge between a and b decreases as the size of the subtree rooted at their lowest common ancestor increases. Note however that this does not hold when δab |L′ is large and in fact the upper bound can be very loose in that case. This is especially problematic when the lowest common ancestor of a and 
+
+b is the root. We complement our bound with Equation (8). We prove Lemma 4.1 in Appendix D. 
+
+4.3 The SDP 
+
+In this section, we describe the SDP used by the algorithm to recover a set S that corresponds to a subtree of the current planted tree T ′, where T ′ is the irreducible tree with leaves L′ ⊆ L. We construct the graph G′ = ( L′, E ′) as described in the previous section, by removing from graph G
+
+the edges that correspond to quartets containing at least one element not in L′.We will fix a set S of size δn ≤ | S| ≤ 2δn and show that the algorithm recovers a set ˆS that is close to S up to error O(δ2n) with constant probability at least pδ = poly( δ). We assume that we know the size of |S| up to an additive error of poly( δ) · n, by successfully guessing it with probability 
+
+poly( δ). In other words we assume that we have some estimate ˆδS (selected from a grid of size 
+
+poly( 1 
+
+> δ
+
+) and step poly( δ)) of the value δS|L′ = |S||L′| such that δS|L′ ≤ ˆδS and ˆδS − δS|L′ ≪ δ3 
+
+> S|L′
+
+. We                
+
+> 5We say that x≤yup to o(1
+> n)terms if x≤y+o(1
+> n)
+
+20 can assume, without loss of generality, that S ⊆ L . We furthermore assume that |L ∩ L′| ≥ 48 δn as well as that |L′ ∩ R| ≥ n 
+
+> 4
+
+. Note that the last inequality gives us that δ ≤ δS|L′ ≤ 8δ, where δ and thus δS|L′ and ˆδS are small enough constants. We will assume that n is large enough so that the o( 1 
+
+> n
+
+) terms in Lemma 4.1 are bounded in absolute value by some small enough error term. In particular, we let err ≪ (1 − 3η 
+
+> 2
+
+)δ3 
+
+> S|L′
+
+and define functions ρ+(x) and ρ−(x) as follows. We let ρ+(x) = cn
+
+ 1 − 2x + 2 x2 (1 − 3η 
+
+> 2
+
+) + η 
+
+> 2
+
++ err 
+
+
+
+and ρ−(x) = cn
+
+ 1 − 2x + x2 (1 − 3η 
+
+> 2
+
+) + η 
+
+> 2
+
+− err 
+
+
+
+). We assume that n is large enough so that by Lemma 4.1, for a, b ∈ L′, we have: 
+
+ρ−(δab |L′ ) ≤ Pr  (a, b ) ∈ G′ ≤ ρ+(δab |L′ ). (9) Observe that for small values of x, ρ−(x) ≈ ρ+(x), so for a high level understanding of the analysis, one can think of these two values applied on δab |L′ as being equal, and characterizing the probability that an edge between a and b appears in the graph. Our solution will try to exploit the fact that the probability that two vertices in S are connected is higher than the probability that a vertex in S is connected with a vertex outside of S. In other words, the graph has structure similar to that of the stochastic block model. We can now describe the SDP. In the SDP there is one vector for every vertex in G′. Our goal is to show that the vectors that correspond to set S are well clustered together and far from most other vectors. We consider the following program: max X
+
+> (u,v )∈L′×L′
+
+ 1{(u,v )∈E′} − q ⟨¯u, ¯v⟩ (10) subject to: 
+
+⟨¯u, ¯v⟩ ≥ 0 for all u, v ∈ L′ (11) 
+
+∥¯u∥2 = 1 for all u ∈ L′ (12) 
+
+X
+
+> v∈L′
+
+⟨¯u, ¯v⟩ ≤ ˆδS · | L′| for all u ∈ L′. (13) Where we want q to be smaller than the edge probability between any two vertices in S by a small margin Θ( ˆδ2 
+
+> S
+
+) (see Lemma 4.4). In particular, we let q = ρ−
+
+ˆδS + 4 ˆδ2
+
+> S
+
+
+
+, recall that ρ−(δS|L′ )
+
+is a lower bound for the edge probabilities in S. We let A ∈ R|L′|×| L′| be a matrix such that 
+
+Au,v = 1{(u,v )∈E′} − q. Using this notation, the objective function of the SDP can also be written as P 
+
+> u,v ∈L′×L′
+
+Au,v ⟨¯u, ¯v⟩. Notice that A ∈ R|L′|×| L′| is a random matrix, the randomness of A comes from the randomness in G which in turn comes from the randomness in the instance but also from the randomness of the algorithm in the selection of edges. We will use ¯A ∈ R|L′|×| L′| to denote the expected value of A. Notice that ¯A is a deterministic matrix, parameterized by the parameters of the model, c′ and η.
+
+4.4 Concentration: Expected Instance vs. Actual Instance 
+
+In this section we will use the randomness of the quartet set Q to prove structural properties of the SDP. We want to use the same set of quartet constraints in every call of the QED recovery procedure to ensure polynomial in 1/ϵ samples. To do that, we will prove structural properties for all possible 21 SDPs that the algorithm could encounter. Observe that we get a different semidefinite program for every different valid set L′ and estimate ˆδS . There are at most 2n valid options for the set L′ while the different options for ˆδS are bounded by poly(1 /δ ). We show that with high probability over the randomness in Q and the internal randomness of the algorithm, for all options of L′ and ˆδS , the value of any solution to the SDP on the observed (random) instance A is close to its value on the deterministic “expected” instance ¯A. This will allow us to prove structural properties of the SDP by working with ¯A. Our analysis follows ideas from Guédon and Vershynin (2016). Recall here that G is the multi-graph constructed from the entire set of quartets Q where for every ab |cd ∈ Q an edge is added between a and b with probability 1/2 and between c and d with the remaining probability. To get graph G′ = ( L′, E ′), we remove every edge coming from a quartet involving at least one item not in L′.
+
+Lemma 4.2. With probability at least 1 − poly(1 /δ ) exp( −1.5n) = 1 − o(1) over the randomness in 
+
+G which comes from the randomness in the algorithm and the randomness in Q ∼ Q(n, c′ 
+
+> n3
+
+, η ), the following holds. For every valid L′, for every valid ˆδS and for every {¯u}u∈L′ satisfying constraints 11, 12 and 13 parameterized by L′ and ˆδS (recall q = ρ−(ˆδS + 4 ˆδ2 
+
+> S
+
+)): 
+
+X
+
+> u,v ∈L′
+
+AL′,ˆδS 
+
+> u,v
+
+⟨¯u, ¯v⟩ − X
+
+> u,v ∈L′
+
+¯AL′,ˆδS 
+
+> u,v
+
+⟨¯u, ¯v⟩ ≤ 10 KG
+
+√c′n, (14) 
+
+where KG ≤ 1.783 is the Grothendieck constant and AL′,ˆδS is used to denote the matrix of the SDP parameterized by L′ and ˆδS .Proof. Fix L′ and ˆδS , L′ is a subset of L with |L′| = γn and ˆδS is in the grid of poly( δ) possible options. For convenience we let ∆Au,v = Au,v − ¯Au,v = 1{(u,v )∈E′} − Pr(( u, v ) ∈ E′). We want to bound the probability of the event 
+
+A =
+
+(
+
+∃ { ¯u}u∈V : X
+
+> u,v
+
+∆Au,v ⟨¯u, ¯v⟩ > 10 KG
+
+√c′n
+
+)
+
+.
+
+By Grothendieck’s inequality (Theorem A.2) we get that the event A is a subset of the following event: 
+
+B =
+
+(
+
+∃x, y ∈ {− 1, 1}γn : X
+
+> u,v
+
+∆Au,v xuyv > 10 √c′n
+
+)
+
+.
+
+We now focus on bounding the probability of event B. We fix x, y and bound the probability that 
+
+P 
+
+> u,v
+
+∆Au,v xuyv > 10 √c′n. We will then take a union bound over all x, y ∈ {− 1, 1}γn . We write 
+
+P 
+
+> u,v
+
+∆Au,v xuyv = P 
+
+> u<v
+
+∆Au,v (xuyv + xvyu) and observe that this is a sum of  γn 
+
+> 2
+
+ independent random variables. We will apply Bernstein’s inequality to this sum. For the expected value, we have that: 
+
+E[∆ Au,v (xuyv + xvyu)] = ( xuyv + xvyu)E[∆ Au,v ]= ( xuyv + xvyu)E1{(u,v )∈E} − Pr(( u, v ) ∈ E)
+
+= 0 .
+
+22 For the variance we have that: 
+
+Var(∆ Au,v (xuyv + xvyu)) = ( xuyv + xvyu)2 Var(∆ Au,v )
+
+≤ 4 · Pr  (u, v ) ∈ E′
+
+≤ 4c′
+
+n ,
+
+where we have used that Var(∆ Au,v ) = Var  1{(u,v )∈E′}
+
+ ≤ Pr(( u, v ) ∈ E′). We finally observe that 
+
+|∆Au,v (xuyv + xvyu)| ≤ 2. We can now apply Bernstein’s inequality, Theorem A.1: 
+
+Pr X
+
+> u,v
+
+∆Au,v xuyv ≥ 10 √c′n
+
+!
+
+≤ 2 exp 
+
+
+
+− 50 c′n
+
+4c′ + 20 √c′/3
+
+
+
+≤ 2 exp ( −4.5n) ,
+
+using that c′ ≥ 1. We now apply the union bound over all x, y ∈ {− 1, 1}γn and that γ ≤ 1:
+
+Pr ∃x, y ∈ {− 1, 1}n : X
+
+> u,v
+
+∆Au,v xuyv > 10 √cn 
+
+!
+
+≤ 22n2 exp ( −4.5n) .
+
+Taking a union bound over all L′ and ˆδS we have that with probability at least 
+
+1 − poly(1 /δ )2 3n exp( −4.5n) ≥ 1 − poly(1 /δ ) exp( −1.5n) = 1 − o(1) ,
+
+Equation (14) holds for all L′ and q.We say that a graph G is good if it satisfies the condition of Lemma 4.2. Notice that we don’t ask for G to be generated from the model of section Section 4.1 in order for the graph constructed to be good, the parameters of the model, c′ and η are implicit in the definition of matrices ¯AL′,q 
+
+which are deterministic matrices. To make this explicit, we will say that a graph G is (c′, η )-good. A graph G generated from quartet set Q ∼ Q(n, c′ 
+
+> n3
+
+, η ) according to the procedure described above is (c′, η )-good with very high probability and for the remaining of this section we will condition on that event. 
+
+4.5 QED Description and Theorem 
+
+In this section we describe in detail the QED procedure and state the main guarantee of the pro-cedure. The algorithm is given a quartet instance Q, a subset of the leaves L′ and an estimate 
+
+ˆδS for |S||L′| (which is successfully guessed with probability poly( δ)). The algorithm constructs the graph described in Section 4.2 and solves the corresponding semidefinite program to obtain vec-tors {¯v}v∈L′ . Finally the algorithm selects a vector ¯u uniformly at random in {¯v}v∈L′ and returns 
+
+ˆS = v ∈ L′ : ∥¯u − ¯v∥2 ≤ 1 . See Algorithm 2 for pseudocode. The procedure enjoys the following guarantee, which roughly speaking says that if the graph G is good then the algorithm recovers the set with Ω( δ) probability. 
+
+Theorem 4.3 (QED-guarantee) . Let G be a (c′, η )-good graph (see Section 4.4) with 
+
+c′ ≥
+
+ 40960 · KG
+
+
+
+1 − 3η
+
+> 2
+
+
+
+δ5
+
+
+
+> 2
+
+.
+
+23 Algorithm 2: QED (Q, L ′, ˆδS )
+
+Input : Quartet instance: Q, subset of leaves: L′ ⊆ L, estimate ˆδS (the algorithm guesses this up to poly( δ) error) 
+
+Output: Estimate set ˆS 
+
+> 1
+
+Construct the graph G′ and solve the SDP (Eq. 10, 11, 12, 13, see Section 4.2, 4.3)  
+
+> 2
+
+Let u be a uniformly random vertex in L′ 
+
+> 3
+
+Let ˆS = v ∈ L′ : ∥¯u − ¯v∥2 ≤ 1 
+
+> 4
+
+Return ˆS.
+
+Let L′ ⊆ L be a subset of the leaves, and let S be a set satisfying δn ≤ | S| ≤ 2δn , where δ is smaller than a positive absolute constant δ∗. Assume that there exists a vertex u ∈ T such that 
+
+S = Lu ∩ L′. Furthermore, assume that |L′ ∩ L| ≥ 48 δn and that |L′ ∩ R| ≥ n 
+
+> 4
+
+as well as that 
+
+δS|L′ = |S||L′| ≤ ˆδS ≤ δS|L′ + poly( δ) for a small enough polynomial in δ. Then, for sufficiently large n, Algorithm 2 returns, with probability at least δS|L′ 
+
+> 2
+
+≥ δ 
+
+> 2
+
+, a set ˆS such that 
+
+|S△ ˆS| = O(δ2n).
+
+We prove the theorem in Section 4.8. The algorithm “guesses" a successful estimate ˆδS of δS|L′
+
+(δS|L′ ≤ ˆδS ≤ δS|L′ + poly( δ)) with probability poly( δ) meaning that the success probability of QED procedure is Ω(poly( δ)) .
+
+4.6 A Probability Gap on the Expected Instance 
+
+By Lemma 4.2, with high probability, the value of every solution on the actual, sampled instance described by matrix A, will be close to its value on the “expected” instance, described by matrix 
+
+¯A. This allows us to argue about the expected instance, ¯A, for which we have a better handle. Specifically, to that end, we will use Lemma 4.1 to understand the value of ¯Au,v for different leaves 
+
+u, v ∈ L′. For the probabilities of edges between vertices of S, we have the following lemma: 
+
+Lemma 4.4. Under the assumptions of Theorem 4.3, for every u, v ∈ S, we have that: 
+
+cn
+
+
+
+1 − 3η
+
+2
+
+
+
+ˆδ2 
+
+> S
+
+≤ ¯Au,v = Pr  (u, v ) ∈ G′ − q. 
+
+Proof. Fix u, v ∈ S, by the definition of δS|L′ :
+
+δuv |L′ ≤ δS|L′ ≤ ˆδS .
+
+Using the fact that ρ−(x) is monotonically decreasing in the interval (−∞ , 1] , we have that it suffices to show that ρ−(ˆδS ) − q ≥ cn ˆδ2 
+
+> S
+
+. We have that: 
+
+ρ− ˆδS
+
+
+
+− q = ρ− ˆδS
+
+
+
+− ρ− ˆδS + 4 ˆδ2
+
+> S
+
+
+
+= cn
+
+
+
+1 − 3η
+
+2
+
+ 
+
+8ˆδ2 
+
+> S
+
+− O
+
+ˆδ3
+
+> S
+
+ 
+
+≥ cn
+
+
+
+1 − 3η
+
+2
+
+
+
+ˆδ2 
+
+> S
+
+,
+
+24 where we have used that ˆδS is a small enough constant. We now provide a lemma which upper bounds ¯Au,v for u ∈ S and v / ∈ S:
+
+Lemma 4.5. Let u ∈ S and v ∈ L′ \ S and suppose that the assumptions of Theorem 4.3 hold. Then, we have that: 
+
+¯Au,v = Pr  (u, v ) ∈ G′ − q ≤ 10 
+
+
+
+1 − 3η
+
+2
+
+ cn ˆδ2 
+
+> S
+
+. (15) 
+
+Furthermore, if it holds that δuv |L′ ≥ ˆδS + 11 ˆδ2 
+
+> S
+
+then we have that: 
+
+¯Au,v ≤ 0.
+
+Proof. We first show the second part of the lemma. We distinguish between cases for v. Consider the case where v ∈ R (recall u ∈ L ), we show that under the assumptions of the lemma, ¯Au,v ≤ 0.For that we use Lemma 4.1 and in particular Equation (8). We have that α ≥ 48 δ ≥ 6δS|L′ and that β ≥ 14 , the bound that we get is: 
+
+¯Au,v = Pr  (u, v ) ∈ G′ − q
+
+≤ cn
+
+
+
+(1 − 2αβ )
+
+
+
+1 − 3η
+
+2
+
+
+
++ 3η
+
+2 + o(1) 
+
+
+
+− ρ− ˆδS + 4 ˆδ2
+
+> S
+
+
+
+≤ cn
+
+
+
+1 − 3η
+
+2
+
+ 
+
+−δS|L′ + O(ˆδ2 
+
+> S
+
+)
+
+
+
+≤ 0,
+
+where we have assumed that δS|L′ is a sufficiently small constant and ˆδS is sufficiently close to δS|L′ .We now consider the case where v ∈ L . Note that using our assumption that |R ∩ L′| ≥ n 
+
+> 4
+
+, we have that δuv |L′ ≤ 3/4. We will use the monotonicity of ρ+(x), namely, that ρ+(x) is monotonically decreasing in the interval (−∞ , 1/2] and monotonically increasing in the interval [1 /2, +∞). Using monotonicity, it suffices to show that (i) ρ+
+
+ˆδS + 11 ˆδ2
+
+> S
+
+
+
+− q ≤ 0 and that (ii) ρ+( 34 ) − q ≤ 0. To prove (i), we have that: 
+
+ρ+(ˆδS + 11 ˆδ2 
+
+> S
+
+) − q = cn
+
+
+
+−13 ˆδ2 
+
+> S
+
++ O
+
+ˆδ3
+
+> S
+
+ 
+
+≤ 0.
+
+To prove (ii) we have: 
+
+ρ+(3 /4) − q = cn
+
+
+
+1 − 3η
+
+2
+
+ 
+
+−0.375 + O
+
+ˆδS
+
+ 
+
+≤ 0.
+
+We now show that for any u ∈ S and v / ∈ S, we have that: 
+
+¯Au,v ≤ 10 cn
+
+
+
+1 − 3η
+
+2
+
+
+
+ˆδ2 
+
+> S
+
+.
+
+25 We have already shown that ¯Au,v ≤ 0 if δuv |L′ ≥ 12 . Observe that for u ∈ S and v / ∈ S we have that 
+
+δuv |L′ ≥ δS|L′ and using again the monotonicity of ρ+(x) in the interval (−∞ , 1/2] we get that: 
+
+¯Au,v ≤ ρ+(δuv |L′ ) − q
+
+≤ ρ+(δS|L′ ) − ρ−(ˆδS + 4 ˆδ2 
+
+> S
+
+)= cn
+
+
+
+1 − 3η
+
+2
+
+ 
+
+9ˆδ2 
+
+> S
+
++ O(ˆδ3 
+
+> S
+
+)
+
+
+
+≤ 10 cn
+
+
+
+1 − 3η
+
+2
+
+
+
+ˆδ2 
+
+> S
+
+.
+
+Lemma 4.4 shows that for u, v ∈ S, we have that ¯Au,v ≥ 0 (in fact this is true by some margin) it might, however, be the case that there are vertices outside the set S that have large edge probabilities with vertices in S. In particular, there might exist v ∈ L′ \ S such that there exist u ∈ S with 
+
+¯Au,v ≥ 0. We will use Lemma 4.5 to show that there are not many such vertices. Consider the set: 
+
+Se = v ∈ L′ : ∃u ∈ S, ¯Au,v ≥ 0 .
+
+Notice that by Lemma 4.4, S ⊆ Se, and let B = Se \ S. We will bound the size of the set Se and this will give us a bound on the size of the set B.
+
+S B L′ \ (S ∪ B)
+
+Figure 3: Edges between S and L′ \ (S ∪ B) (red edges) occur with probability at most q. Edges within S (green edges) occur with probability at least q + cn
+
+
+
+1 − 3η
+
+> 2
+
+ ˆδ2 
+
+> S
+
+.
+
+Lemma 4.6. Suppose that the assumptions of Theorem 4.3 hold. Consider the set Se defined as above. For the size of the set Se, we have that: 
+
+|Se| ≤ 
+
+ˆδS + 11 ˆδ2
+
+> S
+
+
+
+|L′|
+
+Which in particular implies that: 
+
+|B| ≤ 12 ˆδ2 
+
+> S
+
+|L′|
+
+26 Proof. By Lemma 4.5, we have that if b ∈ Se, then there exists a vertex a ∈ S such that δab |L′ ≤
+
+ˆδS + 11 ˆδ2 
+
+> S
+
+. Consider the set Se =
+
+n
+
+b ∈ L′ : ∃a ∈ S, δab |L′ ≤ ˆδS + 11 ˆδ2
+
+> S
+
+o
+
+, which by Lemma 4.5 is a superset of the set Se. Observe that Se can also be written as: 
+
+Se = S ∪
+
+n
+
+b ∈ L′ \ S : ∀a ∈ S, δab |L′ ≤ ˆδS + 11 ˆδ2
+
+> S
+
+o
+
+,
+
+this follows from the fact that if b / ∈ S then the LCA of b with any vertex in S is the same (recall that S corresponds to the leaves of a subtree). We now consider the subtree rooted at the LCA of the vertices in Se and show that the number of leaves of this subtree is bounded by 
+
+ˆδS + 11 ˆδ2
+
+> S
+
+
+
+|L′|,this implies that the set Se is bounded by this value, which in turn implies that the size of Se is also bounded by 
+
+ˆδS + 11 ˆδ2
+
+> S
+
+
+
+|L′|, since |Se| ≤ |S e|. Formally, let w = LCA( Se) and let a be an arbitrary vertex in S, we bound the size of the set Lw ∩ L′, which is a superset of Se. By Lemma C.4, there exists a b ∈ S e such that LCA( a, b ) = w. If b ∈ S then we have that: 
+
+|Lw ∩ L′| = δab |L′ |L′| ≤ δS|L′ |L′| ≤ (ˆδS + 11 ˆδ2 
+
+> S
+
+)|L′|.
+
+and the Lemma follows. If on the other hand, b ∈ S e \ S, then we have that δab |L′ ≤ ˆδS + 11 ˆδ2 
+
+> S
+
+and we have that: 
+
+|Lw ∩ L′| = δab |L′ |L′| ≤ (ˆδS + 11 ˆδ2 
+
+> S
+
+)|L′|.
+
+We now observe that: 
+
+|Se| ≤ |S e| ≤ | Lw|,
+
+and the lemma follows. 
+
+4.7 Geometry of the SDP Solution: S is a tight Cluster 
+
+In this section, we analyze the geometry of the optimal solution {¯u}u∈L′ to the SDP described by matrix A. In particular, our goal is to show that the vectors corresponding to set S are well clustered together. To that end, we let α = Avg u,v ∈Su̸=v
+
+⟨¯u, ¯v⟩ and β = Avg u∈S,v ∈L′\S ⟨¯u, ¯v⟩ our analysis shows that α is close to 1 and β is small, if the graph is (c, η )-good. At a high level the following lemma shows that we can upper bound 1 − α by O(δS|L′ ) and β by O(δ2 
+
+> S|L′
+
+) if we assume c to be sufficiently large polynomial in 1    
+
+> δS|L′(1 −3η
+> 2)
+
+:
+
+Lemma 4.7 (Bound on 1 − α and β). Suppose that the conditions of Theorem 4.3 hold, then we have that for α:
+
+1 − α ≤ 160 KG
+
+δ4 
+
+> S|L′
+
+γ4 · 1
+
+√c′
+
+
+
+1 − 3η
+
+> 2
+
+ + 482 δS|L′ .
+
+Furthermore for β, we have that 
+
+β ≤ 11 − δS|L′
+
+(δS|L′ (1 − α) + δ2 
+
+> S|L′
+
+).
+
+Proof. We will apply the optimal solution for A to the expected instance ¯A and then examine how much the objective value would increase if all vectors corresponding to set S were equal and 27 orthogonal to everything else. Formally we consider the following SDP solution. Let e be a unit vector orthogonal to all vectors in {¯u}u∈L′ , we consider the solution {¯ue}u∈L′ defined as follows: 
+
+¯ue =
+
+(
+
+e, if u ∈ S
+
+¯u, if u ∈ L′ \ S, 
+
+in other words, we move all vectors corresponding to vertices in S to the same vector e, which is orthogonal to everything else. We compare the values of the two solutions. We have that: 
+
+X
+
+> u,v ∈L′
+
+¯Au,v ⟨¯ue, ¯ve⟩ − X
+
+> u,v ∈L′
+
+¯Au,v ⟨¯u, ¯v⟩ = X
+
+> u,v ∈L′
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩)= X
+
+> u∈S,v ∈S
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) (16) 
+
++ 2 X
+
+> u∈S,v ∈B
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) (17) 
+
++ 2 X
+
+> u∈S, v∈L′\B∪S
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) (18) 
+
++ X
+
+> u,v ∈L′\S
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) . (19) We analyze each term in the sum separately, we first start with term (19). We have that for 
+
+u ∈ L′ \ S: ¯ue = ¯ u and ¯ve = ¯ v, therefore: 
+
+X
+
+> u,v ∈L′\S
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) = X
+
+> u,v ∈L′\S
+
+¯Au,v (⟨¯u, ¯v⟩ − ⟨ ¯u, ¯v⟩) = 0 
+
+For the term (18), we show that it is non-negative. We have that for u ∈ S, v ∈ L′ \ (B ∪ S),
+
+⟨¯ue, ¯ve⟩ = ⟨e, ¯v⟩ = 0 and by constraint (11) in the semidefinite program, we have that ⟨¯u, ¯v⟩ ≥ 0.Finally we have that for v ∈ L′ \ (B ∪ S) it holds that ¯Au,v ≤ 0 so we can conclude that: 
+
+X
+
+> u∈S,v ∈L′\(S∪B)
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) = − X
+
+> u∈S,v ∈L′\(S∪B)
+
+¯Au,v ⟨¯u, ¯v⟩ ≥ 0.
+
+We now focus our attention to term (16). We use Lemma 4.4 and the fact that by constraint 12, 
+
+⟨¯u, ¯v⟩ ≤ 1:
+
+X
+
+> u∈S,v ∈S
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) = X
+
+> u∈S,v ∈S
+
+¯Au,v (1 − ⟨ ¯u, ¯v⟩)
+
+≥ cn ˆδ2
+
+> S
+
+
+
+1 − 3η
+
+2
+
+ X
+
+> u∈S,v ∈Su̸=v
+
+(1 − ⟨ ¯u, ¯v⟩)= cn ˆδ2
+
+> S
+
+
+
+1 − 3η
+
+2
+
+
+
+(1 − α) · | S| · (|S| − 1) 
+
+≥ c
+
+2n ˆδ2
+
+> S
+
+
+
+1 − 3η
+
+2
+
+
+
+(1 − α) δ2 
+
+> S|L′
+
+|L′|2,
+
+28 where for the last inequality we assumed that |S| ≥ 2. Finally, we turn our attention to term 17: 
+
+2 X
+
+> u∈S,v ∈B
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) = −2 X
+
+> u∈S,v ∈B
+
+¯Au,v ⟨¯u, ¯v⟩≥ − 20 
+
+
+
+1 − 3η
+
+2
+
+ cn ˆδ2
+
+> S
+
+X
+
+> u∈S,v ∈B
+
+⟨¯u, ¯v⟩≥ − 20 
+
+
+
+1 − 3η
+
+2
+
+ cn ˆδ2 
+
+> S
+
+|B| · | S|,
+
+were in the first line we have used that for u ∈ S and v ∈ B, ⟨¯ue, ¯ve⟩ = ⟨e, ¯v⟩ = 0 and from the first to the second line we have used Lemma 4.5. Finally, from the second to the third line we have used that ⟨¯u, ¯v⟩ ≤ 1. We now use our bound for |B| from Lemma 4.6 and the fact that |S| = δS|L′ |L′|:
+
+2 X
+
+> u∈S,v ∈B
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) ≥ − 20 
+
+
+
+1 − 3η
+
+2
+
+ cn ˆδ2 
+
+> S
+
+|B| · | S| ≥ − 240 cn ˆδ4
+
+> S
+
+
+
+1 − 3η
+
+2
+
+
+
+δS|L′ |L′|2.
+
+Putting everything together, we have that: 
+
+X
+
+> u,v ∈L′
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) ≥ c
+
+2n
+
+
+
+1 − 3η
+
+2
+
+
+
+ˆδ2 
+
+> S
+
+(1 − α)δ2 
+
+> S|L′
+
+· | L′|2
+
+− 240 · cn
+
+
+
+1 − 3η
+
+2
+
+
+
+· ˆδ4 
+
+> S
+
+δS|L′ |L′|2
+
+≥ cn
+
+
+
+1 − 3η
+
+2
+
+  12 δ4 
+
+> S|L′
+
+(1 − α) − 241 δ5
+
+> S|L′
+
+
+
+|L′|2
+
+= c
+
+
+
+1 − 3η
+
+2
+
+  12 δ4 
+
+> S|L′
+
+(1 − α) − 241 δ5
+
+> S|L′
+
+
+
+γ2n. 
+
+Where we have assumed that ˆδS is sufficiently close to δS|L′ .We will now use this to get a bound on α. We want to look at the difference that we would get if we applied solution {¯ue}u∈L′ instead of {¯u}u∈L′ to the realized instance given by matrix A.Recall that {¯u}u∈L′ is assumed to be the optimal solution for A. Here we use our assumption that 
+
+G is (c′, η )-good. On the one hand this condition tells us that for every SDP solution the value of the solution on the expected instance and the actual instance are very close. On the other hand, we have that we can improve the objective value by putting vectors that correspond to vertices in 
+
+S together. This gives us a bound on how large 1 − α can be. We have that: 
+
+X
+
+> u,v
+
+Au,v ⟨¯ue, ¯ve⟩ − X
+
+> u,v
+
+Au,v ⟨¯u, ¯v⟩ ≥ X
+
+> u,v
+
+¯Au,v ⟨¯ue, ¯ve⟩ − 10 KG
+
+√c′ · n − X
+
+> u,v
+
+¯Au,v ⟨¯u, ¯v⟩ − 10 KG
+
+√c′ · n
+
+= X
+
+> u,v
+
+¯Au,v (⟨¯ue, ¯ve⟩ − ⟨ ¯u, ¯v⟩) − 20 KG
+
+√c′ · n
+
+≥ c
+
+
+
+1 − 3η
+
+2
+
+  12 δ4 
+
+> S
+
+(1 − α) − 241 δ5
+
+> S
+
+
+
+γ2n − 20 KG
+
+√c′ · n. 
+
+By virtue of the fact that {¯u}u∈L′ is an optimal solution for the instance given by matrix A we have that: X
+
+> u,v
+
+Au,v ⟨¯ue, ¯ve⟩ − X
+
+> u,v
+
+Au,v ⟨¯u, ¯v⟩ ≤ 0.
+
+29 Solving for 1 − α, we get that: 
+
+1 − α ≤ 40 KG
+
+δ4 
+
+> S
+
+γ2 ·√c′
+
+c
+
+
+
+1 − 3η
+
+> 2
+
+ + 482 δS|L′ .
+
+We now replace c = γ2c′ 
+
+> 4
+
+and get that: 
+
+1 − α ≤ 160 KG
+
+δ4 
+
+> S
+
+γ4 · 1
+
+√c′
+
+
+
+1 − 3η
+
+> 2
+
+ + 482 δS|L′ .
+
+We now turn our attention to bounding β. We consider Equation (13) of the semidefinite program for every u ∈ S. Summing over all vertices u ∈ S we have that: 
+
+X
+
+> u∈S
+
+X
+
+> v∈L′
+
+⟨¯u, ¯v⟩ ≤ | S| · ˆδS γn = δS|L′ ˆδS (γn )2.
+
+We now use that: 
+
+X
+
+> u∈S
+
+X
+
+> v∈L′\S
+
+⟨¯u, ¯v⟩ = X
+
+> u∈S
+
+X
+
+> v∈L′
+
+⟨¯u, ¯v⟩ − X
+
+> u∈S
+
+X
+
+> v∈S
+
+⟨¯u, ¯v⟩≤ δS|L′ ˆδS (γn )2 − α|S|2
+
+=
+
+
+
+δS|L′ ˆδS − δ2 
+
+> S|L′
+
+α
+
+
+
+(γn )2.
+
+We will now use that δS|L′ and ˆδS are sufficiently close (for example ˆδS ≤ δS|L′ +δ2 
+
+> S|L′
+
+). In particular, we have that: 
+
+X
+
+> u∈S
+
+X
+
+> v∈L′\S
+
+⟨¯u, ¯v⟩ ≤ 
+
+
+
+δS|L′ ˆδS − δ2 
+
+> S
+
+α
+
+
+
+(γn )2
+
+≤
+
+
+
+δS|L′ (δS|L′ + δ2 
+
+> S|L′
+
+) − δ2 
+
+> S|L′
+
+α
+
+
+
+(γn )2
+
+= δ2 
+
+> S|L′
+
+(1 − α)( γn )2 + δ3 
+
+> S|L′
+
+(γn )2.
+
+We now use the definition of β, to get that: 
+
+β = Avg u∈S,v ∈L′\S (⟨¯u, ¯v⟩)= 1
+
+|S|
+
+1
+
+|L′ \ S|
+
+X
+
+> u∈S
+
+X
+
+> v∈L′\S
+
+⟨¯u, ¯v⟩≤ 11 − δS|L′
+
+(δS|L′ (1 − α) + δ2 
+
+> S|L′
+
+).
+
+4.8 Proof of Theorem 4.3: Recovering S up to O(δ2n) error 
+
+In this section, we prove Theorem 4.3. We start with the following lemma. 30 Lemma 4.8. Under the assumptions of Theorem 4.3: 
+
+Avg u,v ∈S
+
+ ∥¯u − ¯v∥2 ≤ 2(1 − α) ≤ 966 · δS|L′ ,
+
+and for β:
+
+β ≤ 485 δ2
+
+> S|L′
+
+Proof. We have that: 
+
+Avg u,v ∈S
+
+ ∥¯u − ¯v∥2 = Avg u,v ∈S
+
+ ∥¯u∥2 + ∥v∥2 − 2⟨¯u, ¯v⟩ = Avg u,v ∈S (2 − 2⟨¯u, ¯v⟩) ≤ 2(1 − α).
+
+We now use our bound on 1 −α from Lemma 4.7 and our assumption on c′ (recall that δS|L′ ≥ δ and that γ ≥ 1/4) to get the first inequality. In particular, we have that c′ ≥
+
+ 40960 ·KG
+
+(1− 3η 
+
+> 2
+
+)δ5
+
+2
+
+, replacing this into the bound that we have on 1 − α gives us that: 
+
+2(1 − α) ≤ 2 1
+
+√c′ · 160 KG
+
+δ4 
+
+> S|L′
+
+γ4(1 − 3η 
+
+> 2
+
+) + 964 δS|L′
+
+≤ 2 (1 − 3η 
+
+> 2
+
+)δ5
+
+40960 KG
+
+· 40960 KG
+
+δ4 
+
+> S|L′
+
+(1 − 3η 
+
+> 2
+
+) + 964 δS|L′
+
+≤ δ5
+
+δ4
+
+> S|L′
+
++ 964 δS|L′
+
+≤ 966 · δS|L′ ,
+
+where in the first line we have used on 1 − α from Lemma 4.7, in the second line we have used our assumption on c′ and that γ ≥ 14 and in the fourth line we have used that 
+
+δS|L′ = |S||L′| ≥ |S|
+
+n ≥ δ. 
+
+For the second inequality we will use the bound on β in Lemma 4.7, and that δS|L′ is a small enough constant. In particular, assuming that 11−δS|L′ ≤ 485 484 , we have that: 
+
+β ≤ 11 − δS|L′
+
+(δS|L′ (1 − α) + δ2 
+
+> S|L′
+
+)
+
+≤ 485 484 484 δ2
+
+> S|L′
+
+≤ 485 δ2 
+
+> S|L′
+
+.
+
+We now prove Theorem 4.3. 
+
+Proof of Theorem 4.3. We first define μ to be the center of points in S:
+
+μ = 1
+
+|S|
+
+X
+
+> u∈S
+
+¯u. 
+
+31 We will show that if we sample a point that is sufficiently close to μ and whose average squared distance to points in L′ \ S is large, then ˆS satisfies the desired properties. We bound the average squared distance between points in S and μ. By Lemma C.1 and Lemma 4.8, we have that: 
+
+Avg u∈S (∥¯u − μ∥2) = 12 Avg u∈S,v ∈S
+
+ ∥¯u − ¯v∥2 ≤ 483 δS|L′ .
+
+We now define the set Γ of good points that we want to sample u from ( u is the random vertex sampled in Line 2 of Algorithm 2), to that end we let 
+
+SB1 = u ∈ S : ∥¯u − μ∥2 ≥ 4 · 483 δS|L′ .
+
+and also 
+
+SB2 =
+
+n
+
+u ∈ S : Avg v∈L′\S ∥¯u − ¯v∥2 ≤ 2 − 8 · 485 δ2
+
+> S|L′
+
+o
+
+.
+
+We let Γ = S \ (SB1 ∪ SB2 ). We argue about the size of set Γ by arguing about the size of sets SB1
+
+and SB2 . We let U be a uniformly selected vertex in S and W be a uniformly selected vertex in 
+
+L′ \ S. By Markov’s inequality, we have that: 
+
+|SB1 ||S| = Pr  ∥ ¯U − μ∥2 ≥ 4 · 483 δS|L′
+
+ ≤ 14 ,
+
+meaning that |SB1 | ≤ 14 |S|. For set SB2 we have that: 
+
+|SB2 ||S| = Pr 
+
+
+
+Avg v∈L′\S
+
+ ∥ ¯U − ¯v∥2 ≤ 2 − 8 · 485 δ2
+
+> S|L′
+
+
+
+= Pr 
+
+
+
+E∥ ¯U − ¯W ∥2|U  ≤ 2 − 8 · 485 δ2
+
+> S|L′
+
+
+
+= Pr 
+
+
+
+2 − E∥ ¯U − ¯W ∥2|U  ≥ 8 · 485 δ2
+
+> S|L′
+
+
+
+.
+
+We now use that for any u, v ∈ L′, ⟨¯u, ¯v⟩ ≥ 0, therefore ∥¯u − ¯v∥2 ≤ 2. This implies that the random variable 2 − E∥ ¯U − ¯W ∥2|U  is non-negative allowing us to apply Markov’s inequality. We get that: 
+
+|SB2 ||S| ≤ E2 − E∥ ¯U − ¯W ∥2|U  
+
+8 · 485 δ2
+
+> S|L′
+
+≤ 2 − E∥ ¯U − ¯W ∥2
+
+8 · 485 δ2
+
+> S|L′
+
+= 2 Avg u∈S,v ∈L′\S (⟨¯u, ¯v⟩)8 · 485 δ2
+
+> S|L′
+
+= 2β
+
+8 · 485 δ2
+
+> S|L′
+
+≤ 14 ,
+
+where we have used our bound on β from Lemma 4.8. This in turn means that |SB2 | ≤ 14 |S|.Putting everything together, we get that |Γ| = |S \ (SB1 ∪ SB2 ) | ≥ | S| − 12 |S| = 12 |S|. This gives us 32 that the probability that u is in Γ is at least 12 δS|L′ . We now show that if u ∈ Γ then for ˆS it holds that |S△ ˆS| = O(δ2n), notice that u ∈ Γ implies that 
+
+∥¯u − μ∥2 ≤ 4 · 483 δS|L′ , (20) and also 
+
+Avg v∈L′\S
+
+ 2 − ∥ ¯v − ¯u∥2 ≤ 8 · 485 δ2 
+
+> S|L′
+
+. (21) We first focus on the size of S \ ˆS. By Markov’s inequality and relaxed triangle inequality: 
+
+|S \ ˆS||S| = Pr  ∥ ¯U − ¯u∥2 ≥ 1
+
+≤ E∥ ¯U − ¯u∥2
+
+≤ E2∥ ¯U − μ∥2 + 2 ∥¯u − μ∥2
+
+≤ 10 · 483 δS|L′ .
+
+Meaning that |S \ ˆS| ≤ 4830 δ2 
+
+> S|L′
+
+γn = O(δ2n) (since δS|L′ ≤ 8δ). We now turn our attention to bounding the size of the set ˆS \ S. We have that 
+
+| ˆS \ S||L′ \ S| = Pr  ∥ ¯W − ¯u∥2 ≤ 1 = Pr  2 − ∥ ¯W − ¯u∥2 ≥ 1 .
+
+We can now use that 2 − ∥ ¯W − ¯u∥2 is a non-negative random variable to apply Markov’s inequality: 
+
+| ˆS \ S||L′ \ S| = Pr  2 − ∥ ¯W − ¯u∥2 ≥ 1
+
+≤ E2 − ∥ ¯W − ¯u∥2
+
+= Avg v∈L′\S
+
+ 2 − ∥ ¯v − ¯u∥2
+
+≤ 8 · 485 δ2 
+
+> S|L′
+
+.
+
+For the size of the set ˆS \ S, we get that | ˆS \ S| ≤ 8 · 485 δ2 
+
+> S|L′
+
+|L′| = 8 · 485 δ2 
+
+> S|L′
+
+γn = O(δ2n).
+
+# 5 Natarajan Dimension of Quartets 
+
+Here we derive the bound on the Natarajan dimension Nquart (n) for learning phylogenetic trees from quartets. Recall, that the Natarajan dimension governs learnability for multiclass settings, similar to how VC dimension governs learnability in binary classification (see also the Multiclass Fundamental Theorem 29.3, Chapter 29 in (Shalev-Shwartz and Ben-David, 2014)). Since our Theorem 5.7 here guarantees that Nquart (n) ≤ 10 n, this means that a linear in n sample of quartets suffices for generalization, and so our previous tree reconstruction algorithm finds a tree bT
+
+with low generalization error. We now formally define the Natarajan dimension for learning quartets. In our definition we naturally view  L
+
+> 4
+
+ (subsets of L of size 4), as the domain set and quartet constraints as the label set. The set of binary trees that have L as leaves is viewed as the hypothesis class: each tree T is 33 interpreted as a function that on input a set of 4 elements {a, b, c, d } outputs the unique quartet constraint (among three possible), T (a, b, c, d ), that the tree satisfies. Our definitions are similar to the definitions of Avdiukhin, Yaroslavtsev, Vainstein, Fischer, Das, and Mirza (2023) but applied to quartet reconstruction. We start by defining Natarajan Shattering: 
+
+Definition 5.1 (Natarajan Shattering) . Let S = {{ a1, b 1, c 1, d 1} , . . . , {am, b m, c m, d m}} ⊆  L
+
+> 4
+
+
+
+be a collection of 4-element sets of size m. We say that S is Natarajan shattered if for ev-ery {ai, b i, c i, d i} ∈ S there exist two distinct constraints f0(ai, b i, c i, d i) and f1(ai, b i, c i, d i) on 
+
+{ai, b i, c i, d i}, such that for every function g : [ m] → { 0, 1}, the instance 
+
+Ig = fg(i)(ai, b i, c i, d i) : i ∈ [m]
+
+is satisfiable. 
+
+Using this definition, we can define the Natarajan dimension: 
+
+Definition 5.2 (Natarajan dimension) . The Natarajan dimension of quartets, denoted Nquart (n),is defined as the size of the largest cardinality of a set which can be Natarajan shattered. 
+
+We prove that the Natarajan dimension of quartets, is linear i.e. Nquart (n) = Θ( n). Our argument uses the following theorem of Warren (1968) which was also used by Alon, Avdiukhin, Elboim, Fischer, and Yaroslavtsev (2024) to give bounds on the Natarajan dimension for contrastive learning. 
+
+Theorem 5.3 (Warren (1968)) . Let m ≥ l ≥ 2 be integers, and let p1, . . . , p m be real polynomials on l variables, each of degree ≤ k. Let 
+
+U (p1, . . . , p m) = 
+
+n⃗x ∈ R l | pi(⃗x)̸ = 0 ∀i ∈ [m]
+
+o
+
+.
+
+be the set of points in x ∈ Rl which are non-zero in all polynomials. Then the number of connected components in U (p1, . . . , p m) is at most (4 ekm/l )l.
+
+In particular we use the following corollary. 
+
+Corollary 5.4. Let m ≥ l ≥ 2 be integers, and let p1, . . . , p m be real polynomials on l variables, each of degree ≤ k. Then we have that 
+
+|{ ξ ∈ {− 1, 1}m : ∃⃗x such that for all i, sign( p i(x)) = ξ(i)}| ≤ 
+
+ 4ekm l
+
+l
+
+.
+
+To apply this corollary, we begin with the following embedding lemma. 
+
+Lemma 5.5. Let T be a binary tree and 0 < γ < 12 . There exists a mapping ϕ of the leaves of T
+
+to the interval [0 , 1] with the following property. Let vi and vj be two leaves of the tree and let λ be the depth of their lowest common ancestor. For the points xi = ϕ(vi) and xj = ϕ(vj ) we have that 
+
+(1 − 2γ)γλ ≤ | xi − xj | ≤ γλ.
+
+34 Proof. We describe a recursive algorithm that provides the mapping ϕ. Given an interval I = [ a, b ]
+
+and tree T , the algorithm divides between cases. If T has only one node then this node is mapped to a+b 
+
+> 2
+
+. Otherwise, I is divided into the intervals [a, a + γ(b − a)] , [a + γ(b − a), b − γ(b − a)] and 
+
+[b−γ(b−a), b ], we recursively map all the leaves of the left subtree to the interval [a, a +γ(b−a)] and all leaves of right subtree to interval [b − γ(b − a), b ]. The mapping ϕ is the output of the algorithm on interval [0 , 1] and tree T . It is easy to show inductively that every subtree whose root is at depth 
+
+λ is mapped to an interval of length γλ. Now consider points xi and xj . The leaves of the tree rooted at their lowest common ancestor are mapped to an interval I = [ a, b ] of length γλ, this in particular gives us the upper bound on |xi − xj |. For the lower bound, observe that one of xi, x j will be in the interval I1 = [ a, a + γ(b − a)] while the other will be in the interval I2 = [ b, b − γ(b − a)] .The distance between any point in I1 and any point in I2 is at least (1 − 2γ)( b − a) = (1 − 2γ)γλ,giving us the lower bound on |xi − xj |.Given the embedding guaranteed by Theorem 5.5, we will describe a polynomial that is positive if a quartet constraint is satisfied and negative otherwise. We prove the following lemma 
+
+Lemma 5.6. Let T be a tree with leaves v1, . . . , v n and ϕ(vi) = xi where ϕ is the mapping of Theorem 5.5 and let γ > 0 be small enough so that (1 − 2γ)8 > max( γ2, γ 4, γ 8) (e.g., γ ≤ 116 ). Consider leaves vi, v j , v k, v l and the polynomial: 
+
+p(xi, x j , x k, x l) = (( xi − xk)( xi − xl)( xj − xk)( xj − xl)) 2 − (( xi − xj )( xk − xl)) 4 .
+
+We have the following. 1. If the quartet constraint vivj |vkvl is satisfied in T then p(xi, x j , x k, x l) > 0.2. Otherwise, if vivj |vkvl is not satisfied in T then p(xi, x j , x k, x l) < 0.Proof. We first prove item 1 of the lemma. By symmetry, it suffices to only consider the case where (a) vi and vj are in one subtree of T and vk, vl are on another disjoint subtree (as in Figure 4a) and the case (b) where LCA( vj , v l) is an ancestor of LCA( vk, v l) and LCA( vi, v j ) is an ancestor of 
+
+LCA( vj , v k, v l) (as in Figure 4b). For case (a), let depth(LCA( vi, v j )) = λ1, depth(LCA( vk, v l)) = λ2 and 
+
+depth(LCA( vi, v j , v k, v l)) = λ3.
+
+Note that λ1 ≥ λ3 + 1 and also λ2 ≥ λ3 + 1 . Using the lower bound of Theorem 5.5 we have that 
+
+(( xi − xk)( xi − xl)( xj − xk)( xj − xl)) 2 ≥ (1 − 2γ)8γ8λ3 .
+
+On the other hand, using the upper bound of Theorem 5.5 we get that 
+
+(( xi − xj )( xk − xl)) 4 ≤ γ4λ1+4 λ2 ≤ γ8λ3+8 .
+
+Where we have used that both λ1 and λ2 are greater than λ3. We get the following bound on 
+
+p(xi, x j , x k, x l):
+
+p(xi, x j , x k, x l) ≥ (1 − 2γ)8γ8λ3 − γ8λ3+8 ≥ γ8λ3  (1 − 2γ)8 − γ8 > 0,
+
+where we have used that (1 − 2γ)8 > γ 8.35 For case (b), let depth(LCA( vk, v l)) = λ1, depth(LCA( vj , v k)) = λ2 and depth(LCA( vi, v j )) = 
+
+λ3. Using Theorem 5.5, we have that 
+
+(( xi − xk)( xi − xl)( xj − xk)( xj − xl)) 2 ≥ (1 − 2γ)8γ4λ3 γ4λ2 .
+
+While on the other hand: 
+
+(( xi − xj )( xk − xl)) 4 ≤ γ4λ3+4 λ1 ≤ γ4λ3+4 λ2+4 .
+
+Where we have used that λ1 ≥ λ2 + 1 . We can now bound the polynomial p(xi, x j , x k, x l):
+
+p(xi, x j , x k, x l) ≥ γ4λ2+4 λ3  (1 − 2γ)8 − γ4 > 0
+
+where we have used that (1 − 2γ)8 > γ 4.
+
+vi vj vk vl
+
+(a) p(·) > 0
+
+vi
+
+vj
+
+vk vl
+
+(b) p(·) > 0
+
+vi vk vj vl
+
+(c) p(·) < 0
+
+vi
+
+vk
+
+vj vl
+
+(d) p(·) < 0
+
+Figure 4: The configuration of vi, v j , v k, v l determines the sign of p(xi, x j , x k, x l).We now prove item 2 of the lemma. Again by symmetry, it suffices to consider the following two cases. The first case where (c) vi and vk are in one subtree of T and vj , v l are on another disjoint tree (as in Figure 4c) and the second case (d) where LCA( vk, v l) is an ancestor of LCA( vj , v l) and 
+
+LCA( vi, v k) is an ancestor of LCA( vj , v k, v l) (as in Figure 4d). We first consider case (c) and let 
+
+depth(LCA( vi, v k)) = λ1, depth(LCA( vj , v l)) = λ2 and depth(LCA( vi, v j )) = λ3. We again use the bounds of Theorem 5.5 to get that 
+
+(( xi − xk)( xi − xl)( xj − xk)( xj − xl)) 2 ≤ γ2λ1+2 λ2+4 λ3 ,
+
+while on the other hand, we have that 
+
+(( xi − xj )( xk − xl)) 4 ≥ (1 − 2γ)8 γ8λ3 .
+
+We get the following upper bound on the value of p(xi, x j , x k, x l):
+
+p(xi, x j , x k, x l) ≤ γ2λ1+2 λ2+4 λ3 − (1 − 2γ)8γ8λ3 ≤ γ8λ3 (γ4 − (1 − 2γ)8) < 0.
+
+where we have used that λ1, λ 2 ≥ λ3 + 1 and γ4 < (1 − 2γ)8. Finally for case (d), let 
+
+depth(LCA( vj , v l)) = λ1, depth(LCA( vj , v k)) = λ2, depth(LCA( vi, v k)) = λ3.
+
+We use Theorem 5.5 for the final time to get that 
+
+(( xi − xk)( xi − xl)( xj − xk)( xj − xl)) 2 ≤ γ2λ1+2 λ2+4 λ3
+
+36 while on the other hand: 
+
+(( xi − xj )( xk − xl)) 4 ≥ (1 − 2γ)8γ4λ3+4 λ2 .
+
+Meaning that 
+
+p(xi, x j , x k, x l) ≤ γ2λ1+2 λ2+4 λ3 − (1 − 2γ)8γ4λ3+4 λ2
+
+= γ2λ2+4 λ3 (γ2λ1 − (1 − 2γ)8γ2λ2 )
+
+≤ γ4λ2+4 λ3 (γ2 − (1 − 2γ)8)
+
+< 0.
+
+Where we have used that λ1 ≥ λ2 + 1 and that γ2 < (1 − 2γ)8.
+
+Theorem 5.7. For the Natarajan dimension of quartets we have 
+
+n − 3 ≤ Nquart (n) ≤ 10 n. 
+
+Proof. Upper bound. Fix any 0 < γ ≤ 116 and the embedding ϕ from Theorem 5.5. Let S =
+
+{{ ai, b i, c i, d i}} mi=1 be Natarajan-shattered. For each i, let f0(ai, b i, c i, d i) and f1(ai, b i, c i, d i) be the two distinct quartet labels promised by shattering, and define the degree-8 polynomial 
+
+pi(xai , x bi , x ci , x di )
+
+as in Theorem 5.6 but with the “positive” side chosen to be f0(ai, b i, c i, d i). By that lemma, for 
+
+any function g : [ m] → { 0, 1}, the tree Tg that satisfies Ig = {fg(i)(ai, b i, c i, d i)}mi=1 yields reals 
+
+x1, . . . , x n (via ϕ) with 
+
+sign( pi(xai , x bi , x ci , x di )) = ( −1) g(i) ∀i ∈ [m].
+
+Thus the number of sign patterns realized by {pi}mi=1 in Rn is at least 2m. Applying Theorem 5.4 with l = n, m polynomials, and degree k = 8 gives that the number of realizable sign patterns is at most   4ekm l
+
+l =   32 e m n
+
+n. Hence 
+
+2m ≤   32 e m n
+
+n .
+
+Writing m = tn this is  2tn ≤ (32 e t )n, i.e., 2t ≤ 32 e t . The function t 7 → 2t 
+
+> t
+
+is increasing for t ≥ 2,and 210 /10 > 32 e. Therefore 2t > 32 e t for all t ≥ 10 , implying m ≤ 10 n.
+
+Lower bound. For rooted k-tuple relations, checking their satisfiability is polynomial-time solv-able, contrary to our quartet setting where checking satisfiability is NP -complete. The Natarajan dimension for rooted k-tuple relations satisfies Nrooted (Hk) ≥ n−k +1 , as proved in Avdiukhin et al. (2023). For unrooted quartets the result doesn’t follow directly, since two distinct rooted labels may collapse to the same unrooted label after forgetting the root. To keep the two labels distinct, we adapt their construction as follows. Fix three leaves A = {a1, a 2, a 3} ⊂ V and let B = V \ A so 
+
+|B| = n − 3. For each b ∈ B define the 4-set qb = A ∪ { b} and choose two quartets f0(qb) = a1b|a2a3
+
+and f1(qb) = a2b|a1a3, which are distinct in the unrooted sense. Given any labeling g : B → { 0, 1},construct a binary tree by first forming a 3-leaf base on {a1, a 2, a 3} and, for each b ∈ B, attaching 
+
+b as a sibling of a1 if g(b) = 0 or of a2 if g(b) = 1 . Each operation determines the quartet on qb
+
+without affecting any other qb′ . Hence every labeling {fg(b)(qb) : b ∈ B} is realizable, and these 
+
+n − 3 quartets are Natarajan-shattered, proving Nquart (n) ≥ n − 3.37 6 Acknowledgment 
+
+The authors thank the anonymous STOC reviewers for valuable feedback, and the organizers and participants of Dagstuhl Seminar 25211, “The Constraint Satisfaction Problem: Complexity and Approximability,” for helpful discussions on phylogenetic CSPs. 38 References 
+
+E. Abbe. Community detection and stochastic block models: recent developments. Journal of Machine Learning Research , 18(177):1–86, 2018. M. Ackerman and S. Ben-David. Clusterability: A theoretical study. In Artificial intelligence and statistics , pages 1–8. PMLR, 2009. R. Agarwala, V. Bafna, M. Farach, M. Paterson, and M. Thorup. On the approximability of numerical taxonomy (fitting distances by tree metrics). SIAM Journal on Computing , 28(3): 1073–1085, 1998. A. V. Aho, Y. Sagiv, T. G. Szymanski, and J. D. Ullman. Inferring a tree from lowest common ancestors with an application to the optimization of relational expressions. SIAM Journal on Computing , 10(3):405–421, 1981. N. Ailon and M. Charikar. Fitting tree metrics: Hierarchical clustering and phylogeny. In 46th Annual IEEE Symposium on Foundations of Computer Science (FOCS’05) , pages 73–82. IEEE, 2005. N. Alon, P. Frankl, and V. Rodl. Geometrical realization of set systems and probabilistic communi-cation complexity. In 26th Annual Symposium on Foundations of Computer Science (sfcs 1985) ,pages 277–280. IEEE, 1985. N. Alon, H. Naves, and B. Sudakov. On the maximum quartet distance between phylogenetic trees. 
+
+SIAM Journal on Discrete Mathematics , 30(2):718–735, 2016. N. Alon, D. Avdiukhin, D. Elboim, O. Fischer, and G. Yaroslavtsev. Optimal sample complexity of contrastive learning. In 12th International Conference on Learning Representations , 2024. A. Ambainis, R. Desper, M. Farach, and S. Kannan. Nearly tight bounds on the learnability of evolution. In Proceedings 38th Annual Symposium on Foundations of Computer Science , pages 524–533. IEEE, 1997. A. Anandkumar, K. Chaudhuri, D. J. Hsu, S. M. Kakade, L. Song, and T. Zhang. Spectral methods for learning multivariate latent tree structure. Advances in neural information processing systems ,24, 2011. H. Angelidakis, K. Makarychev, and Y. Makarychev. Algorithms for stable and perturbation-resilient problems. In Proceedings of the 49th Annual ACM SIGACT Symposium on Theory of Computing , pages 438–451, 2017. D. Angluin and P. Laird. Learning from noisy examples. Machine learning , 2(4):343–370, 1988. S. Arora, D. Karger, and M. Karpinski. Polynomial time approximation schemes for dense instances of np-hard problems. In Proceedings of the twenty-seventh annual ACM symposium on Theory of computing , pages 284–293, 1995. S. Arora, A. Frieze, and H. Kaplan. A new rounding procedure for the assignment problem with applications to dense graph arrangement problems. Mathematical programming , 92(1):1–36, 2002. 39 D. Avdiukhin, G. Yaroslavtsev, D. Vainstein, O. Fischer, S. Das, and F. Mirza. Tree learning: optimal sample complexity and algorithms. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 37, pages 6701–6708, 2023. E. Avni and S. Snir. A new quartet-based statistical method for comparing sets of gene trees is developed using a generalized hoeffding inequality. Journal of Computational Biology , 26(1): 27–37, 2019. E. Avni, R. Cohen, and S. Snir. Weighted quartets phylogenetics. Systematic biology , 64(2):233–242, 2015. M.-F. Balcan, A. Blum, and A. Gupta. Approximate clustering without the approximation. In 
+
+Proceedings of the twentieth annual ACM-SIAM symposium on Discrete algorithms , pages 1068– 1077. SIAM, 2009. H.-J. Bandelt and A. Dress. Reconstructing the shape of a tree from observed dissimilarity data. 
+
+Advances in applied mathematics , 7(3):309–343, 1986. S. Ben-David. Clustering-what both theoreticians and practitioners are doing wrong. In Proceedings of the AAAI Conference on Artificial Intelligence , volume 32, 2018. Y. Bilu and N. Linial. Are stable instances easy? Combinatorics, Probability and Computing , 21 (5):643–660, 2012. M. Bodirsky. Complexity classification in infinite-domain constraint satisfaction. arXiv preprint arXiv:1201.0856 , 2012. M. Bodirsky and J. K. Mueller. The complexity of rooted phylogeny problems. In Proceedings of the 13th International Conference on Database Theory , pages 165–173, 2010. M. Bodirsky, P. Jonsson, and T. V. Pham. The complexity of phylogeny constraint satisfaction problems. ACM Transactions on Computational Logic (TOCL) , 18(3):1–42, 2017. R. B. Boppana. Eigenvalues and graph bisection: An average-case analysis. In 28th Annual Sym-posium on Foundations of Computer Science (sfcs 1987) , pages 280–285. IEEE, 1987. M. Braverman, K. Makarychev, Y. Makarychev, and A. Naor. The Grothendieck constant is strictly smaller than Krivine’s bound. In Forum of Mathematics, Pi , volume 1, page e4. Cambridge University Press, 2013. G. S. Brodal, R. Fagerberg, T. Mailund, C. N. Pedersen, and A. Sand. Efficient algorithms for computing the triplet and quartet distance between trees of arbitrary degree. In Proceedings of the twenty-fourth annual ACM-SIAM symposium on Discrete algorithms , pages 1814–1832. SIAM, 2013. D. Bryant and M. Steel. Constructing optimal trees from quartets. Journal of Algorithms , 38(1): 237–259, 2001. D. Bryant, J. Tsang, P. E. Kearney, and M. Li. Computing the quartet distance between evolutionary trees. In Symposium on Discrete Algorithms: Proceedings of the eleventh annual ACM-SIAM symposium on Discrete algorithms , volume 9, pages 285–286, 2000. 40 J. Byrka, S. Guillemot, and J. Jansson. New results on optimizing rooted triplets consistency. 
+
+Discrete Applied Mathematics , 158(11):1136–1147, 2010. M. Charikar and R. Gao. Improved approximations for ultrametric violation distance. In Proceedings of the 2024 Annual ACM-SIAM Symposium on Discrete Algorithms (SODA) , pages 1704–1737. SIAM, 2024. V. Chatziafratis and K. Makarychev. Triplet reconstruction and all other phylogenetic csps are approximation resistant. In 2023 IEEE 64th Annual Symposium on Foundations of Computer Science (FOCS) , pages 253–284. IEEE, 2023. B. Chor. From quartets to phylogenetic trees. In International Conference on Current Trends in Theory and Practice of Computer Science , pages 36–53. Springer, 1998. A. Clauset, C. Moore, and M. E. Newman. Hierarchical structure and the prediction of missing links in networks. Nature , 453(7191):98–101, 2008. V. Cohen-Addad, V. Kanade, and F. Mallmann-Trenn. Hierarchical clustering beyond the worst-case. Advances in Neural Information Processing Systems , 30, 2017. V. Cohen-Addad, V. Kanade, F. Mallmann-Trenn, and C. Mathieu. Hierarchical clustering: Objec-tive functions and algorithms. Journal of the ACM (JACM) , 66(4):1–42, 2019. V. Cohen-Addad, D. Das, E. Kipouridis, N. Parotsidis, and M. Thorup. Fitting distances by tree metrics minimizing the total error within a constant factor. Journal of the ACM , 71(2):1–41, 2024. V. Cohen-Addad, C. Fan, E. Lee, and A. De Mesmay. Fitting metrics and ultrametrics with minimum disagreements. SIAM Journal on Computing , 54(1):92–133, 2025. A. Coja-Oghlan. Graph partitioning via adaptive spectral techniques. Combinatorics, Probability and Computing , 19(2):227–284, 2010. H. Colonius and H.-H. Schulze. Tree structures for proximity data. British Journal of Mathematical and Statistical Psychology , 34(2):167–180, 1981. M. Cryan, L. A. Goldberg, and P. W. Goldberg. Evolutionary trees can be learned in polynomial time in the two-state general markov model. SIAM Journal on Computing , 31(2):375–397, 2001. S. Dahlgaard, M. B. T. Knudsen, and M. Stöckel. Finding even cycles faster via capped k-walks. In Proceedings of the 49th Annual ACM SIGACT Symposium on Theory of Computing , pages 112–120, 2017. A. Daniely, N. Linial, and M. Saks. Clustering is difficult only when it does not matter. arXiv preprint arXiv:1205.4891 , 2012. A. Daniely, S. Sabato, S. Ben-David, and S. Shalev-Shwartz. Multiclass learnability and the erm principle. J. Mach. Learn. Res. , 16(1):2377–2404, 2015. S. Dasgupta. A cost function for similarity-based hierarchical clustering. In Proceedings of the forty-eighth annual ACM symposium on Theory of Computing , pages 118–127, 2016. 41 C. Daskalakis, E. Mossel, and S. Roch. Optimal phylogenetic reconstruction. In Proceedings of the thirty-eighth annual ACM symposium on Theory of computing , pages 159–168, 2006. C. Daskalakis, E. Mossel, and S. Roch. Evolutionary trees and the ising model on the bethe lattice: a proof of steel’s conjecture. Probability Theory and Related Fields , 149(1):149–189, 2011. B. Dudek and P. Gawrychowski. Computing quartet distance is equivalent to counting 4-cycles. In Proceedings of the 51st Annual ACM SIGACT Symposium on Theory of Computing , pages 733–743, 2019. R. Durrett. Probability: theory and examples , volume 49. Cambridge university press, 2019. E. Emamjomeh-Zadeh and D. Kempe. Adaptive hierarchical clustering using ordinal queries. In 
+
+Proceedings of the Twenty-Ninth Annual ACM-SIAM Symposium on Discrete Algorithms , pages 415–429. SIAM, 2018. M. Farach and S. Kannan. Efficient algorithms for inverting evolution. Journal of the ACM (JACM) ,46(4):437–449, 1999. U. Feige and J. Kilian. Heuristics for semirandom graph problems. Journal of Computer and System Sciences , 63(4):639–671, 2001. V. Feldman, W. Perkins, and S. Vempala. Subsampled power iteration: a unified algorithm for block models and planted csp’s. Advances in Neural Information Processing Systems , 28, 2015. J. Felsenstein. Inferring phylogenies , volume 2. Sinauer associates Sunderland, MA, 2004. D. Ghoshdastidar, M. Perrot, and U. von Luxburg. Foundations of comparison-based hierarchical clustering. Advances in neural information processing systems , 32, 2019. R. D. Gray, A. J. Drummond, and S. J. Greenhill. Language phylogenies reveal expansion pulses and pauses in pacific settlement. science , 323(5913):479–483, 2009. A. Grothendieck. Résumé de la théorie métrique des produits tensoriels topologiques , volume 2. Soc. de Matemática de São Paulo, 1956. S. Grünewald, M. Steel, and M. S. Swenson. Closure operations in phylogenetics. Mathematical biosciences , 208(2):521–537, 2007. O. Guédon and R. Vershynin. Community detection in sparse networks via grothendieck’s inequality. 
+
+Probability Theory and Related Fields , 165(3):1025–1049, 2016. V. Guruswami, J. Håstad, R. Manokaran, P. Raghavendra, and M. Charikar. Beating the random ordering is hard: Every ordering csp is approximation resistant. SIAM Journal on Computing ,40(3):878–914, 2011. G. Hast. Beating a random assignment. In Approximation, Randomization and Combinatorial Optimization. Algorithms and Techniques , pages 134–145. Springer, 2005. J. Håstad. Some optimal inapproximability results. Journal of the ACM (JACM) , 48(4):798–859, 2001. 42 D. Haussler and P. M. Long. A generalization of sauer’s lemma. Journal of Combinatorial Theory, Series A , 71(2):219–240, 1995. J. Jansson, J. H.-K. Ng, K. Sadakane, and W.-K. Sung. Rooted maximum agreement supertrees. 
+
+Algorithmica , 43:293–307, 2005. J. Jansson, C. Shen, and W.-K. Sung. Improved algorithms for constructing consensus trees. Journal of the ACM (JACM) , 63(3):1–24, 2016. T. Jiang, P. Kearney, and M. Li. Orchestrating quartets: approximation and data correction. In 
+
+Proceedings 39th Annual Symposium on Foundations of Computer Science (Cat. No. 98CB36280) ,pages 416–425. IEEE, 1998. T. Jiang, P. Kearney, and M. Li. A polynomial time approximation scheme for inferring evolutionary trees from quartet topologies and its application. SIAM Journal on Computing , 30(6):1942–1961, 2001. V. Kandiros, C. Daskalakis, Y. Dagan, and D. Choo. Learning and testing latent-tree ising models efficiently. In The Thirty Sixth Annual Conference on Learning Theory , pages 1666–1729. PMLR, 2023. S. Khot. On the power of unique 2-prover 1-round games. In Proceedings of the thiry-fourth annual ACM symposium on Theory of computing , pages 767–775, 2002. J.-L. Krivine. Constantes de Grothendieck et fonctions de type positif sur les spheres. Séminaire Maurey-Schwartz , pages 1–17, 1978. D. R. Maddison, K.-S. Schulz, W. P. Maddison, et al. The tree of life web project. Zootaxa , 1668 (1):19–40, 2007. K. Makarychev, Y. Makarychev, and A. Vijayaraghavan. Approximation algorithms for semi-random partitioning problems. In Proceedings of the forty-fourth annual ACM symposium on Theory of computing , pages 367–384, 2012. K. Makarychev, Y. Makarychev, and A. Vijayaraghavan. Bilu–linial stable instances of max cut and minimum multiway cut. In Proceedings of the twenty-fifth annual ACM-SIAM symposium on Discrete algorithms , pages 890–906. SIAM, 2014a. K. Makarychev, Y. Makarychev, and A. Vijayaraghavan. Constant factor approximation for bal-anced cut in the PIE model. In Proceedings of the forty-sixth annual ACM symposium on Theory of computing , pages 41–49, 2014b. K. Makarychev, Y. Makarychev, and A. Vijayaraghavan. Learning communities in the presence of errors. In Conference on learning theory , pages 1258–1291. PMLR, 2016. B.-A. Manghiuc and H. Sun. Hierarchical clustering: o(1) -approximation for well-clustered graphs. 
+
+advances in neural information processing systems , 34:9278–9289, 2021. L. Massoulié. Community detection thresholds and the weak ramanujan property. In Proceedings of the forty-sixth annual ACM symposium on Theory of computing , pages 694–703, 2014. 43 C. McDiarmid. Concentration. In Probabilistic methods for algorithmic discrete mathematics , pages 195–248. Springer, 1998. F. McSherry. Spectral partitioning of random graphs. In Proceedings 42nd IEEE Symposium on Foundations of Computer Science , pages 529–537. IEEE, 2001. M. Mitzenmacher and E. Upfal. Probability and computing: Randomization and probabilistic tech-niques in algorithms and data analysis . Cambridge university press, 2017. E. Mossel. Phase transitions in phylogeny. Transactions of the American Mathematical Society , 356 (6):2379–2404, 2004. E. Mossel, J. Neeman, and A. Sly. Consistency thresholds for the planted bisection model. In 
+
+Proceedings of the forty-seventh annual ACM symposium on Theory of computing , pages 69–75, 2015. L. Nakhleh, T. Warnow, D. Ringe, and S. N. Evans. A comparison of phylogenetic reconstruction methods on an indo-european dataset. Transactions of the Philological Society , 103(2):171–192, 2005. B. K. Natarajan. On learning sets and functions. Machine Learning , 4(1):67–97, 1989. N. Natarajan, I. S. Dhillon, P. K. Ravikumar, and A. Tewari. Learning with noisy labels. Advances in neural information processing systems , 26, 2013. M. Nickel and D. Kiela. Poincaré embeddings for learning hierarchical representations. Advances in neural information processing systems , 30, 2017. E. Ravasz and A.-L. Barabási. Hierarchical organization in complex networks. Physical review E ,67(2):026112, 2003. R. Reaz, M. S. Bayzid, and M. S. Rahman. Accurate phylogenetic tree reconstruction from quartets: A heuristic approach. PloS one , 9(8):e104008, 2014. T. Roughgarden. Beyond the worst-case analysis of algorithms . Cambridge University Press, 2021. C. Semple and M. Steel. Phylogenetics , volume 24. Oxford University Press on Demand, 2003. S. Shalev-Shwartz and S. Ben-David. Understanding machine learning: From theory to algorithms .Cambridge university press, 2014. S. Snir and S. Rao. Quartet maxcut: a fast algorithm for amalgamating quartet trees. Molecular phylogenetics and evolution , 62(1):1–8, 2012. S. Snir and R. Yuster. A linear time approximation scheme for maximum quartet consistency on sparse sampled inputs. SIAM Journal on Discrete Mathematics , 25(4):1722–1736, 2011. S. Snir and R. Yuster. Reconstructing approximate phylogenetic trees from quartet samples. SIAM Journal on Computing , 41(6):1466–1480, 2012. M. Steel. The complexity of reconstructing trees from qualitative characters and subtrees. Journal of classification , 9(1):91–116, 1992. 44 K. Strimmer and A. Von Haeseler. Quartet puzzling: a quartet maximum-likelihood method for reconstructing tree topologies. Molecular biology and evolution , 13(7):964–969, 1996. R. Vershynin. High-dimensional probability: An introduction with applications in data science ,volume 47. Cambridge university press, 2018. S. Vikram and S. Dasgupta. Interactive bayesian hierarchical clustering. In International Conference on Machine Learning , pages 2081–2090. PMLR, 2016. R. S. Walker, S. Wichmann, T. Mailund, and C. J. Atkisson. Cultural phylogenetics of the tupi language family in lowland south america. PloS one , 7(4):e35025, 2012. J. H. Ward Jr. Hierarchical grouping to optimize an objective function. Journal of the American statistical association , 58(301):236–244, 1963. H. E. Warren. Lower bounds for approximation by nonlinear manifolds. Transactions of the Amer-ican Mathematical Society , 133(1):167–178, 1968. G. Wu, M.-Y. Kao, G. Lin, and J.-H. You. Reconstructing phylogenies from noisy quartets in polynomial time with a high success probability. Algorithms for Molecular Biology , 3(1):1, 2008. J. Yang, S. Grünewald, and X.-F. Wan. Quartet-net: a quartet-based method to reconstruct phylogenetic networks. Molecular biology and evolution , 30(5):1206–1217, 2013. R. Yuster and U. Zwick. Finding even cycles even faster. SIAM Journal on Discrete Mathematics ,10(2):209–222, 1997. 45 A Inequalities 
+
+Theorem A.1 (Bernstein inequality, Theorem 2.7 in McDiarmid (1998)) . Let the random variables 
+
+X1, . . . , X n be independent, with Xk − E(Xk) ≤ b for each k. Let Sn = P Xk, and let Sn have expected value μ and variance V (the sum of the variances of the Xk). Then for any t ≥ 0,
+
+Pr( Sn − μ ≥ t) ≤ e−  
+
+> Vb2
+> 
+> ((1+ ϵ) ln(1+ ϵ)−ϵ)
+
+where ϵ = bt/V 
+
+≤ e− t22V (1+ bt  
+
+> 3V
+
+) .
+
+Theorem A.2 (Grothendieck inequality, Grothendieck (1956); see also Krivine (1978); Braverman et al. (2013)) . For every n × n matrix M , the following inequality holds: 
+
+max  
+
+> ∥Ui∥,∥Vj∥=1
+
+X
+
+> i,j
+
+Mij ⟨Ui, V j ⟩ ≤ KG · max 
+
+> x,y ∈{− 1,1}n
+> n
+
+X
+
+> i,j =1
+
+Mij xiyj ,
+
+where KG ≤ 1.783 is the Grothendieck constant. The first maximum is over all unit vectors 
+
+U1, . . . , U n and V1, . . . , V n.
+
+# B Mapping Quartet Relations on a Rooted Tree 
+
+In this section, we show that the mapping ϕU preserves the quartet relation (ab | cd ) under mild conditions. Recall that we consider a rooted tree T and a subset of its vertices U . We define a mapping ϕU : V (T ) → U by 
+
+ϕU (u) = the closest ancestor of u that lies in U. 
+
+Equivalently, ϕU (u) is the first vertex in U encountered on the path from u to the root r. Below, we denote by P (x, y ) the (unique) path from vertex x to vertex y in the tree, and by LCA( x, y ) the least common ancestor of x and y.
+
+Lemma B.1. Let a, b, c, d ∈ V be distinct vertices satisfying: 
+
+(i) The paths P (a, b ) and P (c, d ) are vertex-disjoint. 
+
+(ii) For every distinct triple x, y, z ∈ { a, b, c, d }, we have ϕU (x)̸ = ϕU (LCA( y, z )) .Then the paths P (ϕU (a), ϕ U (b)) and P (ϕU (c), ϕ U (d)) are vertex-disjoint. Proof. Suppose, for contradiction, that the paths P (ϕU (a), ϕ U (b)) and P (ϕU (c), ϕ U (d)) intersect. Let x be the lowest vertex in their intersection, that is, the vertex farthest from the root r that lies on both paths. Since P (a, b ) and P (c, d ) are disjoint, x does not belong to one or both of them. Without loss of generality, assume that x / ∈ P (a, b ).Because x ∈ P (ϕU (a), ϕ U (b)) , at least one of ϕU (a) or ϕU (b) lies in the subtree rooted at x,denoted Tx. If only one of them is in Tx, assume it is ϕU (a). If both are in Tx but not both equal to x, assume ϕU (a)̸ = x. If ϕU (a) = ϕU (b) = x, we make no further assumptions. Similarly, since 
+
+x ∈ P (ϕU (c), ϕ U (d)) , we may assume that ϕU (c) ∈ Tx.We now prove two claims. 46 Claim B.2. We have 
+
+ϕU (LCA( a, c )) = ϕU (x).
+
+Claim B.3. We have 
+
+ϕU (b) = ϕU (x).
+
+Together, these claims imply ϕU (b) = ϕU (LCA( a, c )) , contradicting condition (ii). Hence our as-sumption that the two paths intersect was false, and the paths P (ϕU (a), ϕ U (b)) and P (ϕU (c), ϕ U (d)) 
+
+are vertex-disjoint. 
+
+Proof of Claim B.2. Both ϕU (a) and ϕU (c) lie in Tx, and hence LCA( ϕU (a), ϕ U (c)) also lies in Tx.Thus, LCA( ϕU (a), ϕ U (c)) lies on both paths P (ϕU (a), x ) and P (ϕU (c), x ). Since these paths are contained in P (ϕU (a), ϕ U (b)) and P (ϕU (c), ϕ U (d)) , respectively, it follows that 
+
+LCA( ϕU (a), ϕ U (c)) ∈ P (ϕU (a), ϕ U (b)) ∩ P (ϕU (c), ϕ U (d)) .
+
+As x is the lowest vertex in this intersection, it follows that LCA( ϕU (a), ϕ U (c)) = x.We now consider two cases. I. If neither ϕU (a) nor ϕU (c) is an ancestor of the other, i.e., 
+
+x = LCA( ϕU (a), ϕ U (c)) /∈ { ϕU (a), ϕ U (c)},
+
+then LCA( a, c ) = LCA( ϕU (a), ϕ U (c)) = x, and thus ϕU (LCA( a, c )) = ϕU (x).II. Otherwise, 
+
+x = LCA( ϕU (a), ϕ U (c)) ∈ { ϕU (a), ϕ U (c)}.
+
+In this case, ϕU (x) = x since x ∈ { ϕU (a), ϕ U (c)} ⊂ U . Suppose, for instance, 
+
+LCA( ϕU (a), ϕ U (c)) = ϕU (c).
+
+Then both a and c lie in the subtree rooted at ϕU (c), and hence so does LCA( a, c ). Thus, the path from LCA( a, c ) to ϕU (c) is a subpath of the path P (c, ϕ U (c)) . Since ϕU (c) is the first vertex from 
+
+U encountered when moving from c to the root, it follows that ϕU (c) is also the first vertex from U
+
+encountered when moving from LCA( a, c ) to the root. Therefore, 
+
+ϕU (LCA( a, c )) = ϕU (c) = x = ϕU (x).
+
+The case ϕU (a) = x is analogous. 
+
+Proof of Claim B.3. If ϕU (b) = x, then x ∈ U and hence ϕU (x) = x, giving ϕU (b) = ϕU (x) as required. Assume now that ϕU (b)̸ = x. By the earlier assumptions, this also means ϕU (a)̸ = x.Since ϕU (a) lies below x, the vertex a itself must also lie in the subtree rooted at x. Because 
+
+x / ∈ P (a, b ), both a and b must lie in the same child subtree of x – otherwise P (a, b ) would pass through x. Denote that child by y.Observe that since ϕU (a) ∈ Tx but ϕU (a)̸ = x, the vertex ϕU (a) must be in Ty. The path from 
+
+b to the root decomposes into two parts: the path from b to y and the path from x to r (we use that y is a child of x). If ϕU (b) were in the first part, then P (ϕU (a), ϕ U (b)) would not contain x
+
+(since both ϕU (a) and ϕU (b) would lie in Ty), contradicting our choice of x. Hence ϕU (b) must lie on the segment from x to r. Since ϕU (b)̸ = x, it is the first vertex from U encountered when moving upward from x, i.e., ϕU (b) = ϕU (x). This completes the proof of Lemma B.1. 47 C Auxiliary Lemmas used in Section 4 
+
+Lemma C.1. Let P ⊆ Rd be a set of points and μ be the average of those points, μ = 1 
+
+> |P|
+
+P 
+
+> p∈P
+
+p,then we have that: 
+
+Avg p,q ∈P
+
+ ∥p − q∥2 = 2 · Avg p∈P
+
+ ∥μ − p∥2
+
+Proof. We first show the following intermediate claim 
+
+Claim C.2. Let s ∈ Rd be a point, it holds that: 
+
+X
+
+> p∈P
+
+∥s − p∥2 = X
+
+> p∈P
+
+∥p − μ∥2 + |P | · ∥ s − μ∥2.
+
+Proof. Consider a random variable X distributed uniformly in P , then we have that: 
+
+X
+
+> p∈P
+
+∥s − p∥2 = |P | · E∥s − X∥2
+
+= |P | · E∥s − μ + μ − X∥2
+
+= |P | · E∥s − μ∥2 + ∥μ − X∥2 + 2 ⟨s − μ, μ − X⟩
+
+= |P | · ∥ s − μ∥2 + X
+
+> p∈P
+
+∥μ − p∥2 + 2 |P | · ⟨ s − μ, E[μ − X]⟩
+
+= |P | · ∥ s − μ∥2 + X
+
+> p∈P
+
+∥μ − p∥2
+
+We now have that: 
+
+Avg p,q ∈P
+
+ ∥p − q∥2 = 1
+
+|P |2
+
+X
+
+> p∈P
+
+X
+
+> q∈P
+
+∥p − q∥2
+
+= 1
+
+|P |
+
+X
+
+> p∈P
+
+ 1
+
+|P |
+
+X
+
+> q∈P
+
+∥p − q∥2
+
+
+
+For a fixed p, we apply Theorem C.2 to P 
+
+> q∈P
+
+∥p − q∥2, we have that: 
+
+Avg p,q ∈P
+
+ ∥p − q∥2 = 1
+
+|P |
+
+X
+
+> p∈P
+
+ 1
+
+|P | · X
+
+> q∈P
+
+∥q − μ∥2 + ∥p − μ∥2
+
+
+
+= 1
+
+|P |
+
+X
+
+> q∈P
+
+∥q − μ∥2 + 1
+
+|P |
+
+X
+
+> p∈P
+
+∥p − μ∥2
+
+= 2 Avg p∈P ∥μ − p∥2
+
+We give a proof to the following simple lemma that will be useful for our analysis. 48 Lemma C.3. Let T be a rooted binary tree with n leaves and let α ≥ 1 
+
+> n
+
+. Then there is a node u in the tree such that: 
+
+αn ≤ | Lu| < 2αn 
+
+Proof. Let u be a vertex that is farthest away from the root and furthermore, |Lu| ≥ αn (by our assumption that αn ≥ 1 such a vertex exists). If u is a leaf then |Lu| = 1 ≤ αn , which together with our assumption that |Lu| ≥ αn gives us that |Lu| = αn < 2αn and the claim holds. Otherwise, we will again show that |Lu| < 2αn , suppose for the sake of contradiction that this is not the case and let l and r be the children of u. We have that |Lu| = |Lr| + |Ll|, our assumption that |Lu| ≥ 2αn 
+
+implies that either |Lr| ≥ αn or |Ll| ≥ αn . In either case the assumption that u is a vertex that is farthest away from the root such that |Lu| ≥ αn is contradicted. 
+
+Lemma C.4. Let T be a binary rooted tree and let S be a subset of the leaves. Let w = LCA( S),then for every a ∈ S there exists b ∈ S such that LCA( a, b ) = w.Proof. Consider the subtree rooted at w and assume, without loss of generality, that a lies in the left subtree of w. Set b ∈ S to be any vertex in the right subtree of w and observe that 
+
+LCA( a, b ) = w.
+
+# D Distribution of graph G′
+
+We use the following claim that follows directly from Theorem 8.12 in Mitzenmacher and Upfal (2017). 
+
+Claim D.1 (Poisson thinning) . Let X be a random variable following the Poisson distribution with parameter λ and let S be a set of size X. Suppose that we label each element in S independently as: 
+
+0 with probability p and 1 with probability 1 − p. Let X0, X 1 be the random variables denoting the number of elements labeled 0 and 1 respectively. Then, X0 ∼ Poisson( pλ ), X1 ∼ Poisson((1 − p)λ)
+
+and furthermore, X0 and X1 are independent. 
+
+The claim follows directly from the definition of a Poisson process at time t. We now prove the main lemma about the graph constructed by the algorithm. 
+
+Proof of Lemma 4.1. First notice that the Q(n, λ, η ) model is equivalent to the following model parameterized by n, λ and q, for q = 32 η. For every set {a, b, c, d } ⊆  L
+
+> 4
+
+ the number of quartet constraints involving these variables is a random variable Xabcd ∼ Poisson( λ). In each of these occurrences the quartet constraint is T (a, b, c, d ) with probability 1 − q, which we label as a clean quartet, and a uniformly random constraint with the remaining probability, we label such quartets as random quartets. This is only for the sake of analysis, the algorithm doesn’t know which quartets are clean and which are random. By Claim D.1, for a set {a, b, c, d }, the number of quartets labeled clean follows Poisson( λ(1 − q)) and the number of quartets labeled random follows Poisson( λq ),moreover, the two random variables are independent. We can therefore view the (multi)-set Q as 
+
+Q = Qc ∪Qr, where Qc contains all the quartet constraints labeled clean, Qr contains all the quartet constraints labeled random and the two sets are independent. Furthermore, we can view the graph constructed by the algorithm as the union of two independent random (multi)-graphs constructed by Qc and Qr respectively: 
+
+G′ = G′ 
+
+> c
+
+∪ G′
+
+> r
+
+.
+
+49 Using Poisson thinning again, we have that for every a, b ∈ L′ the number of quartet constrains that contribute an edge (a, b ) to G′ 
+
+> c
+
+is an independent Poisson random variable with parameter  
+
+> 12
+
+λ(1 − q)|Q ab |L′ |. Recall that Qab |L′ is the subset of quartet constraints involving elements of L′
+
+that place a and b together, the factor 12 comes from the fact that for a constraint ab |cd we add an edge (a, b ) with probability 12 . Similarly for G′
+
+> r
+
+, the number of quartets that contribute an edge between a and b is an independent random variable following the Poisson distribution with parameter 
+
+16 λq 
+
+|L′ \ { a, b } | 
+
+2
+
+
+
+= 16
+
+c′
+
+n3 q
+
+γn − 22
+
+
+
+.
+
+This directly gives us the first item of the lemma, namely that edges are independent. We now focus on giving estimates for the probabilities of edges. We will analyze graphs G′ 
+
+> c
+
+and 
+
+G′ 
+
+> r
+
+separately and then use that the two graphs are independent. We start with the easier, namely graph G′
+
+> r
+
+. The probability that there is at least one edge between a, b is: 
+
+Pr  (a, b ) ∈ G′
+
+> r
+
+ = Pr( Xab > 0) ,
+
+where Xab ∼ Poisson 
+
+ 16 
+
+> c′
+> n3
+
+q γn −22
+
+
+
+. Using Taylor’s theorem we have that: 
+
+Pr( Xab > 0) = 1 − Pr( Xab = 0) = 16
+
+c′
+
+n3 q
+
+γn − 22
+
+
+
++ O
+
+ 1
+
+n2
+
+
+
+= (1 + o(1)) c′γ2q
+
+12 n .
+
+We now turn our attention to graph G′
+
+> c
+
+. Using similar calculations we can easily get that: 
+
+Pr  (a, b ) ∈ G′
+
+> c
+
+ = (1 + o(1)) c′(1 − q)2n3 · |Q ab |L′ | (22) We will estimate the probability Pr(( a, b ) ∈ G′
+
+> c
+
+) by estimating |Q ab |L′ |. Let {C, D } be a random element of  L′\{ a,b }
+
+> 2
+
+. We have that: 
+
+|Q ab |L′ | = Pr( ab |CD = T (a, b, C, D )) ·
+
+γn − 22
+
+
+
+.
+
+We can now turn our attention to estimating Pr( ab |CD = T (a, b, C, D )) . Recall that we are using the notation δuv |L′ = |Luv ∩L′||L′| (δuv |L′ is the fraction of leaves in L′ that belongs to Luv ). To derive a lower bound observe that if neither of C and D are in the subtree of LCA( a, b ) then 
+
+ab |CD = T (a, b, C, D ):
+
+Pr( ab |CD = T (a, b, c, d )) ≥ Pr  C, D ̸ ∈ Lab ∩ L′
+
+≥ (1 − δab |L′ )(1 − δab |L′ + o(1)) = 1 − 2δab |L′ + δ2 
+
+> ab |L′
+
++ o(1) ,
+
+where the o(1) terms are introduced because of the fact that the variables are sampled without replacement. This gives us that: 
+
+|Q ab |L′ | ≥ (1 − 2δab |L′ + δ2 
+
+> ab |L′
+
++ o(1)) ·
+
+γn − 22
+
+
+
+. (23) 50 For an upper bound on |Q ab |L′ | we notice that if C is in the subtree of LCA( a, b ), while D is not, then ab |CD ̸ = T (a, b, C, D ). Similarly if C̸ ∈ Lab ∩ L′ while D ∈ Lab ∩ L′. Since these two events are disjoint, we get that: 
+
+Pr( ab |CD ̸ = T (a, b, C, D )) ≥ Pr  C ∈ Lab ∩ L′ and D / ∈ Lab ∩ L′
+
++ Pr  D ∈ Lab ∩ L′ and C / ∈ Lab ∩ L′
+
+≥ 2δab |L′ (1 − δab |L′ + o(1)) = 2 δab |L′ − 2δ2 
+
+> ab |L′
+
++ o(1) ,
+
+where again o(1) terms are due to the fact that we are sampling without replacement. We have that: 
+
+Pr( ab |CD = T (a, b, C, D )) ≤ 1 − 2δab |L′ + 2 δ2 
+
+> ab |L′
+
++ o(1) ,
+
+which in turn gives us that: 
+
+|Q ab |L′ | ≤ 
+
+
+
+1 − 2δab |L′ + 2 δ2 
+
+> ab |L′
+
++ o(1) 
+
+
+
+·
+
+γn − 22
+
+
+
+We finally derive a bound on |Q ab |L′ | that corresponds to the third item of the lemma. Suppose that a ∈ L and b ∈ R (here, we are using L and R to denote the leaves of left and right subtree respectively) and let α = |L∩ L′| 
+
+> L′
+
+and β = |R∩ L′||L′| . Observe that if C ∈ L ∩ L′ while D ∈ R ∩ L′ (or vice versa) then ab |CD ̸ = T (a, b, C, D ). We have that: 
+
+Pr( ab |CD ̸ = T (a, b, C, D )) ≥ Pr  C ∈ L ∩ L′ and D ∈ R ∩ L′
+
++ Pr  D ∈ L ∩ L′ and C ∈ R ∩ L′
+
+≥2αβ + o(1) 
+
+This in turn gives us that 
+
+Pr( ab |CD = T (a, b, c, d )) ≤ 1 − 2αβ + o(1) . (24) We now go back to G′, we have that: 
+
+Pr  (a, b ) ∈ G′ = Pr  (a, b ) ∈ G′
+
+> c
+
+ + Pr  (a, b ) ∈ G′
+
+> r
+
+ − Pr  (a, b ) ∈ G′
+
+> c
+
+ · Pr  (a, b ) ∈ G′
+
+> r
+
+
+
+= Pr  (a, b ) ∈ G′
+
+> c
+
+ + Pr  (a, b ) ∈ G′
+
+> r
+
+ + O
+
+ 1
+
+n2
+
+
+
+.
+
+Having bounded |Q ab |L′ |, we can now prove the second and third items of the lemma. For the lower bound: 
+
+Pr  (a, b ) ∈ G′
+
+> c
+
+ + Pr  (a, b ) ∈ G′
+
+> r
+
+ = (1 + o(1)) ·
+
+ c′(1 − q)2n3 |Q ab |L′ | + c′γ2q
+
+12 n
+
+
+
+≥ cγ 2
+
+4 (1 − q)
+
+
+
+1 − 2δab |L′ + δ2
+
+> ab |L′
+
+
+
++ c′γ2
+
+12 q 1
+
+n + o
+
+ 1
+
+n
+
+
+
+,
+
+this directly implies that: 
+
+Pr  (a, b ) ∈ G′ ≥ c′γ2
+
+4 (1 − q)
+
+
+
+1 − 2δab |L′ + δ2
+
+> ab |L′
+
+
+
++ c′γ2
+
+12 q 1
+
+n + o
+
+ 1
+
+n
+
+
+
+,
+
+replacing η = 32 q and c = c′γ2 
+
+> 4
+
+gives us the lower bound of the second item. The other bounds follow similarly. 51 E Quartet Query Complexity 
+
+In this section we extend the results of Emamjomeh-Zadeh and Kempe (2018) on the query com-plexity of learning a hierarchical clustering to the quartet (unrooted) setting. In particular, they showed that adaptive algorithms can exactly reconstruct a rooted binary hierarchy from O(n log n)
+
+triplet queries, while any non-adaptive algorithm requires Ω( n3) triplet queries, even without noise. We show that both results naturally extend to quartets. 
+
+Lemma E.1 (Adaptive quartets) . Assume that the responses to quartet queries are correct inde-pendently with probability p > 1/2, and adversarially incorrect otherwise. There exists an adaptive algorithm that learns the correct unrooted binary tree with probability at least 1 − δ, using at most 
+
+O(n log n + n log(1 /δ )) quartet queries. In the absence of noise ( p = 1 ), the algorithm exactly reconstructs the tree using O(n log n) quartets. Proof. Consider the rooted tree Tr obtained by rooting T at any leaf r. For each triplet (a, b, c ), the quartet (r, a, b, c ) yields the same information: if the answer is ra |bc then (b, c ) is the closest pair in (a, b, c ), and so on. Thus, one can simulate each triplet query in the algorithm of Emamjomeh-Zadeh and Kempe (2018) by a single quartet query with r. The resulting insertion-based algorithm reconstructs Tr, hence T , exactly. In the independent noise model, the same repetition and majority-vote mechanism used in their Theorem 5.1 applies directly, preserving the O(n log n + n log(1 /δ )) 
+
+query complexity. 
+
+Lemma E.2 (Non-adaptive lower bound for quartets) . Any non-adaptive algorithm that recon-structs an unrooted binary tree on n leaves, even without noise, requires Ω( n3) quartet queries. Proof. Analogous to Emamjomeh-Zadeh and Kempe (2018), let C = {a, b, c, d } be one of these disjoint 4-leaf subtrees; it attaches to the rest of the tree by a single edge. Consider two global trees that are identical outside C but differ only in the internal structure within C, e.g., ab |cd vs. ac |bd .Then, any quartet query using ≤ 2 leaves from C (and the rest outside C) has the same answer under both trees. Therefore, to distinguish the two internal structures of C, a non-adaptive algorithm must include at least one query containing ≥ 3 leaves from C (either a 3-of-4 or the 4-of-4 query). For a uniformly random 4-set query on the n leaves, 
+
+Pr( query hits exactly 3 of C) = 
+
+ 43
+
+  n−41
+
+ n
+
+> 4
+
+ = 4( n − 4) 
+
+ n
+
+> 4
+
+ ,
+
+and 
+
+Pr( query hits all 4 of C) = 1
+
+ n
+
+> 4
+
+ .
+
+Hence, 
+
+Pr( query hits ≥ 3 from C) = 4( n − 4) + 1 
+
+ n
+
+> 4
+
+ = (4 n − 15) · 24 
+
+n(n − 1)( n − 2)( n − 3) = Θ 
+
+ 1
+
+n3
+
+
+
+.
+
+There are n/ 4 disjoint size-4 clusters. With k non-adaptive quartet queries, the expected number of clusters whose internal structure is “touched” is at most 
+
+n
+
+4 · k · 4( n − 4) + 1 
+
+ n
+
+> 4
+
+ = k · 24 n − 90 (n − 1)( n − 2)( n − 3) = Θ 
+
+ kn2
+
+
+
+.
+
+52 To recover the full tree, the algorithm must determine the internal structure for almost all of these n/ 4 disjoint clusters, so the expected number of touched clusters must be Ω( n). This requires 
+
+Θ
+
+ kn2
+
+
+
+= Ω( n) =⇒ k = Ω( n3).
+
+# F Figures 
+
+v1
+
+v2
+
+v3
+
+v4
+
+v5
+
+v6v7
+
+T (v1, v 2, v 3, v 4) = { v1v2 | v3v4 }
+
+T (v1, v 5, v 6, v 7) = { v1v6 | v5v7 }
+
+T (v2, v 3, v 4, v 5) = { v2v4 | v3v5 }
+
+Figure 5: A phylogenetic tree T on 7 taxa, showing how quartet examples are derived from T .53

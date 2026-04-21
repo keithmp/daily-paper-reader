@@ -1,0 +1,893 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-21T20:24:59.167921+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 10,
+    "deep_cap": 8,
+    "deep_selected": 8,
+    "quick_candidates": 13,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2604.17461v1",
+      "title": "Optimal Phylogenetic Reconstruction from Sampled Quartets",
+      "abstract": "Quartet Reconstruction, the task of recovering a phylogenetic tree from smaller trees on four species called \\textit{quartets}, is a well-studied problem in theoretical computer science with far-reaching connections to statistics, graph theory and biology. Given a random sample containing $m$ noisy quartets, labeled by an unknown ground-truth tree $T$ on $n$ taxa, we want to output a tree $\\widehat T$ that is \\textit{close} to $T$ in terms of quartet distance and can predict unseen quartets. Unfortunately, the empirical risk minimizer corresponds to the $\\mathsf{NP}$-hard problem of finding a tree that maximizes agreements with the sampled quartets, and earlier works in approximation algorithms gave $(1-\\eps)$-approximation schemes (PTAS) for dense instances with $m=Θ(n^4)$ quartets, or for $m=Θ(n^2\\log n)$ quartets \\textit{randomly} sampled from $T$.   Prior to our work, it was unknown how many samples are information-theoretically required to learn the tree, and whether there is an efficient reconstruction algorithm. We present optimal results for reconstructing an unknown phylogenetic tree $T$ from a random sample of $m=Θ(n)$ quartets, corrupted under the Random Classification Noise (RCN) model. This matches the $Ω(n)$ lower bound required for any meaningful tree reconstruction. Our contribution is twofold: first, we give a tree reconstruction algorithm that, not only achieves a $(1-\\eps)$-approximation, but most importantly \\textit{recovers} a tree close to $T$ in quartet distance; second, we show a new $Θ(n)$ bound on the Natarajan dimension of phylogenies (an analog of VC dimension in multiclass classification). Our analysis relies on a new \\textit{Quartet-based Embedding and Detection} procedure that identifies and removes well-clustered subtrees from the (unknown) ground-truth $T$ via semidefinite programming.",
+      "authors": [
+        "Dionysis Arvanitakis",
+        "Vaggos Chatziafratis",
+        "Yiyuan Luo",
+        "Konstantin Makarychev"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-04-19T14:20:47+00:00",
+      "link": "https://arxiv.org/pdf/2604.17461v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Phylogenetic tree reconstruction from sampled quartets",
+      "llm_evidence_cn": "从采样四元组中进行系统发育树重建",
+      "llm_evidence": "从采样四元组中进行系统发育树重建",
+      "canonical_evidence": "从采样四元组中进行系统发育树重建",
+      "llm_tldr_en": "Provides an optimal algorithm for recovering phylogenetic trees from noisy quartet samples.",
+      "llm_tldr_cn": "提供了一种从噪声四元组样本中恢复系统发育树的最优算法。",
+      "llm_tldr": "提供了一种从噪声四元组样本中恢复系统发育树的最优算法。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.17926v1",
+      "title": "Information on hidden birth events restores identifiability in phylodynamic inference",
+      "abstract": "The parameters of many classes of birth-death processes cannot be inferred uniquely from phylogenetic trees: infinitely many parameter combinations yield the same distribution of phylogenetic trees. Here, we show that parameter identifiability can be recovered even for the most general cases of time-dependent rates when additional information on hidden birth events along branches of the reconstructed tree is available. This holds both for models in which individuals are sampled at a single point in time or through time at a time-dependent rate. Moreover, we prove that when mutations occur at birth - assuming two different models for the accumulation of mutations at a birth event - then information about hidden birth events is available in the sequences and thus all parameters of time-dependent birth-death models become identifiable. Thus, phylodynamic inference is identifiable whenever evolutionary models with mutation accumulation at birth (such as at speciation, transmission, or cell division) are plausible.",
+      "authors": [
+        "Tobias Dieselhorst",
+        "Tanja Stadler"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-04-20T08:06:48+00:00",
+      "link": "https://arxiv.org/pdf/2604.17926v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Phylodynamic inference and phylogenetic tree analysis",
+      "llm_evidence_cn": "系统动力学推断与系统发育树分析",
+      "llm_evidence": "系统动力学推断与系统发育树分析",
+      "canonical_evidence": "系统动力学推断与系统发育树分析",
+      "llm_tldr_en": "Restores parameter identifiability in phylodynamic models using hidden birth event information.",
+      "llm_tldr_cn": "利用隐藏出生事件信息恢复系统发育动力学模型中的参数可识别性。",
+      "llm_tldr": "利用隐藏出生事件信息恢复系统发育动力学模型中的参数可识别性。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.16570v1",
+      "title": "In Search of Lost DNA Sequence Pretraining",
+      "abstract": "DNA sequence encoding is fundamental to gene function prediction, protein synthesis, and diverse downstream biological tasks. Despite the substantial progress achieved by large-scale DNA sequence pretraining, existing studies have overwhelmingly emphasized pretraining scale and custom downstream evaluation datasets, while neglecting some essential components of the pretraining paradigm. In this paper, we reveal three critical yet heretofore overlooked problems in DNA pretraining: inappropriate downstream datasets, inherent flaws in the neighbor-masking strategy, and the lack of detailed discussion on vocabulary. Therefore, we undertake comprehensive investigations and propose principled guidelines, including selection criteria for evaluation datasets, guiding task design, and in-depth vocabulary analysis. Extensive experiments validate the significance of our identified problems and support the rationale behind our recommendations. Finally, we introduce a standardized testbed that enables reproducible and rigorous benchmarking of DNA pretraining methods to advance the development of genomic foundation models.",
+      "authors": [
+        "Zhijiang Tang",
+        "Jiaxin Qi",
+        "Yan Cui",
+        "Jinli Ou",
+        "Yuhua Zheng",
+        "Jianqiang Huang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-17T11:43:03+00:00",
+      "link": "https://arxiv.org/pdf/2604.16570v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "DNA sequence pretraining for gene function prediction",
+      "llm_evidence_cn": "用于基因功能预测的DNA序列预训练研究",
+      "llm_evidence": "用于基因功能预测的DNA序列预训练研究",
+      "canonical_evidence": "用于基因功能预测的DNA序列预训练研究",
+      "llm_tldr_en": "Investigates critical flaws in DNA sequence pretraining and proposes guidelines for better genomic AI models.",
+      "llm_tldr_cn": "探讨了DNA序列预训练中的关键缺陷，并为构建更好的基因组AI模型提出了指导方针。",
+      "llm_tldr": "探讨了DNA序列预训练中的关键缺陷，并为构建更好的基因组AI模型提出了指导方针。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.17036v1",
+      "title": "Evolution as fitness landscape navigation: Concepts, Measures, and Emerging Questions",
+      "abstract": "Fitness landscapes are mappings between genotypes, phenotypes, and fitness that shape evolution. In recent years, empirical work and theoretical models have greatly advanced our understanding of how populations navigate rugged fitness landscapes. Here, we provide a timely review of this field. Its rapidly growing literature employs a wide range of terms, which are sometimes used ambiguously or inconsistently. We therefore begin by defining the major concepts and the field's vocabulary, highlighting our own terminology choices wherever needed. We then review key results on the relationships between epistasis, ruggedness, accessibility, and navigability for genotype-fitness maps, highlighting several complex and sometimes counterintuitive connections that have emerged. Further, we review how the conserved structural properties of the underlying genotype-phenotype map -- that leads to the formation of large connected neutral networks of genotypes -- influence dynamics on fitness landscapes. We then compare the two levels to study landscape navigation -- the level of the genotype-phenotype maps and the level of genotype-fitness maps. Our review leads us to propose a new measure of navigability, based on evolutionary outcomes, that is broadly applicable and overcomes limitations of existing measures. Finally, we review the smaller body of work that relaxes the common assumption of fitness-monotonic paths on static landscapes, and discuss how this can fundamentally change the nature of fitness landscape navigation. Throughout the review, we identify directions for future work to fill existing gaps and to synthesize the disparate strands of research within the field.",
+      "authors": [
+        "Malvika Srivastava",
+        "Claudia Bank",
+        "Joachim Krug",
+        "Suman G. Das"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-04-18T15:35:30+00:00",
+      "link": "https://arxiv.org/pdf/2604.17036v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Review of fitness landscapes mapping genotypes to phenotypes in evolution",
+      "llm_evidence_cn": "进化中基因型到表型映射的适应度景观综述",
+      "llm_evidence": "进化中基因型到表型映射的适应度景观综述",
+      "canonical_evidence": "进化中基因型到表型映射的适应度景观综述",
+      "llm_tldr_en": "Reviews concepts and measures of fitness landscapes as a framework for understanding evolutionary navigation.",
+      "llm_tldr_cn": "综述了适应度景观的概念和测量方法，作为理解进化导航的框架。",
+      "llm_tldr": "综述了适应度景观的概念和测量方法，作为理解进化导航的框架。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.18022v1",
+      "title": "Boltzmann Machine Learning with a Parallel, Persistent Markov chain Monte Carlo method for Estimating Evolutionary Fields and Couplings from a Protein Multiple Sequence Alignment",
+      "abstract": "The inverse Potts problem for estimating evolutionary single-site fields and pairwise couplings in homologous protein sequences from their single-site and pairwise amino acid frequencies observed in their multiple sequence alignment would be still one of useful methods in the studies of protein structure and evolution. Since the reproducibility of fields and couplings are the most important, the Boltzmann machine method is employed here, although it is computationally intensive. In order to reduce computational time required for the Boltzmann machine, parallel, persistent Markov chain Monte Carlo method is employed to estimate the single-site and pairwise marginal distributions in each learning step. Also, stochastic gradient descent methods are used to reduce computational time for each learning. Another problem is how to adjust the values of hyperparameters; there are two regularization parameters for evolutionary fields and couplings. The precision of contact residue pair prediction is often used to adjust the hyperparameters. However, it is not sensitive to these regularization parameters. Here, they are adjusted for the fields and couplings to satisfy a specific condition that is appropriate for protein conformations. This method has been applied to eight protein families.",
+      "authors": [
+        "Sanzo Miyazawa"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cond-mat.stat-mech",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "published": "2026-04-20T09:48:31+00:00",
+      "link": "https://arxiv.org/pdf/2604.18022v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Estimating evolutionary fields and couplings from protein multiple sequence alignment",
+      "llm_evidence_cn": "从蛋白质多序列比对中估计演化场和耦合",
+      "llm_evidence": "从蛋白质多序列比对中估计演化场和耦合",
+      "canonical_evidence": "从蛋白质多序列比对中估计演化场和耦合",
+      "llm_tldr_en": "Uses Boltzmann machine learning to estimate evolutionary parameters from protein sequence alignments.",
+      "llm_tldr_cn": "利用玻尔兹曼机学习从蛋白质序列比对中估计演化参数。",
+      "llm_tldr": "利用玻尔兹曼机学习从蛋白质序列比对中估计演化参数。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "phylogenomic analysis of gene evolution",
+      "matched_requirement_id": "req-16",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.18345v1",
+      "title": "Effect of antibiotic spectrum on the abundance of resistant bacteria in multispecies communities",
+      "abstract": "Antibiotic resistance is a major threat to global health. It emerges in multispecies microbial communities under antibiotic exposure. This makes antibiotic spectrum -- a drug's distribution of effects across species -- a potential key parameter in resistance management. However, we currently lack evolutionary theory for resistance dynamics in a multispecies setting. Analysing established community ecology theory, we develop a simple mathematical measure for how one taxon (strain or species) affects another taxon through all direct and indirect interactions in a complex interaction network. Using this, we derive the expected effects of different antibiotic spectra on the abundance of resistant taxa in microbial communities. This furthers our understanding of microbial evolutionary ecology in multispecies communities, and provides a formal theoretical basis for empirical work on optimal antibiotic choice.",
+      "authors": [
+        "Magnus Aspenberg",
+        "Erik Andreas Martens",
+        "Kristofer Wollein Waldetoft"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-04-20T14:42:05+00:00",
+      "link": "https://arxiv.org/pdf/2604.18345v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "evolutionary theory for resistance dynamics in multispecies communities",
+      "llm_evidence_cn": "多物种群落中抗性动力学的演化理论",
+      "llm_evidence": "多物种群落中抗性动力学的演化理论",
+      "canonical_evidence": "多物种群落中抗性动力学的演化理论",
+      "llm_tldr_en": "Develops evolutionary theory to predict how antibiotic spectra affect resistance abundance in microbial communities.",
+      "llm_tldr_cn": "开发了演化理论来预测抗生素谱如何影响微生物群落中的抗性丰度。",
+      "llm_tldr": "开发了演化理论来预测抗生素谱如何影响微生物群落中的抗性丰度。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.16642v1",
+      "title": "Geometric coherence of single-cell CRISPR perturbations reveals regulatory architecture and predicts cellular stress",
+      "abstract": "Genome engineering has achieved remarkable sequence-level precision, yet predicting the transcriptomic state that a cell will occupy after perturbation remains an open problem. Single-cell CRISPR screens measure how far cells move from their unperturbed state, but this effect magnitude ignores a fundamental question: do the cells move together? Two perturbations with identical magnitude can produce qualitatively different outcomes if one drives cells coherently along a shared trajectory while the other scatters them across expression space. We introduce a geometric stability metric, Shesha, that quantifies the directional coherence of single-cell perturbation responses as the mean cosine similarity between individual cell shift vectors and the mean perturbation direction. Across five CRISPR datasets (2,200+ perturbations spanning CRISPRa, CRISPRi, and pooled screens), stability correlates strongly with effect magnitude (Spearman $ρ=0.75-0.97$), with a calibrated cross-dataset correlation of 0.97. Crucially, discordant cases where the two metrics decouple expose regulatory architecture: pleiotropic master regulators such as CEBPA and GATA1 pay a \"geometric tax,\" producing large but incoherent shifts, while lineage-specific factors such as KLF1 produce tightly coordinated responses. After controlling for magnitude, geometric instability is independently associated with elevated chaperone activation (HSPA5/BiP; $ρ_{partial}=-0.34$ and $-0.21$ across datasets), and the high-stability/high-stress quadrant is systematically depleted. The magnitude-stability relationship persists in scGPT foundation model embeddings, confirming it is a property of biological state space rather than linear projection. Perturbation stability provides a complementary axis for hit prioritization in screens, phenotypic quality control in cell manufacturing, and evaluation of in silico perturbation predictions.",
+      "authors": [
+        "Prashant C. Raju"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "q-bio.CB",
+        "q-bio.GN",
+        "stat.AP"
+      ],
+      "published": "2026-04-17T19:01:05+00:00",
+      "link": "https://arxiv.org/pdf/2604.16642v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Genome engineering and single-cell CRISPR screens",
+      "llm_evidence_cn": "基因组工程与单细胞CRISPR筛选",
+      "llm_evidence": "基因组工程与单细胞CRISPR筛选",
+      "canonical_evidence": "基因组工程与单细胞CRISPR筛选",
+      "llm_tldr_en": "Introduces Shesha, a metric to quantify directional coherence in single-cell CRISPR perturbation responses.",
+      "llm_tldr_cn": "引入了Shesha指标，用于量化单细胞CRISPR扰动响应中的方向一致性。",
+      "llm_tldr": "引入了Shesha指标，用于量化单细胞CRISPR扰动响应中的方向一致性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.16685v1",
+      "title": "Graph Transformer-Based Pathway Embedding for Cancer Prognosis",
+      "abstract": "Accurate prediction of cancer progression remains a challenge due to the high heterogeneity of molecular omics data across patients. While biologically informed models have improved the interpretability of these predictions, a persistent limitation lies in how they encode individual genes to construct pathway representations. Existing hierarchical models typically derive gene features by directly mapping raw molecular inputs, whereas integration frameworks often rely on simple statistical aggregations of patient-level signals. These approaches often fail to explicitly learn a shared base representation for each gene, thereby limiting the expressiveness and biological accuracy of downstream pathway embeddings. To address this, we introduce PATH, a modulation-based, patient-conditioned gene embedding strategy. PATH represents a paradigm shift by starting from a shared base embedding for each gene, preserving a stable biological identity across the population, and then dynamically adapting it using patient-specific copy number variation (CNV) and mutation signals. This allows the model to capture subtle individual molecular variations while maintaining a consistent latent understanding of the gene itself. We integrate PATH into a graph transformer framework that models interactions among biologically connected pathways through pathway-guided attention. Across pancancer metastasis prediction, PATH achieves an F1 score of 0.8766, representing an 8.8 percent improvement over the current SOTA multi-omics benchmarks. Beyond superior predictive accuracy, our approach identifies biologically meaningful pathways and, crucially, reveals disease-state-specific pathway rewiring, offering new insights into the evolving pathway-pathway interactions that drive cancer progression.",
+      "authors": [
+        "Koushik Howlader",
+        "Md Tauhidul Islam",
+        "Wei Le"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-17T20:41:58+00:00",
+      "link": "https://arxiv.org/pdf/2604.16685v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI-based pathway embedding for molecular omics data",
+      "llm_evidence_cn": "基于AI的分子组学数据通路嵌入",
+      "llm_evidence": "基于AI的分子组学数据通路嵌入",
+      "canonical_evidence": "基于AI的分子组学数据通路嵌入",
+      "llm_tldr_en": "Introduces a Graph Transformer-based model to learn gene representations from omics data for cancer prognosis.",
+      "llm_tldr_cn": "引入了一种基于图变换器的模型，从组学数据中学习基因表征以进行癌症预后。",
+      "llm_tldr": "引入了一种基于图变换器的模型，从组学数据中学习基因表征以进行癌症预后。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.16776v1",
+      "title": "SAVE: A Generalizable Framework for Multi-Condition Single-Cell Generation with Gene Block Attention",
+      "abstract": "Modeling single-cell gene expression across diverse biological and technical conditions is crucial for characterizing cellular states and simulating unseen scenarios. Existing methods often treat genes as independent tokens, overlooking their high-level biological relationships and leading to poor performance. We introduce SAVE, a unified generative framework based on conditional Transformers for multi-condition single-cell modeling. SAVE leverages a coarse-grained representation by grouping semantically related genes into blocks, capturing higher-order dependencies among gene modules. A Flow Matching mechanism and condition-masking strategy further enhance flexible simulation and enable generalization to unseen condition combinations. We evaluate SAVE on a range of benchmarks, including conditional generation, batch effect correction, and perturbation prediction. SAVE consistently outperforms state-of-the-art methods in generation fidelity and extrapolative generalization, especially in low-resource or combinatorially held-out settings. Overall, SAVE offers a scalable and generalizable solution for modeling complex single-cell data, with broad utility in virtual cell synthesis and biological interpretation. Our code is publicly available at https://github.com/fdu-wangfeilab/sc-save",
+      "authors": [
+        "Jiahao Li",
+        "Jiayi Dong",
+        "Peng Ye",
+        "Xiaochi Zhou",
+        "Haohai Lu",
+        "Fei Wang"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-18T01:45:16+00:00",
+      "link": "https://arxiv.org/pdf/2604.16776v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for single-cell gene expression modeling",
+      "llm_evidence_cn": "利用AI进行单细胞基因表达建模",
+      "llm_evidence": "利用AI进行单细胞基因表达建模",
+      "canonical_evidence": "利用AI进行单细胞基因表达建模",
+      "llm_tldr_en": "Introduces a Transformer-based AI framework for simulating single-cell gene expression across conditions.",
+      "llm_tldr_cn": "引入了一种基于Transformer的AI框架，用于模拟不同条件下的单细胞基因表达。",
+      "llm_tldr": "引入了一种基于Transformer的AI框架，用于模拟不同条件下的单细胞基因表达。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2604.16896v1",
+      "title": "ProtoCycle: Reflective Tool-Augmented Planning for Text-Guided Protein Design",
+      "abstract": "Designing proteins that satisfy natural language functional requirements is a central goal in protein engineering. A straightforward baseline is to fine-tune generic instruction-tuned LLMs as direct text-to-sequence generators, but this is data- and compute-hungry. With limited supervision, LLMs can produce coherent plans in text yet fail to reliably realize them as sequences. This plan-execute gap motivates ProtoCycle, an agentic framework for protein design that uses LLMs primarily to drive a multi-round, feedback-driven decision cycle. ProtoCycle couples an LLM planner with a lightweight tool environment designed to emulate the iterative workflow of human protein engineering and uses LLM-driven reflection on tool feedback to revise plans. Trained with supervised trajectories and online reinforcement learning, ProtoCycle achieves strong language alignment while maintaining competitive foldability, and ablations show that reflection substantially improves sequence quality.",
+      "authors": [
+        "Yutang Ge",
+        "Guojiang Zhao",
+        "Sihang Li",
+        "Zheng Cheng",
+        "Zifeng Zhao",
+        "Hanchen Xia",
+        "Guolin Ke",
+        "Linfeng Zhang",
+        "Zhifeng Gao",
+        "Yuguang Wang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.AI"
+      ],
+      "published": "2026-04-18T08:09:10+00:00",
+      "link": "https://arxiv.org/pdf/2604.16896v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven agentic framework for protein design",
+      "llm_evidence_cn": "AI驱动的蛋白质设计代理框架",
+      "llm_evidence": "AI驱动的蛋白质设计代理框架",
+      "canonical_evidence": "AI驱动的蛋白质设计代理框架",
+      "llm_tldr_en": "Introduces ProtoCycle, an LLM-based agentic framework for iterative, feedback-driven protein sequence design.",
+      "llm_tldr_cn": "引入了ProtoCycle，一个基于大模型的代理框架，用于迭代反馈驱动的蛋白质序列设计。",
+      "llm_tldr": "引入了ProtoCycle，一个基于大模型的代理框架，用于迭代反馈驱动的蛋白质序列设计。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.11483v1",
+      "title": "CAGenMol: Condition-Aware Diffusion Language Model for Goal-Directed Molecular Generation",
+      "abstract": "Goal-directed molecular generation requires satisfying heterogeneous constraints such as protein--ligand compatibility and multi-objective drug-like properties, yet existing methods often optimize these constraints in isolation, failing to reconcile conflicting objectives (e.g., affinity vs. safety), and struggle to navigate the non-differentiable chemical space without compromising structural validity. To address these challenges, we propose CAGenMol, a condition-aware discrete diffusion framework over molecular sequences that formulates molecular design as conditional denoising guided by heterogeneous structural and property signals. By coupling discrete diffusion with reinforcement learning, the model aligns the generation trajectory with non-differentiable objectives while preserving chemical validity and diversity. The non-autoregressive nature of diffusion language model further enables iterative refinement of molecular fragments at inference time. Experiments on structure-conditioned, property-conditioned, and dual-conditioned benchmarks demonstrate consistent improvements over state-of-the-art methods in binding affinity, drug-likeness, and success rate, highlighting the effectiveness of our framework.",
+      "authors": [
+        "Yanting Li",
+        "Zhuoyang Jiang",
+        "Enyan Dai",
+        "Lei Wang",
+        "Wen-Cai Ye",
+        "Li Liu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-13T13:49:23+00:00",
+      "link": "https://arxiv.org/pdf/2604.11483v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for goal-directed molecular generation and protein-ligand compatibility",
+      "llm_evidence_cn": "用于目标导向分子生成和蛋白质-配体兼容性的 AI",
+      "llm_evidence": "用于目标导向分子生成和蛋白质-配体兼容性的 AI",
+      "canonical_evidence": "用于目标导向分子生成和蛋白质-配体兼容性的 AI",
+      "llm_tldr_en": "A diffusion framework for molecular design guided by structural and property signals.",
+      "llm_tldr_cn": "一种由结构和属性信号引导的分子设计扩散框架。",
+      "llm_tldr": "一种由结构和属性信号引导的分子设计扩散框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18477v1",
+      "title": "Multi-Scale Reversible Chaos Game Representation: A Unified Framework for Sequence Classification",
+      "abstract": "Biological classification with interpretability remains a challenging task. For this, we introduce a novel encoding framework, Multi-Scale Reversible Chaos Game Representation (MS-RCGR), that transforms biological sequences into multi-resolution geometric representations with guaranteed reversibility. Unlike traditional sequence encoding methods, MS-RCGR employs rational arithmetic and hierarchical k-mer decomposition to generate scale-invariant features that preserve complete sequence information while enabling diverse analytical approaches. Our framework bridges three distinct paradigms for sequence analysis: (1) traditional machine learning using extracted geometric features, (2) computer vision models operating on CGR-generated images, and (3) hybrid approaches combining protein language model embeddings with CGR features. Through comprehensive experiments on synthetic DNA and protein datasets encompassing seven distinct sequence classes, we demonstrate that MS-RCGR features consistently enhance classification performance across all paradigms. Notably, our hybrid approach combining pre-trained language model embeddings (ESM2, ProtT5) with MS-RCGR features achieves superior performance compared to either method alone. The reversibility property of our encoding ensures no information loss during transformation, while multi-scale analysis captures patterns ranging from individual nucleotides to complex motif structures. Our results indicate that MS-RCGR provides a flexible, interpretable, and high-performing foundation for biological sequence analysis.",
+      "authors": [
+        "Sarwan Ali",
+        "Taslim Murad"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-20T16:28:28+00:00",
+      "link": "https://arxiv.org/pdf/2604.18477v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI framework for biological sequence classification and k-mer decomposition",
+      "llm_evidence_cn": "用于生物序列分类和k-mer分解的AI框架",
+      "llm_evidence": "用于生物序列分类和k-mer分解的AI框架",
+      "canonical_evidence": "用于生物序列分类和k-mer分解的AI框架",
+      "llm_tldr_en": "A unified encoding framework for biological sequence classification using geometric representations.",
+      "llm_tldr_cn": "一种利用几何表示进行生物序列分类的统一编码框架。",
+      "llm_tldr": "一种利用几何表示进行生物序列分类的统一编码框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "8plus"
+    },
+    {
+      "id": "2604.17175v1",
+      "title": "RosettaSearch: Multi-Objective Inference-Time Search for Protein Sequence Design",
+      "abstract": "We introduce RosettaSearch, an inference-time multi-objective optimization approach for protein sequence optimization. We use large language models (LLMs) as a generative optimizer within a search algorithm capable of controlled exploration and exploitation, using rewards computed from RosettaFold3, a structure prediction model. In a large-scale evaluation, we apply RosettaSearch to 400 suboptimal sequences generated by LigandMPNN (a state-of-the-art model trained for protein sequence design), recovering high-fidelity designs that LigandMPNN's single-pass decoding fails to produce. RosettaSearch's designs show improvements in structural fidelity metrics ranging between 18\\% to 68\\%, translating to a 2.5$\\times$ improvement in design success rate. We observe that these gains in success rate are robust when RosettaSearch-designed sequences are evaluated with an independent structure prediction oracle (Chai-1) and generalize across two distinct LLM families (o4-mini and Gemini-3), with performance scaling consistently with reasoning capability. We further demonstrate that RosettaSearch improves sequence fidelity for ProteinMPNN-designed sequences on \\textit{de novo} backbones from the Dayhoff atlas, showing that the approach generalizes beyond native protein structures to computationally generated backbones. We also demonstrate a multi-modal extension of RosettaSearch with vision-language models, where images of predicted protein structures are used as feedback to incorporate structural context to guide protein sequence generation. The sequence trajectories generated by our approach can be used as training data in sequence design models or in post-training and will be released along with the code and datasets upon publication.",
+      "authors": [
+        "Meghana Kshirsagar",
+        "Allen Nie",
+        "Ching-An Cheng",
+        "Fanglei Xue",
+        "Rahul Dodhia",
+        "Juan Lavista Ferres",
+        "Kevin K. Yang",
+        "Frank DiMaio"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.BM"
+      ],
+      "published": "2026-04-19T00:20:18+00:00",
+      "link": "https://arxiv.org/pdf/2604.17175v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven protein sequence optimization and design",
+      "llm_evidence_cn": "利用AI进行蛋白质序列优化与设计",
+      "llm_evidence": "利用AI进行蛋白质序列优化与设计",
+      "canonical_evidence": "利用AI进行蛋白质序列优化与设计",
+      "llm_tldr_en": "Introduces RosettaSearch, an LLM-based optimizer for high-fidelity protein sequence design.",
+      "llm_tldr_cn": "引入RosettaSearch，一种基于大语言模型的蛋白质序列优化方法，提升设计成功率。",
+      "llm_tldr": "引入RosettaSearch，一种基于大语言模型的蛋白质序列优化方法，提升设计成功率。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.13657v1",
+      "title": "Hierarchical Bayesian calibration of mesoscopic models for ultrasound contrast agents from force spectroscopy data",
+      "abstract": "Ultrasound-guided drug and gene delivery (USDG) is a promising non-invasive approach for targeted therapeutic applications. Mechanical properties of encapsulated microbubbles (EMBs), which serve as contrast agents, strongly affect their specific interactions with ultrasound and are thus critical to the success and efficiency of USDG. Accurate calibration of high-fidelity particle-based models of EMB capsid mechanics is computationally challenging because direct Bayesian inference with dissipative particle dynamics (DPD) is prohibitively expensive. We employ a surrogate-accelerated Bayesian calibration workflow that combines deep neural network (DNN) surrogates, transitional Markov chain Monte Carlo sampling, and hierarchical regularization across EMB diameters. Using this framework, we develop two data-informed DPD models of commercial EMB agents, i.e., Definity and SonoVue, and perform inference of force field parameters based on published compression experiments for Definity and indentation experiments for SonoVue, each spanning three distinct diameters. The inferred posteriors show that key model parameters, such as the stretching stiffness and bending modulus, are consistently constrained by the available data. The presented methodology can be used to derive bespoke, data-informed models for a wide range of ultrasound contrast agents, including encapsulated gas vesicles, EMBs with diverse capsids consisting of lipids, proteins, or polymers, and functionalized with ligands.",
+      "authors": [
+        "Brieuc Benvegnen",
+        "Nikolaos Ntarakas",
+        "Tilen Potisk",
+        "Ignacio Pagonabarraga",
+        "Matej Praprotnik"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft",
+        "cond-mat.mes-hall",
+        "physics.bio-ph",
+        "physics.comp-ph"
+      ],
+      "published": "2026-04-15T09:21:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.13657v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven Bayesian calibration for gene delivery models",
+      "llm_evidence_cn": "AI驱动的基因递送模型贝叶斯校准",
+      "llm_evidence": "AI驱动的基因递送模型贝叶斯校准",
+      "canonical_evidence": "AI驱动的基因递送模型贝叶斯校准",
+      "llm_tldr_en": "Uses deep learning surrogates to calibrate models for ultrasound-guided drug and gene delivery.",
+      "llm_tldr_cn": "利用深度学习代理模型校准超声引导药物和基因递送的力学模型。",
+      "llm_tldr": "利用深度学习代理模型校准超声引导药物和基因递送的力学模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18185v1",
+      "title": "Noise-Driven Differentiation via Gene Frustration and Epigenetic Fixation",
+      "abstract": "Gene expression in cells is stochastic, yet differentiation is robust. We propose a mechanism in which frustrated genes with weakly stable intermediate expression undergo noise-driven switching between basins of attraction, followed by irreversible fate fixation through slow epigenetic feedback. Regulatory interactions amplify effective noise and promote differentiation. We derive analytic expression for the logarithmic dependence of differentiation time on noise strength and input-dependent cell-fate selection, and demonstrate homeorhesis, the dynamical robustness of the epigenetic landscape.",
+      "authors": [
+        "Davey Plugers",
+        "Kunihiko Kaneko"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "q-bio.MN"
+      ],
+      "published": "2026-04-20T12:42:12+00:00",
+      "link": "https://arxiv.org/pdf/2604.18185v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "molecular mechanisms of gene expression and epigenetic fixation",
+      "llm_evidence_cn": "基因表达与表观遗传固定的分子机制",
+      "llm_evidence": "基因表达与表观遗传固定的分子机制",
+      "canonical_evidence": "基因表达与表观遗传固定的分子机制",
+      "llm_tldr_en": "Proposes a mechanism for robust cell differentiation via gene frustration and epigenetic feedback.",
+      "llm_tldr_cn": "提出了一种通过基因挫败和表观遗传反馈实现稳健细胞分化的机制。",
+      "llm_tldr": "提出了一种通过基因挫败和表观遗传反馈实现稳健细胞分化的机制。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.16550v1",
+      "title": "An Interpretable Framework Applying Protein Words to Predict Protein-Small Molecule Complementary Pairing Rules",
+      "abstract": "Despite the high accuracy of 'black box' deep learning models, drug discovery still relies on protein-ligand interaction principles and heuristics. To improve interpretability of protein-small molecule binding predictions, we developed the PWRules framework, which applies binding affinity data to identify privileged small molecule fragments and subsequently defines complementary pairing rules between these fragments and protein words (semantic sequence units) through an interpretability module. The resulting word-fragment rules are then ranked by the PWScore function to prioritize active compounds. Evaluations on benchmark datasets show that PWScore achieves competitive performance comparable to the physics-based model (Glide) and the deep learning model (PSICHIC) and shows broad applicability for protein targets outside the training dataset, e.g., SARS-CoV-2 main protease. Notably, PWScore captures complementary interaction information, yielding superior enrichment performance when integrated with these established methods. Structural analysis of protein-ligand complexes indicates that learned word-fragment rules are significantly enriched near ligand-binding pockets, despite training without explicit structural guidance. By extracting and applying complementary pairing rules, PWRules provides an interpretable framework for drug discovery.",
+      "authors": [
+        "Jingke Chen",
+        "Jingrui Zhong",
+        "Tazneen Hossain Tani",
+        "Zidong Su",
+        "Xiaochun Zhang",
+        "Boxue Tian"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-17T06:56:00+00:00",
+      "link": "https://arxiv.org/pdf/2604.16550v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI framework for predicting protein-small molecule pairing rules",
+      "llm_evidence_cn": "用于预测蛋白质-小分子配对规则的AI框架",
+      "llm_evidence": "用于预测蛋白质-小分子配对规则的AI框架",
+      "canonical_evidence": "用于预测蛋白质-小分子配对规则的AI框架",
+      "llm_tldr_en": "Develops PWRules to improve interpretability in protein-ligand interaction predictions for drug discovery.",
+      "llm_tldr_cn": "开发PWRules框架以提高药物发现中蛋白质-配体相互作用预测的可解释性。",
+      "llm_tldr": "开发PWRules框架以提高药物发现中蛋白质-配体相互作用预测的可解释性。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18361v1",
+      "title": "Neutrally Evolving Interlocking Complexity in the Quandary Den",
+      "abstract": "Molecular biology features numerous complexes of proteins that coordinate in an interlocking fashion to fulfill different functions. Adaptive evolution explains some of this complexity, but needn't be the default when neutral explanations suffice. A new artificial life model ``organism,'' the Quandary Den, is introduced to explore different neutral evolution scenarios where complexity increases in the absence of greater informational needs. Two interlocking complexity scenarios emerge. Subfunctionalization leads to functionality diffusing through the complex. Masking allows intracomplex interference to accumulate genetically, requiring that it be blocked at the level of expression.",
+      "authors": [
+        "Andrew Walsh"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE"
+      ],
+      "published": "2026-04-20T14:51:20+00:00",
+      "link": "https://arxiv.org/pdf/2604.18361v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "neutral evolution of protein complexes and subfunctionalization",
+      "llm_evidence_cn": "蛋白质复合物的中性演化与亚功能化",
+      "llm_evidence": "蛋白质复合物的中性演化与亚功能化",
+      "canonical_evidence": "蛋白质复合物的中性演化与亚功能化",
+      "llm_tldr_en": "Explores how protein complex complexity increases through neutral evolution and subfunctionalization.",
+      "llm_tldr_cn": "探讨了蛋白质复合物如何通过中性演化和亚功能化增加复杂性。",
+      "llm_tldr": "探讨了蛋白质复合物如何通过中性演化和亚功能化增加复杂性。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "complex gene evolution mechanisms",
+      "matched_requirement_id": "req-12",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.16648v1",
+      "title": "FRIGID: Scaling Diffusion-Based Molecular Generation from Mass Spectra at Training and Inference Time",
+      "abstract": "In this work, we present FRIGID, a framework with a novel diffusion language model that generates molecular structures conditioned on mass spectra via intermediate fingerprint representations and determined chemical formulae, training at the scale of hundreds of millions of unlabeled structures. We then demonstrate how forward fragmentation models enable inference-time scaling by identifying spectrum-inconsistent fragments and refining them through targeted remasking and denoising. While FRIGID already achieves strong performance with its diffusion base, inference-time scaling significantly improves its accuracy, surpassing 18% Top-1 accuracy on the challenging MassSpecGym benchmark and tripling the Top-1 accuracy of the leading methods on NPLIB1. Further empirical analyses show that FRIGID exhibits log-linear performance scaling with increasing inference-time compute, opening a promising new direction for continued improvements in de novo structural elucidation. FRIGID code is publicly available at https://github.com/coleygroup/FRIGID",
+      "authors": [
+        "Montgomery Bohde",
+        "Hongxuan Liu",
+        "Mrunali Manjrekar",
+        "Magdalena Lederbauer",
+        "Shuiwang Ji",
+        "Runzhong Wang",
+        "Connor W. Coley"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-17T19:11:18+00:00",
+      "link": "https://arxiv.org/pdf/2604.16648v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven molecular generation from mass spectra",
+      "llm_evidence_cn": "AI 驱动的基于质谱的分子生成",
+      "llm_evidence": "AI 驱动的基于质谱的分子生成",
+      "canonical_evidence": "AI 驱动的基于质谱的分子生成",
+      "llm_tldr_en": "Presents a diffusion language model for generating molecular structures from mass spectrometry data.",
+      "llm_tldr_cn": "提出了一种利用质谱数据生成分子结构的扩散语言模型。",
+      "llm_tldr": "提出了一种利用质谱数据生成分子结构的扩散语言模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18559v1",
+      "title": "ConforNets: Latents-Based Conformational Control in OpenFold3",
+      "abstract": "Models from the AlphaFold (AF) family reliably predict one dominant conformation for most well-ordered proteins but struggle to capture biologically relevant alternate states. Several efforts have focused on eliciting greater conformational variability through ad hoc inference-time perturbations of AF models or their inputs. Despite their progress, these approaches remain inefficient and fail to consistently recover major conformational modes. Here, we investigate both the optimal location and manner-of-operation for perturbing latent representations in the AF3 architecture. We distill our findings in ConforNets: channel-wise affine transforms of the pre-Pairformer pair latents. Unlike previous methods, ConforNets globally modulate AF3 representations, making them reusable across proteins. On unsupervised generation of alternate states, ConforNets achieve state-of-the-art success rates on all existing multi-state benchmarks. On the novel supervised task of conformational transfer, ConforNets trained on one source protein can induce a conserved conformational change across a protein family. Collectively, these results introduce a mechanism for conformational control in AF3-based models.",
+      "authors": [
+        "Minji Lee",
+        "Colin Kalicki",
+        "Minkyu Jeon",
+        "Aymen Qabel",
+        "Alisia Fadini",
+        "Mohammed AlQuraishi"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cs.LG"
+      ],
+      "published": "2026-04-20T17:47:31+00:00",
+      "link": "https://arxiv.org/pdf/2604.18559v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-based protein conformation prediction using AlphaFold3 architecture",
+      "llm_evidence_cn": "基于AlphaFold3架构的AI蛋白质构象预测研究",
+      "llm_evidence": "基于AlphaFold3架构的AI蛋白质构象预测研究",
+      "canonical_evidence": "基于AlphaFold3架构的AI蛋白质构象预测研究",
+      "llm_tldr_en": "Introduces ConforNets to improve AlphaFold3's ability to predict diverse protein conformational states.",
+      "llm_tldr_cn": "引入ConforNets以增强AlphaFold3预测蛋白质多种构象状态的能力。",
+      "llm_tldr": "引入ConforNets以增强AlphaFold3预测蛋白质多种构象状态的能力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.16851v1",
+      "title": "Applications of deep generative models to DNA reaction kinetics and to cryogenic electron microscopy",
+      "abstract": "This dissertation explores how deep generative models can advance the analysis of challenging biological problems by integrating domain knowledge with deep learning. It focuses on two areas: DNA reaction kinetics and cryogenic electron microscopy (cryo-EM). In the first part, we present ViDa, a biophysics-informed framework leveraging variational autoencoders (VAEs) and geometric scattering transforms to generate biophysically-plausible embeddings of DNA reaction kinetics simulations. These embeddings are reduced to a two-dimensional space to visualize DNA hybridization and toehold-mediated strand displacement reactions. ViDa preserves structure and clusters trajectory ensembles into reaction pathways, making simulation results more interpretable and revealing new mechanistic insights. In the second part, we address key challenges in cryo-EM density map interpretation and protein structure modeling. We provide a comprehensive review and benchmarking of deep learning methods for atomic model building, with improved evaluation metrics and practical guidance. We then present Struc2mapGAN, a generative adversarial network that synthesizes high-fidelity experimental-like cryo-EM density maps from protein structures. Finally, we present CryoSAMU, a structure-aware multimodal U-Net that enhances intermediate-resolution cryo-EM maps by integrating density features with structural embeddings from protein language models via cross-attention. Overall, these contributions demonstrate the potential of deep generative models to interpret DNA reaction mechanisms and advance cryo-EM density map analysis and protein structure modeling.",
+      "authors": [
+        "Chenwei Zhang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CV",
+        "q-bio.BM",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-18T05:57:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.16851v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "deep generative models for DNA reaction kinetics",
+      "llm_evidence_cn": "用于DNA反应动力学的深度生成模型",
+      "llm_evidence": "用于DNA反应动力学的深度生成模型",
+      "canonical_evidence": "用于DNA反应动力学的深度生成模型",
+      "llm_tldr_en": "Applies deep generative models to analyze DNA reaction kinetics and biological structures.",
+      "llm_tldr_cn": "应用深度生成模型分析DNA反应动力学和生物结构。",
+      "llm_tldr": "应用深度生成模型分析DNA反应动力学和生物结构。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.17629v1",
+      "title": "BioVLM: Routing Prompts, Not Parameters, for Cross-Modality Generalization in Biomedical VLMs",
+      "abstract": "Pretrained biomedical vision-language models (VLMs) such as BioMedCLIP perform well on average but often degrade on challenging modalities where inter-class margins are small and acquisition-specific variations are pronounced, especially under few-shot supervision and when modality priors differ from pretraining corpora substantially. We propose BioVLM, a prompt-learning framework that improves cross-domain generalization without extensive backbone fine-tuning. BioVLM learns a diverse prompt bank and introduces dynamic prompt selection: for each input, it selects the most discriminative prompts via a low-entropy criterion on the predictive distribution, effectively coupling sparse few-shot evidence with rich LLM semantic priors. To strengthen this coupling, we distill high-confidence LLM-derived attributes and enforce robust knowledge transfer through strong/weak augmentation consistency. At test time, BioVLM adapts by choosing modality-appropriate prompts, enabling transfer to unseen categories and domains, while keeping training lightweight and inference efficient. On 11 MedMNIST+ 2D datasets, BioVLM achieves new state of the art across three distinct generalization settings. Codes are available at https://github.com/mainaksingha01/BioVLM.",
+      "authors": [
+        "Mainak Singha",
+        "Tanisha Gupta",
+        "Ankit Jha",
+        "Muhammad Haris Khan",
+        "Sayantani Ghosh",
+        "Biplab Banerjee"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-19T21:54:53+00:00",
+      "link": "https://arxiv.org/pdf/2604.17629v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Biomedical vision-language models for cross-modality generalization",
+      "llm_evidence_cn": "用于跨模态泛化的生物医学视觉语言模型",
+      "llm_evidence": "用于跨模态泛化的生物医学视觉语言模型",
+      "canonical_evidence": "用于跨模态泛化的生物医学视觉语言模型",
+      "llm_tldr_en": "Improves cross-domain generalization in biomedical VLMs using dynamic prompt selection.",
+      "llm_tldr_cn": "通过动态提示选择改进生物医学视觉语言模型的跨领域泛化能力。",
+      "llm_tldr": "通过动态提示选择改进生物医学视觉语言模型的跨领域泛化能力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

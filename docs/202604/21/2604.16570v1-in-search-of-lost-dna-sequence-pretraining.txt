@@ -1,0 +1,1004 @@
+Title: In Search of Lost DNA Sequence Pretraining
+
+URL Source: https://arxiv.org/pdf/2604.16570v1
+
+Published Time: Tue, 21 Apr 2026 00:10:07 GMT
+
+Number of Pages: 16
+
+Markdown Content:
+# In Search of Lost DNA Sequence Pretraining 
+
+## Zhijiang Tang 1,2∗, Jiaxin Qi 1,2∗, Yan Cui 2, Jinli Ou 2, Yuhua Zheng 2, Jianqiang Huang 1,2†
+
+1Computer Network Information Center, Chinese Academy of Sciences, Beijing, China 
+
+2Hangzhou Institute for Advanced Study, University of Chinese Academy of Sciences, Zhejiang, China 
+
+tangzhijiang24@mails.ucas.ac.cn, jxqi@cnic.cn, cuiyan.ch@gmail.com, oujinli@zuaa.zju.edu.cn, zhengyuhua@ucas.ac.cn, jqhuang@cnic.cn 
+
+## Abstract 
+
+DNA sequence encoding is fundamental to gene function prediction, protein synthesis, and diverse downstream bi-ological tasks. Despite the substantial progress achieved by large-scale DNA sequence pretraining, existing stud-ies have overwhelmingly emphasized pretraining scale and custom downstream evaluation datasets, while neglecting some essential components of the pretraining paradigm. In this paper, we reveal three critical yet heretofore overlooked problems in DNA pretraining: inappropriate downstream datasets, inherent flaws in the neighbor-masking strategy, and the lack of detailed discussion on vocabulary. There-fore, we undertake comprehensive investigations and pro-pose principled guidelines, including selection criteria for evaluation datasets, guiding task design, and in-depth vo-cabulary analysis. Extensive experiments validate the sig-nificance of our identified problems and support the ratio-nale behind our recommendations. Finally, we introduce a standardized testbed that enables reproducible and rigor-ous benchmarking of DNA pretraining methods to advance the development of genomic foundation models. 
+
+## 1. Introduction 
+
+Encoding DNA sequences—“the language of life”—is es-sential for a wide range of downstream biological tasks, such as regulatory element identification [4] and functional variant prediction [38]. Motivated by the success of large-scale pretraining in natural language processing, recent works have introduced similar strategies for DNA represen-tation learning, reporting notable gains on their downstream benchmarks [3, 17, 24]. However, existing studies have primarily focused either on scaling pretraining—by increasing data volume [3, 25] or expanding model capacity [5]—or on designing tailored 
+
+> 1
+
+Equal contribution. 
+
+> 2
+
+Corresponding authors. ER           
+
+> K27a
+> K27m3
+> K36m3
+> K4m1
+> K4m2
+> K4m3
+> K9a
+> K9m3
+> OCR
+> Z
+> PT
+> SSAcc
+> SSAll
+> SSD
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> DNABERT MLP
+> DNA Pretraining Model
+> A
+> T
+> G
+> C
+> C
+> G
+> G
+> CT
+> AC
+> G
+> T
+> A
+> C
+> G
+> A
+> T
+> T
+> A
+> C
+> G
+> C
+> G
+> C
+> G
+> C
+> G
+> T
+> A
+> (a) DNA Pretraining for Downstream Tasks
+> (b) Inappropriate Downstream Datasets
+> Unstable Invalid
+> Enhancer
+> Annotation
+> Histone
+> Modification
+> Promoter
+> Identification
+> 𝓛 𝑴𝑻𝑷
+> ATC AGG [CLS] GAG CGA TCG
+> Leakage Mask Special Token
+> Mask Tokens
+> Neighbor -
+> Masking Strategy
+> Pretraining Loss
+> Overlapping
+> 3-mer Tokenize
+> AGG [CLS] GAG CGA TCG [MASK]
+> AGG GAG CGA [MASK] [MASK] [MASK]
+> (c) Two Implementation Flaws
+> Performance (%)
+> Dataset
+> Performance Drop
+> Performance Variance DNABERT
+> MLP
+
+Figure 1. (a) Overview of DNA pretraining and its downstream ap-plications. (b) Illustrations of model performance on inappropriate downstream datasets. (c) Two implementation flaws in neighbor-masking [17]: information leakage and incorrect masking of spe-cial tokens. 
+
+downstream evaluation benchmarks [23], while overlook-ing fundamental principles of DNA pretraining. For ex-ample, as shown in Figure 1, The pretrained model un-derperforms a simple baseline across several custom down-stream datasets, and more concerningly, the widely adopted neighbor-masking strategy exhibits implementation flaws. In this paper, through in-depth analysis and extensive exper-imental studies, we uncover three critical yet underexplored issues in current DNA pretraining paradigms: (a) the use of inappropriate downstream evaluation datasets, (b) imple-mentation flaws in the neighbor-masking strategy and the ensuing challenges when these flaws are addressed, and (c) 1
+
+> arXiv:2604.16570v1 [cs.LG] 17 Apr 2026
+
+the absence of comprehensive discussions on DNA vocab-ulary construction. Building on these insights, we propose concrete recommendations to mitigate these issues and es-tablish better practices for robust DNA pretraining. 
+
+(a) Inappropriate Downstream Datasets . Unlike pre-training in natural language processing, where generated text provides humans with an intuitive measure of model quality, DNA sequences consist of obscure nucleotides (i.e., A, T, C, G), and consequently, the effectiveness of DNA pretraining models can be evaluated only through down-stream tasks. Surprisingly, existing methods largely over-look this critical context and often resort to indiscriminate use of biologist-provided datasets without careful selection. For example, as shown in Figure 1(b), we find that some downstream benchmarks exhibit high instability: identical experiments with different random seeds produce substan-tial variance, likely due to noisy or poorly curated data. Furthermore, in some downstream datasets, large-scale pre-trained models even fail to outperform simple end-to-end baselines, and some datasets contradict the established pre-training scaling law (i.e., increased pretraining scale should improve performance), suggesting potentially overly sim-plistic or biased data in these benchmarks. Such phenom-ena severely undermine the validity of model evaluations and raise significant concerns regarding the claimed advan-tages of current pretraining methods. To address this issue, we introduce two objective cri-teria for selecting downstream benchmarks: (1) stability, which ensures consistent model performance across mul-tiple runs; and (2) validity, which requires that pretrained models outperform simple downstream baselines and ad-here to the scaling law. Additionally, we formalize clear filtering guidelines based on these criteria and conduct ex-tensive experiments, retaining only those datasets that reli-ably and meaningfully evaluate DNA pretraining methods. 
+
+(b) Implementation Flaws in Neighbor-Masking . Since DNA is composed of only four nucleotides, it is typically to-kenized using the k-mer strategy [33]. For example, “ATC” is treated as a single token in the 3-mer DNA tokenizer. To prevent word-like splitting from disrupting the inherent meaning of the DNA sequence, the k-mer strategy is often implemented together with overlapping windows [2]. How-ever, this leads to information leakage between neighbor to-kens when applying the masked token prediction strategy during training. As shown in Figure 1(c), when encoding “ATCG” into two overlapping tokens “ATC” and “TCG”, masking “ATC” as prediction target and providing “TCG”, the overlapping “TC” will leak to the model. To address this problem, a neighbor-masking strategy has been pro-posed [17], in which both the token and its neighbors are masked. However, we identify two critical flaws in its cur-rent implementation, illustrated in Figure 1(c): (1) incom-plete neighbor-masking, where masked tokens at the edges still suffer from leakage when used as prediction targets; and (2) incorrect masking of special tokens, where code er-rors result in special tokens, such as the [CLS] token, being mistakenly masked, which is meaningless for learning in DNA pretraining. Interestingly, we find that these flaws coincidentally fa-cilitate DNA pretraining, as correcting them leads to model convergence failure under the same experimental settings. This may be because the leakage and meaningless special token prediction reduce the training complexity. Therefore, we introduce the guiding task strategy to reveal the nature of such phenomena. Further experiments are conducted to val-idate the rationale behind our findings, demonstrating that our proposed strategy realizes better model optimization. 
+
+(c) Vocabulary Construction . Current approaches to con-structing DNA vocabularies directly adopt methods from natural language processing, such as n-grams [22] and byte pair encoding (BPE) [30]. However, there are inherent dif-ferences between DNA sequences and language. In natural language, vocabularies are built around semantics, whether by merging multiple words in n-grams or identifying sub-words in BPE. In contrast, DNA sequences are composed of nucleotides, which can be viewed as characters in NLP, but do not inherently carry semantic meaning. Moreover, the semantic units in DNA sequences remain poorly defined and understudied, necessitating more in-depth exploration. Thus, we conducted a systematic analysis of existing DNA vocabularies based on our proposed testbed, performing a fine-grained investigation into token frequencies and learn-ing difficulties. From this, we distilled several principles, which we hope will guide future research on DNA seman-tic vocabulary construction. Our main contributions can be summarized as follows: 1. Through comprehensive analysis, we identify three crit-ical yet overlooked issues in current DNA pretraining: (a) inappropriate downstream datasets, (b) implementa-tion flaws in neighbor-masking, and (c) insufficient dis-cussion on vocabulary construction. 2. We propose corresponding solutions: (a) two criteria for dataset selection, (b) the guiding task strategy, and (c) principles for DNA vocabulary construction. 3. We conduct extensive comparative experiments, and the results validate the rationale behind our findings and the effectiveness of our recommendations. Our proposed re-producible and robust testbed provides a solid founda-tion for advancing DNA pretraining research. 
+
+Code: https://github.com/ZhijiangTang/DNA-Tricks 
+
+## 2. Related Works 
+
+DNA Downstream Evaluation. DNA downstream eval-uation encompasses a broad spectrum of biological tasks. Functional region prediction seeks to identify significant genomic regions, such as CpG islands [10], and datasets 2are typically derived from initiatives like FANTOM5 [1] and GENCODE [9]. Histone modification identifica-tion [19] relies on databases such as JASPAR [8] and ChIP-Atlas [26]. Scattered downstream tasks are also consoli-dated into benchmarks. The BEND benchmark [23] defines several representative tasks. The Nucleotide Transformer benchmark [5] is designed to evaluate the Nucleotide Trans-former, covering tasks such as regulatory annotation [4]. The Genomic Benchmark [13] provides a series of datasets for classification. However, these widely used benchmarks generally lack in-depth analyses of their effectiveness for evaluating pretraining models. In this paper, we systemati-cally study existing datasets and propose two criteria for se-lecting appropriate downstream benchmarks for DNA pre-training evaluation. 
+
+DNA Pretraining Models. With the great success of pre-training models in NLP, more researchers have begun pre-training DNA models to improve performance on down-stream tasks. DNAGPT [37] uses the non-overlapping 
+
+k-mer tokenizer and introduces a GPT-style pretraining paradigm [28]. Nucleotide Transformer [5] also adopts the non-overlapping k-mer tokenizer and identifies the op-timal model from among BERT-based architectures [6]. DNABERT [17], BarcodeBERT [2], and GENERator [36] introduce the BERT architecture into DNA sequence mod-eling and use overlapping k-mer. DNABERT-2 [39] re-constructs the vocabulary using BPE. Evo [25] builds a large-scale DNA pretraining model by hybridizing Hye-naDNA [24] and Roformer [34]. Evo2 [3] further extends the architecture using multi-scale hyena operators [20] and expands the pretraining dataset. These methods focus on scaling up pretraining or architectural improvements, which leads them to overlook critical yet essential issues in DNA pretraining. In this paper, we identify these issues and pro-vide corresponding recommendations, with extensive ex-periments to demonstrate the effectiveness of our solutions. 
+
+## 3. Method 
+
+3.1. DNA Sequence Pretraining 
+
+The basic element of DNA, nucleotide, is denoted as c ∈Sc = {A, T, G, C }, and a DNA sequence can be repre-sented as the ordered nucleotide series x = ( c1, c 2, . . . , c n).Instead of encoding individual nucleotides, current meth-ods rely on custom vocabularies V to tokenize DNA se-quences. For example, the k-mer vocabulary [17] is defined as Vkmer = {c1c2 · · · ck | ∀ i ∈ { 1, . . . , k }, c i ∈ S c} ∪ S sp ,where k is the number of nucleotides in a token and Ssp is the set of special tokens such as [CLS ] and [MASK ].Given token vocabulary V, DNA sequence x can be fur-ther represented as x = ( t1, t 2, . . . , t m), t i ∈ V . Following the masked token prediction (MTP) pipeline in natural lan-guage pretraining [6], given the dataset D = {x}Ni=1 , the in-
+
+Algorithm 1 Fixed neighbor-masking strategy 
+
+Input : Input x, k-mer, masking probability p
+
+Output : Masked input ˜x and labels M 
+
+> 1:
+
+[BUG] Initialize N br = {1 −  k
+
+> 2
+
+ , · · · , k −  k
+
+> 2
+
+}k 
+
+> 2:
+
+[FIX] Initialize N br = {− k + 1 , · · · , k − 1}2k−1 
+
+> 3:
+
+Randomly select tokens from x into M with p 
+
+> 4:
+
+Remove special tokens in M 
+
+> 5:
+
+Set Min = M, ˜x = x 
+
+> 6:
+
+for each token ti in M do  
+
+> 7:
+
+for each offset j in N br do  
+
+> 8:
+
+if 0 ≤ i + j < Length( x) then  
+
+> 9:
+
+Min = Min ∪ { ˜x [i + j]} 
+
+> 10:
+
+˜x [i + j] = [MASK]  
+
+> 11:
+
+end if  
+
+> 12:
+
+end for  
+
+> 13:
+
+end for  
+
+> 14:
+
+[BUG] Set labels M = Min  
+
+> 15:
+
+[FIX] Set labels M = M 
+
+> 16:
+
+return Masked input tokens ˜x, labels M
+
+put is masked x, where some tokens are randomly masked, denoted as ˜x = ( t1, [MASK ], . . . , t m), the set of masked tokens for prediction in x is denoted as M. Then, the train-ing objective for x can be written as: 
+
+LMTP (˜x, M, V)= − 1
+
+|M| 
+
+X
+
+> ti∈M
+
+yi log( exp( eiw)
+
+P 
+
+> k
+
+exp(( eiw)k) ), (1) where yi is the one-hot class label for i-th masked token in sample x, ei ∈ R1×d is the features of tokens ti, d
+
+is the hidden dimension, w ∈ Rd×| V | is a linear pro-jection mapping hidden features to vocabulary logits, and 
+
+k ∈ { 1, . . . , |V|} indexes the vocabulary dimension. The total training objective for dataset D is defined as the sum-mation of the loss in Eq. (1), omitted here for brevity. 
+
+3.2. Two Downstream Dataset Selection Criteria 
+
+As noted above, downstream performance is the only metric for evaluating DNA models, and unreliable benchmarks can lead to misleading conclusions and catastrophic resource waste. However, we observe that several current down-stream benchmarks exhibit substantial variability in model performance across repeated runs. Therefore, we define the stability criterion, which selects the downstream dataset that consistently reflects a model’s true capabilities. 
+
+Criterion 1 (Stability) Let σD denote the standard devia-tion of the model performance on the downstream dataset 
+
+D. Assume log σD ∼ N (μ, σ 2). We say that dataset D
+
+satisfies the criterion of stability if: 
+
+log σD < μ + σ. 
+
+3(a) Fixed Neighbor -Masking Strategy                 
+
+> [MASK] AGG [CLS] TAG [MASK] [MASK]
+> 𝓛 𝑴𝑻𝑷
+> (c) Mask Special Token
+> [MASK] AGG [MASK] TAG [MASK] [MASK]
+> 𝓛 𝑴𝑺𝑻
+> (d) Sentence Order Prediction
+> [MASK] AGG [CLS] [MASK] [MASK] [SEP]
+> 𝓛 𝑺𝑶𝑷
+> (e) Complementary Strand Prediction
+> [MASK] AGG [CLS] TAG [MASK] [MASK]
+> 𝓛 𝑪𝑺𝑷
+> (b) Frozen Token Melt
+> [MASK] AGG [CLS] TAG [MASK] [MASK]
+> 𝓛 𝑭𝑻𝑴
+> Special Token
+> [CLS]
+> Masked Token
+> [MASK]
+> Unmasked
+> Token
+> TAG
+> Frozen Token
+> [MASK]
+
+Figure 2. Illustrations of our guiding tasks. Frozen tokens are masked at input but excluded from the prediction targets to prevent information leakage. 
+
+Moreover, we observe that on specific downstream benchmarks, the pretrained model underperforms a simple linear baseline trained from scratch, and that increasing the volume of training data can even degrade performance. To mitigate such unexpected phenomena, we define the validity criterion, which selects the downstream dataset that demon-strates the benefits of large-scale pretraining. 
+
+Criterion 2 (Validity) A dataset D is considered valid if it satisfies the following two conditions: 1. Pretraining Benefit: On dataset D, the performance of a pretrained model should be better than that of a linear model trained from scratch. 2. Scaling Law: The performance on dataset D improves monotonically (or at least non-decreasingly) with in-creasing amounts of pretraining data. 
+
+By applying our two selection criteria to widely used downstream datasets, we derive a standardized testbed that enables rigorous and reproducible benchmarking of DNA pretraining methods. This testbed underpins all subsequent analyses presented in this paper. 
+
+3.3. Two Implementation Flaws and Guiding Tasks 
+
+Overlapping k-mer tokenization inherently introduces in-formation leakage into the masked token prediction (as dis-cussed above). The neighbor-masking strategy is proposed to mitigate this by masking the target token ti together with its neighbors, such as ti+1 . However, since these neighbors remain included as masked targets in Eq. (1), which is con-sidered an implementation flaw, leakage persists. Another implementation flaw of neighbor-masking is that special tokens are inadvertently masked [17]. In partic-ular, when the first meaningful token is masked as the target, the preceding special token [CLS ] is mistakenly masked and included in the loss calculation, as shown in Figure 1(c), which produces meaningless training signals. As shown in Algorithm 1, we fix the above two flaws and summarize the following principle for preventing leakage. 
+
+Principle 1 In the overlapping k-mer tokenization imple-mentation, each masked token contains partial information of its k−1 preceding and k−1 succeeding neighbors, which should be masked but excluded from the prediction targets. 
+
+According to the principle, for the prediction targets, i.e., the masked tokens set M, we could define the set of input masked token indices as: 
+
+Min = {ti | ti ∈ T x, t i /∈ S sp , ∃ tj ∈ M , |i − j| < k } , (2) where tj is the masked token, and Ssp is the special token set, Tx is the set of all tokens in x.Then we can correct the implementation flaws by updat-ing the input sequence ˜x using Min to derive new masked input ˜x′: if ti ∈ M in , then replace ti with [MASK]. Con-sequently, Eq. (1) can be rewritten as: 
+
+L = LMTP (˜x′, M, V). (3) Surprisingly, when we correct the implementation flaws with Eq.(3), the model fails to converge under the same experimental conditions. We hypothesize that the original flaws inadvertently provided a form of optimization guid-ance, like lowering the learning rate or using a more suitable initialization. To capture this effect explicitly, we introduce the term Guiding Task and reformulate Eq. (3) as: 
+
+L = LMTP (˜x′, M, V) + LG, (4) where LG is the guiding task loss, which was coincidentally and implicitly realized by the implementation flaws. To val-idate this hypothesis, we explicitly formalize the two flaws and design novel guiding tasks that instantiate LG.(1) Frozen Tokens Melt (FTM). We formalize the imple-mentation flaw of neighbor-masking leakage: 
+
+LG = LMTP (˜x′, Min \M , V), (5) where Min \M is the set of target tokens containing leak-age. (2) Masking Special Token (MST). We formalize the im-plementation flaw of wrongly masking the special tokens: 
+
+LG = LMTP (˜x′, Ssp , V). (6) (3) Sentence Order Prediction (SOP). We incorporate the SOP task [6] for guiding DNA pretraining: 
+
+LG = y log ( σ(e0w)) + (1 −y) log (1 −σ(e0w)) , (7) 4Datasets NET NE EE CA OCR K36m3 ER Z K4m3 K4m1 K27m3 K9a K4m2 Evaluation μD 71.87 82.9 72.27 71.48 64.14 42.04 77.41 40.53 59.61 38.79 53.19 48.61 50.71 
+
+σD 0.07 0.08 0.29 0.3 0.43 0.53 1.26 1.28 1.37 1.45 2.85 2.93 3.81 
+
+Pretrain μD 82.97 71.53 72.34 71.55 64.37 53.68 77.71 39.12 58.31 38.5 47.09 47.7 48.76 
+
+σD 0.07 0.26 0.51 0.1 0.34 0.35 0.22 2.44 1.5 1.23 3.57 1.08 1.66 
+
+Table 1. Test performance (%) (Accuracy, AUROC or MCC) on some downstream datasets. Datasets with red numbers exhibit high performance variance, suggesting they are inappropriate for evaluating pretraining models according to Criterion 1. 
+
+Datasets CpG HM EC NTP K27a K9m3 K20m1 PA PNT PT SSAcc SSAll SSD CNN 80.19 71.22 68.70 22.57 46.70 91.81 92.81 89.42 72.13 48.19 76.31 91.29 32.74 Unet 85.30 70.23 60.94 25.90 45.97 93.19 93.70 97.56 94.18 78.90 96.00 54.60 35.10 
+
+MLP 77.17 67.96 66.68 9.72 51.86 93.05 93.34 97.48 98.62 93.35 98.69 82.95 25.30 DNABERT 89.67 76.83 71.69 31.93 55.16 94.33 94.98 91.75 95.51 81.84 94.74 83.39 32.83 
+
+Table 2. Test performance (%) (Accuracy, AUROC or MCC) on some downstream datasets. Bold/red numbers indicate the best perfor-mance, underlined numbers indicate the runner-up. Datasets with red numbers indicate that the simple baseline surpasses the large-scale pretraining models, suggesting they are inappropriate for evaluating pretraining methods. 
+
+where y is the binary label, σ is the sigmoid function, e0
+
+denotes the embedding of the special token [CLS]. (4) Complementary Strand Prediction (CSP). To prevent perturbing the embedding of masked tokens, we propose CSP as the guiding task, which requires the model to predict the reverse complement of unmasked tokens: 
+
+LG = LMTP (˜x′, Tx \M , ¯V), (8) where ¯V = {RC( t) | t ∈ V} , and RC computes the reverse complement of t, i.e., A → T , T → A, C → G, G → C.Figure 2 illustrates our guiding tasks. Note that, although our guiding tasks are derived from k-mer tokenization, they are applicable (except FTM) to any pretraining framework that employs masked token prediction. 
+
+3.4. Vocabulary Construction 
+
+Besides k-mer approach, the Word tokenizer—essentially a non-overlapping k-mer tokenizer—is widely used [5], and thus shares the same vocabulary as k-mer. Moreover, Byte Pair Encoding (BPE) [30] has recently been applied to DNA pretraining[39], which is defined as follows: 
+
+VBPE = Sc ∪ { ai ◦ bi | i = 1 , 2, · · · , n } ∪ S sp , (9) where ai ◦ bi denotes a new token generated by the BPE merge rule, and n is the number of BPE merge operations. Based on our extensive experiments and in-depth analy-ses, we propose two principles for DNA vocabularies. 
+
+Principle 2 (Tokenization Selection) Employ tokeniza-tion strategies that preserve sequence continuity, e.g., BPE instead of Word, and select an appropriate vocabulary size to maintain local context and potential motif structures without disrupting biological information. (a) Distribution of the 𝐥𝐨𝐠 𝝈 𝑫                         
+
+> 0.03% 0.25% 1.83%
+> 0
+> 20
+> 15
+> 10
+> 5
+> Frequency
+> (c) Datasets do not follow scaling law
+> 60
+> 65
+> 70
+> 75
+> 80
+> -5 -4 -3 -2 -1
+> 𝑹 𝟐 =𝟎 .𝟗𝟐 EC
+> Volume (10^)
+> (b) Dataset follows scaling law
+> 30
+> 35
+> 40
+> 45
+> 50
+> -5 -4 -3 -2 -1
+> Volume (10^)
+> 𝑹 𝟐 =𝟎 .𝟎𝟔 Z
+> 30
+> 35
+> 40
+> 45
+> 50
+> -5 -4 -3 -2 -1
+> 𝑹 𝟐 =𝟎 .𝟎𝟏 K4m1
+> Volume (10^)
+
+Figure 3. Illustrations of our downstream dataset selection crite-ria. (a) Distribution of log σD , where σD denotes the standard deviation of DNABERT. The distribution follows a normal distri-bution (i.e., Shapiro-Wilk test [32] p-value is 0.15). We excluded datasets with σD > exp( μ + σ) = 1 .41% based on Criterion 1. (b) A downstream dataset follows the scaling law. (c) Two down-stream datasets that do not follow the scaling law. More details are provided in the supplementary material. 
+
+Principle 3 (Token Selection) Not all tokens generated by NLP-based methods are beneficial, and the following two guidelines help retain only the effective ones: 1. Retain high-frequency and information-rich tokens, as they often correspond to biologically meaningful frag-ments and make important positive contributions. 2. Remove low-frequency or high-entropy tokens, which of-ten represent noise or overfitting to specific fragments, to reduce interference and improve generalization. 
+
+5Model CA CpG HM EC NE PA PNT Average HyenaDNA 71.13 84.59 75.07 68.24 80.68 93.62 94.1 81.06 DNABERT2 68.8 85.42 75.3 72.78 79.97 93.49 94.27 81.43 DNABERT 71.28 89.6 76.67 71.45 82.88 94.25 95.14 83.04 
+
+> Table 3. Test performance (%) (Accuracy, AUROC or MCC) of SOTA DNA pretraining model on selected downstream datasets. Bold numbers indicate the best performance, underlined numbers indicate the runner-up.
+
+## 4. Experiments 
+
+4.1. Downstream Datasets 
+
+The following introduces the downstream datasets that are widely used for evaluating DNA pretraining models. 
+
+BEND Benchmark [23] introduces multiple downstream DNA tasks and collects the corresponding datasets. We se-lect three supervised tasks: • Chromatin accessibility prediction (CA) needs to predict chromatin accessibility across multiple cell types. • Histone modification (HM) prediction requires predicting whether specific histone modifications exist. • CpG methylation prediction (CpG) requires predicting whether specific sites are methylated in different cells. We use Area Under the Receiver Operating Characteristic Curve (AUROC) [7] as the evaluation metric. 
+
+Genomic Benchmark [13] includes multiple datasets, which can be categorized into two tasks: • Regulatory annotation aims to identify and annotate regu-latory elements in DNA sequences, such as promoters and enhancers. The dataset includes Enhancers Cohn (EC), Enhancers Ensembl (EE), Ensembl Regulatory (ER), and NonTata Promoters (NTP). • Chromatin accessibility prediction: its dataset, namely OCR Ensembl (OCR). Following previous works [24, 27], we use accuracy as the evaluation metric. 
+
+Nucleotide Transformer Benchmark. [5] includes three types of tasks: • Histone modification prediction: This benchmark in-cludes 10 datasets, namely H2AFZ (Z), H3K27ac (K27a), H3K27me3 (K27m3), H3K36me3 (K36m3), H3K4me1 (K4m1), H3K4me2 (K4m2), H3K4me3 (K4m3), H3K9ac (K9a), H3K9me3 (K9m3), and H4K20me1 (K20m1), using Matthews Correlation Coef-ficient (MCC) [12] as the evaluation metric. • Regulatory annotation: This benchmark includes five datasets, namely Enhancers (NE), Enhancers Types (NET), Promoter All (PA), Promoter NoTata (PNT), and Promoter Tata (PT). Except for the NET evaluation met-ric, which uses accuracy, all other tasks use AUROC. • Splice site annotation needs to identify sites at exon-intron boundaries. Datasets include Splice Sites Accep-tor (SSAcc), Splice Sites All (SSAll), and Splice Sites Donor (SSD). Except for the SSAll evaluation metric, which uses accuracy, all other tasks use AUROC. More detailed information about each dataset can be found in the supplementary materials. 
+
+4.2. Implementation Details 
+
+(a) Criterion. We obtain the estimates of the mean μ
+
+and variance σ2 of log( σD ) through extensive experiments. We evaluate the performance of three baselines: Multi-layer Perceptrons (MLP) [15], Convolutional Neural Net-works (CNN) [23], and Unet [29], and compare them with DNABERT to verify pretraining benefit. We model the scal-ing law using linear regression [14]. (b) Guiding Task. We conduct experiments based on the fixed version of DNABERT with different guiding tasks, and include the Kaiming initialization [16] method for comparison. The probability of a reverse in SOP is set to 0.01. (c) Vocab-ulary Construction. All BPE vocabularies are trained on the human genome [11]. In the token ablation experiments, the removed tokens are replaced with the new [CUL], noting that [CUL] is not a special token. And the number of re-moved tokens does not exceed 10% of the original. We pretrain and test state-of-the-art DNA pretrain-ing models. DNABERT [17], HyenaDNA [24], and DNABERT2 [39] use a hidden dimension of d = 256 with a total of 8 Transformer layers. All pretrainings use hu-man genome data and were conducted on NVIDIA A800 GPUs with a batch size of 64 over 100 epochs. We use the Adam optimizer [18] for optimization with a learning rate of 5 × 10 −4. The masking probability is 0.11. All test experiments were conducted on NVIDIA A800 GPUs with 100 epochs of three different seeds, using the Adam opti-mizer. Following prior work [23], we freeze the pretraining model’s backbone and only fine-tune a CNN with a learn-ing rate of 5 × 10 −4. Other models undergo full training with multiple learning rates {1×10 −3, 5×10 −4, 1×10 −4}.Different datasets use different batch sizes. More details are provided in the supplementary material. 
+
+4.3. Result Analysis 
+
+Q1. Are these two criteria useful, and how can we select stable and valid downstream datasets? 
+
+65              
+
+> 6
+> 7
+> 8
+> 0200 400 600
+> 𝓛 𝐅𝐢𝐧𝐚𝐥 5678
+> Base +Small lr +MST +CSP
+> 1.E-05
+> 1.E-04
+> 1.E-03
+> 1.E-02
+> 1.E-01
+> 1.E+00
+> 0200 400 600
+> 𝓛 𝐌𝐒𝐓 /𝓛 𝐂𝐒𝐏
+> (a) Pretraining Loss (b) Guiding Task Loss
+> Step
+
+Figure 4. Visualization of Pretraining loss curves for different guiding tasks and the comparison of two guiding task losses; “Base” denotes DNABERT with a BPE tokenizer. 
+
+Guiding Task k-mer Word BPE Average Base 50.45 64.7 54.38 56.51 +Small lr 82.1 80.38 79.57 80.68 +Kaiming 81.99 54.23 50.54 62.25 +FTM 82.93 - - -+MST 82.32 81.06 80.28 81.22 +SOP 82.33 81.31 51.31 71.65 +CSP 82.69 81.55 82.05 82.09 
+
+Table 4. Average test performance (%) across different tokenizers and guiding tasks. Base model with k-mer refers to DNABERT with its implementation flaws corrected. 
+
+A1. As shown in Table 1, the standard deviation of per-formance on the K27m3 dataset reaches 2.85%, while on K36m3, it even reaches 3.57% under different pretraining initializations, indicating significant instability in experi-mental reproducibility. In addition, Table 2 shows valid-ity issues in some datasets, e.g., a simple CNN outperforms pretraining models by 7.9% in the NTP dataset. These phe-nomena suggest that some downstream datasets fail to fairly and validly reflect the capability of pretraining models. We filtered datasets based on two criteria: stability and validity. As shown in Figure 3(a), the logarithm of the stan-dard deviation distribution follows a normal distribution, with a Shapiro-Wilk test [32] p-value of 0.15. According to the stability criterion 1, we selected datasets with their standard deviation less than 1.41%. Secondly, according to Criterion 2 and Table 2, we removed datasets on which end-to-end models perform best (including NTP, K27a, PT, SSAcc, SSAll, SSD). As shown in Figure 3, according to the scaling law, we retained tasks with a positive slope and coefficient of determination R2 > 0.4 [14]. Finally, we selected seven datasets that are both stable and valid: CA, CpG, HM, EC, NE, PA, and PNT. These seven datasets not only exhibit good properties 0.0001   
+
+> 0.001
+> 0.01
+> 0.1
+> 1
+> 0.0001 0.001 0.01
+> Accuracy
+> Frequency
+> -0.5% +0.1%
+> +0.4%
+> +0.3%
+> +1.0%
+> -0.2%
+> +0.9%
+
+Figure 5. Visualization of token importance in the BPE vocabu-lary. The vocabulary size is 256, excluding special tokens. “Ac-curacy” refers to the token prediction accuracy of the model. The metric in each block indicates the improvement after removing the block’s tokens compared to the base. The base’s vocabulary is constructed by BPE, with the same size as the vocabulary after to-ken removal. 
+
+but also cover various DNA downstream tasks, e.g., CA for chromatin accessibility prediction, HM for histone modifi-cation prediction, etc. As shown in Table 3, the average performance of DNABERT, DNABERT2, and HyenaDNA on the seven datasets is 83.0%, 81.4%, and 81.1%, respec-tively. The complete evaluation results are provided in the supplementary materials. 
+
+Q2. Why is it necessary to use guiding tasks during DNA pretraining, and how does it work? 
+
+A2. As shown in Table 4, the base model with k-mer per-forms poorly due to its failure to converge. After intro-ducing the FTM and MST, both of which originate from neighbor-masking flaws, the model performance improves by 32.48% and 31.87%, respectively. These flaws surpris-ingly assist convergence. In fact, difficulty converging during pretraining is commonly observed in DNA mod-els. As shown in Table 4, the base models with Word and BPE tokenizers also exhibit poor performance. Introducing guiding tasks significantly improves model performance; for instance, after applying the MST, the Word and BPE variants achieve 16.36% and 25.9% improvements over the base model, respectively. Pretraining loss curves in Fig-ure 4(a) further confirm that the base model faces difficulty in convergence, but shows stable convergence behavior af-ter introducing guiding tasks. Therefore, it is necessary to incorporate guiding tasks during DNA pretraining to facili-tate convergence. Guiding tasks guide model initialization through simple tasks. Taking the CSP task as an example, as shown in Fig-ures 4, the model is initialized by learning CSP with an ini-tially large loss. Then the CSP loss rapidly drops due to its simplicity. Then the well-initialized model can better un-derstand the masked token prediction, thereby promoting convergence. It is noteworthy that guiding-based initializa-tion differs from traditional initialization methods (e.g., as 7Vocab Size k-mer Word BPE Average 16 83.09 82.18 79.57 81.61 64 83.09 82.17 82.78 82.68 
+
+256 83.01 81.80 83.17 82.66 1024 83.13 81.70 82.89 82.57 4096 82.69 81.55 82.05 82.09 16384 82.62 80.48 82.06 81.72 
+
+> Table 5. Average test performance (%) across different tokenizers and vocabulary sizes (excluding special tokens).
+
+shown in Figure 4(a), Kaiming initialization fails to facili-tate model convergence), demonstrating better robustness. Furthermore, guiding tasks can significantly improve the model’s performance. As shown in Table 4, although the Base ∗ model with adjusted learning rate performs well, it fails to surpass guiding tasks variants. For instance, mod-els with CSP outperform the Base ∗ by 0.59%, 1.17%, and 2.48% under k-mer, Word, and BPE, respectively. 
+
+Q3. What are the advantages of Complementary Strand Prediction compared to other guiding tasks? 
+
+A3. (a) The CSP task demonstrates stronger robustness. As shown in Figure 4(a), although the final pretraining loss of MST is close to that of CSP, the CSP loss decreases more smoothly during training. At the same time, the MST loss exhibits significant oscillations, indicating that CSP is more conducive to stabilizing the training process. (b) The CSP task showed higher efficiency. As shown in Table 4, under both Word and BPE tokenizers, the base model with CSP achieves the best performance. Compared with the second-best MST variants, CSP improves the average performance by 0.87%. (c) The CSP task shows broader applicability. Firstly, unlike FTM, which is only applicable to overlapping tokenizers, CSP is not restricted by tokenizers. Secondly, as shown in Table 4, CSP facilitates convergence across all variants, in contrast to SOP, which fails in BPE, and Kaim-ing initialization, which fails in Word and BPE. These advantages stem from CSP design, which does not interfere with the optimization of MTP. Because it does not involve operations on the embedding of masked tokens, it avoids contamination of the token representation space. In contrast, MST introduces special tokens that do not appear in the natural distribution during training, which may mis-lead the model’s learning of the real token distribution and thus interfere with the optimization direction of MTP, re-sulting in loss oscillations. 
+
+Q4. What is the relationship between model performance and the DNA vocabulary? 
+
+A4. Not all tokens in a DNA vocabulary are necessary, es-pecially in vocabularies constructed by BPE. Some tokens Freq. Acc. k-mer Word BPE Avg. Base - - 82.38 -High High 82.83 81.42 81.81 82.02 Low 83.41 81.55 - -Midium High 82.96 81.54 82.5 82.33 Low 83.25 81.59 82.68 82.51 Low High 82.98 81.61 83.36 82.65 Low 83.36 81.52 83.23 82.7 
+
+> Table 6. Average test performance (%) across different tokenizers and token removal settings.
+
+may even negatively impact performance. As shown in Fig-ure 5, removing low-frequency tokens with high accuracy leads to a 1% improvement in model performance; remov-ing mid-frequency tokens also brings varying degrees of im-provement. This suggests that some tokens may introduce redundant information or training noise. In contrast, high-frequency tokens with high accuracy usually carry more in-formation and are essential to model performance; their re-moval causes a performance drop of about 0.5%. We derive Principle 3 based on these facts. There is no linear correlation between model perfor-mance and vocabulary size. As shown in Table 5, the best-performing vocabulary sizes vary significantly across differ-ent tokenizers: the optimal sizes for k-mer, Word, and BPE tokenizers are 1024, 16, and 256, respectively. This indi-cates that the best vocabulary size depends on the tokenizer and the structural characteristics of DNA sequences. The impact of the tokenization on token importance should not be overlooked. As shown in Table 6, k-mer tok-enizer introduces token overlapping, meaning that informa-tion from removed tokens can still be indirectly represented by others, resulting in minimal performance changes. In addition, the Word tokenizer directly segments the DNA se-quence, severely disrupting its original structural integrity, which leads to worse performance compared to k-mer and BPE. Furthermore, the removal of tokens has a relatively limited impact. We derive Principle 2 based on these facts. Further experimental analysis on vocabulary size, etc., can be found in the supplementary material. 
+
+## 5. Conclusion 
+
+In this work, we systematically identify three overlooked is-sues in DNA sequence pretraining, including inappropriate downstream datasets, implementation flaws in the neighbor-masking strategy, and the lack of discussion for vocabu-lary construction, which fundamentally undermine the va-lidity and effectiveness of existing methods. Through in-8depth analysis and extensive empirical validation, we pro-pose two objective criteria for downstream datasets selec-tion, the novel concept of guiding tasks, and principles for constructing meaningful DNA vocabularies, to mitigate these issues. We finally introduce a standardized testbed that enables reproducible, rigorous benchmarking, which demonstrates the rationale of our findings and the effective-ness of our recommendations. Future work will focus on extending and promoting the testbed as a community-wide benchmarking standard to advance DNA pretraining. 
+
+## 6. Acknowledgments 
+
+This work was supported by the Strategic Priority Research Program of the Chinese Academy of Sciences under Grant No. XDA0460205. 
+
+## References 
+
+[1] Robin Andersson, Claudia Gebhard, Irene Miguel-Escalada, Ilka Hoof, Jette Bornholdt, Mette Boyd, Yun Chen, Xiaobei Zhao, Christian Schmidl, Takahiro Suzuki, et al. An atlas of active enhancers across human cell types and tissues. Nature ,507(7493):455–461, 2014. 3 [2] Pablo Millan Arias, Niousha Sadjadi, Monireh Safari, ZeM-ing Gong, Austin T Wang, Scott C Lowe, Joakim Bruslund Haurum, Iuliia Zarubiieva, Dirk Steinke, Lila Kari, et al. Barcodebert: Transformers for biodiversity analysis. arXiv preprint arXiv:2311.02401 , 2023. 2, 3 [3] Garyk Brixi, Matthew G Durrant, Jerome Ku, Michael Poli, Greg Brockman, Daniel Chang, Gabriel A Gonza-lez, Samuel H King, David B Li, Aditi T Merchant, et al. Genome modeling and design across all domains of life with evo 2. BioRxiv , pages 2025–02, 2025. 1, 3 [4] ENCODE Project Consortium et al. An integrated encyclo-pedia of dna elements in the human genome. Nature , 489 (7414):57, 2012. 1, 3 [5] Hugo Dalla-Torre, Liam Gonzalez, Javier Mendoza-Revilla, Nicolas Lopez Carranza, Adam Henryk Grzywaczewski, Francesco Oteri, Christian Dallago, Evan Trop, Bernardo P de Almeida, Hassan Sirelkhatim, et al. Nucleotide trans-former: building and evaluating robust foundation models for human genomics. Nature Methods , 22(2):287–297, 2025. 1, 3, 5, 6, 13, 14 [6] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: Pre-training of deep bidirectional trans-formers for language understanding. In Proceedings of the 2019 conference of the North American chapter of the asso-ciation for computational linguistics: human language tech-nologies, volume 1 (long and short papers) , pages 4171– 4186, 2019. 3, 4 [7] Tom Fawcett. An introduction to roc analysis. Pattern recog-nition letters , 27(8):861–874, 2006. 6 [8] Oriol Fornes, Jaime A Castro-Mondragon, Aziz Khan, Robin Van der Lee, Xi Zhang, Phillip A Richmond, Bhavi P Modi, Solenne Correard, Marius Gheorghe, Damir Baranaˇ si´ c, et al. Jaspar 2020: update of the open-access database of transcrip-tion factor binding profiles. Nucleic acids research , 48(D1): D87–D92, 2020. 3 [9] Adam Frankish, Mark Diekhans, Irwin Jungreis, Julien La-garde, Jane E Loveland, Jonathan M Mudge, Cristina Sisu, James C Wright, Joel Armstrong, If Barnes, et al. Gencode 2021. Nucleic acids research , 49(D1):D916–D923, 2021. 3 [10] Margaret Gardiner-Garden and Marianne Frommer. Cpg is-lands in vertebrate genomes. Journal of molecular biology ,196(2):261–282, 1987. 2 [11] Genome Reference Consortium. Human genome assembly grch38.p14 (gcf 000001405.40). https://www.ncbi. nlm.nih.gov/assembly/GCF_000001405.40/ ,2022. Accessed: 2025-07-29. 6, 14 [12] Jan Gorodkin. Comparing two k-category assignments by a k-category correlation coefficient. Computational biology and chemistry , 28(5-6):367–374, 2004. 6 [13] Katar´ ına Greˇ sov´ a, Vlastimil Martinek, David ˇ Cech´ ak, Petr ˇSimeˇ cek, and Panagiotis Alexiou. Genomic benchmarks: a collection of datasets for genomic sequence classification. 
+
+BMC Genomic Data , 24(1):25, 2023. 3, 6, 13 [14] Trevor Hastie, Robert Tibshirani, Jerome H Friedman, and Jerome H Friedman. The elements of statistical learning: data mining, inference, and prediction . Springer, 2009. 6, 7, 14, 15 [15] Simon Haykin. Neural networks: a comprehensive founda-tion . Prentice Hall PTR, 1998. 6, 14 [16] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Delving deep into rectifiers: Surpassing human-level perfor-mance on imagenet classification. In Proceedings of the IEEE international conference on computer vision , pages 1026–1034, 2015. 6, 14 [17] Yanrong Ji, Zhihan Zhou, Han Liu, and Ramana V Davu-luri. Dnabert: pre-trained bidirectional encoder representa-tions from transformers model for dna-language in genome. 
+
+Bioinformatics , 37(15):2112–2120, 2021. 1, 2, 3, 4, 6, 11 [18] Diederik P Kingma and Jimmy Ba. Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980 ,2014. 6 [19] Tony Kouzarides. Chromatin modifications and their func-tion. Cell , 128(4):693–705, 2007. 3 [20] Jerome Ku, Eric Nguyen, David W Romero, Garyk Brixi, Brandon Yang, Anton Vorontsov, Ali Taghibakhshi, Amy X Lu, Dave P Burke, Greg Brockman, et al. Systems and al-gorithms for convolutional multi-hybrid language models at scale. arXiv preprint arXiv:2503.01868 , 2025. 3 [21] Ilya Loshchilov and Frank Hutter. Decoupled weight decay regularization. arXiv preprint arXiv:1711.05101 , 2017. 14 [22] Christopher Manning and Hinrich Schutze. Foundations of statistical natural language processing . MIT press, 1999. 2 [23] Frederikke Isa Marin, Felix Teufel, Marc Horlacher, Dennis Madsen, Dennis Pultz, Ole Winther, and Wouter Boomsma. Bend: Benchmarking dna language models on biologically meaningful tasks. arXiv preprint arXiv:2311.12570 , 2023. 1, 3, 6, 12, 13, 14 [24] Eric Nguyen, Michael Poli, Marjan Faizi, Armin Thomas, Michael Wornow, Callum Birch-Sykes, Stefano Massaroli, 
+
+9Aman Patel, Clayton Rabideau, Yoshua Bengio, et al. Hye-nadna: Long-range genomic sequence modeling at single nu-cleotide resolution. Advances in neural information process-ing systems , 36:43177–43201, 2023. 1, 3, 6, 14 [25] Eric Nguyen, Michael Poli, Matthew G Durrant, Brian Kang, Dhruva Katrekar, David B Li, Liam J Bartie, Armin W Thomas, Samuel H King, Garyk Brixi, et al. Sequence mod-eling and design from molecular to genome scale with evo. 
+
+Science , 386(6723):eado9336, 2024. 1, 3 [26] Shinya Oki, Tazro Ohta, Go Shioi, Hideki Hatanaka, Osamu Ogasawara, Yoshihiro Okuda, Hideya Kawaji, Ryo Nakaki, Jun Sese, and Chikara Meno. Ch ip-atlas: a data-mining suite powered by full integration of public ch ip-seq data. EMBO reports , 19(12):e46255, 2018. 3 [27] Lifeng Qiao, Peng Ye, Yuchen Ren, Weiqiang Bai, Chaoqi Liang, Xinzhu Ma, Nanqing Dong, and Wanli Ouyang. Model decides how to tokenize: Adaptive dna sequence tok-enization with mxdna. Advances in Neural Information Pro-cessing Systems , 37:66080–66107, 2024. 6, 14 [28] Alec Radford, Karthik Narasimhan, Tim Salimans, Ilya Sutskever, et al. Improving language understanding by gen-erative pre-training. 2018. 3 [29] Olaf Ronneberger, Philipp Fischer, and Thomas Brox. U-net: Convolutional networks for biomedical image segmen-tation. In International Conference on Medical image com-puting and computer-assisted intervention , pages 234–241. Springer, 2015. 6, 14 [30] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words with subword units. arXiv preprint arXiv:1508.07909 , 2015. 2, 5 [31] Claude E Shannon. A mathematical theory of communi-cation. The Bell system technical journal , 27(3):379–423, 1948. 11 [32] S Shaphiro and MBJB Wilk. An analysis of variance test for normality. Biometrika , 52(3):591–611, 1965. 5, 7 [33] Aaron Sievers, Katharina Bosiek, Marc Bisch, Chris Dreessen, Jascha Riedel, Patrick Froß, Michael Hausmann, and Georg Hildenbrand. K-mer content, correlation, and po-sition analysis of genome dna sequences for the identifica-tion of function and evolutionary features. Genes , 8(4):122, 2017. 2 [34] Jianlin Su, Murtadha Ahmed, Yu Lu, Shengfeng Pan, Wen Bo, and Yunfeng Liu. Roformer: Enhanced transformer with rotary position embedding. Neurocomputing , 568:127063, 2024. 3 [35] Naftali Tishby, Fernando C Pereira, and William Bialek. The information bottleneck method. arXiv preprint physics/0004057 , 2000. 11 [36] Wei Wu, Qiuyi Li, Mingyang Li, Kun Fu, Fuli Feng, Jieping Ye, Hui Xiong, and Zheng Wang. Generator: along-context generative genomic foundation model. arXiv preprint arXiv:2502.07272 , 2025. 3 [37] Daoan Zhang, Weitong Zhang, Yu Zhao, Jianguo Zhang, Bing He, Chenchen Qin, and Jianhua Yao. Dnagpt: A gen-eralized pre-trained tool for versatile dna sequence analysis tasks. arXiv preprint arXiv:2307.05628 , 2023. 3 [38] Jian Zhou and Olga G Troyanskaya. Predicting effects of noncoding variants with deep learning–based sequence model. Nature methods , 12(10):931–934, 2015. 1 [39] Zhihan Zhou, Yanrong Ji, Weijian Li, Pratik Dutta, Ra-mana Davuluri, and Han Liu. Dnabert-2: Efficient founda-tion model and benchmark for multi-species genome. arXiv preprint arXiv:2306.15006 , 2023. 3, 5, 6 
+
+10 The supplementary material provides additional details to complement the main paper. More details for method ,we further prove the information leakage issue of the neighbor-masking strategy and provide quantitative results. We also supplement the definitions of evaluation metrics, etc. More details for datasets , we offer more details about the characteristics and scales of downstream datasets. More details for implementation details , we supplement the pa-rameter settings of each model. More details for results and analysis , we provide the complete data of the tables and figures in the main paper, along with additional analy-ses. 
+
+## Method 
+
+Two Implementation Flaws and Guiding Tasks 
+
+k-mer tokenizer is widely used in DNA pretrain mod-els. DNABERT mitigates the information leakage caused by overlapping tokenization by additionally masking the neighbors of masked tokens. However, this masking mech-anism has two flaws. (a) Information leakage still exists. We present the following theorem: 
+
+Theorem 1 Consider a sequence tokenized into overlap-ping k-mers, and suppose m consecutive tokens are masked, the leakage ratio r is: 
+
+r =
+
+(
+
+100% , m ≤ k − 1, 
+
+> k−1
+> m
+
+× 100% , m > k − 1.
+
+Proof. Suppose there exists a token sequence x =(t1, t 2, . . . , t m). We replace a continuous span of m to-kens in x with the [MASK] token, resulting in a masked se-quence ˜x = ( t1, [MASK] , . . . , t m), where the set of tokens to be predicted is denoted as M. The conditional entropy of the model’s prediction for M is given by: 
+
+H(M| ˜x) = − X
+
+> ti∈M
+
+X
+
+> t∈V
+
+p log p, (10) where p = P (ti = t|˜x) and V denotes the vocabulary. Ac-cording to the Maximum Entropy Theorem [31], the max-imum value of the entropy above is m log |V| . Entropy re-flects the uncertainty of the prediction target, i.e., the ”in-trinsic complexity” of the learning task [35]. Next, we consider the case where the input token se-quence x is derived from the original DNA sequence using a k-mer tokenizer. To formally analyze the potential infor-mation leakage introduced by the k-mer tokenizer, we first illustrate with a concrete example: Let token ti = ( ci, 1, c i, 2, . . . , c i,k ) and its preceding to-ken ti−1 = ( ci−1,1, c i−1,2, . . . , c i−1,k ). Due to the sliding-window nature of k-mer tokenization, we have ci,j =
+
+ci−1,j +1 for all 1 ≤ j ≤ k − 1. Thus, ti−1 can be rewrit-ten as (ci−1,1, c i, 1, . . . , c i,k −1), indicating that ti and ti−1
+
+differ by only one nucleotide, ci−1,1. Under this condition, if ti−1 is not masked, then when predicting ti, the model’s search space is reduced from the original |V| = 4 k to a size of 4, as only the last nucleotide of ti remains uncertain. In other words, the k-mer structure significantly reduces the prediction difficulty when adjacent tokens are not masked. When masking m consecutive tokens, the entropy can be approximately expressed as: 
+
+H′(M| ˜x) = − X
+
+> ti∈M
+
+X 
+
+> t∈V(i)
+
+p log p, (11) 
+
+≤ − X
+
+> ti∈M
+
+log |V (i)|, (12) 
+
+|V (i)| = 4 k−min( k, max(0 ,k −i)+max(0 ,k −m+i−1)) ,
+
+(13) where V (i) is the effective candidate space for predicting ti
+
+given ˜x. Its size satisfies 4 ≤ | V (i)| ≤ 4k, which can be directly derived from the structure of k-mers. Therefore, we can derive the ratio between the maximum entropy under information leakage and the original maxi-mum entropy as: 
+
+max( H′)max( H) =
+
+(
+
+0, m ≤ k − 1, 
+
+> m−k+1
+> m
+
+, m > k − 1. (14) Hence, the proportion of information leakage can be ex-pressed as 1 − max( H′)max( H) , which quantifies the reduction in prediction difficulty introduced by k-mer tokenization, and reveals its potential to cause leakage in pretraining. The above theorem indicates that information leakage exists regardless of the length of the consecutive masked token sequence. Such leakage weakens the pretraining model’s ability to learn the semantics of DNA and in-stead encourages it to exploit the k-mer tokenization. In DNABERT [17], consecutively masking k tokens leads to an information leakage rate of r = k−1 
+
+> k
+
+× 100% , which es-sentially reduces the task to masked nucleotide prediction. 
+
+DNA Sequence Segmentation 
+
+In real-world DNA sequences obtained from biological ex-periments, the character “N” is often used to denote an un-known nucleotide. Traditional tokenization methods, such as k-mer, typically treat sequences containing “N” as out-of-vocabulary and map them to a special [UNK] token. To systematically investigate the impact of “N” nu-cleotides, we conduct ablation studies on different strategies for handling “N”. A straightforward approach is to remove all “N” characters from the sequences before tokenization. Another intuitive and biologically reasonable strategy is to define dedicated tokens for subsequences containing “N”. To support this, we redesign the k-mer and Word tokeniza-tion by incorporating a greedy matching mechanism that 11 identifies and preserves substrings involving “N”. The mod-ified tokenization procedure is described in Algorithm 2, where the input T denotes a priority queue reverse ordered by the length of “N”-containing token candidates. 
+
+Vocabulary Construction 
+
+We experimentally found that not all tokens in mainstream vocabularies contribute to the pretraining model. After removing certain tokens, the model’s capability even im-proves. Therefore, we define the vocabulary after pruning certain tokens as follows: 
+
+VCull = V \ V 0 ∪ { [CULL ]} (15) where V is the vocabulary from which tokens are to be pruned, V0 denotes the tokens to be removed, and [CULL ]
+
+is a newly added token that replaces the pruned tokens in the token sequence. 
+
+Algorithm 2 Segment DNA Sequence with “N” 
+
+Input : DNA sequence seq , k-mer, “N” token priority list T
+
+Output : Token list result  
+
+> 1:
+
+Initialize empty list result , set i ← 0, n ← Length (seq ) 
+
+> 2:
+
+while i < n do  
+
+> 3:
+
+j ← i 
+
+> 4:
+
+if seq [i] = ‘N’ then  
+
+> 5:
+
+while j < n and seq [j] = ‘N’ do  
+
+> 6:
+
+j ← j + 1  
+
+> 7:
+
+end while  
+
+> 8:
+
+len ← j − i 
+
+> 9:
+
+for each token t in T do  
+
+> 10:
+
+m ←
+
+j len 
+
+> Length (t)
+
+k 
+
+> 11:
+
+if m > 0 then  
+
+> 12:
+
+for 1 to m do  
+
+> 13:
+
+Append t to result  
+
+> 14:
+
+end for  
+
+> 15:
+
+i ← i + m · Length (t) 
+
+> 16:
+
+break  
+
+> 17:
+
+end if  
+
+> 18:
+
+end for  
+
+> 19:
+
+else  
+
+> 20:
+
+while j < n and seq [j]̸ = ‘N’ do  
+
+> 21:
+
+j ← j + 1  
+
+> 22:
+
+end while  
+
+> 23:
+
+for k′ = i to j − k step k do  
+
+> 24:
+
+Append seq [k′ : k′ + k] to result  
+
+> 25:
+
+end for  
+
+> 26:
+
+i ← j 
+
+> 27:
+
+end if  
+
+> 28:
+
+end while  
+
+> 29:
+
+return result 
+
+Evaluation Metrics 
+
+To comprehensively assess model performance, we adopt three widely used evaluation metrics: Area Under the Re-ceiver Operating Characteristic Curve (AUROC), Accuracy, and Matthews Correlation Coefficient (MCC). 
+
+AUROC. AUROC measures the area under the ROC curve, which plots the true positive rate (TPR) against the false positive rate (FPR) at various threshold settings. It evaluates the model’s ability to distinguish between positive and negative samples, and is especially robust in scenarios with class imbalance. An AUROC of 1.0 indicates perfect separation, while 0.5 corresponds to random guessing. 
+
+Accuracy. Accuracy is the ratio of correctly predicted in-stances to the total number of instances. 
+
+Matthews Correlation Coefficient (MCC). MCC is a balanced measure that accounts for all four elements of the confusion matrix. It is particularly useful in evaluating bi-nary classification performance on imbalanced data. MCC is defined as: MCC = T P ×T N −F P ×F N √(T P +F P )( T P +F N )( T N +F P )( T N +F N ) , (16) where T P , T N , F P , and F N denote the number of true positives, true negatives, false positives, and false negatives, respectively. MCC ranges from −1 (perfect inverse predic-tion) to 1 (perfect prediction), with 0 indicating no better than random guessing. 
+
+## Datasets 
+
+The following introduces the downstream datasets that are widely used for evaluating DNA pretraining models. These datasets span various biological tasks and have been adopted in several recent studies to benchmark the effective-ness of sequence representations learned during pretraining. 
+
+BEND Benchmark [23] introduces a collection of down-stream tasks in the field of regulatory genomics, designed to evaluate the ability of models to capture sequence-level functional signals. We select three supervised binary classi-fication tasks from this benchmark: • Chromatin Accessibility Prediction (CA): This task re-quires the model to predict whether a given DNA se-quence is located within an open chromatin region across diverse cell types. Open chromatin regions are key indi-cators of regulatory activity. The dataset contains a total of 2,005,617 samples. • Histone Modification Prediction (HM): A multi-label task in which the model must determine whether certain histone modifications (e.g., H3K27ac, H3K4me3) occur 12 Benchmark Dataset Aliase # Samples Length range Metric # Classes BEND Chromatin Accessibility CA 2005617 512 AUROC 125 Cpg Methylation CpG 959039 512 AUROC 7Histone Modification HM 612081 512 AUROC 18 Genomic Enhancers Cohn EC 27791 500 Accuracy 2Enhancers Ensembl EE 154842 269 ±122 .6 Accuracy 2Ensembl Regulatory ER 289061 401 ±184 .3 Accuracy 3NonTata Promoters NTP 36131 251 Accuracy 2OCR Ensembl OCR 174756 315 ±108 .1 Accuracy 2Nucleotide Enhancers NE 33000 400 AUROC 2Enhancers Types NET 33000 400 Accuracy 3H2AFZ Z 33000 1000 MCC 2H3K27ac K27a 31616 1000 MCC 2H3K27me3 K27m3 33000 1000 MCC 2H3K36me3 K36m3 33000 1000 MCC 2H3K4me1 K4m1 33000 1000 MCC 2H3K4me2 K4m2 32138 1000 MCC 2H3K4me3 K4m3 30776 1000 MCC 2H3K9ac K9a 24278 1000 MCC 2H3K9me3 K9m3 28288 1000 MCC 2H4K20me1 K20m1 32270 1000 MCC 2Promoter All PA 31584 300 AUROC 2Promoter NoTata PNT 31372 300 AUROC 2Promoter Tata PT 5274 300 AUROC 2Splice Sites Acceptor SSAcc 33000 600 AUROC 2Splice Sites All SSAll 33000 600 Accuracy 3Splic Sites Donor SSD 33000 600 AUROC 2
+
+Table 7. Summary of scale information for each downstream dataset. “BEND”, “Genomic”, and “Nucleotide” refer to the BEND bench-mark [23], Genomic benchmark [13], and Nucleotide Transformer benchmark [5], respectively. 
+
+Tokenizer Variants CA CpG HM EC NE PA PNT Average 
+
+k-mer Base 70.33 88.8 76.81 71.29 82.47 94.39 94.71 82.69 w/o N 67.65 85.75 75.8 70.68 80.92 93.7 94.85 81.34 Seg N 69.61 87.17 76.25 71.79 81.95 94.23 94.87 82.27 Word Base 68.81 86.61 75.4 70.45 81.11 94.02 94.42 81.55 w/o N 67.41 85.1 74.48 69.14 79.16 93.37 94.22 80.41 Seg N 67.81 86.38 75.23 69.73 80.35 93.58 94.63 81.1 
+
+Table 8. Ablation studies on three methods for handling “N” nucleotides. Test performance (%) (Accuracy, AUROC, or MCC) on selected datasets. “Base” denotes processing substrings containing “N” as [UNK] token. “w/o N” directly removes “N” nucleotides from the pretraining dataset. “Seg N” applies Algorithm 2 to segment them into “N” tokens. 
+
+at specific genomic loci. These modifications play essen-tial roles in gene regulation. The HM dataset includes 612,081 DNA sequence samples. • CpG Methylation Prediction (CpG): This task involves predicting the methylation state of CpG sites in the genome, which is critical for epigenetic regulation. The dataset includes 959,039 samples collected from various cell lines and methylation profiles. We use the AUROC as the evaluation metric, following the original benchmark setting. 
+
+Genomic Benchmark [13] provides a diverse suite of clas-sification datasets that can be grouped into two major tasks: • Regulatory Annotation: This task focuses on identify-ing regulatory DNA elements such as promoters and en-hancers, which are central to transcriptional control. It includes four datasets: Enhancers Cohn (EC), Enhancers 13 Ensembl (EE), Ensembl Regulatory (ER), and NonTATA Promoters (NTP). • Chromatin Accessibility Prediction: Similar to the CA task from BEND, this task uses the OCR Ensembl (OCR) dataset, which consists of 174,756 samples, to predict open chromatin regions from sequence input. Following prior works [24, 27], accuracy is used as the eval-uation metric. 
+
+Nucleotide Transformer Benchmark [5] evaluates the generalization ability of pretrained DNA language models across a broader set of tasks and datasets. It covers three main categories: • Histone Modification Prediction: This category includes 10 binary classification datasets targeting different histone marks: H2AFZ (Z), H3K27ac (K27a), H3K27me3 (K27m3), H3K36me3 (K36m3), H3K4me1 (K4m1), H3K4me2 (K4m2), H3K4me3 (K4m3), H3K9ac (K9a), H3K9me3 (K9m3), and H4K20me1 (K20m1). These datasets are evaluated using MCC, which is suitable for imbalanced classification. • Regulatory Annotation: This includes five datasets fo-cused on identifying regulatory elements: Enhancers (NE), Enhancer Types (NET), Promoter All (PA), Pro-moter NoTATA (PNT), and Promoter TATA (PT). AU-ROC is used as the evaluation metric for all datasets, ex-cept for NET, which uses accuracy. • Splice Site Annotation: This task involves detecting splice junctions—the boundaries between exons and in-trons—based on local sequence context. The datasets include Splice Sites Acceptor (SSAcc), Splice Sites All (SSAll), and Splice Sites Donor (SSD). AUROC is used as the metric for SSAcc and SSD, while SSAll is evalu-ated using accuracy due to its multi-class setting. 
+
+## Implementations 
+
+Criteria. We obtain the estimates of the mean μ and variance σ2 of log( σD ) through extensive experiments. We evaluate the performance of three baselines: Multi-layer Perceptrons (MLP) [15], Convolutional Neural Net-works (CNN) [23], and Unet [29], and compare them with DNABERT to verify pretraining benefit. We model the scal-ing law using linear regression [14]. 
+
+Guiding Task. We conduct experiments based on the fixed version with different guiding tasks, and include the Kaim-ing initialization [16] method for comparison. The proba-bility of a reverse in SOP is set to 0.01. 
+
+Vocabulary Construction. All BPE vocabularies are trained on the human genome data [11]. In the token ab-lation experiments, the removed tokens are replaced with the new [CUL] token, noting that [CUL] is not a special to-ken. And the number of removed tokens does not exceed 10% of the raw vocabulary. 
+
+Models. Unless otherwise specified, all k-mer settings use 
+
+k = 6 . DNABERT and DNABERT2 are configured with a maximum position embedding of 512, a hidden dimen-sion of 256, and a total of eight Transformer encoder layers. HyenaDNA uses a maximum position embedding of 8192, a hidden dimension of 256, and eight hidden layers. The CNN model initializes sequences using the BPE and con-tains two CNN layers with a hidden dimension of 256. The MLP model consists of two hidden layers with a dimension of 1024. The U-Net model uses a hidden dimension of 32. 
+
+Experiments. All pretrainings use human genome data and were conducted on NVIDIA A800 GPUs with a batch size of 64 over 100 epochs. We use the AdamW optimizer [21] for optimization, with a linear warmup schedule where the number of warmup epochs is set to 10. The learning rate is 4 × 10 −4. The masking probability is 0.11. All test ex-periments were conducted on NVIDIA A800 GPUs with 100 epochs of three different seeds, using the Adam opti-mizer. Following prior work [23], we freeze the pretraining model’s backbone and only fine-tune a CNN with a learning rate of 5 × 10 −4. Other models undergo full training with multiple learning rates {1×10 −3, 5×10 −4, 1×10 −4}. Dif-ferent datasets use different batch sizes. For samples whose length exceeds the model’s maximum position embedding, we split them into segments, feed each segment into the model separately, and then concatenate the resulting outputs to obtain the final embeddings. 
+
+## Experiments 
+
+Complete Results of The Two Criteria 
+
+Full Table of the Two Criteria. In Table 1 and 2, we pro-vide the complete data corresponding to Table 1 and Table 2 in the main text. The full tables include stability and va-lidity results for all 26 downstream datasets. Additionally, the scaling laws for all datasets are illustrated in Figure 6, where it can be observed that datasets such as ER and PT do not satisfy our proposed Criteria 2. Finally, we selected seven datasets that are both stable and valid: CA, CpG, HM, EC, NE, PA, and PNT. 
+
+SOTA Pretraining Model Performance. As shown in Ta-ble 3, DNABERT achieves the best overall performance. DNABERT2, which adopts a BPE vocabulary, fails to re-produce the performance reported in its original paper, likely due to the incompatibility of the vocabulary. As shown in Table 5, BPE-based variants perform comparably to the k-mer tokenizer. HyenaDNA exhibits inferior per-formance on tasks such as CpG and EC compared to other SOTA models, resulting in the lowest average performance. 
+
+Guiding Tasks 
+
+FTM demonstrates strong capability in facilitating pretrain-ing convergence. As shown in Figure 7 (a), and following Theorem 1, FTM significantly reduces the difficulty of the 14 R² = 0.55                                                                                                                         
+
+> 65
+> 70
+> 75
+> -5 -4 -3 -2 -1
+> CA R² = 0.42
+> 80
+> 85
+> 90
+> 95
+> -5 -4 -3 -2 -1
+> CpG R² = 0.74
+> 72
+> 74
+> 76
+> 78
+> 80
+> -5 -4 -3 -2 -1
+> HM R² = 0.92
+> 60
+> 65
+> 70
+> 75
+> -5 -4 -3 -2 -1
+> EC R² = 0.81
+> 0
+> 50
+> 100
+> -5 -4 -3 -2 -1
+> EE
+> R² = 0.86
+> 75
+> 80
+> 85
+> 90
+> -5 -4 -3 -2 -1
+> NTP R² = 0.83
+> 0
+> 50
+> 100
+> -5 -4 -3 -2 -1
+> OCR R² = 0.47
+> 80
+> 82
+> 84
+> -5 -4 -3 -2 -1
+> NE R² = 0.34
+> 68
+> 70
+> 72
+> 74
+> -5 -4 -3 -2 -1
+> NET R² = 0.06
+> 0
+> 20
+> 40
+> 60
+> -5 -4 -3 -2 -1
+> Z
+> R² = 0.35
+> 45
+> 50
+> 55
+> -5 -4 -3 -2 -1
+> K27m3 R² = 0.20
+> 0
+> 20
+> 40
+> 60
+> -5 -4 -3 -2 -1
+> K36m3 R² = 0.01
+> 0
+> 20
+> 40
+> 60
+> -5 -4 -3 -2 -1
+> K4m1 R² = 0.40
+> 40
+> 45
+> 50
+> 55
+> -5 -4 -3 -2 -1
+> K4m2 R² = 0.16
+> 0
+> 50
+> 100
+> -5 -4 -3 -2 -1
+> K4m3
+> R² = 0.03
+> 0
+> 20
+> 40
+> -5 -4 -3 -2 -1
+> K9m3 R² = 0.23
+> 45
+> 50
+> 55
+> 60
+> -5 -4 -3 -2 -1
+> K20m1 R² = 0.58
+> 92
+> 93
+> 94
+> 95
+> -5 -4 -3 -2 -1
+> PA R² = 0.62
+> 93
+> 94
+> 95
+> 96
+> -5 -4 -3 -2 -1
+> PNT
+> R² = 0.02
+> 88
+> 90
+> 92
+> 94
+> 96
+> -5 -4 -3 -2 -1
+> PT
+> R² = 0.03
+> 0
+> 50
+> 100
+> -5 -4 -3 -2 -1
+> SSAll R² = 0.29
+> 85
+> 90
+> 95
+> 100
+> -5 -4 -3 -2 -1
+> SSD
+> R² = 0.10
+> 0
+> 50
+> 100
+> -5 -4 -3 -2 -1
+> ER
+> R² = 0.28
+> 0
+> 20
+> 40
+> 60
+> -5 -4 -3 -2 -1
+> K27a
+> R² = 0.17
+> 45
+> 50
+> 55
+> -5 -4 -3 -2 -1
+> K9a
+> R² = 0.50
+> 80
+> 90
+> 100
+> -5 -4 -3 -2 -1
+> SSAcc
+> Performance
+> (%)
+> Volume (10^)
+
+Figure 6. Supplementary for Figure 3 in the main paper. The scaling law adherence status of all 26 downstream datasets. We model the scaling law in Criteria 2 using linear regression [14]. 4
+
+5
+
+6
+
+7
+
+8
+
+1 101 201 301 401 501 
+
+Step 
+
+Base +Small lr 
+
++Kaiming +FTM 
+
++MST +SOP 
+
++CSP 
+
+(a) 𝒌 -mer 
+
+6
+
+7
+
+8
+
+1 101 201 301 401 501 
+
+(b) Word 
+
+5
+
+6
+
+7
+
+8
+
+1 101 201 301 401 501 
+
+(c) BPE 
+
+𝓛 𝐅𝐢𝐧𝐚𝐥 
+
+Figure 7. Supplementary for Figure 4 in the main paper. Visualization of pretraining loss curves for different guiding tasks and different tokenizers. “Base” indicates that DNABERT is pretrained at a learning rate of 4e − 4.
+
+masked token prediction task, leading to a rapid decrease in loss. As shown in Table 4, among all k-mer variants, FTM achieves the best performance. However, due to its reliance on information leakage, FTM is only applicable to tokeniz-ers with overlapping structures, such as k-mer. In contrast, CSP and MST have broader applicability. As illustrated in Figure 7, both CSP and MST effectively pro-mote convergence during pretraining across all three tok-enizer variants: k-mer, Word, and BPE. This is because the objectives of CSP and MST are independent of the tokenizer design. Between the two, CSP exhibits more stable behav-ior with a smoother pretraining loss curve, whereas MST tends to fluctuate more severely. 
+
+Vocabulary Construction 
+
+Vocabulary Size. There is no linear correlation between model performance and vocabulary size. As shown in Ta-ble 5, the best-performing vocabulary sizes vary signifi-cantly across different tokenizers: the optimal sizes for k-mer, Word, and BPE tokenizers are 1024, 16, and 256, re-spectively. This indicates that the best vocabulary size de-pends on the tokenizer and the structural characteristics of DNA sequences. 
+
+“N” Nucleotides. “N” nucleotides are beneficial for model learning. As shown in Table 8, the “w/o N” variant per-forms the worst, indicating that these “N” nucleotides still contain semantic information in DNA. The “Seg N” variant 15 0.0001        
+
+> 0.001
+> 0.01
+> 0.1
+> 1
+> 0.0001 0.001 0.01
+> BPE
+> 0.0001
+> 0.001
+> 0.01
+> 0.1
+> 1
+> 0.0001 0.001 0.01
+> Accuracy
+> Frequency
+> 0.0001
+> 0.001
+> 0.01
+> 0.1
+> 1
+> 0.0001 0.001 0.01
+> Word
+> Important Tokens Interference tokens
+> 𝒌 -mer
+
+Figure 8. Visualization of token distribution. All vocabulary sizes are 256, excluding special tokens. “Accuracy” refers to the token prediction accuracy of the model. 
+
+performs 0.4% worse than the base, suggesting that there remains considerable room for exploration regarding how to tokenize “N” nucleotides effectively. 
+
+Token Importance. We supplement the token importance visualizations for k-mer and Word vocabularies in Figure 8. Combined with the statistics in Table 6, tokens with high frequency and high prediction accuracy are essential to the model, i.e., removing them leads to noticeable performance drops: 0.08%, 0.38%, and 1.36% for k-mer, Word, and BPE, respectively, compared to the raw model. In contrast, low-frequency but high-accuracy tokens are often noisy, i.e., their inclusion may degrade model performance. For example, removing such tokens improves BPE variant per-formance by 0.98% and 0.19% compared to the base and raw models, respectively. Based on these observations, we propose Principle 3 in the main text. As shown in Table 6, the k-mer tokenizer introduces overlapping tokens, which allows information from re-moved tokens to be partially retained through neighboring tokens. This redundancy mitigates the impact of token re-moval and results in only minor performance degradation. On the other hand, the Word tokenizer segments DNA se-quences in a non-overlapping manner, which substantially disrupts the inherent structural continuity of the sequence, leading to significantly worse performance compared to k-mer and BPE. Additionally, token removal has a relatively limited effect on performance across all tokenizers. 16
