@@ -6,85 +6,61 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-21
-- 运行时间：2026-04-21 20:27:31 UTC
+- 最新运行日期：2026-04-22
+- 运行时间：2026-04-22 20:22:01 UTC
 - 运行状态：成功
-- 本次总论文数：21
-- 精读区：8
-- 速读区：13
+- 本次总论文数：13
+- 精读区：2
+- 速读区：11
 
 ### 今日简报（AI）
-今日深度复盘 21 篇生物信息学前沿，聚焦系统发育重建的理论极限与单细胞生成模型。
-满分论文揭示了隐藏出生事件对进化动力学推断的关键作用，同时 SAVE 框架实现了高效的多条件单细胞数据生成。
-建议优先研读进化树重建的最优算法，并关注 ProtoCycle 如何利用工具增强规划提升蛋白质设计精度。
-- 详情：[/202604/21/README](/202604/21/README)
+今日精选 13 篇前沿论文，深度解析量子 AI 癌症诊断与表型驱动的知识图谱构建。
+量子计算在生物标志物发现中展现突破潜力，而表型驱动框架正显著提升人口数据的假设发现效率。
+建议重点关注 AI 与量子技术在精准医疗中的交叉应用，探索复杂生命科学问题的数字化解法。
+- 详情：[/202604/22/README](/202604/22/README)
 
 ### 精读区论文标签
-1. [Optimal Phylogenetic Reconstruction from Sampled Quartets](/202604/21/2604.17461v1-optimal-phylogenetic-reconstruction-from-sampled-quartets)  
-   标签：评分：10.0/10、query:q3
-   evidence：从采样四元组中进行系统发育树重建
-2. [Information on hidden birth events restores identifiability in phylodynamic inference](/202604/21/2604.17926v1-information-on-hidden-birth-events-restores-identifiability-in-phylodynamic-inference)  
-   标签：评分：10.0/10、query:q3
-   evidence：系统动力学推断与系统发育树分析
-3. [In Search of Lost DNA Sequence Pretraining](/202604/21/2604.16570v1-in-search-of-lost-dna-sequence-pretraining)  
-   标签：评分：9.0/10、query:q7
-   evidence：用于基因功能预测的DNA序列预训练研究
-4. [Evolution as fitness landscape navigation: Concepts, Measures, and Emerging Questions](/202604/21/2604.17036v1-evolution-as-fitness-landscape-navigation-concepts-measures-and-emerging-questions)  
-   标签：评分：9.0/10、query:q2
-   evidence：进化中基因型到表型映射的适应度景观综述
-5. [Boltzmann Machine Learning with a Parallel, Persistent Markov chain Monte Carlo method for Estimating Evolutionary Fields and Couplings from a Protein Multiple Sequence Alignment](/202604/21/2604.18022v1-boltzmann-machine-learning-with-a-parallel-persistent-markov-chain-monte-carlo-method-for-estimating-evolutionary-fields-and-couplings-from-a-protein-multiple-sequence-alignment)  
-   标签：评分：9.0/10、query:pangen
-   evidence：从蛋白质多序列比对中估计演化场和耦合
-6. [Geometric coherence of single-cell CRISPR perturbations reveals regulatory architecture and predicts cellular stress](/202604/21/2604.16642v1-geometric-coherence-of-single-cell-crispr-perturbations-reveals-regulatory-architecture-and-predicts-cellular-stress)  
+1. [A phenotype-driven and evidence-governed framework for knowledge graph enrichment and hypotheses discovery in population data](/202604/22/2604.16982v1-a-phenotype-driven-and-evidence-governed-framework-for-knowledge-graph-enrichment-and-hypotheses-discovery-in-population-data)  
    标签：评分：8.0/10、query:q7
-   evidence：基因组工程与单细胞CRISPR筛选
-7. [Graph Transformer-Based Pathway Embedding for Cancer Prognosis](/202604/21/2604.16685v1-graph-transformer-based-pathway-embedding-for-cancer-prognosis)  
+   evidence：利用AI和图神经网络进行群体数据表型发现
+2. [Quantum AI for Cancer Diagnostic Biomarker Discovery](/202604/22/2604.18621v1-quantum-ai-for-cancer-diagnostic-biomarker-discovery)  
    标签：评分：8.0/10、query:q7
-   evidence：基于AI的分子组学数据通路嵌入
-8. [Effect of antibiotic spectrum on the abundance of resistant bacteria in multispecies communities](/202604/21/2604.18345v1-effect-of-antibiotic-spectrum-on-the-abundance-of-resistant-bacteria-in-multispecies-communities)  
-   标签：评分：8.0/10、query:q2
-   evidence：多物种群落中抗性动力学的演化理论
+   evidence：量子人工智能用于生物标志物发现和生物信息学
 
 ### 速读区论文标签
-1. [SAVE: A Generalizable Framework for Multi-Condition Single-Cell Generation with Gene Block Attention](/202604/21/2604.16776v1-save-a-generalizable-framework-for-multi-condition-single-cell-generation-with-gene-block-attention)  
-   标签：评分：8.0/10、query:q7
-   evidence：利用AI进行单细胞基因表达建模
-2. [Multi-Scale Reversible Chaos Game Representation: A Unified Framework for Sequence Classification](/202604/21/2604.18477v1-multi-scale-reversible-chaos-game-representation-a-unified-framework-for-sequence-classification)  
-   标签：评分：8.0/10、query:q7
-   evidence：用于生物序列分类和k-mer分解的AI框架
-3. [ProtoCycle: Reflective Tool-Augmented Planning for Text-Guided Protein Design](/202604/21/2604.16896v1-protocycle-reflective-tool-augmented-planning-for-text-guided-protein-design)  
-   标签：评分：7.0/10、query:q7
-   evidence：AI驱动的蛋白质设计代理框架
-4. [RosettaSearch: Multi-Objective Inference-Time Search for Protein Sequence Design](/202604/21/2604.17175v1-rosettasearch-multi-objective-inference-time-search-for-protein-sequence-design)  
-   标签：评分：7.0/10、query:q7
-   evidence：利用AI进行蛋白质序列优化与设计
-5. [Noise-Driven Differentiation via Gene Frustration and Epigenetic Fixation](/202604/21/2604.18185v1-noise-driven-differentiation-via-gene-frustration-and-epigenetic-fixation)  
-   标签：评分：7.0/10、query:q10
-   evidence：基因表达与表观遗传固定的分子机制
-6. [Neutrally Evolving Interlocking Complexity in the Quandary Den](/202604/21/2604.18361v1-neutrally-evolving-interlocking-complexity-in-the-quandary-den)  
+1. [Limits of Lamarckian Evolution Under Pressure of Morphological Novelty](/202604/22/2604.15854v1-limits-of-lamarckian-evolution-under-pressure-of-morphological-novelty)  
+   标签：评分：7.0/10、query:q2
+   evidence：达尔文与拉马克进化机制
+2. [On Solving the Multiple Variable Gapped Longest Common Subsequence Problem](/202604/22/2604.18645v1-on-solving-the-multiple-variable-gapped-longest-common-subsequence-problem)  
    标签：评分：7.0/10、query:pangen
-   evidence：蛋白质复合物的中性演化与亚功能化
-7. [ConforNets: Latents-Based Conformational Control in OpenFold3](/202604/21/2604.18559v1-confornets-latents-based-conformational-control-in-openfold3)  
+   evidence：分子序列比对与带间隙子序列问题
+3. [JASPER: Joint Bayesian Analysis of Spatial Expression via Regression](/202604/22/2604.18742v1-jasper-joint-bayesian-analysis-of-spatial-expression-via-regression)  
    标签：评分：7.0/10、query:q7
-   evidence：基于AlphaFold3架构的AI蛋白质构象预测研究
-8. [CAGenMol: Condition-Aware Diffusion Language Model for Goal-Directed Molecular Generation](/202604/21/2604.11483v1-cagenmol-condition-aware-diffusion-language-model-for-goal-directed-molecular-generation)  
+   evidence：用于空间转录组学和基因表达分析的贝叶斯框架
+4. [Streaming Structured Inference with Flash-SemiCRF](/202604/22/2604.18780v1-streaming-structured-inference-with-flash-semicrf)  
+   标签：评分：7.0/10、query:pangen
+   evidence：基因组规模长序列的推理
+5. [Dynamical heterogeneity reverses structural suppression of cooperation](/202604/22/2604.19436v1-dynamical-heterogeneity-reverses-structural-suppression-of-cooperation)  
+   标签：评分：7.0/10、query:q5
+   evidence：策略演化动力学与动态异质性
+6. [AblateCell: A Reproduce-then-Ablate Agent for Virtual Cell Repositories](/202604/22/2604.19606v1-ablatecell-a-reproduce-then-ablate-agent-for-virtual-cell-repositories)  
+   标签：评分：7.0/10、query:q7
+   evidence：用于虚拟细胞库和生物学评估的AI代理
+7. [Direct RNA sequence design under codon constraints using expressive tensor-based secondary structure models](/202604/22/2604.19718v1-direct-rna-sequence-design-under-codon-constraints-using-expressive-tensor-based-secondary-structure-models)  
+   标签：评分：7.0/10、query:q7
+   evidence：利用AI进行RNA序列设计和密码子优化，用于合成生物学
+8. [Evolution-Inspired Sample Competition for Deep Neural Network Optimization](/202604/22/2604.12568v1-evolution-inspired-sample-competition-for-deep-neural-network-optimization)  
+   标签：评分：6.0/10、query:q2
+   evidence：受进化启发的优化和训练中的自然选择
+9. [How Much Data is Enough? The Zeta Law of Discoverability in Biomedical Data, featuring the enigmatic Riemann zeta function](/202604/22/2604.17581v1-how-much-data-is-enough-the-zeta-law-of-discoverability-in-biomedical-data-featuring-the-enigmatic-riemann-zeta-function)  
+   标签：评分：6.0/10、query:q9
+   evidence：生物医学数据可发现性的缩放法则框架
+10. [Implicit neural representations as a coordinate-based framework for continuous environmental field reconstruction from sparse ecological observations](/202604/22/2604.18083v1-implicit-neural-representations-as-a-coordinate-based-framework-for-continuous-environmental-field-reconstruction-from-sparse-ecological-observations)  
+   标签：评分：6.0/10、query:profile-1
+   evidence：利用AI进行物种分布和生物多样性信息学研究
+11. [MDAgent: A Multi-Agent Framework for End-to-End Molecular Dynamics Research](/202604/22/2604.18622v1-mdagent-a-multi-agent-framework-for-end-to-end-molecular-dynamics-research)  
    标签：评分：6.0/10、query:q7
-   evidence：用于目标导向分子生成和蛋白质-配体兼容性的 AI
-9. [Hierarchical Bayesian calibration of mesoscopic models for ultrasound contrast agents from force spectroscopy data](/202604/21/2604.13657v1-hierarchical-bayesian-calibration-of-mesoscopic-models-for-ultrasound-contrast-agents-from-force-spectroscopy-data)  
-   标签：评分：6.0/10、query:q7
-   evidence：AI驱动的基因递送模型贝叶斯校准
-10. [An Interpretable Framework Applying Protein Words to Predict Protein-Small Molecule Complementary Pairing Rules](/202604/21/2604.16550v1-an-interpretable-framework-applying-protein-words-to-predict-protein-small-molecule-complementary-pairing-rules)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于预测蛋白质-小分子配对规则的AI框架
-11. [FRIGID: Scaling Diffusion-Based Molecular Generation from Mass Spectra at Training and Inference Time](/202604/21/2604.16648v1-frigid-scaling-diffusion-based-molecular-generation-from-mass-spectra-at-training-and-inference-time)  
-   标签：评分：6.0/10、query:q7
-   evidence：AI 驱动的基于质谱的分子生成
-12. [Applications of deep generative models to DNA reaction kinetics and to cryogenic electron microscopy](/202604/21/2604.16851v1-applications-of-deep-generative-models-to-dna-reaction-kinetics-and-to-cryogenic-electron-microscopy)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于DNA反应动力学的深度生成模型
-13. [BioVLM: Routing Prompts, Not Parameters, for Cross-Modality Generalization in Biomedical VLMs](/202604/21/2604.17629v1-biovlm-routing-prompts-not-parameters-for-cross-modality-generalization-in-biomedical-vlms)  
-   标签：评分：6.0/10、query:q7
-   evidence：用于跨模态泛化的生物医学视觉语言模型
+   evidence：用于分子动力学和功能机制研究的AI多智能体框架
 
 
 <div class="dpr-home-promo-card">

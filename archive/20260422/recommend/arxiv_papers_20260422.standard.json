@@ -1,0 +1,553 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-22T20:20:29.069919+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 2,
+    "deep_cap": 8,
+    "deep_selected": 2,
+    "quick_candidates": 11,
+    "quick_skim_target": 13,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2604.16982v1",
+      "title": "A phenotype-driven and evidence-governed framework for knowledge graph enrichment and hypotheses discovery in population data",
+      "abstract": "Current knowledge graph (KG) construction methods are confirmatory, focusing on recovering known relationships rather than identifying novel or context-dependent nodes. This paper proposes a phenotype-driven and evidence-governed framework that shifts the paradigm toward structured hypothesis discovery and controlled KG expansion. The approach integrates graph neural networks (GNNs) for phenotype discovery, causal inference, probabilistic reasoning and large language models (LLMs) for hypothesis generation and claim extraction within a unified pipeline. The framework prioritizes relationships that are both structurally supported by data and underexplored in the literature. KG expansion is formulated as a multi-objective optimization problem, where candidate claims are jointly evaluated in terms of relevance, structural validation and novelty. Pareto-optimal selection enables the identification of non-dominated claims that balance confirmation and discovery, avoiding trivial or redundant knowledge inclusion. Experiments on heterogeneous population datasets demonstrate that the proposed framework produces more interpretable phenotypes, reveals context-dependent causal structures and generates high-quality claims that align with both data and scientific evidence. Compared to rule-based and LLM-only baselines, the method achieves the best trade-off across plausibility, novelty, validation and relevance. In retrieval-augmented settings, it significantly improves performance (Recall@5=0.98) while reducing hallucination rates (0.05), highlighting its effectiveness in grounding LLM outputs.",
+      "authors": [
+        "Adela Bâra",
+        "Simona-Vasilica Oprea"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-18T12:49:57+00:00",
+      "link": "https://arxiv.org/pdf/2604.16982v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI and GNNs for phenotype discovery in population data",
+      "llm_evidence_cn": "利用AI和图神经网络进行群体数据表型发现",
+      "llm_evidence": "利用AI和图神经网络进行群体数据表型发现",
+      "canonical_evidence": "利用AI和图神经网络进行群体数据表型发现",
+      "llm_tldr_en": "Proposes an AI framework using GNNs and LLMs for hypothesis discovery and knowledge graph expansion in population data.",
+      "llm_tldr_cn": "提出一个利用GNN和LLM在群体数据中进行假设发现和知识图谱扩展的AI框架。",
+      "llm_tldr": "提出一个利用GNN和LLM在群体数据中进行假设发现和知识图谱扩展的AI框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.18621v1",
+      "title": "Quantum AI for Cancer Diagnostic Biomarker Discovery",
+      "abstract": "Quantum machine learning offers a promising new paradigm for computational biology by leveraging quantum mechanical principles to enhance cancer classification, biomarker discovery, and bioinformatics diagnostics. In this study, we apply QML to identify subtype specific biomarkers for lung adenocarcinoma (LUAD) and lung squamous cell carcinoma (LUSC), the two predominant forms of non-small cell lung cancer. Our methodology involves a two-phase process: in Phase 1, differential expression analysis and methylation analysis between tumor and normal samples allows us to identify LUAD-specific and LUSC-specific genes, revealing potential prognostic biomarkers for cancer subtypes. Phase 2 focuses on developing a quantum classifier capable of distinguishing between LUAD and LUSC tumors, as well as between tumor and normal samples. This classifier not only enhances diagnostic precision but also demonstrates the quantum advantage in processing large-scale multiomic datasets. Our results consistently demonstrated that Sample3, representing the combined gene set, achieved the highest overall predictive performance in all metrics. These results demonstrate that QML provides an effective and scalable approach for biomarker discovery and subtype specific cancer classification. GO enrichment analysis highlighted the significant involvement of genes in synaptic signaling, ion channel regulation, and neuronal development. In the quantum phase, KEGG analysis further identified enrichment in cancer-associated pathways, including neurotrophin, MAPK, Ras, and PI3KAkt signaling, with key genes such as NGFR, NTRK2, and NTF3 suggesting a central role in neurotrophinmediated oncogenic processes. Our findings highlight the growing potential of quantum computing to advance precision oncology and next-generation biomedical analytics.",
+      "authors": [
+        "Mandeep Kaur Saggi",
+        "Amandeep Singh Bhatia",
+        "Humaira Gowher",
+        "Sabre Kais"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN",
+        "cs.LG"
+      ],
+      "published": "2026-04-18T00:17:13+00:00",
+      "link": "https://arxiv.org/pdf/2604.18621v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Quantum AI for biomarker discovery and bioinformatics",
+      "llm_evidence_cn": "量子人工智能用于生物标志物发现和生物信息学",
+      "llm_evidence": "量子人工智能用于生物标志物发现和生物信息学",
+      "canonical_evidence": "量子人工智能用于生物标志物发现和生物信息学",
+      "llm_tldr_en": "Applies quantum machine learning to identify cancer biomarkers through differential expression and methylation analysis.",
+      "llm_tldr_cn": "应用量子机器学习，通过差异表达和甲基化分析来识别癌症生物标志物。",
+      "llm_tldr": "应用量子机器学习，通过差异表达和甲基化分析来识别癌症生物标志物。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.15854v1",
+      "title": "Limits of Lamarckian Evolution Under Pressure of Morphological Novelty",
+      "abstract": "Lamarckian inheritance has been shown to be a powerful accelerator in systems where the joint evolution of robot morphologies and controllers is enhanced with individual learning. Its defining advantage lies in the offspring inheriting controllers learned by their parents. The efficacy of this option, however, relies on morphological similarity between parent and offspring. In this study, we examine how Lamarckian inheritance performs when the search process is driven toward high morphological variance, potentially straining the requirement for parent-offspring similarity. Using a system of modular robots that can evolve and learn to solve a locomotion task, we compare Darwinian and Lamarckian evolution to determine how they respond to shifting from pure task-based selection to a multi-objective pressure that also rewards morphological novelty. Our results confirm that Lamarckian evolution outperforms Darwinian evolution when optimizing task-performance alone. However, introducing selection pressure for morphological diversity causes a substantial performance drop, which is much greater in the Lamarckian system. Further analyses show that promoting diversity reduces parent-offspring similarity, which in turn reduces the benefits of inheriting controllers learned by parents. These results reveal the limits of Lamarckian evolution by exposing a fundamental trade-off between inheritance-based exploitation and diversity-driven exploration.",
+      "authors": [
+        "Jed R Muff",
+        "Karine Miras",
+        "A. E. Eiben"
+      ],
+      "primary_category": "cs.RO",
+      "categories": [
+        "cs.RO"
+      ],
+      "published": "2026-04-17T09:04:58+00:00",
+      "link": "https://arxiv.org/pdf/2604.15854v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Darwinian and Lamarckian evolutionary mechanisms",
+      "llm_evidence_cn": "达尔文与拉马克进化机制",
+      "llm_evidence": "达尔文与拉马克进化机制",
+      "canonical_evidence": "达尔文与拉马克进化机制",
+      "llm_tldr_en": "Compares Darwinian and Lamarckian evolution in modular robots under pressure for morphological novelty.",
+      "llm_tldr_cn": "在形态创新压力下，比较模块化机器人中的达尔文与拉马克进化机制。",
+      "llm_tldr": "在形态创新压力下，比较模块化机器人中的达尔文与拉马克进化机制。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.12568v1",
+      "title": "Evolution-Inspired Sample Competition for Deep Neural Network Optimization",
+      "abstract": "Conventional deep network training generally optimizes all samples under a largely uniform learning paradigm, without explicitly modeling the heterogeneous competition among them. Such an oversimplified treatment can lead to several well-known issues, including bias under class imbalance, insufficient learning of hard samples, and the erroneous reinforcement of noisy samples. In this work, we present \\textit{Natural Selection} (NS), a novel evolution-inspired optimization method that explicitly incorporates competitive interactions into deep network training. Unlike conventional sample reweighting strategies that rely mainly on predefined heuristics or static criteria, NS estimates the competitive status of each sample in a group-wise context and uses it to adaptively regulate its training contribution. Specifically, NS first assembles multiple samples into a composite image and rescales it to the original input size for model inference. Based on the resulting predictions, a natural selection score is computed for each sample to characterize its relative competitive variation within the constructed group. These scores are then used to dynamically reweight the sample-wise loss, thereby introducing an explicit competition-driven mechanism into the optimization process. In this way, NS provides a simple yet effective means of moving beyond uniform sample treatment and enables more adaptive and balanced model optimization. Extensive experiments on 12 public datasets across four image classification tasks demonstrate the effectiveness of the proposed method. Moreover, NS is compatible with diverse network architectures and does not depend on task-specific assumptions, indicating its strong generality and practical potential. The code will be made publicly available.",
+      "authors": [
+        "Ying Zheng",
+        "Yiyi Zhang",
+        "Yi Wang",
+        "Lap-Pui Chau"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-14T10:48:01+00:00",
+      "link": "https://arxiv.org/pdf/2604.12568v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Evolution-inspired optimization and natural selection in training",
+      "llm_evidence_cn": "受进化启发的优化和训练中的自然选择",
+      "llm_evidence": "受进化启发的优化和训练中的自然选择",
+      "canonical_evidence": "受进化启发的优化和训练中的自然选择",
+      "llm_tldr_en": "Introduces a Natural Selection optimization method for deep learning inspired by evolutionary competition.",
+      "llm_tldr_cn": "引入了一种受进化竞争启发的深度学习“自然选择”优化方法。",
+      "llm_tldr": "引入了一种受进化竞争启发的深度学习“自然选择”优化方法。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18645v1",
+      "title": "On Solving the Multiple Variable Gapped Longest Common Subsequence Problem",
+      "abstract": "This paper addresses the Variable Gapped Longest Common Subsequence (VGLCS) problem, a generalization of the classical LCS problem involving flexible gap constraints between consecutive solutions' characters. The problem arises in molecular sequence comparison, where structural distance constraints between residues must be respected, and in time-series analysis where events are required to occur within specified temporal delays. We propose a search framework based on the root-based state graph representation, in which the state space comprises a generally large number of rooted state subgraphs. To cope with the resulting combinatorial explosion, an iterative beam search strategy is employed, dynamically maintaining a global pool of promising candidate root nodes, enabling effective control of diversification across iterations. To exploit the search for high-quality solutions, several known heuristics from the LCS literature are utilized into the standalone beam search procedure. To the best of our knowledge, this is the first comprehensive computational study on the VGLCS problem comprising 320 synthetic instances with up to 10 input sequences and up to 500 characters. Experimental results show robustness of the designed approach over the baseline beam search in comparable runtimes.",
+      "authors": [
+        "Marko Djukanović",
+        "Nikola Balaban",
+        "Christian Blum",
+        "Aleksandar Kartelj",
+        "Sašo Džeroski",
+        "Žiga Zebec"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-19T21:44:53+00:00",
+      "link": "https://arxiv.org/pdf/2604.18645v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Molecular sequence comparison and gapped subsequence problem",
+      "llm_evidence_cn": "分子序列比对与带间隙子序列问题",
+      "llm_evidence": "分子序列比对与带间隙子序列问题",
+      "canonical_evidence": "分子序列比对与带间隙子序列问题",
+      "llm_tldr_en": "Proposes a search framework for the Variable Gapped Longest Common Subsequence problem in molecular sequences.",
+      "llm_tldr_cn": "提出了一种解决分子序列比对中可变间隙最长公共子序列问题的搜索框架。",
+      "llm_tldr": "提出了一种解决分子序列比对中可变间隙最长公共子序列问题的搜索框架。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.17581v1",
+      "title": "How Much Data is Enough? The Zeta Law of Discoverability in Biomedical Data, featuring the enigmatic Riemann zeta function",
+      "abstract": "How much data is enough to make a scientific discovery? As biomedical datasets scale to millions of samples and AI models grow in capacity, progress increasingly depends on predicting when additional data will substantially improve performance. In practice, model development often relies on empirical scaling curves measured across architectures, modalities, and dataset sizes, with limited theoretical guidance on when performance should improve, saturate, or exhibit cross-over behavior.   We propose a scaling-law framework for cross-modal discoverability based on spectral structure of data covariance operators, task-aligned signal projections, and learned representations. Many performance metrics, including AUC, can be expressed in terms of cumulative signal-to-noise energy accumulated across identifiable spectral modes of an encoder and cross-modal operator. Under mild assumptions, this accumulation follows a zeta-like scaling law governed by power-law decay of covariance spectra and aligned signal energy, leading naturally to the appearance of the Riemann zeta function. Representation learning methods such as sparse models, low-rank embeddings, and multimodal contrastive objectives improve sample efficiency by concentrating useful signal into earlier stable modes, effectively steepening spectral decay and shifting scaling curves.   The framework predicts cross-over regimes in which simpler models perform best at small sample sizes, while higher-capacity or multimodal encoders outperform them once sufficient data stabilizes additional degrees of freedom. Applications include multimodal disease classification, imaging genetics, functional MRI, and topological data analysis. The resulting zeta law provides a principled way to anticipate when scaling data, improving representations, or adding modalities is most likely to accelerate discovery.",
+      "authors": [
+        "Paul M. Thompson"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.NC"
+      ],
+      "published": "2026-04-19T19:08:53+00:00",
+      "link": "https://arxiv.org/pdf/2604.17581v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "scaling-law framework for biomedical data discoverability",
+      "llm_evidence_cn": "生物医学数据可发现性的缩放法则框架",
+      "llm_evidence": "生物医学数据可发现性的缩放法则框架",
+      "canonical_evidence": "生物医学数据可发现性的缩放法则框架",
+      "llm_tldr_en": "Proposes a framework to predict when additional biomedical data will improve AI model performance.",
+      "llm_tldr_cn": "提出了一个预测额外生物医学数据何时能提高AI模型性能的框架。",
+      "llm_tldr": "提出了一个预测额外生物医学数据何时能提高AI模型性能的框架。",
+      "llm_tags": [
+        "query:q9"
+      ],
+      "matched_query_tag": "query:q9",
+      "matched_query_text": "recent advances in genomics and evolutionary biology",
+      "matched_requirement_id": "req-9",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18742v1",
+      "title": "JASPER: Joint Bayesian Analysis of Spatial Expression via Regression",
+      "abstract": "Spatially resolved transcriptomics is a fast-developing set of technologies that enables the measurement of localized gene expression across spatial locations in a sample. Detecting spatially varying genes is critical for analyzing such data, yet existing methods often fail to account for inter-gene correlations, leading to inflated false positive and false negative rates. Additionally, most prominent methods rely on predefined spatial covariance kernels, making them sensitive to the complexity of spatial expression patterns. Motivated by a human breast cancer dataset, we address these limitations in existing literature through JASPER (Joint Bayesian Analysis of SPatial Expression via Regression), a Bayesian framework that jointly models spatial expression patterns across multiple genes using a spatial basis function regression approach. We demonstrate the superior performance of JASPER compared to existing methods in several real-world spatial transcriptomic datasets and supporting simulation experiments. JASPER identifies genes with stronger spatial correlation and greater biological relevance, as validated by overlap comparison, enrichment analysis, and pathway analysis using independent biological databases. Our results highlight the ability of JASPER to improve the statistical and biological interpretability of spatial transcriptomics data, making it a powerful tool for uncovering spatial gene expression patterns in complex biological systems.",
+      "authors": [
+        "Pritam Dey",
+        "Rajarshi Guhaniyogi",
+        "Yang Ni",
+        "Bani K. Mallick"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP",
+        "stat.ME"
+      ],
+      "published": "2026-04-20T18:45:54+00:00",
+      "link": "https://arxiv.org/pdf/2604.18742v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Bayesian framework for spatial transcriptomics and gene expression analysis",
+      "llm_evidence_cn": "用于空间转录组学和基因表达分析的贝叶斯框架",
+      "llm_evidence": "用于空间转录组学和基因表达分析的贝叶斯框架",
+      "canonical_evidence": "用于空间转录组学和基因表达分析的贝叶斯框架",
+      "llm_tldr_en": "JASPER is a Bayesian framework for detecting spatially varying genes in transcriptomics data.",
+      "llm_tldr_cn": "JASPER是一个用于在转录组数据中检测空间变化基因的贝叶斯框架。",
+      "llm_tldr": "JASPER是一个用于在转录组数据中检测空间变化基因的贝叶斯框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.18083v1",
+      "title": "Implicit neural representations as a coordinate-based framework for continuous environmental field reconstruction from sparse ecological observations",
+      "abstract": "Reconstructing continuous environmental fields from sparse and irregular observations remains a central challenge in environmental modelling and biodiversity informatics. Many ecological datasets are heterogeneous in space and time, making grid-based approaches difficult to scale or generalise across domains. Here, we evaluate implicit neural representations (INRs) as a coordinate-based modelling framework for learning continuous spatial and spatio-temporal fields directly from coordinate inputs. We analyse their behaviour across three representative modelling scenarios: species distribution reconstruction, phenological dynamics, and morphological segmentation derived from open biodiversity data. Beyond predictive performance, we examine interpolation behaviour, spatial coherence, and computational characteristics relevant for environmental modelling workflows, including scalability, resolution-independent querying, and architectural inductive bias. Results show that neural fields provide stable continuous representations with predictable computational cost, complementing classical smoothers and tree-based approaches. These findings position coordinate-based neural fields as a flexible representation layer that can be integrated into environmental modelling pipelines and exploratory analysis frameworks for large, irregularly sampled datasets.",
+      "authors": [
+        "Agnieszka Pregowska",
+        "Hazem M. Kalaji"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-20T10:59:08+00:00",
+      "link": "https://arxiv.org/pdf/2604.18083v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for species distribution and biodiversity informatics",
+      "llm_evidence_cn": "利用AI进行物种分布和生物多样性信息学研究",
+      "llm_evidence": "利用AI进行物种分布和生物多样性信息学研究",
+      "canonical_evidence": "利用AI进行物种分布和生物多样性信息学研究",
+      "llm_tldr_en": "Evaluates implicit neural representations for reconstructing continuous environmental fields from sparse ecological data.",
+      "llm_tldr_cn": "评估隐式神经表示在从稀疏生态观测中重建连续环境场方面的应用。",
+      "llm_tldr": "评估隐式神经表示在从稀疏生态观测中重建连续环境场方面的应用。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18780v1",
+      "title": "Streaming Structured Inference with Flash-SemiCRF",
+      "abstract": "Semi-Markov Conditional Random Fields (semi-CRFs) assign labels to segments of a sequence rather than to individual positions, enabling exact inference over segment-level features and principled uncertainty estimates at their boundaries. However, existing implementations must materialize a large edge potential tensor whose size grows with sequence length, maximum segment length, and label count, becoming prohibitive for speech-scale state spaces and intractable at genomic scales where sequences can exceed 100,000 positions. This memory bottleneck has limited the adoption of exact segment-level inference for long sequences and large label sets. We identify that the core inefficiency is materializing edge potentials that can instead be evaluated on-the-fly from a compact prefix-sum array, and make several improvements. First, replacing the stored edge tensor with prefix-sum lookup reduces the memory footprint by a factor proportional to the product of segment length and label count. Second, a streaming forward-backward pass with checkpoint-boundary normalization keeps working memory sublinear in sequence length while preserving exact gradients. Third, zero-centered cumulative scores control numerical drift and induce an adaptive duration prior under label imbalance. We integrate these ideas into Flash-SemiCRF, a fused Triton kernel that enables exact semi-CRF inference on previously intractable problem sizes. Available at https://github.com/biobenkj/flash-semicrf.",
+      "authors": [
+        "Benjamin K. Johnson",
+        "Thomas Goralski",
+        "Ayush Semwal",
+        "Hui Shen",
+        "H. Josh Jang"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-20T19:42:48+00:00",
+      "link": "https://arxiv.org/pdf/2604.18780v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "inference at genomic scales for long sequences",
+      "llm_evidence_cn": "基因组规模长序列的推理",
+      "llm_evidence": "基因组规模长序列的推理",
+      "canonical_evidence": "基因组规模长序列的推理",
+      "llm_tldr_en": "Proposes Flash-SemiCRF for efficient segment-level inference on genomic-scale sequences.",
+      "llm_tldr_cn": "提出了Flash-SemiCRF，用于基因组规模序列的高效片段级推理。",
+      "llm_tldr": "提出了Flash-SemiCRF，用于基因组规模序列的高效片段级推理。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.18622v1",
+      "title": "MDAgent: A Multi-Agent Framework for End-to-End Molecular Dynamics Research",
+      "abstract": "Molecular dynamics (MD) simulation is a powerful tool for studying biomolecular structural changes, molecular recognition, transmembrane transport, and functional mechanisms. However, its practical bottleneck lies not only in software operation or parameter setup, but in translating experimental questions into executable, interpretable, and reviewable computational workflows. Here, we present MDAgent, a multi-agent system for end-to-end molecular dynamics research. The system integrates problem understanding, literature-guided strategy design, simulation execution, trajectory analysis, mechanistic interpretation, and quality supervision into a unified workflow, enabling agents not only to run simulations but also to generate research-oriented computational plans and analytical reports. We further introduce a case-based learning mechanism based on Skill and Memory, which stores reusable knowledge from prior tasks, including parameter choices, operational rules, analytical logic, and problem-solving pathways, thereby supporting cross-task transfer without retraining the underlying model. Across multiple representative molecular simulation tasks, MDAgent achieved stable end-to-end performance with improved strategic adaptability, interpretability, and generalization. In an independent complex task involving conformational transitions of TMEM16F and XKR8, the system successfully completed system design, simulation, and mechanistic analysis for large membrane proteins. These results show that combining multi-agent collaboration with case-based learning can transform MD agents from workflow automation tools into scientific question-oriented computational research systems, providing a scalable framework for AI-driven automated research.",
+      "authors": [
+        "Zhenyu Ma",
+        "Chunyi Yang",
+        "Yuyang Song",
+        "Jingyi Zhu",
+        "Letian Yang",
+        "Limei Xu",
+        "Min Xiao",
+        "Xukai Jiang"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-18T00:28:34+00:00",
+      "link": "https://arxiv.org/pdf/2604.18622v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI multi-agent framework for molecular dynamics and functional mechanisms",
+      "llm_evidence_cn": "用于分子动力学和功能机制研究的AI多智能体框架",
+      "llm_evidence": "用于分子动力学和功能机制研究的AI多智能体框架",
+      "canonical_evidence": "用于分子动力学和功能机制研究的AI多智能体框架",
+      "llm_tldr_en": "Presents MDAgent, an AI framework to automate molecular dynamics research and mechanistic interpretation.",
+      "llm_tldr_cn": "提出了MDAgent，一个用于自动化分子动力学研究和机制解释的AI框架。",
+      "llm_tldr": "提出了MDAgent，一个用于自动化分子动力学研究和机制解释的AI框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.19436v1",
+      "title": "Dynamical heterogeneity reverses structural suppression of cooperation",
+      "abstract": "Heterogeneity in individual characteristics and behaviour is a fundamental property of complex dynamical systems. While previous studies on evolutionary dynamics of strategies evolution in various systems have predominantly focused on the structural heterogeneity, dynamical heterogeneity in individuals' strategy update has been largely neglected. Here, we introduce a novel dynamical update mechanism based on individuals' decision-making information, comprising personal and social components. This update rule allows each individual to vary in the weight of personal information and the amount of social information, capturing the general scenario of dynamically heterogeneous populations.We find that cooperation, as a collective prosocial outcome, is significantly enhanced when highly connected individuals on interaction network rely more heavily on personal information and access more social information.This effect is notably absent in homogeneous networks, thereby overturning the prevailing consensus that structural heterogeneity inherently suppresses cooperation.This theoretical prediction is further validated by empirical evidence from GitHub collaboration networks.Furthermore, individuals preferentially linking to those who are well-informed and possess greater personal information further promotes collective cooperation. We additionally reveal that cooperators gain a decisive advantage when relying more on personal information compared to defectors, whereas social information affects cooperators and defectors equivalently. Our findings offer profound insights into how dynamical heterogeneity fundamentally shapes the evolution of collective cooperation in complex systems.",
+      "authors": [
+        "Xiaochen Wang"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph"
+      ],
+      "published": "2026-04-21T13:11:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.19436v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary dynamics of strategies and dynamical heterogeneity",
+      "llm_evidence_cn": "策略演化动力学与动态异质性",
+      "llm_evidence": "策略演化动力学与动态异质性",
+      "canonical_evidence": "策略演化动力学与动态异质性",
+      "llm_tldr_en": "Explores how dynamical heterogeneity in decision-making affects the evolutionary dynamics of cooperation.",
+      "llm_tldr_cn": "探讨了决策中的动态异质性如何影响合作行为的演化动力学。",
+      "llm_tldr": "探讨了决策中的动态异质性如何影响合作行为的演化动力学。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.19606v1",
+      "title": "AblateCell: A Reproduce-then-Ablate Agent for Virtual Cell Repositories",
+      "abstract": "Systematic ablations are essential to attribute performance gains in AI Virtual Cells, yet they are rarely performed because biological repositories are under-standardized and tightly coupled to domain-specific data and formats. While recent coding agents can translate ideas into implementations, they typically stop at producing code and lack a verifier that can reproduce strong baselines and rigorously test which components truly matter. We introduce AblateCell, a reproduce-then-ablate agent for virtual cell repositories that closes this verification gap. AblateCell first reproduces reported baselines end-to-end by auto-configuring environments, resolving dependency and data issues, and rerunning official evaluations while emitting verifiable artifacts. It then conducts closed-loop ablation by generating a graph of isolated repository mutations and adaptively selecting experiments under a reward that trades off performance impact and execution cost. Evaluated on three single-cell perturbation prediction repositories (CPA, GEARS, BioLORD), AblateCell achieves 88.9% (+29.9% to human expert) end-to-end workflow success and 93.3% (+53.3% to heuristic) accuracy in recovering ground-truth critical components. These results enable scalable, repository-grounded verification and attribution directly on biological codebases.",
+      "authors": [
+        "Xue Xia",
+        "Chengkai Yao",
+        "Mingyu Tsoi",
+        "Xinjie Mao",
+        "Wenxuan Huang",
+        "Jiaqi Wei",
+        "Hao Wu",
+        "Cheng Tan",
+        "Lang Yu",
+        "Yuejin Yang",
+        "Siqi Sun",
+        "Zhangyang Gao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "published": "2026-04-21T15:55:33+00:00",
+      "link": "https://arxiv.org/pdf/2604.19606v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI agents for virtual cell repositories and biological evaluations",
+      "llm_evidence_cn": "用于虚拟细胞库和生物学评估的AI代理",
+      "llm_evidence": "用于虚拟细胞库和生物学评估的AI代理",
+      "canonical_evidence": "用于虚拟细胞库和生物学评估的AI代理",
+      "llm_tldr_en": "AblateCell is an AI agent that reproduces and ablates virtual cell models to verify performance gains.",
+      "llm_tldr_cn": "AblateCell是一个AI代理，通过复现和消融虚拟细胞模型来验证性能提升。",
+      "llm_tldr": "AblateCell是一个AI代理，通过复现和消融虚拟细胞模型来验证性能提升。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.19718v1",
+      "title": "Direct RNA sequence design under codon constraints using expressive tensor-based secondary structure models",
+      "abstract": "Nucleic acid sequence design via codon optimization is a fundamental task with applications across synthetic biology, mRNA therapeutics, and vaccine design. Given a target protein, it is a major open challenge to navigate the combinatorially large design space of codon sequences mapping to its amino acid sequence. Computational approaches generally seek to optimize simple objectives based on the codon sequence, possibly together with more complicated contributions based on secondary structure analysis. In this work, we demonstrate a direct and efficient algorithm to sample sequences from a suitable Boltzmann distribution defined in terms of the codon sequence and a fully detailed secondary structure free energy model, as well as related algorithms for exact computation of statistical quantities such as free energies, base pairing probabilities, and base and codon marginals. These algorithms draw upon a recently developed tensor-based formulation of secondary structure thermodynamics and demonstrate, for the first time, that global sequence design can be accomplished with respect to a highly accurate free energy model. Moreover, the algorithms can leverage any available CPU and GPU resources in parallel for massive computational speedups.",
+      "authors": [
+        "Mark Fornace",
+        "Christina Wuyan Wang",
+        "Michael Lindsey"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-21T17:45:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.19718v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven RNA sequence design and codon optimization for synthetic biology",
+      "llm_evidence_cn": "利用AI进行RNA序列设计和密码子优化，用于合成生物学",
+      "llm_evidence": "利用AI进行RNA序列设计和密码子优化，用于合成生物学",
+      "canonical_evidence": "利用AI进行RNA序列设计和密码子优化，用于合成生物学",
+      "llm_tldr_en": "Proposes an algorithm for RNA sequence design under codon constraints using secondary structure models.",
+      "llm_tldr_cn": "提出一种在密码子约束下利用二级结构模型进行RNA序列设计的算法，助力合成生物学。",
+      "llm_tldr": "提出一种在密码子约束下利用二级结构模型进行RNA序列设计的算法，助力合成生物学。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
