@@ -6,61 +6,70 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-22
-- 运行时间：2026-04-22 20:22:01 UTC
+- 最新运行日期：2026-04-23
+- 运行时间：2026-04-23 20:39:24 UTC
 - 运行状态：成功
-- 本次总论文数：13
-- 精读区：2
+- 本次总论文数：16
+- 精读区：5
 - 速读区：11
 
 ### 今日简报（AI）
-今日精选 13 篇前沿论文，深度解析量子 AI 癌症诊断与表型驱动的知识图谱构建。
-量子计算在生物标志物发现中展现突破潜力，而表型驱动框架正显著提升人口数据的假设发现效率。
-建议重点关注 AI 与量子技术在精准医疗中的交叉应用，探索复杂生命科学问题的数字化解法。
-- 详情：[/202604/22/README](/202604/22/README)
+今日深度解析 16 篇前沿进展，重点聚焦分子演化规律与基于扩散模型的精准 DNA 序列设计。
+核心推荐：探索分子演化中的涌现偏差，以及利用蒙特卡洛树扩散技术定制高保真、细胞特异性的调控 DNA。
+建议关注生成式 AI 在基因工程中的突破，并留意大模型结合知识图谱在药物筛选中的落地潜力。
+- 详情：[/202604/23/README](/202604/23/README)
 
 ### 精读区论文标签
-1. [A phenotype-driven and evidence-governed framework for knowledge graph enrichment and hypotheses discovery in population data](/202604/22/2604.16982v1-a-phenotype-driven-and-evidence-governed-framework-for-knowledge-graph-enrichment-and-hypotheses-discovery-in-population-data)  
+1. [Emergence biases in molecular evolution](/202604/23/2604.20477v1-emergence-biases-in-molecular-evolution)  
+   标签：评分：9.0/10、query:q10
+   evidence：获得新遗传功能的分子倾向与偏差
+2. [Conditional Monte Carlo Tree Diffusion for Designing Cell-Type-Specific and Biologically Faithful Regulatory DNA](/202604/23/2604.20488v1-conditional-monte-carlo-tree-diffusion-for-designing-cell-type-specific-and-biologically-faithful-regulatory-dna)  
+   标签：评分：9.0/10、query:q7
+   evidence：利用扩散模型等AI技术设计具有细胞类型特异性的调控DNA元件
+3. [Rates of forgetting for the sequentially Markov coalescent](/202604/23/2604.20629v1-rates-of-forgetting-for-the-sequentially-markov-coalescent)  
+   标签：评分：9.0/10、query:q5
+   evidence：用于群体历史和祖先推断的序列马尔可夫聚结模型
+4. [scpFormer: A Foundation Model for Unified Representation and Integration of the Single-Cell Proteomics](/202604/23/2604.20003v1-scpformer-a-foundation-model-for-unified-representation-and-integration-of-the-single-cell-proteomics)  
    标签：评分：8.0/10、query:q7
-   evidence：利用AI和图神经网络进行群体数据表型发现
-2. [Quantum AI for Cancer Diagnostic Biomarker Discovery](/202604/22/2604.18621v1-quantum-ai-for-cancer-diagnostic-biomarker-discovery)  
+   evidence：利用进化规模建模（ESM）的AI基础模型进行单细胞蛋白质组学研究
+5. [AROMA: Augmented Reasoning Over a Multimodal Architecture for Virtual Cell Genetic Perturbation Modeling](/202604/23/2604.20263v1-aroma-augmented-reasoning-over-a-multimodal-architecture-for-virtual-cell-genetic-perturbation-modeling)  
    标签：评分：8.0/10、query:q7
-   evidence：量子人工智能用于生物标志物发现和生物信息学
+   evidence：利用AI进行基因扰动建模与生物机制研究
 
 ### 速读区论文标签
-1. [Limits of Lamarckian Evolution Under Pressure of Morphological Novelty](/202604/22/2604.15854v1-limits-of-lamarckian-evolution-under-pressure-of-morphological-novelty)  
+1. [Making ends meet or just meeting at the ends? Assessing end-to-end distance in folded RNA sequences and other branched structures](/202604/23/2604.15599v1-making-ends-meet-or-just-meeting-at-the-ends-assessing-end-to-end-distance-in-folded-rna-sequences-and-other-branched-structures)  
+   标签：评分：7.0/10、query:q10
+   evidence：RNA序列折叠和分支结构的分子机制
+2. [Analysis of persistence thresholds for a nonlocal PDE--ODE model of bacterial persister cells](/202604/23/2604.18809v1-analysis-of-persistence-thresholds-for-a-nonlocal-pde--ode-model-of-bacterial-persister-cells)  
    标签：评分：7.0/10、query:q2
-   evidence：达尔文与拉马克进化机制
-2. [On Solving the Multiple Variable Gapped Longest Common Subsequence Problem](/202604/22/2604.18645v1-on-solving-the-multiple-variable-gapped-longest-common-subsequence-problem)  
-   标签：评分：7.0/10、query:pangen
-   evidence：分子序列比对与带间隙子序列问题
-3. [JASPER: Joint Bayesian Analysis of Spatial Expression via Regression](/202604/22/2604.18742v1-jasper-joint-bayesian-analysis-of-spatial-expression-via-regression)  
+   evidence：表观遗传继承与细菌持久性机制
+3. [Large Language Models Meet Biomedical Knowledge Graphs for Mechanistically Grounded Therapeutic Prioritization](/202604/23/2604.19815v1-large-language-models-meet-biomedical-knowledge-graphs-for-mechanistically-grounded-therapeutic-prioritization)  
    标签：评分：7.0/10、query:q7
-   evidence：用于空间转录组学和基因表达分析的贝叶斯框架
-4. [Streaming Structured Inference with Flash-SemiCRF](/202604/22/2604.18780v1-streaming-structured-inference-with-flash-semicrf)  
-   标签：评分：7.0/10、query:pangen
-   evidence：基因组规模长序列的推理
-5. [Dynamical heterogeneity reverses structural suppression of cooperation](/202604/22/2604.19436v1-dynamical-heterogeneity-reverses-structural-suppression-of-cooperation)  
-   标签：评分：7.0/10、query:q5
-   evidence：策略演化动力学与动态异质性
-6. [AblateCell: A Reproduce-then-Ablate Agent for Virtual Cell Repositories](/202604/22/2604.19606v1-ablatecell-a-reproduce-then-ablate-agent-for-virtual-cell-repositories)  
+   evidence：大语言模型与知识图谱用于生物机制推理
+4. [Relative Entropy Estimation in Function Space: Theory and Applications to Trajectory Inference](/202604/23/2604.20775v1-relative-entropy-estimation-in-function-space-theory-and-applications-to-trajectory-inference)  
    标签：评分：7.0/10、query:q7
-   evidence：用于虚拟细胞库和生物学评估的AI代理
-7. [Direct RNA sequence design under codon constraints using expressive tensor-based secondary structure models](/202604/22/2604.19718v1-direct-rna-sequence-design-under-codon-constraints-using-expressive-tensor-based-secondary-structure-models)  
-   标签：评分：7.0/10、query:q7
-   evidence：利用AI进行RNA序列设计和密码子优化，用于合成生物学
-8. [Evolution-Inspired Sample Competition for Deep Neural Network Optimization](/202604/22/2604.12568v1-evolution-inspired-sample-competition-for-deep-neural-network-optimization)  
-   标签：评分：6.0/10、query:q2
-   evidence：受进化启发的优化和训练中的自然选择
-9. [How Much Data is Enough? The Zeta Law of Discoverability in Biomedical Data, featuring the enigmatic Riemann zeta function](/202604/22/2604.17581v1-how-much-data-is-enough-the-zeta-law-of-discoverability-in-biomedical-data-featuring-the-enigmatic-riemann-zeta-function)  
-   标签：评分：6.0/10、query:q9
-   evidence：生物医学数据可发现性的缩放法则框架
-10. [Implicit neural representations as a coordinate-based framework for continuous environmental field reconstruction from sparse ecological observations](/202604/22/2604.18083v1-implicit-neural-representations-as-a-coordinate-based-framework-for-continuous-environmental-field-reconstruction-from-sparse-ecological-observations)  
+   evidence：单细胞基因组学中的轨迹推断应用
+5. [Universal Loop Statistics from Active Extrusion with Kinetic Barriers](/202604/23/2604.15527v1-universal-loop-statistics-from-active-extrusion-with-kinetic-barriers)  
+   标签：评分：6.0/10、query:q10
+   evidence：染色质上粘连蛋白驱动的环挤出的动力学理论
+6. [EvoMaster: A Foundational Evolving Agent Framework for Agentic Science at Scale](/202604/23/2604.17406v2-evomaster-a-foundational-evolving-agent-framework-for-agentic-science-at-scale)  
    标签：评分：6.0/10、query:profile-1
-   evidence：利用AI进行物种分布和生物多样性信息学研究
-11. [MDAgent: A Multi-Agent Framework for End-to-End Molecular Dynamics Research](/202604/22/2604.18622v1-mdagent-a-multi-agent-framework-for-end-to-end-molecular-dynamics-research)  
+   evidence：用于迭代科学发现和自我演化的AI框架
+7. [An Integrated Deep-Learning Framework for Peptide-Protein Interaction Prediction and Target-Conditioned Peptide Generation with ConGA-PePPI and TC-PepGen](/202604/23/2604.18467v1-an-integrated-deep-learning-framework-for-peptide-protein-interaction-prediction-and-target-conditioned-peptide-generation-with-conga-peppi-and-tc-pepgen)  
    标签：评分：6.0/10、query:q7
-   evidence：用于分子动力学和功能机制研究的AI多智能体框架
+   evidence：用于多肽-蛋白质相互作用预测的深度学习框架
+8. [Dynamical heterogeneity reverses structural suppression of cooperation](/202604/23/2604.19436v2-dynamical-heterogeneity-reverses-structural-suppression-of-cooperation)  
+   标签：评分：6.0/10、query:q5
+   evidence：异质群体中策略的演化动力学
+9. [Structure-guided molecular design with contrastive 3D protein-ligand learning](/202604/23/2604.19562v1-structure-guided-molecular-design-with-contrastive-3d-protein-ligand-learning)  
+   标签：评分：6.0/10、query:q7
+   evidence：AI驱动的分子设计与蛋白质-配体学习
+10. [Information-to-energy trade-offs and the optimal alphabet of polymer replication](/202604/23/2604.19563v1-information-to-energy-trade-offs-and-the-optimal-alphabet-of-polymer-replication)  
+   标签：评分：6.0/10、query:q2
+   evidence：聚合物复制模型及进化信息传递中的字母表大小研究
+11. [A weighted angle distance on strings](/202604/23/2604.20633v1-a-weighted-angle-distance-on-strings)  
+   标签：评分：6.0/10、query:pangen
+   evidence：用于聚类和串联重复鲁棒性的多尺度字符串度量方法
 
 
 <div class="dpr-home-promo-card">
