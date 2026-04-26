@@ -6,70 +6,73 @@
 </div>
 
 ## 每次日报
-- 最新运行日期：2026-04-23
-- 运行时间：2026-04-23 20:39:24 UTC
+- 最新运行日期：2026-04-26
+- 运行时间：2026-04-26 19:38:08 UTC
 - 运行状态：成功
-- 本次总论文数：16
-- 精读区：5
+- 本次总论文数：17
+- 精读区：6
 - 速读区：11
 
 ### 今日简报（AI）
-今日深度解析 16 篇前沿进展，重点聚焦分子演化规律与基于扩散模型的精准 DNA 序列设计。
-核心推荐：探索分子演化中的涌现偏差，以及利用蒙特卡洛树扩散技术定制高保真、细胞特异性的调控 DNA。
-建议关注生成式 AI 在基因工程中的突破，并留意大模型结合知识图谱在药物筛选中的落地潜力。
-- 详情：[/202604/23/README](/202604/23/README)
+今日聚焦病毒突变解码与演化过程估算，深度精读 6 篇高分前沿论文。
+重点关注 VARIANT 病毒分析平台及序列背景下的突变特征优化方案，两项研究均获 9.0 高分。
+建议关注生物信息学工具在病毒监测中的应用，并同步留意大模型在分子生成与科研智能体领域的跨界潜力。
+- 详情：[/202604/26/README](/202604/26/README)
 
 ### 精读区论文标签
-1. [Emergence biases in molecular evolution](/202604/23/2604.20477v1-emergence-biases-in-molecular-evolution)  
-   标签：评分：9.0/10、query:q10
-   evidence：获得新遗传功能的分子倾向与偏差
-2. [Conditional Monte Carlo Tree Diffusion for Designing Cell-Type-Specific and Biologically Faithful Regulatory DNA](/202604/23/2604.20488v1-conditional-monte-carlo-tree-diffusion-for-designing-cell-type-specific-and-biologically-faithful-regulatory-dna)  
+1. [VARIANT: Web Server for Decoding and Analyzing Viral Mutations at Genome and Protein Levels](/202604/26/2604.20942v1-variant-web-server-for-decoding-and-analyzing-viral-mutations-at-genome-and-protein-levels)  
+   标签：评分：9.0/10、query:profile-1
+   evidence：病毒突变分析与演化理解
+2. [Integrating opportunities and parametrized signatures for improved mutational processes estimation in extended sequence contexts](/202604/26/2604.21662v1-integrating-opportunities-and-parametrized-signatures-for-improved-mutational-processes-estimation-in-extended-sequence-contexts)  
+   标签：评分：9.0/10、query:q6
+   evidence：突变特征与序列背景
+3. [Evaluating Post-hoc Explanations of the Transformer-based Genome Language Model DNABERT-2](/202604/26/2604.21690v1-evaluating-post-hoc-explanations-of-the-transformer-based-genome-language-model-dnabert-2)  
    标签：评分：9.0/10、query:q7
-   evidence：利用扩散模型等AI技术设计具有细胞类型特异性的调控DNA元件
-3. [Rates of forgetting for the sequentially Markov coalescent](/202604/23/2604.20629v1-rates-of-forgetting-for-the-sequentially-markov-coalescent)  
-   标签：评分：9.0/10、query:q5
-   evidence：用于群体历史和祖先推断的序列马尔可夫聚结模型
-4. [scpFormer: A Foundation Model for Unified Representation and Integration of the Single-Cell Proteomics](/202604/23/2604.20003v1-scpformer-a-foundation-model-for-unified-representation-and-integration-of-the-single-cell-proteomics)  
+   evidence：使用DNABERT-2解释基因组序列上的深度神经网络预测
+4. [TorchGWAS : GPU-accelerated GWAS for thousands of quantitative phenotypes](/202604/26/2604.21095v1-torchgwas--gpu-accelerated-gwas-for-thousands-of-quantitative-phenotypes)  
    标签：评分：8.0/10、query:q7
-   evidence：利用进化规模建模（ESM）的AI基础模型进行单细胞蛋白质组学研究
-5. [AROMA: Augmented Reasoning Over a Multimodal Architecture for Virtual Cell Genetic Perturbation Modeling](/202604/23/2604.20263v1-aroma-augmented-reasoning-over-a-multimodal-architecture-for-virtual-cell-genetic-perturbation-modeling)  
+   evidence：利用PyTorch进行GPU加速的大规模表型全基因组关联分析
+5. [CHRep: Cross-modal Histology Representation and Post-hoc Calibration for Spatial Gene Expression Prediction](/202604/26/2604.21573v1-chrep-cross-modal-histology-representation-and-post-hoc-calibration-for-spatial-gene-expression-prediction)  
    标签：评分：8.0/10、query:q7
-   evidence：利用AI进行基因扰动建模与生物机制研究
+   evidence：利用AI从组织学切片预测空间基因表达
+6. [A Robust Framework for Two-Sample Mendelian Randomization under Population Heterogeneity](/202604/26/2604.21757v1-a-robust-framework-for-two-sample-mendelian-randomization-under-population-heterogeneity)  
+   标签：评分：8.0/10、query:q5
+   evidence：大规模基因组研究中用于因果推断的孟德尔随机化
 
 ### 速读区论文标签
-1. [Making ends meet or just meeting at the ends? Assessing end-to-end distance in folded RNA sequences and other branched structures](/202604/23/2604.15599v1-making-ends-meet-or-just-meeting-at-the-ends-assessing-end-to-end-distance-in-folded-rna-sequences-and-other-branched-structures)  
-   标签：评分：7.0/10、query:q10
-   evidence：RNA序列折叠和分支结构的分子机制
-2. [Analysis of persistence thresholds for a nonlocal PDE--ODE model of bacterial persister cells](/202604/23/2604.18809v1-analysis-of-persistence-thresholds-for-a-nonlocal-pde--ode-model-of-bacterial-persister-cells)  
-   标签：评分：7.0/10、query:q2
-   evidence：表观遗传继承与细菌持久性机制
-3. [Large Language Models Meet Biomedical Knowledge Graphs for Mechanistically Grounded Therapeutic Prioritization](/202604/23/2604.19815v1-large-language-models-meet-biomedical-knowledge-graphs-for-mechanistically-grounded-therapeutic-prioritization)  
+1. [How Creative Are Large Language Models in Generating Molecules?](/202604/26/2604.18031v1-how-creative-are-large-language-models-in-generating-molecules)  
    标签：评分：7.0/10、query:q7
-   evidence：大语言模型与知识图谱用于生物机制推理
-4. [Relative Entropy Estimation in Function Space: Theory and Applications to Trajectory Inference](/202604/23/2604.20775v1-relative-entropy-estimation-in-function-space-theory-and-applications-to-trajectory-inference)  
-   标签：评分：7.0/10、query:q7
-   evidence：单细胞基因组学中的轨迹推断应用
-5. [Universal Loop Statistics from Active Extrusion with Kinetic Barriers](/202604/23/2604.15527v1-universal-loop-statistics-from-active-extrusion-with-kinetic-barriers)  
-   标签：评分：6.0/10、query:q10
-   evidence：染色质上粘连蛋白驱动的环挤出的动力学理论
-6. [EvoMaster: A Foundational Evolving Agent Framework for Agentic Science at Scale](/202604/23/2604.17406v2-evomaster-a-foundational-evolving-agent-framework-for-agentic-science-at-scale)  
-   标签：评分：6.0/10、query:profile-1
-   evidence：用于迭代科学发现和自我演化的AI框架
-7. [An Integrated Deep-Learning Framework for Peptide-Protein Interaction Prediction and Target-Conditioned Peptide Generation with ConGA-PePPI and TC-PepGen](/202604/23/2604.18467v1-an-integrated-deep-learning-framework-for-peptide-protein-interaction-prediction-and-target-conditioned-peptide-generation-with-conga-peppi-and-tc-pepgen)  
+   evidence：利用大语言模型生成分子
+2. [On Threshold Compatibility Graphs](/202604/26/2604.20042v1-on-threshold-compatibility-graphs)  
+   标签：评分：7.0/10、query:q3
+   evidence：成对兼容图起源于系统发育学
+3. [EvoMaster: A Foundational Agent Framework for Building Evolving Autonomous Scientific Agents at Scale](/202604/26/2604.17406v1-evomaster-a-foundational-agent-framework-for-building-evolving-autonomous-scientific-agents-at-scale)  
    标签：评分：6.0/10、query:q7
-   evidence：用于多肽-蛋白质相互作用预测的深度学习框架
-8. [Dynamical heterogeneity reverses structural suppression of cooperation](/202604/23/2604.19436v2-dynamical-heterogeneity-reverses-structural-suppression-of-cooperation)  
-   标签：评分：6.0/10、query:q5
-   evidence：异质群体中策略的演化动力学
-9. [Structure-guided molecular design with contrastive 3D protein-ligand learning](/202604/23/2604.19562v1-structure-guided-molecular-design-with-contrastive-3d-protein-ligand-learning)  
+   evidence：用于科学发现和迭代优化的AI智能体
+4. [StomaD2: An All-in-One System for Intelligent Stomatal Phenotype Analysis via Diffusion-Based Restoration Detection Network](/202604/26/2604.18632v1-stomad2-an-all-in-one-system-for-intelligent-stomatal-phenotype-analysis-via-diffusion-based-restoration-detection-network)  
    标签：评分：6.0/10、query:q7
-   evidence：AI驱动的分子设计与蛋白质-配体学习
-10. [Information-to-energy trade-offs and the optimal alphabet of polymer replication](/202604/23/2604.19563v1-information-to-energy-trade-offs-and-the-optimal-alphabet-of-polymer-replication)  
+   evidence：用于植物气孔表型分析的AI系统
+5. [Colour Extraction Pipeline for Odonates using Computer Vision](/202604/26/2604.18725v1-colour-extraction-pipeline-for-odonates-using-computer-vision)  
+   标签：评分：6.0/10、query:q7
+   evidence：用于昆虫形态特征提取的AI流水线
+6. [Energy gradients as potential drivers of pre-cellular chemical organization](/202604/26/2604.19842v1-energy-gradients-as-potential-drivers-of-pre-cellular-chemical-organization)  
    标签：评分：6.0/10、query:q2
-   evidence：聚合物复制模型及进化信息传递中的字母表大小研究
-11. [A weighted angle distance on strings](/202604/23/2604.20633v1-a-weighted-angle-distance-on-strings)  
-   标签：评分：6.0/10、query:pangen
-   evidence：用于聚类和串联重复鲁棒性的多尺度字符串度量方法
+   evidence：前细胞化学组织与生命起源
+7. [LAFA: A Framework for Reproducible Longitudinal Assessment of Protein Function Annotation Models](/202604/26/2604.20782v1-lafa-a-framework-for-reproducible-longitudinal-assessment-of-protein-function-annotation-models)  
+   标签：评分：6.0/10、query:q7
+   evidence：蛋白质功能注释模型的评估
+8. [DNA storage approaching the information-theoretic ceiling](/202604/26/2604.20810v1-dna-storage-approaching-the-information-theoretic-ceiling)  
+   标签：评分：6.0/10、query:q7
+   evidence：在DNA存储中使用剖面隐马尔可夫模型集成解码器
+9. [KinetiDiff: Docking-Guided Diffusion for De Novo ACVR1 Inhibitor Design in Fibrodysplasia Ossificans Progressiva](/202604/26/2604.20886v1-kinetidiff-docking-guided-diffusion-for-de-novo-acvr1-inhibitor-design-in-fibrodysplasia-ossificans-progressiva)  
+   标签：评分：6.0/10、query:q7
+   evidence：AI引导的特定激酶抑制剂分子设计
+10. [Biomedical systems biology workflow orchestration and execution with PoSyMed](/202604/26/2604.20906v1-biomedical-systems-biology-workflow-orchestration-and-execution-with-posymed)  
+   标签：评分：6.0/10、query:q7
+   evidence：基于AI的方法与生物信息学工作流编排
+11. [Enabling Biomolecular Simulations with Neural Network Potentials in GROMACS](/202604/26/2604.21441v1-enabling-biomolecular-simulations-with-neural-network-potentials-in-gromacs)  
+   标签：评分：6.0/10、query:q7
+   evidence：用于生物分子模拟的神经网络势能
 
 
 <div class="dpr-home-promo-card">

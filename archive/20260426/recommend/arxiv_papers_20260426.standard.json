@@ -1,0 +1,744 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-26T19:36:08.040483+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 6,
+    "deep_cap": 8,
+    "deep_selected": 6,
+    "quick_candidates": 11,
+    "quick_skim_target": 13,
+    "quick_selected": 11
+  },
+  "deep_dive": [
+    {
+      "id": "2604.20942v1",
+      "title": "VARIANT: Web Server for Decoding and Analyzing Viral Mutations at Genome and Protein Levels",
+      "abstract": "A comprehensive analysis of viral mutations is essential for understanding viral evolution, disease epidemiology, diagnosis, drug resistance, etc. However, challenges remain in capturing complex mutation patterns and supporting diverse viral families with varying genome architectures. To address these needs, we present VARIANT, an web server for mutational analysis of RNA viral genomes and associated viral products across both single- and multi-segment virus genomes. The server takes as input a viral reference genome, a reference protein sequence, and/or multiple sequence alignment, and automatically provides full annotation of mutation types, including standard categories such as point mutations (missense, silent, and nonsense), insertions, deletions, or frameshift events in both coding and non-coding regions. In addition, VARIANT detects three biologically significant mutation patterns that are overlooked by conventional software/packages: ``row mutations'' (consecutive substitutions within a window of 3 nts), ``hot mutations'' (two non-consecutive substitutions within a window of 3 nts), and potential programmed ribosomal frameshifting (PRF) regions. The server currently contains automatic analysis of major viral pathogens, including SARS-CoV-2, HIV-1, Influenza H3N2, Ebola virus, and Chikungunya virus. It also allows users to analyze customized viruses. Users can track VARIANT analysis progress in real time, visualize mutation distributions, and download structured results in ZIP format. VARIANT also incorporates dual graph topology analysis to classify frameshifting element structures from dot-bracket notation input. This feature enables systematic comparison of RNA secondary structure motifs across viral families by mapping structures to a comprehensive library of dual graph topologies. The web server is freely available at https://variant.up.railway.app.",
+      "authors": [
+        "Rui Wang",
+        "Xuhang Dai",
+        "Xin Cao",
+        "Changchuan Yin",
+        "Tamar Schlick",
+        "Guo-Wei Wei"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "q-bio.BM"
+      ],
+      "published": "2026-04-22T15:05:45+00:00",
+      "link": "https://arxiv.org/pdf/2604.20942v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Viral mutation analysis and evolutionary understanding",
+      "llm_evidence_cn": "病毒突变分析与演化理解",
+      "llm_evidence": "病毒突变分析与演化理解",
+      "canonical_evidence": "病毒突变分析与演化理解",
+      "llm_tldr_en": "A web server for decoding viral mutations to understand evolution and disease epidemiology.",
+      "llm_tldr_cn": "一个用于解码病毒突变以理解演化和疾病流行病学的Web服务器。",
+      "llm_tldr": "一个用于解码病毒突变以理解演化和疾病流行病学的Web服务器。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21662v1",
+      "title": "Integrating opportunities and parametrized signatures for improved mutational processes estimation in extended sequence contexts",
+      "abstract": "Mutational signatures describe the pattern of mutations over the different mutation types. Each mutation type is determined by a base substitution and the flanking nucleotides to the left and right of that base substitution. Due to the widespread interest in mutational signatures, several efforts have been devoted to the development of methods for robust and stable signature estimation. Here, we combine various extensions of the standard framework to estimate mutational signatures. These extensions include (a) incorporating opportunities to the analysis, (b) allowing for extended sequence contexts, (c) using the Negative Binomial model, and (d) parametrizing the signatures. We show that the combination of these four extensions gives very robust and reliable mutational signatures. In particular, we highlight the importance of including mutational opportunities and parametrizing the signatures when the mutation types describe an extended sequence context with two or three flanking nucleotides to each side of the base substitution.",
+      "authors": [
+        "Ragnhild Laursen",
+        "Marta Pelizzola",
+        "Lasse Maretty",
+        "Asger Hobolth"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "stat.AP"
+      ],
+      "published": "2026-04-23T13:24:56+00:00",
+      "link": "https://arxiv.org/pdf/2604.21662v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "mutational signatures and sequence contexts",
+      "llm_evidence_cn": "突变特征与序列背景",
+      "llm_evidence": "突变特征与序列背景",
+      "canonical_evidence": "突变特征与序列背景",
+      "llm_tldr_en": "Improves mutational signature estimation using extended sequence contexts and Negative Binomial models.",
+      "llm_tldr_cn": "利用扩展序列背景和负二项模型改进了基因组突变特征的估算方法。",
+      "llm_tldr": "利用扩展序列背景和负二项模型改进了基因组突变特征的估算方法。",
+      "llm_tags": [
+        "query:q6"
+      ],
+      "matched_query_tag": "query:q6",
+      "matched_query_text": "signatures of natural selection in genomes",
+      "matched_requirement_id": "req-6",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21690v1",
+      "title": "Evaluating Post-hoc Explanations of the Transformer-based Genome Language Model DNABERT-2",
+      "abstract": "Explaining deep neural network predictions on genome sequences enables biological insight and hypothesis generation-often of greater interest than predictive performance alone. While explanations of convolutional neural networks (CNNs) have been shown to capture relevant patterns in genome sequences, it is unclear whether this transfers to more expressive Transformer-based genome language models (gLMs). To answer this question, we adapt AttnLRP, an extension of layer-wise relevance propagation to the attention mechanism, and apply it to the state-of-the-art gLM DNABERT-2. Thereby, we propose strategies to transfer explanations from token and nucleotide level. We evaluate the adaption of AttnLRP on genomic datasets using multiple metrics. Further, we provide an extensive comparison between the explanations of DNABERT-2 and a baseline CNN. Our results demonstrate that AttnLRP yields reliable explanations corresponding to known biological patterns. Hence, like CNNs, gLMs can also help derive biological insights. This work contributes to the explainability of gLMs and addresses the comparability of relevance attributions across different architectures.",
+      "authors": [
+        "Isabel Kurth",
+        "Paulo Yanez Sarmiento",
+        "Bernhard Y. Renard"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-23T13:56:55+00:00",
+      "link": "https://arxiv.org/pdf/2604.21690v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Explaining deep neural network predictions on genome sequences using DNABERT-2",
+      "llm_evidence_cn": "使用DNABERT-2解释基因组序列上的深度神经网络预测",
+      "llm_evidence": "使用DNABERT-2解释基因组序列上的深度神经网络预测",
+      "canonical_evidence": "使用DNABERT-2解释基因组序列上的深度神经网络预测",
+      "llm_tldr_en": "Evaluates post-hoc explanation methods for the DNABERT-2 genome language model to gain biological insights.",
+      "llm_tldr_cn": "评估了DNABERT-2基因组语言模型的解释方法，以获取生物学见解。",
+      "llm_tldr": "评估了DNABERT-2基因组语言模型的解释方法，以获取生物学见解。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21757v1",
+      "title": "A Robust Framework for Two-Sample Mendelian Randomization under Population Heterogeneity",
+      "abstract": "Mendelian randomization is a powerful tool for causal inference in observational studies. The two-sample summary-data design, which estimates genetic associations with exposures and outcomes in separate cohorts, is the most widely used Mendelian randomization approach in large-scale genomic studies. However, this approach relies on a strong assumption of population homogeneity across the two samples. In practice, available samples often differ in ancestry, demographics, socioeconomic factors, covariate adjustment, and measurement protocols. Violations of the homogeneity assumption can bias causal effect estimates and undermine the credibility of Mendelian randomization findings. We introduce a robust, model-free Mendelian randomization framework that directly addresses population heterogeneity in the two-sample summary-data setting. Our method avoids parametric assumptions about population differences and is designed to address real-world challenges, including measurement error, weak instruments, and pleiotropy. We show that the proposed estimator is consistent and asymptotically normal under heterogeneous designs, and may offer efficiency gains over the classic estimator even in homogeneous settings. Through numerical simulations and a real data analysis for estimating the causal effect of body mass index on high-density lipoprotein cholesterol across ancestrally diverse populations, we demonstrate the practical utility, stability, and robustness of our approach.",
+      "authors": [
+        "Dingke Tang",
+        "Xuming He",
+        "Shu Yang"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-23T15:05:59+00:00",
+      "link": "https://arxiv.org/pdf/2604.21757v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Mendelian randomization for causal inference in large-scale genomic studies",
+      "llm_evidence_cn": "大规模基因组研究中用于因果推断的孟德尔随机化",
+      "llm_evidence": "大规模基因组研究中用于因果推断的孟德尔随机化",
+      "canonical_evidence": "大规模基因组研究中用于因果推断的孟德尔随机化",
+      "llm_tldr_en": "Introduces a robust Mendelian randomization framework to handle population heterogeneity in genomic studies.",
+      "llm_tldr_cn": "引入了一种鲁棒的孟德尔随机化框架，用于处理基因组研究中的群体异质性。",
+      "llm_tldr": "引入了一种鲁棒的孟德尔随机化框架，用于处理基因组研究中的群体异质性。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21095v1",
+      "title": "TorchGWAS : GPU-accelerated GWAS for thousands of quantitative phenotypes",
+      "abstract": "Motivation: Modern bioinformatics workflows, particularly in imaging and representation learning, can generate thousands to tens of thousands of quantitative phenotypes from a single cohort. In such settings, running genome-wide association analyses trait by trait rapidly becomes a computational bottleneck. While established GWAS tools are highly effective for individual traits, they are not optimized for phenotype-rich screening workflows in which the same genotype matrix is reused across a large phenotype panel. Results: We present TorchGWAS, a framework for high-throughput association testing of large phenotype panels through hardware acceleration. The current public release provides stable Python and command-line workflows for linear GWAS and multivariate phenotype screening, supports NumPy, PLINK, and BGEN genotype inputs, aligns phenotype and covariate tables by sample identifier, and performs covariate adjustment internally. In a benchmark with 8.9 million markers and 23,000 samples, fastGWA required approximately 100 second per phenotype on an AMD EPYC 7763 64-core CPU, whereas TorchGWAS completed 2,048 phenotypes in 10 minute and 20,480 phenotypes in 20 minutes on a single NVIDIA A100 GPU, corresponding to an approximately 300- to 1700-fold increase in phenotype throughput. TorchGWAS therefore makes large-scale GWAS screening practical in phenotype-rich settings where thousands of quantitative traits must be evaluated efficiently. Availability and implementation: TorchGWAS is implemented in Python and distributed as a documented source repository at https://github.com/ZhiGroup/TorchGWAS. The current release provides a command-line interface, packaged source code, tutorials, benchmark scripts, and example workflows.",
+      "authors": [
+        "Xingzhong Zhao",
+        "Ziqian Xie",
+        "Islam",
+        "Sheikh Muhammad Saiful",
+        "Tian Xia",
+        "Chen",
+        "Cheng",
+        "Degui Zhi"
+      ],
+      "primary_category": "cs.DC",
+      "categories": [
+        "cs.DC",
+        "cs.SE",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-22T21:31:35+00:00",
+      "link": "https://arxiv.org/pdf/2604.21095v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "GPU-accelerated GWAS for large phenotype panels using PyTorch",
+      "llm_evidence_cn": "利用PyTorch进行GPU加速的大规模表型全基因组关联分析",
+      "llm_evidence": "利用PyTorch进行GPU加速的大规模表型全基因组关联分析",
+      "canonical_evidence": "利用PyTorch进行GPU加速的大规模表型全基因组关联分析",
+      "llm_tldr_en": "TorchGWAS provides a high-throughput framework for genome-wide association studies using hardware acceleration.",
+      "llm_tldr_cn": "TorchGWAS是一个利用硬件加速进行高通量全基因组关联分析的框架。",
+      "llm_tldr": "TorchGWAS是一个利用硬件加速进行高通量全基因组关联分析的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21573v1",
+      "title": "CHRep: Cross-modal Histology Representation and Post-hoc Calibration for Spatial Gene Expression Prediction",
+      "abstract": "Spatial transcriptomics (ST) enables spatially resolved gene profiling but remains expensive and low-throughput, limiting large-cohort studies and routine clinical use. Predicting spatial gene expression from routine hematoxylin and eosin (H&E) slides is a promising alternative, yet under realistic leave-one-slide-out evaluation, existing models often suffer from slide-level appearance shifts and regression-driven over-smoothing that suppress biologically meaningful variation. CHRep is a two-phase framework for robust histology-to-expression prediction. In the training phase, CHRep learns a structure-aware representation by jointly optimizing correlation-aware regression, symmetric image-expression alignment, and coordinate-induced spatial topology regularization. In the inference phase, cross-slide robustness is improved without backbone fine-tuning through a lightweight calibration module trained on the training slides, which combines a non-parametric estimate from a training gallery with a magnitude-regularized correction module. Unlike prior embedding-alignment or retrieval-based transfer methods that rely on a single prediction route, CHRep couples topology-preserving representation learning with post-hoc calibration, enabling stable neighborhood retrieval and controlled bias correction under slide-level shifts. Across the three cohorts, CHRep consistently improves gene-wise correlation under leave-one-slide-out evaluation, with the largest gains observed on Alex+10x. Relative to HAGE, the Pearson correlation coefficient on all considered genes [PCC(ACG)] increases by 4.0% on cSCC and 9.8% on HER2+. Relative to mclSTExp, PCC(ACG) further improves by 39.5% on Alex+10x, together with 9.7% and 9.0% reductions in mean squared error (MSE) and mean absolute error (MAE), respectively.",
+      "authors": [
+        "Changfan Wang",
+        "Xinran Wang",
+        "Donghai Liu",
+        "Fei Su",
+        "Lulu Sun",
+        "Zhicheng Zhao",
+        "Zhu Meng"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-23T11:53:07+00:00",
+      "link": "https://arxiv.org/pdf/2604.21573v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Predicting spatial gene expression from histology slides using AI",
+      "llm_evidence_cn": "利用AI从组织学切片预测空间基因表达",
+      "llm_evidence": "利用AI从组织学切片预测空间基因表达",
+      "canonical_evidence": "利用AI从组织学切片预测空间基因表达",
+      "llm_tldr_en": "Proposes a framework to predict spatial gene expression from H&E slides using cross-modal representation learning.",
+      "llm_tldr_cn": "提出了一种利用跨模态表示学习从H&E切片预测空间基因表达的框架。",
+      "llm_tldr": "提出了一种利用跨模态表示学习从H&E切片预测空间基因表达的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.18031v1",
+      "title": "How Creative Are Large Language Models in Generating Molecules?",
+      "abstract": "Molecule generation requires satisfying multiple chemical and biological constraints while searching a large and structured chemical space. This makes it a non-binary problem, where effective models must identify non-obvious solutions under constraints while maintaining exploration to improve success by escaping local optima. From this perspective, creativity is a functional requirement in molecular generation rather than an aesthetic notion. Large language models (LLMs) can generate molecular representations directly from natural language prompts, but it remains unclear what type of creativity they exhibit in this setting and how it should be evaluated. In this work, we study the creative behavior of LLMs in molecular generation through a systematic empirical evaluation across physicochemical, ADMET, and biological activity tasks. We characterize creativity along two complementary dimensions, convergent creativity and divergent creativity, and analyze how different factors shape these behaviors. Our results indicate that LLMs exhibit distinct patterns of creative behavior in molecule generation, such as an increase in constraint satisfaction when additional constraints are imposed. Overall, our work is the first to reframe the abilities required for molecule generation as creativity, providing a systematic understanding of creativity in LLM-based molecular generation and clarifying the appropriate use of LLMs in molecular discovery pipelines.",
+      "authors": [
+        "Wen Tao",
+        "Yiwei Wang",
+        "Peng Zhou",
+        "Bryan Hooi",
+        "Wanlong Fang",
+        "Tianle Zhang",
+        "Xiao Luo",
+        "Yuansheng Liu",
+        "Alvin Chan"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL",
+        "cs.LG",
+        "q-bio.BM"
+      ],
+      "published": "2026-04-20T09:57:43+00:00",
+      "link": "https://arxiv.org/pdf/2604.18031v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "LLMs for generating molecules",
+      "llm_evidence_cn": "利用大语言模型生成分子",
+      "llm_evidence": "利用大语言模型生成分子",
+      "canonical_evidence": "利用大语言模型生成分子",
+      "llm_tldr_en": "Evaluates the creativity and effectiveness of LLMs in generating novel molecular structures.",
+      "llm_tldr_cn": "系统评估了大语言模型在生成符合化学约束的新型分子方面的创造力。",
+      "llm_tldr": "系统评估了大语言模型在生成符合化学约束的新型分子方面的创造力。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.17406v1",
+      "title": "EvoMaster: A Foundational Agent Framework for Building Evolving Autonomous Scientific Agents at Scale",
+      "abstract": "The convergence of large language models and agents is catalyzing a new era of scientific discovery: Agentic Science. While the scientific method is inherently iterative, existing agent frameworks are predominantly static, narrowly scoped, and lack the capacity to learn from trial and error. To bridge this gap, we present EvoMaster, a foundational evolving agent framework engineered specifically for Agentic Science at Scale. Driven by the core principle of continuous self-evolution, EvoMaster empowers agents to iteratively refine hypotheses, self-critique, and progressively accumulate knowledge across experimental cycles, faithfully mirroring human scientific inquiry. Crucially, as a domain-agnostic base harness, EvoMaster is exceptionally easy to scale up -- enabling developers to build and deploy highly capable, self-evolving scientific agents for arbitrary disciplines in approximately 100 lines of code. Built upon EvoMaster, we incubated the SciMaster ecosystem across domains such as machine learning, physics, and general science. Evaluations on four authoritative benchmarks (Humanity's Last Exam, MLE-Bench Lite, BrowseComp, and FrontierScience) demonstrate that EvoMaster achieves state-of-the-art scores of 41.1%, 75.8%, 73.3%, and 53.3%, respectively. It comprehensively outperforms the general-purpose baseline OpenClaw with relative improvements ranging from +159% to +316%, robustly validating its efficacy and generality as the premier foundational framework for the next generation of autonomous scientific discovery. EvoMaster is available at https://github.com/sjtu-sai-agents/EvoMaster.",
+      "authors": [
+        "Xinyu Zhu",
+        "Yuzhu Cai",
+        "Zexi Liu",
+        "Cheng Wang",
+        "Fengyang Li",
+        "Wenkai Jin",
+        "Wanxu Liu",
+        "Zehao Bing",
+        "Bingyang Zheng",
+        "Jingyi Chai",
+        "Shuo Tang",
+        "Rui Ye",
+        "Yuwen Du",
+        "Xianghe Pang",
+        "Yaxin Du",
+        "Tingjia Miao",
+        "Yuzhi Zhang",
+        "Ruoxue Liao",
+        "Zhaohan Ding",
+        "Linfeng Zhang",
+        "Yanfeng Wang",
+        "Weinan E",
+        "Siheng Chen"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-19T12:26:05+00:00",
+      "link": "https://arxiv.org/pdf/2604.17406v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agents for scientific discovery and iterative refinement",
+      "llm_evidence_cn": "用于科学发现和迭代优化的AI智能体",
+      "llm_evidence": "用于科学发现和迭代优化的AI智能体",
+      "canonical_evidence": "用于科学发现和迭代优化的AI智能体",
+      "llm_tldr_en": "Introduces a framework for autonomous scientific agents that evolve hypotheses through iterative learning.",
+      "llm_tldr_cn": "介绍了一个用于自主科学智能体的框架，通过迭代学习演化科学假设。",
+      "llm_tldr": "介绍了一个用于自主科学智能体的框架，通过迭代学习演化科学假设。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20042v1",
+      "title": "On Threshold Compatibility Graphs",
+      "abstract": "Pairwise Compatibility Graphs (PCGs) form a tree-metric graph class that originated in phylogeny and has since attracted sustained interest in graph theory. Several natural generalizations have been proposed in order to overcome the expressive limitations of classical PCGs, including $k$-interval-PCGs, $k$-OR-PCGs, and $k$-AND-PCGs. In this paper, we introduce $(k,t)$-threshold-PCGs, a threshold-based framework that unifies these generalized notions: adjacency is determined by whether at least $t$ among $k$ underlying PCG predicates accept the vertex pair. We investigate the expressive power of this model from both constructive and asymptotic viewpoints. On the positive side, we show that every graph on $n$ vertices is a $(n,t)$-threshold-PCG for every $1 \\le t \\le n$. On the negative side, we prove that for every fixed pair $(k,t)$, the class of $(k,t)$-threshold-PCGs is asymptotically rare among all graphs. As a consequence, we obtain sharp separations from previously studied models, including a strict expressive gap relative to $k$-interval-PCGs. We also study explicit obstruction families through incidence graphs and derive additional structural consequences for the conjunction case, including the strictness of the $k$-AND-PCG hierarchy and the failure of closure under complement.",
+      "authors": [
+        "Sheikh Azizul Hakim",
+        "Md. Shamsuzzoha Bayzid"
+      ],
+      "primary_category": "math.CO",
+      "categories": [
+        "math.CO",
+        "cs.DM"
+      ],
+      "published": "2026-04-21T22:54:16+00:00",
+      "link": "https://arxiv.org/pdf/2604.20042v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Pairwise Compatibility Graphs originated in phylogeny",
+      "llm_evidence_cn": "成对兼容图起源于系统发育学",
+      "llm_evidence": "成对兼容图起源于系统发育学",
+      "canonical_evidence": "成对兼容图起源于系统发育学",
+      "llm_tldr_en": "Introduces threshold-based Pairwise Compatibility Graphs, a framework rooted in phylogenetic tree construction.",
+      "llm_tldr_cn": "引入了基于阈值的成对兼容图框架，该框架起源于系统发育树构建研究。",
+      "llm_tldr": "引入了基于阈值的成对兼容图框架，该框架起源于系统发育树构建研究。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.18632v1",
+      "title": "StomaD2: An All-in-One System for Intelligent Stomatal Phenotype Analysis via Diffusion-Based Restoration Detection Network",
+      "abstract": "Stomata play a crucial role in regulating plant physiological processes and reflecting environmental responses. However, accurate and high-throughput stomatal phenotyping remains challenging, as conventional approaches rely on destructive sampling and manual annotation, restricting large-scale and field deployment. To overcome these limitations, a noninvasive restoration-detection integrated framework, termed StomaD2, is developed to achieve accurate and fast stomatal phenotyping under complex imaging conditions. The framework incorporates a diffusion-based restoration module to recover degraded images and a specialized rotated object detection network tailored to the small, dense, and cluttered characteristics of stomata. The proposed network enhances feature representation through three key innovations: a column-wise structure for global feature interaction, context-aware resampling and reweighting mechanism to improve multi-scale consistency, and a feature reassembly module to boost discrimination against complex backgrounds. In extensive comparisons, StomaD2 demonstrated state-of-the-art performance. On public Maize and Wheat datasets, it achieved accuracies of 0.994 and 0.992, respectively, significantly outperforming existing benchmarks. When benchmarked against ten other advanced models, including Oriented Former and YOLOv12, StomaD2 achieved a top-tier F1-score/mAP of 0.989. The framework is integrated into a user-friendly, field-operable system that supports the fast extraction of eight stomatal phenotypes, such as density and conductance. Validated on more than 130 plant species, StomaD2's results highlight its strong generalizability and potential for large-scale phenotyping, plant physiology analysis, and precision agriculture applications.",
+      "authors": [
+        "Quanling Zhao",
+        "Meng'en Qin",
+        "Yanfeng Sun",
+        "Yuan Miao",
+        "Xiaohui Yang"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "stat.AP"
+      ],
+      "published": "2026-04-18T17:33:03+00:00",
+      "link": "https://arxiv.org/pdf/2604.18632v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI system for plant stomatal phenotype analysis",
+      "llm_evidence_cn": "用于植物气孔表型分析的AI系统",
+      "llm_evidence": "用于植物气孔表型分析的AI系统",
+      "canonical_evidence": "用于植物气孔表型分析的AI系统",
+      "llm_tldr_en": "Develops an AI framework for high-throughput plant phenotyping, supporting genomic and physiological studies.",
+      "llm_tldr_cn": "开发了一个用于高通量植物表型分析的AI框架，支持基因组和生理研究。",
+      "llm_tldr": "开发了一个用于高通量植物表型分析的AI框架，支持基因组和生理研究。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.18725v1",
+      "title": "Colour Extraction Pipeline for Odonates using Computer Vision",
+      "abstract": "The correlation between insect morphological traits and climate has been documented in physiological studies, but such studies remain limited by the time-consuming nature of the data analysis. In particular, the open source datasets often lack annotations of species' morphological traits, making dedicated annotations campaigns necessary; these efforts are typically local in scale and costly. In this paper, we propose a pipeline to identify and segment body parts of Odonates (dragonflies and damselflies) using deep neural networks, with the ultimate goal of extracting body parts' colouration. The pipeline is trained on a limited annotated dataset and refined with pseudo supervised data. We show that, by using open source images from citizen science platforms, our approach can segment each visible subject (Odonates) into head, thorax, abdomen, and wings and then extract a colour palette for each body part. This will enable large-scale statistical analysis of ecological correlations (e.g., between colouration and climate change, habitat loss, or geolocation) which are crucial for quantifying and assessing ecosystem biodiversity status.",
+      "authors": [
+        "Megan Mirnalini Sundaram Rajaraman",
+        "Fons J. Verbeek",
+        "Vincent J. Kalkman",
+        "Rita Pucci"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-20T18:23:07+00:00",
+      "link": "https://arxiv.org/pdf/2604.18725v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI pipeline for insect morphological trait extraction",
+      "llm_evidence_cn": "用于昆虫形态特征提取的AI流水线",
+      "llm_evidence": "用于昆虫形态特征提取的AI流水线",
+      "canonical_evidence": "用于昆虫形态特征提取的AI流水线",
+      "llm_tldr_en": "Uses deep learning to extract insect traits, facilitating studies on the link between morphology and environment.",
+      "llm_tldr_cn": "利用深度学习提取昆虫特征，促进形态与环境关系的研究。",
+      "llm_tldr": "利用深度学习提取昆虫特征，促进形态与环境关系的研究。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.19842v1",
+      "title": "Energy gradients as potential drivers of pre-cellular chemical organization",
+      "abstract": "The onset of life is often framed around membrane bound compartments and encoded metabolism, leaving unresolved how spatial organization arose before stable boundaries. In this context, environmental gradients are usually treated as boundary conditions rather than variables structuring chemical dynamics. We ask whether spatial localization and functional coupling can emerge under realistic environmental gradients in the absence of membranes, proposing that spatial variations in energy availability act as organizing variables that bias transport and reaction. We introduce a reaction diffusion model in which interacting chemical species evolve within an externally imposed activity landscape defined by coupled gradients in pH, redox potential and temperature, integrating diffusion, gradient driven drift and position dependent reaction kinetics. We performed simulations across a range of gradient strengths representative of hydrothermal vent like conditions. Our results suggest that sufficiently strong gradients induce spontaneous accumulation of reactants, spatial alignment of reaction maxima and the emergence of stable, confined chemical states. Localization arises above a threshold at which gradient driven transport overcomes diffusive and degradative losses. We conclude that spatially structured energy landscapes can support organized chemical dynamics without predefined compartments, providing a mechanism for coupling and persistence in continuous media. Potential applications include experimental platforms for studying prebiotic chemistry, microfluidic systems with controlled gradients and the design of chemically responsive materials.",
+      "authors": [
+        "Arturo Tozzi"
+      ],
+      "primary_category": "q-bio.OT",
+      "categories": [
+        "q-bio.OT"
+      ],
+      "published": "2026-04-21T10:11:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.19842v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "pre-cellular chemical organization and onset of life",
+      "llm_evidence_cn": "前细胞化学组织与生命起源",
+      "llm_evidence": "前细胞化学组织与生命起源",
+      "canonical_evidence": "前细胞化学组织与生命起源",
+      "llm_tldr_en": "Explores how environmental gradients could drive spatial organization before the evolution of membranes.",
+      "llm_tldr_cn": "探讨了在生物膜演化出来之前，环境梯度如何驱动空间组织和化学动态。",
+      "llm_tldr": "探讨了在生物膜演化出来之前，环境梯度如何驱动空间组织和化学动态。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20782v1",
+      "title": "LAFA: A Framework for Reproducible Longitudinal Assessment of Protein Function Annotation Models",
+      "abstract": "Motivation: Protein function prediction is a challenging task and an open problem in computational biology. The Critical Assessment of protein Function Annotation (CAFA) is a triennial, community-driven initiative that provides an independent, large-scale evaluation of computational methods for protein function prediction through time-delayed benchmarking experiments. CAFA has played a key role in highlighting high-performing methodologies and fostering detailed analysis and exchange of ideas. However, outside the periodic CAFA challenges, there is no platform for the continuous evaluation of newly developed methods and tracking performance as function annotations accumulate.   Results: Here we introduce the Longitudinal Assessment of Protein Function Annotation Models server (LAFA) as a persistent benchmarking system for protein function prediction methods. LAFA provides a continuous evaluation of containerized function prediction methods, enabling up-to-date and robust comparative assessment of method performance under evolving ground truth. LAFA accelerates methodological iteration, supports reproducibility, and offers a more dynamic and fine-grained view of progress in protein function prediction.   Code and Data Availability: LAFA is available at https://functionbench.net/. Detailed evaluation results can be found at https://github.com/anphan0828/CAFA_forever",
+      "authors": [
+        "An Phan",
+        "Yanli Wang",
+        "Frimpong Boadu",
+        "Maxat Kulmanov",
+        "Robert Hoehndorf",
+        "Jianlin Cheng",
+        "Predrag Radivojac",
+        "Iddo Friedberg"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "q-bio.BM"
+      ],
+      "published": "2026-04-22T17:09:36+00:00",
+      "link": "https://arxiv.org/pdf/2604.20782v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "evaluation of protein function annotation models",
+      "llm_evidence_cn": "蛋白质功能注释模型的评估",
+      "llm_evidence": "蛋白质功能注释模型的评估",
+      "canonical_evidence": "蛋白质功能注释模型的评估",
+      "llm_tldr_en": "Introduces LAFA, a framework for reproducible assessment of computational protein function prediction models.",
+      "llm_tldr_cn": "介绍了LAFA，一个用于计算蛋白质功能预测模型可重复评估的框架。",
+      "llm_tldr": "介绍了LAFA，一个用于计算蛋白质功能预测模型可重复评估的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20810v1",
+      "title": "DNA storage approaching the information-theoretic ceiling",
+      "abstract": "Synthetic DNA approaches 227.5 exabytes per gram of storage density with stability over millennial timescales. Realising this capacity requires error-correction codes that recover data from substantial synthesis and sequencing errors. Existing codecs convert noisy sequencer output into discrete base calls before error correction, discarding probabilistic information about which positions are reliable. Here we present a coding scheme that retains the sequencer's per-position posterior distributions through an integrated decoder of profile hidden Markov model alignment, log-product fusion across reads, and ordered-statistics decoding. On the DT4DDS channel simulator, the codec recovers 155.8 and 25.9 exabytes per gram of dsDNA under high- and low-fidelity conditions, exceeding the highest prior-art density on each channel by 11 and 52 percent. Under a single-encode-then-degrade protocol mapped to depurination kinetics at 25 °C in the dry state, the codec projects 282 years of decodable storage at 17.1 exabytes per gram. These results place DNA storage density within reach of the Shannon bound of the underlying channel.",
+      "authors": [
+        "James L. Banal"
+      ],
+      "primary_category": "cs.IT",
+      "categories": [
+        "cs.IT"
+      ],
+      "published": "2026-04-22T17:41:55+00:00",
+      "link": "https://arxiv.org/pdf/2604.20810v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Integrated decoder using profile hidden Markov model for DNA storage",
+      "llm_evidence_cn": "在DNA存储中使用剖面隐马尔可夫模型集成解码器",
+      "llm_evidence": "在DNA存储中使用剖面隐马尔可夫模型集成解码器",
+      "canonical_evidence": "在DNA存储中使用剖面隐马尔可夫模型集成解码器",
+      "llm_tldr_en": "This paper presents a coding scheme for DNA storage that uses probabilistic information to approach theoretical capacity.",
+      "llm_tldr_cn": "本文提出了一种DNA存储编码方案，利用概率信息接近理论容量极限。",
+      "llm_tldr": "本文提出了一种DNA存储编码方案，利用概率信息接近理论容量极限。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20886v1",
+      "title": "KinetiDiff: Docking-Guided Diffusion for De Novo ACVR1 Inhibitor Design in Fibrodysplasia Ossificans Progressiva",
+      "abstract": "We present KinetiDiff, a structure-based framework for de novo kinase inhibitor design that integrates a Geometry-Complete Diffusion Model with real-time AutoDock Vina gradient guidance. By injecting physics-based docking gradients into the diffusion denoising loop, KinetiDiff steers molecule generation toward high-affinity conformations for ACVR1 (ALK2), the causative kinase in Fibrodysplasia Ossificans Progressiva. From 10,000 diffusion samples, the framework produced 9,997 valid molecules. The best candidate achieved $-11.05$ kcal/mol (pKd = 8.10), a 19.2% improvement over the crystallographic reference. The top 100 candidates all exceed the reference, with 100% Lipinski compliance, median synthetic accessibility of 2.67, and internal diversity of 0.790. Systematic ablation across four guidance strategies--Vina-Direct (physics), HNN-Denovo (neural proxy), multi-objective, and unguided--demonstrates that real-time docking guidance dominates on all metrics. We evaluate HNN-Denovo as a computationally efficient alternative (60-fold speedup per step), revealing a domain-mismatch limitation (r = 0.224 correlation with Vina) that explains its inferior performance. These results establish gradient-guided geometric diffusion as a practical approach for generating potent, synthetically accessible inhibitors against rare-disease kinase targets.",
+      "authors": [
+        "Aaryan Patel"
+      ],
+      "primary_category": "physics.chem-ph",
+      "categories": [
+        "physics.chem-ph",
+        "cs.LG"
+      ],
+      "published": "2026-04-17T22:54:15+00:00",
+      "link": "https://arxiv.org/pdf/2604.20886v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-guided molecule design for specific kinase inhibitors",
+      "llm_evidence_cn": "AI引导的特定激酶抑制剂分子设计",
+      "llm_evidence": "AI引导的特定激酶抑制剂分子设计",
+      "canonical_evidence": "AI引导的特定激酶抑制剂分子设计",
+      "llm_tldr_en": "Uses diffusion models and docking for de novo drug design, demonstrating AI in genomic-related medicine.",
+      "llm_tldr_cn": "利用扩散模型和分子对接进行药物设计，展示了AI在基因组相关医学中的应用。",
+      "llm_tldr": "利用扩散模型和分子对接进行药物设计，展示了AI在基因组相关医学中的应用。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20906v1",
+      "title": "Biomedical systems biology workflow orchestration and execution with PoSyMed",
+      "abstract": "The rapid growth of scientific software has created practical barriers for bioinformatics research. Although powerful statistical, artificial intelligence (AI)-based methods are now widely available, their effective use is often hindered by fragmented distribution, inconsistent documentation, complex dependencies, and difficult-to-reproduce execution environments. As a result, reusing published tools and workflow adaptation to own date remains technically demanding and time-intensive, even for experienced users. Here, we present PoSyMed, an open and modular platform for the controlled integration, composition, and execution of bioinformatics tools and workflows. PoSyMed combines a backend-centered platform architecture with formal tool descriptions, controlled container-based build and execution processes, persistent workflow state, and a dialogue-based user interface. Large language models (LLM) are integrated not as autonomous decision-makers, but as human-computer interface with bounded semantic assistants that help identify tools, propose workflow steps, and support parameterization within a typed, validated, and human-supervised execution environment. PoSyMed is designed to improve reproducibility, traceability, and transparency in practical biomedical analysis within one platform. We describe the system architecture and evaluate its behavior across representative biological software scenarios with respect to workflow support, interaction design, and platform extensibility. PoSyMed is publicly available at https://apps.cosy.bio/posymed.",
+      "authors": [
+        "Simon Süwer",
+        "Zoe Chervontseva",
+        "Kester Bagemihl",
+        "Jan Baumbach",
+        "Olga Tsoy",
+        "Andreas Maier"
+      ],
+      "primary_category": "cs.SE",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "published": "2026-04-21T20:20:58+00:00",
+      "link": "https://arxiv.org/pdf/2604.20906v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-based methods and bioinformatics workflow orchestration",
+      "llm_evidence_cn": "基于AI的方法与生物信息学工作流编排",
+      "llm_evidence": "基于AI的方法与生物信息学工作流编排",
+      "canonical_evidence": "基于AI的方法与生物信息学工作流编排",
+      "llm_tldr_en": "Presents PoSyMed, a platform for integrating and executing AI-based bioinformatics tools and workflows.",
+      "llm_tldr_cn": "介绍了PoSyMed平台，用于集成和执行基于AI的生物信息学工具和工作流。",
+      "llm_tldr": "介绍了PoSyMed平台，用于集成和执行基于AI的生物信息学工具和工作流。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.21441v1",
+      "title": "Enabling Biomolecular Simulations with Neural Network Potentials in GROMACS",
+      "abstract": "Neural network potentials (NNPs) are rapidly changing the landscape of state-of-the-art molecular dynamics (MD) simulations. To make full use of this development, the community needs flexible, easy-to-use interfaces firmly integrated with existing methodologies. To address this, we here present an interface for hybrid machine learning/molecular mechanics (ML/MM) simulations implemented in the widely used MD code GROMACS. The interface enables NNPs trained in the PyTorch framework to contribute energies and forces during MD simulations, either for selected subsets or entire molecular systems. By defining a flexible set of model inputs and outputs, the interface is agnostic to specific NNP architectures and can accommodate a wide range of descriptor-based and message-passing models. In particular, the design integrates NNP inference seamlessly into the extensive GROMACS molecular simulation ecosystem, providing users with the capability to straightforwardly combine NNPs with existing advanced sampling and free energy workflows. We demonstrate the capabilities of the interface using several representative applications, including enhanced sampling of peptide torsional free energy landscapes, absolute solvation free energy calculations, and protein--ligand simulations. We also run performance benchmarks on water boxes for several different NNP architectures. Our interface is available in recent GROMACS releases, and we believe it will provide a practical foundation for incorporating machine learning potentials into production MD simulations of biomolecular systems.",
+      "authors": [
+        "Lukas Müllender",
+        "Berk Hess",
+        "Erik Lindahl"
+      ],
+      "primary_category": "physics.comp-ph",
+      "categories": [
+        "physics.comp-ph",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-23T08:58:07+00:00",
+      "link": "https://arxiv.org/pdf/2604.21441v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Neural network potentials for biomolecular simulations",
+      "llm_evidence_cn": "用于生物分子模拟的神经网络势能",
+      "llm_evidence": "用于生物分子模拟的神经网络势能",
+      "canonical_evidence": "用于生物分子模拟的神经网络势能",
+      "llm_tldr_en": "Integrates neural network potentials into GROMACS for efficient hybrid ML/MM biomolecular simulations.",
+      "llm_tldr_cn": "将神经网络势能集成到GROMACS中，实现高效的混合机器学习/分子力学生物分子模拟。",
+      "llm_tldr": "将神经网络势能集成到GROMACS中，实现高效的混合机器学习/分子力学生物分子模拟。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
