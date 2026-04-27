@@ -1,0 +1,452 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-27T20:30:24.986858+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 5,
+    "deep_cap": 8,
+    "deep_selected": 5,
+    "quick_candidates": 5,
+    "quick_skim_target": 13,
+    "quick_selected": 5
+  },
+  "deep_dive": [
+    {
+      "id": "2604.22440v1",
+      "title": "The Cathaya argyrophylla Genome Reveals the Evolutionary Trade-offs of a Living Fossil",
+      "abstract": "Cathaya argyrophylla is an endangered paleoendemic gymnosperm characterized by restricted ecological adaptability and high pathogen susceptibility. To elucidate its genomic architecture and evolutionary history, a de novo chromosome-level genome assembly was constructed using PacBio High-Fidelity long reads and Hi-C scaffolding. The resulting 22.73 Gb assembly resolves into 12 pseudochromosomes, demonstrating genome gigantism driven primarily by a 72.92 percent repeat sequence content and extensive intron expansion. Phylogenomic analysis using single-copy orthologs identifies C. argyrophylla as a sister lineage to the Pinus clade, with an estimated divergence time of 102.8 million years ago. Analysis of gene family dynamics reveals significant expansions in pathways related to membrane lipid metabolism, transmembrane transport, and translation machinery, indicating specific molecular adaptations for cellular homeostasis in resource-limited environments. Conversely, the genome exhibits massive contractions in endogenous defense networks, including plant-pathogen interactions, brassinosteroid signaling, and DNA repair mechanisms. This distinct genomic reduction correlates directly with the slow growth rate and weak innate immunity observed in the species, while the expanded transmembrane transport networks suggest an obligate physiological reliance on symbiotic microbiomes for survival. Ultimately, this reference genome establishes a critical molecular resource for future conservation and breeding programs.",
+      "authors": [
+        "Yun Wang",
+        "Peng Xie",
+        "Shaogang Fan",
+        "Zhibo Zhou",
+        "Wenyan Zhao",
+        "Lixuan Xiang",
+        "Siqin Zhang",
+        "Lei Sun",
+        "Ping Mo",
+        "Xiaolong Jiang",
+        "Binbin Long",
+        "Senwei Sun",
+        "Aihua Deng",
+        "Haoliang Hu",
+        "Kerui Huang"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-24T10:58:40+00:00",
+      "link": "https://arxiv.org/pdf/2604.22440v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Genome assembly and phylogenomic analysis of a living fossil gymnosperm",
+      "llm_evidence_cn": "活化石裸子植物的基因组组装与系统发育基因组学分析",
+      "llm_evidence": "活化石裸子植物的基因组组装与系统发育基因组学分析",
+      "canonical_evidence": "活化石裸子植物的基因组组装与系统发育基因组学分析",
+      "llm_tldr_en": "Assembles the Cathaya argyrophylla genome to reveal evolutionary history and gene family dynamics.",
+      "llm_tldr_cn": "组装银杉基因组，揭示其演化历史、基因组巨型化原因及基因家族动态。",
+      "llm_tldr": "组装银杉基因组，揭示其演化历史、基因组巨型化原因及基因家族动态。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.22364v1",
+      "title": "Tail-Greedy Unbalanced Haar Wavelet Segmentation for Copy Number Alteration Data",
+      "abstract": "Detecting copy number alterations (CNAs) from next-generation sequencing data remains challenging, particularly for short segments under noisy conditions. Existing segmentation methods often suffer from high false positive rates or fail to reliably detect short aberrations, especially in low-coverage data. In this study, we propose a modified tail-greedy unbalanced Haar (TGUHm) method that introduces a dual-thresholding strategy to improve segmentation accuracy. The proposed approach effectively suppresses spurious spikes while preserving sensitivity to both short and long CNA segments. Extensive simulation studies under Gaussian and heavy-tailed noise demonstrate that TGUHm consistently achieves higher true positive rates and lower false positive rates compared to state-of-the-art methods, including CBS, HaarSeg, and FDRSeg. In particular, the proposed method improves detection accuracy for short segments while maintaining competitive overall performance. Application to real cancer genomic data further confirms the practical utility of the method, revealing biologically meaningful CNAs associated with known cancer-related genes. These results suggest that TGUHm provides a robust and effective framework for CNA detection in challenging sequencing settings.",
+      "authors": [
+        "Maharani Ahsani Ummi",
+        "Stuart Barber",
+        "Henry M. Wood",
+        "Arief Gusnanto"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP",
+        "stat.CO"
+      ],
+      "published": "2026-04-24T08:54:40+00:00",
+      "link": "https://arxiv.org/pdf/2604.22364v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Copy number alterations from next-generation sequencing",
+      "llm_evidence_cn": "二代测序中的拷贝数变异检测",
+      "llm_evidence": "二代测序中的拷贝数变异检测",
+      "canonical_evidence": "二代测序中的拷贝数变异检测",
+      "llm_tldr_en": "A new wavelet segmentation method for detecting copy number alterations in genomic data.",
+      "llm_tldr_cn": "一种用于检测基因组数据中拷贝数变异的新型小波分割方法。",
+      "llm_tldr": "一种用于检测基因组数据中拷贝数变异的新型小波分割方法。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "genomic structural variations in pangenomes",
+      "matched_requirement_id": "req-14",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.22611v1",
+      "title": "Simple sign epistasis and evolutionary detours in fitness landscapes",
+      "abstract": "In epistatic fitness landscapes, the fitness effect of a mutation depends on the genetic background and may even switch between deleterious and beneficial depending on the presence of another mutation. Epistatic interactions may cause both mutations to change the sign of each other's fitness effects (reciprocal sign epistasis) or only one mutation to do so (simple sign epistasis). Both these forms of epistasis influence evolutionary trajectories. While reciprocal sign epistasis has been associated with multi-peaked landscapes and their ruggedness, the role and relative frequency of simple sign epistasis in fitness landscapes have not been systematically investigated. Here, we prove that the presence of simple sign epistasis is associated with evolutionary detours, i.e., indirect, longer fitness-increasing paths to fitness peaks that include back-mutations. We also show that in experimentally resolved, weakly epistatic landscapes, simple sign epistasis occurs much more frequently than reciprocal sign epistasis. This result is consistent with the theoretical predictions we derive for most landscape models, with the exception of the block model and of landscapes dominated by pairwise allelic incompatibilities, such as RNA stability landscapes. Our results suggest that detours represent a general feature of evolutionary trajectories in weakly epistatic landscapes.",
+      "authors": [
+        "Paolo Ribeca",
+        "Alejandro Castro",
+        "Alejandro Lage-Castellanos",
+        "Alisa Sergeeva",
+        "Sebastian Matuszewski",
+        "Ruben Gustavo Paccosi",
+        "Vitaly Belik",
+        "Mahan Ghafari",
+        "Joachim Krug",
+        "Guillaume Achaz",
+        "Luca Ferretti"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cond-mat.dis-nn"
+      ],
+      "published": "2026-04-24T14:36:48+00:00",
+      "link": "https://arxiv.org/pdf/2604.22611v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "epistasis and evolutionary trajectories in fitness landscapes",
+      "llm_evidence_cn": "适应度景观中的上位性与演化轨迹",
+      "llm_evidence": "适应度景观中的上位性与演化轨迹",
+      "canonical_evidence": "适应度景观中的上位性与演化轨迹",
+      "llm_tldr_en": "Investigates how simple sign epistasis influences evolutionary detours and trajectories in fitness landscapes.",
+      "llm_tldr_cn": "研究简单符号上位性如何影响适应度景观中的演化迂回和轨迹。",
+      "llm_tldr": "研究简单符号上位性如何影响适应度景观中的演化迂回和轨迹。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21951v1",
+      "title": "Supregraph: Enabling Information-Optimal Assembly Graph Representation of a Read Set",
+      "abstract": "The first step in any genome assembly algorithm entails the conversion from the domain of strings and overlaps to the language of graphs and paths, typically using one of the two conventional methods: de Bruijn graphs or overlap graphs. However, both standard approaches are known to have limitations. De Bruijn graphs fail to represent complete information from reads, while the overlap graphs often produce artificial breaks in contigs due to the necessity to discard contained reads as a preliminary step. In this work we present a mathematical model for genome assembly that provides a formal framework to determine what constitutes a correct conversion of a read set into an assembly graph under the assumption of error-free reads. We prove that a correct representation of a read set exists in the form of a new class of assembly graphs, which we call supregraphs. We show that supregraphs can be constructed by iteratively transforming de Bruijn graphs using the multiplexing procedure, previously employed in the genome assemblers LJA and Verkko. Finally, we demonstrate that, under a set of natural assumptions, supregraphs provide a foundation for constructing theoretically optimal genome assemblies.",
+      "authors": [
+        "Anton Bankevich"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-23T04:05:57+00:00",
+      "link": "https://arxiv.org/pdf/2604.21951v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "mathematical model for genome assembly and graph representation",
+      "llm_evidence_cn": "基因组组装和图形表示的数学模型",
+      "llm_evidence": "基因组组装和图形表示的数学模型",
+      "canonical_evidence": "基因组组装和图形表示的数学模型",
+      "llm_tldr_en": "Presents Supregraph, a formal framework for information-optimal genome assembly graph representation.",
+      "llm_tldr_cn": "提出Supregraph，一个用于信息最优基因组组装图表示的形式化框架。",
+      "llm_tldr": "提出Supregraph，一个用于信息最优基因组组装图表示的形式化框架。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "pangenome analysis and construction",
+      "matched_requirement_id": "req-11",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.22088v1",
+      "title": "Zero-inflated modeling with smoothing on counting tensors",
+      "abstract": "We propose a unified probabilistic framework for sparse count tensors with excess zeros, motivated by single-cell Hi-C data. The observed data are naturally represented as a three-way tensor indexed by genomic loci pairs and cells, exhibiting pronounced sparsity, zero inflation, and cell-to-cell heterogeneity. We introduce a zero-inflated Poisson tensor model that integrates low-rank CP structure, cluster-specific latent embeddings, and smoothness along ordered genomic loci, thereby jointly capturing multiway dependence, heterogeneity, and structured variation.   We develop a Bayes-optimal procedure for distinguishing structural from technical zeros, enabling principled inference and uncertainty quantification. We establish identifiability of the model parameters and derive consistency rates for the proposed estimators in a high-dimensional regime. Simulation studies and analyses of single-cell Hi-C data demonstrate improved performance in zero detection, latent structure recovery, and downstream tasks such as clustering and 3D chromatin organization inference.   The proposed framework provides a flexible approach for multiway count data with excess zeros and structured dependencies, and suggests several directions for future work, including mixture-based modeling of cell populations and scalable computation for large-scale applications.",
+      "authors": [
+        "Elena Tuzhilina",
+        "Yaoming Zhen"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME",
+        "stat.AP"
+      ],
+      "published": "2026-04-23T21:40:43+00:00",
+      "link": "https://arxiv.org/pdf/2604.22088v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "probabilistic framework for single-cell Hi-C genomic data",
+      "llm_evidence_cn": "针对单细胞Hi-C基因组数据的概率框架",
+      "llm_evidence": "针对单细胞Hi-C基因组数据的概率框架",
+      "canonical_evidence": "针对单细胞Hi-C基因组数据的概率框架",
+      "llm_tldr_en": "A zero-inflated Poisson tensor model for analyzing single-cell Hi-C genomic data and structured variation.",
+      "llm_tldr_cn": "一种用于分析单细胞Hi-C基因组数据和结构变异的零膨胀泊松张量模型。",
+      "llm_tldr": "一种用于分析单细胞Hi-C基因组数据和结构变异的零膨胀泊松张量模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.19579v2",
+      "title": "Distinct Structural Dynamics of the Semiquinone State Define a Signalling Pathway in Avian Cryptochrome",
+      "abstract": "The light-dependent magnetic compass of night-migratory songbirds is widely hypothesized to rely on the radical pair mechanism within retinal cryptochrome. However, bridging the mechanistic gap between microsecond quantum spin dynamics and the long-lived, global protein conformational changes required for cellular signalling remains a formidable challenge. Here, we apply redox state-resolved hydrogen/deuterium-exchange mass spectrometry (HDX-MS) to map the conformational landscape of European robin cryptochrome 4a (ErCry4a) across its photocycle. We reveal that photochemical reduction drives robust, allosteric structural transitions across key functional nodes, including the phosphate-binding loop (PBL), protrusion loop (PL), FAD-proximal helix α17, and the C-terminal α22/α23 network. Crucially, we isolate the structural fingerprint of the transient semiquinone, the presumed signalling species. Rather than acting as a linear structural stepping-stone, the semiquinone exhibits a distinct, non-monotonic conformational signature characterized by a transient destabilization of the PBL and PL, contrasting sharply with the global rigidification observed in the fully reduced state. These findings establish the semiquinone as a structurally unique and functionally competent biological entity. Our results provide direct biophysical evidence for a dedicated, high-fidelity structural signalling cascade, detailing how localized quantum-level photochemistry is translated into the precise conformational dynamics required for animal navigation.",
+      "authors": [
+        "Monika Kish",
+        "Suchitra Pradha",
+        "Jessica L. Ramsay",
+        "Paloma Munguía Salazar",
+        "Jonathan Phillips",
+        "Daniel R. Kattnig"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "physics.chem-ph"
+      ],
+      "published": "2026-04-21T15:35:29+00:00",
+      "link": "https://arxiv.org/pdf/2604.19579v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary mechanisms of avian magnetic compass",
+      "llm_evidence_cn": "鸟类磁罗盘的演化机制",
+      "llm_evidence": "鸟类磁罗盘的演化机制",
+      "canonical_evidence": "鸟类磁罗盘的演化机制",
+      "llm_tldr_en": "Maps the conformational landscape of avian cryptochrome to understand the molecular basis of magnetic sensing.",
+      "llm_tldr_cn": "绘制鸟类隐花色素的构象图谱，以理解磁感应的分子基础。",
+      "llm_tldr": "绘制鸟类隐花色素的构象图谱，以理解磁感应的分子基础。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.18548v1",
+      "title": "Physics-Informed Neural Networks for Biological $2\\mathrm{D}{+}t$ Reaction-Diffusion Systems",
+      "abstract": "Physics-informed neural networks (PINNs) provide a powerful framework for learning governing equations of dynamical systems from data. Biologically-informed neural networks (BINNs) are a variant of PINNs that preserve the known differential operator structure (e.g., reaction-diffusion) while learning constitutive terms via trainable neural subnetworks, enforced through soft residual penalties. Existing BINN studies are limited to $1\\mathrm{D}{+}t$ reaction-diffusion systems and focus on forward prediction, using the governing partial differential equation as a regulariser rather than an explicit identification target. Here, we extend BINNs to $2\\mathrm{D}{+}t$ systems within a PINN framework that combines data preprocessing, BINN-based equation learning, and symbolic regression post-processing for closed-form equation discovery. We demonstrate the framework's real-world applicability by learning the governing equations of lung cancer cell population dynamics from time-lapse microscopy data, recovering $2\\mathrm{D}{+}t$ reaction-diffusion models from experimental observations. The proposed framework is readily applicable to other spatio-temporal systems, providing a practical and interpretable tool for fast analytic equation discovery from data.",
+      "authors": [
+        "William Lavery",
+        "Jodie A. Cochrane",
+        "Christian Olesen",
+        "Dagim S. Tadele",
+        "John T. Nardini",
+        "Sara Hamis"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-20T17:40:45+00:00",
+      "link": "https://arxiv.org/pdf/2604.18548v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven physics-informed neural networks for biological systems",
+      "llm_evidence_cn": "AI驱动的物理信息神经网络用于生物系统",
+      "llm_evidence": "AI驱动的物理信息神经网络用于生物系统",
+      "canonical_evidence": "AI驱动的物理信息神经网络用于生物系统",
+      "llm_tldr_en": "Extends biologically-informed neural networks to 2D reaction-diffusion systems for learning governing equations.",
+      "llm_tldr_cn": "将生物信息神经网络扩展到二维反应扩散系统，用于学习控制方程。",
+      "llm_tldr": "将生物信息神经网络扩展到二维反应扩散系统，用于学习控制方程。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20029v1",
+      "title": "Forward-looking evolutionary game dynamics subject to exploration cost",
+      "abstract": "We extend classical evolutionary game dynamics based on the momentary action choices of agents by accounting for two elements: forward-looking behavior and exploration cost. We focus on pairwise comparison protocols that cover major evolutionary game dynamics, such as replicator and logit models. In the proposed mathematical framework, agents update their actions by paying a cost so that a utility or its relative difference is maximized. We show that forward-looking behavior can be modeled as a coupling between the evolutionary game dynamic and static Hamilton-Jacobi-Bellman equation: a mean field game. The exploration cost and its constraint are naturally related to these equations as a function of the optimal Lagrangian multiplier serving as a relaxation parameter, and it is incorporated into the game as a constraint. We show that under certain conditions, our evolutionary game dynamic admits a unique solution. Finally, we computationally investigate one- and two-dimensional problems.",
+      "authors": [
+        "Hidekazu Yoshioka"
+      ],
+      "primary_category": "math.OC",
+      "categories": [
+        "math.OC",
+        "eess.SY"
+      ],
+      "published": "2026-04-21T22:15:22+00:00",
+      "link": "https://arxiv.org/pdf/2604.20029v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Mathematical framework for evolutionary game dynamics",
+      "llm_evidence_cn": "演化博弈动力学的数学框架",
+      "llm_evidence": "演化博弈动力学的数学框架",
+      "canonical_evidence": "演化博弈动力学的数学框架",
+      "llm_tldr_en": "Extends evolutionary game dynamics by incorporating forward-looking behavior and exploration costs.",
+      "llm_tldr_cn": "通过引入前瞻性行为和探索成本，扩展了经典的演化博弈动力学模型。",
+      "llm_tldr": "通过引入前瞻性行为和探索成本，扩展了经典的演化博弈动力学模型。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20350v1",
+      "title": "X-PCR: A Benchmark for Cross-modality Progressive Clinical Reasoning in Ophthalmic Diagnosis",
+      "abstract": "Despite significant progress in Multi-modal Large Language Models (MLLMs), their clinical reasoning capacity for multi-modal diagnosis remains largely unexamined. Current benchmarks, mostly single-modality data, can't evaluate progressive reasoning and cross-modal integration essential for clinical practice. We introduce the Cross-Modality Progressive Clinical Reasoning (X-PCR) benchmark, the first comprehensive evaluation of MLLMs through a complete ophthalmology diagnostic workflow, with two reasoning tasks: 1) a six-stage progressive reasoning chain spanning image quality assessment to clinical decision-making, and 2) a cross-modality reasoning task integrating six imaging modalities. The benchmark comprises 26,415 images and 177,868 expert-verified VQA pairs curated from 51 public datasets, covering 52 ophthalmic diseases. Evaluation of 21 MLLMs reveals critical gaps in progressive reasoning and cross-modal integration. Dataset and code: https://github.com/CVI-SZU/X-PCR.",
+      "authors": [
+        "Gui Wang",
+        "Zehao Zhong",
+        "YongSong Zhou",
+        "Yudong Li",
+        "Ende Wu",
+        "Wooi Ping Cheah",
+        "Rong Qu",
+        "Jianfeng Ren",
+        "Linlin Shen"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-22T08:52:50+00:00",
+      "link": "https://arxiv.org/pdf/2604.20350v1",
+      "tags": [
+        "keyword:Xeno",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI benchmark for clinical reasoning in ophthalmic diagnosis",
+      "llm_evidence_cn": "眼科诊断临床推理的AI基准",
+      "llm_evidence": "眼科诊断临床推理的AI基准",
+      "canonical_evidence": "眼科诊断临床推理的AI基准",
+      "llm_tldr_en": "X-PCR is a benchmark for evaluating multi-modal AI in progressive clinical reasoning for ophthalmology.",
+      "llm_tldr_cn": "X-PCR是一个用于评估多模态AI在眼科渐进式临床推理中表现的基准。",
+      "llm_tldr": "X-PCR是一个用于评估多模态AI在眼科渐进式临床推理中表现的基准。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.20615v1",
+      "title": "Semi supervised GAN for smart microscopy, fast and data efficient cell cycle classification",
+      "abstract": "Modern optical microscopes are fully motorised; however, transforming them into truly smart systems requires real-time adjustment of acquisition settings in response to detected objects and dynamic biological events. At the core are classification algorithms that commonly depend on customised softwares and are generally designed for narrowly-defined biological applications. In addition, they often require substantial annotated datasets for effective training. We introduce a semi-supervised generative adversarial network (SGAN) for robust cell-cycle stage classification under low-resource conditions, adaptable to diverse cellular structures. The framework combines unlabelled microscopy images with synthetically generated samples to mitigate limited annotation, while preserving stable performance even when the unlabelled subset is class-imbalanced. Tested on the Mitocheck dataset, which features five mitosis classes, the model achieved $93 \\pm 2\\%$ accuracy using only 80 labelled per class and 600 unlabelled images. The proposed algorithm is generic and can be readily adapted to new labeling schemes, classification targets, cell lines, or microscopy modalities through transfer learning. SGAN is well suited for integration into automated microscopes, enabling efficient and adaptable image analysis across diverse biological and microscopy applications.",
+      "authors": [
+        "Rajeev Manick",
+        "Youssef El Habouz",
+        "Maëlle Guillout",
+        "Celia Martin",
+        "Julia Bonnet",
+        "Louis Ruel",
+        "Sylvain Pastezeur",
+        "Olivier Chanteux",
+        "Otmane Bouchareb",
+        "Marc Tramier",
+        "Jacques Pécréaux"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-22T14:31:38+00:00",
+      "link": "https://arxiv.org/pdf/2604.20615v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI and GANs for cell cycle classification in microscopy",
+      "llm_evidence_cn": "利用AI和GAN进行显微镜下的细胞周期分类",
+      "llm_evidence": "利用AI和GAN进行显微镜下的细胞周期分类",
+      "canonical_evidence": "利用AI和GAN进行显微镜下的细胞周期分类",
+      "llm_tldr_en": "Uses semi-supervised GANs to classify cell cycle stages in microscopy images with low data requirements.",
+      "llm_tldr_cn": "使用半监督生成对抗网络在低资源条件下对显微镜图像中的细胞周期阶段进行分类。",
+      "llm_tldr": "使用半监督生成对抗网络在低资源条件下对显微镜图像中的细胞周期阶段进行分类。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
