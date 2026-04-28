@@ -1,0 +1,924 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-28T20:40:10.302804+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 8,
+    "deep_cap": 8,
+    "deep_selected": 8,
+    "quick_candidates": 14,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2604.23984v1",
+      "title": "Polynomial-time completion of phylogenetic tree sets",
+      "abstract": "Comparative analyses of phylogenetic trees typically require identical taxon sets, however, in practice, trees often include distinct but overlapping taxa. Pruning non-shared leaves discards phylogenetic signal, whereas tree completion can preserve both taxa and branch-length information. This work introduces a polynomial-time algorithm for set-wide completion of phylogenetic trees with partial taxon overlap. The proposed method identifies and extracts maximal completion subtrees that frequently appear across the source trees and constructs a weighted majority-rule consensus. Branch lengths are scaled using rates derived from common leaves. Each consensus subtree is inserted at the position that minimizes the quadratic distance error measured against information from the source trees, with candidate positions restricted to the original branches of the target tree. We demonstrate that the algorithm runs in polynomial time and preserves distances among the original taxa, yielding a unique completion that is order-independent with respect to the processing order of target trees. An experimental evaluation on amphibians, mammals, sharks, and squamates shows that the proposed method consistently achieves the lowest distance to the subset reference trees across subsets among all methods, in both topology and branch lengths.   An open-source Python implementation of the proposed algorithm and the biological datasets utilized in this study are publicly available at: https://github.com/tahiri-lab/overlap-treeset-completion/.",
+      "authors": [
+        "Aleksandr Koshkarov",
+        "Nadia Tahiri"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cs.CC"
+      ],
+      "published": "2026-04-27T02:58:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.23984v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "polynomial-time algorithm for completion of phylogenetic trees with partial taxon overlap",
+      "llm_evidence_cn": "用于完成具有部分分类群重叠的系统发育树的多项式时间算法",
+      "llm_evidence": "用于完成具有部分分类群重叠的系统发育树的多项式时间算法",
+      "canonical_evidence": "用于完成具有部分分类群重叠的系统发育树的多项式时间算法",
+      "llm_tldr_en": "Introduces a polynomial-time algorithm to complete phylogenetic trees by preserving taxa and branch information.",
+      "llm_tldr_cn": "引入了一种多项式时间算法，通过保留分类群和分支信息来完成系统发育树的构建。",
+      "llm_tldr": "引入了一种多项式时间算法，通过保留分类群和分支信息来完成系统发育树的构建。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.24506v1",
+      "title": "MIMIC: A Generative Multimodal Foundation Model for Biomolecules",
+      "abstract": "Biological function emerges from coupled constraints across sequence, structure, regulation, evolution, and cellular context, yet most foundation models in biology are trained within one modality or for a fixed forward task. We present MIMIC, a generative multimodal foundation model trained on our newly curated and aligned dataset, LORE, linking nucleic acid, protein, evolutionary, structural, regulatory, and semantic/contextual modalities within partially observed biomolecular states. MIMIC uses a split-track encoder-decoder architecture to condition on arbitrary subsets of observed modalities and reconstruct or generate missing components of molecular state across the genome, transcriptome, and proteome. Multimodal conditioning consistently improves MIMIC's sequence reconstruction relative to sequence-only inputs, while its learned representations enable state-of-the-art performance on RNA and protein downstream tasks. MIMIC achieves state-of-the-art splicing prediction, and its joint generative formulation enables isoform-aware inference that further improves performance. Beyond prediction, the same generative framework supports constrained design. For RNA, MIMIC identifies corrective edits in a clinically relevant HBB splice-disrupting mutation without reverting it by using evolutionary and structural signals. For proteins, jointly conditioning on shape and surface chemistry of PD-L1 and hACE2 binding sites produces diverse, high-confidence sequences with strong in silico support for target binding. Finally, MIMIC uses experimental context as semantic conditioning to model assay-dependent RNA chemical probing, rather than treating context as a fixed output. Together, these results position MIMIC's aligned multimodal generative modeling as a strong foundation for unifying representation learning, conditional prediction, and constrained biomolecular design within a single model.",
+      "authors": [
+        "Siavash Golkar",
+        "Jake Kovalic",
+        "Irina Espejo Morales",
+        "Samuel Sledzieski",
+        "Minhuan Li",
+        "Ksenia Sokolova",
+        "Geraud Krawezik",
+        "Alberto Bietti",
+        "Claudia Skok Gibbs",
+        "Roman Klypa",
+        "Shengwei Xiong",
+        "Francois Lanusse",
+        "Liam Parker",
+        "Kyunghyun Cho",
+        "Miles Cranmer",
+        "Tom Hehir",
+        "Michael McCabe",
+        "Lucas Meyer",
+        "Rudy Morel",
+        "Payel Mukhopadhyay",
+        "Mariel Pettee",
+        "Helen Qu",
+        "Jeff Shen",
+        "David Fouhey",
+        "Hadi Sotoudeh",
+        "Vikram Mulligan",
+        "Pilar Cossio",
+        "Sonya M. Hanson",
+        "Alisha N. Jones",
+        "Olga G. Troyanskaya",
+        "Shirley Ho"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "published": "2026-04-27T14:10:01+00:00",
+      "link": "https://arxiv.org/pdf/2604.24506v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 10.0,
+      "llm_evidence_en": "Multimodal foundation model for genomics and evolution",
+      "llm_evidence_cn": "用于基因组学和演化的多模态基础模型",
+      "llm_evidence": "用于基因组学和演化的多模态基础模型",
+      "canonical_evidence": "用于基因组学和演化的多模态基础模型",
+      "llm_tldr_en": "MIMIC is a multimodal foundation model linking sequence, structure, and evolution across the genome.",
+      "llm_tldr_cn": "MIMIC是一个连接基因组序列、结构和演化等多模态信息的基础模型。",
+      "llm_tldr": "MIMIC是一个连接基因组序列、结构和演化等多模态信息的基础模型。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.22892v1",
+      "title": "StackFeat RL: Reinforcement Learning over Iterative Dual Criterion Feature Selection for Stable Biomarker Discovery",
+      "abstract": "Feature selection in high-dimensional genomic data ($d \\gg n$) demands methods that are simultaneously accurate, sparse, and stable. Existing approaches either require manual threshold specification (mRMR, stability selection), produce unstable selections under data perturbation (Lasso, Boruta), or ignore biological structure entirely. We introduce StackFeat-RL, a meta-learning framework that optimises the hyperparameters of an iterative dual-criterion feature selection algorithm via REINFORCE policy gradients. The dual criterion, requiring both coefficient consistency and selection frequency, guards against two failure modes missed by single-criterion methods, while iterative accumulation provides convergence guarantees via the law of large numbers.   On COVID-19 miRNA data (GSE240888, 332 features) and three Alzheimer's disease classification tasks (GSE84422, 13237 genes; Normal vs.\\ Possible, Probable, and Definite AD), StackFeat-RL achieves the highest predictive accuracy among all evaluated methods, including ElasticNet, Boruta, mRMR, and stability selection, while requiring 3--4$\\times$ fewer features.   Keywords: feature selection, reinforcement learning, REINFORCE, elastic net, biomarker discovery, Alzheimer's disease, dual-criterion selection, protein interaction networks",
+      "authors": [
+        "A. Yermekov",
+        "D. A. Herrera-Martí"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-24T09:52:33+00:00",
+      "link": "https://arxiv.org/pdf/2604.22892v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-driven biomarker discovery in high-dimensional genomic data",
+      "llm_evidence_cn": "利用AI在多维基因组数据中进行生物标志物发现",
+      "llm_evidence": "利用AI在多维基因组数据中进行生物标志物发现",
+      "canonical_evidence": "利用AI在多维基因组数据中进行生物标志物发现",
+      "llm_tldr_en": "A reinforcement learning framework for stable biomarker discovery in high-dimensional genomic data.",
+      "llm_tldr_cn": "一种用于高维基因组数据中稳定生物标志物发现的强化学习框架。",
+      "llm_tldr": "一种用于高维基因组数据中稳定生物标志物发现的强化学习框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.22997v1",
+      "title": "HyperEvoGen: Exploring deep phylogeny using non-Euclidean variational inference",
+      "abstract": "Homologous proteins evolve from a common ancestral sequence, constrained by intricate patterns of co-evolving residues. Accurate reconstruction of evolutionary histories remains a challenge, primarily due to the inability of the existing approaches to capture long-range coevolutionary ties and lack of a precise metric to represent the evolutionary distance between sequences. Standard approaches are based on p-distance or substitution-corrected measures such as Jukes-Cantor. These methods saturate in cases of deep evolutionary divergence, losing all evolutionary signal after enough time. We present HyperEvoGen, a Poincaré variational autoencoder with adversarial training, hyperbolic latent geometry, and a compound loss function that learns evolutionarily meaningful representations from single-family alignments. The arrangement of protein sequences in HyperEvoGen's hyperbolic embedding aims to preserve phylogenetic structure and produce latent distances which scale with true evolutionary divergence. HyperEvoGen enables fast, scalable modeling of protein evolution while preserving hierarchical relatedness in a geometry-aware representation. On Potts-coupled simulation benchmarks, it produces more accurate ancestral reconstructions than conventional baselines, and offers higher-quality sequence generation with less training time than Potts models. This combination of accuracy and throughput supports large-family evolutionary studies and accelerates design-oriented applications.",
+      "authors": [
+        "Jason Lamanna",
+        "Erfan Mowlaei",
+        "Xinghua Shi",
+        "Sudhir Kumar",
+        "Vincenzo Carnevale"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-24T20:31:36+00:00",
+      "link": "https://arxiv.org/pdf/2604.22997v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "deep phylogeny reconstruction using non-Euclidean variational inference",
+      "llm_evidence_cn": "使用非欧几里得变分推断进行深层系统发育重建",
+      "llm_evidence": "使用非欧几里得变分推断进行深层系统发育重建",
+      "canonical_evidence": "使用非欧几里得变分推断进行深层系统发育重建",
+      "llm_tldr_en": "HyperEvoGen uses hyperbolic geometry and VAEs to reconstruct deep evolutionary histories of proteins.",
+      "llm_tldr_cn": "HyperEvoGen利用双曲几何和变分自编码器重建蛋白质的深层演化历史。",
+      "llm_tldr": "HyperEvoGen利用双曲几何和变分自编码器重建蛋白质的深层演化历史。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.24371v1",
+      "title": "PathMoG: A Pathway-Centric Modular Graph Neural Network for Multi-Omics Survival Prediction",
+      "abstract": "Cancer survival prediction from multi-omics data remains challenging because prognostic signals are high-dimensional, heterogeneous, and distributed across interacting genes and pathways. We propose PathMoG, a pathway-centric modular graph neural network for multi-omics survival prediction. PathMoG reorganizes genome-scale inputs into 354 KEGG-informed pathway modules, introduces a Hierarchical Omics Modulation module to condition gene-expression representations on mutation, copy number variation, pathway, and clinical context, and uses dual-level attention to capture both intra-pathway driver signals and inter-pathway clinical relevance. We evaluated PathMoG on 5,650 patients across 10 TCGA cancer types and observed consistent improvements over representative survival baselines. The framework further provides gene-level, pathway-level, and patient-level interpretability, supporting biologically grounded and clinically relevant risk stratification.",
+      "authors": [
+        "Di Wang",
+        "Chupei Tang",
+        "Junxiao Kong",
+        "Jixiu Zhai",
+        "Moyu Tang",
+        "Tianchi Lu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-27T12:05:45+00:00",
+      "link": "https://arxiv.org/pdf/2604.24371v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI for multi-omics survival prediction and genome-scale inputs",
+      "llm_evidence_cn": "利用AI进行多组学生存预测和基因组规模输入",
+      "llm_evidence": "利用AI进行多组学生存预测和基因组规模输入",
+      "canonical_evidence": "利用AI进行多组学生存预测和基因组规模输入",
+      "llm_tldr_en": "A modular GNN for cancer survival prediction using multi-omics data and pathway modules.",
+      "llm_tldr_cn": "一种利用多组学数据和通路模块进行癌症生存预测的模块化图神经网络。",
+      "llm_tldr": "一种利用多组学数据和通路模块进行癌症生存预测的模块化图神经网络。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.23085v1",
+      "title": "Using Importance Sampling to Estimate $p$-values in All-Subset Meta-Analysis, with Applications to Single-Cell eQTL Mapping",
+      "abstract": "Pooling genome-wide association studies of multiple related traits can substantially increase power for detecting genetic variants with pleiotropic effects. ASSET, which exhaustively searches all subsets of studies for association signals, has been widely used to detect modest effects and improve interpretability. Under a normality assumption, ASSET computes p-values via an analytic approximation that accounts for multiple testing. However, this approximation has been evaluated only in limited scenarios and for p-values no smaller than $10^{-3}$. A systematic assessment in the extreme tail is therefore needed, yet naïve Monte Carlo methods would require prohibitively many simulations. We develop a computationally efficient importance-sampling (IS) algorithm that provides accurate ASSET p-value estimates for both independent and overlapping studies, achieving substantial efficiency gains over naïve Monte Carlo, particularly for very small p-values. Using IS, we show that ASSET's analytic approximation is highly accurate across nearly the entire p-value range when normality holds. In contrast, when normality is violated (due to small sample sizes, low-frequency variants, or non-normal traits), ASSET p-values can be inflated or deflated by orders of magnitude, whereas our IS approach remains accurate. We illustrate the method through applications to single-cell eQTL mapping using peripheral blood mononuclear cells from the OneK1K cohort and lung cells from a Korean population.",
+      "authors": [
+        "Samuel Anyaso-Samuel",
+        "Thong Luong",
+        "Fei Qin",
+        "Jiyeon Choi",
+        "Kai Yu",
+        "Paul S. Albert",
+        "Jianxin Shi"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-25T00:42:47+00:00",
+      "link": "https://arxiv.org/pdf/2604.23085v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Single-cell eQTL mapping and genetic variants",
+      "llm_evidence_cn": "单细胞eQTL定位与遗传变异",
+      "llm_evidence": "单细胞eQTL定位与遗传变异",
+      "canonical_evidence": "单细胞eQTL定位与遗传变异",
+      "llm_tldr_en": "Develops importance sampling to estimate p-values in meta-analysis for single-cell eQTL mapping.",
+      "llm_tldr_cn": "开发重要性采样方法，用于单细胞eQTL定位元分析中的p值估计。",
+      "llm_tldr": "开发重要性采样方法，用于单细胞eQTL定位元分析中的p值估计。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.22887v1",
+      "title": "StackFeat: a convergent algorithm for optimal predictor selection in genomic data",
+      "abstract": "In high-dimensional genomic data, the curse of dimensionality (d >> n) and limited sampling make feature selection inherently unstable - a critical barrier to biomarker discovery. We introduce StackFeat, an iterative algorithm that accumulates two statistics across repeated cross-validation: signed coefficients (measuring effect strength and direction) and selection frequencies (estimating selection probability). Only features ranking highly by both criteria are retained. On a COVID-19 miRNA dataset (GSE240888), StackFeat identified a stable 5-miRNA signature from 332 features (98.5% reduction), achieving AUC 0.922, significantly outperforming the benchmark 9-gene set (AUC 0.907, p = 0.0016). The signature includes hsa-miR-150-5p, a marker implicated in both COVID-19 survival and Dengue infection. This dual-criterion approach provides convergence guarantees absent in single-criterion methods, enabling discovery of known biomarkers, novel candidates, and previously unknown relationships.   Keywords: marker selection, feature selection, bioinformatics, dimensionality reduction, robust algorithm, stacking, miRNA, COVID-19",
+      "authors": [
+        "Akbar Yermekov",
+        "D. A. Herrera-Martí"
+      ],
+      "primary_category": "q-bio.OT",
+      "categories": [
+        "q-bio.OT"
+      ],
+      "published": "2026-04-24T09:00:28+00:00",
+      "link": "https://arxiv.org/pdf/2604.22887v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "algorithm for optimal predictor selection in high-dimensional genomic data",
+      "llm_evidence_cn": "高维基因组数据中最佳预测因子选择的算法",
+      "llm_evidence": "高维基因组数据中最佳预测因子选择的算法",
+      "canonical_evidence": "高维基因组数据中最佳预测因子选择的算法",
+      "llm_tldr_en": "Introduces StackFeat, an algorithm for stable biomarker discovery in high-dimensional genomic datasets.",
+      "llm_tldr_cn": "引入 StackFeat 算法，用于在高维基因组数据集中进行稳定的生物标志物发现。",
+      "llm_tldr": "引入 StackFeat 算法，用于在高维基因组数据集中进行稳定的生物标志物发现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.23924v1",
+      "title": "Agentic AI platforms for autonomous training and rule induction of human-human and virus-human protein-protein interactions",
+      "abstract": "We instruct an AI agent to construct two separate agentic AI platforms: one for autonomous training of predictive ML models for human-human and virus-human PPI, and the other for inducing explicit general rules governing human-human and virus-human PPI. The first agentic AI platform for autonomous training of predictive ML models for PPI is designed to consist of five AI agents that handle autonomous data collection, data verification, feature embedding, model design, and training and validation on three-way protein-disjoint cross-fold datasets. For human-human and human-virus PPIs, the final three-way protein-disjoint ensemble achieves an accuracy of 87.3% and 86.5%, respectively. For cross-checking and interpretability purposes, the second agentic AI platform is designed to replace ML predictions with human-readable rules derived from protein embeddings, physicochemical autocovariance descriptors, compartment annotations, pathway-domain overlap, and graph contexts. For human-human PPI, it is defined by a two-rule induction, whereas human-virus is induced by a more complex set of weighted rules. The rules induced by the second agentic platform align with the SHAP-identified features from the predictive ML models built by the first agentic platform. Taken together, our work demonstrates the agentic AI's ability to orchestrate from data planning to execution, and from rule induction to explanation in ML, opening the door to various applications.",
+      "authors": [
+        "Hung N. Do",
+        "Jessica Z. Kubicek-Sutherland",
+        "Oscar A. Negrete",
+        "S. Gnanakaran"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "q-bio.BM"
+      ],
+      "published": "2026-04-27T00:47:35+00:00",
+      "link": "https://arxiv.org/pdf/2604.23924v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI agents for predicting virus-human protein-protein interactions",
+      "llm_evidence_cn": "利用AI智能体预测病毒与人类蛋白质相互作用",
+      "llm_evidence": "利用AI智能体预测病毒与人类蛋白质相互作用",
+      "canonical_evidence": "利用AI智能体预测病毒与人类蛋白质相互作用",
+      "llm_tldr_en": "An agentic AI platform for autonomous training and rule induction of protein-protein interactions.",
+      "llm_tldr_cn": "一个用于蛋白质相互作用自主训练和规则归纳的AI智能体平台。",
+      "llm_tldr": "一个用于蛋白质相互作用自主训练和规则归纳的AI智能体平台。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.22876v1",
+      "title": "Stochastic reversal of deterministic selection in epidemic strain competition",
+      "abstract": "Different strains competing for a common pool of susceptible individuals is a key problem in mathematical epidemiology. To address this problem, we investigate a two-strain model within a Susceptible-Infected-Recovered (SIR) framework. While classical deterministic theory predicts that the basic reproduction number fully determines selection, we show that stochastic effects play a key role in the dynamics. We discover that stochastic fluctuations can reverse the deterministic advantage even far from the quasi-neutral regime. Further, we find that stochasticity drastically reduces fixation times from years, in the deterministic case, to days. The fixation time is non-linearly proportional to the noise intensity and the distance from the quasi-neutral regime, following a universal rule obtained from a scaling law. The nature of the problem and the equations allow us to interpret the competition as a dynamical evolution around an effective potential, with the potential barrier corresponding to the unstable manifold associated with the coexistence. Even in a stable situation of dominance of one strain, the noise can induce crossings through the potential. We find that the reversal can occur even far from the quasi-neutral regime with significant probability.",
+      "authors": [
+        "Enrique C. Gabrick",
+        "Ana Luiza de Moraes",
+        "Ervin K. Lenzi",
+        "Iberê L. Caldas"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-04-24T00:50:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.22876v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "stochastic effects in strain competition and selection dynamics",
+      "llm_evidence_cn": "菌株竞争和选择动态中的随机效应",
+      "llm_evidence": "菌株竞争和选择动态中的随机效应",
+      "canonical_evidence": "菌株竞争和选择动态中的随机效应",
+      "llm_tldr_en": "Investigates how stochastic fluctuations can reverse deterministic selection in epidemic strain competition.",
+      "llm_tldr_cn": "研究随机波动如何逆转流行病菌株竞争中的确定性选择。",
+      "llm_tldr": "研究随机波动如何逆转流行病菌株竞争中的确定性选择。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.18467v2",
+      "title": "An Integrated Deep-Learning Framework for Peptide-Protein Interaction Prediction and Target-Conditioned Peptide Generation with ConGA-PepPI and TC-PepGen",
+      "abstract": "Motivation: Peptide-protein interactions (PepPIs) are central to cellular regulation and peptide therapeutics, but experimental characterization remains too slow for large-scale screening. Existing methods usually emphasize either interaction prediction or peptide generation, leaving candidate prioritization, residue-level interpretation, and target-conditioned expansion insufficiently integrated. Results: We present an integrated framework for early-stage peptide screening that combines a partner-aware prediction and localization model (ConGA-PepPI) with a target-conditioned generative model (TC-PepGen). ConGA-PepPI uses asymmetric encoding, bidirectional cross-attention, and progressive transfer from pair prediction to binding-site localization, while TC-PepGen preserves target information throughout autoregressive decoding via layerwise conditioning. In five-fold cross-validation, ConGA-PepPI achieved 0.839 accuracy and 0.921 AUROC, with binding-site AUPR values of 0.601 on the protein side and 0.950 on the peptide side, and remained competitive on external benchmarks. Under a controlled length-conditioned benchmark, 40.39% of TC-PepGen peptides exceeded native templates in AlphaFold 3 ipTM, and unconstrained generation retained evidence of target-conditioned signal.",
+      "authors": [
+        "Chupei Tang",
+        "Junxiao Kong",
+        "Moyu Tang",
+        "Di Wang",
+        "Jixiu Zhai",
+        "Ronghao Xie",
+        "Shangkun Sima",
+        "Tianchi Lu"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-20T16:20:23+00:00",
+      "link": "https://arxiv.org/pdf/2604.18467v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Deep learning for protein-peptide interactions relevant to genomic-scale screening",
+      "llm_evidence_cn": "用于蛋白质-多肽相互作用的深度学习框架，可用于基因组规模的筛选",
+      "llm_evidence": "用于蛋白质-多肽相互作用的深度学习框架，可用于基因组规模的筛选",
+      "canonical_evidence": "用于蛋白质-多肽相互作用的深度学习框架，可用于基因组规模的筛选",
+      "llm_tldr_en": "An integrated deep-learning framework for predicting peptide-protein interactions and generating target peptides.",
+      "llm_tldr_cn": "一种用于预测肽-蛋白相互作用并生成目标肽的集成深度学习框架。",
+      "llm_tldr": "一种用于预测肽-蛋白相互作用并生成目标肽的集成深度学习框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.23481v1",
+      "title": "Leveraging Spatial Transcriptomics as Alternative to Manual Annotations for Deep Learning-Based Nuclei Analysis",
+      "abstract": "Deep learning-based nuclei segmentation and classification in pathology images typically rely on large-scale pixel-level manual annotations, which are costly and difficult to obtain across diverse tissues and staining conditions. To address this limitation, we propose a framework that leverages spatial transcriptomics (ST) data as supervision for nuclei segmentation and classification. By incorporating cell-level ST data, we obtain gene expression profiles and corresponding nuclear masks from histopathological images. Gene expression profiles are converted into cell-type labels and used as training data for image-based classification. Because existing gene expression-based cell-type classification methods are not designed for image recognition, we introduce an image-oriented classification approach that bridges gene expression-based cell typing and image-based cell classification. To evaluate generalization, we conduct segmentation experiments on previously unseen organs and compare our method with conventional supervised models. Despite being trained on fewer organ types, our framework achieves higher segmentation accuracy, demonstrating strong transferability. Classification experiments further show consistent improvements over existing approaches.",
+      "authors": [
+        "Kazuya Nishimura",
+        "Ryoma Bise",
+        "Haruka Hirose",
+        "Yasuhiro Kojima"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "published": "2026-04-26T00:54:06+00:00",
+      "link": "https://arxiv.org/pdf/2604.23481v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Deep learning framework for gene expression-based cell classification",
+      "llm_evidence_cn": "利用深度学习框架进行基于基因表达的细胞分类研究",
+      "llm_evidence": "利用深度学习框架进行基于基因表达的细胞分类研究",
+      "canonical_evidence": "利用深度学习框架进行基于基因表达的细胞分类研究",
+      "llm_tldr_en": "A framework using spatial transcriptomics as supervision for deep learning-based nuclei segmentation and classification.",
+      "llm_tldr_cn": "该研究提出了一种利用空间转录组数据作为监督信号，进行深度学习细胞核分割与分类的框架。",
+      "llm_tldr": "该研究提出了一种利用空间转录组数据作为监督信号，进行深度学习细胞核分割与分类的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.23674v1",
+      "title": "Vibe Medicine: Redefining Biomedical Research Through Human-AI Co-Work",
+      "abstract": "With the emergence of large language models (LLMs) and AI agent frameworks, the human-AI co-work paradigm known as Vibe Coding is changing how people code, making it more accessible and productive. In scientific research, where workflows are more complex and the burden of specialized labor limits independent researchers and those in low-resource areas, the potential impact is even greater, particularly in biomedicine, which involves heterogeneous data modalities and multi-step analytical pipelines. In this paper, we introduce Vibe Medicine, a co-work paradigm in which clinicians and researchers direct skill-augmented AI agents through natural language to execute complex, multi-step biomedical workflows, while retaining the role of research director who specifies objectives, reviews intermediate results, and makes domain-informed decisions. The enabling infrastructure consists of three layers: capable LLMs, agent frameworks such as OpenClaw and Hermes Agent, and the OpenClaw medical skills collection, which includes more than 1,000 curated skills from multiple open-source repositories. We analyze the architecture and skill categories of this collection across ten biomedical domains, and present case studies covering rare disease diagnosis, drug repurposing, and clinical trial design that demonstrate end-to-end workflows in practice. We also identify the principal risks, such as hallucination, data privacy, and over-reliance, and outline directions toward more reliable, trustworthy, and clinically integrated agent-assisted research that advances research and technological equity and reduces health care resource disparities.",
+      "authors": [
+        "Zihao Wu",
+        "Steven Xu",
+        "Bowen Chen",
+        "Shaowen Wan",
+        "Yiwei Li",
+        "Wei Ruan",
+        "Yanjun Lyu",
+        "Siyuan Li",
+        "Dajiang Zhu",
+        "Tianming Liu",
+        "Lin Zhao"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-26T12:27:25+00:00",
+      "link": "https://arxiv.org/pdf/2604.23674v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agents for complex biomedical workflows",
+      "llm_evidence_cn": "用于复杂生物医学工作流的AI智能体",
+      "llm_evidence": "用于复杂生物医学工作流的AI智能体",
+      "canonical_evidence": "用于复杂生物医学工作流的AI智能体",
+      "llm_tldr_en": "Introduces Vibe Medicine, a human-AI co-work paradigm using LLM agents to execute complex biomedical research tasks.",
+      "llm_tldr_cn": "介绍了一种人机协作范式，利用大模型智能体执行复杂的生物医学研究工作流。",
+      "llm_tldr": "介绍了一种人机协作范式，利用大模型智能体执行复杂的生物医学研究工作流。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.23773v1",
+      "title": "Differential Analysis of Microbial Interaction Networks",
+      "abstract": "Microbiome studies increasingly indicate that disease-associated shifts cannot be understood from compositional changes alone. The functional architecture of microbial communities encoded in patterns of association among microbial gene families may reveal how these systems reorganize across biological conditions. Here, we present a network-based framework for characterizing microbiome rewiring across conditions. The approach combines condition-specific network inference, differential network analysis and pathway enrichment to identify interactions that are gained, lost or altered between groups, with a specific focus on sex-dependent differences. We apply the framework to inflammatory bowel disease, type 2 diabetes and atherosclerotic cardiovascular disease, comparing male and female specific microbial gene-family networks within each disease context. Across these settings, differential networks reveal extensive rewiring of microbial functional interactions, suggesting that microbiome alterations are shaped not only by changes in abundance but also by shifts in community organization. Importantly, pathway enrichment of rewired interactions uncovers functional signals that are not apparent from individual networks alone, highlighting latent disease and sex associated mechanisms. Code, data and supplementary information are available on the web site.",
+      "authors": [
+        "Marianna Milano",
+        "Pietro Hiram Guzzi"
+      ],
+      "primary_category": "q-bio.OT",
+      "categories": [
+        "q-bio.OT"
+      ],
+      "published": "2026-04-26T15:51:11+00:00",
+      "link": "https://arxiv.org/pdf/2604.23773v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "functional architecture of microbial gene families",
+      "llm_evidence_cn": "微生物基因家族的功能架构分析",
+      "llm_evidence": "微生物基因家族的功能架构分析",
+      "canonical_evidence": "微生物基因家族的功能架构分析",
+      "llm_tldr_en": "Presents a network framework to identify shifts in microbial gene family interactions across biological conditions.",
+      "llm_tldr_cn": "提出一个网络框架，用于识别不同生物条件下微生物基因家族相互作用的变化。",
+      "llm_tldr": "提出一个网络框架，用于识别不同生物条件下微生物基因家族相互作用的变化。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "gene family expansion and contraction evolution",
+      "matched_requirement_id": "req-15",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.23799v1",
+      "title": "VitaminP: cross-modal learning enables whole-cell segmentation from routine histology",
+      "abstract": "Accurate whole-cell and nuclear segmentation is essential for precision pathology and spatial omics, yet routine hematoxylin and eosin (H&E) staining provides limited cytoplasmic contrast, restricting analyses to nuclei. Multiplex immunofluorescence (mIF) facilitates precise whole-cell delineation but remains constrained by cost and accessibility. We introduce VitaminP, a cross-modal learning framework enabling whole cell segmentation from H&E images. By learning from paired H&E-mIF data, VitaminP transfers molecular boundary information from mIF to overcome cytoplasmic contrast in H&E, establishing cross-modal supervision as a general strategy for recovering missing biological structure. We train VitaminP on 14 public datasets covering 34 cancer types and over 7 million instances, integrating publicly available labels with extensive annotations generated in this study, forming one of the largest resources for segmentation. VitaminP outperforms four state-of-the-art methods and generalizes to unseen datasets, including an in-house dataset spanning 24 rare cancer types. We further developed VitaminPScope, an open-source platform providing an interface for scalable inference and enabling broad adoption.",
+      "authors": [
+        "Yasin Shokrollahi",
+        "Karina B. Pinao Gonzales",
+        "Elizve N. Barrientos Toro",
+        "Paul Acosta",
+        "Patient Mosaic Team",
+        "Pingjun Chen",
+        "Yinyin Yuan",
+        "Xiaoxi Pan"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-26T16:43:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.23799v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven cross-modal learning for spatial omics and biological structure recovery",
+      "llm_evidence_cn": "利用AI跨模态学习进行空间组学研究与生物结构恢复",
+      "llm_evidence": "利用AI跨模态学习进行空间组学研究与生物结构恢复",
+      "canonical_evidence": "利用AI跨模态学习进行空间组学研究与生物结构恢复",
+      "llm_tldr_en": "VitaminP uses cross-modal learning to enable accurate whole-cell segmentation from routine histology images.",
+      "llm_tldr_cn": "VitaminP利用跨模态学习技术，通过常规组织学图像实现精确的全细胞分割。",
+      "llm_tldr": "VitaminP利用跨模态学习技术，通过常规组织学图像实现精确的全细胞分割。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.24029v1",
+      "title": "DeepTaxon: An Interpretable Retrieval-Augmented Multimodal Framework for Unified Species Identification and Discovery",
+      "abstract": "Identifying species in biology among tens of thousands of visually similar taxa while discovering unknown species in open-world environments remains a fundamental challenge in biodiversity research. Current methods treat identification and discovery as separate problems, with classification models assuming closed sets and discovery relying on threshold-based rejection. Here we present DeepTaxon, a retrieval-augmented multimodal framework that unifies species identification and discovery through interpretable reasoning over retrieved visual evidence. Given a query image, DeepTaxon retrieves the top-$k$ candidate species with $n$ exemplar images each from a retrieval index and performs chain-of-thought comparative reasoning. Critically, we redefine discovery as an explicit, retrieval-based decision problem rather than an implicit parametric memory problem. A sample is novel if and only if the retrieval index lacks sufficient evidence for identification, so each retrieval naturally yields a classification or discovery label without manual annotation, thereby providing automatic supervision for both tasks. We train the framework via supervised fine-tuning on synthetic retrieval-augmented data, followed by reinforcement learning on hard samples, converting high-recall retrieval into high-precision decisions that scale to massive taxonomic vocabularies. Extensive experiments on a large-scale in-distribution benchmark and six out-of-distribution datasets demonstrate consistent improvements in both identification and discovery. Ablation studies further reveal effective test-time scaling with candidate count $k$ and exemplar count $n$, strong zero-shot transfer to unseen domains, and consistent performance across retrieval encoders, establishing an interpretable solution for biodiversity research.",
+      "authors": [
+        "Jiawei Wang",
+        "Ming Lei",
+        "Yaning Yang",
+        "Xinyan Lin",
+        "Yuquan Le",
+        "Qiwei Ma",
+        "Zhiwei Xu",
+        "Zheqi Lv",
+        "Yuchen Ang",
+        "Zhe Quan",
+        "Tat-Seng Chua"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV",
+        "cs.CL",
+        "cs.IR",
+        "cs.MM"
+      ],
+      "published": "2026-04-27T04:30:54+00:00",
+      "link": "https://arxiv.org/pdf/2604.24029v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven multimodal framework for species identification and discovery in biodiversity research",
+      "llm_evidence_cn": "利用AI多模态框架进行生物多样性研究中的物种识别与发现",
+      "llm_evidence": "利用AI多模态框架进行生物多样性研究中的物种识别与发现",
+      "canonical_evidence": "利用AI多模态框架进行生物多样性研究中的物种识别与发现",
+      "llm_tldr_en": "DeepTaxon uses retrieval-augmented AI to unify species identification and discovery through multimodal reasoning.",
+      "llm_tldr_cn": "DeepTaxon利用检索增强的多模态AI框架，通过可解释推理统一了物种鉴定与新物种发现。",
+      "llm_tldr": "DeepTaxon利用检索增强的多模态AI框架，通过可解释推理统一了物种鉴定与新物种发现。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.23802v1",
+      "title": "EndoGov: A knowledge-governed multi-agent expert system for endometrial cancer risk stratification",
+      "abstract": "Multimodal artificial intelligence models for endometrial cancer (EC) risk stratification typically optimize aggregate predictive performance but provide limited mechanisms for enforcing mandatory guideline overrides, such as assigning POLE-mutated tumors to the low-risk group despite high-grade morphology. We present EndoGov, a two-tier multi-agent expert system that factorizes the decision process as D(x) = G(P(x), R), where specialist agents P extract structured evidence and a governance agent G applies an executable rule set R. Tier 1 comprises pathology, molecular, and clinical agents that independently generate schema-constrained reports from frozen foundation-model features or structured records. Tier 2 queries an evidence-level-weighted Guideline Knowledge Graph, using deterministic hard-path rules for high-priority overrides and constrained soft-path reasoning for ambiguous cases. In TCGA-UCEC (n=541), EndoGov achieved 0.943 accuracy, 0.973 macro AUC, and a conditional logic-violation rate (C-LVR) of 0.93% among trigger-exposed cases. In CPTAC-UCEC (n=95), where reference labels are guideline-derived, EndoGov reached 0.842 accuracy compared with < 0.31 for locked-transfer neural baselines, supporting governance-pathway transfer under distribution shift rather than validation against independent clinical truth. End-to-end safety decomposition localized residual failures primarily to upstream molecular detection rather than downstream governance. Backend-swap experiments further showed that hard-path compliance is invariant to the LLM backend. These findings indicate that explicit clinical-rule governance can provide guideline-compliant, auditable EC risk assignment while preserving competitive discrimination.",
+      "authors": [
+        "Weiye Dai",
+        "Liyun Shi",
+        "Zanxiang He",
+        "Yuling Ma",
+        "Mengyuan Lin",
+        "Dianxiang Sun",
+        "Liming Nie"
+      ],
+      "primary_category": "cs.MA",
+      "categories": [
+        "cs.MA"
+      ],
+      "published": "2026-04-26T16:54:13+00:00",
+      "link": "https://arxiv.org/pdf/2604.23802v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI expert system for cancer risk stratification using molecular agents",
+      "llm_evidence_cn": "利用分子代理进行癌症风险分层的AI专家系统",
+      "llm_evidence": "利用分子代理进行癌症风险分层的AI专家系统",
+      "canonical_evidence": "利用分子代理进行癌症风险分层的AI专家系统",
+      "llm_tldr_en": "A multi-agent AI system for endometrial cancer risk stratification incorporating molecular and pathology data.",
+      "llm_tldr_cn": "一种结合分子和病理数据进行子宫内膜癌风险分层的多智能体AI系统。",
+      "llm_tldr": "一种结合分子和病理数据进行子宫内膜癌风险分层的多智能体AI系统。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.24080v1",
+      "title": "Dynamic Grammar-Compressed Self-Index in $delta$-Optimal Space",
+      "abstract": "A compressed self-index stores a string in compressed form while supporting locate queries without decompression. For highly repetitive strings (arising in web crawls, versioned documents, and genomic collections), static self-indexes can match the $δ$-optimal lower bound of $Ω(δ\\log(n \\log σ/ (δ\\log n)) \\log n)$ bits up to constant factors, where $n$ is the string length, $σ$ is the alphabet size, and $δ$ is the substring complexity. Their dynamic counterparts, however, remain scarce: every existing dynamic self-index either fails to attain $δ$-optimal space, pays at least $Θ(\\log n)$ time per reported occurrence during locate, or exposes the longest common prefix (LCP) of the text inside its update time. We present the dynamic RR-index, a dynamic grammar-compressed self-index built on the restricted recompression run-length straight-line program (RLSLP). To our knowledge, it is the first dynamic self-index to attain $δ$-optimal space. The index occupies expected $O(δ\\log(n \\log σ/ (δ\\log n)) \\log n)$ bits, answers locate queries in expected $O(m + \\log m \\log^{2} n + \\mathit{occ} (\\log n / \\log \\log n))$ time (where $m$ is the pattern length and $\\mathit{occ}$ is the number of occurrences), and supports insertions and deletions of a length-$m'$ substring in expected amortized $O(m' \\log^{2} n + \\log^{3} n)$ time, with no dependence on the LCP. On eleven highly repetitive corpora, including a $37$ GB Wikipedia dump and a $59$ GB human-chromosome collection, the dynamic RR-index is up to $77\\times$ faster than the dynamic r-index on updates and up to $11\\times$ faster than other dynamic indexes on locate.",
+      "authors": [
+        "Takaaki Nishimoto",
+        "Yasuo Tabei"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-04-27T06:02:36+00:00",
+      "link": "https://arxiv.org/pdf/2604.24080v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Computational method for genomic collections and pangenome construction",
+      "llm_evidence_cn": "用于基因组集合和泛基因组构建的计算方法",
+      "llm_evidence": "用于基因组集合和泛基因组构建的计算方法",
+      "canonical_evidence": "用于基因组集合和泛基因组构建的计算方法",
+      "llm_tldr_en": "Introduces a dynamic grammar-compressed self-index for efficient storage and querying of large genomic collections.",
+      "llm_tldr_cn": "提出了一种动态语法压缩自索引，用于高效存储和查询大规模基因组集合。",
+      "llm_tldr": "提出了一种动态语法压缩自索引，用于高效存储和查询大规模基因组集合。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.23917v1",
+      "title": "MR-CCC: Bayesian Mendelian Randomization for Causal Cell--Cell Communication",
+      "abstract": "Cell--cell communication (CCC) is commonly inferred from ligand--receptor co-expression, an associational paradigm that cannot distinguish causal signaling from shared regulation or confounding. We propose MR-CCC, a Bayesian Mendelian randomization framework that uses cis-eQTLs as instruments for ligand and receptor expression and explicitly models receptor-modulated ligand effects through an interaction term, so the causal effect of a ligand can vary with receptor abundance. A spike--and--slab prior yields posterior inclusion probabilities quantifying evidence for causal signaling, and an efficient Gibbs sampler provides scalable inference. Benchmarked against naive regression, MVMR, and MR-BMA, MR-CCC controls false discoveries under confounding while retaining high power, and uniquely estimates both the ligand main and receptor-modulated interaction effects. Applied to the OneK1K NK cells $\\to$ monocytes axis, MR-CCC identifies eight discoveries across GABA, interferon, interleukin, and prostaglandin signaling, including a stoichiometry-dependent dissociation of the two IL-18 receptor chains and co-discovery of both obligate IFN-$γ$ receptor subunits.",
+      "authors": [
+        "Bitan Sarkar",
+        "Yang Ni"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-27T00:12:30+00:00",
+      "link": "https://arxiv.org/pdf/2604.23917v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Bayesian Mendelian randomization for cell communication",
+      "llm_evidence_cn": "用于细胞通讯的贝叶斯孟德尔随机化",
+      "llm_evidence": "用于细胞通讯的贝叶斯孟德尔随机化",
+      "canonical_evidence": "用于细胞通讯的贝叶斯孟德尔随机化",
+      "llm_tldr_en": "Proposes a Bayesian framework using eQTLs to infer causal cell-cell communication.",
+      "llm_tldr_cn": "提出了一种利用eQTL推断因果细胞间通讯的贝叶斯框架。",
+      "llm_tldr": "提出了一种利用eQTL推断因果细胞间通讯的贝叶斯框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.24201v1",
+      "title": "CMGL: Confidence-guided Multi-omics Graph Learning for Cancer Subtype Classification",
+      "abstract": "Motivation: Multi-omics integration can improve cancer subtyping, but modality informativeness and noise vary across cancer types and patients. Existing graph-based methods optimize modality weights jointly with the classification objective and therefore lack independent reliability estimates, so low-quality omics distort patient similarity graphs and amplify noise through message passing.   Results: We propose CMGL, a two-stage framework that estimates per-sample modality reliability through evidential deep learning and uses the frozen confidence scores to guide cross-omics fusion and graph construction. On four MLOmics cancer-subtype tasks and the 32-class pan-cancer task, CMGL consistently improves over the strongest baseline, surpassing it by 4.03% in average accuracy on the four single-cancer tasks. Its representations recover the PAM50 intrinsic subtypes of breast invasive carcinoma (BRCA), and the BRCA-trained model transfers without fine-tuning to kidney renal clear cell carcinoma (KIRC), stratifying patients into prognostically distinct groups.",
+      "authors": [
+        "Boyang Fan",
+        "Hengchuang Yin",
+        "Siyu Yi",
+        "Yifan Wang",
+        "Zhicheng Li",
+        "Leijiyu Zhou",
+        "Jiancheng Lv",
+        "Wei Ju"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.GN",
+        "q-bio.MN"
+      ],
+      "published": "2026-04-27T09:02:50+00:00",
+      "link": "https://arxiv.org/pdf/2604.24201v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-driven multi-omics integration and pan-cancer analysis",
+      "llm_evidence_cn": "利用AI进行多组学整合与泛癌分析",
+      "llm_evidence": "利用AI进行多组学整合与泛癌分析",
+      "canonical_evidence": "利用AI进行多组学整合与泛癌分析",
+      "llm_tldr_en": "CMGL uses evidential deep learning for reliable multi-omics integration in cancer subtype classification.",
+      "llm_tldr_cn": "CMGL利用证据深度学习实现了可靠的多组学整合，用于癌症亚型分类。",
+      "llm_tldr": "CMGL利用证据深度学习实现了可靠的多组学整合，用于癌症亚型分类。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.23938v1",
+      "title": "TSAssistant: A Human-in-the-Loop Agentic Framework for Automated Target Safety Assessment",
+      "abstract": "Target Safety Assessment (TSA) requires systematic integration of heterogeneous evidence, including genetic, transcriptomic, target homology, pharmacological, and clinical data, to evaluate potential safety liabilities of therapeutic targets. This process is inherently iterative and expert-driven, posing challenges in scalability and reproducibility. We present TSAssistant, a multi-agent framework designed to support TSA report drafting through a modular, section-based, and human-in-the-loop paradigm. The framework decomposes report generation into a coordinated pipeline of specialised subagents, each targeting a single TSA section. Specialised subagents retrieve structured and unstructured data as well as literature evidence from curated biomedical sources through standardised tool interfaces, producing individually citable, evidence-grounded sections. Agent behaviour is governed by a hierarchical instruction architecture comprising system prompts, domain-specific skill modules, and runtime user instructions. A key feature is an interactive refinement loop in which users may manually edit sections, append new information, upload additional sources, or re-invoke agents to revise specific sections, with the system maintaining conversational memory across iterations. TSAssistant is designed to reduce the mechanical burden of evidence synthesis and report drafting, supporting a hybrid model in which agentic AI augments evidence synthesis while toxicologists retain final decision authority.",
+      "authors": [
+        "Xiaochen Zheng",
+        "Zhiwen Jiang",
+        "Melanie Guerard",
+        "Klas Hatje",
+        "Tatyana Doktorova"
+      ],
+      "primary_category": "cs.CL",
+      "categories": [
+        "cs.CL"
+      ],
+      "published": "2026-04-27T01:22:00+00:00",
+      "link": "https://arxiv.org/pdf/2604.23938v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven multi-agent framework for integrating genetic and target homology data",
+      "llm_evidence_cn": "利用AI多智能体框架整合遗传学与靶点同源性数据",
+      "llm_evidence": "利用AI多智能体框架整合遗传学与靶点同源性数据",
+      "canonical_evidence": "利用AI多智能体框架整合遗传学与靶点同源性数据",
+      "llm_tldr_en": "An AI agent framework that automates safety assessments by integrating genetic and pharmacological evidence.",
+      "llm_tldr_cn": "一种通过整合遗传和药理证据自动进行安全评估的AI智能体框架。",
+      "llm_tldr": "一种通过整合遗传和药理证据自动进行安全评估的AI智能体框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.24685v1",
+      "title": "Aycromo: An Open-Source Platform for Automatic Chromosome Detection in Metaphase Images Based on Deep Learning",
+      "abstract": "Chromosome analysis is a fundamental step in the diagnosis of genetic diseases, but the manual karyotyping workflow is time-consuming and heavily dependent on expert specialists, often requiring several days per patient. Although Deep Learning models have achieved high performance in chromosome detection, most proposed solutions remain restricted to research prototypes or lack graphical interfaces suitable for clinical use. In this work, we present Aycromo, an open-source desktop platform for AI-assisted cytogenetic analysis. Built on Electron and ONNX Runtime, the tool allows cytogeneticists to load pre-trained models, compare architectures through an integrated benchmarking module, and manually correct detections via an interactive annotation interface, all without command-line interaction. Preliminary experiments on metaphase images from the CRCN-NE dataset demonstrate that YOLOv11 achieves 99.40% mAP@50, while the platform reduces per-slide analysis to seconds",
+      "authors": [
+        "Jorge L. A. Lima",
+        "Filipe R. Cordeiro"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-27T16:45:49+00:00",
+      "link": "https://arxiv.org/pdf/2604.24685v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-assisted cytogenetic analysis and chromosome detection",
+      "llm_evidence_cn": "利用AI进行细胞遗传学分析和染色体检测",
+      "llm_evidence": "利用AI进行细胞遗传学分析和染色体检测",
+      "canonical_evidence": "利用AI进行细胞遗传学分析和染色体检测",
+      "llm_tldr_en": "Aycromo is an open-source AI platform for automated chromosome detection to assist in genetic disease diagnosis.",
+      "llm_tldr_cn": "Aycromo是一个开源AI平台，用于自动染色体检测，辅助遗传疾病诊断。",
+      "llm_tldr": "Aycromo是一个开源AI平台，用于自动染色体检测，辅助遗传疾病诊断。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    }
+  ]
+}
