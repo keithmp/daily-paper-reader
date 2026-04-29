@@ -1,0 +1,721 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-29T20:33:07.294985+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 4,
+    "deep_cap": 8,
+    "deep_selected": 4,
+    "quick_candidates": 16,
+    "quick_skim_target": 13,
+    "quick_selected": 13
+  },
+  "deep_dive": [
+    {
+      "id": "2604.25371v1",
+      "title": "PhyloSDF: Phylogenetically-Conditioned Neural Generation of 3D Skull Morphology via Residual Flow Matching",
+      "abstract": "Generating novel, biologically plausible three-dimensional morphological structures is a fundamental challenge in computational evolutionary biology, hampered by extreme data scarcity and the requirement that generated shapes respect phylogenetic relationships among species. In this work, we present PhyloSDF, a phylogenetically-conditioned neural generative model for 3D biological morphology that integrates two innovations: (1) a DeepSDF auto-decoder regularized by a novel Phylogenetic Consistency Loss that structures the latent space to correlate with evolutionary distances (Pearson $r=0.993$); (2) a Residual Conditional Flow Matching (Residual CFM) architecture that factorizes generation into analytic species-centroid lookup and learned residual prediction, enabling generation from as few as ~4 specimens per species. We evaluate PhyloSDF on 100 micro-CT-scanned skulls of Darwin's Finches and their relatives across 24 species. The model generates novel meshes achieving 88-129% of real intra-species variation at the code level, with all 180 generated meshes verified as non-memorized. Residual CFM surpasses denoising diffusion (which fails entirely at this scale), standard flow matching (which mode-collapses to 3-6% variation), and a Gaussian mixture baseline in both fidelity (Chamfer Distance 0.00181 vs. 0.00190) and morphometric Fréchet distance (10,641 vs. 13,322). Leave-one-species-out experiments across 18 species demonstrate phylogenetic extrapolation capability, and smooth latent interpolations produce biologically plausible ancestral skull reconstructions.",
+      "authors": [
+        "Kaikwan Lau",
+        "Gary P. T. Choi"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM",
+        "cs.CV"
+      ],
+      "published": "2026-04-28T08:38:00+00:00",
+      "link": "https://arxiv.org/pdf/2604.25371v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Phylogenetically-conditioned neural generation and evolutionary distances",
+      "llm_evidence_cn": "受系统发育约束的神经生成与演化距离",
+      "llm_evidence": "受系统发育约束的神经生成与演化距离",
+      "canonical_evidence": "受系统发育约束的神经生成与演化距离",
+      "llm_tldr_en": "Presents a neural model that generates 3D skull morphology respecting phylogenetic relationships.",
+      "llm_tldr_cn": "提出了一种遵循系统发育关系的3D头骨形态神经生成模型。",
+      "llm_tldr": "提出了一种遵循系统发育关系的3D头骨形态神经生成模型。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.25445v1",
+      "title": "Central Limit Theorem for Mutation Systems",
+      "abstract": "DNA-based storage has emerged as a promising alternative to traditional data storage methods, offering unmatched advantages in data density, longevity, and sustainability. Two main approaches have developed: in-vitro storage, where information is synthesized in controlled environments, and in-vivo storage, where data is embedded within an organism's DNA for enhanced confidentiality and protection. While in-vivo DNA storage provides unique advantages, it faces significant challenges from mutations, including duplications, deletions, and substitutions, which cause sequence evolution over time. Thus, in-vivo systems experience continuous sequence alterations that increase length and change composition, making error correction particularly challenging.   We study the asymptotic behavior of mutation systems, which model the probabilistic evolution of sequences over a finite alphabet, and are central to the analysis of in-vivo DNA-based data storage. Building upon prior works that established the limit of empirical $k$-tuple frequencies, we characterize the stochastic fluctuations around these values by establishing a Central Limit Theorem (CLT). Our approach leverages the spectral properties of the $k$-substitution matrix to project the centered count vectors, allowing us to approximate the system via a martingale difference sequence, and then verifying the classical martingale CLT conditions. In addition, we explicitly derive the limiting covariance matrix.",
+      "authors": [
+        "Liav Koram",
+        "Ohad Elishco"
+      ],
+      "primary_category": "cs.IT",
+      "categories": [
+        "cs.IT"
+      ],
+      "published": "2026-04-28T09:56:20+00:00",
+      "link": "https://arxiv.org/pdf/2604.25445v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "sequence evolution and mutation mechanisms in DNA",
+      "llm_evidence_cn": "DNA中的序列演化与突变机制",
+      "llm_evidence": "DNA中的序列演化与突变机制",
+      "canonical_evidence": "DNA中的序列演化与突变机制",
+      "llm_tldr_en": "Studies the asymptotic behavior of DNA sequence evolution under mutations for in-vivo storage systems.",
+      "llm_tldr_cn": "研究了活体存储系统中DNA序列在突变压力下的渐进演化行为。",
+      "llm_tldr": "研究了活体存储系统中DNA序列在突变压力下的渐进演化行为。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.21757v2",
+      "title": "A Robust Framework for Two-Sample Mendelian Randomization under Population Heterogeneity",
+      "abstract": "Mendelian randomization is a powerful tool for causal inference in observational studies. The two-sample summary-data design, which estimates genetic associations with exposures and outcomes in separate cohorts, is the most widely used Mendelian randomization approach in large-scale genomic studies. However, this approach relies on a strong assumption of population homogeneity across the two samples. In practice, available samples often differ in ancestry, demographics, socioeconomic factors, covariate adjustment, and measurement protocols. Violations of the homogeneity assumption can bias causal effect estimates and undermine the credibility of Mendelian randomization findings. We introduce a robust, model-free Mendelian randomization framework that directly addresses population heterogeneity in the two-sample summary-data setting. Our method avoids parametric assumptions about population differences and is designed to address real-world challenges, including measurement error, weak instruments, and pleiotropy. We show that the proposed estimator is consistent and asymptotically normal under heterogeneous designs, and may offer efficiency gains over the classic estimator even in homogeneous settings. Through numerical simulations and a real data analysis for estimating the causal effect of body mass index on high-density lipoprotein cholesterol across ancestrally diverse populations, we demonstrate the practical utility, stability, and robustness of our approach.",
+      "authors": [
+        "Dingke Tang",
+        "Xuming He",
+        "Shu Yang"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-23T15:05:59+00:00",
+      "link": "https://arxiv.org/pdf/2604.21757v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "Mendelian randomization in large-scale genomic studies under population heterogeneity",
+      "llm_evidence_cn": "群体异质性下大规模基因组研究中的孟德尔随机化",
+      "llm_evidence": "群体异质性下大规模基因组研究中的孟德尔随机化",
+      "canonical_evidence": "群体异质性下大规模基因组研究中的孟德尔随机化",
+      "llm_tldr_en": "Introduces a robust framework for Mendelian randomization that accounts for population heterogeneity.",
+      "llm_tldr_cn": "引入了一个鲁棒的孟德尔随机化框架，考虑了群体异质性。",
+      "llm_tldr": "引入了一个鲁棒的孟德尔随机化框架，考虑了群体异质性。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.25062v1",
+      "title": "Learning biophysical models of gene regulation with probability flow matching",
+      "abstract": "Cellular differentiation is governed by gene regulatory networks, the high-dimensional stochastic biochemical systems that determine the transcriptional landscape and mediate cellular responses to signals and perturbations. Although single-cell RNA sequencing provides quantitative snapshots of the transcriptome, current methods for inferring gene-regulatory dynamics often lack mechanistic interpretability and fail to generalize to unseen conditions. Here we introduce Probability Flow Matching (PFM), a scalable framework for learning biophysically consistent stochastic processes directly from time-resolved single-cell measurements. Applying PFM to three hematopoiesis datasets, we show that models with similar interpolation accuracy can encode fundamentally different dynamics, with only biophysically consistent formulations accurately capturing mechanisms of lineage transitions, fate specification, and gene perturbation responses. We further demonstrate that PFM accommodates unbalanced populations, enabling simultaneous inference of cellular proliferation and death dynamics. Together, these results establish PFM as a flexible, scalable framework for integrating mechanistic modeling with single-cell omics.",
+      "authors": [
+        "Suryanarayana Maddu",
+        "Victor Chardès",
+        "Michael J. Shelley"
+      ],
+      "primary_category": "q-bio.MN",
+      "categories": [
+        "q-bio.MN",
+        "cs.LG",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-27T23:30:18+00:00",
+      "link": "https://arxiv.org/pdf/2604.25062v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 8.0,
+      "llm_evidence_en": "AI for gene regulatory dynamics and biophysical models",
+      "llm_evidence_cn": "利用AI研究基因调节动态和生物物理模型",
+      "llm_evidence": "利用AI研究基因调节动态和生物物理模型",
+      "canonical_evidence": "利用AI研究基因调节动态和生物物理模型",
+      "llm_tldr_en": "Introduces Probability Flow Matching to learn biophysically consistent gene-regulatory dynamics from single-cell data.",
+      "llm_tldr_cn": "引入概率流匹配框架，从单细胞数据中学习符合生物物理规律的基因调节动态。",
+      "llm_tldr": "引入概率流匹配框架，从单细胞数据中学习符合生物物理规律的基因调节动态。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.23293v1",
+      "title": "Partial exploiters sustain cooperation: the hump-shaped strategy stably coexists with unconditional cooperators",
+      "abstract": "From collective hunting to environmental problems, social dilemmas are pervasive in human societies. Prior research has documented highly heterogeneous behavioral patterns in such settings. However, how this heterogeneity emerges and how it shapes large-scale cooperation remain unclear. Here, we focus on a robustly observed but underexplored pattern: the hump-shaped strategy (Hump). Individuals adopting Hump match others' contributions up to a threshold, only to reduce their own above it. Using agent-based simulations across group sizes and production-function shapes, we find that Hump is individually adaptive, especially in intermediate-sized groups with step-like production functions. Despite its exploitative nature, Hump also elevates population-level cooperation. The underlying mechanism is that Hump can form a stable equilibrium with unconditional cooperators (AllC), which jointly exclude defectors across a broad range of environments. Our findings suggest that underexplored patterns of behavioral heterogeneity -- including both Hump and AllC -- play a functional role in sustaining large-scale cooperation.",
+      "authors": [
+        "Kai Otsubo",
+        "Yuta Kido",
+        "Ryutaro Mori"
+      ],
+      "primary_category": "physics.soc-ph",
+      "categories": [
+        "physics.soc-ph"
+      ],
+      "published": "2026-04-25T13:15:29+00:00",
+      "link": "https://arxiv.org/pdf/2604.23293v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "evolutionary dynamics of cooperation strategies",
+      "llm_evidence_cn": "合作策略的演化动力学",
+      "llm_evidence": "合作策略的演化动力学",
+      "canonical_evidence": "合作策略的演化动力学",
+      "llm_tldr_en": "Investigates how hump-shaped strategies emerge and sustain cooperation in social dilemmas.",
+      "llm_tldr_cn": "研究了在社会困境中，驼峰型策略如何通过演化动力学维持群体合作。",
+      "llm_tldr": "研究了在社会困境中，驼峰型策略如何通过演化动力学维持群体合作。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.20026v1",
+      "title": "Investigation of cardinality classification for bacterial colony counting using explainable artificial intelligence",
+      "abstract": "Automatic bacterial colony counting is a highly sought-after technology in modern biological laboratories because it eliminates manual counting effort. Previous work has observed that MicrobiaNet, currently the best-performing cardinality classification model for colony counting, has difficulty distinguishing colonies of three or more individuals. However, it is unclear if this is due to properties of the data together with inherent characteristics of the MicrobiaNet model. By analysing MicrobiaNet with explainable artificial intelligence (XAI), we demonstrate that XAI can provide insights into how data properties constrain cardinality classification performance in colony counting. Our results show that high visual similarity across classes is the key issue hindering further performance improvement, revising prior assertions about MicrobiaNet. These findings suggest future work should focus on models that explicitly incorporate visual similarity or explore density estimation approaches, with broader implications for neural network classifiers trained on imbalanced datasets.",
+      "authors": [
+        "Minghua Zheng",
+        "Na Helian",
+        "Peter C. R. Lane",
+        "Yi Sun",
+        "Allen Donald"
+      ],
+      "primary_category": "cs.CV",
+      "categories": [
+        "cs.CV"
+      ],
+      "published": "2026-04-21T22:11:20+00:00",
+      "link": "https://arxiv.org/pdf/2604.20026v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for bacterial colony counting in biological laboratories",
+      "llm_evidence_cn": "利用AI进行生物实验室细菌菌落计数",
+      "llm_evidence": "利用AI进行生物实验室细菌菌落计数",
+      "canonical_evidence": "利用AI进行生物实验室细菌菌落计数",
+      "llm_tldr_en": "Uses explainable AI to analyze and improve automatic bacterial colony counting models.",
+      "llm_tldr_cn": "利用可解释AI分析并改进自动细菌菌落计数模型。",
+      "llm_tldr": "利用可解释AI分析并改进自动细菌菌落计数模型。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.23679v1",
+      "title": "Imaging Exploration of Molecular Subtypes in Tongue Squamous Cell Carcinoma",
+      "abstract": "Tongue squamous cell carcinoma (TSCC) is an aggressive malignancy with marked biological heterogeneity and variable clinical outcomes. Although molecular profiling has improved understanding of TSCC heterogeneity, its clinical use remains constrained by invasive tissue sampling and limited representation of whole-tumor spatial complexity. Meanwhile, most radiomics studies in TSCC have focused on downstream clinical endpoints, and whether imaging can non-invasively reflect intrinsic molecular subtypes remains unclear. In this study, an integrated transcriptomic-radiomics framework was used to investigate the relationship between preoperative imaging phenotypes and molecular subtypes in TSCC. Transcriptomic data from 60 TSCC cases in The Cancer Genome Atlas were analyzed using unsupervised consensus clustering, followed by differential expression and functional enrichment analyses. Matched preoperative imaging data from The Cancer Imaging Archive were manually annotated for primary tumor regions, and radiomic features were extracted using PyRadiomics; group differences were assessed with the U-test. Two stable molecular subtypes, C1 and C2, were identified. Their biological differences were mainly associated with squamous epithelial differentiation, inflammatory signaling, and lipid metabolism, with C2 showing greater enrichment of immune-related pathways. In addition, 10 radiomic features differed significantly between the two subtypes, mainly wavelet-derived texture features from gray-level size zone, dependence, co-occurrence, and run length matrices (P=0.00202-0.0162). These findings support the potential of radiomics as a non-invasive approach for characterizing molecular heterogeneity in TSCC and provide an initial radiogenomic framework for biologically informed preoperative assessment.",
+      "authors": [
+        "Hao Pan",
+        "Peipei Wang",
+        "Yajie Chang",
+        "Bingyi Lu",
+        "Yunyan Jiang",
+        "Mengfan Wang",
+        "Xinyue Wang",
+        "Xinrou Yang",
+        "Jiyuan Zhang",
+        "Yu Liu",
+        "Andrei Velichko",
+        "Yuanjun Wang"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-26T12:39:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.23679v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Integrated transcriptomic-radiomics framework for molecular subtypes",
+      "llm_evidence_cn": "分子亚型的转录组学-放射组学整合框架",
+      "llm_evidence": "分子亚型的转录组学-放射组学整合框架",
+      "canonical_evidence": "分子亚型的转录组学-放射组学整合框架",
+      "llm_tldr_en": "Explores the link between imaging phenotypes and molecular subtypes in TSCC using transcriptomics.",
+      "llm_tldr_cn": "利用转录组学研究舌鳞状细胞癌影像表型与分子亚型之间的关系。",
+      "llm_tldr": "利用转录组学研究舌鳞状细胞癌影像表型与分子亚型之间的关系。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.20615v2",
+      "title": "Semi supervised GAN for smart microscopy, fast and data efficient cell cycle classification",
+      "abstract": "Modern optical microscopes are fully motorised; however, transforming them into truly smart systems requires real-time adjustment of acquisition settings in response to detected objects and dynamic biological events. At the core are classification algorithms that commonly depend on customised softwares and are generally designed for narrowly-defined biological applications. In addition, they often require substantial annotated datasets for effective training. We introduce a semi-supervised generative adversarial network (SGAN) for robust cell-cycle stage classification under low-resource conditions, adaptable to diverse cellular structures. The framework combines unlabelled microscopy images with synthetically generated samples to mitigate limited annotation, while preserving stable performance even when the unlabelled subset is class-imbalanced. Tested on the Mitocheck dataset, which features five mitosis classes, the model achieved $93 \\pm 2\\%$ accuracy using only 80 labelled per class and 600 unlabelled images. The proposed algorithm is generic and can be readily adapted to new labeling schemes, classification targets, cell lines, or microscopy modalities through transfer learning. SGAN is well suited for integration into automated microscopes, enabling efficient and adaptable image analysis across diverse biological and microscopy applications.",
+      "authors": [
+        "Rajeev Manick",
+        "Youssef El Habouz",
+        "Maëlle Guillout",
+        "Celia Martin",
+        "Julia Bonnet",
+        "Louis Ruel",
+        "Sylvain Pastezeur",
+        "Olivier Chanteux",
+        "Otmane Bouchareb",
+        "Marc Tramier",
+        "Jacques Pécréaux"
+      ],
+      "primary_category": "q-bio.QM",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "published": "2026-04-22T14:31:38+00:00",
+      "link": "https://arxiv.org/pdf/2604.20615v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for cell cycle classification in microscopy",
+      "llm_evidence_cn": "利用AI进行显微镜下的细胞周期分类",
+      "llm_evidence": "利用AI进行显微镜下的细胞周期分类",
+      "canonical_evidence": "利用AI进行显微镜下的细胞周期分类",
+      "llm_tldr_en": "Introduces a semi-supervised GAN for efficient cell-cycle stage classification in smart microscopy.",
+      "llm_tldr_cn": "引入半监督生成对抗网络，用于智能显微镜下高效的细胞周期阶段分类。",
+      "llm_tldr": "引入半监督生成对抗网络，用于智能显微镜下高效的细胞周期阶段分类。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.23755v1",
+      "title": "Sparse Reduced-rank Regression Methods for Spatially Misaligned Data with Application to Spatial Transcriptomics",
+      "abstract": "Understanding the spatiotemporal dynamics of disease progression in relation to transcriptomic profiles provides key insights into complex conditions such as Alzheimer disease. To enable such investigations, STARmap PLUS technology offers joint profiling of high-resolution spatial transcriptomics and protein detection within the same tissue section. Motivated by data from Zeng et al. (2023), we develop a novel kernel-weighted regression framework that models plaque size as a collective effect of the spatial transcriptomics of neighboring cells, automatically integrating across cell types and tissue samples from different disease states. To further strengthen interpretability and efficiency, we incorporate a sparse low-rank factorization that enables gene selection while borrowing strength across genes, cell types, and time points. The proposed approach is implemented in a fully automated manner with data-driven specification of key model components. Through simulation studies, we demonstrate the robustness of the proposed method and its superiority across a range of specification scenarios. Applied to Alzheimer disease data, the proposed framework uncovers biologically meaningful associations, highlighting its potential for advancing the understanding of disease mechanisms.",
+      "authors": [
+        "Zitian Wu",
+        "Susmita Datta",
+        "Arkaprava Roy"
+      ],
+      "primary_category": "stat.AP",
+      "categories": [
+        "stat.AP"
+      ],
+      "published": "2026-04-26T15:11:21+00:00",
+      "link": "https://arxiv.org/pdf/2604.23755v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "computational methods for spatial transcriptomics and disease dynamics",
+      "llm_evidence_cn": "空间转录组学和疾病动态的计算方法",
+      "llm_evidence": "空间转录组学和疾病动态的计算方法",
+      "canonical_evidence": "空间转录组学和疾病动态的计算方法",
+      "llm_tldr_en": "A novel regression framework for spatial transcriptomics to understand disease progression like Alzheimer's.",
+      "llm_tldr_cn": "一种用于空间转录组学的回归框架，旨在理解阿尔茨海默症等疾病的进展。",
+      "llm_tldr": "一种用于空间转录组学的回归框架，旨在理解阿尔茨海默症等疾病的进展。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.21910v1",
+      "title": "From Research Question to Scientific Workflow: Leveraging Agentic AI for Science Automation",
+      "abstract": "Scientific workflow systems automate execution -- scheduling, fault tolerance, resource management -- but not the semantic translation that precedes it. Scientists still manually convert research questions into workflow specifications, a task requiring both domain knowledge and infrastructure expertise. We propose an agentic architecture that closes this gap through three layers: an LLM interprets natural language into structured intents (semantic layer); validated generators produce reproducible workflow DAGs (deterministic layer); and domain experts author ``Skills'': markdown documents encoding vocabulary mappings, parameter constraints, and optimization strategies (knowledge layer). This decomposition confines LLM non-determinism to intent extraction: identical intents always yield identical workflows. We implement and evaluate the architecture on the 1000 Genomes population genetics workflow and Hyperflow WMS running on Kubernetes. In an ablation study on 150 queries, Skills raise full-match intent accuracy from 44% to 83%; skill-driven deferred workflow generation reduces data transfer by 92\\%; and the end-to-end pipeline completes queries on Kubernetes with LLM overhead below 15 seconds and cost under $0.001 per query.",
+      "authors": [
+        "Bartosz Balis",
+        "Michal Orzechowski",
+        "Piotr Kica",
+        "Michal Dygas",
+        "Michal Kuszewski"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-23T17:52:52+00:00",
+      "link": "https://arxiv.org/pdf/2604.21910v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Agentic AI for science automation and research workflows",
+      "llm_evidence_cn": "用于科学自动化和研究工作流的智能体AI",
+      "llm_evidence": "用于科学自动化和研究工作流的智能体AI",
+      "canonical_evidence": "用于科学自动化和研究工作流的智能体AI",
+      "llm_tldr_en": "Proposes an agentic AI architecture to automate the translation of research questions into scientific workflows.",
+      "llm_tldr_cn": "提出了一种智能体AI架构，用于将科学研究问题自动转化为可执行的工作流。",
+      "llm_tldr": "提出了一种智能体AI架构，用于将科学研究问题自动转化为可执行的工作流。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.24080v2",
+      "title": "Dynamic Grammar-Compressed Self-Index in $δ$-Optimal Space",
+      "abstract": "A compressed self-index stores a string in compressed form while supporting locate queries without decompression. For highly repetitive strings (arising in web crawls, versioned documents, and genomic collections), static self-indexes can match the $δ$-optimal lower bound of $Ω(δ\\log(n \\log σ/ (δ\\log n)) \\log n)$ bits up to constant factors, where $n$ is the string length, $σ$ is the alphabet size, and $δ$ is the substring complexity. Their dynamic counterparts, however, remain scarce: every existing dynamic self-index either fails to attain $δ$-optimal space, pays at least $Θ(\\log n)$ time per reported occurrence during locate, or exposes the longest common prefix (LCP) of the text inside its update time. We present the dynamic RR-index, a dynamic grammar-compressed self-index built on the restricted recompression run-length straight-line program (RLSLP). To our knowledge, it is the first dynamic self-index to attain $δ$-optimal space. The index occupies expected $O(δ\\log(n \\log σ/ (δ\\log n)) \\log n)$ bits, answers locate queries in expected $O(m + \\log m \\log^{2} n + \\mathit{occ} (\\log n / \\log \\log n))$ time (where $m$ is the pattern length and $\\mathit{occ}$ is the number of occurrences), and supports insertions and deletions of a length-$m'$ substring in expected amortized $O(m' \\log^{2} n + \\log^{3} n)$ time, with no dependence on the LCP. On eleven highly repetitive corpora, including a $37$ GB Wikipedia dump and a $59$ GB human-chromosome collection, the dynamic RR-index is up to $77\\times$ faster than the dynamic r-index on updates and up to $11\\times$ faster than other dynamic indexes on locate.",
+      "authors": [
+        "Takaaki Nishimoto",
+        "Yasuo Tabei"
+      ],
+      "primary_category": "cs.DS",
+      "categories": [
+        "cs.DS"
+      ],
+      "published": "2026-04-27T06:02:36+00:00",
+      "link": "https://arxiv.org/pdf/2604.24080v2",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "compressed self-index for genomic collections",
+      "llm_evidence_cn": "用于基因组数据集的压缩自索引",
+      "llm_evidence": "用于基因组数据集的压缩自索引",
+      "canonical_evidence": "用于基因组数据集的压缩自索引",
+      "llm_tldr_en": "Introduces a dynamic grammar-compressed index for efficient storage and querying of large genomic collections.",
+      "llm_tldr_cn": "提出了一种动态语法压缩索引，用于高效存储和查询大型基因组数据集。",
+      "llm_tldr": "提出了一种动态语法压缩索引，用于高效存储和查询大型基因组数据集。",
+      "llm_tags": [
+        "query:pangen"
+      ],
+      "matched_query_tag": "query:pangen",
+      "matched_query_text": "computational methods for pangenome construction and evolutionary analysis",
+      "matched_requirement_id": "req-18",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.22000v1",
+      "title": "L-System Genetic Encoding for Scalable Neural Network Evolution: A Comparison with Direct Matrix Encoding",
+      "abstract": "An artificial world of barriers and plains scattered with food is used to test the feasibility of using genetic algorithms to optimize hebbian neural networks to perform on problems without apriori knowledge of the problem domain. A formal L-System based genetic alphabet for neural networks, titled Lsys, and a neural network genetic modeling tool titled Wp1hgn are introduced. Lsys and Matrix neural network topology genetic encoding methods are compared across 24 experimental runs. Lsys encoding achieved a mean maximum food count of 3802 +- 197 at generation 1000 across 8 runs with varied parameters, compared to 1388 +- 610 for Matrix encoding, a 2.74x performance advantage with an 8.5-fold improvement in consistency as measured by coefficient of variation (5.2% vs 44.0%). All 8 Lsys populations successfully learned to navigate the environment, while 4 of 8 Matrix populations failed to achieve competitive performance at any point during 1000 generations. When transferred to a novel maze environment, Lsys populations demonstrated immediate robust generalization, achieving a mean maximum food count of 2455 +- 176 compared to 422 +- 212 for Matrix populations, a 5.82x advantage that exceeded the training world performance gap. A MatrixLSG control condition, in which initial populations were generated using Lsys genotypes and then evolved using Matrix operators, demonstrated that the performance advantage of Lsys encoding derives primarily from the genetic algorithm operating on the compressed symbolic Lsys alphabet throughout evolution rather than from initial population structure. Lsys encoding is shown to provide faster convergence, higher peak performance, dramatically greater reliability, and superior generalization to novel environments compared to Matrix encoding across all experimental conditions tested.",
+      "authors": [
+        "Alexander Stuy",
+        "Nodin Weddington"
+      ],
+      "primary_category": "cs.NE",
+      "categories": [
+        "cs.NE"
+      ],
+      "published": "2026-04-23T18:31:26+00:00",
+      "link": "https://arxiv.org/pdf/2604.22000v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "genetic algorithms and encoding for neural network evolution",
+      "llm_evidence_cn": "用于神经网络演化的遗传算法与编码",
+      "llm_evidence": "用于神经网络演化的遗传算法与编码",
+      "canonical_evidence": "用于神经网络演化的遗传算法与编码",
+      "llm_tldr_en": "Compares L-System genetic encoding with direct matrix encoding for evolving neural networks.",
+      "llm_tldr_cn": "比较了L系统遗传编码与直接矩阵编码在神经网络进化优化中的性能。",
+      "llm_tldr": "比较了L系统遗传编码与直接矩阵编码在神经网络进化优化中的性能。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.25233v1",
+      "title": "A Combinatorial Optimisation Approach to Multi-factorial Gap-filling in Genome-scale Metabolic Models (GEMs)",
+      "abstract": "Genome-Scale Metabolic Models (GEMs) describe the interactions between genes, proteins, and the biochemical reactions that underpin an organism's metabolism aiming to computationally simulate functions at the cellular level. While many metabolic reactions can be inferred from genome analysis, constructing GEMs often involves incorporating reactions unsupported by genomic data to improve prediction accuracy. This is known as gap-filling, a process that can be performed manually (a time-consuming task) or computationally. Traditional computational gap-filling approaches aim to correct GEM predictions for a single environmental condition (medium) by solving a large Integer Linear Programming problem. Sequential application across multiple media can produce a more robust model, but often introduces unrealistic predictions in other media. They are also slow to run. In this paper, we study multi-factorial gap filling, which aims to gap-fill GEMs across typically 10 or more input media simultaneously, while improving their overall predictive accuracy and minimising unrealistic behaviour. We view the selection of the set of reactions as a combinatorial optimisation problem, and describe a method based on classic metaheuristic approaches which requires the solution of continuous Linear Programming problems only. This paper provides an introduction of this problem to an audience whose speciality lies outside biology, and suggests a practical first-cut solution method. We demonstrate the method gap-filling GEMs for three bacteria strains, selecting 3000 to 4000 reactions from a database of more than 11000 reactions, while attempting to match the empirically measured performance on 9 to 28 separate media conditions. We show that our method outperforms conventional approaches on multiple metrics, including Kendal Tau and RMS Error by an average of 7.3% and 13.3%, respectively.",
+      "authors": [
+        "Philip Kilby",
+        "Sevvandi Kandanaarachchi",
+        "Matthew J. Morgan",
+        "Amy M. Paten",
+        "Mariana Velasque",
+        "Andrew C. Warden",
+        "Juan P. Molina Ortiz"
+      ],
+      "primary_category": "math.OC",
+      "categories": [
+        "math.OC",
+        "q-bio.GN"
+      ],
+      "published": "2026-04-28T05:29:03+00:00",
+      "link": "https://arxiv.org/pdf/2604.25233v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Genome-scale metabolic models and genome analysis",
+      "llm_evidence_cn": "全基因组代谢模型与基因组分析",
+      "llm_evidence": "全基因组代谢模型与基因组分析",
+      "canonical_evidence": "全基因组代谢模型与基因组分析",
+      "llm_tldr_en": "Proposes a combinatorial optimization approach for gap-filling in genome-scale metabolic models to improve accuracy.",
+      "llm_tldr_cn": "提出一种组合优化方法，用于全基因组代谢模型的缺口填充，以提高预测准确性。",
+      "llm_tldr": "提出一种组合优化方法，用于全基因组代谢模型的缺口填充，以提高预测准确性。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.22877v1",
+      "title": "A Specialized Importance-Aware Quantum Convolutional Neural Network with Ring-Topology (IA-QCNN) for MGMT Promoter Methylation Prediction in Glioblastoma",
+      "abstract": "GBM is a highly aggressive primary malignancy in adults, necessitating personalized therapeutic strategies due to its inherent molecular heterogeneity. MGMT promoter methylation is a pivotal prognostic biomarker for anticipating response to temozolomide-based chemotherapy. Although various AI frameworks have been developed for non-invasive MGMT prediction, spatial heterogeneity of methylation status and the high-dimensional and correlated nature of MRI data frequently constrain discriminative feature learning and generalizability of classical models. To circumvent these limitations, a specialized IA-QCNN architecture is proposed, based on the principles of quantum mechanics, including superposition and entanglement, and enabling more efficient representation learning in high-dimensional Hilbert space. The framework establishes a methodological bridge between GBM radiogenomics and quantum deep learning by integrating energy-based slice selection, importance-aware weighting, ring-topology quantum convolution, and folding-based pooling layers. When the model predicts MGMT promoter methylation status using both mpMRI and T1Gd images, experimental results demonstrate that the IA-QCNN achieves high accuracy despite its low number of trainable parameters while effectively minimizing the overfitting problem observed in classical models. Quantitative analyses reveal that the T1Gd modality possesses higher discriminative power than mpMRI, establishing a clinically significant sequence preference. Furthermore, the model exhibits exceptional robustness in hybrid noise environments, effectively utilizing noise as a regularization mechanism to enhance predictive performance. Consequently, the specialized IA-QCNN architecture provides a robust and computationally efficient alternative to classical approaches in the analysis of heterogeneous radiogenomic data.",
+      "authors": [
+        "Emine Akpinar",
+        "Murat Oduncuoglu"
+      ],
+      "primary_category": "quant-ph",
+      "categories": [
+        "quant-ph",
+        "cs.LG"
+      ],
+      "published": "2026-04-24T02:20:21+00:00",
+      "link": "https://arxiv.org/pdf/2604.22877v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for MGMT promoter methylation prediction",
+      "llm_evidence_cn": "利用AI进行MGMT启动子甲基化预测",
+      "llm_evidence": "利用AI进行MGMT启动子甲基化预测",
+      "canonical_evidence": "利用AI进行MGMT启动子甲基化预测",
+      "llm_tldr_en": "A quantum convolutional neural network for predicting MGMT promoter methylation in glioblastoma.",
+      "llm_tldr_cn": "一种用于预测胶质母细胞瘤中MGMT启动子甲基化状态的量子卷积神经网络。",
+      "llm_tldr": "一种用于预测胶质母细胞瘤中MGMT启动子甲基化状态的量子卷积神经网络。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.25701v1",
+      "title": "Bayesian Rate Inference for Sequence Motif Dynamics in Systems of Reactive Nucleic Acids",
+      "abstract": "The RNA world hypothesis suggests a pathway of how life emerged on early earth. It assumes that life started with RNA based systems, capable of storing, transmitting and replicating information, envisioning that monomers and short RNA oligomers interact to form longer strands, eventually becoming catalytically active ribozymes. Key reactions in RNA pools are hybridization, dehybridization, templated ligation, and cleavage. Those reactions depend on many environmental parameters and the wide range of possible configurations among interacting strands. In order to scan such high dimensional parameter spaces, efficient descriptions are needed. Motif rate equations project complex strand reactor dynamics onto sequence motif space. Here we present a Bayesian inference framework to infer their parameters from ligation count data produced by strand reactor simulations. This provides a framework to match the simpler motif rate equations to more complex simulations. Additionally, it is a step towards inferring reaction rate constants directly from experimental data, including rigorous uncertainty estimation. This could be an essential procedure to connect theory and experiment, and deepen our understanding of the essential features necessary for life to emerge.",
+      "authors": [
+        "Johannes Harth-Kitzerow",
+        "Ulrich Gerland",
+        "Torsten A. Enßlin"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph",
+        "physics.data-an",
+        "q-bio.BM",
+        "q-bio.MN",
+        "q-bio.PE"
+      ],
+      "published": "2026-04-28T14:28:37+00:00",
+      "link": "https://arxiv.org/pdf/2604.25701v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "RNA world hypothesis and sequence motif dynamics in early life evolution",
+      "llm_evidence_cn": "RNA世界假说与早期生命演化中的序列基序动力学",
+      "llm_evidence": "RNA世界假说与早期生命演化中的序列基序动力学",
+      "canonical_evidence": "RNA世界假说与早期生命演化中的序列基序动力学",
+      "llm_tldr_en": "Proposes Bayesian inference for RNA sequence motif dynamics to study the emergence of life.",
+      "llm_tldr_cn": "提出了一种用于RNA序列基序动力学的贝叶斯推断方法，以研究生命的起源。",
+      "llm_tldr": "提出了一种用于RNA序列基序动力学的贝叶斯推断方法，以研究生命的起源。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.23061v1",
+      "title": "C-MORAL: Controllable Multi-Objective Molecular Optimization with Reinforcement Alignment for LLMs",
+      "abstract": "Large language models (LLMs) show promise for molecular optimization, but aligning them with selective and competing drug-design constraints remains challenging. We propose C-Moral, a reinforcement learning post-training framework for controllable multi-objective molecular optimization. C-Moral combines group-based relative optimization, property score alignment for heterogeneous objectives, and continuous non-linear reward aggregation to improve stability across competing properties. Experiments on the C-MuMOInstruct benchmark show that C-Moral consistently outperforms state-of-the-art models across both in-domain and out-of-domain settings, achieving the best Success Optimized Rate (SOR) of 48.9% on IND tasks and 39.5% on OOD tasks, while largely preserving scaffold similarity. These results suggest that RL post-training is an effective way to align molecular language models with continuous molecular design objectives. Our code and models are publicly available at https://github.com/Rwigie/C-MORAL.",
+      "authors": [
+        "Rui Gao",
+        "Youngseung Jeon",
+        "Swastik Roy",
+        "Morteza Ziyadi",
+        "Xiang 'Anthony' Chen"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "published": "2026-04-24T23:11:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.23061v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "LLMs for molecular optimization and drug design",
+      "llm_evidence_cn": "用于分子优化和药物设计的LLM研究",
+      "llm_evidence": "用于分子优化和药物设计的LLM研究",
+      "canonical_evidence": "用于分子优化和药物设计的LLM研究",
+      "llm_tldr_en": "C-Moral uses reinforcement learning to align LLMs with multi-objective constraints in molecular drug design.",
+      "llm_tldr_cn": "C-Moral利用强化学习使大语言模型在分子药物设计中符合多目标约束。",
+      "llm_tldr": "C-Moral利用强化学习使大语言模型在分子药物设计中符合多目标约束。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.24458v1",
+      "title": "Thermodynamic Parametrisation of the Vertebrate Lifetime Cycle Invariant: Biological Proper Time, Allometric Mass-Cancellation, and Clade-Specific Predictions",
+      "abstract": "Warm-blooded vertebrates accumulate approximately $\\Nstar \\approx 10^9$ cardiac cycles over a natural lifetime, a striking empirical regularity first quantified by Lindstedt and Calder yet lacking a physical interpretation. We propose that this invariance is consistent with a conserved thermodynamic budget, formulated here as the Principle of Biological Time Equivalence (PBTE). The framework rests on a constitutive closure $\\dotΣ = σ_0 f$, which links the entropy production rate to the intrinsic physiological frequency; integration over the lifespan yields $Σ_{\\mathrm{life}} = σ_0 \\Nstar$, so that the observed constancy of $\\Nstar$ corresponds to an approximately constant lifetime entropy budget. Algebraic exponent cancellation under Kleiber and Calder scaling laws, $\\sigstar \\propto M^{3/4+1/4-1}=M^0$, is consistent with mass-independence and reproduces the numerical value $N_0 \\approx 1.52\\times10^9$ without free parameters. The framework offers a thermodynamically consistent account of two outstanding problems: the origin of the numerical value of $\\Nstar$ and the systematic deviations observed across clades. A multiplicative correction factor $Φ_C$, constructed from physiological determinants -- activity allocation, body temperature, mitochondrial efficiency, and extrinsic hazard -- predicts long-lived clades as regimes of reduced effective entropy production per cardiac cycle.",
+      "authors": [
+        "Mesfin Taye"
+      ],
+      "primary_category": "cond-mat.stat-mech",
+      "categories": [
+        "cond-mat.stat-mech"
+      ],
+      "published": "2026-04-27T13:28:43+00:00",
+      "link": "https://arxiv.org/pdf/2604.24458v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "vertebrate lifetime cycle invariant and clade-specific predictions",
+      "llm_evidence_cn": "脊椎动物生命周期不变性与演化支预测",
+      "llm_evidence": "脊椎动物生命周期不变性与演化支预测",
+      "canonical_evidence": "脊椎动物生命周期不变性与演化支预测",
+      "llm_tldr_en": "Proposes a thermodynamic principle to explain biological time equivalence and cardiac cycle invariance in vertebrates.",
+      "llm_tldr_cn": "提出一种热力学原理，解释脊椎动物的生物时间等效性和心动周期不变性。",
+      "llm_tldr": "提出一种热力学原理，解释脊椎动物的生物时间等效性和心动周期不变性。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

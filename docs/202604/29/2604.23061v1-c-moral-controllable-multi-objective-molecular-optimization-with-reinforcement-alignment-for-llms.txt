@@ -1,0 +1,1123 @@
+Title: C-MORAL: Controllable Multi-Objective Molecular Optimization with Reinforcement Alignment for LLMs
+
+URL Source: https://arxiv.org/pdf/2604.23061v1
+
+Published Time: Tue, 28 Apr 2026 00:21:34 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# C-MORAL: Controllable Multi-Objective Molecular Optimization with Reinforcement Alignment for LLMs 
+
+Rui Gao 1∗ Youngseung Jeon 1* Swastik Roy 2 Morteza Ziyadi 2† Xiang ‘Anthony’ Chen 1†
+
+> 1
+
+University of California, Los Angeles 2Amazon 
+
+{rgao727, ysj, xac}@ucla.edu {roswasti, mziyadi}@amazon.com 
+
+Abstract 
+
+Large language models (LLMs) show promise for molecular optimization, but aligning them with selective and competing drug-design con-straints remains challenging. We propose C-MORAL , a reinforcement learning post-training framework for controllable multi-objective molecular optimization. C-M ORAL combines group-based relative optimization, property score alignment for heterogeneous objectives, and continuous non-linear reward aggregation to improve stability across competing prop-erties. Experiments on the C-MuMOInstruct benchmark show that C-M ORAL consistently outperforms state-of-the-art models across both in-domain and out-of-domain settings, achiev-ing the best Success Optimized Rate (SOR) of 48.9% on IND tasks and 39.5% on OOD tasks, while largely preserving scaffold sim-ilarity. These results suggest that RL post-training is an effective way to align molecu-lar language models with continuous molec-ular design objectives. Our code and mod-els are publicly available at https://github. com/Rwigie/C-MORAL .
+
+1 Introduction 
+
+Drug discovery is a lengthy and costly process, with the hit-to-lead transition and the lead opti-mization stage being particularly critical (Katsuno et al., 2015; Sadybekov and Katritch, 2023). This process is inherently a multi-objective optimization (MOO) problem (Guan et al., 2019). Practical molecular optimization in drug discov-ery is rarely a matter of simply improving all prop-erties (Fialková et al., 2021). In many cases, a lead compound already approaches desirable lev-els in a subset of attributes; therefore, optimiza-tion requires selective improvement of the remain-ing deficient properties while maintaining those 
+
+> *These authors contributed equally to this work.
+> †These authors jointly supervised this work.
+
+that already meet the target criteria, and simul-taneously preserving the core scaffold and syn-thetic feasibility (Zhou et al., 2024). For exam-ple, ControllableGPT (Liu et al., 2025) aims to increase binding affinity while preserving the core scaffold by making minimal, targeted edits that remove liabilities. Such tasks have been formal-ized as a benchmark setting for controllable multi-property, multi-objective optimization (C-MuMO) (Dey et al., 2025). C-MuMO highlights the need to specify property-wise objectives and thresholds for either improvement or preservation, thereby better reflecting the fine-grained requirements of real medicinal chemistry. In this context, “control-lable” means that the model must follow explicit, property-wise directives—improving only the defi-cient attributes while preserving those already sat-isfying target criteria—instead of indiscriminately maximizing a single aggregate objective. Despite its practical importance, controllable molecular optimization remains challenging. The difficulty lies not in improving molecular proper-ties alone, but in doing so under explicit, property-wise requirements: a model must improve deficient attributes while preserving those already meeting target criteria, without violating scaffold or feasibil-ity constraints. Existing methods struggle to satisfy such fine-grained control reliably. RL-based ap-proaches typically optimize a scalarized reward over multiple objectives (Wang and Zhu, 2024; Park et al., 2025), which can lead to brittle trade-offs under strict and competing constraints. LLM-based approaches adapted by SFT or prompting can leverage strong chemical priors (Ye et al., 2023), but they often treat chemical constraints as soft instructions rather than hard requirements. As a result, they may achieve apparent score improve-ments through undesired edits, such as altering the core scaffold or violating preservation constraints (Guo et al., 2023). To achieve genuine, controllable optimization 
+
+> arXiv:2604.23061v1 [cs.LG] 24 Apr 2026 Figure 1: Overview of C-MORAL generation, training pipeline
+
+and overcome the limitations of both traditional RL and SFT paradigms, we introduce C-M ORAL , a novel Reinforcement Learning post-training frame-work designed specifically for molecular LLMs. An overview of the framework is shown in Fig-ure 1. C-M ORAL bridges the gap between the robust chemical priors of LLMs and the strict, multi-objective demands of lead optimization. The framework aligns the LLM with rigorous scientific constraints through group-aware relative feedback. Specifically, we adapt two distinct algorithms: Group Relative Policy Optimization (GRPO) (Shao et al., 2024) and Group reward-Decoupled Normal-ization Policy Optimization (GDPO) (Liu et al., 2026) to create two variants of our framework that evaluate candidate molecules against their peers generated from the same prompt. By bypassing the need for a separate, memory-intensive value net-work, these group-relative approaches significantly enhance training efficiency and memory utilization. Within the framework, we propose two distinct algorithmic variants to handle competing proper-ties: C-M ORAL -GRPO, which utilizes a sigmoid-aligned geometric mean reward to inherently penal-ize property bottlenecks, and C-M ORAL -GDPO, which decouples conflicting objectives using a smooth minimum (-Log-Sum-Exp) advantage to prevent the implicit sacrifice of any attribute. Evaluated on the stringent C-MuMOInstruct benchmark (Dey et al., 2025), our framework sig-nificantly outperforms state-of-the-art baselines. In summary, our main contributions are: • We propose C-M ORAL , a reinforcement learn-ing post-training framework that enables pre-cise multi-objective alignment for molecular LLMs. • To ensure stable and controllable optimiza-tion, we introduce a group-relative RL strat-egy (incorporating GRPO and GDPO) cou-pled with a novel reward design that unifies metric scales and enforces joint constraint sat-isfaction. • C-M ORAL achieves a best success optimized rate of 48.9% on in-domain tasks and 39.5% on out-of-domain tasks on the C-MuMO benchmark, consistently outperforming strong instruction-tuned baselines while preserving scaffold similarity. 
+
+2 Related Work 
+
+2.1 Group-based Policy Optimization 
+
+Compared with PPO, which relies on an additional critic network, GRPO removes the value model by normalizing rewards within a sampled candidate group, thereby reducing computational overhead and simplifying optimization (Shao et al., 2024). More recently, GDPO further extends this idea by decoupling advantage normalization across reward dimensions, which is especially suitable for set-tings with strongly conflicting objectives (Liu et al., 2026). Our work builds on this line of research, but adapts it to molecular optimization by combining group-relative policy updates with property score alignment and non-linear reward aggregation under heterogeneous molecular constraints. 
+
+2.2 Molecular Optimization 
+
+Computational approaches for molecular optimiza-tion have evolved from heuristic search to rein-forcement learning (RL) and deep generative mod-eling (Gómez-Bombarelli et al., 2018; Zhou et al., 2019; Walters and Barzilay, 2020; Olivecrona et al., 2017; Wang et al., 2023). Existing methods ex-plore diverse action spaces, including token-level SMILES generation (Weininger, 1988), graph con-struction (Erikawa et al., 2023), and structure re-finement in continuous coordinates (Barrett and Westermayr, 2024). Despite their effectiveness, these approaches often struggle in complex multi-objective settings due to inefficient exploration and brittle reward design, especially when competing objectives and hard constraints must be satisfied simultaneously (Brown et al., 2019; Wang and Zhu, 2024). Large language models (LLMs) have recently emerged as a promising alternative for molecular generation and optimization by treating chemical representations such as SMILES as a language (Ba-gal et al., 2021; Ghugare et al., 2023). Recent work has extended LLMs toward broader molecular un-derstanding and optimization, including molecular assistants such as LLaMo (Park et al., 2024), con-versational drug editing frameworks such as Chat-Drug (Liu et al., 2023), and optimization-oriented methods such as LICO and MOLLEO (Nguyen and Grover, 2025; Wang et al., 2025). REPO further explores GRPO-style optimization for im-proving reasoning in instruction-based molecular generation (Li et al., 2026). However, existing approaches still provide limited study of control-lable multi-objective molecular optimization, par-ticularly when multiple continuous and conflicting objectives must be satisfied while preserving struc-tural fidelity. Our work instead focuses on aligning molecular LLMs with such settings through reward-aware RL post-training. 
+
+3 Method 
+
+3.1 Problem Formulation 
+
+We formulate Controllable Multi-objective Molecule Optimization (C-MuMO) as a con-strained generation task. Given an initial sub-optimal “hit” molecule Mx and a natural language instruction I, the objective is to generate an optimized “lead” molecule My that selectively improves specific molecular properties up to phar-maceutically relevant levels, while maintaining others that already meet the criteria (Dey et al., 2025). Let P denote the set of target pharmacological properties. For each property p ∈ P , we define a pharmaceutically relevant threshold Θp and an improvement/stability margin ∆p. Based on the initial molecule Mx, the properties are partitioned into two disjoint subsets: • Sub-optimal properties ( Pi): Properties that require targeted enhancement, defined as 
+
+Pi = {p ∈ P | p(Mx) is worse than Θp}.• Near-optimal properties ( Ps): Properties that already meet the criteria and must be pre-served, defined as Ps = {p ∈ P |
+
+p(Mx) is better than or equal to Θp}.Detailed values of ∆p and Θp for different prop-erties are given in Table 1. The generation policy πΘ(My | Mx, I ), param-eterized by a Large Language Model (LLM), is tasked with generating My such that it strictly satis-fies three non-differentiable constraints simultane-ously: (1) similarity constraint, ensuring the struc-tural similarity between Mx and My (e.g., Tan-imoto similarity (Bajusz et al., 2015)) remains above a predefined threshold; (2) improvement constraint, where every sub-optimal property p ∈Pi must exhibit an absolute improvement of at least ∆p in the desired direction (i.e., |p(My) −
+
+p(Mx)| ≥ ∆p); and (3) stability constraint, which strictly bounds the absolute deviation of every near-optimal property p ∈ P s to prevent catastrophic degradation (i.e., |p(My) − p(Mx)| ≤ ∆p). 
+
+3.2 Property Score Sigmoid Alignment 
+
+Molecular properties inherently exist on vastly dif-ferent scales. Directly aggregating raw values creates severe numerical instability. To address this, we introduce a property-specific score shap-ing mechanism that normalizes all metrics into a unified [0 , 1] preference space. Let σ(x) = 1 /(1 + exp( −x)) denote the stan-dard sigmoid function. For brevity, let vp denote the realized property value vp(My) of the gener-ated molecule. For sub-optimal properties ( Pi), we set the target threshold Tp (e.g., the baseline plus 
+
+∆p) as the midpoint. The improvement score simp p
+
+is: 
+
+simp p = σ(αp · (vp − Tp)) (1) where αp controls the steepness. Crucially, we pa-rameterize αp to be inversely proportional to the property-specific margin ∆p (i.e., αp ∝ 5/∆p). This adaptive scaling ensures that achieving the required ∆p for any metric—regardless of its origi-nal numerical scale—maps to an equivalent reward magnitude (e.g., exactly 0.5 at Tp). It effectively prevents metrics with naturally broader scales from dominating the gradient updates. Conversely, for near-optimal properties ( Ps), the property must be constrained within a strict toler-ance band [Lp, U p], where Lp = p(Mx) − ∆p and 
+
+Up = p(Mx) + ∆ p. To heavily penalize deviations, we design a Double Sigmoid score function: 
+
+sstab p = σ(αp · (Up − vp)) · σ(αp · (vp − Lp)) (2) This effective formulation creates a high-reward “plateau” within the acceptable range and imposes exponential decay upon any boundary violation. 
+
+3.3 Reward Aggregation 
+
+After getting the score, we aggregate these shaped scores using the geometric mean to enforce the concurrent satisfaction of all constraints. Let N =
+
+|P i| + |P s|. The total reward Rtotal (My) is: 
+
+Rtotal (My) = 
+
+ Y
+
+> p∈P i
+
+simp p
+
+Y
+
+> q∈P s
+
+sstab q
+
+
+
+> 1
+> N
+
+(3) Here, we deliberately employ the geometric mean rather than the standard arithmetic mean (linear scalarization) because it can be viewed as a con-tinuous approximation of a min operator. The full explanation is in Appendix A.1. 
+
+3.4 GRPO Optimization 
+
+For a given prompt, the policy πΘ samples a group of G candidates G = {y1, . . . , y G}. For each yi,we compute its holistic reward Ri = Rtotal (yi).We then normalize these rewards to compute the relative advantage Ai:
+
+AGRP O i = Ri − μG
+
+σG + ϵ (4) where μG and σG are the mean and standard devia-tion of rewards within G.To optimize the policy, we first define the clipped surrogate objective Ji(Θ) for each candi-date, where ρi = πΘ(yi)/π ref (yi) is the impor-tance ratio: 
+
+Ji(Θ) = min  ρiAGRP O i , clip (ρi, 1 − ϵc, 1 + ϵc)AGRP O i
+
+
+
+(5) The final C-M ORAL -GRPO policy follows the same loss LGRP O (Θ) employing an explicit KL di-vergence penalty to prevent catastrophic deviation from the reference model πref :
+
+LGRP O (Θ) = − 1
+
+G
+
+> G
+
+X
+
+> i=1
+
+[Ji(Θ) − βDKL (πΘ∥πref )] 
+
+(6) By decoupling the absolute reward magnitude, C-MORAL -GRPO inherently preserves structural di-versity and circumvents policy peaking. Detailed implementation is provided in Appendix E.1. 
+
+3.5 GDPO Optimization 
+
+To explicitly disentangle conflicting multi-objective feedback, we propose C-M ORAL -GDPO, which evaluates relative superiority independently for each property before aggregating them into a unified preference signal. For a generated group G = {y1, . . . , y G}, we first compute a property-specific relative advantage for each candidate yi and each property p ∈ P total .Let rp,i denote the shaped reward of candidate yi
+
+on property p. The decoupled advantage is defined as 
+
+Ap,i = rp,i − μp, G
+
+σp, G + ϵ , (7) where μp, G and σp, G denote the group mean and standard deviation for property p.To aggregate these decoupled advantages, we use a Log-Sum-Exp form as a smooth approxima-tion that emphasizes the lowest-performing objec-tive: 
+
+AGDPO  
+
+> i
+
+= − log 
+
+ X
+
+> p∈P total
+
+exp( −Ap,i )
+
+ . (8) The resulting aggregated advantage is then used in the policy optimization objective in Equation 6. In this way, C-M ORAL -GDPO reduces the risk that easily optimized properties dominate training while stricter constraints are implicitly sacrificed. Detailed implementation of GDPO is in Appendix E.2. Further analysis of the reward aggregation choices is provided in Appendix A.2. 
+
+4 Experimental Setup 
+
+We evaluate the C-M ORAL framework (Controllable Multi-Objective Molecular 
+
+Optimization with Reinforcement Alignment for 
+
+LLMs), which integrates customized non-linear property reward design, strict stability constraints, and group-aware advantage aggregation through both GRPO and GDPO. We conduct experiments on two widely adopted open-weight large language models, LL AMA (Touvron et al., 2023) and MISTRAL (Jiang et al., 2023). Our study focuses on the 7B scale to provide a controlled evaluation under a practical and commonly used model size. To isolate the effect of RL post-training, all policy models are initialized from the same SFT checkpoints provided by Dey et al., namely GeLLM 4O-C (Dey et al., 2025), and are evaluated under the same benchmark and protocol. The subsequent reinforcement learning post-training is implemented using a custom training pipeline inspired by the efficient design of the veRL framework (Sheng et al., 2025). 
+
+4.1 Datasets and Tasks 
+
+To evaluate the proposed framework, we use the Controllable Multi-property, Multi-objective Op-                                          
+
+> Type Task Target Properties ( P-Comb)
+> IND BPQ BBBP, PlogP, QED ELQ hERG, LIV, QED ACEP AMP, CARC, hERG, PlogP BDPQ BBBP, DRD2, PlogP, QED DHMQ DRD2, hERG, MUT, QED OOD CDE CARC, DRD2, hERG ABMP AMP, BBBP, MUT, PlogP BCMQ BBBP, CARC, MUT, QED BDEQ BBBP, DRD2, hERG, QED HLMPQ hERG, LIV, MUT, PlogP, QED
+> Prop. ∆pΘpProp. ∆pΘp
+> AMP 0.1 0.8 HIA 0.1 0.9 BBBP 0.1 0.8 LIV 0.1 0.5 CARC 0.2 0.2 MUT 0.1 0.2 DRD2 0.1 0.4 PlogP 1.0 1.5 hERG 0.2 0.3 QED 0.1 0.9
+
+Table 1: Overview of evaluation tasks and property thresholds. (Top) Target property combinations for both IND and OOD scenarios. (Bottom) The target improve-ment margins ( ∆p) and near-optimal constraints ( Θp)for the 10 pharmacological properties. 
+
+timization (C-MuMOInstruct) benchmark (Dey et al., 2025). Specifically, we select 10 distinct molecular optimization tasks from the benchmark. To assess performance under different levels of dis-tribution shift, we group these tasks into In-Domain (IND) and Out-of-Domain (OOD) settings, as sum-marized in Table 1. The IND tasks evaluate the model on property combinations that are closer to the training distribution, while the OOD tasks ex-amine performance on unseen property constraints and scaffold conditions. For RL post-training, we construct a balanced training set of 100,000 molecules (10,000 per task). The final model is evaluated on a uniform test set of 500 molecules per task. 
+
+4.2 Property Calculations 
+
+To provide accurate property feedback during both the reinforcement learning phase and the final evaluation, we employ two established computa-tional oracles. Specifically, we utilize the open-source cheminformatics toolkit RDKit (Landrum et al., 2013) to validate generated SMILES strings, extract Morgan fingerprints, and compute funda-mental physicochemical properties such as QED and Penalized LogP. For the remaining complex properties, we leverage the ADMET-AI platform (Swanson et al., 2024) as our primary evaluator. These methods have been extensively validated and adopted in recent studies (Averly et al., 2025; Zho-lus et al., 2025; Zheng et al., 2025). 
+
+4.3 Implementation and Hyperparameters 
+
+We use Low-Rank Adaptation (LoRA) (Hu et al., 2021) on the projection layers to fine-tune the pol-icy models, rather than updating all parameters. The learning rate is set to 1 × 10 −6. Both GRPO and GDPO are trained with a batch size of 64 and a group size of 4. Policy updates are performed using 32 mini-batches over 2–3 optimization epochs per rollout. To preserve valid SMILES syntax during train-ing, we apply a Kullback–Leibler (KL) divergence penalty as a structural regularizer, with a target threshold of 1.0 and adaptive KL coefficients. Full implementation details are provided in Appendix B (Table 4), and the prompt template is given in Appendix B.2. 
+
+4.4 Baselines and Evaluation Metrics 
+
+We compare our proposed C-M ORAL framework with two baseline models GeLLM 4O-C-P(10)-Mistral and GeLLM 4O-C-P(10)-L LAMA . For a fair and robust evaluation, all models generate can-didate molecules using beam search with a beam width of 20. For each molecule, we select the best candidate according to Algorithm 1. To comprehensively assess performance in highly constrained lead optimization, we employ four rigorous metrics: (1) Success Optimized Rate (S OR ): the proportion of molecules that improve the targeted properties while maintaining other sta-bility constraints; (2) Strict Success Optimized Rate (S SOR ): percentage of candidates that im-prove sub-optimal properties and strictly maintain near-optimal ones while preserving the core scaf-fold; (3) Similarity (S IM ): the Tanimoto similarity over Morgan fingerprints between generated candi-dates and initial molecules; (4) Relative Improve-ment (R I): the relative improvement across all sub-optimal properties. The detailed implementa-tion is in Appendix C. 
+
+5 Results 
+
+In this section, we present a comprehensive eval-uation of the proposed C-M ORAL framework on the C-MuMOInstruct benchmark. Our analysis is structured as follows: we first examine the main performance gains across both In-Domain (IND) and Out-of-Domain (OOD) tasks to illustrate how C-M ORAL achieves better Pareto trade-offs with-out sacrificing scaffold integrity; next, we analyze the impact of our group-relative alignment and non-linear reward shaping in preventing implicit prop-erty violations; and finally, we compare our re-sults against state-of-the-art baselines for 7B-scale molecular language models. 
+
+5.1 Ablation Analysis 
+
+To systematically validate the structural design of our continuous multi-objective reward formulation, we conducted an ablation study on the In-Domain (IND) task (Table 2) based on the M ISTRAL model. We dissect the contributions of our two core mech-anisms: Property Score Sigmoid Alignment and Non-linear Reward Aggregation. 
+
+Table 2: Ablation study on the IND task using M IS -
+
+> TRAL
+
+. Non-linear aggregation prevents reward collapse (recovers Sim), while Sigmoid alignment maximizes overall success rates. Best and second-best results are bold and underlined.                                 
+
+> Method IND Task
+> SOR(%) ↑SSOR(%) ↑Sim ↑RI ↑
+> GeLLM 4O-C Mistral 33.7 14.4 0.58 51.4 GRPO w/ Linear AM 24.2 11.2 0.35 21.5 + Geometric Mean 39.7 17.1 0.58 108.4 + Sigmoid Align 48.9 25.1 0.59 96.1 GDPO w/ Linear AM 9.5 4.5 0.28 12.3 + LogSum-Exp 37.3 15.6 0.57 104.2 + Sigmoid Align 47.0 25.0 0.59 110.4
+
+Vulnerability of Linear AM and Reward Col-lapse. The aggregation function critically affects how the policy balances multiple objectives. As shown in Table 2, linear Arithmetic Mean (AM) causes clear degradation relative to the SFT base-line for both GRPO and GDPO. Under GRPO, SOR drops from 33 .7% → 24 .2% and Sim from 
+
+0.58 → 0.35 . The effect is even more severe for GDPO, where SOR further falls to 9.5% and Sim to 
+
+0.28 . These results suggest that linear scalarization tends to over-optimize a subset of easy objectives while sacrificing others, leading to unbalanced opti-mization and poor scaffold preservation. This trend is further supported by Figure 2, where AM-based training fails to keep all properties within their safe regions on the more challenging HLMPQ task. 
+
+Effectiveness of Non-Linear Reward Aggrega-tion. Replacing AM with non-linear aggregation substantially improves optimization balance. Un-der GRPO, switching from linear AM to Geomet-ric Mean improves SOR from 24 .2% → 39 .7% 0 100 200            
+
+> Step
+> 0.7
+> 0.8
+> 0.9
+> 1.0 HIA ( )
+> 0100 200
+> Step
+> 0.0
+> 0.2
+> 0.4
+> LIV ( )
+> 0100 200
+> Step
+> 0.00
+> 0.05
+> 0.10
+> 0.15
+> 0.20
+> MUTAG ( )
+> 0100 200
+> Step
+> 1
+> 2
+> 3
+> PlogP ( )
+> 0100 200
+> Step
+> 0.6
+> 0.7
+> 0.8
+> 0.9
+> Reward collapse
+> QED ( )
+> 0100 200
+> Step
+> 0.2
+> 0.4
+> 0.6
+> Reward collapse
+> SIM ( )
+> GRPO
+> GRPO + GM
+> GDPO
+> GDPO + logsum
+
+Figure 2: Ablation study of reward aggregation on the HLMPQ task using M ISTRAL -7B over 300 training steps. The results demonstrate that linear Arithmetic Mean (AM) methods suffer from varying degrees of reward collapse. In contrast, our non-linear approaches successfully maintain all property values within their safe boundaries. 
+
+(+64.0% relative) and restores Sim from 0.35 →
+
+0.58 , while SSOR also increases from 11 .2% →
+
+17 .1% . A similar trend is observed for GDPO: re-placing AM with LogSum-Exp raises SOR from 
+
+9.5% → 37 .3% and Sim from 0.28 → 0.57 , with SSOR improving from 4.5% → 15 .6% . These re-covered Sim values are close to the SFT baseline, indicating that non-linear aggregation effectively prevents the implicit sacrifice of scaffold fidelity. Figure 2 further shows that these non-linear de-signs produce much more stable training trajecto-ries across all properties. In contrast to the instabil-ity and reward collapse of GRPO and GDPO, the non-linear variants maintain smooth improvements and achieve stronger final performance. 
+
+Effectiveness of Property Score Sigmoid Align-ment. Building upon non-linear aggregation, Property Score Sigmoid Alignment maps heteroge-neous objectives into a unified [0 , 1] scale, directly addressing their inherent scale mismatch. The em-pirical gains are substantial: for GRPO, adding Sigmoid Align to Geometric Mean increases SOR from 39 .7% → 48 .9% (+23.2% relative). Cru-cially, it boosts the strict success rate (SSOR) from 17 .1% → 25 .1% , indicating finer control over all constraints simultaneously, while main-taining strong scaffold similarity ( 0.58 → 0.59 ). For GDPO, adding it to LogSum-Exp improves SOR from 37 .3% → 47 .0% and SSOR from 
+
+15 .6% → 25 .0% , with Sim slightly increasing (0.57 → 0.59 ). These results suggest that, beyond preventing reward collapse, sigmoid alignment fur-ther improves optimization efficiency. By reducing scale mismatch, it prevents metrics with broader ranges from dominating and shifts learning toward the remaining property bottlenecks. 
+
+5.2 Comparison with Baselines 
+
+We next evaluate our proposed C-M ORAL frame-work on M ISTRAL and L LAMA architectures and compare it against strong SFT baselines (GeLLM 4O-C). Table 3 presents the overall av-erage results on both In-Domain (IND) and Out-of-Domain (OOD) tasks, including both our GRPO and GDPO post-training variants. 
+
+Performance on In-Domain (IND) Tasks. On IND tasks, RL post-training consistently im-proves over the SFT baselines: (1) For M IS - 
+
+> TRAL
+
+base, GRPO improves SOR from 33 .7% →
+
+48 .9% (+45.1%) and SSOR from 14 .4% →
+
+25 .1% (+74.3%), while maintaining high sim-ilarity. GDPO achieves comparable SOR (33 .7% → 47 .0% , +39.5%) and SSOR ( 14 .4% →
+
+25 .0% , +73.6%), while substantially improving RI (51 .4 → 110 .4, +114.8%); (2) For L LAMA , GRPO improves SOR from 30 .2% → 40 .3% (+33.4%) and SSOR from 13 .7% → 20 .1% (+46.7%), with Sim increasing from 0.56 → 0.58 . GDPO further improves SOR to 43 .4% (+43.7%) and SSOR to 
+
+25 .4% (+85.4%), while raising RI from 61 .3 →
+
+110 .3 (+79.9%). Detailed IND results are provided in Table 5. Overall, these results indicate that C-(a)                                                           
+
+> Model In-Domain (IND) Out-of-Domain (OOD)
+> SOR ↑SSOR ↑Sim ↑RI ↑SOR ↑SSOR ↑Sim ↑RI ↑
+> Supervised Fine-Tuning (SFT) Baselines
+> GeLLM 4O-C Mistral 33.7 14.4 0.58 51.4 24.4 9.8 0.60 27.3
+> GeLLM 4O-C Llama 30.2 13.7 0.56 61.3 25.2 10.2 0.57 6.5
+> RL Post-Training (Ours: C-M ORAL )
+> GRPO Mistral 48.9 25.1 0.59 96.1 39.5 20.8 0.60 19.5 GDPO Mistral 47.0 25.0 0.59 110.4 38.3 19.8 0.59 27.2 GRPO Llama 40.3 20.1 0.58 102.6 37.2 19.6 0.60 10.5 GDPO Llama 43.4 25.4 0.57 110.3 35.6 19.5 0.59 19.1
+
+(b) IND-Mistral IND-Llama OOD-Mistral OOD-Llama  
+
+> 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> 120
+> Relative Improvement (%)
+> 45.1% 43.7%
+> 61.9%
+> 47.6%
+> 74.3%
+> 85.4%
+> 112.2%
+> 92.2%
+> SOR
+> SSOR
+
+Table 3: Overall results on In-Domain (IND) and Out-of-Domain (OOD) tasks. (a) Average performance comparison between baselines and C-M ORAL variants in SOR, SSOR, similarity, and RI. (b) Relative improvements in SOR and SSOR over the baselines. Bold denotes the best result in each column, and underlined denotes the second-best. 
+
+MORAL consistently strengthens in-domain opti-mization performance, while GDPO shows a slight advantage on stricter metrics and RI. 
+
+Generalization to Out-of-Domain (OOD) Tasks. 
+
+OOD tasks are more challenging for all models, and the SFT baselines show clear drops from IND to OOD. RL post-training remains consistently ef-fective. For M ISTRAL , GRPO improves OOD SOR from 24 .4% → 39 .5% (+61.9%) and SSOR from 
+
+9.8% → 20 .8% (+112.2%), while keeping Sim unchanged at 0.60. GDPO also performs strongly, improving SOR from 24 .4% → 38 .3% (+57.0%) and SSOR from 9.8% → 19 .8% (+102.0%). For LLAMA , GRPO improves SOR from 25 .2% →
+
+37 .2% (+47.6%) and SSOR from 10 .2% → 19 .6% 
+
+(+92.2%), while increasing Sim from 0.57 → 0.60 .GDPO improves SOR from 25 .2% → 35 .6% 
+
+(+41.3%), SSOR from 10 .2% → 19 .5% (+91.2%), and RI from 6.5 → 19 .1 (+193.8%). Detailed OOD results are provided in Table 6. 
+
+Similarity Comparison. Both RL variants gen-erally improve similarity over the corresponding SFT baselines. On IND tasks, M ISTRAL improves from 0.58 → 0.59 , while L LAMA -GRPO improves from 0.56 → 0.58 . On OOD tasks, M ISTRAL re-mains at 0.59~0.60, and L LAMA improves from 
+
+0.57 → 0.60 with GRPO and to 0.59 with GDPO. The average similarity still does not always reach our target of 0.60, partly because beam search (num_beam ) favors better-scoring candidates at the cost of slightly larger structural edits. 
+
+Overall observations. Overall, C-M ORAL con-sistently outperforms the SFT baselines across both backbones and both settings. The best IND SOR improves from 33 .7% /30 .2% to 48 .9% /43 .4% 
+
+for M ISTRAL /L LAMA , corresponding to relative gains of +45.1% and +43.7%, respectively; the best IND SSOR improves from 14 .4% /13 .7% to 
+
+25 .1% /25 .4% , yielding +74.3% and +85.4% rela-tive improvements. On OOD tasks, the best SOR improves from 24 .4% /25 .2% to 39 .5% /37 .2% 
+
+(+61.9% / +47.6%), and the best SSOR improves from 9.8% /10 .2% to 20 .8% /19 .6% (+112.2% / +92.2%). These gains are achieved while largely preserving scaffold similarity, indicating that the improvements come from better optimiza-tion rather than structural drift. 
+
+6 Conclusion 
+
+We introduced C-M ORAL , a reinforcement learn-ing post-training framework for controllable multi-objective molecular optimization. The proposed framework is built on three key contributions: (1) group-based relative optimization, instantiated through memory-efficient GRPO and GDPO vari-ants, to support stable policy learning under diverse optimization dynamics; (2) property score sigmoid alignment for handling heterogeneous objective scales and enabling fine-grained controllability; and (3) continuous non-linear reward aggregation, which enforces balanced multi-objective trade-offs and effectively prevents reward collapse. Empirical results on the C-MuMO benchmark demonstrate that C-M ORAL substantially improves both success rate and strict success rate over strong SFT baselines while maintaining scaffold similar-ity. Furthermore, these performance improvements seamlessly extend from in-domain tasks to signif-icantly more challenging out-of-domain settings. This robust generalization capability suggests that our RL post-training approach effectively navigates unseen chemical spaces under distribution shifts. Ultimately, C-M ORAL highlights the promising po-tential of aligning language models with complex pharmacological objectives, offering a scalable and reliable tool to optimize molecules. 
+
+Limitations 
+
+Although our framework may extend beyond the benchmark studied here, the empirical gains re-ported in this work are still specific to the molec-ular optimization settings covered by C-MuMO. Our current study has several limitations. (1) We mainly focus on improving performance within an existing benchmark, and do not yet validate the proposed framework on a broader range of datasets or molecular optimization tasks beyond C-MuMO. While the OOD results suggest promising trans-ferability, further experiments are still needed to assess its effectiveness in both single-objective and multi-objective settings under more diverse task for-mulations. (2) Our experiments are limited to two 7B-scale backbone models, M ISTRAL and L LAMA ,and we do not explore a wider range of model families, model scales, or alternative post-training strategies such as chain-of-thought-style optimiza-tion. As a result, it remains unclear how broadly the proposed framework generalizes across archi-tectures and optimization paradigms. (3) Our eval-uation relies on widely used molecular property metrics and predictors, which may still introduce inaccuracies when estimating true molecular qual-ity. In addition, this work does not aim to train a single highly generalizable model that can cover a wide range of molecular optimization scenarios. Future work should therefore evaluate C-M ORAL 
+
+on more diverse datasets and tasks, improve the reliability of molecular evaluation, and investigate how to build more generalizable molecular opti-mization models. 
+
+Ethics Statement 
+
+Our work, C-MORAL, focuses on accelerating computational drug design. While molecular gener-ation models inherently carry dual-use risks (such as being misused to generate toxic compounds), our research strictly evaluates on benign, standard pharmacological benchmarks (C-MuMOInstruct). We emphasize that C-MORAL is an in silico tool designed to assist medicinal chemists. Any gen-erated molecules are purely computational predic-tions and require rigorous laboratory synthesis and safety validation before any real-world application. 
+
+Acknowledgements 
+
+This work used the Delta system at the National Center for Supercomputing Applications (NCSA) through allocation CIS251097 from the Advanced Cyberinfrastructure Coordination Ecosystem: Ser-vices & Support (ACCESS) program (Boerner et al., 2023). We gratefully acknowledge the com-puting resources provided by NCSA and the AC-CESS program. References 
+
+Reza Averly, Frazier N. Baker, Ian A Watson, and Xia Ning. 2025. LIDDIA: Language-based intel-ligent drug discovery agent. In Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing , pages 12004–12028, Suzhou, China. Association for Computational Linguistics. Viraj Bagal, Rishal Aggarwal, PK Vinod, and U Deva Priyakumar. 2021. Molgpt: molecular generation using a transformer-decoder model. Journal of chem-ical information and modeling , 62(9):2064–2076. Dávid Bajusz, Anita Rácz, and Károly Héberger. 2015. Why is tanimoto index an appropriate choice for fingerprint-based similarity calculations? Journal of cheminformatics , 7(1):20. Rhyan Barrett and Julia Westermayr. 2024. Reinforce-ment learning for traversing chemical structure space: Optimizing transition states and minimum energy paths of molecules. The Journal of Physical Chem-istry Letters , 15(1):349–356. Timothy J Boerner, Stephen Deems, Thomas R Furlani, Shelley L Knuth, and John Towns. 2023. Access: Advancing innovation: Nsf’s advanced cyberinfras-tructure coordination ecosystem: Services & support. In Practice and experience in advanced research com-puting 2023: Computing for the common good , pages 173–176. Nathan Brown, Marco Fiscato, Marwin HS Segler, and Alain C Vaucher. 2019. Guacamol: benchmark-ing models for de novo molecular design. Journal of chemical information and modeling , 59(3):1096– 1108. Vishal Dey, Xiao Hu, and Xia Ning. 2025. Large language models for controllable multi-property multi-objective molecule optimization. molecules ,1(331,586):433–166. Daiki Erikawa, Nobuaki Yasuo, Takamasa Suzuki, Shogo Nakamura, and Masakazu Sekijima. 2023. Gargoyles: An open source graph-based molecular optimization method based on deep reinforcement learning. ACS omega , 8(40):37431–37441. Vendy Fialková, Jiaxi Zhao, Kostas Papadopoulos, Ola Engkvist, Esben Jannik Bjerrum, Thierry Kogej, and Atanas Patronov. 2021. Libinvent: reaction-based generative scaffold decoration for in silico library de-sign. Journal of Chemical Information and Modeling ,62(9):2046–2063. Raj Ghugare, Santiago Miret, Adriana Hugessen, Mari-ano Phielipp, and Glen Berseth. 2023. Searching for high-value molecules using reinforcement learning and transformers. Preprint , arXiv:2310.02902. Rafael Gómez-Bombarelli, Jennifer N Wei, David Du-venaud, José Miguel Hernández-Lobato, Benjamín Sánchez-Lengeling, Dennis Sheberla, Jorge Aguilera-Iparraguirre, Timothy D Hirzel, Ryan P Adams, and Alán Aspuru-Guzik. 2018. Automatic chemical de-sign using a data-driven continuous representation of molecules. ACS central science , 4(2):268–276. Longfei Guan, Hongbin Yang, Yingchun Cai, Lixia Sun, Peiwen Di, Weihua Li, Guixia Liu, and Yun Tang. 2019. Admet-score–a comprehensive scoring function for evaluation of chemical drug-likeness. 
+
+Medchemcomm , 10(1):148–157. Taicheng Guo, Kehan Guo, Bozhao Nan, Zhenwen Liang, Zhichun Guo, Nitesh V. Chawla, Olaf Wiest, and Xiangliang Zhang. 2023. What can large language models do in chemistry? a com-prehensive benchmark on eight tasks. Preprint ,arXiv:2305.18365. Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. 2021. Lora: Low-rank adaptation of large language models. Preprint , arXiv:2106.09685. Albert Q. Jiang, Alexandre Sablayrolles, Arthur Men-sch, Chris Bamford, Devendra Singh Chaplot, Diego de las Casas, Florian Bressand, Gianna Lengyel, Guil-laume Lample, Lucile Saulnier, Lélio Renard Lavaud, Marie-Anne Lachaux, Pierre Stock, Teven Le Scao, Thibaut Lavril, Thomas Wang, Timothée Lacroix, and William El Sayed. 2023. Mistral 7b. Preprint ,arXiv:2310.06825. Kei Katsuno, Jeremy N Burrows, Ken Duncan, Rob Hooft Van Huijsduijnen, Takushi Kaneko, Kiyoshi Kita, Charles E Mowbray, Dennis Schmatz, Peter Warner, and BT Slingsby. 2015. Hit and lead criteria in drug discovery for infectious diseases of the developing world. Nature Reviews drug discov-ery , 14(11):751–758. Greg Landrum and 1 others. 2013. Rdkit: A soft-ware suite for cheminformatics, computational chem-istry, and predictive modeling. Greg Landrum ,8(31.10):5281. Xuan Li, Zhanke Zhou, Zongze Li, Jiangchao Yao, Yu Rong, Lu Zhang, and Bo Han. 2026. Reference-guided policy optimization for molecu-lar optimization via llm reasoning. arXiv preprint arXiv:2603.05900 .Shengchao Liu, Jiongxiao Wang, Yijin Yang, Cheng-peng Wang, Ling Liu, Hongyu Guo, and Chaowei Xiao. 2023. Chatgpt-powered conversational drug editing using retrieval and domain feedback. 
+
+Preprint , arXiv:2305.18090. Shih-Yang Liu, Xin Dong, Ximing Lu, Shizhe Diao, Peter Belcak, Mingjie Liu, Min-Hung Chen, Hongxu Yin, Yu-Chiang Frank Wang, Kwang-Ting Cheng, Yejin Choi, Jan Kautz, and Pavlo Molchanov. 2026. Gdpo: Group reward-decoupled normalization pol-icy optimization for multi-reward rl optimization. 
+
+Preprint , arXiv:2601.05242. Xuefeng Liu, Songhao Jiang, Bo Li, and Rick Stevens. 2025. Controllablegpt: A ground-up designed controllable gpt for molecule optimization. arXiv preprint arXiv:2502.10631 .Tung Nguyen and Aditya Grover. 2025. Lico: Large lan-guage models for in-context molecular optimization. 
+
+Preprint , arXiv:2406.18851. Marcus Olivecrona, Thomas Blaschke, Ola Engkvist, and Hongming Chen. 2017. Molecular de-novo de-sign through deep reinforcement learning. Journal of cheminformatics , 9(1):48. Jinyeong Park, Jaegyoon Ahn, Jonghwan Choi, and Jibum Kim. 2025. Mol-air: Molecular reinforce-ment learning with adaptive intrinsic rewards for goal-directed molecular generation. Journal of Chemical Information and Modeling , 65(5):2283–2296. Jinyoung Park, Minseong Bae, Dohwan Ko, and Hyunwoo J. Kim. 2024. Llamo: Large language model-based molecular graph assistant. Preprint ,arXiv:2411.00871. Anastasiia V Sadybekov and Vsevolod Katritch. 2023. Computational approaches streamlining drug discov-ery. Nature , 616(7958):673–685. Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, Y. K. Li, Y. Wu, and Daya Guo. 2024. Deepseekmath: Pushing the limits of mathemati-cal reasoning in open language models. Preprint ,arXiv:2402.03300. Guangming Sheng, Chi Zhang, Zilingfeng Ye, Xibin Wu, Wang Zhang, Ru Zhang, Yanghua Peng, Haibin Lin, and Chuan Wu. 2025. Hybridflow: A flexible and efficient rlhf framework. In Proceedings of the Twentieth European Conference on Computer Sys-tems , EuroSys ’25, page 1279–1297. ACM. Kyle Swanson, Parker Walther, Jeremy Leitz, Souhrid Mukherjee, Joseph C Wu, Rabindra V Shivnaraine, and James Zou. 2024. Admet-ai: a machine learning admet platform for evaluation of large-scale chemical libraries. Bioinformatics , 40(7):btae416. Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix, Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, Aurelien Rodriguez, Armand Joulin, Edouard Grave, and Guillaume Lample. 2023. Llama: Open and efficient foundation language models. Preprint ,arXiv:2302.13971. W Patrick Walters and Regina Barzilay. 2020. Appli-cations of deep learning in molecule generation and molecular property prediction. Accounts of chemical research , 54(2):263–270. Haorui Wang, Marta Skreta, Cher-Tian Ser, Wenhao Gao, Lingkai Kong, Felix Strieth-Kalthoff, Chenru Duan, Yuchen Zhuang, Yue Yu, Yanqiao Zhu, Yuanqi Du, Alán Aspuru-Guzik, Kirill Neklyudov, and Chao Zhang. 2025. Efficient evolutionary search over chemical space with large language models. Preprint ,arXiv:2406.16976. Jing Wang and Fei Zhu. 2024. Multi-objective molec-ular generation via clustered pareto-based reinforce-ment learning. Neural Networks , 179:106596. Zichao Wang, Weili Nie, Zhuoran Qiao, Chaowei Xiao, Richard Baraniuk, and Anima Anandkumar. 2023. Retrieval-based controllable molecule generation. 
+
+Preprint , arXiv:2208.11126. David Weininger. 1988. Smiles, a chemical language and information system. 1. introduction to methodol-ogy and encoding rules. Journal of chemical infor-mation and computer sciences , 28(1):31–36. Geyan Ye, Xibao Cai, Houtim Lai, Xing Wang, Junhong Huang, Longyue Wang, Wei Liu, and Xiangxiang Zeng. 2023. Drugassist: A large language model for molecule optimization. Preprint , arXiv:2401.10334. Yizhen Zheng, Huan Yee Koh, Jiaxin Ju, Anh TN Nguyen, Lauren T May, Geoffrey I Webb, and Shirui Pan. 2025. Large language models for scientific dis-covery in molecular property prediction. Nature Ma-chine Intelligence , 7(3):437–447. Artem Zholus, Maksim Kuznetsov, Roman Schut-ski, Rim Shayakhmetov, Daniil Polykovskiy, Sarath Chandar, and Alex Zhavoronkov. 2025. Bindgpt: A scalable framework for 3d molecular design via language modeling and reinforcement learning. Pro-ceedings of the AAAI Conference on Artificial Intelli-gence , 39(24):26083–26091. Xiangxin Zhou, Xiwei Cheng, Yuwei Yang, Yu Bao, Liang Wang, and Quanquan Gu. 2024. Decompopt: Controllable and decomposed diffusion models for structure-based molecular optimization. Preprint ,arXiv:2403.13829. Zhenpeng Zhou, Steven Kearnes, Li Li, Richard N Zare, and Patrick Riley. 2019. Optimization of molecules via deep reinforcement learning. Scientific reports ,9(1):10752. Figure 3: Optimal solutions on a concave Pareto front. (a) Arithmetic Mean leads to extreme boundary solu-tions. (b) Geometric Mean forces balanced trade-offs. 
+
+A Details on Reward Aggregation 
+
+In multi-objective molecular optimization, the choice of reward aggregation directly determines the alignment behavior of the RL agent. We de-liberately avoid standard linear scalarization in fa-vor of non-linear aggregation methods, such as the Geometric Mean (GM) or the Smooth Minimum (-Log-Sum-Exp). 
+
+A.1 Reward Aggregation 
+
+The standard Arithmetic Mean (AM) defines the total reward as a linear combination of individual objectives: RAM = 1
+
+> N
+
+PNi=1 ri. While mathemat-ically simple, it exhibits severe limitations when navigating complex chemical spaces. As illustrated in Figure 3a, the level curves of AM are straight lines. In molecular optimization, the true Pareto front between competing pharma-cological properties (e.g., binding affinity versus drug-likeness) is typically strictly concave. Op-timizing a linear objective over a concave front inevitably drives the solution toward the extremes (corner solutions). This mathematical artifact is the root cause of the "implicit sacrifice" phenomenon, where the LLM maximizes one easily optimizable property by completely violating another. In contrast, Figure 3b demonstrates the behavior of the Geometric Mean: 
+
+RGM =
+
+> N
+
+Y
+
+> i=1
+
+ri
+
+! 1
+
+> N
+
+.
+
+The GM constructs strictly convex, hyperbolic level sets. When these level sets intersect with the con-cave Pareto front, the optimal solution naturally settles near the center. This geometry enforces balanced trade-offs, effectively acting as a differ-entiable logical "AND" operator that requires all constraints to be reasonably satisfied. 
+
+> Figure 4: Contour plots of aggregation functions on 2-dimension objectives. (a) Geometric Mean (b) LogSum
+
+A.2 Reward Aggregation: GRPO & GDPO 
+
+To enforce the simultaneous satisfaction of all con-straints, the aggregation function must approxi-mate the logical AND ( min ) operator. While both Geometric Mean (GM) and -Log-Sum-Exp (Log-Min) provide continuous gradients, their mathemat-ical properties dictate their specific applications in GRPO and GDPO. As shown in Figure 4, GM and LogMin exhibit fundamentally different gradient behaviors. For GM, defined as RGM = ( QNi=1 ri) 1 
+
+> N
+
+, the gradient with respect to a single objective rj is: 
+
+∂R GM 
+
+∂r j
+
+= 1
+
+NRGM 
+
+rj
+
+This multiplicative nature ensures that the optimiza-tion of rj is holistically scaled by the performance of all other objectives. Conversely, LogMin acts as a strict bottleneck. Defined as RLSE = − 1 
+
+> k
+
+log PNi=1 exp( −k · xi),its gradient is exactly the softmax distribution: 
+
+∂R LSE 
+
+∂x j
+
+= exp( −k · xj )
+
+PNi=1 exp( −k · xi)
+
+When k is sufficiently large, if xj is the worst-performing objective, its exponential term domi-nates the denominator. Consequently, ∂R LSE  
+
+> ∂x j
+
+→ 1,while gradients for all other objectives approach 0.This mathematically explains the "L-shaped" con-tours in Figure 4(b), proving that LogMin forces the model to exclusively penalize the weakest prop-erty. 
+
+Domain Constraints Beyond gradients, the mathematical domain strictly determines algorith-mic compatibility: • GRPO ( ri ∈ [0 , 1] ): GRPO maps raw prop-erties to positive scores via non-linear reward shaping, perfectly satisfying the strict non-negativity requirement of the GM function. • GDPO ( Ai ∈ R): GDPO optimizes pair-wise advantages, which naturally span neg-ative values. Since GM is undefined for neg-ative numbers, LogMin becomes mathemat-ically mandatory. It seamlessly aggregates unbounded real numbers, isolating the most critical negative margin without breaking do-main constraints. 
+
+B Details on Implementation 
+
+B.1 Hyperparameters                           
+
+> Hyperparameter Value
+> Base Model [Mistral-7B-v0.3, Llama3.1-8B] Optimizer AdamW ( β1= 0 .9, β 2= 0 .95 )Learning Rate 1×10 −6
+> Learning Rate Scheduler Cosine with 10% warmup LoRA Rank ( r)16 LoRA Alpha ( α)32 Target Modules q_proj, v_proj, k_proj, o_proj, gate, up, down_proj, lm_head Max Sequence Length 100 tokens Temperature 1.0 RL Algorithm GRPO/GDPO Group Size ( G)4KL Coefficient (Initial) 0.05 KL Target Value 1.0 Rollout Batch Size 32 Optimization Epochs 2MiniBatch Size 32 Training Size 10000 mols per task Hardware 1×NVIDIA A100 (80GB) Training Time ∼6 Hours per task
+
+Table 4: Hyperparameters for SFT and RL post-training stages. 
+
+B.2 Prompt Design 
+
+To ensure the language model accurately inter-prets the multi-objective optimization tasks, we design a highly structured and dynamically assem-bled prompt template, as illustrated in Figure 5. Instead of using static instructions, the assembly process programmatically injects task-specific in-formation into the template for each generated episode. Specifically, the Input field is dynam-ically substituted with the exact SMILES string of the sampled source molecule. Furthermore, the 
+
+Adjustments field acts as a condition-aware direc-tive that translates mathematical constraints into natural language. It is procedurally generated by evaluating the source molecule’s initial property values against the predefined near-optimal thresh-olds ( Θp). If a target property is sub-optimal, the prompt formulates a clear objective to improve it (e.g., specifying "to be at least" a certain threshold). Conversely, if the property already exceeds Θp, the prompt imposes a strict maintenance constraint to prevent implicit sacrifice. By explicitly wrapping these quantitative targets in <THRESHOLD> tags, we compel the model to align its structural modifi-cations directly with the desired multi-objective boundaries, ultimately producing a valid candidate enclosed in <SMILES> tags without generating su-perfluous text. 
+
+C Details on Evaluation Metrics 
+
+To rigorously evaluate the performance of lead opti-mization, we formulate our four evaluation metrics mathematically. Let Msrc denote the initial hit (source) molecule and Mgen denote the generated candidate. We partition the pharmacological prop-erties into two sets: Psub representing the targeted sub-optimal properties that require improvement, and Pcon representing the stability constraints or near-optimal properties that must be maintained. 
+
+1. Similarity (S IM ) To quantify structural preser-vation, we compute the Tanimoto similarity over Morgan fingerprints (radius 2, 2048 bits) between the generated candidate and the initial hit. All fingerprint generations and similarity calculations are implemented using the open-source cheminfor-matics RDKit. This ensures that the optimization strictly occurs within the valid chemical neighbor-hood of the lead compound. SIM (Msrc , M gen ) = 
+
+|Morgan (Msrc ) ∩ Morgan (Mgen )||Morgan (Msrc ) ∪ Morgan (Mgen )|
+
+The overall S IM score reported in our results is the average Tanimoto similarity across all valid generated molecules. 
+
+2. Success Optimized Rate (S OR ) To ensure that the reported improvements are chemically meaningful and robust to model noise, we intro-duce a significance margin ∆k. We divide the tar-get properties into two subsets: Psub , containing properties that require directional optimization, and 
+
+Pcon , containing properties that should remain sta-ble relative to the source hit. For each property p ∈ P sub , we define a direc-tion indicator sp ∈ { +1 , −1}, where sp = +1 de-notes that the property is expected to increase and 
+
+sp = −1 denotes that it is expected to decrease. A Figure 5: An example of the highly structured prompt template used in C-M ORAL . The prompt dynamically integrates the source molecule (Input) with explicit optimization directions and numerical thresholds (Adjustments) to guide the language model during the RL phase. 
+
+generated molecule is considered successful on the optimization subset if all such properties improve beyond the significance margin: 
+
+C(i) 
+
+> sub
+
+= Y
+
+> p∈P sub
+
+I
+
+
+
+sp
+
+ p(M (i)
+
+> gen
+
+) − p(M (i)
+
+> src
+
+) ≥ ∆k
+
+
+
+.
+
+For each property q ∈ P con , we require the gen-erated molecule to remain within a tolerance band around the source hit: 
+
+C(i) 
+
+> con
+
+= Y
+
+> q∈P con
+
+I
+
+
+
+q(M (i)
+
+> gen
+
+) − q(M (i)
+
+> src
+
+) ≤ ∆k
+
+
+
+.
+
+The overall S OR is then defined as the fraction of hit-candidate pairs that satisfy both conditions: SOR = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+
+
+C(i) 
+
+> sub
+
+· C(i)
+
+> con
+
+
+
+.
+
+In our experiments, ∆k is chosen according to the standard deviation or the known error bar of the corresponding property predictor. 
+
+3. Strict Success Optimized Rate (S SOR )
+
+While S OR evaluates whether a generated molecule achieves meaningful directional improvements on the target subset while preserving the constrained subset within tolerance, it does not require the fi-nal molecule to satisfy strict near-optimal criteria on all relevant properties. We therefore introduce the S TRICT SUCCESS OPTIMIZED RATE (S SOR ), which measures the fraction of generated molecules whose properties all fall within the desired near-optimal region. Let Θr denote the near-optimal threshold for property r ∈ P , where the satisfaction direction depends on the property type. We define the strict success indicator for the i-th pair as 
+
+C(i) 
+
+> strict
+
+= Y
+
+> r∈P
+
+I sat r(M (i)
+
+> gen
+
+; Θ r) = 1 ,
+
+where sat r(·; Θ r) is a property-specific satisfaction function indicating whether property r meets its corresponding near-optimal threshold. The overall S SOR is then defined as SSOR = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+C(i)
+
+> strict
+
+.
+
+In other words, S SOR is a stricter metric than SOR , requiring all relevant properties to reach their prescribed near-optimal targets simultaneously. 
+
+4. Relative Improvement (R I) While S OR and SSOR measure whether a generated molecule sat-isfies the desired optimization criteria, they do not reflect the magnitude of improvement. We there-fore define the R ELATIVE IMPROVEMENT (R I) to Algorithm 1 Candidate Selection 
+
+Require: Source molecule Msrc , trained policy πΘ, beam size K = 20 
+
+Require: Target properties P, near-optimal thresholds Θp for p ∈ P 
+
+Require: Optimization directions dp ∈ { 1, −1} for p ∈ P ▷ 1: Maximize, −1: Minimize 
+
+Require: Target improvement margins ∆p, and stability tolerance margins ∆q
+
+Ensure: The best aligned candidate Mbest  
+
+> 1:
+
+Step 1: Evaluate source molecule and dynamically formulate optimization tasks  
+
+> 2:
+
+Psub ← { p ∈ P | dp · p(Msrc ) < d p · Θp} ▷ Identify sub-optimal properties  
+
+> 3:
+
+Pcon ← { q ∈ P | dp · q(Msrc ) ≥ dp · Θq} ▷ Identify near-optimal properties  
+
+> 4: 5:
+
+Step 2: Generate candidates conditioned on the formulated tasks  
+
+> 6:
+
+Mgen ← BeamSearch (πΘ(· | Msrc ), K ) 
+
+> 7: 8:
+
+Step 3: Filter candidates to construct the SOR-compliant set CSOR  
+
+> 9:
+
+CSOR ←
+
+
+
+c ∈ M gen 
+
+∀p ∈ P sub : dp · (p(c) − p(Msrc )) ≥ ∆p ∧∀q ∈ P con : |q(c) − q(Msrc )| ≤ ∆q
+
+ 
+
+> 10: 11:
+
+Step 4: Select the optimal candidate based on Relative Improvement (RI)  
+
+> 12:
+
+if CSOR ̸ = ∅ then  
+
+> 13:
+
+Mbest ← arg max 
+
+> c∈C SOR
+
+RI (c, M src ) 
+
+> 14:
+
+else  
+
+> 15:
+
+Mbest ← arg max 
+
+> c∈M gen
+
+RI (c, M src ) ▷ Fallback: maximum RI relaxation  
+
+> 16:
+
+end if  
+
+> 17:
+
+return Mbest 
+
+quantify the average directional relative change on the subset of sub-optimal properties. For each property p ∈ P sub , let sp ∈ { +1 , −1}
+
+denote its desired optimization direction, where 
+
+sp = +1 indicates that the property is expected to increase and sp = −1 indicates that it is expected to decrease. We first define the instance-level rela-tive improvement as RI(i) = 1
+
+|P sub |
+
+X
+
+> p∈P sub
+
+sp
+
+ p(M (i)
+
+> gen
+
+) − p(M (i)
+
+> src
+
+)
+
+p(M (i)
+
+> src
+
+)
+
+.
+
+The overall R I is then computed by averaging over all molecule pairs: RI = 1
+
+N
+
+> N
+
+X
+
+> i=1
+
+RI(i).
+
+In this way, R I measures the average relative change on sub-optimal properties in their desired optimization directions: positive values indicate improvement, while negative values indicate move-ment against the target direction. 
+
+D Case Studies 
+
+D.1 BPQ Task 
+
+BPQ (BBBP, PlogP, QED) involves diverse com-binations of property-specific objectives across BBBP, PlogP, and QED, three key properties for CNS drug design. Each optimization task may require improving one or more properties while maintaining or further enhancing the others. Opti-mizing these diverse multi-objective combinations simulates the early-stage filtering and refinement of CNS-active hit compounds. Figure 6 presents one representative example from the BPQ task. Compared with the SFT base-line in Figure 6a, both RL post-trained models pro-duce more favorable BPQ edits while better pre-serving meaningful structural motifs. GeLLM 4O-CMistral achieves the target improvement mainly through a relatively aggressive rewrite of the left-half structure, replacing the original peripheral het-erocyclic region with a more compact motif while keeping only part of the right aromatic scaffold. In contrast, C-M ORAL -GRPO Mistral in Figure 6b performs a larger global restructuring, substantially changing both the aromatic core and the surround-Model BPQ ELQ ACEP BDPQ DHMQ 
+
+S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑
+
+Supervised Fine-Tuning (SFT) Baselines 
+
+GeLLM 4O-C Mistral 52.2 / 21.0 0.59 2.72 62.0 / 30.2 0.58 0.48 29.6 / 11.0 0.58 3.55 11.8 / 4.6 0.56 188.4 13.2 / 5.4 0.60 61.9 GeLLM 4O-C Llama 48.0 / 22.8 0.56 2.61 53.8 / 24.8 0.56 0.47 31.6 / 13.02 0.55 3.82 10.2 / 4.6 0.54 40.2 7.4 / 3.2 0.57 259.2 
+
+RL Post-Training ( C-M ORAL , Ours) 
+
+GRPO Mistral 65.7 / 36.4 0.60 3.22 73.4 / 38.8 0.58 0.51 42.4 / 20.8 0.59 3.54 24.8 / 11.6 0.58 238.2 38.2 / 18.0 0.62 234.9 GDPO Mistral 69.8 / 40.2 0.58 4.05 72.8 / 37.0 0.57 0.53 44.4 / 23.0 0.57 4.15 22.6 / 10.0 0.58 391.5 25.6 / 14.2 0.63 151.5 GRPO Llama 57.8 / 26.6 0.59 3.50 60.0 / 28.6 0.57 0.51 45.2 / 25.0 0.58 3.06 21.6 / 10.8 0.56 256.2 16.6 / 9.2 0.60 249.5 GDPO Llama 66.0 / 44.8 0.57 4.43 64.2 / 34.6 0.57 0.51 43.7 / 22.7 0.57 4.09 18.5 / 9.9 0.56 271.1 24.4 / 15.1 0.60 271.6 
+
+Table 5: Detailed performance comparison on IND tasks. C-M ORAL consistently improves success rates over SFT baselines while preserving scaffold similarity. Bold denotes the best result in each column, and underlined denotes the second-best. 
+
+Model CDE ABMP BCMQ BDEQ HLMPQ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑ S/SS ↑ Sim ↑ RI ↑
+
+Supervised Fine-Tuning (SFT) Baseline 
+
+GeLLM 4O-C Mistral 4.8 / 1.4 0.57 120.1 45.4 / 22.8 0.60 3.03 40.8 / 18.6 0.59 0.51 1.4 / 0.2 0.64 11.2 29.6 / 5.8 0.58 1.49 GeLLM 4O-C Llama 3.0 / 0.8 0.60 18.0 52.6 / 23.2 0.56 1.79 38.8 / 20.0 0.56 0.52 1.4 / 0.6 0.59 10.9 30.2 / 6.4 0.54 1.31 
+
+RL Post-Training ( C-M ORAL , Ours) 
+
+GRPO Mistral 7.6 / 2.6 0.58 78.7 71.8 / 47.6 0.59 3.67 57.8 / 34.2 0.60 0.55 3.4 / 1.2 0.63 12.7 57.0 / 18.2 0.59 1.92 
+
+GDPO Mistral 6.4 / 2.4 0.57 114.1 72.6 / 45.8 0.58 3.40 61.0 / 34.8 0.58 0.55 2.8 / 1.2 0.62 15.9 48.8 / 14.8 0.59 1.90 GRPO Llama 4.6 / 1.8 0.61 31.8 76.2 / 49.8 0.60 3.15 49.8 / 28.2 0.58 0.53 3.0 / 1.6 0.63 15.1 52.6 / 16.8 0.58 1.92 
+
+GDPO Llama 4.5 / 2.0 0.59 72.4 73.1 / 47.7 0.58 3.24 53.3 / 33.9 0.58 0.54 2.9 / 1.5 0.62 17.4 44.3 / 12.3 0.58 1.91 
+
+Table 6: Detailed performance comparison on OOD tasks. C-M ORAL consistently improves success rates over SFT baselines while preserving scaffold similarity. Bold denotes the best result in each column, and underlined denotes the second-best. 
+
+ing substituents; although this yields strong prop-erty improvement, it is less conservative in scaf-fold preservation. C-M ORAL -GDPO Mistral in Fig-ure 6c, however, makes more targeted local edits: it largely retains the original amide-linked aromatic core and the morpholine-containing motif, while modifying the peripheral substituents to improve QED and PlogP under the BBBP constraint. This qualitative example suggests that GDPO tends to achieve a better balance between property optimiza-tion and structural preservation, whereas GRPO explores more radical scaffold-level changes. 
+
+E Group-Based Policy Optimization Implementation 
+
+E.1 Group Relative Policy Optimization 
+
+We provide the implementation details of GRPO used in our experiments. Consider a mini-batch of prompts {xi}Bi=1 . For each prompt xi, we sample a group of G responses 
+
+Yi = {yi, 1, . . . , y i,G }, yi,j ∼ πΘold (· | xi).
+
+Assume there are M reward functions. The m-th reward of response yi,j is denoted by 
+
+r(m) 
+
+> i,j
+
+= rm(xi, y i,j ), m = 1 , . . . , M. 
+
+In GRPO, the multiple reward dimensions are first linearly aggregated into a single scalar reward: 
+
+rGRPO  
+
+> i,j
+
+=
+
+> M
+
+X
+
+> m=1
+
+wm r(m) 
+
+> i,j
+
+,
+
+where wm ≥ 0 is the weight of the m-th reward. In our default setting, we use wm = 1 for all m
+
+unless otherwise specified. For each prompt xi, we then compute the group mean and group standard deviation over the G sam-pled responses: 
+
+μi = 1
+
+G
+
+> G
+
+X
+
+> j=1
+
+rGRPO  
+
+> i,j
+
+,σi =
+
+vuut 1
+
+G
+
+> G
+
+X
+
+> j=1
+
+ rGRPO  
+
+> i,j
+
+− μi
+
+2.(a) GeLLM 4O-C Mistral optimization   
+
+> (b) C-M ORAL -GRPO Mistral optimization
+> (c) C-M ORAL -GDPO Mistral optimization
+
+Figure 6: Optimization of different M ISTRAL -based models on the B PQ task. 
+
+The group-relative advantage is defined as 
+
+AGRPO  
+
+> i,j
+
+= rGRPO  
+
+> i,j
+
+− μi
+
+σi + ϵgrp 
+
+,
+
+where ϵgrp is a small constant for numerical stabil-ity. For token t in response yi,j , the importance ratio is 
+
+ρi,j,t (Θ) = πΘ(yi,j,t | xi, y i,j,<t )
+
+πΘold (yi,j,t | xi, y i,j,<t ) .
+
+The GRPO objective is 
+
+LGRPO (Θ) = 1
+
+B
+
+> B
+
+X
+
+> i=1
+
+1
+
+G
+
+> G
+
+X
+
+> j=1
+
+1
+
+|yi,j | 
+
+> |yi,j |
+
+X
+
+> t=1
+
+min 
+
+
+
+ρi,j,t (Θ) Ai,j ,
+
+clip  ρi,j,t (Θ) , 1 − ϵclip , 1 + ϵclip 
+
+Ai,j 
+
+
+
+.
+
+If a KL regularization term is used in practice, it can be added in the standard way. Compared with GDPO, GRPO performs normalization only after collapsing all reward dimensions into a single scalar reward, rather than normalizing each reward dimension separately before aggregation. 
+
+E.2 Group reward-Decoupled Normalization Policy Optimization 
+
+We provide the implementation details of GDPO used in our experiments. Consider a mini-batch of prompts {xi}Bi=1 . For each prompt xi, we sample a group of G responses 
+
+Yi = {yi, 1, . . . , y i,G }, yi,j ∼ πΘold (· | xi).
+
+Assume there are M reward functions. The m-th reward of response yi,j is denoted by 
+
+r(m) 
+
+> i,j
+
+= rm(xi, y i,j ), m = 1 , . . . , M. 
+
+Step 1: Group-wise decoupled normalization. 
+
+For each prompt xi and each reward dimension 
+
+m, we first compute the group mean and group standard deviation over the G sampled responses: 
+
+μ(m) 
+
+> i
+
+= 1
+
+G
+
+> G
+
+X
+
+> j=1
+
+r(m) 
+
+> i,j
+
+,σ(m) 
+
+> i
+
+=
+
+vuut 1
+
+G
+
+> G
+
+X
+
+> j=1
+
+ r(m) 
+
+> i,j
+
+− μ(m)
+
+> i
+
+2.
+
+Then the reward-specific normalized advantage is 
+
+A(m) 
+
+> i,j
+
+= r(m) 
+
+> i,j
+
+− μ(m)
+
+> i
+
+σ(m) 
+
+> i
+
++ ϵgrp 
+
+.
+
+Step 2: Aggregate the decoupled advantages. 
+
+We sum the normalized advantages from all reward dimensions: 
+
+˜Ai,j =
+
+> M
+
+X
+
+> m=1
+
+wmA(m) 
+
+> i,j
+
+,
+
+where wm ≥ 0 is the weight of the m-th reward. In our default setting, we use wm = 1 for all m
+
+unless otherwise specified. 
+
+Step 3: Batch-wise normalization (BN). To keep the numerical scale of advantages stable as the number of rewards increases, we further normalize 
+
+˜Ai,j over all responses in the current mini-batch. Let 
+
+μB = 1
+
+BG 
+
+> B
+
+X
+
+> i=1
+> G
+
+X
+
+> j=1
+
+˜Ai,j ,σB =
+
+vuut 1
+
+BG 
+
+> B
+
+X
+
+> i=1
+> G
+
+X
+
+> j=1
+
+  ˜Ai,j − μB
+
+2.
+
+The final GDPO advantage is 
+
+ˆAi,j = ˜Ai,j − μB
+
+σB + ϵbn 
+
+.
+
+This step is crucial in the original paper. After testing, we find it also important for stable training. Step 4: Policy optimization objective. We then use the final normalized advantage ˆAi,j in a clipped policy optimization objective. For token t in re-sponse yi,j , define the importance ratio as 
+
+ρi,j,t (Θ) = πΘ(yi,j,t | xi, y i,j,<t )
+
+πΘold (yi,j,t | xi, y i,j,<t ) .
+
+The GDPO objective is 
+
+LGDPO (Θ) = 1
+
+B
+
+> B
+
+X
+
+> i=1
+
+1
+
+G
+
+> G
+
+X
+
+> j=1
+
+1
+
+|yi,j | 
+
+> |yi,j |
+
+X
+
+> t=1
+
+min 
+
+
+
+ρi,j,t (Θ) ˆAi,j ,
+
+clip  ρi,j,t (Θ) , 1 − ϵclip , 1 + ϵclip 
+
+ ˆAi,j 
+
+
+
+.
+
+If a KL regularization term is used in practice, it can be added in the standard way. The key dif-ference from multi-reward GRPO is that GDPO normalizes each reward before aggregation, and then applies an additional batch-wise normaliza-tion to the aggregated advantage.
