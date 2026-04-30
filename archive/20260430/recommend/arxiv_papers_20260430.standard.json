@@ -1,0 +1,396 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-04-30T20:36:55.400064+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 2,
+    "deep_cap": 8,
+    "deep_selected": 2,
+    "quick_candidates": 7,
+    "quick_skim_target": 13,
+    "quick_selected": 7
+  },
+  "deep_dive": [
+    {
+      "id": "2604.25968v1",
+      "title": "Mining Negative Sequential Patterns to Improve Viral Genomic Feature Representation and Classification",
+      "abstract": "Viruses represent the most abundant biological entities on Earth and play a pivotal role in microbial ecosystems, yet, as prominent human pathogens, they are closely linked to human morbidity and mortality. Accurate identification of viral sequences from viral genome sequences is therefore essential, but existing genome-based classification models that largely relying on composition- or frequency-based subsequence features often suffer from limited interpretability and reduced accuracy, particularly on complex or imbalanced datasets. To address these limitations, we propose GeneNSPCla (Genomic Negative Sequential Pattern-based Classification), a novel viral classification framework based on Negative Sequential Patterns (NSPs) that extracts discriminative absence-based features from nucleotide sequences of RNA viral genomes. By transforming these NSPs into numerical feature vectors and integrating them into multiple supervised classifiers, GeneNSPCla effectively captures both presence and absence signals in viral sequences. Furthermore, we propose a negative pattern mining algorithm adapted for processing genomic data: GONPM+, which can discover longer and more biologically meaningful negative sequential patterns. The experimental results demonstrate that the average accuracy of GONPM+ in 8 classifiers has improved by 10.03% compared to the original negative pattern mining algorithm and by 24.75% compared to the positive pattern mining algorithm. These findings highlight the effectiveness of incorporating absence-based sequential information, providing a new and complementary perspective for viral genome analysis and classification.",
+      "authors": [
+        "Wenxi Zhu",
+        "Wensheng Gan",
+        "Zhenlian Qi"
+      ],
+      "primary_category": "cs.DB",
+      "categories": [
+        "cs.DB",
+        "cs.LG"
+      ],
+      "published": "2026-04-28T07:09:39+00:00",
+      "link": "https://arxiv.org/pdf/2604.25968v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "AI-based viral genomic feature representation and classification",
+      "llm_evidence_cn": "基于AI的病毒基因组特征表示与分类",
+      "llm_evidence": "基于AI的病毒基因组特征表示与分类",
+      "canonical_evidence": "基于AI的病毒基因组特征表示与分类",
+      "llm_tldr_en": "Introduces a framework using negative sequential patterns to improve viral genome sequence classification.",
+      "llm_tldr_cn": "提出了一种利用负序列模式改进病毒基因组序列分类的框架。",
+      "llm_tldr": "提出了一种利用负序列模式改进病毒基因组序列分类的框架。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "id": "2604.26082v1",
+      "title": "How is gene-regulatory evolution affected by cell-to-cell variability?",
+      "abstract": "The evolutionary origins of structural features in reconstructed gene-regulatory networks (GRNs) remain poorly understood, especially given the random aspects of gene expression. Here, we extend a classical model of GRN evolution to allow a single network to express a distribution of phenotypes through noisy developmental dynamics. Inspired by Hopfield networks, we introduce an alignment score that quantifies the cohesion of gene-gene interactions in the network to support a target stable phenotype. Overall, evolved populations optimized their fitness and reduced the length of their developmental paths. Increased noise levels promoted alignment, enriched coherent feedforward and positive feedback loops relative to non-evolved and noiseless controls, and buffered against mutational perturbations. Alignment provides intuitive interpretations because an increased number of appropriately signed gene-gene interactions is more redundant and thus more robust against developmental noise and mutations. Together, these results demonstrate that cell-to-cell variability exerts strong selective pressure, driving the evolution of aligned, robust, and motif-enriched GRN architectures.",
+      "authors": [
+        "Leonardo Ivan Estrella Dzib",
+        "James Holehouse"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE"
+      ],
+      "published": "2026-04-28T19:46:57+00:00",
+      "link": "https://arxiv.org/pdf/2604.26082v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 9.0,
+      "llm_evidence_en": "Evolutionary origins of gene-regulatory networks and noisy developmental dynamics",
+      "llm_evidence_cn": "基因调节网络的演化起源和噪声发育动力学",
+      "llm_evidence": "基因调节网络的演化起源和噪声发育动力学",
+      "canonical_evidence": "基因调节网络的演化起源和噪声发育动力学",
+      "llm_tldr_en": "Explores how cell-to-cell variability and noise affect the evolution of gene-regulatory networks.",
+      "llm_tldr_cn": "探讨细胞间的变异和噪声如何影响基因调节网络的演化。",
+      "llm_tldr": "探讨细胞间的变异和噪声如何影响基因调节网络的演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "quick_skim": [
+    {
+      "id": "2604.24796v1",
+      "title": "A multi-stage soft computing framework for complex disease modelling and decision support: A liver cirrhosis case study",
+      "abstract": "Liver cirrhosis is a major global health problem causing millions of deaths annually, and timely detection with aggressive treatment can significantly improve patients' quality of life. Modelling complex diseases from biomedical data is computationally challenging due to high dimensionality, strong feature correlations, noise, and limited labelled samples. Conventional Machine Learning (ML) pipelines often struggle with robustness, interpretability, and generalisation under such conditions. In this study, we propose an ML-driven multi-stage decision framework for complex disease modelling and therapeutic exploration. The framework integrates single-cell transcriptomic profiling, high-dimensional network-based feature stabilisation, multi-model learning, deep representation construction, and post-hoc decision support. Specifically, single-cell sequencing data were analysed to identify key cellular subpopulations, followed by high-dimensional weighted gene co-expression network analysis (hdWGCNA) to stabilise gene modules under sparsity and noise. To enhance non-linear feature interaction modelling, tabular molecular features were restructured into two-dimensional disease maps and analysed using a CNN. Finally, molecular docking was incorporated as a decision-support module to evaluate candidate therapeutic compounds. Using liver cirrhosis as a representative case, the framework identified a disease-associated endothelial subpopulation and extracted seven robust signature genes (HSPB1, GADD45A, CLDN5, ATP1B3, C1QBP, ENPP2, and PARL). The CNN-based representation learning module outperformed conventional pipelines in classification. The framework is disease-agnostic and readily extends to other omics-driven biomedical applications involving uncertainty, heterogeneity, and limited samples.",
+      "authors": [
+        "Xueyuan Huang",
+        "Yuheng Wang",
+        "Yuanzhi He",
+        "Siqi Gou",
+        "Lu Bai",
+        "Wenqian Wu",
+        "Peifeng Liu",
+        "Aijia Wang",
+        "Tianhui Fan",
+        "Ze Zhou",
+        "Jiayu Xu"
+      ],
+      "primary_category": "q-bio.OT",
+      "categories": [
+        "q-bio.OT",
+        "cs.LG"
+      ],
+      "published": "2026-04-26T11:55:48+00:00",
+      "link": "https://arxiv.org/pdf/2604.24796v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "integrates single-cell transcriptomic profiling with ML",
+      "llm_evidence_cn": "将单细胞转录组分析与机器学习相结合",
+      "llm_evidence": "将单细胞转录组分析与机器学习相结合",
+      "canonical_evidence": "将单细胞转录组分析与机器学习相结合",
+      "llm_tldr_en": "Uses AI and transcriptomics to model complex diseases like liver cirrhosis.",
+      "llm_tldr_cn": "利用AI和转录组学对肝硬化等复杂疾病进行建模。",
+      "llm_tldr": "利用AI和转录组学对肝硬化等复杂疾病进行建模。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.25211v1",
+      "title": "Scaffolds for Higher Tropical Grassmannians: Foundations",
+      "abstract": "Scaffolds are the one-dimensional skeleta of high-dimensional flag simplicial complexes of nonpositive curvature. They generalize the phylogenetic trees of Trop G(2,n) to arbitrary $k$, drawing together SL(k)-web bases, affine buildings, the combinatorics of the positive tropical Grassmannian and low-dimensional topology. We prove that scaffolds model points in all tropical Grassmannians via a $k$-point distance function.   In this paper, we study in detail CAT(0) planar graphs, which are positive scaffolds for the tropical Grassmannian of three-planes. CAT(0) planar graphs are directed versions of the diskoids of Fontaine-Kamnitzer-Kuperberg, planar dual to SL(3)-webs. Our main result is the construction of a unique representation of any given integer positive tropical Plucker vector by a normal CAT(0) planar graph. We show that any normal CAT(0) planar graph embeds into the tropical linear space as a Lam-Postnikov membrane, and embeds into the Keel-Tevelev membrane within the affine building. We show that Early's planar basis expansion can be computed directly from the strand combinatorics of the dual web, and connect this expansion to Petersen-Pylyavskyy-Speyer's noncrossing tableaux, explored further in our companion paper.",
+      "authors": [
+        "Nick Early",
+        "Thomas Lam"
+      ],
+      "primary_category": "math.CO",
+      "categories": [
+        "math.CO"
+      ],
+      "published": "2026-04-28T04:30:41+00:00",
+      "link": "https://arxiv.org/pdf/2604.25211v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Generalization of phylogenetic trees via scaffolds",
+      "llm_evidence_cn": "通过支架推广系统发育树概念",
+      "llm_evidence": "通过支架推广系统发育树概念",
+      "canonical_evidence": "通过支架推广系统发育树概念",
+      "llm_tldr_en": "Develops mathematical scaffolds that generalize phylogenetic trees to higher tropical Grassmannians.",
+      "llm_tldr_cn": "开发了将系统发育树推广到高阶热带格拉斯曼流形的数学支架理论。",
+      "llm_tldr": "开发了将系统发育树推广到高阶热带格拉斯曼流形的数学支架理论。",
+      "llm_tags": [
+        "query:q3"
+      ],
+      "matched_query_tag": "query:q3",
+      "matched_query_text": "phylogenetic analysis and tree construction",
+      "matched_requirement_id": "req-3",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.26700v1",
+      "title": "Parsimonious computational inference protocol for Boolean networks: Application to osteogenesis",
+      "abstract": "Boolean networks are powerful mathematical tools for modeling the qualitative dynamics of genetic regulation. Yet inferred models often generate spurious attractors that lack biological viability. In this paper, we propose a parsimonious computational framework to systematically refine Boolean network models by eliminating these non-biological asymptotic behaviors while strictly preserving known, biologically relevant attractors. Through an exhaustive exploration of local function substitutions, we generate a comprehensive set of candidate models. To identify the most biologically consistent networks, we implement an incremental pruning protocol that filters candidates based on structural interaction digraph similarity, attraction basin topological organization, trajectorial isomorphism, and the minimization of dynamical instability and frustration. We apply this methodology to a 9-node genetic control model of the osteogenesis regulation network. Our protocol effectively evaluates a syntactic search space of 51,138 potential networks, ultimately narrowing them down to a robust family of 6 parsimonious models that are fully compatible with current biological knowledge.",
+      "authors": [
+        "Jacques Demongeot",
+        "Alonso Espinoza Rojas",
+        "Eric Goles",
+        "Marco Montalva-Medel",
+        "Sylvain Sené",
+        "Laurent Tichit"
+      ],
+      "primary_category": "q-bio.MN",
+      "categories": [
+        "q-bio.MN"
+      ],
+      "published": "2026-04-29T14:06:43+00:00",
+      "link": "https://arxiv.org/pdf/2604.26700v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "Modeling qualitative dynamics of genetic regulation",
+      "llm_evidence_cn": "模拟遗传调节的定性动态",
+      "llm_evidence": "模拟遗传调节的定性动态",
+      "canonical_evidence": "模拟遗传调节的定性动态",
+      "llm_tldr_en": "Proposes a computational framework to refine Boolean networks for biologically consistent genetic modeling.",
+      "llm_tldr_cn": "提出了一种计算框架来优化布尔网络，以实现符合生物学一致性的遗传建模。",
+      "llm_tldr": "提出了一种计算框架来优化布尔网络，以实现符合生物学一致性的遗传建模。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.25244v1",
+      "title": "Learning Structure, Energy, and Dynamics: A Survey of Artificial Intelligence for Protein Dynamics",
+      "abstract": "Protein dynamics underlie many biological functions, yet remain difficult to characterize due to the high computational cost of molecular dynamics simulations and the scarcity of dynamic structural data. This survey reviews recent advances in artificial intelligence for protein dynamics from three perspectives: learning from structural ensembles and trajectories, learning from physical energy signals, and learning to accelerate molecular simulations. We summarize representative methods for conformation ensemble generation, trajectory generation, Boltzmann generators, physics-aware adaptation, machine learning potentials, coarse-grained modeling, and collective variable discovery. We further discuss available datasets and key open challenges, such as scalability, thermodynamic consistency, kinetic fidelity, and integration with experimental constraints.",
+      "authors": [
+        "Haocheng Tang",
+        "Liang Shi",
+        "Ya-Shi Zhang",
+        "Xixian Liu",
+        "Jian Tang",
+        "Jiarui Lu"
+      ],
+      "primary_category": "q-bio.BM",
+      "categories": [
+        "q-bio.BM",
+        "cs.LG"
+      ],
+      "published": "2026-04-28T05:49:11+00:00",
+      "link": "https://arxiv.org/pdf/2604.25244v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for protein dynamics and molecular simulations",
+      "llm_evidence_cn": "用于蛋白质动力学和分子模拟的AI",
+      "llm_evidence": "用于蛋白质动力学和分子模拟的AI",
+      "canonical_evidence": "用于蛋白质动力学和分子模拟的AI",
+      "llm_tldr_en": "Surveys AI methods for learning protein structure, energy, and dynamics to accelerate simulations.",
+      "llm_tldr_cn": "综述了用于学习蛋白质结构、能量和动力学以加速模拟的AI方法。",
+      "llm_tldr": "综述了用于学习蛋白质结构、能量和动力学以加速模拟的AI方法。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.26869v1",
+      "title": "KAYRA: A Microservice Architecture for AI-Assisted Karyotyping with Cloud and On-Premise Deployment",
+      "abstract": "We present KAYRA, an end-to-end karyotyping system that operates inside the operational constraints of a clinical cytogenetic laboratory. KAYRA is architected as a containerized microservice pipeline whose ML stack combines an EfficientNet-B5 + U-Net semantic segmenter, a Mask R-CNN (ResNet-50 + FPN) instance detector, and a ResNet-18 classifier, orchestrated through a cascaded ROI-narrowing strategy that focuses each downstream model on the chromosome-bearing region. The same container images are deployed both as a cloud service and as an on-premise installation, supporting clinical environments where patient-data egress is not permitted as well as those where it is. A pilot clinical evaluation against two commercial reference karyotyping systems on 459 chromosomes from 10 metaphase spreads shows segmentation accuracy of 98.91 % (vs. 78.21 % / 40.52 %), classification accuracy of 89.1 % (vs. 86.9 % / 54.5 %), and rotation accuracy of 89.76 % (vs. 94.55 % / 78.43 %). KAYRA improves over the older density-thresholding reference on all three axes (p < 0.0001 for segmentation and classification by Fisher's exact test on chromosome-level counts), and on segmentation also against the modern AI- supported reference (p < 0.0001); on classification the difference vs. the modern AI reference is not statistically significant at the present test-set size (p = 0.34). The system reaches TRL 6 maturity and integrates the human-in-the-loop expert-review workflow that diagnostic cytogenetic practice requires. The thesis of this paper is that a multi-model cytogenetic AI service can be packaged as a microservice architecture supporting flexible deployment - cloud-hosted or on-premise - while delivering strong empirical performance on a pilot clinical evaluation.",
+      "authors": [
+        "Attila Pintér",
+        "Javier Rico",
+        "Attila Répai",
+        "Jalal Al-Afandi",
+        "Adrienn Éva Borsy",
+        "András Kozma",
+        "Hajnalka Andrikovics",
+        "György Cserey"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "published": "2026-04-29T16:35:31+00:00",
+      "link": "https://arxiv.org/pdf/2604.26869v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 7.0,
+      "llm_evidence_en": "AI-assisted karyotyping system for clinical cytogenetics",
+      "llm_evidence_cn": "用于临床细胞遗传学的AI辅助核型分析系统",
+      "llm_evidence": "用于临床细胞遗传学的AI辅助核型分析系统",
+      "canonical_evidence": "用于临床细胞遗传学的AI辅助核型分析系统",
+      "llm_tldr_en": "Presents an end-to-end microservice architecture for automated chromosome karyotyping using deep learning.",
+      "llm_tldr_cn": "提出了一种利用深度学习进行自动染色体核型分析的端到端微服务架构。",
+      "llm_tldr": "提出了一种利用深度学习进行自动染色体核型分析的端到端微服务架构。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "7"
+    },
+    {
+      "id": "2604.25986v1",
+      "title": "Robust Clustering Analysis of Genes Related to Age-related Macular Degeneration using RNA-Seq",
+      "abstract": "Identifying genes associated with diseases is crucial to understanding disease mechanisms and developing therapies. However, identification of individual genes associated with a disease often needs to be supplemented with clustering analysis to understand the relationships between genes and identify gene modules beyond individual gene-level relationships. Gene co-expression networks are widely used as a graph theoretic approach to the clustering analysis of genes. In our work, we perform robust clustering analysis on RNA-Seq data of Age-related Macular Degeneration (AMD) patients and controls by generalizing one such framework, Multiscale Embedded Gene Co-Expression Network Analysis (MEGENA). We propose a carefully curated set of module quality evaluation metrics to choose appropriate statistical distance-based or information theoretic similarity measures over simple linear correlation to represent the similarities between genes. Furthermore, we design and implement a stability test to ensure the robustness of the detected hub genes in the presence of noise. Finally, we propose differential module eigengene analysis for a deeper understanding of upregulation and downregulation of each module with respect to the disease and control groups for a comprehensive understanding of the clustering analysis. Besides detecting robust hub genes and modules that are supported by prior findings, we also identify previously undiscovered hub genes that can potentially lead to further biomedical research into understanding the AMD disease mechanism and developing new treatments.",
+      "authors": [
+        "Brayan Gutierrez",
+        "Rinki Ratnapriya",
+        "Arko Barman"
+      ],
+      "primary_category": "q-bio.GN",
+      "categories": [
+        "q-bio.GN"
+      ],
+      "published": "2026-04-28T17:56:36+00:00",
+      "link": "https://arxiv.org/pdf/2604.25986v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Clustering analysis of genes and co-expression networks",
+      "llm_evidence_cn": "基因聚类分析与共表达网络",
+      "llm_evidence": "基因聚类分析与共表达网络",
+      "canonical_evidence": "基因聚类分析与共表达网络",
+      "llm_tldr_en": "Performs robust clustering of RNA-Seq data to identify gene modules in macular degeneration.",
+      "llm_tldr_cn": "对RNA-Seq数据进行鲁棒聚类分析，以识别黄斑变性中的基因模块。",
+      "llm_tldr": "对RNA-Seq数据进行鲁棒聚类分析，以识别黄斑变性中的基因模块。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.26087v1",
+      "title": "Kinetics of segregation of topologically-modified ring polymers in cylindrical confinement",
+      "abstract": "In Escherichia coli (E. coli), entropic repulsion between the two daughter DNA ring polymers under cylindrical confinement is believed to be an important factor governing chromosomal segregation. The repulsion can be enhanced by topological modifications, i.e., by the introduction of internal loops at certain locations along the contour of the circular DNA. However, the effect of topological modifications on the rate of segregation of ring polymers remains unclear. Therefore, we systematically varied the number and the contour length of loops introduced at selected locations by crosslinking monomers. The appropriate crosslinking was motivated by observations that extruded loops are located mainly near the origin of replication (ori-proximal) region of the E. coli chromosome. This resulted in the chains becoming intrinsically anisotropic. Using Langevin dynamics simulations of these topologically modified bead-spring polymers, we calculated the time required for segregation under cylinder confinement. With certain caveats, we found that increasing the number of loops resulted in a decrease in the time of segregation. In line with past work, we propose that this is due to the increase in the entropic repulsion between the polymers upon increasing the number of loops. In addition to the number of loops, the contour length of the loops and the mutual orientation of the (anisotropic) chains in the initial configurations played a role in determining the time of segregation.",
+      "authors": [
+        "Harsh Doshi",
+        "Shreerang Pande",
+        "Sathish K. Sukumaran",
+        "Apratim Chatterji"
+      ],
+      "primary_category": "cond-mat.soft",
+      "categories": [
+        "cond-mat.soft",
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-28T20:01:04+00:00",
+      "link": "https://arxiv.org/pdf/2604.26087v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "chromosomal segregation and DNA ring polymers in E. coli",
+      "llm_evidence_cn": "大肠杆菌中的染色体分离与DNA环状聚合物",
+      "llm_evidence": "大肠杆菌中的染色体分离与DNA环状聚合物",
+      "canonical_evidence": "大肠杆菌中的染色体分离与DNA环状聚合物",
+      "llm_tldr_en": "Investigates the kinetics of DNA ring polymer segregation in E. coli under cylindrical confinement.",
+      "llm_tldr_cn": "研究了圆柱形约束下大肠杆菌DNA环状聚合物分离的动力学过程。",
+      "llm_tldr": "研究了圆柱形约束下大肠杆菌DNA环状聚合物分离的动力学过程。",
+      "llm_tags": [
+        "query:q10"
+      ],
+      "matched_query_tag": "query:q10",
+      "matched_query_text": "molecular mechanisms of genome evolution",
+      "matched_requirement_id": "req-10",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

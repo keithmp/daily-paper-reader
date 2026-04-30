@@ -1,0 +1,874 @@
+Title: Mining Negative Sequential Patterns to Improve Viral Genomic Feature Representation and Classification
+
+URL Source: https://arxiv.org/pdf/2604.25968v1
+
+Published Time: Thu, 30 Apr 2026 00:01:58 GMT
+
+Number of Pages: 18
+
+Markdown Content:
+# Mining Negative Sequential Patterns to Improve Viral Genomic Feature Representation and Classification 
+
+## Wenxi Zhu a, Wensheng Gan b,∗ and Zhenlian Qi c
+
+> a
+
+College of Information Science and Technology, Jinan University, Guangzhou 510632, China 
+
+> b
+
+College of Cyber Security, Jinan University, Guangzhou 510632, China 
+
+> c
+
+Guangdong Eco-Engineering Polytechnic, Guangzhou 510520, China 
+
+A R T I C L E I N F O 
+
+Keywords :Viral Genomes Pattern mining Machine learning classifiers Negative sequential patterns Classification 
+
+A B S T R A C T 
+
+Viruses represent the most abundant biological entities on Earth and play a pivotal role in microbial ecosystems, yet, as prominent human pathogens, they are closely linked to human morbidity and mor-tality. Accurate identification of viral sequences from viral genome sequences is therefore essential, but existing genome-based classification models that largely relying on composition- or frequency-based subsequence features often suffer from limited interpretability and reduced accuracy, partic-ularly on complex or imbalanced datasets. To address these limitations, we propose GeneNSPCla (Genomic Negative Sequential Pattern-based Classification), a novel viral classification framework based on Negative Sequential Patterns (NSPs) that extracts discriminative absence-based features from nucleotide sequences of RNA viral genomes. By transforming these NSPs into numerical feature vectors and integrating them into multiple supervised classifiers, GeneNSPCla effectively captures both presence and absence signals in viral sequences. Furthermore, we propose a negative pattern mining algorithm adapted for processing genomic data: GONPM+, which can discover longer and more biologically meaningful negative sequential patterns. The experimental results demonstrate that the average accuracy of GONPM+ in 8 classifiers has improved by 10.03% compared to the original negative pattern mining algorithm and by 24.75% compared to the positive pattern mining algorithm. These findings highlight the effectiveness of incorporating absence-based sequential information, providing a new and complementary perspective for viral genome analysis and classification. The source code and datasets are available at https://github.com/zhuwenxi317/GeneNSPCla. 
+
+## 1. Introduction 
+
+Viruses, as the most abundant and diverse biological entities on Earth [18], parasitize various living organisms, exerting profound impacts on ecosystem balance, biological evolution, and human health. On the one hand, some viruses participate in the material cycling of marine plankton and promote horizontal gene transfer in hosts, thereby serving as a crucial driver of ecological evolution [60]. On the other hand, virulent viruses (e.g., SARS-CoV-2, influenza viruses, and Ebola viruses) can trigger zoonotic diseases; they rapidly generate new strains through genomic muta-tion and recombination, posing a persistent threat to global public health security [62]. With the rapid advancement of biological sequencing technologies, massive amounts of viral genome data have been continuously emerging, such as GenBank [55], and GISAID [10], which have significantly promoted the progress of virology research. In the field of virology, virus classification [29] is a fundamental task. Accurate virus classification can provide key information for disease diagnosis, epidemic prevention and control, vaccine development, and ecosystem research. Most genomic tools employed to build taxonomies for living organisms rely on alignment-based approaches. Notable ex-amples include BLAST [7] and FASTA [44], as well as their enhanced or expanded variants, which are widely recognized 
+
+> ∗
+
+Corresponding author  
+
+> zhuwenxi317@gmail.com
+
+(W. Zhu); wsgan001@gmail.com (W. Gan);  
+
+> qzlhit@gmail.com
+
+(Z. Qi) 
+
+> ORCID
+
+(s): 
+
+and frequently used as reference standards in genomic se-quence analysis [45]. However, alignment-based approaches also have several drawbacks [30]. For instance, these meth-ods rely on the sequence collinearity assumption, struggling to handle nonlinear chimeric genomic fragments resulting from high mutation rates, recombination, horizontal gene transfer, and other factors. Second, these models exhibit high computational complexity—algorithms like dynamic programming incur substantial time and memory costs, mak-ing them unsuitable with NGS big data [75]. While several alignment-free tools have emerged, such as Kallisto [9] and Kraken 2 [64], they can handle moderately similar sequences but often falter when applied to highly mutable viruses (e.g., HIV and influenza viruses), as they fail to account for the frequent latent patterns embedded within the sequences [63]. Against this backdrop, the integration of machine learn-ing (ML) [73] and sequential pattern mining (SPM) tech-niques [13, 35] offers a promising approach to overcome traditional bottlenecks. Frequent pattern mining (FPM) [1] is a type of SPM. FPM can automatically identify high-frequency sequence patterns (such as conserved motifs and functional modules) from large-scale sequence data, while ML algorithms can further transform these patterns into classification features to construct high-accuracy predic-tion models [52]. For example, the GenoAnaCla method significantly improved the precision of viral classification by mining frequent sequence patterns and using machine learning classifiers, demonstrating the effectiveness of pat-tern mining in sequence analysis [41]. However, current 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 1 of 18 
+
+> arXiv:2604.25968v1 [cs.DB] 28 Apr 2026 Improve Viral Genomic Feature Representation and Classification
+
+methods based on frequent pattern mining focus on frequent patterns. For example, they predominantly utilize features such as k-mers [33], frequent sequential patterns of nu-cleotides/codons/amino acids [41], and high-frequency CpG islands [20]. However, this exclusive focus on frequently occurring patterns may overlook another critical dimension of discriminative information: negative patterns. In viral genome classification research, negative patterns [66] refer to sequence motifs that are unexpectedly absent or substantially underrepresented within specific viral ge-nomic groups. These absence-based patterns often signal the loss or suppression of critical regulatory or structural elements in certain viral strains, thereby harboring phylo-genetic or functional information that is not captured by positive pattern mining alone [17]. For example, Koulouras et al. [28] showed that such negative patterns (i.e., minimal absent words) in viral genomes reflect evolutionary nega-tive selection, including the systematic avoidance of host restriction enzyme recognition sites, immune evasion via host-sequence mimicry, and constraints related to genome stability and species-specific regulation. Such patterns of-fer complementary biological insights into viral genome organization and evolutionary relationships, providing an additional informative dimension for distinguishing viral species and deciphering their adaptive traits. To this end, this paper attempts to present a negative pattern mining-based approach to viral genome classification (GeneNSP-Cla) from a new perspective. This method aims to provide a complementary dimension of analysis for virus classification by capturing discriminative signals embedded in missing features. The main contributions of this paper are as follows: 
+
+• The GeneNSPCla method is proposed, which applies negative patterns—defined as patterns that are sig-nificantly absent or underrepresented in specific viral taxa—to viral genome classification. This approach offers a way to complement existing methods that primarily rely on frequent patterns. 
+
+• The GONPM+ algorithm is proposed as an extension of ONP-Miner, introducing a series of decay factors to achieve a more flexible and fine-grained dynamic adjustment of the minimum support threshold. This enhancement enables adaptive control of support re-duction across different pattern lengths, allowing the algorithm to capture longer negative sequential pat-terns from RNA viral genomes. 
+
+• Unify the feature formats of positive and negative sequential patterns by standardizing them into a con-sistent representation to eliminate format differences. Eight machine learning models were used to construct classifiers. Combined with multiple evaluation met-rics, a comprehensive analysis of the classification performance of viral data in different formats was performed. In addition, compared with existing main-stream genomic classification methods, the effective-ness and superiority of negative pattern characteristics in virus classification were verified. An initial algorithm was previously introduced in a pre-liminary version [74]. The structure of this paper is orga-nized as follows. Section 2 provides a summary of related work. Section 3 presents the preliminary work of the pro-posed method, as well as the definitions of relevant termi-nologies. Section 4 elaborates on the GeneNSPCla approach, encompassing data preprocessing procedures and the spe-cific implementation details of the GONPM+ algorithm. Section 5 presents and discusses the experimental results. Section 6 concludes this study. 
+
+## 2. Related Work 
+
+In recent years, computational methods grounded in DL and ML have found widespread application in the analysis, prediction, and classification of genome sequences. 
+
+2.1. ML-based approaches 
+
+Currently, the core logic of ML-based viral classification techniques lies in mining discriminative features from viral genomic data via algorithms and constructing classifica-tion models to achieve efficient categorization. A frame-work that combines NLP with traditional ML was proposed [6]. In this framework, DNA sequences are converted into numerical vectors using various k-mer sizes through the CountVectorizer, with the best classification performance achieved when using 6-mer features. VirusPredictor is an open-source Python software based on XGBoost [11], which incorporates the classification of ERVs into viral prediction for the first time. Additionally, this software exhibits a key characteristic: the longer the input sequence, the higher its prediction accuracy [33]. 4CAC is a four-category metage-nomic contig classification tool based on ML and assembly graphs. It enables simultaneous identification of viruses, plasmids, prokaryotes, and microeukaryotes, while address-ing key limitations of existing classifiers: oversight of class imbalance and low classification accuracy for short contigs [49]. The study [3] proposed a genomic sequence analysis system for COVID-19 and similar viruses based on the SVM, providing support for viral research and prevention and control at the genomic level. An additional approach utilizes classifiers in ML to classify sublineages of PRRSV. This method addresses the limitations of traditional ap-proaches, specifically the unstable accuracy of RFLP and the high computational cost of phylogenetic analysis [27]. 
+
+2.2. DL-based approaches 
+
+In recent years, with the algorithmic innovations and en-hanced computing power of DL technology, DL has offered novel perspectives and efficient solutions to the challenge of viral classification, boasting end-to-end features and robust complex data processing capability. Researchers propose a CNN-based viral classification method [19]. This method directly converts the DNA sequences of six virus types into numerical form via label encoding and K-mer encoding. Besides, three deep learning models, including CNN, CNN-LSTM, and CNN-bidirectional LSTM, were constructed,   
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 2 of 18
+
+Improve Viral Genomic Feature Representation and Classification GenBank 
+
+> Mining negative
+> sequential patterns
+> GONPM
+> GONPM +
+> Encoding
+> Viruses with the coding region form
+> Dengue
+> Hanta
+> Ebola
+> MERS
+> HIV
+> Hepaci
+> Rota
+> Dabie Banda
+> Dengue:
+> ATG ……CC……
+> ATG ……CA……
+> ……  200
+> Hanta:
+
+……                                               
+
+> GAA ……CC……
+> GTC ……AC……
+> ……  200
+> In this study: 1-1 4 -1 3 -1 ……2 -1 2 -1…… -2
+> …… 200
+> 1-1 4 -1 3 -1 ……2 -1 1 -1…… -2
+> Dengue:
+> 3-1 1 -1 1 -1……2 -1 2 -1…… -2
+> 3-1 4 -1 2 -1 ……1 -1 2 -1…… -2
+> …… 200
+> Hanta:
+> A¬AA
+> ……
+> Total:791
+> GA ¬CC
+> TT ¬TAAG
+> T¬TAAAAG
+> A¬AA¬CA
+> A¬TA¬AA
+> TT ¬TAAG
+> T¬TAAAAG
+> ……
+> Total:448
+> Dengue:
+> CUT
+> 1 f1 1 f2 1
+> 1 f4 1 f1 1
+> 44f4 113
+> 4 f4 11113
+> ……
+> Total:448
+> ==
+> ……
+> Total:683
+> ……
+> Total:391
+> Hanta:
+> CUT
+> ……
+> Total:391
+> ==
+> A¬AA
+> AA ¬CA
+> T¬TTTA
+> T¬TAATTA T¬TAATTA
+> T¬AAATT
+> T¬TTTA
+> 1 f1 1 f2 2
+> 4f4 4 41
+> 4f1 1 144
+> 4f4 1 1441
+> A¬AA¬CC
+
+ML based 
+
+Classification 
+
+# ·Accuracy 
+
+# ·Precision 
+
+# ·Recall 
+
+# ·F1 -Score 
+
+# ·AUC 
+
+# ·AUPRC 
+
+> ROC
+> Curves
+> Confusion
+> Matrix
+> Dataset partitioning
+> Training
+> Testing 20%
+> Multi -Class Classification
+> ……
+> Class1: “Dengue”
+> Class2: “Hanta”
+> Class8: “Dabie Banda”
+> Multi -Class Classification
+> ……
+> Class1: ?
+> Class2: ?
+> Class8: ?
+> Classifier
+> training
+> Evaluation
+> 80%
+
+Classification and Evaluation 
+
+Dataset and Preprocessing  Learning via Negative Pattern Mining 
+
+> kNN
+> NB
+> MLP
+> GBM
+> SVM
+> RF
+> LR
+> DT
+> Eight classifiers
+
+Figure 1: The entire GeneNSPCla framework can be divided into three parts: (1) dataset acquisition and encoding preprocessing; (2) frequent pattern mining via negative pattern algorithms; (3) classification using eight machine learning classifiers with various evaluation metrics obtained. On the right side of the second part is the encoding processing mentioned in (1), with the ’-1’ symbols between each base and the ’-2’ symbol at the end omitted. 
+
+yielding promising classification performance. The Deep-VirusClassifier model is trained based on 1D-CNN, and it combines artificial mutation testing to verify its generaliza-tion ability, thus enabling the classification of SARS-CoV-2 and other subtypes of viruses within the Coronaviridae family [8]. ViraLM adopts a pretrained genomic foundation model, DNABERT-2, as its backbone. By encoding input sequences after splitting them into 2 kb segments, it en-ables novel virus identification in metagenomes using av-erage prediction scores [47]. DNASimCLR processes DNA sequences using One-Hot encoding, utilizes the SimCLR framework and ResNet-50 encoder for training on unlabeled data, and achieves better classification performance than existing methods when tested on three benchmark datasets, including the virus-host dataset [71]. DeepMicroClass em-ploys a dual-path CNN architecture, which comprises a base path (via One-Hot encoding) and a codon path (via three reading frame conversion). When tested on 20 syn-thetic benchmark datasets, this model achieved promising performance in classifying eukaryotic, plasmid, and viral sequences [23]. 
+
+2.3. Feature mining approaches 
+
+In viral classification, feature mining serves as the core link connecting raw viral data and classification models. Its objective is to extract discriminative key information from genomic sequences. Classic feature extraction methods involve extracting k-mer frequency features. For example, VirFinder, the first ML tool based on k-mer frequencies, uses k-mer signals in full sequence to identify viral prokaryotic sequences from assembled metagenomic data [53]. Previous research uses three feature encoding algorithms—amino acid composition (AAC), parallel correlation pseudo-amino acid composition (PC-PseAAC), and G-gap dipeptide com-position (GGAP)—to process the spike protein sequences of coronaviruses. The processed sequences generated fea-ture values, which were used for training the random for-est (RF) model [50]. Association rule mining (ARM) has been applied to extract symptom association rules, helping to identify symptom patterns in COVID-19 patients [61]. GenoAnaCla processes 15 types of viral RNA sequences, employing the CM-SPAM algorithm [14] to extract fre-quent sequence patterns. These outputs are ultimately fed into ML classifiers, achieving promising performance [41]. SPM4GAC employs two SPM algorithms, namely CM-SPAM and TKS, to extract frequent nucleotide sequence patterns composed of the four canonical nucleotides (A, C, G, T) as features [40]. FSP4HSP [39] employs frequent pattern mining algorithms to extract Frequent Sequential Patterns of Amino Acids (FSPAAs) and mines the sequential rules between amino acids via the ERMiner algorithm. In addition, there exist related methods that leverage the DALI tool to identify similar protein structures in the Protein Data Bank (PDB) and employ these structural elements as classification features [37, 38]. For extracting biomarkers based on Digital Signal Processing (DSP) technology, the method is grounded in the tri-nucleotide periodicity of DNA and employs DSP technology to process viral sequences before inputting the processed data into ML classifiers for classification [57]. Furthermore, there is a nonlinear fea-ture extraction method based on chaos game representation (CGR) and recurrence quantification analysis (RQA) [43]. 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 3 of 18 Improve Viral Genomic Feature Representation and Classification 
+
+2.4. Challenges in existing approaches 
+
+Despite the progress achieved by ML- and DL-based approaches in viral classification, several limitations remain. For ML-based methods, performance largely depends on the quality of manually engineered features such as k-mer counts. Although larger k-mer sizes generally lead to higher classification accuracy [51], this improvement comes at the cost of exponentially increasing memory and computational requirements. Specifically, the memory complexity of tra-ditional k-mer methods is (4 𝑘 ), making it challenging for standard computing devices to handle large k values [56, 34]. Moreover, such methods exhibit limited discriminative power for closely related viral strains with high genetic sim-ilarity and may suffer from reduced classification accuracy when highly similar genomes are excluded [4]. DL-based methods, although capable of automatic fea-ture extraction, face challenges including high computa-tional cost, the need for large labeled datasets, and lim-ited interpretability of the learned representations. For in-stance, traditional DL models exhibit significantly pro-nounced "black-box" characteristics and poor interpretabil-ity. They thus rely on complex and time-consuming aux-iliary methods, such as DeepLIFT attribution combined with TF-MoDISco clustering, filter visualization, and filter invalidation—to deduce biological significance [42, 48]. Additionally, there are significant issues at the data level: on the one hand, data scarcity and class imbalance lead to problems such as model bias toward the majority class and poor generalization ability [54]; on the other hand, data annotation requires completion by professional medical personnel and is subject to regulatory restrictions on medical data sharing across different countries, resulting in issues of difficult verification of annotation accuracy and low annota-tion efficiency [25]. As for feature mining approaches, con-ventional techniques such as frequent k-mer [53] extraction, association rule mining [61], or chaos game representation [5] often focus only on positive or frequent patterns, thereby overlooking potentially informative absence signals and rare but discriminative motifs. In fact, studies have shown that relying solely on positive sequence patterns can lead to biased or incomplete similarity and classification results. Incorporating negative sequence patterns, which capture the absence of specific subsequences, provides complementary information that enhances discrimination power [31]. To address these limitations, our work explores a com-plementary perspective by leveraging NSPs to characterize absence-based information in viral genomes. Rather than replacing conventional positive pattern mining, the proposed approach extends positive pattern representations by incor-porating negative sequential patterns, which retain infor-mation derived from frequent patterns while additionally encoding the absence or underrepresentation of specific elements within viral taxa. This joint representation en-riches the feature space used for classification and provides complementary information beyond presence-based patterns alone. Compared with those resource-intensive algorithms that rely on large language model training [65, 72], this data-mining–based framework, combined with conventional machine learning classifiers, offers a lightweight alternative under the evaluated experimental settings while maintaining competitive classification performance. 
+
+## 3. Preliminaries 
+
+Sequential pattern mining [15], a pivotal approach in knowledge discovery, aims to identify meaningful subse-quences that are referred to as patterns within individual sequences or sequence databases (SDBs). Over the years, a wide range of SPM algorithms have been proposed, such as SPM with gap constraints [68, 69] and utility-driven SPM [16, 22]. However, most of these methods primarily focus on mining events that have occurred, referred to as positive SPM [14, 36]. In contrast, negative SPM empha-sizes events that were expected but did not occur. Such negative patterns can be particularly informative, with appli-cations in diverse fields including behavior analysis, medical services, financial risk management, and fraud detection. For instance, SN-RNSP [59] has been proposed to extract frequent negative patterns from transaction sequences, while algorithms such as e-RNSP [12], NegPSpan [21] have also been developed to mine frequent negative patterns across different domains. In the present study, we focus primarily on negative SPM algorithms suitable for processing large-scale biological datasets. To provide a formal explanation of our algorithm, we first introduce the fundamental concepts commonly used in negative SPM. 
+
+Definition 1 (subsequences [2]). Let S = ⟨𝑠 1, 𝑠 2, … , 𝑠 𝑚 ⟩
+
+be a sequence. A sequence 𝐒 𝐢 = ⟨𝑠 𝑖 1 , 𝑠 𝑖 2 , … , 𝑠 𝑖 𝑛 ⟩ with 1 ≤
+
+𝑖 1 < 𝑖 2 < ⋯ < 𝑖 𝑛 ≤ 𝑚 and 𝑛 ≤ 𝑚 is defined as a subsequence of S. When 𝑛 = 𝑚 and 𝑖 𝑗 = 𝑗 for 𝑗 = 1, …, 𝑚 , 𝐒 𝐢 is identical to S. We use the notation 𝐒 𝐢 ⊑ S, where the symbol ⊑
+
+represents the subsequence relationship. For example, consider the sequence ⟨{GTTCAACTG }⟩.Since the elements of ⟨{TCA }⟩ appear in the same order within ⟨{GTTCAACTG }⟩, ⟨{TCA }⟩ is a subsequence of 
+
+⟨{GTTCAACTG }⟩, which can be denoted as ⟨{TCA }⟩ ⊑
+
+⟨{GTTCAACTG }⟩.
+
+Definition 2 (gap constant [46]). A sequence S = ⟨𝑠 1, 𝑠 2,
+
+… , 𝑠 𝑖 , … 𝑠 𝑚 ⟩ over an alphabet Σ has length 𝑚 , where 𝑠 𝑖 ∈ Σ 
+
+for 1 ≤ 𝑖 ≤ 𝑚 . A pattern p with gap constraints is defined as 
+
+p = 𝑝 1[𝑀, 𝑁 ]𝑝 2 … [ 𝑀, 𝑁 ]𝑝 𝑗 … [ 𝑀, 𝑁 ]𝑝 𝑛 , where 𝑛 is the length of the pattern, 0 ≤ 𝑀 ≤ 𝑁 , and 𝑝 𝑗 ∈ Σ . The gap constants 𝑀 and 𝑁 specify the minimum and maximum number of wildcard characters allowed between consecutive pattern elements 𝑝 𝑗 −1 and 𝑝 𝑗 .For example, in an RF sequence S = ⟨{ATTACG }⟩, the character set Σ = {A, G, C, T} and the length 𝑚 = 6. Suppose that we have a pattern with gap constraints p = A [1 , 3] C, which indicates that between the ’A’ and ’C’ in the pattern, there can be at least 1 and at most 3 wildcards. Sequences like AC, ATC, ATTC could potentially match this pattern,   
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 4 of 18 Improve Viral Genomic Feature Representation and Classification
+
+depending on how the wildcards are interpreted in the search context. 
+
+Definition 3 (One-off condition [67]). Suppose 𝐒 𝟏 = ⟨𝑠 1,
+
+𝑠 2, …, 𝑠 𝑘 , …, 𝑠 𝑚 ⟩ and 𝐒 ′ 
+
+> 𝟏
+
+= ⟨𝑠 ′1, 𝑠 ′2, …, 𝑠 ′ 
+
+> 𝑗
+
+, …, 𝑠 ′
+
+> 𝑚
+
+⟩ are two occurrences in sequence 𝐒 . If 𝑠 𝑘 = 𝑠 ′ 
+
+> 𝑗
+
+(1 ≤ 𝑘 ≤ 𝑚 ,
+
+1 ≤ 𝑗 ≤ 𝑚 ), 𝐒 𝟏 and 𝐒 ′ 
+
+> 𝟏
+
+violate the one-off condition. Otherwise, the two occurrences are said to satisfy the one-off condition. Suppose that we have a sequence 𝐒 = ⟨{AACACCTC }⟩
+
+and a pattern 𝐩 = A [0 , 1] C[0 , 1] C. According to the gap constraint [0 , 1] , all occurrences of 𝐩 in 𝐒 are ⟨1,3,5⟩, ⟨2,3,5⟩,
+
+⟨4,5,6⟩ and ⟨4,6,8⟩. The occurrences ⟨1,3,5⟩ and ⟨4,5,6⟩ do not satisfy the one-off condition since they share position 5,whereas ⟨1,3,5⟩ and ⟨4,6,8⟩ do satisfy it. 
+
+Definition 4 (negative pattern [67]). Give a character 𝑒 
+
+(where 𝑒 ∈ Σ or 𝑒 is the null character), the corresponding negative character is denoted as ¬𝑒 , and this symbol repre-sents the absence of the character 𝑒 . A negative pattern that incorporates gap constraints can be formulated as: 
+
+𝐩 = 𝑝 1[𝑀, 𝑁 ]¬ 𝑒 1𝑝 2 ⋯ [𝑀, 𝑁 ]¬ 𝑒 𝑗 −1 𝑝 𝑗 ⋯ [𝑀, 𝑁 ]¬ 𝑒 𝑚 −1 𝑝 𝑚 
+
+(1) If 𝑒 𝑗 −1 ∈ Σ , then 𝑝 𝑗 −1 [𝑀, 𝑁 ] ¬ 𝑒 𝑗 −1 𝑝 𝑗 is a negative subsequence, which means that 𝑒 𝑗 −1 does not exist between 
+
+𝑝 𝑗 −1 and 𝑝 𝑗 . (2) If 𝑒 𝑗 −1 is null, then 𝑝 𝑗 −1 [𝑀, 𝑁 ]𝑝 𝑗 is a classical example in Definition 2. For example, consider a pattern p = 𝑝 1[0 , 1] 𝑝 2[0 , 2]¬ 𝑒 1𝑝 3
+
+= C [0 , 1] A[0 , 2]¬ GT. Here, the negative character ¬G in the subpattern A [0 , 2]¬ GT indicates that between "A" and "T", there can be 0, 1, or 2 characters of any type except "G"—in other words, "G" must not appear in the interval between "A" and "T". 
+
+Definition 5 (minimum support [67]). The support of a pattern p within a sequence S is defined to be the count of its occurrences subject to the one-off constraint, represented as 
+
+sup (p, S). For a sequence dataset SDB , the minimum support of a pattern p is sup (p, SDB ), calculated as: sup (p, SDB ) = 
+
+∑𝑁 𝑘 =1 sup (p, 𝑠 𝑘 ) ,where N is the number of sequences in 
+
+SDB . If the support of pattern p in SDB is greater than or equal to a predefined threshold minsup , that is, sup (p, SDB )
+
+≥ minsup , then p is referred to as a frequent sequence. Note that the concept of support calculation here dif-fers from that in traditional SPM algorithms. In conven-tional SPM algorithms, if a pattern p appears in a sequence 
+
+S, its support is counted as 1 regardless of the number of occurrences. In contrast, in the GONPM+ algorithm, the support is determined by the total number of times 
+
+p appears across all sequences. For example, given the sequence S = ⟨{AACACACCTC }⟩ and the pattern p =A[0 , 1] C[0 , 1]¬ GC, p can match both the prefix ’AACAC’ and the suffix ’ACCTC’ of S. Therefore, the support of p
+
+in S is 2. Based on the concept of subsequence, the support                                            
+
+> Table 1
+> Viral genome sequences were retrieved from the NCBI Gen-Bank database in the CRF, and additional statistics on their lengths were conducted.
+> Virus RNA type Samples in CRF minlen maxlen Dengue (+)ssRNA 200 8136 10179 Dabie (−)ssRNA 200 882 6255 Hanta (−)ssRNA 200 324 6477 Ebola (−)ssRNA 200 12486 16956 MERS (+)ssRNA 200 8568 44097 HIV (−RT)ssRNA 200 1794 11304 Hepaci (+)ssRNA 200 5967 10293 Rota dsRNA 200 453 3507 Average 200 4826 13633 (+)ssRNA: Positive-sense single-stranded RNA, (−)ssRNA: Negative-sense single-stranded RNA, dsRNA: Double-stranded RNA. (−RT)ssRNA: Negative-sense reverse transcription single-stranded RNA, CRF: Coding Region Form.
+
+measure is defined as follows. GSC refers to the genome se-quence corpus and 𝑆 𝑥 is a subsequence of a certain sequence 
+
+𝑆 . The support of the subsequence 𝑆 𝑥 , denoted as sup (𝑆 𝑥 ), is the total occurrence frequency of the subsequence 𝑆 𝑥 in 
+
+GSC . Count (𝑆 𝑥 , 𝑆 ) denotes the number of occurrences of 
+
+𝑆 𝑥 in 𝑆 . Formally, it is defined as: 
+
+sup (𝑆 𝑥 ) = ∑
+
+> 𝑆 ∈𝐺𝑆𝐶
+
+count (𝑆 𝑥 , 𝑆 ). (1) 
+
+## 4. Proposed GeneNSPCla approach 
+
+In this section, we introduce the GeneNSPCla method. The GeneNSPCla method is divided into three main steps: 1) Database and processing; 2) Obtaining negative sequential patterns of data through the GONPM+ algorithm; and 3) Training classifiers using these patterns and performing performance evaluation. The GeneNSPCla method can serve as a general approach, allowing the configuration of different negative SPM algorithms or distinct classifiers. 
+
+4.1. Database and preprocessing 
+
+We selected eight RNA viruses from distinct taxonomic groups that exhibit low pairwise similarity and considerable variation in sequence length, with sequencing data retrieved from GenBank [55]. For each virus, we focused on the 
+
+coding region form (CRF) , which represents continuous coding regions composed of codons, where each codon consists of three nucleotides. These CRF sequences were downloaded in FASTA format [44]. Notably, the GeneN-SPCla framework is representation-agnostic and can be ex-tended beyond CRF to non-coding regions or protein-level amino acid sequences in our future studies. Due to the high computational complexity of extracting negative sequential patterns, the dataset used for GONPM training was con-structed by randomly selecting 200 genomic sequences from each of the eight RNA virus species. This sampling strategy ensures that each virus type contributes an equal number of sequences, thus mitigating potential data imbalance between categories and maintaining diversity within each class. How-ever, the current version of GONPM+ is not yet optimized   
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 5 of 18 Improve Viral Genomic Feature Representation and Classification
+
+for large-scale datasets, as mining negative patterns over the entire genomic collection would result in substantial mem-ory consumption and computational overhead. We expect that training on larger datasets would further enhance the robustness and generalizability of the discovered negative patterns, providing a more comprehensive representation of viral genomic diversity once computational efficiency is improved. Future work will therefore focus on training the model with larger datasets and evaluating its performance on closely related viral strains as well as real-world metage-nomic mixtures. The detailed composition of the dataset is summarized in Table 1. Each viral genome sequence consists of four canonical nucleotides: A (adenine), C (cytosine), G (guanine), and 
+
+T (thymine). In some sequences, additional symbols ap-pear to represent ambiguous positions or mixtures of these bases; such cases are referred to as redundant nucleotides (RN) . Samples containing RN are thus defined as redundant samples, and in our dataset, the proportion of redundant sequences was approximately 6.47%. To handle these, each distinct RN was mapped to a unique positive integer. In this encoding scheme, a special code −1 serves as a delimiter between codons, and −2 is appended at the end of each sequence to denote termination. This conversion enables direct processing by conventional SPM algorithms, thereby ensuring compatibility and allowing seamless comparison with GONPM. Table 2 illustrates CRF sequences in both raw and encoded formats, with examples covering positive and negative SPM. Following this encoding scheme, for each virus class, se-quences were encoded as illustrated in Table 2, which served as input to the positive frequent pattern mining algorithm CM-SPAM. In contrast, the original genomic sequences were directly used as input for the negative pattern mining algorithm GONPM+ without applying additional sequence filtering or length normalization, since GONPM+ operates on complete sequence information. The discovered negative sequential patterns were subsequently encoded using the same scheme as positive patterns, thereby unifying both rep-resentations into a consistent feature format for downstream classification. 
+
+4.2. Using negative SPM for learning 
+
+NSP mining has attracted attention in bioinformatics because it can capture informative absence signals that are often ignored by conventional frequent-pattern mining. The current research on negative SPM mainly focuses on mul-tiple supports [70], progressive pattern mining [24], and so on. However, these algorithms exhibit two key limitations: overlooking pattern repeat counting (i.e., only determining whether a pattern is present, without counting its multiple occurrences within a sequence) and a lack of gap constraints. The frequency of a pattern within a single sequence is of crucial importance. For instance, the occurrence frequency of short fragments such as dinucleotides in a single genomic sequence can be applied to species classification and evo-lutionary research [26]. Furthermore, due to a lack of gap constraints, these traditional methods incorporate irrelevant regions into patterns during the mining process, resulting in generated patterns containing non-functional fragments, which are essentially meaningless patterns [32]. 
+
+4.2.1. ONP-Miner algorithm 
+
+By contrast, ONP-Miner [67] introduces the concept of one-off negative sequential patterns with embedding con-straints, thereby reducing redundancy and improving effi-ciency. Its pruning strategies make it better suited for large sequential datasets than earlier NSP algorithms. Our pro-posed algorithm adopts ONP-Miner as the foundation and proposes the GONPM+. Our improved algorithm not only preserves the computational efficiency of ONP-Miner but also adapts its definitions of patterns and constraints to the properties of nucleotide and coding-region sequences. This enables the discovery of negative patterns that correspond more closely to biologically meaningful motifs, while main-taining scalability for long viral genomes. The pseudocode of the ONP-Miner (Algorithm 1) is outlined as follows: 
+
+Algorithm 1: ONP-Miner                                                                           
+
+> Input: A sequence database SDB , a minimum support threshold minsup , the gap constraint gap .
+> Output: ONPs stored in 𝐹 .
+> 1initialize traverse SDB , get Σ, and store frequent positive patterns with length one in 𝐹 1;len ←2;
+> 2initialize 𝐹 2←FindONP2 ( SDB ,minsup ,gap ,𝐹 1,Σ);
+> 3while 𝐹 𝑙𝑒𝑛 ≠null do
+> 4cand ←PatternJoin( 𝐹 𝑙𝑒𝑛 ,𝑙𝑒𝑛 );// Generate all candidate patterns with length
+> 5len + 1;
+> 6for each positive candidate pattern pin cand do
+> 7sup (p,SDB )←MatchDB( SDB , p) ;
+> 8if sup (p,SDB )≥minsup then
+> 9𝐹 𝑙𝑒𝑛 +1 ←𝐹 𝑙𝑒𝑛 +1 ∪p;
+> 10 Prune p;
+> 11 end
+> 12 else
+> 13 prune pand its corresponding negative sequence patterns;
+> 14 end
+> 15 end
+> 16 𝐹 𝑙𝑒𝑛 +1 ←𝐹 𝑙𝑒𝑛 +1 ∪FindFrequent( SDB ,minsup ,
+> cand );
+> 17 len ←len + 1;
+> 18 end
+> 19 return 𝐹
+
+Step 1: Traverse the sequence database to identify the fre-quent patterns of length-1 and store them in 𝐹 1.
+
+Step 2: The FindONP2 algorithm is used to generate pos-itive candidate patterns of length 2. It then prunes the infrequent candidate patterns. Finally, it gener-ates negative candidate patterns based on the frequent patterns and calculates the support of each pattern to screen out frequent patterns of length 2. In the                                                                                                                                                                                                                  
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 6 of 18 Improve Viral Genomic Feature Representation and Classification
+> Table 2
+> (CRF)-formatted genome sequences, including five examples. The original sequences are presented in Figure (a); Figure (b) presents the encoded sequences; Figure (c) displays a part of the negative sequential patterns corresponding to each example; and Figure (d) shows the encoding of the negative sequential patterns in Figure (c).
+> (a) Positive sequences in CRF
+> ID Sequence
+> 1⟨{AGC }⟩
+> 2⟨{T[0,2]ACG }⟩
+> 3⟨{TA[0,2]GC[0,2]TA }⟩
+> 4⟨{T[0,2]ATGC[0,2]AT }⟩
+> 5⟨{GC[0,2]G[0,2]TA[0,2]CG }⟩
+> (b) The transformed sequences in CRF
+> ID Sequence
+> 1𝟏 –1𝟑 –1𝟐 –1–2
+> 2𝟒 –1𝟏 –1𝟐 –1𝟑 –1–2
+> 3𝟒 –1𝟏 –1𝟑 –1𝟐 –1𝟒 –1𝟏 –1–2
+> 4𝟒 –1𝟏 –1𝟒 –1𝟑 –1𝟐 –1𝟏 –1𝟒 –1–2
+> 5𝟑 –1𝟐 –1𝟑 –1𝟒 –1𝟏 –1𝟐 –1𝟑 –1–2
+> (c) Negative sequences in CRF
+> ID Sequence
+> 1⟨{𝐴𝑇 [0 ,2]¬ 𝐺 }⟩
+> 2⟨{𝐴 [0 ,2] 𝑇 𝐺 [0 ,2]¬ 𝐶 }⟩
+> 3⟨{𝐺𝐶𝑇 𝐴 [0 ,2]¬ 𝑇 [0 ,2]¬ 𝐺 }⟩
+> 4⟨{𝑇 [0 ,2]¬ 𝐺 [0 ,2] 𝐴𝐶 [0 ,2]¬ 𝐴 }⟩
+> 5⟨{𝐴 [0 ,2]¬ 𝐶𝑇 [0 ,2] 𝑇 𝐺 [0 ,2]¬ 𝑇 }⟩
+> (d) The transformed sequences in CRF
+> ID Sequence
+> 1𝟏 –1𝟒 –1𝐟𝟑 –1–2
+> 2𝟏 –1𝟒 –1𝟑 –1𝐟𝟐 –1–2
+> 3𝟑 –1𝟐 –1𝟒 –1𝟏 –1𝐟𝟒 –1𝐟𝟑 –1–2
+> 4𝟒 –1𝐟𝟑 –1𝟏 –1𝟐 –1𝐟𝟏 –1–2
+> 5𝟏 –1𝐟𝟐 –1𝟒 –1𝟒 –1𝟑 –1𝐟𝟒 –1–2
+
+FindONP2 algorithm, the FindFrequent algorithm is invoked. The primary function of this algorithm is to filter the set of candidate input patterns and retain frequent patterns with support ≥ minsup .
+
+Step 3: The PatternJoin algorithm generates all candidate patterns of length len + 1. Based on the frequent pattern set of length 𝑙 , this algorithm extracts the suffix (by removing the first element) and prefix (by removing the last element) for each pattern in the set. If the suffix of one pattern matches the prefix of another pattern exactly, a candidate pattern of length 
+
+𝑙 + 1 is generated through "pattern join ( 𝑝 ⊕ 𝑞 )". 
+
+Step 4: The MatchDB algorithm calculates the support of each positive candidate pattern. Centered on depth-first search combined with backtracking, this algo-rithm relies on the DFS algorithm. It locates unused characters in the sequence that match the first element of the pattern as roots, and through the DFS algo-rithm, identifies complete occurrences of the pattern that satisfy the one-off, gap, and negative charac-ter constraints. After marking the used characters, it backtracks to find new occurrences and finally counts the support of the pattern. This algorithm processes the candidate patterns: if the support of a candidate pattern is no less than the preset threshold, the algo-rithm stores the pattern in 𝐹 𝑙𝑒𝑛 +1 ; otherwise, it prunes the corresponding negative candidate patterns of the candidate pattern. 
+
+Step 5: The MatchDB algorithm computes the support of each negative candidate pattern. If the support of the negative candidate pattern meets or exceeds the predefined threshold, the algorithm stores this pattern in 𝐹 𝑙𝑒𝑛 +1 . At this point, 𝐹 𝑙𝑒𝑛 +1 contains both positive and negative patterns with support greater than the threshold, and then len is updated to len + 1. 
+
+Step 6: Repeat Steps 3 through 5 until the collection of frequent patterns becomes empty. 
+
+4.2.2. GONPM+ algorithm 
+
+To extract discriminative features from RNA viral ge-nomic sequences, we employ a negative sequential pattern mining approach that captures informative absence signals specific to RNA viruses. Building upon the ONP-Miner framework, we previously proposed the GONPM algorithm, which dynamically adjusts the minimum support threshold to enhance the extraction of biologically meaningful nega-tive sequential patterns. This method demonstrated superior performance in identifying informative negative features and effectively improved viral classification accuracy. In this extended version, we further enhance GONPM by introducing a decay-based adaptive support mechanism, re-ferred to as GONPM+ . Unlike the original GONPM, which only adjusts the minimum support once after a specific itera-tion, GONPM+ introduces a set of decay factors { 𝑓 2, 𝑓 3, … ,
+
+𝑓 𝑛 } that progressively reduce the support threshold across multiple levels of candidate generation. This gradual adjust-ment allows the algorithm to relax the mining constraints in a layer-wise manner, thereby facilitating the exploration of longer and less frequent negative patterns while avoid-ing excessive candidate expansion. As a result, the mining process becomes more flexible and fine-grained, enabling a more detailed characterization of variations among RNA viral genomes. Consequently, we have made the following improvements: 
+
+• Optimization for adaptability to genomic data : The storage format of patterns in 𝐹 𝑙𝑒𝑛 +1 is optimized and encoded to improve compatibility with genomic data processing (encoded in the format mentioned in Sec-tion 4.1). Additionally, the algorithm’s output results are enhanced to facilitate the direct extraction of pro-cessed negative pattern sequences.   
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 7 of 18 Improve Viral Genomic Feature Representation and Classification
+
+• Progressive decay-based adjustment of the mini-mum support threshold : Building upon the adap-tive threshold mechanism introduced in GONPM, the improved algorithm GONPM+ incorporates a multi-level decay strategy to further optimize pattern ex-traction. Instead of applying a fixed reduction after a specific iteration, GONPM+ introduces a series of de-cay factors {𝑓 2, 𝑓 3, … , 𝑓 𝑛 } to progressively decrease the minsup value across successive invocations of the PatternJoin algorithm. This progressive adjustment enables a smoother and more adaptive relaxation of the support threshold as the pattern length increases, facilitating the discovery of longer and rarer nega-tive patterns while maintaining computational stabil-ity and efficiency. The GONPM+ algorithm is shown in Algorithm 2. The specific steps of this algorithm are as follows: 
+
+Step 1: Traverse the sequence database to identify all fre-quent length-1 patterns and store them in 𝐹 1. For the RNA viral genomes analyzed in this study, 𝐹 1 includes the four canonical nucleotides ( A, C, G, and T) along with a small number of low-frequency redundant nu-cleotides. Subsequently, the algorithm invokes the FindONP2 algorithm to generate positive candidate patterns of length 2. 
+
+Step 2: The PatternJoin algorithm is invoked to gener-ate all candidate patterns of length len + 1 . For layer-wise control, GONPM+ applies decay factors 
+
+(𝑓 2, 𝑓 3, … , 𝑓 𝑛 ) to the original minimum support min-sup . Specifically, the patterns stored in 𝐹 2 use a threshold of minsup × 𝑓 2, the patterns in 𝐹 3 use 
+
+minsup ×𝑓 3, etc., up to 𝐹 𝑛 , which uses minsup ×𝑓 𝑛 . For any subsequent layers beyond 𝑛 , the threshold remains at minsup × 𝑓 𝑛 .
+
+Step 3: The MatchDB algorithm is used to calculate the support of each positive candidate pattern. If the sup-port of a candidate pattern meets or exceeds the preset threshold, the pattern is stored in 𝐹 𝑙𝑒𝑛 +1 . Otherwise, the corresponding negative candidate patterns associ-ated with it are pruned in this step of the process. 
+
+Step 4: The MatchDB algorithm is then used to compute the support of each negative candidate pattern. Nega-tive patterns whose support values meet or exceed the predefined threshold are retained and stored in 𝐹 len +1 
+
+for subsequent iterations. Specifically, 𝐹 𝑙𝑒𝑛 +1 stores both frequent positive and negative patterns, and len 
+
+is updated to len + 1. 
+
+Step 5: Repeat Steps 2 through 4 until the collection of frequent patterns becomes empty. 
+
+Complexity analysis . (1) The time complexity of the GONPM+ algorithm involves several parameters: 𝑙 rep-resents the number of candidate patterns, 𝑚 denotes the maximum length of such patterns, and 𝑛 stands for the 
+
+Algorithm 2: GONPM+                                                                                          
+
+> Input: SDB ,minsup , gap constraints gap , the decay factors {𝑓 2,𝑓 3,…,𝑓 𝑛 }
+> 1.Output: Negative frequent patterns stored in F.
+> 2initialize traverse SDB , get Σ, and store frequent positive patterns with length one in 𝐹 1;𝑙𝑒𝑛 ←2;
+> 3initialize 𝐹 2←FindONP2( SDB ,minsup ,gap ,𝐹 1,Σ);
+> 4while 𝐹 𝑙𝑒𝑛 ≠null do
+> 5cand ←PatternJoin( 𝐹 𝑙𝑒𝑛 ,len );
+> // Generate all positive and negative patterns patterns with length len + 1 ;
+> 6minsup 𝑛𝑒𝑤 ←minsup ×𝑓 𝑙𝑒𝑛 +1 ;
+> // Dynamically adjust the threshold based on len ;
+> 7for each positive candidate pattern pin cand do
+> 8sup (p,SDB )←MatchDB( SDB , p) ;
+> 9if minsup ≤sup (p,SDB )then
+> 10 𝐹 𝑙𝑒𝑛 +1 ←𝐹 𝑙𝑒𝑛 +1 ∪p; Prune p;
+> 11 end
+> 12 else
+> 13 prune pand its corresponding negative sequence patterns; // Prune strategy ;
+> 14 end
+> 15 end
+> 16 𝐹 𝑙𝑒𝑛 +1 ←𝐹 𝑙𝑒𝑛 +1 ∪FindFrequent( SDB ,minsup ,
+> cand );
+> // Filter the frequent negative patterns from cand ;
+> 17 len ←len + 1;
+> 18 end
+> 19 return 𝐹
+
+length of SDB . The time complexity is mainly composed of generating candidate patterns and mining frequent patterns: the former is 𝑂 (𝑙 2), while for the latter, since the MatchDB 
+
+algorithm has a time complexity of 𝑂 (𝑚 × 𝑛 ) (a nettree contains 𝑚 levels with no more than 𝑛 nodes per level), mining frequent patterns is 𝑂 (𝑙 × 𝑚 × 𝑛 ), leading to the overall time complexity of GONPM+ being 𝑂 (𝑙 × 𝑚 × 𝑛 +
+
+𝑙 2). (2) The space complexity of GONPM+ comprises two key components: candidate pattern generation and support computation. The space complexity of candidate patterns is 𝑂 (𝑚 × 𝑙 ), since the number of candidate patterns is 𝑙 
+
+and the number of frequent patterns does not exceed 𝑙 . The space complexity of the MatchDB algorithm is 𝑂 (𝑚 × 𝑛 ). Therefore, the space complexity of the GONPM+ algorithm is 𝑂 (𝑚 × (𝑙 + 𝑛 )). 
+
+Example : Suppose that we have a sequence S = ⟨𝑠 1𝑠 2𝑠 3𝑠 4
+
+𝑠 5𝑠 6𝑠 7𝑠 8𝑠 9𝑠 10 𝑠 11 ⟩ = ⟨AACACCTCAAG ⟩, gap = [𝑀, 𝑁 ]
+
+= [0, 2], minsup = 2, and Σ = {A, C, G, T}, decay factors (0.9,0.5). Step 1: Iterate through the sequence to count the occurrences of each character. We obtain 𝐹 1 = { 𝐴, 𝐶 }, since the occurrence counts of characters A and C are greater than minsup = 2. Step 2 : Generate positive candi-date patterns with length two. Thus, we obtain 𝐴 [0 , 2] 𝐴 ,
+
+𝐴 [0 , 2] 𝐶 , 𝐶 [0 , 2] 𝐴 , 𝐶 [0 , 2] 𝐶 , since their support values are all greater than 1.8. Next, we generate negative candidate patterns based on these patterns, resulting in a total of 16 candidate patterns. However, only five of them ( 𝐴 [0 , 2]¬ 𝐺𝐶 ,
+
+𝐴 [0 , 2]¬ 𝑇 𝐶 , 𝐶 [0 , 2]¬ 𝐺𝐴 , 𝐶 [0 , 2]¬ 𝐶𝐶 , and 𝐶 [0 , 2]¬ 𝐺𝐶 )  
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 8 of 18 Improve Viral Genomic Feature Representation and Classification
+
+meet the support requirement. Thus, the patterns in 𝐹 2 are the set of these positive and negative frequent patterns. Step 3: Generate positive and negative candidate patterns with length three using pattern join. At this point, minsup is adjusted to 2 × 0 .5 = 1. That is to say, the support of patterns in 𝐹 3 is 1. There are 6 positive candidate patterns in total, in-cluding 𝐴 [0 , 2] 𝐴 [0 , 2] 𝐶 , 𝐴 [0 , 2] 𝐶 [0 , 2] 𝐴 , 𝐴 [0 , 2] 𝐶 [0 , 2] 𝐶 ,
+
+𝐶 [0 , 2] 𝐴 [0 , 2] 𝐶 , 𝐶 [0 , 2] 𝐴 [0 , 2] 𝐴 , and 𝐶 [0 , 2] 𝐶 [0 , 2] 𝐴 . A total of 30 negative frequent patterns are obtained, including 
+
+𝐴 [0 , 2] 𝐶 [0 , 2]¬ 𝐶𝐶 , 𝐴 [0 , 2]¬ 𝐺𝐶 [0 , 2]¬ 𝐶𝐶 , etc. 𝐹 3 stores these frequent and negative patterns. Step 4 : Repeat the steps in Step 3, with minsup set to 1 at this point, until the set of frequent patterns is empty. Then the algorithm terminates. 
+
+4.3. Classification through discovered negative frequent patterns 
+
+This step involves utilizing the extracted negative pattern features for virus classification. This step can be divided into two phases: the training phase and the testing phase. In the training phase, we construct appropriate ML-based classifiers. In the testing phase, the objective is to evaluate the constructed models to assess their performance in terms of the final classification results. Multi-class (MC) classifica-tion is conducted in this study, which assigns each genomic sequence a label corresponding to its unique virus type, requiring the discrimination of each virus. We utilized eight standard ML algorithms, specifically: (1) Logistic Regres-sion ( LR ), (2) Support Vector Machine ( SVM ), (3) Decision Tree ( DT ), (4) Random Forest ( RF ), (5) k-Nearest Neighbors (kNN ), (6) Naive Bayes ( NB ), (7) Multilayer Perceptron (MLP ), and (8) Gradient boosting machine ( GBM ). The per-formance of these classifiers is evaluated using six metrics [58]: (1) Accuracy ( ACC ), (2) Precision ( P), (3) Recall ( R), (4) F1 score ( F1 ), (5) Area Under the Curve ( AUC ) and (6) Area Under the Precision-Recall Curve( AUPRC ). These six metrics are defined as follows: 
+
+ACC = 𝑇 𝑃 + 𝑇 𝑁 𝑇 𝑃 + 𝑇 𝑁 + 𝐹 𝑃 + 𝐹 𝑁 , Recall (R) = 𝑇 𝑃 𝑇 𝑃 + 𝐹 𝑁 ,
+
+(2) 
+
+Precision (P) = 𝑇 𝑃 𝑇 𝑃 + 𝐹 𝑃 , F-measure = 2× 𝑃 × 𝑅 𝑃 + 𝑅 , (3) 
+
+AUC = ∫
+
+> 10
+
+𝑅 (dFPR ), AUPRC =
+
+> 𝑛
+
+∑
+
+> 𝑖 =1
+
+(𝑅 𝑖 − 𝑅 𝑖 −1 ) × ( 𝑃 𝑖 + 𝑃 𝑖 −1 )2
+
+(4) Noted that TP = true positive, TN = true negative, FP 
+
+= false positive, and FN = false negative. In the context of this study, TP denotes the number of sequential patterns that are correctly identified as belonging to a specific virus type. TN refers to the number of sequential patterns that are correctly classified as not belonging to a specific virus type. 
+
+FP represents the number of sequential patterns incorrectly identified as part of a specific virus type. FN corresponds to the number of sequential patterns incorrectly classified as not belonging to the specific virus type. In Equation for AUC ,
+
+dFPR refers to the derivative of the false positive rate FPR 
+
+= 𝐹 𝑃 𝐹 𝑃 +𝑇 𝑁 . 𝑃 𝑖 and 𝑅 𝑖 in Equation for AUPRC represent the precision and recall values, respectively, at the 𝑖 −𝑡ℎ decision threshold. Algorithm 3 provides the general pseudocode of the proposed GeneNSPCla approach. The RNA viral genome sequences are first converted into integer-based abstractions to facilitate pattern mining. NSPs are then extracted from the abstracted sequences using the GONPM algorithm. These patterns serve as input features for multiple machine learning classifiers, which are trained and evaluated using an 80:20 train–test split. The algorithm outputs the classification met-rics, including ACC , P, R, F1-score , AUC , and AUPRC .Figure 1 illustrates the workflow of the GeneNSPCla frame-work. 
+
+Algorithm 3: GeneNSPCla                                                     
+
+> Input: Genome sequence corpus ( GSC ) of RNA viruses in CRF .
+> Output: Classification results including ACC ,P,R,F1 ,
+> AUC , and AUPRC .
+> // Step 1: Convert sequences into the needed abstraction
+> 1abstraction ←Convert GSC to integer-based representation;
+> // Step 2: Find negative sequential patterns ( NSPs )
+> 2NSPs ←Patterns are extracted by processing the abstracted GSC using the GONPM+ algorithm;
+> // Step 3: Train classifiers
+> 3for each classifier in Classifiers do
+> 4train classifier with NSPs as features using default hyperparameters;
+> 5end
+> // Step 4: Evaluate classifiers
+> 6for each classifier in Classifiers do
+> 7evaluate the classifier using an 80:20 training: testing ratio;
+> 8store metrics: ACC ,P,R,F1 ,AUC , and AUPRC ;
+> 9end
+> 10 return ACC ,P,R,F1 ,AUC , and AUPRC
+
+## 5. Experimental Results 
+
+In this section, we focus on the multi-class virus se-quence classification task. This choice is motivated by the fact that our study involves eight distinct virus types, and a binary classification formulation would inevitably introduce severe class imbalance, with the negative class comprising sequences from multiple viruses and greatly outnumbering the positive class. Such an imbalance increases the risk of overfitting and can bias the learned decision boundaries, par-ticularly when modeling heterogeneous viral populations. In contrast, a multi-class setting treats each virus class symmet-rically and aims to accurately determine the specific viral category to which each sequence belongs, thereby better reflecting the practical requirement of virus identification.                          
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 9 of 18 Improve Viral Genomic Feature Representation and Classification
+> Table 3
+> Parameters of the eight ML classifiers and three algorithm settings. Classifier Parameters LR solver: ’lbfgs’, C: 1.0, max_iter: 1000 RF n_estimators: 200, criterion: ’gini’, max_depth: None, min_samples_split: 2; min_samples_leaf: 1, n_jobs: -1 kNN n_neighbors: 5, weights: ’distance’, metric: ’minkowski’ NB Default parameters SVM kernel: ’rbf’, C: 1.0, gamma: ’scale’, probability: True MLP hidden_layer_sizes: (100,), activation: ’relu’, solver: ’adam’; learning_rate_init: 0.001, max_iter: 300 DT criterion: ’gini’, max_depth: None, min_samples_split: 2, min_samples_leaf: 1 GBM n_estimators: 100, learning_rate: 0.1, max_depth: 3 Algorithm Parameters CM-SPAM Min pattern length: 6, max pattern length: 9, Required items: 1, 2, 3, 4, max gap: 1 ONP-Miner Gap constant: [0,3] GONPM Gap constant: [0,3], min length: 3, ratio: 1.3 GONPM+ Gap constant: [0,3], (𝑓 2, 𝑓 3,…, 𝑓 𝑛 )= (0.9,0.85,0.75,0.65) Regarding the parameters of the CM-SPAM algorithm, this indicates that the discovered patterns with lengths ranging from 6 to 9 are required to contain the four nucleotide bases (A, C, G, T), and the gap constraint is set to [0, 1]. Regarding the parameters of the GONPM algorithm, when len ≥3, the support is reduced to 1∕1 .3times its original value.
+
+Although multi-class classification is inherently more chal-lenging and often results in lower absolute accuracy, it offers greater room for methodological improvement and provides a more rigorous evaluation of discriminative capability. In-deed, as reported in related work [41], the best-performing classifiers under similar multi-class settings achieve accu-racies of only around 50%, underscoring the difficulty and relevance of this task. All experiments were conducted to evaluate the per-formance of GeneNSPCla on RNA viral genome datasets in CRF. Eight representative RNA viruses were selected from distinct taxonomic groups to ensure diversity. The positive frequent patterns were discovered using the CM-SPAM algorithm from the SPMF data-mining library 1. In contrast, negative sequential patterns were extracted with the GONPM+ algorithm. Data preprocessing and feature uni-fication were performed in Python, utilizing libraries such as Pandas and NumPy for data manipulation and numerical computation. The training and evaluation of eight machine learning classifiers were carried out using the scikit-learn library 2. To reduce classifier sensitivity to hyperparameters and ensure a fair comparison, GridSearchCV was employed to optimize key hyperparameters under the same cross-validation setting, but the resulting performance differences were marginal. All experiments were conducted on a work-station equipped with an Intel Core i7 processor, 64 GB of RAM, and the Windows 11 operating system. The parame-ters of the classifiers and algorithms are shown in Table 3. The source code and datasets are available at GitHub 3.
+
+5.1. Frequent patterns 
+
+To intuitively illustrate the negative sequential patterns discovered by our method, Figure 2 presents a representative 
+
+> 1https://www.philippe-fournier-viger.com/spmf
+> 2https://scikit-learn.org
+> 3https://github.com/zhuwenxi317/GeneNSPCla
+
+example mined from a 204-nt RNA sequence of Hanta virus. The upper nucleotide sequence and the encoded numeric sequence in the middle correspond to the same viral genome, where the encoding procedure is described in detail in Sec-tion 4.1. The green-marked bases in the sequence indi-cate the occurrences of a representative negative sequential pattern, A [0 , 1]¬ TA [0 , 1] T[0 , 1] T, which appears ten times in this sequence. This pattern explicitly characterizes the absence of the specific nucleotide T between the surrounding nucleotides, rather than the mere presence of frequent mo-tifs, thereby capturing absence-based constraints in the viral genome organization. As illustrated in the lower-right panel of Figure 2, we refer to the biological interpretation of absent or under-represented subsequence patterns reported by Koulouras et al. [28]. Their study shows that negative patterns in vi-ral genomes are not random artifacts but reflect conserved evolutionary adaptation strategies arising from long-term virus–host interactions. In particular, many recurrent neg-ative patterns correspond to short palindromic sequences of 4–6 nucleotides that serve as recognition sites for host restriction enzymes and are therefore selectively avoided by viruses to reduce genome cleavage. A representative exam-ple is the subsequence GCCGGC, which is the recognition site of the restriction enzyme HpaII and has been reported to be absent in 1,198 viral species, indicating a widespread and conserved avoidance mechanism across viral taxa. In addi-tion, other absent or underrepresented sequences have been associated with immune evasion via molecular mimicry, while the systematic avoidance of long repetitive or GC-rich palindromic sequences helps prevent unfavorable secondary structure formation, thereby supporting efficient viral repli-cation and translation.   
+
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 10 of 18
+
+Improve Viral Genomic Feature Representation and Classification One RNA sequence of Hanta virus in CRF format 
+
+biological implication 
+
+ATTTGTCCTGCCCTCAGTC ACAGTGTCCTTATTGTTTTAC ACATT GTGAGCCTACAG AAT CTGCCTTTCAGGC ACATT ATA AA GTGTGCC 
+
+AGGCAACACAC AGATT TAGGGATGATTTGAAGAAGACAATAACACCTCAGTCTACAAGCCCTGGGTGTTACCGG ACATT AAAT CTCTT 
+
+TAGAT ATAAAAGTAGGTGTT ACAT CT                                                                                                                                                                                                            
+
+> 1-1 4 -1 4 -1 4 -1 3 -1 4 -1 2 -1 2 -1 4 -1 3 -1 2 -1 2 -1 2 -1 4 -1 2 -1 1 -1 3 -1 4 -1 2 -1 1 -1 2 -1 1 -1 3 -1 4 -1 3 -1 4 -1 2 -1 2 -1 4 -1 4 -1 1 -1 4 -1 4 -1 3 -1 4 -1 4 -1
+> 4-1 4 -1 1 -1 2 -1 1 -1 2 -1 1 -1 4 -1 4 -1 3 -1 4 -1 3 -1 1 -1 3 -1 2 -1 2 -1 4 -1 1 -1 2 -1 1 -1 3 -1 1 -1 1 -1 4 -1 2 -1 4 -1 3 -1 2 -1 2 -1 4 -1 4 -1 4 -1 2 -1 1 -1 3 -1 3 -1
+> 2-1 1 -1 2 -1 1 -1 4 -1 4 -1 1 -1 4 -1 1 -1 1 -1 1 -1 3 -1 4 -1 3 -1 4 -1 3 -1 2 -1 2 -1 1 -1 3 -1 3 -1 2 -1 1 -1 1 -1 2 -1 1 -1 2 -1 1 -1 2 -1 1 -1 3 -1 1 -1 4 -1 4 -1 4 -1 1 -1
+> 3-1 3 -1 3 -1 1 -1 4 -1 3 -1 1 -1 4 -1 4 -1 4 -1 3 -1 1 -1 1 -1 3 -1 1 -1 1 -1 3 -1 1 -1 2 -1 1 -1 1 -1 4 -1 1 -1 1 -1 2 -1 1 -1 2 -1 2 -1 4 -1 2 -1 1 -1 3 -1 4 -1 2 -1 4 -1 1 -1
+> 2-1 1 -1 1 -1 3 -1 2 -1 2 -1 2 -1 4 -1 3 -1 3 -1 3 -1 4 -1 3 -1 4 -1 4 -1 1 -1 2 -1 2 -1 3 -1 3 -1 1 -1 2 -1 1 -1 4 -1 4 -1 1 -1 1 -1 1 -1 4 -1 2 -1 4 -1 2 -1 4 -1 4 -1 4 -1 1 -1
+> 3-1 1 -1 4 -1 1 -1 4 -1 1 -1 1 -1 1 -1 1 -1 3 -1 4 -1 1 -1 3 -1 3 -1 4 -1 3 -1 4 -1 4 -1 1 -1 2 -1 1 -1 4 -1 2 -1 4 -2
+
+Nucleotides transformation (after preprocessing)     
+
+> A-> 1
+> C-> 2
+> G-> 3
+> T-> 4
+
+A=60 
+
+C=44 
+
+G=39 
+
+T=61 
+
+Nucleotide occurrence frequency 
+
+A[0,1] ¬ TA [0,1] T [0,1] T 10 
+
+A[0,1] ¬ TA [0,1]T  12 
+
+A[0,1]T[0,1] ¬A [0,1]T 11 
+
+A[0,1] ¬C[0,1]T[0,1]T  11 
+
+Negative sequential patterns Frequency 
+
+····· ¬ GCCGGC ·····
+
+Viral genome high -frequency negative pattern 
+
+Negative sequential patterns  Biological implication 
+
+> Number of
+> distinct species
+
+1198  Recognition site of the  
+
+> restriction enzyme HpaII
+
+····· ¬ GGCGCC ····· 1186  Recognition site of the  
+
+> restriction enzyme MspI
+
+····· ¬ GATC ····· ··  720   
+
+> Recognition sites of the
+> restriction enzymes
+> MboI and Sau3AI
+
+····· ¬ CTGCAG ····· 938  Recognition site of the  
+
+> restriction enzyme Pstl
+
+····· ¬ GGATCC ····· 953  Recognition site of the  
+
+> restriction enzyme BamHI
+
+Figure 2: Example of a CRF-encoded Hanta virus sequence and the corresponding negative sequential patterns. The upper part shows the original RNA sequence and its numerical encoding. The lower-left panel displays frequent negative sequential patterns identified by GONPM+, and the lower-right panel provides illustrative biological interpretations of such negative patterns reported in the literature. Dabie 
+
+> Dengue
+> Hanta
+> Ebola
+> Hepaci
+> HIV
+> MERS
+> Rota 0
+> 20
+> 40
+> 60
+> 80
+> 100
+> Percentage (%)
+> Proportion of Patterns with Different Lengths
+> GONPM+
+> len2
+> len3
+> len4
+> len5
+> len6
+> GONPM
+> len2
+> len3
+> len4
+> len5
+> len6
+
+Figure 3: Proportional distribution of pattern lengths among the features used for classification, obtained using the GONPM and GONPM+ algorithms under identical threshold parame-ters. The darker bars on the left represent the results produced by GONPM+, while the lighter bars on the right correspond to those obtained by GONPM. For each column, the stacked segments from bottom to top denote the number of patterns with lengths 2, 3, 4, 5, and 6, respectively. 
+
+5.1.1. Pattern numbers and length composition 
+
+Figure 3 illustrates the proportions of patterns of differ-ent lengths among the frequent negative patterns discovered by the GONPM and GONPM+ algorithms, respectively. As can be observed from the figure, GONPM+ is capable of increasing the proportion of longer patterns and has signif-icantly boosted the proportions of patterns of lengths 5 and 6. To improve the quality and discriminative power of the extracted features, patterns of lengths 2 and 3 were removed prior to classification for all algorithms under comparison, Dabie Dengue Hanta Ebola Hepaci HIV MERS Rota 
+
+> 0
+> 100
+> 200
+> 300
+> 400
+> 500
+> 600
+> Pattern numbers
+> GONPM
+> GONPM+
+> CM-SPAM
+
+Figure 4: The number of features discovered by the GONPM, GONPM+, and CM-SPAM algorithms after processing eight virus types, which are used as input for classifier training. For each algorithm, the number of extracted patterns per virus was controlled within the range of 300–600 to maintain a comparable feature scale across classes and to avoid potential imbalance-related issues during classification. 
+
+ensuring a fair and consistent feature selection criterion across different pattern-mining methods. Short patterns are often overly generalized and carry limited biological infor-mation, as they tend to occur frequently across different viral genomes and thus contribute minimally to distinguishing be-tween viral species. Indeed, previous k-mer-based genome-signature studies have shown that very small k values fail to capture species-specific or taxon-specific signals, because the k-mer space is too shallow and dominated by background 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 11 of 18 Improve Viral Genomic Feature Representation and Classification Length 2 63 (8.6%) Length 3 312 (42.7%) Length 4 169 (23.2%) Length 5 186 (25.5%) Length 2 63 (4.9%) Length 3 372 (29.2%) Length 4 602 (47.2%) Length 5 239 (18.7%) Length 2 64 (3.4%) Length 3 466 (25.1%) Length 4 1047 (56.3%) Length 5 283 (15.2%) Length 6 133 (7.6%) Length 2 63 (3.6%) 
+
+> Length 3 404 (23%) Length 4 694 (39.5%) Length 5 465 (26.4%)
+
+GONPM  GONPM +
+
+ONP -Miner  GONPM +1 2 3 4 522000 24000 26000 28000 30000   
+
+> Threshold Len GONPM GONPM+ 1860 1759
+> ONP-Miner GONPM+
+> 0500 1000 1500 2000
+> Pattern numbers
+
+Figure 5: The upper and lower panels illustrate the effect of GONPM+ on increasing the proportion of long negative patterns under controlled experimental settings. In the upper panel, the final decay threshold is kept identical across methods, whereas in the lower panel, the total number of discovered patterns is constrained to be comparable. In both panels, the four colors from light to dark represent patterns of lengths 2, 3, 4, and 5, respectively. 
+
+biases [34]. By excluding these short patterns with low information content, the resulting set of patterns becomes more specific and biologically meaningful. We restricted the number of feature sequences extracted for each virus to the range from 300 to 600 to maintain a comparable feature scale across virus classes. This design choice helps prevent class imbalance at the feature level and ensures that no virus dominates the training process due to an excessive number of patterns. As a result, the resulting feature representations remain balanced and suitable for fair classifier training. The final numbers of feature sequences for different viruses are reported in Figure 4. 
+
+5.1.2. Reasons for longer patterns proportion 
+
+In addition, through controlled experiments, we fur-ther demonstrate that GONPM+ increases the proportion of longer patterns compared to GONPM and ONP-Miner (shown in Figure 5). In the upper panel, which compares GONPM+ with GONPM, the final threshold was controlled to be equal. Specifically, GONPM reduces the support threshold abruptly at the third level, whereas GONPM+ decreases it progressively across three levels. The green pie chart on the right shows that in GONPM, the most abundant pattern length is 3 (42.7%), while in GONPM+, the dominant length shifts to 4 (47.2%). In the lower panel, a comparison between GONPM+ and ONP-Miner is pre-sented. By adjusting the parameters, the total number of extracted patterns was kept approximately consistent. The results show that ONP-Miner yields only 15.2% of patterns with length 5, whereas GONPM+ increases this proportion to 26.4%, and notably, patterns of length 6 also emerge, which cannot be obtained by ONP-Miner. It should be noted that the meanings of Len in the upper-left line chart and 
+
+Length on the right differ. Len represents different levels, corresponding to 𝐹 len . For example, when len = 3, 𝐹 3 stores patterns of various lengths, which may include lengths of 2, 3, or 4. In contrast, Length denotes the actual length of an extracted pattern; for instance, the pattern CA ¬GT has a length of 4. The increase in the proportion of longer patterns ex-tracted by GONPM+ is primarily due to the change in the number of candidate patterns. The negative patterns discovered by the algorithm are selected from the candidate patterns generated in the previous level. For instance, the negative patterns stored in 𝐹 4 are derived from the patterns stored in 𝐹 3, which are further expanded using the Pat-ternJoin algorithm and then filtered based on their support values relative to the threshold. By introducing decay fac-tors {𝑓 1, 𝑓 2, … , 𝑓 𝑛 }, the threshold is progressively reduced in a stepwise manner, avoiding the explosive increase in candidate patterns seen in ONP-Miner. Unlike GONPM, where the support threshold remains unchanged in earlier levels for shorter patterns, GONPM+ causes a gradual and moderate increase in the number of patterns. This stepwise reduction in threshold allows the algorithm to incrementally mine patterns at deeper levels without generating excessive numbers of candidates, thereby facilitating the discovery of longer patterns while controlling the overall growth of candidate patterns. 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 12 of 18 Improve Viral Genomic Feature Representation and Classification 
+
+Table 4 
+
+Classifiers’ performance across multiple evaluation metrics (in %). Classifier Accuracy Precision Recall F1-Score AUC AUPRC LR 59 .15 (54 .58) 50 .62 (32 .73) 59 .84 (52 .64) 49 .99 (32 .82) 59 .15 (54 .58) 50 .62 (32 .73) 59 .16 (53 .02) 49 .65 (29 .44) 0.92 (0 .90) 0.89 (0 .73) 0.64 (0 .59) 0.55 (0 .30) 
+
+SVM 58 .66 (54 .06) 48 .77 (32 .61) 60 .30 (53 .36) 48 .13 (36 .05) 58 .66 (54 .06) 48 .77 (32 .61) 58 .46 (53 .34) 48 .68 (31 .25) 0.91 (0 .89) 0.88 (0 .72) 0.63 (0 .57) 0.52 (0 .28) 
+
+DT 54 .63 (48 .82) 42 .90 (31 .96) 55 .24 (47 .92) 41 .08 (34 .06) 54 .63 (48 .82) 42 .90 (31 .96) 54 .40 (47 .95) 41 .41 (31 .38) 0.91 (0 .87) 0.85 (0 .71) 0.63 (0 .53) 0.46 (0 .28) 
+
+RF 54 .63 (49 .08) 41 .98 (31 .84) 55 .94 (47 .43) 37 .57 (34 .17) 54 .63 (49 .08) 41 .98 (31 .84) 54 .52 (47 .67) 39 .39 (31 .32) 0.91 (0 .88) 0.86 (0 .71) 0.64 (0 .54) 0.48 (0 .28) 
+
+kNN 55 .73 (48 .56) 43 .21 (25 .80) 55 .84 (49 .68) 43 .05 (25 .79) 55 .73 (48 .56) 43 .21 (25 .80) 55 .59 (48 .86) 42 .59 (24 .82) 0.85 (0 .83) 0.80 (0 .64) 0.53 (0 .48) 0.41 (0 .23) 
+
+NB 54 .76 (51 .70) 45 .06 (29 .27) 54 .68 (51 .79) 45 .83 (31 .14) 54 .76 (51 .70) 45 .06 (29 .27) 54 .45 (51 .00) 44 .38 (26 .98) 0.90 (0 .89) 0.86 (0 .69) 0.59 (0 .57) 0.50 (0 .26) 
+
+MLP 56 .95 (51 .44) 48 .46 (33 .12) 57 .60 (49 .49) 47 .70 (35 .25) 56 .95 (51 .44) 48 .46 (33 .12) 56 .49 (49 .09) 47 .58 (30 .51) 0.92 (0 .90) 0.88 (0 .73) 0.64 (0 .58) 0.53 (0 .30) 
+
+GBM 55 .85 (51 .70) 46 .91 (32 .86) 56 .92 (50 .06) 42 .38 (33 .36) 55 .85 (51 .70) 46 .91 (32 .86) 55 .88 (49 .96) 44 .11 (31 .07) 0.92 (0 .89) 0.88 (0 .71) 0.64 (0 .57) 0.51 (0 .29) 
+
+Average 56 .02 (51 .24) 45 .99 (31 .27) 56 .77 (50 .30) 44 .47 (32 .83) 56 .02 (51 .24) 45 .99 (31 .27) 55 .78 (49 .99) 44 .72 (29 .60) 0.90 (0 .88) 0.86 (0 .71) 0.62 (0 .55) 0.50 (0 .28) 
+
+AAI 9.32 21 .8 (79 .1) 12 .86 26 .0 (70 .6) 9.32 21 .8 (79 .1) 11 .58 25 .3 (89 .3) 2.34.7 (26 .8) 12 .724 .0 (121 .4) 
+
+Classifiers: LR = logistic regression, SVM = support vector machine, DT = decision tree, RF = random forest, kNN = k-nearest neighbors, NB = naive Bayes, MLP = multilayer perceptron, GBM = gradient boosting machine. The data in the table, including all evaluation metrics such as Accuracy, Precision, Recall, F1-Score, AUC, and AUPRC, follow the format GONPM+ (GONPM )  
+
+> ONP-Miner (CM-SPAM )
+
+. AAI stands for Average Accuracy Improvement, where the numerator represents the relative improvement of GONPM over ONP-Miner, and the denominator represents the relative improvement of GONPM over CM-SPAM. AAI follow the format GONPM+ ONP-Miner (CM-SPAM ) .
+
+5.2. Classification results and Comparison 
+
+5.2.1. Classification result analysis 
+
+Table 4 presents the multi-class classification perfor-mance of eight machine learning classifiers, trained on fea-tures generated by three different mining algorithms: CM-SPAM, ONP-Miner, and the proposed GONPM+. The pro-posed GONPM algorithm achieved an average accuracy im-provement (AAI) across the evaluated classifiers compared with the baseline methods. AAI is defined as: AAI = 1
+
+𝑛 
+
+𝑛 ∑
+
+𝑖 =1 
+
+𝐴 GONPM+ ,𝑖 − 𝐴 baseline ,𝑖 
+
+𝐴 baseline ,𝑖 
+
+× 100% (5) where 𝐴 GONPM+ ,𝑖 denotes the accuracy of GONPM+ with the 𝑖 -th classifier, 𝐴 baseline ,𝑖 denotes the accuracy obtained by a baseline pattern mining algorithm (e.g., ONP-Miner or CM-SPAM) with the same classifier, and 𝑛 is the number of classifiers used in the comparison (here 𝑛 = 8). This metric reports the mean relative gain of GONPM+ over the baseline across all classifiers. Overall, the results clearly demonstrate that GONPM+ consistently achieves the high-est classification performance across all classifiers. Among the eight evaluated classifiers, the SVM achieved the best performance on GONPM+, with an accuracy of 58.66%. In comparison, the highest accuracies achieved by GONPM, ONP-Miner, and CM-SPAM were 54.58%, 50.62%, and 32.73%, respectively. The average classification accuracy across all classifiers was 56.02% for GONPM+, compared with 51.24%, 45.99%, and 31.27% for the other algorithms. Moreover, GONPM+ outperformed all baselines not only in accuracy but also across other key evaluation metrics, con-firming its superior robustness and generalization capability. CM-SPAM ONP-Miner GONPM GONPM+ 010 20 30 40 50 60 5-Fold Cross-Validated SVM Classifier Algorithm Accuracy(%) 
+
+Figure 6: Accuracy comparison of SVM classifiers trained on features generated by four sequence pattern mining algorithms (CM-SPAM, ONP-Miner, GONPM, and GONPM+) under 5-fold cross-validation. The height of each bar represents the average classification accuracy (%), error bars indicate the range of accuracy fluctuations across 5 validation folds, and triangle points denote the accuracy of each individual fold. 
+
+Figure 6 presents the accuracy results under 5-fold cross-validation, demonstrating the robustness of the proposed method. Figure 7 shows the t-SNE visualization of clas-sification results for eight RNA viruses using GONPM+-extracted features, revealing distinct inter-species separabil-ity. Figure 8 illustrates the confusion matrices and ROC curves, obtained from the Random Forest (RF) classifier for 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 13 of 18 Improve Viral Genomic Feature Representation and Classification 20 10 0 10 20 30 
+
+> Dimension 1
+> 20
+> 10
+> 0
+> 10
+> 20
+> Dimension 2
+> Virus Type
+> DabieCR
+> DengueCR
+> HantaCR
+> EbolaCR
+> HepaciCR
+> HIVCR
+> MERSCR
+> RotaCR
+
+Figure 7: Visualization of the multi-class classification results of eight RNA viruses using t-SNE based on features extracted by the GONPM+ algorithm. Each color represents a distinct viral species, and the spatial separation of clusters indicates the discriminative effectiveness of the discovered negative sequential patterns. The "CR" suffix related to viruses denotes the viral Coding Region Form. 
+
+the eight viral classes, using three feature-extraction algo-rithms. As shown, the GONPM+-based model achieves the highest classification accuracy, with fewer misclassifications and higher recall across nearly all virus categories. Inter-estingly, we found that both positive and negative pattern mining algorithms achieved favorable results in identifying Hepaci viruses, indicating that this virus is highly distin-guishable. Additionally, in the identification of Hanta and Dengue viruses, the results obtained by both algorithms were unsatisfactory, suggesting that these viruses lack suf-ficient distinguishability. For the improved GONPM algo-rithm, the probability that the predicted label equals the true label is consistently the highest in the prediction of each virus. These visual results confirm that GONPM+ achieves more robust multi-class classification performance. 
+
+5.2.2. Cause Analysis 
+
+Compared with GONPM, the proposed GONPM+ algo-rithm achieves superior classification performance primarily due to its finer-grained control over the minimum support threshold. By introducing decay factors { 𝑓 2, 𝑓 3, … , 𝑓 𝑛 }, GONPM+ gradually reduces the support value at each min-ing level instead of applying a single abrupt change as in GONPM. This progressive adjustment allows the algorithm to retain more potentially informative longer patterns while still filtering out redundant or noisy candidates. These longer patterns constitute the major portion of the extracted feature sequences and contain richer information, thereby contribut-ing to more effective and accurate viral classification results. On average, GONPM+ improves the overall classification accuracy by approximately 4.78% compared to GONPM. Compared with the positive pattern mining algorithm CM-SPAM, the accuracy has improved by nearly 25%. The potential reasons for this improvement are as follows: Pos-itive pattern mining focuses solely on the presence of re-curring motifs, which often appear across multiple viral species, and may therefore lack sufficient specificity. Neg-ative pattern mining retains the information of positive fre-quent patterns, as negative patterns are derived from positive frequent patterns through pruning strategies. Furthermore, each sequence of positive patterns has dimension 4, as it contains only 𝐴 , 𝐶 , 𝐺 , and 𝑇 . By contrast, negative patterns have eight unique tokens, with the addition of ¬𝐴 , ¬𝐶 , ¬𝐺 ,and ¬𝑇 to the positive patterns, resulting in each sequence having a dimension of 8. This enhances the uniqueness of the patterns, leading to more robust and accurate multi-class viral classification results. 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 14 of 18 Improve Viral Genomic Feature Representation and Classification 
+
+Figure 8: Confusion matrices and ROC curves obtained using the CM-SPAM, ONP-Miner, GONPM, and GONPM+ algorithms, respectively, based on the RF classifier. The results are arranged from top to bottom in the same order. The confusion matrices reflect the ability of the RF classifier to distinguish among eight different virus types, whereas the ROC curves highlight the overall discriminative performance achieved by different pattern-mining strategies. 
+
+5.3. Comparison with SOTA approaches 
+
+In this study, we compare the proposed method with GenoAnaCla [41], as both approaches adopt data min-ing–based strategies for viral genome classification. The two methods are benchmarked on the same dataset with an identical preprocessing and encoding scheme, ensuring a fair comparison in which the primary difference lies in the pattern-mining algorithm itself. Under these controlled 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 15 of 18 Improve Viral Genomic Feature Representation and Classification                                  
+
+> Table 5
+> Comparison of GeneNSPCla with SOTA approaches.
+> Approach GenoAnaCla [41] GeneNSPCla
+> Datasets 8 virus 8 virus Methods Positive pattern min-ing + 8 types of ML-based models Negative pattern min-ing + 8 types of ML-based models Algorithm CM-SPAM GONPM+, GONPM
+> 𝑂 𝑡 𝑂 (𝑛 ×𝑚 2)𝑂 (𝑙 ×𝑚 ×𝑛 +𝑙 2)
+> 𝑂 𝑠𝑝𝑎𝑐𝑒 𝑂 (𝑛 ×𝑚 +𝑙 )𝑂 (𝑚 ×(𝑙 +𝑛 )) Result ACC: 31.27 ACC: 56.02
+> AUC: 0.71 AUC: 0.91
+
+settings, the proposed method achieves improved classifica-tion performance, as shown in Table 5. In contrast, direct comparison with deep learning–based models is not pur-sued, since their performance is highly dependent on dataset scale and preprocessing choices, making such benchmarks less interpretable under the current experimental conditions. From a computational efficiency perspective, consider-ing 𝑛 as the sequence database length, 𝑚 as the maximum candidate pattern length, and 𝑙 as the number of candidate patterns, the CM-SPAM algorithm used in GenoAnaCla has a time complexity of 𝑂 (𝑛 × 𝑚 2), which grows quadratically with 𝑚 and can lead to rapidly increasing runtime for long-pattern datasets such as viral genomes. In contrast, the GONPM+ algorithm employed in GeneNSPCla exhibits a time complexity of 𝑂 (𝑙 × 𝑚 × 𝑛 + 𝑙 2), where the dependence on 𝑚 is linear, and the number of candidate patterns 𝑙 is effectively controlled through pruning, resulting in more gradual computational growth in practice. Regarding space complexity, CM-SPAM requires 𝑂 (𝑛 ×𝑚 +𝑙 ) memory, while GONPM+ requires 𝑂 (𝑚 × ( 𝑙 + 𝑛 )) ; since both share the dominant term 𝑚 × 𝑛 , their memory consumption remains comparable when 𝑙 is not excessive. Overall, GeneNSPCla avoids the quadratic dependence on pattern length inherent in CM-SPAM without introducing substantial additional memory overhead, making it more suitable for viral se-quence analysis. 
+
+## 6. Conclusion 
+
+6.1. Result analysis and conclusion 
+
+In this study, we propose a novel framework termed GeneNSPCla, an enhanced negative sequential pattern min-ing framework for RNA virus classification, together with an improved mining algorithm, GONPM+, which dynami-cally adjusts the minimum support threshold during pattern generation to extract longer and more informative nega-tive patterns compared with the conventional ONP-Miner algorithm. Experimental results demonstrate that features derived from GONPM+ consistently improve classification performance across multiple machine learning classifiers, achieving average accuracy gains of 10.03% and 23.16% over ONP-Miner and the positive pattern mining algorithm CM-SPAM, respectively. While these results validate the methodological effectiveness of the proposed approach, we acknowledge that certain limitations remain and that fur-ther improvements are possible, which are discussed in the following sections. Overall, the findings suggest that nega-tive sequential patterns provide a complementary and more discriminative feature representation than positive patterns, leading to more effective classification of RNA viruses under the evaluated experimental settings. In particular, the proposed GONPM+ algorithm is better suited for mining negative patterns in multi-class RNA virus classification tasks with a limited number of virus categories, as it enables the extraction of longer negative sequential patterns through adaptive support adjustment. These longer patterns enrich the feature space and contribute to improved classification performance compared with conventional positive pattern mining and earlier negative pattern approaches. 
+
+6.2. Limitations and future directions 
+
+Despite the encouraging results, several limitations re-main and motivate future research directions. (1) Although GeneNSPCla consistently outperforms the selected pattern-mining baselines, the absolute performance gains are mod-erate; future work will explore the integration of GONPM-based features with advanced learning models to further enhance classification performance. (2) GONPM+ faces scalability challenges on larger datasets, and its sensitivity to key parameters (e.g., decay factor and support threshold) has not been fully explored; future studies will focus on im-proving computational efficiency and conducting systematic parameter sensitivity analyses to refine the dynamic thresh-old adjustment strategy. (3) The current evaluation relies on a limited-scale dataset with 200 sequences per virus class and eight RNA virus families; future work will extend validation to larger, more diverse datasets, including closely related viral strains and real-world metagenomic mixtures, to better assess robustness and generalizability. (4) While negative sequential patterns show strong discriminative capability, their biological interpretation has not yet been examined; future research will aim to associate representative negative patterns with known viral functions or evolutionary mecha-nisms to enhance biological relevance and interpretability. 
+
+## Acknowledgment 
+
+This research was supported in part by the National Natural Science Foundation of China (No. 62272196), the Guangzhou Basic and Applied Basic Research Foundation (No. 2024A04J9971). 
+
+## CRediT Authorship Contribution Statement 
+
+Wenxi Zhu : Methodology, writing original draft. Wen-sheng Gan : Review and editing, supervision. Zhenlian Qi :Review and editing. 
+
+## References     
+
+> [1] Agrawal, R., Imieliński, T., and Swami, A. (1993). Mining association rules between sets of items in large databases. In The ACM SIGMOD International Conference on Management of Data , pages 207–216.
+> Wenxi Zhu et al.: Preprint submitted to Elsevier Page 16 of 18
+
+Improve Viral Genomic Feature Representation and Classification 
+
+[2] Agrawal, R. and Srikant, R. (1995). Mining sequential patterns. In The Eleventh International Conference on Data Engineering , pages 3–14. IEEE. [3] Ahmed, I. and Jeon, G. (2022). Enabling artificial intelligence for genome sequence analysis of COVID-19 and alike viruses. Interdis-ciplinary Sciences: Computational Life Sciences , 14(2):504–519. [4] Akbari Rokn Abadi, S., Mohammadi, A., and Koohi, S. (2023). A new profiling approach for DNA sequences based on the nucleotides’ physic-ochemical features for accurate analysis of SARS-CoV-2 genomes. BMC Genomics , 24(1):266. [5] Almeida, J. S., Carrico, J. A., Maretzek, A., Noble, P. A., and Fletcher, M. (2001). Analysis of genomic sequences by chaos game representa-tion. Bioinformatics , 17(5):429–437. [6] Alshayeji, M. H., Sindhu, S. C., and Abed, S. (2023). Viral genome prediction from raw human DNA sequence samples by combining natural language processing and machine learning techniques. Expert Systems with Applications , 218:119641. [7] Altschul, S. F., Gish, W., Miller, W., Myers, E. W., and Lipman, D. J. (1990). Basic local alignment search tool. Journal of Molecular Biology ,215(3):403–410. [8] Azevedo, K. S., de Souza, L. C., Coutinho, M. G., de M. Barbosa, R., and Fernandes, M. A. (2024). DeepVirusClassifier: a deep learning tool for classifying SARS-CoV-2 based on viral subtypes within the coronaviridae family. BMC Bioinformatics , 25(1):231. [9] Bray, N. L., Pimentel, H., Melsted, P., and Pachter, L. (2016). Near-optimal probabilistic RNA-seq quantification. Nature Biotechnology ,34(5):525–527. [10] Burki, T. (2023). First shared SARS-CoV-2 genome: GISAID vs virological. org. The Lancet Microbe , 4(6):e395. [11] Chen, T. and Guestrin, C. (2016). XGBoost: A scalable tree boosting system. In The 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining , pages 785–794. [12] Dong, X., Gong, Y., and Cao, L. (2018). e-RNSP: An efficient method for mining repetition negative sequential patterns. IEEE Transactions on Cybernetics , 50(5):2084–2096. [13] Fournier-Viger, P., Gan, W., Wu, Y., Nouioua, M., Song, W., Truong, T., and Duong, H. (2022). Pattern mining: Current challenges and opportunities. In International Conference on Database Systems for Advanced Applications , pages 34–49. Springer. [14] Fournier-Viger, P., Gomariz, A., Campos, M., and Thomas, R. (2014). Fast vertical mining of sequential patterns using co-occurrence infor-mation. In Pacific-Asia Conference on Knowledge Discovery and Data Mining , pages 40–52. Springer. [15] Fournier-Viger, P., Lin, J. C.-W., Kiran, R. U., Koh, Y. S., and Thomas, R. (2017). A survey of sequential pattern mining. Data Science and Pattern Recognition , 1(1):54–77. [16] Gan, W., Lin, J. C.-W., Fournier-Viger, P., Chao, H.-C., Tseng, V. S., and Yu, P. S. (2021). A survey of utility-oriented pattern mining. IEEE Transactions on Knowledge and Data Engineering , 33(4):1306–1327. [17] Georgakopoulos-Soares, I., Yizhar-Barnea, O., Mouratidis, I., Hem-berg, M., and Ahituv, N. (2021). Absent from DNA and protein: ge-nomic characterization of nullomers and nullpeptides across functional categories and evolution. Genome Biology , 22(1):245. [18] Guerin, E., Shkoporov, A., Stockdale, S. R., Clooney, A. G., Ryan, F. J., Sutton, T. D., Draper, L. A., Gonzalez-Tortuero, E., Ross, R. P., and Hill, C. (2018). Biology and taxonomy of crass-like bacteriophages, the most abundant virus in the human gut. Cell Host & Microbe , 24(5):653– 664. [19] Gunasekaran, H., Ramalakshmi, K., Rex Macedo Arokiaraj, A., Deepa Kanmani, S., Venkatesan, C., and Suresh Gnana Dhas, C. (2021). Analysis of DNA sequence classification using CNN and hybrid models. Computational and Mathematical Methods in Medicine ,2021(1):1835056. [20] Gupta, V., Haider, S., Verma, M., Singhvi, N., Ponnusamy, K., Malik, M. Z., Verma, H., Kumar, R., Sood, U., Hira, P., et al. (2021). Com-parative genomics and integrated network approach unveiled undirected phylogeny patterns, co-mutational hot spots, functional cross talk, and regulatory interactions in SARS-CoV-2. MSystems , 6(1):10–1128. [21] Guyet, T. and Quiniou, R. (2020). NegPSpan: efficient extraction of negative sequential patterns with embedding constraints. Data Mining and Knowledge Discovery , 34:563–609. [22] Hossain, M. M., Wu, Y., Fournier-Viger, P., Li, Z., Guo, L., and Li, Y. (2021). HSNP-Miner: High utility self-adaptive nonoverlapping pattern mining. In IEEE International Conference on Big Knowledge , pages 70–77. IEEE. [23] Hou, S., Tang, T., Cheng, S., Liu, Y., Xia, T., Chen, T., Fuhrman, J. A., and Sun, F. (2024). DeepMicroClass sorts metagenomic contigs into prokaryotes, eukaryotes and viruses. NAR Genomics and Bioinfor-matics , 6(2):lqae044. [24] Huang, J.-W., Wu, Y.-B., and Jaysawal, B. P. (2020). On mining progressive positive and negative sequential patterns simultaneously. 
+
+Journal of Information Science & Engineering , 36(1). [25] Islam, M. S., Al Farid, F., Shamrat, F. J. M., Islam, M. N., Rashid, M., Bari, B. S., Abdullah, J., Islam, M. N., Akhtaruzzaman, M., Kabir, M. N., et al. (2024). Challenges issues and future recommendations of deep learning techniques for SARS-CoV-2 detection utilising X-ray and CT images: a comprehensive review. PeerJ Computer Science , 10:e2517. [26] Kariin, S. and Burge, C. (1995). Dinucleotide relative abundance extremes: a genomic signature. Trends in Genetics , 11(7):283–290. [27] Kim, J., Lee, K., Rupasinghe, R., Rezaei, S., Martínez-López, B., and Liu, X. (2021). Applications of machine learning for the classification of porcine reproductive and respiratory syndrome virus sublineages using amino acid scores of orf5 gene. Frontiers in Veterinary Science ,8:683134. [28] Koulouras, G. and Frith, M. C. (2021). Significant non-existence of sequences in genomes and proteomes. Nucleic Acids Research ,49(6):3139–3155. [29] Lefkowitz, E. J., Dempsey, D. M., Hendrickson, R. C., Orton, R. J., Siddell, S. G., and Smith, D. B. (2018). Virus taxonomy: the database of the international committee on taxonomy of viruses (ICTV). Nucleic Acids Research , 46(D1):D708–D717. [30] Li, H. and Sun, F. (2018). Comparative studies of alignment, alignment-free and SVM based approaches for predicting the hosts of viruses based on viral sequences. Scientific Reports , 8(1):10032. [31] Li, Y., Wang, Z., Liu, J., Guo, L., Fournier-Viger, P., Wu, Y., and Wu, X. (2025). Mining repetitive negative sequential patterns with gap constraints. ACM Transactions on Knowledge Discovery from Data ,19(4):1–29. [32] Liao, V. C.-C. and Chen, M.-S. (2013). Efficient mining gapped sequential patterns for motifs in biological sequences. BMC Systems Biology , 7(Suppl 4):S7. [33] Liu, G., Chen, X., Luan, Y., and Li, D. (2024). VirusPredictor: Xgboost-based software to predict virus-related sequences in human data. Bioinformatics , 40(4):btae192. [34] Moeckel, C., Mareboina, M., Konnaris, M. A., Chan, C. S., Moura-tidis, I., Montgomery, A., Chantzi, N., Pavlopoulos, G. A., and Georgakopoulos-Soares, I. (2024). A survey of k-mer methods and applications in bioinformatics. Computational and Structural Biotech-nology Journal , 23:2289–2303. [35] Mooney, C. H. and Roddick, J. F. (2013). Sequential pattern mining– approaches and algorithms. ACM Computing Surveys , 45(2):1–39. [36] Mordvanyuk, N., Bifet, A., and López, B. (2022). VEPRECO: Vertical databases with pre-pruning strategies and common candidate selection policies to fasten sequential pattern mining. Expert Systems with Applications , 204:117517. [37] Nawaz, M. S., Fournier-Viger, P., and He, Y. (2022). S-PDB: Analysis and classification of SARS-CoV-2 spike protein structures. In IEEE International Conference on Bioinformatics and Biomedicine , pages 2259–2265. IEEE. [38] Nawaz, M. S., Fournier-Viger, P., He, Y., and Zhang, Q. (2023). PSAC-PDB: Analysis and classification of protein structures. Comput-ers in Biology and Medicine , 158:106814. [39] Nawaz, M. S., Fournier-Viger, P., Nawaz, S., Gan, W., and He, Y. (2024a). FSP4HSP: Frequent sequential patterns for the improved classification of heat shock proteins, their families, and sub-types. In-ternational Journal of Biological Macromolecules , 277:134147. 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 17 of 18 Improve Viral Genomic Feature Representation and Classification 
+
+[40] Nawaz, M. S., Fournier-Viger, P., Nawaz, S., Zhu, H., and Yun, U. (2024b). SPM4GAC: SPM-based approach for genome analysis and classification of macromolecules. International Journal of Biological Macromolecules , 266:130984. [41] Nawaz, M. S., Nawaz, M. Z., Junyi, Z., Fournier-Viger, P., and Qu, J.-F. (2024c). Exploiting the sequential nature of genomic data for improved analysis and identification. Computers in Biology and Medicine , 183:109307. [42] Novakovsky, G., Fornes, O., Saraswat, M., Mostafavi, S., and Wasser-man, W. W. (2023). ExplaiNN: interpretable and transparent neural networks for genomics. Genome Biology , 24(1):154. [43] Olyaee, M. H., Pirgazi, J., Khalifeh, K., and Khanteymoori, A. (2020). RCOVID19: Recurrence-based SARS-CoV-2 features using chaos game representation. Data in Brief , 32:106144. [44] Pearson, W. R. (1994). Using the FASTA program to search protein and DNA sequence databases. In Computer Analysis of Sequence Data: Part I , pages 307–331. Springer. [45] Pearson, W. R. (2013). BLAST and FASTA similarity searching for multiple sequence alignment. In Multiple Sequence Alignment Methods ,pages 75–101. Springer. [46] Pei, J., Han, J., and Wang, W. (2007). Constraint-based sequential pattern mining: the pattern-growth methods. Journal of Intelligent Information Systems , 28(2):133–160. [47] Peng, C., Shang, J., Guan, J., Wang, D., and Sun, Y. (2024). ViraLM: empowering virus discovery through the genome foundation model. 
+
+Bioinformatics , 40(12):btae704. [48] Przymus, P., Rykaczewski, K., Martín-Segura, A., Truu, J., Carrillo De Santa Pau, E., Kolev, M., Naskinova, I., Gruca, A., Sampri, A., Frohme, M., et al. (2025). Deep learning in microbiome analysis: a com-prehensive review of neural network models. Frontiers in Microbiology ,15:1516667. [49] Pu, L. and Shamir, R. (2024). 4CAC: 4-class classifier of metagenome contigs using machine learning and assembly graphs. Nucleic Acids Research , 52(19):e94–e94. [50] Qiang, X.-L., Xu, P., Fang, G., Liu, W.-B., and Kou, Z. (2020). Using the spike protein feature to predict infection risk and monitor the evolutionary dynamic of coronavirus. Infectious Diseases of Poverty ,9(1):33. [51] Randhawa, G. S., Soltysiak, M. P., El Roz, H., de Souza, C. P., Hill, K. A., and Kari, L. (2020). Machine learning using intrinsic genomic signatures for rapid classification of novel pathogens: COVID-19 case study. Plos One , 15(4):e0232391. [52] Remita, M. A., Halioui, A., Malick Diouara, A. A., Daigle, B., Kiani, G., and Diallo, A. B. (2017). A machine learning approach for viral genome classification. BMC Bioinformatics , 18(1):208. [53] Ren, J., Ahlgren, N. A., Lu, Y. Y., Fuhrman, J. A., and Sun, F. (2017). VirFinder: a novel k-mer based tool for identifying viral sequences from assembled metagenomic data. Microbiome , 5(1):69. [54] Salmi, M., Atif, D., Oliva, D., Abraham, A., and Ventura, S. (2024). Handling imbalanced medical datasets: review of a decade of research. 
+
+Artificial Intelligence Review , 57(10):273. [55] Sayers, E. W., Cavanaugh, M., Clark, K., Ostell, J., Pruitt, K. D., and Karsch-Mizrachi, I. (2019). GenBank. Nucleic Acids Research ,47(D1):D94–D99. [56] Shi, C. H. and Yip, K. Y. (2020). A general near-exact k-mer counting method with low memory consumption enables de novo as-sembly of 106 × human sequence data in 2.7 hours. Bioinformatics ,36(Supplement_2):i625–i633. [57] Singh, O. P., Vallejo, M., El-Badawy, I. M., Aysha, A., Madhanagopal, J., and Faudzi, A. A. M. (2021). Classification of SARS-CoV-2 and non-SARS-CoV-2 using machine learning algorithms. Computers in Biology and Medicine , 136:104650. [58] Sokolova, M. and Lapalme, G. (2009). A systematic analysis of performance measures for classification tasks. Information Processing & Management , 45(4):427–437. [59] Sun, C., Gong, Y., Guo, Y., Zhao, L., Guan, H., Liu, X., and Dong, X. (2024). SN-RNSP: Mining self-adaptive nonoverlapping repetitive negative sequential patterns in transaction sequences. Knowledge-Based Systems , 287:111449. [60] Suttle, C. A. (2007). Marine viruses—major players in the global ecosystem. Nature Reviews Microbiology , 5(10):801–812. [61] Tandan, M., Acharya, Y., Pokharel, S., and Timilsina, M. (2021). Discovering symptom patterns of COVID-19 patients using association rule mining. Computers in Biology and Medicine , 131:104249. [62] Tegally, H., Wilkinson, E., Giovanetti, M., Iranzadeh, A., Fonseca, V., Giandhari, J., Doolabh, D., Pillay, S., San, E. J., Msomi, N., et al. (2021). Detection of a SARS-CoV-2 variant of concern in south africa. Nature ,592(7854):438–443. [63] Wade, K. E., Chen, L., Deng, C., Zhou, G., and Hu, P. (2024). In-vestigating alignment-free machine learning methods for HIV-1 subtype classification. Bioinformatics Advances , 4(1):vbae108. [64] Wood, D. E., Lu, J., and Langmead, B. (2019). Improved metage-nomic analysis with kraken 2. Genome Biology , 20(1):257. [65] Wu, J., Gan, W., Chen, Z., Wan, S., and Yu, P. S. (2023a). Multimodal large language models: A survey. In IEEE International Conference on Big Data , pages 2247–2256. IEEE. [66] Wu, X., Zhang, C., and Zhang, S. (2004). Efficient mining of both positive and negative association rules. ACM Transactions on Information Systems , 22(3):381–405. [67] Wu, Y., Chen, M., Li, Y., Liu, J., Li, Z., Li, J., and Wu, X. (2023b). ONP-Miner: One-off negative sequential pattern mining. ACM Trans-actions on Knowledge Discovery from Data , 17(3):1–24. [68] Wu, Y., Geng, M., Li, Y., Guo, L., Li, Z., Fournier-Viger, P., Zhu, X., and Wu, X. (2021a). HANP-Miner: High average utility nonoverlapping sequential pattern mining. Knowledge-Based Systems , 229:107361. [69] Wu, Y., Wang, Y., Li, Y., Zhu, X., and Wu, X. (2021b). Top-k self-adaptive contrast sequential pattern mining. IEEE Transactions on Cybernetics , 52(11):11819–11833. [70] Xu, T., Dong, X., Xu, J., and Gong, Y. (2017). E-msNSP: Effi-cient negative sequential patterns mining based on multiple minimum supports. International Journal of Pattern Recognition and Artificial Intelligence , 31(02):1750003. [71] Yang, M., Wang, Z., Yan, Z., Wang, W., Zhu, Q., and Jin, C. (2024). DNASimCLR: a contrastive learning-based deep learning approach for gene sequence data classification. BMC Bioinformatics , 25(1):328. [72] Zheng, Y., Gan, W., Chen, Z., Qi, Z., Liang, Q., and Yu, P. S. (2025). Large language models for medicine: a survey. International Journal of Machine Learning and Cybernetics , 16(2):1015–1040. [73] Zhou, Z.-H. (2021). Machine learning . Springer nature. [74] Zhu, W., Gan, W., and Qi, Z. (2025). Leveraging negative sequential patterns for advanced genomic analysis and classification. In IEEE International Conference on Bioinformatics and Biomedicine , pages 6913–6920. IEEE. [75] Zielezinski, A., Vinga, S., Almeida, J., and Karlowski, W. M. (2017). Alignment-free sequence comparison: benefits, applications, and tools. 
+
+Genome Biology , 18(1):186. 
+
+Wenxi Zhu et al.: Preprint submitted to Elsevier Page 18 of 18

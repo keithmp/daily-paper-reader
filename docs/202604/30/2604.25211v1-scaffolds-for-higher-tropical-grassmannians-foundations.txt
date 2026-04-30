@@ -1,0 +1,3424 @@
+Title: Scaffolds for Higher Tropical Grassmannians: Foundations
+
+URL Source: https://arxiv.org/pdf/2604.25211v1
+
+Published Time: Wed, 29 Apr 2026 00:36:36 GMT
+
+Number of Pages: 66
+
+Markdown Content:
+Scaffolds for Higher Tropical Grassmannians: Foundations 
+
+NICK EARLY AND THOMAS LAM 
+
+Abstract. Scaffolds are the one-dimensional skeleta of high-dimensional flag simplicial complexes of nonpositive curvature. They generalize the phylogenetic trees of Trop Gr(2 , n ) to arbitrary 
+
+k, drawing together SL( k)-web bases, affine buildings, the combinatorics of the positive tropical Grassmannian and low-dimensional topology. We prove that scaffolds model points in all tropical Grassmannians via a k-point distance function. In this paper, we study in detail CAT(0) planar graphs, which are positive scaffolds for the tropical Grassmannian of three-planes. CAT(0) planar graphs are directed versions of the diskoids of Fontaine-Kamnitzer-Kuperberg, planar dual to SL(3)-webs. Our main result is the construction of a unique representation of any given integer positive tropical Plucker vector by a normal CAT(0) planar graph. We show that any normal CAT(0) planar graph embeds into the tropical linear space as a Lam-Postnikov membrane, and embeds into the Keel-Tevelev membrane within the affine building. We show that Early’s planar basis expansion can be computed directly from the strand combinatorics of the dual web, and connect this expansion to Petersen-Pylyavskyy-Speyer’s noncrossing tableaux, explored further in our companion paper. 
+
+Contents 
+
+1. Introduction 2
+
+Part 1. Main results and definitions 52. Tropical Grassmannian 53. Scaffolds 84. CAT(0) planar graphs 12 5. Webs and strands 15 6. Membranes: LP vs. KT 19 7. Application to symbol alphabet recursion 21 
+
+Part 2. CAT(0) planar graphs 22 8. Discrete Distance Geometry 22 9. Directed Distance Geometry 25 10. Focal Points and Distance Minimizers 28 11. Tropical Pl¨ ucker relations 33 12. Simple and normal CAT(0) planar graphs 34 
+
+Part 3. Strands and planar basis 36 13. Non-elliptic strand combinatorics 36 14. Planar basis and planar cross-ratios 39 15. Planar basis expansion 40 
+
+Part 4. Noncrossing tableaux 46 16. Noncrossing tableau 46 17. Noncrossing tableaux and webs 48 18. Proof of Theorem 4.8(3) 55  
+
+> 1
+> arXiv:2604.25211v1 [math.CO] 28 Apr 2026 2NICK EARLY AND THOMAS LAM
+
+Part 5. Buildings and membranes 55 19. Buildings 55 20. Diskoids and convex sets 58 21. Keel-Tevelev isomorphism 60 22. Membranes and positroids 61 Appendix A. Tabulation of Rays 64 References 65 1. Introduction 
+
+In 2004, Speyer and Sturmfels [SS] introduced the tropical Grassmannian, a k(n − k) + 1 dimen-sional polyhedral fan in R(nk). Just as the Grassmannian is ubiquitous in mathematics, the tropical Grassmannian has emerged as a fundamental object in tropical geometry, and more broadly in com-binatorial algebraic geometry with applications to mathematical biology and theoretical physics. The tropical Grassmannian Trop Gr(2 , n ) of two-planes can be identified with the moduli space of phylogenetic trees, and plays an important role in mathematical biology. This moduli space can also be viewed as the tropicalization Trop M0,n of the moduli space M0,n of n-pointed rational curves. Whereas the combinatorial study of the tropical moduli spaces Trop Mg,n of higher genus curves has flourished in the last decade, the study of higher tropical Grassmannians Trop Gr( k, n )in recent years has been relatively subdued, especially when it comes to explicit combinatorial models; see [HJJS, CGUZ, FL]. The aim of this work is to propose a new combinatorial model for higher tropical Grassmannians: scaffolds , built from the bones of tropical linear spaces. Scaffolds are pairs ( Q, z) consisting of a directed graph Q equipped with n distinguished vertices 
+
+z = ( z1, . . . , z n), satisfying conditions spelled out in Definitions 3.10 and 3.12. The tropical Pl¨ ucker vector π• of a point in Trop Gr( k, n ) is obtained from a scaffold ( Q, z) by using a k-point distance function that we call the Fermat-Le distance function :ΣQ(i1, . . . , i k) = Σ Q(I) := min  
+
+> x∈V(Q)
+> k
+
+X
+
+> a=1
+
+δ(x, z ia )
+
+!
+
+,
+
+where δ(·, ·) is the usual directed distance function of the digraph Q, illustrated in Fig. 3 below. This distance function appears in the work of Le–O’Dorney, Le, and Fraser–Le [LO, Le21, FL] on higher laminations in affine buildings. The name scaffold reflects multiple aspects of the story. First, we expect a scaffold to be the one-dimensional skeleton of a ( k − 1)-dimensional simplicial complex of locally nonpositive curvature. Second, as we discuss below, tropical Pl¨ ucker vectors, matroid decompositions, tropical linear spaces can all be reconstructed from a scaffold. Finally, scaffolds often embed inside the buildings 
+
+of Bruhat–Tits. In the case k = 2, the graphs ( Q, z) are exactly the metric or phylogenetic trees, where the distinguished vertices z are the leaves of the tree. The main result of this paper is a complete com-binatorial classification of positive scaffolds for the positive tropical Grassmannian Trop >0Gr(3 , n )of three-planes. The positive tropical Grassmannian Trop >0Gr( k, n ) ⊂ Trop Gr( k, n ) is a subfan introduced by Speyer and Williams [SW05], motivated by total positivity. For k = 3, positive scaffolds take a concrete combinatorial form: they are the normal CAT(0) planar graphs (Q, z) (Definition 4.6). We summarize our main theorem as follows. Scaffolds for Higher Tropical Grassmannians: Foundations 3
+
+Theorem 1.1 (Theorem 4.8) . Every integer point in Trop >0Gr(3 , n ), modulo lineality, is modeled by a unique cyclic-less normal CAT(0) planar graph (Q, z).
+
+CAT(0) planar graphs are the dual quivers (cf. Postnikov [Pos] and Shen–Sun–Weng [SSW25]) to the non-elliptic SL(3)-webs in the sense of Kuperberg. They are an orientation of the one-skeleton of the diskoids of Fontaine–Kamnitzer–Kuperberg [FKK]. We demonstrate the utility of scaffolds through several structural results: (1) We show that the normal CAT(0) planar graphs of Theorem 1.1 embed into the tropical linear spaces of Speyer [Spe] as a membrane in the sense of Lam and Postnikov [LP20]. This allows us to relate (Theorem 6.10) the membranes of Lam and Postnikov to the membranes of Keel and Tevelev [KT]. (2) Associated to a point π• ∈ Trop Gr( k, n ) is a matroid decomposition of the hypersimplex ∆( k, n ). We show (Section 6) that these matroids are recovered from the combinatorics of distance minimizers in ( Q, z). (3) We give an explicit combinatorial formula (Theorem 5.8) for the expansion of π•(Q, z) in terms of the planar basis of Early [Ear22, Ear24]. This solves an open problem concerning the construction of Feynman diagrams for the P2 case of generalized biadjoint scalar am-plitudes m(3)  
+
+> n
+
+of Cachazo-Early-Guevara-Mizera [CEGM], providing a path to the study of their singularities and residues. (4) As another application, we prove (Proposition 7.1) the conjectured recursion for the (trop-ical) symbol alphabet of Ren–Spradlin–Volovich [RSV] in the case k = 3. Our results here rely on a duality theorem from our companion paper [EL26+]. A normal CAT(0) planar graph representing a point in Trop >0 Gr(3 , 12) is illustrated in Fig. 1. We remark that our proof of the main theorem does not invoke the machinery of affine buildings. We turn now to discuss our combinatorial model in the context of the following set-theoretic inclusions of polyhedral fans: (1.1) Trop >0Gr( k, n ) ⊂ Trop Gr( k, n ) ⊂ Dr( k, n ).
+
+The Dressian Dr( k, n ) is the space of all tropical Pl¨ ucker vectors, also known as valuated matroids (see Section 2.2). (A) We expect that describing explicit scaffolds for Trop >0Gr( k, n ) is equivalent to the combinatorial-representation-theoretic problem of constructing explicit SL(k)-web bases. In future work, we plan to describe explicitly scaffolds for Trop >0Gr(4 , n ), noting the recently discovered hourglass plabic graph SL(4)-web basis [GPPSS]. The case k = 4 is of particular interest because of its applications to scattering amplitudes in physics [ALS21b, DFGK, HP]. The positive tropical Grassmannians Trop >0Gr(4 , n ) have been conjectured to control the symbol of N = 4 super Yang-Mills amplitudes. We expect that in general scaffolds for Trop >0Gr( k, n ) are one-skeleta of ( k − 1)-dimensional complexes satisfying a local curvature condition. Explicit descriptions of these scaffolds could yield an SL( k)-web basis for k ≥ 5. (B) Whereas Trop >0Gr(2 , n ) is the moduli space of planar phylogenetic trees, the full tropical Grassmannian Trop Gr(2 , n ) is the moduli space of all phylogenetic trees. We establish an anal-ogous (but partial) result for k = 3: we show in Theorem 4.8 that every labeled CAT(0) planar graph ( ⃗Q, z) gives a point in Dr(3 , n ), where the labeled vertices z can now be placed anywhere in the graph - not necessarily in cyclic order, and not necessarily on the boundary. We show in Theorem 3.14 that every integer point in Trop Gr( k, n ) has a weak scaffold, up to lineality. This is based on the connection between the tropical Grassmannian Trop Gr( k, n )and the affine building of PGL( k), and in particular on the results of Le [Le21]. However, the scaffolds of Theorem 3.14 are not combinatorially explicit. In principle, they can be constructed 4 NICK EARLY AND THOMAS LAM 
+
+Figure 1. A scaffold embeds isometrically in the tropical linear space, illustrated on the right by an embedding in R3 with all triangles equilateral. In particular, note that the edge length of the bounding simplex is four, which is the PK weight of the positive tropical Pl¨ ucker vector, which is also the number of columns in the noncrossing tableau; see our companion paper [EL26+]. The scaffold on the left will be a running example through its dual web in Fig. 6(c), the planar basis expansion of its positive tropical Pl¨ ucker vector in Example 5.9 and the embedding into the PGL(3) affine building in Fig. 27. algorithmically using the geometry of the affine building, but we leave as an open problem how to construct models that are canonical and combinatorially tractable. (C) We do not know whether every integer point π• ∈ Dr( k, n ) in the Dressian has a scaffold in our sense (Section 3). Nevertheless, we explain in Section 3.3 that the bounded subcomplex B(π•)of the tropical linear space L(π•) provides a natural minimizer description of π•. The bounded subcomplex captures half of the data in a scaffold ( Q, z): it encodes the distance function but not the edge structure. Let us remark that our work has close relations to duality conjectures in cluster algebras, and to intersection pairings for higher laminations. We hope to return to this in the future. We have focused on mathematical aspects in this work, and will return to physical applications in future works. For a broad survey of the developing interface between combinatorial geometry and scattering amplitudes, see [Lam]. Both authors of the present work were led to the study of tropical Grassmannians by questions from scattering amplitudes and related higher structures in theoretical physics. We have focused on mathematical aspects in this work, and will return to physical applications in future works. 
+
+Organization. In Part 1, we state the main definitions and results. In Sections 2 and 3, we recall the tropical Grassmannian and its properties, and introduce scaffolds. In Section 4, we introduce CAT(0) planar graphs and state our main theorem. In Section 5, we introduce normal SL(3)-webs, discuss their strand combinatorics, and state the planar basis expansion theorem (Theorem 5.8). Scaffolds for Higher Tropical Grassmannians: Foundations 5
+
+In Section 6, we recall the membranes of Lam–Postnikov and Keel–Tevelev and explain the relation with scaffolds. In Section 7, we apply our results to symbol alphabet recursion. In Part 2, we discuss the discrete and metric geometry of CAT(0) planar graphs. We start by analyzing the behavior of the combinatorial distance function (Section 8) and directed distance function (Section 9). In Section 10, we define the crucial notion of focal point which gives a local characterization of distance minimizers (Theorem 10.1). In Section 11, we prove one of our main results that the Fermat-Le distance function of a CAT(0) planar graph is a tropical Pl¨ ucker vector. In Section 12, we discuss normal CAT(0) planar graphs. In Part 3, we study strand combinatorics in non-elliptic SL(3)-webs, and study properties of the class of normal webs. We then prove the planar basis expansion theorem using a calculation involving tropical planar cross-ratios. A key input is the duality theorem from [EL26+]. In Part 4, we establish a bijection between noncrossing tableaux and normal webs. To do so, we recall then generalize Tymoczko’s simple bijection for SL(3)-webs [Tym]. In Section 18 we complete the proof of our main result by establishing bijections between Trop >0X(3 , n )( Z), the set of cyclic-less noncrossing tableaux, and the set of normal cyclic-less webs. In Part 5, we turn to buildings. After recalling results of Le [Le21], we prove Theorem 3.14 stating that any integer point in Trop Gr( k, n ) has a weak scaffold. In Section 20, we explain how our construction is compatible with the works of Fontaine–Kamnitzer–Kuperberg [FKK] and Akhmejanov [Akh]. In Section 21 we recall Keel and Tevelev’s isomorphism between tropical linear space and the membrane, and establish the compatibility with our construction. In Section 22, we give a more explicit description of the positroids that appear for normal CAT(0) planar graphs. In Section A, we tabulate the rays of Trop >0X(3 , n ) for n = 7 , 8. 
+
+Acknowledgements. We thank Ian Le for helpful conversations. We thank Freddy Cachazo for his enthusiasm and interest in this work. We thank the Erwin Schr¨ odinger Institute and the organizers of the ESI program “Amplitudes and algebraic geometry” for supporting a visit where part of this work was done. N.E. was funded by the European Union (ERC, UNIVERSE PLUS, 101118787). Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council Executive Agency. Neither the European Union nor the granting authority can be held responsible for them. T.L. was supported by the National Science Foundation under Grant No. DMS-2348799. 
+
+Part 1. Main results and definitions 
+
+2. Tropical Grassmannian 
+
+Throughout, we fix integers 2 ≤ k < n . We write [ n] = {1, . . . , n } and  [n]
+
+> k
+
+ for the set of 
+
+k-subsets of [ n]. Indices in [ n] are taken modulo n when working with cyclic structures. A cyclic interval is a subset of the form {a, a + 1 , . . . , a + m − 1} (mod n); a k-subset is non-cyclic if it is not a cyclic interval. We write  [n]
+
+> k
+
+ncyc 
+
+for the set of non-cyclic k-subsets and note that 
+
+ [n]
+
+> k
+
+ncyc 
+
+=  nk
+
+ − n. For J ⊆ [n], we set eJ := P 
+
+> j∈J
+
+ej ∈ Rn, where e1, . . . , e n are the standard basis vectors. When there is no ambiguity, we write k-subsets without braces or commas (e.g., ijk 
+
+for {i, j, k }). For J ∈  [n]
+
+> k
+
+, let eJ ∈ R(nk) denote the corresponding standard basis vector. 2.1. Tropical Grassmannian. Let Gr( k, n ) denote the Grassmannian of k-planes in n-space, and let Gr ◦(k, n ) ⊂ Gr( k, n ) denote the subspace where all Pl¨ ucker coordinates are non-vanishing. The torus T ⊂ GL( n) acts on Gr( k, n ) preserving Gr ◦(k, n ). The quotient X(k, n ) := Gr ◦(k, n )/T 
+
+is free, called the configuration space of n points in Pk−1 in general linear position. 6 NICK EARLY AND THOMAS LAM 
+
+Let R denote the ring of Puiseux series, with valuation val : R → Q∪{∞} . The tropical Pl¨ ucker vector π•(V ) of V ∈ Gr ◦(k, n )( R) is given by 
+
+πI (V ) = val( pI (V )) ∈ Q, I ∈
+
+[n]
+
+k
+
+
+
+,
+
+where pI (V ) denotes a Pl¨ ucker coordinate of V . The tropical Grassmannian Trop Gr( k, n ) is given by Trop Gr( k, n ) := {π•(V ) | V ∈ Gr ◦(k, n )( R)} ⊂ R(nk).
+
+which we view as a polyhedral fan of dimension k(n−k)+1; strictly speaking, it is the tropicalization of the cone over Gr ◦(k, n ). The positive tropical Grassmannian Trop >0Gr( k, n ) ⊂ Trop Gr( k, n )is a subfan obtained as tropical Pl¨ ucker vectors of points in Gr ◦(k, n )( R>0), where R>0 denotes a “positive” semifield. We will characterize this subfan in Section 2.2. The tropical configuration space Trop X(k, n ) is the dimension ( k − 1)( n − k − 1) quotient of Trop Gr( k, n ) by its lineality space (2.1) Lk,n := span( X
+
+> i∈I
+
+eI , i = 1 , 2, . . . , n ) ⊂ R([n] 
+
+> k
+
+),
+
+where eI , I ∈  [n]
+
+> k
+
+ denote the standard basis of R([n] 
+
+> k
+
+). The positive tropical configuration space Trop >0X(k, n ) is the image of Trop >0Gr( k, n ) in Trop X(k, n ). A point in Trop Gr( k, n ) is integral 
+
+if it belongs to Z([n] 
+
+> k
+
+) ⊂ R([n] 
+
+> k
+
+). A point in Trop X(k, n ) is integral if there exists a representative in Trop Gr( k, n ) that is integral. 2.2. Tropical Pl¨ ucker vectors. A vector π• ∈ R([n] 
+
+> k
+
+) is a tropical Pl¨ ucker vector if it satisfies the (3-term) tropical Pl¨ ucker relation :(2.2) min( πSab + πScd , π Sac + πSbd , π Sad + πbc ) occurs twice for any S ∈   [n]
+
+> k−2
+
+ and a < b < c < d in [ n] \ S.A vector π• ∈ R([n] 
+
+> k
+
+) is a positive tropical Pl¨ ucker vector if it satisfies the positive tropical Pl¨ ucker relation :(2.3) πSac + πSbd = min( πSab + πScd , π Sad + πSbc ),
+
+for any S ∈   [n]
+
+> k−2
+
+ and a < b < c < d in [ n] \ S. It is clear that positive tropical Pl¨ ucker vectors are tropical Pl¨ ucker vectors. The space of tropical Pl¨ ucker vectors is called the Dressian and denoted Dr( k, n ). We have the set-theoretic containment Trop Gr( k, n ) ⊆ Dr( k, n ) which is typically strict [HJJS]. In contrast, the space of positive tropical Pl¨ ucker vectors is identical to the positive tropical Grassmannian Trop >0Gr( k, n ) by [ALS21a, SW20]. Thus we obtain the inclusions of the three fans in (1.1). For a (positive) tropical Pl¨ ucker vector π• and x ∈ Rn, define πx 
+
+> •
+
+by 
+
+πx 
+
+> I
+
+:= πI − X
+
+> i∈I
+
+xi for I ∈
+
+[n]
+
+k
+
+
+
+,
+
+which is again a (positive) tropical Pl¨ ucker vector. This is called the lineality action of x on π•.We use the notation π• ≡ πx 
+
+> •
+
+to denote tropical Pl¨ ucker vectors that are equal modulo lineality. Scaffolds for Higher Tropical Grassmannians: Foundations 7
+
+2.3. Matroid and positroid decompositions of the hypersimplex. Let M be a matroid on [n]. Recall that the matroid polytope PM is the convex hull in Rn of the vectors eI := ei1 + · · · + eik
+
+as I = {i1, . . . , i k} varies over bases of M . A tropical Pl¨ ucker vector (resp. positive tropical Pl¨ ucker vector), when viewed as a height vector, induces a regular subdivision of the hypersimplex ∆( k, n ) into matroid (resp. positroid) polytopes. See [Spe, ALS21a, SW20]. This subdivision can be defined as follows. 
+
+Lemma 2.1. Let π• be a tropical Pl¨ ucker vector (resp. positive tropical Pl¨ ucker vector) and set 
+
+α = min I πI . Then 
+
+M (π•) := {I | πI = α}
+
+is a matroid (resp. positroid). Proof. A tropical Pl¨ ucker vector π•, viewed as a height function on the vertices eI of ∆( k, n ), induces a regular subdivision into matroid polytopes [Spe] (resp. positroid polytopes [ALS21a, SW20]). The set M (π•) corresponds to the face of this subdivision selected by the linear functional P xi = α. Since every face of a matroid (resp. positroid) subdivision is a matroid (resp. positroid) polytope, the claim follows. □
+
+Let ∆( π•) denote the set of matroid polytopes PM (πx  
+
+> •)
+
+as x varies over Rn. Geometrically, the height function π• is affine linear over each matroid polytope PM in the subdivision, and for any such PM there exists x ∈ Rn such that πx 
+
+> I
+
+= πI − P 
+
+> i∈I
+
+xi is constant on the bases of M and achieves its minimum there. Thus M = M (πx 
+
+> •
+
+), and every cell of the subdivision arises in this way. This collection of matroids is finite and determines a regular matroid subdivision ∆( π•) of ∆( k, n ). We have ∆( π•) = ∆( πx 
+
+> •
+
+) for any x.2.4. Tropical linear space. Denote 1 := (1 , 1, . . . , 1) ∈ Zn. Let π• ∈ Dr( k, n ) be a tropical Pl¨ ucker vector. 
+
+Definition 2.2. The tropical linear space L(π•) of π• is 
+
+L(π•) := 
+
+
+
+x | for all τ ∈
+
+ [n]
+
+k + 1 
+
+
+
+, min  
+
+> i
+
+(πτ \τi + xi) is achieved at least twice 
+
+
+
+as a subspace of Rn/1.
+
+For π• integral, the integer points LZ(π•) := L(π•) ∩ Zn/1 ⊂ L(π•) can be equipped with the structure of a flag simplicial complex, called the standard simplicial complex structure ; see for instance [JSY]. The edges are the pairs ( x, x′) such that x − x′ = eS mod 1 for some nonempty proper subset S ⊂ [n]. The stratification of Rn by the matroids M (πx 
+
+> •
+
+) induces a different stratification of L(π•) into faces. We call this the matroid complex structure of L(π•) to distinguish it from the standard simplicial complex structure on LZ(π•). Lineality action becomes translation on tropical linear spaces: we have L(πx 
+
+> •
+
+) = L(π•) − x.Indeed, y ∈ L(πx 
+
+> •
+
+) if and only if M (πx+y 
+
+> •
+
+) is loopless, which holds if and only if x + y ∈ L(π•). 
+
+Proposition 2.3 ([Spe, Proposition 2.3]) . We have x ∈ L(π•) if and only if M (πx 
+
+> •
+
+) is a loopless matroid. We have that x belongs to a bounded face of the matroid complex structure of L(π•) if and only if M (πx 
+
+> •
+
+) is a coloopless matroid. 
+
+2.5. Tropical Pl¨ ucker Vector Reconstruction. Let π• ∈ Dr( k, n ) be a tropical Pl¨ ucker vector and let B(π•) ⊂ L(π•) denote the subcomplex of bounded faces in the matroid complex structure on tropical linear space L(π•). The vertices of B(π•) are in bijection with the top-dimensional matroid polytopes in the regular matroid subdivision ∆( π•) of ∆( k, n ). Since top-dimensional 8 NICK EARLY AND THOMAS LAM 
+
+matroid polytopes in ∆( k, n ) have dimension n − 1, the corresponding matroids are connected, hence both loopless and coloopless. It will be convenient to lift L(π•) and B(π•) to Rn. For y ∈ L(π•), we choose the lift ˜ y ∈ Rn to satisfy min I (π˜y 
+
+> I
+
+) = 0, so that M (π˜y 
+
+> I
+
+) = {I | π˜y 
+
+> I
+
+= 0 }.
+
+Proposition 2.4. Let π• ∈ Dr( k, n ). For every I ∈  [n]
+
+> k
+
+, we have 
+
+πI = − min 
+
+> y∈Vert( B(π•))
+
+X
+
+> i∈I
+
+−˜yi,
+
+where ˜y = (˜ y1, ˜y2, . . . ˜yn) ∈ Rn is the lift of y.Proof. For any y ∈ L(π•), the matroid M (π˜y 
+
+> •
+
+) is loopless, so we have P 
+
+> i∈I
+
+˜yi ≤ πI for any I.Furthermore, I is a basis of M (π˜y 
+
+> •
+
+) if and only if P 
+
+> i∈I
+
+˜yi = πI . It remains to show that equality is achieved at some y ∈ B(π•). By Lemma 2.1, I is a basis of the matroid M (πx 
+
+> •
+
+) for some x ∈ Rn.Since the height function π• is affine linear over each matroid polytope in the subdivision, there exists ˜ y such that M (π˜y 
+
+> •
+
+) is a top-dimensional matroid containing I as a basis, and π˜y 
+
+> I
+
+= 0. The corresponding point y ∈ B(π•) achieves P 
+
+> i∈I
+
+˜yi = πI . □
+
+3. Scaffolds 
+
+Fix an integer k ≥ 2. 3.1. The Fermat-Le distance function. Let Q be a finite loopless directed graph with vertex set V (Q). The directed distance δ(v, w ) between vertices v and w is the minimum of the total directed distance over all paths from v to w. The directed distance is equal to ∞ if there is no (directed) path from v to w. We will generally assume in our graphs that directed distances between any two vertices is finite. A labeled graph ( Q, z) is such a graph Q together with a collection 
+
+z = ( z1, z 2, . . . , z n) ∈ V (Q)n of boundary vertices. The zi are not assumed to be distinct. 
+
+Definition 3.1. The Fermat-Le distance sum , is the function 
+
+ΣQ(i1, . . . , i k) = Σ Q(I) := min  
+
+> x∈V(Q)
+> k
+
+X
+
+> a=1
+
+δ(x, z ia )
+
+!
+
+where I = {i1, i 2, . . . , i k} is a k-element (multi)subset of [n]. A vertex x that achieves the minimum is called a distance minimizer for I (or for zi1 , . . . , z ik ). 
+
+See Fig. 3 for an example. 
+
+Remark 3.2. The Fermat point , also called the Torricelli point , of a triangle is the geometric median: the point that minimizes the distance sum to the three vertices. In our current context, the function ΣQ appears in the works of Ian Le [Le21] in the setting of PGL( k) affine buildings; see Section 19. 
+
+Definition 3.3. Let π• ∈ R(nk). We say that a directed graph (Q, z) is a model for π• if πI =
+
+− 1 
+
+> k
+
+ΣQ(I) for all I ∈  [n]
+
+> k
+
+.
+
+Any vector π• ∈ Z([n] 
+
+> k
+
+), up to a multiple of 1 ∈ R([n] 
+
+> k
+
+), has a model: start with the vertex set 
+
+{z1, . . . , z n} ∪ { yJ | J ∈  [n]
+
+> k
+
+} and construct directed paths from yJ to zj for j ∈ J. The vertex 
+
+yJ is the only vertex that can reach all zj for j ∈ J, so it must be the distance minimizer. The lengths of the directed paths can be engineered to obtain the desired function. For models to be interesting, we must impose conditions on the graph Q.Scaffolds for Higher Tropical Grassmannians: Foundations 9
+
+3.2. Barycenter embedding. Henceforth, we make the following assumption on our directed graphs: if v → w is a directed edge in Q, we declare the directed distances (3.1) δ(v, w ) = 1 and δ(w, v ) = k − 1.
+
+The directed distance δ(v, w ) between arbitrary vertices v and u is again the minimum of the total directed distance over all paths from v to w. We always assume that adjacent vertices v → w have directed distances given by (3.1), that is, there does not exist a different path from w to v with distance less than k − 1. 
+
+Definition 3.4. A coloring of a directed graph Q is an assignment of a color c(v) ∈ Z/k Z to each vertex v ∈ V (Q) so that if v → w then 
+
+c(w) ≡ c(v) + 1 ∈ Z/k Z.
+
+Lemma 3.5. Suppose that c(·) is a coloring of Q. Then for any two vertices v, w , we have 
+
+δ(v, w ) ≡ c(w) − c(v) ∈ Z/k Z.
+
+Proof. Follows from Definition 3.4 and (3.1) by induction on the length of the shortest path from 
+
+v to w that computes δ(v, w ). □
+
+Definition 3.6. Given a labeled graph (Q, z), define the barycenter coordinates of v ∈ V (Q) to be 
+
+bv := 1
+
+k (δ(v, z 1), . . . , δ (v, z n)) ∈ 1
+
+k Zn
+
+> ≥0
+
+.
+
+Lemma 3.7. Suppose that c(·) is a coloring of (Q, z). Then for adjacent vertices v → w, we have that bw − bv = eS := es1 + · · · + esr mod 1 for some subset S ⊆ [n].Proof. By Lemma 3.5, we have that δ(v, z ) − δ(w, z ) ≡ c(w) − c(v) ∈ Z/k Z. On the other hand, using (3.1), we have 1 − k ≤ δ(v, z ) − δ(w, z ) ≤ 1, so δ(v, z ) − δ(w, z ) ∈ { 1, 1 − k}. Thus  bv − 1 
+
+> k
+
+1 − bw ∈ {− 1, 0}n and the claim follows. □
+
+Definition 3.8. For a vertex v ∈ V (Q), define the matroid of v to be 
+
+Mv := {I | v is a distance minimizer for I} ⊆ 
+
+[n]
+
+k
+
+
+
+.
+
+Proposition 3.9. If (Q, z) is a model for a tropical Pl¨ ucker vector π• then for any v ∈ V (Q) such that Mv is nonempty, we have that Mv = M (π−bv 
+
+> •
+
+) is a matroid. Proof. Let ( Q, z) be a model for π•, and consider the tropical Pl¨ ucker vector π−bv 
+
+> •
+
+given by (3.2) π−bv 
+
+> I
+
+= πI + 1
+
+k
+
+X
+
+> i∈I
+
+δ(v, z i)
+
+!
+
+= 1
+
+k
+
+X
+
+> i∈I
+
+δ(v, z i) − min  
+
+> u∈V(Q)
+
+X
+
+> i∈I
+
+δ(u, z i)
+
+!
+
+.
+
+Then π−bv 
+
+> •
+
+≥ 0, and π−bv 
+
+> I
+
+= 0 if and only if v is a distance minimizer for I. If Mv is nonempty then Mv = M (π−bv 
+
+> •
+
+), and the claim follows from Lemma 2.1. □
+
+Definition 3.10. A labeled graph (Q, z) is a weak scaffold if it is a model for a tropical Pl¨ ucker vector π• ∈ Dr( k, n ) and it admits a coloring c(·). We call a weak scaffold positive if it is a model for π• ∈ Trop >0Gr( k, n ).
+
+We say that ( Q, z) is a weak scaffold if it is a weak scaffold for some tropical Pl¨ ucker vector. In this case, we call π• = π•(Q, z) the tropical Pl¨ ucker vector of ( Q, z). If there is ambiguity in the value of k, we use the nomenclature PGL( k)-weak scaffold. Let ( Q, z) be a weak scaffold for π•. Define ¯π• := π−c(z)/k  
+
+> •
+
+, c(z) := ( c(z1), c (z2), . . . , c (zn)) ∈ { 0, 1, 2 . . . , k − 1}n,
+
+identifying Z/k Z with {0, 1, 2 . . . , k − 1}. We call ¯ π• the modified tropical Pl¨ ucker vector of ( Q, z). 10 NICK EARLY AND THOMAS LAM 
+
+Proposition 3.11. Let (Q, z) be a weak scaffold for π•. Then we have ¯π• ∈ Dr( k, n )( Z).Proof. Let v be a distance minimizer for I = {i1, i 2, . . . , i k}. Then ¯πI = − 1
+
+k (δ(v, z i1 ) + · · · + δ(v, z ik ) − c(zi1 ) − · · · − c(zik )) ,
+
+which belongs to Z by Lemma 3.5. □
+
+If ( Q, z) is a weak scaffold, we define ¯bv := bv − 1
+
+k c(z).
+
+Definition 3.12. A labeled graph (Q, z) is a (strong) scaffold if it is a weak scaffold for π• and the map 
+
+(3.3) μ : V (Q) −→ Zn/1, v 7 −→ − ¯bv ≡ − ¯bv + c(v)1 mod 1
+
+defines an embedding of Q into the one-skeleton of the standard simplicial complex structure on 
+
+LZ(¯ π•).
+
+Let us spell out the conditions in Definition 3.12. First note that −¯bv ∈ Zn/1 by Lemma 3.5. By Proposition 3.9, we have that M (¯ π−¯bv 
+
+> •
+
+) = Mv. So by Proposition 2.3, we have that −¯bv ∈ LZ(¯ π•) if and only if Mv is loopless. The condition that the map is an embedding also requires that bv̸ = bw
+
+for all pairs of distinct vertices v̸ = w.By Lemma 3.7, we have that bw − bv = eS for some subset S whenever v, w are adjacent. If 
+
+bv̸ = bw then S must be proper and nonempty, and it follows that the edges of Q are sent to edges of the standard simplicial complex structure on LZ(¯ π•). We thus have the following. 
+
+Proposition 3.13. Suppose that (Q, z) is a weak scaffold. Then for (Q, z) to be a (strong) scaffold it suffices to check that 
+
+(1) for any vertex v ∈ V (Q), the matroid Mv is loopless, that is, S 
+
+> I∈Mv
+
+I = [ n];
+
+(2) the map v 7 → μ(v) ∈ Rn/1 is injective on V (Q).
+
+Under this embedding, the matroid Mv = M (π−bv 
+
+> •
+
+) is the matroid corresponding to the (rela-tively open) face of the matroid complex structure on L(π•) of containing −bv.
+
+Theorem 3.14. Suppose that π• ∈ Trop X(k, n )( Z). Then π• has a weak scaffold. In other words, every integral point of the tropical Grassmannian has a weak scaffold up to lineality. 
+
+We shall prove Theorem 3.14 in Section 19. The weak scaffolds that we construct all embed into the affine building B of PGL( k). We expect that our construction for Theorem 3.14 actually produces a strong scaffold for every point in Trop X(k, n )( Z). However, we do not know how to give an explicit combinatorial description of the scaffolds we construct in Theorem 3.14. The main result of this paper is to construct explicit (strong) scaffolds for all points in Trop >0X(3 , n )( Z). 
+
+Remark 3.15. We expect scaffolds to be one-dimensional skeleta of a (k − 1) -dimensional space tiled with simplices. For k = 3 , scaffolds would be the one-dimensional skeleton of a surface. On the other hand, for any k, we expect that a positive scaffold (Q, z) contains natural two-dimensional surfaces (C, z) sitting inside it from which the entire structure of (Q, z) can be recovered. We call these two-dimensional surfaces canvases .Scaffolds for Higher Tropical Grassmannians: Foundations 11 
+
+3.3. Decomposition of the Fermat-Le distance sum. Let ( Q, z) be a (strong) scaffold. The Fermat-Le distance sum can be compared with Proposition 2.4. On the one hand, we have by definition 
+
+πI = − 1
+
+k ΣQ(I) = − min  
+
+> v∈V(Q)
+
+X
+
+> i∈I
+
+(bv)i.
+
+On the other hand, Proposition 2.4 states that 
+
+πI = − min 
+
+> y∈Vert( B(π•))
+
+X
+
+> i∈I
+
+−˜yi.
+
+The embedding of Definition 3.12 show that these formulae are very similar: they are both taken as minimums over certain points in L(π•). Neither of the sets contain the other: the vertices 
+
+v ∈ V (Q) are not all sent to vertices of the bounded complex B(π•); conversely, not all vertices of the bounded complex need be in the image of V (Q). In Proposition 2.4 we can of course take the minimum over all points of L(π•) instead of just Vert( B(π•)). We may then view the Fermat-Le distance sum as the composition of the embedding (3.3) together with the optimization formula Proposition 2.4. 3.4. Tree scaffolds for k = 2 . Suppose that k = 2. Then in (3.1) we get δ(v, w ) = 1 = δ(w, v )for adjacent vertices v, w . So we may view Q as an undirected, connected graph. The Fermat-Le distance sum reduces to Σ Q(i, j ) = δ(zi, z j ). The condition for a coloring c(·) to exist is that Q is bipartite. 
+
+Proposition 3.16. Assume that n ≥ 3. Suppose that Q is a tree with at least one edge and let 
+
+z = ( z1, . . . , z n) be vertices of Q (repetitions are allowed), so that all leaves of Q are labeled by at least two elements of z. Then (Q, z) is a scaffold and the embedding (3.3) identifies Q with the bounded complex B(¯ π•).If Q is planar and z1, z 2, . . . , z n are encountered in order traversing the boundary of Q counter-clockwise then π•(Q, z) ∈ Trop >0Gr(2 , n ).Proof. It is straightforward to check directly that π•(Q, z) ∈ Dr(2 , n ). Since Q is a tree, it is bipartite, and a coloring c(·) ∈ Z/2Z can be chosen. For a vertex v, we have 
+
+Mv = {(i, j ) | the path from i to j passes through v }.
+
+It is not difficult to see directly that Mv is a loopless matroid. Given an edge e = ( v, e ) of Q
+
+let A ⊂ [n] (resp. B ⊂ [n]) denote the labeled vertices on the side of e that contains v (resp. contains w). By the assumption that leaves are labeled, A and B are nonempty and we have 
+
+A ⊔ B = [ n]. The matroid decomposition ∆( π•) is obtained by slicing the hypersimplex ∆(2 , n )by the hyperplanes 
+
+He = {X
+
+> a∈A
+
+xa = X
+
+> b∈B
+
+xb = 1 }
+
+as e varies over the edges of Q. If v is incident to edges ( v, w 1), (v, w 2), . . . , (v, w d) with corre-sponding subsets Ai, B i, then the matroid Mv is given by 
+
+Mv = {I | | I ∩ Ai| ≥ 1 for i = 1 , 2, . . . , d }.
+
+The assumption that leaves of Q are labeled by at least two elements of z implies that Mv is always coloopless. It follows from Proposition 2.3 that (3.3) sends V (Q) to points in B(¯ π•). □12 NICK EARLY AND THOMAS LAM 
+
+Example 3.17. Consider the labeled tree (Q, z):
+
+1
+
+2 3
+
+4
+
+5
+
+6
+
+7
+
+The matroids are 
+
+M (z1) = {I | | I ∩ [1 , 2] | ≥ 1}, M (v) = {(i, j ) | i ∈ [1 , 2] , j ∈ [3 , 7] },M (z3) = 
+
+[7] 2
+
+
+
+\ { 12 , 45 , 67 }, M (z4) = {I | | I ∩ [4 , 5] | ≥ 1}, M (z6) = {I | | I ∩ [6 , 7] | ≥ 1},
+
+where v is the unique unlabeled vertex. All of these matroids are connected except for M (v), which corresponds to a codimension one matroid polytope in ∆( π•). We have 
+
+bz1 = 12(0 , 0, 2, 3, 3, 3, 3) , bv = 12(1 , 1, 1, 2, 2, 2, 2) , bz3 = 12(2 , 2, 0, 1, 1, 1, 1) ,
+
+so that bv is on the open line segment (bz1 , bz3 ). In B(π•) (or B(¯ π•)) the face (in the matroid complex structure) corresponding to the matroid M (v) is exactly the image of this line segment under (3.3) . The subdivision ∆( π•) has exactly four top-dimensional pieces, corresponding to the four matroids M (z1), M (z3), M (z4), M (z6).
+
+4. CAT(0) planar graphs 
+
+Henceforth we work with k = 3, and n ≥ k.4.1. Main definition. We introduce the main object of this work. 
+
+Definition 4.1. A CAT(0) planar graph Q is a nonempty connected directed planar graph with all interior faces being oriented triangles, such that 
+
+(1) All interior vertices have degree at least 6, and 
+
+(2) All edges and vertices are on the perimeter of some face. 
+
+CAT(0) planar graphs are obtained from the one-skeleta of diskoids [FKK] by equipping the edges with directions; see Part 5. The boundary ∂Q , when traversed counterclockwise is a closed curve in the plane. A vertex 
+
+v ∈ V (Q) is called a cut vertex if it is a self-intersection point of this curve. An edge e ∈ E(Q) is called a cut edge if it is traversed twice by the curve, necessarily once in each direction. Often we will restrict our attention to CAT(0) planar graphs without cut edges. However, when cut edges do exist, we use the following convention. 
+
+Convention 4.2. If v → u is a cut edge of Q, then δ(v, u ) = 1 and δ(u, v ) = 2 . In other words, when computing directed distance we can use the cut edge backwards where it has distance 2. 
+
+Thus, in all cases, the directed distance δ(v, u ) is the minimum directed distance of a path from v to u where traversing an edge according to the orientation (resp. against the orientation) contributes 1 (resp. 2), agreeing with (3.1). Since a CAT(0) planar graph Q is assumed to be connected, it has a finite-valued directed distance function δ(·, ·). For vertices v, w ∈ V (Q), the combinatorial distance ℓ(v, w ) is the minimal edge count in any path, ignoring directions of edges. Scaffolds for Higher Tropical Grassmannians: Foundations 13 
+
+Definition 4.3. A labeled CAT(0) planar graph is a pair (Q, z) consisting of a CAT(0) planar graph Q and a collection z = ( z1, z 2, . . . , z n) ∈ V (Q)n of vertices. If the vertices z all lie on the boundary ∂Q , and are encountered in increasing order as we traverse the boundary counterclock-wise, then we call (Q, z) a CCW-labeled CAT(0) planar graph. 
+
+The Fermat-Le distance function is well-defined for a labeled CAT(0) planar graph. 
+
+Definition 4.4. A CAT(0) planar graph Q is called simple if the boundary of Q is a simple closed counterclockwise oriented curve. 
+
+We allow a single vertex to be a simple CAT(0) planar graph. However, a single edge is not. The graph Q in Fig. 3 is simple. The CAT(0) planar graph in Fig. 2 is not simple: 
+
+Figure 2. A non-simple CAT(0) planar graph. 
+
+Definition 4.5. Let (Q, z) be a labeled CAT(0) planar graph. We call a vertex v ∈ V (Q) normal 
+
+if v is a distance minimizer for some triple {zi, z j , z k} of labeled vertices. 
+
+Let Q be a CAT(0) planar graph with boundary oriented counterclockwise. Note that this implies that every vertex of Q has even degree and that every vertex is on the boundary of a triangular face of Q. A vertex v ∈ ∂Q is called acute if it has degree 2, and is a vertex of exactly one triangular face of Q.
+
+Definition 4.6. Let (Q, z) be a CCW-labeled CAT(0) planar graph. Then (Q, z) is normal if the boundary is oriented counterclockwise and every acute vertex of ∂Q is labeled by (at least) one of the z.
+
+We allow the graph Q with a single vertex labeled with all the zi to be considered a normal CAT(0) planar graph. The graph Q in Fig. 3 is a normal CAT(0) planar graph. Note that normal CAT(0) planar graphs do not have cut edges. 
+
+Definition 4.7. Let (Q, z) be a normal CAT(0) planar graph. We call (Q, z) cyclic if it contains two acute labelled vertices zi and zi+1 such that every intermediate vertex on the boundary path from zi to zi+1 has degree four. If (Q, z) is not cyclic, we call it cyclic-less .   
+
+> 1
+> 2
+> 3
+> 456
+> x
+> vu
+> y
+> 1
+> 2
+> 4
+> v
+> 1
+> 2
+> 4
+> x
+
+Figure 3. Left: A CCW-labeled CAT(0) planar graph Q. The boundary vertices z
+
+are simply labeled 1 , . . . , 6. Middle: We have δ(v, 1) = 2, δ(v, 2) = 3, and δ(v, 4) = 3. Right: We have δ(x, 1) = 1, δ(x, 2) = 2, δ(x, 4) = 2. The Fermat-Le distance function is Σ Q(1 , 2, 4) = 5. The vertex x is a distance-minimizer but v is not. 14 NICK EARLY AND THOMAS LAM   
+
+> 1
+> 2
+> 34
+> 5
+> 6
+> 7
+> 1
+> 2
+> 34
+> 5
+> 6
+> 1
+> 2
+> 345
+> 6
+> x
+> y
+> wz
+
+Figure 4. Left: a labeled CAT(0) planar graph ( Q, z) that is neither CCW-labeled nor normal. Middle: the same graph with the label z7 removed is a model for the positive tropical Pl¨ ucker vector π• ≡ e123 + e345 + e156 .Right: the normal cyclic-less CAT(0) planar graph for the positive tropical Pl¨ ucker vector π• ≡ e123 + e345 + e156 .4.2. Main result. Let ( Q, z) be a CAT(0) planar graph. Since Q is tiled by oriented triangles it is easy to see that the vertices of Q can be colored by {0, 1, 2} so that if v → w then c(w) ≡ c(v) + 1 mod 3, satisfying Definition 3.4. Since Q is connected, this coloring is unique up to a global shift by an element of Z/3Z. In any triangle T of Q, the three vertices use each of the colors once. We assume such a coloring has been fixed. We can now state our main theorem. 
+
+Theorem 4.8. Let (Q, z) be a labeled CAT(0) planar graph. 
+
+(1) Suppose that z are arbitrary. Then (Q, z) is a weak scaffold. Thus π•(Q, z) ∈ Dr(3 , n )
+
+satisfies the tropical Pl¨ ucker relations (2.2) .
+
+(2) Suppose that (Q, z) is CCW-labeled. Then π•(Q, z) ∈ Trop >0Gr(3 , n ) satisfies the positive tropical Pl¨ ucker relations (2.3) .
+
+(3) Suppose that (Q, z) is normal. Then (Q, z) is a scaffold for π•(Q, z). Every point in 
+
+Trop >0X(3 , n )( Z) has a unique scaffold that is a cyclic-less normal CAT(0)-planar graph 
+
+(Q, z).
+
+In particular, we shall see that (3) implies that for a normal ( Q, z), every vertex is normal. We shall prove Theorem 4.8 in Section 11 and Section 18. 
+
+Example 4.9. Let Q be the CAT(0) graph shown on the left in Fig. 4. This is a hexagon with alternating boundary and a seventh labeled point in the interior. We have 
+
+π•(Q, z ) ≡ e234 + e456 + e126 ∈ Trop X(3 , 7) 
+
+modulo lineality, an instance of Theorem 4.8(1). Recall that eI denote the standard basis vectors of R(nk).
+
+Example 4.10. In Example 4.9, there is no permutation of z1, . . . , z 7 that gives a point in 
+
+Trop >0X(3 , 7) . However, if we do not label z7, as in the middle of Fig. 4, we get the point 
+
+(4.1) π•(Q, z ) ≡ e234 + e456 + e126 ∈ Trop >0X(3 , 6) ,
+
+an instance of Theorem 4.8(2). The hexagon (Q, (z1, . . . , z 6)) is however not normal because the boundary is not oriented counterclockwise. 
+
+Example 4.11. Let (Q, z) be the CAT(0) graph depicted on the right in Fig. 4. Then (Q, z) is normal since all acute vertices are labeled, and it is a scaffold for the positive tropical Pl¨ ucker Scaffolds for Higher Tropical Grassmannians: Foundations 15 
+
+vector (4.1) . This (Q, z) is the unique normal cyclic-less CAT(0) planar graph that is a scaffold for (4.1) , an instance of Theorem 4.8(3). 
+
+Example 4.12. The fan Trop >0X(3 , 6) has four rays up to cyclic rotation. In Fig. 5 we present representative scaffolds for these rays.     
+
+> 1
+> 2,3,45,6
+
+h1,4,6    
+
+> 1
+> 2,34,5,6
+
+h1,3,6    
+
+> 1,2
+> 3,45,6
+
+h2,4,6  
+
+> 1
+> 2
+> 345
+> 6
+
+−h1,3,5 + h2,3,5 + h1,4,5 + h1,3,6
+
+Figure 5. Scaffolds for the four rays of Trop >0X(3 , 6) up to cyclic rotation. Below each scaffold we have recorded the planar basis expansion (Theorem 5.8). More rays are tabulated in Section A. 5. Webs and strands 
+
+5.1. Webs and their dual graphs. Definition 5.1. An SL 3-web W is a planar graph embedded in a disk with n boundary vertices 
+
+b1, b 2, . . . , b n in counterclockwise order on the boundary of the disk, such that: 
+
+• Every vertex is colored either black or white. 
+
+• Each internal vertex is trivalent. 
+
+• Each edge connects vertices of different colors (black and white). The web W is non-elliptic if each internal face (that is, a face that has no boundary vertex) has at least 6 edges. 
+
+In the rest of this paper, we refer to SL 3-webs simply as webs. A non-elliptic web W is called standard if every boundary vertex is black and has valence 1. In Fig. 6, we depict three standard webs of increasing complexity; the rightmost web will return several times later in the paper, including in the context of buildings, see Fig. 27. For a non-elliptic web W , we can construct a dual CAT(0) planar graph Q = Q(W ) with: 
+
+• Vertex set: the faces of W .
+
+• Directed edges: F → F ′ if F and F ′ share an edge in W , oriented so that black vertices of 
+
+W lie to the right of the directed edge in Q.This definition is called the “dual quiver” in the work of Shen–Sun–Weng [SSW25] and appeared earlier in the setting of plabic graphs [Pos]. Under the duality W → Q(W ), white (resp. black) vertices become counterclockwise (resp. clockwise) oriented triangles. If W is a labeled web, then we obtain a CCW-labeled CAT(0) planar graph ( Q, z) so that: (1) if ba has degree 0, then za labels the face with ba on the boundary, and (2) if ba has degree ≥ 1, then za labels the face that contains both ba−1 and ba.Fig. 7 illustrates these conventions with a standard non-elliptic web W and its dual standard CAT(0) graph Q.By convention the n boundary vertices are labeled 1 , 2, . . . , n counterclockwise around the bound-ary of the disk. A web W can be made standard by the following operations, producing a standard web W std , see Fig. 8: 16 NICK EARLY AND THOMAS LAM 
+
+3
+
+4 1
+
+2
+
+5
+
+(a) n = 5, non-standard 1234 56(b) n = 6, standard 12 12345 6 78910 11 (c) n = 12, standard 
+
+Figure 6. Examples of non-elliptic webs. Each vertex is incident to one white vertex ( ◦) and one black vertex ( •). All interior vertices are trivalent. In (a), the web is nonstandard since some boundary vertices have degree 0. In (b) and (c), the webs are standard: all boundary vertices are black with valence 1. The interior face in (c) is an octagon.   
+
+> b1b2
+> b3
+> b4b5
+> b6
+> z1
+> z2
+> z3
+> z4z5
+> z6
+
+Figure 7. A standard web W with n = 6 and its dual Q(W ). The web W (gray) has three white interior vertices and one black interior vertex; its dual Q(W ) (green edges, blue vertices) is a CCW-labeled CAT(0) planar graph. Each face of W
+
+contains a vertex za of Q, with za assigned to the face containing ba−1 and ba on its boundary. White vertices of W become CCW-oriented triangles z1z2z3, z3z4z5,
+
+z5z6z1, and the black vertex becomes the CW-oriented triangle z1z5z3.(1) Valence 0 boundary vertices can be removed. (2) Valence d > 1 boundary vertices can be split into d boundary vertices. (3) A white boundary vertex can be pushed into the interior to become a white trivalent vertex resulting in two new black boundary vertices. A standard CAT(0) planar graph ( Q, z) is a CCW-labeled planar graph such that the boundary is oriented counterclockwise. The standardization procedure above corresponds to the following three operations in the dual CAT(0) planar graph: (1) Boundary vertices labeled by a subset can be reduced to have a single label. (2) Boundary vertices without a label are given labels. (3) A triangle can be attached to Q whenever a boundary edge is in the clockwise direction. Scaffolds for Higher Tropical Grassmannians: Foundations 17 1231212314231231423
+
+Figure 8. Three basic operations on non-elliptic webs produce standard webs. b1b2b3b4b5z1z2z3z4z5z6z1z2z3z4z5b1b2b3b4b5b6z1z2z3z4z5z6b1b2b3b4b5b6z1z2z3z4z5b1b2b3b4b5z1z2z3z4z5z6b1b2b3b4b5b6z1z2z3z4z5z6, z 7b1b2b3b4b5b6b7
+
+Figure 9. Basic operations for standardizing webs and scaffolds. 12 12345 6 78910 11 12 12345 6 78910 11 
+
+v
+
+Figure 10. Left: A web W and two strands η3 and η10 . Right: the vertex v has strand triple (3 , 6, 8). It is straightforward to see that a web W is connected if and only if Q(W ) is simple. If W is disconnected with components W1, W 2, . . . , then Q(W ) is obtained by gluing Q(W1), Q (W2), . . . 
+
+along vertices. 5.2. Strands and the planar basis expansion. Definition 5.2. Let W be a web. The strands of W are the directed paths (or cycles) in W
+
+obtained by the rule: 
+
+• turn left at white interior vertices, and 
+
+• turn right at black interior vertices. 
+
+In a non-elliptic web W , all strands η are directed paths from a boundary vertex to a boundary vertex; we denote by ηi the strand that ends at vertex bi. If bi has degree greater than one, then there will be multiple such strands. We typically use the notation ηi when W is standard. We say that two strands η, η ′ in a web W intersect if they intersect in the interior of the web W .The following result supports the intuition that strands in non-elliptic webs behave like geodesics in nonpositive curvature. 18 NICK EARLY AND THOMAS LAM 
+
+Proposition 5.3. Any two strands in a non-elliptic web W intersect at most once. If two strands 
+
+S, S ′ intersect along an edge e then the only faces that S and S′ are both adjacent to are faces that are incident to one of the vertices of e.
+
+Proposition 5.3 is proved in Section 13. 
+
+Definition 5.4. If a is an interior vertex of W , then there are three strands passing through a,ending at boundary vertices labeled (ia, j a, k a), called the strand triple of a. The interior vertex a
+
+corresponds to a triangle T = Ta of Q(W ), and we also call (ia, j a, k a) the strand triple of T .
+
+5.3. Normal webs. Definition 5.5. A non-elliptic web is normal if whenever two strands η, η ′ intersect they have different labels. 
+
+It follows immediately that a non-elliptic web W is normal if and only if all strand triples contain distinct elements. A web W has black boundary if all boundary vertices are black. This is equivalent to Q(W ) having counterclockwise oriented boundary. 
+
+Definition 5.6. A normal web W is cyclic if it has a cyclic strand triple. Otherwise W is cyclic-less .
+
+Theorem 5.7. Let W be a non-elliptic web with black boundary and (Q(W ), z(W )) be its dual CAT(0) planar graph. Then W is normal if and only if Q(W ) is a normal. If W is normal, then 
+
+W is cyclic-less if and only if Q(W ) is cyclic-less. 
+
+Theorem 5.7 is proven in Section 13.3. 5.4. Planar basis expansion. Recall that the tropical Grassmannian is a polyhedral fan in the ambient space R([n] 
+
+> k
+
+). The planar basis {hJ | J ∈  [n]
+
+> k
+
+} (Definition 14.1) is a basis of R([n] 
+
+> k
+
+)adapted to the study of the tropical Grassmannian. In particular, every element hJ belongs to Trop >0Gr( k, n ). 
+
+Theorem 5.8. Let W be a non-elliptic web where all boundary vertices are black. Let (Q, z) be the dual CAT(0) planar graph. The Pl¨ ucker function π• = π•(Q, z) of (Q, z) has the planar basis expansion: 
+
+πQ ≡ X 
+
+> Twhite
+
+hiT ,j T ,k T − X 
+
+> Tblack
+
+hiT ,j T ,k T (mod L3,n ),
+
+where the sums are over white and black interior triangles T of Q, respectively, and (iT , j T , k T )
+
+denotes the strand triple of T .
+
+Example 5.9. Let W be the web in Fig. 6(c) and Fig. 10, and (Q, z) be the dual CAT(0) planar graph. Computing all the strand triples, we find 
+
+π•(Q, z) = (h3,4,7 + h1,4,12 + h6,7,10 + h1,9,10 ) + ( h2,4,11 + h2,5,7 + h5,8,10 + h1,8,11 )
+
+− (h1,4,11 + h1,8,10 + h2,4,7 + h5,7,10 ),
+
+where the first four positive terms belong to the four white corners, the second four positive terms belong to the midpoints of the horizontal and vertical edges, and the four negative terms correspond to the four black corner vertices. 
+
+Example 5.9 is continued in Example 6.8. Scaffolds for Higher Tropical Grassmannians: Foundations 19 
+
+6. Membranes: LP vs. KT 
+
+In this section, we discuss membranes in the sense of Lam-Postnikov (LP) [LP20] and in the sense of Keel-Tevelev (KT) [KT], respectively. Roughly speaking, KT membranes are naturally identified with triangulated tropical linear spaces, while LP membranes are certain two-dimensional surfaces in the bounded complex of a positive tropical linear space. The map μ in (3.3) sends a normal CAT(0) planar graph, or more generally a canvas in a scaffold (Remark 3.15), to a LP membrane. The Keel-Tevelev isomorphism (Theorem 21.1) then maps the LP membrane into a KT membrane within the affine building B of PGL( k). In this section, we let W be a normal web and ( Q, z) be the dual normal CAT(0) planar graph. In particular, the boundary vertices z are arranged in counterclockwise cyclic order on the boundary 
+
+∂Q , and we always assume that n ≥ 3. 6.1. Lam-Postnikov membranes. In [LP20], membranes are defined in the general setting of plabic graphs. We specialize to non-elliptic webs and change coordinates to our conventions. 
+
+Definition 6.1. Let W be a web where boundary vertices have degree one and (Q, z) its dual labeled CAT(0) planar graph. A membrane M(W ) for W is a lifting of each vertex v ∈ V (Q) to an integer point μ(v) ∈ Zn/1 satisfying the following property: if v → w is an edge of Q and e
+
+denotes the dual edge of W , let ηi be the strand passing through e with v on the right and ηj be the strand passing through e with w on the right, then μ(w) − μ(v) = e[i+1 ,j ].
+
+Remark 6.2. The boundary loop L = ∂M of the membrane M(W ) is the restriction of μ to ∂Q .In [LP20] , the problem of finding a membrane with a specified boundary loop is considered. Under a unimodality condition [LP20, Theorem 23.6] on the boundary loop L, membranes with minimal area with L = ∂M are in bijection with reduced plabic graphs within a move equivalence class. 
+
+In a normal web, the strand triples ( i, j, k ) consist of three distinct elements. 
+
+Proposition 6.3 ([LP20, Section 21]) . Suppose M(W ) is a membrane for a normal web W with dual CAT(0) planar graph Q. For a white (resp. black) triangle of Q with vertices v, u, w , the triangle (μ(v), μ (u), μ (w)) is equal to conv( hiT , h jT , h kT ) (resp. conv( −hiT , −hjT , −hkT )) up to an affine translation, where hi := e1 + e2 + · · · + ei.
+
+6.2. Membrane of a normal web. Recall that in Section 4.2 we have fixed a coloring c(·) on 
+
+V (Q) satisfying Definition 3.4. By Lemma 3.5, we have 
+
+Lemma 6.4. For any two vertices v, w , we have 13 (δ(v, w ) + c(v) − c(w)) ∈ Z.
+
+As in (3.2), we write c(z) := ( c(z1), c (z2), . . . , c (zn)) ∈ { 0, 1, 2}n and define ¯ π• := π−c(z)/3 
+
+> •
+
+. The following result combines Proposition 3.11 with Theorem 4.8(1,3). 
+
+Proposition 6.5. Let (Q, z) be a labeled CAT(0) planar graph. Then we have ¯π• ∈ Dr(3 , n )( Z).If (Q, z) is normal, then ¯π• ∈ Trop >0Gr(3 , n )( Z).
+
+Theorem 6.6. Let W be a normal web with dual (Q, z). The formula (cf. (3.3) )
+
+(6.1) μ : V (Q) → Zn/1, μ(v) := 13 (( δ(v, 1) , δ (v, 2) , . . . , δ (v, n )) + c(v)1 − c(z)) .
+
+defines a membrane for W .
+
+Recall that we defined a matroid Mv for v ∈ V (Q) in Definition 3.8. 
+
+Proposition 6.7. Let (Q, z) be a normal CAT(0) planar graph. For any v ∈ V (Q), the matroid 
+
+Mv is a loopless positroid. 20 NICK EARLY AND THOMAS LAM 
+
+We will prove Theorem 6.6 and Proposition 6.7 in Section 22. 
+
+Example 6.8. Let us apply Theorem 6.6 to compute the image in the membrane and tropical linear space of the triangle (v, z 3, z 5) in Fig. 11. We compute the vertices of the triangle (v, z 3, z 5).Setting c(v) = 0 , we have 
+
+c(z) = (0 , 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2) .
+
+By computing the directed distances we obtain 
+
+μ(v) = 13 (( δ(v, 1) , . . . , δ (v, 12)) + 0 · 1 − c(z)) = 13 ((3 , 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2) − (0 , 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2)) = (1 , 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0) .
+
+Similarly, 
+
+μ(z3) = 13 ((4 , 2, 0, 1, 2, 3, 4, 2, 3, 4, 2, 3) + 2 · 1 − (0 , 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2)) = (2 , 1, 0, 1, 1, 1, 2, 1, 1, 2, 1, 1) .
+
+Finally, μ(z5) = (2 , 1, 0, 1, 0, 0, 1, 1, 1, 2, 1, 1) , hence up to translation we have 
+
+(μ(v), μ (z3), μ (z5)) ≡ (−h2, −h4, −h7) = ( −e[1 ,2] , −e[1 ,4] , −e[1 ,7] ),
+
+agreeing with Proposition 6.3. For instance, the difference of the two is the indicator vector of the cyclic interval [5 , 2] :
+
+μ(z3) − μ(v) = (1 , 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1) .
+
+One can check that the image of μ satisfies the axioms in Definition 6.1 of the membrane. In Example 22.3 we return to compute the facet inequalities defining the matroid polytope PMv corre-sponding to v.
+
+6.3. Keel-Tevelev membranes. Let K := C(( t)) and O := C[[ t]]. A lattice Λ is a free O-submodule of K3 of full rank. We define an equivalence relation on lattices by Λ ∼ Λ′ if Λ = cΛ′
+
+for c ∈ K ×. Let B denote the affine PGL(3)-building (see Section 19), which we view as a simplicial complex, on the set of equivalence classes [Λ] of lattices. 
+
+Definition 6.9. Let M = ( v1, . . . , v n) ∈ K 3. The membrane [ M ] is the set of lattices of the form 
+
+span O (ta1 v1, . . . , t an vn)
+
+as a = ( a1, . . . , a n) varies over Zn. The membrane [M ] has the structure of a simplicial complex inherited from B.
+
+Let π• ∈ Trop Gr(3 , n )( Z) arise from a 3 × n matrix V with columns v1, . . . , v n ∈ K 3. Keel and Tevelev [KT] define an isomorphism of simplicial complexes (see Theorem 21.1) 
+
+ι : L(π•) → [M ].
+
+Using tropical linear spaces, we connect the notions of Lam-Postnikov membranes and Keel-Tevelev membranes. Let K>0 ⊂ K denote the semifield of formal power series with a positive leading coefficient. 
+
+Theorem 6.10. Let ¯π• ∈ Trop >0Gr(3 , n )( Z) be the (modified) positive tropical Pl¨ ucker vector of a normal CAT(0) planar graph (Q, z), and suppose that ¯π• is the tropical Pl¨ ucker vector of 
+
+V = ( v1, v 2, . . . , v n) ∈ Gr(3 , n )( K>0). The composition ι ◦ μ identifies Q with the (one-skeleton of the) diskoid of Fontaine–Kamnitzer–Kuperberg, sitting inside the membrane [M ]. The map ι
+
+restricted to M(W ) = μ(Q) sends the LP membrane M(W ) into the KT membrane [M ].Scaffolds for Higher Tropical Grassmannians: Foundations 21 v
+
+Figure 11. The CAT(0) planar graph in Example 6.8. The brown edge connecting 
+
+z3 and v is computed and is found to be equal to e[5 ,2] . The red strand triple (2 , 4, 7) encodes the vertices of the image under μ of the triangle ( v, z 3, z 5) in the membrane. Additionally, all eight facets of Mv are identified in Example 22.3. We prove Theorem 6.10 in Section 21. 7. Application to symbol alphabet recursion 
+
+In this section we explain how our results prove a conjecture of Ren–Spradlin–Volovich [RSV] concerning symbol alphabets for N = 4 super Yang-Mills amplitudes. A full review of the physics background is beyond the scope of this work. We will be content to show that our construction explains the conjectural recursion of [RSV, (4.10)]. In the following, we set π•(W ) := π•(Q(W ), z(W )). 
+
+Proposition 7.1. We have the following identity: 
+
+π•
+
+ F
+
+a
+
+b c
+
+ ≡ ι
+
+π•
+
+
+
+a′
+
+a
+
+m
+
+b c
+
+c′
+
+ − hm,a,c 
+
+
+
+up to lineality. Here, a, b, c, . . . are boundary vertices and F is an interior face. The rest of the webs are unchanged. The map ι sends a′ 7 → a and c′ 7 → c when those letters index a planar basis element. 22 NICK EARLY AND THOMAS LAM 
+
+Proof. Let the first diagram be Q and the modified one be Q′. Then by Theorem 5.8, the planar basis expansions are 
+
+π•(Q) ≡ hx,a,b − hx,a,c + ha,c,v + · · · 
+
+π•(Q′) ≡ hx,a,b + ha,c ′,m − hx,a,c ′ + ha′,c,v + · · · 
+
+where the · · · terms agree. Here, x (resp. v) are the targets of the strands that head down along the perimeter of F on the left (resp. right) side. □
+
+Remark 7.2. The kinematic function XR(W ) of [RSV] can be defined to be the lift of ρ(Ψ( π•(W ))) 
+
+where ρ : T3,n → Trop >0Gr(3 , n ) denotes the positive parametrization of [EL26+] , and Ψ is defined in Section 14. 
+
+Part 2. CAT(0) planar graphs 
+
+In this part we discuss the discrete geometry of CAT(0) planar graphs. 8. Discrete Distance Geometry 
+
+8.1. The Discrete Gauss-Bonnet formula. Lemma 8.1 is a discrete Gauss–Bonnet theorem for triangulated disks with nonpositive curvature. The condition deg( v) ≥ 6 at interior vertices is the discrete analogue of nonpositive curvature; if deg( v) = 6 then we are locally flat (curvature 0). The local condition on curvature controls the global geometry of CAT(0) planar graphs throughout the paper: it guarantees the existence of at least three acute boundary vertices (Lemma 12.2), which is the starting point for the study of normal graphs (Proposition 12.6), and it provides the area-reduction arguments that establish unique minimizing neighbors (see Lemma 9.5) and the local structure of level sets (see Lemma 8.2). 
+
+Lemma 8.1. Let H be an undirected connected planarly embedded graph whose perimeter is a simple polygonal curve such that all interior vertices have degree at least 6, and all interior faces are triangles. For a boundary vertex x ∈ ∂H , let deg( x) ≥ 2 denote its degree. Then 
+
+X
+
+> x∈∂H
+
+max(4 − deg( x), 0) ≥ 6,
+
+where the summation is over all boundary vertices. Proof. Let V , E, F denote the number of vertices, edges, and faces respectively, and let B denote the number of boundary vertices. Since all interior faces are triangles, we have 3( F − 1) = 2 E − B, 2E = X 
+
+> y∈V(H)
+
+deg( y),
+
+where the second summation is over all vertices. Euler’s formula gives 2 = V − E + F = V − E +
+
+23E − 13B + 1 
+
+
+
+= 1 + V − 13B − 16
+
+X
+
+> y
+
+deg( y),
+
+where the summation is over all vertices y. Since interior vertices have degree at least 6, 1 ≤ V − 13B − (V − B) − 16
+
+X
+
+> x∈∂H
+
+deg( x) = 23B − 16
+
+X
+
+> x∈∂H
+
+deg( x).
+
+Since 23 B = 16
+
+P 
+
+> x∈∂H
+
+4, it follows that P 
+
+> x∈∂H
+
+max(4 − deg( x), 0) ≥ 6. □Scaffolds for Higher Tropical Grassmannians: Foundations 23 
+
+8.2. Combinatorial Distance and Level Sets. For vertices v, w in a CAT(0) planar graph Q,the combinatorial distance ℓ(v, w ) is the minimal number of edges in any path from v to w. Apath achieving this minimum is called a combinatorial geodesic . The level set Sℓ(v) is the union of all vertices at combinatorial distance ≤ ℓ from v, together with all edges and triangles involving those vertices only. 
+
+Lemma 8.2 (Combinatorial Distance in Triangles) . Let Q be a CAT(0) planar graph. Fix a vertex 
+
+v ∈ V (Q).
+
+(1) In any triangle (a, b, c ), the three values ℓ(a, v ), ℓ (b, v ), ℓ (c, v ) equal {ℓ, ℓ, ℓ − 1} or {ℓ, ℓ −
+
+1, ℓ − 1} for some ℓ ≥ 1. The level set Sℓ = Sℓ(v) is a connected planar graph together with all its interior faces, hence contractible as a two-dimensional cell complex. 
+
+(2) If (a, b ) is an edge with ℓ(a, v ) = ℓ(b, v ) = ℓ, then there exists a unique triangle (a, b, c ) with 
+
+ℓ(c, v ) = ℓ − 1.
+
+(3) Let a̸ = v with ℓ(a, v ) = ℓ. Among the neighbors of a:
+
+• Exactly one or two have combinatorial distance ℓ − 1 to v.
+
+• At most two have combinatorial distance ℓ to v.
+
+• The rest have combinatorial distance ℓ + 1 to v.Furthermore, the neighbors at distance ℓ − 1 or ℓ are cyclically consecutive around a, with those at distance ℓ − 1 in the “middle”. 
+
+See Fig. 12 for an ilustration of Lemma 8.2. vabb' c c' c'' a' 
+
+Figure 12. Illustrating Lemma 8.2. Claim (1): combinatorial distances from the vertices of a triangle are either {ℓ, ℓ, ℓ + 1 } or {ℓ, ℓ + 1 , ℓ + 1 }. Claim (2): ( a, b ) is an edge with ℓ(a, v ) = ℓ(b, v ) = ℓ, and ( a, b, c ′) is the unique triangle with ℓ(c′, v ) = 
+
+ℓ − 1. Claim (3): among the neighbors of a, (i) exactly the vertices c′ and c′′ have combinatorial distance ℓ − 1 to v, (ii) exactly b and b′ have combinatorial distance ℓ
+
+to v, and (iii) all others a′ and c have combinatorial distance ℓ + 1 to v.
+
+Proof. We prove (1), (2), and (3) simultaneously by induction on ℓ.
+
+Base Case: ℓ ≤ 1.
+
+For ℓ = 0: The only vertex at distance 0 from v is v itself. The set S0 = {v} is trivially contractible. For ℓ = 1: The vertices at distance 1 from v are precisely the neighbors of v. Any triangle containing v has vertex distances (0 , 1, 1), fitting the pattern {ℓ, ℓ − 1, ℓ − 1} with ℓ = 1. The set 
+
+S1 consists of v, all neighbors of v, all edges incident to v, and all triangles containing v. This 24 NICK EARLY AND THOMAS LAM 
+
+is a star-like structure with filled triangular faces around v, which is contractible. For part (3): Each neighbor a of v has ℓ(a, v ) = 1. The unique neighbor of a at distance 0 is v itself. The other neighbors of a are either also neighbors of v (distance 1) or are at distance 2. 
+
+Inductive Step. 
+
+Assume (1), (2), (3) hold for all distances up to ℓ. We prove them for ℓ + 1. By the inductive hypothesis (1), Sℓ is a connected planar graph (together with its interior faces). The boundary ∂S ℓ consists of vertices and edges that are either on the boundary ∂Q of the entire graph, or at distance exactly ℓ from v. Let Γ denote a connected component of the part of ∂S ℓ
+
+consisting of vertices and edges at distance exactly ℓ from v. Each such Γ is one of: a closed cycle, a path with both endpoints on ∂Q , or a single vertex (on ∂Q ). Let a be an interior vertex with ℓ(a, v ) = ℓ. By the inductive hypothesis (3), a has 1 or 2 neighbors at distance ℓ − 1, at most 2 neighbors at distance ℓ (call them a′ and a′′ ), and the remaining neighbors have distance ℓ + 1. Since a is interior, it has degree ≥ 6. Therefore: (neighbors at distance ℓ + 1) ≥ 6 − 2 − 2 = 2 .
+
+Let b be a vertex with ℓ(b, v ) = ℓ + 1. We establish three claims: 
+
+Claim (a): If a, a ′ are distinct neighbors of b with ℓ(a, v ) = ℓ(a′, v ) = ℓ, then ( a, a ′, b ) is a triangle. Consequently, b has at most two neighbors at distance ℓ, and if two, they are adjacent. 
+
+Proof of Claim (a). Since both a and a′ are at distance ℓ and adjacent to b (at distance ℓ + 1), they must lie on the same boundary component Γ of Sℓ.Suppose for contradiction that a and a′ are not adjacent. Let γ be the path along Γ from a to 
+
+a′. Let R be the region bounded by the path γ and the edges ( a, b ) and ( b, a ′). Since a and a′ are not adjacent along γ, the region R contains at least one vertex of γ other than a, a ′.Consider any vertex w on γ strictly between a and a′. This vertex w is at distance ℓ from v, so by the inductive hypothesis (3), w has exactly one or two neighbors at distance ℓ − 1 and at most two at distance ℓ. The neighbors at distance ℓ + 1 lie on the exterior of Sℓ. The vertex w has at least two neighbors inside R, and two neighbors on γ, so deg R(w) ≥ 4. Apply Lemma 8.1 to R. Boundary vertices a, a′, and b each have deg ≥ 2, and the rest of the boundary vertices have deg ≥ 4. We conclude that deg R(a) = deg R(a′) = deg R(b) = 2 and it follows from this that γ does not contain intermediate vertices. Therefore ( a, a ′, b ) must be a triangle. □
+
+Claim (b): If ( b, b ′) is an edge with ℓ(b, v ) = ℓ(b′, v ) = ℓ + 1, then there exists a unique triangle (a, b, b ′) with ℓ(a, v ) = ℓ.
+
+Proof of Claim (b). Let a ∈ ∂S ℓ (resp. a′) be adjacent to b (resp. b′) satisfying ℓ(a, v ) = ℓ(a′, v ) = 
+
+ℓ. If γ is a path in ∂S ℓ connecting a and a′, then all vertices on γ are at distance ℓ from v. Using the same argument as in the proof of (a), we conclude that a = a′. □
+
+Claim (c): b has at most two neighbors at distance ℓ + 1; if exactly two, they are not adjacent. 
+
+Proof of Claim (c). This follows from the cyclic structure around b and Claim (a): there are 1 or 2 neighbors at distance ℓ, and if 2 they are adjacent. □
+
+From Claims (a), (b), (c), we deduce (1), (2), (3) for ℓ + 1: 
+
+• (1) for ℓ + 1: Any triangle in Sℓ+1 involving a vertex at distance ℓ + 1 has distances 
+
+{ℓ + 1 , ℓ + 1 , ℓ } or {ℓ + 1 , ℓ, ℓ } by Claim (a) and the structure of how distance ( ℓ + 1) vertices attach to Sℓ. The set Sℓ+1 remains connected with all interior faces filled. 
+
+• (2) for ℓ + 1: Follows from Claim (b). Scaffolds for Higher Tropical Grassmannians: Foundations 25 
+
+• (3) for ℓ + 1: Follows from Claims (a) and (c), plus the cyclic ordering from the planar embedding. This completes the induction. □
+
+9. Directed Distance Geometry 
+
+The directed distance δ(v, w ) is length of the shortest directed path from v to w. Recall our convention that traversing an edge against the orientation contributes 2 to the distance. This section establishes how the function δ(·, v ) behaves locally. The key results are Lemma 9.5 stating that for any vertex u̸ = v, there is a unique neighbor u′ of u minimizing δ(u′, v ), and Corollary 9.6 which describes the behavior of δ(·, v ) when restricted to the neighbors of some vertex u.Note that if Q is a CAT(0) planar graph then so is the graph Qop obtained from Q be reversing all the orientations. We have δQ(v, w ) = δQop (w, v ). While many of the results are stated for the function δ(·, v ), they also hold for δ(v, ·) after reversing orientations. 9.1. Local Distance Lemmas. Lemma 9.1. Let p, q be two walks from p to q (possibly traveling against orientations). Then the directed distance along p and the directed distance along q are congruent modulo 3.Proof. The two walks p and q can be related by a finite sequence of local moves: (a) use one edge of a triangle instead of the other two, and (b) replace traversing an edge in both directions by not moving. Both operations preserve directed distance modulo 3. □
+
+The following lemmas describe how directed distance changes across single edges and within triangles. 
+
+Lemma 9.2. Let Q be a CAT(0) planar graph. Fix a target vertex v ∈ V (Q). Suppose we have a directed edge u → w. Then δ(u, v ) ∈ { δ(w, v ) + 1 , δ (w, v ) − 2}.Proof. It is clear that δ(w, v ) − 2 ≤ δ(u, v ) ≤ δ(w, v ) + 1. But by Lemma 9.1, δ(u, v ) ≡ δ(w, v ) + 1 modulo 3, so we have δ(u, v ) ∈ { δ(w, v ) + 1 , δ (w, v ) − 2}. □
+
+Lemma 9.3. Let Q be a CAT(0) planar graph. Fix a target vertex v ∈ V (Q). For any triangle with vertices u, w, x , the three values δ(u, v ), δ (w, v ), δ (x, v ) equal d, d + 1 , d + 2 for some integer d
+
+(in some order). Proof. Apply Lemma 9.2. □
+
+Lemma 9.4. Let u and v be distinct vertices and let p, q be two paths from u to v with minimal directed distance, where the first step u → u′ is outgoing. Then either 
+
+(1) both paths use the same initial edge u → u1, or 
+
+(2) the paths use initial edges u → u1 and u → u′
+
+> 1
+
+, and in cyclic order around u these two edges are separated by a single incoming edge w → u such that both triangles u → u1 → w → u
+
+and u → u′ 
+
+> 1
+
+→ w → u are present in Q. Furthermore, δ(w, v ) = δ(u, v ) − 2.Proof. By adding some triangles to Q to avoid cut edges, we may assume that p, q are paths following orientations of edges. We proceed by induction on δ(u, v ). If δ(u, v ) = 1, the claim is clear. Now, suppose δ(u, v ) > 1, and suppose that p, q are two shortest directed paths 
+
+p = ( u = u0 → u1 → · · · → ud = v), q′ = ( u = u′ 
+
+> 0
+
+→ u′ 
+
+> 1
+
+→ · · · → u′ 
+
+> d
+
+= v)such that u1̸ = u′
+
+> 1
+
+. If p and q intersect before reaching v, then the result holds by induction (replacing v by the point of intersection), so we may assume that p and q together bound a simple 26 NICK EARLY AND THOMAS LAM 
+
+polygonal region R. Let Q(R) be our graph restricted to R. Then Q(R) is a connected planar graph. Let us consider one of the vertices ui on the path p that is neither the start or the end. Since we have ui−1 → ui → ui+1 , either deg Q(R)(ui) = 2 pointing into R, or deg Q(R)(ui) ≥ 4. It follows from Lemma 8.1 that at least one internal vertex of p or q, say ui on p, satisfies deg Q(R)(ui) = 2. In other words, we have a triangle ui−1 → ui → ui+1 → ui−1 in R. The edge ui+1 → ui−1 cannot be on q, so there is another triangle ui−1 → w → ui+1 → ui−1 on the other side of the edge ui+1 → ui−1, and this triangle also belongs to R. We obtain another shortest path from u to v by using w instead of ui. This modification strictly reduces the area of the region R.Repeating this argument, eventually one of the vertices u1 or u′ 
+
+> 1
+
+will be the vertex to be modified. Without loss of generality, we assume it to be u1. If the modification changes u → u1 to u → u′
+
+> 1
+
+,then we are in situation (2). We assume otherwise to obtain a contradiction. Let the vertices adjacent to u belonging to R be u1, x 1, y 1, . . . , y s−1, x s, u ′ 
+
+> 1
+
+in order, and assume that s ≥ 1. Then the path p must start v → v1 → x1 → · · · . It follows that δ(x1, v ) = 
+
+δ(u, v ) − 2 and δ(y1, v ) = δ(u, v ) − 1. Thus there is also a shortest path from u to v passing through y1. Repeating this argument, we see that there are shortest paths passing through all of 
+
+u1, y 1, y 2, . . . , y s−1, u ′
+
+> 1
+
+, and δ(xi, v ) = d(u, v ) − 2 for i = 1 , 2, . . . , s .We now apply the inductive hypothesis to y1. There are shortest paths from y1 to u using both the edges y1 → x1 and y1 → x2, and we conclude that there exists a vertex z, not equal to u, such that we have two triangles y1 → x1 → z → y1 and y1 → x2 → z → y1. This contradicts that y1, if interior, should have degree ≥ 6. □
+
+9.2. Unique Minimizing Neighbors. The following lemma establishes that for any vertex u̸ =
+
+v, there is a unique neighbor minimizing directed distance to v.
+
+Lemma 9.5. Let Q be a CAT(0) planar graph. Fix a target vertex v ∈ V (Q). For any vertex 
+
+u̸ = v, there exists a unique neighbor u′ of u that minimizes δ(u′, v ) among all neighbors of u.Moreover, δ(u, v ) − δ(u′, v ) ∈ { 1, 2}.Proof. By adding triangles, we can assume that Q has no cut edges without changing the validity of the statement. Then there is always at least one path u → u1 → · · · → v, following orientations of edges, of minimal directed distance from u to v. Apply Lemma 9.4. If Lemma 9.4(1) holds then u1 is the unique neighbor of u that minimizes δ(u′, v ), and we have δ(u, v ) − δ(u1, v ) = 1. If Lemma 9.4(2) holds then w is the unique neighbor of u that minimizes δ(u′, v ), and we have 
+
+δ(u, v ) − δ(w, v ) = 2. □
+
+Corollary 9.6. Fix v and consider the distance function δ(·, v ) directed towards v. Let u be an interior vertex such that δ(u, v ) = d > 0, and let the vertices incident to u be x1, y 1, x 2, y 2, . . . where there are edges xi → u and u → yi. Then the function δ(·, v ) restricted to . . . , x i, y i, x i+1 , y i+1 , . . . 
+
+is, up to cyclic rotation, given by 
+
+. . . , d + 2 , d + 1 , d − 1, d + 1 , d + 2 , d + 1 , d + 2 . . . , 
+
+or 
+
+. . . , d + 2 , d + 1 , d − 1, d − 2, d − 1, d + 1 , d + 2 , d + 1 , d + 2 , . . . , 
+
+corresponding to the two cases of Lemma 9.5. If instead, u is a boundary vertex, then these distance values could be truncated, however the value d − 1 is always present in the first case, and the value 
+
+d − 2 is always present in the second case. Proof. The two cases correspond to (1) and (2) of Lemma 9.4 respectively. The pattern of distances follows from Lemma 9.5 and Lemma 9.3. □Scaffolds for Higher Tropical Grassmannians: Foundations 27 
+
+9.3. Combinatorial geodesics achieve minimum directed distance. We establish that com-binatorial geodesics are also paths of shortest directed distance. 
+
+Proposition 9.7. Let Q be a CAT(0) planar graph. Any combinatorial geodesic is a path of shortest directed distance between its endpoints. That is, if γ is a path from u to v achieving the minimum number of edges ℓ(u, v ), then γ also achieves the minimum directed distance δ(u, v ).Proof. We proceed by induction on the length ℓ of the combinatorial geodesic γ. The base cases 
+
+ℓ ≤ 1 are clear. Assume the statement holds for all combinatorial geodesics of length at most ℓ − 1, where ℓ ≥ 2. Let γ = ( u = u0, u 1, . . . , u ℓ = v) be a combinatorial geodesic of length ℓ from u to v. It suffices to show that (9.1) δ(u, v ) = δ(u, u 1) + δ(u1, v ).
+
+Case 1: Suppose that every path from u to v passes through u1.In this case, u1 is a cut vertex separating u from v. Any path from u to v decomposes as a path from u to u1 followed by a path from u1 to v. Therefore, (9.1) holds. Case 2: There exists a path from u to u1 that does not pass through v1. There must a triangle (u, u 1, u ′) for some vertex u′ adjacent to both u and u1. Let d := δ(u1, v ). Subcase 2a: The triangle is oriented u → u′ → u1 → u. If (9.1) does not hold, then by Lemma 9.2, we have δ(u, v ) = d − 1 and δ(u′, v ) = d − 2. We have ℓ(u′, v ) ∈ { ℓ − 1, ℓ }. Either way, applying the inductive hypothesis and Corollary 9.6 to u1 we deduce that the unique neighbor of u1 that minimizes δ(·, v ) should have combinatorial distance ℓ − 2 from v. This contradicts δ(u′, v ) = d − 2. Subcase 2b: The triangle is oriented u → u1 → u′ → u. If (9.1) does not hold, then by Lemma 9.2, we have δ(u, v ) = d − 2 and δ(u′, v ) = d − 1. Applying the inductive hypothesis and Corollary 9.6 to u1 we deduce that the unique neighbor of u1 that minimizes δ(·, v ) should have combinatorial distance ℓ − 2 from v. This contradicts δ(u, v ) = d − 2. This proves (9.1), the inductive step, and the claim. □
+
+The following result follows immediately. 
+
+Corollary 9.8. Let γ be a combinatorial geodesic from u to v. The number of edges traversed in the forward direction, and the number traversed in the backward direction, are invariants of the endpoints (u, v ).
+
+We may now sharpen Lemma 9.2. 
+
+Lemma 9.9. Let Q be a CAT(0) planar graph. Fix a target vertex v ∈ V (Q). Suppose we have a directed edge u → w. Then 
+
+δ(u, v ) − δ(w, v ) = 
+
+(+1 if ℓ(u, v ) ≥ ℓ(w, v ),
+
+−2 if ℓ(u, v ) = ℓ(w, v ) − 1.
+
+Proof. The cases ℓ(u, v ) = ℓ(w, v ) ± 1 follow immediately from Lemma 9.2 and Proposition 9.7. When ℓ(u, v ) = ℓ(w, v ), by Lemma 8.2, there exists a triangle u → w → x → w such that 
+
+ℓ(x, v ) = ℓ(u, v ) − 1. We have that δ(x, v ) = δ(w, v ) − 1 so by Lemma 9.3 and Proposition 9.7 we have δ(u, v ) = δ(w, v ) + 1. □28 NICK EARLY AND THOMAS LAM 
+
+10. Focal Points and Distance Minimizers 
+
+Let ( Q, z) be a labeled CAT(0) planar graph. Fix three not necessarily distinct vertices zi, z j , z k
+
+in z. The distance sum from a vertex x to this triple is (10.1) D(x) := δ(x, z i) + δ(x, z j ) + δ(x, z k),
+
+and the Fermat-Le distance sum (Definition 3.1) is ΣQ(zi, z j , z k) = Σ Q(i, j, k ) := min   
+
+> x∈V(Q)
+
+D(x).
+
+A vertex achieving this minimum is called a distance minimizer for ( zi, z j , z k) (or for ( i, j, k ). We may omit the subscript Q and write Σ( i, j, k ) for brevity. Our goal in this section is to characterize distance minimizers in terms of focal points (Defini-tion 10.7). The main idea of a focal point is that the three paths from a minimizer to the given triple of boundary vertices can be chosen to be sufficiently spread out and non-intersecting. This choice is made by the construction of the three canonical geodesics. The main result is: 
+
+Theorem 10.1 (Minimizers and Focal Points Coincide) . Let Q be a CAT(0) planar graph and let 
+
+(zi, z j , z k) be three boundary vertices. A vertex v is a distance minimizer for (zi, z j , z k) if and only if v is a focal point for (zi, z j , z k).
+
+Theorem 10.1 is established in Section 10.4 and Section 10.5. 10.1. Definition of focal point. We introduce the neighbor sets that encode how geodesics from 
+
+v to different boundary targets depart from v.
+
+Definition 10.2 (Neighbor Sets E(v) and F (v)) . For a vertex v ∈ V (Q):
+
+• E(v) denotes the set of neighbors of v connected by an outgoing edge from v.
+
+• F (v) denotes the set of neighbors of v connected by an incoming edge to v.For technical reasons, if v is a boundary vertex and there is a boundary edge v → u, we augment 
+
+F (v) by adding vertices u− and/or u+ (if necessary) so that u−, u, u + are in cyclic order around v.That is, we pretend that there are fake edges u− → v and u+ → v. If |F (v)| < 3, we add auxiliary elements ˜v (and ˜v′ if necessary) so that |F (v)| = 3 .
+
+Ignoring the auxiliary elements ˜ v, ˜ v′, the set F (v) comes equipped with a cyclic ordering, see Fig. 13. 
+
+Figure 13. Cyclic ordering on neighbors of v; in particular on the set F (v) with an edge directed to v.
+
+Definition 10.3 (Minimizing Neighbor fz (v)) . For vertices v̸ = z, define fz (v) to be the unique neighbor of v (guaranteed by Lemma 9.5) that minimizes δ(·, z ) among all neighbors of v.Scaffolds for Higher Tropical Grassmannians: Foundations 29 
+
+1
+
+2
+
+4
+
+v
+
+1
+
+2
+
+4
+
+v
+
+1
+
+2
+
+4
+
+v
+
+Figure 14. The canonical geodesics from v to z1, z2, z4 respectively have been indicated; the sets F (v, z 1), F (v, z 2), F (v, z 4) have been indicated in blue. Since z1
+
+and z2 are parallel at v, we have that v is not a focal point. 
+
+Definition 10.4. For vertices v, z ∈ V (Q), define: 
+
+F (v, z ) = 
+
+
+
+F (v) if v = z, 
+
+{a, a ′} if v̸ = z, there is an edge v → fz (v),
+
+and a, f z (v), a ′ are consecutive in cyclic order around v, 
+
+{fz (v)} if v̸ = z and there is an edge fz (v) → v. 
+
+When F (v, z ) = {a, a ′}, we write c ◁ F (v, z ) if a, c, a ′ are in cyclic order around v with c strictly between a and a′.
+
+Definition 10.5 (Parallel Vertices) . We say that vertices z and z′ are parallel at v, written z ∥v z′,if F (v, z ) = F (v, z ′) and one of the following hold: 
+
+(1) |F (v, z )| = 1 , or 
+
+(2) |F (v, z )| = 2 and z, z ′ are parallel at fz (v) = fz′ (v), or 
+
+(3) z = z′̸ = v.
+
+Definition 10.6 (Witness Path) . When F = {a, a ′} = F (v, z ) = F (v, z ′), a witness path is a sequence v = v0 → v1 → · · · → vr = w such that |F (vi, z )| = |F (vi, z ′)| = 2 for i ∈ [0 , r − 1] and 
+
+|F (vr, z )| = |F (vr, z ′)| = 1 . The vertex w = vr is called the witness . We have z ∥v z′ if and only if z ∥w z′ if and only if F (w, z ) = F (w, z ′).
+
+Definition 10.7 (Focal Point) . A vertex v is a focal point for (zi, z j , z k) if: 
+
+(1) The sets F (v, z i), F (v, z j ), F (v, z k) admit a system of distinct representatives (SDR). 
+
+(2) No two of zi, z j , z k are parallel at v.
+
+Example 10.8. In Fig. 14, v is not a focal point for (z1, z 2, z 4) but in Fig. 15, x is a focal point for 
+
+(z1, z 2, z 4). In Fig. 16, the vertex v is a focal point for any of (z2, z 8, z 13 ), (z2, z 8, z 17 ), (z2, z 13 , z 17 ), (z8, z 13 , z 17 ).
+
+10.2. Canonical geodesic. Let v and w be two vertices of Q. The canonical geodesic from v to 
+
+w is the path 
+
+γw(v) = ( v, f w(v), f w(fw(v)) , . . . , w )such that every step maximally reduces directed distance. It follows from Proposition 9.7 (and its proof) that this is both a combinatorial geodesic and a path of shortest directed distance. 30 NICK EARLY AND THOMAS LAM 
+
+1
+
+2
+
+4
+
+x 1
+
+2
+
+4
+
+x 1
+
+2
+
+4
+
+x
+
+Figure 15. The three sets F (x, z 1), F (x, z 2), F (x, z 4) have been indicated in blue. Since none of them coincide, and they have a SDR, x is a focal point for ( z1, z 2, z 4). v
+
+Figure 16. The red edges are the canonical geodesics from v to z2, z 8, z 13 , z 17 .The vertex v is a focal point for ( z2, z 8, z 13 ), (z2, z 8, z 17 ), (z2, z 13 , z 17 ), (z8, z 13 , z 17 ). Note that F (v, z 2) = F (v, z 17 ) but z2 and z17 are not parallel at v. All of 
+
+{2, 8, 13 }, {2, 8, 17 }, {2, 13 , 17 }, {8, 13 , 17 } are among the bases for the matroid Mv
+
+(Definition 3.8). 10.3. Cyclic Ordering of Neighbor Sets. For concreteness, cyclic ordering in this section can be taken to mean counterclockwise ordering .Subets F1, F 2, . . . , F m of F are in weak cyclic order around v if, after removing those Fi that are equal to F , in the cyclic ordering of the neighbors of v we have that each Fi is a contiguous arc, and the arcs appear in the cyclic sequence F1, F 2, . . . , F m (wrapping around v at most once), allowing for overlaps and coincidences between consecutive sets. 
+
+Lemma 10.9. Let Q be a CAT(0) planar graph. Let v be a vertex and let zi1 , z i2 , . . . , z im be bound-ary vertices listed in cyclic order around ∂Q . Then the neighbor sets F (v, z i1 ), F (v, z i2 ), . . . , F (v, z im )
+
+are arranged in weak cyclic order around v.Proof. By definition of weak cyclic order, we may assume that v is not equal to any of the zi. By definition, each of the sets F (v, z ij ) is a one or two-element set, and if it has size two, it consists of two cyclically consecutive elements of F . Now we note that two canonical geodesics γzi (v) and 
+
+γzj (v) cannot cross. Indeed, the two paths can travel together for some time and diverge, but once Scaffolds for Higher Tropical Grassmannians: Foundations 31 
+
+they diverge they will not touch again. Since F (v, z i) is determined by the first step of γzi (v), we conclude that F (v, z i1 ), F (v, z i2 ), . . . , F (v, z im ) are arranged in weak cyclic order around v. □
+
+10.4. Minimizers are Focal Points. Proposition 10.10 (Minimizers are Focal Points) . Let (Q, z) be a CAT(0) planar graph. For any three boundary vertices (zi, z j , z k), any distance minimizer is a focal point. Proof. Let v be a distance minimizer for ( zi, z j , z k), meaning v achieves the minimum value of (10.1) over all vertices x ∈ V (Q). 
+
+Step 1: No two targets are parallel at v.
+
+Suppose for contradiction that two of the targets, say zj and zk, are parallel at v.
+
+Case 1a: F (v, z j ) = F (v, z k) = {x} where x → v.By Lemma 9.9, since x → v and x = fzj (v) = fzk (v): 
+
+δ(x, z j ) = δ(v, z j ) − 2, δ(x, z k) = δ(v, z k) − 2.
+
+For the third target zi, the vertex x is a neighbor of v, so by Lemma 9.9: 
+
+δ(x, z i) ≤ δ(v, z i) + 1 .
+
+Therefore: 
+
+D(x) = δ(x, z i) + δ(x, z j ) + δ(x, z k) ≤ (δ(v, z i) + 1) + ( δ(v, z j ) − 2) + ( δ(v, z k) − 2) = D(v) − 3.
+
+This contradicts the assumption that v is a distance minimizer. 
+
+Case 1b: F (v, z j ) = F (v, z k) = {x, y } and zj ∥v zk.Let v = v0 → v1 → · · · → vr = w be a witness path. Consider the vertex v1 = fzj (v) = fzk (v). Since v → v1, by Lemma 9.9: 
+
+δ(v1, z j ) = δ(v, z j ) − 1, δ(v1, z k) = δ(v, z k) − 1.
+
+For zi, we have: 
+
+δ(v1, z i) ≤ δ(v, z i) + 2 .
+
+Therefore: 
+
+D(v1) ≤ (δ(v, z i) + 2) + ( δ(v, z j ) − 1) + ( δ(v, z k) − 1) = D(v).
+
+Since v is a distance minimizer, we must have equality, so v1 is also a distance minimizer. Repeating this argument along the witness path, all vertices v0, v 1, . . . , v r = w are distance minimizers. At the witness w, we have |F (w, z j )| = |F (w, z k)| = 1, reducing to Case 1a. This gives a contradiction. We conclude that no two of zi, z j , z k are parallel at v.
+
+Step 2: The sets F (v, z ) admit an SDR. 
+
+If v = z ∈ { zi, z j , z k}, then F (v, z ) = F (v) has at least three elements (by the technical convention for boundary vertices), so an SDR trivially exists. Suppose v / ∈ { zi, z j , z k}, so |F (v, z )| ∈ { 1, 2} for each z ∈ { zi, z j , z k}. Since no two targets are parallel at v (by Step 1), the only way an SDR could fail to exist is if | S 
+
+> z
+
+F (v, z )| ≤ 2 and it follows that not all F (v, z ) have size one. We may thus suppose that S 
+
+> z
+
+F (v, z ) = F (v, z i) = {a, a ′} for some cyclically adjacent pair 
+
+{a, a ′}, with F (v, z j ), F (v, z k) ⊆ { a, a ′}.Let c ◁ F (v, z i) be the vertex such that a, c, a ′ are in cyclic order around v (i.e., c = fzi (v), with 
+
+v → c). By Lemma 9.9, δ(c, z i) = δ(v, z i) − 1. For zj and zk, since F (v, z j ), F (v, z k) ⊆ { a, a ′}, we have 
+
+δ(c, z j ) < δ (v, z j ), δ(c, z k) < δ (v, z k).
+
+It follows that D(c) < D (v), contradicting the assumption that v is a distance minimizer. □32 NICK EARLY AND THOMAS LAM 
+
+10.5. Focal Points are Distance Minimizers. We now prove the “if” part of Theorem 10.1. 
+
+Lemma 10.11. Let (zi, z j , z k) be fixed and recall (10.1) D(v) := δ(v, z i) + δ(v, z j ) + δ(v, z k).
+
+(1) If v → u is a directed edge, then D(u) = D(v) if and only if exactly two of the three distances δ(·, z ) decrease (by 1 each) when moving from v to u. In particular, in this case, 
+
+v is a distance minimizer if and only if u is a distance minimizer. 
+
+(2) If w → v is a directed edge, then D(w) = D(v) if and only if exactly one of the three distances δ(·, z ) decreases (by 2) when moving from v to w. In particular, in this case, v is a distance minimizer if and only if w is a distance minimizer. Proof. (1) By Lemma 9.9, for each z ∈ { zi, z j , z k}:
+
+δ(u, z ) − δ(v, z ) ∈ {− 1, +2 }.
+
+We have D(u) = D(v) if and only if the sum of changes is zero. This occurs precisely when two distances decrease by 1 (contributing −2) and one increases by 2 (contributing +2). (2) By Lemma 9.9 applied to w → v:
+
+δ(w, z ) − δ(v, z ) ∈ { +1 , −2}.
+
+We have D(w) = D(v) if and only if two distances increase by 1 (contributing +2) and one decreases by 2 (contributing −2). □
+
+Definition 10.12. Let v = ( v0, v 1, . . . , v r) be a walk in Q. The three F -sets F (vi, z i), F (vi, z j ), F (vi, z k)
+
+are directed backwards at vi (for i ≥ 1) if: 
+
+(1) vi−1 → vi and at least two of the F -sets equal {vi−1}, or 
+
+(2) vi−1 ← vi and all three F -sets are contained in κ(vi−1),where κ(vi−1) denotes the two outgoing neighbors of vi that are adjacent to vi−1 in the cyclic order around vi.
+
+Lemma 10.13. Let Q be a CAT(0) planar graph. Fix three boundary vertices (zi, z j , z k). Let 
+
+v = ( v0, v 1, v 2, . . . , v r) be a walk in Q.
+
+(1) If v0 is a focal point but v1 is not a focal point, then F (v1, z i), F (v1, z j ), F (v1, z k) are directed backwards at v1.
+
+(2) If v is a combinatorial geodesic and F (vi, z i), F (vi, z j ), F (vi, z k) are directed backwards at 
+
+vi, then F (vi+1 , z i), F (vi+1 , z j ), F (vi+1 , z k) are directed backwards at vi+1 .Proof. We prove (1). Assume v0 is a focal point for ( zi, z j , z k) but v1 is not. Since v0 is a focal point, 
+
+• the sets F (v0, z i), F (v0, z j ), F (v0, z k) admit an SDR, and 
+
+• no two of zi, z j , z k are parallel at v0.Since v1 is not a focal point, at least one of these conditions fails at v1. We consider the two cases for the edge between v0 and v1.Case 1: The edge is directed v0 → v1. By Definition 10.4, for each z: if v1̸ = fz (v0) and v0 → v1,then F (v1, z ) = {v0}. Since v0 is a focal point and the F -sets admit an SDR, there can be at most one z ∈ { zi, z j , z k} for which v1 = fz (v0). Subcase 1a: For all three targets, v1̸ = fz (v0). Then F (v1, z ) = {v0} for all z ∈ { zi, z j , z k}. This means all three F -sets at v1 equal {v0}, so the directed backwards condition (1) is satisfied. Subcase 1b: For exactly one target, say zi, we have v1 = fzi (v0). Then F (v1, z j ) = F (v1, z k) = {v0}.At least two F -sets equal {v0}, so the directed backwards condition (1) is satisfied. Case 2: The edge is directed v1 → v0. Since v0 is a focal point and v1 is not, and the edge is v1 → v0, the F -sets at v1 must fail the focal point conditions. By a detailed analysis of Scaffolds for Higher Tropical Grassmannians: Foundations 33 
+
+Definition 10.4 (omitted for brevity), when v1 → v0 and v1 fails to be a focal point, all three F -sets 
+
+F (v1, z ) are contained in κ(v0), satisfying condition (2) of directed backwards. We have now proven (1). The proof of (2) follows a similar case analysis to (1). □
+
+Proof of Theorem 10.1. After Proposition 10.10, it suffices to show that focal points are distance minimizers. Let v be a focal point for ( zi, z j , z k). Let w be a distance minimizer (which exists since Q is finite). Let v = ( v = v0, v 1, . . . , v r = w) be a combinatorial geodesic from v to w.
+
+Claim: One of the following holds: (A) v1 is also a focal point, or (B) v1 is not a focal point, and none of v2, . . . , v r are focal points. 
+
+Proof of Claim. Suppose v1 is not a focal point. By Lemma 10.13(1), the F -sets at v1 are directed backwards. By Lemma 10.13(2), the F -sets at vi are directed backwards for all i = 1 , 2, . . . , r .A vertex with F -sets directed backwards cannot be a focal point (the SDR condition or non-parallelism fails). Thus (B) holds. □
+
+Option (B) implies that w = vr is not a focal point. But by Proposition 10.10, any distance minimizer is a focal point. This is a contradiction. Therefore, option (A) must always hold: v1
+
+is a focal point whenever v is a focal point. Applying this inductively along the geodesic, all of 
+
+v0, v 1, . . . , v r are focal points. By Lemma 10.11, when moving between adjacent focal points, the total distance D is preserved (the changes balance out). Therefore: 
+
+D(v) = D(v1) = · · · = D(vr) = D(w),
+
+and v is also a distance minimizer. □
+
+10.6. Focal points exist. Corollary 10.14 (Existence of Focal Points) . For any labeled CAT(0) planar graph (Q, z) and any three boundary vertices (zi, z j , z k), a focal point exists. Proof. Since Q is finite, a distance minimizer exists. By Theorem 10.1, any distance minimizer is a focal point. □
+
+11. Tropical Pl¨ ucker relations 
+
+In this section we prove Theorem 4.8(1),(2). We assume that ( Q, z) is a CCW-labeled CAT(0) planar graph, and show that π• = π•(Q) satisfies the positive tropical Pl¨ ucker relations. This will prove Theorem 4.8(2); the proof of Theorem 4.8(1) is strictly easier. Let a, b, c, d, e ∈ z be five vertices, possibly not distinct, in CCW order around the boundary 
+
+∂Q . We show that the positive tropical Pl¨ ucker relation holds: (11.1) πabd + πace = min( πabc + πade , π abe + πacd ).
+
+Note that a plays a special role in (11.1), but by cyclic symmetry there is no loss of generality. Let v be a vertex and F = F (v, z ) be a neighbor set, which we assume to be of size one or two. By following F we mean moving from v to the neighboring vertex fz (v) = v′, or alternatively, taking one step along the canonical geodesic towards z. Note that v′ depends only on F = F (v, z )and not on z itself. Our strategy is to either find a single focal point p for (11.2) all four triples abd, ace, abc, ade or all four triples abd, ace, abe, acd 34 NICK EARLY AND THOMAS LAM 
+
+or to find two focal points, one focal point p = px for three triples 
+
+abc, abd, abe or abc, acd, ace or abd, acd, ade or abe, ace, ade, 
+
+where we set x = b, c, d, e respectively, and the other focal point q for at least two of the remaining three sets. In the case of two focal points p and q, we will also establish that 
+
+δ(q, a ) = δ(q, p ) + δ(p, a )
+
+δ(p, y ) = δ(p, q ) + δ(q, y ) for y ∈ { b, c, d, e }/{x}.
+
+(11.3) In the case of a single focal point p, applying Theorem 10.1, the equation (11.1) follows imme-diately. In the case of two focal points, and supposing that x = b for concreteness, we get 
+
+πabc + πade = δ(p, a ) + δ(p, b ) + δ(p, c ) + δ(q, a ) + δ(q, d ) + δ(q, e )
+
+πabd + πace = δ(p, a ) + δ(p, b ) + δ(p, d ) + δ(q, a ) + δ(q, c ) + δ(q, e )
+
+πabe + πacd = δ(p, a ) + δ(p, b ) + δ(p, e ) + δ(q, a ) + δ(q, c ) + δ(q, d )and all three quantities are equal. We start by considering the vertex a. We have that a is a focal point for axy with x, y ∈ { b, c, d, e }
+
+if and only if x and y are not parallel at a. Applying Lemma 10.9 and possibly a cyclic rotation of b, c, d, e , the parallel equivalence classes at a among {b, c, d, e } can be assumed to be one of the following: (i) four equivalence classes, (ii) three equivalence classes, {b, c }, {d}, and {e},(iii) two equivalence classes, {b, c } and {d, e },(iv) two equivalence classes {b} and {c, d, e },(v) one equivalence class {b, c, d, e }.In the following we repeatedly use the following statement that follows from Proposition 9.7: if 
+
+γ is a combinatorial geodesic from u to v passing through w, then δ(u, v ) = δ(u, w ) + δ(w, v ). Case (i): In this case, p = a is a focal point for all six of the triples abc, abd, abe, acd, ace, ade .Case (ii): In this case, p = a is a focal point for abd, ace, abe, acd , and we are in situation (11.2). The other cases obtained by cyclically relabeling b, c, d, e work similarly. Case (iii): In this case, p = a is a focal point for abd, ace, abe, acd , and we are in situation (11.2). The other case obtained by cyclically relabeling b, c, d, e work similarly. Case (iv): Two equivalence classes {b} and {c, d, e }. In this case, p = pb = a is a focal point for 
+
+abc, abd, abe . To find the vertex q, set F = F (a, c ) = F (a, d ) = F (a, e ) and follow F repeatedly until we reach a vertex q where c, d, e are not all parallel. Then q is a focal point for at least two of acd, ace, ade , and it satisfies (11.3). Case (v): One equivalence class {b, c, d, e }. Set F = F (a, b ) = F (a, c ) = F (a, d ) = F (a, e ). Follow 
+
+F repeatedly until we reach a vertex p where not all four of b, c, d, e are parallel. If we have three or more equivalence classes, or we have two equivalence classes of size two, then p is a single focal point satisfying (11.2) and we are done. If we have two equivalence classes, one of size three and one of size one, we follow the recipe in Case (iv) to find a second focal point q. We check that p
+
+and q satisfy (11.3), noting that the path we have followed is a combinatorial geodesic between a
+
+and q passing through p.This completes the proof of Theorem 4.8(2). 12. Simple and normal CAT(0) planar graphs 
+
+12.1. Simplicity. Scaffolds for Higher Tropical Grassmannians: Foundations 35 
+
+Proposition 12.1. Suppose that (Q′, z′) and (Q′′ , z′′ ) are two labeled-CAT(0) planar graphs with boundary vertices z′ = ( z′
+
+> 1
+
+, . . . , z ′
+
+> n
+
+) and z′′ = ( z′′  
+
+> 1
+
+, . . . , z ′′ 
+
+> n
+
+). Suppose that vertex v′ ∈ V (Q′) is labeled by z′
+
+> p
+
+, z ′
+
+> p+1
+
+, . . . , z ′ 
+
+> q
+
+and vertex v′′ ∈ V (Q′′ ) is labeled by z′′  
+
+> r
+
+, z ′′ 
+
+> r+1
+
+, . . . , z ′′  
+
+> s
+
+, so that the cyclic intervals 
+
+[p, q ] and [r, s ] are proper and satisfy [p, q ] ∪ [r, s ] = [ n]. Let Q be obtained from Q′ and Q′′ by identifying the vertices v′ and v′′ , and using the boundary vertices zi = z′ 
+
+> i
+
+if i ∈ [r, s ] and zi = z′′ 
+
+> i
+
+if i ∈ [p, q ]. Then 
+
+π•(Q) = π•(Q′) + π•(Q′′ ).
+
+Proof. Suppose i, j, k ∈ [p, q ]. Then zi, z j , z k are all vertices of Q′′ . So πi,j,k (Q′) = 0 and we have 
+
+πi,j,k (Q) = πi,j,k (Q′′ ), as expected. Similarly for ( i, j, k ) ∈ [r, s ]. Now suppose that i, j ∈ [p, q ] and k ∈ [r, s ] \ [p, q ]. (The case i, j ∈ [r, s ] and k ∈ [p, q ] \ [r, s ] is identical.) Then there exists a focal point for i, j, k among the vertices V (Q′′ ) ⊂ V (Q). It follows from Theorem 10.1 that 
+
+πi,j,k (Q) = Σ Q′′ (z′′  
+
+> i
+
+, z ′′  
+
+> j
+
+, z ′′  
+
+> k
+
+) + δQ′ (v′, z ′
+
+> k
+
+) = πi,j,k (Q′′ ) + πi,j,k (Q′),
+
+where we note that Σ Q′ (v′, v ′, b ′
+
+> k
+
+) = δQ′ (v′, z ′
+
+> k
+
+) since v′ is always a focal point for ( v′, v ′, z ′
+
+> k
+
+). □
+
+Proposition 12.1 holds even if the boundary curve is not an oriented cycle. Recall that a vertex v ∈ ∂Q is called acute if it has degree 2, and is a vertex of exactly one triangular face of Q. Acute vertices are necessarily on the boundary of Q. Recall the definition of simple CAT(0) planar graph from Definition 4.4. 
+
+Lemma 12.2. A simple CAT(0) planar graph Q has at least three acute vertices. Proof. Boundary vertices of a simple CAT(0) planar graph Q are either acute (and have degree 2) or have degree ≥ 4. We now apply Lemma 8.1. □
+
+Lemma 12.3. Let Q be a simple CAT(0) planar graph and v0 → v1 → · · · → vr be the boundary path between two acute vertices v0 and vr, with v1, v 2, . . . , v r−1 non-acute. Let u be another vertex of Q, not equal to any of the vi. Consider the neighbors u′ 
+
+> i
+
+:= fvi (u) of u. Then exactly one of the following holds: 
+
+(1) All the u′ 
+
+> i
+
+are the same. 
+
+(2) For some a ∈ [0 , r − 1] we have u′ 
+
+> 0
+
+= u′ 
+
+> 1
+
+= · · · = u′
+
+> a
+
+̸ = u′ 
+
+> a+1
+
+= u′ 
+
+> a+2
+
+= u′
+
+> r
+
+. The two vertices 
+
+u′ 
+
+> a
+
+and u′ 
+
+> a+1
+
+are cyclically adjacent around u.
+
+(3) For some a ∈ [1 , r − 2] we have u′ 
+
+> 0
+
+= · · · = u′
+
+> a−1
+
+̸ = u′
+
+> a
+
+̸ = u′ 
+
+> a+1
+
+= · · · = u′
+
+> r
+
+. The three vertices u′
+
+> a−1
+
+, u ′
+
+> a
+
+, u ′ 
+
+> a+1
+
+are cyclically adjacent around u, and furthermore we have u′ 
+
+> a±1
+
+→ u
+
+and u → u′
+
+> a
+
+.Proof. By Lemma 13.4, we have u′ 
+
+> i
+
+= u′ 
+
+> i+1
+
+unless u lies on the strand strip S(i) := S(vi → vi+1 ). By Proposition 5.3, the strand strips S(i) and S(j) have no triangles in common, and it follows that u lies on zero, one, or two of the strand strips. These three cases correspond to (1), (2), (3) respectively. □
+
+Lemma 12.4. Let Q be a CAT(0) planar graph with boundary oriented counterclockwise. Then 
+
+Q is a union of simple CAT(0) planar graphs glued along cut vertices of ∂Q .
+
+12.2. Normality. Lemma 12.5. Suppose that Q is a CAT(0) planar graph with boundary oriented counterclockwise. Let v = v0 → v1 → · · · vr−1 → vr = w be a portion of the boundary such that none of the vertices v1, . . . , v r−1 are acute. Then this path is a path of minimum distance from v to w and (traversed backwards) a path of minimal distance from w to v. Furthermore, we have fw(v) = v1
+
+and fv(w) = vr−1.36 NICK EARLY AND THOMAS LAM 
+
+Proof. First suppose none of the vertices vi are cut vertices. Then using Corollary 9.6 we may prove by induction on r that δ(vi, v ) = 2 i and δ(vr−i, w ) = i, and the other claims also follow. By Lemma 12.2, the vertices vi are distinct. If one of the vertices, say vi, is a cut vertex, then 
+
+any path from v to w will pass through vi. The claim then reduces to the same claims for the paths 
+
+v0 → · · · → vi and vi → · · · → vr. We are done by induction on the number of cut vertices. □
+
+Proposition 12.6. Let (Q, z) be a normal CAT(0) planar graph. Then every vertex v ∈ V (Q) is normal. Proof. First suppose that Q is simple. Let v ∈ V (Q). First consider the case that v is an interior vertex. Let zi1 , z i2 , . . . be the acute vertices in cyclic order. Consider the sets F (v, z ij ), which are weakly cyclically ordered around v by Lemma 10.9. By Lemma 12.3, the consecutive sets F (v, z ij )and F (v, z ij+1 ) must intersect. It follows that S 
+
+> j
+
+F (v, z ij ) = F (v), and by Lemma 12.2 it follows that v is a focal point for some triple among the acute vertices. By Theorem 10.1, v is normal. Next consider the case that v is a boundary vertex. Let u (resp. w) be the next (resp. previous) labeled vertex along the boundary from v. Note that ( Q, z) has at least three acute vertices by Lemma 8.1, and thus by normality the three vertices w, v, u are distinct. By Lemma 12.5, we have 
+
+fu(v) (resp. fw(v)) are the next (resp. previous) vertices along the boundary from v. If v is acute it follows immediately that v is normal. By Lemma 12.3, if v is not acute then as z varies over z,we have that S 
+
+> z∈z
+
+F (v, z ) = F (v), and again v is normal. This proves the result for Q simple. For a general normal ( Q, z), by Lemma 12.4, Q = S 
+
+> j
+
+Qj
+
+where the Qj are simple CAT(0) planar graphs. Let v ∈ V (Q). If v belongs to component Qj and is not a cut vertex, the normality of v follows from the result for the simple normal ( Qj , z(j)) where we keep all the original labels of Qj , and additionally label all the cut vertices of Qj . (Lemma 12.2 guarantees that there are labeled vertices on both sides of every cut vertex.) Finally, if v is a cut vertex and Q = S Qk where the Qk are glued at v, then the above argument applied to one of the Qk suffices to show that v is normal. □
+
+Part 3. Strands and planar basis 
+
+13. Non-elliptic strand combinatorics 
+
+A non-elliptic web W is a reduced plabic graph in the sense of Postnikov [Pos]. It follows from general results on reduced plabic graphs that all of the strands of W go from boundary to boundary and have no self-intersections. Furthermore, two strands cannot have a bad double-crossing : that is η and η′ cannot both use edges e and e′ so that these edges are in the same order on both strands. 13.1. Proof of Proposition 5.3. Let W be a non-elliptic web and F be an interior face of W ,so that F is a m-gon for even m ≥ 6. Let η and η′ be two strands with edges e ∈ η (resp. e′ ∈ η′)on the perimeter of F . (The intersection of η with the perimeter of F consists of two edges, and it is possible or not for e = e′.) Suppose that η and η′ intersect at some other edge f , not on the perimeter of F .Consider the curve γ that follows η from e to f , then follows η′ from f to e, and then goes along the perimeter of F from e to e′ in such a way that F is contained in the region R bounded by γ;see Fig. 17. We assume that γ is a simple closed curve. Let F ′ be the face in W (R) with f on its perimeter and suppose that F ′ is a m′-gon. We apply the planar dual of Lemma 8.1 to W (R). The conclusion is as follows. Let α (resp. α′) be the number of edges of F (resp. F ′) that are on the boundary of 
+
+R. Then α + α′ ≥ m + m′ − 2 and we have α ≥ 3 (resp. α′ ≥ 3) with equality if and only if η and 
+
+η′ intersect along the perimeter of F (resp. F ′). Scaffolds for Higher Tropical Grassmannians: Foundations 37 
+
+η
+
+η′
+
+F F ′
+
+e
+
+e′
+
+f
+
+Figure 17. A picture of two strands η and η′ adjacent to the same face F , and later intersecting. 
+
+η
+
+η′
+
+F F ′
+
+Figure 18. Two strands η and η′ can both be adjacent to many faces, as long as the two strands never intersect. The dashed lines can be multiple edges: the starting and ending faces F and F ′ can have arbitrarily long perimeter. The middle faces are all hexagons. Since we have chosen γ to be a simple closed curve, we also have m − α ≥ 1 (resp. m′ − α′ ≥ 1). Substituting, we get the inequality 2 ≥ (m − α) + ( m′ − α′) ≥ 2, so the only solutions are when 
+
+m − α = m′ − α′ = 1. Since m, m ′ ≥ 6, this forces α, α ′ ≥ 5, and in particular η and η′ cannot intersect along γ. Thus the picture in Fig. 17 can never occur. The case m − α = m′ − α′ = 1 give the only solutions, pictured in Fig. 18, where η, η ′ never intersect. 13.2. Strand strips. We assume in this section that W has black boundary vertices and thus the dual ( Q, z) is a CCW-labeled CAT(0) planar graph. Let η = ηi be a strand ending at boundary vertex i of W . The strand strip Si is the union of all triangles (and the vertices and edges of those triangles) in Q(W ) corresponding to vertices visited by η. Let zi → z′ 
+
+> i
+
+be the boundary edge of Q out of zi. The vertex z′ 
+
+> i
+
+may or may not be among the z.
+
+Lemma 13.1. The two long parallel sides of the strand strip are combinatorial geodesics, and are the canonical geodesics towards zi or z′ 
+
+> i
+
+for all vertices on the same side. See Fig. 19. Proof. This follows from Lemma 8.2 by induction. □
+
+Lemma 13.2. The distance functions δ(·, z ′
+
+> i
+
+) and δ(·, z i) restricted to the vertices on Si are as illustrated in Fig. 19. Proof. Follows from Lemma 13.1 and Proposition 9.7. □
+
+Lemma 13.3. 
+
+(1) Let v be a vertex on the side of the strand η containing z′
+
+> i
+
+. Then δ(v, z i) = δ(v, z ′
+
+> i
+
+) + 2 .Furthermore, paths with shortest directed distance from v to z′ 
+
+> i
+
+(resp. zi) do not cross the strand η (resp. cross the strand η once). 
+
+(2) Let v be a vertex on the side of the strand containing zi. Then δ(v, z ′
+
+> i
+
+) = δ(v, z i) + 1 .Furthermore, paths with shortest directed distance from v to zi (resp. z′
+
+> i
+
+) do not cross the strand η (resp. cross the strand η once). 38 NICK EARLY AND THOMAS LAM (1,3) (2,4) (3,5) (0,2) (1,0) (2,1) (3,2) (4,3) (5,4) 
+
+Figure 19. Left: strand strips are bounded by combinatorial geodesics. See Lemma 13.1. Right: Distances ( δ(·, z ′
+
+> i
+
+), δ (·, z i)) in Lemma 13.2. 
+
+Proof. Immediate from Lemma 13.2. □
+
+Lemma 13.4. 
+
+(1) Let v be a vertex not on the strand strip Si. Then F (v, z ′
+
+> i
+
+) = F (v, z i).
+
+(2) Let v be on the strand strip, and on the side with z′
+
+> i
+
+. Then |F (v, z ′
+
+> i
+
+)| = 2 , |F (v, z i)| = 1 ,and F (v, z i) ⊂ F (v, z ′
+
+> i
+
+).
+
+(3) Let v be on the strand strip, and on the side with zi. Then |F (v, z ′
+
+> i
+
+)| = 1 , |F (v, z i)| = 2 ,and F (v, z ′
+
+> i
+
+) ⊂ F (v, z i).Proof. (2) and (3) follow immediately from Lemma 13.2 and Corollary 9.6. We claim that on the side of η containing z′
+
+> i
+
+, we have δ(·, z i) = δ(·, z ′
+
+> i
+
+) + 2 (and similarly on the side containing zi). This follows as Corollary 9.6 states that the directed distance functions can be propagated using only local geometry. Since the F -sets are determined by the distance function locally, (1) follows. □
+
+13.3. Normal and cyclic-less webs. In this section we prove Theorem 5.7. Recall from Defini-tion 5.5 that a web is normal if and only if no strands that intersect have different labels. 
+
+Proposition 13.5. Let W be a non-elliptic web with black boundary that is not normal. Then there are two adjacent boundary vertices with the same label connected to the same white interior vertex. Proof. Let W be a non-elliptic web with black boundary and let η and η′ be two strands that intersect and end at the same boundary vertex. Since strands are continuous and go from boundary to boundary we may assume that the last edges e and e′ used by η and η′ are distinct and cyclically adjacent. Suppose that e and e′ are not incident to the same interior vertex. Let F be the (boundary) face with e and e′ on its perimeter. We would like to apply Proposition 5.3 to our situation. To do this we split the boundary vertex and add edges so that F becomes an interior face with at least six sides. Applying Proposition 5.3 we see that the situation is impossible as 
+
+η and η′ are assumed to intersect somewhere else. We conclude that e and e′ are incident to the same interior vertex, as required. □
+
+Proof of Theorem 5.7. In W , we have two adjacent boundary vertices with the same label con-nected to the same white interior vertex if and only if we have an unlabeled acute vertex in (Q(W ), z(W )). The equivalence of the two notions of normality follows from Proposition 13.5. We now prove the equivalence of the two notions of cyclic-less. Suppose that ( Q, z) is cyclic, with a boundary path connecting zi and zi+1 where all intermediate vertices have degree 4. Then Scaffolds for Higher Tropical Grassmannians: Foundations 39 
+
+the white vertex in W corresponding to the unique triangle with zi as a vertex has cyclic strand triple ( i, i + 1 , i + 2). Thus ( Q, z) cyclic implies that W is cyclic. Now suppose that W has a strand triple ( i, i + 1 , i + 2) at a vertex a. Consider the strands 
+
+ηi, η i+1 , η i+2 passing through v. Let a = a0, a 1, . . . be the vertices of W that ηi+1 passes through, starting at a. We claim that a1 also has strand triple ( i, i + 1 , i + 2). For two of the strands 
+
+ηi, η i+1 , η i+2 it is clear that they pass through a1. Let η (resp. η′) be the third strand passing through a0 (resp. a1). By Proposition 5.3, η and η′ cannot intersect. It follows that the end point of η′ is must be labeled either i + 1, or the same as the endpoint of η. Since W is normal, we see that a1 has strand triple ( i, i + 1 , i + 2). Repeating this argument, we may now assume that a is connected to the boundary vertex of W labeled i + 1. The union of all triangles on or to the left of the strand ηi cuts off a CAT(0) planar graph 
+
+Q′ ⊂ Q. Since ηi goes from the boundary vertex bi+1 to the boundary vertex bi of W , the part of ∂Q that belongs to Q′ contains exactly one labeled vertex zi. By Lemma 12.2, Q′ contains at least three acute vertices – the only possibilities are zi and the corners at the start and end of ηi.Thus Q′ has exactly three acute vertices and the proof of Lemma 12.2 implies that all boundary vertices of Q′ that are not acute have degree four. Repeating the argument for ηi+2 , we deduce that all intermediate vertices on the boundary path from zi to zi+1 have degree four. We conclude that W cyclic implies that ( Q, z) is cyclic. □
+
+13.4. Uniqueness of Strand Triples. Lemma 13.6. Let Q be a standard CAT(0) planar graph. Then the interior triangles of Q are uniquely determined by their strand triples. That is, the map 
+
+T 7 → (iT , j T , k T )
+
+from interior triangles to strand triples is injective. Proof. Let a be a vertex of a non-elliptic web W with strand triple ( i, j, k ). Two strands ηi and ηj
+
+that belong to the strand triple of a intersect along one of the edges, say e = ( a, b ), incident to a.By Proposition 5.3, the two strands ηi and ηj do not intersect elsewhere in W . So the only way that ( i, j, k ) can be a strand triple of another vertex is if it is also the strand triple of the vertex b.Suppose that ηk passes through both a and b (but not along the edge e). Noting the direction that ηk turns at a and at b we see that this is impossible because ηk has no self-intersections. □
+
+14. Planar basis and planar cross-ratios 
+
+Definition 14.1 (Planar basis) . Define the directed distance d(eI , e J ) on the vertices eI of the hypersimplex ∆( k, n ) to be the minimal number of steps of the form ei−ei+1 (indices mod n) required to travel from eI to eJ along edges of ∆( k, n ). The planar basis element hJ = ( hJ )• ∈ R(nk) is 
+
+hJ := 1
+
+n
+
+X
+
+> I∈
+
+([n] 
+
+> k
+
+)
+
+d(eJ , e I ) eI .
+
+For example, with n = 6 and k = 3, we have 6h124 = e123 + e246 + 2 e236 + 2 e146 + 2 e245 + 3 e136 + 3 e235 + 3 e145 + 4 e126 + 4 e135 + 4 e234 + 4 e456 
+
++ 5 e125 + 5 e134 + 5 e356 + 6 e256 + 6 e346 + 7 e156 + 7 e345 .
+
+Definition 14.2 ((Tropical) Planar cross-ratio) . For J = {j1 < · · · < j k} ∈  [n]
+
+> k
+
+ncyc 
+
+, denote by 
+
+I′ 
+
+> J
+
+= {j ∈ J : j + 1 /∈ J} the set of cyclic endpoints of J. The cubical array is 
+
+DJ := 
+
+(
+
+eJ + X
+
+> m∈M
+
+(em+1 − em) : M ⊆ I′
+
+> J
+
+)
+
+.40 NICK EARLY AND THOMAS LAM 
+
+For π• ∈ R(nk), the tropical cross-ratio (or tropical u-variable ) is 
+
+utJ (π•) := X 
+
+> eM∈DJ
+
+(−1) |J∩M |− k−1πM ,
+
+viewed as a linear function on R(nk).
+
+For example, with k = 3 and n = 7, we have 
+
+ut
+
+> 236
+
+(π•) = −π236 + π246 + π237 − π247 .
+
+The set {hJ : J ∈  [n]
+
+> k
+
+} is a basis for R(nk); the elements {hJ : J cyclic } span the lineality space 
+
+Lk,n (defined in (2.1)); and for non-cyclic J, the ray R≥0 · hJ is a ray of Trop >0X(k, n ) [Ear22]. See also [EL26+, Theorem 3.1]. 
+
+Theorem 14.3 ([Ear20]) . For J ∈  [n]
+
+> k
+
+ncyc 
+
+, we have that utJ vanishes on Lk,n . For I, J ∈  [n]
+
+> k
+
+ncyc 
+
+,we have the duality utJ (hI ) = δI,J .
+
+Thus, for any π• ∈ R(nk), we have the planar basis expansion 
+
+π• ≡ X
+
+> J∈
+
+([n] 
+
+> k
+
+)ncyc 
+
+utJ (π•) hJ (mod Lk,n ).
+
+We may view this as giving sections of the quotient maps R(nk) → R(nk)/L k,n and Trop Gr( k, n ) →
+
+Trop X(k, n ). Let Tk,n := R(k−1) ×(n−k) with natural basis ei,j for ( i, j ) ∈ [k − 1] × [n − k]. For J = {j1 < j 2 <
+
+· · · < j k} ∈  [n]
+
+> k
+
+, define the integer points 
+
+tJ := 
+
+> k−1
+
+X
+
+> i=1
+> ji+1 −(i+1)
+
+X
+
+> s=ji−(i−1)
+
+ei,s ∈ Tk,n .
+
+Define the projection Ψ : R(nk) → Tk,n by hJ 7 → tJ . It is shown in [EL26+] that the tJ for 
+
+J noncyclic can be interpreted as generators of the rays of the noncrossing fan . The map Ψ inverts the positive parameterization of Trop >0X(k, n ). In the following result we use the notion of noncrossing tableau. We will review this definition in the case of k = 3 in Section 16. 
+
+Theorem 14.4 ([EL26+]) . The projection Ψ descends to R(nk)/L k,n and the restriction to Trop >0X(k, n )
+
+is a bijection. This induces a bijection between integer points of Trop >0X(k, n ) and the set of cyclic-less noncrossing tableaux: for an integer point π• ∈ Trop >0X(k, n ) we have 
+
+Ψ( π•) = X
+
+> J∈J
+
+tJ
+
+for a unique cyclic-less noncrossing tableaux J = ( J1, J 2, . . . , J r).
+
+In the rest of the paper we will use these results in the case k = 3. 15. Planar basis expansion 
+
+The aim of this section is to prove Theorem 5.8. 
+
+Example 15.1. This example illustrates that the expansion of Theorem 5.8 can have multiplicities when Q is not standard. Consider the non-standard noncrossing tableau 
+
+J = {(1 , 6, 7) , (1 , 6, 8) , (2 , 3, 10) , (2 , 3, 10) , (2 , 5, 9) , (3 , 4, 9) , (7 , 9, 10) }Scaffolds for Higher Tropical Grassmannians: Foundations 41 
+
+with t-vector 
+
+tJ = t1,6,7 + t1,6,8 + 2 t2,3,10 + t2,5,9 + t3,4,9 + t7,9,10 
+
+The planar basis expansion of the Pl¨ ucker function is 
+
+π•(W (J )) = −2h1,3,9 + 2 h1,3,10 − h1,4,8 + h1,4,9 − h1,5,7 + h1,5,9 + h1,6,7 + h1,6,8(15.1) +2 h2,3,9 − h2,4,7 + h2,4,8 + h2,5,7 + h3,4,7 − h6,8,10 + h6,9,10 + h7,8,10 .
+
+Looking ahead to Section 16 and applying Proposition 16.1, the standardization of J is given by 
+
+{(1 , 12 , 13) , (2 , 11 , 15) , (3 , 10 , 16) , (4 , 7, 20) , (5 , 6, 21) , (8 , 9, 17) , (14 , 18 , 19) }.
+
+15.1. Proof of Theorem 5.8. Our proof of Theorem 5.8 is based on the following computation of tropical cross-ratios. 
+
+Proposition 15.2. Let (Q, z) be a normal CAT(0) planar graph. For any triple (i, j, k ) of boundary indices, we have 
+
+(15.2) 
+
+utijk (π•(Q, z)) = # white strand triples equal to i, j, k − #black strand triples equal to i, j, k. 
+
+By Theorem 14.3, the planar basis elements {hJ : J ∈  [n]3
+
+ncyc 
+
+} satisfy utI (hJ ) = δI,J . There-fore, the coefficient of hijk in the planar basis expansion of π•(Q, z) equals utijk (π•(Q, z)). By Proposition 15.2, this coefficient is given by (15.2), and Theorem 5.8 follows. 15.2. Reduction to standard case. We will reduce Proposition 15.2 to the statement for a standard CAT(0) planar graph. 
+
+Proposition 15.3. Let Q be a standard CAT(0) planar embedded graph with boundary vertices 
+
+z1, . . . , z n. For any triple (i, j, k ) of boundary indices: 
+
+utijk (π•(Q)) = 
+
+
+
++1 if (i, j, k ) is the strand triple of a white triangle ,
+
+−1 if (i, j, k ) is the strand triple of a black triangle ,
+
+0 if (i, j, k ) is not a strand triple of any triangle .
+
+Proof. By Lemma 13.6, for any triple ( i, j, k ), there is at most one interior triangle T with strand triple ( i, j, k ). If no such triangle exists, then ( i, j, k ) is not a strand triple, and by Proposition 15.8, 
+
+utijk (π•(Q)) = 0. If such a triangle T exists, it is unique, and by Corollary 15.6: 
+
+utijk (π•(Q)) = 
+
+(
+
++1 if T is white (counterclockwise-oriented) ,
+
+−1 if T is black (clockwise-oriented) . □
+
+Corollary 15.6 and Proposition 15.8 are proved later in this section. 15.3. Proof of Proposition 15.2. Let W be a normal CAT(0) planar graph. Let W ′ be obtained from W by splitting high degree boundary vertices into degree one vertices, and let W ′′ = std( W )be obtained from W ′ by removing boundary vertices with degree 0. Thus W ′′ is the standardization of W . Let ( Q, z) = ( Q(W ), z(W )), ( Q′, z′) = ( Q(W ′), z(W ′)), and ( Q′′ , z′′ ) = ( Q(W ′′ ), z(W ′′ )). The proof of Proposition 15.3 generalizes to webs where all boundary vertices have degree ≤ 1. We need only note that by Definition 14.2, uti,j,k (π•(Q)) vanishes unless zi̸ = zi+1 , and zj̸ = zj+1 ,and zk̸ = zk+1 . Thus Proposition 15.3 holds as stated for Q′.Let ι : [ n] ,→ [n′] denote the inclusion such that zi = z′
+
+> ι(i)
+
+. Then the Pl¨ ucker variables of Q and 
+
+Q′ are related by the formula 
+
+πI (Q) = πι(I)(Q′), or alternatively , π•(Q) = ι(π•(Q′)) 42 NICK EARLY AND THOMAS LAM 
+
+where ι : R([n′]3 ) → R([n]3 ) is given by 
+
+ι(eI ) = 
+
+(
+
+0 if I is not contained in ι([ n]), 
+
+eι−1(I) otherwise. Finally, by [EL26+, Section 3.4], we have 
+
+ι(hi,j,k ) = hι−1(i′),ι −1(j′),ι −1(k′)
+
+where i′ = i if i ∈ ι([ n]), otherwise i′ is the cyclic predecessor of i inside ι([ n]), and similarly for 
+
+j′ and k′. Note that by normality, ι−1(i′), ι −1(j′), ι −1(k′) are distinct. Applying this to Proposi-tion 15.3, we obtain Proposition 15.2. 15.4. Strand triple computation. Proposition 15.4. Suppose that T is a triangle of Q(W ) with strand triple i, j, k . Then for all triples (a, b, c ) ∈ Cijk in the cubical array, at least one vertex of T is a minimizer for (za, z b, z c).Proof. If T is a corner triangle, so two of {i, j, k } are cyclically adjacent, then the statement is easy. Suppose that T is not a corner triangle, so {i, i + 1 , j, j + 1 , k, k + 1 } are all distinct. By Theorem 10.1, it suffices to show that at least one vertex of T is a focal point. The focal points can be determined using Lemma 13.4. For T a white triangle, the choices of focal points are shown in Figure 20. For T a black triangle, the choices of focal points are shown in Figure 21. □
+
+Lemma 15.5. Let Q be a standard CCW-label CAT(0) planar graph with boundary vertices 
+
+z1, . . . , z n. Let T be a non-corner interior triangular face of Q with strand triple (i, j, k ), where 
+
+i, j, k are pairwise non-adjacent in cyclic order. Let D = Σ( i, j, k ).(1) If T is black: 
+
+Σ( i + 1 , j, k ) = Σ( i, j + 1 , k ) = Σ( i, j, k + 1) = D − 2,
+
+Σ( i + 1 , j + 1 , k ) = Σ( i + 1 , j, k + 1) = Σ( i, j + 1 , k + 1) = D − 4,
+
+Σ( i + 1 , j + 1 , k + 1) = D − 3.
+
+(2) If T is white: 
+
+Σ( i + 1 , j, k ) = Σ( i, j + 1 , k ) = Σ( i, j, k + 1) = D − 2,
+
+Σ( i + 1 , j + 1 , k ) = Σ( i + 1 , j, k + 1) = Σ( i, j + 1 , k + 1) = D − 1,
+
+Σ( i + 1 , j + 1 , k + 1) = D. 
+
+Proof. Direct computation using Proposition 15.4. □
+
+Corollary 15.6 (Tropical Cross-Ratio for Strand Triples) . For a triangle T with strand triple 
+
+(i, j, k ):
+
+utijk (π•(Q)) = 
+
+(
+
+−1 if T is black (clockwise) ,
+
++1 if T is white (counterclockwise) .
+
+Proof. For a corner triangle T , the result is straightforward. We assume that T is non-corner. Expanding the definition of utijk and using Lemma 15.5, we have 
+
+utijk = −13
+
+−Σijk + Σ i+1 ,j,k + Σ i,j +1 ,k + Σ i,j,k +1 
+
+− Σi+1 ,j +1 ,k − Σi+1 ,j,k +1 − Σi,j +1 ,k +1 + Σ i+1 ,j +1 ,k +1 
+
+.Scaffolds for Higher Tropical Grassmannians: Foundations 43 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+Figure 20. Representative minimizers used in the calculation of uti,j,k = 1. The triple of boundary red dots ( a, b, c ) ∈ { i, i + 1 } × { j, j + 1 } × { k, k + 1 } indicate that we are computing Σ a,b,c , while blue dots on the interior triangle are distance minimizers for Σ a,b,c . Note that minimizers can always be found on the triangle, but upper right and lower left minimizer sets do not overlap. The distances are Σi,j,k = D, Σi+1 ,j,k = D − 2, Σi,j +1 ,k +1 = D − 1, Σi+1 ,j +1 ,k +1 = D. 
+
+For a black triangle, this gives 
+
+utijk = −13
+
+−D + 3( D − 2) − 3( D − 4) + ( D − 3)  = −1For a white triangle, this gives 
+
+utijk = −13
+
+−D + 3( D − 2) − 3( D − 1) + D = +1 . □
+
+15.5. Non-Strand Triples: Vanishing of the Tropical Cross-Ratio. Lemma 15.7. If Σ is tropically linear over {i, i + 1 } × { j, j + 1 } × { k, k + 1 }, that is, Σ( a, b, c ) = 
+
+D + ( a − i)δ1 + ( b − j)δ2 + ( c − k)δ3 for (a, b, c ) in the cube, then utijk (π•(Q)) = 0 .Proof. Clear from definition. □44 NICK EARLY AND THOMAS LAM 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+j
+
+j+1 
+
+k k+1 
+
+i
+
+i+1 
+
+Figure 21. Representative minimizers used in the calculation of uti,j,k = −1 as in Figure 20. The distances are Σ i,j,k = D, Σi+1 ,j,k = D − 2, Σi,j +1 ,k +1 = D −
+
+4, Σi+1 ,j +1 ,k +1 = D − 3. 
+
+Proposition 15.8. Let Q be a standard CAT(0) planar graph with boundary vertices z1, . . . , z n.Let (i, j, k ) be any triple of boundary indices that is not a strand triple of any interior triangle of 
+
+Q. Then utijk (π•(Q)) = 0 .Proof. Let C := Dijk as defined in Definition 14.2. In the following, we will generally make the assumption that i, j, k are pairwise non-adjacent cyclically and C = {i, i +1 }×{ j, j +1 }×{ k, k +1 }
+
+has size eight. (The case j = i+1 is simpler as there are only four terms in utijk and for the purposes of the below case analysis it behaves as if x∗ never lies on the strand ηi.) Let x∗ be a focal point for ( i, j, k ), and let Fa := F (x∗, z a). By following a path towards a witness while staying within the set of focal points for x∗, we may assume that (15.3) no two of Fi, F j , F k coincide. Case (1). Suppose that x∗ does not lie on any of the strand strips Si, S j , S k. Then by Lemma 13.4(1) it follows that F (x∗, z i) = F (x∗, z i+1 ) and similarly for j and k. Using (15.3), it follows that x∗ is a focal point for all eight triples ( za, z b, z c) with ( a, b, c ) ∈ { i, i + 1 } × { j, j +1} × { k, k + 1 }. The claim then follows from Lemma 15.7. Henceforth, we assume that x∗ lies on at least one of the strand strips. Scaffolds for Higher Tropical Grassmannians: Foundations 45 
+
+For a ∈ { i, j, k }, the a-line (resp. (a + 1) -line ) is the path on the boundary of the strand strip Sa that ends at za (resp. za+1 ). For each a ∈ { i, j, k }, we have that x∗ either lies on the 
+
+a-side or a + 1-side of the strand strip Sa. If x∗ lies on a strand strip Sa then one of the two sets 
+
+{F (x∗, z a), F (x∗, z a+1 )} has size one, denoted F1(a), and the other has size two, denoted F2(a). We have F1(a) = {v} ⊊ F2(a) where e = ( v → x∗) is an incoming edge called the spine . Note that the spine always goes from one side of the strand strip to the other. Let T denote the set of triangles with x∗ as a vertex. If x∗ lies on Sa, then T ∩ Sa consists of exactly three triangles, unless x∗ lies on the boundary ∂Q . In the following, for brevity we will assume that x∗ does not lie on ∂Q ; the case analysis we do still works even if x∗ ∈ ∂Q . If x∗ lies on both Sa and Sb, we say that the strips are opposed if x∗ lies (on the a-line and ( b + 1)-line) or (on the ( a + 1)-line and the b-line). If x∗ lies on two strand strips Sa and Sb, and the two strips are opposed, then T ∩ Sa ∩ Sb consists of either 0 or 2 triangles. In the case of 2 triangles, we have that the spines of Sa and Sb (at x∗)coincide. If x∗ lies on two strand strips Sa and Sb that are not opposed, then T ∩ Sa ∩ Sb consists of either 0 or 1 triangles. In the case of 1 triangle, the spines of Sa and Sb are cyclically adjacent among the incoming edges to x∗.Case (2). Suppose that x∗ belongs to two strips, say Si and Sj , with the same spine e = ( v → x∗). After possibly swapping i and j, we may assume that x∗ lies on the i-line and on the ( j + 1)-line. Using the assumption that ( i, j, k ) is not a strand triple, we may check directly that x∗ is a focal point for the six triples in C \ { (i + 1 , j, k ), (i + 1 , j, k − 1) } and that v is a focal point for the two triples {(i + 1 , j, k ), (i + 1 , j, k − 1) }. Furthermore, δ(x∗, z k) − δ(x∗, z k+1 ) = δ(v, z k) − δ(v, z k+1 ). A direct calculation similar to Corollary 15.6 shows that utijk = 0. Henceforth, we assume that spines of strand strips that x∗ lies on are distinct. Case (3). If x∗ lies on all three strand strips with distinct spines, we deduce that x∗ is a focal point for all triples in C. The claim then follows from Lemma 15.7. Note that it could be the case that two (out of six) of the F -sets coincide; this can only happen if, for example, j = i + 1. In this case, we find that we can choose x∗ = j and it is a focal point for all triples in C.Henceforth, we assume that x∗ lies on one or two strand strips. Case (4a). Suppose that x∗ lies on Si and Sj which may or may not be not opposed, and does not lie on Sk. Suppose first that |T ∩ Si ∩ Sj | = 0. Then x∗ is a focal point for all triples in C unless 
+
+F (x∗, z k) coincides with one of the spine edges e = ( v → x∗), say that of Si. In the latter case, v
+
+is a focal point for all triples in C (even if v lies on Sk). The claim then follows from Lemma 15.7. Case (4b). Now suppose that |T ∩ Si ∩ Sj | = 1 (which implies that Si and Sj are not opposed). Then in addition to the above case, we can also have that F (x∗, z k) consists of both spine edges of Si and Sj . Let ( v∗ → w) be the outgoing edge between the two spine edges. Then w is a focal point for all triples in C. The claim then follows from Lemma 15.7. Henceforth, we assume that x∗ lies on exactly one of the three strand strips. Suppose that x∗
+
+lies on Si but not Sj or Sk.Case (5a). Suppose that x∗ lies on the ( i+1)-line. It is straightforward to see that we have a SDR at x∗ for any of the triples in C. We need to consider the possibility that F (x∗, z i+1 ) = F (x∗, z )has size two and zi+1 , z are not parallel at x∗, where z ∈ { zj , z j+1 , z k, z k+1 }. But if we follow a path to the witness we conclude that z = zi+1 (so i and one of {j, k } is cyclically adjacent). In this case, zi+1 is a focal point for all triples in C. The claim then follows from Lemma 15.7. Case (5b). Suppose that x∗ lies on the i-line. If F (x∗, z i) = F (x∗, z ) has size two and zi, z are not parallel at x∗, the situation is similar to Case 5(a). Otherwise, either x∗ is a focal point for all triples in C, or one of {F (x∗, z j ), F (x∗, z k)} is equal to v where e = ( v → x∗) is the spine of Si. In this last case, v is a focal point for all triples in C. The claim then follows from Lemma 15.7. 46 NICK EARLY AND THOMAS LAM 
+
+This completes the proof. □x∗jj + 1 ii + 1 x∗jj + 1 ii + 1 (a)(b)(c)jj + 1 ii + 1 S′SSS′S′Sspine edge x∗
+
+Figure 22. Three of the cases appearing in the proof of Proposition 15.8. In (a), 
+
+S and S′ are opposed and share the same spine edge; we have |T ∩ S ∩ S′| = 2. In (b), S and S′ are not opposed; the spine edges are cyclically adjacent; we have 
+
+|T ∩ S ∩ S′| = 1. In (c), one of several possibilities where |T ∩ S ∩ S′| = 0. 
+
+Part 4. Noncrossing tableaux 
+
+16. Noncrossing tableau 
+
+Two pairs ( a < b ), (a′ < b ′) ∈  [n]2
+
+ are noncrossing if the interiors of the arcs a → b and a′ → b′
+
+are non-intersecting when the numbers 1 , 2, . . . , n are arranged in order on the boundary of a circle. Two triples I = {a < b < c }, I ′ = {a′ < b ′ < c ′} ∈  [n]3
+
+ are noncrossing if (1) ( a, b ) and ( a′, b ′) are noncrossing, and (2) ( b, c ) and ( b′, c ′) are noncrossing, and (3) if b = b′ then ( a, c ) and ( a′, c ′) are noncrossing. A noncrossing tableau J = ( J1, J 2, . . . , J r) is a pairwise noncrossing collection of triples Ji ∈  [n]3
+
+.The tableau J is standard if [ n] = F 
+
+> i
+
+Ji. In particular, if J is standard then 3 r = n. The content 
+
+c(J ) = ( c1, c 2, . . . ) of a noncrossing tableau is the composition of 3 r where ci counts the number of occurrences of i in J . A noncrossing tableau J = ( J1, J 2, . . . , J r) is cyclic-less if none of the Ji
+
+is a cyclic triple. 16.1. Standardization. We define the standardization of a noncrossing tableau J = ( J1, J 2, . . . , J r). Let J = {a < b < c }. We call a the left endpoint , b the middle , and c the right endpoint . If a ∈ [n]is a letter used in multiple Ji, we first move all left endpoints at a slightly to the right, and all right endpoints at a slightly to the left, in such a way that locally does not create crossings. For example, if we have ( a, b, c ) and ( a, b ′, c ′) where b < b ′ then we would change the triples to ( a + sϵ, b, c ) and (a + tϵ, b ′, c ′) for ϵ > 0 where t < s .After doing this, only middle points can coincide. Among all the triples with a fixed middle b,we take the left endpoints and order them a1 < a 2 < · · · < a r and the right endpoints c1 < c 2 <
+
+· · · < c r. The standardization consists of the triples (a1, b 1, c 1), (a2, b 2, c 2), . . . , (ar, b r, c r),Scaffolds for Higher Tropical Grassmannians: Foundations 47 
+
+where bi are all close to b and satisfy b1 > b 2 > · · · > b r. Finally, to complete the standardization, we move the points to the integer locations 1 , 2, . . . , 3r, keeping their relative order. The following result is a direct check. 
+
+Proposition 16.1. The standardization std( J ) is a noncrossing tableau. 
+
+Example 16.2. Let J = (134 , 135 , 234 , 234 , 356) . Then std( J ) = (18 a, 27 b, 36 c, 45 d, 9ef ), where we use the letters {a, b, c, d, e, f } instead of {10 , 11 , 12 , 13 , 14 , 15 }.
+
+Proposition 16.3. A noncrossing tableau J can be recovered from the pair (std( J ), c (J )) con-sisting of its standardization and content. Proof. First note that standardization does not change whether a letter is a left endpoint, middle, or right endpoint. Suppose that J uses letters in [ n] and std( J ) uses the numbers in [ n′]. We have a map ι : [ n′] → [n], given by ι([ c1 + · · · + ci−1 + 1 , c 1 + · · · + ci]) = i. For each b ∈ [n], take the triples ( a1, b 1, c 1), . . . , (ar, b r, c r) ∈ std( J ) satisfying ι(bj ) = b and b1 > b 2 > · · · > b r and therefore 
+
+a1 < a 2 < · · · and c1 < c 2 < · · · . Then J contains the triples (ι(a1), b, ι (cr)) , . . . , (ι(ar), b, ι (c1)) .
+
+Taking the union over b ∈ [n] we recover J . □
+
+16.2. Bijection with semistandard Young tableaux. We draw semistandard Young tableaux (SSYT) in English notation, so that columns are strictly increasing as we go down, and rows are weakly increasing as we go from left to right. We describe a bijection Φ between SSYT T of shape 3 × r with letters in [ n] and noncrossing tableaux J = ( J1, . . . , J r) with Ji ∈  [n]3
+
+. For each row R that is not the first row, starting from the left we connect each letter ℓ to the rightmost letter in the row above it that is < ℓ and that has not been connected to a letter in row R. By semistandardness, at every step such a letter always exists. The connected triples J1, J 2, . . . , J r form a noncrossing tableau J = Φ( T ). 
+
+Proposition 16.4. The map Φ is a bijection between 3×r SSYT with letters in [n] and noncrossing tableaux (J1, . . . , J r) with Ji ∈  [n]3
+
+.Proof. Given a noncrossing tableaux J , define rows R1, R 2, R 3 obtained by taking the left, middle, right endpoints, respectively, of the Ji and sorting. Since left endpoints are smaller than middle endpoints are smaller than right endpoints, it is clear that Ψ( J ) := ( R1, R 2, R 3) is a semistandard Young tableau, and that Ψ ◦ Φ( T ) = T . We need to show that Φ ◦ Ψ( J ) = J . Let J1 ∈ J 
+
+be the triple with the smallest right endpoint, and if there is a tie, the largest left endpoint, and if there is another tie, the smallest left endpoint. By induction on r, it is enough to show that 
+
+J1 = ( a < b < c ) can be unambiguously recovered from Ψ( J ) = ( R1, R 2, R 3). Indeed, we claim that J1 is the triple connected to the leftmost letter in R3 in the construction of Φ ◦ Ψ( J ). Let J′ = ( a′ < b ′ < c ′) be another triple in J . Since c′ ≥ c, by the noncrossing condition and our assumptions, we have b′ ≤ b or b′ ≥ c. We conclude that b is largest among the letters in R2
+
+that are less than c. Again by the noncrossing condition, we deduce that 
+
+• if b′ ≤ b then either b′ < a or a ≤ a′ < b ′,
+
+• if c ≤ b′ < c ′ then either a′ < a or a′ > b .We compare this to the construction of Φ ◦ Ψ( J ) and we see that J1 must be the triple connected to the leftmost letter, that is, c, in R3. This completes the proof. □48 NICK EARLY AND THOMAS LAM 
+
+17. Noncrossing tableaux and webs 
+
+17.1. Tymoczko’s construction. Tymoczko [Tym] constructs a non-elliptic web W (J ) from a standard noncrossing tableau J . Let J be a standard noncrossing tableau. We replace each triple 
+
+J = ( a < b < c ) by a m drawn as a pair of semicircle arcs connecting a and b, and connecting b
+
+and c on a horizontal line. Any pair of m-s are either non-intersecting, or in one of the following two positions, see [Tym, Section 2.2]. This follows easily from the noncrossing condition. (17.1) Note that any intersection between two arcs is an intersection between a left arc of a m with a right arc of another m. Thus there do not exist three arcs that all pairwise intersect, and consequently the m-diagram is well-defined up to isotopy of arcs, as long as we insist that arcs intersect minimally. Next we replace each m by a Y , where the white vertex is placed very close to the horizon, and then we resolve all crossings in the following way: or depending on whether the corresponding arcs are as in the left or the right configuration in (17.1). The following result is obtained from [Tym] by composing with a bijection between standard tableaux and standard noncrossing tableaux; see [PPS, SSW17]. 
+
+Theorem 17.1. This procedure produces a non-elliptic web W (J ), and is a bijection between standard noncrossing tableaux and standard webs. 
+
+17.2. Semistandardization. We now semistandardize Theorem 17.1. (We note that our con-struction is distinct from Russell’s construction [Rus12] for SSYT of shape n × 3.) Let K = std( J )where J = ( J1, J 2, . . . , J r) is a noncrossing tableau. Let ι : [3 r] → [n] be the order-preserving map such that ci(J ) = |ι−1(i)|. We define W (J ) by applying ι to the labels of the boundary vertices of W (K). 
+
+Theorem 17.2. When applied to a (possibly not standard) noncrossing tableaux, the resulting web is normal. Furthermore, we obtain a bijection between noncrossing tableaux and normal webs. Proof. First, we can trivially assume that we work with noncrossing tableaux that use all the indices of [ n], and normal webs with boundary labels [ n] such that boundary vertices have degree 
+
+≥ 1. Henceforth, we make this assumption. Let W be a non-elliptic web with black boundary. Then by Proposition 13.5, W is normal if and only if for any white vertex w connected to two boundary vertices with labels ℓ, ℓ ′, we have 
+
+ℓ̸ = ℓ′.Let W (K) be the web constructed from a standard noncrossing tableaux K. Suppose that W (K)has a white vertex w connected to two adjacent boundary vertices. Then there are two possibilities for w: (i) it came from the trivalent vertex of a Y of a triple ( a, b, c ), or (ii) it came from resolving the intersection between the strand b − c and a′ − b′ between triples ( a, b, c ) and ( a′, b ′, c ′) where 
+
+a < b < a ′ < c < b ′ < c ′; the two adjacent boundary vertices are a′ and c.Scaffolds for Higher Tropical Grassmannians: Foundations 49 
+
+Now, suppose that K arose from standardization of a (nonstandard) noncrossing tableau J .In case (i), we have that ι(a, b, c ) is one of the triples of J , and so all three labels ι(a), ι (b), ι (c)are distinct. In case (ii), we note that we cannot have ι(a′) = ι(c). This is because a′ is a left endpoint while c is a right endpoint and this would contradict the definition of standardization. We conclude that the construction J 7 → W (J ) has image in normal webs. To show that this map is bijective, we construct an inverse following Khovanov–Kuperberg [KK] and Petersen–Pylyavskyy–Rhoades [PPR]. Using the depth map ([PPR, Section 2]), we produce from the web W (K) a word in {1, 0, −1} using each letter r times. We obtain a SSYT T by assigning the corresponding labels of W (J ) to the first, second, or third rows of T respectively. Composed with the bijection T 7 → Φ( T ) =: J we have the inverse map. □
+
+17.3. Noncrossing ray identities. Recall some definitions from Section 14. Let T3,n denote the space of 2 ×(n−3) real matrices, with standard basis vectors ei,s for i ∈ { 1, 2} and s ∈ { 1, . . . , n −3}.For a triple J = {j1, j 2, j 3} with j1 < j 2 < j 3, we have the vectors tJ ∈ T3,n given by 
+
+tJ =
+
+> j2−2
+
+X
+
+> s=j1
+
+e1,s +
+
+> j3−3
+
+X
+
+> s=j2−1
+
+e2,s .
+
+Row 1 of tJ is the indicator of the interval [ j1, j 2 − 2] and Row 2 is the indicator of [ j2 − 1, j 3 − 3]. Note that tJ = 0 when J is a cyclic triple. Recall that the linear projection Ψ : R(n
+
+> 3
+
+) → T3,n is defined by Ψ( hJ ) = tJ for each planar basis element hJ .
+
+Lemma 17.3. The tJ vectors satisfy the following exchange identities. 
+
+(1) If a < a ′ ≤ b − 1 and b + 1 ≤ c < c ′, then 
+
+ta,b,c + ta′,b,c ′ = ta′,b,c + ta,b,c ′ .
+
+(2) If a + 1 ≤ b < b ′ and b′ + 1 ≤ c < c ′, then 
+
+ta,b,c + ta,b ′,c ′ = ta,b,c ′ + ta,b ′,c .
+
+(3) If a < a ′ ≤ b − 1 and b < b ′ ≤ c − 1, then 
+
+ta,b,c + ta′,b ′,c = ta,b ′,c + ta′,b,c .
+
+(4) If a < a ′ < b < b ′ < c < c ′, then 
+
+ta,b,c + ta′,b ′,c ′ = ta,b,c ′ + ta′,b ′,c = ta′,b,c + ta,b ′,c ′ = ta,b ′,c + ta′,b,c ′ ,
+
+where only the rightmost term is noncrossing. 
+
+Corollary 17.4. Let a < b < c and a′ < b ′ < c ′ be triples in  [n]3
+
+.
+
+(1) If b = b′, then ta,b,c − ta,b,c ′ depends only on b, c, and c′; that is, it is independent of a,within the range a, a ′ ≤ b − 1.
+
+(2) If a = a′, then whenever a + 1 ≤ b ≤ b′ and b′ + 1 ≤ c, c ′, we have 
+
+ta,b,c − ta,b,c ′ = ta,b ′,c − ta,b ′,c ′ ;
+
+that is, ta,b,c − ta,b,c ′ is independent of the middle index. 
+
+(3) If c = c′, then whenever a, a ′ ≤ b − 1 and b ≤ b′ ≤ c − 1, we have 
+
+ta,b,c − ta′,b,c = ta,b ′,c − ta′,b ′,c ;
+
+that is, ta,b,c − ta′,b,c is independent of the middle index. 50 NICK EARLY AND THOMAS LAM 
+
+b2
+
+a2
+
+b1
+
+a1
+
+a c2 c1 b c
+
+b2
+
+a2
+
+b1
+
+a1
+
+a c2 c1 b c
+
+Figure 23. Left: The left arc of mJ (drawn dashed) intersects a number of edges of the web W ′ (drawn solid). The strand triples of the white interior vertices on these edges are denoted ( ai, b i, c i). Right: After resolving we create r + 1 new white vertices and r new black vertices with strand triples described by Lemma 17.5. Here 
+
+r = 2. 17.4. Strand triples of resolution vertices. Let J = ( J1, . . . , J n) be a noncrossing tableau without repeated indices and let J = ( a < b < c ) ∈ J be the triple with the largest right endpoint 
+
+c. Let W ′ = W (J \ J). We consider the construction of W (J ) by adding the m-diagram mJ of 
+
+J to W ′.Two types of crossings between mJ and W ′ arise: 
+
+• Left-arc crossings: the left arc of mJ crosses edges of W ′ originally coming from right arcs of existing m-diagrams. These right arcs come from triples ( a′, b ′, c ′) satisfying a′ < b ′ <a < c ′ < b < c .
+
+• Right-arc crossings: the right arc of mJ crosses edges of W ′ originally coming from left arcs of existing m-diagrams. These left arcs come from triples ( a′, b ′, c ′) satisfying a′ < a < b < b ′ < c ′ < c .In the following computation, the assumption that c is the largest letter is crucial. 
+
+Lemma 17.5. Suppose the left arc of mJ crosses r edges of W ′, where the i-th crossed edge is adjacent to a white vertex with strand triple (ai, b i, c i), with a1 < a 2 < · · · < a r. Suppose the right arc of mJ crosses ℓ edges of W ′, where the i-th crossed edge is adjacent to a white vertex with strand triple (a′
+
+> i
+
+, b ′
+
+> i
+
+, c ′
+
+> i
+
+), with c′ 
+
+> 1
+
+< c ′ 
+
+> 2
+
+< · · · < c ′
+
+> ℓ
+
+. Then the resolution of all r + ℓ crossings creates the following vertices. 
+
+(1) From left-arc crossings ( r + 1 white vertices, r black vertices), all sharing right endpoint index γ:
+
+• White strand triples: 
+
+(a, c r, γ ), (br, c r−1, γ ), (br−1, c r−2, γ ), . . . , (b1, b, γ )
+
+where γ = c if ℓ = 0 , and γ = c′ 
+
+> 1
+
+if ℓ ≥ 1. If r = 0 we instead get a single triple 
+
+(a, b, γ ).
+
+• Black strand triples: 
+
+(br, c r, γ ), (br−1, c r−1, γ ), . . . , (b1, c 1, γ ).
+
+(2) From right-arc crossings ( ℓ white vertices, ℓ black vertices), all sharing middle b:
+
+• White strand triples: 
+
+(a′
+
+> 1
+
+, b, c ′
+
+> 2
+
+), (a′
+
+> 2
+
+, b, c ′
+
+> 3
+
+), . . . , (a′
+
+> ℓ
+
+, b, c ).
+
+• Black strand triples: 
+
+(a′
+
+> 1
+
+, b, c ′
+
+> 1
+
+), (a′
+
+> 2
+
+, b, c ′
+
+> 2
+
+), . . . , (a′
+
+> ℓ
+
+, b, c ′
+
+> ℓ
+
+).
+
+The strand triples of existing vertices are unchanged. Scaffolds for Higher Tropical Grassmannians: Foundations 51 
+
+Proof. Figure 1 shows the left arc crossings (in the representative case of r = 2), from which the strand triples in (1) can be computed. The right arc crossings can be recovered in a similar way. □
+
+Let π•(W ) := π•(Q(W ), z(W )) denote the tropical Pl¨ ucker vector. 
+
+Lemma 17.6. In the above situation, we have 
+
+Ψ( π•(W )) − Ψ( π•(W ′)) = ta,b,c .
+
+Proof. We apply Theorem 5.8 and use the projection Ψ( hJ ) = tJ . We have Ψ( π•(W )) − Ψ( π•(W ′)) = L + R
+
+where with c0 = b the contribution from Lemma 17.5(1) is 
+
+L = ta,c r ,γ +
+
+> r
+
+X
+
+> i=1
+
+tbi,c i−1,γ −
+
+> r
+
+X
+
+> i=1
+
+tbi,c i,γ 
+
+and with c′ 
+
+> ℓ+1
+
+= c the contribution from Lemma 17.5(2) is 
+
+R =
+
+> ℓ
+
+X
+
+> i=1
+
+ta′ 
+
+> i,b,c ′
+> i+1
+
+−
+
+> ℓ
+
+X
+
+> i=1
+
+ta′ 
+
+> i,b,c ′
+> i
+
+.
+
+For simplicity, we have assumed that r > 0 and ℓ > 0. When either r = 0 or ℓ = 0 the computation is simpler. By Corollary 17.4, 
+
+R =
+
+> ℓ
+
+X
+
+> i=1
+
+
+
+ta,b,c ′ 
+
+> i+1
+
+− ta,b,c ′
+
+> i
+
+
+
+= ta,b,c − ta,b,γ .
+
+By Lemma 17.3(3), and setting b0 = a,
+
+L = ta,c r ,γ +
+
+> r
+
+X
+
+> i=1
+
+tbi,c i−1,γ −
+
+> r
+
+X
+
+> i=1
+
+tbi,c i,γ = ta,c r ,γ +
+
+> r
+
+X
+
+> i=1
+
+ −ta,c i,γ + ta,c i−1,γ 
+
+ = ta,b,γ .
+
+The claim follows. □
+
+17.5. The planar basis expansion of the web of a noncrossing tableau. Theorem 17.7. Let J = ( J1, J 2, . . . , J r) be a (possibly not standard) noncrossing tableau and 
+
+W (J ) be the normal web from Theorem 17.2. Then 
+
+Ψ( π•(W (J ))) = X
+
+> i
+
+tJi .
+
+Proof. Repeatedly applying Lemma 17.6, we see that the statement holds for J a standard non-crossing tableau. Now let J = ( J1, . . . , J r) be arbitrary and let K = ( K1, . . . , K r) be the standardization of J ,and let ι : [ n′] → [n] be the corresponding map on labels. Since W (J ) is obtained from W (K) by applying ι to the boundary labels, we have 
+
+π•(W (J )) = ι(π•(W (K))) where ι(ha,b,c ) = hι(a),ι (b),ι (c). Thus Ψ( π•(W (J ))) = X
+
+> i
+
+tι(Ki).
+
+It is not always the case that J = ( ι(K1), ι (K2), . . . , ι (Kr)), but we do have P 
+
+> i
+
+tι(Ki) = P 
+
+> i
+
+tJi ,using Lemma 17.3. □52 NICK EARLY AND THOMAS LAM 
+
+Example 17.8. We illustrate Theorem 17.7 in the case of a positive tropical Pl¨ ucker vector π•
+
+arising from a standard CAT(0) planar graph. Let 
+
+π• = −h136 + h137 + h146 + h236 − h379 + h389 − h469 + h479 + h569 ∈ Trop >0Gr(3 , 9) ,
+
+with normal model given in Fig. 24, we have 
+
+Ψ( π•) = t146 + t237 + t589 .
+
+Compare to Fig. 23 with (a1, b 1, c 1) = (1 , 4, 6) and (a2, b 2, c 2) = (2 , 3, 7) and (a, b, c ) = (5 , 8, 9) .
+
+3
+
+4
+
+6 7 9
+
+1
+
+8
+
+2
+
+w5
+
+Figure 24. The normal CAT(0) planar graph used in Example 17.8. The two examples which follow illustrate various perspectives on planar basis expansions and normal models. In the first example, we present the normal CAT(0) planar graph and web for the ray of Trop >0Gr(3 , 9) whose planar basis expansion was computed in [Ear21, Figure 1]. The normal model is given in Fig. 25 below. In Example 17.10, we continue with the ray of Trop >0G(3 , 10) from Example 15.1; this is simplest ray for which its planar basis expansion has a coefficient which is not in {− 1, 0, 1}, whose discovery provided a clue that some finer structure should be sought for; in Fig. 26 we present schematically its the planar basis expansion via its normal model, where the multiplicities are resolved into ±1. 
+
+Example 17.9. Let us illustrate the whole section (and Theorem 17.1 and Theorem 17.2 in par-ticular) with a ray for Trop >0Gr(3 , 9) , standardized to a ray of Trop >0Gr(3 , 15) . See the bottom right entry in [Ear20, Figure 1] for the planar basis expansion modulo relabeling. The noncrossing tableau 
+
+J = {(1 , 2, 7) , (1 , 4, 5) , (2 , 3, 6) , (4 , 8, 9) , (5 , 7, 8) },
+
+has standardization 
+
+K = {(1 , 6, 8) , (2 , 3, 11) , (4 , 5, 10) , (7 , 14 , 15) , (9 , 12 , 13) }.
+
+The planar basis expansion of π•(W (K)) , the standard web, and its dual CAT(0) planar graph is given in Fig. 25. Applying ι as defined in the beginning of Section 17.2 and making the replacements 
+
+1 → 1, 2 → 1, 3 → 2, 4 → 2, 5 → 3, 6 → 4, 7 → 4, 8 → 5,
+
+9 → 5, 10 → 6, 11 → 7, 12 → 7, 13 → 8, 14 → 8, 15 → 9
+
+we can recover the original positive tropical Pl¨ ucker vector. After many cancellations, we have 
+
+π•(W (J )) = −(h135 + h279 + h369 + h468 )+h127 + h136 + h145 + h235 + h289 + h379 + h469 + h478 + h568 ,
+
+and we compute its projection to derive the noncrossing tableau: 
+
+Ψ( π•(W (J ))) = t127 + t145 + t236 + t489 + t578 .Scaffolds for Higher Tropical Grassmannians: Foundations 53 
+
+Figure 25. Normal web, scaffold, and the planar basis expansion of the posi-tive tropical Pl¨ ucker vector π•(W (K)) corresponding to the (standard) noncrossing tableau K = {(1 , 6, 8) , (2 , 3, 11) , (4 , 5, 10) , (7 , 14 , 15) , (9 , 12 , 13) }.
+
+Example 17.10. We continue Example 15.1, specifically with the Pl¨ ucker vector given in (15.1) ,whose planar basis expansion is depicted schematically in Fig. 26. Note that the map ι : [21] → [10] 
+
+is rather nontrivial, resulting in significant redundancy in the planar basis expansion. Note, for example, that ±h1,3,9 appears four times, resolving the seemingly mysterious coefficient −2 (15.1) ,whose origin is now explained by the unique normal model representation. 
+
+Proposition 17.11. Suppose that J is a noncrossing tableau and W (J ) is the normal web from Theorem 17.2. Then J is cyclic-less if and only if W (J ) is cyclic-less. Thus the bijection of Theorem 17.2 restricts to a bijection between cyclic-less noncrossing tableau and cyclic-less normal webs. Proof. We have to analyze the recursive construction of W (J ), and we let K be the standardization of J . We will consider the situation of Lemma 17.5, and we will refer to a strand triple as cyclic 
+
+if it is cyclic after the destandardization projection ι. Suppose that J contains a cyclic triple 54 NICK EARLY AND THOMAS LAM 
+
+Figure 26. The planar basis expansion for the ray of Trop >0Gr(3 , 10) from Ex-ample 17.10 corresponding to a (non-standard) noncrossing tableau, constructed by standardizing, computing the standard web for Trop >0Gr(3 , 21), taking the pla-nar basis expansion and then reindexing. Summing the nodes gives Eq. (15.1), i.e. 
+
+π•(W (J )) = −2h1,3,9 + 2 h1,3,10 − h1,4,8 + h1,4,9 − h1,5,7 + h1,5,9 + h1,6,7 + h1,6,8 + 2 h2,3,9 −
+
+h2,4,7 + h2,4,8 + h2,5,7 + h3,4,7 − h6,8,10 + h6,9,10 + h7,8,10 .
+
+(a∗, b ∗, c ∗). Let us order the triples of K in increasing order of the right endpoint, corresponding to the order in which the triples are added in Lemma 17.5. Find the first triple of the form ( a, b, c )where ι(a) = a∗ and ι(b) = b∗. We claim that we will create a cyclic strand triple when we add (a, b, c ). If ι(c) = c∗, this is easy to see. If ι(c) > c ∗, the definition of standardization implies that a triple ( a′, b ′, c ′) satisfying ι(b′) = b∗ and ι(c′) = c∗ had already been added earlier. The white strand triple ( a, c r, γ ) satisfies cr ≤ b and γ ≤ c′, and is therefore cyclic. For the converse, suppose that J contains no strand triples, and consider one instance of Lemma 17.5 successively applied to triples in K. Suppose that W ′ has no strand triples and we are adding ( a, b, c ), a triple in K. Let us set ( a∗, b ∗, c ∗) := ( ι(a), ι (b), ι (c)). Consider the new strand triples of the form ( bi, c i−1, γ ). If ( bi, c i−1, γ ) is cyclic then ι(bi), ι (ci−1), ι (γ) are adjacent, which can only happen if ι(bi), ι (ci), ι (γ) are adjacent. But we have bi < a < c i < b < γ , so this would imply that ( a, b, c ) is cyclic which is not the case. A similar argument holds for triples of the form ( bi, c i, γ ) or ( a′
+
+> i
+
+, b, c ′
+
+> i+1
+
+) or ( a′
+
+> i
+
+, b, c ′
+
+> i
+
+). Scaffolds for Higher Tropical Grassmannians: Foundations 55 
+
+Let us now consider the new strand triple ( a, c r, γ ). We have a < c r < b < γ ≤ c. If γ = c, then (a, c r, γ ) cyclic would force ( a, b, c ) to be cyclic, which is not the case. We may thus suppose that 
+
+γ = c′ 
+
+> 1
+
+< c . We have a < c r < b < b ′ 
+
+> 1
+
+< c ′ 
+
+> 1
+
+< c and ι(b′
+
+> 1
+
+)̸ = ι(c′
+
+> 1
+
+). So ( a, c r, c ′
+
+> 1
+
+) cyclic would force 
+
+ι(cr) = ι(b) = ι(b′
+
+> 1
+
+) = b∗. If ( a, c r, γ ) is cyclic then we would have that a∗ and b∗ are adjacent, and also ι(b′
+
+> 1
+
+) and ι(c′
+
+> 1
+
+) is adjacent. When the strand triple ( a′
+
+> 1
+
+, b ′
+
+> 1
+
+, c ′
+
+> 1
+
+) in W ′ was first created (in the process of Lemma 17.5), we must have added a triple of the form (¯ a, ¯b, ¯c) where ι(¯b) = b∗ = ι(b′
+
+> 1
+
+)and ι(¯ c) = ι(c′
+
+> 1
+
+) is adjacent to b∗. It follows that J contains the cyclic triple ( a∗, b ∗, ι (¯ c)). This completes the proof of the converse. □
+
+18. Proof of Theorem 4.8(3) 
+
+We now prove Theorem 4.8(3). Suppose that ( Q, z) is normal. By Proposition 12.6, every vertex of Q is normal. By Proposi-tion 6.7, the set Mv is a loopless positroid. By Proposition 3.13, the map v 7 → − ¯bv sends V (Q)into the integer points of L(¯ π•), and adjacent vertices map to edges of the simplicial complex on 
+
+LZ(¯ π•). We claim that the map v 7 → − ¯bv is injective. Suppose first that Q = Q(W ) for a standard web W . In this case, the difference ¯bv − ¯bw = bv − bw is given by the strand labels of the edges of some path connecting v and w; equivalently, bv − bw is determined by the set of strands separating 
+
+v from w. It is known [Pos, LP20] that the face labels of a reduced plabic graph, or equivalently, the vertices of the membrane, are distinct in this situation. In the general case, W may not be standard but it will be normal, so strands with the same label do not intersect and are parallel. So for any two distinct vertices v and w, there exists some index i such that v and w are separated by some nonzero number of strands labeled i, all of which are traveling in the same direction. This implies that the map v 7 → − ¯bv is injective. It follows that ( Q, z) is a strong scaffold for π•(Q, z) in the sense of Definition 3.12. We now prove existence and uniqueness of the cyclic-less normal model. Let π• ∈ Trop >0X(3 , n )( Z). By Theorem 14.4, Ψ( π•) admits a unique noncrossing tableau decomposition Ψ( π•) = P 
+
+> J∈J
+
+tJ .By Theorem 17.2 and Proposition 17.11, the resolution algorithm produces a normal, cyclic-less, non-elliptic web W (J ), and by Theorem 17.7, its planar basis expansion satisfies Ψ( π•(W (J ))) = P 
+
+> J∈J
+
+tJ = Ψ( π•). Since Ψ is injective modulo lineality, π•(W (J )) ≡ π• modulo lineality. Let ( Q, z) be the dual CAT(0) planar graph of W (J ). Combining with Theorem 5.8, the Pl¨ ucker vector π•(Q, z) satisfies π•(Q, z) ≡ π• modulo lineality, so ( Q, z) is a normal, cyclic-less model for π•. Since each step in the construction ( π• modulo lineality) 7 → J 7 → W (J ) 7 → (Q, z) is a bijection (using Theorem 14.4, the resolution bijection Theorem 17.2, and the web-to-dual-graph correspondence), the normal model is unique. □
+
+Part 5. Buildings and membranes 
+
+19. Buildings 
+
+19.1. Preliminaries. Let K = C(( t)) and O = C[[ t]] denote the rings of formal Laurent series and formal power series respectively. The field K is equipped with a valuation val : K× → Z
+
+sending a formal Laurent series to the exponent of the leading (lowest degree) term. A lattice Λin Kk is a O-submodule of Kk generated by k linearly independent vectors in Kk. Two lattices are Λ 1 and Λ 2 are equivalent if Λ 1 = cΛ2 for c ∈ K ×. We let [Λ] denote the equivalence class of lattices containing Λ. Two equivalence classes [Λ 1] and [Λ 2] are adjacent if there are representatives satisfying tΛ1 ⊊ Λ2 ⊊ Λ1.Let B denote the affine building of PGL k(K). This is the flag simplicial complex with vertex set given by the set of equivalence classes [Λ] of lattices, and edges given by adjacent equivalence classes. The simplices of B are given by tuples of equivalence classes that are pairwise adjacent. 56 NICK EARLY AND THOMAS LAM 
+
+The affine building B is covered by apartments . An apartment A consists of all equivalence classes of lattices of the form (19.1) Λ = span O(t−a1 e1, t −a2 e2, . . . , t −ak ek),
+
+where e1, . . . , e k is a basis of Kk. We may identify the lattice (19.1) with the integer point (a1, . . . , a k) ∈ Zk. Restricted to the apartment the equivalence relation is that two lattice points in Zk are equivalent if their difference is a multiple of 1 = (1 , 1, . . . , 1). Thus the vertices of an apartment can be identified with Zk/1.The fundamental coweights ω1, . . . , ω k−1 are the vectors 
+
+ωi := (1 , 1, . . . , 1, 0, 0, . . . , 0) ∈ Zk/1
+
+that form a basis of Zk/1. We call Zk/1 the coweight lattice . An element of the coweight lattice is dominant if and only if it is a nonnegative sum of fundamental coweights. The Weyl group 
+
+W = Sk acts on Zk/1 and each element of the Weyl group orbit in the coweight lattice has a unique dominant coweight. The coweight-valued distance between two points a, a′ ∈ Z/1 is 
+
+d(a, a′) = |a′ − a|, where |a| denotes the dominant coweight belonging to the Weyl group orbit 
+
+W · a.Let [Λ 1] and [Λ 2] be any two vertices of B. Then there exists an apartment A that contains both [Λ 1] and [Λ 2]. The distance d([Λ 1], [Λ 2]) is defined to be the dominant coweight computed using the distance function of A. This does not depend on the choice of A. Two equivalence classes [Λ 1] and [Λ 2] are adjacent if and only if the distance d([Λ 1], [Λ 2]) is equal to ωi for some i = 1 , 2, . . . , k − 1. Note that d([Λ 1], [Λ 2]) is not symmetric. Instead, we have d([Λ 2], [Λ 1]) = −w0 · d([Λ 1], [Λ 2]) where the longest permutation w0 ∈ W acts by w0 · ωi = −ωk−i.We shall use the ω1-distance function 
+
+d1(a, a′) := ⟨ω′
+
+> 1
+
+, d (a, a′)⟩, ω′ 
+
+> 1
+
+=
+
+k − 1
+
+k , − 1
+
+k , . . . , − 1
+
+k
+
+
+
+.
+
+Here, ω′ 
+
+> 1
+
+is the first fundamental weight. Thus if a and a′ are connected by an edge in the building, we have 
+
+d1(a, a′) = ⟨ω′
+
+> 1
+
+, ω i⟩ = k − ik .
+
+Let us convert the one skeleton of the building B into a directed graph G(B) where we keep only the edges a → a′ where d1(a, a′) = 1 /k . Equivalently, d(a, a′) = ωk−1 or a − a′ ∈ W ω 1.
+
+Proposition 19.1. The directed graph distance function on G(B) agrees with kd 1.Proof. First, note that the distance d([Λ 1], [Λ 2]) is distance of the shortest path from [Λ 1] to [Λ 2], where the distance of a path is the sum of the distances of the edges of the path. Clearly the distance function in G(B) is greater than or equal to that in B, multiplied by k.Let [Λ 1], [Λ 2] be two vertices connected by an edge in B. We may assume that d([Λ 1], [Λ 2]) = ωi.Translating, we suppose that [Λ] is the vertex 0 and [Λ ′] is the vertex ωi in some apartment. These two vertices are part of a simplex with the vertices 0, ω 1, ω 2, . . . , ω n−1. We have 
+
+d1(0, ω n−1) = d(ωn−1, ω n−2) = · · · = d(ωi+1 , ω i) = 1 /k. 
+
+It follows that the graph distance from [Λ 1] to [Λ 2] in G(B) is at most k − i. Since this is k times the d1-distance from [Λ 1] to [Λ 2] in G(B), the distance functions agree. □
+
+Given [Λ] ∈ B , define the color of [Λ] to be 
+
+c([Λ]) := val det(Λ) ∈ Z/k Z.
+
+Note that val det( cΛ) = k · val( c) + val det(Λ), so the color is well-defined. Viewed as a function 
+
+c(·) on the vertices of G(B), the color function satisfies Definition 3.4. Scaffolds for Higher Tropical Grassmannians: Foundations 57 
+
+19.2. Le’s distance function. We assume that a basis of Kk has been fixed. Then given 
+
+v1, . . . , v k ∈ K k, we have an element det( v1, . . . , v k) ∈ K . We define val det(Λ) to be the valu-ation of det( v1, . . . , v k) for a O-basis v1, . . . , v k of Λ. While the determinant itself may not be well-defined, the valuation is well-defined. Given lattices Λ 1, . . . , Λk, define (19.2) ˜∆(Λ 1, . . . , Λk) := min {val det( v1, . . . , v k) | vi ∈ Λi} ∈ Z.
+
+The minimum is achieved by picking generic vi ∈ Λi. Given any vector v ∈ K k and lattice Λ, we define 
+
+c(v, Λ) := min {λ ∈ Z | tλv ∈ Λ}.
+
+We say that v ∈ K k is a generator for Λ ′ if it is part of a basis for Λ ′ as a O-module. Given two lattices Λ , Λ′, we define 
+
+c(Λ ′, Λ) = min {c(v, Λ) | v is a generator for Λ ′}.
+
+We say that v is a tight generator for Λ ′ with respect to Λ if c(v, Λ) = c(Λ ′, Λ). 
+
+Theorem 19.2 ([Le21]) . Let Λ1, . . . , Λk be lattices. There exists a lattice Λ such that 
+
+val(det(Λ)) + 
+
+> n
+
+X
+
+> i=1
+
+c(Λ , Λi) = ˜∆(Λ 1, . . . , Λk).
+
+For equivalence classes [Λ 1], . . . , [Λ k] ∈ B , define ∆([Λ 1], . . . , [Λ k]) := 1
+
+k
+
+> k
+
+X
+
+> i=1
+
+val det(Λ i)
+
+!
+
+− ˜∆(Λ 1, . . . , Λk).
+
+It is straightforward to verify that this function does not depend on the representatives of equiva-lence classes chosen. 
+
+Theorem 19.3 ([Le21]) . Let [Λ 1], . . . , [Λ k] be vertices of B. Then 
+
+∆([Λ 1], . . . , [Λ k]) = min  
+
+> [Λ] ∈B
+
+(d1([Λ] , [Λ 1]) + · · · + d1([Λ] , [Λ k])) .
+
+The minimum is attained at a vertex [Λ] that satisfies Theorem 19.2. Proof of Theorem 3.14. Let X ∈ Gr( k, n )( K) be a point in the Grassmannian over K with tropical Pl¨ ucker vector π• = π•(X) ∈ R([n] 
+
+> k
+
+). Let x1, x 2, . . . , x n ∈ K k be the columns of X. Let Λ ai be the lattice with basis t−axi, w (i)2 , . . . , w (i) 
+
+> k
+
+where the w-s are fixed vectors not depending on a. For fixed 
+
+J = {j1, . . . , j k} and sufficiently large a, the function val(det( v1, . . . , v k)) , vi ∈ Λji
+
+takes minimum value at the choice vi = t−axji ∈ Λji . This is because a generic choice of vi would give det( v1, . . . , v k) = t−ka c det( xj1 , . . . , x jk ) + higher order terms ,
+
+and by assumption we have det( xj1 , . . . , x jk )̸ = 0. Here, c ∈ C is a scalar that does not affect the valuation. Now, choose Λ i := Λ ai where a is sufficiently large in the above sense for all choices of 
+
+J. Then our choice gives ˜∆(Λ j1 , . . . , Λjk ) = πJ (X) − ak 
+
+and ∆([Λ j1 ], . . . , [Λ jk ]) = −πJ (X) + ak + 1
+
+k
+
+> k
+
+X
+
+> i=1
+
+val det(Λ ji ).
+
+for all J.58 NICK EARLY AND THOMAS LAM 
+
+We apply Theorem 19.3 to k-element subsets of (Λ 1, . . . , Λn). For each J ∈  [n]
+
+> k
+
+, there is a distance minimizing lattice [Λ J ] ∈ B . Consider the n +  [n]
+
+> k
+
+ vertices {[Λ 1], . . . , [Λ n]} S{[Λ J ] |
+
+J ∈  [n]
+
+> k
+
+}. Let Q ⊂ G(B) be a directed subgraph such that the directed distance functions 
+
+δG(B)(·, ·) and δQ(·, ·) agree on any pair from these n +  [n]
+
+> k
+
+ vertices. As each [Λ J ] was a distance minimizer in G(B), it is still a distance minimizer in Q, with identical Fermat-Le distance functions. Then ( Q, z = ([Λ 1], . . . , [Λ n])) is a model for π•(X), up to the lineality action by the vector ( 1 
+
+> k
+
+val det(Λ 1) + a, 1 
+
+> k
+
+val det(Λ 2) + a, . . . , 1 
+
+> k
+
+val det(Λ n) + a). □
+
+19.3. Positive configurations. We review the notion of positive configuration from [Le21]. An 
+
+n-tuple of lattices Λ 1, . . . , Λn is called a positive configuration if we have a collection of ordered bases vi1, . . . , v ik for Λ i such that for each triple of integers 1 ≤ p < q < r ≤ n, and each triple of nonnegative integers i, j, ℓ such that i + j + ℓ = k,(1) we have f tijk (Λ p, Λq, Λr) = −val det( vp1, . . . , v pi , v q1, . . . , v qj , v r1, . . . , v rℓ ), and (2) the leading coefficient of det( vp1, . . . , v pi , v q1, . . . , v qj , v r1, . . . , v rℓ ) is positive. The tropical functions f tijk are defined similarly to (19.2) by taking i (resp. j and ℓ) vectors from Λp (resp. Λ q and Λ r). 20. Diskoids and convex sets 
+
+In this section, we specialize to k = 3. For a sequence ( λ1, λ 2, . . . , λ n) where λi ∈ { ω1, ω 2}, the space of polygons is 
+
+P (λ) = {([Λ 1], [Λ 2], . . . , [Λ n], [Λ n+1 ] = [Λ 1]) | d([Λ i], [Λ i+1 ]) = λi}.
+
+The space of polygons P (λ) has the structure of an algebraic variety (see [FKK, Akh]) and we say that P ∈ P (λ) is generic if it is a generic point in an irreducible component of the polygon space. Given a generic polygon P ∈ P (λ), we obtain a diskoid D(P ) with boundary P ; the one-skeleton of D(P ) (after orienting the edges) can be identified with a CAT(0) planar graph Q(P ). The vertices of D(P ) were characterized by Akhmejanov [Akh] as a convex hull. The max-convex hull of a set S of vertices of B is the smallest set maxconv( S) such that Λ , Λ′ ∈ maxconv( S)implies [Λ + Λ ′] ∈ maxconv( S). The min-convex hull of a set S of vertices of B is the smallest set minconv( S) such that Λ , Λ′ ∈ minconv( S) implies [Λ ∩ Λ′] ∈ minconv( S). The convex hull is the intersection conv( S) := maxconv( S) ∩ minconv( S). 
+
+Theorem 20.1 ([Akh]) . For a generic polygon P , the set of vertices of D(P ) (or of Q(P )) is the convex hull conv( P ).
+
+Proposition 20.2. A polygon P ∈ P (λ) is a positive configuration of lattices in B in the sense of 
+
+[Le21] if and only if it is a generic polygon in the sense of [Akh] .Proof. By [Le16, Theorem 5.25], a configuration of lattices is positive if certain tropical functions 
+
+f ti,j,k satisfy the hive inequalities . By [GS], hives index the top-dimensional irreducible components of polygon spaces, and the functions f ti,j,k are constant on generic points of each such component. This is exactly the notion of generic in [Akh]. □
+
+Remark 20.3. In general, the positive configurations ([Λ 1], [Λ 2], . . . , [Λ n], [Λ n+1 ] = [Λ 1]) of [Le21] 
+
+do not necessarily satisfy d([Λ i], [Λ i+1 ]) ∈ { ω1, ω 2}. However, [Le16, Lemma 5.20] allows one to fill in the gaps in such positive configurations. 
+
+Proposition 20.4. For [Λ] , [Λ ′] ∈ Q(P ), we have δQ(P )([Λ] , [Λ ′]) = k · d1([Λ] , [Λ ′]) .Proof. This follows from [FKK, Lemma 5.3 and Theorem 5.5]. □Scaffolds for Higher Tropical Grassmannians: Foundations 59 
+
+We now discuss our notion of focal point (Definition 10.7) in the context of buildings. Recall that Theorem 10.1 states that the set of focal points is exactly the set of distance minimizers. For a lattice, define V (Λ) = Λ /t Λ, and let V (Λ , Λ′) ⊂ V (Λ) denote the subspace spanned by the images of tight generators with respect to Λ ′. Note that any non-zero vector in V (Λ , Λ′) is the image of a tight generator. 
+
+Proposition 20.5. Suppose that [Λ] is a distance-minimizer for ([Λ a], [Λ b], [Λ c]) in Q(P ). Then 
+
+[Λ] is also a distance-minimizer in the sense of Theorem 19.3. In particular, distance-minimizers can be found within conv( P ).Proof. By Proposition 20.4, the notions of distance in Q(P ) and in B agree. However, in B we are minimizing over the infinitely many vertices of B which could potentially provide for lower distance sums. By Theorem 10.1, [Λ] is a focal point. We shall show that Λ has a O-basis {va, v b, v c} such that 
+
+va is a tight generator for Λ with respect to Λ a, and similarly for Λ b and Λ c. Equivalently, we find vectors va, v b, v c from V (Λ , Λa), V (Λ , Λb), V (Λ , Λc) respectively that span the three-dimensional vector space V (Λ). We first note that if [Λ] and [Λ ′] are adjacent, then dim V (Λ , Λ′) = 
+
+(
+
+1 if [Λ] ← [Λ ′], 2 if [Λ] → [Λ ′]. Furthermore, Proposition 20.4 implies that any three distinct incoming edges [Λ] ← [Λ ′], [Λ] ←
+
+[Λ ′′ ], and [Λ] ← [Λ ′′′ ] satisfy V (Λ , Λ′), V (Λ , Λ′′ ), V (Λ , Λ′′′ ) span V (Λ), and any two such are linearly independent. If we have a triangle [Λ] → [Λ ′] → [Λ ′′ ] → [Λ] then V (Λ , Λ′) ⊃ V (Λ , Λ′′ ). Consider the standard geodesic γ in Q(P ) from [Λ] to [Λ a], which is also a combinatorial geodesic in B. Suppose that γ has e forward edges and d backwards edges. Then dB([Λ] , [Λ a]) = dω 1 + eω 2.Let [Λ ′] be the first vertex on the path γ after [Λ]. Suppose that e = d = 0. Then V (Λ , Λa) = V (Λ) is three-dimensional. Suppose that e = 0 and d > 0. Then dB([Λ] , [Λ a]) = dω 1, and after changing bases, we may assume that Λ = span O(e1, e 2, e 3), Λ′ = span O(t−1e1, e 2, e 3), Λa = span O(t−de1, e 2, e 3).
+
+In this case, V (Λ , Λ′) = V (Λ , Λa) = span( e1). Next suppose that e > 0 and d = 0. The first step of γ is a forwards edge [Λ] → [Λ ′]. Then [Λ] , [Λ ′], [Λ a] belong to a common apartment. We may assume that Λ = span O(e1, e 2, e 3), Λ′ = span O(t−1e1, t −1e2, e 3), Λa = span O(t−ee1, t −ee2, e 3).
+
+In this case, V (Λ , Λ′) = V (Λ , Λa) = span( e1, e 2). Finally, if e > 0 and d > 0, typically the first step of γ is a backwards edge, and Λ = span O(e1, e 2, e 3), Λ′ = span O(t−1e1, e 2, e 3), Λa = span O(t−e−de1, t −ee2, e 3).
+
+In this case, V (Λ , Λ′) = V (Λ , Λa) = span( e1). However, it is possible for the first step of γ to be a forwards edge, and Λ = span O(e1, e 2, e 3), Λ′ = span O(t−1e1, t −1e2, e 3), Λa = span O(t−e−de1, t −ee2, e 3).
+
+Here, span O(t−1e1, e 2, e 3) does not belong to Q(P ) (which is possible). We then have V (Λ , Λ′) = span( e1, e 2) but V (Λ , Λa) = span( e1). We check that the definition of [Λ a] and [Λ b] parallel at [Λ] implies the following: if [Λ a] and [Λ b] are not parallel then V (Λ , Λa) and V (Λ , Λb) span V (Λ , Λ′). Since [Λ] is a focal point, it has a system of distinct representatives. Using the above case analysis, we see that this in turn gives a basis {va, v b, v c} of V (Λ). It follows that Λ is a lattice that satisfies the conclusion of Theorem 19.2 and therefore is a distance minimizer in the sense of Theorem 19.3. □60 NICK EARLY AND THOMAS LAM 1 0 00 1 00 0 11 0 00 t 00 0 11 0 00 1 00 0 t1 01                                         
+
+> t01
+> t0001
+> t1001t0001100010001
+> t1001t0001
+> t1000t000t1000t2000t10001
+> t000110t
+> 01
+> t000t101
+> t011
+> t001
+> t101
+> t21
+> t01
+> t1
+> t2001
+> t2
+
+Figure 27. Embedding of the CAT(0) graph Q into the PGL 3(K) affine building, with vertices written as matrices in PGL 3(K). The curvature is negative at the center vertex v := ( e1, e 2, e 3), making it impossible to find a common basis which simultaneously diagonalizes v and its eight neighbors. This reflects that fact that Q
+
+cannot be embedded into a single apartment. 21. Keel-Tevelev isomorphism 
+
+Let M = {v1, v 2, . . . , v n} ⊂ K k be n vectors that span Kk. The Keel-Tevelev membrane is defined to be [M ] := {Λ = span O(t−u1 v1, . . . , t −un vn) | (u1, u 2, . . . , u n) ∈ Zn} ⊂ B .
+
+In [KT], lower rank lattices (belonging to a compactification B) are allowed; we will only need the part of the membrane consisting of lattices that belong to B. With M fixed, we define 
+
+uj (Λ) := max( u | t−uvj ∈ Λ) ∈ Z
+
+for a lattice Λ. Viewing M as a point in Gr( k, n )( K), we obtain a tropical Pl¨ ucker vector π•(M ) := val( p•(M )). 
+
+Theorem 21.1 ([KT]) . The map 
+
+ι : Zn → B , (u1, u 2, . . . , u n) 7 → span O(t−u1 v1, . . . , t −un vn)
+
+induces an isomorphism of simplicial complexes between L(π•(M )) and [M ].
+
+Note that the membrane [ M ] depends only on M up to lineality, or equivalently, as a point in 
+
+X(k, n )( K). See also [JSY] for a discussion of the relation between tropical geometry and buildings. Suppose that we are given a polygon P = ([Λ 1], [Λ 2], . . . , [Λ n], [Λ n+1 ] = [Λ 1]) in B, such that [Λ i] ∈ [M ], where M ∈ Gr( k, n )( K) has tropical Pl¨ ucker vector π•(M ). We assume that P is a positive configuration in the sense of [Le21] and thus by Proposition 20.2 a generic configuration Scaffolds for Higher Tropical Grassmannians: Foundations 61 
+
+in the sense of [Akh]. We further assume that the tropical coordinates f tijk (P ) of [Le21, FL] recover π•(M ) up to lineality, and that the tropical coordinates satisfy the hive inequalities . Let (Q, z) denote the (standard) CAT(0) planar graph associated to P . Then Akhmejanov [Akh] and Fontaine–Kamnitzer–Kuperberg [FKK] define an embedding θ : Q → B so that the boundary vertices zi ∈ ∂Q are sent to θ(zi) = [Λ i] ∈ P .Let v1, . . . , v n be the columns of M . Pick representatives Λ i ∈ [Λ i] and ordered bases of Λ 1, Λ2, . . . 
+
+so that the leading generator of Λ j is vj . After replacing Λ i by tai Λi and vi by tai vi for each i, we may assume that 
+
+c(zi) := val(det(Λ i)) ∈ { 0, 1, 2} for all i. 
+
+The assumption that P is a positive configuration implies that 
+
+c(Λ i, Λj ) = c(vj , Λj ) = −uj (Λ i).
+
+We have the following equality [Le21, Remark 5.3]: 
+
+d1([Λ i], [Λ j ]) = −c(Λ i, Λj ) − 13val(det(Λ i)) + 13val(det(Λ j )) .
+
+Rearranging, we get 
+
+uj (Λ i) = d1([Λ i], [Λ j ]) + 13 (val(det(Λ i)) − val(det(Λ j ))) .
+
+Comparing with (6.1) and using Proposition 20.4 we have μ(zi) = ( μ1(zi), . . . , μ n(zi)) where (21.1) 
+
+μj (zi) = 13 (δQ(zi, z j ) + c(zi) − c(zj )) = d1([Λ i], [Λ j ]) + 13 (val(det(Λ i)) − val(det(Λ j ))) = uj (Λ i).
+
+Proposition 21.2. In the above situation, the two embeddings θ and ι ◦ μ of (Q, z) are identical. Consequently, the Lam-Postnikov membrane μ(D) associated to Q is embedded into the Keel-Tevelev membrane [M ] via ι.Proof. Since we have assumed that Λ i ∈ [M ], using the equality (21.1) we have 
+
+ι ◦ μ(zi) = span O(t−u1 v1, . . . , t −un vn) = Λ i = θ(zi).
+
+It is known [Akh, FKK] that the rest of the embedding θ is determined by metric considerations. By [Akh], θ(Q) ⊂ conv( P ) ⊂ maxconv( P ) ⊂ [M ]. The last inclusion follows from the fact that [M ] is closed under sums of lattices. For each interior vertex v ∈ Q, and each boundary vertex zj ∈ ∂Q , we can find a CAT(0) planar subgraph Q′ such that both v and zj lie on the boundary. The embedding θ(∂Q ′) will be a generic polygon, and thus a positive configuration by Proposition 20.2. It follows that the computation (21.1) applies to θ(v), and we have uj (θ(v)) = μj (v). We have observed that θ(v) ∈ [M ] so we conclude that θ(v) = ι(μ(v)). □
+
+In particular, Proposition 21.2 establishes Theorem 6.10. 22. Membranes and positroids 
+
+We describe the matroids Mv for a normal CAT(0) planar graph ( Q, z) explicitly. 
+
+Proposition 22.1. Let M be a simple positroid of rank 3 on [n]. Let A be the set of maximal (under containment) cyclic intervals [a, b ] in [n] such that M |[a,b ] has rank two, and such that 
+
+|[a, b ]| ≥ 3. Then A is a collection of proper cyclic intervals of size at last three such that any two consecutive elements a, a + 1 is contained in at most one interval of A. Conversely, any such collection A uniquely determines a simple positroid M of rank 3. 62 NICK EARLY AND THOMAS LAM 
+
+Proof. By definition the collection A is an antichain. Denote by ( I1, I 2, . . . , I n) the Grassmann necklace of M . Then the condition that M is simple is equivalent to Ia = {a, a + 1 , a ′} for all a.Let <a denote the order a < a a + 1 <a a + 2 < · · · <a a − 1. We have that 
+
+a′ =
+
+(
+
+max <a (c | [a, a + 1] ⊂ [b, c ] ∈ A ) + 1 if [ a, a + 1] ⊂ [b, c ] for some [ b, c ] ∈ A ,
+
+a + 2 if [ a, a + 1] is not contained in any interval in A.(22.1) Now, if a′̸ = a + 2 it follows that from the definition of Grassmann necklace that we must have 
+
+Ia+2 = {a + 1 , a + 2 , a ′}, so there cannot be an interval [ a + 1 , c ′] ∈ A . It follows that the two consecutive elements a + 1 , a + 2 is contained in at most one interval of A. This proves the forward direction of the theorem. For the converse direction, note that (22.1) uniquely determines a Grassmann necklace as long as A satisfies the stated conditions. □
+
+Proof of Proposition 6.7. Since ( Q, z) is normal, Mv is non-empty by Proposition 12.6. By Theo-rem 10.1, v is a distance minimizer for zi, z j , z k if and only if it is a focal point for zi, z j , z k. Consider the sets F (v, z 1), F (v, z 2), . . . , . By Lemma 10.9, these sets are arranged (weakly) cyclically. We define a positroid M by imposing the following rank conditions: (1) whenever zi and zi+1 are parallel we declare that i and i + 1 are parallel; (2) whenever | S 
+
+> i∈[a,b ]
+
+F (v, i )| = 2 we declare that a, a + 1 , . . . , b has rank two. After removing parallel elements, whenever we have | S 
+
+> i∈[a,b ]
+
+F (v, i )| = 2, we must have that 
+
+|F (v, i )| = 2 for all i ∈ [a + 1 , b − 1]. It follows from this that the condition in Proposition 22.1 holds, and indeed we have a well-defined rank three positroid M . It is then straightforward to see from Definition 10.7 that M = Mv.Since each F (v, z i) is nonempty, it follows that for each i, there must be a triple zi, z j , z k for which v is a focal point. It follows that Mv is loopless. □
+
+Proof of Theorem 6.6. By Theorem 4.8(3), ( Q, z) is a strong scaffold and thus μ defines an embed-ding into LZ(¯ π•). It remains to check the condition: if v → w is an edge of Q then μ(w) − μ(v) = 
+
+e[i+1 ,j ]. Here, ηi (resp. ηj ) is the strand passing through the dual edge e of W with v on the right (resp. v on the left). Let μ(w) − μ(v) ≡ eJ for J ⊂ [n]. Suppose v is not on the strand strip labeled a. Then by Lemma 13.4 it follows that a − 1 and 
+
+a are either both in J or both not in J. On the other hand, if v is on one side of the strand strip and w is on the other side then |J ∩ { a − 1, a }| = 1. This happens exactly when a = i or j.For a = j: by definition, w is on the right of ηj , meaning w is on the z′ 
+
+> j
+
+side of the strand strip. By Lemma 13.3, δ(w, z j ) − δ(v, z j ) = +2, so j ∈ J. For a = i: by definition, v is on the right of ηi,meaning v is on the z′ 
+
+> i
+
+side of the strand strip. By Lemma 13.3, δ(w, z i) − δ(v, z i) = −1, so i / ∈ J.We conclude that J = [ i + 1 , j ]. □
+
+Corollary 22.2. Let (Q, z) be a normal CAT(0) planar graph and v → w be an edge such that Mv
+
+and Mw are distinct connected matroids, and let (i, j ) be as in Definition 6.1. Then in the matroid subdivision ∆( π•(Q, z)) , the two matroid polytopes PMv and PMw share a facet on the hyperplane 
+
+x[i+1 ,j ] := xi+1 + · · · + xj = 2 with PMv on the side x[i+1 ,j ] ≤ 2 and PMw on the side x[i+1 ,j ] ≥ 2.Proof. Since Mv and Mv are connected, the two matroid polytopes PMv and PMw are full-dimensional, and thus μ(v), μ (w) are vertices in the matroid complex structure on L(¯ π•). The vector e[i+1 ,j ] =
+
+μ(w)−μ(v) is normal to the hyperplane separating these two polytopes in the subdivision ∆( π•(Q, z)). The last statement is obtained by going through the analysis in the proof of Theorem 6.6. □Scaffolds for Higher Tropical Grassmannians: Foundations 63 v
+
+Figure 28. Illustration for Example 22.3; the red, blue and green strands emanat-ing from the edges lead us to compute the facets of the matroid polytope PMv for the vertex v in at center of Q.
+
+Example 22.3. We illustrate Corollary 22.2 by extracting the facet inequalities cutting out the matroid polytope PMv for Mv corresponding to the vertex v at the center of the octagon in Fig. 28. See also Fig. 11 from before. Starting from the edge (9 , v ) with the large red dot and following the red strand paths to the boundaries in both directions induces a partition into cyclic intervals [11 , 8] ⊔ [9 , 10] = [12] . This defines a half-region x[11 ,8] ≥ 2 which is one of the facet inequalities for PMv .Similarly following the green strand paths from the edge (v, 5) with the large green dot to the two boundaries induces a partition into cyclic intervals [8 , 2] ⊔ [3 , 7] = [12] , and again we have defined one of the facet inequalities x[8 ,2] ≥ 1 cutting out PMv .Taking all index relabelings under j 7 → j + 3 mod 12 gives all eight facet inequalities for PMv :
+
+x[2 ,11] ≥ 2, x [5 ,2] ≥ 2, x [8 ,5] ≥ 2, x [11 ,8] ≥ 2
+
+x[5 ,11] ≥ 1, x [8 ,2] ≥ 1, x [11 ,5] ≥ 1, x [2 ,8] ≥ 1 .
+
+Finally, following the blue strand paths from the edge (2 , 12) with the large blue dot to the two boundaries induces a partition into cyclic intervals [2 , 4] ⊔ [5 , 1] = [12] . This defines a half-region 
+
+x[5 ,2] ≥ 2.64 NICK EARLY AND THOMAS LAM 
+
+Recall from Fig. 1 the two additional fins occurring in the tropical linear space, corresponding to two additional connected positroid polytopes in the subdivision of ∆(3 , 12) . These cannot be immediately read off of Q.
+
+Appendix A. Tabulation of Rays 
+
+Here we tabulate normal models and noncrossing tableaux for all rays of Trop >0X(3 , n ) for 
+
+n = 7 , 8. We identify rays with the primitive integer point r that generates the ray. Using Theorem 4.8(3) and Theorem 17.7, we identify such an integer point with a noncrossing tableau 
+
+J = ( J1, . . . , J r). The NC weight of the ray is then equal to the size r of the noncrossing tableau. A.1. Trop >0X(3 , 7) . Trop >0X(3 , 7) has 28 rays of NC weight one, and 14 rays of NC weight two. They have the following planar basis and noncrossing tableau expansions: 
+
+hi1i2i3 −hj1j3j5 + hj2j3j5 + hj1j4j5 + hj1j3j6 −hj2j4j6 + hj1j2j4 + hj2j5j6 + hj3j4j6
+
+ti1i2i3 tj1j4j5 + tj2j3j6 tj1j2j4 + tj3j5j6
+
+for all i1i2i3 ∈  [7] 3
+
+ncyc 
+
+and all subsets {j1, . . . , j 6} ∈  [7] 6
+
+ with j1 < · · · < j 6.A.2. Trop >0X(3 , 8) . Trop >0X(3 , 8) has the following rays: 
+
+• 48 rays with NC weight one (the scaffolds consist of a single CCW triangle with vertices decorated with ordered set partitions ([ a + 1 , b ], [b + 1 , c ], [c + 1 , a ]) such that a, b, c is not a cyclic interval, 
+
+• 56 rays with NC weight two (the scaffolds are the one-skeleton of the second dilate of a triangle, as in the rightmost diagram in Fig. 5), where the six vertices are variously labeled, 
+
+• 16 rays of NC weight three. There are two distinct orbits under cyclic relabeling, with representatives 
+
+π• = −hj1j4j6 + hj2j4j6 + hj1j5j6 − hj1j3j7 + hj2j3j7 + hj1j4j7 + hj1j3j8
+
+π′• = −hj1j4j6 + hj3j4j6 + hj1j5j6 − hj1j3j7 + hj2j3j7 + hj1j4j7 + hj1j3j8 .
+
+(A.1) 
+
+1
+
+2 8
+
+7
+
+3 4 5 6
+
+v
+
+4 3
+
+5 v 2
+
+6 7 8 1
+
+Figure 29. The two normal models for π• and π′•, respectively, in Equation (A.1). A.3. Trop >0X(3 , 9) . By [EL26+], the bounded complex of a positive tropical linear space L(π•)embeds into the dilated standard alcove PK( π•) · ∆std .The positive tropical Grassmannian Trop >0X(3 , 9) has 75 planar basis rays (of NC weight one) and 168 rays with NC weight two, in bijection with the noncrossing but not weakly separated pairs. There are 156 NC weight three rays, 69 NC weight four rays and 3 NC weight five rays. More compactly: 1 2 3 4 575 168 156 69 3Scaffolds for Higher Tropical Grassmannians: Foundations 65 
+
+A.4. Trop >0X(3 , 10) . The tabulation of the 3080 rays of Trop >0X(3 , 10) by NC weight is as follows: 1 2 3 4 5 6 7110 420 840 970 560 170 10 
+
+References 
+
+[Akh] T. Akhmejanov, Non-elliptic webs and convex sets in the affine building. Documenta Math. 25 (2020), 2413– 2443. 5, 58, 61 [ARW] F. Ardila, F. Rinc´ on, and L. Williams, Positroids and non-crossing partitions. Trans. Amer. Math. Soc. 368 (2016), 337–363. [ALS21a] N. Arkani-Hamed, T. Lam, and M. Spradlin, Positive configuration space. Comm. Math. Phys. 384 (2021), 909–954. 6, 7 [ALS21b] N. Arkani-Hamed, T. Lam, and M. Spradlin, Non-perturbative geometries for planar N = 4 SYM amplitudes. JHEP (2021), article number 065. 3 [CEGM] F. Cachazo, N. Early, A. Guevara, and S. Mizera, Scattering equations: from projective spaces to tropical Grassmannians. Journal of High Energy Physics 2019, no. 6 (2019): 39. 3 [CGUZ] F. Cachazo, A. Guevara, B. Umbert, and Y. Zhang, Planar matrices and arrays of Feynman diagrams. Communications in Theoretical Physics, 76 (2024), 035002. 2 [DFGK] J. Drummond, J. Foster, O. G¨ urdo˘ gan, and C. Kalousios, Tropical Grassmannians, cluster algebras and scattering amplitudes. JHEP (2020), article number 146. 3 [Ear20] N. Early, Weighted blade arrangements and the positive tropical Grassmannian, preprint, 2020, 
+
+arXiv:2005.12305 . 40, 52 [Ear21] N. Early, Planarity in generalized scattering amplitudes: PK polytope, generalized root systems and world-sheet associahedra, preprint, 2021, arXiv:2106.07142 . 52 [Ear22] N. Early, From weakly separated collections to matroid subdivisions. Combinatorial Theory 2 (2022), no. 2. 3, 40 [Ear24] N. Early, The CEGM NLSM. JHEP 2025, no. 4 (2025): 1-29. 3 [EL26+] N. Early and T. Lam, Noncrossing Duality and the Geometry of Positive Tropical Linear Spaces, preprint, 2026. 3, 4, 5, 22, 40, 42, 64 [FKK] B. Fontaine, J. Kamnitzer, and G. Kuperberg, Buildings, spiders, and geometric Satake. Compos. Math. 149 (2013), 1871–1912. 3, 5, 12, 58, 61 [FL] C. Fraser and I. Le, Tropicalization of positive Grassmannians. Selecta Math. 25 (2019), 75. 2, 61 [GPPSS] C. Gaetz, O. Pechenik, S. Pfannerer, J. Striker, and J. P. Swanson, Rotation-invariant web bases from hourglass plabic graphs. Invent. Math. 243 (2026), 703–804. 3 [GS] A. Goncharov and L. Shen, Geometry of canonical bases and mirror symmetry. Invent. Math. 202 (2015), no. 2, 487–633. 58 [HP] N. Henke and G. Papathanasios, How tropical are seven- and eight-particle amplitudes? JHEP (2020), article number 5. 3 [HJJS] S. Herrmann, A. Jensen, M. Joswig, and B. Sturmfels, How to draw tropical planes. Electron. J. Combin. 16 (2009), no. 2, Special volume in honor of Anders Bj ¨orner, Research Paper 6, 26. 2, 6 [JSY] M. Joswig, B. Sturmfels, and J. Yu, Affine buildings and tropical convexity. Albanian J. Math. 1 (2007), 187–211. 7, 60 [KT] S. Keel and J. Tevelev, Geometry of Chow quotients of Grassmannians. Duke Math. J. 134 (2006), no. 2, 259–311. 3, 19, 20, 60 [KK] M. Khovanov and G. Kuperberg, Web bases for sl (3) are not dual canonical. Pacific J. Math. 188 (1999), no. 1, 129–153. 49 [Lam] T. Lam, The combinatorial geometry of particle physics. Preprint, 2025, arXiv:2106.07142 . 4 [LP07] T. Lam and A. Postnikov, Alcoved Polytopes I. Discrete Comput. Geom. 38 (2007), no. 3, 453–478. [LP20] T. Lam and A. Postnikov, Polypositroids. Forum Math. Sigma 12 (2024), Paper No. e42, 67 pp. 3, 19, 55 [Le16] I. Le, Higher laminations and affine buildings. Geom. Topol. 20 (2016), no. 3, 1673–1735. 58 [Le21] I. Le, Intersection Pairings for Higher Laminations. Algebr. Comb. 4 (2021), no. 5, 823–841. 2, 3, 5, 8, 57, 58, 60, 61 [LO] I. Le and E. O’Dorney, Geometry of Positive Configurations in Affine Buildings. Doc. Math. 22 (2017), 1519– 1538. 2 66 NICK EARLY AND THOMAS LAM 
+
+[PPR] T. K. Petersen, P. Pylyavskyy, and B. Rhoades, Promotion and cyclic sieving via webs. J. Alg. Comb. 30 (2009), 19–41. 49 [PPS] T. K. Petersen, P. Pylyavskyy, and D. E. Speyer, A non-crossing standard monomial theory. J. Algebra 324 (2010), no. 5, 951–969. 48 [Pos] A. Postnikov, Total positivity, Grassmannians, and networks, https://math.mit.edu/~apost/papers/ tpgrass.pdf , 2007. 3, 15, 36, 55 [RSV] L. Ren, M. Spradlin, and A. Volovich, Symbol alphabets from tensor diagrams, J. High Energy Phys. 2021, no. 12, 1–43. 3, 21, 22 [Rus12] Heather M. Russell, An explicit bijection between semistandard tableaux and non-elliptic sl 3 webs. J. Alg. Combin. 38 (2013), 851–862. 48 [SSW17] F. Santos, C. Stump, and V. Welker, Noncrossing sets and a Grassmann associahedron. Forum Math. Sigma 5 (2017), e5. 48 [SSW25] L. Shen, Z. Sun, and D. Weng, Intersections of Dual SL3-Webs. Trans. Amer. Math. Soc. 378 (2025), 5513–5549. 3, 15 [Spe] D.E. Speyer, Tropical linear spaces. SIAM J. Discrete Math. 22 (2008), no. 4, 1527–1558. 3, 7 [SS] D. Speyer and B. Sturmfels, The tropical Grassmannian. Adv. Geom. 4 (2004), no. 3, 389–411. 2 [SW05] D. Speyer and L. Williams, The tropical totally positive Grassmannian. J. Algebraic Combin. 22 (2005), 189–210. 2 [SW20] D. Speyer and L. Williams. The positive Dressian equals the positive tropical Grassmannian. Transactions of the American Mathematical Society, Series B 8, no. 11 (2021): 330-353. 6, 7 [Tym] J. Tymoczko, A simple bijection between standard 3 × n tableaux and irreducible webs for sl 3. J. Algebraic Combin. 35 (2012), no. 4, 611–632. 5, 48 
+
+School of Natural Sciences, Institute for Advanced Study, 1 Einstein Dr. Princeton, NJ 08540, USA. 
+
+Email address : earlnick@ias.edu 
+
+Department of Mathematics, University of Michigan, 2074 East Hall, 530 Church Street, Ann Arbor, MI 48109-1043, USA 
+
+Email address : tfylam@umich.edu
