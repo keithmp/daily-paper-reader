@@ -1,0 +1,1532 @@
+Title: Beyond Linear Additive and Hill Functions: A General Logistic Reformulation of Delay-Coupled Gene Regulatory Networks with Equilibrium Analysis, Hopf Bifurcation, and Lipschitz Stability
+
+URL Source: https://arxiv.org/pdf/2604.26810v1
+
+Published Time: Thu, 30 Apr 2026 01:03:14 GMT
+
+Number of Pages: 37
+
+Markdown Content:
+# Beyond Linear Additive and Hill Functions: A General Logistic Reformulation of Delay-Coupled Gene Regulatory Networks with Equilibrium Analysis, Hopf Bifurcation, and Lipschitz Stability 
+
+Ismail Belgacem a, ∗
+
+> aMezaourou Ghazaouet, Tlemcen 13421, Algeria
+
+Abstract 
+
+Hill functions, the dominant tool for modeling gene regulatory networks, carry fundamental limitations: when the cooperativity exponent takes a non-integer value, as it routinely does when fitting experimental dose-response data, derivatives diverge at the origin, complex-valued arithmetic silently corrupts ODE trajectories, and the zero output at zero activation concen-tration traps models irreversibly in off-states that no intrinsic dynamics can escape. This paper uses logistic functions based models that are globally 
+
+C∞, real-valued for all arguments, and strictly positive at zero concentra-tion. The substitution resolves all three pathologies simultaneously while preserving the sigmoidal dynamics that make Hill functions biologically ap-pealing. Working with the delay-coupled two-gene mutual-activation and self-repression network of Vinoth et al. as a concrete model system, we ana-lyze two logistic reformulations of the Hill-based delay differential equations: a linear additive activation combined with logistic self-repression, and a fully sigmoidal formulation in which both activation and self-repression are gov-erned by logistic functions. A closed-form parameter matching relationship 
+
+λ = n/θ is used by equating the slopes of logistic and Hill functions at their half-maximal points, ensuring local input–output equivalence. Closed-form parameter expressions for the weighted logistic formulation, κ1 = 4 gA,
+
+θB = gA, and λ1 = ln 3 /g A, are derived by simultaneously matching basal expression rates and local activation slopes to the original Hill-linear hybrid   
+
+> ∗Corresponding author
+> Email address: ismail.belgacem.81@gmail.com (Ismail Belgacem)
+> arXiv:2604.26810v1 [math.DS] 29 Apr 2026
+
+model. For the linear additive logistic formulation, the unique biologically feasible equilibrium is computed at (167 .96 , 164 .22) nM; for the weighted logistic formulation it is computed at (144 .46 , 139 .99) nM, the reduction arising from saturation of the bounded activation term. In the delay-free case ( τ = 0 ), local asymptotic stability is established for both formulations by proving that the Jacobian trace is strictly negative for all positive param-eters; the system then remains stable for delays τ ∈ (0 , τ c) and loses stability via Hopf bifurcation at the critical delay τc. Hopf bifurcation analysis, via the full two-equation transcendental system solved numerically, yields criti-cal self-repression delays of τc ≈ 1.19 min for the linear additive formulation and τc ≈ 1.64 min for the weighted logistic formulation, with higher-order bi-furcation sequences characterised numerically in each case; direct numerical simulation of complex dynamics and extreme events in the logistic reformu-lations is identified as an important direction for future work. A quantitative comparison of the two formulations shows that replacing linear additive acti-vation with weighted logistic activation reduces the global Lipschitz constant 
+
+LF from 18 .74 min −1 to 5.54 min −1, an approximately 70% reduction per-mitting substantially larger integration steps, while the Jacobian Lipschitz constant LDF decreases from 0.24 to 0.084 nM −1 min −1.
+
+Keywords: Gene regulatory networks, logistic functions, Hill functions, basal expression, mathematical modeling, systems biology, synthetic biology, parameter estimation, control theory 
+
+1. Introduction 
+
+Gene regulatory networks constitute the fundamental control architec-ture of living cells, orchestrating the spatiotemporal patterns of gene ex-pression that underlie development, homeostasis, and adaptation to environ-mental change. Mathematical modeling of these networks has become an indispensable tool for understanding the dynamical behaviors that emerge from transcriptional interactions — oscillations, bistability, multistability, and chaos [1, 2] — and for guiding the rational design of synthetic gene cir-cuits in biotechnology and medicine. At the heart of nearly every such model sits the Hill function, a formulation introduced over a century ago to describe cooperative ligand binding and subsequently adopted as the near-universal representation of sigmoidal gene regulatory responses. Its two forms, the activation function h+(x, θ, n ) = xn/(xn + θn) and the repression counter-2part h−(x, θ, n ) = θn/(xn + θn), are intuitive, mechanistically grounded, and have been applied successfully to models of the lambda phage lysis–lysogeny decision, the lac and gal operons in Escherichia coli , developmental pattern-ing in Drosophila , and mammalian cell cycle control, among many others. Complementary mathematical work has rigorously analyzed transcription-translation systems and enzymatic reaction networks [3, 4, 5, 6, 7, 8, 9], and has explored chaos, bifurcations, and hybrid dynamics in ring-circuit and piecewise-linear gene network architectures [1, 2, 10]. The Hill coefficient n
+
+quantifies cooperativity and θ the half-maximal concentration, both carrying clear physical interpretations, and the sigmoidal shape faithfully captures the switch-like regulatory transitions characteristic of biological decision-making. Yet this success conceals substantial hidden costs. The activation Hill function vanishes identically at zero input, h+(0 , θ, n ) = 0 . This is mathe-matically convenient but biologically unrealistic. Experimental studies con-sistently show minimal basal transcription (0.1–10% of maximal) due to stochastic promoter binding, incomplete repressor occupancy, and chromatin dynamics. Models built on Hill functions either ignore this or introduce ad hoc additive offsets. A second set of limitations concerns mathematical structure and numer-ical behavior. When the Hill coefficient takes a non-integer value — as it routinely does when fitting experimental dose-response curves, yielding val-ues such as n ≈ 1.39 , 2.73 , or 3.52 — the function loses global smoothness. For n ∈ (k, k + 1) , derivatives of order greater than k diverge at the ori-gin, restricting the function to Ck smoothness and rendering unavailable the higher-order analytical tools — center manifold reduction, normal form anal-ysis, Hessian-based optimization — that modern bifurcation and parameter estimation workflows depend upon. The power-law form xn is also com-putationally expensive for non-integer exponents, since it requires evaluating the transcendental composition en ln x, which accumulates floating-point error near zero and, critically, becomes complex-valued whenever any trajectory component transiently overshoots to a negative value, as every adaptive ODE solver will produce from rounding errors alone. The result is silent corrup-tion: the solver continues integrating a complex-valued surrogate system, producing smooth and visually plausible trajectories that are not solutions to the true biological model. Beyond smoothness, the maximum slope of h+
+
+at its inflection point equals n/ (4 θ), coupling threshold position and transi-tion steepness into a single expression. Threshold and steepness cannot be adjusted independently, which obscures biological parameter interpretation 3and complicates the rational tuning of synthetic circuits where engineers need to set sensitivity and decision threshold as separate design variables. Finally, the rational form xn/(xn + θn) has no closed-form inverse for general 
+
+n, blocking the feedback linearization and gradient-based model predictive control strategies [11, 12] that are increasingly central to experimental im-plementation, while the zero production rate at x = 0 creates fundamental controllability gaps from which Hill-based dynamics cannot recover without external intervention. The logistic function resolves all of these limitations simultaneously. Its activation form f +(x, θ, λ ) = 1 /(1+ e−λ(x−θ)) and repression form f −(x, θ, λ ) = 1/(1 + eλ(x−θ)) are globally C∞, real-valued for all arguments including nega-tive ones, and strictly positive at zero concentration for all finite λ and θ. The elegant self-referential derivative f ′ = λf (1 − f ) reduces Jacobian entries to products of function values, eliminating fractional exponents from stability analysis entirely. The closed-form logit inverse f −1(y) = θ + λ−1 ln( y/ (1 − y)) 
+
+enables exact feedback linearization. The parameters θ and λ are fully decou-pled: the threshold can be repositioned without altering the transition slope, and vice versa, and both map directly to biologically measurable quantities — θ to dissociation constants or half-maximal effective concentrations, and 
+
+λ to effective cooperativity. Most importantly, the non-zero output at x = 0 
+
+means that basal expression is built into the function’s shape rather than appended to it, with its magnitude controlled by the product λθ through parameters that already define the regulatory response. For more details, a preprint available on arXiv [13] that established the rigorous mathematical foundations of the logistic alternatives to Hill functions: global C∞ smoothness, real-valuedness for all arguments, self-referential derivative structure ∂f ±/∂x = ±λf ±(1 − f ±), the closed-form in-verse via the logit transformation, and the uniform Lipschitz bound |∂f ±/∂x | ≤ 
+
+λ/ 4. The preprint also proves the foundational existence-uniqueness-boundedness theorem for the general product-of-logistics gene-regulatory-network frame-work. The present manuscript builds on those foundations above but is indepen-dent in its main results: it is concerned exclusively with the delay-coupled two-gene network and develops, for the first time, the closed-form parame-ter mappings between Hill-linear hybrid and pure logistic formulations, the equilibrium and Hopf-bifurcation analysis of the two reformulations, and the quantitative comparison of their Lipschitz constants. As a concrete model system we take the delay-coupled two-gene mutual-4activation and self-repression network of Vinoth et al. [14], which exhibits pe-riodic oscillations, deterministic chaos, and extreme events under Hill-based formulation. We analyze two logistic reformulations of this system: a linear additive formulation in which the activation term (gA + gAB B) is retained while self-repression is replaced by a decreasing logistic, and a fully sigmoidal formulation in which both activation and self-repression are logistic functions. For both reformulations we use the parameter matching relationship λ = n/θ 
+
+that equates logistic and Hill slopes at their respective half-maximal points, compute unique biologically feasible equilibria, and prove local asymptotic stability in the delay-free case by showing that the Jacobian trace is strictly negative for all positive parameters. Hopf bifurcation analysis identifies crit-ical self-repression delays of τc ≈ 1.19 min for the linear additive formulation and τc ≈ 1.64 min for the weighted logistic formulation, and characterizes higher-order bifurcation sequences in each case; direct numerical simulation of complex dynamics and extreme events in the logistic reformulations is identified as important future work. We quantify the reduction in Lipschitz constants — approximately 70% for the vector-field constant LF and 65% for the Jacobian constant LDF —that follows from replacing unbounded linear activation with bounded logis-tic forms, with direct consequences for integration step size and numerical efficiency. We develop systematic parameter estimation methodologies that convert hybrid Hill-linear models into pure logistic formulations by simul-taneously matching basal rates and activation slopes, deriving closed-form expressions for all logistic parameters. We compare the linear additive and weighted logistic formulations quantitatively. Together, these results estab-lish logistic functions as a principled, computationally robust, and biologi-cally faithful foundation for the next generation of gene regulatory network models. 
+
+2. The Logistic Function Framework 
+
+For the reader’s convenience we recall the two logistic primitives that un-derpin all subsequent analysis. The proofs of the analytical properties stated in this section — C∞ smoothness, self-referential derivatives, the closed-form inverse, the closed-form antiderivative, and the uniform Lipschitz bound — are given in the companion preprint [13] and are not repeated here. Only the identities used in the equilibrium and Hopf-bifurcation analyses of Sec-tions 5–7 are restated below. 5Definition 1 (Increasing logistic — activation) .
+
+f +(x, θ, λ ) = 11 + e−λ(x−θ) . (1) 
+
+Models gene activation: off below threshold θ, on above it, with sharpness 
+
+λ > 0 and inflection point f +(θ, θ, λ ) = 12 .
+
+Definition 2 (Decreasing logistic — repression / NOT) .
+
+f −(x, θ, λ ) = 11 + eλ(x−θ) = 1 − f +(x, θ, λ ). (2) 
+
+Implements Boolean NOT: high regulator concentration suppresses expres-sion. 
+
+Both functions are C∞(R), strictly monotonic, and bounded in (0 , 1) , as illustrated in Fig. 1. Their self-referential derivative identities, 
+
+df +
+
+dx = λ f +(1 − f +) > 0, df −
+
+dx = −λ f −(1 − f −) < 0, (3) make Jacobian computation algebraic and enable all closed-form lineariza-tions developed throughout this paper. The maximum slope of each function, attained at the inflection point x = θ, equals 
+
+max 
+
+> x
+
+df ±
+
+dx = λ
+
+4 . (4) Global C∞ smoothness contrasts sharply with the Ck restriction of non-integer Hill functions (for n ∈ (k, k + 1) the derivatives of order greater than 
+
+k diverge at the origin); the full analytical discussion of these Hill-function pathologies and their consequences for numerical integration, and observer design appears in [13] and is not reproduced here. 
+
+3. Two-Gene Network: Model and Logistic Reformulations 
+
+To illustrate the logistic framework concretely, we adopt the delay-coupled two-gene mutual-activation and self-repression network studied by Vinoth et al. [14]. The system exhibits complex behaviors including periodic oscilla-tions, deterministic chaos, and extreme events — abrupt, large-amplitude spikes in protein concentration reminiscent of “rogue waves” in nonlinear dy-namics. The network comprises two proteins, A and B, with the following regulatory architecture: 6θ    
+
+> 0.00 0.25 0.50 0.75 1.00
+> 0510
+> x
+> f+
+> λ
+> 0.3
+> 0.5
+> 1
+> 2
+> (a) Increasing logistic f+(x)
+> θ
+> 0.00 0.25 0.50 0.75 1.00
+> 0510
+> x
+> Logistic value
+> Activation f+(x)
+> Inhibition f−(x)
+> (b) Activation vs Inhibition (lambda = 0.5)
+
+Figure 1: Logistic functions used in the Boolean logistic framework. (a) Increasing logistic 
+
+f +(x, θ, λ ) for θ = 5 and λ ∈ { 0.3, 0.5, 1.0, 2.0}. (b) Comparison of f + and f − for θ = 5 ,
+
+λ = 0 .5; the dashed line marks x = θ where both attain half-maximum and maximum slope λ/ 4 (Eq. (4)). 
+
+• Mutual activation: Protein A activates gene B, and protein B acti-vates gene A.
+
+• Cooperative self-repression: Each gene represses its own expres-sion via multimeric binding (e.g., dimers or tetramers), traditionally captured by a Hill coefficient n > 1.
+
+• Time delays: The system incorporates delays τ1, τ 2, τ 12 , τ 21 represent-ing transcription/translation lags or signalling delays. The regulatory architecture is depicted schematically in Fig. 2. 
+
+A Bself-repression self-repression 
+
+activation 
+
+activation 
+
+τ1 τ2
+
+τ12 
+
+τ21 
+
+Figure 2: Regulatory topology of the two-gene network. Red lines with bars indicate cooperative self-repression; blue arrows represent mutual activation. Delays τ1, τ 2 govern self-repression lags, while τ12 , τ 21 represent cross-activation delays. 
+
+3.1. Original Hill-Based Formulation 
+
+In the original study [14], the model employs additive linear activation combined with Hill-type repression. The delay differential equations (DDEs) 7for protein concentrations A(t) and B(t) are: 
+
+dA (t)
+
+dt = ( gA + gAB B(t − τ12 )) 11 + 
+
+A(t − τ1)
+
+A0
+
+n − γAA(t), (5) 
+
+dB (t)
+
+dt = ( gB + gBA A(t − τ21 )) 11 + 
+
+B(t − τ2)
+
+B0
+
+n − γB B(t), (6) where: 
+
+• gA, g B are basal production rates, 
+
+• gAB , g BA quantify the strength of mutual activation, 
+
+• γA, γ B are degradation rates, 
+
+• A0, B 0 are repression thresholds, 
+
+• n is the Hill coefficient encoding cooperativity in self-repression. All parameter values follow [14]: basal production gA = gB = 50 nM/min, cross-activation strengths gAB = gBA = 3 min −1, degradation rates γA =0.20 min −1 and γB = 0 .24 min −1, repression thresholds A0 = B0 = 100 nM, and Hill coefficient n = 4 representing tetrameric cooperative binding. 
+
+3.2. Linear Additive Logistic Reformulation 
+
+The first reformulation retains the linear additive activation term (gA +
+
+gAB B) and replaces only the Hill self-repression term 1/(1 + ( A/A 0)n) by the decreasing logistic f −(A, A 0, λ A). The reformulated DDEs are: 
+
+˙A(t) = ( gA + gAB B(t − τ12 )) f − A(t − τ1), A 0, λ A
+
+ − γAA(t), (7) 
+
+˙B(t) = ( gB + gBA A(t − τ21 )) f − B(t − τ2), B 0, λ B
+
+ − γB B(t). (8) Written out explicitly: 
+
+˙A = ( gA + gAB B(t − τ12 )) 11 + eλA(A(t−τ1)−A0) − γAA(t), (9) 
+
+˙B = ( gB + gBA A(t − τ21 )) 11 + eλB (B(t−τ2)−B0) − γB B(t). (10) Here λA and λB are steepness parameters derived via the slope-matching criterion of Section 4.1: λA = n/A 0 and λB = n/B 0.83.3. Weighted Logistic Reformulation 
+
+The second reformulation replaces the Hill repression term and the un-bounded linear activation term (gA + gAB B) with bounded increasing logistic functions. The maximal production rate κ1 multiplies the weighted-signal sigmoid: 
+
+˙A(t) = κ1 f + gAB B(t − τ12 ), θ B , λ 1
+
+ f − A(t − τ1), A 0, λ 3
+
+ − γAA(t), (11) 
+
+˙B(t) = κ2 f + gBA A(t − τ21 ), θ A, λ 2
+
+ f − B(t − τ2), B 0, λ 4
+
+ − γB B(t), (12) or written explicitly: 
+
+˙A(t) = κ1
+
+1 + e−λ1
+
+ gAB B(t−τ12 )−θB
+
+ · 11 + e λ3(A(t−τ1)−A0) − γAA(t), (13) 
+
+˙B(t) = κ2
+
+1 + e−λ2
+
+ gBA A(t−τ21 )−θA
+
+ · 11 + e λ4(B(t−τ2)−B0) − γB B(t). (14) The thresholds θB and θA carry units of nM min −1 because they are compared against the weighted signals gAB B and gBA A, which have those units. A direct calculation shows that, when the activator B is set to zero in (13), the production term reduces to 
+
+κ1
+
+1 + eλ1θB
+
+f −(A, A 0, λ 3), (15) which remains strictly positive for every finite choice of λ1 and θB . The reformulated system therefore inherits a built-in floor on the production rate of gene A — a property that is quantitatively consistent with the large basal rate gA = 50 nM/min in the original Hill-based model [14], and that captures the constitutively active behaviour of the promoter without any auxiliary additive offset. 
+
+Remark 1 (Tunability of the basal regime via the product λ1θB ). The sin-gle parameter combination λ1θB controls how far the basal expression (15) 
+
+sits below the saturation ceiling κ1. Large values of the product drive the prefactor 1/(1 + eλ1θB ) towards zero, recovering tightly repressed promoter behaviour; small values keep the prefactor near 12 , reproducing constitutively active promoters such as those in [14]. A practical consequence for parame-ter identification is that a single basal-rate measurement at B = 0 provides 
+
+9one scalar constraint linking κ1, λ1 and θB ; combined with steady-state and transient measurements this constraint resolves the otherwise-coupled iden-tification of the three parameters. The standard Hill–linear hybrid form, in which gA enters as an additive constant outside the Hill factor, does not admit such a single-observation anchor. 
+
+4. Parameter Matching and Validation 
+
+To ground our logistic-based modeling framework in biological reality, we establish a systematic parameter estimation strategy that links the logistic parameters to experimentally accessible quantities. Our approach leverages time-series measurements of gene expression, encompassing maximal produc-tion rates κi, degradation rates γi, steepness parameters λij , and regulatory thresholds θij . The smooth, bounded derivatives of the logistic framework fa-cilitate gradient-based optimization across high-dimensional parameter land-scapes. Unlike Hill-based models, where fractional exponents lead to discon-tinuous parameter sensitivities, the exponential structure of logistic func-tions ensures that small parameter perturbations yield proportionally small changes in model predictions, enabling robust parameter identifiability even from noisy experimental data. When time-series data are available, all parameters can be estimated by minimising the sum of squared residuals between observed gene expression trajectories and model predictions: 
+
+min  
+
+> κi, γ i, λ ij , θ ij
+
+X
+
+> t
+
+∥x(t) − ˆx(t; κi, γ i, λ ij , θ ij )∥22 , (16) where x(t) represents the experimental measurements at time t and ˆx(t; ·)
+
+denotes the model-predicted expression levels. The logistic function’s global smoothness and analytically tractable derivatives, 
+
+f ′(s) = e−s
+
+(1 + e−s)2 , f ′′ (s) = e−s(e−s − 1) (1 + e−s)3 , (17) ensure that gradient-based algorithms such as Gauss–Newton or Levenberg– Marquardt converge efficiently, in sharp contrast to Hill-function models where fractional exponents and potential singularities near the origin can create ill-conditioned landscapes. In the absence of time-series data, the analytic matching strategy developed below provides closed-form starting values for all logistic parameters directly from the original Hill–linear hybrid model. 10 4.1. Steepness Matching: λ = n/θ 
+
+To ensure local input–output equivalence between the Hill repression term and its logistic replacement, we equate their slopes at the half-maximal point 
+
+x = θ = A0.For the Hill repression function h−(x, θ, n ) = θn/(xn + θn), differentiation via the quotient rule gives 
+
+dh −
+
+dx = −nθ nxn−1
+
+(xn + θn)2 . (18) At x = θ: dh −
+
+dx x=θ
+
+= −nθ 2n−1
+
+4θ2n = − n
+
+4θ . (19) For the decreasing logistic f −(x, θ, λ ), equations (3) and (4) give the slope at x = θ: df −
+
+dx x=θ
+
+= −λ
+
+4 . (20) Setting the two slopes equal: 
+
+λ
+
+4 = n
+
+4θ =⇒ λ = nθ . (21) Applied to the self-repression terms of the two-gene network: 
+
+λA = nA0
+
+= 4100 = 0 .04 nM −1, λB = nB0
+
+= 4100 = 0 .04 nM −1. (22) 
+
+4.2. Slope and Basal Matching for the Weighted Logistic 
+
+We derive the weighted logistic parameters by simultaneously matching the basal expression rate and the local activation slope of the original linear additive model. Working with the weighted signal u = gAB B, the weighted logistic activation reads κ1f +(u, θ B , λ 1).We begin with the basal matching condition. Unlike Hill function mod-els, which require arbitrary offsets or ad hoc modifications to reproduce basal transcription, the logistic function naturally encodes a non-zero baseline ex-pression through its mathematical structure. Setting u = 0 (i.e., B = 0 )and assuming negligible self-repression, the logistic basal rate must equal the linear model’s basal rate gA:
+
+κ1
+
+1 + eλ1θB
+
+= gA. (23) 11 Rearranging: 
+
+λ1 = 1
+
+θB
+
+ln 
+
+ κ1
+
+gA
+
+− 1
+
+
+
+. (24) This relationship enables a bidirectional inference strategy: given experi-mentally measured basal expression rates and estimated threshold concen-trations, λ1 can be computed directly; conversely, if cooperativity estimates are available from binding studies, threshold positions can be inferred from basal measurements. With the basal condition in place, we turn to slope matching via Taylor expansion. For moderate steepness λ1, the logistic activation admits a first-order Taylor expansion around its inflection point u = θB :
+
+κ1f +(gAB B, θ B , λ 1) ≈ κ1
+
+2 + κ1λ1
+
+4
+
+ gAB B − θB
+
+. (25) Matching to the original term gA + gAB B imposes two conditions: 1. Slope condition : the coefficient of B must equal gAB ,
+
+κ1λ1gAB 
+
+4 = gAB =⇒ κ1λ1 = 4 . (26) Note that gAB cancels; this condition is independent of the activation strength. 2. Intercept condition : substituting κ1λ1 = 4 from (26) into the con-stant term, 
+
+κ1
+
+2 − θB = gA =⇒ κ1 = 2( gA + θB ). (27) The two matching conditions (26) and (27) leave the threshold θB free; we close the system with a biologically motivated threshold selection. We adopt the criterion that the sigmoid’s inflection point coincides with the weighted signal level at which cross-activation equals basal expression: 
+
+gAB B∗ = gA =⇒ θB = gA. (28) This choice has three compelling properties. First, it centers the steep-est sigmoid region at the biological transition between basal-dominated and activator-driven expression (the inflection displacement gAB B∗ − θB = 0 van-ishes exactly at this transition). Second, it guarantees θB /g A = 1 , validating 12 the moderate-ratio assumption underlying the Taylor approximation above. Third, θB /g AB = gA/g AB is directly interpretable as an activation midpoint analogous to the EC 50 in pharmacology, making it accessible to independent dose-response measurements. These three conditions together yield closed-form parameter expressions. Substituting θB = gA into (27): 
+
+κ1 = 4 gA. (29) Substituting κ1 = 4 gA and θB = gA into (24): 
+
+λ1 = 1
+
+gA
+
+ln 
+
+4gA
+
+gA
+
+− 1
+
+
+
+= ln 3 
+
+gA
+
+. (30) By the complete symmetry of the network: κ2 = 4 gB , θA = gB , λ2 = ln 3 /g B .For the self-repression terms, the steepness matching of Section 4.1 gives 
+
+λ3 = n/A 0 and λ4 = n/B 0. The complete parameter correspondence for the weighted logistic formulation is: 
+
+κ1 = 4 gA, κ2 = 4 gB ,θB = gA, θA = gB ,λ1 = ln 3 
+
+gA
+
+, λ2 = ln 3 
+
+gB
+
+,λ3 = nA0
+
+, λ4 = nB0
+
+. (31) These values, together with the derived logistic parameters, are sum-marised in Table 1. 
+
+4.3. Formal Equivalence: Weighted and Fixed-Weight Product-of-Logistics 
+
+Within the product-of-logistics framework, incorporating explicit positive interaction weights wij > 0 is formally equivalent to the fixed-weight formu-lation after a parameter rescaling. For an activator with weight wij > 0:
+
+f +(wij xj , θ ij , λ ij ) = 11 + e−λij (wij xj −θij ) = 11 + e−λ′    
+
+> ij (xj−θ′
+> ij )
+
+, (32) where λ′ 
+
+> ij
+
+= λij wij > 0 and θ′ 
+
+> ij
+
+= θij /w ij > 0. The effective threshold 
+
+θ′ = θ/w > 0 is always positive and biologically interpretable as EC 50 .13 Table 1: Parameter values for the two-gene regulatory network. Parameters gA through 
+
+n are drawn from Vinoth et al. [14]; steepness parameters λA, λB are derived via λ = n/θ 
+
+(Section 4.1); weighted logistic parameters κ1, κ2, θB , θA, λ1, λ2 follow from equa-tions (29)–(31). 
+
+Parameter Symbol Value Units 
+
+Basal production (A) gA 50 nM min −1
+
+Basal production (B) gB 50 nM min −1
+
+Cross-activation (A →B) gAB 3 min −1
+
+Cross-activation (B →A) gBA 3 min −1
+
+Degradation rate (A) γA 0.20 min −1
+
+Degradation rate (B) γB 0.24 min −1
+
+Repression threshold (A) A0 100 nM Repression threshold (B) B0 100 nM Hill coefficient n 4 dimensionless Steepness parameter (A) λA 0.04 nM −1
+
+Steepness parameter (B) λB 0.04 nM −1
+
+Maximal production (A) κ1 200 nM min −1
+
+Maximal production (B) κ2 200 nM min −1
+
+Activation threshold (B signal) θB 50 nM min −1
+
+Activation threshold (A signal) θA 50 nM min −1
+
+Activation steepness (A eq.) λ1 ≈ 0.022 (nM min −1)−1
+
+Activation steepness (B eq.) λ2 ≈ 0.022 (nM min −1)−1
+
+Repression steepness (A eq.) λ3 0.04 nM −1
+
+Repression steepness (B eq.) λ4 0.04 nM −1
+
+14 An identical rescaling holds for decreasing logistic repression terms. Con-sequently, the weighted and fixed-weight formulations produce identical tra-jectories after parameter estimation and differ only in how steepness and threshold information is distributed across parameters. 
+
+Remark 2 (Parameter units: weighted vs. fixed-weight formulations) . The two logistic reformulations use the same parameter names but with different physical units, because their logistic arguments have different dimensions. Formulation Logistic argument λ1 value λ1 units θB units Fixed-weight B − θB ≈ 0.066 nM −1 nM Weighted gAB B − θB ≈ 0.022 (nM min −1)−1 nM min −1
+
+The fixed-weight value λ′ 
+
+> 1
+
+≈ 0.066 nM −1 is obtained from the rescaling 
+
+λ′ 
+
+> 1
+
+= λ1 gAB = (ln 3 /g A) gAB = (ln 3 /50) × 3 ≈ 0.066 , using the main param-eter set ( gA = 50 nM min −1, gAB = 3 min −1). Both formulations produce nearly identical trajectories (Fig. 3) because the dimensionless products λ1(B − θB ) and λ1(gAB B − θB ) take the same numerical values at biologically relevant concentrations when parameters are chosen via the matching procedure above. The choice between formulations should be guided by which parameterisation maps more directly to available experimental measurements. 
+
+Remark 3 (Approximate nature of the parameter matching) . The slope con-dition (26) and the exact basal condition (23) cannot be satisfied simultane-ously. With θB = gA and κ1 = 4 gA, the formula λ1 = ln 3 /g A enforces exact 
+
+basal matching. A consistency check shows that the implied slope coefficient at the sigmoid midpoint is 
+
+κ1λ1
+
+4 = 4gA · ln 3 
+
+> gA
+
+4 = ln 3 ≈ 1.099 , (33) 
+
+a ≈ 10% overestimate of the exact value of unity required by (26) . For moderate steepness regimes this discrepancy is negligible, as confirmed by the close trajectory agreement in Fig. 3. 
+
+15 4.4. Alternative Threshold Selection Strategies 
+
+While the biologically motivated threshold selection θB = gA, θA = gB
+
+(weighted formulation) provides elegant closed-form parameter expressions with clear biological interpretation, alternative strategies merit consideration depending on data availability and modeling objectives. One natural alternative is to set thresholds near the system’s steady-state concentrations, which can be determined experimentally or computed numerically. For the original system with linear activation, the steady-state equations are 
+
+γAA∗ =  gA + gAB B∗ · 11 + eλ3(A∗−A0) , (34) 
+
+γB B∗ =  gB + gBA A∗ · 11 + eλ4(B∗−B0) . (35) These coupled transcendental equations typically require numerical solution. Setting θB ≈ gAB B∗ and θA ≈ gBA A∗ aligns the logistic inflection points with the concentrations around which the system naturally operates, which is particularly appropriate when transcription factors spend most of their time near steady-state values. Given steady-state-based thresholds, the weighted-formulation matching yields 
+
+κ1 = 2( gA + θB ), λ1 = 1
+
+θB
+
+ln 
+
+
+
+1 + 2θB
+
+gA
+
+
+
+, (36) 
+
+κ2 = 2( gB + θA), λ2 = 1
+
+θA
+
+ln 
+
+
+
+1 + 2θA
+
+gB
+
+
+
+. (37) The choice between threshold selection strategies should be guided by the availability of experimental data, the specific biological system under study, and the intended modeling goals. 
+
+4.5. Numerical Validation 
+
+Figure 3 presents comparative simulations of the linear additive formula-tion (equations (9)–(10) with logistic self-repression) and the fully weighted logistic reformulation (equations (13)–(14)). Using the parameter values 
+
+gA = gB = 50 nM min −1, gAB = gBA = 2 .5 min −1, γA = 0 .20 min −1,
+
+γB = 0 .24 min −1, A0 = B0 = 70 nM , λ3 = λ4 = n/A 0 ≈ 0.057 nM −1,and initial conditions A(0) = B(0) = 10 nM , both formulations exhibit 16 rapid, monotonic convergence to steady states. These parameters lie within the experimentally relevant ranges summarised in Table 2 and are consis-tent with values reported for E. coli gene regulatory systems. To facili-tate a clear comparison, attention is restricted here to the delay-free case (τ1 = τ2 = τ12 = τ21 = 0 ); the logistic DDE extension is addressed in Sec-tion 6. The derived weighted logistic activation parameters 
+
+κ1 = κ2 = 4 gA = 200 nM min −1, λ1 = λ2 = ln 3 
+
+gA
+
+≈ 0.022 (nM min −1)−1,θA = θB = gA = 50 nM min −1
+
+ensure that the logistic approximation closely tracks the original dynamics. The agreement between the two trajectories confirms that the parameter-matching strategy successfully preserves the system’s essential dynamical characteristics in moderate steepness regimes. 
+
+Remark 4 (Delay-free restriction and the DDE extension) . Throughout this section we restrict attention to the delay-free case ( τ12 = τ21 = τ1 = τ2 = 0 )to facilitate a clean comparison of equilibrium structure between the logistic formulation and the original system. The delay-dependent analysis is taken up in Section 6: local stability of both equilibria is established analytically, and delay-induced Hopf bifurcation is analysed for the symmetric configura-tion τ1 = τ2 = τs, yielding critical self-repression delays τc ≈ 1.19 min (linear additive formulation) and τc ≈ 1.64 min (weighted logistic formulation), to-gether with higher-order bifurcation sequences. 
+
+5. Equilibrium Analysis 
+
+5.1. Linear Additive Formulation 
+
+The equilibrium points ( ¯A, ¯B) of the linear additive system (7)–(8) satisfy 
+
+0 =  gA + gAB ¯B f −( ¯A, A 0, λ A) − γA ¯A, (38) 
+
+0 =  gB + gBA ¯A f −( ¯B, B 0, λ B ) − γB ¯B, (39) which can be written in fixed-point form 
+
+¯A = 1
+
+γA
+
+ gA + gAB ¯B f −( ¯A, A 0, λ A), (40) 
+
+¯B = 1
+
+γB
+
+ gB + gBA ¯A f −( ¯B, B 0, λ B ). (41) 17 Figure 3: Numerical comparison of the linear additive formulation (solid lines) and the weighted logistic reformulation (dashed lines) in the delay-free case, for protein A (top, red) and protein B (bottom, blue). Both systems are integrated from the initial condi-tion (A(0) , B (0)) = (10 , 10) nM over 20 minutes. Parameters: gA = gB = 50 nM min −1,
+
+gAB = gBA = 2 .5 min −1, γA = 0 .20 min −1, γB = 0 .24 min −1, repression thresholds 
+
+A0 = B0 = 70 nM, logistic steepness λ = n/A 0 = 4 /70 ≈ 0.057 nM −1; weighted lo-gistic parameters κ1 = κ2 = 200 nM min −1, λ1 = λ2 = ln 3 /g A ≈ 0.022 (nM min −1)−1,
+
+θA = θB = gA = 50 nM min −1. The two formulations converge to equilibria differing by ap-proximately 7% ( ≈ 115 nM vs. ≈ 107 nM for protein A), confirming that the ≈ 10% slope overestimate identified in Remark 3 has negligible impact on transient and steady-state dynamics. The weighted logistic trajectory converges slightly below the linear additive trajectory, consistent with saturation of the bounded activation term at high concentra-tions. Note: these illustrative parameters ( gAB = gBA = 2 .5 min −1, A0 = B0 = 70 nM, 
+
+λ ≈ 0.057 nM −1) differ from the main analysis parameters ( gAB = gBA = 3 min −1,
+
+A0 = B0 = 100 nM, λ = 0 .04 nM −1) used throughout Sections 5–6; both sets lie within the experimentally relevant ranges of Table 2. 
+
+18 Table 2: Experimental ranges for parameters in the two-node gene regulatory network model with time delays. Ranges are derived from synthetic GRNs in E. coli , reflecting variability in strains, inducers, and modifications [14, 15, 16]. 
+
+Parameter Experimental Range Description and Sources 
+
+gA 10–100 nM min −1 Basal production rate for protein A;from ara /lac basal expression [15, 16]. 
+
+gB 10–100 nM min −1 Symmetric to gA; tuned for dynamics [14]. 
+
+gAB 1.0–5.0 min −1 Mutual activation strength; from AraC-mediated activation [15]. 
+
+gBA 1.0–5.0 min −1 Symmetric activation; lac cooperative strengths [16]. 
+
+γA 0.05–0.30 min −1 Degradation rate; ssrA-tagged half-lives ∼2–14 min [14]. 
+
+γB 0.05–0.30 min −1 Symmetric degradation; consistent with synthetic oscillators. 
+
+A0 50–200 nM Repression threshold; Kd values from repressors [15]. 
+
+B0 50–200 nM Symmetric threshold; lac Kd variations [16]. 
+
+n 2–5 Hill coefficient; effective cooperativity in ara /lac [15, 16]. 
+
+λ 0.01–0.1 nM −1 Logistic steepness (fixed-weight formu-lation); derived from n and thresholds via λ = n/θ .
+
+Since the right-hand side maps Φ : R2+ → R2+ with bounded, globally smooth logistic factors, the Brouwer fixed-point theorem guarantees at least one equi-librium in any invariant rectangle. Uniqueness follows when the operator norm ∥DΦ∥∞ < 1.Applying Newton–Raphson to (38)–(39) with initial guess (A0, B 0) = (100 , 100) nM and convergence tolerance ε = 10 −8 (implemented in R, pack-age nleqslv ), the algorithm converged in 6 iterations to the unique biologi-cally feasible equilibrium 
+
+E∗ = ( ¯A, ¯B) = (167 .96 , 164 .22) nM . (42) 19 Verification by direct substitution yields residuals below 10 −10 :
+
+|(gA + gAB ¯B)f −( ¯A, A 0, λ A) − γA ¯A| < 10 −10 , (43) 
+
+|(gB + gBA ¯A)f −( ¯B, B 0, λ B ) − γB ¯B| < 10 −10 . (44) The logistic function values at E∗ are: 
+
+f − 
+
+> A
+
+:= f −( ¯A, A 0, λ A) = 11 + e0.04(167 .96 −100) = 11 + e2.7184 ≈ 0.0619 , (45) 
+
+f − 
+
+> B
+
+:= f −( ¯B, B 0, λ B ) = 11 + e0.04(164 .22 −100) = 11 + e2.5688 ≈ 0.0712 . (46) Both concentrations exceed the repression thresholds ( ¯A ≈ 1.68 A0, ¯B ≈
+
+1.64 B0), so moderate self-repression is active at equilibrium (6–7% of maxi-mal repression function values). 
+
+5.2. Weighted Logistic Formulation 
+
+Setting ˙A = ˙B = 0 in (11)–(12) and suppressing all delays, the equilib-rium E∗ 
+
+> wl
+
+= ( ¯Awl , ¯Bwl ) satisfies 
+
+¯A = κ1
+
+γA
+
+f + gAB ¯B, θ B , λ 1
+
+ f −  ¯A, A 0, λ 3
+
+, (47) 
+
+¯B = κ2
+
+γB
+
+f + gBA ¯A, θ A, λ 2
+
+ f −  ¯B, B 0, λ 4
+
+. (48) Both right-hand sides are bounded (the product of two logistic functions lies in (0 , 1) ), so any equilibrium is confined to [0 , κ 1/γ A] × [0 , κ 2/γ B ] = [0 , 1000] ×[0 , 833] nM. The Brouwer fixed-point theorem guarantees existence, and Newton–Raphson with initial guess (100 , 100) nM and tolerance ε =10 −10 yields the unique biologically feasible equilibrium 
+
+E∗ 
+
+> wl
+
+= ( ¯A, ¯B) = (144 .46 , 139 .99) nM . (49) The corresponding logistic function values are: 
+
+f +1 := f + gAB ¯B, θ B , λ 1
+
+ = 11 + e−0.02197(3 ×139 .99 −50) = 11 + e−8.129 ≈ 0.9997 ,
+
+(50) 
+
+f +2 := f + gBA ¯A, θ A, λ 2
+
+ ≈ 0.9998 , (51) 
+
+f − 
+
+> 3
+
+:= f −  ¯A, A 0, λ 3
+
+ = 11 + e0.04(144 .46 −100) = 11 + e1.7784 ≈ 0.1445 , (52) 
+
+f − 
+
+> 4
+
+:= f −  ¯B, B 0, λ 4
+
+ = 11 + e0.04(139 .99 −100) = 11 + e1.5996 ≈ 0.1680 . (53) 20 The near-unity saturation of f +1 and f +2 (weighted signals gAB ¯B ≈ 420 nM min −1
+
+far exceed the activation threshold θB = 50 nM min −1) means that mutual activation is already in its maximal regime at equilibrium. 
+
+Remark 5 (Comparison of the two equilibria) . The linear additive formu-lation yields E∗ = (167 .96 , 164 .22) nM, roughly 16% higher than E∗ 
+
+> wl
+
+=(144 .46 , 139 .99) nM. The shift arises because the linear term (gA + gAB B)
+
+grows without bound, whereas the weighted logistic saturates at κ1 = 200 nM min −1;at equilibrium the saturated logistic provides less activation, so steady-state concentrations are lower. Both equilibria lie in the partial self-repression regime, confirming that the qualitative regulatory structure is preserved across formulations. 
+
+6. Stability and Bifurcation Analysis 
+
+6.1. Local Stability in the Delay-Free Case 
+
+Linear additive formulation. Setting all delays to zero and lineariz-ing (7)–(8) around E∗, the Jacobian is 
+
+J =
+
+J11 J12 
+
+J21 J22 
+
+
+
+, (54) with entries 
+
+J11 = ( gA + gAB ¯B)( −λAf − 
+
+> A
+
+(1 − f − 
+
+> A
+
+)) − γA, (55) 
+
+J12 = gAB f − 
+
+> A
+
+, (56) 
+
+J21 = gBA f − 
+
+> B
+
+, (57) 
+
+J22 = ( gB + gBA ¯A)( −λB f − 
+
+> B
+
+(1 − f − 
+
+> B
+
+)) − γB , (58) where f − 
+
+> A
+
+:= f −( ¯A, A 0, λ A) and f − 
+
+> B
+
+:= f −( ¯B, B 0, λ B ). The characteristic polynomial is 
+
+μ2 − tr( J)μ + det( J) = 0 , (59) with tr( J) = J11 + J22 and det( J) = J11 J22 − J12 J21 . By the Routh–Hurwitz criterion, E∗ is locally asymptotically stable if and only if tr( J) < 0 and 
+
+det( J) > 0.Expanding the trace: 
+
+tr( J) = −λA(gA + gAB ¯B)f − 
+
+> A
+
+(1 − f − 
+
+> A
+
+) − λB (gB + gBA ¯A)f − 
+
+> B
+
+(1 − f − 
+
+> B
+
+) − (γA + γB ).
+
+(60) 21 Since all parameters are strictly positive and 0 < f ± < 1, every term is negative, so tr( J) < 0 holds unconditionally for any biologically relevant parameter choice. The determinant is 
+
+det( J) = γAγB + λB γA(gB + gBA ¯A)f − 
+
+> B
+
+(1 − f − 
+
+> B
+
+) + λAγB (gA + gAB ¯B)f − 
+
+> A
+
+(1 − f − 
+
+> A
+
+)+ λAλB (gA + gAB ¯B)( gB + gBA ¯A)f − 
+
+> A
+
+(1 − f − 
+
+> A
+
+)f − 
+
+> B
+
+(1 − f − 
+
+> B
+
+) − gAB gBA f − 
+
+> A
+
+f − 
+
+> B
+
+.
+
+(61) Stability is maintained when mutual activation (the negative term) is weak relative to self-repression and degradation. Substituting the equilibrium values E∗ = (167 .96 , 164 .22) nM and f − 
+
+> A
+
+≈
+
+0.0619 , f − 
+
+> B
+
+≈ 0.0712 at E∗:
+
+J11 ≈ − 1.4605 min −1, J12 ≈ 0.1857 min −1,J21 ≈ 0.2135 min −1, J22 ≈ − 1.7044 min −1. (62) The trace, determinant, and discriminant are 
+
+tr( J) ≈ − 3.1649 min −1 < 0,
+
+det( J) ≈ 2.4496 min −2 > 0,
+
+∆ = tr( J)2 − 4 det( J) ≈ 0.2181 > 0, (63) yielding two real, negative eigenvalues μ1 ≈ − 1.349 min −1 and μ2 ≈ − 1.816 min −1,so E∗ is locally asymptotically stable in the delay-free case. 
+
+Remark 6 (Absence of Hopf bifurcation in the delay-free case) . A Hopf bifurcation requires tr( J) = 0 with det( J) > 0. Equation (60) shows tr( J) <
+
+0 universally, so sustained oscillations require time delays, higher network dimensionality, or additional nonlinear mechanisms. 
+
+Weighted logistic formulation. Linearizing (11)–(12) around E∗ 
+
+> wl
+
+with all delays zero, the Jacobian is Jwl with entries 
+
+Jwl 11 = −κ1λ3f +1 f − 
+
+> 3
+
+(1 − f − 
+
+> 3
+
+) − γA, (64) 
+
+Jwl 12 = κ1λ1gAB f +1 (1 − f +1 )f − 
+
+> 3
+
+, (65) 
+
+Jwl 21 = κ2λ2gBA f +2 (1 − f +2 )f − 
+
+> 4
+
+, (66) 
+
+Jwl 22 = −κ2λ4f +2 f − 
+
+> 4
+
+(1 − f − 
+
+> 4
+
+) − γB . (67) 22 Both diagonal entries are manifestly negative. The off-diagonal entries are positive (mutual activation) but strongly attenuated at equilibrium by the factor f + 
+
+> i
+
+(1 − f + 
+
+> i
+
+) ≪ 1 in the near-saturation regime. The derivative products needed are: 
+
+f +1 (1 − f +1 ) ≈ 2.95 × 10 −4, f +2 (1 − f +2 ) ≈ 2.20 × 10 −4,f − 
+
+> 3
+
+(1 − f − 
+
+> 3
+
+) ≈ 0.1236 , f − 
+
+> 4
+
+(1 − f − 
+
+> 4
+
+) ≈ 0.1398 . (68) Substituting numerically: 
+
+Jwl 11 = −200 × 0.04 × 0.9997 × 0.1236 − 0.20 ≈ − 1.1887 min −1, (69) 
+
+Jwl 12 = 200 × 0.02197 × 3 × (2 .95 × 10 −4) × 0.1445 ≈ 5.61 × 10 −4 min −1,
+
+(70) 
+
+Jwl 21 ≈ 4.86 × 10 −4 min −1, (71) 
+
+Jwl 22 = −200 × 0.04 × 0.9998 × 0.1398 − 0.24 ≈ − 1.3581 min −1. (72) The trace, determinant, and discriminant are: 
+
+tr( Jwl ) ≈ − 1.1887 + ( −1.3581) = −2.5468 min −1 < 0, (73) 
+
+det( Jwl ) ≈ (−1.1887)( −1.3581) − (5 .61 × 10 −4)(4 .86 × 10 −4) ≈ 1.6144 min −2 > 0,
+
+(74) 
+
+∆ = tr( Jwl )2 − 4 det( Jwl ) ≈ 6.4861 − 6.4574 ≈ 0.0287 > 0. (75) Both eigenvalues are real and negative: 
+
+μ1,2 = tr( Jwl ) ± √∆2 = −2.5468 ± 0.1694 2 , (76) giving μ1 ≈ − 1.1887 min −1 and μ2 ≈ − 1.3581 min −1. Because the off-diagonal coupling is O(10 −4), the eigenvalue shift relative to the diagonal entries is |Jwl 12 Jwl 21 |/|Jwl 11 − Jwl 22 | ≈ 1.6 × 10 −6 min −1, so the eigenvalues coincide with the diagonal entries Jwl 11 ≈ − 1.1887 min −1 and Jwl 22 ≈ − 1.3581 min −1 to four-figure precision. By the Routh–Hurwitz criterion, E∗ 
+
+> wl
+
+is locally asymp-totically stable for all biologically relevant parameter values. The near-zero off-diagonal coupling ( |Jwl 12 | ≈ 5.6 × 10 −4 min −1, two orders of magnitude below the diagonal strengths ≈ 1.2–1.4 min −1) means that, near equilibrium, the weighted logistic system behaves as two weakly coupled self-repressing genes. Mutual activation becomes dynamically significant only during large excursions from equilibrium — precisely the regime responsible for the extreme bursting events documented in [14]. 23 6.2. Delay-Induced Hopf Bifurcation 
+
+The introduction of nonzero time delays transforms the ODEs into DDEs with transcendental characteristic equations, admitting Hopf bifurcations at purely imaginary roots μ = iω , ω > 0.
+
+Linear additive formulation. We focus on the symmetric delay configu-ration τ1 = τ2 = τs, τ12 = τ21 = 0 . The delay-dependent Jacobian entries at 
+
+E∗ are 
+
+J11 (iω ) = −αAe−iωτ s − γA, J22 (iω ) = −αB e−iωτ s − γB , (77) where the effective self-repression feedback strengths are 
+
+αA = λA(gA + gAB ¯B)f − 
+
+> A
+
+(1 − f − 
+
+> A
+
+) ≈ 0.04 × 542 .66 × 0.0581 ≈ 1.26 min −1,
+
+(78) 
+
+αB = λB (gB + gBA ¯A)f − 
+
+> B
+
+(1 − f − 
+
+> B
+
+) ≈ 0.04 × 553 .88 × 0.0661 ≈ 1.46 min −1,
+
+(79) and J12 , J21 are real and delay-independent. The mutual activation coupling is 
+
+β = gAB gBA f − 
+
+> A
+
+f − 
+
+> B
+
+= 9 × 0.0619 × 0.0712 ≈ 0.0397 . (80) Setting μ = iω in the characteristic equation det( μI − J(μ)) = 0 gives 
+
+ iω + γA + αAe−iωτ s   iω + γB + αB e−iωτ s  − β = 0 . (81) Writing c = cos( ωτ s), s = sin( ωτ s) and Pk = ( γk + αkc) + i(ω − αks) for k ∈{A, B }, equation (81) becomes PAPB = β. Separating real and imaginary parts yields the two-equation transcendental system that must be satisfied simultaneously: 
+
+(γA + αAc)( γB + αB c) − (ω − αAs)( ω − αB s) = β, (82a) 
+
+ω(γA + γB ) + ( αA + αB )c − sαAγB + αB γA + 2 αAαB c = 0 . (82b) 
+
+Remark 7 (The imaginary-trace shortcut fails for asymmetric parameters) .
+
+One might attempt to simplify (82b) by setting s = 0 (i.e. ωτ s = nπ ). With 
+
+s = 0 and c = ±1, equation (82b) reduces to ω[( γA + γB ) ± (αA + αB )] = 0 ,which requires (γA + γB ) = ∓(αA + αB ), i.e. 0.44 = ∓2.72 . This is violated by more than a factor of six for the present parameters, so ωτ s = nπ is not 
+
+a solution of the imaginary-part equation (82b) , and the two equations must be solved jointly. 
+
+24 System (82) is solved numerically in R using the nleqslv package, ini-tialised on a fine grid of (ω, θ ) with θ = ωτ s ∈ (0 , π ), and residuals verified against the original complex equation (81) to machine precision. The small-est positive τs satisfying (82) is the first Hopf bifurcation point: 
+
+ωc ≈ 1.3519 min −1, τc ≈ 1.1879 min ≈ 71 .3 s, θc = ωcτc ≈ 1.6059 rad ≈ 0.5112 π. 
+
+(83) A direct substitution into (81) yields |Re | < 10 −15 , |Im | < 10 −15 .The transversality condition, evaluated via the implicit function theorem (dμ/dτ = −(∂F/∂τ )/(∂F/∂μ ) with F = PAPB − β), 
+
+d Re( μ)
+
+dτ τ =τc
+
+≈ 0.5150 min −2̸ = 0 , (84) confirms a non-degenerate Hopf bifurcation. The oscillation period at onset is 
+
+T = 2πωc
+
+≈ 6.2832 1.3519 ≈ 4.648 min . (85) 
+
+Remark 8 (Biological context of τc). The critical delay τc ≈ 1.19 min is consistent with the faster end of transcription-translation lags in bacterial and fast-cycling eukaryotic networks: mRNA synthesis of short genes (0.3– 0.8 min), translation of small proteins (0.3–0.8 min), and nuclear export or folding ( ≤ 0.5 min) can collectively produce delays of this magnitude [15, 16]. 
+
+Weighted logistic formulation. For the weighted logistic system with 
+
+τ1 = τ2 = τs > 0 and τ12 = τ21 = 0 , the effective self-repression feedback strengths at E∗ 
+
+> wl
+
+are 
+
+αwl  
+
+> A
+
+:= κ1λ3f +1 f − 
+
+> 3
+
+(1 − f − 
+
+> 3
+
+) = 200 × 0.04 × 0.9997 × 0.1236 ≈ 0.9887 min −1,
+
+(86) 
+
+αwl  
+
+> B
+
+:= κ2λ4f +2 f − 
+
+> 4
+
+(1 − f − 
+
+> 4
+
+) = 200 × 0.04 × 0.9998 × 0.1398 ≈ 1.1181 min −1.
+
+(87) The off-diagonal coupling term is Jwl 12 Jwl 21 ≈ 2.73 × 10 −7, negligible in all computations below. The characteristic equation at μ = iω takes the same form as (81) with 
+
+αk replaced by αwl  
+
+> k
+
+and β replaced by Jwl 12 Jwl 21 ≈ 2.73 × 10 −7 (hereafter set 25 to zero without loss of precision). Writing c = cos( ωτ s), s = sin( ωτ s), the two-equation transcendental system analogous to (82) is 
+
+ γA + αwl  
+
+> A
+
+c  γB + αwl  
+
+> B
+
+c −  ω − αwl  
+
+> A
+
+s  ω − αwl  
+
+> B
+
+s = 0 , (88a) 
+
+ω(γA + γB ) + ( αwl  
+
+> A
+
++ αwl  
+
+> B
+
+)c − sαwl  
+
+> A
+
+γB + αwl  
+
+> B
+
+γA + 2 αwl  
+
+> A
+
+αwl  
+
+> B
+
+c = 0 . (88b) 
+
+Remark 9 (Imaginary-trace shortcut fails here too) . Setting s = 0 in (88b) 
+
+requires (γA + γB ) ± (αwl  
+
+> A
+
++ αwl  
+
+> B
+
+) = 0 , i.e. 0.44 = ∓2.107 , violated by a factor of five. The two equations must be solved jointly. 
+
+System (88) is solved numerically with the same grid-initialised Newton procedure used for the linear additive case, and residuals are verified against the complex characteristic equation to machine precision. The smallest pos-itive τs satisfying (88) is the first Hopf bifurcation point: 
+
+ωwl  
+
+> c
+
+≈ 1.0920 min −1, τ wl  
+
+> c
+
+≈ 1.637 min ≈ 98 .2 s, θwl  
+
+> c
+
+= ωwl  
+
+> c
+
+τ wl  
+
+> c
+
+≈ 1.787 rad ≈ 0.569 π. 
+
+(89) A direct substitution into the characteristic equation yields |Re | < 10 −11 ,
+
+|Im | < 10 −11 .The transversality condition, evaluated via the implicit function theorem (dμ/dτ = −(∂F/∂τ )/(∂F/∂μ )), 
+
+d Re( μ)
+
+dτ τ =τ wl 
+
+> c
+
+≈ 0.232 min −2̸ = 0 , (90) confirms a non-degenerate Hopf bifurcation. The oscillation period at onset is 
+
+T wl = 2πωwl 
+
+> c
+
+≈ 6.2832 1.0920 ≈ 5.754 min . (91) 
+
+Remark 10 (Critical delay comparison across formulations) . The weighted logistic formulation yields τ wl  
+
+> c
+
+≈ 1.64 min, a ≈ 37% increase over τc ≈
+
+1.19 min for the linear additive formulation. The increase arises from the smaller effective self-repression feedback strengths ( αwl  
+
+> A
+
+≈ 0.99 vs. αlin  
+
+> A
+
+≈
+
+1.26 min −1), which in turn reflect the lower equilibrium concentrations: at 
+
+¯A = 144 .46 nM, the self-repression logistic is less deeply repressed ( f − 
+
+> 3
+
+≈
+
+0.1445 ) than at ¯A = 167 .96 nM ( f − 
+
+> A
+
+≈ 0.0619 ) in the linear additive case, but the bounded weighted-logistic activation produces a much smaller pre-factor 
+
+κ1f +1 ≈ 200 nM min −1 than the unbounded linear combination gA + gAB ¯B ≈
+
+542 .66 nM min −1, so the net feedback strength α = λ(pre-factor )f −(1 − f −)
+
+is smaller. Both critical delays fall within the biologically plausible range of transcription-translation lags. 
+
+26 6.3. Higher-Order Bifurcations 
+
+Once the primary critical pair (ωc, τ c) has been identified, the structure of the transcendental characteristic equation (81) immediately yields a count-able family of additional Hopf points. If μ = iω c is a root for delay τ = τc,then it remains a root for every delay 
+
+τ (k) 
+
+> c
+
+= τc + 2kπ ωc
+
+, k = 0 , 1, 2, . . . , (92) because e−iω cτ (k) 
+
+> c
+
+= e−iω cτc e−2kπi = e−iω cτc . Each successive value τ (k) 
+
+> c
+
+corre-sponds to the same imaginary root re-entering the characteristic equation as the delay is increased, and therefore lies on the branch θ = ωcτc + 2 kπ in the 
+
+(ω, θ ) formulation (82). 
+
+Linear additive formulation. With (ωc, τ c) ≈ (1 .3519 min −1, 1.188 min ),formula (92) gives 
+
+τ (1)  
+
+> c
+
+≈ 1.188+ 2π
+
+1.3519 ≈ 5.836 min , τ (2)  
+
+> c
+
+≈ 10 .483 min , τ (3)  
+
+> c
+
+≈ 15 .131 min .
+
+(93) A second sequence of Hopf points arises from a distinct imaginary root of (82). Numerical exploration of the same branch reveals a secondary solu-tion at 
+
+ω′ 
+
+> c
+
+≈ 1.2989 min −1, τ ′ 
+
+> c
+
+≈ 1.4351 min , (94) whose own family of replicas τ ′ 
+
+> c(k)
+
+= τ ′ 
+
+> c
+
++ 2 kπ/ω ′ 
+
+> c
+
+interleaves with the primary sequence. 
+
+Weighted logistic formulation. With (ωwl  
+
+> c
+
+, τ wl  
+
+> c
+
+) ≈ (1 .0920 , 1.637) min, the analogous higher Hopf points are 
+
+τ wl ,(1)  
+
+> c
+
+≈ 1.637+ 2π
+
+1.0920 ≈ 7.39 min , τ wl ,(2)  
+
+> c
+
+≈ 13 .14 min , τ wl ,(3)  
+
+> c
+
+≈ 18 .90 min ,
+
+(95) with a secondary sequence seeded at (ω′
+
+> cwl
+
+, τ ′
+
+> cwl
+
+) ≈ (0 .9682 , 1.833) min. Both higher-order sequences (93) and (95) have been verified numerically by direct substitution into the characteristic equation (81) to machine precision. 
+
+Remark 11 (Stability between Hopf points) . Between consecutive Hopf points each crossing of the imaginary axis adds a pair of unstable eigenvalues (a standard consequence of the positive transversality condition). Stability is therefore not recovered for τ > τ c: the equilibrium remains unstable for all 
+
+27 τ ≥ τc, and the higher-order points (93) –(95) mark the appearance of addi-tional unstable directions rather than a return to stability. This monotone destabilisation is characteristic of negative delayed feedback and underlies the period-doubling and chaotic regimes documented at large delays in [14]. 6.4. Biological Implications of the Delay-Induced Hopf Bifurcation 
+
+The critical delays τc ≈ 1.19 min (linear additive) and τ wl  
+
+> c
+
+≈ 1.64 min (weighted logistic) carry several important consequences. First, the combi-nation of strong mutual activation with self-repression creates an intrinsic oscillatory tendency requiring delays of only one to two minutes to desta-bilize the equilibrium, explaining why oscillatory behavior is ubiquitous in gene networks where regulatory steps accumulate temporal lags. Second, for synthetic biology applications, maintaining stability in engineered cir-cuits requires either minimizing transcription-translation delays through fast-degrading mRNA species, reducing mutual activation strength, or increasing self-repression steepness through larger λ. Third, delays exceeding the critical value produce sustained oscillations with period T = 2 π/ω c ≈ 4.65 min for the linear additive formulation and T wl = 2 π/ω wl  
+
+> c
+
+≈ 5.75 min for the weighted logistic formulation; further increases are conjectured to drive period-doubling cascades toward chaos and extreme bursting events analogous to those docu-mented for the original Hill-based formulation in [14], although direct numer-ical confirmation in the logistic reformulations constitutes important future work. A critical observation undergirds the entire analysis: all Hopf bifurca-tion threshold values are determined by the local Jacobian structure at the equilibrium. Because the parameter matching λA = λB = n/θ 0 = 0 .04 nM −1
+
+ensures equivalent Jacobian eigenvalues at the equilibrium, the onset of oscil-latory instability is preserved under the Hill-to-logistic transformation. The rich complex dynamics documented in [14] at larger delay values — period-doubling cascades, intermittency, and crisis-induced extreme events — arise from global nonlinear dynamics far from equilibrium, and their preservation under the logistic reformulation requires direct numerical validation, which constitutes important future work. 
+
+7. Lipschitz Constants and Numerical Efficiency 
+
+Global Lipschitz constants bound trajectory divergence and determine integration step-size requirements for numerical solvers. We compute them 28 explicitly for both formulations, beginning with concentration bounds for the biologically relevant domain. At the linear additive equilibrium E∗ =(167 .96 , 164 .22) nM, both proteins are approximately 1.7 times their repres-sion thresholds and the logistic repression functions have decreased to 6–7% of their maximum values. Allowing for a 150% overshoot from equilibrium and noting that at con-centrations significantly above 1.7θ the repression term f − provides expo-nentially strong suppression (e.g. f −(4 .2 θ) ≈ 2.8 × 10 −6), we adopt the conservative estimate 
+
+Amax = Bmax = 500 nM . (96) This bound is biologically justified and valid across a wide range of parameter perturbations. 
+
+7.1. Linear Additive Formulation 
+
+The Jacobian of system (7)–(8), used to bound the vector-field Lipschitz constant LF , has entries 
+
+J11 = ( gA + gAB B)( −λAf − 
+
+> A
+
+(1 − f − 
+
+> A
+
+)) − γA, J12 = gAB f − 
+
+> A
+
+,J21 = gBA f − 
+
+> B
+
+, J22 = ( gB + gBA A)( −λB f − 
+
+> B
+
+(1 − f − 
+
+> B
+
+)) − γB .
+
+(97) Using f −(1 − f −) ≤ 1/4 and 0 < f − < 1:
+
+|J11 | ≤ (gA + gAB Bmax ) · λA
+
+4 + γA = (50 + 3 × 500) × 0.01 + 0 .20 = 15 .70 min −1,
+
+|J12 | ≤ gAB = 3 .00 min −1,
+
+|J21 | ≤ gBA = 3 .00 min −1,
+
+|J22 | ≤ (gB + gBA Amax ) · λB
+
+4 + γB = 1550 × 0.01 + 0 .24 = 15 .74 min −1.
+
+(98) The global Lipschitz constant (infinity norm): 
+
+Llin  
+
+> F
+
+≤ max  |J11 | + |J12 |, |J21 | + |J22 | = max(15 .70 + 3 .00 , 3.00 + 15 .74) = 18 .74 min −1 .
+
+(99) Turning to the Jacobian Lipschitz constant LDF , the second derivative of the decreasing logistic satisfies 
+
+∂2f −
+
+∂x 2 ≤ λ2ρ, ρ = max   
+
+> f∈(0 ,1)
+
+|f (1 − f )(1 − 2f )| =
+
+√318 ≈ 0.09623 . (100) 29 The dominant second-order partial is 
+
+∂2 ˙A∂A 2 ≤ (gA + gAB Bmax ) · λ2 
+
+> A
+
+· ρ = 1550 × (0 .04) 2 × 0.09623 ≈ 0.238 nM −1min −1,
+
+(101) and the cross-partial satisfies 
+
+∂2 ˙A∂A ∂B ≤ gAB · λA
+
+4 = 3 × 0.01 = 0 .030 nM −1min −1. (102) The Jacobian Lipschitz constant: 
+
+Llin  
+
+> DF
+
+= max {0.238 , 0.030 } = 0 .24 nM −1min −1 . (103) 
+
+Remark 12 (Comparison with Hill formulations) . For Hill functions with non-integer exponent n ∈ (1 , 2) , the second derivative contains terms propor-tional to xn−2, which diverge as x → 0+: ∂2h+/∂x 2 ∼ (n(n − 1) /θ n) xn−2 →∞. This singularity forces LHill  
+
+> DF
+
+= ∞ on any domain containing the origin, requiring special adaptive integration strategies in low-expression regimes. The logistic formulation’s finite Llin  
+
+> DF
+
+= 0 .24 ensures uniform well-conditioning throughout the entire biologically relevant domain. 7.2. Weighted Logistic Formulation 
+
+The Jacobian of system (11)–(12), used to bound LF , has entries 
+
+Jwt 11 = −κ1λ3f +1 f − 
+
+> 3
+
+(1 − f − 
+
+> 3
+
+) − γA, Jwt 12 = κ1λ1gAB f +1 (1 − f +1 )f − 
+
+> 3
+
+,Jwt 21 = κ2λ2gBA f +2 (1 − f +2 )f − 
+
+> 4
+
+, Jwt 22 = −κ2λ4f +2 f − 
+
+> 4
+
+(1 − f − 
+
+> 4
+
+) − γB . (104) Bounds: 
+
+|Jwt 11 | ≤ κ1λ3 · 14 + γA = 200 × 0.04 × 0.25 + 0 .20 = 2 .20 min −1,
+
+|Jwt 12 | ≤ κ1λ1gAB · 14 = 200 × 0.02197 × 3 × 0.25 ≈ 3.30 min −1,
+
+|Jwt 21 | ≈ 3.30 min −1,
+
+|Jwt 22 | ≤ κ2λ4 · 14 + γB = 200 × 0.04 × 0.25 + 0 .24 = 2 .24 min −1. (105) 
+
+Lwt  
+
+> F
+
+≤ max(2 .20 + 3 .30 , 3.30 + 2 .24) = 5 .54 min −1 , (106) an approximately 70% reduction relative to Llin  
+
+> F
+
+= 18 .74 .30 For the Jacobian Lipschitz constant LDF , the dominant second-order par-tial for the weighted logistic is: 
+
+∂2 ˙A∂B 2 ≤ κ1(λ1gAB )2ρ = 200 × (0 .02197 × 3) 2 × 0.09623 ≈ 0.0836 nM −1min −1,
+
+∂2 ˙A∂A 2 ≤ κ1λ23ρ = 200 × (0 .04) 2 × 0.09623 ≈ 0.0308 nM −1min −1,
+
+∂2 ˙A∂A ∂B ≤ κ1λ1gAB · 14 · λ3 · 14 ≈ 0.033 nM −1min −1. (107) 
+
+Lwt  
+
+> DF
+
+= max {0.0836 , 0.0308 , 0.033 } = 0 .084 nM −1min −1 , (108) a 65% reduction relative to Llin  
+
+> DF
+
+= 0 .24 .
+
+7.3. Comparative Summary 
+
+Table 3 summarises the quantitative comparison.                   
+
+> Table 3: Lipschitz constants: linear additive vs. weighted logistic formulations. LDF
+> values are rounded to 2significant figures; exact computed values are 0.238 and
+> 0.0836 nM −1min −1respectively.
+
+Constant Linear Additive Weighted Logistic Ratio (Wt/Lin) 
+
+LF (min −1) 18.74 5.54 0.30 
+
+LDF (nM −1 min −1) 0.24 0.084 0.35 
+
+LDF /L F (nM −1) 0.013 0.015 1.18 The approximately threefold reduction in both Lipschitz constants stems from replacing unbounded linear activation with bounded sigmoidal activa-tion: as gAB B → ∞ , f +1 → 1, preventing runaway growth and bounding all derivatives. The saturation reflects real cellular constraints — finite RNA polymerase availability, ribosome competition, and metabolic burden — that the linear additive model ignores. From a computational perspective, Runge–Kutta methods require step sizes inversely proportional to the Lipschitz constant for stability; the weighted logistic formulation permits steps approximately three times larger for com-parable accuracy. The chain of bounds 
+
+∥F∥∞ ≤ M, ∥∇ F∥∞ ≤ LF , ∥∇ 2F∥∞ ≤ LDF (109) 31 establishes that both vector fields are globally C2 with uniformly bounded derivatives, ensuring that standard existence/uniqueness theorems apply and that numerical methods converge at their theoretical rates throughout the biologically relevant domain. The ratio LDF /L F is nearly identical between formulations ( 0.013 vs. 
+
+0.015 nM −1), indicating comparable relative sensitivity structure. What dif-fers is the absolute magnitude: the weighted logistic system produces pro-portionally smaller responses to state perturbations across the entire concen-tration domain. The nonzero basal expression in the activator-free regime, 
+
+f +(0 , θ, λ ) = 11 + eλθ > 0, (110) guarantees continuous control authority even during pre-burst low-expression phases, enabling predictive intervention strategies that can anticipate and prevent extreme events before they fully manifest. This eliminates the con-trollability gaps that Hill functions create at zero concentration, where zero production precludes any recovery through intrinsic dynamics alone. 
+
+8. Conclusion 
+
+This paper has argued, through systematic theoretical analysis of a delay-coupled two-gene regulatory network studied under two distinct logistic re-formulations, that logistic functions constitute a mathematically principled, computationally efficient, and biologically realistic alternative to Hill func-tions for modeling gene regulatory networks. The hybrid regulatory archi-tecture of Vinoth et al. [14]—a linear activation (gA + gAB B) tracing its con-ceptual origins to Jacob and Monod’s seminal operon model [17], combined with Hill self-repression—admits a rigorous transformation into a purely sig-moidal framework by supplanting the unbounded linear term with a bounded logistic function engineered to reproduce both the desired basal rate and the initial activation slope via Taylor expansion matching. The advantages of this substitution are not incidental but arise from deep structural properties of the logistic form, manifesting simultaneously across the mathematical, numerical, and biological dimensions that matter most in practice. From a mathematical standpoint, the global infinite differentiability of lo-gistic functions removes the singularities that afflict Hill functions whenever the cooperativity exponent takes a non-integer value, a ubiquitous occurrence 32 when fitting experimental dose-response data. The self-referential derivative structure f ′ = λf (1 − f ) significantly simplifies Jacobian computations for stability analysis, reducing Jacobian entries to products of already-evaluated function values and eliminating fractional exponents entirely. The full decou-pling of threshold θ and steepness λ allows each to be tuned independently, a practical advantage that Hill functions, where both properties are entangled through the coefficient n/ (4 θ), cannot provide. These structural properties translate directly into quantitative numerical gains: replacing linear additive activation by weighted logistic activation in the Vinoth et al. two-gene de-lay network reduces the global Lipschitz constant from LF = 18 .74 min −1 to 
+
+5.54 min −1, an approximately 70% reduction, and the Jacobian Lipschitz con-stant from LDF = 0 .24 to 0.084 nM −1 min −1, a 65% reduction. Both bounds are finite and uniform across the entire biologically relevant state space, in contrast to Hill formulations with non-integer exponents where LDF diverges as trajectories approach zero. The core case study analyzed here, the mutual-activation and self-repression delay-coupled two-gene network, illustrates the framework’s analytical power through two parallel logistic reformulations. The parameter matching λ =
+
+n/θ , derived by equating logistic and Hill slopes at their half-maximal points, ensures local equivalence to the original Hill-based model at each respective equilibrium. For the linear additive logistic formulation, the unique biolog-ically feasible equilibrium (167 .96 , 164 .22) nM was computed numerically and verified analytically; the weighted logistic formulation yields the distinct equilibrium (144 .46 , 139 .99) nM, which is lower because the bounded acti-vation saturates at high concentrations rather than growing without bound. Local stability analysis established that the Jacobian trace is strictly nega-tive for all positive parameters in both formulations in the delay-free case (τ = 0 ); with delays, both formulations remain stable for τ ∈ (0 , τ c) and lose stability via Hopf bifurcation at τc. Hopf bifurcation analysis identified criti-cal self-repression delays of τc ≈ 1.19 min for the linear additive formulation and τc ≈ 1.64 min for the weighted logistic formulation, with higher-order bifurcation sequences characterized analytically in each case. Both critical delays fall within the biologically plausible range of transcription-translation lags. Direct numerical simulation of complex dynamics and extreme events in the logistic reformulations remains an important direction for future work. Basal expression, structurally absent from Hill functions and typically patched through ad hoc additive offsets that lack biological justification and distort the normalized response range, emerges as an intrinsic property of the 33 logistic form. Its magnitude is governed by existing parameters through the strictly positive value f +(0 , θ, λ ) = 1 /(1+ eλθ ), requiring no additional param-eters. The decreasing logistic function for repression naturally approaches, but need not exactly reach, unity in the absence of repressor, capturing biological realities such as polymerase saturation and stochastic promoter switching that the Hill function’s fixed maximum cannot represent. The systematic parameter estimation strategy developed here bridges ex-isting Hill-linear hybrid formulations and pure logistic reformulations by si-multaneously matching basal expression rates and local activation slopes. The biologically motivated threshold criterion θB = gA—centering the sig-moid’s inflection point precisely where the weighted cross-activation signal 
+
+gAB B equals basal production—yields the explicit closed-form relationships 
+
+κ1 = 4 gA, θB = gA, and λ1 = ln 3 /g A for the weighted logistic activation, alongside λ = n/θ for logistic self-repression. The logistic steepness param-eter λ further provides a continuous tuning mechanism between the linear regime ( λ ≪ 1) and the sharp switch-like regime ( λ ≫ 1), enabling smooth interpolation across dynamical behaviors ranging from genetic oscillations and bistable switches to graded developmental patterning. Future work will extend the approach to direct numerical simulation of complex dynamics and extreme events in the logistic reformulations, to multi-gene regulatory networks, to stochastic formulations accounting for intrinsic noise in low-copy-number regimes, and to experimental validation in opto-genetic platforms. By replacing Hill functions with their logistic counter-parts while preserving sigmoidal dynamics, researchers can build on decades of accumulated Hill-based modeling intuition while gaining the analytical tractability, numerical reliability, and biological fidelity that demanding ap-plications in synthetic biology, metabolic engineering, and therapeutic cell design require. 
+
+9. Declarations 
+
+Availability of Data, Materials and Code 
+
+All derivations and numerical results are reproducible from the equations and parameters given in the manuscript. The R scripts that produced ev-ery numerical value reported in the paper are provided as supplementary material: 34 • equilibrium_linear_additive.R — Newton–Raphson computation of the delay-free equilibrium E∗ = ( ¯A, ¯B) for the linear additive formu-lation (7)–(8), including the logistic function values f − 
+
+> A
+
+, f − 
+
+> B
+
+at E∗.
+
+• equilibrium_weighted_logistic.R — analogous Newton–Raphson solver for the weighted logistic formulation (11)–(12), returning E∗
+
+> wl
+
+and the four logistic factors f +1 , f +2 , f − 
+
+> 3
+
+, f − 
+
+> 4
+
+.
+
+• hopf_bifurcation_solver.R — joint solution of the two-equation tran-scendental Hopf system (82) via grid-seeded Newton iterations, return-ing (ωc, τ c), the transversality coefficient d Re( μ)/dτ , and the higher-order Hopf points τ (k) 
+
+> c
+
+for both formulations. The scripts use only the base R distribution together with the nleqslv pack-age (CRAN). Each script is self-contained and prints all numerical values reported in Sections 5 and 6 to the console; running the three scripts in any order reproduces every quantitative result of the paper. 
+
+Competing Interests 
+
+The author declares no competing interests. 
+
+Funding 
+
+Not applicable. 
+
+Ethics Approval and Consent to Participate 
+
+Not applicable. 
+
+Authors’ Contributions 
+
+Single-author study: all aspects conceived, derived, computed, and writ-ten by the author. 
+
+Acknowledgements 
+
+Not applicable. 35 References 
+
+[1] E. Farcot, S. Best, R. Edwards, I. Belgacem, X. Xu, P. Gill, Chaos in a ring circuit, Chaos: An Interdisciplinary Journal of Nonlinear Science 29 (4) (2019) 043103. [2] I. Belgacem, R. Edwards, É. Farcot, Computer-aided analysis of high-dimensional Glass networks: periodicity, chaos, and bifurcations in a ring circuit, Chaos: An Interdisciplinary Journal of Nonlinear Sci-enceAccepted 29 January 2025 (may 2025). doi:10.1063/5.0243955 .[3] I. Belgacem, S. Casagranda, E. Grac, D. Ropers, J.-L. Gouzé, Re-duction and stability analysis of a transcription-translation model of RNA polymerase, Bulletin of Mathematical Biology 80 (2018) 294–318. 
+
+doi:10.1007/s11538-017-0372-4 .[4] I. Belgacem, E. Grac, D. Ropers, J.-L. Gouzé, Stability analysis of a reduced transcription-translation model of RNA polymerase, in: Pro-ceedings of the IEEE 53rd Conference on Decision and Control (CDC), IEEE, Los Angeles, California, USA, 2014, pp. 3924–3929. doi:10. 1109/CDC.2014.7039999 .[5] I. Belgacem, J.-L. Gouzé, Mathematical study of the global dynamics of a concave gene expression model, in: Proceedings of the 22nd Mediter-ranean Conference on Control and Automation (MED), IEEE, Palermo, Italy, 2014, pp. 1341–1346. doi:10.1109/MED.2014.6961562 .[6] I. Belgacem, J.-L. Gouzé, Stability analysis and reduction of gene tran-scription models, in: Proceedings of the IEEE 52nd Annual Conference on Decision and Control (CDC), IEEE, Florence, Italy, 2013, pp. 2691– 2696. doi:10.1109/CDC.2013.6760289 .[7] I. Belgacem, J.-L. Gouzé, Analysis and reduction of transcription trans-lation coupled models for gene expression, in: Proceedings of the 12th IFAC Symposium on Computer Applications in Biotechnology (CAB), Elsevier, Mumbai, India, 2013, pp. 42–47. doi:10.3182/ 20131216-3-IN-2044.00012 .[8] I. Belgacem, J.-L. Gouzé, Global stability of enzymatic chain of full reversible Michaelis–Menten reactions, Acta Biotheoretica 61 (3) (2013) 425–436. doi:10.1007/s10441-013-9195-3 .36 [9] I. Belgacem, J.-L. Gouzé, Global stability of full open reversible Michaelis–Menten reactions, in: Proceedings of the 8th IFAC Sympo-sium on Advanced Control of Chemical Processes, Elsevier, Singapore, 2012, pp. 591–596. doi:10.3182/20120710-4-SG-2026.00039 .[10] I. Belgacem, H. Bensalah, B. Cherki, R. Edwards, The probabilistic convolution regularization of Zeno hybrid systems, in: Proceedings of the 18th European Control Conference (ECC), IEEE, Naples, Italy, 2019. 
+
+doi:10.23919/ECC.2019.8795626 .[11] I. Belgacem, J.-L. Gouzé, R. Edwards, Control of negative feedback loops in genetic networks, in: Proceedings of the 59th IEEE Conference on Decision and Control (CDC), IEEE, Jeju Island, Republic of Korea, 2020. doi:10.1109/CDC42340.2020.9304088 .[12] L. Chambon, I. Belgacem, J.-L. Gouzé, Qualitative control of undesired oscillations in a genetic negative feedback loop with uncertain measure-ments, Automatica 112 (2020) 108642. doi:10.1016/j.automatica. 2019.108642 .[13] B. Ismail, Exploring logistic functions as robust alternatives to hill func-tions in genetic network modeling, submitted December 16, 2025 (2025). 
+
+arXiv:2512.14325 .URL https://arxiv.org/abs/2512.14325 
+
+[14] S. Vinoth, S. L. Kingston, S. Srinivasan, S. Kumarasamy, T. Kapitaniak, Extreme events in gene regulatory networks with time-delays, Scientific Reports 15 (1) (2025) 13064. [15] D. Madar, E. Dekel, A. Bren, U. Alon, Negative auto-regulation in-creases the input dynamic-range of the arabinose system of escherichia coli, BMC systems biology 5 (1) (2011) 111. [16] S. Oehler, M. Amouyal, P. Kolkhof, B. von Wilcken-Bergmann, B. Müller-Hill, Quality and position of the three lac operators of e. coli define efficiency of repression., The EMBO journal 13 (14) (1994) 3348–3355. [17] F. Jacob, J. Monod, Genetic regulatory mechanisms in the synthesis of proteins, Journal of molecular biology 3 (3) (1961) 318–356. 37
