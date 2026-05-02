@@ -1,0 +1,266 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-05-02T20:10:52.489985+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 6,
+    "quick_skim_target": 13,
+    "quick_selected": 6
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2604.23368v1",
+      "title": "TEMPO: Transformers for Temporal Disease Progression from Cross-Sectional Data",
+      "abstract": "Event-Based Models (EBMs) infer biomarker progression from cross-sectional data but typically only as ordinal sequences and rely on rigid model assumptions. We propose \\textsc{Tempo}, a Transformer architecture that learns both ordinal and continuous event sequences through simulation-based supervised learning. \\textsc{Tempo} uses two Transformer modules: one treats biomarkers as tokens to infer event sequencing; the other treats patients as tokens, representing each by their per-biomarker abnormality profile, to infer patients' disease stages. On synthetic benchmarks, \\textsc{Tempo} reduces normalized Kendall's Tau distance by 52.89\\% and staging MAE by 25.33\\% compared to state-of-the-art SA-EBM, with larger reductions in high-dimensional settings (58.88\\% and 61.10\\%). Applied to ADNI, \\textsc{Tempo} recovers a biologically plausible Alzheimer's progression: early medial temporal atrophy, followed by amyloid accumulation and cognitive decline, and late-stage tau pathology with terminal acceleration of global neurodegeneration -- broadly consistent with established disease models. \\textsc{Tempo} also eliminates the need to derive custom inference algorithms and enables rapid empirical comparison of generative hypotheses.",
+      "authors": [
+        "Hongtao Hao",
+        "Joseph L. Austerweil"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG"
+      ],
+      "published": "2026-04-25T16:25:08+00:00",
+      "link": "https://arxiv.org/pdf/2604.23368v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for disease progression and biomarker sequencing",
+      "llm_evidence_cn": "利用AI进行疾病进展和生物标志物排序研究",
+      "llm_evidence": "利用AI进行疾病进展和生物标志物排序研究",
+      "canonical_evidence": "利用AI进行疾病进展和生物标志物排序研究",
+      "llm_tldr_en": "TEMPO uses Transformers to infer temporal disease progression and biomarker sequences from cross-sectional data.",
+      "llm_tldr_cn": "TEMPO利用Transformer架构从横断面数据中推断疾病进展和生物标志物演变序列。",
+      "llm_tldr": "TEMPO利用Transformer架构从横断面数据中推断疾病进展和生物标志物演变序列。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.26498v1",
+      "title": "Do Larger Models Really Win in Drug Discovery? A Benchmark Assessment of Model Scaling in AI-Driven Molecular Property and Activity Prediction",
+      "abstract": "The rapid growth of molecular foundation models and general-purpose large language models has encouraged a scale-centric view of artificial intelligence in drug discovery, in which larger pretrained models are expected to supersede compact cheminformatics models and task-specific graph neural networks (GNNs). We test this assumption on 22 molecular property and activity endpoints, including public ADMET and Tox21 benchmarks and two internal anti-infective activity datasets. Across 167,056 held-out task--molecule evaluations under structure-similarity-separated five-fold cross-validation (37,756 ADMET, 77,946 Tox21, 49,266 anti-TB and 2,088 antimalaria), classical machine-learning (ML) models such as RF(ECFP4) and ExtraTrees(RDKit descriptors) win ten primary-metric tasks, GNNs such as GIN and Ligandformer win nine, and pretrained molecular sequence models such as MoLFormer and ChemBERTa2 win three. Rule-based SAR reasoning baselines, represented by GPT5.5-SAR and Opus4.7-SAR, do not win under the prespecified primary metrics, although train-fold-derived SAR knowledge provides measurable but uneven gains for SAR reasoning and interpretation. These results indicate that compact, specialized models remain highly effective for molecular property and activity prediction. The performance differences among classical ML, GNN and pretrained sequence models are often modest and endpoint-dependent, whereas larger or more general models do not provide a universal predictive advantage. Large models may still add value for zero-shot reasoning, SAR interpretation and hypothesis generation, but the results suggest that predictive performance depends on the alignment among molecular representation, inductive bias, data regime, endpoint biology and validation protocol.",
+      "authors": [
+        "Jinjiang Guo"
+      ],
+      "primary_category": "cs.LG",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "published": "2026-04-29T10:01:16+00:00",
+      "link": "https://arxiv.org/pdf/2604.26498v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI-driven molecular property and drug discovery benchmarks",
+      "llm_evidence_cn": "AI驱动的分子性质和药物发现基准",
+      "llm_evidence": "AI驱动的分子性质和药物发现基准",
+      "canonical_evidence": "AI驱动的分子性质和药物发现基准",
+      "llm_tldr_en": "Evaluates model scaling in AI-driven molecular prediction for drug discovery tasks.",
+      "llm_tldr_cn": "评估了AI驱动的分子预测模型在药物发现任务中的规模效应。",
+      "llm_tldr": "评估了AI驱动的分子预测模型在药物发现任务中的规模效应。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.26589v1",
+      "title": "Rare but Resilient: Dispersal diversity buffers species vulnerability",
+      "abstract": "Predicting species persistence within ecological communities is a fundamental challenge for both empirical and theoretical ecology. Existing methods span from mechanistic models, whose parameters are difficult to estimate from data, to statistical tools whose context-specific parameters are less interpretable. Here, we present a general framework, grounded in the statistical physics of complex systems, that integrates the key processes governing species survival into a single measurable quantity: the competitive balance. This metric quantifies a focal species' vulnerability beyond its abundance by incorporating the diversity of dispersal strategies and the structure of interspecific interactions within the community. Crucially, it can be inferred from spatial abundance data, thus circumventing the need to estimate species traits or dispersal parameters. Our results reveal that greater heterogeneity in dispersal strategies reduces vulnerability for a given abundance. Although we validate the framework using tropical and temperate forest data, it can be applied to a range of different ecosystems, providing a systemic and interpretable tool for assessing a context-dependent species vulnerability that accounts for its interactions with the entire community.",
+      "authors": [
+        "Davide Bernardi",
+        "Giorgio Nicoletti",
+        "Prajwal Padmanabha",
+        "Samir Suweis",
+        "Sandro Azaele",
+        "Simon A. Levin",
+        "Andrea Rinaldo",
+        "Amos Maritan"
+      ],
+      "primary_category": "q-bio.PE",
+      "categories": [
+        "q-bio.PE",
+        "cond-mat.stat-mech"
+      ],
+      "published": "2026-04-29T12:12:30+00:00",
+      "link": "https://arxiv.org/pdf/2604.26589v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Species persistence and dispersal diversity in ecological communities",
+      "llm_evidence_cn": "生态群落中的物种持久性与扩散多样性",
+      "llm_evidence": "生态群落中的物种持久性与扩散多样性",
+      "canonical_evidence": "生态群落中的物种持久性与扩散多样性",
+      "llm_tldr_en": "Develops a framework to predict species survival based on dispersal strategies and community interactions.",
+      "llm_tldr_cn": "开发了一个基于扩散策略和群落相互作用来预测物种生存的框架。",
+      "llm_tldr": "开发了一个基于扩散策略和群落相互作用来预测物种生存的框架。",
+      "llm_tags": [
+        "query:q5"
+      ],
+      "matched_query_tag": "query:q5",
+      "matched_query_text": "population genetics and evolutionary dynamics",
+      "matched_requirement_id": "req-5",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.27297v1",
+      "title": "Machine Collective Intelligence for Explainable Scientific Discovery",
+      "abstract": "Deriving governing equations from empirical observations is a longstanding challenge in science. Although artificial intelligence (AI) has demonstrated substantial capabilities in function approximation, the discovery of explainable and extrapolatable equations remains a fundamental limitation of modern AI, posing a central bottleneck for AI-driven scientific discovery. Here, we present machine collective intelligence, a unified paradigm that integrates two fundamental yet distinct traditions in computational intelligence--symbolism and metaheuristics--to enable autonomous and evolutionary discovery of governing equations. It orchestrates multiple reasoning agents to evolve their symbolic hypotheses through coordinated generation, evaluation, critique, and consolidation, enabling scientific discovery beyond single-agent inference. Across scientific systems governed by deterministic, stochastic, or previously uncharacterized dynamics, machine collective intelligence autonomously recovered the underlying governing equations without relying on hand-crafted domain knowledge. Furthermore, the resulting equations reduced extrapolation error by up to six orders of magnitude relative to deep neural networks, while condensing 0.5-1 million model parameters into just 5-40 interpretable parameters. This study marks an important shift in AI toward the autonomous discovery of principled scientific equations.",
+      "authors": [
+        "Gyoung S. Na",
+        "Chanyoung Park"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "physics.comp-ph"
+      ],
+      "published": "2026-04-30T01:15:54+00:00",
+      "link": "https://arxiv.org/pdf/2604.27297v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI for autonomous and evolutionary discovery of scientific equations",
+      "llm_evidence_cn": "利用AI进行自主和演化式的科学方程发现",
+      "llm_evidence": "利用AI进行自主和演化式的科学方程发现",
+      "canonical_evidence": "利用AI进行自主和演化式的科学方程发现",
+      "llm_tldr_en": "Proposes a machine collective intelligence paradigm for the evolutionary discovery of explainable scientific laws.",
+      "llm_tldr_cn": "提出了一种机器集体智能范式，用于演化式地发现可解释的科学定律。",
+      "llm_tldr": "提出了一种机器集体智能范式，用于演化式地发现可解释的科学定律。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.27351v1",
+      "title": "Heterogeneous Scientific Foundation Model Collaboration",
+      "abstract": "Agentic large language model systems have demonstrated strong capabilities. However, their reliance on language as the universal interface fundamentally limits their applicability to many real-world problems, especially in scientific domains where domain-specific foundation models have been developed to address specialized tasks beyond natural language. In this work, we introduce Eywa, a heterogeneous agentic framework designed to extend language-centric systems to a broader class of scientific foundation models. The key idea of Eywa is to augment domain-specific foundation models with a language-model-based reasoning interface, enabling language models to guide inference over non-linguistic data modalities. This design allows predictive foundation models, which are typically optimized for specialized data and tasks, to participate in higher-level reasoning and decision-making processes within agentic systems. Eywa can serve as a drop-in replacement for a single-agent pipeline (EywaAgent) or be integrated into existing multi-agent systems by replacing traditional agents with specialized agents (EywaMAS). We further investigate a planning-based orchestration framework in which a planner dynamically coordinates traditional agents and Eywa agents to solve complex tasks across heterogeneous data modalities (EywaOrchestra). We evaluate Eywa across a diverse set of scientific domains spanning physical, life, and social sciences. Experimental results demonstrate that Eywa improves performance on tasks involving structured and domain-specific data, while reducing reliance on language-based reasoning through effective collaboration with specialized foundation models.",
+      "authors": [
+        "Zihao Li",
+        "Jiaru Zou",
+        "Feihao Fang",
+        "Xuying Ning",
+        "Mengting Ai",
+        "Tianxin Wei",
+        "Sirui Chen",
+        "Xiyuan Yang",
+        "Jingrui He"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "published": "2026-04-30T03:02:27+00:00",
+      "link": "https://arxiv.org/pdf/2604.27351v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI framework for scientific foundation models",
+      "llm_evidence_cn": "用于科学基础模型的AI框架",
+      "llm_evidence": "用于科学基础模型的AI框架",
+      "canonical_evidence": "用于科学基础模型的AI框架",
+      "llm_tldr_en": "Introduces Eywa, a framework to extend LLMs to non-linguistic scientific foundation models.",
+      "llm_tldr_cn": "介绍了Eywa框架，旨在将大语言模型扩展到非语言类的科学基础模型中。",
+      "llm_tldr": "介绍了Eywa框架，旨在将大语言模型扩展到非语言类的科学基础模型中。",
+      "llm_tags": [
+        "query:q7"
+      ],
+      "matched_query_tag": "query:q7",
+      "matched_query_text": "利用AI进行基因组相关研究也包含",
+      "matched_requirement_id": "req-7",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.27937v1",
+      "title": "Neural Investment as an Entropy-Budget Strategy: A Thermodynamic Derivation of Primate Longevity from the Principle of Biological Time Equivalence",
+      "abstract": "Primates exhibit a robust deviation from canonical allometric scaling: at fixed body mass, their lifespans exceed those of non-primate mammals by factors of two to three. A rhesus macaque (8 kg) lives 25-40 years, whereas a cat of similar mass rarely exceeds 18 years. This statistically significant clade-level excess cannot be explained by standard metabolic or ecological models. We provide a thermodynamic explanation within the Principle of Biological Time Equivalence (PBTE), where lifespan is determined by a finite cycle budget governed by entropy production. We show that primates reduce entropy production per physiological cycle through increased neural energy allocation. The neural power fraction acts as a control parameter, extending the effective lifetime cycle count. Three mechanisms, predictive regulation, enhanced repair, and behavioral buffering, jointly suppress dissipation. This yields a quantitative neuro-metabolic multiplier that explains primate longevity and provides testable predictions linking brain energetics, entropy production, and lifespan.",
+      "authors": [
+        "Mesfin Taye"
+      ],
+      "primary_category": "physics.bio-ph",
+      "categories": [
+        "physics.bio-ph"
+      ],
+      "published": "2026-04-30T14:35:28+00:00",
+      "link": "https://arxiv.org/pdf/2604.27937v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "Thermodynamic derivation of primate longevity and clade-level deviation",
+      "llm_evidence_cn": "灵长类寿命的热力学推导与演化支偏差",
+      "llm_evidence": "灵长类寿命的热力学推导与演化支偏差",
+      "canonical_evidence": "灵长类寿命的热力学推导与演化支偏差",
+      "llm_tldr_en": "Explains primate longevity through a thermodynamic principle of biological time equivalence.",
+      "llm_tldr_cn": "通过生物时间等效性的热力学原理阐释了灵长类动物的寿命演化。",
+      "llm_tldr": "通过生物时间等效性的热力学原理阐释了灵长类动物的寿命演化。",
+      "llm_tags": [
+        "query:q2"
+      ],
+      "matched_query_tag": "query:q2",
+      "matched_query_text": "evolutionary biology and mechanisms",
+      "matched_requirement_id": "req-2",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}

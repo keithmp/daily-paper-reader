@@ -1,0 +1,93 @@
+{
+  "label": "2026-05-02",
+  "date": "2026-05-02",
+  "generated_at": "2026-05-02T20:11:47",
+  "count": 6,
+  "papers": [
+    {
+      "paper_id": "202605/02/2604.23368v1-tempo-transformers-for-temporal-disease-progression-from-cross-sectional-data",
+      "section": "quick",
+      "title_en": "TEMPO: Transformers for Temporal Disease Progression from Cross-Sectional Data",
+      "authors": "Hongtao Hao, Joseph L. Austerweil",
+      "date": "2026-04-25",
+      "pdf": "https://arxiv.org/pdf/2604.23368v1",
+      "score": "6.0",
+      "evidence": "利用AI进行疾病进展和生物标志物排序研究",
+      "tldr": "TEMPO 是一种基于 Transformer 的新型疾病进展模型，旨在从横断面数据中推断生物标志物的演变顺序和患者的疾病阶段。它通过模拟监督学习克服了传统事件模型（EBM）仅限于序数序列和刚性假设的局限。该模型包含两个 Transformer 模块，分别处理标志物排序和患者分期。在合成数据和阿尔茨海默病（ADNI）数据集上的实验证明，TEMPO 在准确性上显著优于现有方法，并能恢复符合生物学逻辑的疾病演变路径。",
+      "tags": "query:q7",
+      "abstract_en": "Event-Based Models (EBMs) infer biomarker progression from cross-sectional data but typically only as ordinal sequences and rely on rigid model assumptions. We propose \\textsc{Tempo}, a Transformer architecture that learns both ordinal and continuous event sequences through simulation-based supervised learning. \\textsc{Tempo} uses two Transformer modules: one treats biomarkers as tokens to infer event sequencing; the other treats patients as tokens, representing each by their per-biomarker abnormality profile, to infer patients' disease stages. On synthetic benchmarks, \\textsc{Tempo} reduces normalized Kendall's Tau distance by 52.89\\% and staging MAE by 25.33\\% compared to state-of-the-art SA-EBM, with larger reductions in high-dimensional settings (58.88\\% and 61.10\\%). Applied to ADNI, \\textsc{Tempo} recovers a biologically plausible Alzheimer's progression: early medial temporal atrophy, followed by amyloid accumulation and cognitive decline, and late-stage tau pathology with terminal acceleration of global neurodegeneration -- broadly consistent with established disease models. \\textsc{Tempo} also eliminates the need to derive custom inference algorithms and enables rapid empirical comparison of generative hypotheses.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202605/02/2604.26498v1-do-larger-models-really-win-in-drug-discovery-a-benchmark-assessment-of-model-scaling-in-ai-driven-molecular-property-and-activity-prediction",
+      "section": "quick",
+      "title_en": "Do Larger Models Really Win in Drug Discovery? A Benchmark Assessment of Model Scaling in AI-Driven Molecular Property and Activity Prediction",
+      "authors": "Jinjiang Guo",
+      "date": "2026-04-29",
+      "pdf": "https://arxiv.org/pdf/2604.26498v1",
+      "score": "6.0",
+      "evidence": "AI驱动的分子性质和药物发现基准",
+      "tldr": "本研究挑战了药物发现领域中“模型规模越大越好”的观点。通过在22个分子属性和活性预测任务（涵盖ADMET、Tox21及抗感染数据集）上进行基准测试，对比了经典机器学习、图神经网络（GNN）和预训练大模型。结果显示，紧凑型专用模型在多数任务中表现优于或等同于大型预训练模型，证明了模型规模并非决定预测性能的唯一因素，为药物研发中的模型选择提供了重要参考。",
+      "tags": "query:q7",
+      "abstract_en": "The rapid growth of molecular foundation models and general-purpose large language models has encouraged a scale-centric view of artificial intelligence in drug discovery, in which larger pretrained models are expected to supersede compact cheminformatics models and task-specific graph neural networks (GNNs). We test this assumption on 22 molecular property and activity endpoints, including public ADMET and Tox21 benchmarks and two internal anti-infective activity datasets. Across 167,056 held-out task--molecule evaluations under structure-similarity-separated five-fold cross-validation (37,756 ADMET, 77,946 Tox21, 49,266 anti-TB and 2,088 antimalaria), classical machine-learning (ML) models such as RF(ECFP4) and ExtraTrees(RDKit descriptors) win ten primary-metric tasks, GNNs such as GIN and Ligandformer win nine, and pretrained molecular sequence models such as MoLFormer and ChemBERTa2 win three. Rule-based SAR reasoning baselines, represented by GPT5.5-SAR and Opus4.7-SAR, do not win under the prespecified primary metrics, although train-fold-derived SAR knowledge provides measurable but uneven gains for SAR reasoning and interpretation. These results indicate that compact, specialized models remain highly effective for molecular property and activity prediction. The performance differences among classical ML, GNN and pretrained sequence models are often modest and endpoint-dependent, whereas larger or more general models do not provide a universal predictive advantage. Large models may still add value for zero-shot reasoning, SAR interpretation and hypothesis generation, but the results suggest that predictive performance depends on the alignment among molecular representation, inductive bias, data regime, endpoint biology and validation protocol.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202605/02/2604.26589v1-rare-but-resilient-dispersal-diversity-buffers-species-vulnerability",
+      "section": "quick",
+      "title_en": "Rare but Resilient: Dispersal diversity buffers species vulnerability",
+      "authors": "Davide Bernardi, Giorgio Nicoletti, Prajwal Padmanabha, Samir Suweis, Sandro Azaele, Simon A. Levin, Andrea Rinaldo, Amos Maritan",
+      "date": "2026-04-29",
+      "pdf": "https://arxiv.org/pdf/2604.26589v1",
+      "score": "6.0",
+      "evidence": "生态群落中的物种持久性与扩散多样性",
+      "tldr": "本研究提出一种基于统计物理学的通用框架，通过“竞争平衡”指标预测物种持久性。该指标利用空间丰度数据整合了扩散策略多样性与种间相互作用，无需估计复杂参数。研究证实，扩散策略的异质性能有效降低物种脆弱性，为评估不同生态系统中的物种生存提供了系统且具可解释性的工具。",
+      "tags": "query:q5",
+      "abstract_en": "Predicting species persistence within ecological communities is a fundamental challenge for both empirical and theoretical ecology. Existing methods span from mechanistic models, whose parameters are difficult to estimate from data, to statistical tools whose context-specific parameters are less interpretable. Here, we present a general framework, grounded in the statistical physics of complex systems, that integrates the key processes governing species survival into a single measurable quantity: the competitive balance. This metric quantifies a focal species' vulnerability beyond its abundance by incorporating the diversity of dispersal strategies and the structure of interspecific interactions within the community. Crucially, it can be inferred from spatial abundance data, thus circumventing the need to estimate species traits or dispersal parameters. Our results reveal that greater heterogeneity in dispersal strategies reduces vulnerability for a given abundance. Although we validate the framework using tropical and temperate forest data, it can be applied to a range of different ecosystems, providing a systemic and interpretable tool for assessing a context-dependent species vulnerability that accounts for its interactions with the entire community.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202605/02/2604.27297v1-machine-collective-intelligence-for-explainable-scientific-discovery",
+      "section": "quick",
+      "title_en": "Machine Collective Intelligence for Explainable Scientific Discovery",
+      "authors": "Gyoung S. Na, Chanyoung Park",
+      "date": "2026-04-30",
+      "pdf": "https://arxiv.org/pdf/2604.27297v1",
+      "score": "6.0",
+      "evidence": "利用AI进行自主和演化式的科学方程发现",
+      "tldr": "本研究针对AI在发现可解释科学方程方面的局限，提出“机器集体智能”范式。该方法融合符号主义与元启发式算法，通过多智能体协同演化符号假设，实现自主科学发现。实验表明，该系统能从观测数据中准确还原确定性及随机系统的控制方程，外推误差较深度学习降低六个数量级，且将百万级参数压缩至极简的可解释形式，显著推动了AI驱动的科学探索。",
+      "tags": "query:q7",
+      "abstract_en": "Deriving governing equations from empirical observations is a longstanding challenge in science. Although artificial intelligence (AI) has demonstrated substantial capabilities in function approximation, the discovery of explainable and extrapolatable equations remains a fundamental limitation of modern AI, posing a central bottleneck for AI-driven scientific discovery. Here, we present machine collective intelligence, a unified paradigm that integrates two fundamental yet distinct traditions in computational intelligence--symbolism and metaheuristics--to enable autonomous and evolutionary discovery of governing equations. It orchestrates multiple reasoning agents to evolve their symbolic hypotheses through coordinated generation, evaluation, critique, and consolidation, enabling scientific discovery beyond single-agent inference. Across scientific systems governed by deterministic, stochastic, or previously uncharacterized dynamics, machine collective intelligence autonomously recovered the underlying governing equations without relying on hand-crafted domain knowledge. Furthermore, the resulting equations reduced extrapolation error by up to six orders of magnitude relative to deep neural networks, while condensing 0.5-1 million model parameters into just 5-40 interpretable parameters. This study marks an important shift in AI toward the autonomous discovery of principled scientific equations.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202605/02/2604.27351v1-heterogeneous-scientific-foundation-model-collaboration",
+      "section": "quick",
+      "title_en": "Heterogeneous Scientific Foundation Model Collaboration",
+      "authors": "Zihao Li, Jiaru Zou, Feihao Fang, Xuying Ning, Mengting Ai, Tianxin Wei, Sirui Chen, Xiyuan Yang, Jingrui He",
+      "date": "2026-04-30",
+      "pdf": "https://arxiv.org/pdf/2604.27351v1",
+      "score": "6.0",
+      "evidence": "用于科学基础模型的AI框架",
+      "tldr": "针对大语言模型在科学领域受限于语言接口的问题，本文提出 Eywa 框架。该框架通过为领域特定基础模型添加语言推理接口，实现了异构科学模型的协同。Eywa 支持单智能体、多智能体及动态编排模式，跨物理、生命和社会科学等多领域验证表明，它能有效整合非语言模态数据，提升复杂科学任务的处理能力。",
+      "tags": "query:q7",
+      "abstract_en": "Agentic large language model systems have demonstrated strong capabilities. However, their reliance on language as the universal interface fundamentally limits their applicability to many real-world problems, especially in scientific domains where domain-specific foundation models have been developed to address specialized tasks beyond natural language. In this work, we introduce Eywa, a heterogeneous agentic framework designed to extend language-centric systems to a broader class of scientific foundation models. The key idea of Eywa is to augment domain-specific foundation models with a language-model-based reasoning interface, enabling language models to guide inference over non-linguistic data modalities. This design allows predictive foundation models, which are typically optimized for specialized data and tasks, to participate in higher-level reasoning and decision-making processes within agentic systems. Eywa can serve as a drop-in replacement for a single-agent pipeline (EywaAgent) or be integrated into existing multi-agent systems by replacing traditional agents with specialized agents (EywaMAS). We further investigate a planning-based orchestration framework in which a planner dynamically coordinates traditional agents and Eywa agents to solve complex tasks across heterogeneous data modalities (EywaOrchestra). We evaluate Eywa across a diverse set of scientific domains spanning physical, life, and social sciences. Experimental results demonstrate that Eywa improves performance on tasks involving structured and domain-specific data, while reducing reliance on language-based reasoning through effective collaboration with specialized foundation models.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202605/02/2604.27937v1-neural-investment-as-an-entropy-budget-strategy-a-thermodynamic-derivation-of-primate-longevity-from-the-principle-of-biological-time-equivalence",
+      "section": "quick",
+      "title_en": "Neural Investment as an Entropy-Budget Strategy: A Thermodynamic Derivation of Primate Longevity from the Principle of Biological Time Equivalence",
+      "authors": "Mesfin Taye",
+      "date": "2026-04-30",
+      "pdf": "https://arxiv.org/pdf/2604.27937v1",
+      "score": "6.0",
+      "evidence": "灵长类寿命的热力学推导与演化支偏差",
+      "tldr": "灵长类动物的寿命显著长于同体型的非灵长类哺乳动物，传统代谢模型难以解释。本研究基于生物时间等效原理（PBTE），从热力学角度提出灵长类通过增加神经能量分配来降低生理周期的熵产生。通过预测调节、增强修复和行为缓冲等机制，神经功率占比作为控制参数延长了有效生命周期总数，为灵长类长寿提供了定量的神经代谢解释。",
+      "tags": "query:q2",
+      "abstract_en": "Primates exhibit a robust deviation from canonical allometric scaling: at fixed body mass, their lifespans exceed those of non-primate mammals by factors of two to three. A rhesus macaque (8 kg) lives 25-40 years, whereas a cat of similar mass rarely exceeds 18 years. This statistically significant clade-level excess cannot be explained by standard metabolic or ecological models. We provide a thermodynamic explanation within the Principle of Biological Time Equivalence (PBTE), where lifespan is determined by a finite cycle budget governed by entropy production. We show that primates reduce entropy production per physiological cycle through increased neural energy allocation. The neural power fraction acts as a control parameter, extending the effective lifetime cycle count. Three mechanisms, predictive regulation, enhanced repair, and behavioral buffering, jointly suppress dissipation. This yields a quantitative neuro-metabolic multiplier that explains primate longevity and provides testable predictions linking brain energetics, entropy production, and lifespan.",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}
