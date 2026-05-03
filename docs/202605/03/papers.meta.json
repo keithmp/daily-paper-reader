@@ -1,0 +1,37 @@
+{
+  "label": "2026-05-03",
+  "date": "2026-05-03",
+  "generated_at": "2026-05-03T19:50:32",
+  "count": 2,
+  "papers": [
+    {
+      "paper_id": "202605/03/2604.25030v1-rectified-fisher-bingham-model-for-compositional-data-with-zeros",
+      "section": "quick",
+      "title_en": "Rectified Fisher-Bingham Model for Compositional Data with Zeros",
+      "authors": "Eugene Han, Marahi Perez-Tamayo, Hannah D. Holscher, Ruoqing Zhu",
+      "date": "2026-04-27",
+      "pdf": "https://arxiv.org/pdf/2604.25030v1",
+      "score": "6.0",
+      "evidence": "微生物群研究中组成型数据的统计建模",
+      "tldr": "开发了一种适用于包含零值的组成型数据的统计模型，可用于微生物组基因组学研究。",
+      "tags": "query:profile-1",
+      "abstract_en": "This paper introduces a rectified and renormalized Fisher-Bingham model for compositional data with zeros, motivated in part by the presence of zeros in microbiota studies. The approach represents compositions through a square-root transformation that maps data to the positive orthant of the unit sphere, and models them via a latent Fisher-Bingham followed by a deterministic transformation that induces exact zeros. This construction yields a coherent likelihood without requiring zero imputation or separate modeling of zero and nonzero components. Parameter estimation is performed using a Monte Carlo expectation-maximization algorithm that accommodates the latent structure. We further develop a score test for detecting structured differences in composition across groups, providing a parametric alternative to commonly used distance-based methods. Simulation studies demonstrate that the proposed method closely approximates the induced distribution and achieves higher power for detecting structured compositional changes, particularly when observations include many zero-valued components. An application to a dietary intervention study illustrates that the method identifies meaningful microbiota shifts not detected by standard approaches.",
+      "selection_source": "fresh_fetch"
+    },
+    {
+      "paper_id": "202605/03/2604.25256v1-autoresearchbench-benchmarking-ai-agents-on-complex-scientific-literature-discovery",
+      "section": "quick",
+      "title_en": "AutoResearchBench: Benchmarking AI Agents on Complex Scientific Literature Discovery",
+      "authors": "Lei Xiong, Kun Luo, Ziyi Xia, Wenbo Zhang, Jin-Ge Yao, Zheng Liu, Jingying Shao, Jianlyu Chen, Hongjin Qian, Xi Yang, Qian Yu, Hao Li, Chen Yue, Xiaan Du, Yuyang Wang, Yesheng Liu, Haiyu Xu, Zhicheng Dou",
+      "date": "2026-04-28",
+      "pdf": "https://arxiv.org/pdf/2604.25256v1",
+      "score": "6.0",
+      "evidence": "用于基因组学和生物学自主科学文献发现的AI智能体",
+      "tldr": "评估AI智能体在进行深度和广度科学文献研究方面的能力。",
+      "tags": "query:profile-1",
+      "abstract_en": "Autonomous scientific research is significantly advanced thanks to the development of AI agents. One key step in this process is finding the right scientific literature, whether to explore existing knowledge for a research problem, or to acquire evidence for verifying assumptions and supporting claims. To assess AI agents' capability in driving this process, we present AutoResearchBench, a dedicated benchmark for autonomous scientific literature discovery. AutoResearchBench consists of two complementary task types: (1) Deep Research, which requires tracking down a specific target paper through a progressive, multi-step probing process, and (2) Wide Research, which requires comprehensively collecting a set of papers satisfying given conditions. Compared to previous benchmarks on agentic web browsing, AutoResearchBench is distinguished along three dimensions: it is research-oriented, calling for in-depth comprehension of scientific concepts; literature-focused, demanding fine-grained utilization of detailed information; and open-ended, involving an unknown number of qualified papers and thus requiring deliberate reasoning and search throughout. These properties make AutoResearchBench uniquely suited for evaluating autonomous research capabilities, and extraordinarily challenging. Even the most powerful LLMs, despite having largely conquered general agentic web-browsing benchmarks such as BrowseComp, achieve only 9.39% accuracy on Deep Research and 9.31% IoU on Wide Research, while many other strong baselines fall below 5%. We publicly release the dataset and evaluation pipeline to facilitate future research in this direction. We publicly release the dataset, evaluation pipeline, and code at https://github.com/CherYou/AutoResearchBench.",
+      "selection_source": "fresh_fetch"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,112 @@
+{
+  "mode": "standard",
+  "generated_at": "2026-05-03T19:50:24.160873+00:00",
+  "stats": {
+    "mode": "standard",
+    "tag_count": 3,
+    "deep_divecandidates": 0,
+    "deep_cap": 8,
+    "deep_selected": 0,
+    "quick_candidates": 2,
+    "quick_skim_target": 13,
+    "quick_selected": 2
+  },
+  "deep_dive": [],
+  "quick_skim": [
+    {
+      "id": "2604.25030v1",
+      "title": "Rectified Fisher-Bingham Model for Compositional Data with Zeros",
+      "abstract": "This paper introduces a rectified and renormalized Fisher-Bingham model for compositional data with zeros, motivated in part by the presence of zeros in microbiota studies. The approach represents compositions through a square-root transformation that maps data to the positive orthant of the unit sphere, and models them via a latent Fisher-Bingham followed by a deterministic transformation that induces exact zeros. This construction yields a coherent likelihood without requiring zero imputation or separate modeling of zero and nonzero components. Parameter estimation is performed using a Monte Carlo expectation-maximization algorithm that accommodates the latent structure. We further develop a score test for detecting structured differences in composition across groups, providing a parametric alternative to commonly used distance-based methods. Simulation studies demonstrate that the proposed method closely approximates the induced distribution and achieves higher power for detecting structured compositional changes, particularly when observations include many zero-valued components. An application to a dietary intervention study illustrates that the method identifies meaningful microbiota shifts not detected by standard approaches.",
+      "authors": [
+        "Eugene Han",
+        "Marahi Perez-Tamayo",
+        "Hannah D. Holscher",
+        "Ruoqing Zhu"
+      ],
+      "primary_category": "stat.ME",
+      "categories": [
+        "stat.ME"
+      ],
+      "published": "2026-04-27T22:16:44+00:00",
+      "link": "https://arxiv.org/pdf/2604.25030v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:PANGEN",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "statistical modeling for compositional data in microbiota studies",
+      "llm_evidence_cn": "微生物群研究中组成型数据的统计建模",
+      "llm_evidence": "微生物群研究中组成型数据的统计建模",
+      "canonical_evidence": "微生物群研究中组成型数据的统计建模",
+      "llm_tldr_en": "Develops a Fisher-Bingham model for compositional data with zeros, applicable to microbiota genomics.",
+      "llm_tldr_cn": "开发了一种适用于包含零值的组成型数据的统计模型，可用于微生物组基因组学研究。",
+      "llm_tldr": "开发了一种适用于包含零值的组成型数据的统计模型，可用于微生物组基因组学研究。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    },
+    {
+      "id": "2604.25256v1",
+      "title": "AutoResearchBench: Benchmarking AI Agents on Complex Scientific Literature Discovery",
+      "abstract": "Autonomous scientific research is significantly advanced thanks to the development of AI agents. One key step in this process is finding the right scientific literature, whether to explore existing knowledge for a research problem, or to acquire evidence for verifying assumptions and supporting claims. To assess AI agents' capability in driving this process, we present AutoResearchBench, a dedicated benchmark for autonomous scientific literature discovery. AutoResearchBench consists of two complementary task types: (1) Deep Research, which requires tracking down a specific target paper through a progressive, multi-step probing process, and (2) Wide Research, which requires comprehensively collecting a set of papers satisfying given conditions. Compared to previous benchmarks on agentic web browsing, AutoResearchBench is distinguished along three dimensions: it is research-oriented, calling for in-depth comprehension of scientific concepts; literature-focused, demanding fine-grained utilization of detailed information; and open-ended, involving an unknown number of qualified papers and thus requiring deliberate reasoning and search throughout. These properties make AutoResearchBench uniquely suited for evaluating autonomous research capabilities, and extraordinarily challenging. Even the most powerful LLMs, despite having largely conquered general agentic web-browsing benchmarks such as BrowseComp, achieve only 9.39% accuracy on Deep Research and 9.31% IoU on Wide Research, while many other strong baselines fall below 5%. We publicly release the dataset and evaluation pipeline to facilitate future research in this direction. We publicly release the dataset, evaluation pipeline, and code at https://github.com/CherYou/AutoResearchBench.",
+      "authors": [
+        "Lei Xiong",
+        "Kun Luo",
+        "Ziyi Xia",
+        "Wenbo Zhang",
+        "Jin-Ge Yao",
+        "Zheng Liu",
+        "Jingying Shao",
+        "Jianlyu Chen",
+        "Hongjin Qian",
+        "Xi Yang",
+        "Qian Yu",
+        "Hao Li",
+        "Chen Yue",
+        "Xiaan Du",
+        "Yuyang Wang",
+        "Yesheng Liu",
+        "Haiyu Xu",
+        "Zhicheng Dou"
+      ],
+      "primary_category": "cs.AI",
+      "categories": [
+        "cs.AI"
+      ],
+      "published": "2026-04-28T06:05:17+00:00",
+      "link": "https://arxiv.org/pdf/2604.25256v1",
+      "tags": [
+        "keyword:PANGEN",
+        "keyword:Xeno",
+        "keyword:基因演化",
+        "query:Xeno",
+        "query:基因演化"
+      ],
+      "llm_score": 6.0,
+      "llm_evidence_en": "AI agents for autonomous scientific literature discovery in genomics and biology",
+      "llm_evidence_cn": "用于基因组学和生物学自主科学文献发现的AI智能体",
+      "llm_evidence": "用于基因组学和生物学自主科学文献发现的AI智能体",
+      "canonical_evidence": "用于基因组学和生物学自主科学文献发现的AI智能体",
+      "llm_tldr_en": "Benchmarks AI agents on their ability to perform deep and wide scientific literature research.",
+      "llm_tldr_cn": "评估AI智能体在进行深度和广度科学文献研究方面的能力。",
+      "llm_tldr": "评估AI智能体在进行深度和广度科学文献研究方面的能力。",
+      "llm_tags": [
+        "query:profile-1:composite"
+      ],
+      "matched_query_tag": "query:profile-1:composite",
+      "matched_query_text": "Papers central to 查找基因组学与生物演化相关的学术论文, especially work that connects or combines: g; evolutionary biology and mechanisms; phylogenetic analysis and tree construction; comparative genomics across species; population genetics and evolutionary dynamics; signatures of natural selection in genomes; 利用AI进行基因组相关研究也包含; 猪的异种移植; recent advances in genomics and evolutionary biology; molecular mechanisms of genome evolution.",
+      "matched_requirement_id": "req-composite-profile-1",
+      "selection_source": "fresh_fetch",
+      "quick_tier": "6"
+    }
+  ]
+}
